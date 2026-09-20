@@ -9,24 +9,24 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/phoenix-legacy-context-20260921`. PR90mergedad783cdeafter four passing
-CI35536340170checks atdcbd5c88. Tested and merged trees match exactly.
+`evidence/share-context-batch24-20260921`. PR91merged0ee70276after four passing
+CI35536582789checks at6aae4690. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-phoenix-20260921.json.gz.
-Of1,176batch observations,674reviewed/482pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch24-20260921.json.gz.
+Of1,176batch observations,698reviewed/458pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest14reviews map Phoenix New Media2009–2011amendment XML to originalApril27
-annual statement/EPSnote399. Explicit rows/date/currency columns preserveCNYand
-2011USDconvenience translation6.2939, full ordinary-share counts and eight-shares-
-per-ADSdistinction. Preferred redemption accretion, participating allocations and
-beneficial conversion amortization explain ordinary-shareholder loss despite net
-income; anti-dilutive equivalents excluded.45renderer/ledger tests pass; source
-report replays byte-identically. No values, units, dates or accession labels changed.
-Original/amendment receipts and initialcapturefailure retained. Next new index67;
-earlier legacy/context gaps remain.96presentation-only reviews retain limits.
+Latest24reviews cover Akebia and Fastly2023–2025EPS. Akebiauses net loss even
+when2025operating income is positive; excluded equivalents are reported before
+treasury-stock adjustments. Dollar-thousands heading does not scale its full share
+counts. Fastlyretains if-converted treatment for convertible debt, loss-period
+exclusions and scale3shares. Values/units/dates unchanged.46renderer/ledger tests
+pass; source report replays byte-identically. Next new index69; earlier gaps remain.
+Phoenix14legacy reviews remain source-bound to original/amendment mapping; its
+oversized first report/publication failure retained locally.96presentation-only
+reviews retain their limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against

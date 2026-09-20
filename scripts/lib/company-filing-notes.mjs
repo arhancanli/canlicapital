@@ -1,6 +1,228 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001517022",
+  "include_on_overview": true,
+  "source_sha256": "eca901731ec587f0de4c46106d46ca08fada346fffe215cee1b095d9bfe74258",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Akebia uses net loss as its EPS numerator, including 2025 when it reported operating income but a net loss. Potential common-share equivalents are excluded as anti-dilutive. The excluded-share table gives counts before applying the treasury-stock method; these are not additions to the weighted-average denominator. The statement heading scales dollars, not shares. Full share counts and EPS retain scale-zero tags without changing the reported values.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1517022/000151702226000020/akba-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.28,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.33,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.02,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.28,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.33,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.02,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 187465448,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 210946658,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 257157782,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 187465448,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 210946658,
+      "accn": "0001517022-26-000020"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 257157782,
+      "accn": "0001517022-26-000020"
+    }
+  ]
+},
+{
+  "cik": "0001517413",
+  "include_on_overview": true,
+  "source_sha256": "119b15dbcd00bb2ecc4c622355a6a5723cd26c4242161650800db60bed63656d",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Fastly uses net loss as its EPS numerator and excludes potential dilution in the loss periods. Its policy separately applies the if-converted method to convertible debt, alongside potential equity-award and employee-purchase dilution. Excluded instruments are not added to the denominator. Statement and EPS-note share counts are in thousands with scale-three tags, while EPS uses scale zero. Original dates, units and values are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1517413/000151741326000053/fsly-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.03,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1.14,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.83,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.03,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1.14,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.83,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 128770000,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 138099000,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 146902000,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 128770000,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 138099000,
+      "accn": "0001517413-26-000053"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 146902000,
+      "accn": "0001517413-26-000053"
+    }
+  ]
+},
+{
   "cik": "0001509646",
   "include_on_overview": true,
   "source_sha256": "872b3292fee11a15c36ea6ad00916e22c69389532d2a51bce4f679f0a396f23d",

@@ -756,3 +756,16 @@ retained alongside it. Corrected extraction excludes enclosing paragraphs/tables
 all required actual disclosure paragraphs still match. Replayed revised report
 byte-identically, refreshed registry hash/ledger, reran targeted tests. Amend only
 unpublished local commit; no force push or change to existing published evidence.
+
+## 2026-09-21 — excluded-share counts before treasury-stock adjustment
+
+Previous turn completed14Phoenixreviews and corrected oversized disclosure report.
+PR91four CI35536582789checks passed at6aae4690; merged0ee70276with identical tree
+8ae0da5fda0e68783f1a5c1ca7cdc033fbc0ae4e. Reviewed24Akebia/Fastlyobservations.
+Akebia2025operating income does not replace net loss as EPSnumerator; excluded
+counts precede treasury-stock adjustments. Dollar heading preserves full scale0
+shares. Fastlyif-converted convertible debt treatment and scale3shares retained.
+Both exclude potential dilution in loss periods. Source report replays identically;
+46renderer/ledger tests pass; exactly24rows advance.698reviewed/458pending/
+20withdrawn,96presentation-only. No runtime rebuild, archive supplement, deployment
+or indexing gain. Next new index69; earlier gaps remain. All goals active.
