@@ -192,6 +192,26 @@ test('loss dilution and converted share-class labels retain source counts', () =
   }
 });
 
+test('legacy annual context preserves historical issuer and excludes transition-period substitution', () => {
+  for (const [fixture, cik, phrase, value] of [
+    ['china-bilingual', '0001470129', /separate eight-month 2011 column is not selected/, 30094205],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v18' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === '2012-08-31' && r.val === value));
+    const annual = record.concepts.find(c => c.tag === tags[0]).observations.find(r => r.end === '2011-08-31');
+    assert.equal(annual.start, '2010-09-01'); assert.equal(annual.val, 0.45);
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('loss-context notes preserve noncontrolling allocation and explicit statement share units', () => {
   for (const [fixture, cik, phrase, value] of [
     ['roblox', '0001315098', /after noncontrolling interests as its EPS numerator/, 689612000],

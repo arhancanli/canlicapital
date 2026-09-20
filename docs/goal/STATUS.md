@@ -1,6 +1,6 @@
 # Current state
 
-Updated September20,2026. Goal ACTIVE, NOT ACHIEVED. Codex implements directly;
+Updated September21,2026. Goal ACTIVE, NOT ACHIEVED. Codex implements directly;
 Hermes stopped. All objectives and publication authorization remain in REQUIREMENTS.md.
 Previous status preserved byte-for-byte in
 [history/STATUS-20260920-through-share-context-batch3.md](history/STATUS-20260920-through-share-context-batch3.md),
@@ -9,23 +9,25 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch16-20260920`. PR79mergedadb81e1eafter four passing
-CI35533993326checks atc002a7de. Tested/merged tree
-07561f09e095741365b75847a3cebbbbeea8e051 matches exactly.
+`evidence/legacy-visitiq-context-20260921`. PR80mergedeb94eb91after four passing
+CI35534133763checks ata5828902. Tested/merged tree
+e82d80d6545c77a931f7f224fd4ac18f900d9c81 matches exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch16-20260920.json.gz.
-Of1,176batch observations,504reviewed/658pending/14withdrawn.72reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-legacy1-20260921.json.gz.
+Of1,176batch observations,516reviewed/646pending/14withdrawn.84reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover SI-BONEand Backblaze2023–2025loss-period dilution.
-BackblazeClassBconverted one-for-one into ClassAJuly6,2023; retained combined
-statement labels do not prove two classes remained outstanding later. BonusPlan
-shares and other specified equivalents remain excluded. SI-BONEnet loss is distinct
-from comprehensive loss. Both full share counts use scale0.36renderer/ledger tests
-pass; source report replays byte-identically. Next new index52; legacy and earlier
-context gaps remain open.
+Latest12reviews map legacy China Bilingual(nowVisitIQCIK) XMLfacts to explicit
+annual columns in original2012filing tables72/73. Selected2010calendar year and
+2011/2012August years remain distinct from the eight-month2011column (EPS0.31
+versus annual0.45). Historical issuer identified; no current-operations inference.
+All12remain presentation-only because generic loss-period policy does not explain
+equality in these profitable periods.37renderer/ledger tests pass; report replays
+byte-identically, rechecks XMLnamespace/unit/period matching and exact HTMLcells.
+Kodiakindex52inspected but not adjudicated; then new index54. Earlier legacy and
+other context gaps remain open.
 
 V18six Iovance2023–2025share-scale holds remain enforced. Earlier2019–2022share
 rows need original-filing review and six EPSbatch rows are still pending. Whole-
