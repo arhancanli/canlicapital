@@ -661,3 +661,8 @@ no uploader had started in the old launcher. New transfer is confirmed live with
 minimum between request starts, same bounded reconciliation and hard stops.
 Fresh resume1receipt preserves original5625-object429failure without overwriting.
 No provider settings changed; no production expansion or indexing gain.
+
+Review found the early401/403/429read branch omitted diagnostic metadata. Fixed
+it without enabling retries, with a receipt-level regression for all three codes.
+All21storage/planner tests pass. Active77617 remains pinned to e5177ec0 and has not
+hot-reloaded this later diagnostics-only change.

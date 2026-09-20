@@ -286,6 +286,25 @@ test('rate-limited creates retain safe Retry-After metadata and never retry', as
   }
 });
 
+test('denied reads retain safe status and retry metadata without retrying or writing', async t => {
+  for (const status of [401, 403, 429]) {
+    const f = fixture(t, 1); let calls = 0, last;
+    const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', readAttempts: 3,
+      fetcher: async (url, init) => {
+        calls++; assert.notEqual(init.method, 'POST');
+        return new Response('sensitive upstream body', { status, headers: { 'Retry-After': '180' } });
+      } });
+    await assert.rejects(uploadCompanyStorage({ ...f, storage, writeAttempts: 2, record: receipt => { last = structuredClone(receipt); } }), /Storage read rejected/);
+    assert.equal(calls, 1);
+    assert.equal(last.complete, false);
+    assert.equal(last.failures[0].http_status, status);
+    assert.deepEqual(last.failures[0].retry_after, { seconds: 180 });
+    assert.equal(last.read_retries.length, 0);
+    assert.equal(last.write_recovery.length, 0);
+    assert.ok(!JSON.stringify(last).includes('sensitive'));
+  }
+});
+
 test('request pacing spaces concurrent reads and creates by actual starts', async t => {
   const f = fixture(t, 1), starts = []; let clock = 0;
   const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', minIntervalMs: 250,

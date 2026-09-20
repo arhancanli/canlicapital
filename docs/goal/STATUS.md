@@ -33,9 +33,11 @@ company-storage-health-20260920.json. Exact failed-key public inspection is reco
 in company-storage-denied-key-inspection-20260920.json. No write attempted.
 Supabase documentation says storage429 can involve pooler max_clients; this is
 context, not conclusive diagnosis: https://supabase.com/docs/guides/storage/debugging/error-codes.
-Uploader now retains sanitized numeric/date Retry-After metadata without changing
-429hard-stop behavior.18storage/planner tests pass including single denied create,
-no retry and omission of arbitrary upstream header/body content.
+PR35 now retains sanitized numeric/date Retry-After metadata on rejected reads
+and writes without changing429hard-stop behavior.21storage/planner tests pass,
+including one denied request without retry/write and omission of upstream bodies.
+The active recovery uses earlier e5177ec0: create diagnostics and pacing are
+present, but read-denial metadata was added afterward; do not claim it hot-reloaded.
 Paced recovery77617 launched from e5177ec0 after20storage/planner tests passed.
 One worker, minimum500ms between request starts, read/write bounds3/2 and shared
 retry budgets200/50. Fresh receipt corpus-local/company-five-cohort-transfer-

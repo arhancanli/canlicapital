@@ -92,7 +92,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
       if (!response.ok) {
         if ([401, 403, 429].includes(response.status)) {
           await response.body?.cancel().catch(() => {});
-          throw new Error(`Storage read rejected (${response.status})`);
+          throw Object.assign(new Error(`Storage read rejected (${response.status})`), responseFailureMetadata(response));
         }
         // Supabase returns HTTP400 with an embedded404 for absent objects. Never
         // treat authorization, throttling or arbitrary HTTP400 as absence.
