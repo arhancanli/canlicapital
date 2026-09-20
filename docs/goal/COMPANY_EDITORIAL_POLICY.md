@@ -72,3 +72,15 @@ The extended-v2 candidate excludes these source-bound histories and explains the
 omissions on company overviews. See COMPANY_REVENUE_SCOPE_REVIEW.md. Earlier
 extended-v1 candidates remain reproducible evidence but are not publishable as-is.
 Other constant and historical cases still require semantic/usefulness review.
+
+## Extended-v3 consolidated dispositions
+
+Latest-selected-accession comparison now covers all33 constant-history cases.
+Twenty-one separate XBRL bundles match46 selected observations; the other12cases
+have complete inline comparisons. Scope review supports eight source-bound
+exclusions in extended-v3; it does not approve every historical observation or
+remaining standalone page. Five histories describe intersegment revenue, two
+qualified earnings/revenue disclosures cannot support generic revenue totals,
+and one cash-equivalents-only disclosure cannot support combined cash balances.
+See COMPANY_REVENUE_SCOPE_REVIEW.md. All other selected concepts and original SEC
+bytes remain unchanged. The corrected quality queue still has6,705flags.

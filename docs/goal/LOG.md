@@ -1050,3 +1050,20 @@ onaccess/rate-limiterrors. Next finishsource-review andmakecoherentpolicyupdate.
 Capture15210 nowexit0:21case bundles,42uniqueinstance/label-or-schema bodies,
 allstatus200 withverifiedlength/hash. No acquisitionprocess remainsrunning.
 Next: offlineinstance/context/unit/value andscope review, thennextpolicyversion.
+
+## 2026-09-20 — complete constant-case comparison and extended-v3
+
+Previous turn made sourceacquisition/scopeprogress; a43fdef7CI35493322351passed.
+Offline21XBRLbundles match46selectedfacts with entity/date/unit/value checks.
+Embeddedlabel-linkbases supported. Scopeinspection foundqualified earnings/revenue
+andcash-equivalent statements beyondfiveintersegmentcases. Data443 separateCash
+facts confirmnonzerobalances despitecash-equivalentszeros. Consolidated8sourcebound
+exclusionsinv3; v2unchanged. Retainedcases remainpendingothereditorialgates.
+Build18152exit0:384tests+audits. Stage71737exit0 andfullrecordmigration:1,968
+companies,52,408histories,onlyeightconceptsremoved,rawsourcesunchanged. Combined
+6657exit0. Browser80933exit0:114checks inclscopeoverviews/404s;mobileData443inspected.
+Quality87267exit0:6,705flags. Storage37363exit0:6,249objects/828,340,450bytes.
+FullHTTP11564running; nextpollsamehandle thenupdatearchive/restore.
+
+FullHTTP11564exit0:54,416URLs/3,936downloads,exacttwoshard sitemap,no failures,
+maxHTML36,223bytes/four-link bound. Allv3localchecks complete;archiveupdate next.

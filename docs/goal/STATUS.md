@@ -7,32 +7,27 @@ Read REQUIREMENTS.md for the complete owner objectives; none were removed.
 
 ## Current checkpoint
 
-Revenue-scope review found three misleading generic Revenues histories: Flowserve,
-Santander and OFG selected zeros from intersegment eliminations. Earlier extended-v1
-candidates are reproducible evidence but must not be published as-is.
+Extended-v3 corrects eight source-scope interpretations: five intersegment revenue
+histories, Burzynski historical earnings, Provectus material/substantial revenue,
+and Data443 cash equivalents alone. Earlier v1/v2 candidates remain reproducible
+but must not be published as-is. Original SEC bytes are unchanged.
 
-New extended-v2 policy applies exact-source-hash exclusions, explains them on the
-company overview, and keeps original SEC downloads. All1,968 staged records were
-compared: only the three reviewed concepts changed;52,413histories remain. Local
-build and383tests(6+377) pass. Corrected candidate catalog/release/discovery built;
-fullHTTP19226 passed54,421pages/3,936downloads with exactsitemap and nofailures.
-Browser22919 passed84checks, including affectedoverviews andhistory404s.
-CI60100bd6/run35492885392 passes. Two additional scope errors at Dentsply and
-Compass are now confirmed; v2 is not a publication candidate as-is.
+All33 constant-history cases have latest-selected-accession numerical comparisons:
+12complete inline cases and21XBRL bundles(46matched observations). These do not
+establish all-history accuracy, standalone usefulness or publication approval.
 
-The prior three-cohort archive(12,952files) and isolatedrestore passed for its
-extended-v1scope. It excludes the new constant-history filing review and corrected
-v2runtime. Updated storage inventory/archive required after v2verification.
-Remote retention destination/access and Search Console measurement remain pending.
-All33constant-history primaryfilings captured;12completeinlinecomparisons and
-21requiring separateXBRL. Additionalcapture15210 completed after fixing embedded
-label-linkbase support;21case bundles/42unique bodies hashverified. Prior56575 exited1, failure retained;
-existingverifiedcaptures reused. Finishreview before nextpolicyversion.
+All1,968 v3records compared withv1: onlytheeight reviewed concepts removed;
+52,408histories/40directories yield54,416candidateURLs. Build384tests andfinalaudits
+pass. Browser80933passed114checks, including allaffectedoverviews andhistory404s;
+mobileData443scope explanation inspected. Quality87267passed:6,705flags retained.
+Storage37363passed:6,249objects/828,340,450bytes. FullHTTP11564passed54,416pages/3,936downloads, exactsitemap, nofailures.
 
-Latest completed website CI:7e111ee9/run35492406633 passes. New editorial correction
-needs its own CI. Engine PR68 at61b587f passed full CI35489715539; five current-epoch
-returns/four sleeves do not establish owner performance goals. All requirements
-remain active. No production migration, deployment or trading orders performed.
+Next: updatedv3archive andisolatedrestore. Currentsealedarchive
+coversv1 andexcludesnewconstantfilings/v3runtime. Remote destination/access and
+Search Console evidence remainpending. LatestcompletedCI:a43fdef7/run35493322351
+passed. Currentv3revision needsits ownCI. Engine61b587fpassedCI;fivecurrentepoch
+returns/foursleeves remaininsufficient forownerperformancegoals. Goalactive;
+no productionmigration/deployment/brokerorders.
 
 ## Counts and boundaries
 
@@ -384,3 +379,22 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   captured bodies verified bystatus/hash/length. Next compareinstances andscope.
 - Newfilingmaterial outsidecurrentsealedarchive. Exactdecisions andsourcebinding:
   company-noninline-revenue-scope-review.json andcompany-all-constant-filing-evidence.json.
+
+## Consolidated scope policy v3 — 2026-09-20
+
+- All21extraXBRLbundles match46selected observations. Linkedlabels plusprimary
+  narrative/balance-sheet inspection identifyfive newexclusions on topofv2'sthree.
+  Data443 cashcounterparts independently match197364/168208USDfor2025/2024.
+- Addedfrozenextended-v3 withtheeight exactsourcebindings, preservingv2. Changed
+  sourcebytes require renewedreview. Priorclaims ofzerosare not converted into
+  inventedtotals. Otherzero histories retained pendingremainingeditorialgates.
+- Build18152exit0:384tests(6+378)+finalaudits pass. Threecohortstage71737exit0;
+  allrecordmigrationcompared onlyeight conceptsremoved. Combined6657exit0.
+- Browser80933exit0:114checks/19routes/twoengines/threewidths;Data443mobileview
+  inspected. Storage37363exit0 andquality87267exit0. HTTP11564stillrunning.
+- Newsourcecomparison:company-constant-xbrl-comparison.json; exactv3roots in
+  company-three-cohort-release-v3.json. Storageinventory binds828,340,450bytes;
+  no upload/archivecompletion/productionindexing claim.
+
+- HTTP11564nowexit0:54,416pages/3,936downloads, exactsitemap,no failures,
+  maxHTML36,223bytes andfour-link bound from/companies. No currentjob remainslive.

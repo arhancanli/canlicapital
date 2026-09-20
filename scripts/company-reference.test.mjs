@@ -144,3 +144,15 @@ test('editorial policy preserves legitimate zero series and rejects changed evid
     assert.throws(() => companyReference(JSON.stringify(source), { fetchedAt: record.fetched_at, expectedCik: cik, selectionPolicy: 'extended-v2' }), error => error.code === 'EDITORIAL_REVIEW_REQUIRED');
   }
 });
+
+test('v3 scopes new exclusions without changing the frozen v2 policy', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const source = JSON.parse(gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))));
+  source.facts['us-gaap'].Revenues = { units: { USD: [2021, 2022, 2023].map(year => ({ ...row, start: `${year}-01-01`, end: `${year}-12-31`, val: 0 })) } };
+  for (const cik of ['0000818479', '0001227654', '0000724445', '0001068689', '0000315545']) {
+    source.cik = Number(cik);
+    const raw = JSON.stringify(source);
+    assert.doesNotThrow(() => companyReference(raw, { fetchedAt: record.fetched_at, expectedCik: cik, selectionPolicy: 'extended-v2' }));
+    assert.throws(() => companyReference(raw, { fetchedAt: record.fetched_at, expectedCik: cik, selectionPolicy: 'extended-v3' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  }
+});

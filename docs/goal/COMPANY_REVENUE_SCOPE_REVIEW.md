@@ -61,3 +61,34 @@ extraction can reflect a non-inline filing or unsupported transform and is not
 an issuer-data error. The next policy change awaits that broader review. The
 latest v2 full HTTP replay and84browser checks pass but do not resolve these
 additional semantic release gates.
+
+## Consolidated constant-history review and extended-v3
+
+The additional 21 XBRL bundles match all46 selected observations by entity, period,
+unit and numerical value, excluding dimensional and nil facts. Label linkbases
+embedded in taxonomy schemas are supported. Together with the12 complete inline
+comparisons, every constant-history case now has a latest-selected-accession
+numeric comparison. This is not an all-history or publication audit.
+
+Three further scope decisions join the five intersegment cases:
+
+| Company / CIK | Inspected context | Decision |
+|---|---|---|
+| Burzynski / 0000724445 | Revenue-tagged zeros occur in a deferred-tax discussion about historical earnings. | Omit the generic revenue history; earnings language does not establish revenue. |
+| Provectus / 0000315545 | Linked label qualifies the measure as material revenue; narrative discusses absence of substantial revenue. | Omit the generic zero-revenue history; no substantial revenue does not establish zero total revenue. |
+| Data443 / 0001068689 | The zero measure covers cash equivalents alone. Separate Cash facts report USD197,364 and USD168,208 for2025/2024. | Omit the combined cash-and-equivalents history; do not replace it with invented or summed values. |
+
+`extended-v3` adds these three decisions plus Dentsply and Compass to the three
+unchanged v2 exclusions. Exact source hashes remain mandatory. The v2 policy and
+its earlier records remain reproducible. Eight histories are omitted in total;
+other zero histories remain available pending remaining quality/usefulness gates.
+No issuer-data error or bad faith is alleged: the defect is the reference site's
+unqualified interpretation of a narrower disclosure.
+
+`company-constant-xbrl-comparison.json` binds the instances, label roles, periods,
+units and matched values and records the separate scope decisions. Data443's
+nonzero balance-sheet Cash facts are included as corroborating source facts.
+Patriot Gold's office-equipment purchase row is retained as the selected PPE
+payment, with the existing limitation that this does not cover every investment.
+Remaining retained cases are not automatically approved by absence of a detected
+contradiction. Existing historical/unit/constant disclosures and release gates apply.

@@ -1,3 +1,4 @@
+import { EDITORIAL_POLICY_V3, EDITORIAL_EXCLUSIONS_V3 } from './company-editorial-v3.mjs';
 import { EDITORIAL_POLICY, EDITORIAL_EXCLUSIONS } from './company-editorial-dispositions.mjs';
 import { createHash } from 'node:crypto';
 import { EXTENDED_CONCEPTS, EXTENDED_POLICY, compatibleUnit } from './company-extended-concepts.mjs';
@@ -53,7 +54,7 @@ export function selectObservations(fact, kind, asOf, diagnostics = {}) {
 
 export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}, selectionPolicy }) {
   if (typeof fetchedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$/.test(fetchedAt) || !Number.isFinite(Date.parse(fetchedAt))) throw new Error('A verified UTC capture timestamp is required before publication');
-  if (selectionPolicy !== undefined && ![EXTENDED_POLICY, EDITORIAL_POLICY].includes(selectionPolicy)) throw new Error('Unknown company selection policy');
+  if (selectionPolicy !== undefined && ![EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3].includes(selectionPolicy)) throw new Error('Unknown company selection policy');
   const source = JSON.parse(raw);
   if (!source || !Number.isSafeInteger(source.cik) || source.cik < 1 || source.cik > 9999999999 || source.cik !== Number(expectedCik) || typeof source.entityName !== 'string' || !source.entityName.trim()) throw new CompanyReferenceError('INVALID_ENTITY', 'SEC entity identity mismatch');
   const cik = String(source.cik).padStart(10, '0');
@@ -61,12 +62,13 @@ export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}
   if (!date(asOf)) throw new Error('Invalid capture date');
   const concepts = [];
   const editorialExclusions = [];
+  const decisions = selectionPolicy === EDITORIAL_POLICY_V3 ? EDITORIAL_EXCLUSIONS_V3 : selectionPolicy === EDITORIAL_POLICY ? EDITORIAL_EXCLUSIONS : [];
   const sourceHash = createHash('sha256').update(raw).digest('hex');
-  const definitions = [EXTENDED_POLICY, EDITORIAL_POLICY].includes(selectionPolicy) ? { ...CONCEPTS, ...EXTENDED_CONCEPTS } : CONCEPTS;
+  const definitions = [EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3].includes(selectionPolicy) ? { ...CONCEPTS, ...EXTENDED_CONCEPTS } : CONCEPTS;
   for (const [tag, definition] of Object.entries(definitions)) {
     const fact = source.facts?.['us-gaap']?.[tag];
     if (!fact) continue;
-    const disposition = selectionPolicy === EDITORIAL_POLICY && EDITORIAL_EXCLUSIONS.find(row => row.cik === cik && row.tag === tag);
+    const disposition = decisions.find(row => row.cik === cik && row.tag === tag);
     if (disposition) {
       if (sourceHash !== disposition.source_sha256) throw new CompanyReferenceError('EDITORIAL_REVIEW_REQUIRED', `Changed source requires renewed scope review for ${cik}/${tag}`);
       editorialExclusions.push({ tag, reason: disposition.reason, filing_url: disposition.filing_url });
