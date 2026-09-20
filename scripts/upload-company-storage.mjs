@@ -101,12 +101,17 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
     },
     async create(file, raw) {
       if (!KEY.test(file.key)) throw new Error('Invalid object key');
-      const response = await request(`${base.origin}/storage/v1/object/${bucket}/${file.key}`, {
+      let response;
+      try { response = await request(`${base.origin}/storage/v1/object/${bucket}/${file.key}`, {
         method: 'POST', headers: { ...auth, 'Content-Type': file.content_type,
           'Cache-Control': file.cache_control, 'x-upsert': 'false' }, body: raw,
-      });
+      }); } catch (error) { error.ambiguousWrite = true; throw error; }
       await response.body?.cancel();
-      if (!response.ok) throw new Error(`Storage create rejected (${response.status}); no overwrite or retry`);
+      if (!response.ok) {
+        const error = new Error(`Storage create rejected (${response.status}); no overwrite`);
+        error.ambiguousWrite = [409, 502, 503, 504].includes(response.status);
+        throw error;
+      }
     },
   };
   return { ...adapter, async read(file, { onRetry = () => {} } = {}) {
@@ -122,18 +127,39 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
   } };
 }
 
-export async function uploadCompanyStorage({ planBytes, planHash, storage, record = () => {}, concurrency = 1 }) {
+export async function uploadCompanyStorage({ planBytes, planHash, storage, record = () => {}, concurrency = 1,
+  writeAttempts = 1, pause = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
   if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 4) throw new Error('Concurrency must be between 1 and 4');
+  if (!Number.isInteger(writeAttempts) || writeAttempts < 1 || writeAttempts > 2) throw new Error('Write attempts must be 1 or 2');
   const plan = validateStoragePlan(planBytes, planHash);
   const receipt = { schema: 'canli.company-storage-transfer.v1', plan_sha256: planHash,
     code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
     release_hash: plan.release_hash, destination: storage.destination, publication_approved: false,
-    complete: false, files: [], failures: [], read_retries: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
+    complete: false, files: [], failures: [], read_retries: [], write_recovery: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
   record(receipt);
   const read = file => storage.read(file, { onRetry: event => {
     receipt.read_retries.push({ key: file.key, ...event }); record(receipt);
   } });
-  let cursor = 0, failure;
+  let cursor = 0, failure, writeRetries = 0;
+  async function createVerified(file, raw) {
+    for (let attempt = 1; ; attempt++) {
+      try { await storage.create(file, raw); }
+      catch (error) {
+        if (!error.ambiguousWrite) throw error;
+        const event = { key: file.key, attempt, error: error.message, reconciliation: 'pending' };
+        receipt.write_recovery.push(event); record(receipt);
+        const found = await read(file);
+        event.reconciliation = found === null ? 'absent' : 'verified_existing'; record(receipt);
+        if (found !== null) return 'verified_after_create_error';
+        if (attempt >= writeAttempts || writeRetries >= 10) throw error;
+        event.retry_number = ++writeRetries; record(receipt);
+        await pause(1000);
+        continue; // Explicitly enabled, bounded create-only attempt after verified absence.
+      }
+      if (await read(file) === null) throw new Error('Created object is not publicly retrievable');
+      return 'created_and_verified';
+    }
+  }
   async function worker() {
     while (!failure && cursor < plan.files.length) {
       const file = plan.files[cursor++];
@@ -141,9 +167,7 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
         const raw = localBytes(file);
         let action = 'verified_existing';
         if (await read(file) === null) {
-          await storage.create(file, raw);
-          if (await read(file) === null) throw new Error('Created object is not publicly retrievable');
-          action = 'created_and_verified';
+          action = await createVerified(file, raw);
         }
         receipt.files.push({ key: file.key, sha256: file.sha256, bytes: file.bytes, action });
         record(receipt);
@@ -162,11 +186,11 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1'] = process.argv.slice(2);
-  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3]');
+  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1', writeAttempts = '1'] = process.argv.slice(2);
+  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3] [WRITE_ATTEMPTS_1_TO_2]');
   if (existsSync(output) || existsSync(output + '.pending')) throw new Error('Receipt already exists; preserve it and use a new path');
   const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY, readAttempts: Number(readAttempts) });
-  await uploadCompanyStorage({ planBytes: readFileSync(planPath), planHash, storage, concurrency: Number(concurrency), record: receipt => {
+  await uploadCompanyStorage({ planBytes: readFileSync(planPath), planHash, storage, concurrency: Number(concurrency), writeAttempts: Number(writeAttempts), record: receipt => {
     writeFileSync(output + '.pending', JSON.stringify(receipt, null, 2) + '\n', { mode: 0o600 });
     renameSync(output + '.pending', output);
   } });

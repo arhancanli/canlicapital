@@ -8,9 +8,10 @@ history/STATUS-20260920-through-fourth-v9.md; earlier history remains linked the
 ## Current checkout and releases
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch fix/company-storage-read-recovery-20260920. PR21 merged as9f1e607c;
+Branch fix/company-storage-write-reconciliation-20260920. PR21 merged as9f1e607c;
 tree matches tested219a7205 and all four pre-merge CI jobs passed.
-PR22 carries bounded read recovery and hosted wrapper audit.
+PR22 merged as4337d655 after all four CI35511309210jobs passed; tested and
+merged trees match5e83e54c. It includes bounded read recovery and hosted audit.
 Post-PR19 Dependabot check reports no open alerts. Current work is storage
 transport diagnosis and hosted staging, not page activation.
 Production application revision9608542ce019307674269667c4aa16ebc69dd43e is live
@@ -153,14 +154,20 @@ running-engine trading activation, actual indexing gain or investment outcome is
 Supabase staging bucket company-reference-staging exists, public read with no
 public write policies added. JSON/gzip canary matches exact bytes and GET cache
 metadata. Full three-cohort plan is6,249objects/828,340,450bytes.
-All upload sessions are terminal:30526transport failure after69verified objects;
+Prior upload sessions are terminal:30526transport failure after69verified objects;
 81071HTTP502after240;58999unknown transport error after336. Last run used d0416673
 with bounded transient-read retries; the unknown category correctly stopped.
 Original receipts and tracked company-storage-*-stop-20260920.json remain intact.
 Do not claim complete transfer or restart based only on these old handles.
-Next: diagnose the transport subtype using sanitized machine labels, then resume
-with a fresh receipt only after checking actual endpoint state. Writes never
-auto-retry or overwrite; read attempts are explicit and bounded.
+Resume3session75189is terminal exit1 after557verified objects/40,312,854bytes.
+Two transient reads recovered; one create connection reset stopped the run.
+Read-only reconciliation confirms that object absent. All prior receipts remain
+intact. Current change verifies bytes after ambiguous create failures; an explicit
+writeAttempts=2 permits one further create-only request only after absence, with
+a global10retry budget. Default remains one write attempt. Permission failures,
+rate limits and corruption never trigger another write. Sixteen storage tests pass.
+No uploader is running at this checkpoint; next resume must use a fresh receipt.
+
 
 Isolated preview at9f1e607c is READY:
 https://meridian-omfw4yrid-arhans-projects-ac470eaa.vercel.app
@@ -171,5 +178,11 @@ apply only to this deployment. Four hosted unavailable-state checks pass:404,405
 HTTP/browser verification remain pending. The clean preview source remains at
 /Users/arhancanli/canlicapital-company-preview-20260920. Production pointer unchanged.
 
-Current12storage regressions/planner tests pass. Earlier detailed status preserved
+Current16storage regressions/planner tests pass. Earlier detailed status preserved
 in history/STATUS-20260920-through-storage-retries.md. Overall goal remains active.
+
+Verified candidate inventory across three batches:3,323unique company pages and
+87,348unique history pages. Rebuilding a combined50-company directory would yield
+67directory pages and90,738total candidate URLs. The combined catalog is not yet
+built; counts include existing pilot overlaps and are not new live/indexed pages.
+company-expansion-candidate-counts-20260920.json binds all three manifests.

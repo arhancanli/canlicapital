@@ -7,22 +7,22 @@ import { gzipSync } from 'node:zlib';
 import { catalogHash } from '../api/_lib/company-catalog.js';
 import { createSupabaseStorage, uploadCompanyStorage } from './upload-company-storage.mjs';
 
-function fixture(t) {
+function fixture(t, count = 2) {
   const dir = mkdtempSync(join(tmpdir(), 'canli-upload-'));
   t.after(() => rmSync(dir, { recursive: true, force: true }));
-  const data = [Buffer.from('{"release":true}'), gzipSync('source')];
+  const data = [Buffer.from('{"release":true}'), ...Array.from({ length: count - 1 }, (_, i) => gzipSync('source-' + i))];
   const files = data.map((raw, i) => {
     const sha256 = catalogHash(raw), key = `delivery/objects/${sha256}.json${i ? '.gz' : ''}`;
     const local_path = join(dir, String(i)); writeFileSync(local_path, raw);
     return { key, local_path, sha256, bytes: raw.length, content_type: i ? 'application/gzip' : 'application/json', cache_control: 'public, max-age=31536000, immutable' };
   });
   const planBytes = Buffer.from(JSON.stringify({ schema: 'canli.company-storage-plan.v1', publication_approved: false,
-    release_hash: files[0].sha256, files, objects: 2, bytes: data.reduce((n, b) => n + b.length, 0) }));
+    release_hash: files[0].sha256, files, objects: files.length, bytes: data.reduce((n, b) => n + b.length, 0) }));
   return { files, data, planBytes, planHash: catalogHash(planBytes) };
 }
 
 function server(fixture, options = {}) {
-  const objects = new Map(), calls = [];
+  const objects = new Map(), calls = [], failedKeys = new Set();
   const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test',
     readAttempts: options.readAttempts ?? 1, retryBudget: options.retryBudget ?? 10, pause: async () => {},
     fetcher: async (url, init) => {
@@ -31,9 +31,17 @@ function server(fixture, options = {}) {
       const key = url.split('/company-runtime/')[1];
       if (init.method === 'POST') {
         assert.equal(init.headers['x-upsert'], 'false'); assert.equal(init.headers.apikey, 'secret-test');
-        if (options.failCreate) return new Response('', { status: 503 });
+        if (options.failFirstPerKey && !failedKeys.has(key)) { failedKeys.add(key); return new Response('', { status: 503 }); }
+        if (options.failCreate || options.failCreateCount > 0) {
+          if (options.failCreateCount > 0) options.failCreateCount--;
+          return new Response('', { status: options.createStatus ?? 503 });
+        }
         if (objects.has(key)) return new Response('', { status: 409 });
         objects.set(key, Buffer.from(init.body));
+        if (options.loseReplyOnce) {
+          options.loseReplyOnce = false;
+          throw new Error('private upstream details', { cause: { code: 'ECONNRESET' } });
+        }
         return new Response('{}');
       }
       assert.equal(init.headers.Authorization, undefined); assert.equal(init.headers.apikey, undefined);
@@ -59,6 +67,41 @@ test('creates immutable objects, verifies public bytes, and resumes by independe
   assert.ok(resumed.files.every(f => f.action === 'verified_existing'));
   assert.equal(s.calls.filter(c => c.method === 'POST').length, 2);
   assert.ok(!JSON.stringify(result).includes('secret-test'));
+});
+
+test('lost create reply is reconciled through exact public bytes without another write', async t => {
+  const f = fixture(t), s = server(f, { loseReplyOnce: true });
+  const receipt = await uploadCompanyStorage({ ...f, storage: s.storage });
+  assert.equal(receipt.complete, true);
+  assert.equal(receipt.files[0].action, 'verified_after_create_error');
+  assert.equal(receipt.write_recovery[0].reconciliation, 'verified_existing');
+  assert.equal(s.calls.filter(c => c.method === 'POST').length, 2);
+  assert.ok(!JSON.stringify(receipt).includes('private upstream'));
+});
+
+test('explicit second create requires a recorded absent read and remains bounded', async t => {
+  const f = fixture(t), s = server(f, { failCreateCount: 1 });
+  const receipt = await uploadCompanyStorage({ ...f, storage: s.storage, writeAttempts: 2, pause: async () => {} });
+  assert.equal(receipt.complete, true);
+  assert.equal(receipt.write_recovery[0].reconciliation, 'absent');
+  assert.equal(receipt.write_recovery[0].retry_number, 1);
+  assert.equal(s.calls.filter(c => c.method === 'POST').length, 3);
+  const failing = server(f, { failCreate: true });
+  await assert.rejects(uploadCompanyStorage({ ...f, storage: failing.storage, writeAttempts: 2, pause: async () => {} }), /create rejected/);
+  assert.equal(failing.calls.filter(c => c.method === 'POST').length, 2);
+});
+
+test('create permission failure and corrupt reconciliation never cause a second write', async t => {
+  const f = fixture(t), denied = server(f, { failCreate: true, createStatus: 403 });
+  await assert.rejects(uploadCompanyStorage({ ...f, storage: denied.storage, writeAttempts: 2 }), /create rejected/);
+  assert.equal(denied.calls.length, 2); // Initial absent read, then denied create.
+  const corrupt = server(f); let writes = 0;
+  corrupt.storage.create = async file => {
+    writes++; corrupt.objects.set(file.key, Buffer.alloc(file.bytes));
+    const error = new Error('lost reply'); error.ambiguousWrite = true; throw error;
+  };
+  await assert.rejects(uploadCompanyStorage({ ...f, storage: corrupt.storage, writeAttempts: 2 }), /binding mismatch/);
+  assert.equal(writes, 1);
 });
 
 test('explicit read retry policy preserves failed attempts and never repeats create requests', async t => {
@@ -152,4 +195,14 @@ test('bounded workers settle before failure returns and retain completed in-flig
   assert.equal(snapshots.at(-1).complete, false);
   assert.equal(snapshots.at(-1).files.length, 1);
   assert.equal(snapshots.at(-1).failures[0].key, f.files[1].key);
+});
+
+ test('write retry budget is shared across objects and stops after ten second attempts', async t => {
+  const f = fixture(t, 12), s = server(f, { failFirstPerKey: true }), snapshots = [];
+  await assert.rejects(uploadCompanyStorage({ ...f, storage: s.storage, writeAttempts: 2, pause: async () => {},
+    record: r => snapshots.push(structuredClone(r)) }), /create rejected/);
+  const last = snapshots.at(-1);
+  assert.equal(last.complete, false); assert.equal(last.files.length, 10);
+  assert.equal(last.write_recovery.filter(r => r.retry_number).length, 10);
+  assert.equal(s.calls.filter(c => c.method === 'POST').length, 21);
 });
