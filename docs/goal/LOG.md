@@ -988,3 +988,18 @@ includes unconditional prefunded warrants, distinct from excluded contingent one
 Emerson8/Reliability8/Valhi6/Siebert6/Cedar8/Freddie12/Rockwell12/INVO16/Iovance6/
 Plastec12/Outset6/historicalLifeward4. All new index entries visited; these gaps
 remain. No rebuild/deployment/indexing gain. All owner objectives remain active.
+
+## 2026-09-21 — explicit absence versus unestablished dilution cause
+
+Previous turn completed24BGM/PRF reviews. PR108CIinitially absent then queued;
+no bypass/restart. All four CI35539737893checks passed atabf43455; merged
+fbf990e9ce309d0cb21f2690f4c924acff80302a, full tree
+d71d579f2eaa9522af1f2293a956dfa2a68e6a9amatches tested head. Reviewed16Emerson/
+Reliability rows. Emerson explicitly states no potential instruments; Reliability
+zero EPS remains as reported despite losses, dilution cause not established.
+Reliability eight rows receive presentation-only state. Initial replay terminal1
+failed Emerson diluted fact location; rejected spec retained, exact statement123
+added without comparator changes.92selector/renderer/ledger tests pass; report
+replays identically.1062reviewed/88pending/26withdrawn,104presentation-only.
+Remaining Valhi6/Siebert6/Cedar8/Freddie12/Rockwell12/INVO16/Iovance6/Plastec12/
+Outset6/historicalLifeward4. No rebuild/deployment/indexing gain; all goals active.

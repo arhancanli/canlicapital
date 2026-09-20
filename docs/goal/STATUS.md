@@ -9,11 +9,11 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch38-20260921`. PR107merged67f693c5after four passing
-CI35539516711checks at04415d97. Tested and merged trees match exactly.
+`evidence/share-context-batch39-20260921`. PR108mergedfbf990e9after four passing
+CI35539737893checks atabf43455. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch38-20260921.json.gz.
-Of1,176batch observations,1046reviewed/104pending/26withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch39-20260921.json.gz.
+Of1,176batch observations,1062reviewed/88pending/26withdrawn.104reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
@@ -27,17 +27,15 @@ V20whole-corpus comparison99298TERMINAL0verified3,323companies/87,344histories
 against frozenv14. Exactly30held observations sincev14(including six Lifeward),
 two prior Valhi history omissions, policy/notices; all other fields unchanged.
 Report company-five-cohort-v20-transition-20260921.json pins verified inputs/code.
-Latest24reviews cover BGM and PRF. BGM September fiscal dates and prior auditor's
-explicit limitation on subsequent2023split adjustments retained. Initial replay
-failed BGMbasic-share fact location; statement339added explicitly beside note355.
-PRFunconditional prefunded warrants already included; contingent warrants excluded
-from loss dilution. Report replays byte-identically;91selector/renderer/ledger
-tests pass. All new index entries visited; remaining104pending rows are exactly:
-Emerson8, Reliability8, Valhi6, Siebert6, Cedar8, Freddie Mac12, Rockwell12,
-INVO16, Iovance6, Plastec12, Outset6, historical Lifeward4. Resume these gaps;
-latest Lifeward and index97already reviewed. Runtime rebuild, quality inventory
-and archive supplement remain pending.
-96presentation-only reviews retain limits.
+Latest16reviews cover Emerson Radio and Reliability. Emerson explicitly has no
+potentially dilutive instruments for March2025/2026fiscal years. Reliability's
+zero EPS is retained despite net losses; no reason for equal basic/diluted shares
+is established, so its eight rows receive presentation-only status. Initial replay
+failed Emerson diluted-tag location; statement123added explicitly beside note139.
+Report replays byte-identically;92selector/renderer/ledger tests pass. Remaining88:
+Valhi6, Siebert6, Cedar8, Freddie Mac12, Rockwell12, INVO16, Iovance6, Plastec12,
+Outset6, historical Lifeward4. Runtime/quality rebuild and archival supplement pending.
+104presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against
