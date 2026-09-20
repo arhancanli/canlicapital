@@ -104,6 +104,13 @@ def complete_cohort(report, queue):
 
 
 def evidence_profile(profile):
+    if profile == 'five-cohort-v9':
+        return {'prefix': 'company-five-cohort', 'suffix': 'v9',
+                'summary': 'company-five-cohort-storage-plan-summary-20260920.json',
+                'plan_name': 'company-five-cohort-storage-plan-v9.json',
+                'cohorts': ['fresh-review', 'next-1000', 'third-1000', 'fourth-1000', 'fifth-1000'],
+                'editorial': ['editorial-filings', 'editorial-third-filings', 'editorial-constant-filings',
+                              'fourth-editorial-filings', 'fifth-editorial-filings', 'cash-history-filings-20260920']}
     if profile in ('fifth-cohort-v7', 'fifth-cohort-v8'):
         version = profile.rsplit('-', 1)[1]
         return {'prefix': 'fifth-1000', 'suffix': version,
@@ -136,7 +143,7 @@ def build(root, output, profile='two-cohort'):
     cohorts, editorial = config['cohorts'], config['editorial']
     local = root / 'artifacts/seo/corpus-local'
     summary = json.loads((root / 'artifacts/seo' / config['summary']).read_text())
-    plan_path = root / summary['local_plan']
+    plan_path = root / (summary['plan_path'] if profile == 'five-cohort-v9' else summary['local_plan'])
     if file_hash(plan_path) != summary['plan_sha256']:
         raise ValueError('Runtime plan binding changed')
     plan = json.loads(plan_path.read_text())
@@ -182,7 +189,7 @@ if __name__ == '__main__':
     parser.add_argument('archive', type=Path)
     parser.add_argument('--root', type=Path, default=Path.cwd())
     parser.add_argument('--destination', type=Path)
-    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6', 'fourth-cohort-v9', 'fifth-cohort-v7', 'fifth-cohort-v8'], default='two-cohort')
+    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6', 'fourth-cohort-v9', 'fifth-cohort-v7', 'fifth-cohort-v8', 'five-cohort-v9'], default='two-cohort')
     args = parser.parse_args()
     if args.mode == 'restore' and args.destination is None:
         parser.error('restore requires --destination (must not exist)')
