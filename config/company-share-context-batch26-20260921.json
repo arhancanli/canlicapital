@@ -1,0 +1,61 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001530979",
+      "accession": "0001628280-26-011634",
+      "source_sha256": "1dc003296434030b68838f6142d42ce1f85e09fe2281dec7081799840baad20a",
+      "primary_sha256": "a3810feb98c5e184009f5b4a58a254beeaa4d41e05808911174ba2a9eb3956d4",
+      "fixture": "scripts/fixtures/editorial/honest-company-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 45,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss attributable to common stockholders",
+        "Weighted average shares",
+        "(In thousands, except for share and per share values)"
+      ],
+      "paragraph_requires": [
+        "The Company computes diluted net income per share under a two-class method",
+        "The following potentially dilutive shares were excluded from the computation"
+      ],
+      "reader_note": "For 2023\u20132025, The Honest Company uses net loss attributable to common stockholders as its EPS numerator; the separate 2023 comprehensive-loss figure does not replace it. Its dilution policy describes two-class allocation and the treasury-stock method for options. The filing excludes the listed potentially dilutive shares as anti-dilutive. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags; excluded instruments are not added to the denominator.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001534248",
+      "accession": "0001178913-26-001593",
+      "source_sha256": "737f2c1429e733f20983ab524655c974f3445e8d5fe0e9cdf24c1175086ec27a",
+      "primary_sha256": "2de471aac40117d6b8ed8b5d9a7132722399767febd68aa77dd302922bf6909e",
+      "fixture": "scripts/fixtures/editorial/chemomab-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 268,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted-average number of ordinary shares",
+        "In USD thousands, except share and per share data"
+      ],
+      "paragraph_requires": [
+        "Diluted net loss per share is the same as basic net loss per share",
+        "The ADS Ratio Change did not affect the number of the Company\u2019s issued and outstanding Ordinary Shares",
+        "All ADS amounts and per-ADS amounts presented"
+      ],
+      "reader_note": "For 2023\u20132025, Chemomab presents loss per ordinary share as a positive loss amount; the original values and signs are retained rather than converted into positive earnings or silently negated. Potential ordinary-share dilution is excluded as anti-dilutive. The August 2025 ADS ratio change from 20 to 80 ordinary shares per ADS did not change ordinary-share counts; retrospective adjustment applies to ADS and per-ADS amounts. These selected figures remain ordinary-share measures with full scale-zero counts and scale-zero per-share tags, without ADS conversion.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+      "supporting_table_indexes": [
+        175
+      ]
+    }
+  ]
+}
