@@ -350,3 +350,17 @@ change, report replays exactly.190reviewed (36presentation-only),978pending,
 8withdrawn. Condensed STATUS, preserving its prior bytes against committed HEAD
 under history/STATUS-20260920-through-share-context-batch3.md. No publication,
 updated archive or indexing gain.
+
+## 2026-09-20 — common-stockholder loss and rounded-zero context
+
+PR68mergedf015ca81after four passing CI35531236498checks and exact tree equality
+eb673537cc31bf111fa24d777c2e83d0241b530a. Reviewed36CompX/Plug Power/Agenus
+observations. CompX12rows remain presentation-only; Plug uses common-stockholder
+loss after noncontrolling interests; Agenus includes deferred-compensation shares,
+retrospective split treatment and zero EPS rounded from a loss. Source values
+unchanged. Initial single-table replay failed because Plug2025diluted count is tagged
+only in note266, not statement192. Inspected exact locations and added version3with
+explicit supporting-table allowlist and retained full table text; older helpers frozen.
+Report replays byte-identically.25renderer/ledger tests pass with exactly36intended
+transitions.226reviewed (48presentation-only),942pending,8withdrawn. No new runtime,
+archive, deployment or indexing gain. Legacy review gaps remain explicit.

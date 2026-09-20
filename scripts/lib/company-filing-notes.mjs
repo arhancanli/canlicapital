@@ -2036,6 +2036,340 @@ export const FILING_NOTES = [
     }
   ]
 }
+,
+{
+  "cik": "0001049606",
+  "include_on_overview": true,
+  "source_sha256": "fc9807120828dcefc70a80b6858332f59d79efb991004ba56dd91c674e0f4ad8",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, CompX presents combined basic and diluted EPS and weighted-average common shares. Share counts are presented in thousands and tagged with scale three; per-share amounts use scale zero. These pages retain the encoded counts without adding the basic and diluted denominators. The combined presentation does not establish why the measures match or prove that no potentially dilutive securities exist.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1049606/000110465926023463/cix-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 1.84,
+      "accn": "0001104659-26-023463",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1.35,
+      "accn": "0001104659-26-023463",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1.58,
+      "accn": "0001104659-26-023463",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 1.84,
+      "accn": "0001104659-26-023463",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1.35,
+      "accn": "0001104659-26-023463",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1.58,
+      "accn": "0001104659-26-023463",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 12311000,
+      "accn": "0001104659-26-023463",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 12317000,
+      "accn": "0001104659-26-023463",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 12321000,
+      "accn": "0001104659-26-023463",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 12311000,
+      "accn": "0001104659-26-023463",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 12317000,
+      "accn": "0001104659-26-023463",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 12321000,
+      "accn": "0001104659-26-023463",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001093691",
+  "include_on_overview": true,
+  "source_sha256": "693a4f1fb6d5474c0cef2ae383a813e4f7c21076e76c0ef2cd96c185c2696a0b",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Plug Power excludes all potentially dilutive securities from diluted EPS because it reports losses. The numerator is loss attributable to Plug Power after noncontrolling interests, rather than the consolidated net loss before that allocation. Shares and per-share amounts are exempt from the statement\u2019s thousands heading. The reported EPS and weighted-average counts remain unchanged; excluded potential shares are not added to the denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926022286/plug-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -2.3,
+      "accn": "0001104659-26-022286",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.68,
+      "accn": "0001104659-26-022286",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.42,
+      "accn": "0001104659-26-022286",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -2.3,
+      "accn": "0001104659-26-022286",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.68,
+      "accn": "0001104659-26-022286",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.42,
+      "accn": "0001104659-26-022286",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 595468419,
+      "accn": "0001104659-26-022286",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 785024373,
+      "accn": "0001104659-26-022286",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1146691189,
+      "accn": "0001104659-26-022286",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 595468419,
+      "accn": "0001104659-26-022286",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 785024373,
+      "accn": "0001104659-26-022286",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1146691189,
+      "accn": "0001104659-26-022286",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001098972",
+  "include_on_overview": true,
+  "source_sha256": "0bb04cf709e54fd580c9e80c09e73789126e777d686ac12276d26072bab81d40",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Agenus includes common shares issuable under its directors\u2019 deferred-compensation plan in basic EPS. Other potential dilution is excluded because the common-stockholder result is a loss. The numerator reflects preferred dividends and noncontrolling interests. Reported 2025 EPS rounds to zero despite a common-stockholder loss; zero EPS does not mean break-even. The share counts are presented in thousands and tagged with scale three. The filing already adjusts applicable share and per-share information for the 2024 one-for-twenty reverse split; no second adjustment is applied.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1098972/000119312526108632/agen-20251231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -13.75,
+      "accn": "0001193125-26-108632",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -10.59,
+      "accn": "0001193125-26-108632",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0,
+      "accn": "0001193125-26-108632",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -13.75,
+      "accn": "0001193125-26-108632",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -10.59,
+      "accn": "0001193125-26-108632",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0,
+      "accn": "0001193125-26-108632",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 17894000,
+      "accn": "0001193125-26-108632",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 21473000,
+      "accn": "0001193125-26-108632",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 29734000,
+      "accn": "0001193125-26-108632",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 17894000,
+      "accn": "0001193125-26-108632",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 21473000,
+      "accn": "0001193125-26-108632",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 29734000,
+      "accn": "0001193125-26-108632",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+}
 ];
 
 export function companyFilingNotes(company, tag) {
