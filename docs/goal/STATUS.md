@@ -33,12 +33,13 @@ V21 INVO2014two conflicting denominators remain held. First100-filing scope batc
 is closed, but broader capture, accounting scope and usefulness remain open.
 Latest built runtime remainsv14at90,736candidate URLs; current runtime/quality
 rebuild, archive supplement and hosting remain pending. No publication admission.
-V22full-corpus comparison21300is running; poll that handle before claiming results.
-V21comparison verified3,323companies/87,344histories against frozenv14,32holds
-sincev14and prior two Valhi constant-history omissions. V22expected changes include
-eight additional holds and two empty Iovance histories, still awaiting full replay.
+V22full-corpus comparison21300TERMINAL0verified3,323companies/87,342histories
+against frozenv14:40exact held observations sincev14, two prior Valhi constant
+history omissions and two now-empty Iovance histories, policy/notices only.
+All other fields and source bytes unchanged. Report company-five-cohort-v22-
+transition-20260921.json pins source/code hashes. No local comparison remains active.
 
-Next: finish current full-corpus comparison, integrate the policy, seal/replay the
+Next: integrate the policy, seal/replay the
 updated archival supplement, rebuild runtime/quality inventory and finish hosted
 delivery gates. No deployment or confirmed indexing gain. Current evidence is
 committed separately from sealed restore-tested archives.

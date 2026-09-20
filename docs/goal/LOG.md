@@ -1132,3 +1132,10 @@ Batch1unchanged1148reviewed/0pending/28withdrawn,130presentation-only; extra eig
 holds are outside that ledger. V22full-corpus comparison21300still running at this
 checkpoint; no completion claim until its terminal result. Archive supplement and
 runtime/quality rebuild next. No production or indexing gain; all owner goals active.
+
+
+V22comparison21300 subsequently TERMINAL0:3,323companies/87,342histories,
+40exact holds sincev14, four histories omitted (two prior Valhi constant histories,
+two Iovance histories now empty), policy/notices only. All other source/selected
+fields unchanged. Rebased unpublished policy commit onto verified PR115merge;
+full tree identical before/after, no force push. Full comparison report retained.
