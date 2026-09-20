@@ -55,6 +55,27 @@ function provenance(company) {
 }
 
 
+function withholdingNotices(exclusions) {
+  const groups = new Map();
+  for (const row of exclusions) {
+    const key = JSON.stringify([row.tag, row.reason, Boolean(row.observation)]);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(row);
+  }
+  return [...groups.values()].map(rows => {
+    const first = rows[0];
+    const explanation = `<p><code>us-gaap:${esc(first.tag)}</code>: ${esc(first.reason)}</p>`;
+    if (!first.observation) return explanation + rows.map(row => `<p><a href="${esc(row.filing_url)}">Inspect the filing</a>.</p>`).join('');
+    const ends = rows.map(row => row.observation.end).sort();
+    const range = ends[0] === ends.at(-1) ? ends[0] : `${ends[0]} to ${ends.at(-1)}`;
+    return `${explanation}<details class="company-reference__withheld"><summary>Inspect ${rows.length} withheld ${rows.length === 1 ? 'observation' : 'observations'} (period ends: ${esc(range)})</summary><div class="company-reference__table" role="region" aria-label="Withheld ${esc(first.tag)} observations" tabindex="0"><table><caption>Withheld source values: ${esc(first.tag)}. These values are excluded from the selected history.</caption><thead><tr><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col">Original value</th><th scope="col">Unit</th><th scope="col">Source filing</th></tr></thead><tbody>${rows.map(row => {
+      const observation = row.observation;
+      return `<tr><td>${esc(observation.start ?? 'At date')}</td><th scope="row">${esc(observation.end)}</th><td>${esc(String(observation.val))}</td><td>${esc(observation.unit)}</td><td><a href="${esc(row.filing_url)}">${esc(observation.accn)}</a></td></tr>`;
+    }).join('')}</tbody></table></div></details>`;
+  }).join('');
+}
+
+
 // Input must already reproduce from its source (static build) or belong to a
 // verified immutable catalog (runtime). No network, disk writes or global state.
 export function renderCompanyPages(company, { target = 'all' } = {}) {
@@ -66,7 +87,7 @@ export function renderCompanyPages(company, { target = 'all' } = {}) {
   const page = options => pages.push(renderReferenceDocument(options));
   const lastmod = (company.content_updated_at ?? company.fetched_at).slice(0, 10);
   const sources = [`company-data/${company.cik}.json`];
-  const editorialNote = company.editorial_exclusions?.length ? `<section aria-labelledby="editorial-scope"><h2 id="editorial-scope">Limits of the selected measures</h2>${company.editorial_exclusions.map(row => `<p><code>us-gaap:${esc(row.tag)}</code>: ${esc(row.reason)} <a href="${esc(row.filing_url)}">Inspect the filing</a>.</p>`).join('')}</section>` : '';
+  const editorialNote = company.editorial_exclusions?.length ? `<section aria-labelledby="editorial-scope"><h2 id="editorial-scope">Limits of the selected measures</h2>${withholdingNotices(company.editorial_exclusions)}</section>` : '';
   const overviewNotes = [...new Set(company.concepts.flatMap(concept => companyFilingNotes(company, concept.tag)).filter(note => note.include_on_overview))];
   const overviewContext = overviewNotes.length ? `<section aria-labelledby="filing-context"><h2 id="filing-context">Context from the filing</h2>${overviewNotes.map(note => `<p>${esc(note.text)} <a href="${esc(note.filing_url)}">Read the source filing</a>.</p>`).join('')}</section>` : '';
   const rows = company.concepts.flatMap((concept) => latestObservationsByUnit(concept.observations).map((latest) => {
@@ -82,7 +103,7 @@ export function renderCompanyPages(company, { target = 'all' } = {}) {
     const equalHistories = matches.get(concept.tag);
     const filingNotes = companyFilingNotes(company, concept.tag);
     const observationHolds = (company.editorial_exclusions ?? []).filter(row => row.tag === concept.tag && row.observation);
-    const observationNote = observationHolds.length ? `<section aria-labelledby="withheld-observations"><h2 id="withheld-observations">Withheld reporting periods</h2>${observationHolds.map(row => `<p>${esc(row.reason)} <a href="${esc(row.filing_url)}">Inspect the conflicting filing</a>.</p>`).join('')}</section>` : '';
+    const observationNote = observationHolds.length ? `<section aria-labelledby="withheld-observations"><h2 id="withheld-observations">Withheld reporting periods</h2>${withholdingNotices(observationHolds)}</section>` : '';
 
     const constants = constantHistoryUnits(concept);
     const historyContext = equalHistories.length || constants.length ? `<section aria-labelledby="history-context"><h2 id="history-context">Reading these values</h2>${constants.map(unit => `<p>The selected <strong>${esc(unit.unit)}</strong> history reports ${number(unit.value)} at all ${unit.reportingEnds} reporting ends.${unit.value === 0 ? ' These are reported zeros, not values substituted for missing data.' : ''} This describes this concept and the selected periods only; it does not establish that other measures or later periods are unchanged.</p>`).join('')}${equalHistories.length ? `<p>This selected numerical history matches ${equalHistories.map(other => `<a href="${metricPath(company, other)}">${esc(other.label)}</a>`).join(', ')} for the same reporting intervals and original units. The accounting definitions remain distinct. Equal values do not establish that the concepts are interchangeable or explain why they match; filing dates and accessions may differ. Compare the definitions and source filings before combining them.</p>` : ''}</section>` : '';

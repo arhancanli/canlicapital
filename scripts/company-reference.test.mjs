@@ -268,7 +268,7 @@ test('v11 withholds only the exact reviewed DBMM period and reproduces prior pol
   const metric = renderCompanyPages(after, { target: tag })[0].html;
   assert.match(metric, /Withheld reporting periods/);
   assert.match(metric, /XBRL period conflicts/);
-  assert.doesNotMatch(metric, /<th scope="row">2020-08-31<\/th>/);
+  assert.doesNotMatch(metric.split('<h2>Selected filing history</h2>')[1].split('</table>')[0], /<th scope="row">2020-08-31<\/th>/);
   const revenue = renderCompanyPages(after, { target: 'Revenues' })[0].html;
   assert.doesNotMatch(revenue, /Withheld reporting periods/);
   assert.match(revenue, /<th scope="row">2020-08-31<\/th>/);
@@ -330,7 +330,7 @@ test('v13 withholds only disputed Atlantica liability periods and preserves prio
     const html = renderCompanyPages(after, { target: tag })[0].html;
     assert.match(html, /Withheld reporting periods/);
     assert.match(html, /inconsistency remains unresolved/);
-    assert.doesNotMatch(html, /<th scope="row">2023-12-31<\/th>/);
+    assert.doesNotMatch(html.split('<h2>Selected filing history</h2>')[1].split('</table>')[0], /<th scope="row">2023-12-31<\/th>/);
   }
   const assets = renderCompanyPages(after, { target: 'Assets' })[0].html;
   assert.match(assets, /<th scope="row">2023-12-31<\/th>/);
