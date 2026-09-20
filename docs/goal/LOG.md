@@ -130,3 +130,20 @@ script reproduce byte-identically. Currentv6not publishable as-is; no changed
 source numbers or exclusion policy yet. Continue scope dispositions and correct
 the candidate before publication. All handles from this checkpoint are terminal.
 Website5cd1051eCI35502460335passed. No deployment, indexing or investment outcome.
+
+## 2026-09-20 — source-bound Livento exclusion and corrected fifth delivery
+
+Previous turn verified fifth delivery and documented a semantic hold. Read all
+continuity files and confirmed clean worktree/open PR15. Added immutable v7policy
+inheriting v6and excluding only the exact Livento Revenues source. Changed-source
+rejection and old-policy reproduction tests pass; real-source replay removes one
+concept and full672company transition proves every other field unchanged except
+policy identity. Original source descriptors match exactly.
+
+Full npm verification11557 passes6+394tests and audits. Generated date/sitemap
+churn restored after verification. Staging50859 gives17,230histories/17,916URLs.
+CompleteHTTP65731 passes all URLs/1,344downloads, browser67875 passes72checks
+including excluded-route404, and storage8820 verifies2,041objects203,947,632bytes.
+Archive profile extended for fifth-v7with saved-code Livento scope replay; five
+archive safety tests pass. Sealing this candidate before archive/restore work.
+No publication, upload or wider editorial approval.

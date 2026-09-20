@@ -6,12 +6,11 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 
 ## Active work and exact handles
 
-- Fifth capture49258 and404confirmation25502 are complete, exit0. All1,000
-  outcomes verified:672candidates,163content exclusions,165confirmed404s.
-  V6staging98072, fullHTTP31051, browser7483, storage25202, filing capture32651,
-  inline comparison1260 and XBRL72869 all finished successfully. No active handle.
-  The fifth v6review candidate is held for Livento revenue scope; apply a bound
-  exclusion before publication, and continue remaining editorial review.
+- Fifth capture and exclusion verification are complete. New v7excludes Livento
+  Revenues using its exact captured source; full672company comparison confirms
+  all other histories and original source descriptors are unchanged. Staging50859,
+  HTTP65731, browser67875, storage8820 and full verification11557 finished exit0.
+  Packaging/isolated restore is next; broader editorial review remains open.
 - Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
   4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
   Draft integration PR71 is open at the tested head:
@@ -29,7 +28,7 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 | Local static build | 690HTML:327indexable,363noindex |
 | Three-cohort candidate | 1,968companies,52,408histories,40directories:54,416URLs |
 | Separate fourth candidate v6 | 683companies,17,714histories,14directories:18,411URLs |
-| Separate fifth review candidate v6 | 672companies,17,231histories,14directories:17,917URLs; scope hold |
+| Separate fifth review candidate v7 | 672companies,17,230histories,14directories:17,916URLs |
 | Indexed minimum / target | 800,000 / 1,000,000 actually indexed canonical pages |
 | Search intent | 104owners,147query hypotheses,223unassigned static pages |
 | Forward engine evidence | Five daily returns,four sleeves; IMMATURE_RECORD_TOO_SHORT |
@@ -79,16 +78,16 @@ See SOURCE_CAPACITY.md and COMPANY_IDENTITY_REVIEW.md.
 
 ## Verified delivery and retention
 
-Fifth v6release68f11fbe5214000cceb7358967182463861114445a5f55e9b6a1152319b5c444:
-17,917URLs/1,344downloads pass local HTTP;66browser checks across11routes pass.
-Maximum3clicks,31,917HTMLbytes. Runtime plan verifies2,041objects203,948,852bytes;
-no upload or complete fifth evidence archive yet. Quality flags3,302histories,
-including33constant/32zero histories. Priority55concepts/29companies/31filings:
-111numbers reproduced(50inline,61original XBRL); no complete scope approval.
-Livento1593549's two latest Revenues facts describe real-estate sales; the same
-filing has a different2023revenue row. Source-bound hold recorded, no values
-changed and no new exclusion policy yet. V6must not be published as-is.
-
+Fifth v7release7e2314ca91c4731f82361caa956d38499f0fa6edcafbd8047b892a599ba35713:
+17,916URLs/1,344downloads pass local HTTP;72browser checks across12routes pass,
+including Livento's exclusion notice and404for the removed route. Maximum3clicks.
+Runtime plan verifies2,041objects203,947,632bytes; no upload. Archive/restore pending.
+Quality flags3,301histories,including32constant zero histories. Prior priority
+55concepts/29companies/31filings reproduced111numbers(50inline,61XBRL), not full
+scope approval. Livento's real-estate-sale revenue is now excluded under exact
+source-bound v7; earlier v6remains reproducible but not publishable as-is.
+Full cohort comparison proves only that history was removed. All other content,
+original data, identity exclusions and owner goals remain unchanged.
 
 Fourth-v6release:056a2826bbeb15bc019f99eb6a18e8e9b3c0550305398423e307236f2c30a338.
 All18,411URLs and1,366downloads pass local HTTP;96browser checks across16routes
@@ -109,7 +108,7 @@ All archives are local. Offsite retention and hosted preview remain unverified.
 
 ## Code and platform verification
 
-Website5cd1051e passed allCI35502460335jobs. Local v6verification passes6+393tests
+Website5cd1051e passed allCI35502460335jobs. Local v7verification passes6+394tests
 and audits. Prior MCP test failure35500519399 is preserved; test-only deterministic
 deadline correction passed48MCP tests and complete remoteCI35500716863.
 Current source evidence:163hashes,2signatures and1,060transparency entries verify;

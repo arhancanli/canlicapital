@@ -191,3 +191,14 @@ test('v6 requires source-bound NOVAGOLD scope evidence and preserves v5', () => 
   verifyCompanyReference(companyReference(raw, { ...options, selectionPolicy: 'extended-v5' }), raw);
   assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v6' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
 });
+
+
+test('v7 requires source-bound Livento scope evidence and preserves v6', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const source = JSON.parse(gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))));
+  source.cik = 1593549;
+  source.facts['us-gaap'].Revenues = { units: { USD: [2021, 2022, 2023].map(year => ({ ...row, start: `${year}-01-01`, end: `${year}-12-31`, val: 2000000 })) } };
+  const raw = JSON.stringify(source), options = { fetchedAt: record.fetched_at, expectedCik: '0001593549' };
+  verifyCompanyReference(companyReference(raw, { ...options, selectionPolicy: 'extended-v6' }), raw);
+  assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v7' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+});

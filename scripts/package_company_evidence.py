@@ -104,6 +104,11 @@ def complete_cohort(report, queue):
 
 
 def evidence_profile(profile):
+    if profile == 'fifth-cohort-v7':
+        return {'prefix': 'fifth-1000', 'suffix': 'v7',
+                'summary': 'company-fifth-storage-plan-v7-summary.json',
+                'plan_name': 'fifth-1000-storage-plan-v7.json',
+                'cohorts': ['fifth-1000'], 'editorial': ['fifth-editorial-filings']}
     if profile in ('fourth-cohort-v5', 'fourth-cohort-v6'):
         version = profile.rsplit('-', 1)[1]
         return {'prefix': 'fourth-1000', 'suffix': version,
@@ -176,7 +181,7 @@ if __name__ == '__main__':
     parser.add_argument('archive', type=Path)
     parser.add_argument('--root', type=Path, default=Path.cwd())
     parser.add_argument('--destination', type=Path)
-    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6'], default='two-cohort')
+    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6', 'fifth-cohort-v7'], default='two-cohort')
     args = parser.parse_args()
     if args.mode == 'restore' and args.destination is None:
         parser.error('restore requires --destination (must not exist)')

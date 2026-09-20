@@ -68,19 +68,23 @@ def restore_check(archive, summary_path):
         if replayed['release_hash'] != summary['metadata']['release_hash']:
             raise ValueError('Restored release differs from summary')
         scope_replays = {}
+        scope_checks = []
         if profile == 'fourth-cohort-v6':
-            for script, report in [
+            scope_checks = [
                 ('review-liberty-equipment-scope.py', 'company-fourth-liberty-disposition-20260920.json'),
                 ('review-fourth-zero-scope.py', 'company-fourth-zero-dispositions-20260920.json'),
                 ('review-novagold-revenue-scope.py', 'company-fourth-novagold-disposition-20260920.json'),
-            ]:
-                path = workspace / 'artifacts/seo' / report
-                expected = file_hash(path)
-                subprocess.run([sys.executable, 'scripts/' + script], cwd=workspace,
-                               check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                if file_hash(path) != expected:
-                    raise ValueError('Restored editorial scope differs: ' + report)
-                scope_replays[report] = expected
+            ]
+        elif profile == 'fifth-cohort-v7':
+            scope_checks = [('review-livento-revenue-scope.py', 'company-fifth-livento-scope-hold-20260920.json')]
+        for script, report in scope_checks:
+            path = workspace / 'artifacts/seo' / report
+            expected = file_hash(path)
+            subprocess.run([sys.executable, 'scripts/' + script], cwd=workspace,
+                           check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if file_hash(path) != expected:
+                raise ValueError('Restored editorial scope differs: ' + report)
+            scope_replays[report] = expected
         receipt = {'schema': 'canli.company-evidence-restore.v1', 'archive_sha256': summary['archive_sha256'],
                    'repository_revision': summary['metadata']['repository_revision'], 'restored_files': summary['files'],
                    'source_replays': reports, 'runtime_objects_replayed': replayed['objects'],

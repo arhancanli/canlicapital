@@ -174,3 +174,16 @@ capture, numerical comparison, original body, fact IDs and visible context. The
 2022accession is not reviewed by this disposition. Original numbers are unchanged.
 Apply a source-bound exclusion before publication and preserve v6for reproduction;
 it is not publishable as-is. No alternative revenue number is substituted.
+
+## Fifth cohort v7 correction
+
+V7inherits all earlier exclusions and omits Livento1593549 Revenues only for the
+reviewed source5fc0541d3c667e8542c70da83b7f948b0510c21c26e4337ace0bb00d828406b9.
+A changed source requires renewed review. The original hold and v6are preserved.
+The company page explains the exclusion and links the original filing; the
+mis-scoped history route returns404. Full672company transition comparison verifies
+one removed concept, unchanged remaining selected values and unchanged original
+source descriptors. No substitute value or altered source fact.
+
+Corrected candidate17,230histories/17,916URLs passes complete local delivery and
+72browser checks; this does not approve the remaining3,301flagged histories.
