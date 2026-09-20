@@ -10,9 +10,17 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`refactor/scope-review-registry-20260920`. PR64merged7289ee08 after all four
-CI35530344125checks passed at3eab8957. Tested/merged tree
-4ed9cab9178746777db64ca371042977d799058e.
+`evidence/loss-context-batch2-20260920`. PR65merged3bba67c9 after all four
+CI35530559713checks passed at367badeb. Tested/merged tree
+e441f944b3d3073544c75e7ba1d9e8a0a14d6a0c.
+
+Current registered batch2ledger:106reviewed/1,062pending/8withdrawn;24reviewed
+remain presentation-only. Added32Axogen/Heron/Westwater observations with explicit
+loss-period anti-dilution and verified scale0/scale3 share treatment. Declarative
+source-review requirements replay against original captures; no inference from
+numerical equality alone. Source-bound notes preserve every value.22renderer/ledger
+tests pass; exact comparison permits only these32status/evidence changes. Context
+report replays byte-identically; deterministic ledger gzip tested.
 
 Reusable scope registry replaces future copied reconciliation scripts. The initial
 registered compressed ledger matches every v6row and count exactly; no new review
@@ -20,7 +28,7 @@ approvals. Four tests cover full1176row equivalence, deterministic gzip, limited
 status retention and rejection of duplicate/stale/misattributed/held approvals.
 Routine verification includes these tests. See SCOPE_REVIEW.md for the workflow.
 
-Current v6batch ledger:74reviewed/1,094pending/8withdrawn;24reviewed retain
+Previous v6batch ledger:74reviewed/1,094pending/8withdrawn;24reviewed retain
 presentation-only status. Eight selected Cedar2020/2021observations now carry
 verified vested-share allocation, performance-award/OP-unit treatment and FFO
 versus EPS denominator context. Later Cedar filing remains pending. Original
