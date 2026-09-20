@@ -8,7 +8,7 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/predecessor-opening-context-20260920`. PR52 mergeda7ffd485; predecessor context below.
+`evidence/currency-archive-20260920`. PR52 mergeda7ffd485; predecessor context below.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
@@ -17,8 +17,8 @@ rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
 comparison64980completed exit0. Combined v14pipeline16429 and current quality audit40310completed exit0; no uploader.
-Next: archive the new currency/standards evidence and verify predecessor-note CI;
-continue remaining basic/diluted source coverage and corpus scope/usefulness flags,
+Next: poll the existing basic/diluted batch1 capture, compare retained facts and
+review accounting scope/usefulness; currency archive closure is recorded below,
 then rebuild the v15runtime and complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
@@ -341,3 +341,27 @@ Source fixture committed; full currency/standards archive not yet sealed. All th
 specific currency targets now have dispositions (two exact holds, one contextual
 retention). Broader editorial, rebuilt runtime, hosted/production and all long-term
 owner outcomes remain open. No active collector, uploader or indexing gain.
+
+## Currency archive restored and larger primary review started
+
+PR53 merged144db514bd2aa7f04f400dc645fc2764d0b6b20b after all four
+CI35527094883checks passed atb32fd4994dae258505862e317f9962269dbb47ef.
+Tested/merged tree71019b3348c5245f38910be6ea596cc7bd5c30e5.
+Archive helper committedfaec548ada9fae28f51fc6a4bd5cba044afb048a.
+Restore18613terminal0:40files/11,182,080bytes, SHA256
+3494c8d78600a74a5aa54c3330d1597a42c70731232113656722ff94999c6fd9.
+Four reports replay byte-for-byte with locked offline wheels: original primary,
+legacy comparison, currency context and predecessor context. Includes three
+primary filings, two XMLinstances, two standards captures and three source
+fixtures. Receipt company-currency-context-evidence-archive-20260920.json.
+Five shared archive safety tests pass. No offsite/full-runtime claim.
+
+Batch1prepared from original missing-primary queue:100filings/1,176observations,
+ranked by observation coverage then CIK/accession. All exact observations verified
+present in current v14selected records; original baseline preserved. Existing
+receipts checked before selection. Target preparation12396terminal0. Capture
+process79985started with one-second request pacing and hard stop on403/429, no bypass.
+Log/tmp/canli-basic-diluted-batch1-capture.log; capture report
+company-basic-diluted-capture-batch1-20260920.json is in progress and must not be
+claimed complete until its live tool handle returns terminal. No admission or
+new runtime/production/indexing gain. All broader owner goals remain active.

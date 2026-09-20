@@ -138,3 +138,14 @@ actual source and updated single-observation stale-note checks. Source-bound
 report replays byte-identically. Standards capture35523terminal0, no access stops.
 Firecrawl unavailable; used web/direct primary-source capture. No policy exclusion,
 conversion, runtime rebuild, archival claim or publication/indexing gain.
+
+## 2026-09-20 — currency archive recovery and broader primary acquisition
+
+Previous turn resolved predecessor context with an explicit USN limitation.
+PR53merged144db514after all four CIchecks and exact tree equality. Currency
+archive18613terminal0:40members/11,182,080bytes, four byte-identical reports,
+locked offline dependencies. Five shared safety tests pass; no offsite claim.
+Prepared100missing filings covering1,176selected observations; all rows match
+current v14records. Preparation12396terminal0. Paced acquisition started; preserve
+original missing-coverage baseline and stop on access responses. Numerical/scope
+verification still required. No rebuilt runtime or production activation.
