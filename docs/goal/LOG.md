@@ -1566,3 +1566,14 @@ archive stays retained but does not prove v6and is not publishable as-is.
 EngineCI35499961114 remains live; no duplicate run, deployment or activation.
 
 Quality75873completedexit0:683companies17,714histories,22constant/zero histories,3,146overlapping flags. Source reproduction passes; full editorial approval remains open.
+
+## 2026-09-20 — v6 delivery and archive preparation
+
+Previous turn resolved NOVAGOLD's qualified claim under frozen v6. Catalog44816,
+release91394,discovery and fullHTTP39962completed successfully:18,411URLs and
+1,366downloads,zero failures. Browser14519remains live. Runtime plan7905exit0:
+2,074objects245,823,578bytes,release
+056a2826bbeb15bc019f99eb6a18e8e9b3c0550305398423e307236f2c30a338.
+Added v6archive profile without changing v5semantics; five archive tests pass.
+Committing profile and bound plan before packaging its saved repository revision.
+EngineCI35499961114still live at checkpoint; no production change.
