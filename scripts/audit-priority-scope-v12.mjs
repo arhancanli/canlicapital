@@ -46,13 +46,23 @@ for(const item of supplement.reviewed) {
 }
 assert.equal(supplement.reviewed.length,24);
 assert.equal(reviewed.size,189);assert.equal(pending.size,413);assert.equal(withdrawn.length,8);
+let addedReviews = 24;
+for (const name of process.argv.slice(3)) {
+  const extra = read(name);
+  const priorRaw = readFileSync(base+'company-priority-scope-v12-20260920.json');
+  assert.equal(extra.v12_scope_ledger_sha256,sha(priorRaw));
+  for (const item of extra.reviewed) {
+    const k=key(item); assert(pending.has(k)); assert(!reviewed.has(k));
+    reviewed.set(k,{...item,scope_reports:[name]}); pending.delete(k); addedReviews++;
+  }
+}
 const all=[...reviewed.keys(),...pending.keys(),...withdrawn.map(key)];
 const baseline=[...original.reviewed,...original.pending].map(key);
 assert.equal(new Set(all).size,610);assert.deepEqual([...all].sort(),baseline.sort());
 const result={schema:'canli.priority-scope-v12.v1',publication_approved:false,input_sha256:inputs,
   code_sha256:sha(readFileSync(new URL(import.meta.url))),original_priority_observations:610,
   active_reviewed_observations:reviewed.size,active_observations_needing_scope_review:pending.size,
-  withdrawn_observations:withdrawn.length,new_review_credit:24,
+  withdrawn_observations:withdrawn.length,new_review_credit:addedReviews,
   reviewed:[...reviewed.values()],pending:[...pending.values()],withdrawn,
   scope:'Exact partition of the original610priority observations under merged v12policy. HNO withdrawal verified by actual captured-source selector replay; full v12corpus is not rebuilt. Prior reviews and withdrawals are preserved, not counted twice. Recorded interpretations are not machine-certified. Other flags and basic/diluted groups remain outside this queue; no publication admission.'};
 writeFileSync(process.argv[2]??base+'company-priority-scope-v12-20260920.json',JSON.stringify(result,null,2)+'\n',{flag:'wx'});

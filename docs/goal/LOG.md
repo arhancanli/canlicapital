@@ -896,3 +896,12 @@ rows. HNOwithdrawal removes one earlier reviewed and three pending observations;
 actual captured source replays v12and verifies exclusion. No double credit, source
 rewrites or old ledger changes. Two generated outputs are byte-identical. This is
 policy accounting, not a claim that the full corpus has been rebuilt or admitted.
+
+## 2026-09-20 — first historical liability batch and PR41 merge
+
+17retained balance sheets support34previously pending Birdie/Vemanti/Caro
+observations. Full table text, source hashes and comparative dates preserved;
+report replays identically. New ledger223reviewed/379pending/8withdrawn covers
+the original610keys exactly once and replays identically. Supplements are bound
+and cannot reuse credited rows. PR41merged27f947e2 after four checks and exact
+tested/merged tree equality. Remaining reviews and v12rebuild remain open.
