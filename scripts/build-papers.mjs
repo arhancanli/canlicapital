@@ -1143,17 +1143,22 @@ function main() {
   const trials = trialRoutes();
   const notes = noteRoutes();
 
-  const withResolvedLastmod = (route) =>
+  const withResolvedLastmod = (route, { allowUndated = false } = {}) =>
     resolveLastmod({
       root: ROOT,
       files: route.lastmodFiles ?? [],
       artifacts: route.lastmodArtifact ? [route.lastmodArtifact] : [],
-      buildDate,
-      onFallback: () =>
-        BUILD_DATE_FALLBACK_WARNINGS.push(`git has no history for ${route.loc}; used the build date.`),
+      // Fresh exported measurements can have neither a source timestamp nor a
+      // matching Git-date binding in deployment archives. Omit optional lastmod
+      // for those pages; a deployment date would be a fabricated content date.
+      buildDate: allowUndated ? undefined : buildDate,
+      onFallback: () => {
+        if (allowUndated) console.warn(`No bound content date for ${route.loc}; omitting lastmod.`);
+        else BUILD_DATE_FALLBACK_WARNINGS.push(`git has no history for ${route.loc}; used the build date.`);
+      },
     });
 
-  const measurementLastmods = new Map(measurements.map((route) => [route.loc, withResolvedLastmod(route)]));
+  const measurementLastmods = new Map(measurements.map((route) => [route.loc, withResolvedLastmod(route, { allowUndated: true })]));
   const trialLastmods = new Map(trials.map((route) => [route.loc, withResolvedLastmod(route)]));
   const noteLastmods = new Map(notes.map((route) => [route.loc, withResolvedLastmod(route)]));
   const archivalLastmods = new Map(archivalPapers.map((route) => [route.loc, withResolvedLastmod(route)]));

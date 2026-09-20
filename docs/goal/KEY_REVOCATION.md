@@ -1,7 +1,11 @@
 # API key revocation release candidate
 
-Implementation is on PR15. No production migration or activation has been performed.
-Apply `supabase/migrations/20260920_key_revocation.sql` to the intended database
+Implementation from PR15 is merged. On September20 the exact migration was applied
+to production project bpnensyowfmdwhqmfdrg and its database behavior verified.
+Receipt: artifacts/platform/production-key-revocation-20260920.json. The public
+revocation route is live at application revision9608542c; staged and live-domain
+disposable-key lifecycle checks pass.
+For another environment, apply `supabase/migrations/20260920_key_revocation.sql`
 before deploying the matching API and documentation, after normal release review.
 It depends on the existing validation API tables and quota function. Do not infer
 migration status from this document or an HTTP status endpoint.
@@ -38,7 +42,7 @@ would restore the race. Never clear revoked_at as a rollback step.
 
 The running publisher reads
 `/Users/arhancanli/alphaforge/config/site_landing_design_source.txt`, currently
-pointing at `/Users/arhancanli/canlicapital-website-20260908`. Both nightly
+pointing at `/Users/arhancanli/canlicapital-production-20260920` (revision9608542c). Both nightly
 `live_publish.sh` and change-gated `live_deploy_hourly.sh` use the site snapshot
 helper. The hourly path runs downstream of the minute25 live tick.
 
@@ -48,4 +52,8 @@ approved website revision through that source selection as part of publication.
 Use a dedicated clean release checkout and the reviewed snapshot helper. Preserve
 the fresh public evidence overlay and the publisher's existing gates. Do not
 reset the dirty running engine or change the trading loop to deploy the website.
-The source-selection file has not been changed by this release work.
+The source-selection file and reviewed helper were updated under the shared
+deployment lock after successful promotion. The previous pointer and helper
+are backed up in /tmp/canli-publisher-before-20260920; exact hashes and receipts
+are in artifacts/platform/production-activation-9608542c.json. Rollback must
+coordinate the source pointer as well as domain promotion and retain the migration.
