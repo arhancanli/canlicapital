@@ -253,3 +253,35 @@ inspection confirms endpoint availability and one created-but-unrecorded object;
 no assumption that failure meant upload absence. Added failing-key/transport-type
 evidence, code hash and GET cache-control enforcement; nine storage tests pass.
 A separate controlled resume will reverify existing objects at concurrency2.
+
+Controlled resume is running via exec session81071 at reviewed candidate219a7205,
+concurrency2; receipt corpus-local/company-three-cohort-remote-transfer-resume1-20260920.json.
+Poll this exact handle before inferring completion or starting another transfer.
+Original session30526is terminal exit1; no other uploader remains active.
+PR21updated CI is pending. No production deployment required for this script.
+
+PR21merged as9f1e607c after all four CI35510772919jobs passed. Tested and
+merged trees match4e2989ec. Resume1session81071is now terminal exit1 after
+240verified objects/18,275,734bytes; preserved receipt identifies HTTP502 on a
+public read. No uploader is currently running. Added explicit opt-in read-only
+retries: at most3attempts/object and10retries/run for recognized transport faults
+or502/503/504. Permission, rate-limit, corruption and writes never auto-retry.
+All11storage tests pass, including retry budgets and create-once behavior.
+
+Clean preview checkout canlicapital-company-preview-20260920 at9f1e607c validates
+in an isolated build clone. First CLI upload failed with fetch failed; API listing
+confirmed no new deployment. A bounded second preview attempt is underway.
+Deployment-local public storage settings only; no production environment changes.
+The scheduled publisher has since created READY deployment dpl_C1LAYUEx6VtXiiUxi3ZatwXqfRTu
+using production application revision9608542c; no claim that preview changed production.
+
+Preview dpl_Gw2aMA1cscjaGtV3c9JzF95voFai is READY at9f1e607c; all four hosted
+unavailable checks pass. Successful data serving still awaits complete storage.
+Resume2session58999terminated exit1 after336verified objects with UNKNOWN_TRANSPORT,
+zero read retries. Do not infer subtype from this old generic error. Added sanitized
+machine-category details for subsequent diagnosis; unknown failures still stop.
+All uploader sessions are terminal. Preserved every partial receipt and failure.
+DOM TimeoutError numeric codes now classify by name; a regression proves bounded
+retry and omission of sensitive upstream messages. Twelve storage tests pass.
+Status was consolidated with the prior version archived to reduce contradictory
+current-state statements. PR22remains the current review.

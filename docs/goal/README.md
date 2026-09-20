@@ -20,7 +20,7 @@ transitions, not continuous telemetry or proof that background work is running.
 
 Working locations:
 
-- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `feat/company-storage-transfer-20260920`. PR19 merged as514c092d; verified storage transfer continues here. Production publisher uses the separate clean canlicapital-production-20260920 checkout at9608542c.
+- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `fix/company-storage-read-recovery-20260920`. PR21 merged as9f1e607c; bounded read recovery and hosted preview checks continue here. Production publisher uses the separate clean canlicapital-production-20260920 checkout at9608542c.
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.
 - SEC collector quality: `/Users/arhancanli/alphac-source-quality-20260919`, branch `fix/sec-companyfacts-source-quality`; PR https://github.com/arhancanli/alphac/pull/70. Tests use the security worktree's existing Python environment; do not commit a .venv symlink.
