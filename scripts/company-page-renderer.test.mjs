@@ -11,6 +11,30 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
+test('loss-allocation context preserves rounded zero and deferred-compensation inclusion', () => {
+  for (const [fixture, cik, phrase, value] of [
+    ['compx', '0001049606', /does not establish why the measures match/, 12321000],
+    ['plug-power', '0001093691', /after noncontrolling interests/, 1146691189],
+    ['agenus', '0001098972', /zero EPS does not mean break-even/, 29734000],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === '2025-12-31' && r.val === value));
+    if (fixture === 'agenus') {
+      assert.ok(record.concepts.find(c => c.tag === tags[0]).observations.some(r => r.end === '2025-12-31' && r.val === 0));
+      assert.match(renderCompanyPages(record, { target: tags[0] })[0].html, /directors’ deferred-compensation plan/);
+    }
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('basic denominator notes retain warrant inclusion and scale distinctions', () => {
   for (const [fixture, cik, phrase, value] of [
     ['freddie', '0001026214', /includes shares associated with Treasury/, 3234000000],

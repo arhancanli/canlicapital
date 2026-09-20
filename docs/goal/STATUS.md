@@ -9,22 +9,24 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch4-20260920`. PR67mergeddfb13726after all four
-CI35531014492checks passed at5e8daea0. Tested/merged tree
-754989a8ff8917dc6c4a6001ec48171af6912319.
+`evidence/share-context-batch5-20260920`. PR68mergedf015ca81after all four
+CI35531236498checks passed at0a838a0e. Tested/merged tree
+eb673537cc31bf111fa24d777c2e83d0241b530a.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch4-20260920.json.gz.
-Of1,176batch observations,190reviewed/978pending/8withdrawn.36reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch5-20260920.json.gz.
+Of1,176batch observations,226reviewed/942pending/8withdrawn.48reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest36reviews cover Freddie Mac2023–2025Treasury-warrant denominator and senior
-preferred allocation, Franklin Street historical no-potential-dilution/scale3counts,
-and Eloxx basic inclusion of pre-funded warrants. Values unchanged;24renderer/ledger
-tests pass, only these36rows change, and context report reproduces byte-identically.
-Freddie Mac’s separate legacy filing remains pending. A broad diagnostic was
-truncated; targeted source passages were then inspected for the actual conclusions.
+Latest36reviews cover CompX combined presentation/scale3 (12presentation-only),
+Plug Power common-stockholder loss allocation and anti-dilution, and Agenus deferred-
+compensation shares, split-adjusted counts and rounded zero loss. Values unchanged;
+25renderer/ledger tests pass and only36intended rows change. Source report replays
+byte-identically. Generic replay v3accepts explicitly reviewed supporting tables:
+Plug2025diluted count is tagged in EPSnote266rather than main statement192.
+Initial single-table replay failed and is logged; prior helpers remain unchanged.
+Freddie Mac/Rockwell legacy filings remain pending.
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
 periods, NLI/Weis combined/restated presentation, Blue Dolphin historical instruments,
