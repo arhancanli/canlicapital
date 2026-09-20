@@ -1,6 +1,117 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001601830",
+  "include_on_overview": true,
+  "source_sha256": "238c834540b26747e7f8af5dc10e3b986fcfbc96383469c4a944c9a5b2844e04",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Recursion in 2023\u20132025, the selected weighted-average denominator combines Class A, Class B and Exchangeable common stock. The filing treats the subsidiary\u2019s exchangeable shares as substantially economically equivalent to Class A and already includes them in weighted-average shares; they should not be added again as potential dilution. Other potentially dilutive shares are excluded in these loss periods. Full scale-zero share counts and EPS retain the main statement\u2019s share/per-share exception to the thousands heading.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1601830/000160183026000039/rxrx-20251231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -1.58,
+      "accn": "0001601830-26-000039",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.69,
+      "accn": "0001601830-26-000039",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.44,
+      "accn": "0001601830-26-000039",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -1.58,
+      "accn": "0001601830-26-000039",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.69,
+      "accn": "0001601830-26-000039",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.44,
+      "accn": "0001601830-26-000039",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 207853702,
+      "accn": "0001601830-26-000039",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 274207146,
+      "accn": "0001601830-26-000039",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 447446109,
+      "accn": "0001601830-26-000039",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 207853702,
+      "accn": "0001601830-26-000039",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 274207146,
+      "accn": "0001601830-26-000039",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 447446109,
+      "accn": "0001601830-26-000039",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001595527",
   "include_on_overview": true,
   "source_sha256": "5de12b91b1b4b2d7651c9be3acaab9b1cfc25b667372791fcb971cd8bdb56f39",

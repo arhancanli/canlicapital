@@ -932,3 +932,18 @@ byte-identical. Full-corpus v20comparison, runtime, archival supplement and host
 release remain pending. Recursionindex91only inspected; resume there, then four
 remaining Lifeward batch rows/index93/earlier gaps. No deployment/indexing gain.
 All owner objectives remain active.
+
+## 2026-09-21 — v20 full-corpus comparison and Recursion denominator
+
+Previous turn implemented six historical ReWalk currency holds. PR104four
+CI35539056945checks passed atbafcbb2b; merged78c216e75094e42ae4f3a5692ae3bfb7df0a1104,
+full tree549fb711bf7397b78b0a3eac2d616332a698b497matches tested head. V20comparison
+99298TERMINAL0verified every retained source/selected file across3,323companies/
+87,344histories. Exact changes from frozenv14:30held observations/notices, prior
+Valhi two constant-history omissions and policy metadata; all else unchanged.
+Reviewed12Recursionobservations: exchangeable shares already included in denominator,
+not additional dilution. Report replays byte-identically;88selector/renderer/ledger
+tests pass.974reviewed/176pending/26withdrawn,96presentation-only. No runtime
+rebuild, archival supplement, deployment or indexing gain. Next Lifeward four
+historical rows and index93latest filing (split context inspected, not approved),
+then94and earlier gaps;97already reviewed. All owner objectives active.
