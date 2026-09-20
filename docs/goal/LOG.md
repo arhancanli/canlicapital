@@ -1241,3 +1241,45 @@ New script/report preserve prior evidence; mobile screenshot inspected.
 Fresh full HTTP91808RUNNING at /tmp/canli-v22-grouped-http.log, new report path
 company-five-cohort-v22-grouped-notices-http-20260921.json. Keep renderer stable
 until terminal. No production deployment/indexing gain; full owner goals remain.
+
+Published PR120 at876c1012b12721580f5c88adfcd54405481a8d0f; CI35543187882
+confirmed live. HTTP91808 confirmed live,900companies/23,902histories at last
+progress line. Owner attribution file remains untouched.
+
+
+## 2026-09-21 — current runtime archive phase
+
+Previous turn made progress: grouped notices,101tests/40browser cases, PR120.
+Re-read all goal records. PR120 all four CI35543187882checks passed. HTTP91808
+still live; no renderer edits. Added v22 archive profile, current quality/discovery
+and pinned scope supplement; restore replays all selected records and sitemaps
+plus61scope outputs. Five archive-safety tests pass. Archive build/restore pending.
+All owner objectives unchanged; no hosted release or new indexing evidence.
+
+HTTP91808TERMINAL0:90,732pages/6,646downloads, exact90,732sitemap URLs, zero
+failures, four-click maximum. Code hashes verified. PR120 merged82224901 from
+876c1012, all four CI35543187882passed; tree31b486792c6103e84b04543627dbaaf1b3ae9519
+identical. Archive80580TERMINAL0:23,161files/3,158,446,080bytes, SHA
+71f60cfd69cb177bcebc988201bbc2d4fe3b93c719d7e82fea132996885c391d, saved code
+09a9750647fcee8009cfdf661a67479517d9d5ad. Summary retained. Isolated restore14219
+RUNNING at /tmp/canli-v22-archive-restore.log. Unpublished branch rebased onto
+merged main with identical full treebc8158161e70242e0194f6ba76aee83fba8c5456.
+
+Draft PR121 published atd95a5357c13eb707fdd3d1e585e2d924142ca284; CI35543496793
+live. Restore14219 remains live: all five queues reproduced without errors;
+selected-record replay reached3,000companies/79,119histories. No success claim
+until terminal and full receipt. No new uploader or production activation.
+
+
+## 2026-09-21 — isolated v22 restore passed; hosted transfer preparation
+
+Previous turn made progress: current archive built, PR121published. Restore14219
+TERMINAL0 now proves all five queues/1,026exclusions/zero errors,10,360runtime
+objects/1,280,333,696bytes exactly matching plan,3,323companies/87,342histories
+regenerated from original snapshots, three discovery files byte-identical and67
+saved reports reproduced (six baseline/current quality plus61nested scope outputs).
+Verification code hash checked. Archive remains local, not offsite backup. PR121
+all four CI35543496793checks passed atd95a5357; receipt/docs update needs new CI.
+Re-read all goal documents before hosted-transfer phase. Existing authorization
+covers staging transfer. Prepare existing production Vercel configuration in memory
+without logging credentials; pin correct Supabase project. No transfer started yet.

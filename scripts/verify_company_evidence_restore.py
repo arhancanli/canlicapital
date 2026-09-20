@@ -89,7 +89,7 @@ def restore_check(archive, summary_path):
             if file_hash(path) != expected:
                 raise ValueError('Restored editorial scope differs: ' + report)
             scope_replays[report] = expected
-        if profile in ('five-cohort-v10', 'five-cohort-v11', 'five-cohort-v14'):
+        if profile in ('five-cohort-v10', 'five-cohort-v11', 'five-cohort-v14', 'five-cohort-v22'):
             env = Path(temp) / 'editorial-venv'
             subprocess.run([sys.executable, '-m', 'venv', str(env)], check=True, capture_output=True)
             python = str(env / 'bin/python')
@@ -106,7 +106,7 @@ def restore_check(archive, summary_path):
             if file_hash(output) != expected:
                 raise ValueError('Restored Birdie scope differs')
             scope_replays[report] = expected
-        if profile in ('five-cohort-v11', 'five-cohort-v14'):
+        if profile in ('five-cohort-v11', 'five-cohort-v14', 'five-cohort-v22'):
             report = 'company-legacy-revenue-context-20260920.json'
             output = Path(temp) / report
             subprocess.run([python, 'scripts/review-legacy-revenue-context.py', str(output)],
@@ -115,7 +115,7 @@ def restore_check(archive, summary_path):
             if file_hash(output) != expected:
                 raise ValueError('Restored legacy revenue context differs')
             scope_replays[report] = expected
-        if profile == 'five-cohort-v14':
+        if profile in ('five-cohort-v14', 'five-cohort-v22'):
             base = 'artifacts/seo/corpus-local/'
             checks = [
                 ('review-basic-diluted-filings.py', [base + 'company-basic-diluted-targets-20260920.json'], base + 'company-basic-diluted-primary-review-20260920.json'),
@@ -130,15 +130,29 @@ def restore_check(archive, summary_path):
                     raise ValueError('Restored context differs: ' + report)
                 scope_replays[Path(report).name] = expected
             quality_output = Path(temp) / 'quality.json'
-            subprocess.run(['node', 'scripts/audit-company-selected-quality.mjs', str(local / 'company-five-cohort-delivery-v14'), str(quality_output)], cwd=workspace, check=True, capture_output=True)
-            quality = json.loads((workspace / 'artifacts/seo/company-five-cohort-v14-selected-quality-summary-20260920.json').read_bytes())
+            subprocess.run(['node', 'scripts/audit-company-selected-quality.mjs', str(local / f'company-five-cohort-delivery-{suffix}'), str(quality_output)], cwd=workspace, check=True, capture_output=True)
+            quality_date = '20260921' if suffix == 'v22' else '20260920'
+            quality = json.loads((workspace / f'artifacts/seo/company-five-cohort-{suffix}-selected-quality-summary-{quality_date}.json').read_bytes())
             if file_hash(quality_output) != quality['full_report']['sha256']:
                 raise ValueError('Restored current quality audit differs')
-            scope_replays['company-five-cohort-selected-quality-v14-20260920.json'] = file_hash(quality_output)
+            scope_replays[f'company-five-cohort-selected-quality-{suffix}-{quality_date}.json'] = file_hash(quality_output)
+        v22_replay = None
+        if profile == 'five-cohort-v22':
+            runtime_output = Path(temp) / 'v22-runtime-replay.json'
+            subprocess.run(['node', 'scripts/verify-restored-v22.mjs', str(runtime_output)], cwd=workspace, check=True)
+            v22_replay = json.loads(runtime_output.read_text())
+            supplement = local / 'scope-review-evidence-v22-20260921.tar'
+            expected_scope = json.loads((workspace / 'artifacts/seo/company-scope-review-evidence-archive-v22-20260921.json').read_text())
+            scope_output = Path(temp) / 'scope-replay.json'
+            subprocess.run([python, 'scripts/package_scope_review_evidence.py', 'replay', str(supplement), str(scope_output), '--sha256', expected_scope['archive_sha256']], cwd=workspace, check=True, capture_output=True)
+            actual_scope = json.loads(scope_output.read_text())
+            if actual_scope['reproduced_reports'] != expected_scope['reproduced_reports']:
+                raise ValueError('Restored scope supplement reports differ')
+            scope_replays.update(actual_scope['reproduced_reports'])
         receipt = {'schema': 'canli.company-evidence-restore.v1', 'archive_sha256': summary['archive_sha256'],
                    'repository_revision': summary['metadata']['repository_revision'], 'restored_files': summary['files'],
                    'source_replays': reports, 'runtime_objects_replayed': replayed['objects'],
-                   'runtime_bytes': replayed['bytes'], 'release_hash': replayed['release_hash'],
+                   'runtime_bytes': replayed['bytes'], 'v22_selected_and_discovery_replay': v22_replay, 'release_hash': replayed['release_hash'],
                    'objects_exactly_match_original_plan': True, 'editorial_scope_reports_reproduced': scope_replays, 'remote_backup_verified': False,
                    'verification_code_sha256': file_hash(Path(__file__)),
                    'scope': 'Whole archive SHA checked against separate summary; every member verified; isolated temporary restore; saved repository source replays all named cohorts and runtime objects. No reads of original runtime objects or capture directories. Temporary restore removed after verification; archive remains local.'}
