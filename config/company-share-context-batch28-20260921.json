@@ -1,0 +1,64 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001561032",
+      "accession": "0001561032-26-000009",
+      "source_sha256": "81808284c6bd07cc36d8cf84906c4262ac7af87abf5baa60ace8b6f99a5aef55",
+      "primary_sha256": "e784476f2e709f4e1c1a0c6543abd4b65dfa6e036986e28a4936416940164b84",
+      "fixture": "scripts/fixtures/editorial/national-healthcare-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 26,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except per share data)",
+        "All share and per share data in this Annual Report on Form 10-K have been adjusted for all periods presented to reflect the Reverse Stock Split.",
+        "Potential common stock equivalents were excluded from the calculation of diluted net loss per share",
+        "Weighted average number of antidilutive unvested restricted shares",
+        "Weighted average number of antidilutive Common OP Units",
+        "Weighted average number of antidilutive Class B Units",
+        "amount in thousands, except shares and per share data"
+      ],
+      "reader_note": "For National Healthcare Properties in 2023\u20132025, the selected statement uses net loss attributable to common stockholders after non-controlling-interest and preferred-stock allocations. Its scale-three share counts follow the statement\u2019s thousands heading. Stock dividends and the September 2024 one-for-four reverse split are already reflected; no further adjustment is applied. The EPS note displays a larger denominator including restricted shares, Common OP Units and Class B Units, but its footnotes explicitly call those equivalents anti-dilutive and exclude them from loss-per-share calculations. Those additional shares are not added to the selected statement denominator. The note\u2019s separate share-exception heading is retained in the evidence without changing the selected statement units.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+      "supporting_table_indexes": [
+        57
+      ]
+    },
+    {
+      "cik": "0001561921",
+      "accession": "0001104659-26-034507",
+      "source_sha256": "5b3bce53267a4a1e1ea2217ff00651e3fbd53c3402119ff3ea6d12b29bf3f160",
+      "primary_sha256": "bde14914ffb0a7a4e95a8af57ac6236102c88785f90833f6f3f7da5cfe135d7a",
+      "fixture": "scripts/fixtures/editorial/tela-bio-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 296,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except share and per share amounts)",
+        "Basic and diluted net loss per common share is determined by dividing net loss",
+        "all outstanding pre-funded warrants are considered common stock equivalents and are included in the calculation of weighted-average shares"
+      ],
+      "reader_note": "For TELA Bio in 2023\u20132025, basic and diluted loss per share use the same denominator because additional potential shares would be anti-dilutive. Outstanding pre-funded warrants with a $0.0001 exercise price are already included in weighted-average common shares from their respective closing dates; they are not added again. Full share counts follow the statement\u2019s share/per-share exception to its thousands heading. EPS uses net loss, which is distinct from comprehensive loss after foreign-currency translation adjustments.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
