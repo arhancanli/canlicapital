@@ -9,26 +9,26 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/v19-corpus-comparison-20260921`. PR85merged9b6a39ccafter four passing
-CI35535403163checks at8d533371. Tested and merged trees match exactly.
+`evidence/share-context-batch21-20260921`. PR86merged64e2879bafter four passing
+CI35535631416checks at02c0479a. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-gladstone-20260921.json.gz.
-Of1,176batch observations,600reviewed/556pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch21-20260921.json.gz.
+Of1,176batch observations,624reviewed/532pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest change holds six exact Outset Medical2023–2025weighted-share observations
-under extended-v19. The statement heading says thousands except per-share; all six
-inline facts omit scale (effective zero), encoding3305/3463/15211shares. No silent
-rescaling or additional reverse-split conversion. The original filing states a
-March20,2025,15:1reverse split retrospectively reflected in presented periods.
-EPS and older rows remain unapproved by this hold.77selector/renderer/ledger/
-delivery tests pass; conflict report replays byte-identically. Gladstone Land now
-has12presentation-only reviews: preferred dividends/extinguishment adjustments
-explain the common-stockholder loss numerator; no cause of equal basic/diluted
-measures is claimed. Full share counts retained.41renderer/ledger tests pass and
-source report replays byte-identically. Next new index61; earlier gaps remain.
+Latest24reviews cover CIM Real Estate Finance Trust and X4 Pharmaceuticals.
+CIM filing identity is retained despite the current source label; EPS policy
+explicitly states no potential dilutive equivalents for2023–2025, distinct from
+separately reported equity awards. X4includes prefunded warrants in basic shares,
+excludes other potential dilution in loss periods, and already reflects its
+April28,2025,1-for-30reverse split. EPS-note$0.30threshold and warrant-disclosure
+$0.001–$0.03prices are retained without harmonizing wording. Scale0shares/values
+unchanged.42renderer/ledger tests pass; report replays byte-identically.
+Next new index63; earlier gaps remain.96presentation-only reviews retain limits.
+V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
+conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against
 frozenv14. Exactly24held observations sincev14(including six new Outset), two prior
 Valhi history omissions, policy/notices; every other field/source byte unchanged.

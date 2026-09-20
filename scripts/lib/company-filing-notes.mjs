@@ -1,6 +1,228 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001498547",
+  "include_on_overview": true,
+  "source_sha256": "51f1048520d01f703206a20df6920b501657b79d5c253b005236cee80e1bfaa1",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "The reviewed 2023\u20132025 filing identifies the issuer as CIM Real Estate Finance Trust, Inc. EPS uses income or loss attributable to the company after noncontrolling-interest allocation. Its EPS policy states there were no potentially dilutive share equivalents for each of these years. This does not mean no equity awards existed: the filing separately reports restricted stock and restricted stock units. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1498547/000149854726000013/cmft-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": 0.06,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.67,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": 0.12,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": 0.06,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.67,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": 0.12,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 437375332,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 437160077,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 436824784,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 437375332,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 437160077,
+      "accn": "0001498547-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 436824784,
+      "accn": "0001498547-26-000013"
+    }
+  ]
+},
+{
+  "cik": "0001501697",
+  "include_on_overview": true,
+  "source_sha256": "d103d5ba742cbf65407874ca223ed51164237a22279f08089a1a32d8eb83aa50",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, X4 Pharmaceuticals includes pre-funded warrants in basic and diluted weighted-average shares, while excluding other potential dilution in the loss periods. The EPS note states a remaining exercise-price threshold of $0.30 for included pre-funded warrants; the separate warrant disclosure lists remaining prices of $0.001\u2013$0.03. These disclosures are retained without harmonizing their wording. Common-share and per-share figures already reflect the April 28, 2025, 1-for-30 reverse split. Net loss, not comprehensive loss, is the numerator. Shares and EPS retain scale-zero tags; no second split adjustment or addition of excluded instruments is applied.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1501697/000150169726000018/xfor-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -17.07,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -5.59,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -1.87,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -17.07,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -5.59,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -1.87,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 5927082,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 6702073,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 42292818,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 5927082,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 6702073,
+      "accn": "0001501697-26-000018"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 42292818,
+      "accn": "0001501697-26-000018"
+    }
+  ]
+},
+{
   "cik": "0001495240",
   "include_on_overview": true,
   "source_sha256": "aa4624e7ba0250d1465384b88efe179a8897d7a198ef50d96a6cfe36aab78416",
