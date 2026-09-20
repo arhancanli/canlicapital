@@ -32,6 +32,13 @@ Capture is unfinished at this checkpoint: poll the same handle and inspect
 `corpus-local/fourth-1000/refresh.json`; do not launch a duplicate or infer completion.
 No new company admission, staged page or indexing count is claimed. Selection
 and holdback reports reproduce exactly; nine queue/capture tests pass.
+Resume review found implicit failure retries and completed-report rewrites.
+Corrected collector now binds the full queue, preserves recorded failures and
+completed reports, rejects access-stop resumes, and detects missing/altered prior
+evidence. Full verification passes6+390tests and audits. The live session29020
+predates this fix and is not restarted; legacy partial reports without a queue
+binding require inspection. Latest observed193/1000processed,129review candidates,
+45exclusions,19HTTPerrors; capture still running.
 
 Extended-v3 corrects eight source-scope errors while preserving original SEC bytes
 and v1/v2 reproducibility. Earlier releases are not publishable as-is. Current
@@ -100,8 +107,8 @@ still need URL-level exports. See INDEXING_BASELINE.md. Browser tab/export acces
 works; assistive access is denied, Apple Events JavaScript disabled and screenshot
 capture unavailable. No settings were bypassed.
 
-Website c31e8b65 passed CI35497398668; the prior full local build/verify passed
-6 + 384 tests and final audits. Engine PR68 ce93d8c fixes nested agent-state copying;
+Website8f3e992f passed CI35497522210; current local verification passes
+6 + 390 tests and final audits. Engine PR68 ce93d8c fixes nested agent-state copying;
 13 focused tests and Ruff pass, and full CI35494803169 now passes all six jobs.
 PR69/70 rechecked: open at783ad0c/e0a257c, all six jobs pass respectively in
 CI35437603714/35438489448. They remain unmerged.

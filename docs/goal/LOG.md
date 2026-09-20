@@ -1251,3 +1251,23 @@ retry on403/429, page staging or production publication. Poll same handle next.
 EnginePR68/69/70 rechecked open with current heads and six passing jobs each;
 none merged and no engine runtime modified. Capacity/indexing and forward goals
 remain unachieved; new capture counts cannot establish publication quality.
+
+## 2026-09-20 — capture resume preserves failures and completed evidence
+
+Previous turn launched genuine source acquisition. Same session29020 remainslive;
+latest checkpoint193/1000(129review candidates,45excluded,19HTTPerrors), unfinished.
+Found collector would implicitly reacquire prior HTTP/transport failures, rewrite
+completed report dates and silently replace altered staged records on resume.
+Added full ordered queue binding, prior-result validation, failure retention,
+access-stop rejection, immutable completed reports and offline record comparison.
+Missing receipts cannot trigger new fetches; partial replay cannot truncate prior
+outcomes. Legacy complete queues can replay; unbound partial queues fail closed.
+
+Initial focused run exposed interruption handling inside the HTTP-error catch
+(could duplicate a result) and a test fixture that changed a completed queue.
+Moved HTTP failures through a typed error to the single outer pause; isolated the
+expanded fixture in a new directory. Added six regressions and expanded old tests.
+Full verify21062 exits0:6+390tests and allfinalaudits. Restored only verification's
+unrelated source-date/sitemap churn from the initially clean worktree. Current
+running capture loaded older code and was neither restarted nor modified.
+Website8f3e992fCI35497522210 passes. No production, source-policy or indexing change.

@@ -83,3 +83,18 @@ verify and a second run reproduces the report exactly. This material is not in t
 previous sealed v3 archive. No network request, return-data read, trial identity
 spend, source-runtime edit or new page generation occurred. This small discovery
 increment does not materially close the source-capacity gap.
+# Capture resume contract — September 20
+
+The fourth queue is disjoint from the three prior website queues, current delivery
+and600retained acquisition identities. A resumed collector must preserve every
+prior HTTP or transport failure rather than treating a missing success receipt as
+permission to retry. New reports bind the full ordered queue. Changed queues,
+missing prior receipts, altered records and access-stop resumes fail before any
+replacement fetch. Completed reports and acquisition timestamps remain unchanged.
+Partial replay never saves a shorter prefix over previously recorded outcomes.
+
+Legacy complete reports can be checked offline when every queue position matches.
+Legacy partial reports lack the new queue binding and require explicit inspection;
+the running fourth capture predates the guard and was not restarted or rewritten.
+The fix changes future invocation behavior, not the code already loaded by that
+process. Network failures remain evidence of failed acquisition, not eligibility.

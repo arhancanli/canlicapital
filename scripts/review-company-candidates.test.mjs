@@ -57,11 +57,13 @@ test('a falsely excluded eligible capture cannot disappear from the review', asy
 
 test('staging can retain source-reproduced exclusions but never HTTP failures or altered reasons', async t => {
   const { stageCompanyDelivery } = await import('./stage-company-delivery.mjs');
-  const { directory, cik } = await fixture(t);
+  const { directory: sourceDirectory, cik } = await fixture(t);
+  const directory = mkdtempSync(resolve(tmpdir(), 'canli-review-expanded-'));
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
   const output = mkdtempSync(resolve(tmpdir(), 'canli-reviewed-delivery-'));
   t.after(() => rmSync(output, { recursive: true, force: true }));
-  const record = JSON.parse(readFileSync(resolve(directory, cik + '.record.json')));
-  const raw = gunzipSync(readFileSync(resolve(directory, record.source_sha256 + '.json.gz')));
+  const record = JSON.parse(readFileSync(resolve(sourceDirectory, cik + '.record.json')));
+  const raw = gunzipSync(readFileSync(resolve(sourceDirectory, record.source_sha256 + '.json.gz')));
   const badCik = '0000000001';
   const ciks = [cik, badCik];
   writeFileSync(resolve(directory, 'ciks.json'), JSON.stringify(ciks));
