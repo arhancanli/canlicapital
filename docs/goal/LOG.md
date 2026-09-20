@@ -1317,3 +1317,31 @@ company-basic-diluted-capture-batch2-20260921.json; capture directory
 corpus-local/basic-diluted-batch2-filings; log /tmp/canli-basic-diluted-batch2-capture.log.
 Poll exact handle; retain failures/no retries on access stop. No numeric/context
 closure yet. Batch1ledger and live production/indexing remain unchanged.
+
+PR122 published at318cbf520c86c005d09ff6d9489b258d80d8bb1a; CI35544086154
+confirmed running. Exact sessions44227and11834 polled live:150storage objects/
+zero failures and35captured primaries/no error respectively. Both remain partial.
+
+
+## 2026-09-21 — batch2 numerical closure and Theriva discrepancies
+
+Previous turn progressed v22-bound next batch and concurrent transfer. PR122
+mergeddc07d21d from318cbf52 after four CI35544086154checks passed; exact
+treecdb8de808d2171ffd0f3c9028526c7fa0688d6c0 matches. Capture11834TERMINAL0,
+100primaries/87companies/800observations/zero gaps. Binder checks retained hashes.
+Inline66734TERMINAL0:744matches,56gaps across7filings. Original primary report
+retained in lossless gzip; exact56-gap acquisition input prepared. Existing paced
+instance collector76839TERMINAL0captured all7instances, no access stops. New generic
+legacy partition runner uses frozen v2 compound-unit helper and proves56/56, exact
+combined800/800. Second replay byte-identical; batch1 replay preserves all original
+per-filing checks and78/78/1,176combined results. Summary pins inputs/hashes.
+Theriva8facts match main statement but per-share narrative common-loss amount
+and reverse-split dates conflict with other filing passages. Primary hash
+e23bec0fd4ec8a53f1d8f3e62167b8ecbcbb1c71653d6a5a9235a40cad7ef0d1, source
+0de75e0c14bf762eac1125a82293caea25684675d03e66311f5d17f900dbb0a7. Table232
+shows$23.739mnet loss,$1.510mdeemed dividend,$25.249mcommon loss; latter reproduces
+-$2.08EPS on12,140,697shares. Note labels$23.7mcommon loss. October26vsAugust26
+2024split dates preserved. New pending report/script/source fixture; byte-identical
+replay. No source rewriting or automatic admission. All800batch2scope pending.
+Uploader44227still live,426objects/zero failures at last checkpoint; uploader and
+plan unchanged. No new production release or indexing evidence.
