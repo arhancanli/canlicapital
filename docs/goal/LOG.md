@@ -509,3 +509,17 @@ TECHCOM capex/revenue history is all zero; EVENTIKO payable/property includes
 11,000 and zero. Need primary scope/usefulness, not automatic deduplication.
 Source-linked queue preserves all groups and non-basic/diluted observations.
 No production release or indexed gain. Bulk26312 confirmed live this turn.
+
+## 2026-09-20 — retained equality filing comparisons
+
+Previous turn merged PR31 and opened PR32 with750group triage. New target mapping
+retains all priority observations:41primary filings/212observations available,
+159filings/398observations missing. Initial reviewer invocation rejected the new
+schema before reading filings; added explicit support for the compatible equality
+target schema without changing comparison rules. Run38554 completed212/212matches;
+six inline and three XML tests pass. Source matches are not semantic admission.
+Reviewed3M2023–2025 net sales versus disaggregated total-company revenue, and
+EVENTIKO2024–2025 separate zero payable/fixed-asset lines with nonzero related-party
+loans. Website Development appears in fixed assets; earlier11,000values remain
+outside this primary comparison. Limited scope notes retained, no broad approval.
+Bulk26312 polled live;3914objects/0failures at checkpoint.

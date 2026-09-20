@@ -21,7 +21,7 @@ concurrency4, readAttempts3, writeAttempts2, total read budget200/write budget50
 Per-object limits, permission/rate-limit/corruption stops, exact-byte verification
 and create-only reconciliation remain enforced. Twenty storage/planner tests pass.
 Receipt: corpus-local/company-five-cohort-transfer-20260920.json.
-Latest observed checkpoint: 3506 verified objects, 0 failures. Session26312 was polled live this turn.
+Latest observed checkpoint: 3914 verified objects, 0 failures. Session26312 was polled live this turn.
 Poll exact handle before restarting. Prior v3resume5session23870 is terminal after
 1,721objects/126,028,025bytes; receipt and failures preserved. Do not restart oldv3.
 Full transfer and page activation remain incomplete. Separate representative
@@ -140,7 +140,17 @@ records and source hashes; non-basic/diluted groups include selected observation
 TECHCOM capex/revenue equality is all-zero; EVENTIKO payable/property equality
 includes11,000 and zero. Neither finding alone establishes an error or admission.
 
-Next: review the37other nonzero groups against primary filings; complete bulk transfer and full-corpus
+PR32 https://github.com/arhancanli/canlicapital/pull/32 reviews equality triage.
+Retained-file target mapping covers38non-basic/diluted groups:41filings contain
+212selected observations;159filings/398observations lack primary captures.
+Offline comparison38554 completed212/212numerical matches. First invocation
+stopped on the new target schema; reviewer now explicitly accepts that schema
+with unchanged comparison rules. Six inline and three XML regressions pass.
+Two limited primary-table interpretations retained for3M2023–2025and
+EVENTIKO2024–2025; no all-history source/admission claim. See company-equal-history-
+{retained-targets,retained-review,scope-notes}-20260920.json.
+
+Next: review the remaining primary contexts and missing historical filings; complete bulk transfer and full-corpus
 checks plus remaining editorial/admission work before production activation.
 The owner's publication approval persists. The prior 1–3day estimate and possible
 first batch tonight were provisional, not measured forecasts or release promises.

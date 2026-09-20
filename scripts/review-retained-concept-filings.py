@@ -148,7 +148,7 @@ def main():
     args = parser.parse_args()
     target_bytes = args.targets.read_bytes()
     targets = json.loads(target_bytes)
-    assert targets['schema'] == 'canli.retained-concept-filing-targets.v1'
+    assert targets['schema'] in ('canli.retained-concept-filing-targets.v1', 'canli.equal-history-retained-targets.v1')
     helper_path = ROOT / 'scripts/review-company-editorial-xbrl.py'
     helper_spec = importlib.util.spec_from_file_location('retained_xbrl_compare', helper_path)
     helper = importlib.util.module_from_spec(helper_spec)

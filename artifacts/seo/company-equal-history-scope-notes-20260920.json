@@ -1,0 +1,560 @@
+{
+  "schema": "canli.equal-history-scope-notes.v1",
+  "publication_approved": false,
+  "comparison_sha256": "9e8e11a03b86bf08e0d1633cf21ea7897ef0b4d3b055553da07ee4e1be2f09a2",
+  "cases": [
+    {
+      "cik": "0000066740",
+      "accession": "0000066740-26-000014",
+      "primary_sha256": "104f35e670a2e3ff49c544914f4d46190ca217d366912204fd7377973ad593e1",
+      "url": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm",
+      "interpretation": "For 2023\u20132025, Revenues appears as Net sales in the consolidated statement and total-company segment reconciliation; RevenueFromContractWithCustomerExcludingAssessedTax appears as Total Company/Worldwide in sales disaggregation. The visible totals match. This supports a duplicate-reader-value review for these periods, not a global interchangeability rule or all-history merger.",
+      "reviewed_observations": [
+        {
+          "selected": {
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 24610000000,
+            "accn": "0000066740-26-000014",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-03",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "24610000000",
+              "fact_id": "f-593",
+              "context_id": "c-11",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales (millions) 2025 2024 2023",
+                "Abrasives $ 1,340 $ 1,295 $ 1,327"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "24610000000",
+              "fact_id": "f-605",
+              "context_id": "c-11",
+              "table_row": "Worldwide $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Europe, Middle East and Africa 4,274 4,176 4,274",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales by geographic area (millions) 2025 2024 2023",
+                "Americas $ 13,579 $ 13,405 $ 13,268"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 24575000000,
+            "accn": "0000066740-26-000014",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-03",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "24575000000",
+              "fact_id": "f-592",
+              "context_id": "c-10",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales (millions) 2025 2024 2023",
+                "Abrasives $ 1,340 $ 1,295 $ 1,327"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "24575000000",
+              "fact_id": "f-604",
+              "context_id": "c-10",
+              "table_row": "Worldwide $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Europe, Middle East and Africa 4,274 4,176 4,274",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales by geographic area (millions) 2025 2024 2023",
+                "Americas $ 13,579 $ 13,405 $ 13,268"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 24948000000,
+            "accn": "0000066740-26-000014",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-03",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-591",
+              "context_id": "c-1",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales (millions) 2025 2024 2023",
+                "Abrasives $ 1,340 $ 1,295 $ 1,327"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-603",
+              "context_id": "c-1",
+              "table_row": "Worldwide $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Europe, Middle East and Africa 4,274 4,176 4,274",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales by geographic area (millions) 2025 2024 2023",
+                "Americas $ 13,579 $ 13,405 $ 13,268"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 24610000000,
+            "accn": "0000066740-26-000014",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-03",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "24610000000",
+              "fact_id": "f-70",
+              "context_id": "c-11",
+              "table_row": "Net sales $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Years ended December 31,",
+                "(Millions, except per share amounts) 2025 2024 2023"
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "Years ended December 31,",
+                "(Millions, except per share amounts) 2025 2024 2023",
+                "Net sales $ 24,948 $ 24,575 $ 24,610"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "24610000000",
+              "fact_id": "f-2538",
+              "context_id": "c-11",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Total reportable business segment net sales 24,576 24,272 24,483",
+                "Corporate and Other 372 303 127"
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales (millions) 2025 2024 2023",
+                "Safety and Industrial $ 11,384 $ 10,961 $ 10,956"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 24575000000,
+            "accn": "0000066740-26-000014",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-03",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "24575000000",
+              "fact_id": "f-69",
+              "context_id": "c-10",
+              "table_row": "Net sales $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Years ended December 31,",
+                "(Millions, except per share amounts) 2025 2024 2023"
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "Years ended December 31,",
+                "(Millions, except per share amounts) 2025 2024 2023",
+                "Net sales $ 24,948 $ 24,575 $ 24,610"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "24575000000",
+              "fact_id": "f-2537",
+              "context_id": "c-10",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Total reportable business segment net sales 24,576 24,272 24,483",
+                "Corporate and Other 372 303 127"
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales (millions) 2025 2024 2023",
+                "Safety and Industrial $ 11,384 $ 10,961 $ 10,956"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 24948000000,
+            "accn": "0000066740-26-000014",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-03",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-68",
+              "context_id": "c-1",
+              "table_row": "Net sales $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Years ended December 31,",
+                "(Millions, except per share amounts) 2025 2024 2023"
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "Years ended December 31,",
+                "(Millions, except per share amounts) 2025 2024 2023",
+                "Net sales $ 24,948 $ 24,575 $ 24,610"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-2536",
+              "context_id": "c-1",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Total reportable business segment net sales 24,576 24,272 24,483",
+                "Corporate and Other 372 303 127"
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales (millions) 2025 2024 2023",
+                "Safety and Industrial $ 11,384 $ 10,961 $ 10,956"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        }
+      ],
+      "disposition": "LIMITED_PRIMARY_CONTEXT_REVIEW_NOT_ADMISSION"
+    },
+    {
+      "cik": "0001816554",
+      "accession": "0001683168-25-005216",
+      "primary_sha256": "a323567dab1aa90d3780b968367c58dd07c8479204ee53ce0d53b3bf492ab319",
+      "url": "https://www.sec.gov/Archives/edgar/data/1816554/000168316825005216/eventiko_i10k-043025.htm",
+      "interpretation": "For April30,2024 and April30,2025 the same balance sheet separately reports Accounts Payable and Total Fixed Assets as dashes. The fixed-assets section lists Website Development; do not describe this evidence as physical operating capacity. Separate related-party loans of14,260/23,867 remain, so zero accounts payable does not imply zero liabilities. Earlier11,000 observations are outside this retained filing comparison and remain unresolved.",
+      "reviewed_observations": [
+        {
+          "selected": {
+            "tag": "AccountsPayableCurrent",
+            "end": "2024-04-30",
+            "val": 0,
+            "accn": "0001683168-25-005216",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-07-18",
+            "frame": "CY2024Q1I",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "AccountsPayableCurrent",
+              "start": null,
+              "end": "2024-04-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000100",
+              "context_id": "AsOf2024-04-30",
+              "table_row": "Accounts Payable \u2013 \u2013",
+              "preceding_rows": [
+                "Related Party Loans $ 23,867 $ 14,260",
+                "Accrued Expenses \u2013 \u2013"
+              ],
+              "table_header_rows": [
+                "April 30, 2025 April 30, 2024",
+                "ASSETS",
+                "",
+                "Current Assets",
+                "Cash and cash equivalents $ \u2013 $ \u2013"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AccountsPayableCurrent",
+            "end": "2025-04-30",
+            "val": 0,
+            "accn": "0001683168-25-005216",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-07-18",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "AccountsPayableCurrent",
+              "start": null,
+              "end": "2025-04-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000099",
+              "context_id": "AsOf2025-04-30",
+              "table_row": "Accounts Payable \u2013 \u2013",
+              "preceding_rows": [
+                "Related Party Loans $ 23,867 $ 14,260",
+                "Accrued Expenses \u2013 \u2013"
+              ],
+              "table_header_rows": [
+                "April 30, 2025 April 30, 2024",
+                "ASSETS",
+                "",
+                "Current Assets",
+                "Cash and cash equivalents $ \u2013 $ \u2013"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "PropertyPlantAndEquipmentNet",
+            "end": "2024-04-30",
+            "val": 0,
+            "accn": "0001683168-25-005216",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-07-18",
+            "frame": "CY2024Q1I",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "PropertyPlantAndEquipmentNet",
+              "start": null,
+              "end": "2024-04-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000079",
+              "context_id": "AsOf2024-04-30",
+              "table_row": "Total Fixed Assets \u2013 \u2013",
+              "preceding_rows": [
+                "Fixed Assets",
+                "Website Development \u2013 \u2013"
+              ],
+              "table_header_rows": [
+                "April 30, 2025 April 30, 2024",
+                "ASSETS",
+                "",
+                "Current Assets",
+                "Cash and cash equivalents $ \u2013 $ \u2013"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "PropertyPlantAndEquipmentNet",
+            "end": "2025-04-30",
+            "val": 0,
+            "accn": "0001683168-25-005216",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-07-18",
+            "unit": "USD"
+          },
+          "matches": [
+            {
+              "tag": "PropertyPlantAndEquipmentNet",
+              "start": null,
+              "end": "2025-04-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000078",
+              "context_id": "AsOf2025-04-30",
+              "table_row": "Total Fixed Assets \u2013 \u2013",
+              "preceding_rows": [
+                "Fixed Assets",
+                "Website Development \u2013 \u2013"
+              ],
+              "table_header_rows": [
+                "April 30, 2025 April 30, 2024",
+                "ASSETS",
+                "",
+                "Current Assets",
+                "Cash and cash equivalents $ \u2013 $ \u2013"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ]
+        }
+      ],
+      "disposition": "LIMITED_PRIMARY_CONTEXT_REVIEW_NOT_ADMISSION"
+    }
+  ],
+  "scope": "Manual interpretation of the specified retained primary tables only. Remaining periods, source gaps, other groups and content usefulness remain open."
+}
