@@ -10,7 +10,8 @@ Read in order before each phase and after every chat compaction:
 1. `REQUIREMENTS.md`: all owner objectives and claim boundaries.
 2. `STATUS.md`: current phase, exact outstanding work, blockers and next action.
 3. `PHASES.md`: sequence and evidence required to finish a phase.
-4. `LOG.md`: chronological changes, test results and decisions.
+4. `LOG.md`: current chronological changes, test results and decisions, with links
+   to preserved earlier logs when historical details are needed.
 
 On a restart, verify the current branch, dirty files, PR state and relevant evidence.
 Do not assume a command finished, a PR merged or production changed because it was
