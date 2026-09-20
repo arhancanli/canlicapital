@@ -1,0 +1,13 @@
+{
+  "schema": "canli.clean-preview-diagnosis.v1",
+  "preview_receipt_sha256": "9eaa58f51616ee3f8f0b5ca8938ac72bb6794cf24e2878a4697c2240276b51f0",
+  "deployment_id": "dpl_GWjTP4kqA5y7ACVqLPUD8Y862rWA",
+  "publication_approved": false,
+  "findings": [
+    "Clean /companies returned the historical seven-pilot directory; its first CIKs were 0000019617,0000025232,0000029534,0000034088,0000320193 rather than the pinned release first CIK0000001750.",
+    "POST /companies returned platform405 without Allow; direct staging API returned405with GET, HEAD.",
+    "Cloud build log ended with asset-manifest postbuild and did not show preview cleanup. Project settings displayed the appended command, but that setting alone did not prove execution.",
+    "Browser report retains network-change errors, apparent styling/overflow failures and failed directory links. WebKit page checks succeeded; browser network errors prevent treating every rendering failure as confirmed CSS defect."
+  ],
+  "correction": "Explicit COMPANY_CLEAN_ROUTE_PREVIEW=1 build flag invokes preview-guarded cleanup through postbuild. Add method headers at edge; assert exact pinned directory membership. Retain failed receipts; retest a new deployment."
+}
