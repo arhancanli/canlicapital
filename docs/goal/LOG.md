@@ -1065,3 +1065,23 @@ note142. No substitution or lifting holds. Report replays byte-identically;
 118presentation-only. Remaining Freddie12/Rockwell12/INVO16/Plastec12; older Iovance
 review separate. No runtime rebuild, archival supplement, deployment or index gain.
 All owner objectives remain active.
+
+
+## 2026-09-21 — original Freddie/Rockwell legacy statement mappings
+
+Previous turn reviewed six Siebert observations and opened PR113. PR112 all four
+CI35540761773checks passed at8643dbf1; mergedba00e38060c53c072827cf72c540f8e2b97c02dd,
+full tree5765e763ba0433c02e99422018bb61f9a9a9ac90 matches tested head. PR113 CI
+35540910125running; this branch builds on its head187d8c75 without claiming merge.
+Mapped24legacy XML observations to exact original statement years/rows/columns.
+Freddie2009–2011 uses common loss after preferred dividends/noncontrolling interests;
+Treasury nominal-price warrant already included in basic, separate anti-dilutive
+potential shares excluded; statement thousands mapped to full source shares.
+Rockwell2015–2017 excludes options, restricted grants and warrants during losses.
+First replay failed parsing '$' because Rockwell column spacing differs; original
+script retained at corpus-local/rejected-freddie-rockwell-context-v1.py. Corrected
+explicit per-filing column coordinates, no value/helper changes. Final report
+replays byte-identically;97selector/renderer/ledger tests pass. Ledger1122reviewed/
+28pending/26withdrawn,118presentation-only. RemainingINVO16/Plastec12; older Iovance
+scope separate. Archive supplement/runtime refresh/hosting remain pending; no
+production or indexing gain. All owner objectives remain active.

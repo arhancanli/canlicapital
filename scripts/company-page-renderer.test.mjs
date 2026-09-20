@@ -1152,3 +1152,23 @@ test('Siebert explains rounded EPS equality without releasing disputed diluted c
   const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
   assert.equal(companyFilingNotes(changed, 'EarningsPerShareBasic').length, 0);
 });
+
+
+test('legacy Freddie and Rockwell context preserves warrant inclusion, scale and loss exclusions', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['freddie-2011', '0001026214', /must not be added again as dilution/, 3244896000, '2011-12-31'],
+    ['rockwell-2017', '0001041024', /anti-dilutive during losses/, 51067412, '2017-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v20' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
