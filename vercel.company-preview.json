@@ -1,0 +1,316 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "base-uri 'self'; frame-ancestors 'none'; object-src 'none'"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), geolocation=(), microphone=(), payment=(), usb=()"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(css|js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)\\.(css|js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(woff2|woff|ttf|otf)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(svg|png|jpg|jpeg|webp|avif|ico)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(mp4|webm)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
+        }
+      ]
+    },
+    {
+      "source": "/api/waitlist",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/api/v1/validate/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/api/v1/keys",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/api/v1/receipts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/api/v1/receipts/(.*)/badge.svg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=0, must-revalidate, s-maxage=60, stale-while-revalidate=300"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(json|md|bib|csv|tsv|parquet|txt|ots|gz|cff)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/publication/(.*)/paper",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
+        }
+      ]
+    },
+    {
+      "source": "/(systems|research|performance|progress|open|measurements|trials|verify|review|foundry|founder|methodology|engineering|notes|developers|costs|tools|how-to-validate-a-backtest)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
+        }
+      ]
+    },
+    {
+      "source": "/(research|measurements|trials|notes|tools|standards)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
+        }
+      ]
+    },
+    {
+      "source": "/companies/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
+        }
+      ]
+    },
+    {
+      "source": "/companies",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Allow",
+          "value": "GET, HEAD"
+        }
+      ]
+    },
+    {
+      "source": "/companies/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Allow",
+          "value": "GET, HEAD"
+        }
+      ]
+    },
+    {
+      "source": "/company-data/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Allow",
+          "value": "GET, HEAD"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.canlicapital.com"
+        }
+      ],
+      "destination": "https://canlicapital.com/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/companies",
+      "destination": "/api/v1/company-reference?path=/companies"
+    },
+    {
+      "source": "/companies/:path*",
+      "destination": "/api/v1/company-reference?path=/companies/:path*"
+    },
+    {
+      "source": "/company-data/:path*",
+      "destination": "/api/v1/company-reference?path=/company-data/:path*"
+    },
+    {
+      "source": "/api/v1/status",
+      "destination": "/api/v1/status.json"
+    },
+    {
+      "source": "/api/v1/record",
+      "destination": "/api/v1/record.json"
+    },
+    {
+      "source": "/api/v1/sleeves",
+      "destination": "/api/v1/sleeves.json"
+    },
+    {
+      "source": "/api/v1/trials/summary",
+      "destination": "/api/v1/trials/summary.json"
+    },
+    {
+      "source": "/api/v1/research",
+      "destination": "/api/v1/research.json"
+    },
+    {
+      "source": "/api/v1/chain/head",
+      "destination": "/api/v1/chain/head.json"
+    },
+    {
+      "source": "/api/v1/openapi",
+      "destination": "/api/v1/openapi.json"
+    },
+    {
+      "source": "/api/v1/receipts/:id/badge.svg",
+      "destination": "/api/v1/receipts/:id/badge"
+    }
+  ],
+  "functions": {
+    "api/v1/company-reference.js": {
+      "includeFiles": "dist/company-page-assets.json",
+      "maxDuration": 60
+    }
+  }
+}

@@ -4,8 +4,8 @@ import { catalogHash } from '../api/_lib/company-catalog.js';
 import { verifyStagedResponse } from './lib/hosted-company-http.mjs';
 
 // Audits the explicit staging wrapper. Clean canonical routing is a separate gate.
-const [originText, manifestPath, manifestHash, output, mode = 'ready'] = process.argv.slice(2);
-if (!output || !['ready', 'unavailable'].includes(mode)) throw new Error('Usage: node scripts/audit-hosted-company-staging.mjs HTTPS_ORIGIN DELIVERY_MANIFEST SHA256 NEW_REPORT [ready|unavailable]');
+const [originText, manifestPath, manifestHash, output, mode = 'ready', routing = 'explicit'] = process.argv.slice(2);
+if (!output || !['ready', 'unavailable'].includes(mode) || !['explicit', 'clean'].includes(routing)) throw new Error('Usage: node scripts/audit-hosted-company-staging.mjs HTTPS_ORIGIN DELIVERY_MANIFEST SHA256 NEW_REPORT [ready|unavailable] [explicit|clean]');
 const origin = new URL(originText);
 assert.equal(origin.protocol, 'https:'); assert.equal(origin.pathname, '/');
 assert.ok(!origin.username && !origin.password && !origin.search && !origin.hash);
@@ -16,15 +16,16 @@ const manifest = JSON.parse(rawManifest);
 assert.equal(manifest.schema, 'canli.company-delivery.v1');
 assert.ok(manifest.files.length > 0);
 const report = { schema: 'canli.hosted-company-staging-audit.v1', origin: origin.origin,
-  manifest_sha256: manifestHash, mode, publication_approved: false, complete: false,
+  manifest_sha256: manifestHash, mode, routing, publication_approved: false, complete: false,
   checks: [], failures: [], code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
   http_contract_sha256: catalogHash(readFileSync(new URL('./lib/hosted-company-http.mjs', import.meta.url))),
-  scope: 'Explicit staging API sample. Not canonical-route activation, complete corpus HTTP verification, indexing evidence or a cloud-load benchmark.' };
+  scope: 'Representative noindex staging sample in the recorded routing mode. Not production activation, complete corpus HTTP verification, indexing evidence or a cloud-load benchmark.' };
 const save = () => writeFileSync(output, JSON.stringify(report, null, 2) + '\n');
 save();
 const verifiedRepresentations = new Map();
 async function check(path, method, status, inspect = () => {}, headers = {}) {
-  const url = new URL('/api/v1/company-reference', origin); url.searchParams.set('path', path);
+  const url = new URL(routing === 'clean' ? path : '/api/v1/company-reference', origin);
+  if (routing === 'explicit') url.searchParams.set('path', path);
   const start = performance.now();
   try {
     const response = await fetch(url, { method, headers, redirect: 'manual', signal: AbortSignal.timeout(70000) });
@@ -50,7 +51,7 @@ async function check(path, method, status, inspect = () => {}, headers = {}) {
   }
 }
 
-await check('/not-a-company-route', 'GET', 404);
+await check(routing === 'clean' ? '/companies/not-a-company-route' : '/not-a-company-route', 'GET', 404);
 await check('/companies', 'POST', 405, response => assert.equal(response.headers.get('allow'), 'GET, HEAD'));
 if (mode === 'unavailable') {
   for (const method of ['GET', 'HEAD']) await check('/companies', method, 503, (response, bytes) => {
@@ -59,7 +60,10 @@ if (mode === 'unavailable') {
     else assert.equal(bytes.toString(), 'Company reference temporarily unavailable');
   });
 } else {
-  await check('/companies', 'GET', 200);
+  await check('/companies', 'GET', 200, (response, bytes) => {
+    const links = [...bytes.toString().matchAll(/href="\/companies\/(\d{10})"/g)].map(m => m[1]);
+    assert.deepEqual([...new Set(links)], manifest.files.slice(0, 50).map(item => item.cik), 'Directory must match the pinned release, not static pilots');
+  });
   await check('/companies/9999999999', 'GET', 404);
   await check('/company-data/9999999999.json', 'GET', 404);
   const indices = [...new Set([0, Math.floor(manifest.files.length / 2), manifest.files.length - 1])];

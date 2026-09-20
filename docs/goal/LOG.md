@@ -444,3 +444,53 @@ tests pass. Standards: RFC9111sections3.2/4.3.4; RFC9110section13.1.2.
 Final audit64924passed23checks, zero failures. Failed receipts remain unchanged.
 This verifies representative explicit API delivery, not canonical routes/full
 corpus/publication/indexing. Bulk transfer remains active; no production changes.
+
+## 2026-09-20 — clean preview correction and focused browser verification
+
+Recent owner replies were status/planning only, not implementation progress.
+Reverified PR30 merged70a66bde, working branch and committed59ed2524 evidence.
+Bulk session26312 polled live; receipt3253objects/0failures at checkpoint.
+Clean preview1 exposed static directory shadowing and missing edge405Allow;
+preview2 source1ab2 adds opt-in preview postbuild cleanup and method header.
+Cloud cleanup log and23HTTP checks pass, including exact directory contents.
+Browser27passes/5failures retained; all WebKit passed, Chromium has network
+changes and one overflow finding. Added prior-report-hash-bound failed-case mode,
+recording browser versions and requiring every failed case to receive an outcome.
+Session84477 now checking exactly those five against the same immutable preview.
+Owner repeated all goals; REQUIREMENTS remains unchanged and fully active.
+No production expansion, new Google submission or indexed gain claimed.
+
+Focused84477 completed4passes/1desktop-flow failure. A single bounded desktop
+recheck34514 also failed. Preserve both receipts; stop blind retries and diagnose
+request-level behavior before treating the browser gate as complete. Mobile layout
+and mobile full navigation now pass, without a CSS change. Six configuration and
+conditional-HTTP regression tests pass. No production activation.
+
+## 2026-09-20 — request-level Chromium diagnosis
+
+Previous turn made progress: four failed browser cases passed focused verification,
+remaining desktop failure preserved and draft PR31 opened. All four CI35515580577
+jobs pass at8b50bfc6. Added failed-request and flow-step instrumentation, omitting
+query strings/fragments. Diagnostic11602 failed while opening the directory:
+five CSS/JS requests aborted with ERR_NETWORK_CHANGED, including company CSS.
+Independent urllib checks94247 fetched all five exact URLs with200, expected MIME
+and recorded hashes. No assertion that this proves browser reliability or a fixed
+network environment. Browser gate remains open; no speculative CSS patch.
+Bulk26312 polled live; checkpoint3506verified objects/0failures, incomplete.
+
+## 2026-09-20 — independent hosted browser verification
+
+Previous turn produced request-level evidence. Added pinned public preview config
+and no-retry Chromium desktop-flow CI. Run35515799025 passed atba510cd1 using PR
+merge checkout59354e22/Chromium151.0.7922.34: directory→company→Assets→developer,
+zero failed requests or page errors. Downloaded receipt matches script/config
+hashes. Prior local failures retained; different platform/browser versions mean
+this does not isolate the underlying local network cause. Representative32cases
+have passing evidence across runs; no single fresh32case pass claimed. All four
+standard CI35515798960jobs pass. Combined selected-quality audit65287 started
+against fullv9delivery; pending. Bulk26312 still active when polled this turn.
+
+Audit65287 completed:3,323companies/87,348histories reproduce;13,148flagged pages
+with overlapping reasons, including10,630historical-only and1,500pages in750equal
+numerical-vector groups. Summary pins full local report and verified gzip. These
+are review flags, not automatic exclusions or approval of unflagged pages.

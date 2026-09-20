@@ -1,0 +1,81 @@
+{
+  "schema": "canli.hosted-company-browser.v1",
+  "origin": "https://meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app",
+  "manifest_sha256": "3a94eba20c6774f7aa9fde44900fccc601ce95dd80d020dfa25528ee16a68813",
+  "publication_approved": false,
+  "complete": true,
+  "checks": [],
+  "failures": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "flow": "directory-company-history-developer",
+      "error": "company styles not applied"
+    }
+  ],
+  "navigation_retries": [],
+  "request_failures": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "origin": "meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app",
+      "path": "/assets/site-motion-Bk296hd-.css",
+      "resource_type": "stylesheet",
+      "navigation": false,
+      "error": "net::ERR_NETWORK_CHANGED"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "origin": "meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app",
+      "path": "/assets/company-reference-Da4W29H9.css",
+      "resource_type": "stylesheet",
+      "navigation": false,
+      "error": "net::ERR_NETWORK_CHANGED"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "origin": "meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app",
+      "path": "/assets/paper-D_3slOLD.css",
+      "resource_type": "stylesheet",
+      "navigation": false,
+      "error": "net::ERR_NETWORK_CHANGED"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "origin": "meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app",
+      "path": "/assets/gsap-CZkpitSS.js",
+      "resource_type": "script",
+      "navigation": false,
+      "error": "net::ERR_NETWORK_CHANGED"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "origin": "meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app",
+      "path": "/assets/site-motion-D89SbW3R.js",
+      "resource_type": "script",
+      "navigation": false,
+      "error": "net::ERR_NETWORK_CHANGED"
+    }
+  ],
+  "flow_steps": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "action": "open directory"
+    }
+  ],
+  "code_sha256": "cd7896393f9065d29bee212a73ab9bb8b1a779320f9e8287fabf608878c8d680",
+  "scope": "Only failed cases from the pinned prior report, against the same preview and manifest. Prior failures remain retained; not a new full-suite pass.",
+  "recheck_of": {
+    "path": "artifacts/seo/company-clean-route-browser-desktop-recheck-20260920.json",
+    "sha256": "92c376f7054bcc4f71f0b0834a572e6880b9350e26d45939da8d576b4caf7233"
+  },
+  "browser_versions": {
+    "chromium": "148.0.7778.96"
+  },
+  "passed": false
+}
