@@ -892,3 +892,15 @@ receive the same allocation rate. No values/units/dates changed.55renderer/ledge
 tests pass; report replays byte-identically; exactly24rows advance.914reviewed/
 242pending/20withdrawn,96presentation-only. Next index87; no runtime rebuild,
 archival supplement, deployment or indexing gain. All owner objectives active.
+
+## 2026-09-21 — net loss and explicitly historical review scope
+
+Previous turn completed24SentinelOne/Hines reviews. PR101four CI35538520056checks
+passed at94fd73e8; merged54af7f9b303a7d18ba2cf4081109347b9c59a1de, full tree
+d762d020ac7f94a2e95ceaf48d316e5f18536abematches tested head. Reviewed24PROCEPT/
+Viridian observations. PROCEPTnet loss distinguished from comprehensive loss;
+Viridian2021–2023selected observations retain explicit historical filing scope,
+not approval of later filings. Both state loss-period anti-dilution.56renderer/
+ledger tests pass; report replays byte-identically; exactly24rows advance.
+938reviewed/218pending/20withdrawn,96presentation-only. Next index89; no runtime
+rebuild, archival supplement, deployment or indexing gain. All objectives active.

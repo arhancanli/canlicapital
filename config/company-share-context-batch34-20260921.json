@@ -1,0 +1,55 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001588978",
+      "accession": "0001588978-26-000009",
+      "source_sha256": "0609bb2901d15b3507aca8fe961cf4afdf613312a1e1313df0e97c6a800cb78f",
+      "primary_sha256": "5d0491d8db909951242359ab3f69463c1fd485165f48e735a50692f901a83ee9",
+      "fixture": "scripts/fixtures/editorial/procept-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 45,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "Because the Company has reported a net loss for all periods presented",
+        "Net loss per share was determined as follows (in thousands, except per share amounts)"
+      ],
+      "reader_note": "For PROCEPT BioRobotics in 2023\u20132025, all potential dilution is excluded because the company reports losses for all presented periods. Basic and diluted EPS use net loss, distinct from comprehensive loss after foreign-currency translation and investment adjustments. The filing\u2019s EPS note presents shares in thousands: scale-three share counts and scale-zero EPS remain unchanged.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001590750",
+      "accession": "0001590750-24-000007",
+      "source_sha256": "907b594c863d597442ab1ef3a5d74359a9418f23c7e0bb102180e38d47e78bab",
+      "primary_sha256": "d67946c8d2dd61703dbc414e58e41a34710e83f7492d8e53b75a276275bcde58",
+      "fixture": "scripts/fixtures/editorial/viridian-2023-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2021-12-31",
+        "2022-12-31",
+        "2023-12-31"
+      ],
+      "table_index": 12,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share data)",
+        "Since the Company was in a loss position for all periods presented, diluted net loss per share is the same as basic net loss per share"
+      ],
+      "reader_note": "For Viridian Therapeutics, this review covers only the selected 2021\u20132023 observations in its 2023 annual filing. The filing excludes potential common shares as anti-dilutive in all those loss periods, so basic and diluted loss per share are equal. Full scale-zero share counts follow the statement\u2019s share/per-share exception to the thousands heading. EPS uses net loss rather than comprehensive loss after investment-value changes. This historical review does not establish the accounting treatment of later filings.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
