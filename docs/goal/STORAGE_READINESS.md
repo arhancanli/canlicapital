@@ -272,3 +272,16 @@ Prepared audit-hosted-company-staging.mjs for explicit wrapper checks: unavailab
 mode checks404/405and no-store/noindex503GET/HEAD; ready mode samples first/middle/
 last companies, exact downloads, canonical HTML/assets, HEAD/ETag and true404s.
 It does not establish clean canonical routing or complete corpus HTTP coverage.
+
+## Bounded create reconciliation
+
+A later upload connection reset stopped at557verified objects. The failed object
+was confirmed absent; company-storage-resume3-stop-20260920.json preserves this.
+Current transfer receipts include write_recovery events. Ambiguous transport or
+409/502/503/504create outcomes are reconciled by exact public-byte verification.
+Default writeAttempts=1 never sends a second write. Explicit writeAttempts=2
+allows one more create-only request after confirmed absence, with at most10such
+retries across the run. Every request still uses x-upsert:false; no overwrite is
+possible through this tool. This supersedes earlier no-write-retry wording only
+for this explicitly enabled reconciliation policy. Unknown HTTP errors,401/403,
+429and corrupt bytes stop. All16storage tests pass.

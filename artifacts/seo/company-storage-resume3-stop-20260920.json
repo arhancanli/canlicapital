@@ -1,0 +1,36 @@
+{
+  "receipt_path": "artifacts/seo/corpus-local/company-three-cohort-remote-transfer-resume3-20260920.json",
+  "receipt_sha256": "e4644e0a8ee94e34ca6b78d175bc9e2b160b3735c14164078e1ce3109cb905fd",
+  "verified_objects": 557,
+  "verified_bytes": 40312854,
+  "failures": [
+    {
+      "key": "catalog/objects/4396db569472d2166dbd736409bd8c2c0d0ac5af0f22e5ea115f80a003964f97.json",
+      "error": "Storage request failed (ECONNRESET; TypeError,Error,ECONNRESET)"
+    }
+  ],
+  "read_retries": [
+    {
+      "key": "catalog/objects/27f32658c02f815d14ccb449b6d01337cf7513fff8d3ca6724da2dcef75fed30.json",
+      "attempt": 1,
+      "error": "Storage request failed (ECONNRESET; TypeError,Error,ECONNRESET)",
+      "delay_ms": 1000,
+      "global_retry_number": 1
+    },
+    {
+      "key": "catalog/objects/3fa74d8ecef671f0642d238b010ea6cf72d01761c743f6007a598dd85510604f.json",
+      "attempt": 1,
+      "error": "Storage request failed (ECONNRESET; TypeError,Error,ECONNRESET)",
+      "delay_ms": 1000,
+      "global_retry_number": 2
+    }
+  ],
+  "exit_code": 1,
+  "session_id": 75189,
+  "read_only_reconciliation": [
+    {
+      "key": "catalog/objects/4396db569472d2166dbd736409bd8c2c0d0ac5af0f22e5ea115f80a003964f97.json",
+      "result": "absent"
+    }
+  ]
+}
