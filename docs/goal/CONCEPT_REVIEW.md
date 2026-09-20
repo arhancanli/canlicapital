@@ -151,3 +151,24 @@ Local archive12files/17,643,520bytes restores and independently reproduces exact
 report bytes; SHA6cbffae3de190dc699864453c92d092d2ac42cddb136cef861408357783ad687.
 Its dependency environment is provided by the existing locked parser package;
 this is not an offsite backup or a complete companyfacts regeneration archive.
+
+## Historical cash opening balances — September20
+
+Reviewed17retained primary statements against18selected historical cash instants
+for AllianceBernstein Holding and Atlantica. Numerical reproduction required exact
+legacy namespace support for one2007instant; both original and corrected reports
+are retained. Every selected observation is an opening balance in a later cash-flow
+statement:17from the earliest annual column, and Atlantica1996from the inception
+January1,1997column. This is compatible with a year-end balance, but does not
+establish an independently published annual report for that year. Filing dates and
+accessions must remain visible. Renderer already distinguishes instant balances
+from annual flows and presents separate reporting and filing dates.
+
+The table headings identify Holding, not the operating partnership whose distinct
+consolidated statements have nonzero cash. Atlantica zero cash coexists with cash
+used in operations and offsetting financing. Neither series establishes inactivity.
+No values were changed or entire corpus admitted. Deterministic retained extracts,
+context XML and interpretation: company-cash-history-statement-scope-20260920.json.
+A separate113file archive reproduced that report from an isolated restore; earlier
+archives are unchanged. Remaining concepts, companies and publication gates remain
+open. This review closes the18historical statement-scope checks in this queue only.
