@@ -45,6 +45,23 @@ for record, concept in histories:
         samples[f"/companies/{record['cik']}/{concept['tag']}"] = 'per-share units'
         break
 
+for record, concept in histories:
+    if len({o['end'] for o in concept['observations']}) >= 2 and all(o['val'] == 0 for o in concept['observations']):
+        samples[f"/companies/{record['cik']}/{concept['tag']}"] = 'reported zero history'
+        break
+for record in records:
+    vectors = {}
+    found = False
+    for concept in record['concepts']:
+        vector = tuple(sorted((concept['kind'], o['unit'], o.get('start', ''), o['end'], o['val']) for o in concept['observations']))
+        if vector in vectors:
+            samples[f"/companies/{record['cik']}/{concept['tag']}"] = 'equal numerical histories'
+            found = True
+            break
+        vectors[vector] = concept['tag']
+    if found:
+        break
+
 args.screenshots.mkdir(parents=True, exist_ok=True)
 report = {
     'schema': 'canli.company-cohort-browser.v1',
@@ -82,7 +99,15 @@ try:
                             assert page.locator('a[href^="/company-data/"]').count(), path
                         if reason == 'per-share units':
                             assert 'USD/shares' in page.locator('main').inner_text()
-                        if engine == 'chromium' and width == 390 and reason in ['longest issuer name', 'longest concept identifier']:
+                        if reason == 'reported zero history':
+                            assert 'reported zeros, not values substituted for missing data' in page.locator('section[aria-labelledby="history-context"]').inner_text()
+                        if reason == 'equal numerical histories':
+                            context = page.locator('section[aria-labelledby="history-context"]')
+                            assert 'accounting definitions remain distinct' in context.inner_text()
+                            link = context.locator('a').first.get_attribute('href')
+                            linked = page.request.get(args.base_url + link)
+                            assert linked.status == 200
+                        if engine == 'chromium' and width == 390 and reason in ['longest issuer name', 'longest concept identifier', 'equal numerical histories', 'reported zero history']:
                             image_path = args.screenshots / f"cohort-{manifest['files'][0]['cik']}-{reason.replace(' ', '-')}.png"
                             page.screenshot(path=str(image_path), full_page=True)
                         report['checks'].append({'engine': engine, 'width': width, 'path': path, 'status': 'PASS'})

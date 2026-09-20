@@ -878,3 +878,22 @@ pass. Real98-document replay gives11 token hits,5 nearby,16 shipped (6 no-token)
 Frozen30% gate stays failed. No prices/returns opened, trials spent or runtime writes.
 Engine commit61b587f pushed to PR68; new CI pending. Continue editorial/storage and
 research source quality; don't retune failed identities to manufacture14 sleeves.
+
+
+## 2026-09-20 — contextual company-history disclosures
+
+Prior turn progress: spin-off source-integrity repair. Returned to company quality
+while storage access is pending. Shared exact numerical-history comparison between
+renderer and audit; added matching-definition links and per-unit constant/zero
+notes without altering values or approval status. Full verify passes373 tests and
+final audits. Recomputed source-bound quality report retains3,924 flags. Added
+real matching/zero routes to browser sampler. Editorial policy explicitly keeps
+semantic usefulness/source review open; no page-count-driven automatic approvals.
+HTTP/browser verification running, results to be recorded after completion.
+
+Final HTTP52645 exit0:32,954 pages/2,404 downloads, exact sitemap, zero failures,
+maxHTML36,223bytes and4-link bound. Browser89908 exit0:66 checks/11routes, two
+engines and three widths; matching-history mobile screenshot inspected. New context
+covers338 matching pages,24 with constant units(19zero); this differs from20
+all-units-constant flags by design. Verification4148 exit0:373tests+audits.
+Prior website6108a391 CI35489757169 passes; engine61b587f CI35489715539 still running.

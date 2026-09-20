@@ -1,3 +1,4 @@
+import { numericalHistoryKey } from './lib/company-history-context.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { gunzipSync } from 'node:zlib';
@@ -42,9 +43,7 @@ for (const item of manifest.files) {
     if (concept.observations.every(row => row.val === 0)) flags.push('zero_only');
     // Compare numerical histories independently of filing/accession differences.
     // Same data does not prove the concepts have the same economic meaning.
-    const vector = concept.observations.map(row => [concept.kind, row.unit, row.start ?? '', row.end, row.val]);
-    vector.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
-    const fingerprint = catalogHash(JSON.stringify(vector));
+    const fingerprint = catalogHash(numericalHistoryKey(concept));
     if (!vectors.has(fingerprint)) vectors.set(fingerprint, []);
     vectors.get(fingerprint).push(concept.tag);
     const row = { path: `/companies/${record.cik}/${concept.tag}`, cik: record.cik, tag: concept.tag, core: Object.hasOwn(CONCEPTS, concept.tag), fetched_at: record.fetched_at, first: coverage.first, last: coverage.last, flags, units };
@@ -77,6 +76,7 @@ const report = {
   equal_vector_pairs: [...pairs.values()].sort((a, b) => b.companies - a.companies || a.tags.join().localeCompare(b.tags.join())),
   equal_vector_groups: duplicateGroups, flagged_pages: flagged,
   code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
+  history_context_code_sha256: catalogHash(readFileSync(new URL('./lib/company-history-context.mjs', import.meta.url))),
 };
 writeFileSync(output, JSON.stringify(report, null, 2) + '\n');
 console.log(JSON.stringify({ ...totals, pairs: report.equal_vector_pairs.slice(0, 12), publication_approved: false }, null, 2));

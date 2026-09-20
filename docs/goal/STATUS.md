@@ -178,3 +178,24 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   events and not756 daily out-of-sample observations. These units cannot be compared
   directly to establish admission feasibility. Other research routes retain their
   author, independent-label and source-timing gates.
+
+## History context checkpoint — 2026-09-20
+
+- Added shared numerical-history comparison and source-preserving explanations for
+  matching concepts and per-unit constant/zero values. Kept all definitions, source
+  values and separate pages. Two new renderer regressions pass.
+- Full npm verify passes373 tests(6+367) and all final publication/SEO audits.
+  Reproduced combined quality queue unchanged:3,924 flagged histories; no editorial
+  approval inferred. Full HTTP replay and expanded browser sampling pass.
+- COMPANY_EDITORIAL_POLICY.md records flag-specific treatment and remaining review,
+  including six unusual equal-history pairs. Disclosures do not clear release gates.
+
+- Final checks:32,954 pages/2,404 downloads, exact sitemap, zero failures/orphans,
+  four-link directory bound;66 browser checks over11 routes at320/390/1440 in
+  Chromium/WebKit. Equal-history mobile screenshot inspected. No production claim.
+- Disclosures cover338 matching-history pages and24 pages with a constant unit
+  (19 zero-valued). The prior20 constant audit flags require all units constant;
+  this24 count includes histories with only some constant units, so it is not a
+  change in the audit definition or source values.
+- Website prior6108a391 CI35489757169 passed. Engine61b587f run35489715539
+  remains in progress at this check. New website changes require their own CI.
