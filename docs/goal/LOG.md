@@ -932,3 +932,29 @@ Real capture tests show unchanged histories except those rows, preserved assets,
 explanatory notices and inherited HNO/DBMM exclusions.33selector/renderer and
 8delivery/release tests pass. PR42mergeddb3de119 after four CIchecks and exact
 tested/merged tree equality. No full rebuild, upload or deployment.
+
+## 2026-09-20 — TECHCOM historical scope and honest review-credit reversal
+
+Reviewed42historical balance/zero-flow observations from21tables across7filings;
+report replay identical. Found1USDcomponent-total mismatch in adjacent2025
+liabilities and reopened two prior review credits, without assuming rounding.
+V13ledger also applies two Atlantica withdrawals verified from actual source
+replay. Exact counts351reviewed/249pending/10withdrawn;610keys preserved and
+ledger replay identical. PR43merged33059304after four CIchecks and exact tree
+equality. Full corpus rebuild and remaining reviews stay open; no publication.
+
+## 2026-09-20 — Bioforce/ANVI historical review
+
+Opened PR44for TECHCOMreview and reopened latest liabilities. Reviewed52more
+observations across18Bioforce/ANVI primary tables; restatement/entity-history
+limits retained. Context and cumulative ledger reproduce byte-for-byte. Exact
+counts403reviewed/197pending/10withdrawn preserve all610original keys. No credit
+for the unresolved TECHCOMlatest rows; no publication or full corpus rebuild.
+
+## 2026-09-20 — Apple iSports/Lithium historical liabilities
+
+29retained primary tables support60additional observations with explicit limits
+for missing separate current subtotals, historical entity/fiscal changes and
+zero-net long-term debt presentations. Context and cumulative ledger replay
+byte-identically. Exact counts463reviewed/137pending/10withdrawn; earlier
+reports and unresolved cases preserved. No deployment or full corpus rebuild.
