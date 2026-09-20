@@ -231,6 +231,25 @@ test('participating shares and vested unsettled RSUs retain basic denominator tr
   }
 });
 
+test('Teladoc and Asana retain share units and distinct fiscal year ends', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['teladoc', '0001477449', /outstanding award counts are not additional weighted-average shares/, 176221530, '2025-12-31'],
+    ['asana', '0001477720', /January fiscal dates and original counts are retained/, 236823000, '2026-01-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v18' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('loss-context notes preserve noncontrolling allocation and explicit statement share units', () => {
   for (const [fixture, cik, phrase, value] of [
     ['roblox', '0001315098', /after noncontrolling interests as its EPS numerator/, 689612000],
