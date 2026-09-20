@@ -810,3 +810,18 @@ Report replays byte-identically;49renderer/ledger tests pass; exactly24rows adva
 770reviewed/386pending/20withdrawn,96presentation-only. Next index75; earlier gaps,
 archive supplement and runtime/hosting work remain. No deployment/indexing gain;
 all owner objectives active.
+
+## 2026-09-21 — statement denominators and already-included warrants
+
+Previous status turn verified PR95's four checks, changing next action to merge.
+PR95 merged5d0a3b252128fb69dfee3df1b561b87b6cc2194a; full tree matches tested
+329466d9e480626dd860872f39b27ffd005b13cb. Reviewed24National Healthcare/TELA
+observations against retained originals. National Healthcare's note includes
+potential shares but footnotes explicitly exclude them from loss EPS; selected
+statement denominator and scale-three tags are retained. Note's share-exception
+heading is not silently harmonized. TELA includes nominal-price prefunded warrants
+from closing dates; no double counting. Report replays byte-identically;50renderer/ledger tests pass. Ledger
+794reviewed/362pending/20withdrawn,96presentation-only. Corrected execution ledger's
+accidentally conflated priority count back to600reviewed; batch count is separate.
+No runtime rebuild, archival supplement, deployment or indexing gain. Next index77;
+all owner objectives remain active.

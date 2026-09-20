@@ -9,22 +9,24 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch27-20260921`. PR94merged62272132after four passing
-CI35537095758checks atd1376fea. Tested and merged trees match exactly.
+`evidence/share-context-batch28-20260921`. PR95merged5d0a3b25after four passing
+CI35537247204checks atddb888bd. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch27-20260921.json.gz.
-Of1,176batch observations,770reviewed/386pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch28-20260921.json.gz.
+Of1,176batch observations,794reviewed/362pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover Can-Fite and Nurix. Can-Fite2023–2025ordinary-share figures
-already reflect retrospective split adjustments; January2026ordinary split and
-ADSratiochange remain distinct, no second conversion. NurixNovember30,2023–2025
-basic denominator already includes fully vested exercisable prefunded warrants;
-other potential dilution excluded. Full scale0shares/EPS/dates unchanged.
-49renderer/ledger tests pass; source report replays byte-identically. Next index75;
-earlier gaps remain.96presentation-only reviews retain limits.
+Latest24reviews cover National Healthcare Properties and TELA Bio. National
+Healthcare's selected statement denominator excludes anti-dilutive equivalents;
+its EPS note displays additions but explicitly footnotes their exclusion from
+loss-per-share calculations. The note's inconsistent share-exception heading is
+retained, not used to rescale the statement's scale-three shares. Prior dividends
+and the one-for-four split are already reflected. TELA's nominal-exercise-price
+prefunded warrants are already included from closing dates; no second addition.
+50renderer/ledger tests pass; source report replays byte-identically. Next new index77; earlier gaps remain.
+96presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against
