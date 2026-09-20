@@ -251,3 +251,19 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   confirmed404 review or staging; preserve every failure. Existing release unchanged.
 - Websitead264cef CI35490429296 passed, including new MCP CI. Engine61b587f
   run35489715539 remained active at the last poll.
+
+## Completed evidence portability — 2026-09-20
+
+- Local sealed archive7,843 files/1,034,352,640bytes, SHA22ef0f56…; exact summary
+  and restore receipt tracked. Includes completed capture queues and excluded
+  bodies, editorial sources, runtime objects/pointers and repositorya2e557f3.
+- Separate temporary restore:342 first-queue eligible,853 second-queue eligible,
+ 147 exclusions,zero errors; all3,927 runtime object keys/hashes/lengths and exact
+  release/catalog/download roots reproduced. Whole archive hash separately checked.
+- Nine Python corpus/archive tests pass; corpus CI command now includes archive
+  regressions. No remote upload or disaster-recovery claim. Third active cohort
+  excluded; restored temporary copy removed, original archive preserved locally.
+- Capture73982 remains running. Last inspected299/1000(221revieweligible,55excluded,
+  23HTTPerrors), no finished_at or stop reason. Poll the same handle on continuation.
+- Websitea2e557f3 CI35490624532 passed all three jobs. Engine35489715539 still running
+  at last check. New archive changes have not yet completed remote CI.

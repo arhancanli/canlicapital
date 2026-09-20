@@ -941,3 +941,18 @@ from8,031 fixed discovery IDs,5,687 remain after this queue. No eligibility/page
 extrapolation. Capture session73982 started04:59:42Z, verified stilllive at49rows
 (41revieweligible,5excluded,3HTTPerrors), unfinished. Originalqueue/captures remain
 untouched; no duplicatejob or automatic403/429retry. Resume by polling samehandle.
+
+
+## 2026-09-20 — source-evidence packaging and actual restore
+
+Prior turn progress: capture73982 launched after pinnedqueue fix. Polled same live
+handle; no duplicatecapture. Built explicit-file company evidence archive with
+completed acquisition/HTTP404 bodies, editorial captures, runtimeobjects and exact
+repository revision. Nine corpus/archive tests pass. Pack38685 exit0:7,843files,
+1,034,352,640bytes, SHA22ef0f561462ef620aa277a4b8ec2050ca3ef6efd02a611677724dc59db49bfd.
+Restore54546 exit0: separate temporaryworkspace,342+853eligible and147exclusions
+replay without errors;3,927 runtimeobjects exactlymatch keys/hashes/sizes and all
+release roots. Wholearchivehash independently matched summary. Temporary restore
+removed; archive localonly. Documented instructions and partial-output semantics.
+Capture now299/1000(221eligible,55excluded,23HTTPerrors), unfinished. Websiteprior
+a2e557f3 CI35490624532 passes; engine35489715539 remains running.

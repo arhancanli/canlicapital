@@ -58,3 +58,52 @@ The runtime manifest preserves exclusion metadata but does not contain every
 excluded response body. Do not claim disaster recovery or independent acquisition
 replay is available from the runtime bucket alone. Preserve local captures until
 that separate backup is verified.
+
+## Completed-cohort archive and restore — 2026-09-20
+
+Local archive: `artifacts/seo/corpus-local/completed-evidence-20260920.tar`.
+It contains7,843 files and is1,034,352,640 bytes. Its SHA-256 is
+`22ef0f561462ef620aa277a4b8ec2050ca3ef6efd02a611677724dc59db49bfd`.
+The tracked summary is `artifacts/seo/company-completed-evidence-archive-summary.json`;
+restore results are `artifacts/seo/company-completed-evidence-restore.json`.
+
+Included: verified runtime objects and local release pointers; every file in the
+completed fresh-review and next-1000 acquisition directories, including queues,
+refresh reports, per-capture receipts and excluded HTTP bodies; editorial filing
+captures/receipts; and a repository snapshot at a2e557f3. The packager itself is
+included with its manifest hash. The active third cohort is excluded. This is a
+company-source/replay package, not a backup of all owner projects, runtime trading
+state, private credentials or every historical experiment.
+
+The outer manifest binds each regular file by path, length and SHA-256. Verification
+rejects missing or extra members, corruption, links and path traversal. Archive
+creation and restoration refuse existing outputs. An interrupted operation may leave
+a partial output; inspect it and use a new destination rather than overwriting it.
+Before trusting a received archive, compare its whole-file hash to the separately
+retained tracked summary. A self-contained hash manifest alone proves no origin.
+
+A separate temporary restore passed both capture replays:342 eligible records in
+the first queue,853 plus147 reproduced exclusions in the second, zero errors.
+Runtime planning from the restored repository and objects reproduced all3,927 keys,
+hashes and lengths, all counts and the exact release/catalog/download roots.
+The restored workspace was removed after verification; the archive remains local.
+Nine Python corpus/archive tests pass, including corrupt-member, link, traversal
+and overwrite regressions. This verifies portability, not off-device durability.
+
+```sh
+# Compare this result with the independently retained summary first.
+shasum -a 256 artifacts/seo/corpus-local/completed-evidence-20260920.tar
+python3 scripts/package_company_evidence.py verify artifacts/seo/corpus-local/completed-evidence-20260920.tar
+# Destination must not already exist. Replace it with a chosen temporary location.
+python3 scripts/package_company_evidence.py restore artifacts/seo/corpus-local/completed-evidence-20260920.tar --destination /tmp/canli-restored-evidence
+# Extract the verified repository snapshot into the restored workspace.
+tar -xf /tmp/canli-restored-evidence/repository.tar -C /tmp/canli-restored-evidence/workspace
+cd /tmp/canli-restored-evidence/workspace
+node scripts/review-company-candidates.mjs artifacts/seo/corpus-local/fresh-review /tmp/restored-first-review.json
+node scripts/review-company-candidates.mjs artifacts/seo/corpus-local/next-1000 /tmp/restored-second-review.json
+node scripts/prepare-company-storage.mjs artifacts/seo/corpus-local/company-combined-catalog-extended artifacts/seo/corpus-local/company-combined-delivery-extended /tmp/restored-runtime-plan.json
+```
+
+Next: approved remote retention destination, transfer and independent remote-byte
+verification, followed by hosted preview checks. The new third cohort needs its own
+completed capture/review and a later archive version; never modify this sealed one.
