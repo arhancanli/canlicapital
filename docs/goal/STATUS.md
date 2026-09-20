@@ -14,8 +14,10 @@ Combined delivery for1,202 companies remains locally verified under extended-v1:
 32,954 staged pages and2,404 downloads. Third1,000 capture and replay are complete:766 companies and234 verified exclusions,
 zero errors. Separate extended candidate:21,471pages/1,532downloads, complete HTTP
 replay and66browser checks pass. All candidate HTML remains noindex.
-Next: original-filing review of six exceptional equal pairs, then a separately
-verified combined candidate and updated source archive/storage plan. Existing
+The six exceptional pairs now have original-filing dispositions;24selected
+observations match. New three-cohort candidate has1,968companies/54,424URLs;
+complete HTTP verification1912passed. Browser66checks and storage
+plan6,249objects/828,366,117bytes pass. Next: updated source archive with isolated restore. Existing
 1,202-company combined release and archive stay unchanged.
 
 Engine PR68 at61b587f passed full CI35489715539. Five current-epoch forward returns
@@ -310,3 +312,20 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   this separate thirdcohort. Combined counts and retention must be reverified.
 - Website0cdd6ad7 CI35491496322 passed all4jobs, including revocationPostgreSQL
   andMCP. No production migration/deployment performed.
+
+## Three-cohort candidate — 2026-09-20
+
+- Thirdcohort exceptionalpairs:24selected observations across six pairs/four
+  companies match originalfiling rows, with entity/context/unit/scale/sign checks.
+  Eight rawcapture bodies/receipts hashverified; dimensional restatement facts
+  excluded. Retain separate concepts. No allhistory or publication approval.
+- Newcombinedcandidate1,968companies+52,416histories+40directories=54,424URLs;
+ 3,936downloads. Sourcecohort pins retained; originaldeliveries unchanged.
+  Release9dae2a4a…; exact roots incompany-three-cohort-release-extended.json.
+- FullHTTP1912exit0:54,424URLs/3,936downloads, two sitemap shards exactly match
+  servedURLset, zero failures. Browser19274exit0:66checks/11routes/twoengines/
+  threewidths, nofailures. Quality6675exit0:6,713flaggedhistories retained.
+- Storage75785exit0:6,249reachableobjects/828,366,117bytes verified. Summary
+  company-three-cohort-storage-plan-summary.json binds ignored fullplan.
+  No upload. Updated evidencearchive+isolatedrestore remain next work.
+- Priorwebsite4fd7ea82 CI35491855670 passed. New evidence revision CI pending.

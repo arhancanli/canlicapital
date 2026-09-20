@@ -107,3 +107,20 @@ node scripts/prepare-company-storage.mjs artifacts/seo/corpus-local/company-comb
 Next: approved remote retention destination, transfer and independent remote-byte
 verification, followed by hosted preview checks. The new third cohort needs its own
 completed capture/review and a later archive version; never modify this sealed one.
+
+## Three-cohort candidate — 2026-09-20
+
+A separate runtime plan now binds release
+`9dae2a4a62b647c96892f90d30a826f783de1a9f62eefff27adffc4d6d1c8a34`:
+6,249 reachable objects totaling 828,366,117 bytes, for 1,968 companies and 52,416
+histories. Exact roots and plan hash are in
+`artifacts/seo/company-three-cohort-storage-plan-summary.json`; its ignored full
+plan is `artifacts/seo/corpus-local/company-three-cohort-storage-plan.json`.
+The plan's source replay and object verification passed. Nothing was uploaded.
+
+This candidate has its own delivery, catalog and discovery directories under
+`corpus-local/company-three-cohort-*-extended`. The earlier 1,202-company runtime
+plan and sealed archive remain valid for their earlier scope. They do not protect
+the third capture queue, its exclusions, the new editorial filings or the new
+combined runtime. An updated archive and isolated restore remain required before
+claiming equivalent portability for the three-cohort candidate.

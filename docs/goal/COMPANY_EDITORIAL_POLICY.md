@@ -52,3 +52,13 @@ resolved editorial dispositions for the release scope, coherent catalog/download
 roots, tested hosted storage, working error responses, accessible rendering,
 discovery and canonical agreement, and the outstanding release decision. Record
 staged, live, submitted and search-confirmed indexed counts separately.
+
+## Third cohort review
+
+The separate third cohort has 2,789 flagged histories across 766 companies. Its 98
+matching groups comprise 62 EPS pairs, 30 share-count pairs, three total/current
+asset pairs and three total/current liability pairs. The six total/current pairs
+have now been inspected against their latest selected original filings; all 24
+selected observations match distinct source rows. See COMPANY_PAIR_REVIEW.md and
+company-third-pairs-filing-evidence.json. Retain separate concepts and comparison
+links; the remaining historical, unit, constant-series and usefulness gates apply.

@@ -989,3 +989,17 @@ exit0:66checks/11routes/twoengines/threewidths; matchinghistory mobile inspected
 Updated topSTATUS to distinguish current evidence from historical checkpoints.
 Prior combinedrelease andarchive preserved; newcohort is not deployed, indexable,
 merged or backedupoffsite. All owner goals remainactive.
+
+## 2026-09-20 — third-cohort filing dispositions and combined candidate
+
+Previous turn made verified source/delivery progress. Freshwebsite4fd7ea82 CI
+35491855670passes. OrdinaryNode captured eight SECfiling/indexbodies after webreader
+could access onlyVisiumindex. All24selected observations in six unusual pairs
+match originalseparate rows with entity/context/unit/scale/sign checks. Global
+Technologies restatement-dimensionalfacts excluded;scope latestselectedaccession,
+not allhistory. Sourcehashes/scripts/dispositions recorded;flags unchanged.
+Combined94717exit0 creates separately pinned1,968companycandidate. Quality6675
+exit0 retains6,713flags. HTTP1912exit0 verifies54,424URLs/3,936downloads and two
+sitemapshards;66browserchecks19274exit0. Storage75785exit0 verifies6,249objects/
+828,366,117bytes locally. No upload, productionchange or actualindexing claim.
+Priorcombinedrelease/archive preserved; largerarchive andisolatedrestore pending.

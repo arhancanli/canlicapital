@@ -43,3 +43,27 @@ No source facts or accounting definitions changed. The automated quality report
 still includes these numerical-equality flags; this document and its bound receipt
 supply their editorial disposition separately. Remaining historical-coverage,
 unit, constant-series and standalone-usefulness decisions stay open.
+
+## Third cohort: six additional pairs
+
+Reviewed by Codex on 2026-09-20. The same retain-separate-concepts decision applies
+to the following pairs. All 24 selected observations in the inspected accessions
+match the original filing's undimensioned facts, including entity identifier,
+reporting date, unit, scale and sign. This is a latest-selected-accession review,
+not an audit of every historical filing.
+
+| Company / CIK | Pairs | Source observation |
+|---|---|---|
+| Gold Rock / 0000894501 | Total/current assets; total/current liabilities | The 2025 10-K has distinct total and current rows with equal amounts for 2025 and 2024. |
+| Global Technologies / 0000932021 | Total/current liabilities | The 2025 10-K has separate total and current rows. Its restatement note also contains scenario-specific values; those dimensional contexts are excluded from the consolidated comparison. |
+| Atlantica / 0001062506 | Total/current assets; total/current liabilities | The 2025 10-K reports separate zero asset rows and equal total/current liability rows for 2025 and 2024. Reported asset zeros are not missing-value substitutions. |
+| Visium / 0001082733 | Total/current assets | The 2025 10-K has distinct total and current asset rows with equal values for 2025 and 2024. |
+
+Evidence: `artifacts/seo/company-third-pairs-filing-evidence.json` binds the selected
+records, delivery manifest, all eight captured index/primary bodies, and inspection
+scripts. The retained raw sources and scripts are in ignored
+`artifacts/seo/corpus-local/editorial-third-filings/`. They require inclusion in
+updated durable evidence packaging; the earlier sealed archive excludes them.
+The web reader could access Visium's index but not the other three; direct ordinary
+Node captures returned 200 for all eight bodies. No fetch failure was treated as
+filing evidence. Quality flags remain in the automated queue.
