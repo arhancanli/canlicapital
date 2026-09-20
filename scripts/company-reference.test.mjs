@@ -428,3 +428,40 @@ test('v15 preserves unrelated facts and exposes two distinct currency-context ho
     verifyCompanyReference(after, raw);
   }
 });
+
+test('v16 excludes eight Valhi scale conflicts and applies existing history-quality rules', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/valhi-reviewed-source.json.gz', import.meta.url)));
+  const options = { expectedCik: '0000059255', fetchedAt: '2026-09-19T14:48:49.937Z' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v15' });
+  const diagnostics = {};
+  const after = companyReference(raw, { ...options, diagnostics, selectionPolicy: 'extended-v16' });
+  const tags = ['WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+  for (const tag of tags) {
+    const rows = before.concepts.find(c => c.tag === tag).observations;
+    assert.equal(rows.filter(r => r.val === 28.5).length, 4);
+    assert.deepEqual(rows.filter(r => r.val !== 28.5).map(r => r.val), [28500000, 28500000, 28500000]);
+  }
+  assert.deepEqual(after.concepts, before.concepts.filter(c => !tags.includes(c.tag)));
+  assert.equal(diagnostics.editorial_observation_excluded, 8);
+  assert.equal(after.editorial_exclusions.length, 8);
+  verifyCompanyReference(after, raw); verifyCompanyReference(before, raw);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v16' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const changed = structuredClone(after); changed.editorial_exclusions.pop();
+  assert.throws(() => verifyCompanyReference(changed, raw), /does not reproduce/);
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  const overview = renderCompanyPages(after, { target: 'overview' })[0].html;
+  assert.match(overview, /statement presents the figure in millions/);
+  assert.match(overview, /remaining constant history/);
+  assert.match(overview, /vhl-20241231x10k.htm/);
+  assert.match(overview, /vhl-20251231x10k.htm/);
+  for (const tag of tags) assert.deepEqual(renderCompanyPages(after, { target: tag }), []);
+  for (const [fixture, cik] of [['monolithic', '0001280452'], ['51talk', '0001659494'], ['varonis', '0001361113']]) {
+    const source = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const opts = { expectedCik: cik, fetchedAt: '2026-09-20T07:56:08.917Z' };
+    const previous = companyReference(source, { ...opts, selectionPolicy: 'extended-v15' });
+    const next = companyReference(source, { ...opts, selectionPolicy: 'extended-v16' });
+    assert.deepEqual(next.concepts, previous.concepts);
+    assert.deepEqual(next.editorial_exclusions, previous.editorial_exclusions);
+  }
+});
