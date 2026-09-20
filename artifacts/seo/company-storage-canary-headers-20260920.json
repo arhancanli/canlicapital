@@ -1,0 +1,29 @@
+{
+  "schema": "canli.storage-canary-headers.v1",
+  "method": "GET",
+  "checks": [
+    {
+      "key": "delivery/objects/05cd9ff3582accff5277d49c1eb1eba7e55af8efe68fee1b2200219a88eb9f05.json",
+      "sha256": "05cd9ff3582accff5277d49c1eb1eba7e55af8efe68fee1b2200219a88eb9f05",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "292",
+        "Content-Encoding": null,
+        "Cache-Control": "public, max-age=31536000, immutable",
+        "X-Robots-Tag": "none"
+      }
+    },
+    {
+      "key": "delivery/objects/86c5ee0fe967fb120431343e1cc9072aa3fee7d3f20e9b1bccdceb70c401c216.json.gz",
+      "sha256": "86c5ee0fe967fb120431343e1cc9072aa3fee7d3f20e9b1bccdceb70c401c216",
+      "headers": {
+        "Content-Type": "application/gzip",
+        "Content-Length": "15123",
+        "Content-Encoding": null,
+        "Cache-Control": "public, max-age=31536000, immutable",
+        "X-Robots-Tag": "none"
+      }
+    }
+  ],
+  "scope": "Two-object GET check only; HEAD reports different no-cache metadata and is not used to establish runtime caching."
+}
