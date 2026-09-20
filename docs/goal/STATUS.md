@@ -16,7 +16,7 @@ PR45 merged5ef02030; its original MCP audit HTTP400 and successful unchanged-hea
 rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
-comparison64980completed exit0. Combined v14pipeline16429 is active; no uploader.
+comparison64980completed exit0. Combined v14pipeline16429 and current quality audit40310completed exit0; no uploader.
 Next: archive the new Varonis capture and legacy comparison evidence, address
 remaining basic/diluted source coverage and corpus scope/usefulness flags,
 finish combined v14catalog/release/discovery/storage verification, then complete hosted
@@ -63,9 +63,9 @@ Merged extended-v13 inherits all earlier source-bound exclusions:
 
 33selector/renderer tests passed for v13policy; subsequent note change passes
 11renderer tests and full PR46CI. Actual source fixtures reject changed evidence.
-**All five cohorts restaged under v14; combined release verification is pending.**
+**Combined v14candidate is locally verified. Editorial admission and hosted release remain pending.**
 
-Last combinedv11:3,323companies +87,347histories +67directories =90,737unique
+Previous combinedv11 (superseded for admission):3,323companies +87,347histories +67directories =90,737unique
 candidate URLs. Local XML/hash/uniqueness and unchanged v10/v11URL-set checks pass.
 10,360runtime objects /1,280,301,890bytes. All source descriptors retained.
 Release a98105f2fe459ff3dd8aabc90c1ed3de442b931453fb68e9b0b48324c8f5fff4.
@@ -202,5 +202,33 @@ policy metadata, HNOwhole operating-loss history/four observations, two Atlantic
 liability observations, six Varonis EPSobservations and the corresponding notices.
 All source descriptors and all other values remain unchanged. Versioned report
 company-five-cohort-v14-transition-20260920.json pins all five manifests. This is
-not broad editorial admission. Combined pipeline16429is active, log/tmp/canli-v14-pipeline.log;
-no uploader or production change. New discovery audit must pass before URL claims.
+not broad editorial admission. Combined pipeline16429completed0, log/tmp/canli-v14-pipeline.log.
+No uploader or production change. Discovery audit passes; current inventory below.
+
+## Verified combined v14 candidate and refreshed quality queue
+
+Combined pipeline16429completed0; independent sitemap audit verifies every XML
+hash/byte count, all URLs unique, and exact v11/v14set difference: only the held
+HNOOperatingIncomeLoss URL is removed.3,323companies +87,346histories +67directories
+=90,736candidate URLs, two shards40,736and50,000. No new live/indexed pages.
+Storage10,360objects/1,280,306,303bytes;3,323sharedv11keys are metadata matches,
+not proof of remote presence. Receipt company-five-cohort-v14-discovery-audit-
+20260920.json; current plan summary company-five-cohort-v14-storage-plan-summary-
+20260920.json. Full v14evidence archive and hosted transfer remain pending.
+
+Release: 10f90cd6849d5b0a358f2b9c7fed37ceaa8587561053cc490cd34072733a98e1
+Catalog: 47b873eb0eca248a396cb0c96002d86c9f038cdf4601cd8733ab35a0fe870ea8
+Downloads: 7fd6d8caf13d1f1b8270c542d9aeb00aea2453f77836e794f9342386e32879d1
+Delivery manifest: 7f2540f7d8393615efff856479b41b5994aac1d258d0e4de1d116ca616c76472
+Storage plan: 5cbe7f150fd64760fd1d43e18c26ee085386e2aff7095f337495984d217b5d26
+
+Quality audit40310completed0 against all current selected/source records:
+13,142flagged histories; overlapping reasons10,630historical-only,1,307multi-unit,
+400partially historical units,75constant,74zero-only,1,494pages in747equal groups.
+These are review flags, not confirmed defects or blanket admission. Historical-only
+records remain historical; no new timestamps or source values were invented.
+Versioned summary company-five-cohort-v14-selected-quality-summary-20260920.json
+pins complete JSON and lossless gzip under corpus-local; roundtrip bytes verified.
+Earlier v9summary and all source failures remain unchanged. Next: preserve latest
+source/runtime evidence with isolated restore and finish remaining editorial and
+hosted gates; no uploader active.
