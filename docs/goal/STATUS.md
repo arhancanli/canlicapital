@@ -8,8 +8,9 @@ history/STATUS-20260920-through-fourth-v9.md; earlier history remains linked the
 ## Current checkout and releases
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch release/verified-checkpoints-20260920; draft PR16:
-https://github.com/arhancanli/canlicapital/pull/16.
+Branch research/typed-concept-coverage-20260920. PR16 merged as6cc2c517; its tree
+matches tested05e9fbf6 and post-merge CI35508225593passed. Current work is offline
+taxonomy-constrained coverage and duplication review, not a website deployment.
 Production application revision9608542ce019307674269667c4aa16ebc69dd43e is live
 on canlicapital.com. Dedicated clean publisher checkout:
 /Users/arhancanli/canlicapital-production-20260920.
@@ -38,7 +39,9 @@ Engine PR71merged as0aff241a; tree equals tested867d211. All six pre-merge and
 post-merge CI35504254363jobs passed. Portable baseline4,366passed55skipped;
 serial performance1passed; PostgreSQL11passed. Original dirty running engine
 was not reset; trading activation remains pending. Only the reviewed website
-snapshot helper and presentation-source pointer were activated for this release. Constituent PR68/69/70closure state needs checking.
+snapshot helper and presentation-source pointer were activated for this release.
+Constituent PR68/69/70are closed after verifying their exact heads are ancestors
+of tested867d211; their work is preserved in merged integration PR71.
 Website Dependabot alert1was confirmed fixed at10:32:48UTC; no alert dismissed.
 
 ## Measured outcomes and limits
@@ -91,6 +94,15 @@ two commitment signatures and1,063transparency entries verify; original1,060pref
 unchanged.627disclosed payloads,436opaque commitments. No engine determinism claim.
 See EVIDENCE_REFRESH.md and artifacts/algo/deployed-evidence-refresh-20260920.json.
 
+
+Typed concept review:2,651source bindings and all94taxonomy declarations verify.
+140,596recent pairs are unchanged under correct types;2,013companies have fully
+equal liabilities-and-equity/assets histories. Five focused regressions and the
+full410website checks pass; second full audit reproduces exact report bytes.
+Audit-input archive22,712,320bytes/SHA128c02a0ef70bd5bf859b20bdb03f9db8a675c1e14c235fe30dbd662891fd235
+restores all12inputs exactly. It is not a self-contained company-source archive
+or offsite backup. Definitions, admission and publication remain unchanged.
+
 ## Next work and external dependencies
 
 - Owner publication approval persists. New owner-provided account token successfully
@@ -108,7 +120,9 @@ See EVIDENCE_REFRESH.md and artifacts/algo/deployed-evidence-refresh-20260920.js
   upload or hosted company capacity claim. Verify remote bytes and hosted behavior.
 - Continue all-history scope/unit/usefulness review; latest-filing numerical equality
   is insufficient. Fourth priority queue430observations/185filings remains incomplete.
-  Review94unused high-coverage concept candidates before adding definitions/pages.
+  Taxonomy/coverage audit of94high-coverage concepts is complete:140,596recent
+  pairs, not approved pages. Primary-filing scope/usefulness review of six
+  candidates is next; CONCEPT_REVIEW.md. No production selector policy changed.
 - Discovery8,031CIKs and34old concepts cannot alone reach800k; prior upper bound
   253,575URLs.3,467identities remain unqueued after fifth reservation. Additional
   useful sources/families are required. No artificial keyword variants. A SEC bulk

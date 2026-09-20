@@ -1,0 +1,71 @@
+{
+  "schema": "canli.concept-audit-input-archive-receipt.v1",
+  "archive": "artifacts/seo/corpus-local/typed-concept-review-inputs-20260920.tar",
+  "bytes": 22712320,
+  "sha256": "128c02a0ef70bd5bf859b20bdb03f9db8a675c1e14c235fe30dbd662891fd235",
+  "input_files": 12,
+  "isolated_restore_verified": true,
+  "scope": "Audit inputs only. Not self-contained company-source recovery; raw captured company bodies and delivery descriptors remain in the separate cohort archives. No offsite backup.",
+  "files": [
+    {
+      "path": "artifacts/seo/company-concept-coverage-summary-20260920.json",
+      "bytes": 70159,
+      "sha256": "24531ffaed3ed06b9b91d3c568eef8197752471780977c6b1d372959b4568efc"
+    },
+    {
+      "path": "artifacts/seo/company-typed-concept-coverage-20260920.json",
+      "bytes": 148684,
+      "sha256": "9718793aab1c96da4c9d52cd265147ded07ecd20f77664288dda33ba9bdbd849"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/company-concept-coverage-inventory-20260920.json",
+      "bytes": 17460544,
+      "sha256": "ea962be62f80f2237cafb216950286b0290da1c9fe5fd2c4fbdefb0fae375d28"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/taxonomy/us-gaap-2026.xsd",
+      "bytes": 4966701,
+      "sha256": "5df2d5054b8a37ef1a00bbbad621317833e7c2cb65a421a283128efbd707da7e"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/typed-concept-review/inventory-selector.mjs",
+      "bytes": 10730,
+      "sha256": "01c3575b35043c4f7a8e26d6a0bb87c1e9529f74cd9e93ce3794447cf110c3f3"
+    },
+    {
+      "path": "artifacts/seo/taxonomy-source.json",
+      "bytes": 278,
+      "sha256": "1ba10791261c00dd2dcbb786add2536373b46d95d565e7ca2a5d03c2991fbcde"
+    },
+    {
+      "path": "docs/goal/CONCEPT_REVIEW.md",
+      "bytes": 4282,
+      "sha256": "ed1a1ba92768a18303e9fcc9d6c8c3d7961f6412ba90ac489e95fba8e2ed1042"
+    },
+    {
+      "path": "scripts/audit-typed-concept-coverage.mjs",
+      "bytes": 10553,
+      "sha256": "1d90ccbcd9756209c69ad545ff21b0d2674be4575676d2fb4b45e61c6637ee19"
+    },
+    {
+      "path": "scripts/company-concept-coverage.test.mjs",
+      "bytes": 2920,
+      "sha256": "d4a07a0b2a143726d8ebc827e83dc0952554757c3a08727f0bda5730759e2f92"
+    },
+    {
+      "path": "scripts/inventory-company-concept-coverage.mjs",
+      "bytes": 6540,
+      "sha256": "ea90f610ec849083c35f22b5393871c3bbb5f2d10f472c4cc8d8ae9627237316"
+    },
+    {
+      "path": "scripts/lib/company-reference.mjs",
+      "bytes": 11333,
+      "sha256": "07da1f89de86247cd2d7cbe516fd5635f39bba7b088c75d216c45058b86333b1"
+    },
+    {
+      "path": "scripts/typed-concept-coverage.test.mjs",
+      "bytes": 3361,
+      "sha256": "372c8c3b5bed2b4edcdac21a84bd259a008b47c591678d641f1dcf59e479565e"
+    }
+  ]
+}
