@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-fix/hno-operating-scope-20260920. PR34 merged as
+review/historical-loss-context-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -406,3 +406,20 @@ rejection, missing-notice rejection, absent history page and explanatory overvie
 DBMM source fixture confirms inherited exact-period holdback unchanged.32selector/
 renderer tests pass. V12cohort/release rebuild has not started; v11must not be
 admitted unchanged. Further historical scope review remains open.
+
+## Historical operating/net-loss follow-up
+
+PR40mergedf53c6980990b648ef12535bcc37f2865393e619f after four checks in
+CI35522059528passed at62591d51. Tested/merged trees match
+7e78ee8d90b4f210661d25e5a7ea41d1ca740d43. V12policy is merged, not rebuilt
+or deployed. No uploader active.
+
+Reviewed24previously pending Nika/TECHCOM loss observations across12retained
+primary statements. Nika separately presents operating, pretax and net loss with
+zero tax; TECHCOM separately presents zero other-income/expense rows. Their
+equality does not have the HNO non-operating-inclusive scope problem in these
+selected comparative periods. Exact tables/hashes and manual interpretations in
+company-nika-techcom-loss-context-20260920.json, offline replay byte-identical.
+No blanket equivalence, revenue approval or company admission. The published
+v11ledger remains a frozen prior snapshot; new24reviews and HNO withdrawal still
+require versioned ledger reconciliation. New evidence postdates v11archive.

@@ -878,3 +878,12 @@ Real capture regression verifies only HNO operating history removed, net loss
 and other concepts unchanged, evidence-change rejection and rendered exclusion
 notice.32selector/renderer tests pass. No source values replaced, no release
 rebuild, upload or deployment. Remaining historical review still open.
+
+## 2026-09-20 — historical loss context and PR40 merge
+
+Reviewed Nika/TECHCOM full statement tables following the HNO defect.24previously
+pending historical observations have separately labeled operating/net results
+without an intervening nonzero other result;12primary tables retained and report
+replayed byte-identically. No source values changed or new exclusions inferred.
+PR40mergedf53c6980 after four CIchecks, tested/merged tree equality verified.
+V12runtime rebuild, ledger reconciliation and remaining scope review are open.
