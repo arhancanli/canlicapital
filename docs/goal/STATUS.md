@@ -21,7 +21,7 @@ concurrency4, readAttempts3, writeAttempts2, total read budget200/write budget50
 Per-object limits, permission/rate-limit/corruption stops, exact-byte verification
 and create-only reconciliation remain enforced. Twenty storage/planner tests pass.
 Receipt: corpus-local/company-five-cohort-transfer-20260920.json.
-Latest observed checkpoint: 4074 verified objects, 0 failures. Session26312 was polled live this turn.
+Latest observed checkpoint: 4270 verified objects, 0 failures. Session26312 was polled live this turn.
 Poll exact handle before restarting. Prior v3resume5session23870 is terminal after
 1,721objects/126,028,025bytes; receipt and failures preserved. Do not restart oldv3.
 Full transfer and page activation remain incomplete. Separate representative
@@ -171,7 +171,17 @@ npm test:corpus. Replay44938 still matches212/212 with identical filing comparis
 results; fresh company-equal-history-retained-review-qname-20260920.json preserves
 new helper hash, original unchanged. Captures43531 and bulk26312 remain active.
 
-Next: finish capture and review remaining primary contexts; complete bulk transfer and full-corpus
+Incremental target snapshot includes59newly retained filings/134observations;
+100filings/264observations were still missing at that snapshot. Prior41filings/
+212observations are excluded only after exact observations/body hashes recheck.
+Comparison69766 completed83/134matches;51unresolved observations across25filings
+need separate XBRL/source review. Combined matched count is295/346compared;
+the EVENTIKO4supplement overlaps this incremental batch and must not be added again.
+Reports company-equal-history-{incremental-targets,incremental-review,unresolved}-
+20260920.json retain all outcomes. Full acquisition43531 remains active; snapshot
+counts are not current download telemetry. CI35516535342 passes atb68e4d43.
+
+Next: finish capture, compare unresolved legacy observations to XBRL, and review remaining primary contexts; complete bulk transfer and full-corpus
 checks plus remaining editorial/admission work before production activation.
 The owner's publication approval persists. The prior 1–3day estimate and possible
 first batch tonight were provisional, not measured forecasts or release promises.

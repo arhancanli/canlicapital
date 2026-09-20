@@ -7,7 +7,8 @@ import sys
 from urllib.parse import urlsplit
 
 root = Path(__file__).resolve().parents[1]
-queue_path, output = map(Path, sys.argv[1:])
+queue_path, output = map(Path, sys.argv[1:3])
+assert len(sys.argv) in (3, 4), 'Usage: QUEUE NEW_OUTPUT [PRIOR_TARGETS]'
 raw = queue_path.read_bytes()
 queue = json.loads(raw)
 sha = lambda value: hashlib.sha256(value).hexdigest()
@@ -60,8 +61,24 @@ report = {'schema': 'canli.equal-history-retained-targets.v1', 'publication_appr
           'observation_count': sum(len(f['observations']) for f in filings),
           'missing_observation_count': sum(len(f['observations']) for f in missing),
           'scope': 'All non-basic/diluted equality cases mapped to exact selected accessions. Missing primary captures remain explicit; retained presence is not numerical or scope verification. No source requests or admission.'}
+if len(sys.argv) == 4:
+    previous_raw = Path(sys.argv[3]).read_bytes()
+    previous = json.loads(previous_raw)
+    assert previous['queue_sha256'] == sha(raw)
+    prior = {(f['cik'], f['accession']): f for f in previous['filings']}
+    assert len(prior) == len(previous['filings'])
+    current = {(f['cik'], f['accession']): f for f in filings}
+    for key, filing in prior.items():
+        assert key in current
+        assert current[key]['receipt']['sha256'] == filing['receipt']['sha256']
+        assert current[key]['observations'] == filing['observations']
+    report['prior_targets'] = {'path': sys.argv[3], 'sha256': sha(previous_raw),
+                               'filings': len(prior), 'observations': previous['observation_count']}
+    report['filings'] = [f for f in filings if (f['cik'], f['accession']) not in prior]
+    report['observation_count'] = sum(len(f['observations']) for f in report['filings'])
+    report['scope'] += ' This incremental target contains only filings absent from the pinned prior target; unchanged prior observations are counted separately.'
 with output.open('x') as handle:
     json.dump(report, handle, indent=2)
     handle.write('\n')
-print(json.dumps({'retained_filings': len(filings), 'missing_filings': len(missing),
+print(json.dumps({'retained_filings': len(report['filings']), 'missing_filings': len(missing),
                   'observations': report['observation_count'], 'missing_observations': report['missing_observation_count']}))

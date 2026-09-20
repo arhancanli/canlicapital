@@ -548,3 +548,15 @@ four XML regressions pass. All17corpus tests pass. XML tests were outside prior
 CIglob; npm test:corpus now explicitly runs them too. Replay44938 retains212/212
 matches and identical per-filing results with new helper hash in a separate report.
 Original evidence remains unchanged. No source admission or production release.
+
+## 2026-09-20 — incremental source comparison without duplicate credit
+
+Previous turn strengthened currency QName verification and preserved exact replay.
+Both43531capture and26312upload polled live. CI35516535342passes atb68e4d43.
+Added optional prior-target binding to target preparation: prior body hashes and
+observations must remain identical before excluding them from new comparison.
+New snapshot59filings/134observations;100filings/264observations missing at capture.
+Comparison69766 completed83matches/51unresolved across25legacy filings. Combined
+with prior212 yields295matched of346compared, not299:EVENTIKO4supplement overlaps.
+Unresolved queue preserved for separate XBRL/source comparison; no automatic source
+error or admission finding. Bulkcheckpoint4270objects; full capture still active.
