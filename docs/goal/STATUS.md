@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-fix/atlantica-liability-periods-20260920. PR34 merged as
+review/techcom-historical-context-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -495,3 +495,44 @@ rejection and inherited HNO/DBMM behavior.33selector/renderer and8delivery/relea
 tests pass. Full corpus not rebuilt; v12-batch3ledger remains prior snapshot and
 still needs versioned accounting for these two policy withdrawals. No uploader
 or publication. Continue remaining review before rebuilding the final candidate.
+
+## TECHCOM historical closure and latest-period reopening
+
+PR43merged330593040446f77d0636cb90ac20013dd836a580 after four checks in
+CI35522737196passed at8a4c6e8e. Tested/merged tree
+edc4eb4d90df411cc3c574933aaa62effa9d29eb. V13policy merged, full corpus not rebuilt.
+42historical TECHCOM observations reviewed across21tables in7retained filings: current/total
+assets, current/total liabilities, zero revenue and fixed-asset purchases. Different
+flows remain separate; no zero-activity inference. Report
+company-techcom-historical-context-20260920.json replays byte-identically.
+Adjacent2025liability components23,648+285,204sum308,852USD versus reported
+308,851USD. Recorded1USDdiscrepancy, no assumed rounding/correction. Two earlier
+latest-period reviews reopened pending resolution/disposition; not newly credited.
+Versioned v13ledger incorporates42reviews, two source-replayed Atlantica withdrawals
+and two reopened TECHCOMrows:351reviewed/249pending/10withdrawn, exact610key
+partition. Ledger replay byte-identical. Prior reports unchanged. No deployment.
+
+## Bioforce/ANVI historical balance-sheet review
+
+PR44open for TECHCOM/history ledger work.52additional pending observations now
+reviewed from18Bioforce/ANVI primary tables. Bioforce separates current/total
+assets and liabilities; ANVI conclusion covers assets only, preserving historical
+VETRO naming and restatement labels without uniform-business-perimeter claims.
+company-bioforce-anvi-balance-20260920.json replays byte-identically.
+Versioned v13-batch1ledger credits only exact pending keys from the bound v13
+snapshot:403active reviewed,197pending,10withdrawn; exact610key partition and
+offline replay pass. TECHCOM latest two rows remain reopened, not approved.
+No full corpus rebuild, uploader, deployment or indexed gain.
+
+## Apple iSports/Lithium historical liabilities
+
+60additional pending liability observations reviewed from29retained primary
+tables. Apple iSports historical Prevention Insurance naming/fiscal-date changes
+and zero net long-term convertible debt lines retained. Two older Lithiumtables
+have a sole current payable/accrual line followed by total liabilities, rather than
+a separate current subtotal; later allowance-for-optioned-properties classification
+retained. No additive totals or uniform entity-scope claim. Report
+company-apple-lithium-liability-20260920.json replays byte-identically.
+V13-batch2ledger combines exact pending-only supplements:463active reviewed,
+137pending,10withdrawn; original610key partition and offline replay pass. Two
+TECHCOMlatest rows still unresolved. No full corpus rebuild or publication.
