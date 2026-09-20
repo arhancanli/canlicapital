@@ -551,3 +551,17 @@ company-visium-grn-balance-20260920.json and cumulative v13-batch3ledger replay
 byte-identically. Exact counts503active reviewed/97pending/10withdrawn cover610
 original keys. Broader corpus flags, TECHCOMlatest discrepancy, v13rebuild and
 publication remain open. No uploader or deployment.
+
+## Four-issuer historical liability review
+
+PR45open.52additional observations reviewed from25Global Technologies,WEED,
+Glucose Health and Global Warming Solutions primary tables. Global Technologies
+selected2024liabilities are explicitly restated1,236,037USD rather than earlier
+6,830,211USD; retained without substitution. WEEDhistorical unaudited comparative
+labels, United Mines naming, leases and asset retirement classifications retained.
+Glucosehistorical Bio-Solutions/convertible debt context preserved. Report
+company-four-issuer-liability-20260920.json replays byte-identically.
+V13-batch4ledger:555active reviewed,45pending,10withdrawn; exact original610keys
+and byte-identical replay. Remaining amendment/TECHCOMdiscrepancy and smaller
+historical queues still open; broader corpus flags not covered by these counts.
+No full rebuild, uploader, deployment or indexing gain.

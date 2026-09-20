@@ -966,3 +966,11 @@ observations remain pending because primary contains no balance sheet; no credit
 from an unrelated filing. Context/ledger replay identical;503reviewed/97pending/
 10withdrawn, exact610keys. PR44merged919b2f55 after four checks and exact tree
 equality. Remaining amendment/discrepancy review and full corpus gates remain.
+
+## 2026-09-20 — four-issuer liability batch
+
+Opened PR45for remaining review.25primary tables support52additional historical
+observations with explicit restatement, unaudited and reported-classification
+boundaries. Selected Global Technologies2024value confirmed1,236,037USD.
+Context and cumulative ledger replay identical;555reviewed/45pending/10withdrawn
+partition610keys. No source rewrite, whole-corpus admission or publication.
