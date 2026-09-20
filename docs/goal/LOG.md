@@ -858,3 +858,14 @@ New versioned ledger separately accounts for the one disputed period:166active
 reviewed,440pending,4withdrawn. Withholding earns no review credit. It binds prior
 reports and actual selected runtime bytes; offline replay byte-identical. This
 new ledger postdates the archive. No publication or indexing gain.
+
+## 2026-09-20 — HNO historical scope defect found; PR39 merged
+
+Reviewed six pending HNO observations, then all four selected periods against
+three primary statements. Tagged operating loss includes separately reported
+other income/expense in every period, contradicting the site definition. Retained
+full tables, exact source hashes and diagnostic arithmetic; report replay identical.
+Earlier limited latest review corrected explicitly, not erased. Publication hold
+required for OperatingIncomeLoss; no invented replacement figures or review credit.
+PR39merged2f5e86d8 after four CIchecks and exact tested/merged tree equality.
+New branchfix/hno-operating-scope-20260920; policy implementation next.
