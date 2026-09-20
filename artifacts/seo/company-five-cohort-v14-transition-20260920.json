@@ -1,0 +1,143 @@
+{
+  "schema": "canli.five-cohort-v14-transition.v1",
+  "publication_approved": false,
+  "previous_manifest_sha256": "8900d4d3bcb0dec7b1356cddb3481bd69736a2832e95b6255ef4085152de4576",
+  "code_sha256": "673477062df02308aac0ea132c95589b3cb33d2bb2eac2fcaa41e014e2e055dc",
+  "inputs": [
+    {
+      "directory": "artifacts/seo/corpus-local/first-delivery-v14",
+      "manifest_sha256": "846a29ff0f86ac6c724a1f95fa86c6445015fe2be0611d7f60a8c491e2f0dec7"
+    },
+    {
+      "directory": "artifacts/seo/corpus-local/next-1000-delivery-v14",
+      "manifest_sha256": "817e11e68c9827d82c39026d04c7422b87a0fb471ac1e224195a49a31aacf028"
+    },
+    {
+      "directory": "artifacts/seo/corpus-local/third-1000-delivery-v14",
+      "manifest_sha256": "8b6c2aca780685124c7ef36e9c49f6112b97ad8afc1ae54753037c16b4c360b7"
+    },
+    {
+      "directory": "artifacts/seo/corpus-local/fourth-1000-delivery-v14",
+      "manifest_sha256": "67315d3c435fe8fab86cc5c1b17162f5fefa0fd308cea7593b400683b7234faf"
+    },
+    {
+      "directory": "artifacts/seo/corpus-local/fifth-1000-delivery-v14",
+      "manifest_sha256": "a595c92d7170742a32440d7855bcdbc26f147569de74c1dd919349b351c8a1ca"
+    }
+  ],
+  "companies": 3323,
+  "previous_histories": 87347,
+  "current_histories": 87346,
+  "removed_observations": 12,
+  "changes": [
+    {
+      "cik": "0001062506",
+      "tag": "Liabilities",
+      "removed_histories": 0,
+      "removed_observations": 1,
+      "observation": {
+        "end": "2023-12-31",
+        "val": 5253160,
+        "unit": "USD",
+        "accn": "0001548123-25-000017"
+      }
+    },
+    {
+      "cik": "0001062506",
+      "tag": "LiabilitiesCurrent",
+      "removed_histories": 0,
+      "removed_observations": 1,
+      "observation": {
+        "end": "2023-12-31",
+        "val": 5253160,
+        "unit": "USD",
+        "accn": "0001548123-25-000017"
+      }
+    },
+    {
+      "cik": "0001342916",
+      "tag": "OperatingIncomeLoss",
+      "removed_histories": 1,
+      "removed_observations": 4
+    },
+    {
+      "cik": "0001361113",
+      "tag": "EarningsPerShareBasic",
+      "removed_histories": 0,
+      "removed_observations": 1,
+      "observation": {
+        "start": "2019-01-01",
+        "end": "2019-12-31",
+        "val": -0.87,
+        "unit": "AFN/shares",
+        "accn": "0001628280-22-002017"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "tag": "EarningsPerShareBasic",
+      "removed_histories": 0,
+      "removed_observations": 1,
+      "observation": {
+        "start": "2020-01-01",
+        "end": "2020-12-31",
+        "val": -1,
+        "unit": "AFN/shares",
+        "accn": "0001628280-22-002017"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "tag": "EarningsPerShareBasic",
+      "removed_histories": 0,
+      "removed_observations": 1,
+      "observation": {
+        "start": "2021-01-01",
+        "end": "2021-12-31",
+        "val": -1.11,
+        "unit": "AFN/shares",
+        "accn": "0001628280-22-002017"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "tag": "EarningsPerShareDiluted",
+      "removed_histories": 0,
+      "removed_observations": 1,
+      "observation": {
+        "start": "2019-01-01",
+        "end": "2019-12-31",
+        "val": -0.87,
+        "unit": "AFN/shares",
+        "accn": "0001628280-22-002017"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "tag": "EarningsPerShareDiluted",
+      "removed_histories": 0,
+      "removed_observations": 1,
+      "observation": {
+        "start": "2020-01-01",
+        "end": "2020-12-31",
+        "val": -1,
+        "unit": "AFN/shares",
+        "accn": "0001628280-22-002017"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "tag": "EarningsPerShareDiluted",
+      "removed_histories": 0,
+      "removed_observations": 1,
+      "observation": {
+        "start": "2021-01-01",
+        "end": "2021-12-31",
+        "val": -1.11,
+        "unit": "AFN/shares",
+        "accn": "0001628280-22-002017"
+      }
+    }
+  ],
+  "scope": "Exact comparison of every selected record and source descriptor against v11. Only policy metadata, HNO whole-history hold, Atlantica/Varonis exact observation holds and their notices differ. No combined release, production or indexing claim."
+}

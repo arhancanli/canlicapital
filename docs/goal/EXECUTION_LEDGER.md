@@ -7,7 +7,7 @@ in history/EXECUTION_LEDGER-20260920-through-five-cohort-archive-start.md.
 | Work | Current state | Remaining outcome |
 | --- | --- | --- |
 | Inherited repair/source integrity | Source-bound replay and exclusion safeguards implemented | Continue independent review; preserve failed evidence |
-| Five-cohort expansion | 3,323companies,87,347histories,67directories;90,737unique candidate URLs verified | Full v14rebuild, editorial admission, hosted verification and production release |
+| Five-cohort expansion | V14:3,323companies,87,346histories,67directories;90,736unique candidate URLs verified | V14archive, editorial admission, hosted verification and production release |
 | Retention | V11combined archive restored; new700file priority archive replays14reports and final ledger | Offsite backup and ongoing maintenance |
 | Hosted delivery | Five-cohort upload26312terminal on429at5625objects; paced recovery77617superseded at2412objects; v10replacement plan verified; v10transfer82504superseded; v11pipeline90963completed0 with90,737URLs independently verified; clean preview passes23HTTP checks; 32representative cases covered across runs, final desktop flow verified independently in CI | Complete bulk transfer, browser/full-corpus and production gates |
 | Editorial quality | Versioned exclusions; priority equality numerical closure610/610; primary capture and isolated archival replay complete | Priority scope600reviewed/0pending/10withdrawn; 712deferred groups mapped;150/150baseline retained numerical matches; six Varonis unit observations held; broader capture gaps; scope/usefulness open |
