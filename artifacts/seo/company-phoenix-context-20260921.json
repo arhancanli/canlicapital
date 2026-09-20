@@ -1,0 +1,831 @@
+{
+  "schema": "canli.legacy-annual-context.v1",
+  "publication_approved": false,
+  "cik": "0001509646",
+  "target_sha256": "cd81acbe9da201f5c8da6f0480c87869ac5a4d40b7e95343d187c2af9bd57617",
+  "source_sha256": "872b3292fee11a15c36ea6ad00916e22c69389532d2a51bce4f679f0a396f23d",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1509646/000119312512189597/d316760d20f.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T20:39:19.448836+00:00",
+    "bytes": 2308627,
+    "sha256": "8618fafbf7bcad4cadcadd0a35c37e6e5ed7cb409c15c3ec6d723f371ec72335",
+    "body_path": "artifacts/seo/corpus-local/phoenix-original-2011/0001509646-0001193125-12-189597-primary.response"
+  },
+  "receipt_sha256": "85391d134846a7a842e4a22c3d8cc65fd8316822ed29a183fbce718ade86e4b0",
+  "amendment_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1509646/000119312512245998/d316760d20fa.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T17:53:50.323870+00:00",
+    "bytes": 28853,
+    "sha256": "a699f99cfb5ff3c9bb19d7eab06fd6255500645699593914a9a20ec83988608b",
+    "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001509646-0001193125-12-245998-primary.response"
+  },
+  "amendment_receipt_sha256": "040495dabace470eca9bf6d1698ffcb62f5e053dbafc1b14534a465a841b1bb5",
+  "legacy_report_sha256": "c4b4b3c6df336488aeea214046d2db87c169e264af554d8075c4fa910a57971f",
+  "instance_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1509646/000119312512245998/feng-20111231.xml",
+    "status": 200,
+    "bytes": 924315,
+    "sha256": "4e74826c13ce2687c4e4f8eaf27a205b893d456ef07bce5a532b5cc7e4a64c4b",
+    "captured_at": "2026-09-20T18:03:17.263614+00:00",
+    "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001509646-0001193125-12-245998-instance.response"
+  },
+  "code_sha256": "eb772a80eceae49bb7044d0de63597c39141a3e4c20e0db58fccb9ed71fb3062",
+  "helper_sha256": "fc27ceee7bdb441eb4b8c84b86f3d9761f9eb04e423458143c2ddbc66ce21475",
+  "selected_observations": [
+    {
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "val": -0.1,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2009",
+      "unit": "CNY/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "val": -0.51,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2010",
+      "unit": "CNY/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": -1.3,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2011",
+      "unit": "CNY/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": -0.21,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2011",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "val": -0.1,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2009",
+      "unit": "CNY/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "val": -0.51,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2010",
+      "unit": "CNY/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": -1.3,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2011",
+      "unit": "CNY/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": -0.21,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2011",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "val": 321387913,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2009",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "val": 327045493,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2010",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": 519227660,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2011",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "val": 321387913,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2009",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "val": 327045493,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2010",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": 519227660,
+      "accn": "0001193125-12-245998",
+      "fy": 2011,
+      "fp": "FY",
+      "form": "20-F/A",
+      "filed": "2012-05-24",
+      "frame": "CY2011",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ],
+  "checks": [
+    {
+      "selected": {
+        "start": "2009-01-01",
+        "end": "2009-12-31",
+        "val": -0.1,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2009",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20091231_0",
+          "unit_id": "iso4217_CNY_per_shares",
+          "value": "-0.10"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2010-01-01",
+        "end": "2010-12-31",
+        "val": -0.51,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2010",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20101231_0",
+          "unit_id": "iso4217_CNY_per_shares",
+          "value": "-0.51"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": -1.3,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20111231_0",
+          "unit_id": "iso4217_CNY_per_shares",
+          "value": "-1.30"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": -0.21,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20111231_0",
+          "unit_id": "iso4217_USD_per_shares",
+          "value": "-0.21"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2009-01-01",
+        "end": "2009-12-31",
+        "val": -0.1,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2009",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20091231_0",
+          "unit_id": "iso4217_CNY_per_shares",
+          "value": "-0.10"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2010-01-01",
+        "end": "2010-12-31",
+        "val": -0.51,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2010",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20101231_0",
+          "unit_id": "iso4217_CNY_per_shares",
+          "value": "-0.51"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": -1.3,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20111231_0",
+          "unit_id": "iso4217_CNY_per_shares",
+          "value": "-1.30"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": -0.21,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20111231_0",
+          "unit_id": "iso4217_USD_per_shares",
+          "value": "-0.21"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2009-01-01",
+        "end": "2009-12-31",
+        "val": 321387913,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2009",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20091231_0",
+          "unit_id": "shares",
+          "value": "321387913"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2010-01-01",
+        "end": "2010-12-31",
+        "val": 327045493,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2010",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20101231_0",
+          "unit_id": "shares",
+          "value": "327045493"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": 519227660,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20111231_0",
+          "unit_id": "shares",
+          "value": "519227660"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2009-01-01",
+        "end": "2009-12-31",
+        "val": 321387913,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2009",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20091231_0",
+          "unit_id": "shares",
+          "value": "321387913"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2010-01-01",
+        "end": "2010-12-31",
+        "val": 327045493,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2010",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20101231_0",
+          "unit_id": "shares",
+          "value": "327045493"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": 519227660,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "eol_PE853434--1120-F0002_STD_365_20111231_0",
+          "unit_id": "shares",
+          "value": "519227660"
+        }
+      ]
+    }
+  ],
+  "statement_mappings": [
+    {
+      "selected": {
+        "start": "2009-01-01",
+        "end": "2009-12-31",
+        "val": -0.1,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2009",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "table_index": 399,
+      "row_label": "Basic net loss per Class A and Class B ordinary shares",
+      "cell_index": 3,
+      "reported_text": "(0.10)"
+    },
+    {
+      "selected": {
+        "start": "2010-01-01",
+        "end": "2010-12-31",
+        "val": -0.51,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2010",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "table_index": 399,
+      "row_label": "Basic net loss per Class A and Class B ordinary shares",
+      "cell_index": 7,
+      "reported_text": "(0.51)"
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": -1.3,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "table_index": 399,
+      "row_label": "Basic net loss per Class A and Class B ordinary shares",
+      "cell_index": 11,
+      "reported_text": "(1.30)"
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": -0.21,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "table_index": 399,
+      "row_label": "Basic net loss per Class A and Class B ordinary shares",
+      "cell_index": 15,
+      "reported_text": "(0.21)"
+    },
+    {
+      "selected": {
+        "start": "2009-01-01",
+        "end": "2009-12-31",
+        "val": -0.1,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2009",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "table_index": 399,
+      "row_label": "Diluted net loss per Class A and Class B ordinary shares",
+      "cell_index": 3,
+      "reported_text": "(0.10)"
+    },
+    {
+      "selected": {
+        "start": "2010-01-01",
+        "end": "2010-12-31",
+        "val": -0.51,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2010",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "table_index": 399,
+      "row_label": "Diluted net loss per Class A and Class B ordinary shares",
+      "cell_index": 7,
+      "reported_text": "(0.51)"
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": -1.3,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "CNY/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "table_index": 399,
+      "row_label": "Diluted net loss per Class A and Class B ordinary shares",
+      "cell_index": 11,
+      "reported_text": "(1.30)"
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": -0.21,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "table_index": 399,
+      "row_label": "Diluted net loss per Class A and Class B ordinary shares",
+      "cell_index": 15,
+      "reported_text": "(0.21)"
+    },
+    {
+      "selected": {
+        "start": "2009-01-01",
+        "end": "2009-12-31",
+        "val": 321387913,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2009",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "table_index": 399,
+      "row_label": "Weighted average number of Class A and Class B ordinary shares outstanding\u2014basic and diluted",
+      "cell_index": 3,
+      "reported_text": "321,387,913"
+    },
+    {
+      "selected": {
+        "start": "2010-01-01",
+        "end": "2010-12-31",
+        "val": 327045493,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2010",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "table_index": 399,
+      "row_label": "Weighted average number of Class A and Class B ordinary shares outstanding\u2014basic and diluted",
+      "cell_index": 7,
+      "reported_text": "327,045,493"
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": 519227660,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "table_index": 399,
+      "row_label": "Weighted average number of Class A and Class B ordinary shares outstanding\u2014basic and diluted",
+      "cell_index": 11,
+      "reported_text": "519,227,660"
+    },
+    {
+      "selected": {
+        "start": "2009-01-01",
+        "end": "2009-12-31",
+        "val": 321387913,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2009",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "table_index": 399,
+      "row_label": "Weighted average number of Class A and Class B ordinary shares outstanding\u2014basic and diluted",
+      "cell_index": 3,
+      "reported_text": "321,387,913"
+    },
+    {
+      "selected": {
+        "start": "2010-01-01",
+        "end": "2010-12-31",
+        "val": 327045493,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2010",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "table_index": 399,
+      "row_label": "Weighted average number of Class A and Class B ordinary shares outstanding\u2014basic and diluted",
+      "cell_index": 7,
+      "reported_text": "327,045,493"
+    },
+    {
+      "selected": {
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": 519227660,
+        "accn": "0001193125-12-245998",
+        "fy": 2011,
+        "fp": "FY",
+        "form": "20-F/A",
+        "filed": "2012-05-24",
+        "frame": "CY2011",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "table_index": 399,
+      "row_label": "Weighted average number of Class A and Class B ordinary shares outstanding\u2014basic and diluted",
+      "cell_index": 11,
+      "reported_text": "519,227,660"
+    }
+  ],
+  "tables": [
+    {
+      "table_index": 358,
+      "text": "For the Years Ended December 31, 2009 2010 2011 2011 RMB RMB RMB US$ Revenues (1) : Net advertising revenues 81,632 204,369 465,824 74,012 Paid service revenues 180,715 324,326 484,768 77,022 Total revenues 262,347 528,695 950,592 151,034 Cost of revenues (1)(2) (170,062 ) (299,423 ) (554,676 ) (88,129 ) Gross profit 92,285 229,272 395,916 62,905 Operating expenses (1)(2) : Sales and marketing expenses (46,364 ) (76,152 ) (164,082 ) (26,070 ) General and administrative expenses (27,727 ) (39,955 ) (77,078 ) (12,246 ) Technology and product development expenses (16,579 ) (31,012 ) (69,021 ) (10,966 ) Total operating expenses (90,670 ) (147,119 ) (310,181 ) (49,282 ) Income from operations 1,615 82,153 85,735 13,623 Other income/(expenses): Interest income 496 582 9,682 1,538 Foreign currency exchange gain 22 313 19,343 3,073 Others, net (186 ) 1,534 2,861 455 Income before tax 1,947 84,582 117,621 18,689 Income tax expenses (1,660 ) (10,499 ) (15,146 ) (2,406 ) Net income attributable to Phoenix New Media Limited 287 74,083 102,475 16,283 Accretion to convertible redeemable preferred share redemption value (14,129 ) (206,409 ) (773,623 ) (122,916 ) Income allocation to participating preferred shares (287 ) (33,093 ) (6,172 ) (982 ) Amortization of beneficial conversion feature (17,138 ) \u2014 \u2014 \u2014 Net loss attributable to ordinary shareholders (31,267 ) (165,419 ) (677,320 ) (107,615 ) Net loss per Class A and Class B ordinary share\u2014Basic (0.10 ) (0.51 ) (1.30 ) (0.21 ) Net loss per Class A and Class B ordinary share\u2014Diluted (0.10 ) (0.51 ) (1.30 ) (0.21 ) Weighted average number of Class A and Class B ordinary shares used in computing basic net loss per share 321,387,913 327,045,493 519,227,660 519,227,660 Weighted average number of Class A and Class B ordinary shares used in computing diluted net loss per share 321,387,913 327,045,493 519,227,660 519,227,660 (1) Revenues, cost of revenues and operating expenses include transactions with related parties as follows: Net advertising revenues 3,845 4,824 26,201 4,163 Paid service revenues 157,276 294,027 445,096 70,719 Cost of revenues (24,721 ) (38,800 ) (73,833 ) (11,731 ) Sales and marketing expenses \u2014 (438 ) (663 ) (105 ) General and administrative expenses (1,155 ) (617 ) (1,139 ) (181 ) Technology and product development expenses (471 ) (314 ) (533 ) (85 ) (2) Share-based compensation was allocated in cost of revenues and operating expenses as follows: Cost of revenues 775 854 19,526 3,102 Sales and marketing expenses 2,904 4,664 18,254 2,900 General and administrative expenses 5,757 10,406 17,470 2,776 Technology and product development expenses 804 637 10,842 1,723"
+    },
+    {
+      "table_index": 399,
+      "text": "For the Years Ended December 31, 2009 2010 2011 2011 RMB RMB RMB US$ Numerator: Net income attributable to Phoenix New Media Limited 287 74,083 102,475 16,283 Accretion to convertible redeemable preferred share redemption value (14,129 ) (206,409 ) (773,623 ) (122,916 ) Income allocation to participating preferred shares (287 ) (33,093 ) (6,172 ) (982 ) Amortization of beneficial conversion feature (17,138 ) \u2014 \u2014 \u2014 Net loss attributable to ordinary shareholders (31,267 ) (165,419 ) (677,320 ) (107,615 ) Denominator: Weighted average number of Class A and Class B ordinary shares outstanding\u2014basic and diluted 321,387,913 327,045,493 519,227,660 519,227,660 Basic net loss per Class A and Class B ordinary shares (0.10 ) (0.51 ) (1.30 ) (0.21 ) Diluted net loss per Class A and Class B ordinary shares (0.10 ) (0.51 ) (1.30 ) (0.21 )"
+    }
+  ],
+  "disclosures": [
+    "The Company computes net loss per Class A and Class B ordinary shares in accordance with ASC subtopic 260-10 (\u201cASC 260-10\u201d), Earnings Per Share: Overall , using the two class method. Under the two-class method, net income is allocated between ordinary shares and other participating securities based on their participating rights. Net losses are not allocated to other participating securities if based on their contractual terms they are not obligated to share in the losses.",
+    "Diluted net loss per share is calculated by dividing net loss attributable to ordinary shareholders, as adjusted for the effect of dilutive ordinary equivalent shares, if any, by the weighted average number of ordinary shares and dilutive ordinary equivalent shares outstanding during the period. Dilutive ordinary equivalent shares are excluded in the denominator of the diluted loss per share calculation if their effects would be anti-dilutive. Dilutive ordinary equivalent shares consist of ordinary shares issuable upon the conversion of the Series A Preferred Shares using the if-converted method, ordinary shares issuable upon the conversion of contingently issuable shares for former employees using the if-converted method, and ordinary shares issuable upon the exercise of share options and the vesting of restricted share units and restricted shares using the treasury stock method.",
+    "For the years ended December 31, 2009 and 2010, options to purchase ordinary shares and contingently issuable shares that were anti-dilutive and excluded from the calculation of diluted net loss per share were 68,322,381 and 72,485,765, respectively, and Series A convertible redeemable preferred shares that were anti-dilutive and excluded from the calculation of diluted net loss per share were 13,178,082 and 130,000,000, respectively. There were totaling 26,968,162 options to purchase ordinary shares and contingently issuable shares, 48,794,521 Series A convertible redeemable preferred shares, 9,598,955 unvested restricted shares and 4,553,447 unvested restricted shares units have been excluded from the computation of diluted loss per share for the year ended December 31, 2011 as their effects would be anti-dilutive.",
+    "Translations of amounts from RMB into US$ for the convenience of the reader were calculated at the noon buying rate of US$1.00 = RMB6.2939 on December 30, 2011 as set forth in the H.10 statistical release of the U.S. Federal Reserve Board. No representation is made that the RMB amounts could have been, or could be, converted into US$ at such rate."
+  ],
+  "reader_note": "These 2009\u20132011 figures are ordinary-share measures from Phoenix New Media\u2019s original 2011 annual report; the May 2012 amendment only furnished its XBRL file. Company-level net income differs from ordinary-shareholder loss after preferred-share redemption accretion, participating-preferred allocations and beneficial-conversion-feature amortization. The two-class method allocates income according to participation rights; the filing excludes anti-dilutive equivalents in these ordinary-share loss periods. The 2011 USD EPS is a convenience translation at RMB6.2939 per US dollar, not another reporting period. One ADS represented eight Class A ordinary shares in this filing; these figures remain per ordinary share with full share counts, without ADS conversion or currency relabeling.",
+  "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+  "scope": "Fourteen exact observations linked from amendment XML to original annual statement dates and currency columns. No whole-history, issuer or publication admission."
+}

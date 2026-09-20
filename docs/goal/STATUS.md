@@ -9,28 +9,24 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/phoenix-original-capture-20260921`. PR89merged6b40e120after four passing
-CI35536126952checks atc9238b59. Tested and merged trees match exactly.
+`evidence/phoenix-legacy-context-20260921`. PR90mergedad783cdeafter four passing
+CI35536340170checks atdcbd5c88. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch23-20260921.json.gz.
-Of1,176batch observations,660reviewed/496pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-phoenix-20260921.json.gz.
+Of1,176batch observations,674reviewed/482pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest12reviews cover Domo fiscal years ended January31,2024–2026. The combined
-ClassA/Bdenominator is retained; individual-class EPS-note counts are components,
-not additions. Substantially identical dividend/liquidation rights support equal
-loss sharing under the two-class method; potential dilution excluded in loss
-periods. Scale3shares/scale0EPSand fiscal dates unchanged.44renderer/ledger tests
-pass; source report replays byte-identically. Next index66Phoenix New Media needs
-legacy XML/statement mapping.96presentation-only reviews retain limits.
-PhoenixMay24amendment only furnishes XBRL; originalApril27annual report accession
-0001193125-12-189597is now captured with SECsubmission/index/primary receipts.
-Original statement358and EPSnote399located;14observations remain pending explicit
-cell/date/currency mapping. Initialcapture92984failed after saving documents due to
-missing target tag; version2target/capture completed using retained bytes. Failure
-preserved. Capture/retention reports under company-phoenix-original-2011*.
+Latest14reviews map Phoenix New Media2009–2011amendment XML to originalApril27
+annual statement/EPSnote399. Explicit rows/date/currency columns preserveCNYand
+2011USDconvenience translation6.2939, full ordinary-share counts and eight-shares-
+per-ADSdistinction. Preferred redemption accretion, participating allocations and
+beneficial conversion amortization explain ordinary-shareholder loss despite net
+income; anti-dilutive equivalents excluded.45renderer/ledger tests pass; source
+report replays byte-identically. No values, units, dates or accession labels changed.
+Original/amendment receipts and initialcapturefailure retained. Next new index67;
+earlier legacy/context gaps remain.96presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against

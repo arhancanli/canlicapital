@@ -1,6 +1,133 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001509646",
+  "include_on_overview": true,
+  "source_sha256": "872b3292fee11a15c36ea6ad00916e22c69389532d2a51bce4f679f0a396f23d",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "These 2009\u20132011 figures are ordinary-share measures from Phoenix New Media\u2019s original 2011 annual report; the May 2012 amendment only furnished its XBRL file. Company-level net income differs from ordinary-shareholder loss after preferred-share redemption accretion, participating-preferred allocations and beneficial-conversion-feature amortization. The two-class method allocates income according to participation rights; the filing excludes anti-dilutive equivalents in these ordinary-share loss periods. The 2011 USD EPS is a convenience translation at RMB6.2939 per US dollar, not another reporting period. One ADS represented eight Class A ordinary shares in this filing; these figures remain per ordinary share with full share counts, without ADS conversion or currency relabeling.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1509646/000119312512189597/d316760d20f.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "unit": "CNY/shares",
+      "val": -0.1,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "unit": "CNY/shares",
+      "val": -0.51,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "unit": "CNY/shares",
+      "val": -1.3,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "unit": "USD/shares",
+      "val": -0.21,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "unit": "CNY/shares",
+      "val": -0.1,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "unit": "CNY/shares",
+      "val": -0.51,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "unit": "CNY/shares",
+      "val": -1.3,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "unit": "USD/shares",
+      "val": -0.21,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "unit": "shares",
+      "val": 321387913,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "unit": "shares",
+      "val": 327045493,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "unit": "shares",
+      "val": 519227660,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "unit": "shares",
+      "val": 321387913,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "unit": "shares",
+      "val": 327045493,
+      "accn": "0001193125-12-245998"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "unit": "shares",
+      "val": 519227660,
+      "accn": "0001193125-12-245998"
+    }
+  ]
+},
+{
   "cik": "0001505952",
   "include_on_overview": true,
   "source_sha256": "dbe72071d927a7f34e2f5851cf698c1d63871c6a6a679a786437cfeb943e0717",
