@@ -1085,3 +1085,25 @@ test('Cedar retains positive common income and unestablished diluted treatment',
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+test('EPS-only context leaves Valhi, Iovance and Outset share holds intact', () => {
+  for (const [fixture, cik, value] of [
+    ['valhi', '0000059255', -2.02], ['iovance', '0001425205', -1.09], ['outset-medical', '0001484612', -5.37],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v20' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'overview']) {
+      assert.match(renderCompanyPages(record, { target })[0].html, /share observations remain withheld/);
+    }
+    assert.ok(record.concepts.find(c => c.tag === 'EarningsPerShareBasic').observations.some(r => r.end === '2025-12-31' && r.val === value));
+    assert.ok(record.editorial_exclusions.length >= 6);
+    assert.equal(companyFilingNotes(record, 'WeightedAverageNumberOfSharesOutstandingBasic').length, 0);
+    assert.deepEqual(record.concepts, original.concepts);
+    assert.deepEqual(record.editorial_exclusions, original.editorial_exclusions);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, 'EarningsPerShareBasic').length, 0);
+  }
+});

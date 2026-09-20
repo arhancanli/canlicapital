@@ -43,6 +43,7 @@ jobs:
       - name: Verify bulk source catalog and filing integrity
         run: |
           . "$RUNNER_TEMP/canli-editorial-tests/bin/activate"
+          python3 scripts/review-share-context-spec-v5.test.py
           npm run test:corpus
       - name: Verify change-notification batching
         run: npm run test:indexnow

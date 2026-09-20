@@ -1,6 +1,189 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0000059255",
+  "include_on_overview": true,
+  "source_sha256": "5a666016453d51aeb23f9f9129b08137b14135abcbd501441d79b5c477dd1f95",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted"
+  ],
+  "text": "For Valhi in 2023\u20132025, EPS uses income or loss attributable to Valhi stockholders after noncontrolling interests. The reported basic and diluted values are equal, including profitable 2024, but this filing review does not establish a specific reason for that equality. This is a presentation-only EPS review. The separate weighted-average share observations remain withheld for their source scale conflict; EPS is retained as reported, not recomputed from those withheld counts.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/59255/000110465926025847/vhl-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.35,
+      "accn": "0001104659-26-025847",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3.79,
+      "accn": "0001104659-26-025847",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -2.02,
+      "accn": "0001104659-26-025847",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.35,
+      "accn": "0001104659-26-025847",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3.79,
+      "accn": "0001104659-26-025847",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -2.02,
+      "accn": "0001104659-26-025847",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    }
+  ]
+},
+{
+  "cik": "0001425205",
+  "include_on_overview": true,
+  "source_sha256": "bb58496635d85ba57e1fe3f80d062d09fbf1db1b6d80eb6e8ba8eda9321f7680",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted"
+  ],
+  "text": "For Iovance in 2023\u20132025, the filing excludes outstanding potential common shares as anti-dilutive in its net-loss-per-share calculation. It identifies options, ESPP purchases, restricted stock units and preferred-stock conversion as potential dilution. This review covers only the reported USD EPS observations. Separate weighted-average share observations remain withheld for their source scale conflict; EPS is not recomputed from those withheld counts.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1425205/000110465926018899/iova-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -1.89,
+      "accn": "0001104659-26-018899",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.28,
+      "accn": "0001104659-26-018899",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.09,
+      "accn": "0001104659-26-018899",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -1.89,
+      "accn": "0001104659-26-018899",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.28,
+      "accn": "0001104659-26-018899",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.09,
+      "accn": "0001104659-26-018899",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    }
+  ]
+},
+{
+  "cik": "0001484612",
+  "include_on_overview": true,
+  "source_sha256": "02af597b3235cdde453b8e191f935ab9286843fac1669b188d8e36c1d501f70c",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted"
+  ],
+  "text": "For Outset Medical in 2023\u20132025, awards under its equity compensation plan and warrants are excluded from diluted loss per share as anti-dilutive during losses. This review covers only reported USD EPS. The separate weighted-average share observations remain withheld because their inline tags conflict with the statement\u2019s thousands heading. No scaling, split adjustment or EPS recomputation is applied to resolve that share-count conflict.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1484612/000119312526051278/om-20251231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -52.28,
+      "accn": "0001193125-26-051278",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -36.96,
+      "accn": "0001193125-26-051278",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -5.37,
+      "accn": "0001193125-26-051278",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -52.28,
+      "accn": "0001193125-26-051278",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -36.96,
+      "accn": "0001193125-26-051278",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -5.37,
+      "accn": "0001193125-26-051278",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    }
+  ]
+},
+{
   "cik": "0000761648",
   "include_on_overview": true,
   "source_sha256": "dbcce42a16a42a13e297263e7e6f4477ce22ddf0a881b5df29c7b785e0ed456f",

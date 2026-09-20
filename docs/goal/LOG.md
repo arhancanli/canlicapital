@@ -1017,3 +1017,17 @@ in both directions; no renderer behavior weakened.93selector/renderer/ledger tes
 pass; report replays identically.1070reviewed/80pending/26withdrawn,112presentation-
 only. Remaining Valhi6/Siebert6/Freddie12/Rockwell12/INVO16/Iovance6/Plastec12/
 Outset6/historicalLifeward4. No rebuild/deployment/indexing gain; all goals active.
+
+## 2026-09-21 — EPS-only subsets preserve every share-count hold
+
+Previous turn completed8newerCedar reviews. PR110four CI35540107058checks passed
+at0699b194; merged936691dfded140b79fe62f22e2f11eb79a5cab8c, full tree
+ba184714ee7e923281636b4c3422606fa6c1917amatches tested head. Added v5exact subset
+replay: whole target rows must match, duplicates/altered values/units/accessions
+rejected. Three tests added to CI. Reviewed18EPSrows only: Valhi6presentation-only,
+Iovance/Outset12with explicit loss anti-dilution. Share holds unchanged; no EPS
+recomputation from conflicting counts.94selector/renderer/ledger and3subset tests
+pass; report replays byte-identically.1088reviewed/62pending/26withdrawn,
+118presentation-only. RemainingSiebert6/Freddie12/Rockwell12/INVO16/Plastec12/
+historicalLifeward4. Older Iovance non-batch scope separate. No rebuild/deployment/
+indexing gain; all owner objectives remain active.

@@ -9,11 +9,11 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/cedar-2025-context-20260921`. PR109merged4e9baa4aafter four passing
-CI35539930936checks atf7a3adeb. Tested and merged trees match exactly.
+`evidence/held-share-eps-context-20260921`. PR110merged936691dfafter four passing
+CI35540107058checks at0699b194. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-cedar2025-20260921.json.gz.
-Of1,176batch observations,1070reviewed/80pending/26withdrawn.112reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-held-eps-20260921.json.gz.
+Of1,176batch observations,1088reviewed/62pending/26withdrawn.118reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
@@ -27,18 +27,17 @@ V20whole-corpus comparison99298TERMINAL0verified3,323companies/87,344histories
 against frozenv14. Exactly30held observations sincev14(including six Lifeward),
 two prior Valhi history omissions, policy/notices; all other fields unchanged.
 Report company-five-cohort-v20-transition-20260921.json pins verified inputs/code.
-Latest8reviews cover Cedar2024/2025presentation. Preferred-stock allocations
-produce positive2025common income despite consolidated loss. Policy describes
-basic EPS; equal diluted tags retained without inferring dilution cause. These
-rows receive presentation-only state. Old and new filing notes remain separately
-bound: mutating one period suppresses only its own note. Initial old-test assumption
-of no remaining notes failed; corrected to assert independent suppression both ways.
-Report replays byte-identically;93selector/renderer/ledger tests pass. Remaining80:
-Valhi6, Siebert6, Freddie Mac12, Rockwell12, INVO16, Iovance6, Plastec12, Outset6,
-historical Lifeward4. Runtime/quality rebuild and archival supplement pending.
-112presentation-only reviews retain limits.
+Latest18reviews cover only Valhi/Iovance/Outset EPS; share holds remain unchanged.
+V5replay allows explicit exact target-row subsets, rejecting altered/duplicate rows.
+Valhi six EPS rows are presentation-only; Iovance/Outset retain disclosed loss
+anti-dilution. Notes explicitly do not recompute EPS from withheld share counts.
+Report replays byte-identically;94selector/renderer/ledger tests plus3subset tests
+pass, subset tests added to CI. Remaining62: Siebert6, Freddie Mac12, Rockwell12,
+INVO16, Plastec12, historical Lifeward4. Iovance older non-batch share review remains
+separate. Runtime/quality rebuild and archival supplement pending.
+118presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
-conversion. EPS and older periods remain unapproved by the hold report.
+conversion. EPS now reviewed separately; older periods remain outside the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against
 frozenv14. Exactly24held observations sincev14(including six new Outset), two prior
 Valhi history omissions, policy/notices; every other field/source byte unchanged.
@@ -46,7 +45,7 @@ Report company-five-cohort-v19-transition-20260921.json pins inputs/code/policy.
 Runtime rebuild, refreshed quality inventory and archival supplement remain pending.
 
 V18six Iovance2023–2025share-scale holds remain enforced. Earlier2019–2022share
-rows need original-filing review and six EPSbatch rows are still pending. Whole-
+rows need original-filing review and six EPSbatch rows are now reviewed separately. Whole-
 corpus comparison passed; current runtime rebuild, quality inventory and updated
 archival supplement remain undone. No production or indexing gain.
 
