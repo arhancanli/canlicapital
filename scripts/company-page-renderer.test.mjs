@@ -9,7 +9,7 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
-test('filing context requires the reviewed issuer, snapshot and both selected observations', () => {
+test('filing context requires the reviewed issuer, snapshot and all reviewed observations', () => {
   for (const note of FILING_NOTES) {
     const record = { cik: note.cik, source_sha256: note.source_sha256,
       concepts: note.observations.map(row => ({ tag: row.tag, observations: [{ ...row }] })) };

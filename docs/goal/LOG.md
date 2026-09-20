@@ -626,3 +626,13 @@ CIK and both reviewed observations. Changed evidence suppresses stale notes.
 Ten renderer tests pass; actual ten pages render from hash-verified selected records.
 Notes clarify matching totals without declaring every historical tag interchangeable
 or approving corpus publication. Production unchanged; broader scope review open.
+
+## 2026-09-20 — source-bound EVENTIKO asset/payable explanation
+
+Previous turn added five revenue-presentation notes and opened PR34. Added the
+already reviewed EVENTIKO context to its payable/property histories: website
+development and accounts payable are separate11,000lines forApril30,2023, with
+related-party loans separately disclosed. Note binds exact source and all8selected
+observations; cites retained2024filing. Twelve actual history renders pass; all10
+renderer tests pass including changed evidence suppression. No deployment.
+Bulk26312polled live;5572objects/0failures at checkpoint.

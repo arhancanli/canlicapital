@@ -139,6 +139,74 @@ export const FILING_NOTES = [
         "accn": "0001551152-26-000008"
       }
     ]
+  },
+  {
+    "cik": "0001816554",
+    "source_sha256": "e80c92ca1c907ecd4f04a4d459cfc89206a3865ca54415fe26a908748373738c",
+    "tags": [
+      "AccountsPayableCurrent",
+      "PropertyPlantAndEquipmentNet"
+    ],
+    "text": "The 2024 annual report presents website development under fixed assets and accounts payable as separate balance-sheet lines. Both report $11,000 for April 30, 2023. Matching amounts do not make the asset and liability interchangeable. Related-party loans are reported separately, so accounts payable alone does not measure total liabilities.",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1816554/000168316824005079/eventiko_i10k-043024.htm",
+    "observations": [
+      {
+        "tag": "PropertyPlantAndEquipmentNet",
+        "end": "2025-04-30",
+        "unit": "USD",
+        "val": 0,
+        "accn": "0001683168-25-005216"
+      },
+      {
+        "tag": "PropertyPlantAndEquipmentNet",
+        "end": "2024-04-30",
+        "unit": "USD",
+        "val": 0,
+        "accn": "0001683168-25-005216"
+      },
+      {
+        "tag": "PropertyPlantAndEquipmentNet",
+        "end": "2023-04-30",
+        "unit": "USD",
+        "val": 11000,
+        "accn": "0001683168-24-005079"
+      },
+      {
+        "tag": "PropertyPlantAndEquipmentNet",
+        "end": "2022-04-30",
+        "unit": "USD",
+        "val": 0,
+        "accn": "0001683168-23-003970"
+      },
+      {
+        "tag": "AccountsPayableCurrent",
+        "end": "2025-04-30",
+        "unit": "USD",
+        "val": 0,
+        "accn": "0001683168-25-005216"
+      },
+      {
+        "tag": "AccountsPayableCurrent",
+        "end": "2024-04-30",
+        "unit": "USD",
+        "val": 0,
+        "accn": "0001683168-25-005216"
+      },
+      {
+        "tag": "AccountsPayableCurrent",
+        "end": "2023-04-30",
+        "unit": "USD",
+        "val": 11000,
+        "accn": "0001683168-24-005079"
+      },
+      {
+        "tag": "AccountsPayableCurrent",
+        "end": "2022-04-30",
+        "unit": "USD",
+        "val": 0,
+        "accn": "0001683168-23-003970"
+      }
+    ]
   }
 ];
 

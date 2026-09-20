@@ -16,7 +16,7 @@ at0dcfa6f73768fe6419a547012e87ad0952dc7ca6. Tested/merged tree both
 40d3071a73e02164a89fb58289696e8c08bcf537. PR31 previously merged59b10c83 with
 five checks and exact tree equality. Post-merge PR32 CI35516871919passed.
 
-Bulk storage26312 remains active, codea98637c4, last checkpoint5129verified
+Bulk storage26312 remains active, codea98637c4, last checkpoint5572verified
 objects/0failures. Receipt corpus-local/company-five-cohort-transfer-20260920.json.
 Concurrency4, read3/write2, global budgets200/50; immutable exact-byte checks.
 Primary acquisition43531 is terminal exit0: all159index/primary pairs verified,
@@ -42,14 +42,16 @@ superseded v3plan. Only bulk26312is currently known active. Archive/replay46444c
 
 ## Current filing-context improvement
 
-Five latest-period revenue presentations reviewed:3M,CONMED,Digital Brand Media,
+Six companies now have source-bound context. Five latest-period revenue presentations reviewed:3M,CONMED,Digital Brand Media,
 Mosaic andAbbVie. Source-linked notes explain consolidated totals versus geographic/
 segment breakdowns on both matched history pages. Notes require exact CIK,captured
-source hash and both reviewed observations (period/unit/value/accession); changed
+source hash and all reviewed observations (period/unit/value/accession); changed
 evidence suppresses them. No blanket tag equivalence or all-history admission.
 Ten renderer tests pass including stale-note guards and unchanged pilot output;
-ten real selected history pages render notes locally. Evidence company-revenue-
-presentation-scope-20260920.json and company-filing-context-render-20260920.json.
+twelve real selected history pages render notes locally. EVENTIKO adds the reviewed
+website-development/payable distinction, bound to all8selected observations and
+linked to its2024annual report. Evidence company-revenue-
+presentation-scope-20260920.json and company-filing-context-render-v2-20260920.json.
 Implementation scripts/lib/company-filing-notes.mjs; not yet deployed.
 
 ## Immediate next work
