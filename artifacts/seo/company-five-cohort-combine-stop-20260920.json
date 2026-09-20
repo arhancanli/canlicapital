@@ -1,0 +1,16 @@
+{
+  "schema": "canli.combine-stop.v1",
+  "input": "artifacts/seo/company-five-cohort-inputs-20260920.json",
+  "output": "artifacts/seo/corpus-local/company-five-cohort-delivery-v1",
+  "exit_code": 1,
+  "error": "Cannot combine different selection policies",
+  "policies": [
+    "extended-v3",
+    "extended-v3",
+    "extended-v3",
+    "extended-v9",
+    "extended-v8"
+  ],
+  "action": "Reproduce cohorts into fresh directories under existing cumulative extended-v9 policy; preserve all original manifests and exclusions. Do not weaken combination guard.",
+  "publication_approved": false
+}
