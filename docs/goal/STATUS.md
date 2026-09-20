@@ -8,7 +8,7 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/priority-scope-archive-20260920`. Archive helper committed at eb780f48.
+`review/basic-diluted-coverage-20260920`. Archive helper committed at eb780f48.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
@@ -16,7 +16,8 @@ PR45 merged5ef02030; its original MCP audit HTTP400 and successful unchanged-hea
 rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. No collector, rebuild or uploader active.
-Next: finish archive tooling review; address remaining corpus scope/usefulness flags,
+Next: inspect the six Varonis AFN/share observations against their original filing,
+resolve the retained basic/diluted comparison gaps and remaining scope/usefulness flags,
 then rebuild all five cohorts under v13, verify exact changes, and complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
@@ -134,3 +135,26 @@ All goals remain:800kactually indexed canonical pages(target1m), exceptional
 content/SEO/accessibility/relevant intent, real API/MCP/repository adoption, governed
 combined NET FORWARD Sharpe>2, at least14economically distinct qualified sleeves,
 realized maximum drawdown<=10%. No broker orders or fabricated outcome claims.
+
+## Deferred basic/diluted queue coverage
+
+PR47merged as7402c196 after all four CI35524542593checks passed atc0d31a73.
+Tested/merged tree4ad19e0068f5fa1d319e89ef82b35fff2d819067. Archive tooling merged.
+
+Expanded all712deferred equality groups from exact source captures:464companies,
+440EPS pairs and272weighted-share pairs,10,206unique observations in2,696filings.
+Every selected concept is unchanged when replayed under extended-v13. This is
+queue integrity, not semantic equivalence or admission. Local primary captures
+cover31filings/150observations;2,665filings/10,056observations lack retained primaries.
+The new compound-unit comparator reproduces136/150exact observations;14unresolved
+rows remain in the tracked summary. No XBRL-instance fallback attempted yet.
+
+Six Varonis observations are taggedAFN/shares in accession0001628280-22-002017
+for2019–2021. Primary review required before deciding whether this is a unit error;
+no currency substitution or source correction. Other currency units stay distinct.
+Report company-basic-diluted-coverage-20260920.json binds three losslessly compressed
+full reports with exact hash/byte metadata. New reports are tracked, but their primary
+capture dependencies have not been sealed into a new isolated replay archive.
+Four new unit/period/value rejection tests and22existing corpus/XMLtests pass.
+The new tests run in routine CI. All three full reports and the summary reproduce byte-for-byte in separate outputs.
+This local rerun is not isolated archival recovery.

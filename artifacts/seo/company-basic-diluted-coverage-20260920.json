@@ -1,0 +1,383 @@
+{
+  "schema": "canli.basic-diluted-coverage.v1",
+  "publication_approved": false,
+  "code_sha256": "1b9675d5c5478dfc8a3805e1ac6a7858ca0ed17ab8a34238bdd68ac0261da1d5",
+  "reports": {
+    "review": {
+      "path": "artifacts/seo/company-basic-diluted-review-20260920.json.gz",
+      "sha256": "6d32680fdefdbeaf3b4af188e8309e461e1059680aea5b5de3b0814d81ceacda",
+      "uncompressed_sha256": "5eadb53ea6001aa189edbbfc383e3cc15ef3e2b1ca10ec39842f450ada7fff59",
+      "bytes": 191224
+    },
+    "targets": {
+      "path": "artifacts/seo/company-basic-diluted-targets-20260920.json.gz",
+      "sha256": "0e1554c6c026a11ebc852b39f2a3928c567b39d11e206e9c163cefb1547d73bb",
+      "uncompressed_sha256": "ff43b266ba51962010350beef1cdb683379110639b1fadfb70de68e7f0a4448e",
+      "bytes": 151282
+    },
+    "primary-review": {
+      "path": "artifacts/seo/company-basic-diluted-primary-review-20260920.json.gz",
+      "sha256": "b39667a46cfd19bbc836c38d4605617c1eee3d38ec3650416a898e429bb755b2",
+      "uncompressed_sha256": "f89cb24ae2abf9196bf26311beac11f4a6448b87244416413fc5429d537a3ebd",
+      "bytes": 14490
+    }
+  },
+  "groups": 712,
+  "companies": 464,
+  "pairs": {
+    "EarningsPerShareBasic|EarningsPerShareDiluted": 440,
+    "WeightedAverageNumberOfDilutedSharesOutstanding|WeightedAverageNumberOfSharesOutstandingBasic": 272
+  },
+  "original_unique_observations": 10206,
+  "retained_filings": 31,
+  "missing_filings": 2665,
+  "retained_observations": 150,
+  "missing_observations": 10056,
+  "primary_numerical_matches": 136,
+  "unresolved_primary_observations": [
+    {
+      "cik": "0000812152",
+      "accession": "0001144204-17-018228",
+      "selected": {
+        "tag": "EarningsPerShareBasic",
+        "start": "2015-01-01",
+        "end": "2015-12-31",
+        "val": -0.03,
+        "accn": "0001144204-17-018228",
+        "fy": 2016,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-31",
+        "frame": "CY2015",
+        "unit": "USD/shares"
+      }
+    },
+    {
+      "cik": "0000812152",
+      "accession": "0001144204-17-018228",
+      "selected": {
+        "tag": "EarningsPerShareDiluted",
+        "start": "2015-01-01",
+        "end": "2015-12-31",
+        "val": -0.03,
+        "accn": "0001144204-17-018228",
+        "fy": 2016,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-31",
+        "frame": "CY2015",
+        "unit": "USD/shares"
+      }
+    },
+    {
+      "cik": "0000812152",
+      "accession": "0001144204-17-018228",
+      "selected": {
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+        "start": "2015-01-01",
+        "end": "2015-12-31",
+        "val": 1260773,
+        "accn": "0001144204-17-018228",
+        "fy": 2016,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-31",
+        "frame": "CY2015",
+        "unit": "shares"
+      }
+    },
+    {
+      "cik": "0000812152",
+      "accession": "0001144204-17-018228",
+      "selected": {
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+        "start": "2015-01-01",
+        "end": "2015-12-31",
+        "val": 1260773,
+        "accn": "0001144204-17-018228",
+        "fy": 2016,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-31",
+        "frame": "CY2015",
+        "unit": "shares"
+      }
+    },
+    {
+      "cik": "0001074871",
+      "accession": "0001019056-18-000822",
+      "selected": {
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+        "start": "2016-04-01",
+        "end": "2017-03-31",
+        "val": 9732986,
+        "accn": "0001019056-18-000822",
+        "fy": 2018,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2018-06-29",
+        "frame": "CY2016",
+        "unit": "shares"
+      }
+    },
+    {
+      "cik": "0001074871",
+      "accession": "0001019056-18-000822",
+      "selected": {
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+        "start": "2016-04-01",
+        "end": "2017-03-31",
+        "val": 9732986,
+        "accn": "0001019056-18-000822",
+        "fy": 2018,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2018-06-29",
+        "frame": "CY2016",
+        "unit": "shares"
+      }
+    },
+    {
+      "cik": "0001506251",
+      "accession": "0001185185-14-000261",
+      "selected": {
+        "tag": "EarningsPerShareBasic",
+        "start": "2011-10-01",
+        "end": "2012-09-30",
+        "val": 0,
+        "accn": "0001185185-14-000261",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-06",
+        "frame": "CY2012",
+        "unit": "USD/shares"
+      }
+    },
+    {
+      "cik": "0001506251",
+      "accession": "0001185185-14-000261",
+      "selected": {
+        "tag": "EarningsPerShareBasic",
+        "start": "2012-10-01",
+        "end": "2013-09-30",
+        "val": 0,
+        "accn": "0001185185-14-000261",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-06",
+        "frame": "CY2013",
+        "unit": "USD/shares"
+      }
+    },
+    {
+      "cik": "0001506251",
+      "accession": "0001185185-14-000261",
+      "selected": {
+        "tag": "EarningsPerShareDiluted",
+        "start": "2011-10-01",
+        "end": "2012-09-30",
+        "val": 0,
+        "accn": "0001185185-14-000261",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-06",
+        "frame": "CY2012",
+        "unit": "USD/shares"
+      }
+    },
+    {
+      "cik": "0001506251",
+      "accession": "0001185185-14-000261",
+      "selected": {
+        "tag": "EarningsPerShareDiluted",
+        "start": "2012-10-01",
+        "end": "2013-09-30",
+        "val": 0,
+        "accn": "0001185185-14-000261",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-06",
+        "frame": "CY2013",
+        "unit": "USD/shares"
+      }
+    },
+    {
+      "cik": "0001506251",
+      "accession": "0001185185-14-000261",
+      "selected": {
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+        "start": "2011-10-01",
+        "end": "2012-09-30",
+        "val": 18000000,
+        "accn": "0001185185-14-000261",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-06",
+        "frame": "CY2012",
+        "unit": "shares"
+      }
+    },
+    {
+      "cik": "0001506251",
+      "accession": "0001185185-14-000261",
+      "selected": {
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+        "start": "2012-10-01",
+        "end": "2013-09-30",
+        "val": 18000000,
+        "accn": "0001185185-14-000261",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-06",
+        "frame": "CY2013",
+        "unit": "shares"
+      }
+    },
+    {
+      "cik": "0001506251",
+      "accession": "0001185185-14-000261",
+      "selected": {
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+        "start": "2011-10-01",
+        "end": "2012-09-30",
+        "val": 18000000,
+        "accn": "0001185185-14-000261",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-06",
+        "frame": "CY2012",
+        "unit": "shares"
+      }
+    },
+    {
+      "cik": "0001506251",
+      "accession": "0001185185-14-000261",
+      "selected": {
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+        "start": "2012-10-01",
+        "end": "2013-09-30",
+        "val": 18000000,
+        "accn": "0001185185-14-000261",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-06",
+        "frame": "CY2013",
+        "unit": "shares"
+      }
+    }
+  ],
+  "unit_follow_up": [
+    {
+      "cik": "0001361113",
+      "name": "VARONIS SYSTEMS, INC.",
+      "selected": {
+        "tag": "EarningsPerShareBasic",
+        "start": "2021-01-01",
+        "end": "2021-12-31",
+        "val": -1.11,
+        "accn": "0001628280-22-002017",
+        "fy": 2021,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2022-02-08",
+        "frame": "CY2021",
+        "unit": "AFN/shares"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "name": "VARONIS SYSTEMS, INC.",
+      "selected": {
+        "tag": "EarningsPerShareBasic",
+        "start": "2020-01-01",
+        "end": "2020-12-31",
+        "val": -1,
+        "accn": "0001628280-22-002017",
+        "fy": 2021,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2022-02-08",
+        "frame": "CY2020",
+        "unit": "AFN/shares"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "name": "VARONIS SYSTEMS, INC.",
+      "selected": {
+        "tag": "EarningsPerShareBasic",
+        "start": "2019-01-01",
+        "end": "2019-12-31",
+        "val": -0.87,
+        "accn": "0001628280-22-002017",
+        "fy": 2021,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2022-02-08",
+        "frame": "CY2019",
+        "unit": "AFN/shares"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "name": "VARONIS SYSTEMS, INC.",
+      "selected": {
+        "tag": "EarningsPerShareDiluted",
+        "start": "2021-01-01",
+        "end": "2021-12-31",
+        "val": -1.11,
+        "accn": "0001628280-22-002017",
+        "fy": 2021,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2022-02-08",
+        "frame": "CY2021",
+        "unit": "AFN/shares"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "name": "VARONIS SYSTEMS, INC.",
+      "selected": {
+        "tag": "EarningsPerShareDiluted",
+        "start": "2020-01-01",
+        "end": "2020-12-31",
+        "val": -1,
+        "accn": "0001628280-22-002017",
+        "fy": 2021,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2022-02-08",
+        "frame": "CY2020",
+        "unit": "AFN/shares"
+      }
+    },
+    {
+      "cik": "0001361113",
+      "name": "VARONIS SYSTEMS, INC.",
+      "selected": {
+        "tag": "EarningsPerShareDiluted",
+        "start": "2019-01-01",
+        "end": "2019-12-31",
+        "val": -0.87,
+        "accn": "0001628280-22-002017",
+        "fy": 2021,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2022-02-08",
+        "frame": "CY2019",
+        "unit": "AFN/shares"
+      }
+    }
+  ],
+  "unit_follow_up_boundary": "AFN/share observations require original filing review. No currency correction or source-error conclusion is established.",
+  "scope": "Exact current-policy deferred queue partition; retained convenience sample only. Numerical matches are not dilution scope, distinct reader value or admission. Full reports retained as lossless compressed artifacts; referenced primary captures are not bundled here."
+}

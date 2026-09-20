@@ -21,3 +21,20 @@ corrected invocation passed unchanged tests. No archive replay failure.
 Condensed current status/ledger while preserving previous documents exactly under
 history. No source values changed, full v13build, upload, deployment or indexing gain.
 All source capacity, broader quality, SEO, developer and engine goals remain active.
+
+## 2026-09-20 — deferred equality coverage and compound-unit checks
+
+Previous turn completed priority archive replay and consolidated continuity.
+PR47merged7402c196 with four passing checks and exact tested/merged tree equality.
+Expanded712deferred groups/464companies from captured source, verified selected
+concepts unchanged underv13. Queue has10,206unique observations; only150in31filings
+have retained primaries. New isolated comparator supports namespace-checked shares
+and currency/share units while preserving the older USD-only comparison helper.
+136exact numerical matches,14unresolved; no accounting-context approval. Six
+VaronisAFN/share observations flagged for primary inspection without correction.
+Four regressions pass alongside22existing corpus/XMLtests; CIincludes new tests.
+Full compressed reports retained with exact partition/hash summary. No acquisition,
+rebuild, upload, deployment, indexing gain or new source-policy exclusion.
+
+Full queue/target/primary replay48185completed exit0; all three outputs match
+byte-for-byte. Separate summary also reproduces. No sealed archival claim.

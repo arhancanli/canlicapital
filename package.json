@@ -77,7 +77,7 @@
     "seo:capacity": "node --test scripts/prepare-company-batch.test.mjs scripts/sitemaps.test.mjs",
     "seo:inventory": "node scripts/seo-inventory.mjs",
     "seo:intents": "node scripts/audit-search-intents.mjs",
-    "test:corpus": "python3 -m unittest discover -s scripts -p 'test_company_*.py' && python3 -m unittest discover -s scripts -p 'test_editorial_xbrl.py'",
+    "test:corpus": "python3 -m unittest discover -s scripts -p 'test_company_*.py' && python3 -m unittest discover -s scripts -p 'test_editorial_xbrl.py' && python3 -m unittest discover -s scripts -p 'test_basic_diluted_filings.py'",
     "postbuild": "node scripts/build-company-assets.mjs && node scripts/prepare-company-preview-output.mjs"
   },
   "engines": {
