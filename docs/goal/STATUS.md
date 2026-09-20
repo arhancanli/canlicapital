@@ -8,7 +8,7 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`review/basic-diluted-coverage-20260920`. Archive helper committed at eb780f48.
+`fix/varonis-unit-scope-20260920`. Archive helper committed at eb780f48.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
@@ -16,9 +16,9 @@ PR45 merged5ef02030; its original MCP audit HTTP400 and successful unchanged-hea
 rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. No collector, rebuild or uploader active.
-Next: inspect the six Varonis AFN/share observations against their original filing,
-resolve the retained basic/diluted comparison gaps and remaining scope/usefulness flags,
-then rebuild all five cohorts under v13, verify exact changes, and complete hosted
+Next: archive the new Varonis capture and legacy comparison evidence, address
+remaining basic/diluted source coverage and corpus scope/usefulness flags,
+then rebuild all five cohorts under v14, verify exact changes, and complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
 Priority queue closure alone is not whole-corpus admission.
@@ -62,7 +62,7 @@ Merged extended-v13 inherits all earlier source-bound exclusions:
 
 33selector/renderer tests passed for v13policy; subsequent note change passes
 11renderer tests and full PR46CI. Actual source fixtures reject changed evidence.
-**V13has not been rebuilt across all cohorts. Do not admit v11unchanged.**
+**V14has not been rebuilt across all cohorts. Do not admit earlier candidates unchanged.**
 
 Last combinedv11:3,323companies +87,347histories +67directories =90,737unique
 candidate URLs. Local XML/hash/uniqueness and unchanged v10/v11URL-set checks pass.
@@ -158,3 +158,35 @@ capture dependencies have not been sealed into a new isolated replay archive.
 Four new unit/period/value rejection tests and22existing corpus/XMLtests pass.
 The new tests run in routine CI. All three full reports and the summary reproduce byte-for-byte in separate outputs.
 This local rerun is not isolated archival recovery.
+
+## Varonis source-unit conflict and legacy numerical closure
+
+PR48merged6b5bd3f4808d41b9f1f6b41f5e16fdc5357a08a9 after all four
+CI35524898621checks passed at94f2e5e5. Both trees772d9fe1dbb122e429a4543bf9d444a072a428ca.
+
+All14previously unmatched baseline observations are from three legacy primary
+filings without inline XBRL. Their already retained XML instances match14/14using
+namespace-checked shares/per-share units. Exact disjoint-key reconciliation gives
+150/150numerical closure for the original31filing retained sample. Full primary
+tables are retained in company-basic-diluted-legacy-review-20260920.json; recorded
+zero EPS does not imply zero loss. Source-scope/dilution review remains open.
+Nine shared inline/XMLunit tests pass, including counterfeit namespaces, incorrect
+components and duplicate XMLunit IDs. Older USD-only helpers remain unchanged.
+
+Varonis capture97839completed exit0: original index/primary200, identity verified.
+Primary SHA3a843335a9c0c1854faaee096439706b6d26b3102aa5d554796b6ba9a89484be.
+The same filing tags all six2019–2021EPSfacts asAFN/share while disclosing U.S.
+dollar financial statements. Source-unit conflict is now established; no relabeling
+or conversion. company-varonis-unit-scope-20260920.json binds full statement table,
+accounting-policy note, six matched facts, original unit XML and captured source.
+New capture is beyond the earlier31filing coverage snapshot; do not overwrite it.
+
+New cumulative extended-v14policy holds only those six exact source-bound
+observations (two tags ×three periods), retaining every other concept/period/unit.
+Actual captured fixture verifies exact six-row removal, changed-source/time rejection,
+missing-notice rejection, source-linked notes on histories/overview and inherited
+HNO/DBMM/Atlantica holdbacks.35selector/renderer and8delivery/release tests pass;
+17corpus+5olderXML+9unit tests pass. Both new reports replay byte-for-byte.
+Full v14rebuild, archival coverage of this new evidence and broad admission remain
+open. Original610priority ledger unchanged; these six holds belong to the separate
+10,206observation deferred queue. No deployment or indexed-page gain.

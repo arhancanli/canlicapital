@@ -3,7 +3,7 @@
 | Phase | Scope | Status | Exit evidence |
 | --- | --- | --- | --- |
 | 0 | Review Claude, inventory production and preserve owner objectives | Initial review complete; continuity folder added | Recorded baseline, isolated worktrees, source-linked goals |
-| 1 | Source-selection correctness, bulk corpus audit and durable candidate catalog | Five cohorts replayed under v11; priority600reviewed/10withdrawn; v13rebuild and broader scope open | Production selector reused; rejected/conflicting inputs tested; atomic catalog; real corpus size reported without extrapolation |
+| 1 | Source-selection correctness, bulk corpus audit and durable candidate catalog | Five cohorts replayed under v11; priority600reviewed/10withdrawn; v14rebuild and broader scope open | Production selector reused; rejected/conflicting inputs tested; atomic catalog; real corpus size reported without extrapolation |
 | 2 | Relevant search-intent map and technical SEO release gates | Technical checkpoint passes local and remote checks; query/field measurement open | Canonical intent ownership, useful metadata, source-backed structured data, duplicate/crawl checks, CI enforcement and browser/performance evidence |
 | 3 | Serving and discovery at corpus scale | Combinedv11:90,737 unique candidate URLs across five cohorts; hosted transfer/production pending | Durable catalog/storage, cached rendering, real 404s, bounded directories/sitemaps, measured load/cost/freshness and failure behavior |
 | 4 | Release verified initial expansion and establish search measurements | Static327URL release and API revocation deployed/verified in production; company hosted storage pending | Passing release checks, verified production behavior, Search Console evidence, measured crawl/index exclusions |
