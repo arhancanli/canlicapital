@@ -1515,3 +1515,13 @@ total revenue for2013/2012, despite mentioning earlier research-agreement income
 NOVAGOLD's fact remains qualified by narrative context about its principal asset;
 no blanket approval of the remaining zero histories is claimed. Engine latest-head
 CI35499961114 still live at checkpoint; five other jobs pass. No deployment.
+
+## 2026-09-20 — full fourth-cohort archive preparation
+
+Previous turn verified v5delivery and isolated editorial supplement. New runtime
+plan57662exit0 binds2,074objects245,827,884bytes to releaseb40100cd;no uploads.
+Added a fourth-cohort-v5archive profile, retaining only this completed1,000issuer
+queue, its error bodies/editorial captures and v5runtime closure, independently
+of prior cohort archives. Five archive safety tests pass. Committing the profile
+and summary before packaging ensures the saved repository has the exact policy
+and restore code. Full packaging/isolated source-runtime replay is next.

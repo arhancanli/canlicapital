@@ -104,6 +104,11 @@ def complete_cohort(report, queue):
 
 
 def evidence_profile(profile):
+    if profile == 'fourth-cohort-v5':
+        return {'prefix': 'fourth-1000', 'suffix': 'v5',
+                'summary': 'company-fourth-storage-plan-v5-summary.json',
+                'plan_name': 'fourth-1000-storage-plan-v5.json',
+                'cohorts': ['fourth-1000'], 'editorial': ['fourth-editorial-filings']}
     if profile not in ('two-cohort', 'three-cohort', 'three-cohort-v3'):
         raise ValueError('Unknown evidence profile')
     three = profile != 'two-cohort'
@@ -170,7 +175,7 @@ if __name__ == '__main__':
     parser.add_argument('archive', type=Path)
     parser.add_argument('--root', type=Path, default=Path.cwd())
     parser.add_argument('--destination', type=Path)
-    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3'], default='two-cohort')
+    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5'], default='two-cohort')
     args = parser.parse_args()
     if args.mode == 'restore' and args.destination is None:
         parser.error('restore requires --destination (must not exist)')
