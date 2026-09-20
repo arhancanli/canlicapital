@@ -1,0 +1,57 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001528985",
+      "accession": "0001528985-26-000002",
+      "source_sha256": "58d6201c40d46da2346e9c0fec7d3d12074bd39c88db75cd6cd2529ae2171b64",
+      "primary_sha256": "d74c0d93581e22f917792cf853ab3376014bc1637b3f13fa48144067809419bf",
+      "fixture": "scripts/fixtures/editorial/inland-income-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 34,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss per common share, basic and diluted",
+        "Weighted average number of common shares outstanding"
+      ],
+      "paragraph_requires": [
+        "(Dollar amounts in thousands, except per share amounts)",
+        "The Company excludes antidilutive restricted shares",
+        "were excluded from the computation of diluted EPS, because they would have been antidilutive."
+      ],
+      "reader_note": "For 2023\u20132025, Inland Real Estate Income Trust uses net loss rather than comprehensive loss as its EPS numerator. Its filing explicitly excludes restricted shares as anti-dilutive: 7,820 in 2023, 9,717 in 2024 and 12,087 in 2025. Those excluded shares are not added to the weighted-average denominator. The statement heading scales dollar amounts, not share counts; shares and EPS retain scale-zero tags.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001529274",
+      "accession": "0001529274-26-000009",
+      "source_sha256": "a54f8859db01defe9f4a8d6d9cbbdac513ecdbf62d52f4e22c3addc5a248affa",
+      "primary_sha256": "ca894e5910efe18cfd3694354670acc194ecf5e281f52c00180b6986f9f28b41",
+      "fixture": "scripts/fixtures/editorial/alkami-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 39,
+      "share_scale": "0",
+      "table_requires": [
+        "Net Loss",
+        "Weighted average shares of common stock outstanding",
+        "(in thousands, except shares and per share amounts)"
+      ],
+      "paragraph_requires": [
+        "Because the Company has reported a net loss for 2025, 2024, and 2023",
+        "potentially dilutive shares would have been antidilutive if included in the calculation."
+      ],
+      "reader_note": "For 2023\u20132025, Alkami uses net loss attributable to common stockholders as its EPS numerator. Potential shares are excluded as anti-dilutive in each loss period; the disclosure continues across a page break. The excluded-equivalent table includes stock options, RSUs, employee stock purchase shares and, in 2025, convertible notes. These are not additional weighted-average shares. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags without altering reported values.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

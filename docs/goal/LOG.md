@@ -769,3 +769,16 @@ Both exclude potential dilution in loss periods. Source report replays identical
 46renderer/ledger tests pass; exactly24rows advance.698reviewed/458pending/
 20withdrawn,96presentation-only. No runtime rebuild, archive supplement, deployment
 or indexing gain. Next new index69; earlier gaps remain. All goals active.
+
+## 2026-09-21 — restricted-share counts and convertible-note exclusions
+
+Previous turn completed24Akebia/Fastlyreviews. PR92four CI35536734738checks passed
+at63b5da88; merged5ed4e4f5, identical tree2e29270ff00ff6326275aa6211421d9ae5d0ce85.
+Reviewed24Inland/Alkamiobservations. Inlandrestricted-share exclusions7,820/9,717/
+12,087in2023/2024/2025retained; net loss distinct from comprehensive loss. Alkami
+anti-dilution disclosure spans page break; both text parts verified,2025convertible
+notes among excluded equivalents. Full scale0shares/EPS/periods unchanged. Report
+replays byte-identically;47renderer/ledger tests pass; exactly24rows advance.
+722reviewed/434pending/20withdrawn,96presentation-only. Next new index71; earlier
+gaps remain. No runtime rebuild, archive supplement, deployment or indexing gain.
+All owner objectives remain active.
