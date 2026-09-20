@@ -760,3 +760,15 @@ wheels. Five archive-verifier tests pass; build/replay still pending.
 Archive build/replay39153started from committed3ddb2536. V10transfer82504also
 confirmed live; initial32objects verified with zero failures. Both jobs remain
 pending; do not treat an output archive's existence as successful replay.
+
+## 2026-09-20 — v10 archive closure and remaining equality context
+
+Previous turn started v10upload and archive.39153terminal0: archive23,119files/
+2,697,574,400bytes, SHA633cfbe1ccbbda383483cfb8cc4d40c3a9399b55b006072079b4ef779c81a62b.
+Isolated restore reproduces all five source queues/1,026exclusions,10,360runtime
+objects and exact Birdie scope report using offline locked wheels. No original
+capture/runtime reads or offsite-backup claim. Transfer82504continues independently.
+Recorded latest-period context for14remaining priority pairs/28observations,
+preserving three legacy primary tables and distinct concepts despite equality.
+A second offline output matches byte-for-byte. This later report is outside the
+just-completed archive; full-history review remains pending.

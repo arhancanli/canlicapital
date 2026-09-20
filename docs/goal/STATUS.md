@@ -134,6 +134,17 @@ corpus-local/company-five-cohort-v10-transfer-20260920.json; no publication appr
 PR36 merged4d091c1f0a34b31bed9002c728cc1ab84e04564f after four CI35519464225
 checks passed atf9038476; tested/merged treeba6a7e72f022befa3cd5b2d157b73ce618468252.
 
+## Remaining priority equality context
+
+Report company-remaining-equality-context-20260920.json records latest-period
+context for14other pairs/28observations. Eight asset/current-asset pairs, three
+operating/net-loss pairs, Morgan payable/current-liability, Emo comparative
+cash/current-assets and TECHCOM zero revenue/capex retain their distinct scope.
+Three legacy tables are source-hash checked. Offline replay is byte-identical;
+manual interpretations are recorded, not independently certified. This report was
+created after the v10archive and is not claimed archived there. Broader historical
+scope,712basic/diluted groups and other flags remain open.
+
 ## Immediate next work
 
 All610selected observations across38priority equality groups now numerically
@@ -167,11 +178,14 @@ company-five-cohort-storage-plan-v10.json. Plan10,360objects/1,280,300,997bytes;
 3,323keys shared withv9,7,037new keys. Shared keys are not remote verification.
 Audit company-five-cohort-v10-discovery-audit-20260920.json binds all roots.
 V10transfer82504 is active (fresh v10transfer receipt), one worker/500ms.
-Archive build/replay39153 is active from repository3ddb2536; output
+Archive build/replay39153 completed exit0 from repository3ddb2536; output
 corpus-local/five-cohort-v10-evidence-20260920.tar. Summary and restore receipts
-use prefix company-five-cohort-v10-evidence-. Do not claim completion until
-terminal success and receipt verification. Remaining editorial and hosted
-verification stay open. No deployment or indexed gain. Production remains327sitemap URLs.
+use prefix company-five-cohort-v10-evidence-.23,119files/2,697,574,400bytes,
+SHA633cfbe1ccbbda383483cfb8cc4d40c3a9399b55b006072079b4ef779c81a62b.
+Isolated restore replays all five queues with1,026exclusions/zero errors and
+all10,360runtime objects; Birdie scope report reproduces byte-for-byte with
+locked offline dependencies. Local portability only, no offsite backup.
+Remaining editorial and hosted verification stay open. No deployment or indexed gain. Production remains327sitemap URLs.
 
 ## Previous v9 candidate (preserved; superseded)
 
