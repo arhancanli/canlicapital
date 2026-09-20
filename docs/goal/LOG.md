@@ -149,3 +149,22 @@ Prepared100missing filings covering1,176selected observations; all rows match
 current v14records. Preparation12396terminal0. Paced acquisition started; preserve
 original missing-coverage baseline and stop on access responses. Numerical/scope
 verification still required. No rebuilt runtime or production activation.
+
+## 2026-09-20 — batch1 acquisition and first share-scale finding
+
+PR54merged71a67ef8 with four passing checks and exact tree equality. Existing
+collector79985polled live;83primaries/no errors at last checkpoint. Added strict
+completed-batch comparison input builder. Initial source inspection identifies
+Valhi six2023–2025share facts tagged28.5(scale0), conflicting with table255
+in-millions heading. Source-bound report replays byte-identically; six exact holds
+pending,2022follow-up targets prepared. No source correction or blanket admission.
+
+Collector79985completed exit0; all100primaries retained. Comparison targets verify
+1,176observations with zero capture gaps. Primary comparison92502started; after
+collector termination, one-filing Valhi2022follow-up acquisition started.
+
+Comparison92502terminal0:1,098of1,176inline matches,78unmatched across six
+legacy filings. Full target/review lossless gzips and exact partition summary
+retained. Valhi2022capture34865terminal0; table251 confirms the same scale0
+vs in-millions presentation. Eight selected rows need exact holds; supplement
+and policy next. No collector/comparison active; no admission or publication.

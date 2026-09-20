@@ -8,7 +8,7 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/currency-archive-20260920`. PR52 mergeda7ffd485; predecessor context below.
+`evidence/basic-diluted-batch1-20260920`. PR52 mergeda7ffd485; predecessor context below.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
@@ -17,8 +17,9 @@ rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
 comparison64980completed exit0. Combined v14pipeline16429 and current quality audit40310completed exit0; no uploader.
-Next: poll the existing basic/diluted batch1 capture, compare retained facts and
-review accounting scope/usefulness; currency archive closure is recorded below,
+Next: capture/compare six legacy instances for batch1 and implement eight exact
+Valhi share-scale holds with a source-bound2022supplement; continue accounting
+scope/usefulness review. Currency archive closure is recorded below,
 then rebuild the v15runtime and complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
@@ -365,3 +366,38 @@ Log/tmp/canli-basic-diluted-batch1-capture.log; capture report
 company-basic-diluted-capture-batch1-20260920.json is in progress and must not be
 claimed complete until its live tool handle returns terminal. No admission or
 new runtime/production/indexing gain. All broader owner goals remain active.
+
+## Batch1 review underway; Valhi scale conflict
+
+PR54 merged71a67ef8f097350db1aef5ea5baf2fd3930c9893 after all four checks
+in35527335246passed at9bc0dbdda51f61fbb134c9bb281a3b9f01d82824.
+Tested/merged treec44e9acefdd6dfd76e88dc1c2f09a4c54c961c31.
+Previous goal turn completed currency archive and started100filing acquisition.
+Capture79985completed exit0:100primaries/1,176observations, zero capture gaps.
+Primary comparison92502completed exit0:1,098/1,176inline matches;78unmatched
+observations in six legacy filings. Full target/review JSON retained losslessly
+in tracked gzip files; summary pins hashes and exact target/check partition. Comparison input builder now binds completed batch, exact receipt/body
+hashes and observations, preserving capture gaps rather than asserting admission.
+
+Early source inspection: ValhiCIK0000059255 latest annual filing accession
+0001104659-26-025847 tags six2023–2025 basic/diluted weighted-share observations
+as28.5shares with scale0; table255heading says in millions except per-share data.
+Exact numeric comparator matches the tags but exposes this source-scale conflict.
+company-valhi-share-scale-20260920.json retains original markup/table/header;
+independent replay byte-identical. Captured companyfacts fixture retained. Six
+exact holds required, NOT YET IMPLEMENTED. Do not silently multiply values.
+Selected2022rows from0001558370-25-002409also28.5; two targets prepared in
+company-valhi-2022-targets-20260920.json for source review after current collector.
+After79985completed, Valhi2022capture34865completed exit0. Primary SHA
+c80b47c58940a1990e7864dc14f3cab1d8d58be1a4301abf0d52781cde5082f2:
+table251 has the same in-millions header and original2022basic/diluted facts
+28.5shares/scale0. Thus eight selected observations need holds; formal2022
+supplement and policy implementation remain next. No collector/comparison active.
+Early111,Inc14/14and Valhi12/12numeric diagnostics
+are not full batch verification or scope admission. All broader goals remain open.
+
+Batch1primary summary company-basic-diluted-batch1-summary-20260920.json
+retains every unresolved key. Six affected accessions are listed there; XML
+acquisition not started.1,098tag matches do not admit those values, as the Valhi
+scale conflict demonstrates. This batch is separate from original150/150retained
+numerical closure; earlier reports and their hashes remain unchanged.
