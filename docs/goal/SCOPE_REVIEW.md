@@ -29,7 +29,7 @@ For an additional review:
 6. Run the scope-ledger and renderer tests, update STATUS/LOG and submit the
    source evidence, notes, registry change and new ledger together.
 
-Current policy is cumulative v17. A new exclusion policy requires explicit selector,
+Current policy is cumulative v22. A new exclusion policy requires explicit selector,
 reconciler and full-corpus transition verification. This registry does not activate
 production or approve full histories, issuers or the corpus. The initial registered
 output exactly matches every row and count in the frozen v6ledger. Historical
@@ -59,3 +59,15 @@ Batch6uses replay v4to include text held directly in leaf spans and inline-XBRL
 continuations. MacroGenics places its dilution paragraph in a continuation beside
 an embedded table, so leaf paragraph/division extraction omitted it. The original
 source was inspected before adding that narrowly bound review requirement.
+
+
+Batch2 acquisition (September21) is separate from the closed batch1 registry.
+`prepare-basic-diluted-capture-batch-v2.py` pins the frozen v22 delivery manifest,
+checks exact selected observations and retained primary URL/body bindings, and
+selects the next100missing filings (87companies/800observations). Target receipt:
+`artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json`.
+Do not register batch2 outcomes through the batch1-only reconciler. First complete
+acquisition, bind exact inputs with `prepare-captured-basic-diluted-review.py`,
+compare numerically with the existing offline reviewer, and preserve unresolved
+items. Context/scope decisions require inspected statement and disclosure evidence.
+Neither acquisition nor numerical agreement approves the company or full history.
