@@ -7,8 +7,8 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 ## Active work and exact handles
 
 - Fifth source capture: session49258, started09:02:13.251UTC, directory
-  artifacts/seo/corpus-local/fifth-1000. Last checkpoint98/1000:71review candidates,
-  10content exclusions,17HTTPerrors; no stop or finish. Poll this same handle.
+  artifacts/seo/corpus-local/fifth-1000. Last checkpoint224/1000:147review candidates,
+  31content exclusions,46HTTPerrors; no stop or finish. Poll this same handle.
   Do not restart because a poll times out or replace its queue.
 - Engine latest-head CI35499961114 is running on867d211. Five jobs pass; offline
   pytest remains live. Earlier combined74c5461 passed all jobs in35498286728.
@@ -44,8 +44,10 @@ cohort. Original source bytes are preserved.
 
 Priority review reproduced120observations across36filings;14unusual equality
 groups have latest-filing context. This is not all-history or editorial approval.
-V6still has3,146overlapping quality flags, including22zero histories. Remaining
-scope/usefulness, historical and unit reviews stay open. See COMPANY_EDITORIAL_POLICY.md.
+V6still has3,146overlapping quality flags, including22zero histories. A new
+source-bound review supports21latest zero contexts; Nika remains unresolved
+because its tagged narrative says no income rather than an explicit revenue total.
+All-history, usefulness and unit reviews remain open. See COMPANY_EDITORIAL_POLICY.md.
 
 Fifth queue contains1,000new issuers, disjoint from all four website queues,
 both staged deliveries and600retained engine acquisition identities. Queue SHA

@@ -30,3 +30,19 @@ Archived STATUS SHA256:1ec5d69fb0898ce77579783f5cc610d38316937e8a5ed50ee7ede4579
 Archived LOG SHA256:2eaca6000d130f54428b09aaf0841b7610e3120108a917692b5aaa47e69c2748.
 Fifth selection receipt replay is byte-identical.
 Capture49258re-polled live; latest98/1000:71review candidates,10content exclusions,17HTTPerrors,no stop/finish.
+
+## 2026-09-20 — retained zero histories and ledger reconciliation
+
+Previous turn started the fifth capture with verified disjointness and preserved
+concise continuity. Reviewed all22retained zero histories against original
+latest-selected filings and prior numerical comparisons. New reproducible report
+binds quality,targets,capture,inline/XBRL comparison hashes and primary bodies.
+21latest contexts are supported by statement rows or explicit zero-total narratives.
+Nika1145604 remains open: tagged wording says no income, which does not explicitly
+establish revenue. This is not an all-history or publication approval. Report
+replay is byte-identical; statements' containing tables retain period context.
+
+Fifthcapture49258still running:224processed,147review candidates,31exclusions,
+46HTTPerrors; no stop/finish. EngineCI35499961114 remains live. Reconciled stale
+execution-ledger capture states and preserved its full prior version. All owner
+objectives remain active; no deployment, publication or investment outcome claim.

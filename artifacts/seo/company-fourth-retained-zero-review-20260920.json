@@ -1,0 +1,1234 @@
+{
+  "schema": "canli.retained-zero-context-review.v1",
+  "publication_approved": false,
+  "input_sha256": {
+    "quality": "bfa61b260ddb7b305dd032dd74382d8c0189c0a9c6d3b7bcf4fc540c91c30574",
+    "targets": "c156b59d5a3c1512d84053a5077cbfad0bca0e2af4bc16d2391deb74cd7c94cf",
+    "capture": "b6f501cd9a151f75a05ff77bf0851ce19dfb5085e27364d1d79c09567593996d",
+    "inline": "86a8b0e079e8e3d352c2647f8eddc755be6666a58aabcdaab20f80802378c50d",
+    "xbrl": "9889d9b7483f4a14436d24a3d43ca6480bb821b01c45462dc4ffb48db61b9420"
+  },
+  "code_sha256": "bc7aa0929dfc52ec3751c37f3c9a87ff95ba382bd4362e444f06150ead2bd26f",
+  "reviewed_histories": 22,
+  "latest_context_supported": 21,
+  "scope_open": 1,
+  "cases": [
+    {
+      "cik": "0001128189",
+      "tag": "Revenues",
+      "source_sha256": "d5fea58c9b85ce4802deab1ddbd9926e3cd0849c04c048eaff166aeebd739904",
+      "accession": "0001079973-15-000278",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1128189/000107997315000278/pktx_10k-123114.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:12.026437+00:00",
+        "bytes": 869313,
+        "sha256": "633eab44b1876ff903e8b4005fb893af586b2045f23cf5b93a4a6e8ab0ba88e3",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001128189-0001079973-15-000278-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2014-01-01",
+          "end": "2014-12-31",
+          "val": 0,
+          "accn": "0001079973-15-000278",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2015-04-14",
+          "frame": "CY2014",
+          "unit": "USD"
+        },
+        {
+          "start": "2013-01-01",
+          "end": "2013-12-31",
+          "val": 0,
+          "accn": "0001079973-15-000278",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2015-04-14",
+          "frame": "CY2013",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "narrative",
+          "text": "Our Company has no revenues and very limited operating history."
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001132509",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+      "source_sha256": "cb59c15a9bb07d5f04e6dc11de468c6f3ea2e4acf6fc3c4a5e740f185d88bc11",
+      "accession": "0001010412-14-000067",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1132509/000101041214000067/k13clean41014.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:15.496537+00:00",
+        "bytes": 376983,
+        "sha256": "f05863ee8d8666e13b67eacee9cebd5795e100912532239410faaeb44eed1f6e",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001132509-0001010412-14-000067-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2013-01-01",
+          "end": "2013-12-31",
+          "val": 0,
+          "accn": "0001010412-14-000067",
+          "fy": 2013,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2014-04-14",
+          "frame": "CY2013",
+          "unit": "USD"
+        },
+        {
+          "start": "2012-01-01",
+          "end": "2012-12-31",
+          "val": 0,
+          "accn": "0001010412-14-000067",
+          "fy": 2013,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2014-04-14",
+          "frame": "CY2012",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Purchase of property, plant and equipment - - (1,761)",
+          "containing_table_text": "HAN LOGISTICS, INC. [A DEVELOPMENT STAGE COMPANY] STATEMENTS OF CASH FLOWS FOR THE YEARS ENDED DECEMBER 31, 2013 AND 2012 AND FOR THE PERIOD FROM INCEPTION (JULY 1, 1999) TO DECEMBER 31, 2013 Inception Year Ended Year Ended (July 1, 1999) to December 31, December 31, December 31, 2013 2012 2013 CASH FLOWS FROM OPERATING ACTIVITIES: Net (Loss) from operations $ (49,688) $ (46,811) $ (572,014) Adjustments to reconcile net loss to net cash used in operating activities: Depreciation - - 1,761 Amortization of interest on beneficial conversion - - 40,600 Changes in assets and liabilities: Increase in accounts payable 16,921 18,790 216,895 Increase in accrued expenses 14,797 13,426 83,230 Net cash provided by operating activities (17,970) (14,595) (229,528) CASH FLOWS FROM INVESTING ACTIVITIES: Purchase of property, plant and equipment - - (1,761) Net cash used in investing activities - - (1,761) CASH FLOWS FROM FINANCING ACTIVITIES: Increase in notes payable - - 23,000 Increase in notes payable-Related parties 17,950 14,500 128,104 Net proceeds from issuance of common stock - - 80,302 Net cash provided by financing activities 17,950 14,500 231,406 Net Increase (decrease) in cash (20) (95) 117 CASH AT BEGINNING PERIOD 137 232 - CASH AT END OF PERIOD $ 117 $ 137 $ 117 SUPPLEMENTAL CASH FLOW INFORMATION: Cash paid for income taxes $ - $ - $ - Cash paid for interest expense $ - $ - $ -"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001134982",
+      "tag": "Revenues",
+      "source_sha256": "f311f53f9f351f0afa70c7a117279ba0ad4f6f7a8a28f1807402e0a852919a0e",
+      "accession": "0001477932-26-002110",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793226002110/aapi_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:19.726947+00:00",
+        "bytes": 983131,
+        "sha256": "a80eca48fc1e634d8f5a8445ada5eb7c6834dd95b69bde4e9037987b5e6fe246",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001134982-0001477932-26-002110-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0,
+          "accn": "0001477932-26-002110",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-10",
+          "frame": "CY2025",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001477932-26-002110",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-10",
+          "frame": "CY2024",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Net revenues $ - $ -",
+          "containing_table_text": "Years Ended December 31, 2025 2024 Net revenues $ - $ - Operating expenses: Corporate expense 285,206 458,366 Consulting and professional fees 5,774,130 2,237,043 Selling, general, and administrative 532,696 724,017 Total operating expenses 6,592,032 3,419,426 Loss from operations ( 6,592,032 ) ( 3,419,426 ) Other (expenses) and income: Forgiveness of debt - 659,663 Interest expense, net ( 47,405 ) ( 92,194 ) Gain on extinguishment of liability 51,600 - Foreign exchange gain 180,128 30,621 Total other (expenses) and income 184,323 598,090 Operating loss before income taxes ( 6,407,709 ) ( 2,821,336 ) Provision for income taxes - - Net loss $ ( 6,407,709 ) $ ( 2,821,336 ) Foreign currency translation adjustment ( 463,340 ) 414,337 Comprehensive loss $ ( 6,871,049 ) $ ( 2,406,999 ) Net loss per share - basic and diluted $ ( 0.03 ) $ ( 0.00 ) Weighted number of shares outstanding Basic and Diluted 219,490,379 206,701,891"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001145604",
+      "tag": "Revenues",
+      "source_sha256": "72455d4e19d0f82286a99d0fa349659ab1ab793431c0cac82c5fb18286c89242",
+      "accession": "0001826466-25-000030",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646625000030/form-10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:23.126528+00:00",
+        "bytes": 394447,
+        "sha256": "dcc71b79e2db72456137bc7a6fde63c91eb0f9aa43ddb64604b47016debd576b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001145604-0001826466-25-000030-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001826466-25-000030",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-31",
+          "frame": "CY2024",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "narrative",
+          "text": "has no current operations and has generated no income to date."
+        }
+      ],
+      "disposition": "NARRATIVE_INCOME_SCOPE_REMAINS_OPEN",
+      "note": "The tagged wording says no income, not an explicit revenue total; numerical reproduction does not resolve that meaning."
+    },
+    {
+      "cik": "0001172178",
+      "tag": "Revenues",
+      "source_sha256": "4915970839453514b4b5e641234178fd6f2c03d99ec5b6bdb74b786956db6290",
+      "accession": "0001062993-15-002327",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1172178/000106299315002327/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:33.044275+00:00",
+        "bytes": 443771,
+        "sha256": "3140cbb252ebbf5822c52a18989d3db33a50885ee595ff0b0dc42f160bd841f9",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001172178-0001062993-15-002327-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2014-02-01",
+          "end": "2015-01-31",
+          "val": 0,
+          "accn": "0001062993-15-002327",
+          "fy": 2015,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2015-05-01",
+          "frame": "CY2014",
+          "unit": "USD"
+        },
+        {
+          "start": "2013-02-01",
+          "end": "2014-01-31",
+          "val": 0,
+          "accn": "0001062993-15-002327",
+          "fy": 2015,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2015-05-01",
+          "frame": "CY2013",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenues $ - $ -",
+          "containing_table_text": "For the Twelve Months Ended January 31, 2015 2014 Revenues $ - $ - Expenses: Geological and geophysical costs 173,057 463,124 Salaries and benefits 293,096 513,418 Public relations 136,453 210,776 Depreciation 27,324 32,827 Legal 79,117 177,472 Professional services 89,785 51,115 General and administrative 223,128 268,236 Travel 24,824 46,268 Net operating expenses 1,046,784 1,763,236 Loss from operations (1,046,784 ) (1,763,236 ) Other income (expense): Interest income 5 15 Interest expense (643,430 ) (522,953 ) Gain (loss) on change in fair value of derivative liability 482,697 (31,873 ) Gain on settlement of debt 5,322,943 - Total other income (expense) 5,162,215 (554,811 ) Net income (loss) $ 4,115,431 $ (2,318,047 ) Basic net income (loss) per share of common stock $ 0.00 $ (0.00 ) Diluted net income (loss) per share of common stock $ 0.00 $ (0.00 ) Basic weighted average number of shares of common stock outstanding 884,138,341 803,439,114 Diluted weighted average number of shares of common stock outstanding 1,004,926,936 803,439,114"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001174891",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+      "source_sha256": "2bb635f3361b6d3631bec56c78d3be3f5092607b366954e0af6c6a7241edce59",
+      "accession": "0001387131-14-000132",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1174891/000138713114000132/rsrt-10k_20130930.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:43.447686+00:00",
+        "bytes": 1236476,
+        "sha256": "2a3d2546ec219b5a2bfe24f65b6f7f3a3f508fb14eb46a9164f3d183000ff01c",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001174891-0001387131-14-000132-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2012-10-01",
+          "end": "2013-09-30",
+          "val": 0,
+          "accn": "0001387131-14-000132",
+          "fy": 2013,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2014-01-14",
+          "frame": "CY2013",
+          "unit": "USD"
+        },
+        {
+          "start": "2011-10-01",
+          "end": "2012-09-30",
+          "val": 0,
+          "accn": "0001387131-14-000132",
+          "fy": 2013,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2014-01-14",
+          "frame": "CY2012",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Purchase of equipment \u2014 \u2014 (22,764 )",
+          "containing_table_text": "For the Period from For the Fiscal Year For the Fiscal Year June 14, 2004 Ended Ended (inception) through September 30, 2013 September 30, 2012 September 30, 2013 Cash flows from operating activities: Net loss $ (35,818 ) $ (1,763 ) $ (7,145,789 ) Adjustments to reconcile net loss to net cash used in operating activities: Forgiveness of debt (32,079 ) \u2014 (32,079 ) Amortization \u2014 \u2014 133,600 Accretion of convertible debenture \u2014 \u2014 302,808 Shares issued or to be issued for services \u2014 \u2014 1,487,236 Stock-based compensation \u2014 \u2014 1,658,590 Compensation shares \u2014 \u2014 25,000 Deferred income tax \u2014 \u2014 (57,415 ) Asset impairment \u2014 \u2014 59,010 Gain on sale of subsidiary \u2014 \u2014 (126,515 ) Loss from sale of intellectual property \u2014 \u2014 78,570 Changes in operating assets and liabilities: Prepaid expenses 3,500 (3,104 ) (2,781 ) Other receivables \u2014 \u2014 (10,259 ) Accounts payable and accrued liabilities 18,851 (11,937 ) 274,834 Due to related parties \u2014 \u2014 271,984 Net cash used in operating activities (45,546 ) (16,804 ) (3,083,206 ) Cash flows from investing activities: Cash paid for acquisition of PPT shares \u2014 \u2014 (51,507 ) Proceeds from the sale of subsidiary \u2014 \u2014 1 Purchase of equipment \u2014 \u2014 (22,764 ) Net cash used in investing activities \u2014 \u2014 (74,270 ) Cash flows from financing activities: Proceeds from issuance of convertible debentures \u2014 \u2014 1,000,000 Proceeds from issuance of common shares, net \u2014 35,000 2,030,345 Advances from (repayment made to) related party 42,823 (25,000 ) 131,310 Net cash provided by financing activities 42,823 10,000 3,161,655 Effect of exchange rate changes on cash \u2014 (1,486 ) (2,590 ) Net change in cash (2,723 ) (8,290 ) 1,589 Cash at beginning of period 4,312 12,602 \u2014 Cash at end of period $ 1,589 $ 4,312 $ 1,589 Supplemental disclosure of cash flows information: Interest paid $ \u2014 $ \u2014 $ \u2014 Income tax paid $ \u2014 $ \u2014 $ \u2014 NON-CASH INVESTING AND FINANCING ACTIVITIES: Common stock issued for debt $ 35,000 $ \u2014 $ 35,000"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001222333",
+      "tag": "CashAndCashEquivalentsAtCarryingValue",
+      "source_sha256": "321be41d7b0198f009342adb5de7906702e6f09d9de66948fc66b39ff2faba2f",
+      "accession": "0001193125-17-354077",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1222333/000119312517354077/d458473d10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:47.126657+00:00",
+        "bytes": 969344,
+        "sha256": "276ed924ea13f437011ff4239c5c28f141b958493e1cb6c7e7ea454b31e2ec9b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001222333-0001193125-17-354077-primary.response"
+      },
+      "selected_observations": [
+        {
+          "end": "2017-09-30",
+          "val": 0,
+          "accn": "0001193125-17-354077",
+          "fy": 2017,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-11-28",
+          "unit": "USD"
+        },
+        {
+          "end": "2016-09-30",
+          "val": 0,
+          "accn": "0001193125-17-354077",
+          "fy": 2017,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-11-28",
+          "unit": "USD"
+        },
+        {
+          "end": "2015-09-30",
+          "val": 0,
+          "accn": "0001193125-17-354077",
+          "fy": 2017,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-11-28",
+          "frame": "CY2015Q3I",
+          "unit": "USD"
+        },
+        {
+          "end": "2014-09-30",
+          "val": 0,
+          "accn": "0001193125-17-354077",
+          "fy": 2017,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-11-28",
+          "frame": "CY2014Q3I",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Cash and cash equivalents at end of period $ \u2014 $ \u2014 $ \u2014",
+          "containing_table_text": "(Amounts in 000\u2019s of US$) Year Ended Sep-30, 2017 Year Ended Sep-30, 2016 Year Ended Sep-30, 2015 INCREASE / DECREASE IN CASH FROM OPERATIONS: Proceeds received from sales of gold $ 137,548 $ 122,393 $ 115,174 Expenses paid (137,548 ) (122,393 ) (115,174 ) Increase/(Decrease) in cash resulting from operations \u2014 \u2014 \u2014 Cash and cash equivalents at beginning of period \u2014 \u2014 \u2014 Cash and cash equivalents at end of period $ \u2014 $ \u2014 $ \u2014 SUPPLEMENTAL DISCLOSURE OF NON-CASH FINANCING ACTIVITIES: Value of gold received for creation of shares \u2014 net of gold receivable $ 11,161,181 $ 20,949,847 $ 6,447,849 Value of gold distributed for redemption of shares \u2014 net of gold payable $ 13,953,611 $ 10,052,178 $ 9,247,346 (Amount in 000\u2019s of US$) Year Ended Sep-30, 2017 Year Ended Sep-30, 2016 Year Ended Sep-30, 2015 RECONCILIATION OF NET INCOME/(LOSS) TO NET CASH PROVIDED BY OPERATING ACTIVITIES Net income/(loss) $ (1,893,972 ) $ 4,951,423 $ (2,685,202 ) Adjustments to reconcile net income/(loss) to net cash provided by operating activities Proceeds from sales of gold to pay expenses 137,548 122,393 115,174 Net realized (gain)/loss from investment in gold sold to pay expenses (252 ) (614 ) 5,170 Net realized (gain)/loss from gold distributed for the redemption of shares 222,162 6,601 447,044 Net change in unrealized (appreciation)/depreciation on investment in gold 1,535,978 (5,084,486 ) 2,122,974 Increase/(Decrease) in accounts payable to Sponsor (1,464 ) 4,683 (5,160 ) Net cash provided by operating activities $ \u2014 $ \u2014 $ \u2014"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001222333",
+      "tag": "NetCashProvidedByUsedInOperatingActivities",
+      "source_sha256": "321be41d7b0198f009342adb5de7906702e6f09d9de66948fc66b39ff2faba2f",
+      "accession": "0001437749-25-036305",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1222333/000143774925036305/gld20250930_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:50.737712+00:00",
+        "bytes": 1069827,
+        "sha256": "7fb75666fb5474430ce72cfa07bb5e6dd5615468fe9fcc910cb0df36d38f1f73",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001222333-0001437749-25-036305-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2024-10-01",
+          "end": "2025-09-30",
+          "val": 0,
+          "accn": "0001437749-25-036305",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-11-25",
+          "frame": "CY2025",
+          "unit": "USD"
+        },
+        {
+          "start": "2023-10-01",
+          "end": "2024-09-30",
+          "val": 0,
+          "accn": "0001437749-25-036305",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-11-25",
+          "frame": "CY2024",
+          "unit": "USD"
+        },
+        {
+          "start": "2022-10-01",
+          "end": "2023-09-30",
+          "val": 0,
+          "accn": "0001437749-25-036305",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-11-25",
+          "frame": "CY2023",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Net cash provided by operating activities $ \u2014 $ \u2014 $ \u2014",
+          "containing_table_text": "For the For the For the (All amounts in the following table and the subsequent paragraphs are in year ended year ended year ended 000\u2019s of US$) Sep-30, 2025 Sep-30, 2024 Sep-30, 2023 Net realized and change in unrealized gain/(loss) on investment in gold $ 35,916,622 $ 20,605,087 $ 5,769,797 Net income/(loss) $ 35,553,538 $ 20,362,993 $ 5,548,188 Net cash provided by operating activities $ \u2014 $ \u2014 $ \u2014"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001228627",
+      "tag": "Revenues",
+      "source_sha256": "59b3f548361fa5c66fb8bd927bac9bc7dc8822bcce158860c7c4d77974af0a92",
+      "accession": "0001140361-14-013828",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1228627/000114036114013828/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:54.244916+00:00",
+        "bytes": 2127034,
+        "sha256": "2fa7bfcb5f19c1a0944a5d718c06836fd2f1bc5148d34cb2539a269dcd967f0c",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001228627-0001140361-14-013828-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2013-01-01",
+          "end": "2013-12-31",
+          "val": 0,
+          "accn": "0001140361-14-013828",
+          "fy": 2013,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2014-03-21",
+          "frame": "CY2013",
+          "unit": "USD"
+        },
+        {
+          "start": "2012-01-01",
+          "end": "2012-12-31",
+          "val": 0,
+          "accn": "0001140361-14-013828",
+          "fy": 2013,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2014-03-21",
+          "frame": "CY2012",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "narrative",
+          "text": "Total Revenues We had no revenues for the years ended December 31, 2013 or 2012."
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001278680",
+      "tag": "CashAndCashEquivalentsAtCarryingValue",
+      "source_sha256": "5b29f854702419ea68ebefff4596f7e073a5795789fb4769ecf357eb8edd38ef",
+      "accession": "0001437749-23-004329",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1278680/000143774923004329/iau20221231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:02.668310+00:00",
+        "bytes": 773612,
+        "sha256": "434320bf7dce93dbf3bb149dab30a3f0a9f331091e8a6137a128cea6f3fff307",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001278680-0001437749-23-004329-primary.response"
+      },
+      "selected_observations": [
+        {
+          "end": "2022-12-31",
+          "val": 0,
+          "accn": "0001437749-23-004329",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-02-23",
+          "frame": "CY2022Q4I",
+          "unit": "USD"
+        },
+        {
+          "end": "2021-12-31",
+          "val": 0,
+          "accn": "0001437749-23-004329",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-02-23",
+          "frame": "CY2021Q4I",
+          "unit": "USD"
+        },
+        {
+          "end": "2020-12-31",
+          "val": 0,
+          "accn": "0001437749-23-004329",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-02-23",
+          "frame": "CY2020Q4I",
+          "unit": "USD"
+        },
+        {
+          "end": "2019-12-31",
+          "val": 0,
+          "accn": "0001437749-23-004329",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-02-23",
+          "frame": "CY2019Q4I",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Cash, end of year $ \u2014 $ \u2014 $ \u2014",
+          "containing_table_text": "Years Ended December 31, 2022 2021 2020 Cash Flows from Operating Activities Proceeds from gold bullion sold to pay expenses $ 71,964,743 $ 73,370,533 $ 62,451,444 Expenses \u2013 Sponsor\u2019s fees paid ( 71,964,743 ) ( 73,370,533 ) ( 62,451,444 ) Net cash provided by operating activities \u2014 \u2014 \u2014 Increase (decrease) in cash \u2014 \u2014 \u2014 Cash, beginning of year \u2014 \u2014 \u2014 Cash, end of year $ \u2014 $ \u2014 $ \u2014 Reconciliation of Net Increase (Decrease) in Net Assets Resulting from Operations to Net Cash Provided by (Used in) Operating Activities Net increase (decrease) in net assets resulting from operations $ ( 538,963,594 ) $ ( 1,399,133,475 ) $ 4,804,011,813 Adjustments to reconcile net increase (decrease) in net assets resulting from operations to net cash provided by (used in) operating activities: Proceeds from gold bullion sold to pay expenses 71,964,743 73,370,533 62,451,444 Net realized (gain) loss ( 583,770,788 ) ( 578,252,839 ) ( 496,187,915 ) Net change in unrealized appreciation/depreciation 1,051,283,081 1,904,612,983 ( 4,373,267,647 ) Change in operating assets and liabilities: Sponsor\u2019s fees payable ( 513,442 ) ( 597,202 ) 2,992,305 Net cash provided by (used in) operating activities $ \u2014 $ \u2014 $ \u2014 Supplemental disclosure of non-cash information: Gold bullion contributed for Shares issued $ 2,989,014,129 $ 1,853,104,516 $ 12,103,493,289 Gold bullion distributed for Shares redeemed $ ( 5,018,182,038 ) $ ( 3,649,216,540 ) $ ( 2,617,761,048 )"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001278680",
+      "tag": "NetCashProvidedByUsedInOperatingActivities",
+      "source_sha256": "5b29f854702419ea68ebefff4596f7e073a5795789fb4769ecf357eb8edd38ef",
+      "accession": "0001437749-26-006055",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1278680/000143774926006055/iau20251231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:06.019182+00:00",
+        "bytes": 844067,
+        "sha256": "ccb1a5ee856578c8dbcbcec755fd2c15fd757a3d86425aeb695af808c5088c0b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001278680-0001437749-26-006055-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0,
+          "accn": "0001437749-26-006055",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-27",
+          "frame": "CY2025",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001437749-26-006055",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-27",
+          "frame": "CY2024",
+          "unit": "USD"
+        },
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": 0,
+          "accn": "0001437749-26-006055",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-27",
+          "frame": "CY2023",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Net cash provided by operating activities \u2014 \u2014 \u2014",
+          "containing_table_text": "Years Ended December 31, 2025 2024 2023 Cash Flows from Operating Activities Proceeds from gold bullion sold to pay expenses $ 116,647,795 $ 71,864,246 $ 67,745,940 Expenses \u2013 Sponsor\u2019s fees paid ( 116,647,795 ) ( 71,864,246 ) ( 67,745,940 ) Net cash provided by operating activities \u2014 \u2014 \u2014 Increase (decrease) in cash \u2014 \u2014 \u2014 Cash, beginning of year \u2014 \u2014 \u2014 Cash, end of year $ \u2014 $ \u2014 $ \u2014 Reconciliation of Net Increase (Decrease) in Net Assets Resulting from Operations to Net Cash Provided by (Used in) Operating Activities Net increase in net assets resulting from operations $ 24,262,756,542 $ 6,552,363,855 $ 3,251,914,160 Adjustments to reconcile net increase (decrease) in net assets resulting from operations to net cash provided by (used in) operating activities: Proceeds from gold bullion sold to pay expenses 116,647,795 71,864,246 67,745,940 Litigation proceeds (a) ( 12,290 ) ( 86,528 ) \u2014 Net realized (gain) loss ( 1,678,810,505 ) ( 1,154,104,842 ) ( 935,795,342 ) Net change in unrealized appreciation/depreciation ( 22,707,956,965 ) ( 5,471,556,691 ) ( 2,383,885,667 ) Change in operating assets and liabilities: Sponsor\u2019s fees payable 7,375,423 1,519,960 20,909 Net cash provided by (used in) operating activities $ \u2014 $ \u2014 $ \u2014 Supplemental disclosure of non-cash information: Gold bullion contributed for Shares issued $ 14,775,772,166 $ 3,613,272,575 $ 1,988,659,596 Gold bullion distributed for Shares redeemed $ ( 3,617,499,975 ) $ ( 3,635,074,817 ) $ ( 4,970,554,906 )"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001281895",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "source_sha256": "0bcbe84a05b7de7c12edb430923484b522633d995abac19aad70bdfd9e60b3ef",
+      "accession": "0001193125-26-076551",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526076551/rckt-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:09.542768+00:00",
+        "bytes": 3042627,
+        "sha256": "7e27bf9620e03e6ea7cca056cb14df401e7a65b66fec1ab5b5965a12293d3709",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001281895-0001193125-26-076551-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0,
+          "accn": "0001193125-26-076551",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2025",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001193125-26-076551",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2024",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenue $ - $ -",
+          "containing_table_text": "For the Years Ended December 31, 2025 2024 Revenue $ - $ - Operating expenses: Research and development 142,015 171,244 General and administrative 86,501 101,961 Restructuring 3,231 - Total operating expenses 231,747 273,205 Loss from operations ( 231,747 ) ( 273,205 ) Interest expense ( 1,891 ) ( 1,886 ) Interest and other income, net 3,218 8,267 Accretion of discount on investments, net 7,297 8,078 Net loss $ ( 223,123 ) $ ( 258,746 ) Net loss per share - basic and diluted $ ( 2.01 ) $ ( 2.73 ) Weighted-average common shares outstanding - basic and diluted 111,123,770 94,807,773"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001310630",
+      "tag": "Revenues",
+      "source_sha256": "3603d8cfe4c576d4c472a755c8b08b2075469a13b9c59f14884f55261ce32c8f",
+      "accession": "0001548123-19-000112",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310630/000154812319000112/trafalgarresourcesinc-201893.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:21.416035+00:00",
+        "bytes": 327824,
+        "sha256": "95ac8f18680fe75b66df28b6ae31d51c7d79e519ecc4ec421a7e50ac0e6bfa8d",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001310630-0001548123-19-000112-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2017-10-01",
+          "end": "2018-09-30",
+          "val": 0,
+          "accn": "0001548123-19-000112",
+          "fy": 2018,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-05-24",
+          "frame": "CY2018",
+          "unit": "USD"
+        },
+        {
+          "start": "2016-10-01",
+          "end": "2017-09-30",
+          "val": 0,
+          "accn": "0001548123-19-000112",
+          "fy": 2018,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-05-24",
+          "frame": "CY2017",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenues $ - $ -",
+          "containing_table_text": "For the Year Ended September 30, 2018 For the Year Ended September 30, 2017 Revenues $ - $ - General and Administrative Expenses 42,308 29,118 Net Loss 62,758 54,918 Basic Loss per Share (0.01) (0.01) Diluted Loss per Share (0.01) (0.01) Weighted Average Number of Shares Outstanding 5,251,309 5,251,309 Weighted Average Number of Fully Diluted Shares Outstanding 5,251,309 5,251,309 BALANCE SHEET DATA : September 30, 2018 September 30, 2017 Total Current Assets $ - $ 18,473 Total Assets - 18,473 Total Current Liabilities 18,059 294,321 Working Capital (Deficit) (18,059) (275,848) Stockholders\u2019 Equity (Deficit) (18,059) (305,848)"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001330568",
+      "tag": "CashAndCashEquivalentsAtCarryingValue",
+      "source_sha256": "798a9fffe0b75079cb0ddaad5c7f2579f8a84d06c75fa67ac8a1a1bc49e41092",
+      "accession": "0001437749-23-004332",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1330568/000143774923004332/slv20221231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:29.146920+00:00",
+        "bytes": 776326,
+        "sha256": "92940a5e7bbf754973bd13e21037a27dd4f94e5340177b318bba1bdc0f73e749",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001330568-0001437749-23-004332-primary.response"
+      },
+      "selected_observations": [
+        {
+          "end": "2022-12-31",
+          "val": 0,
+          "accn": "0001437749-23-004332",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-02-23",
+          "frame": "CY2022Q4I",
+          "unit": "USD"
+        },
+        {
+          "end": "2021-12-31",
+          "val": 0,
+          "accn": "0001437749-23-004332",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-02-23",
+          "frame": "CY2021Q4I",
+          "unit": "USD"
+        },
+        {
+          "end": "2020-12-31",
+          "val": 0,
+          "accn": "0001437749-23-004332",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-02-23",
+          "frame": "CY2020Q4I",
+          "unit": "USD"
+        },
+        {
+          "end": "2019-12-31",
+          "val": 0,
+          "accn": "0001437749-23-004332",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-02-23",
+          "frame": "CY2019Q4I",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Cash, end of year $ \u2014 $ \u2014 $ \u2014",
+          "containing_table_text": "Years Ended December 31, 2022 2021 2020 Cash Flows from Operating Activities Proceeds from silver bullion sold to pay expenses $ 56,964,663 $ 71,843,069 $ 47,505,972 Expenses \u2013 Sponsor\u2019s fees paid ( 56,964,663 ) ( 71,843,069 ) ( 47,505,972 ) Net cash provided by operating activities \u2014 \u2014 \u2014 Increase (decrease) in cash \u2014 \u2014 \u2014 Cash, beginning of year \u2014 \u2014 \u2014 Cash, end of year $ \u2014 $ \u2014 $ \u2014 Reconciliation of Net Increase (Decrease) in Net Assets Resulting from Operations to Net Cash Provided by (Used in) Operating Activities Net increase (decrease) in net assets resulting from operations $ ( 18,017,230 ) $ ( 2,110,330,231 ) $ 4,954,538,782 Adjustments to reconcile net increase (decrease) in net assets resulting from operations to net cash provided by (used in) operating activities: Proceeds from silver bullion sold to pay expenses 56,964,663 71,843,069 47,505,972 Net realized (gain) loss 177,029,224 ( 1,362,285,165 ) ( 929,327,856 ) Net change in unrealized appreciation/depreciation ( 215,447,290 ) 3,401,406,431 ( 4,075,854,334 ) Change in operating assets and liabilities: Sponsor\u2019s fees payable ( 529,367 ) ( 634,104 ) 3,137,436 Net cash provided by (used in) operating activities $ \u2014 $ \u2014 $ \u2014 Supplemental disclosure of non-cash information: Silver bullion contributed for Shares issued $ 3,608,993,778 $ 6,742,609,430 $ 7,299,222,832 Silver bullion distributed for Shares redeemed $ ( 4,680,125,800 ) $ ( 7,174,837,696 ) $ ( 4,002,727,459 )"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001330568",
+      "tag": "NetCashProvidedByUsedInOperatingActivities",
+      "source_sha256": "798a9fffe0b75079cb0ddaad5c7f2579f8a84d06c75fa67ac8a1a1bc49e41092",
+      "accession": "0001437749-26-006059",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1330568/000143774926006059/slv20251231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:32.577041+00:00",
+        "bytes": 824455,
+        "sha256": "35c619a163e15eb5b01375a4677b2e6ba43836f5787eb7e7ed4bb5e60f06548b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001330568-0001437749-26-006059-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0,
+          "accn": "0001437749-26-006059",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-27",
+          "frame": "CY2025",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001437749-26-006059",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-27",
+          "frame": "CY2024",
+          "unit": "USD"
+        },
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": 0,
+          "accn": "0001437749-26-006059",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-27",
+          "frame": "CY2023",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Net cash provided by operating activities \u2014 \u2014 \u2014",
+          "containing_table_text": "Years Ended December 31, 2025 2024 2023 Cash Flows from Operating Activities Proceeds from silver bullion sold to pay expenses $ 87,321,795 $ 61,784,640 $ 53,707,373 Expenses \u2013 Sponsor\u2019s fees paid ( 87,321,795 ) ( 61,784,640 ) ( 53,707,373 ) Net cash provided by operating activities \u2014 \u2014 \u2014 Increase (decrease) in cash \u2014 \u2014 \u2014 Cash, beginning of year \u2014 \u2014 \u2014 Cash, end of year $ \u2014 $ \u2014 $ \u2014 Reconciliation of Net Increase (Decrease) in Net Assets Resulting from Operations to Net Cash Provided by (Used in) Operating Activities Net increase (decrease) in net assets resulting from operations $ 21,306,921,615 $ 2,165,540,895 $ ( 128,982,872 ) Adjustments to reconcile net increase (decrease) in net assets resulting from operations to net cash provided by (used in) operating activities: Proceeds from silver bullion sold to pay expenses 87,321,795 61,784,640 53,707,373 Litigation proceeds (a) ( 17,333 ) ( 138,783 ) \u2014 Net realized (gain) loss ( 3,649,554,150 ) ( 1,227,031,028 ) ( 286,497,320 ) Net change in unrealized appreciation/depreciation ( 17,752,896,409 ) ( 1,001,643,726 ) 361,918,369 Change in operating assets and liabilities: Sponsor\u2019s fees payable 8,224,482 1,488,002 ( 145,550 ) Net cash provided by (used in) operating activities $ \u2014 $ \u2014 $ \u2014 Supplemental disclosure of non-cash information: Silver bullion contributed for Shares issued $ 15,615,761,735 $ 7,621,670,899 $ 3,580,116,083 Silver bullion distributed for Shares redeemed $ ( 12,277,651,846 ) $ ( 6,775,130,565 ) $ ( 4,222,040,407 )"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001365388",
+      "tag": "Revenues",
+      "source_sha256": "cfc7e16e3065398f8b13963f1f5f17884edc7e4ec95812cf1092d52aac40e273",
+      "accession": "0001548123-21-000041",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1365388/000154812321000041/f13027hsti10-kcleancopy41321.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:39.829085+00:00",
+        "bytes": 539357,
+        "sha256": "4a7c30b295e508b687c13eb5fd0392cea57d2d3f61fb7f41d9302c4e38e526cd",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001365388-0001548123-21-000041-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": 0,
+          "accn": "0001548123-21-000041",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2021-04-14",
+          "frame": "CY2020",
+          "unit": "USD"
+        },
+        {
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": 0,
+          "accn": "0001548123-21-000041",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2021-04-14",
+          "frame": "CY2019",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenues $ - $ -",
+          "containing_table_text": "Years Ended December 31, 2020 2019 Revenues $ - $ - Total revenues - - Operating Expenses Depreciation 35,350 15,705 Crop loss - 246,914 General and administrative 222,561 200,030 Total operating expenses 257,911 462,649 (Loss) from operations (257,911) (462,649) Other (expense) Interest (expense) (42,955) (13,029) Interest (expense)-Related party (4,645) (569) Total other (expense) (47,600) (13,598) (Loss) before income taxes (305,511) (476,247) Income taxes - - Net (loss) $ (305,511) $ (476,247) (Loss) per share-Basic and diluted $ (0.02) $ (0.02) Weighted average shares outstanding- Basic and diluted 20,215,453 20,309,094"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001375348",
+      "tag": "Revenues",
+      "source_sha256": "722701372adca2dbbb21fffeb6b041aa8f725e0d3ca359e9509ceb2ad875ca1c",
+      "accession": "0001199835-14-000481",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1375348/000119983514000481/gnls_10k-16149.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:43.304402+00:00",
+        "bytes": 975546,
+        "sha256": "9c52a67ce93be30d818953ae5a0d6ecbfe512fa939199eb63a1638760a6888fd",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001375348-0001199835-14-000481-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2013-07-01",
+          "end": "2014-06-30",
+          "val": 0,
+          "accn": "0001199835-14-000481",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2014-09-26",
+          "frame": "CY2014",
+          "unit": "USD"
+        },
+        {
+          "start": "2012-07-01",
+          "end": "2013-06-30",
+          "val": 0,
+          "accn": "0001199835-14-000481",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2014-09-26",
+          "frame": "CY2013",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenue $ - $ - $ -",
+          "containing_table_text": "CUMULATIVE PERIOD FROM INCEPTION YEAR YEAR APRIL 21 ENDED ENDED 2006 TO JUNE 30 JUNE 30 JUNE 30 2014 2013 2014 Revenue $ - $ - $ - Expenses Professional fees 15,575 16,831 178,845 Administration - 13,500 49,500 Consulting fees - 22,500 98,359 Mineral claim payment - 3,177 13,177 Transfer and filing fees 6,475 7,406 23,545 Office and sundry 8,338 7,640 49,342 Interest expenses 15,127 15,178 45,615 Rent - 1,500 18,500 Foreign exchange loss - 239 (6,206 ) Travel 8,095 37,961 54,381 53,610 125,932 525,058 Net Loss and Comprehensive Loss $ (53,610 ) $ (125,932 ) $ (525,058 ) Basic and Diluted Loss Per Common Share $ (0.01 ) $ (0.02 ) Weighted Average Number of Common Shares Outstanding 7,070,000 7,070,000"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001393772",
+      "tag": "Revenues",
+      "source_sha256": "fca2422b85eacd638f1e0ffa65d888be9f309245bf17ac2d0cd15d7ecb43b8e6",
+      "accession": "0001096906-26-000507",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1393772/000109690626000507/budz_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:46.812883+00:00",
+        "bytes": 1016760,
+        "sha256": "ee29009d186f9a69d5113ab8ec3715dc3fc12d5be6fcb1a4f1ce1e76ea07bcdc",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001393772-0001096906-26-000507-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0,
+          "accn": "0001096906-26-000507",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-08",
+          "frame": "CY2025",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001096906-26-000507",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-08",
+          "frame": "CY2024",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenue $ - $ -",
+          "containing_table_text": "Year Ended December 31, 2025 2024 Revenue $ - $ - Operating expenses: General and administrative expenses 1,128,094 351,116 Professional fees 177,098 156,290 Depreciation and amortization 22,487 22,586 Total operating expenses 1,327,679 529,992 Net operating loss (1,327,679 ) (529,992 ) Other income (expense) Interest expense (43,857 ) (15,325 ) Other income - 35,000 Loss on dissolution of subsidiary (637 ) Total other income (expense) (44,494 ) 19,675 Net loss before income tax (1,372,173 ) (510,317 ) Income tax expense 33 399 Net loss (1,372,206 ) (510,716 ) Other comprehensive income (loss) 1,191 799 Comprehensive loss $ (1,371,015 ) $ (509,917 )"
+        },
+        {
+          "type": "statement_row",
+          "text": "REVENUE $ - $ -",
+          "containing_table_text": "For the Years Ended December 31, 2025 2024 REVENUE $ - $ - COST OF GOOD SOLD - - GROSS PROFIT - - OPERATING EXPENSES General and administrative expenses 1,128,094 351,116 Professional fees 177,098 156,290 Depreciation & amortization 22,487 22,586 Total operating expenses 1,327,679 529,992 NET OPERATING LOSS ( 1,327,679 ) ( 529,992 ) OTHER INCOME (EXPENSE) Interest expense ( 43,857 ) ( 15,325 ) Other income - 35,000 Loss on dissolution of subsidiary ( 637 ) - TOTAL OTHER INCOME (EXPENSE) ( 44,494 ) 19,675 NET LOSS BEFORE INCOME TAX ( 1,372,173 ) ( 510,317 ) INCOME TAX EXPENSE 33 399 NET LOSS ( 1,372,206 ) ( 510,716 ) OTHER COMPREHENSIVE INCOME (LOSS) 1,191 799 COMPREHENSIVE LOSS $ ( 1,371,015 ) $ ( 509,917 ) WEIGHTED AVERAGE NUMBER OF COMMON SHARES Outstanding - basic and fully diluted 135,920,356 124,132,685 Net loss per share - basic and fully diluted $ ( 0.010 ) $ ( 0.004 )"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001415332",
+      "tag": "Revenues",
+      "source_sha256": "37dad290c8d6efa923db84211abb8089e8497f41cdf9654aed35bb5836a29f50",
+      "accession": "0001640334-26-000606",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000164033426000606/ltum_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:57.430584+00:00",
+        "bytes": 870107,
+        "sha256": "5d134b2870921443d94d0c4e82ab2f0941d9b9c6e53c97c163c216f34c452fd4",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001415332-0001640334-26-000606-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0,
+          "accn": "0001640334-26-000606",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001640334-26-000606",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenue $ - $ - $ -",
+          "containing_table_text": "Twelve Month Period Ended December 31, 2025 Twelve Month Period Ended December 31, 2024 Change Between Twelve Month Periods Ended December 31, 2025 and December 31, 2024 Revenue $ - $ - $ - Professional fees 75,269 58,453 16,816 Depreciation 7,332 7,332 - Exploration expenses 45,616 181,349 (135,733 ) Consulting fees \u2013 related party - - - Consulting fees 462,000 437,392 24,608 Transfer agent and filing fees 23,160 21,265 1,895 Travel 10,653 19,587 (8,934 ) General and administrative 24,292 28,047 (3,755 ) Change in fair value of marketable securities (99,554 ) 285,953 (385,507 ) Other income (52,967 ) (74,781 ) 21,814 Net loss $ 495,801 $ 964,597 $ (468,796 )"
+        },
+        {
+          "type": "statement_row",
+          "text": "REVENUE $ - $ -",
+          "containing_table_text": "Year Ended December 31, 2025 Year Ended December 31, 2024 REVENUE $ - $ - OPERATING EXPENSES Professional fees 75,269 58,453 Depreciation 7,332 7,332 Exploration expenses 45,616 181,349 Consulting fees - related party 394,000 318,000 Consulting fees 68,000 119,392 Transfer agent and filing fees 23,160 21,265 Travel 10,653 19,587 General and administrative expenses 24,292 28,047 TOTAL OPERATING EXPENSES 648,322 753,425 LOSS FROM OPERATIONS ( 648,322 ) ( 753,425 ) OTHER INCOME (EXPENSES) Change in fair value of marketable securities 99,554 ( 285,953 ) Other income 52,967 74,781 TOTAL OTHER INCOME (EXPENSE) 152,521 ( 211,172 ) LOSS BEFORE INCOME TAXES ( 495,801 ) ( 964,597 ) PROVISION FOR INCOME TAXES - - NET LOSS $ ( 495,801 ) $ ( 964,597 ) NET LOSS PER SHARE: BASIC AND DILUTED $ ( 0.00 ) $ ( 0.01 ) WEIGHTED AVERAGE NUMBER OF SHARES OUTSTANDING: BASIC AND DILUTED 117,892,441 117,892,441"
+        },
+        {
+          "type": "statement_row",
+          "text": "Revenue $ -",
+          "containing_table_text": "Year Ended December 31, 2025 Revenue $ - Professional fees 75,269 Depreciation 7,332 Exploration 45,616 Consulting 462,000 Transfer agent and filing fees 23,160 Travel 10,653 General and administrative 24,292 Other items ( 152,521 ) Loss $ 495,801"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001420565",
+      "tag": "Revenues",
+      "source_sha256": "738607e4a3c0c19670e61ee352369b40b71b7a47ee3fa97917f4b27e7539aaaf",
+      "accession": "0001564590-18-007403",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420565/000156459018007403/alrn-10k_20171231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:08.284981+00:00",
+        "bytes": 3458871,
+        "sha256": "fcb6bbef963c85b5b8490739ea35ed90a3dffcee906cb301cf2322f03ca28dbc",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420565-0001564590-18-007403-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "val": 0,
+          "accn": "0001564590-18-007403",
+          "fy": 2017,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2018-04-02",
+          "frame": "CY2017",
+          "unit": "USD"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": 0,
+          "accn": "0001564590-18-007403",
+          "fy": 2017,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2018-04-02",
+          "frame": "CY2016",
+          "unit": "USD"
+        },
+        {
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "val": 0,
+          "accn": "0001564590-18-007403",
+          "fy": 2017,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2018-04-02",
+          "frame": "CY2015",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenue $ \u2014 $ \u2014 $ \u2014",
+          "containing_table_text": "Year Ended December 31, 2017 2016 2015 (in thousands, except per share data) Statement of Operations Data: Revenue $ \u2014 $ \u2014 $ \u2014 Operating expenses: Research and development 14,239 10,276 7,832 General and administrative 8,769 7,893 5,059 Total operating expenses 23,008 18,169 12,891 Loss from operations (23,008 ) (18,169 ) (12,891 ) Interest income 404 46 13 Net loss (22,604 ) (18,123 ) (12,878 ) Accretion of redeemable convertible preferred stock to redemption value (41 ) (75 ) (71 ) Net loss attributable to common stockholders $ (22,645 ) $ (18,198 ) $ (12,949 ) Net loss per share attributable to common stockholders\u2014basic and diluted (1) $ (3.04 ) $ (42.35 ) $ (32.31 ) Weighted average common shares outstanding\u2014 basic and diluted (1) 7,443,078 429,686 400,713"
+        },
+        {
+          "type": "statement_row",
+          "text": "Revenue $ \u2014 $ \u2014 $ \u2014 $ \u2014",
+          "containing_table_text": "Three Months Ended March 31, 2017 June 30, 2017 September 30, 2017 December 31, 2017 Revenue $ \u2014 $ \u2014 $ \u2014 $ \u2014 Operating expenses: Research and development 2,942 3,161 3,825 4,311 General and administrative 1,647 1,791 2,601 2,730 Total operating expenses 4,589 4,952 6,426 7,041 Loss from operations (4,589 ) (4,952 ) (6,426 ) (7,041 ) Interest income 32 29 167 176 Net loss (4,557 ) (4,923 ) (6,259 ) (6,865 ) Accretion of redeemable convertible preferred stock to redemption value (20 ) (21 ) \u2014 \u2014 Net loss attributable to common stockholders $ (4,577 ) $ (4,944 ) $ (6,259 ) $ (6,865 ) Net loss per share attributable to common stockholders\u2014basic and diluted $ (10.58 ) $ (10.98 ) $ (0.45 ) $ (0.47 ) Weighted average common shares outstanding\u2014basic and diluted 432,728 450,495 13,939,950 14,720,734 Comprehensive loss: Net loss $ (4,557 ) $ (4,923 ) $ (6,259 ) $ (6,865 ) Other comprehensive loss: Unrealized loss on investments, net of tax of $0 \u2014 \u2014 (6 ) (27 ) Total other comprehensive loss \u2014 \u2014 (6 ) (27 ) Total comprehensive loss $ (4,557 ) $ (4,923 ) $ (6,265 ) $ (6,892 )"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001420565",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "source_sha256": "738607e4a3c0c19670e61ee352369b40b71b7a47ee3fa97917f4b27e7539aaaf",
+      "accession": "0001193125-26-126385",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420565/000119312526126385/rntx-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:04.455680+00:00",
+        "bytes": 3472379,
+        "sha256": "b22c23bd943764843ce2dd3f038124f96ecb3dac9cce93881ff2c9faad9369db",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420565-0001193125-26-126385-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0,
+          "accn": "0001193125-26-126385",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2025",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001193125-26-126385",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2024",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenue $ \u2014 $ \u2014",
+          "containing_table_text": "Year Ended December 31, 2025 2024 Revenue $ \u2014 $ \u2014 Operating expenses: Research and development 11,029 14,248 General and administrative 10,902 13,864 Impairment loss on intangible assets 28,700 37,000 Total operating expenses 50,631 65,112 Loss from operations ( 50,631 ) ( 65,112 ) Other income, net 48 685 Income tax benefit 712 1,544 Net loss $ ( 49,871 ) $ ( 62,883 ) Net loss per share\u2014basic and diluted $ ( 1.96 ) $ ( 3.51 ) Weighted average common shares outstanding\u2014basic and diluted 25,444,795 17,938,899 Comprehensive loss: Net loss $ ( 49,871 ) $ ( 62,883 ) Other comprehensive gain (loss): Unrealized (loss) gain on investments, net of tax of $ 0 ( 15 ) 45 Foreign currency translation adjustments ( 29 ) \u2014 Total other comprehensive (loss) gain ( 44 ) 45 Total comprehensive loss $ ( 49,915 ) $ ( 62,838 )"
+        },
+        {
+          "type": "statement_row",
+          "text": "Revenues $ \u2014 $ \u2014",
+          "containing_table_text": "Year Ended December 31, 2025 2024 Revenues $ \u2014 $ \u2014 Research and development expenses: LTI-01 program-related expenses: Preclinical study costs \u2014 2 CMC activities 1,066 3,566 Clinical operation activities 413 46 Total LTI-01 program-related expenses 1,479 3,614 LTI-03 program-related expenses: Preclinical study costs 778 1,935 CMC activities 2,239 2,451 Clinical operation activities 4,285 3,913 Total LTI-03 program-related expenses 7,302 8,299 Other program-related expenses 11 54 Employee related expenses 2,119 2,200 Professional fees for services 44 34 Facilities and other expenses 74 47 Total research and development expenses 11,029 14,248 General and administrative expenses: Employee related expenses 3,748 5,465 Professional fees for services 5,191 6,257 Facilities and other expenses 1,963 2,142 Total general and administrative expenses 10,902 13,864 Impairment loss on intangible assets 28,700 37,000 Other income, net ( 48 ) ( 685 ) Income tax benefit ( 712 ) ( 1,544 ) Segment and consolidated net loss $ ( 49,871 ) $ ( 62,883 )"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    },
+    {
+      "cik": "0001425205",
+      "tag": "Revenues",
+      "source_sha256": "bb58496635d85ba57e1fe3f80d062d09fbf1db1b6d80eb6e8ba8eda9321f7680",
+      "accession": "0001144204-19-010702",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1425205/000114420419010702/tv513795_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:12.641385+00:00",
+        "bytes": 1423147,
+        "sha256": "ccc9c87ced9cbecf8fe49ca4a8e3032695f0f1c830a92f91bc08cdee6ef31091",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001425205-0001144204-19-010702-primary.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2018-01-01",
+          "end": "2018-12-31",
+          "val": 0,
+          "accn": "0001144204-19-010702",
+          "fy": 2018,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-02-28",
+          "frame": "CY2018",
+          "unit": "USD"
+        },
+        {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "val": 0,
+          "accn": "0001144204-19-010702",
+          "fy": 2018,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-02-28",
+          "frame": "CY2017",
+          "unit": "USD"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": 0,
+          "accn": "0001144204-19-010702",
+          "fy": 2018,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-02-28",
+          "frame": "CY2016",
+          "unit": "USD"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "statement_row",
+          "text": "Revenue $ - $ - $ - $ - $ -",
+          "containing_table_text": "Years Ended December 31, 2018 2017 2016 2015 2014 (in thousands) Revenue $ - $ - $ - $ - $ - Operating expenses: Research and development 99,828 71,615 26,941 15,470 3,849 General and administrative 28,430 21,262 26,698 12,390 8,192 Other income 4,678 813 745 200 6 Net loss $ (123,580 ) $ (92,064 ) $ (52,894 ) $ (27,660 ) $ (12,035 ) Net loss Per Common Share $ (1.27 ) $ (1.41 ) $ (1.85 ) $ (0.62 ) $ (0.48 )"
+        },
+        {
+          "type": "statement_row",
+          "text": "Revenues $ - $ - $ -",
+          "containing_table_text": "Years Ended December 31, 2018 2017 2016 Revenues $ - $ - $ - Costs and expenses Research and development expenses 99,828 71,615 26,941 General and administrative expenses 28,430 21,262 26,698 Total costs and expenses 128,258 92,877 53,639 Loss from operations (128,258 ) (92,877 ) (53,639 ) Other income Interest income, net 4,678 813 745 Net Loss (123,580 ) (92,064 ) (52,894 ) Deemed dividend related to beneficial conversion feature of convertible preferred stock - - (49,454 ) Net Loss Attributable to Common Stockholders $ (123,580 ) $ (92,064 ) $ (102,348 ) Net Loss Per Common Share, Basic and Diluted $ (1.27 ) $ (1.41 ) $ (1.85 ) Weighted-Average Common Share Outstanding, Basic and Diluted 97,277 65,242 55,268"
+        },
+        {
+          "type": "statement_row",
+          "text": "Revenue $ - $ - $ - $ - - $ - $ - $ -",
+          "containing_table_text": "2018 2017 (in thousands, except per share information) Q1 Q2 Q3 Q4 Q1 Q2 Q3 Q4 Revenue $ - $ - $ - $ - - $ - $ - $ - Net loss attributable to common stockholder $ (26,515 ) $ (30,660 ) $ (33,830 ) $ (32,575 ) (20,684 ) $ (23,377 ) $ (22,149 ) $ (25,854 ) Net loss per share, basic and diluted $ (0.31 ) $ (0.34 ) $ (0.36 ) $ (0.27 ) (0.33 ) $ (0.37 ) $ (0.35 ) $ (0.36 ) Weighted average share used in computing net loss per share, basic and diluted 84,350 90,236 95,077 119,085 62,286 62,457 63,332 72,794"
+        }
+      ],
+      "disposition": "LATEST_SELECTED_ZERO_CONTEXT_SUPPORTED",
+      "note": "Retain as reported for the inspected periods; do not infer a current zero or validate all historical filings."
+    }
+  ],
+  "scope": "Latest selected filing context only, after five source-bound exclusions. Not all-history verification, search-intent approval, proof of current financial condition or publication approval."
+}

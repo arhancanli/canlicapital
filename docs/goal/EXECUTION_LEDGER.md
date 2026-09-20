@@ -1,29 +1,26 @@
 # Direct execution ledger
 
-Updated2026-09-20. Codex owns implementation, verification and continuity.
-Hermes is stopped by owner instruction. Overall goals remain active/unachieved.
-Website evidence refresh aee1ff55 passed CI35495437077. Google coverage export
-records262indexed/40notindexed asofSeptember14; staged corpus is still separate.
+Updated 2026-09-20. Codex owns implementation and review; Hermes is stopped.
+All goals remain active and unachieved. REQUIREMENTS.md defines the objectives;
+STATUS.md records current facts; PHASES.md defines exit evidence. Historical
+ledger: history/EXECUTION_LEDGER-20260920-before-fifth-review.md.
 
-Authority: REQUIREMENTS.md (all goals), STATUS.md (current facts), PHASES.md
-(exit evidence), LOG.md (historical transitions). This ledger tracks work only.
+| Task | State | Evidence and remaining work |
+| --- | --- | --- |
+| T01 Halt Hermes and repair inherited work | Initial repair verified | Historical failures retained; no verification gates removed. |
+| T02 Source integrity regressions | Implemented | Source-bound replay, immutable queue/outcome safeguards and versioned exclusions; 399 website tests/audits at the v6 checkpoint. |
+| T03 Continuity | Maintained | Concise current STATUS and LOG; complete earlier versions archived byte-for-byte. |
+| T04 Earlier captures | Captured and locally verified | Three-cohort v3 candidate: 1,968 companies, 54,416 URLs; editorial review remains open. |
+| T04d Fourth capture | Captured; v6 delivery verified | 683 companies, 17,714 histories, 18,411 URLs, 1,366 downloads; 96 browser checks pass. |
+| T04e Fifth capture | Running: session 49258 | 1,000 disjoint issuers; latest 224 processed, 147 review candidates, 31 exclusions, 46 HTTP errors. No completion or staging claim. |
+| T05 Editorial quality | Partial, not publication approval | Eight earlier and five fourth-cohort scope errors excluded. Fourth priority review: 120 numbers reproduced; 14 unusual equal pairs reviewed. Of 22 retained zeros, 21 latest contexts supported; Nika income/revenue wording remains unresolved. All-history, unit and usefulness reviews remain open. |
+| T06 Storage and release | Local retention verified; hosted access pending | Fourth-v6 full archive restores all queue outcomes, 2,074 runtime objects and five scope exclusions. Prior v3 archive retained. No upload, offsite verification or hosted activation. |
+| T07 Indexing and adoption | Outcomes unestablished | Google baseline 262 indexed as of September 14; URL-level exclusions pending. Real developer adoption unproven. |
+| T07a MCP release | Exact 0.1.2 candidate tested; decision pending | 48 source tests, installed-package test and read-only live checks pass. Test timing correction passed remote CI. No publication approval inferred. |
+| T07b Key revocation | Implemented; production migration pending | Bearer-only, idempotent, no quota charge; PostgreSQL row-lock race verified. |
+| T08 Engine integration | Latest CI running | Individual PRs pass; combined 74c5461 passes; final 867d211 has five passing jobs and offline tests running in CI35499961114. No runtime activation. |
+| T08b Governed strategy outcomes | Unestablished | Five daily returns/four sleeves do not meet forward Sharpe, breadth or drawdown proof requirements. Owner-reserved research actions remain pending. |
+| T09 Source capacity | Expansion active; gap unresolved | Current 8,031-issuer/34-concept universe cannot reach 800,000 indexed pages. Broader useful content/source families require validation. |
 
-| Task | State | Acceptance/evidence |
-|---|---|---|
-|T01 Halt Hermes and repair verification |Locally verified |362 tests and complete audits; no old gates removed |
-|T02 Permanent source-integrity regressions |Locally verified |Real fixtures, stale/omitted failure rejection, prior manifest unchanged |
-|T03 Consolidate continuity |Complete locally |Current STATUS separate from archived history; all objectives preserved |
-|T04 New-cohort staging |Locally verified |23,568 pages/1,706 downloads replayed;54 browser checks;147 exclusions retained |
-|T04c Third1,000 cohort |Locally verified; editorial review open |766 companies,234 verified exclusions;21,471 staged URLs/1,532 downloads;full HTTP+66browser checks pass;six exceptional pairs inspected against original filings |
-|T04d Fourth1,000 cohort |Capture running at checkpoint; session29020 |Disjoint from all prior website queues, retained600engine acquisitions and current delivery; nine queue/capture tests pass; no admission or staging claim |
-|T04b Combined-cohort construction |Locally verified |Correctedv3:54,416pages/3,936downloads across1,968companies;fullHTTP+114browser checks;6,705qualityflags retained |
-|T05 Editorial/source/intent quality |Eight source-scope interpretations corrected in v3;fullHTTP+114browser checks pass |338 matching-history pages and24 constant-unit pages explained;six unusual matching pairs inspected against original filings;373tests,66browser checks,fullHTTP replay; no publication approval |
-|T06 Storage and release |Runtime plan and local restore verified; access pending |v3plan6,249objects/828,340,450bytes;new13,183-file archive independently restored/replayed;remote retention andhostedverification pending |
-|T07 Search indexing and adoption |Outcomes unestablished; MCP reliability verified |48package tests and new CI job; public service reachable,12total validations un-attributed; Search Console baseline262indexed asofSeptember14; genuine adoption evidence pending |
-|T07b Key revocation |381website+48MCP tests; complete CI35491496322 passes |Bearer-only, no quota charge, idempotent timestamp, shared row lock; production migration not applied |
-|T08 Governed engine outcomes |Evidence inspected; outcomes unestablished |Five returns/four sleeves; report hashes verified; three PRs pass; activation projection verified; spin-off evidence integrity repaired |
-
-Each transition records changed files, exact validation, failures and remaining
-limits. Plans/local/staged/live/indexed/forward outcomes remain separate. Never
-report completion from a tool wrapper success or unrelated failure. Retain failed
-experiments and verify real artifacts before carrying a prior status forward.
+Implementation, staged delivery, live/indexed pages and forward outcomes remain
+separate. A passing archive or test suite does not complete the owner goal.
