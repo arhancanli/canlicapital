@@ -1298,3 +1298,22 @@ plan pin checked. Receipt corpus-local/company-five-cohort-storage-transfer-v22-
 log /tmp/canli-v22-transfer.log. Poll same handle; no restart on timeout.
 Management API reference: https://supabase.com/docs/reference/api/v1-get-project-api-keys
 No production activation, new Google submission or indexing gain. Full goals active.
+
+
+## 2026-09-21 — next primary batch while hosted transfer continues
+
+Previous turn made progress: isolated archive passed, PR121merged, v22transfer44227
+started. Re-read goal records; transfer confirmed live,88objects/zero failures at
+checkpoint. No uploader/plan mutations. Added versioned next-batch preparer pinned
+to v22delivery16a18cdc8d0bb19e6363599a0b491a8bb9e06aeebadb9c33b5e34f69e9110271;
+old preparer retained. Exact selected observations/source bytes checked, retained
+primary URLs/hashes/conflicts verified, receipt scan indexed once. Initial target
+draft retained locally before stronger URL checks; final target regenerated before
+any requests. Independent partition check:100unique filings/87companies/800unique
+observations, zero overlap with batch1, matching preparation code hash.
+Capture11834confirmed running, existing one-second pacing/hard403/429stop.
+Inputs company-basic-diluted-capture-batch2-targets-20260921.json; output
+company-basic-diluted-capture-batch2-20260921.json; capture directory
+corpus-local/basic-diluted-batch2-filings; log /tmp/canli-basic-diluted-batch2-capture.log.
+Poll exact handle; retain failures/no retries on access stop. No numeric/context
+closure yet. Batch1ledger and live production/indexing remain unchanged.

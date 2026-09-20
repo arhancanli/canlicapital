@@ -77,6 +77,19 @@ removed. Supabase CLI absent. Existing owner-provided Supabase credential then
 retrieved existing project key through documented Management API; project/role
 validated in memory. No new keys, policy/limits changes or credentials in records.
 
+Parallel source phase: batch2 capture **11834 RUNNING**, output
+/tmp/canli-basic-diluted-batch2-capture.log. Exact target file
+company-basic-diluted-capture-batch2-targets-20260921.json binds100missing filings,
+87companies/800observations to frozen v22 selected records and sources. No overlap
+with batch1. Versioned v2 preparer preserves the old preparer, verifies retained
+receipt hashes/URLs and conflicts, and skips retained primaries. Initial draft
+before stronger retained-URL checks preserved in corpus-local. Capture uses existing
+one-second spacing and hard403/429stop. Report company-basic-diluted-capture-batch2-
+20260921.json is mutable until terminal; do not commit it as completed yet.
+No batch2 numeric or accounting-scope approval. Batch1ledger unchanged. Next after
+capture terminal: bind exact target/receipt inputs and run offline numerical review;
+retain gaps, then inspect statement/disclosure context. Keep v22 uploader/plan stable.
+
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
 Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
