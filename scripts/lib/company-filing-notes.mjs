@@ -1,6 +1,322 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0000921299",
+  "include_on_overview": true,
+  "source_sha256": "60313741a614d381e73fc033725566bd06ee27593e71b4e95a10100fd7a817db",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "The 2021 and 2022 figures for Kyntra Bio come from the historical FibroGen filing. It excludes potential shares because the company reported losses in those periods. Shares are displayed in thousands with inline scale 3; full counts and USD EPS are retained as reported in that filing. These older values have not been rescaled to the later 2025 reverse-split basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/921299/000095017024020161/fgen-20231231.htm",
+  "observations": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -3.14,
+      "accn": "0000950170-24-020161",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -3.14,
+      "accn": "0000950170-24-020161",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -3.14,
+      "accn": "0000950170-24-020161",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -3.14,
+      "accn": "0000950170-24-020161",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 92349000,
+      "accn": "0000950170-24-020161",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 93582000,
+      "accn": "0000950170-24-020161",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 92349000,
+      "accn": "0000950170-24-020161",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 93582000,
+      "accn": "0000950170-24-020161",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0000921299",
+  "include_on_overview": true,
+  "source_sha256": "60313741a614d381e73fc033725566bd06ee27593e71b4e95a10100fd7a817db",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Kyntra Bio, formerly FibroGen, reports positive total EPS of $45.37 in 2025, while continuing operations had a loss. Its dilution note explicitly bases the exclusion of potential shares on losses from continuing operations in 2024 and 2025; total profit does not establish dilution. Discontinued operations account for the positive 2025 total. This filing retrospectively adjusts share amounts for the June 16, 2025 one-for-25 reverse split and displays weighted-average shares in thousands with inline scale 3. Its 2024 and 2025 values are retained on that reported basis; older filing values are not silently rescaled.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/921299/000119312526108346/kynb-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -11.89,
+      "accn": "0001193125-26-108346",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 45.37,
+      "accn": "0001193125-26-108346",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -11.89,
+      "accn": "0001193125-26-108346",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 45.37,
+      "accn": "0001193125-26-108346",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 4002000,
+      "accn": "0001193125-26-108346",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 4043000,
+      "accn": "0001193125-26-108346",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 4002000,
+      "accn": "0001193125-26-108346",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 4043000,
+      "accn": "0001193125-26-108346",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0000924396",
+  "include_on_overview": true,
+  "source_sha256": "f19e08020dc8ad0a08f852c911b21d42b2097f79dd46294d23407fc001e2a7a5",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Crisp Momentum's years ended July 31, 2024 and 2025, the filing excludes potentially dilutive shares during losses. Weighted-average shares are reported as full counts and the July fiscal year-end is preserved. These periods precede the August 28, 2025 name change from OpenLocker; they must not be read as a full-year record of the later acquired business.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/924396/000149315226003967/form10-k.htm",
+  "observations": [
+    {
+      "start": "2023-08-01",
+      "end": "2024-07-31",
+      "val": -0.02,
+      "accn": "0001493152-26-003967",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-08-01",
+      "end": "2025-07-31",
+      "val": -0.04,
+      "accn": "0001493152-26-003967",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-08-01",
+      "end": "2024-07-31",
+      "val": -0.02,
+      "accn": "0001493152-26-003967",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-08-01",
+      "end": "2025-07-31",
+      "val": -0.04,
+      "accn": "0001493152-26-003967",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-08-01",
+      "end": "2024-07-31",
+      "val": 41575081,
+      "accn": "0001493152-26-003967",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-08-01",
+      "end": "2025-07-31",
+      "val": 227038721,
+      "accn": "0001493152-26-003967",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-08-01",
+      "end": "2024-07-31",
+      "val": 41575081,
+      "accn": "0001493152-26-003967",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-08-01",
+      "end": "2025-07-31",
+      "val": 227038721,
+      "accn": "0001493152-26-003967",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0000948320",
+  "include_on_overview": true,
+  "source_sha256": "78c33133d98137bc77be369f3fdf06a230aa44209734e0bf6c96639c34395268",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "LifeMD reports total common-stockholder EPS of $0.25 in 2025 despite a loss from continuing operations. Its note excludes potential shares because they are anti-dilutive for continuing operations in 2024 and 2025. Total common income deducts noncontrolling-interest income and preferred dividends; it is not total consolidated net income. Basic weighted-average shares already include unissued vested restricted stock units and awards, so those shares must not be added again. Full share counts, total EPS and separately rounded continuing/discontinued EPS are retained as reported.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/948320/000149315226009549/form10-k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.6,
+      "accn": "0001493152-26-009549",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.25,
+      "accn": "0001493152-26-009549",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.6,
+      "accn": "0001493152-26-009549",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.25,
+      "accn": "0001493152-26-009549",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 41196292,
+      "accn": "0001493152-26-009549",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 45129617,
+      "accn": "0001493152-26-009549",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 41196292,
+      "accn": "0001493152-26-009549",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 45129617,
+      "accn": "0001493152-26-009549",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0000926617",
   "include_on_overview": true,
   "source_sha256": "4aa7c80ecb27ea79b0d5b639913356a502fdcf1c28d7b8cfb49990c080ce3770",

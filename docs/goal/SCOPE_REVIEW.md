@@ -97,3 +97,10 @@ unchanged. Exact source fixtures, periods, primary statement tables, scale tags 
 full reviewed disclosures support Aspira and two Sangamo filings. Reader notes retain
 participating-warrant loss allocation and Sangamo noncontrolling loss/share units.
 Theriva unresolved discrepancies remain pending. No whole-corpus approval.
+
+Second batch2 context report adds32observations,56reviewed/744pending overall.
+Kyntra and LifeMD retain total profit separately from continuing losses used for
+dilution; historical reverse-split basis, preferred dividends, noncontrolling
+interest and already-included vested awards are explicit. Crisp July fiscal/name
+context retained. Ledger scope-v3 preserves all800row metadata and previous24
+decisions; only32pending states/evidence links change. Reports replay exactly.
