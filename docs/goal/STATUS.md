@@ -68,7 +68,7 @@ addition; current additions require their own checks.
 
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
-superseded v3plan. V10transfer82504 is active; v10pipeline77545 completed exit0. Archive/replay46444completed exit0.
+superseded v3plan. V10transfer82504 is terminal, deliberately superseded; v10pipeline77545 completed exit0. Archive/replay46444completed exit0.
 
 ## Latest liability presentation review
 
@@ -127,7 +127,7 @@ Birdie SG&A removal/notice changed. Receipt company-five-cohort-v10-transition-
 and storage plan next; the oldv9candidate must not be admitted unchanged.
 Pacedv9 transfer77617 was stopped as superseded after v10combined delivery built.
 Receipt company-v9-transfer-superseded-20260920.json records2412verified objects.
-Pipeline77545 completed exit0. V10transfer82504 is active with one worker/500ms
+Pipeline77545 completed exit0. V10transfer82504 is terminal, deliberately superseded with one worker/500ms
 spacing and existing3/2attempt limits,200/50shared retry budgets. Fresh receipt
 corpus-local/company-five-cohort-v10-transfer-20260920.json; no publication approval.
 
@@ -184,9 +184,15 @@ remain unchanged. Record carries the exact omitted observation and reason;
 overview and affected history explain the gap with a filing link.31selector/
 renderer tests pass, including the actual104,479byte compressed capture fixture,
 changed-source/capture-date rejection and unchanged existing pilot HTML.
-Old policies remain reproducible. Combined runtime is stillv10: v11cohort/release
-replay remains required before publication. This correction withdraws one value,
-not a whole history; no new release/URL count asserted yet.
+Old policies remain reproducible. Five-cohort v11staging16829completed0;
+comparison7564completed0 verifies all3,323companies/87,347histories againstv10.
+Only selection-policy metadata, one DBMM observation and its explanation change.
+All source descriptors and other values are unchanged. Receipt company-five-cohort-
+v11-transition-20260920.json pins five new manifests. Combined catalog/release/
+discovery/storage pipeline90963 is active; no new release/URL count asserted yet.
+V10uploader82504was deliberately stopped as superseded; receipt company-v10-
+transfer-superseded-20260920.json retained. No uploader active. Full v11rebuild
+and later immutable reconciliation are required before publication.
 
 ## Immediate next work
 
@@ -220,7 +226,7 @@ Paths corpus-local/company-five-cohort-{delivery,catalog,discovery}-v10 and
 company-five-cohort-storage-plan-v10.json. Plan10,360objects/1,280,300,997bytes;
 3,323keys shared withv9,7,037new keys. Shared keys are not remote verification.
 Audit company-five-cohort-v10-discovery-audit-20260920.json binds all roots.
-V10transfer82504 is active (fresh v10transfer receipt), one worker/500ms.
+V10transfer82504 is terminal, deliberately superseded (fresh v10transfer receipt), one worker/500ms.
 Archive build/replay39153 completed exit0 from repository3ddb2536; output
 corpus-local/five-cohort-v10-evidence-20260920.tar. Summary and restore receipts
 use prefix company-five-cohort-v10-evidence-.23,119files/2,697,574,400bytes,

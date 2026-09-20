@@ -816,3 +816,13 @@ other values and records the omitted row/reason. Affected history and overview
 explain the gap; statement revenue remains intact.31tests pass using exact captured
 fixture, old-policy replay and renderer checks. Existing v10release/transfer remains
 staging; v11rebuild required before publication. No source values overwritten.
+
+## 2026-09-20 — complete v11 cohort comparison
+
+Previous turn implemented and tested the exact-period holdback. Staging16829and
+full comparison7564both terminal0. All3,323companies/87,347histories retained;
+only policy metadata, one disputed observation and its explanation differ. All
+source descriptors and other values matchv10. Ten delivery/release tests pass.
+Combined v11pipeline90963active. Obsolete v10upload82504deliberately stopped
+terminal1; receipt preserved separately. No uploader active; no publication.
+PR39CI35521045721passed before these transition receipts; new CI required.
