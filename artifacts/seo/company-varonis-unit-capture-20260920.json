@@ -1,0 +1,85 @@
+{
+  "schema": "canli.company-editorial-filing-capture.v1",
+  "input_sha256": "a0ac986d5334bc088537101c477b95ffc7f7c59c1f1dc752641cd8745a3f37d5",
+  "publication_approved": false,
+  "complete": true,
+  "filings": [
+    {
+      "cik": "0001361113",
+      "companyfacts_name": "VARONIS SYSTEMS, INC.",
+      "discovery_names": [],
+      "accession": "0001628280-22-002017",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1361113/000162828022002017/0001628280-22-002017-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T17:09:40.781299+00:00",
+        "bytes": 14194,
+        "sha256": "04e9cdf4809accf002db9812dbcc85836ffa6054a02958ad9b255112637de4bf",
+        "body_path": "artifacts/seo/corpus-local/varonis-unit-filings/0001361113-0001628280-22-002017-index.response"
+      },
+      "index_filers": [
+        "VARONIS SYSTEMS INC (Filer) CIK : 0001361113 (see all company filings) EIN. : 571222280 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-36324 | Film No.: 22602265 SIC : 7372 Services-Prepackaged Software"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1361113/000162828022002017/vrns-20211231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:09:42.858979+00:00",
+        "bytes": 2266338,
+        "sha256": "3a843335a9c0c1854faaee096439706b6d26b3102aa5d554796b6ba9a89484be",
+        "body_path": "artifacts/seo/corpus-local/varonis-unit-filings/0001361113-0001628280-22-002017-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "ib1aa19820a134b4197e885005b81bfcb_D20210101-20211231",
+          "text": "0001361113"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "ib1aa19820a134b4197e885005b81bfcb_D20210101-20211231",
+          "text": "VARONIS SYSTEMS, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:EarningsPerShareBasic",
+          "contexts": [
+            "i65699573c1c64439bf265d076eca38b3_D20190101-20191231",
+            "ib1aa19820a134b4197e885005b81bfcb_D20210101-20211231",
+            "id44245770a1646778d71d3e751fdab1d_D20200101-20201231"
+          ]
+        },
+        {
+          "tag": "us-gaap:EarningsPerShareDiluted",
+          "contexts": [
+            "i65699573c1c64439bf265d076eca38b3_D20190101-20191231",
+            "ib1aa19820a134b4197e885005b81bfcb_D20210101-20211231",
+            "id44245770a1646778d71d3e751fdab1d_D20200101-20201231"
+          ]
+        }
+      ],
+      "contexts": {
+        "i65699573c1c64439bf265d076eca38b3_D20190101-20191231": {
+          "identifiers": [
+            "0001361113"
+          ],
+          "has_dimensions": false
+        },
+        "ib1aa19820a134b4197e885005b81bfcb_D20210101-20211231": {
+          "identifiers": [
+            "0001361113"
+          ],
+          "has_dimensions": false
+        },
+        "id44245770a1646778d71d3e751fdab1d_D20200101-20201231": {
+          "identifiers": [
+            "0001361113"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    }
+  ],
+  "scope": "Primary filing capture for priority editorial targets; neither numeric verification nor editorial approval."
+}

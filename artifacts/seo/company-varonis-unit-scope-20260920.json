@@ -1,0 +1,364 @@
+{
+  "schema": "canli.varonis-unit-scope.v1",
+  "publication_approved": false,
+  "input_sha256": {
+    "company-varonis-unit-capture-20260920.json": "4da26f70cf72a0a343e54894a0ca4502f1ef061b64be515502d3de5d04c5b3dc",
+    "company-varonis-unit-targets-20260920.json": "a0ac986d5334bc088537101c477b95ffc7f7c59c1f1dc752641cd8745a3f37d5"
+  },
+  "code_sha256": "038c9dbeb9a1ff8587c612d8ce64be19de7c4a5fea7e90f5c7388a883afa9247",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "source_sha256": "5c7576b0fa53ccb95eac41b4bb2859484614b21a670c8a3b610da2be91cacc8a",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1361113/000162828022002017/vrns-20211231.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T17:09:42.858979+00:00",
+    "bytes": 2266338,
+    "sha256": "3a843335a9c0c1854faaee096439706b6d26b3102aa5d554796b6ba9a89484be",
+    "body_path": "artifacts/seo/corpus-local/varonis-unit-filings/0001361113-0001628280-22-002017-primary.response"
+  },
+  "zero_based_table_index": 38,
+  "primary_table": "Year ended December 31, 2021 2020 2019 Revenues: Subscriptions $ 268,942 $ 161,188 $ 76,730 Maintenance and services 119,302 130,028 135,367 Perpetual licenses 1,890 1,473 42,093 Total revenues 390,134 292,689 254,190 Cost of revenues 59,399 44,261 35,144 Gross profit 330,735 248,428 219,046 Operating expenses: Research and development 137,882 99,363 80,764 Sales and marketing 230,314 179,902 169,898 General and administrative 61,233 47,578 44,371 Total operating expenses 429,429 326,843 295,033 Operating loss ( 98,694 ) ( 78,415 ) ( 75,987 ) Financial expenses, net ( 12,145 ) ( 7,483 ) ( 389 ) Loss before income taxes ( 110,839 ) ( 85,898 ) ( 76,376 ) Income taxes ( 6,022 ) ( 8,112 ) ( 2,388 ) Net loss $ ( 116,861 ) $ ( 94,010 ) $ ( 78,764 ) Net loss per share of common stock, basic and diluted $ ( 1.11 ) $ ( 1.00 ) $ ( 0.87 ) Weighted average number of shares used in computing net loss per share of common stock, basic and diluted 105,305,957 94,336,893 90,772,230",
+  "currency_disclosure": "Our functional and reporting currency is the U.S. dollar",
+  "accounting_policy_note": "b. Financial Statements in U.S. Dollars: Most of the Company's revenues and costs are denominated in United States dollars (\u201cdollars\u201d). Some of the subsidiaries\u2019 revenues and costs are primarily incurred in Euros, the Pound Sterling, Canadian dollars, Australian dollars and New Israeli Shekels (\"NIS\"); however, the Company\u2019s management believes that the dollar is the primary currency of the economic environment in which it and each of its subsidiaries operate. Thus, the dollar is the Company\u2019s functional and reporting currency. Accordingly, transactions denominated in currencies other than the functional currency are remeasured to the functional currency in accordance with ASC No. 830, \u201cForeign Currency Matters\u201d at the exchange rate at the date of the transaction or the average exchange rate in the quarter. At the end of each reporting period, financial assets and liabilities are remeasured to the functional currency using exchange rates in effect at the balance sheet date. Non-financial assets and liabilities are remeasured at historical exchange rates. Gains and losses related to remeasurement are recorded as financial income (expense) in the consolidated statements of operations as appropriate. ",
+  "unit_xml": "<xbrli:unit id=\"afnPerShare\"><xbrli:divide><xbrli:unitnumerator><xbrli:measure>iso4217:AFN</xbrli:measure></xbrli:unitnumerator><xbrli:unitdenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitdenominator></xbrli:divide></xbrli:unit>",
+  "comparison": {
+    "checks": [
+      {
+        "selected": {
+          "tag": "EarningsPerShareBasic",
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -1.11,
+          "accn": "0001628280-22-002017",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-02-08",
+          "frame": "CY2021",
+          "unit": "AFN/shares"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "AFN/shares",
+            "value": "-1.11",
+            "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjdlNGY0ZjlkNjI5NjRjNGJiM2Q5NThjYjg0YjhkMDllL3NlYzo3ZTRmNGY5ZDYyOTY0YzRiYjNkOTU4Y2I4NGI4ZDA5ZV82MS9mcmFnOjYwNzdjNmYwNTM3YjRiZTZiZmNhNTE1Yzc4NjU0NzIxL3RhYmxlOjEzN2FkYTY1YzNmZDRmYTg4YTA4NTQ0MzI3YzBmNTBmL3RhYmxlcmFuZ2U6MTM3YWRhNjVjM2ZkNGZhODhhMDg1NDQzMjdjMGY1MGZfMjEtMS0xLTEtMTcxMzY_32718723-4517-4fe2-b4ca-0280b0594a2b",
+            "context_id": "ib1aa19820a134b4197e885005b81bfcb_D20210101-20211231",
+            "table_row": "Net loss per share of common stock, basic and diluted $ ( 1.11 ) $ ( 1.00 ) $ ( 0.87 )",
+            "preceding_rows": [
+              "Income taxes ( 6,022 ) ( 8,112 ) ( 2,388 )",
+              "Net loss $ ( 116,861 ) $ ( 94,010 ) $ ( 78,764 )"
+            ],
+            "table_header_rows": [
+              "",
+              "Year ended",
+              "December 31,",
+              "2021 2020 2019",
+              "Revenues:"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "tag": "EarningsPerShareBasic",
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": -1,
+          "accn": "0001628280-22-002017",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-02-08",
+          "frame": "CY2020",
+          "unit": "AFN/shares"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2020-01-01",
+            "end": "2020-12-31",
+            "unit": "AFN/shares",
+            "value": "-1.00",
+            "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjdlNGY0ZjlkNjI5NjRjNGJiM2Q5NThjYjg0YjhkMDllL3NlYzo3ZTRmNGY5ZDYyOTY0YzRiYjNkOTU4Y2I4NGI4ZDA5ZV82MS9mcmFnOjYwNzdjNmYwNTM3YjRiZTZiZmNhNTE1Yzc4NjU0NzIxL3RhYmxlOjEzN2FkYTY1YzNmZDRmYTg4YTA4NTQ0MzI3YzBmNTBmL3RhYmxlcmFuZ2U6MTM3YWRhNjVjM2ZkNGZhODhhMDg1NDQzMjdjMGY1MGZfMjEtMy0xLTEtMTcxMzY_fcdf0145-54d4-4366-affd-7e8643d279f3",
+            "context_id": "id44245770a1646778d71d3e751fdab1d_D20200101-20201231",
+            "table_row": "Net loss per share of common stock, basic and diluted $ ( 1.11 ) $ ( 1.00 ) $ ( 0.87 )",
+            "preceding_rows": [
+              "Income taxes ( 6,022 ) ( 8,112 ) ( 2,388 )",
+              "Net loss $ ( 116,861 ) $ ( 94,010 ) $ ( 78,764 )"
+            ],
+            "table_header_rows": [
+              "",
+              "Year ended",
+              "December 31,",
+              "2021 2020 2019",
+              "Revenues:"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "tag": "EarningsPerShareBasic",
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": -0.87,
+          "accn": "0001628280-22-002017",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-02-08",
+          "frame": "CY2019",
+          "unit": "AFN/shares"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2019-01-01",
+            "end": "2019-12-31",
+            "unit": "AFN/shares",
+            "value": "-0.87",
+            "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjdlNGY0ZjlkNjI5NjRjNGJiM2Q5NThjYjg0YjhkMDllL3NlYzo3ZTRmNGY5ZDYyOTY0YzRiYjNkOTU4Y2I4NGI4ZDA5ZV82MS9mcmFnOjYwNzdjNmYwNTM3YjRiZTZiZmNhNTE1Yzc4NjU0NzIxL3RhYmxlOjEzN2FkYTY1YzNmZDRmYTg4YTA4NTQ0MzI3YzBmNTBmL3RhYmxlcmFuZ2U6MTM3YWRhNjVjM2ZkNGZhODhhMDg1NDQzMjdjMGY1MGZfMjEtNS0xLTEtMTcxMzY_05ca359d-d4c2-483d-8298-5b9dfb0b4ef1",
+            "context_id": "i65699573c1c64439bf265d076eca38b3_D20190101-20191231",
+            "table_row": "Net loss per share of common stock, basic and diluted $ ( 1.11 ) $ ( 1.00 ) $ ( 0.87 )",
+            "preceding_rows": [
+              "Income taxes ( 6,022 ) ( 8,112 ) ( 2,388 )",
+              "Net loss $ ( 116,861 ) $ ( 94,010 ) $ ( 78,764 )"
+            ],
+            "table_header_rows": [
+              "",
+              "Year ended",
+              "December 31,",
+              "2021 2020 2019",
+              "Revenues:"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "tag": "EarningsPerShareDiluted",
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -1.11,
+          "accn": "0001628280-22-002017",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-02-08",
+          "frame": "CY2021",
+          "unit": "AFN/shares"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "AFN/shares",
+            "value": "-1.11",
+            "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjdlNGY0ZjlkNjI5NjRjNGJiM2Q5NThjYjg0YjhkMDllL3NlYzo3ZTRmNGY5ZDYyOTY0YzRiYjNkOTU4Y2I4NGI4ZDA5ZV82MS9mcmFnOjYwNzdjNmYwNTM3YjRiZTZiZmNhNTE1Yzc4NjU0NzIxL3RhYmxlOjEzN2FkYTY1YzNmZDRmYTg4YTA4NTQ0MzI3YzBmNTBmL3RhYmxlcmFuZ2U6MTM3YWRhNjVjM2ZkNGZhODhhMDg1NDQzMjdjMGY1MGZfMjEtMS0xLTEtMTcxMzY_bc59dd73-9036-4910-a2aa-f31018c12dbe",
+            "context_id": "ib1aa19820a134b4197e885005b81bfcb_D20210101-20211231",
+            "table_row": "Net loss per share of common stock, basic and diluted $ ( 1.11 ) $ ( 1.00 ) $ ( 0.87 )",
+            "preceding_rows": [
+              "Income taxes ( 6,022 ) ( 8,112 ) ( 2,388 )",
+              "Net loss $ ( 116,861 ) $ ( 94,010 ) $ ( 78,764 )"
+            ],
+            "table_header_rows": [
+              "",
+              "Year ended",
+              "December 31,",
+              "2021 2020 2019",
+              "Revenues:"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "tag": "EarningsPerShareDiluted",
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": -1,
+          "accn": "0001628280-22-002017",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-02-08",
+          "frame": "CY2020",
+          "unit": "AFN/shares"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2020-01-01",
+            "end": "2020-12-31",
+            "unit": "AFN/shares",
+            "value": "-1.00",
+            "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjdlNGY0ZjlkNjI5NjRjNGJiM2Q5NThjYjg0YjhkMDllL3NlYzo3ZTRmNGY5ZDYyOTY0YzRiYjNkOTU4Y2I4NGI4ZDA5ZV82MS9mcmFnOjYwNzdjNmYwNTM3YjRiZTZiZmNhNTE1Yzc4NjU0NzIxL3RhYmxlOjEzN2FkYTY1YzNmZDRmYTg4YTA4NTQ0MzI3YzBmNTBmL3RhYmxlcmFuZ2U6MTM3YWRhNjVjM2ZkNGZhODhhMDg1NDQzMjdjMGY1MGZfMjEtMy0xLTEtMTcxMzY_12be977f-3dd5-4459-bfbc-12d8dd45a2d3",
+            "context_id": "id44245770a1646778d71d3e751fdab1d_D20200101-20201231",
+            "table_row": "Net loss per share of common stock, basic and diluted $ ( 1.11 ) $ ( 1.00 ) $ ( 0.87 )",
+            "preceding_rows": [
+              "Income taxes ( 6,022 ) ( 8,112 ) ( 2,388 )",
+              "Net loss $ ( 116,861 ) $ ( 94,010 ) $ ( 78,764 )"
+            ],
+            "table_header_rows": [
+              "",
+              "Year ended",
+              "December 31,",
+              "2021 2020 2019",
+              "Revenues:"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "tag": "EarningsPerShareDiluted",
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": -0.87,
+          "accn": "0001628280-22-002017",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-02-08",
+          "frame": "CY2019",
+          "unit": "AFN/shares"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2019-01-01",
+            "end": "2019-12-31",
+            "unit": "AFN/shares",
+            "value": "-0.87",
+            "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjdlNGY0ZjlkNjI5NjRjNGJiM2Q5NThjYjg0YjhkMDllL3NlYzo3ZTRmNGY5ZDYyOTY0YzRiYjNkOTU4Y2I4NGI4ZDA5ZV82MS9mcmFnOjYwNzdjNmYwNTM3YjRiZTZiZmNhNTE1Yzc4NjU0NzIxL3RhYmxlOjEzN2FkYTY1YzNmZDRmYTg4YTA4NTQ0MzI3YzBmNTBmL3RhYmxlcmFuZ2U6MTM3YWRhNjVjM2ZkNGZhODhhMDg1NDQzMjdjMGY1MGZfMjEtNS0xLTEtMTcxMzY_9a62dae4-ee0c-4f3d-9ce5-63029e8546a0",
+            "context_id": "i65699573c1c64439bf265d076eca38b3_D20190101-20191231",
+            "table_row": "Net loss per share of common stock, basic and diluted $ ( 1.11 ) $ ( 1.00 ) $ ( 0.87 )",
+            "preceding_rows": [
+              "Income taxes ( 6,022 ) ( 8,112 ) ( 2,388 )",
+              "Net loss $ ( 116,861 ) $ ( 94,010 ) $ ( 78,764 )"
+            ],
+            "table_header_rows": [
+              "",
+              "Year ended",
+              "December 31,",
+              "2021 2020 2019",
+              "Revenues:"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      }
+    ],
+    "rejected_facts": {}
+  },
+  "selected_observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -1.11,
+      "accn": "0001628280-22-002017",
+      "fy": 2021,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2022-02-08",
+      "frame": "CY2021",
+      "unit": "AFN/shares"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -1,
+      "accn": "0001628280-22-002017",
+      "fy": 2021,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2022-02-08",
+      "frame": "CY2020",
+      "unit": "AFN/shares"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.87,
+      "accn": "0001628280-22-002017",
+      "fy": 2021,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2022-02-08",
+      "frame": "CY2019",
+      "unit": "AFN/shares"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -1.11,
+      "accn": "0001628280-22-002017",
+      "fy": 2021,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2022-02-08",
+      "frame": "CY2021",
+      "unit": "AFN/shares"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -1,
+      "accn": "0001628280-22-002017",
+      "fy": 2021,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2022-02-08",
+      "frame": "CY2020",
+      "unit": "AFN/shares"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.87,
+      "accn": "0001628280-22-002017",
+      "fy": 2021,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2022-02-08",
+      "frame": "CY2019",
+      "unit": "AFN/shares"
+    }
+  ],
+  "disposition": "WITHHOLD_SIX_AFN_PER_SHARE_OBSERVATIONS",
+  "reason": "The source tags these six EPS facts as AFN/share while the same filing states that its financial statements use U.S. dollars. The currency conflict makes the selected unit unreliable. Preserve all source bytes and other periods/units; do not relabel or convert these observations.",
+  "scope": "Six original-source numerical matches establish a source-level unit conflict, not correct AFN values or a replacement USD series. No whole-company admission or production change."
+}

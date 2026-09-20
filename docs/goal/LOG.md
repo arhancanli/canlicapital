@@ -38,3 +38,20 @@ rebuild, upload, deployment, indexing gain or new source-policy exclusion.
 
 Full queue/target/primary replay48185completed exit0; all three outputs match
 byte-for-byte. Separate summary also reproduces. No sealed archival claim.
+
+## 2026-09-20 — legacy numerical closure and Varonis unit hold
+
+Previous turn expanded the deferred queue and compared retained primaries.
+PR48merged6b5bd3f4after four checks and exact tree equality. Original14unmatched
+rows came from three non-inline legacy filings; retained instances reproduce14/14,
+exact combined baseline150/150. Original failed primary report preserved.
+New XMLcompound-unit comparison has nine shared regression cases; older helpers
+unchanged. Both final report and source-scope report replay byte-identically.
+
+Capture97839completed0 for Varonis2021annual filing. Its sixAFN/share facts
+numerically match the original tags, but dollar currency disclosures conflict.
+Recorded full source-bound evidence and implemented cumulative v14six-row hold;
+no relabeling/conversion or replacement values. Actual source regression verifies
+all other values unchanged, visible notices and inherited policy decisions.
+35selector/renderer,8delivery/release and31corpus/XML/unit tests pass. No collector,
+rebuild or uploader active; new evidence archive and remaining corpus review open.

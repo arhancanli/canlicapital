@@ -345,3 +345,40 @@ test('v13 withholds only disputed Atlantica liability periods and preserves prio
     verifyCompanyReference(inherited, source);
   }
 });
+
+test('v14 withholds only six conflicting Varonis AFN/share observations', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/varonis-reviewed-source.json.gz', import.meta.url)));
+  const options = { fetchedAt: '2026-09-20T07:56:08.917Z', expectedCik: '0001361113' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v13' });
+  const after = companyReference(raw, { ...options, selectionPolicy: 'extended-v14' });
+  const expected = structuredClone(before.concepts);
+  for (const tag of ['EarningsPerShareBasic', 'EarningsPerShareDiluted']) {
+    const concept = expected.find(c => c.tag === tag);
+    assert.equal(concept.observations.filter(r => r.unit === 'AFN/shares').length, 3);
+    concept.observations = concept.observations.filter(r => r.unit !== 'AFN/shares');
+    assert.ok(concept.observations.some(r => r.unit === 'USD/shares'));
+  }
+  assert.deepEqual(after.concepts, expected);
+  assert.equal(after.editorial_exclusions.length, 6);
+  verifyCompanyReference(before, raw); verifyCompanyReference(after, raw);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v14' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  assert.throws(() => companyReference(raw, { ...options, fetchedAt: '2020-01-01T00:00:00Z', selectionPolicy: 'extended-v14' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const changed = structuredClone(after); changed.editorial_exclusions.pop();
+  assert.throws(() => verifyCompanyReference(changed, raw), /does not reproduce/);
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  for (const target of ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'overview']) {
+    const html = renderCompanyPages(after, { target })[0].html;
+    assert.match(html, /conflicting currency unit/);
+    assert.match(html, /vrns-20211231.htm/);
+  }
+  for (const [fixture, cik] of [['atlantica', '0001062506'], ['hno', '0001342916'], ['dbmm', '0001127475']]) {
+    const source = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const opts = { fetchedAt: options.fetchedAt, expectedCik: cik };
+    const prior = companyReference(source, { ...opts, selectionPolicy: 'extended-v13' });
+    const next = companyReference(source, { ...opts, selectionPolicy: 'extended-v14' });
+    assert.deepEqual(next.concepts, prior.concepts);
+    assert.deepEqual(next.editorial_exclusions, prior.editorial_exclusions);
+    verifyCompanyReference(next, source);
+  }
+});
