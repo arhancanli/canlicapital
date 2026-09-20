@@ -1702,6 +1702,340 @@ export const FILING_NOTES = [
     }
   ]
 }
+,
+{
+  "cik": "0001026214",
+  "include_on_overview": true,
+  "source_sha256": "67fd5b3cf55c379343fd9ffb7271dc8d90538e78bcc7f7e0d592939e3a19939b",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Freddie Mac\u2019s basic denominator includes shares associated with Treasury\u2019s warrant because the filing describes it as unconditionally exercisable at minimal cost. It is not simply the number of issued common shares. Senior preferred dividends or liquidation-preference increases affect the common-stockholder numerator. The filing states that no common-equivalent shares could have a dilutive or antidilutive effect during these periods. The denominator row is expressly in millions and tagged with scale six. The reported 2024 EPS of zero is rounded and does not mean that the common-stockholder numerator was zero.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1026214/000102621426000021/fmcc-20251231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.05,
+      "accn": "0001026214-26-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0,
+      "accn": "0001026214-26-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.02,
+      "accn": "0001026214-26-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.05,
+      "accn": "0001026214-26-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0,
+      "accn": "0001026214-26-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.02,
+      "accn": "0001026214-26-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 3234000000,
+      "accn": "0001026214-26-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3234000000,
+      "accn": "0001026214-26-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 3234000000,
+      "accn": "0001026214-26-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 3234000000,
+      "accn": "0001026214-26-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3234000000,
+      "accn": "0001026214-26-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 3234000000,
+      "accn": "0001026214-26-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001031316",
+  "include_on_overview": true,
+  "source_sha256": "059112ab76185b66b4ec40e68a1fd4afab633ef359b8a0f4ded795721b526a1d",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Franklin Street reports no potentially dilutive shares outstanding at the respective year ends and identifies the same denominator for basic and diluted EPS. This is a historical disclosure, not a statement about shares outstanding today. Statement share counts are presented in thousands and tagged with scale three; the accompanying prose gives the full share counts. Per-share amounts use scale zero. The reported denominators are retained without adding basic and diluted counts.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1031316/000110465926025284/fsp-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.47,
+      "accn": "0001104659-26-025284",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.51,
+      "accn": "0001104659-26-025284",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.43,
+      "accn": "0001104659-26-025284",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.47,
+      "accn": "0001104659-26-025284",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.51,
+      "accn": "0001104659-26-025284",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.43,
+      "accn": "0001104659-26-025284",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 103357000,
+      "accn": "0001104659-26-025284",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 103510000,
+      "accn": "0001104659-26-025284",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 103640000,
+      "accn": "0001104659-26-025284",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 103357000,
+      "accn": "0001104659-26-025284",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 103510000,
+      "accn": "0001104659-26-025284",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 103640000,
+      "accn": "0001104659-26-025284",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001035354",
+  "include_on_overview": true,
+  "source_sha256": "b351a9ed06ee3e6f1d738bbdb3852b866526fe561e11a7ffd4a81bc43bb27195",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Eloxx\u2019s basic and diluted EPS denominators include both common shares and pre-funded warrants. The filing includes those warrants because their exercise requires only minimal cash and has no substantive contingencies. Other potentially dilutive securities are excluded as anti-dilutive. The denominator is therefore not simply issued common shares. Shares and per-share amounts are exempt from the thousands heading; the reported counts and EPS remain unchanged.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1035354/000119312526108687/elox-20251231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -6.63,
+      "accn": "0001193125-26-108687",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.84,
+      "accn": "0001193125-26-108687",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.49,
+      "accn": "0001193125-26-108687",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -6.63,
+      "accn": "0001193125-26-108687",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.84,
+      "accn": "0001193125-26-108687",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.49,
+      "accn": "0001193125-26-108687",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 2570620,
+      "accn": "0001193125-26-108687",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3758804,
+      "accn": "0001193125-26-108687",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 12347495,
+      "accn": "0001193125-26-108687",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 2570620,
+      "accn": "0001193125-26-108687",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3758804,
+      "accn": "0001193125-26-108687",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 12347495,
+      "accn": "0001193125-26-108687",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+}
 ];
 
 export function companyFilingNotes(company, tag) {
