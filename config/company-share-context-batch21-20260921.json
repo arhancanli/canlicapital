@@ -1,0 +1,59 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001498547",
+      "accession": "0001498547-26-000013",
+      "source_sha256": "51f1048520d01f703206a20df6920b501657b79d5c253b005236cee80e1bfaa1",
+      "primary_sha256": "31dab281dd95d1fe1305c9fb02f582864af02900ee982ae10962f594e87c9d39",
+      "fixture": "scripts/fixtures/editorial/cim-real-estate-finance-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 41,
+      "share_scale": "0",
+      "table_requires": [
+        "Net income (loss) attributable to the Company",
+        "Weighted average number of common shares outstanding:"
+      ],
+      "paragraph_requires": [
+        "CIM REAL ESTATE FINANCE TRUST, INC.",
+        "(in thousands, except share and per share amounts)",
+        "Diluted income (loss) per share considers the effect of any potentially dilutive share equivalents"
+      ],
+      "reader_note": "The reviewed 2023\u20132025 filing identifies the issuer as CIM Real Estate Finance Trust, Inc. EPS uses income or loss attributable to the company after noncontrolling-interest allocation. Its EPS policy states there were no potentially dilutive share equivalents for each of these years. This does not mean no equity awards existed: the filing separately reports restricted stock and restricted stock units. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001501697",
+      "accession": "0001501697-26-000018",
+      "source_sha256": "d103d5ba742cbf65407874ca223ed51164237a22279f08089a1a32d8eb83aa50",
+      "primary_sha256": "1058cd736b47ced5761da4b4df79c53e5147ab6b3a3953952192aa54b9fb1359",
+      "fixture": "scripts/fixtures/editorial/x4-pharmaceuticals-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 65,
+      "share_scale": "0",
+      "table_requires": [
+        "Numerator: Net loss",
+        "Weighted average shares of common stock outstanding"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share data)",
+        "Basic and diluted weighted average shares of common stock outstanding for the years ended December 31, 2025, 2024 and 2023 includes the weighted average effect of pre-funded warrants",
+        "These potentially dilutive securities have been excluded from the computation of diluted net loss per share",
+        "On April 28, 2025",
+        "retroactively adjusted to reflect the Reverse Stock Split."
+      ],
+      "reader_note": "For 2023\u20132025, X4 Pharmaceuticals includes pre-funded warrants in basic and diluted weighted-average shares, while excluding other potential dilution in the loss periods. The EPS note states a remaining exercise-price threshold of $0.30 for included pre-funded warrants; the separate warrant disclosure lists remaining prices of $0.001\u2013$0.03. These disclosures are retained without harmonizing their wording. Common-share and per-share figures already reflect the April 28, 2025, 1-for-30 reverse split. Net loss, not comprehensive loss, is the numerator. Shares and EPS retain scale-zero tags; no second split adjustment or addition of excluded instruments is applied.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

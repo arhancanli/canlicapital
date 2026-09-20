@@ -671,3 +671,19 @@ tests pass; exactly12rows advance.600reviewed/556pending/20withdrawn,96presentat
 only. Rejected batch20draft remains failure evidence. Next new index61; earlier
 review gaps, archive supplement, runtime/quality refresh and hosted gates remain.
 All owner objectives active. No production or confirmed indexing gain.
+
+## 2026-09-21 — filing identity, pre-funded warrants and reverse split
+
+Previous turn verifiedv19corpus and registered12Gladstone observations. PR86four
+CI35535631416checks passed at02c0479a; merged64e2879b, identical tree
+a53fed68ea17fc12ca6990d30219cb76878a7850. Reviewed24CIM/X4observations.
+CIM original filing identifies CIM Real Estate Finance Trust; EPS policy states
+no potential equivalents for2023–2025 despite separately reported equity awards.
+X4basic denominator already includes prefunded warrants and reflectsApril28,2025
+1-for-30split. EPSnote$0.30threshold retained alongside separate warrant remaining
+$0.001–$0.03prices without normalizing wording. Other potential dilution excluded
+in loss periods; net loss distinct from comprehensive loss. Scale0facts unchanged.
+Source report replays byte-identically;42renderer/ledger tests pass; exact24rows
+advance.624reviewed/532pending/20withdrawn,96presentation-only. Next new index63;
+earlier gaps and archive/runtime/hosting work remain. No deployment/indexing gain;
+all owner objectives remain active.
