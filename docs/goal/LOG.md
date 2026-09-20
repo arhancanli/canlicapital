@@ -731,3 +731,28 @@ ordinary-share loss after preferred accretion/allocation and explicit anti-dilut
 no approval/count advance. Counts660reviewed/496pending/20withdrawn,96presentation-only.
 Retention report captures receipts/navigation; not a sealed archive or publication.
 All goals active; no runtime/deployment/indexing gain.
+
+## 2026-09-21 — Phoenix original-table and amendment-XML reconciliation
+
+Previous turn captured original annual report. PR90four CI35536340170checks passed
+atdcbd5c88; mergedad783cde, identical treefbf4592ddf0751ee05c826802b976e36728ed5d3.
+Mapped14Phoenix amendment XMLfacts to originalEPSnote399 rows and exact year/
+currency columns. Replay compares original namespace/unit checks to frozenlegacy
+report, verifies primary/amendment/XMLhashes and amendment's no-other-changes text.
+Preserves2009–2011CNYEPS,2011USDconvenience translation6.2939, full ordinary-share
+counts and eightClassAshares perADS. Preferred accretion/participating allocation/
+beneficial-conversion amortization distinguish ordinary-shareholder loss from net
+income; explicitanti-dilution retained. Report replays byte-identically.
+45renderer/ledger tests pass; only14rows advance.674reviewed/482pending/20withdrawn,
+96presentation-only. No values/units/dates/accession relabeling or runtime/deployment/
+indexing gain. Original capture failures preserved. Next new index67; earlier gaps,
+archival supplement and hosted release remain. All owner objectives stay active.
+
+Publication attempt failed: GitHub rejected213.61MBreport containing626repeated
+outer HTMLparagraphs, largest691107characters. Push14952terminal1; dependent PR
+creation48849terminal1(no remote branch). Original report retained compressed at
+corpus-local/company-phoenix-context-oversized-20260921.json.gz and old ledger
+retained alongside it. Corrected extraction excludes enclosing paragraphs/tables;
+all required actual disclosure paragraphs still match. Replayed revised report
+byte-identically, refreshed registry hash/ledger, reran targeted tests. Amend only
+unpublished local commit; no force push or change to existing published evidence.
