@@ -415,3 +415,12 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   restore removed. Verifiercodehash matchescurrentretainedscript.
 - Priorv3df5acde5 CI35493915578 passes. No offsiteupload, hosteddeployment or
   actualindexing claim. Newarchiveupdate needsits ownCI.
+
+## Main navigation intent review — 2026-09-20
+
+Archive commit 1fad2600 passed CI35494145919; PR15 remains open. Reviewed thirteen
+main navigation pages and assigned distinct editorial intent ownership: 91 owners,
+121 query hypotheses,236 unassigned pages (previously249),327 static indexable
+pages unchanged. Audit and three validator tests pass. See SEARCH_INTENT_REVIEW.md.
+Founder snapshot still reports0 forward observations versus5 in newer engine
+inspection; freshness review remains open. No indexing or factual sign-off implied.
