@@ -494,3 +494,21 @@ Scale3shares/scale0EPSunchanged. Version4report replays byte-identically;
 8withdrawn;72presentation-only. INVOlegacy16rows remain pending explicit original
 statement mapping. No runtime rebuild, archive supplement, deployment or indexing
 gain. Full owner objectives preserved; continue from index43and older pending gaps.
+
+## 2026-09-20 — Iovance original share-scale conflict and v18exact holds
+
+Previous turn progressed24reviews. PR74four CI35533094451checks passed ate3af3707;
+mergeded486593with identicaltree8d98e39813bfc3bb1b790d3e7f376495dc68bb98.
+Iovance table178heading states thousands except per-share, but original basic/
+diluted2023–2025tags use scale0and unitshares for235131/289877/357345. Numerical
+reproduction does not resolve this conflict. Retained receipt/source/inline facts,
+units/contexts and exact header. Initial header lookup failed on intervening zero-
+width paragraph; inspected exact previous3paragraphs and bound their positions.
+Final report replays byte-identically. V18inherits frozenv17and holds six exact
+observations, without multiplying or replacing values. Older2019–2022share rows
+need original-filing review; six EPSbatch rows remain pending. Blink2024revision/
+out-of-money context inspected but not approved.60selector/renderer/ledger tests
+pass; exactsix-only removal, unchangedEPS/olderfacts, stale-source rejection and
+inherited Siebert holds verified. Five delivery/release tests pass. Ledger420reviewed,
+742pending,14withdrawn,72presentation-only. Whole-corpusv18comparison, runtime,
+qualityinventory/archive updates and deployment remain open; no indexing claim.

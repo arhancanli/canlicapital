@@ -495,3 +495,36 @@ test('v16 excludes eight Valhi scale conflicts and applies existing history-qual
     assert.deepEqual(next.editorial_exclusions, previous.editorial_exclusions);
   }
 });
+
+test('v18 holds six Iovance scale conflicts without altering EPS or older facts', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/iovance-reviewed-source.json.gz', import.meta.url)));
+  const options = { expectedCik: '0001425205', fetchedAt: '2026-09-20T00:00:00Z' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v17' });
+  const diagnostics = {};
+  const after = companyReference(raw, { ...options, diagnostics, selectionPolicy: 'extended-v18' });
+  const expected = structuredClone(before.concepts);
+  for (const tag of ['WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const concept = expected.find(c => c.tag === tag);
+    assert.equal(concept.observations.filter(r => r.accn === '0001104659-26-018899').length, 3);
+    concept.observations = concept.observations.filter(r => r.accn !== '0001104659-26-018899');
+    assert.equal(concept.observations.length, 4);
+  }
+  assert.deepEqual(after.concepts, expected);
+  assert.equal(diagnostics.editorial_observation_excluded, 6);
+  assert.equal(after.editorial_exclusions.length, 6);
+  verifyCompanyReference(after, raw);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v18' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  for (const target of ['overview', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const html = renderCompanyPages(after, { target })[0].html;
+    assert.match(html, /statement labels share counts in thousands/);
+    assert.match(html, /iova-20251231x10k.htm/);
+  }
+  const oldRaw = gunzipSync(readFileSync(new URL('./fixtures/editorial/siebert-reviewed-source.json.gz', import.meta.url)));
+  const oldOptions = { expectedCik: '0000065596', fetchedAt: options.fetchedAt };
+  const old = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v17' });
+  const next = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v18' });
+  assert.deepEqual(next.concepts, old.concepts);
+  assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
+});
