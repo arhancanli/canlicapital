@@ -1,113 +1,47 @@
 # Current state
 
 Updated September20,2026. Goal ACTIVE, NOT ACHIEVED. Codex implements directly;
-Hermes stopped. All objectives and publication authorization remain in
-[REQUIREMENTS.md](REQUIREMENTS.md). Earlier details, evidence pins and failures are
-preserved byte-for-byte in
-[history/STATUS-20260920-through-v16-numerical-closure.md](history/STATUS-20260920-through-v16-numerical-closure.md),
-which links the preceding historical record. Historical process states are not live telemetry.
+Hermes stopped. All objectives and publication authorization remain in REQUIREMENTS.md.
+Previous status preserved byte-for-byte in
+[history/STATUS-20260920-through-share-context-batch3.md](history/STATUS-20260920-through-share-context-batch3.md),
+which links older records. Historical process states are not live telemetry.
 
-## Current work and immediate next action
+## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch3-20260920`. PR66mergede277cd85 after all four
-CI35530764425checks passed atf4aed4a7. Tested/merged tree
-2337d15aed5c71e3b1778ccee39c4aa662a83503.
+`evidence/share-context-batch4-20260920`. PR67mergeddfb13726after all four
+CI35531014492checks passed at5e8daea0. Tested/merged tree
+754989a8ff8917dc6c4a6001ec48171af6912319.
 
-Current registered batch3ledger:154reviewed/1,014pending/8withdrawn;36reviewed
-are presentation-only. Added48FuelCell/Achieve/Southern Copper/Genesis observations.
-Context includes already-adjusted reverse split/stock dividends, Achieve excluded-
-instrument wording limitation, and Genesis partnership units with preferred-unit
-allocations and total versus continuing-operations distinction. Southern Copper’s
-12rows are presentation-only; dilution cause not inferred.23renderer/ledger tests
-pass and only48intended ledger rows change. Source report replays byte-identically.
+Latest registered ledger:company-basic-diluted-registered-scope-batch4-20260920.json.gz.
+Of1,176batch observations,190reviewed/978pending/8withdrawn.36reviewed are explicitly
+presentation-only; dilution cause is not established for those rows. The registry
+pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
+never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Previous registered batch2ledger:106reviewed/1,062pending/8withdrawn;24reviewed
-remain presentation-only. Added32Axogen/Heron/Westwater observations with explicit
-loss-period anti-dilution and verified scale0/scale3 share treatment. Declarative
-source-review requirements replay against original captures; no inference from
-numerical equality alone. Source-bound notes preserve every value.22renderer/ledger
-tests pass; exact comparison permits only these32status/evidence changes. Context
-report replays byte-identically; deterministic ledger gzip tested.
+Latest36reviews cover Freddie Mac2023–2025Treasury-warrant denominator and senior
+preferred allocation, Franklin Street historical no-potential-dilution/scale3counts,
+and Eloxx basic inclusion of pre-funded warrants. Values unchanged;24renderer/ledger
+tests pass, only these36rows change, and context report reproduces byte-identically.
+Freddie Mac’s separate legacy filing remains pending. A broad diagnostic was
+truncated; targeted source passages were then inspected for the actual conclusions.
 
-Reusable scope registry replaces future copied reconciliation scripts. The initial
-registered compressed ledger matches every v6row and count exactly; no new review
-approvals. Four tests cover full1176row equivalence, deterministic gzip, limited
-status retention and rejection of duplicate/stale/misattributed/held approvals.
-Routine verification includes these tests. See SCOPE_REVIEW.md for the workflow.
+Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
+periods, NLI/Weis combined/restated presentation, Blue Dolphin historical instruments,
+NexMetals positive loss magnitudes/consolidation, Cedar vested-share/FFO distinction,
+Axogen/Heron/Westwater loss dilution, and FuelCell/Achieve/Southern Copper/Genesis
+split/dividend, wording and partnership conventions. Scope remains observation-specific.
 
-Previous v6batch ledger:74reviewed/1,094pending/8withdrawn;24reviewed retain
-presentation-only status. Eight selected Cedar2020/2021observations now carry
-verified vested-share allocation, performance-award/OP-unit treatment and FFO
-versus EPS denominator context. Later Cedar filing remains pending. Original
-values preserved;17renderer tests pass. Report and ledger replay byte-identically.
+V17whole-corpus comparison29434TERMINAL0:3,323companies/87,344histories. Exactly12
+holds sincev14, two prior Valhi constant-history omissions (six residual observations),
+metadata/notices; all other fields/source bytes unchanged. This is selector replay,
+not a new runtime. Latest built runtime remainsv14at90,736candidate URLs.
 
-Previous v5batch ledger:66reviewed/1,102pending/8withdrawn;24reviewed remain
-presentation-only with dilution cause unestablished. Sixteen additional Blue Dolphin/
-NexMetals observations reviewed. Blue Dolphin instrument disclosure is historical.
-NexMetals positive CAD EPS amounts are expressly labelled loss magnitudes, with
-retrospective twenty-for-one consolidation already reflected; no sign, currency or
-split adjustment. Source-bound page notes and exact source fixtures preserve facts.
-All16renderer tests pass. Report and ledger reproduce byte-identically.
-
-Previous v4batch ledger:50reviewed/1,118pending/8withdrawn. Of the50reviewed,
-24NLI/Weis observations have the explicit state REPORTED_PRESENTATION_REVIEWED_
-CAUSE_NOT_ESTABLISHED; only combined presentation, units, dates and restatement
-context are established. No claim that equality proves absent dilution. NLIshares
-use scale3; Weis shares are exempt from thousands and2023/2024EPSare restated.
-Source-bound notes preserve all selected values; all15renderer tests pass. Report
-and ledger replay byte-identically. Prior ledgers and narrower claims preserved.
-
-Whole-corpus v17comparison29434 TERMINAL exit0:3,323companies/87,344histories,
-12exact observation holds sincev14plus the previous two Valhi constant-history
-omissions (six residual observations). Every other field and source byte unchanged
-except policy metadata and notices. Receipt company-five-cohort-v17-transition-
-20260920.json; this is not a new runtime/catalog/sitemap/storage build.
-
-Celldex twelve2023–2025observations scope-reviewed: explicit loss-period
-anti-dilution, exclusion of issued unvested restricted stock from basic shares,
-statement thousands scale encoded as scale3 for shares and scale0 for EPS.
-Source-bound notes on four histories/overview preserve reported values.14renderer
-tests pass; context report and v3batch ledger replay byte-identically. Previous v3
-batch26reviewed/1,142pending/8withdrawn; superseded above. Earlier ledgers remain frozen.
-
-V17adds two exact Siebert diluted-denominator holds (2024/2025). Main statement
-combines basic/diluted counts, while Note19adds unvested-share dilution and reports
-higher diluted totals. Note totals use an adjustment tag; no substitution or tag
-correction. Source-bound report and v2ledger replay byte-identically. Actual-source
-regression verifies other concepts/periods unchanged and visible source-linked
-notices;40selector/renderer tests pass. The previous v2ledger records14reviewed/1,154pending/8withdrawn; superseded by
-v3above. Runtime rebuild and archival supplement remain pending.
-
-Offline context index71727 TERMINAL exit0 covers all100primaries/1,176observations.
-All identities, source hashes, observations and matched-location counts reconcile
-against the frozen primary comparison.83filings have candidate dilution text;
-17have no regex candidate, not proof of absent disclosure.78legacy observations
-lack inline locations and need separate statement mapping. Index includes full
-matched tables and five preceding non-table blocks; known111and Valhi context
-retained. No approvals are granted by the index; continue adjudicating pending rows.
-
-First batch1 scope closure:111, Inc., fourteen2023–2025observations. Original
-statement and EPS calculation explain anti-dilution, exempt shares/per-share data
-from thousands, identify the USD convenience translation and distinguish ordinary
-shares from ADS. Source-bound notes cover four histories and overview; no values
-changed. Actual-source regression and all13renderer tests pass. Context report
-and batch ledger reproduce byte-identically:14reviewed/1,156pending/6withdrawn in frozen v1 (superseded above).
-The six withdrawals are batch1 Valhi rows; other Valhi holds and the original
-baseline remain separate. New context evidence is not in the earlier batch archive.
-
-V16whole-corpus comparison63644 TERMINAL exit0: all3,323companies preserved,
-87,346→87,344histories. Exactly ten direct observation holds sincev14 (two v15,
-eight Valhi), six remaining constant Valhi observations omitted with two histories,
-policy metadata and notices; every other selected field and source unchanged.
-Receipt company-five-cohort-v16-transition-20260920.json. This is selector replay,
-not a new combined delivery/catalog/sitemap/storage build.
-
-Batch1archive/replay66267 TERMINAL exit0; all six reports reproduce.
-Log `/tmp/canli-basic-diluted-batch1-archive.log`. No collector, comparison, archive
-or uploader active. Next: continue batch1 accounting scope/usefulness review and
-remaining712group coverage,
-then rebuild current runtime/quality inventory and finish hosted release gates.
+No collector, comparison, archive or uploader active at this checkpoint. Next:
+continue remaining primary/legacy accounting-context review, retain updated archival
+supplement, then rebuild current runtime/quality inventory and finish hosted gates.
+No new deployment or confirmed indexing gain. Current context/registry supplements
+are committed evidence but not yet sealed in an updated restore-tested archive.
 
 ## Editorial policy and evidence
 
