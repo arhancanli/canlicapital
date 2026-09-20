@@ -9,22 +9,25 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch19-20260921`. PR83merged5839a4c3after four passing
-CI35534968617checks at0e62ed35. Tested and merged trees match exactly.
+`evidence/share-context-batch20-20260921`. PR84merged0003b7baafter four passing
+CI35535129098checks at254badb1. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch19-20260921.json.gz.
-Of1,176batch observations,588reviewed/574pending/14withdrawn.84reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-v19-20260921.json.gz.
+Of1,176batch observations,588reviewed/568pending/20withdrawn.84reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover Adaptive Biotechnologies and KBS REIT III2023–2025EPS.
-Adaptive uses net loss after noncontrolling-interest allocation and excludes
-anti-dilutive potential equivalents. KBS explicitly has no potentially dilutive
-securities during all three years; the separate December18estimated-value statement
-is not the basis for this annual conclusion. Both retain full scale0shares.
-40renderer/ledger tests pass; report replays byte-identically. Next new index59;
-earlier gaps remain.84presentation-only reviews retain their explicit limits.
+Latest change holds six exact Outset Medical2023–2025weighted-share observations
+under extended-v19. The statement heading says thousands except per-share; all six
+inline facts omit scale (effective zero), encoding3305/3463/15211shares. No silent
+rescaling or additional reverse-split conversion. The original filing states a
+March20,2025,15:1reverse split retrospectively reflected in presented periods.
+EPS and older rows remain unapproved by this hold.77selector/renderer/ledger/
+delivery tests pass; conflict report replays byte-identically. Gladstone Landindex60
+presentation/numerator inspected but not registered; rejected batch20draft retained
+as failure evidence, not approval.84presentation-only reviews remain unchanged.
+V19whole-corpus comparison and runtime rebuild remain pending.
 
 V18six Iovance2023–2025share-scale holds remain enforced. Earlier2019–2022share
 rows need original-filing review and six EPSbatch rows are still pending. Whole-
@@ -55,10 +58,10 @@ are committed evidence but not yet sealed in an updated restore-tested archive.
 
 ## Editorial policy and evidence
 
-Cumulative extended-v18 preserves frozen earlier versions and all reviewed holds:
+Cumulative extended-v19 preserves frozen earlier versions and all reviewed holds:
 Birdie SG&A, disputed DBMM revenue period, HNO operating-loss history, two Atlantica
 liability periods, six Varonis AFN/share facts, Monolithic AFN revenue, 51Talk SAR
-cash/time-deposit component, eight Valhi weighted-share scale conflicts, two Siebert denominator conflicts and six Iovance share-scale conflicts.
+cash/time-deposit component, eight Valhi weighted-share scale conflicts, two Siebert denominator conflicts six Iovance share-scale conflicts and six Outset share-scale conflicts.
 No relabeling, rescaling, invented values or source alteration.
 
 Valhi original tags28.5shares/scale0 conflict with in-millions headings in two

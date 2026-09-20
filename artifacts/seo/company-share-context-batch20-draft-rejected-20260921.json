@@ -1,0 +1,60 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001484612",
+      "accession": "0001193125-26-051278",
+      "source_sha256": "02af597b3235cdde453b8e191f935ab9286843fac1669b188d8e36c1d501f70c",
+      "primary_sha256": "7a96861c8a08fae4c7174f1f6b94ad64ceaf7d08a44e8124617083a8ccd720c1",
+      "fixture": "scripts/fixtures/editorial/outset-medical-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 15,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "Shares used in computing net loss per share, basic and diluted"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except per share amounts)",
+        "All common stock share and per share amounts and information presented herein have been retroactively adjusted",
+        "For periods in which the Company reports net losses, basic net loss per share is the same as diluted net loss per share",
+        "We effected a 15:1 reverse stock split of our common stock on March 20, 2025"
+      ],
+      "reader_note": "For 2023\u20132025, Outset Medical uses net loss rather than comprehensive loss as its EPS numerator and excludes potential dilution in the loss periods. The filing retrospectively adjusts all presented common-share and per-share information for its March 20, 2025, 15:1 reverse split. The selected values already reflect that adjustment; no further split conversion is applied. Shares are reported in thousands with scale-three tags, while EPS uses scale zero. Excluded equity awards and warrants are not added to the denominator.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001495240",
+      "accession": "0001495240-26-000011",
+      "source_sha256": "aa4624e7ba0250d1465384b88efe179a8897d7a198ef50d96a6cfe36aab78416",
+      "primary_sha256": "0237b6e9c88c87dce9d73a5f5ed40224e8045e41437637d848149b9c1420c943",
+      "fixture": "scripts/fixtures/editorial/gladstone-land-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 43,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss attributable to common stockholders",
+        "Weighted average shares of common stock outstanding"
+      ],
+      "paragraph_requires": [
+        "(Dollars in thousands, except per-share amounts):",
+        "computed using the weighted-average number of common shares outstanding during the respective periods."
+      ],
+      "reader_note": "For 2023\u20132025, Gladstone Land reports net income but a net loss attributable to common stockholders after cumulative redeemable preferred dividends and preferred-stock extinguishment adjustments. The common-stockholder loss is the EPS numerator; comprehensive income is a separate measure. The filing presents basic and diluted EPS and weighted-average common shares together. The reviewed disclosure establishes that presentation, not the cause of equal dilution measures. The heading scales dollars, not share counts: shares and EPS retain scale-zero tags.",
+      "disposition": "REVIEWED_REPORTED_PRESENTATION_CAUSE_NOT_ESTABLISHED",
+      "supporting_table_indexes": [
+        8
+      ]
+    }
+  ]
+}
