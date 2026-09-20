@@ -1021,3 +1021,22 @@ test('Check-Cap and Tenable retain profitable-year and loss-period dilution cont
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+test('BGM and PRF retain auditor limits and distinct prefunded warrants', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['bgm', '0001779578', /did not audit the subsequent adjustment/, 113261317, '2025-09-30'],
+    ['prf-technologies', '0001801834', /two warrant categories are not interchangeable/, 647973, '2025-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v20' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
