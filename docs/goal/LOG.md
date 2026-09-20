@@ -1049,3 +1049,19 @@ Ledger1092reviewed/58pending/26withdrawn,118presentation-only. RemainingSiebert6
 Freddie12,Rockwell12,INVO16,Plastec12; older Iovance review separate. Updated
 archive/runtime/quality and hosting remain pending. No deployment or indexing gain.
 All owner objectives remain active.
+
+
+## 2026-09-21 — Siebert rounded EPS versus disputed denominators
+
+Previous turn merged PR111 and submitted four historical ReWalk reviews in PR112.
+PR112 remains open at8643dbf1; checks and branch run listing are currently empty,
+so no merge or bypass. New branch stacks on that exact head. Reviewed six Siebert
+2024/2025 basic-share/EPS observations against original table142 and allocation/
+anti-dilution disclosures. Net common income divided by note basic/diluted counts
+rounds to .33/.33 (2024), .13/.13 (2025); unvested shares do increase denominators.
+Two selected diluted counts remain held because main statement96 conflicts with
+note142. No substitution or lifting holds. Report replays byte-identically;
+96selector/renderer/ledger tests pass. Ledger1098reviewed/52pending/26withdrawn,
+118presentation-only. Remaining Freddie12/Rockwell12/INVO16/Plastec12; older Iovance
+review separate. No runtime rebuild, archival supplement, deployment or index gain.
+All owner objectives remain active.
