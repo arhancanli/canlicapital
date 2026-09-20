@@ -1139,3 +1139,24 @@ V22comparison21300 subsequently TERMINAL0:3,323companies/87,342histories,
 two Iovance histories now empty), policy/notices only. All other source/selected
 fields unchanged. Rebased unpublished policy commit onto verified PR115merge;
 full tree identical before/after, no force push. Full comparison report retained.
+
+
+## 2026-09-21 — scope supplement sealed and restored offline
+
+Previous turn completed eight older Iovance holds/fullv22comparison. PR116four
+CI35541784151checks passed at2389305a; mergedb926c38b45da076c1e8bd079e5b4728d5feaf36b,
+full treeb2884f4788bf86c1524d1be84f87c8b6c0c95a21 matches tested head.
+New archive packager resolves saved review scripts/specs by the hashes in reports,
+verifies registry bindings, retains explicit repository subtrees and captured
+primary/XML/receipt files, and replays in a temporary restored workspace with
+hash-locked offline wheels. Existing five archive-safety tests pass.
+Process21451TERMINAL0:835files/373,032,960bytes;52registered reports+8hold reports+
+1closedledger =61outputs byte-identical. ArchiveSHA
+ da3b7b5980f4fe4c3f9e195f18d0e3b7e2e171cc3d87676bc24dba042c716c64.
+Code base2389305a; new packager itself saved/hash-bound in archive. Receipt records
+no remote backup, no independent accounting certification or fullruntime replay.
+Packager branch rebased unpublished onto verified main; full tree before/after
+247e3913da3e563e3b1f831b0546edd68cd8eeb6 identical. No force push.
+Next runtime/catalog/discovery/storage rebuild underv22and quality refresh, then
+hosted gates; broader source/usefulness remains open. No deployment/indexing gain.
+All owner objectives remain active.
