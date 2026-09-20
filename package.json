@@ -78,7 +78,7 @@
     "seo:inventory": "node scripts/seo-inventory.mjs",
     "seo:intents": "node scripts/audit-search-intents.mjs",
     "test:corpus": "python3 -m unittest discover -s scripts -p 'test_company_*.py'",
-    "postbuild": "node scripts/build-company-assets.mjs"
+    "postbuild": "node scripts/build-company-assets.mjs && node scripts/prepare-company-preview-output.mjs"
   },
   "engines": {
     "node": "22.x"

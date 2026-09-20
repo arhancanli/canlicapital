@@ -21,7 +21,13 @@ export function prepareCompanyPreviewOutput(root, environment = process.env) {
   return paths;
 }
 
+export function prepareEnabledCompanyPreviewOutput(root, environment = process.env) {
+  if (environment.COMPANY_CLEAN_ROUTE_PREVIEW !== '1') return [];
+  return prepareCompanyPreviewOutput(root, environment);
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  prepareCompanyPreviewOutput(process.cwd());
-  console.log('Prepared generated company output for preview-only dynamic routing');
+  if (prepareEnabledCompanyPreviewOutput(process.cwd()).length) {
+    console.log('Prepared generated company output for preview-only dynamic routing');
+  }
 }

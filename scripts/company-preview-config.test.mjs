@@ -4,7 +4,7 @@ import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, existsSync, symlin
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { companyPreviewConfig } from './lib/company-preview-config.mjs';
-import { prepareCompanyPreviewOutput } from './prepare-company-preview-output.mjs';
+import { prepareCompanyPreviewOutput, prepareEnabledCompanyPreviewOutput } from './prepare-company-preview-output.mjs';
 
 test('alternate config tracks the base without activating production routes', () => {
   const base = JSON.parse(readFileSync('vercel.json')), before = structuredClone(base);
@@ -24,11 +24,14 @@ function fixture(t) {
 }
 test('cleanup is confined to generated company artifacts after an explicit preview build', t => {
   const root = fixture(t);
+  assert.deepEqual(prepareEnabledCompanyPreviewOutput(root, { VERCEL_ENV: 'production' }), []);
+  assert.ok(existsSync(resolve(root, 'dist/companies.html')));
+  assert.throws(() => prepareEnabledCompanyPreviewOutput(root, { VERCEL_ENV: 'production', COMPANY_CLEAN_ROUTE_PREVIEW: '1' }), /preview-only/);
   for (const VERCEL_ENV of [undefined, 'production', 'development']) {
     assert.throws(() => prepareCompanyPreviewOutput(root, { VERCEL_ENV }), /preview-only/);
     assert.ok(existsSync(resolve(root, 'dist/companies.html')));
   }
-  prepareCompanyPreviewOutput(root, { VERCEL_ENV: 'preview' });
+  prepareEnabledCompanyPreviewOutput(root, { VERCEL_ENV: 'preview', COMPANY_CLEAN_ROUTE_PREVIEW: '1' });
   for (const name of ['companies', 'companies.html', 'company-data']) assert.ok(!existsSync(resolve(root, 'dist', name)));
   for (const name of ['index.html', 'company-page-assets.json', 'developers.html']) assert.ok(existsSync(resolve(root, 'dist', name)));
   assert.equal(readFileSync(resolve(root, 'companies/source.html'), 'utf8'), 'original');

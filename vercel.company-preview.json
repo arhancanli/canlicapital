@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build && node scripts/prepare-company-preview-output.mjs",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
@@ -206,6 +206,10 @@
         {
           "key": "Cache-Control",
           "value": "no-store"
+        },
+        {
+          "key": "Allow",
+          "value": "GET, HEAD"
         }
       ]
     },
@@ -219,6 +223,10 @@
         {
           "key": "Cache-Control",
           "value": "no-store"
+        },
+        {
+          "key": "Allow",
+          "value": "GET, HEAD"
         }
       ]
     },
@@ -232,6 +240,10 @@
         {
           "key": "Cache-Control",
           "value": "no-store"
+        },
+        {
+          "key": "Allow",
+          "value": "GET, HEAD"
         }
       ]
     }
