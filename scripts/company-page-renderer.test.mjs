@@ -250,6 +250,25 @@ test('Teladoc and Asana retain share units and distinct fiscal year ends', () =>
   }
 });
 
+test('Adaptive and KBS preserve distinct reasons for equal basic and diluted EPS', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['adaptive-biotechnologies', '0001478320', /after noncontrolling-interest allocation/, 151721939, '2025-12-31'],
+    ['kbs-reit-iii', '0001482430', /no potentially dilutive securities outstanding during the presented years/, 148516246, '2025-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v18' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('loss-context notes preserve noncontrolling allocation and explicit statement share units', () => {
   for (const [fixture, cik, phrase, value] of [
     ['roblox', '0001315098', /after noncontrolling interests as its EPS numerator/, 689612000],

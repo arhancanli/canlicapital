@@ -9,22 +9,22 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch18-20260921`. PR82merged4bc86333after four passing
-CI35534504127checks atf1161c9c. Tested and merged trees match exactly.
+`evidence/share-context-batch19-20260921`. PR83merged5839a4c3after four passing
+CI35534968617checks at0e62ed35. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch18-20260921.json.gz.
-Of1,176batch observations,564reviewed/598pending/14withdrawn.84reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch19-20260921.json.gz.
+Of1,176batch observations,588reviewed/574pending/14withdrawn.84reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover Teladoc2023–2025 and Asana fiscal2024–2026 EPS.
-Teladoc retains full share counts and loss-period anti-dilution; outstanding awards
-are not additional weighted-average shares. Asana retains January31fiscal ends,
-proportionate ClassA/Ballocation, combined denominator and scale3shares. No values
-or units changed.39renderer/ledger tests pass; source report replays byte-identically.
-Next new index57; earlier gaps remain.84presentation-only reviews retain their
-explicit limits, including historical China Bilingual annual/transition mapping.
+Latest24reviews cover Adaptive Biotechnologies and KBS REIT III2023–2025EPS.
+Adaptive uses net loss after noncontrolling-interest allocation and excludes
+anti-dilutive potential equivalents. KBS explicitly has no potentially dilutive
+securities during all three years; the separate December18estimated-value statement
+is not the basis for this annual conclusion. Both retain full scale0shares.
+40renderer/ledger tests pass; report replays byte-identically. Next new index59;
+earlier gaps remain.84presentation-only reviews retain their explicit limits.
 
 V18six Iovance2023–2025share-scale holds remain enforced. Earlier2019–2022share
 rows need original-filing review and six EPSbatch rows are still pending. Whole-

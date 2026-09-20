@@ -621,3 +621,16 @@ retained.39renderer/ledger tests pass; only24ledger rows advance.564reviewed/
 598pending/14withdrawn,84presentation-only. Source report replays byte-identically.
 No runtime rebuild, archive supplement, production deployment or indexing gain.
 All owner goals remain active; next new index57 and earlier gaps remain open.
+
+## 2026-09-21 — loss exclusions versus absence of potential dilution
+
+Previous turn completed24Teladoc/Asana reviews. PR83passed all four
+CI35534968617checks at0e62ed35and merged5839a4c3; tree6818e8bb94dde503c7cc97853314eb40171846f2
+matches exactly. Reviewed24Adaptive Biotechnologies/KBS REIT IIIobservations.
+Adaptive retains noncontrolling allocation and excluded potential equivalents.
+KBS annual EPS note explicitly states no potential securities for2023–2025;
+navigation index missed this paragraph, found by direct original-filing inspection.
+December18estimated-value disclosure remains distinct. Both use scale0shares.
+Report replays byte-identically;40renderer/ledger tests pass; exactly24rows advance.
+588reviewed/574pending/14withdrawn,84presentation-only. No runtime rebuild,
+archive supplement, deployment or indexing gain. Next new index59; all goals active.

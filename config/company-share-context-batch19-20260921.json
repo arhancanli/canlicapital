@@ -1,0 +1,56 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001478320",
+      "accession": "0001193125-26-076902",
+      "source_sha256": "2deab3b0302b42f5bca7f049684da17a3e834dfbc3dbe128e51ed398b3d69a92",
+      "primary_sha256": "c22477f0e67671ece39d83dc3ce40a4550cdd990af464465d70b6ce10e901afa",
+      "fixture": "scripts/fixtures/editorial/adaptive-biotechnologies-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 55,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss attributable to Adaptive Biotechnologies Corporation",
+        "Weighted-average shares"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share amounts)",
+        "Given the loss position for all periods presented",
+        "as their effect is anti-dilutive."
+      ],
+      "reader_note": "For 2023\u20132025, Adaptive Biotechnologies uses net loss attributable to the company after noncontrolling-interest allocation as its EPS numerator. Potential common-share equivalents from options and restricted-stock programs are excluded as anti-dilutive in these loss periods. The excluded equivalents are not added to the denominator. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001482430",
+      "accession": "0001482430-26-000014",
+      "source_sha256": "b877caa640ce8734f8ebdb9a6b7c6ce9767e821e907e83a538daea28d1fd455a",
+      "primary_sha256": "5166a90ddb5e7c08f86757e83535bc63314757d86663b2ac9220eb3afa99ecab",
+      "fixture": "scripts/fixtures/editorial/kbs-reit-iii-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 37,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss per common share, basic and diluted",
+        "Weighted-average number of common shares outstanding, basic and diluted"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share amounts)",
+        "Diluted net income (loss) per share of common stock equals basic net income (loss) per share of common stock as there were no potentially dilutive securities outstanding during the years ended December 31, 2025, 2024 and 2023, respectively."
+      ],
+      "reader_note": "For 2023\u20132025, KBS Real Estate Investment Trust III reports no potentially dilutive securities outstanding during the presented years, so diluted EPS equals basic EPS. This annual EPS disclosure is separate from the December 18, 2025 estimated-share-value disclosure. The denominator is weighted-average common shares issued and outstanding, not a period-end count. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
