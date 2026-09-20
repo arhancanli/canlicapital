@@ -3,6 +3,7 @@ import argparse
 import base64
 from decimal import Decimal, InvalidOperation
 import hashlib
+import io
 import json
 from pathlib import Path
 import subprocess
@@ -27,7 +28,22 @@ def verified(receipt):
 
 
 def compare(raw, cik, rows):
-    root = ET.fromstring(raw)
+    # QName values in measure text need the namespace scope at that element;
+    # the spelling of a prefix alone does not establish a currency namespace.
+    scopes, stack, pending = {}, [], {}
+    parser = ET.iterparse(io.BytesIO(raw), events=('start-ns', 'start', 'end'))
+    for event, item in parser:
+        if event == 'start-ns':
+            prefix, uri = item
+            pending[prefix] = uri
+        elif event == 'start':
+            scope = {**(stack[-1] if stack else {}), **pending}
+            pending = {}
+            stack.append(scope)
+            scopes[item] = scope
+        else:
+            stack.pop()
+    root = parser.root
     contexts = {n.get('id'): n for n in root.findall('x:context', NS)}
     units = {n.get('id'): n for n in root.findall('x:unit', NS)}
     results = []
@@ -52,7 +68,10 @@ def compare(raw, cik, rows):
             if any(n.tag.split('}')[-1] in ('explicitMember', 'typedMember') for n in ctx.iter()):
                 continue
             measure = unit.find('x:measure', NS)
-            if len(unit) != 1 or measure is None or measure.text != 'iso4217:' + row['unit']:
+            if len(unit) != 1 or measure is None:
+                continue
+            qname = (measure.text or '').strip().split(':')
+            if len(qname) != 2 or scopes[measure].get(qname[0]) != 'http://www.xbrl.org/2003/iso4217' or qname[1] != row['unit']:
                 continue
             start = ctx.findtext('x:period/x:startDate', namespaces=NS)
             end = ctx.findtext('x:period/x:endDate', namespaces=NS) or ctx.findtext('x:period/x:instant', namespaces=NS)

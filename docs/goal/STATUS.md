@@ -163,6 +163,14 @@ concepts or evidence of zero total liabilities. Scope receipt company-eventiko-
 history-scope-20260920.json; reader usefulness/copy and admission still pending.
 PR32 CI35516294193 passed all four checks at144cd463 before current additions.
 
+XML numerical helper now resolves currency QName namespace at the measure element,
+rejecting undeclared/wrong/rebound prefixes and accepting correctly bound aliases.
+New regression plus prior XML tests pass (4), as do17corpus tests. XML tests were
+outside the existing test_company_*.py glob and are now explicitly included in
+npm test:corpus. Replay44938 still matches212/212 with identical filing comparison
+results; fresh company-equal-history-retained-review-qname-20260920.json preserves
+new helper hash, original unchanged. Captures43531 and bulk26312 remain active.
+
 Next: finish capture and review remaining primary contexts; complete bulk transfer and full-corpus
 checks plus remaining editorial/admission work before production activation.
 The owner's publication approval persists. The prior 1–3day estimate and possible

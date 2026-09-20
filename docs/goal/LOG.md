@@ -536,3 +536,15 @@ Assets11,000 and separateAccounts Payable11,000, other selected instants zero.
 Nonzero related-party liabilities are separately disclosed. Scope notes preserve
 these distinctions; no automatic deduplication, company-wide admission or release.
 Bulk26312live;4074objects/0failures at checkpoint. Full historical capture unfinished.
+
+## 2026-09-20 — enforce currency namespaces in historical comparisons
+
+Previous turn captured missing EVENTIKO evidence and source-reviewed all8selected
+observations for its equal pair. Both43531capture and26312upload polled live.
+Review found XML helper trusted literal iso4217:USD without resolving the namespace.
+It now resolves scoped QName bindings, rejecting undefined/incorrect/rebound
+prefixes and accepting valid aliases. Updated formerly undeclared test fixture;
+four XML regressions pass. All17corpus tests pass. XML tests were outside prior
+CIglob; npm test:corpus now explicitly runs them too. Replay44938 retains212/212
+matches and identical per-filing results with new helper hash in a separate report.
+Original evidence remains unchanged. No source admission or production release.
