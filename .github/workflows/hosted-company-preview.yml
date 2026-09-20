@@ -1,0 +1,31 @@
+name: hosted company preview
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/hosted-company-preview.yml'
+      - 'scripts/audit-hosted-company-flow.mjs'
+      - 'config/company-preview-browser.json'
+permissions:
+  contents: read
+jobs:
+  desktop-flow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Verify hosted desktop navigation without retries
+        run: node scripts/audit-hosted-company-flow.mjs config/company-preview-browser.json hosted-company-flow.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: hosted-company-flow
+          path: hosted-company-flow.json
+          if-no-files-found: error
