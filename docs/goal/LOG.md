@@ -112,3 +112,21 @@ exclusions:12missing names,47below four core histories,43requiring identity/scop
 review.101have matching string CIKs; no conversion or admission. Original default
 three-cohort audit replay is byte-identical; traversal and duplicate cohorts reject.
 WebsiteCI35502289213 on a1a0e1ad passed. No deployment or publication.
+
+## 2026-09-20 — fifth delivery verification and first semantic hold
+
+Previous turn progressed through completed capture and identity exclusions. Read
+continuity and verified404confirmation25502 terminal success. Full replay has
+672candidates,328exclusions and zero errors. Staged a separate extended-v6review
+delivery:17,231histories,14directories,17,917URLs,1,344downloads. FullHTTP31051 and
+66sampled browser checks7483 pass; inspected mobile screenshot. Storage25202
+verifies2,041objects203,948,852bytes. No upload or full fifth evidence archive.
+
+Priority55concepts/29companies required31filings; capture32651 finished,62index/
+primary bodies retained.111observations reproduce:50inline1260 and61from19XBRL
+instances72869. Offline XBRL replay is byte-identical. Livento Revenues is narrower
+real-estate sales scope despite numerical matches. Bound hold report and generating
+script reproduce byte-identically. Currentv6not publishable as-is; no changed
+source numbers or exclusion policy yet. Continue scope dispositions and correct
+the candidate before publication. All handles from this checkpoint are terminal.
+Website5cd1051eCI35502460335passed. No deployment, indexing or investment outcome.

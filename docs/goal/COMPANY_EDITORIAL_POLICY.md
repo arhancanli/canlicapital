@@ -159,3 +159,18 @@ expansion. Deterministic replay, an independent observation count and rejection
 of altered manifest/source/observation bindings and duplicate concepts passed.
 See `artifacts/seo/company-fourth-history-review-targets-v6.json`. This queue
 covers priority concepts only; remaining concepts and flags still need review.
+
+## Fifth cohort: numerical matches and an unresolved publication hold
+
+Fifth-v6priority review includes55concepts from29companies across31filings. All
+111selected latest-accession values reproduce:50inline and61from19original XBRL
+instances. This does not establish accounting scope, all-history correctness or
+usefulness. The quality queue has3,302flagged histories,33constant and32zero.
+
+Livento1593549 Revenues is held. Its2025filing tags2,000,000 for2023and2021 in a
+paragraph explicitly describing revenue from real-estate sales; a separate table
+has a different2023revenue row. `review-livento-revenue-scope.py` binds the targets,
+capture, numerical comparison, original body, fact IDs and visible context. The
+2022accession is not reviewed by this disposition. Original numbers are unchanged.
+Apply a source-bound exclusion before publication and preserve v6for reproduction;
+it is not publishable as-is. No alternative revenue number is substituted.

@@ -6,10 +6,12 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 
 ## Active work and exact handles
 
-- Fifth source capture49258 finished09:27:00.106UTC, exit0:1,000processed,
-  672review candidates,163content exclusions(102identity/61coverage),165HTTP404s.
-  Preliminary saved-source replay has zero errors. Follow-up404body confirmation
-  is active session25502; poll that handle, do not restart capture49258.
+- Fifth capture49258 and404confirmation25502 are complete, exit0. All1,000
+  outcomes verified:672candidates,163content exclusions,165confirmed404s.
+  V6staging98072, fullHTTP31051, browser7483, storage25202, filing capture32651,
+  inline comparison1260 and XBRL72869 all finished successfully. No active handle.
+  The fifth v6review candidate is held for Livento revenue scope; apply a bound
+  exclusion before publication, and continue remaining editorial review.
 - Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
   4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
   Draft integration PR71 is open at the tested head:
@@ -27,11 +29,12 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 | Local static build | 690HTML:327indexable,363noindex |
 | Three-cohort candidate | 1,968companies,52,408histories,40directories:54,416URLs |
 | Separate fourth candidate v6 | 683companies,17,714histories,14directories:18,411URLs |
+| Separate fifth review candidate v6 | 672companies,17,231histories,14directories:17,917URLs; scope hold |
 | Indexed minimum / target | 800,000 / 1,000,000 actually indexed canonical pages |
 | Search intent | 104owners,147query hypotheses,223unassigned static pages |
 | Forward engine evidence | Five daily returns,four sleeves; IMMATURE_RECORD_TOO_SHORT |
 
-Candidates remain local/noindex. The fourth is not combined with the prior release.
+Candidates remain local/noindex. Fourth and fifth are separate from the prior release.
 Static/company families overlap at pilots; do not add these counts into an indexed
 claim. No new search-engine or investment outcome is established.
 
@@ -76,6 +79,17 @@ See SOURCE_CAPACITY.md and COMPANY_IDENTITY_REVIEW.md.
 
 ## Verified delivery and retention
 
+Fifth v6release68f11fbe5214000cceb7358967182463861114445a5f55e9b6a1152319b5c444:
+17,917URLs/1,344downloads pass local HTTP;66browser checks across11routes pass.
+Maximum3clicks,31,917HTMLbytes. Runtime plan verifies2,041objects203,948,852bytes;
+no upload or complete fifth evidence archive yet. Quality flags3,302histories,
+including33constant/32zero histories. Priority55concepts/29companies/31filings:
+111numbers reproduced(50inline,61original XBRL); no complete scope approval.
+Livento1593549's two latest Revenues facts describe real-estate sales; the same
+filing has a different2023revenue row. Source-bound hold recorded, no values
+changed and no new exclusion policy yet. V6must not be published as-is.
+
+
 Fourth-v6release:056a2826bbeb15bc019f99eb6a18e8e9b3c0550305398423e307236f2c30a338.
 All18,411URLs and1,366downloads pass local HTTP;96browser checks across16routes
 pass. Maximum3clicks from directory;31,467HTMLbytes. Runtime plan verifies
@@ -95,7 +109,7 @@ All archives are local. Offsite retention and hosted preview remain unverified.
 
 ## Code and platform verification
 
-Website05617bd9 passed allCI35501859482jobs. Local v6verification passes6+393tests
+Website5cd1051e passed allCI35502460335jobs. Local v6verification passes6+393tests
 and audits. Prior MCP test failure35500519399 is preserved; test-only deterministic
 deadline correction passed48MCP tests and complete remoteCI35500716863.
 Current source evidence:163hashes,2signatures and1,060transparency entries verify;
