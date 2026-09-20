@@ -151,58 +151,53 @@ running-engine trading activation, actual indexing gain or investment outcome is
 
 ## Current storage and preview checkpoint
 
-Supabase staging bucket company-reference-staging exists, public read with no
-public write policies added. JSON/gzip canary matches exact bytes and GET cache
-metadata. Full three-cohort plan is6,249objects/828,340,450bytes.
-Prior upload sessions are terminal:30526transport failure after69verified objects;
-81071HTTP502after240;58999unknown transport error after336. Last run used d0416673
-with bounded transient-read retries; the unknown category correctly stopped.
-Original receipts and tracked company-storage-*-stop-20260920.json remain intact.
-Do not claim complete transfer or restart based only on these old handles.
-Resume3session75189is terminal exit1 after557verified objects/40,312,854bytes.
-Two transient reads recovered; one create connection reset stopped the run.
-Read-only reconciliation confirms that object absent. All prior receipts remain
-intact. Current change verifies bytes after ambiguous create failures; an explicit
-writeAttempts=2 permits one further create-only request only after absence, with
-a global10retry budget. Default remains one write attempt. Permission failures,
-rate limits and corruption never trigger another write. Sixteen storage tests pass.
-Resume4 is active; exact handle and latest checkpoint are recorded below.
+PR24 merged as f99d6606f948faa8c09eec12e91be54c883b367f after all four
+CI35512565187 jobs passed at b59254471324c0683b8ffb8073374cd4cdfd8ef5.
+Reviewed and merged trees match 8cdf966e6f1908aeeb247578d4183838907f665b.
+Eighteen storage/planner tests cover bounded read and create recovery, interrupted
+response bodies, rejection statuses and corruption. All prior partial receipts
+remain intact. Resume4 ended at695 verified objects on a response-body reset.
 
+Resume5 session23870 is active using the reviewed uploader, concurrency4,
+readAttempts3/writeAttempts2. Fresh receipt:
+corpus-local/company-three-cohort-remote-transfer-resume5-20260920.json.
+Latest checkpoint: 852 verified objects, 0 read retries, 0 failures.
+Poll this exact handle before restarting; receipt alone is not process liveness.
+The complete three-cohort plan is6,249objects/828,340,450bytes. Public staging bucket
+company-reference-staging has no public write policy added. Exact-byte GET/cache
+canaries passed. No production page activation or complete transfer is claimed.
 
-Isolated preview at9f1e607c is READY:
+Preview dpl_Gw2aMA1cscjaGtV3c9JzF95voFai is READY at
 https://meridian-omfw4yrid-arhans-projects-ac470eaa.vercel.app
-Deployment dpl_Gw2aMA1cscjaGtV3c9JzF95voFai. First CLI attempt failed before a
-deployment existed; the inspected second attempt succeeded. Public storage settings
-apply only to this deployment. Four hosted unavailable-state checks pass:404,405,
-503GET/HEAD, noindex/no-store. Ready-state data, canonical routes and corpus-wide
-HTTP/browser verification remain pending. The clean preview source remains at
-/Users/arhancanli/canlicapital-company-preview-20260920. Production pointer unchanged.
+Source9f1e607c, isolated checkout canlicapital-company-preview-20260920.
+Four hosted unavailable-state checks passed (404/405/503 GET/HEAD and cache/robots).
+Ready-data checks, canonical routes, corpus-wide HTTP/browser verification and
+production rollout remain pending. Production publisher checkout stays9608542c.
 
-Current16storage regressions/planner tests pass. Earlier detailed status preserved
-in history/STATUS-20260920-through-storage-retries.md. Overall goal remains active.
+Candidate inventory:3,323unique companies plus87,348history pages. A combined
+50-company directory would add67pages, yielding90,738candidate URLs. Combined
+catalog not yet built; pilot overlaps mean these are not net-new live pages.
+Count receipt: company-expansion-candidate-counts-20260920.json.
 
-Verified candidate inventory across three batches:3,323unique company pages and
-87,348unique history pages. Rebuilding a combined50-company directory would yield
-67directory pages and90,738total candidate URLs. The combined catalog is not yet
-built; counts include existing pilot overlaps and are not new live/indexed pages.
-company-expansion-candidate-counts-20260920.json binds all three manifests.
+## Historical cash review checkpoint
 
-PR23merged as1811814b647fedbbef7639ea96fa0ae670c3992a after all four
-CI35511895380jobs passed at ac2584c1. Both trees match
-2b9774a5f96274c724a705004859078d6f7c117a; post-merge checks pending.
-Resume4session65658is confirmed active, using ac2584c1 with concurrency4,
-readAttempts3/writeAttempts2. Receipt:
-corpus-local/company-three-cohort-remote-transfer-resume4-20260920.json.
-Latest checkpoint612verified objects/44,466,024bytes, no recovery events or
-failures. Poll this exact handle before treating it as stopped or restarting.
-Production remains unchanged; hosted successful-data checks await full transfer.
+Branch research/cash-history-legacy-review-20260920 preserves17older primary
+filings and17XMLinstances for18selected observations across Holding and Atlantica.
+Original comparison matched17/18. Exact retained legacy namespace support resolves
+the remaining observation; revised offline comparison matches18/18. Three XML
+regression tests pass, retaining identity/date/unit and lookalike rejection.
+Archive111files/54,312,960bytes SHA256
+e0329e7bf4a5084152c53762e656a41e82633a2862f2979e732cdfc01ad20f37
+restored every hash and reproduced inline/XML reports byte-for-byte offline.
+This is local evidence preservation, not offsite backup or source admission.
 
-Resume4session65658is now terminal exit1 after695verified objects. The failure
-was a response-body ECONNRESET, outside the earlier request-header retry catch.
-The preserved stop receipt records exact bytes and prior successful read recovery.
-Current fix applies bounded retry classification to interrupted successful bodies,
-discards partial bytes, and refuses retries for broken401/403/429or ambiguous400
-responses. Eighteen storage tests pass. No uploader is active at this checkpoint.
-In parallel,17older primary filings for two cash histories were captured. Initial
-inline comparison leaves18historical observations for XML review; source work
-remains separate from publication and current runtime objects are unchanged.
+Next source work: inspect statement scope for all17historical filings. Atlantica's
+1996-12-31 zero is an explicit E96 XML instant; its2013cash-flow statement has an
+inception1997 column with zero opening cash. Opening-balance interpretation needs
+further presentation/statement review; do not call it a1996annual report.
+Two latest retained filings separately support seven numerical matches and five
+visible year-end columns. Holding and operating-partnership cash are distinct
+entities. No all-history editorial approval or data-policy change was made.
+
+Overall goal remains active; actual indexing and governed forward outcomes remain
+unproven. Next serving action: finish transfer, then run hosted ready-state audit.
