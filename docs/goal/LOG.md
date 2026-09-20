@@ -932,3 +932,13 @@ Real capture tests show unchanged histories except those rows, preserved assets,
 explanatory notices and inherited HNO/DBMM exclusions.33selector/renderer and
 8delivery/release tests pass. PR42mergeddb3de119 after four CIchecks and exact
 tested/merged tree equality. No full rebuild, upload or deployment.
+
+## 2026-09-20 — TECHCOM historical scope and honest review-credit reversal
+
+Reviewed42historical balance/zero-flow observations from21tables across7filings;
+report replay identical. Found1USDcomponent-total mismatch in adjacent2025
+liabilities and reopened two prior review credits, without assuming rounding.
+V13ledger also applies two Atlantica withdrawals verified from actual source
+replay. Exact counts351reviewed/249pending/10withdrawn;610keys preserved and
+ledger replay identical. PR43merged33059304after four CIchecks and exact tree
+equality. Full corpus rebuild and remaining reviews stay open; no publication.
