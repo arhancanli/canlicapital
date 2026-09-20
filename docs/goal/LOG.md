@@ -181,3 +181,20 @@ Both supplemental versions replay byte-identically; frozen baseline unchanged.
 Existing varying-history gate then omits both constant residual share histories.
 43targeted JS tests pass; actual source proves other concepts unchanged and
 notices present. Full transition/rebuild/archive and wider scope review pending.
+
+## 2026-09-20 — v16 full comparison and batch1 archive
+
+Previous turn implemented Valhi holds and closed batch numerical gaps. PR56merged
+3e3b5ff9after four checks and exact tree equality. Full comparison63644terminal0:
+all3,323companies,87,344histories; exact10direct holds sincev14and two omitted
+constant Valhi histories, no unrelated changes. New archive helper committed
+7a2dd535; six-report isolated replay66267started. Five safety tests pass.
+Consolidated STATUS while preserving previous bytes under history/STATUS-20260920-
+through-v16-numerical-closure.md; exact comparison against committed file passed.
+No whole runtime rebuild, publication or indexing gain.
+
+Archive66267completed exit0:446files/337,367,040bytes,
+SHA4ea4bccf7ddfaddcbcc0246fa6a38c12c97476ec229c6ac2b175c349a8586416.
+All six reports reproduce byte-for-byte from saved7a2dd535code and locked offline
+wheels. Original failed comparisons retained. No offsite or accounting-scope
+certification. No collector, comparison, archive or uploader remains active.
