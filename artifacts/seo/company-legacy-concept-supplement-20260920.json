@@ -1,0 +1,252 @@
+{
+  "schema": "canli.legacy-concept-supplement.v1",
+  "publication_approved": false,
+  "original_report_sha256": "57142e68a205d6072165cde0b16fbdbd36977930c16b4dbc48489db30c7ab501",
+  "legacy_index_sha256": "75025ac4e803a92f951ced6ec997968610c61eb0d89cd5fd50a7bd7e1d8e5118",
+  "helper_sha256": "9fe9596d43db7d050403c5ede9a0ff28c30c1b75245dcbe6a4ef8770e84443e2",
+  "code_sha256": "45174c6bd510fd2eaadc6e95fb63ec0607a682afa560e5471d82f49e69229b0f",
+  "filings": [
+    {
+      "cik": "0000818479",
+      "accession": "0000818479-17-000007",
+      "primary_sha256": "be9d756a0a104d311358df6b61df86d4bbbdec9c364a5ef26fb9ea501fe61e7a",
+      "primary_url": "https://www.sec.gov/Archives/edgar/data/818479/000081847917000007/dentsplysirona201610-k.htm",
+      "instance_capture": {
+        "path": "artifacts/seo/corpus-local/editorial-constant-filings/0000818479-EX-101.INS.response",
+        "url": "https://www.sec.gov/Archives/edgar/data/818479/000081847917000007/xray-20161231.xml",
+        "status": 200,
+        "captured_at": "2026-09-20T05:56:43.146773+00:00",
+        "bytes": 7617585,
+        "sha256": "69a8f8ea1f0ae38bbe193a4c33cd0e0266b3768a8e10ec1c01f1826b75f0f53c"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+            "end": "2015-12-31",
+            "val": 783900000,
+            "accn": "0000818479-17-000007",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-01",
+            "frame": "CY2015Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FI2015Q4",
+              "unit_id": "usd",
+              "value": "783900000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "ComprehensiveIncomeNetOfTax",
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": -49100000,
+            "accn": "0000818479-17-000007",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-01",
+            "frame": "CY2014",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FD2014Q4YTD",
+              "unit_id": "usd",
+              "value": "-49100000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "InterestPaidNet",
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": 47800000,
+            "accn": "0000818479-17-000007",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-01",
+            "frame": "CY2014",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FD2014Q4YTD",
+              "unit_id": "usd",
+              "value": "47800000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "PropertyPlantAndEquipmentGross",
+            "end": "2015-12-31",
+            "val": 1342700000,
+            "accn": "0000818479-17-000007",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-01",
+            "frame": "CY2015Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FI2015Q4",
+              "unit_id": "usd",
+              "value": "1342700000"
+            }
+          ]
+        }
+      ],
+      "primary_tables": [
+        {
+          "zero_based_table_index": 141,
+          "text": "Year Ended December 31, 2016 2015 2014 Net Income $ 431.4 $ 251.1 $ 322.9 Other comprehensive income (loss), net of tax: Foreign currency translation adjustments (90.5 ) (188.1 ) (354.1 ) Net (loss) gain on derivative financial instruments (8.6 ) 12.1 49.3 Net unrealized holding loss on available-for-sale securities \u2014 (8.5 ) (4.2 ) Pension liability adjustments (13.8 ) 32.2 (63.7 ) Total other comprehensive (loss) income (112.9 ) (152.3 ) (372.7 ) Total comprehensive income (loss) 318.5 98.8 (49.8 ) Less: Comprehensive income (loss) attributable to noncontrolling interests 0.3 0.5 (0.7 ) Comprehensive income (loss) attributable to Dentsply Sirona $ 318.2 $ 98.3 $ (49.1 )"
+        },
+        {
+          "zero_based_table_index": 144,
+          "text": "DENTSPLY SIRONA INC. AND SUBSIDIARIES CONSOLIDATED STATEMENTS OF CASH FLOWS (in millions) Year Ended December 31, 2016 2015 2014 Cash flows from operating activities: Net income $ 431.4 $ 251.1 $ 322.9 Adjustments to reconcile net income to net cash provided by operating activities: Depreciation 116.6 79.1 81.2 Amortization of intangible assets 155.1 43.8 47.9 Amortization of deferred financing costs 4.5 11.3 4.6 Deferred income taxes (110.1 ) 27.4 17.5 Stock based compensation expense 41.3 25.6 25.4 Restructuring and other costs - non-cash 9.7 43.3 5.8 Stock option income tax benefit (12.7 ) (11.6 ) (2.1 ) Equity in earnings from unconsolidated affiliates \u2014 1.6 0.4 Other non-cash (income) expense (32.0 ) (13.1 ) 10.0 Loss on disposal of property, plant and equipment 2.8 0.8 0.4 Changes in operating assets and liabilities, net of acquisitions: Accounts and notes receivable-trade, net (75.1 ) (0.9 ) 7.2 Inventories, net 65.4 32.1 21.0 Prepaid expenses and other current assets (32.4 ) (9.5 ) (16.1 ) Other noncurrent assets 2.6 3.3 4.9 Accounts payable 7.2 8.8 10.0 Accrued liabilities (12.2 ) (4.7 ) (12.2 ) Income taxes (7.7 ) (8.1 ) 22.4 Other noncurrent liabilities 9.0 17.1 9.2 Net cash provided by operating activities 563.4 497.4 560.4 Cash flows from investing activities: Cash paid for acquisitions of businesses and equity investments (341.8 ) (54.0 ) (8.6 ) Proceeds from the sale of businesses 6.1 \u2014 6.5 Purchases of short term time deposits (6.8 ) \u2014 (2.3 ) Liquidation of short term time deposits \u2014 \u2014 1.1 Proceeds from redemption of long-term corporate bonds \u2014 47.7 \u2014 Capital expenditures (125.0 ) (72.0 ) (99.6 ) Cash assumed in Sirona merger 522.3 \u2014 \u2014 Purchase of company owned life insurance policies (1.7 ) (1.4 ) (0.9 ) Cash received on derivative contracts 20.1 30.7 67.2 Cash paid on derivative contracts (17.1 ) (6.3 ) (96.5 ) Expenditures for identifiable intangible assets (1.1 ) \u2014 (6.2 ) Proceeds from sale of property, plant and equipment 5.0 0.4 0.6 Net cash provided by (used in) investing activities 60.0 (54.9 ) (138.7 ) Cash flows from financing activities: Proceeds from long-term borrowings, net of deferred financing costs 1,220.6 152.9 114.3 Payments on long-term borrowings (877.5 ) (267.5 ) (199.2 ) Decrease in short-term borrowings (44.1 ) (2.2 ) (101.9 ) Proceeds from exercise of stock options 41.0 35.5 49.0 Excess tax benefits from stock based compensation 12.7 11.6 2.1 Cash paid for acquisition of noncontrolling interests of consolidated subsidiaries (0.4 ) (80.5 ) \u2014 Cash paid for treasury stock (813.9 ) (112.7 ) (163.2 ) Cash dividends paid (64.6 ) (40.0 ) (37.3 ) Net cash used in financing activities (526.2 ) (302.9 ) (336.2 ) Effect of exchange rate changes on cash and cash equivalents 2.1 (6.6 ) (8.9 ) Net increase in cash and cash equivalents 99.3 133.0 76.6 Cash and cash equivalents at beginning of period 284.6 151.6 75.0 Cash and cash equivalents at end of period $ 383.9 $ 284.6 $ 151.6 Schedule of non-cash investing activities: Merger financed by common stock $ 6,256.2 $ \u2014 $ \u2014 Supplemental disclosures of cash flow information: Interest paid, net of amounts capitalized $ 36.7 $ 54.9 $ 47.8 Income taxes paid $ 112.3 $ 71.4 $ 48.7"
+        },
+        {
+          "zero_based_table_index": 176,
+          "text": "December\u00a031, (in\u00a0millions) 2016 2015 Assets, at cost: Land $ 52.8 $ 38.5 Buildings and improvements 500.4 400.4 Machinery and equipment 1,218.8 846.7 Construction in progress 82.9 57.1 1,854.9 1,342.7 Less: Accumulated depreciation 1,055.1 783.9 Property, plant and equipment, net $ 799.8 $ 558.8"
+        }
+      ]
+    },
+    {
+      "cik": "0001227654",
+      "accession": "0001140361-14-009227",
+      "primary_sha256": "c6a6ca46a326a67d60b0a39c025c9ef65b6654fbe3ce73f8fbb76522243f2406",
+      "primary_url": "https://www.sec.gov/Archives/edgar/data/1227654/000114036114009227/form10k.htm",
+      "instance_capture": {
+        "path": "artifacts/seo/corpus-local/editorial-constant-filings/0001227654-EX-101.INS.response",
+        "url": "https://www.sec.gov/Archives/edgar/data/1227654/000114036114009227/cmp-20131231.xml",
+        "status": 200,
+        "captured_at": "2026-09-20T05:56:48.282827+00:00",
+        "bytes": 2520734,
+        "sha256": "5a6d320a8b76585fba21ec137a5feffda31b8ad011fc7f04e4da278773ca8aee"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+            "end": "2012-12-31",
+            "val": 568500000,
+            "accn": "0001140361-14-009227",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-24",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c20121231",
+              "unit_id": "U001",
+              "value": "568500000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "ComprehensiveIncomeNetOfTax",
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": 143800000,
+            "accn": "0001140361-14-009227",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-24",
+            "frame": "CY2011",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c20110101to20111231",
+              "unit_id": "U001",
+              "value": "143800000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "InterestPaidNet",
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": 20000000,
+            "accn": "0001140361-14-009227",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-24",
+            "frame": "CY2011",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c20110101to20111231",
+              "unit_id": "U001",
+              "value": "20000000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "PropertyPlantAndEquipmentGross",
+            "end": "2012-12-31",
+            "val": 1213700000,
+            "accn": "0001140361-14-009227",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-24",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c20121231",
+              "unit_id": "U001",
+              "value": "1213700000"
+            }
+          ]
+        }
+      ],
+      "primary_tables": [
+        {
+          "zero_based_table_index": 180,
+          "text": "Consolidated Statements of Comprehensive Income For the Year Ended December 31, (In millions) 2013 2012 2011 Net earnings $ 130.8 $ 88.9 $ 149.0 Other comprehensive income (loss): Unrealized gain (loss) from change in pension costs, net of tax of $(0.2), $1.2 and $(3.0) in 2013, 2012 and 2011 0.3 (4.3 ) 8.8 Unrealized gain on cash flow hedges, net of tax of $(0.6), $(1.6) and $(0.8) in 2013, 2012 and 2011 1.0 2.7 1.3 Cumulative translation adjustment (24.4 ) 18.4 (15.3 ) Comprehensive income $ 107.7 $ 105.7 $ 143.8"
+        },
+        {
+          "zero_based_table_index": 184,
+          "text": "Consolidated Statements of Cash Flows For the Year Ended December 31, (In millions) 2013 2012 2011 Cash flows from operating activities: Net earnings $ 130.8 $ 88.9 $ 149.0 Adjustments to reconcile net earnings to net cash flows provided by operating activities: Depreciation, depletion and amortization 73.0 64.5 64.7 Finance fee amortization 1.2 1.3 1.5 Early extinguishment and refinancing of long-term debt - 2.8 - Stock-based compensation 5.1 8.5 6.5 Deferred income taxes (0.2 ) 0.4 4.5 Other, net 1.7 1.6 5.3 Asset impairment charges, Goderich tornado 0.2 1.1 4.8 Insurance advances for operating purposes, Goderich tornado 19.7 26.5 10.4 Insurance advances for investment purposes, Goderich tornado (14.2 ) (8.7 ) (12.6 ) Changes in operating assets and liabilities, net of acquisition: Receivables (71.7 ) 8.6 48.6 Inventories 45.7 (23.8 ) (3.1 ) Other assets 1.3 (14.5 ) (10.5 ) Accounts payable, income taxes payable and accrued expenses 45.1 (7.1 ) (17.7 ) Other liabilities 0.6 1.6 0.9 Net cash provided by operating activities 238.3 151.7 252.3 Cash flows from investing activities: Capital expenditures (122.7 ) (130.9 ) (107.4 ) Insurance advances for investment purposes, Goderich tornado 14.2 8.7 12.6 Acquisition of a business - - (58.1 ) Other, net 2.4 (1.4 ) 0.5 Net cash used in investing activities (106.1 ) (123.6 ) (152.4 ) Cash flows from financing activities: Proceeds from the issuance of long-term debt - 387.0 - Principal payments on long-term debt (3.9 ) (387.7 ) (4.2 ) Fees and premiums paid to redeem and refinance debt - (1.8 ) - Deferred financing costs (0.6 ) (2.2 ) - Dividends paid (73.1 ) (66.3 ) (60.1 ) Proceeds received from stock option exercises 10.6 7.4 5.1 Excess tax benefits from equity compensation awards 0.6 1.7 3.5 Net cash used in financing activities (66.4 ) (61.9 ) (55.7 ) Effect of exchange rate changes on cash and cash equivalents (6.3 ) 3.6 (5.0 ) Net change in cash and cash equivalents 59.5 (30.2 ) 39.2 Cash and cash equivalents, beginning of the year 100.1 130.3 91.1 Cash and cash equivalents, end of year $ 159.6 $ 100.1 $ 130.3 Supplemental cash flow information: Interest paid $ 17.4 $ 17.9 $ 20.0 Income taxes paid, net of refunds $ 24.7 $ 32.0 $ 45.9"
+        },
+        {
+          "zero_based_table_index": 199,
+          "text": "2013 2012 Land, buildings and structures and leasehold improvements $ 347.1 $ 309.0 Machinery and equipment 668.0 596.5 Office furniture and equipment 21.5 20.8 Mineral interests 180.9 184.4 Construction in progress 69.5 103.0 1,287.0 1,213.7 Less accumulated depreciation and depletion (609.7 ) (568.5 ) Property, plant and equipment, net $ 677.3 $ 645.2"
+        }
+      ]
+    }
+  ],
+  "additional_matches": 8,
+  "scope": "Offline supplement preserves the original eight unresolved rows. Legacy XML plus primary tables provide numerical evidence, not new-concept admission or all-history approval. No source acquisition."
+}
