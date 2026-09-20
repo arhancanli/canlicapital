@@ -24,6 +24,15 @@ identify the exact indexed canonical set.
 
 ## Content quality and source capacity
 
+Fourth1,000-issuer capture started September20 at07:39:43UTC, tool session29020.
+Queue is disjoint from all three prior website queues, the1,968-company delivery
+and600retained engine acquisition identities. These additional holdbacks remove
+220otherwise-unqueued discovery identities;4,467remain after the new queue.
+Capture is unfinished at this checkpoint: poll the same handle and inspect
+`corpus-local/fourth-1000/refresh.json`; do not launch a duplicate or infer completion.
+No new company admission, staged page or indexing count is claimed. Selection
+and holdback reports reproduce exactly; nine queue/capture tests pass.
+
 Extended-v3 corrects eight source-scope errors while preserving original SEC bytes
 and v1/v2 reproducibility. Earlier releases are not publishable as-is. Current
 release: 05cd9ff3582accff5277d49c1eb1eba7e55af8efe68fee1b2200219a88eb9f05.
@@ -91,10 +100,11 @@ still need URL-level exports. See INDEXING_BASELINE.md. Browser tab/export acces
 works; assistive access is denied, Apple Events JavaScript disabled and screenshot
 capture unavailable. No settings were bypassed.
 
-Website e9bb4829 passed CI35497231896; the prior full local build/verify passed
+Website c31e8b65 passed CI35497398668; the prior full local build/verify passed
 6 + 384 tests and final audits. Engine PR68 ce93d8c fixes nested agent-state copying;
 13 focused tests and Ruff pass, and full CI35494803169 now passes all six jobs.
-PR69/70 previously passed; verify their current state before release.
+PR69/70 rechecked: open at783ad0c/e0a257c, all six jobs pass respectively in
+CI35437603714/35438489448. They remain unmerged.
 
 Fresh npm audits of root, design-system and MCP report zero known vulnerabilities.
 GitHub alert1 remains open on the default branch's esbuild0.23.1; PR15 already

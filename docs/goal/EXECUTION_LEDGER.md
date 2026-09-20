@@ -15,6 +15,7 @@ Authority: REQUIREMENTS.md (all goals), STATUS.md (current facts), PHASES.md
 |T03 Consolidate continuity |Complete locally |Current STATUS separate from archived history; all objectives preserved |
 |T04 New-cohort staging |Locally verified |23,568 pages/1,706 downloads replayed;54 browser checks;147 exclusions retained |
 |T04c Third1,000 cohort |Locally verified; editorial review open |766 companies,234 verified exclusions;21,471 staged URLs/1,532 downloads;full HTTP+66browser checks pass;six exceptional pairs inspected against original filings |
+|T04d Fourth1,000 cohort |Capture running at checkpoint; session29020 |Disjoint from all prior website queues, retained600engine acquisitions and current delivery; nine queue/capture tests pass; no admission or staging claim |
 |T04b Combined-cohort construction |Locally verified |Correctedv3:54,416pages/3,936downloads across1,968companies;fullHTTP+114browser checks;6,705qualityflags retained |
 |T05 Editorial/source/intent quality |Eight source-scope interpretations corrected in v3;fullHTTP+114browser checks pass |338 matching-history pages and24 constant-unit pages explained;six unusual matching pairs inspected against original filings;373tests,66browser checks,fullHTTP replay; no publication approval |
 |T06 Storage and release |Runtime plan and local restore verified; access pending |v3plan6,249objects/828,340,450bytes;new13,183-file archive independently restored/replayed;remote retention andhostedverification pending |

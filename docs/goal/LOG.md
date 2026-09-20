@@ -1234,3 +1234,20 @@ comparisons and Princeton disposition byte-for-byte using only archived inputs.
 Capture report is hash-preserved, not refetched; full106caseaudit not rerun.
 Originalv3archive preserved. Runtime versions recorded, not bundled. Supplement
 is localonly; retained discovery and offsite retention remain outstanding.
+
+## 2026-09-20 — fourth source batch with retained-acquisition holdbacks
+
+Previous archive turn made verified retention progress; c31e8b65CI35497398668 now
+passes. Recovered600prior acquisition CIKs from24hash-bound retained status parts,
+reading identity columns only. Pinned new ledger combines all three websitequeues
+and retained acquisitions. This holds back220additional discovery identities.
+Selected1,000new CIKs,4,467remaining; independent overlap checks pass against every
+ledger and current delivery. Holdbacks and queue receipt replay byte-identically;
+nine existing queue/capture tests pass. Original queues unchanged.
+
+Capture29020 started07:39:43UTC in fourth-1000; last early observation12processed
+(10eligible-for-review,1excluded,1HTTPerror), unfinished. No duplicate process,
+retry on403/429, page staging or production publication. Poll same handle next.
+EnginePR68/69/70 rechecked open with current heads and six passing jobs each;
+none merged and no engine runtime modified. Capacity/indexing and forward goals
+remain unachieved; new capture counts cannot establish publication quality.
