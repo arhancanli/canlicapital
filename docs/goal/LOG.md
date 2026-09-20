@@ -158,3 +158,40 @@ exactly. Restored12audit inputs from a22,712,320byte local archive with exact ha
 The archive explicitly excludes raw company-body recovery and makes no offsite
 claim. Source-date/sitemap churn from tests was restored to the clean starting
 bytes; publication state and the production checkout were not changed.
+
+## 2026-09-20 — retained primary-filing concept review
+
+Previous goal turn is progress: typed coverage, duplication measurements and an
+isolated audit-input restore completed. PR17passed all four checks and merged as
+cacdf594; tree equals2c4e8c4d (de6b0f2d). Post-merge CI35508990999passed.
+
+Source-bound six-concept targets intersect40retained primary filings from38
+companies,198observations. Initial preparation encountered legacy receipts without
+body_path; their conventionally paired response bodies were resolved and verified
+against the original hashes/lengths, without modifying receipts. Ordering is
+explicitly deterministic. No new SEC request or retry was made.
+
+Final parser reproduces153inline facts and37additional facts from13retained XBRL
+instances. Eight historical rows remain unresolved in Dentsply Sirona and Compass
+Minerals filings; missing instances were not fetched. Parser hardening preserves
+namespace, entity, period, simple-USD-unit, nil/dimension, transform, sign and scale
+checks; counterfeit namespaces/transforms and fake zero text cannot be accepted.
+Preliminary extraction was superseded by complete reruns after parser hardening.
+Six regression cases and all17corpus tests pass, including a clean environment
+installed from exact hash-locked BeautifulSoup/soupsieve/typing-extension wheels.
+CI now explicitly installs those parser dependencies in a venv. PyPI wheel
+downloads occurred; SEC source acquisition did not.
+
+Manual scope notes cover14company/concept cases and27observations, not all190
+numerical matches. Parent attribution, discounted lease liabilities, operating
+interest cash flows, and gross/accumulated property balances remain distinct.
+NextDecade's construction assets constrain wording about productive capacity.
+Oruka's current companyfacts identity versus ARCA in the retained filing requires
+historical identity care; shared CIK does not prove unchanged business scope.
+
+Archive117files/127,406,080bytes includes40primary filings,13instances, receipts,
+comparison code, tests and locked wheels. Isolated restoration verifies every hash
+and exactly replays reportSHA57142e68a205d6072165cde0b16fbdbd36977930c16b4dbc48489db30c7ab501.
+ArchiveSHAc3a7d042aabc031923d4803abe7d71c6d1ba1b1caf39811da13d5f3c4a75dc49.
+Target regeneration still needs original companyfacts cohort archives; no offsite
+claim. No source admission, production deployment, new page or indexing gain.

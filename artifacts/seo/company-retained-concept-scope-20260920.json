@@ -1,0 +1,592 @@
+{
+  "schema": "canli.retained-concept-scope-notes.v1",
+  "publication_approved": false,
+  "comparison_sha256": "57142e68a205d6072165cde0b16fbdbd36977930c16b4dbc48489db30c7ab501",
+  "concepts": [
+    {
+      "tag": "OperatingLeaseRightOfUseAsset",
+      "disposition": "SUPPORTED_IN_LISTED_FILINGS_ONLY",
+      "scope_note": "The balance-sheet row explicitly identifies an operating-lease right-of-use asset, separately from owned property. Do not label this as owned assets or lease cash paid.",
+      "evidence": [
+        {
+          "cik": "0000030625",
+          "name": "FLOWSERVE CORP",
+          "accession": "0000030625-26-000003",
+          "url": "https://www.sec.gov/Archives/edgar/data/30625/000003062526000003/fls-20251231.htm",
+          "primary_sha256": "a41c1efe60748aa953d163e1917348fd4e45e193bf85704ef5af57fb88550a52",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2024-12-31",
+              "val": 159400000,
+              "unit": "USD"
+            },
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 166031000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-67",
+            "f-68"
+          ],
+          "context_ids": [
+            "c-4",
+            "c-5"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseLiability",
+      "disposition": "SUPPORTED_IN_LISTED_FILINGS_ONLY",
+      "scope_note": "Tables reconcile future lease payments less imputed interest to the liability; the two prose cases identify the lease obligation and, for Oruka, current/noncurrent classification. Do not use undiscounted payments or only the noncurrent line as the total.",
+      "evidence": [
+        {
+          "cik": "0000030625",
+          "name": "FLOWSERVE CORP",
+          "accession": "0000030625-26-000003",
+          "url": "https://www.sec.gov/Archives/edgar/data/30625/000003062526000003/fls-20251231.htm",
+          "primary_sha256": "a41c1efe60748aa953d163e1917348fd4e45e193bf85704ef5af57fb88550a52",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 185195000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-858",
+            "f-864"
+          ],
+          "context_ids": [
+            "c-4"
+          ]
+        },
+        {
+          "cik": "0000066740",
+          "name": "3M CO",
+          "accession": "0000066740-26-000014",
+          "url": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm",
+          "primary_sha256": "104f35e670a2e3ff49c544914f4d46190ca217d366912204fd7377973ad593e1",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 530000000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-2369"
+          ],
+          "context_ids": [
+            "c-12"
+          ]
+        },
+        {
+          "cik": "0000907654",
+          "name": "Oruka Therapeutics, Inc.",
+          "accession": "0000950170-24-009809",
+          "url": "https://www.sec.gov/Archives/edgar/data/907654/000095017024009809/abio-20231231.htm",
+          "primary_sha256": "dd25cdd897ee2fbd4ad4f98db9f40b7c0322d345ebba4d0ce060d32563523f6c",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2023-12-31",
+              "val": 280000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "F_0427e549-a7ad-4407-9d7b-8cbcde156e50"
+          ],
+          "context_ids": [
+            "C_153983d8-90e6-4ba2-a3f8-4dfed077a66e"
+          ]
+        },
+        {
+          "cik": "0001393772",
+          "name": "WEED, INC.",
+          "accession": "0001096906-26-000507",
+          "url": "https://www.sec.gov/Archives/edgar/data/1393772/000109690626000507/budz_10k.htm",
+          "primary_sha256": "ee29009d186f9a69d5113ab8ec3715dc3fc12d5be6fcb1a4f1ce1e76ea07bcdc",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 4751,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "fid_1012"
+          ],
+          "context_ids": [
+            "AsOf2025-12-31"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "InterestPaidNet",
+      "disposition": "SUPPORTED_IN_LISTED_FILINGS_ONLY",
+      "scope_note": "The primary cash-flow disclosure labels these as interest payments classified as operating activities. This does not establish all cash borrowing costs or interest expense.",
+      "evidence": [
+        {
+          "cik": "0001612720",
+          "name": "NextDecade Corp",
+          "accession": "0001612720-26-000009",
+          "url": "https://www.sec.gov/Archives/edgar/data/1612720/000161272026000009/next-20251231.htm",
+          "primary_sha256": "d9c42b7e68335667b0995781eddb246abc32b68b26109ddf6932b4e03c65c8ef",
+          "selected_periods": [
+            {
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "val": 23365000,
+              "unit": "USD"
+            },
+            {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": 3557000,
+              "unit": "USD"
+            },
+            {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": 30087000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-793",
+            "f-794",
+            "f-795"
+          ],
+          "context_ids": [
+            "c-1",
+            "c-8",
+            "c-9"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "ComprehensiveIncomeNetOfTax",
+      "disposition": "SUPPORTED_IN_LISTED_FILINGS_ONLY",
+      "scope_note": "The selected rows are attributed to the parent after the separate noncontrolling-interest adjustment. Do not relabel them as total consolidated comprehensive income including noncontrolling interests.",
+      "evidence": [
+        {
+          "cik": "0000030625",
+          "name": "FLOWSERVE CORP",
+          "accession": "0000030625-26-000003",
+          "url": "https://www.sec.gov/Archives/edgar/data/30625/000003062526000003/fls-20251231.htm",
+          "primary_sha256": "a41c1efe60748aa953d163e1917348fd4e45e193bf85704ef5af57fb88550a52",
+          "selected_periods": [
+            {
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "val": 194931000,
+              "unit": "USD"
+            },
+            {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": 180935000,
+              "unit": "USD"
+            },
+            {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": 512265000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-217",
+            "f-218",
+            "f-219"
+          ],
+          "context_ids": [
+            "c-1",
+            "c-6",
+            "c-7"
+          ]
+        },
+        {
+          "cik": "0000066740",
+          "name": "3M CO",
+          "accession": "0000066740-26-000014",
+          "url": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm",
+          "primary_sha256": "104f35e670a2e3ff49c544914f4d46190ca217d366912204fd7377973ad593e1",
+          "selected_periods": [
+            {
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "val": -7100000000,
+              "unit": "USD"
+            },
+            {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": 4636000000,
+              "unit": "USD"
+            },
+            {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": 3901000000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-170",
+            "f-171",
+            "f-172"
+          ],
+          "context_ids": [
+            "c-1",
+            "c-10",
+            "c-11"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "PropertyPlantAndEquipmentGross",
+      "disposition": "SUPPORTED_IN_LISTED_FILINGS_ONLY",
+      "scope_note": "Balance-sheet/note tables identify cost before accumulated depreciation. Vista requires reading column headings; NextDecade includes a facility under construction, so this is not a measure of currently productive capacity.",
+      "evidence": [
+        {
+          "cik": "0000066740",
+          "name": "3M CO",
+          "accession": "0000066740-26-000014",
+          "url": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm",
+          "primary_sha256": "104f35e670a2e3ff49c544914f4d46190ca217d366912204fd7377973ad593e1",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2024-12-31",
+              "val": 23406000000,
+              "unit": "USD"
+            },
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 23922000000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-197",
+            "f-198",
+            "f-464",
+            "f-465"
+          ],
+          "context_ids": [
+            "c-12",
+            "c-13"
+          ]
+        },
+        {
+          "cik": "0000783324",
+          "name": "VISTA GOLD CORP.",
+          "accession": "0000783324-26-000009",
+          "url": "https://www.sec.gov/Archives/edgar/data/783324/000078332426000009/vgz-20251231x10k.htm",
+          "primary_sha256": "b2f3a561b238b8f464fc6532f700b13c7c2ab2bf3236a904fd4e2299296434b7",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2024-12-31",
+              "val": 6035000,
+              "unit": "USD"
+            },
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 6627000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "Tc_3YYvzf_EnE260GyY3qVTDQ_6_12",
+            "Tc_jfVaSvj-Ak-Ep6n1E4aTQw_6_3"
+          ],
+          "context_ids": [
+            "As_Of_12_31_2024_0I0gDUFuW0KmzEngf_j2Xg",
+            "As_Of_12_31_2025_xHYdK9JQEk-TSwWSImN-VA"
+          ]
+        },
+        {
+          "cik": "0001612720",
+          "name": "NextDecade Corp",
+          "accession": "0001612720-26-000009",
+          "url": "https://www.sec.gov/Archives/edgar/data/1612720/000161272026000009/next-20251231.htm",
+          "primary_sha256": "d9c42b7e68335667b0995781eddb246abc32b68b26109ddf6932b4e03c65c8ef",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2024-12-31",
+              "val": 5021981000,
+              "unit": "USD"
+            },
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 10571195000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-379",
+            "f-380"
+          ],
+          "context_ids": [
+            "c-4",
+            "c-5"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+      "disposition": "SUPPORTED_IN_LISTED_FILINGS_ONLY",
+      "scope_note": "Tables show an accumulated balance deducted from gross cost, not annual depreciation expense. Vista needs the cost/accumulated/net column headings. NextDecade construction explains why gross cost and accumulated depreciation can differ greatly.",
+      "evidence": [
+        {
+          "cik": "0000066740",
+          "name": "3M CO",
+          "accession": "0000066740-26-000014",
+          "url": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm",
+          "primary_sha256": "104f35e670a2e3ff49c544914f4d46190ca217d366912204fd7377973ad593e1",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2024-12-31",
+              "val": 16018000000,
+              "unit": "USD"
+            },
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 16821000000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-199",
+            "f-200",
+            "f-466",
+            "f-467"
+          ],
+          "context_ids": [
+            "c-12",
+            "c-13"
+          ]
+        },
+        {
+          "cik": "0000783324",
+          "name": "VISTA GOLD CORP.",
+          "accession": "0000783324-26-000009",
+          "url": "https://www.sec.gov/Archives/edgar/data/783324/000078332426000009/vgz-20251231x10k.htm",
+          "primary_sha256": "b2f3a561b238b8f464fc6532f700b13c7c2ab2bf3236a904fd4e2299296434b7",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2024-12-31",
+              "val": 5553000,
+              "unit": "USD"
+            },
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 5641000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "Tc_JlLP5YRrLk-ZNMxoWSb1Bw_6_15",
+            "Tc_ulRjz0574k-EOzx5NleBYg_6_6"
+          ],
+          "context_ids": [
+            "As_Of_12_31_2024_0I0gDUFuW0KmzEngf_j2Xg",
+            "As_Of_12_31_2025_xHYdK9JQEk-TSwWSImN-VA"
+          ]
+        },
+        {
+          "cik": "0001612720",
+          "name": "NextDecade Corp",
+          "accession": "0001612720-26-000009",
+          "url": "https://www.sec.gov/Archives/edgar/data/1612720/000161272026000009/next-20251231.htm",
+          "primary_sha256": "d9c42b7e68335667b0995781eddb246abc32b68b26109ddf6932b4e03c65c8ef",
+          "selected_periods": [
+            {
+              "start": null,
+              "end": "2024-12-31",
+              "val": 1978000,
+              "unit": "USD"
+            },
+            {
+              "start": null,
+              "end": "2025-12-31",
+              "val": 2884000,
+              "unit": "USD"
+            }
+          ],
+          "fact_ids": [
+            "f-381",
+            "f-382"
+          ],
+          "context_ids": [
+            "c-4",
+            "c-5"
+          ]
+        }
+      ]
+    }
+  ],
+  "unresolved_observations": [
+    {
+      "cik": "0000818479",
+      "accession": "0000818479-17-000007",
+      "selected": {
+        "tag": "AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+        "end": "2015-12-31",
+        "val": 783900000,
+        "accn": "0000818479-17-000007",
+        "fy": 2016,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-01",
+        "frame": "CY2015Q4I",
+        "unit": "USD"
+      }
+    },
+    {
+      "cik": "0000818479",
+      "accession": "0000818479-17-000007",
+      "selected": {
+        "tag": "ComprehensiveIncomeNetOfTax",
+        "start": "2014-01-01",
+        "end": "2014-12-31",
+        "val": -49100000,
+        "accn": "0000818479-17-000007",
+        "fy": 2016,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-01",
+        "frame": "CY2014",
+        "unit": "USD"
+      }
+    },
+    {
+      "cik": "0000818479",
+      "accession": "0000818479-17-000007",
+      "selected": {
+        "tag": "InterestPaidNet",
+        "start": "2014-01-01",
+        "end": "2014-12-31",
+        "val": 47800000,
+        "accn": "0000818479-17-000007",
+        "fy": 2016,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-01",
+        "frame": "CY2014",
+        "unit": "USD"
+      }
+    },
+    {
+      "cik": "0000818479",
+      "accession": "0000818479-17-000007",
+      "selected": {
+        "tag": "PropertyPlantAndEquipmentGross",
+        "end": "2015-12-31",
+        "val": 1342700000,
+        "accn": "0000818479-17-000007",
+        "fy": 2016,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-01",
+        "frame": "CY2015Q4I",
+        "unit": "USD"
+      }
+    },
+    {
+      "cik": "0001227654",
+      "accession": "0001140361-14-009227",
+      "selected": {
+        "tag": "AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+        "end": "2012-12-31",
+        "val": 568500000,
+        "accn": "0001140361-14-009227",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-24",
+        "frame": "CY2012Q4I",
+        "unit": "USD"
+      }
+    },
+    {
+      "cik": "0001227654",
+      "accession": "0001140361-14-009227",
+      "selected": {
+        "tag": "ComprehensiveIncomeNetOfTax",
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": 143800000,
+        "accn": "0001140361-14-009227",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-24",
+        "frame": "CY2011",
+        "unit": "USD"
+      }
+    },
+    {
+      "cik": "0001227654",
+      "accession": "0001140361-14-009227",
+      "selected": {
+        "tag": "InterestPaidNet",
+        "start": "2011-01-01",
+        "end": "2011-12-31",
+        "val": 20000000,
+        "accn": "0001140361-14-009227",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-24",
+        "frame": "CY2011",
+        "unit": "USD"
+      }
+    },
+    {
+      "cik": "0001227654",
+      "accession": "0001140361-14-009227",
+      "selected": {
+        "tag": "PropertyPlantAndEquipmentGross",
+        "end": "2012-12-31",
+        "val": 1213700000,
+        "accn": "0001140361-14-009227",
+        "fy": 2013,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2014-02-24",
+        "frame": "CY2012Q4I",
+        "unit": "USD"
+      }
+    }
+  ],
+  "limits": [
+    "Convenience sample, not representative issuer coverage.",
+    "Listed primary contexts were reviewed; other numerical matches remain scope-review pending.",
+    "No new concept admission, selector policy or page publication.",
+    "Eight unresolved historical figures need primary-source resolution before any claim about those histories."
+  ]
+}

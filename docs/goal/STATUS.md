@@ -8,9 +8,9 @@ history/STATUS-20260920-through-fourth-v9.md; earlier history remains linked the
 ## Current checkout and releases
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch research/typed-concept-coverage-20260920. PR16 merged as6cc2c517; its tree
-matches tested05e9fbf6 and post-merge CI35508225593passed. Current work is offline
-taxonomy-constrained coverage and duplication review, not a website deployment.
+Branch research/retained-concept-filings-20260920. PR17 merged ascacdf594; its
+tree matches tested2c4e8c4d and post-merge CI35508990999passed. Current work is
+retained primary-filing scope review, not a website deployment.
 Production application revision9608542ce019307674269667c4aa16ebc69dd43e is live
 on canlicapital.com. Dedicated clean publisher checkout:
 /Users/arhancanli/canlicapital-production-20260920.
@@ -103,6 +103,13 @@ Audit-input archive22,712,320bytes/SHA128c02a0ef70bd5bf859b20bdb03f9db8a675c1e14
 restores all12inputs exactly. It is not a self-contained company-source archive
 or offsite backup. Definitions, admission and publication remain unchanged.
 
+Retained-filing review:40primary documents/38companies/198observations;153inline
+and37retained-instance matches, eight unresolved. Six strict parser regressions
+and all17corpus tests pass in a clean hash-locked environment. Archive117files,
+127,406,080bytes/SHAc3a7d042aabc031923d4803abe7d71c6d1ba1b1caf39811da13d5f3c4a75dc49
+restores and reproduces the report byte-for-byte. This replays comparisons, not
+companyfacts target regeneration or offsite recovery. No new pages admitted.
+
 ## Next work and external dependencies
 
 - Owner publication approval persists. New owner-provided account token successfully
@@ -121,8 +128,10 @@ or offsite backup. Definitions, admission and publication remain unchanged.
 - Continue all-history scope/unit/usefulness review; latest-filing numerical equality
   is insufficient. Fourth priority queue430observations/185filings remains incomplete.
   Taxonomy/coverage audit of94high-coverage concepts is complete:140,596recent
-  pairs, not approved pages. Primary-filing scope/usefulness review of six
-  candidates is next; CONCEPT_REVIEW.md. No production selector policy changed.
+  pairs, not approved pages. Six candidates now have a retained-filing sample:
+  190of198figures reproduced across40filings; eight remain unresolved.14scope
+  cases/27observations have bounded manual notes. Broader historical/identity
+  review and admission decisions remain open; CONCEPT_REVIEW.md. No policy changed.
 - Discovery8,031CIKs and34old concepts cannot alone reach800k; prior upper bound
   253,575URLs.3,467identities remain unqueued after fifth reservation. Additional
   useful sources/families are required. No artificial keyword variants. A SEC bulk

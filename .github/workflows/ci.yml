@@ -36,8 +36,14 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Verify source evidence, SEO and developer contracts
         run: npm run verify
-      - name: Verify bulk source catalog integrity
-        run: npm run test:corpus
+      - name: Install hash-locked editorial parser dependencies
+        run: |
+          python3 -m venv "$RUNNER_TEMP/canli-editorial-tests"
+          "$RUNNER_TEMP/canli-editorial-tests/bin/python" -m pip install --require-hashes --only-binary=:all: -r scripts/requirements-editorial.txt
+      - name: Verify bulk source catalog and filing integrity
+        run: |
+          . "$RUNNER_TEMP/canli-editorial-tests/bin/activate"
+          npm run test:corpus
       - name: Verify change-notification batching
         run: npm run test:indexnow
       - name: Check patch hygiene
