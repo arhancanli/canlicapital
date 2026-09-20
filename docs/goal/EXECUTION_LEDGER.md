@@ -12,7 +12,7 @@ ledger: history/EXECUTION_LEDGER-20260920-before-fifth-review.md.
 | T03 Continuity | Maintained | Concise current STATUS and LOG; complete earlier versions archived byte-for-byte. |
 | T04 Earlier captures | Captured and locally verified | Three-cohort v3 candidate: 1,968 companies, 54,416 URLs; editorial review remains open. |
 | T04d Fourth capture | Captured; v6 delivery verified | 683 companies, 17,714 histories, 18,411 URLs, 1,366 downloads; 96 browser checks pass. |
-| T04e Fifth capture | Running: session 49258 | 1,000 disjoint issuers; latest 521 processed, 340 review candidates, 90 exclusions, 91 HTTP errors. No completion or staging claim. |
+| T04e Fifth capture | Complete; exclusion verification running | 672review candidates,163content exclusions,165HTTP404s. Source replay has zero errors;404body confirmation session25502 remains live. Not staged or published. |
 | T05 Editorial quality | Partial, not publication approval | Eight earlier and five fourth-cohort scope errors excluded. Fourth priority review: 120 numbers reproduced; 14 unusual equal pairs reviewed. Of 22 retained zeros, 21 latest contexts supported; Nika income/revenue wording remains unresolved. All-history, unit and usefulness reviews remain open. |
 | T06 Storage and release | Local retention verified; hosted access pending | Fourth-v6 full archive restores all queue outcomes, 2,074 runtime objects and five scope exclusions. Prior v3 archive retained. No upload, offsite verification or hosted activation. |
 | T07 Indexing and adoption | Outcomes unestablished | Google baseline 262 indexed as of September 14; URL-level exclusions pending. Real developer adoption unproven. |

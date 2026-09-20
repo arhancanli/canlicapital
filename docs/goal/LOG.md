@@ -96,3 +96,19 @@ latest priority observations to reproduce. Byte-identical replay, independent
 duplicate concept) passed. No network requests or admission from this work.
 Fifth capture remains live, latest930/1000:623review candidates,149content exclusions,
 158HTTP404outcomes. No stopped/finished marker and no retry or restart.
+
+## 2026-09-20 — fifth capture complete and identity exclusions reviewed
+
+Previous turn made progress by enumerating the full historical priority queue.
+Capture49258 now terminal exit0, finished09:27:00.106UTC:672review candidates,
+163content exclusions(102identity/61coverage),165HTTP404s. Preliminary source replay
+12704 completed:672records and all content exclusions reproduce, zero errors.
+The5,886core candidate routes are not the extended delivery or indexed pages.
+
+404body confirmation25502 is running separately against the completed queue; no
+403/429 retry, source replacement or capture restart. Do not stage until all
+exclusion evidence is complete. Explicit-cohort identity audit preserves all102
+exclusions:12missing names,47below four core histories,43requiring identity/scope
+review.101have matching string CIKs; no conversion or admission. Original default
+three-cohort audit replay is byte-identical; traversal and duplicate cohorts reject.
+WebsiteCI35502289213 on a1a0e1ad passed. No deployment or publication.

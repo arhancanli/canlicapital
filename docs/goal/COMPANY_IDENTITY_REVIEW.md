@@ -147,3 +147,16 @@ The result is retained in `company-identity-evidence-restore-20260920.json`.
 This supplement neither replaces the v3 archive nor includes the separate retained
 issuer-discovery review. The saved repository revision identifies report provenance;
 the new packaging script's own bytes are included and hash-bound in the manifest.
+
+## Fifth completed cohort
+
+All102identity exclusions still reproduce from their captured bytes.101sources
+have string CIKs matching the requested number; this does not authorize conversion
+or admission.12lack a usable name. Of the remaining cases,47have fewer than four
+core histories and43require identity/filing-scope review.21of those43exactly match
+a discovery name and22do not; neither outcome alone proves filing scope.
+
+`company-fifth-identity-exclusions-20260920.json` binds capture/discovery inputs.
+The audit now accepts explicit cohort names, rejects traversal/duplicates and
+reproduces the original three-cohort report byte-for-byte with default arguments.
+No source value, selection policy or exclusion was changed.

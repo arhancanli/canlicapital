@@ -6,10 +6,10 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 
 ## Active work and exact handles
 
-- Fifth source capture: session49258, started09:02:13.251UTC, directory
-  artifacts/seo/corpus-local/fifth-1000. Last checkpoint804/1000:528review candidates,
-  130content exclusions,146HTTPerrors; no stop or finish. Poll this same handle.
-  Do not restart because a poll times out or replace its queue.
+- Fifth source capture49258 finished09:27:00.106UTC, exit0:1,000processed,
+  672review candidates,163content exclusions(102identity/61coverage),165HTTP404s.
+  Preliminary saved-source replay has zero errors. Follow-up404body confirmation
+  is active session25502; poll that handle, do not restart capture49258.
 - Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
   4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
   Draft integration PR71 is open at the tested head:

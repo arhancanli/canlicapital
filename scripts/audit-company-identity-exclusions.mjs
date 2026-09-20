@@ -13,7 +13,10 @@ for(const row of Object.values(discovery)){
  const cik=String(row.cik_str).padStart(10,'0');if(!names.has(cik))names.set(cik,new Set());names.get(cik).add(row.title);
 }
 const cases=[];
-for(const cohort of ['fresh-review','next-1000','third-1000']){
+const cohorts=process.argv.slice(3);
+if(!cohorts.length)cohorts.push('fresh-review','next-1000','third-1000');
+assert(cohorts.every(name=>/^[a-z0-9][a-z0-9-]*$/.test(name))&&new Set(cohorts).size===cohorts.length,'Invalid or duplicate cohort');
+for(const cohort of cohorts){
  const root=`artifacts/seo/corpus-local/${cohort}`;
  const queue=read(`${root}/ciks.json`),progress=read(`${root}/refresh.json`);
  assert(progress.finished_at&&!progress.stopped);assert.equal(progress.results.length,queue.length);
