@@ -189,7 +189,9 @@ comparison7564completed0 verifies all3,323companies/87,347histories againstv10.
 Only selection-policy metadata, one DBMM observation and its explanation change.
 All source descriptors and other values are unchanged. Receipt company-five-cohort-
 v11-transition-20260920.json pins five new manifests. Combined catalog/release/
-discovery/storage pipeline90963 is active; no new release/URL count asserted yet.
+discovery/storage pipeline90963 completed exit0; independent v11audit confirms
+90,737unique URLs, with no additions/removals versusv10. All four PR39checks
+CI35521229364passed at1ca3697e before the new audit/continuity additions.
 V10uploader82504was deliberately stopped as superseded; receipt company-v10-
 transfer-superseded-20260920.json retained. No uploader active. Full v11rebuild
 and later immutable reconciliation are required before publication.
@@ -210,7 +212,24 @@ delivery/load checks, editorial admission and production activation remain open.
 Owner publication approval persists; it does not substitute for these checks.
 Prior1–3day/tonight estimates were provisional, not measured completion forecasts.
 
-## Current v10 combined candidate
+## Current v11 combined candidate
+
+3,323companies +87,347histories +67directories =90,737unique candidate URLs.
+Full XML hash/byte/uniqueness checks and exact v10/v11set comparison pass.
+No added or removed URLs; shards40,737and50,000. Storage plan totals and
+unique keys checked:10,360objects/1,280,301,890bytes;3,323sharedv10keys.
+Shared keys are not remote verification. No uploader active or deployment.
+
+Release:a98105f2fe459ff3dd8aabc90c1ed3de442b931453fb68e9b0b48324c8f5fff4
+Catalog:ba8f0459156a84058a585e4538503e973ec9fd1d886d812f73ddfce3462ea8c1
+Downloads:5b3c0b57e86bec0a5857bc37a838428cf776c660af09bb343f8bb8f7bce56958
+Deliverymanifest:8900d4d3bcb0dec7b1356cddb3481bd69736a2832e95b6255ef4085152de4576
+Storageplan:4e179e74be346df6071e7a5429ce390d694f8aabfb43702d10728a1660e7d00c
+
+Evidence company-five-cohort-v11-discovery-audit-20260920.json. V11archive,
+remaining editorial scope and full hosted delivery/production checks remain open.
+
+## Previous v10 combined candidate (superseded)
 
 Pipeline77545completed exit0.3,323companies+87,347histories+67directories =
 90,737unique URLs. Independent XML/hash/uniqueness and full URL-set comparison

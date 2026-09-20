@@ -826,3 +826,14 @@ source descriptors and other values matchv10. Ten delivery/release tests pass.
 Combined v11pipeline90963active. Obsolete v10upload82504deliberately stopped
 terminal1; receipt preserved separately. No uploader active; no publication.
 PR39CI35521045721passed before these transition receipts; new CI required.
+
+## 2026-09-20 — v11 combined release and exact sitemap audit
+
+The owner-goal reminder turn made no implementation progress. Resumed by polling
+the existing90963handle: terminal0, all five build stages completed. PR39all four
+CI35521229364checks passed at1ca3697e. Independent versioned audit checks every
+sitemap's bytes/hash, uniqueness, exact unchanged v10/v11URL set and storage-plan
+counts/immutable shared metadata. Result90,737candidate URLs,10,360objects,
+1,280,301,890bytes. Full roots retained in the v11discovery-audit receipt and STATUS.
+No uploader started, no production or indexing gain. New audit/continuity additions
+require their own CI. V11archive and remaining scope review are next.
