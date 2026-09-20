@@ -1415,3 +1415,24 @@ authoritative for this review. All primary captures and instance returned200.
 EngineCI35498286728 still reports offline tests running; five other jobs pass.
 WebsiteCI35499369255 was running on195494cf at checkpoint. No deployment,
 publication or runtime activation; overall goal remains active.
+
+## 2026-09-20 — original XBRL reproduction and equal-total context
+
+Previous turn captured priority filings and preserved a genuine unresolved scope
+question. Added review-company-editorial-xbrl.py to select original instances from
+hash-verified filing indexes, retain response receipts, stop on403/429, and support
+strict offline replay. Reused Liberty's captured instance without another request.
+Capture92335 exits0; all19instances returned200 and all47previously unmatched
+observations match entity, unit, period, value and undimensioned/non-nil context.
+Together with73inline matches, all120priority observations reproduce numerically.
+Offline replay is byte-identical. Two comparator tests pass, including nine
+mismatched fact/context variants that must remain unresolved.
+
+Inspected primary tables for all14unusual equal-vector groups. Latest selected
+totals support equality, including consolidated totals in segmented revenue rows.
+Original excerpts and selected values retained in company-fourth-equal-pair-review;
+keep concepts distinct and do not infer all-history or publication approval.
+Liberty Star's rendered-statement discrepancy remains on hold; matching the XBRL
+fact does not explain its accounting scope. Constant/zero series semantic review,
+archive and broader source capacity work remain open. EngineCI35498286728 still
+reports its offline test job live, five other jobs passed. No deployment.

@@ -39,8 +39,11 @@ checks pass for 18,416 URLs and 1,366 downloads; 66 browser checks across 11
 sampled routes, two engines and three viewport widths pass. Priority filing
 review covers 55 concepts across 30 companies and 36 latest selected filings.
 Priority filing capture now covers all 36 filings (72 verified index/primary
-responses). Inline comparison matches 73 of 120 observations; 47 remain unresolved,
-including older non-inline filings. Liberty Star's USD500 equipment-purchase fact
+responses). Inline comparison matched 73 of 120 observations. Original XBRL review now
+reproduces the other 47 across 19 instances; offline replay is byte-identical.
+All 120 priority observations reproduce numerically. The 14 unusual equal-vector
+groups have latest-filing table evidence supporting equal totals while retaining
+distinct concepts; this does not clear every historical observation or other flags. Liberty Star's USD500 equipment-purchase fact
 matches its 2021 XBRL instance but is not reconciled to the rendered cash-flow
 statement; recorded HOLD_PENDING_SOURCE_RECONCILIATION. No concept admission or
 exclusion inferred solely from that discrepancy. See company-fourth-filing-capture,
