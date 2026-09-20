@@ -126,3 +126,15 @@ selections:3,323companies/87,346histories preserved, exactly two observations
 removed. Every other selected field matches except policy metadata and notices.
 Receipt company-five-cohort-v15-transition-20260920.json retained.
 No source correction, production activation, or new indexing claim.
+
+## 2026-09-20 — predecessor opening-balance interpretation
+
+PR52mergeda7ffd485 after four passing checks and exact tree equality. Original
+SoFi predecessor instant matches July10opening boundary under XBRL date rules.
+SIXcurrent list identifies USN as a fund code; its use for equity remains explicitly
+unexplained. Preserve reported zero/date/unit and disclose predecessor, date
+semantics and unit limitation on history/overview.12renderer tests pass, including
+actual source and updated single-observation stale-note checks. Source-bound
+report replays byte-identically. Standards capture35523terminal0, no access stops.
+Firecrawl unavailable; used web/direct primary-source capture. No policy exclusion,
+conversion, runtime rebuild, archival claim or publication/indexing gain.

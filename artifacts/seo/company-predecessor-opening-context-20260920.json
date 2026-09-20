@@ -1,0 +1,116 @@
+{
+  "schema": "canli.predecessor-opening-context.v1",
+  "publication_approved": false,
+  "original_review_sha256": "c578168b1d4e9f05456557f489a15cd8a62aedd08db89d4e87f55b86afd5db71",
+  "code_sha256": "c31d1406644e522131f3658728f79bb26a8b56217b7166570d75de84bf2fe820",
+  "source_sha256": "e2de0cfed1d347a12db62fae8e229db2371c401fae7b357985c4e1932a1d129a",
+  "filing_evidence": {
+    "cik": "0001818874",
+    "accession": "0001104659-21-053909",
+    "target": {
+      "cik": "0001818874",
+      "name": "SoFi Technologies, Inc.",
+      "tag": "StockholdersEquity",
+      "source_sha256": "e2de0cfed1d347a12db62fae8e229db2371c401fae7b357985c4e1932a1d129a",
+      "selected_sha256": "0cb7440936235e9370b9331ce4af73097c706cf64c35014abe36be560deee3d8",
+      "latest_selected_accession": "0001104659-21-053909",
+      "latest_accession_observations": [
+        {
+          "end": "2020-07-09",
+          "val": 0,
+          "accn": "0001104659-21-053909",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2021-04-22",
+          "frame": "CY2020Q2I",
+          "unit": "USN"
+        }
+      ],
+      "review_reason": "Currency-unit context requires primary inspection; rarity alone does not establish an error."
+    },
+    "index_filers": [
+      "Social Capital Hedosophia Holdings Corp. V (Filer) CIK : 0001818874 (see all company filings) EIN. : 981547291 | State of Incorp.: E9 | Fiscal Year End: 1231 Type: 10-K/A | Act: 34 | File No.: 001-39606 | Film No.: 21845783 SIC : 6099 Functions Related To Depository Banking, NEC"
+    ],
+    "primary_capture": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1818874/000110465921053909/tm2113577d1_10ka.htm",
+      "status": 200,
+      "captured_at": "2026-09-20T17:36:13.017871+00:00",
+      "bytes": 859842,
+      "sha256": "c627c0ed8f3ff2e24282493832b54f6cd6734fcacaea5072796b34f42d79f9d8",
+      "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001818874-0001104659-21-053909-primary.response"
+    },
+    "instance_capture": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1818874/000110465921053909/ipoe-20201231.xml",
+      "status": 200,
+      "bytes": 827874,
+      "sha256": "76b733846ea9666ee72819f18329ee3db05e767bce3459dc88143e898e089517",
+      "captured_at": "2026-09-20T17:37:48.452568+00:00",
+      "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001818874-0001104659-21-053909-instance.response"
+    },
+    "checks": [
+      {
+        "selected": {
+          "end": "2020-07-09",
+          "val": 0,
+          "accn": "0001104659-21-053909",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2021-04-22",
+          "frame": "CY2020Q2I",
+          "unit": "USN",
+          "cik": "0001818874",
+          "tag": "StockholdersEquity"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "context_id": "As_Of_7_9_2020",
+            "unit_id": "Unit15",
+            "value": "0"
+          }
+        ]
+      }
+    ],
+    "xml_evidence": [
+      {
+        "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"Unit15\">\n    <ns0:measure>iso4217:USN</ns0:measure>\n  </ns0:unit>\n  ",
+        "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"As_Of_7_9_2020\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001818874</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:instant>2020-07-09</ns0:instant>\n    </ns0:period>\n  </ns0:context>\n  "
+      }
+    ],
+    "primary_table": "Class A Ordinary Shares Class B Ordinary Shares Additional Paid-in Accumulated Total Permanent Temporary Equity Shares Amount Shares Amount Capital Deficit Equity Shares Amount Balance \u2013 July 10, 2020 (inception) \u2014 $ \u2014 \u2014 $ \u2014 $ \u2014 $ \u2014 $ \u2014 \u2014 $ \u2014 Issuance of Class B ordinary shares to Sponsor \u2014 \u2014 20,125,000 2,013 22,987 \u2014 25,000 \u2014 \u2014 Issuance of Class A Ordinary shares, net 80,500,000 8,050 \u2014 \u2014 734,176,638 \u2014 734,184,688 \u2014 \u2014 Class A Ordinary shares subject to possible redemption (67,342,389 ) (6,734 ) \u2014 \u2014 (673,431,560 ) \u2014 (673,438,294 ) 67,342,389 673,438,294 Net loss \u2014 \u2014 \u2014 \u2014 \u2014 (55,771,393 ) (55,771,393 ) \u2014 \u2014 Balance \u2013 December 31, 2020 13,157,611 $ 1,316 20,125,000 $ 2,013 $ 60,768,065 $ (55,771,393 ) $ 5,000,001 67,342,389 $ 673,438,294",
+    "zero_based_table_index": 96,
+    "disposition": "PREDECESSOR_OPENING_BALANCE_UNIT_CONTEXT_REVIEW_PENDING",
+    "reason": "Original XBRL reproduces zero equity with USN and instant 2020-07-09. The primary presents a zero opening balance at July 10 inception for Social Capital Hedosophia Holdings Corp. V. Date-boundary and unit interpretation remain pending; do not identify this as contemporary SoFi operating equity or infer a unit error merely from rarity."
+  },
+  "standards": {
+    "xbrl-dates": {
+      "receipt": {
+        "url": "https://www.xbrl.org/dates-in-xbrl/",
+        "status": 200,
+        "bytes": 74770,
+        "sha256": "f78ef0eab7fc143d233ff21f10e1eb952040470776efdae8b101caaca7a2cb8f",
+        "captured_at": "2026-09-20T17:46:35.564Z",
+        "body_path": "artifacts/seo/corpus-local/currency-context-standards/xbrl-dates.response"
+      },
+      "interpretation": "An XML instant expressed as a date denotes the end of that date, equivalent to the beginning of the next day."
+    },
+    "iso4217-list-one": {
+      "receipt": {
+        "url": "https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/lists/list-one.xml",
+        "status": 200,
+        "bytes": 47491,
+        "sha256": "33139b438657d1cee116ba737807ea71d19d6de4b90f799a09c56f0cc6a1b0ff",
+        "captured_at": "2026-09-20T17:46:36.162Z",
+        "body_path": "artifacts/seo/corpus-local/currency-context-standards/iso4217-list-one.response"
+      },
+      "published": "2026-09-17",
+      "unit_xml": "<CcyNtry>\n\t\t\t<CtryNm>UNITED STATES OF AMERICA (THE)</CtryNm>\n\t\t\t<CcyNm IsFund=\"true\">US Dollar (Next day)</CcyNm>\n\t\t\t<Ccy>USN</Ccy>\n\t\t\t<CcyNbr>997</CcyNbr>\n\t\t\t<CcyMnrUnts>2</CcyMnrUnts>\n\t\t</CcyNtry>\n\t\t"
+    }
+  },
+  "equivalent_boundary": "2020-07-10T00:00:00",
+  "disposition": "RETAIN_ORIGINAL_ZERO_WITH_PREDECESSOR_DATE_AND_UNIT_CAVEAT",
+  "conclusion": "The July 9 XML instant and July 10 opening balance describe the same boundary. The value belongs to Social Capital Hedosophia Holdings Corp. V. USN is a defined next-day dollar fund code, not an invented currency. Retain the source zero, date and unit separately from USD, with explicit context. The code list does not establish why the issuer used this unit for equity; do not claim the tagging choice is certified.",
+  "scope": "One observation reviewed with a disclosed source-unit limitation. No conversion, source correction, whole-company admission, rebuilt runtime, deployment or indexing claim."
+}
