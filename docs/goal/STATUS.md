@@ -7,7 +7,7 @@ status is preserved in history/STATUS-20260920-through-five-cohort-archive-start
 ## Current execution
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch feat/company-clean-route-preview-20260920. PR30 merged as70a66bde578f1658ac35dba6501d47165f14f8fb (GitHub state reverified). PR27 merged as0c2b646e
+Branch research/company-quality-triage-20260920. PR31 merged as59b10c83cd206606e6efaaef684f69c22d5380bf after all five checks passed atcb2f6f02; tested and merged trees equal35eb23d444e47f1d05a5b1bf2b6ad9a20645baa2. PR30 merged as70a66bde578f1658ac35dba6501d47165f14f8fb (GitHub state reverified). PR27 merged as0c2b646e
 with all four CI35513399510jobs passing; reviewed/merged tree
 def9e9101444404fde6d9c73240bd18d2ea672ba. PR28 merged as
 f54d26e793b815baea6a0d0a8d032ca6b3f0d79d after four CI35513563000jobs passed;
@@ -121,8 +121,8 @@ Downloaded receipt company-clean-route-browser-ci-20260920.json verified against
 local script/config hashes. Together with prior27+4passes, this covers the32
 representative cases across runs/platform versions, not a single full-suite pass.
 Local Chromium148 network failures remain unexplained and preserved. All four
-standard CI35515798960jobs also pass atba510cd1. Draft PR31 can now proceed through
-review; this is preview tooling, not production admission.
+standard CI35515798960jobs also pass atba510cd1. PR31 is merged; this is preview tooling, not production admission. Latest reviewed
+headcb2f6f02 passed CI35515925562 and hosted browser35515925557.
 
 Full combined selected-quality audit65287 completed exit0:3,323companies and
 87,348histories replayed;13,148pages flagged (overlapping reasons), including
@@ -132,7 +132,15 @@ not confirmed defects or publication decisions. Tracked summary pins full local
 report and losslessly roundtrip-verified gzip; no offsite-backup claim.
 company-five-cohort-selected-quality-summary-20260920.json.
 
-Next: complete bulk transfer and full-corpus
+Equal-history triage now reproduces all750groups from hash-verified selected
+records:712nonzero basic/diluted pairs,37other nonzero pairs and1zero-only pair.
+Every group remains pending primary-source scope and reader-usefulness review.
+Receipt company-five-cohort-equal-history-review-20260920.json binds750groups,
+records and source hashes; non-basic/diluted groups include selected observations.
+TECHCOM capex/revenue equality is all-zero; EVENTIKO payable/property equality
+includes11,000 and zero. Neither finding alone establishes an error or admission.
+
+Next: review the37other nonzero groups against primary filings; complete bulk transfer and full-corpus
 checks plus remaining editorial/admission work before production activation.
 The owner's publication approval persists. The prior 1–3day estimate and possible
 first batch tonight were provisional, not measured forecasts or release promises.

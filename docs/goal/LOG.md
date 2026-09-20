@@ -494,3 +494,18 @@ Audit65287 completed:3,323companies/87,348histories reproduce;13,148flagged page
 with overlapping reasons, including10,630historical-only and1,500pages in750equal
 numerical-vector groups. Summary pins full local report and verified gzip. These
 are review flags, not automatic exclusions or approval of unflagged pages.
+
+## 2026-09-20 — preview merge and equality review queue
+
+Previous turn completed independent browser evidence and combined quality audit.
+PR31 latestcb2f6f02 passed all five checks (CI35515925562/browser35515925557).
+Repository disallows merge commits; first merge-mode request rejected without a
+merge. Squash merge59b10c83 succeeded; tested and merged trees exactly equal
+35eb23d444e47f1d05a5b1bf2b6ad9a20645baa2. New isolated work branch
+research/company-quality-triage-20260920 starts from that merge.
+Reproduced750equal-vector groups from pinned quality report and selected records:
+712nonzero basic/diluted,37other nonzero,1zero-only. All remain review-pending.
+TECHCOM capex/revenue history is all zero; EVENTIKO payable/property includes
+11,000 and zero. Need primary scope/usefulness, not automatic deduplication.
+Source-linked queue preserves all groups and non-basic/diluted observations.
+No production release or indexed gain. Bulk26312 confirmed live this turn.
