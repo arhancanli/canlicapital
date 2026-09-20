@@ -1,6 +1,164 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0000032621",
+  "include_on_overview": true,
+  "source_sha256": "1d6283e2a0a26d0064cc9de5093d303f6e5a17f747fe99c3e1ac4f7c91673739",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Emerson Radio\u2019s years ended March 31, 2025 and 2026, the filing explicitly states there were no outstanding potentially dilutive instruments. Its basic and diluted weighted-average shares are identical; this is a stated absence of instruments, not an inferred loss-period exclusion. Full share counts, reported EPS and March fiscal dates remain unchanged.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/32621/000143774926021828/msn20260331_10k.htm",
+  "observations": [
+    {
+      "start": "2024-04-01",
+      "end": "2025-03-31",
+      "val": -0.22,
+      "accn": "0001437749-26-021828",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-04-01",
+      "end": "2026-03-31",
+      "val": -0.2,
+      "accn": "0001437749-26-021828",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-04-01",
+      "end": "2025-03-31",
+      "val": -0.22,
+      "accn": "0001437749-26-021828",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-04-01",
+      "end": "2026-03-31",
+      "val": -0.2,
+      "accn": "0001437749-26-021828",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-04-01",
+      "end": "2025-03-31",
+      "val": 21042652,
+      "accn": "0001437749-26-021828",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-04-01",
+      "end": "2026-03-31",
+      "val": 21042652,
+      "accn": "0001437749-26-021828",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-04-01",
+      "end": "2025-03-31",
+      "val": 21042652,
+      "accn": "0001437749-26-021828",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-04-01",
+      "end": "2026-03-31",
+      "val": 21042652,
+      "accn": "0001437749-26-021828",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0000034285",
+  "include_on_overview": true,
+  "source_sha256": "c8758914e634e9b5d905bf2d9f45d45c1e2ca5c9e778d6c13b863ec26d399da5",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Reliability in 2024 and 2025, the statement reports basic and diluted EPS as $0.00 despite net losses, with 300 million weighted-average shares for each measure. The displayed zero values are retained and do not mean the company broke even. The filing describes the basic EPS calculation but does not establish a specific reason for basic and diluted shares being equal. This review confirms the reported presentation only; it does not infer that no potentially dilutive instruments existed.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/34285/000149315226014368/form10-k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0,
+      "accn": "0001493152-26-014368",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0,
+      "accn": "0001493152-26-014368",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0,
+      "accn": "0001493152-26-014368",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0,
+      "accn": "0001493152-26-014368",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 300000000,
+      "accn": "0001493152-26-014368",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 300000000,
+      "accn": "0001493152-26-014368",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 300000000,
+      "accn": "0001493152-26-014368",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 300000000,
+      "accn": "0001493152-26-014368",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001779578",
   "include_on_overview": true,
   "source_sha256": "33210dced8349befe86035f27f40b7d791195a7c7d46a49edee117719fcc79c3",
