@@ -6,7 +6,8 @@
 // sentences beside it that say what the number does not establish (see schemas.mjs, LIMITS_SENTENCES
 // and TOOL_DESCRIPTIONS). Reads CANLI_API_BASE (default https://canlicapital.com) and an optional
 // CANLI_KEY; when CANLI_KEY is set, get_key does not call the network.
-import { readFileSync } from "node:fs";
+import { readFileSync, realpathSync } from "node:fs";
+import { pathToFileURL } from "node:url";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
@@ -181,7 +182,7 @@ async function main() {
   await server.connect(transport);
 }
 
-const isMain = process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
+const isMain = process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href;
 if (isMain) {
   main().catch((err) => {
     console.error(`${SERVER_NAME}: fatal`, err);

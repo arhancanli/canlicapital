@@ -1285,3 +1285,24 @@ input. Temporary workspace removed. No second capture, failed-request retry or
 production change. Core-only potential pagecount1,569 is not extended delivery.
 Clarified current versus older editorial queue counts and incorporated the
 Princeton portfolio-company scope failure into the shared review requirement.
+
+## 2026-09-20 — actual MCP package release boundary and executable fix
+
+Previous partial review was source-verification progress. Same capture29020 still
+live, latest checkpoint485/1000(301review candidates,121excluded,63HTTPerrors).
+Npm registry and integrity-verified0.1.1tarball contradict earlier goal status:
+0.1.1 was published September6 and lacks candidate request-deadline/redirect code.
+Retain historical error here; corrected current STATUS and release documentation.
+Assigned candidate0.1.2 consistently in package, lock and registry manifest.
+
+Added an isolated actual-tarball install/stdio test to CI. Initial run failed:
+entry check compared a raw file URL to a symlinked executable path. Canonicalized
+argv path with realpath/pathToFileURL; installed .bin executable now passes from
+a consumer directory with spaces.48source tests+1installed-package test pass.
+Added shipped MITlicense and repository/homepage/issue metadata; README example
+no longer prints the key envelope. Removed contradictory registry publish steps.
+Pack retention initially used the wrong cwd-relative destination, then corrected;
+both0.1.1and0.1.2tarballs now retained with verified npm integrity and SHA256.
+Candidate pack matches tested integrity; temporary install removed. Receipt in
+artifacts/platform/mcp-release-readiness-20260920.json. No publication, registry
+submission, production key issuance or independent-adoption claim.

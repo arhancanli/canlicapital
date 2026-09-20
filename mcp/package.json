@@ -1,6 +1,6 @@
 {
   "name": "canli-validation-mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MCP server for canlicapital.com's free validation API: deflated Sharpe, CSCV overfitting, paper-evidence conformance, and breadth ceiling, each returned as the full API envelope so the boundary language cannot be dropped.",
   "private": false,
   "type": "module",
@@ -16,11 +16,21 @@
     "README.md"
   ],
   "scripts": {
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "test:package": "node test/package-smoke.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.30.0",
     "zod": "4.5.4"
   },
-  "mcpName": "io.github.arhancanli/canli-validation-mcp"
+  "mcpName": "io.github.arhancanli/canli-validation-mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhancanli/canlicapital.git",
+    "directory": "mcp"
+  },
+  "homepage": "https://canlicapital.com/developers",
+  "bugs": {
+    "url": "https://github.com/arhancanli/canlicapital/issues"
+  }
 }

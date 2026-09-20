@@ -1,42 +1,42 @@
 # Registry listings for canli-validation-mcp
 
-This file is the exact sequence for the three MCP registries research turned up
-(`docs/superpowers/plans/2026-09-06-earned-mentions.md`, section 3). Status on 2026-09-06: the
-owner published `canli-validation-mcp@0.1.1` to npm and `mcp-publisher publish` listed
-`io.github.arhancanli/canli-validation-mcp` 0.1.1 as active in the official registry (the search
-URL in step 4 returns it). Smithery and Glama below have not been submitted. The file exists so
-the owner can copy commands rather than re-derive them, and so the honest blockers are written
-down before they turn into a confusing CLI error.
+Release checkpoint, September 20, 2026: npm reports `canli-validation-mcp@0.1.1`
+as latest, published September 6. This checkout prepares `canli-validation-mcp@0.1.2`
+with reliability fixes. Version 0.1.1 is immutable; the candidate cannot replace it.
+Earlier notes reported an official-registry listing; verify that listing separately
+before describing its current state. No new npm or registry publication was performed
+by this release review. Smithery and Glama submission remain unverified.
 
 ## Official registry (registry.modelcontextprotocol.io)
 
-Still explicitly "preview." The manifest for this registry is `mcp/server.json`; the commands
-below run from `mcp/`.
+The manifest is `mcp/server.json`. Its top-level and npm package versions must match
+`mcp/package.json`, and the npm package must include the matching `mcpName`.
+The description must fit the registry's 100-character contract checked by tests.
 
-### Step 0: the registry will refuse the package until it can verify ownership
-
-The registry checks that the npm package it is pointed at carries a matching `mcpName` field
-inside its own `package.json`. The package already published, `canli-validation-mcp@0.1.0`, does
-not carry that field, because it did not exist yet when 0.1.0 was published. npm versions are
-immutable, so this cannot be patched onto 0.1.0; version 0.1.1 in this repository carries it and
-must be published (`npm publish --access public` from mcp/, in a real terminal for the 2FA prompt)
-before the registry publish below.
+### Prepare and verify the candidate before publication
 
 ```bash
 cd mcp
-# package.json already carries "mcpName": "io.github.arhancanli/canli-validation-mcp"
-# and version 0.1.1; publish it as canli-validation-mcp@0.1.1 (2FA prompt, so a real terminal):
-npm publish --access public
-npm version patch
-npm publish --access public
+npm ci
+npm test
+npm run test:package
+npm audit --audit-level=high
 ```
 
-Until that runs, `mcp-publisher publish` below will fail with "Registry validation failed for
-package," not because `server.json` is wrong, but because the npm package it names cannot yet
-prove who owns it. After it runs, update the `version` fields in `mcp/server.json` (both the
-top-level one and `packages[0].version`) to match the new npm version before publishing.
-The registry also caps the top-level `description` at 100 characters (a 422 reading
-"expected length <= 100"); the guard test pins that cap and the limits clause it must carry.
+The package, lockfile and registry manifest all describe 0.1.2. The package test
+installs a local tarball and calls a local HTTP stub; it proves neither publication
+nor live API compatibility. Confirm the intended release version is still unused
+and review the resulting tarball before the release decision. Publish npm first,
+then the matching registry manifest. Authentication and any required 2FA must be
+available in the owner's terminal. Do not run `npm version patch` after publishing
+and immediately publish a second, unreviewed version.
+
+Authorized npm publication, after those checks:
+
+```bash
+npm publish --access public
+npm view canli-validation-mcp@0.1.2 version dist.integrity
+```
 
 ### Steps 1 to 4: install, log in, publish, verify
 

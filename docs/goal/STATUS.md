@@ -130,8 +130,13 @@ artifacts/seo/dependency-audit-20260920.json.
 
 API/MCP onboarding, provenance, error handling and key revocation are implemented
 and tested. MCP has 48 passing tests at the last checkpoint; the PostgreSQL
-revocation race contract passes CI. Production migration is not applied; MCP 0.1.1
-is not published. Real adoption remains unestablished. The 12 public validations
+revocation race contract passes CI. Production migration is not applied. Correction:
+npm0.1.1 was published September6; its source differs from the reliability candidate.
+The candidate is now0.1.2, unpublished. Its48tests and isolated tarball install/stdio
+test pass, including the installed executable symlink in a path with spaces.
+Fixed the entry-point check exposed by that test; shipped license and repository
+metadata added. Release evidence: artifacts/platform/mcp-release-readiness-20260920.json.
+Real adoption remains unestablished. The 12 public validations
 previously observed are unattributed, not proof of independent use.
 
 Targets remain combined NET FORWARD Sharpe >2, at least 14 economically distinct

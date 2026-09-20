@@ -15,7 +15,8 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 
 const mcpRoot = path.resolve(fileURLToPath(import.meta.url), "../..");
-const serverEntry = path.join(mcpRoot, "src/server.mjs");
+const testedRoot = process.env.CANLI_TEST_PACKAGE_ROOT || mcpRoot;
+const serverEntry = process.env.CANLI_TEST_SERVER_ENTRY || path.join(testedRoot, "src/server.mjs");
 
 const STUB_ENVELOPE = {
   schema: "canli.api.v1",
@@ -56,12 +57,12 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
     command: process.execPath,
     args: [serverEntry],
     env: { ...process.env, CANLI_API_BASE: base, CANLI_KEY: "" },
-    cwd: mcpRoot,
+    cwd: testedRoot,
   });
   const client = new Client({ name: "stdio-handshake-test", version: "0.0.1" });
   await client.connect(transport);
   t.after(() => client.close());
-  assert.equal(client.getServerVersion().version, JSON.parse(readFileSync(path.join(mcpRoot, "package.json"))).version);
+  assert.equal(client.getServerVersion().version, JSON.parse(readFileSync(path.join(testedRoot, "package.json"))).version);
 
   const { tools } = await client.listTools();
   const names = tools.map((tool) => tool.name).sort();
