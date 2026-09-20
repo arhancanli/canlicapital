@@ -1129,3 +1129,26 @@ test('historical ReWalk context preserves currency holds and independent newer s
   altered.source_sha256 = '0'.repeat(64);
   assert.equal(companyFilingNotes(altered, tags[0]).length, 0);
 });
+
+
+test('Siebert explains rounded EPS equality without releasing disputed diluted counts', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/siebert-reviewed-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0000065596', fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v20' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  for (const target of ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'overview']) {
+    assert.match(renderCompanyPages(record, { target })[0].html, /Two diluted-share observations remain withheld/);
+  }
+  assert.equal(companyFilingNotes(record, 'WeightedAverageNumberOfDilutedSharesOutstanding').length, 0);
+  assert.ok(record.editorial_exclusions.length >= 2);
+  assert.deepEqual(record.concepts, original.concepts);
+  assert.deepEqual(record.editorial_exclusions, original.editorial_exclusions);
+  for (const [income, basic, diluted, expected] of [[13286000,39951510,40174680,0.33],[5121000,40362780,40677140,0.13]]) {
+    assert.ok(diluted > basic);
+    assert.equal(Number((income / basic).toFixed(2)), expected);
+    assert.equal(Number((income / diluted).toFixed(2)), expected);
+  }
+  const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+  assert.equal(companyFilingNotes(changed, 'EarningsPerShareBasic').length, 0);
+});

@@ -1,0 +1,116 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0000065596",
+      "accession": "0001213900-26-036500",
+      "source_sha256": "daeca46d576d2ff5c72e9a029274ce4aed4a696365902d8ba9560911d4b7ee50",
+      "primary_sha256": "0070261cdb539be3f6698d0bbcaedc6ae74e85cac8677ffbb3643c434c256748",
+      "fixture": "scripts/fixtures/editorial/siebert-reviewed-source.json.gz",
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0.33,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0.13,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0.33,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0.13,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 39951510,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 40362780,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "observations": 6,
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 142,
+      "share_scale": "0",
+      "table_requires": [
+        "Net income available to common stockholders",
+        "13,286,000",
+        "5,121,000",
+        "Dilutive effect of unvested shares",
+        "314,360",
+        "223,170",
+        "40,677,140",
+        "40,174,680"
+      ],
+      "paragraph_requires": [
+        "do not receive dividends or dividend equivalents prior to vesting",
+        "As of December 31, 2025, the Company had 300,000 antidilutive shares outstanding.",
+        "The Company had no anti-dilutive shares outstanding as of December 31, 2024."
+      ],
+      "reader_note": "For Siebert in 2024 and 2025, EPS uses net income available to common stockholders after noncontrolling interests. The per-share note includes dilutive unvested shares: its diluted denominators exceed basic shares even though both EPS amounts round to the same cent. It excludes 300,000 anti-dilutive restricted stock units in 2025 and reports none in 2024. This review covers basic weighted-average shares and reported EPS only. Two diluted-share observations remain withheld because the main statement combines basic and diluted counts while the per-share note reports different denominators; this review does not resolve that conflict or replace the withheld values.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

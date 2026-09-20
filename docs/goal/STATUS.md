@@ -9,11 +9,11 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/rewalk-historical-context-20260921`. PR111mergedd336ff2bafter four passing
+`evidence/siebert-basic-eps-context-20260921`. PR111mergedd336ff2bafter four passing
 CI35540402410checks at9bbe95a5. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-rewalk2021-20260921.json.gz.
-Of1,176batch observations,1092reviewed/58pending/26withdrawn.118reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-siebert2025-20260921.json.gz.
+Of1,176batch observations,1098reviewed/52pending/26withdrawn.118reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
@@ -32,12 +32,16 @@ V5replay allows explicit exact target-row subsets, rejecting altered/duplicate r
 Valhi six EPS rows are presentation-only; Iovance/Outset retain disclosed loss
 anti-dilution. Notes explicitly do not recompute EPS from withheld share counts.
 Report replays byte-identically;94selector/renderer/ledger tests plus3subset tests
-pass, subset tests added to CI. Remaining58: Siebert6, Freddie Mac12, Rockwell12,
+pass, subset tests added to CI. Remaining52: Freddie Mac12, Rockwell12,
 INVO16, Plastec12. Iovance older non-batch share review remains
 separate. Runtime/quality rebuild and archival supplement pending.
 Historical ReWalk2021 USD EPS and share counts now have exact-source context,
 separate from newer split-adjusted figures. Four rows advance; all six ILS holds
 remain. Replay byte-identical;95selector/renderer/ledger tests pass.
+Siebert six basic-share/EPS rows now reviewed against note142: dilutive unvested
+shares produce higher denominators while EPS rounds to the same cent. Two disputed
+diluted counts remain held. Replay identical;96tests pass. PR112 still awaits CI;
+this change is stacked on its exact head, not evidence that PR112 merged.
 118presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS now reviewed separately; older periods remain outside the hold report.

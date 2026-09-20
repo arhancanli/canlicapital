@@ -1,6 +1,68 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0000065596",
+  "include_on_overview": true,
+  "source_sha256": "daeca46d576d2ff5c72e9a029274ce4aed4a696365902d8ba9560911d4b7ee50",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Siebert in 2024 and 2025, EPS uses net income available to common stockholders after noncontrolling interests. The per-share note includes dilutive unvested shares: its diluted denominators exceed basic shares even though both EPS amounts round to the same cent. It excludes 300,000 anti-dilutive restricted stock units in 2025 and reports none in 2024. This review covers basic weighted-average shares and reported EPS only. Two diluted-share observations remain withheld because the main statement combines basic and diluted counts while the per-share note reports different denominators; this review does not resolve that conflict or replace the withheld values.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/65596/000121390026036500/ea0281594-10k_siebert.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0.33,
+      "accn": "0001213900-26-036500",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.13,
+      "accn": "0001213900-26-036500",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0.33,
+      "accn": "0001213900-26-036500",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.13,
+      "accn": "0001213900-26-036500",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 39951510,
+      "accn": "0001213900-26-036500",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 40362780,
+      "accn": "0001213900-26-036500",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001607962",
   "include_on_overview": true,
   "source_sha256": "65d510c294653d7f3865b561279f8eb53c45e516643e1812cfe6330a41480012",
