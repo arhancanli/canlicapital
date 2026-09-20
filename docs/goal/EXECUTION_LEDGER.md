@@ -12,7 +12,7 @@ Authority: REQUIREMENTS.md (all goals), STATUS.md (current facts), PHASES.md
 |T02 Permanent source-integrity regressions |Locally verified |Real fixtures, stale/omitted failure rejection, prior manifest unchanged |
 |T03 Consolidate continuity |Complete locally |Current STATUS separate from archived history; all objectives preserved |
 |T04 New-cohort staging |Locally verified |23,568 pages/1,706 downloads replayed;54 browser checks;147 exclusions retained |
-|T04b Combined-cohort construction |Next |Rebuild download/catalog roots, preserve both source manifests and exclusions, reject duplicate/corrupt/policy-mixed input |
+|T04b Combined-cohort construction |Locally verified |32,954 pages/2,404 downloads replayed;54 browser checks;368 full-suite tests;source evidence retained |
 |T05 Editorial/source/intent quality |Ongoing |Useful distinct pages, freshness/comparability flags resolved, no keyword permutations |
 |T06 Storage and release |Dependency pending |Actual storage, preview runtime, release decision and production evidence |
 |T07 Search indexing and adoption |Unestablished |Search-engine and genuine API/MCP/repository usage evidence |

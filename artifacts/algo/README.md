@@ -1,7 +1,10 @@
 # Unapproved Hermes research artifacts
 
 Status2026-09-20: NOT QUALIFIED, NOT INTEGRATED, NOT FOR PERFORMANCE CLAIMS.
-Preserved for audit after Codex took over; no files here count as admitted sleeves.
+Preserved for audit after Codex took over; none count as admitted sleeves.
+Original prototypes, copied scripts and unverified reports are now under
+`.bak/hermes-20260920/` (ignored local archive). `archived-inventory.json` records
+original/archive paths, byte sizes and hashes verified after relocation.
 
 Macro-rate validations use synthetic inputs and report negative Sharpes. Inflation
 P&L direction and arbitrary return scaling are defective; macro/event drawdown

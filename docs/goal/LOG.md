@@ -757,3 +757,49 @@ unchanged prior pointer after corruption. Focused17 tests pass. No runtime code
 changes since full362-test takeover validation; only the extra test/browser harness
 and staged data/receipts. Next:checkpoint changes and build a verified combined
 cohort, then editorial/storage/release work. All indexing/developer/engine goals open.
+
+
+### Checkpoint pushed — 60e27321
+
+Committed repaired validation, bound404 exclusions, honest continuity and new-cohort
+receipts; pushed existing PR15 branch. Initial PR API response was stale6cdc9f0e;
+rechecked and confirmed60e27321 with both jobs running in CI35488566338. Poll that
+run; do not treat the previous green run as evidence for this head. Unapproved
+Hermes prototypes and old unverified reports remain local/untracked.
+
+
+## 2026-09-20 — combined-cohort phase started
+
+Previous turn progress: verified new cohort and pushed60e27321. Read continuity and
+polled same CI35488566338, still running. Implementing pinned-source combination
+with exact input manifests archived, full selected/source replay, index reassembly,
+duplicate/policy/corruption rejection and atomic prior-pointer preservation. Inputs
+and prior releases remain unchanged; no publication or indexing claim.
+
+
+## 2026-09-20 — combined release verified
+
+Combiner verifies pinned manifest bytes, compatible policies, original index
+bindings and selected/source replay; rejects duplicates/forged values/corruption,
+archives input manifests and index nodes, rebuilds union index and atomically
+replaces only output delivery pointer. Lock prevents competing writers. Five
+behavioral tests pass, including preserved prior pointer after rejected builds.
+Initial version retained manifests but not original index objects; strengthened
+archival closure and added traversal assertions before final verification.
+
+Real combined build18447 exit0:1,202 companies from two cohorts. Catalog92239,
+quality70501, release74128, discovery all exit0. Final full verify65292 exit0:
+368 tests (6+362), writing/SEO/links/indexability/numerical audits pass. HTTP33344
+exit0:32,954 pages/2,404 downloads, exact sitemap, zero failures/orphans. Maximum
+company-directory depth is FOUR links in the larger hierarchy, not prior three;
+maxHTML36,223. Browser26981 exit0:54 checks,9 samples,320/390/1440 Chromium/WebKit;
+longest-issuer mobile screenshot inspected. Preview helper stopped.
+
+Quality flags3,924 histories with overlapping3,405 historical-only,226 multi-unit,
+77 partially historical-unit,20 constant (19zero-only),338 pages in169 equal-vector
+groups. Preserved flags and source values; editorial release remains unresolved.
+Archived554 unapproved Hermes-generated files under ignored.bak/hermes-20260920;
+verified every file hash and saved path/hash inventory. No source capture removed.
+CI35488566338 passed for prior60e27321; this new code requires its own pushed CI.
+Next: editorial publication rules and durable storage/hosted preview integration;
+all actual indexing, quality, platform/adoption and governed engine goals remain.
