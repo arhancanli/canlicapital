@@ -290,3 +290,20 @@ change to success, quota, persistence or badge-not-found semantics. Added a
 missing-configuration regression covering all four paths, no secret response
 leakage and no validator compute.28focused tests pass. Full83502verify passes.
 Hosted static327-page check83074 still running; no restart.
+
+## 2026-09-20 — hosted verification and website repository merge
+
+Updated preview89048 uploaded successfully;dpl_3cj6fPreMKMFwwTAdNJG7tXssW7c
+READY at6719ba52. Hosted60950 passes status503JSON, receipt503JSON, badge404SVG
+and validator503JSON with no store configured. Full local402tests pass.
+Static scan83074 finished326passed/1connection-reset; original failure retained.
+Targeted80347passes affected Apple company URL on both previews and current
+home/developers. Exact327sitemap membership and three public-source hashes match.
+No static source changed from45987764to6719ba52, so no redundant full rescan.
+
+All four remote CIjobs pass at6719ba52. Confirmed no Vercel Git link and only CI
+workflow, then marked PR15ready and merged under owner publication authorization.
+Squash4a1fcd16 tree70d2e7fa24aa9f8a482ed7b3329caa7f3a390120exactly matches
+the tested candidate. No production activation/migration/publisher-pointer change.
+Fetched main and continued on isolated release/verified-checkpoints-20260920
+branch to preserve hosted receipts and coordinate remaining release work.

@@ -18,16 +18,21 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
   Integration PR71 merged under owner publication approval as
   0aff241a8dfac0b31de7ae5b4eee2755f501262c. Its tree exactly matches867d211.
   PR-event CI35502099188 passed all six jobs before merge. Post-merge
-  CI35504256572 and35504254363 are running; runtime activation remains pending.
+  Dependency Graph35504256572 passed; CI35504254363 remains running; runtime activation remains pending.
 - Deployed-source refresh imported28newer public evidence files, rebuilt dependent
   pages, and passed build59437/verify49746. Original1,060chain entries preserved.
   Supabase production identity/access remains pending; saved login returns403
   for historical production reference. Sensitive Vercel exports are unreadable
   placeholders, not evidence of invalid configuration. No migration attempted.
-- Preview45987764 is READY at meridian-30lt4iikd-arhans-projects-ac470eaa.vercel.app.
-  Static327-page check83074 remains live. Hosted status500 exposed missing-store
-  initialization outside error handling; corrected status/validator/receipt/badge
-  paths pass28focused tests and full83502verification. Updated preview pending.
+- Website PR15 merged as4a1fcd16; its tree equals tested6719ba52. Four CIjobs
+  pass. Current worktree branch release/verified-checkpoints-20260920.
+  Preview https://meridian-3e5mqtw82-arhans-projects-ac470eaa.vercel.app
+  is READY. Updated hosted API checks60950 pass all four unavailable-store
+  contracts. Full local suite402tests passes. Prior preview static scan83074
+  verified326pages and one connection reset; targeted80347recheck passes that
+  URL on both previews plus current home/developers. Static source did not change
+  between previews. Exact327sitemap membership and three evidence hashes match.
+  No production migration, publisher-pointer change or production promotion.
 - No source capture or pending CI establishes completion, deployment or indexing.
 
 ## Measured outcomes
@@ -136,7 +141,7 @@ All archives are local. Offsite retention and hosted preview remain unverified.
 
 ## Code and platform verification
 
-Website97b90b3b passed all four CI35503755856jobs. Local v8verification passes6+395tests
+Website6719ba52 passed all four CIjobs and merged as4a1fcd16. Local v8verification passes6+395tests
 and audits. Prior MCP test failure35500519399 is preserved; test-only deterministic
 deadline correction passed48MCP tests and complete remoteCI35500716863.
 Current refreshed source evidence:163hashes,2signatures and1,063transparency entries verify;
@@ -158,8 +163,8 @@ Official MCP registry0.1.2 is now published, active and latest. GitHub login6692
 and publish92286 completed successfully; the public registry response verifies
 matching server/package versions. Receipt: artifacts/platform/mcp-registry-publication-20260920.json. Real adoption remains unestablished;12observed validations are unattributed.
 API key revocation and PostgreSQL race tests pass, but production migration is not
-applied. Default-branch esbuild alert remains open; PR15contains the fix and npm
-audits found no candidate vulnerabilities. No alert dismissed.
+applied. The default branch now includes the dependency fix from PR15; alert state
+requires a fresh platform check. Candidate audits passed; no alert dismissed.
 
 ## External decisions and remaining goals
 
@@ -176,5 +181,5 @@ audits found no candidate vulnerabilities. No alert dismissed.
   owner actions; synthetic Hermes prototypes remain UNAPPROVED. No broker orders.
 
 Continue independent source/editorial work while polling the exact active jobs.
-Npm0.1.2 publication and engine PR71merge are verified. No new website
+Npm/official-registry0.1.2 publication, websitePR15and enginePR71merges are verified. No new website
 production deployment, running-engine activation or investment outcome is claimed.
