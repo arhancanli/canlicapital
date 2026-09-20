@@ -571,3 +571,13 @@ match comparison evidence. Parent capture completeness is explicitly separate fr
 subset completeness. No new XML acquisition yet; start after primary capture
 terminates, with existing access-stop and pacing behavior. No numerical gap closed
 by URL selection alone and no production admission.
+
+## 2026-09-20 — source review tooling merged and continuity consolidated
+
+Previous turn pinned25exact XBRL inputs. PR32mergedb5dc0ac2 after all four
+CI35516768834checks pass at0dcfa6f7. Both trees40d3071a73e02164a89fb58289696e8c08bcf537.
+Newbranchresearch/company-legacy-evidence-20260920; postmerge checks pending.
+Both43531and26312polled live;129capture entries/4573storage objects at checkpoint.
+Consolidated current STATUS and archived prior detail to remove obsolete draft,
+active-check and branch claims. All owner objectives and open gates preserved.
+No production release or source-admission claim.
