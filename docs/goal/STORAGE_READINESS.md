@@ -1,10 +1,10 @@
 # Storage readiness
 
-Current status: five-cohort10,360-object transfer26312active with explicit bounded
-recovery. Combined archive/isolated restore verified all queues and runtime objects.
-Earlier v3upload is terminal. Existing preview tests unavailable state for oldv3;
-new release requires matching preview and ready-state checks. Production unchanged.
-Exact current pins and process handle: STATUS.md.
+Current status: five-cohort10,360-object bulk transfer26312active. Combined archive
+restores all queues/runtime. Matching five-cohort preview READY and23representative
+hosted checks pass after a separate29-object probe. Full transfer, clean routes,
+browser/full-corpus checks and production admission remain open. Production unchanged.
+Exact pins/handles and preserved failed audit details: STATUS.md.
 Earlier sections below preserve historical checkpoints and superseded access limits.
 
 ## Verified runtime bundle

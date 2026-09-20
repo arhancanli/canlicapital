@@ -424,3 +424,23 @@ roots exactly reproduced. No original capture/runtime directory reads. Manual
 scope reports were preserved but not all rerun by this combined restore; no offsite
 backup claim. Updated current STATUS/ledger and preserved previous versions to
 remove stale pending/active claims. Transfer26312continues independently.
+
+## 2026-09-20 — representative five-cohort hosted delivery verified
+
+Previous turn made progress through archive replay and active bulk transfer.
+Merged PR29asb2b8c035 after all four CI35513797336jobs passed; reviewed and merged
+treese84a0c176ef185056d212f8de951e06dc039cb8d. Post-merge checks successful.
+Validated a clean sourcef54d26e7clone, deployed original source with deployment-local
+five-cohort public settings. APIconfirmed dpl_CL9YBfWudnroTVMroAGJruvmVH6A READY.
+
+Four unavailable-state checks passed. Prepared29-object runtime dependency probe,
+full-plan/manifest hash bound; probe10532completed exact public verification while
+bulk26312continued. First ready audit retained three304robots-header mismatches.
+Second retained a fetch failure plus three weak/strong validator mismatches.
+HTTP-aware validator now binds304to a previously verified200/noindex/no-store,
+compares opaque validators under If-None-Match weak semantics, rejects changed
+validators/conflicting robots and requires empty body/no-store. Three regression
+tests pass. Standards: RFC9111sections3.2/4.3.4; RFC9110section13.1.2.
+Final audit64924passed23checks, zero failures. Failed receipts remain unchanged.
+This verifies representative explicit API delivery, not canonical routes/full
+corpus/publication/indexing. Bulk transfer remains active; no production changes.
