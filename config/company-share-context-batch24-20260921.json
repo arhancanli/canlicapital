@@ -1,0 +1,57 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001517022",
+      "accession": "0001517022-26-000020",
+      "source_sha256": "eca901731ec587f0de4c46106d46ca08fada346fffe215cee1b095d9bfe74258",
+      "primary_sha256": "44dd9bb0bfa3079d057422296bc82ffcee77cd0eccb4d078f7c514441f9a9808",
+      "fixture": "scripts/fixtures/editorial/akebia-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 21,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted average number of common shares outstanding:",
+        "(dollars in thousands, except per share amounts)"
+      ],
+      "paragraph_requires": [
+        "prior to the use of the treasury stock method",
+        "Therefore, basic and diluted net loss per share were the same for all periods presented."
+      ],
+      "reader_note": "For 2023\u20132025, Akebia uses net loss as its EPS numerator, including 2025 when it reported operating income but a net loss. Potential common-share equivalents are excluded as anti-dilutive. The excluded-share table gives counts before applying the treasury-stock method; these are not additions to the weighted-average denominator. The statement heading scales dollars, not shares. Full share counts and EPS retain scale-zero tags without changing the reported values.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001517413",
+      "accession": "0001517413-26-000053",
+      "source_sha256": "119b15dbcd00bb2ecc4c622355a6a5723cd26c4242161650800db60bed63656d",
+      "primary_sha256": "f6ce0326b550eaabcc23fcfcecf295fdbd4b9d3bc87d20118bb9d9966a444d48",
+      "fixture": "scripts/fixtures/editorial/fastly-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 55,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss attributable to common stockholders",
+        "Weighted-average shares",
+        "(in thousands, except per share amounts)"
+      ],
+      "paragraph_requires": [
+        "The Company also applies the if-converted method for calculation of diluted earnings per share for its convertible debt instruments.",
+        "As the Company has reported losses for all periods presented"
+      ],
+      "reader_note": "For 2023\u20132025, Fastly uses net loss as its EPS numerator and excludes potential dilution in the loss periods. Its policy separately applies the if-converted method to convertible debt, alongside potential equity-award and employee-purchase dilution. Excluded instruments are not added to the denominator. Statement and EPS-note share counts are in thousands with scale-three tags, while EPS uses scale zero. Original dates, units and values are retained.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
