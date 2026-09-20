@@ -1,0 +1,47 @@
+{
+  "schema": "canli.company-editorial-filing-capture.v1",
+  "input_sha256": "f51dbe77cce38e22765953fd354c05a697093d99bfe5ae32eaa60398956f7c6b",
+  "publication_approved": false,
+  "complete": true,
+  "filings": [
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC. (historical NuState Energy Holdings)",
+      "discovery_names": [],
+      "accession": "0001493152-16-007114",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315216007114/0001493152-16-007114-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T16:42:29.248818+00:00",
+        "bytes": 8658,
+        "sha256": "e79f4792e42b84107118bfe97ed2356b06c9d345db0ec6523749b8b12da5c3e1",
+        "body_path": "artifacts/seo/corpus-local/visium-original-filings/0001082733-0001493152-16-007114-index.response"
+      },
+      "index_filers": [
+        "NuSTATE ENERGY HOLDINGS, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: NV | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-25753 | Film No.: 161383684 SIC : 4731 Arrangement of  Transportation of  Freight & Cargo"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315216007114/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T16:42:31.337285+00:00",
+        "bytes": 1196526,
+        "sha256": "fdbdcdf4cc0d73d2bdccbeba63df255c1da9602b1803e2f51de1b94f57ed5980",
+        "body_path": "artifacts/seo/corpus-local/visium-original-filings/0001082733-0001493152-16-007114-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    }
+  ],
+  "scope": "Primary filing capture for priority editorial targets; neither numeric verification nor editorial approval."
+}

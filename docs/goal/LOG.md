@@ -984,3 +984,14 @@ output; exact amendment filter fixes scope without changing source values.
 V13-batch6counts596reviewed/4pending/10withdrawn preserve610keys. Four remaining
 cases are Visium amendment context and TECHCOM2025component discrepancy.
 Broader corpus review and release gates remain open; no publication or indexing gain.
+
+## 2026-09-20 — Visium original filing acquired and context closed
+
+Located original SEC2014annual report0001493152-16-007114. Capture77538terminal0;
+index and primary retained, identity/bytes/hashes verified. Original table87and
+amendment explanatory note establish2013comparative asset totals471USD. Two
+observations reviewed with selected accession/values unchanged. Context replay
+identical; ledger598reviewed/2pending/10withdrawn. Initial broad issuer filter
+failed before output and was narrowed to the exact selected amendment accession.
+TECHCOMtotals tagged decimals0; no rounding conclusion yet. No sealed archive
+for new capture, full rebuild or deployment.

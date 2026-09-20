@@ -584,3 +584,18 @@ partition and byte-identical replay. Pending:2Visium2013asset observations from
 2014amendment lacking balance sheets;2TECHCOM2025liabilities with1USDcomponent
 discrepancy. These must receive evidence-backed dispositions. Other corpus flags
 remain outside this queue; no full rebuild or deployment.
+
+## Visium amendment context resolved from original filing
+
+SEC search identified original accession0001493152-16-007114, filedFebruary3,2016.
+Capture77538completed0; original index/primary retained with exact hashes and
+NuState CIKidentity verified. Table87presents2014/2013cash/current assets/total
+assets65/471USD. Selected amendment0001493152-16-007138explicitly adds XBRL
+only with no other changes; selected accessions/values unchanged.
+company-visium-original-context-20260920.json replays byte-identically and binds
+original capture plus amendment bytes. Initial helper used all Visium pending
+rows; fixed exact accession filter before generating report, no evidence changed.
+V13-batch7ledger now598active reviewed/2pending/10withdrawn. Only TECHCOM2025
+liability discrepancy remains in priority queue. Raw inline totals have decimals0;
+precision implications still need evaluation, not an assumed rounding explanation.
+New original capture is not yet in a sealed archive; no full rebuild/deployment.
