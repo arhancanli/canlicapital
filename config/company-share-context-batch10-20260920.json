@@ -1,0 +1,57 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001370053",
+      "accession": "0001193125-26-088290",
+      "source_sha256": "df16d7dcdb6e7ad00b2506a65cebc0ace52e1ddcecca87813671ca4b70c13c04",
+      "primary_sha256": "3991bfddc056dfcdaec1823deef78d3807c9f624408ef41599d3a0b8742a18c8",
+      "fixture": "scripts/fixtures/editorial/anaptysbio-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 16,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "Comprehensive loss"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except per share data)",
+        "For each period presented, there is no difference in the number of shares used to calculate basic and diluted net loss per share.",
+        "weighted-average outstanding potentially dilutive securities that have been excluded in the calculation of diluted net loss per share because to do so would be anti-dilutive"
+      ],
+      "reader_note": "For 2023\u20132025, AnaptysBio computes EPS from net loss, not operating income or comprehensive loss. Its 2025 operating income remains distinct from the net loss used for EPS after other expenses and taxes. Potentially dilutive stock options and awards are excluded as anti-dilutive. Weighted-average share counts are in thousands with scale-three tags, while EPS uses scale zero. The separate excluded common-stock equivalents are not added to the reported denominators.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001388658",
+      "accession": "0001388658-26-000011",
+      "source_sha256": "9fcf8dff597ddbc9b6799ee4a8b1691d44250fb745115d02093b36b9660e8563",
+      "primary_sha256": "1f3504d50fde68566ed28f436f7161e9290da2319c8ae0a290ef8d4f89f87093",
+      "fixture": "scripts/fixtures/editorial/irhythm-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 58,
+      "share_scale": "3",
+      "table_requires": [
+        "Numerator: Net loss",
+        "Denominator: Weighted-average shares"
+      ],
+      "paragraph_requires": [
+        "As the Company had net losses for the years ended December 31, 2025, 2024, and 2023, all potential common shares were determined to be anti-dilutive.",
+        "Potentially dilutive common shares issuable upon conversion of the Company's senior convertible notes are determined using the if-converted method.",
+        "Following the Merger, iRhythm Holdings became the successor issuer and registrant to the Company."
+      ],
+      "reader_note": "The 2023\u20132025 financial statements describe iRhythm Technologies and its subsidiaries; iRhythm Holdings became the successor issuer after the January 2026 holding-company transaction. Basic and diluted EPS use the same net-loss numerator and weighted-average denominator because potential shares, including stock awards and convertible-note options, are anti-dilutive in these loss periods. The filing distinguishes treasury-stock treatment for awards from if-converted treatment for notes. Reported shares are in thousands with scale-three tags; EPS uses scale zero. Excluded potential shares are not added to the denominator.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
