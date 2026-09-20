@@ -13,6 +13,15 @@ Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
 CI35531739016checks passed at91a22a12. Tested/merged tree
 9cfb5eb18799c5799e280681ec632f4951879e60.
 
+Batch7implementation is committed locally at81f3bda251a2985bd9d38fb8093646cd109fdb2a.
+Publication attempt was rejected by the repository pre-push attribution-migration
+hook: “Repository attribution migration is in progress. Retry after completion;
+do not bypass the hook.” No batch7remote branch or PR was created; subsequent PR
+creation failed because the branch was absent. Remote main still8baa1bd8at inspection.
+After migration, inspect its handoff and new ancestry before carrying this local
+change forward; do not push old history or bypass the hook. Continue independent
+source review locally while publication is unavailable.
+
 Latest registered ledger:company-basic-diluted-registered-scope-batch7-20260920.json.gz.
 Of1,176batch observations,298reviewed/870pending/8withdrawn.48reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry

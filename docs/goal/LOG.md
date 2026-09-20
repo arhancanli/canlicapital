@@ -395,3 +395,12 @@ replays byte-identically, ledger permits only24new review transitions. Current
 298reviewed (48presentation-only)/870pending/8withdrawn. Kronos/The9 remain pending.
 Preserved unrelated untracked ATTRIBUTION-REVIEW-20260920.md without including it.
 No new runtime build, archive supplement, deployment or confirmed indexing gain.
+
+Batch7local commit81f3bda251a2985bd9d38fb8093646cd109fdb2a could not publish:
+repository pre-push hook reports attribution migration in progress and explicitly
+forbids bypass. Push exited1; PRcreation failed because remote branch is absent.
+Read hook dispatch path and verified remote main still8baa1bd8; no batch7remote
+branch. This is a publication dependency, not an overall goal blocker. Keep the
+local tested work, continue independent review, and inspect migration handoff/new
+ancestry before retrying. Do not represent an unobserved migration process as live
+solely from its hook. No history rewrite attempted in this goal thread.
