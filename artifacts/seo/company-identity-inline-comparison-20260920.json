@@ -1,0 +1,5438 @@
+{
+  "schema": "canli.identity-inline-comparison.v1",
+  "capture_report_sha256": "13347f11493defaf96a2a6cec3c53819d8c1656fcbd81af76bd80237aaa5e969",
+  "targets_sha256": "c552b88f571ebc55133c353f49c6cd52c6a82992b8baba740151308ae0b22e2e",
+  "filings": [
+    {
+      "cik": "0000081955",
+      "accession": "0001193125-26-133767",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/81955/000119312526133767/rand-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:22.681167+00:00",
+        "bytes": 7190852,
+        "sha256": "2ca53897d3a79513e87b23d39b16295e8e44f3a39c1dfa8f49e5f87b510af16a",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000081955-0001193125-26-133767-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "Assets",
+            "end": "2025-12-31",
+            "val": 53195312,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "53195312",
+              "fact_id": "F_d8fa64f9-e64f-4a01-8d02-d20d7149bd32",
+              "context_id": "C_7b6085e2-cd99-41be-9b92-4a4e4961a335",
+              "table_row": "Total assets $ 53,195,312 $ 72,457,433"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "Assets",
+            "end": "2024-12-31",
+            "val": 72457433,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "72457433",
+              "fact_id": "F_bf39793f-07c2-4841-9c56-9649069e3695",
+              "context_id": "C_cb030112-bef5-4154-842a-ed633e38fa07",
+              "table_row": "Total assets $ 53,195,312 $ 72,457,433"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "Liabilities",
+            "end": "2025-12-31",
+            "val": 1011859,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1011859",
+              "fact_id": "F_90ed47b4-b3c1-46c7-bb3d-bfabf70dc7ed",
+              "context_id": "C_7b6085e2-cd99-41be-9b92-4a4e4961a335",
+              "table_row": "Total liabilities 1,011,859 7,124,913"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "Liabilities",
+            "end": "2024-12-31",
+            "val": 7124913,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "7124913",
+              "fact_id": "F_c8a42bdc-7cc6-4485-8c45-d96035b8fdf8",
+              "context_id": "C_cb030112-bef5-4154-842a-ed633e38fa07",
+              "table_row": "Total liabilities 1,011,859 7,124,913"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "StockholdersEquity",
+            "end": "2025-12-31",
+            "val": 52183453,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "52183453",
+              "fact_id": "F_e65a2a9c-69e1-4ede-827a-2b34064e38f7",
+              "context_id": "C_7b6085e2-cd99-41be-9b92-4a4e4961a335",
+              "table_row": "Total stockholders\u2019 equity (net assets) (per share - 2025: $ 17.57 , 2024: $ 25.31 ) 52,183,453 65,332,520"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "52183453",
+              "fact_id": "F_3670aacb-6ca5-45fe-b8b6-3ed6256e7acf",
+              "context_id": "C_7b6085e2-cd99-41be-9b92-4a4e4961a335",
+              "table_row": "Net assets at end of year $ 52,183,453 $ 65,332,520 $ 60,815,213"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "52183453",
+              "fact_id": "F_1b69e609-255d-440b-b7de-ac51ab2dfc5c",
+              "context_id": "C_7b6085e2-cd99-41be-9b92-4a4e4961a335",
+              "table_row": "December 31, 2025 $ 303,771 $ 64,063,157 $ \u2014 $ ( 1,566,605 ) $ ( 10,616,870 ) $ 52,183,453"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "StockholdersEquity",
+            "end": "2024-12-31",
+            "val": 65332520,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "65332520",
+              "fact_id": "F_83d5dc1e-7f26-47a6-b7e2-9527df6455ba",
+              "context_id": "C_cb030112-bef5-4154-842a-ed633e38fa07",
+              "table_row": "Total stockholders\u2019 equity (net assets) (per share - 2025: $ 17.57 , 2024: $ 25.31 ) 52,183,453 65,332,520"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "65332520",
+              "fact_id": "F_8d2146e0-82cb-4629-a7cd-115c04f7b5f5",
+              "context_id": "C_cb030112-bef5-4154-842a-ed633e38fa07",
+              "table_row": "Net assets at beginning of year $ 65,332,520 $ 60,815,213 $ 57,721,320"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "65332520",
+              "fact_id": "F_bdfb5a83-1332-4bc1-a999-ed4950524c67",
+              "context_id": "C_cb030112-bef5-4154-842a-ed633e38fa07",
+              "table_row": "Net assets at end of year $ 52,183,453 $ 65,332,520 $ 60,815,213"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "65332520",
+              "fact_id": "F_96247082-cb6e-4301-94af-05646a6618f5",
+              "context_id": "C_cb030112-bef5-4154-842a-ed633e38fa07",
+              "table_row": "December 31, 2024 $ 264,892 $ 55,419,620 $ 8,672,231 $ ( 1,566,605 ) $ 2,542,382 $ 65,332,520"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "65332520",
+              "fact_id": "F_fc598d7c-e681-44e4-b812-3c8eed2639cd",
+              "context_id": "C_cb030112-bef5-4154-842a-ed633e38fa07",
+              "table_row": "January 1, 2025 $ 264,892 $ 55,419,620 $ 8,672,231 $ ( 1,566,605 ) $ 2,542,382 $ 65,332,520"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "StockholdersEquity",
+            "end": "2023-12-31",
+            "val": 60815213,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2023Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "60815213",
+              "fact_id": "F_5d1452b0-f87f-48e8-87a6-4cfe53e3bc2c",
+              "context_id": "C_ad39be6d-7638-4699-99b4-befc094c993a",
+              "table_row": "Net assets at beginning of year $ 65,332,520 $ 60,815,213 $ 57,721,320"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "60815213",
+              "fact_id": "F_ab58d76e-ae57-48c2-bfc8-4d7edde7b7bd",
+              "context_id": "C_ad39be6d-7638-4699-99b4-befc094c993a",
+              "table_row": "Net assets at end of year $ 52,183,453 $ 65,332,520 $ 60,815,213"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "60815213",
+              "fact_id": "F_dac83d42-d9f1-4e30-a510-436a3db88c3f",
+              "context_id": "C_ad39be6d-7638-4699-99b4-befc094c993a",
+              "table_row": "January 1, 2024 $ 264,892 $ 55,801,170 $ \u2014 $ ( 1,566,605 ) $ 6,315,756 $ 60,815,213"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "StockholdersEquity",
+            "end": "2022-12-31",
+            "val": 57721320,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2022Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000081955",
+              "start": null,
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "57721320",
+              "fact_id": "F_ec0befd7-6d68-4796-8e0a-d569137fe1b3",
+              "context_id": "C_8b40b6c7-444b-45b6-93ef-4259e27432e9",
+              "table_row": "Net assets at beginning of year $ 65,332,520 $ 60,815,213 $ 57,721,320"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "NetIncomeLoss",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -8039620,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-8039620",
+              "fact_id": "F_36401117-aabc-4dc4-9686-1d21227be470",
+              "context_id": "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+              "table_row": "Net (decrease) increase in net assets from operations $ ( 8,039,620 ) $ 8,827,612 $ 6,526,650"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-8039620",
+              "fact_id": "F_525a5381-f7bc-4d27-8acf-46e5629c94d7",
+              "context_id": "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+              "table_row": "Net (decrease) increase in net assets from operations ( 8,039,620 ) 8,827,612 6,526,650"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-8039620",
+              "fact_id": "F_c5e21506-d390-4046-8008-ee6633d039a3",
+              "context_id": "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+              "table_row": "Net (decrease) increase in net assets from operations $ ( 8,039,620 ) $ 8,827,612 $ 6,526,650"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-8039620",
+              "fact_id": "F_cc4dc134-c92f-4e6e-8180-f32ffc321175",
+              "context_id": "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+              "table_row": "Net (decrease) increase in net assets resulting from operations $ ( 8,039,620 ) $ 8,827,612"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-8039620",
+              "fact_id": "F_a4e190a7-7c92-47c4-8241-63eb72db9da7",
+              "context_id": "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+              "table_row": "Net decrease in net assets from operations \u2014 \u2014 \u2014 \u2014 ( 8,039,620 ) ( 8,039,620 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "NetIncomeLoss",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 8827612,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "8827612",
+              "fact_id": "F_e20ffeef-bf8b-4f48-a08b-aed62f893e88",
+              "context_id": "C_eafaf64e-38df-4751-b4b5-2b534c893885",
+              "table_row": "Net (decrease) increase in net assets from operations $ ( 8,039,620 ) $ 8,827,612 $ 6,526,650"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "8827612",
+              "fact_id": "F_6ae2c413-3f45-40aa-a055-d0219cf73d83",
+              "context_id": "C_eafaf64e-38df-4751-b4b5-2b534c893885",
+              "table_row": "Net (decrease) increase in net assets from operations ( 8,039,620 ) 8,827,612 6,526,650"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "8827612",
+              "fact_id": "F_8d69926b-a251-46d0-8093-04d6f4388c01",
+              "context_id": "C_eafaf64e-38df-4751-b4b5-2b534c893885",
+              "table_row": "Net (decrease) increase in net assets from operations $ ( 8,039,620 ) $ 8,827,612 $ 6,526,650"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "8827612",
+              "fact_id": "F_e5a6ffc3-e99a-4969-9ac5-6506a5f42c78",
+              "context_id": "C_eafaf64e-38df-4751-b4b5-2b534c893885",
+              "table_row": "Net (decrease) increase in net assets resulting from operations $ ( 8,039,620 ) $ 8,827,612"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "8827612",
+              "fact_id": "F_84a4ceac-953a-4c36-a854-32bc8538a845",
+              "context_id": "C_eafaf64e-38df-4751-b4b5-2b534c893885",
+              "table_row": "Net increase in net assets from operations \u2014 \u2014 \u2014 \u2014 8,827,612 8,827,612"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "NetIncomeLoss",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 6526650,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "6526650",
+              "fact_id": "F_3cc5ea36-effa-4116-b644-b663207df8d4",
+              "context_id": "C_4c7dcb0a-6a7d-492c-a282-46e67b6ed1ff",
+              "table_row": "Net (decrease) increase in net assets from operations $ ( 8,039,620 ) $ 8,827,612 $ 6,526,650"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "6526650",
+              "fact_id": "F_0e31ca22-05e6-4ba4-82f2-60f0a187b1d1",
+              "context_id": "C_4c7dcb0a-6a7d-492c-a282-46e67b6ed1ff",
+              "table_row": "Net (decrease) increase in net assets from operations ( 8,039,620 ) 8,827,612 6,526,650"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000081955",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "6526650",
+              "fact_id": "F_44de3b1c-9463-42e3-99b5-e4aa500da656",
+              "context_id": "C_4c7dcb0a-6a7d-492c-a282-46e67b6ed1ff",
+              "table_row": "Net (decrease) increase in net assets from operations $ ( 8,039,620 ) $ 8,827,612 $ 6,526,650"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 11251648,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000081955",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "11251648",
+              "fact_id": "F_9c707b0b-6f0d-4f07-a3ec-61efdc27cf29",
+              "context_id": "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+              "table_row": "Net cash provided by (used in) operating activities 11,251,648 15,331,731 ( 8,340,918 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 15331731,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000081955",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "15331731",
+              "fact_id": "F_a8975648-6248-4615-84cc-4e19b02016e8",
+              "context_id": "C_eafaf64e-38df-4751-b4b5-2b534c893885",
+              "table_row": "Net cash provided by (used in) operating activities 11,251,648 15,331,731 ( 8,340,918 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000081955",
+            "source_sha256": "563bf0ecdd3c043fe77779bc9ad36b1e21c0ec6f96b7b1d27539d57707dd6801",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": -8340918,
+            "accn": "0001193125-26-133767",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-03-31",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000081955",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-8340918",
+              "fact_id": "F_1b9a5d87-ba15-4167-86fd-4732d9afcdeb",
+              "context_id": "C_4c7dcb0a-6a7d-492c-a282-46e67b6ed1ff",
+              "table_row": "Net cash provided by (used in) operating activities 11,251,648 15,331,731 ( 8,340,918 )"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0000772263",
+      "accession": "0000772263-25-000003",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/772263/000077226325000003/nich-20240831_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:27.213171+00:00",
+        "bytes": 1326260,
+        "sha256": "08ed540ffc6865373d40b57bde9e3ab69cd43d8bf77a7081cce592205b83c213",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000772263-0000772263-25-000003-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "Assets",
+            "end": "2024-08-31",
+            "val": 64159,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2024Q3I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000772263",
+              "start": null,
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "64159",
+              "fact_id": "ixv-16279",
+              "context_id": "I240831",
+              "table_row": "TOTAL ASSETS $ 64,159 $ 178,604"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "Assets",
+            "end": "2023-08-31",
+            "val": 178604,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2023Q3I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000772263",
+              "start": null,
+              "end": "2023-08-31",
+              "unit": "USD",
+              "value": "178604",
+              "fact_id": "ixv-16280",
+              "context_id": "I230831",
+              "table_row": "TOTAL ASSETS $ 64,159 $ 178,604"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "Liabilities",
+            "end": "2024-08-31",
+            "val": 2332118,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2024Q3I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000772263",
+              "start": null,
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "2332118",
+              "fact_id": "ixv-16293",
+              "context_id": "I240831",
+              "table_row": "TOTAL LIABILITIES 2,332,118 418,491"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "Liabilities",
+            "end": "2023-08-31",
+            "val": 418491,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2023Q3I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000772263",
+              "start": null,
+              "end": "2023-08-31",
+              "unit": "USD",
+              "value": "418491",
+              "fact_id": "ixv-16294",
+              "context_id": "I230831",
+              "table_row": "TOTAL LIABILITIES 2,332,118 418,491"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2024-08-31",
+            "val": 59991,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2024Q3I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000772263",
+              "start": null,
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "59991",
+              "fact_id": "ixv-16261",
+              "context_id": "I240831",
+              "table_row": "Cash and cash equivalents 2 $ 59,991 $ 344"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000772263",
+              "start": null,
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "59991",
+              "fact_id": "ixv-16538",
+              "context_id": "I240831",
+              "table_row": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2023-08-31",
+            "val": 344,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2023Q3I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000772263",
+              "start": null,
+              "end": "2023-08-31",
+              "unit": "USD",
+              "value": "344",
+              "fact_id": "ixv-16262",
+              "context_id": "I230831",
+              "table_row": "Cash and cash equivalents 2 $ 59,991 $ 344"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000772263",
+              "start": null,
+              "end": "2023-08-31",
+              "unit": "USD",
+              "value": "344",
+              "fact_id": "ixv-16539",
+              "context_id": "I230831",
+              "table_row": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "NetIncomeLoss",
+            "start": "2023-09-01",
+            "end": "2024-08-31",
+            "val": -2843377,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000772263",
+              "start": "2023-09-01",
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "-2843377",
+              "fact_id": "ixv-16367",
+              "context_id": "D230901_240831",
+              "table_row": "Net loss $ ( 2,843,377 ) $ ( 1,710,318 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "NetIncomeLoss",
+            "start": "2022-09-01",
+            "end": "2023-08-31",
+            "val": -1710318,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000772263",
+              "start": "2022-09-01",
+              "end": "2023-08-31",
+              "unit": "USD",
+              "value": "-1710318",
+              "fact_id": "ixv-16368",
+              "context_id": "D220901_230831",
+              "table_row": "Net loss $ ( 2,843,377 ) $ ( 1,710,318 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2023-09-01",
+            "end": "2024-08-31",
+            "val": -370353,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000772263",
+              "start": "2023-09-01",
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "-370353",
+              "fact_id": "ixv-16500",
+              "context_id": "D230901_240831",
+              "table_row": "NET CASH (USED IN) OPERATING ACTIVITIES ( 370,353 ) ( 223,548 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2022-09-01",
+            "end": "2023-08-31",
+            "val": -223548,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000772263",
+              "start": "2022-09-01",
+              "end": "2023-08-31",
+              "unit": "USD",
+              "value": "-223548",
+              "fact_id": "ixv-16501",
+              "context_id": "D220901_230831",
+              "table_row": "NET CASH (USED IN) OPERATING ACTIVITIES ( 370,353 ) ( 223,548 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "Revenues",
+            "start": "2023-09-01",
+            "end": "2024-08-31",
+            "val": 4830,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000772263",
+              "start": "2023-09-01",
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "4830",
+              "fact_id": "ixv-16331",
+              "context_id": "D230901_240831",
+              "table_row": "Revenues $ 4,830 $ 4,224"
+            },
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000772263",
+              "start": "2023-09-01",
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "4830",
+              "fact_id": "ixv-16534",
+              "context_id": "D230901_240831",
+              "table_row": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000772263",
+            "source_sha256": "42c6ea4b81a2a231c355a27b95b50a49eb48852b3d693ba847df6184ef93a141",
+            "tag": "Revenues",
+            "start": "2022-09-01",
+            "end": "2023-08-31",
+            "val": 4224,
+            "accn": "0000772263-25-000003",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-09-16",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000772263",
+              "start": "2022-09-01",
+              "end": "2023-08-31",
+              "unit": "USD",
+              "value": "4224",
+              "fact_id": "ixv-16332",
+              "context_id": "D220901_230831",
+              "table_row": "Revenues $ 4,830 $ 4,224"
+            },
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000772263",
+              "start": "2022-09-01",
+              "end": "2023-08-31",
+              "unit": "USD",
+              "value": "4224",
+              "fact_id": "ixv-16535",
+              "context_id": "D220901_230831",
+              "table_row": null
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0000774415",
+      "accession": "0001683168-26-005722",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/774415/000168316826005722/krfg_i10ka1-033126.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:30.865029+00:00",
+        "bytes": 1231613,
+        "sha256": "663f4e75ef61271c30cd42b4d0e35f3b375e0c2c665fab8fba44c682b4faa937",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000774415-0001683168-26-005722-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "Assets",
+            "end": "2026-03-31",
+            "val": 280216,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "280216",
+              "fact_id": "Fact000102",
+              "context_id": "AsOf2026-03-31",
+              "table_row": "TOTAL ASSETS $ 280,216 $ 3,924"
+            },
+            {
+              "tag": "Assets",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "280216",
+              "fact_id": "Fact000857",
+              "context_id": "AsOf2026-03-31",
+              "table_row": "Total Assets $ 278,251 $ 2,912 $ 1,965 $ 1,012 $ \u2013 $ \u2013 $ 280,216 $ 3,924"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "Assets",
+            "end": "2025-03-31",
+            "val": 3924,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2025Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "3924",
+              "fact_id": "Fact000103",
+              "context_id": "AsOf2025-03-31",
+              "table_row": "TOTAL ASSETS $ 280,216 $ 3,924"
+            },
+            {
+              "tag": "Assets",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "3924",
+              "fact_id": "Fact000858",
+              "context_id": "AsOf2025-03-31",
+              "table_row": "Total Assets $ 278,251 $ 2,912 $ 1,965 $ 1,012 $ \u2013 $ \u2013 $ 280,216 $ 3,924"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "Liabilities",
+            "end": "2026-03-31",
+            "val": 1465519,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "1465519",
+              "fact_id": "Fact000126",
+              "context_id": "AsOf2026-03-31",
+              "table_row": "TOTAL LIABILITIES 1,465,519 956,950"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "Liabilities",
+            "end": "2025-03-31",
+            "val": 956950,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2025Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "956950",
+              "fact_id": "Fact000127",
+              "context_id": "AsOf2025-03-31",
+              "table_row": "TOTAL LIABILITIES 1,465,519 956,950"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "StockholdersEquity",
+            "end": "2026-03-31",
+            "val": -1185303,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "-1185303",
+              "fact_id": "Fact000202",
+              "context_id": "AsOf2026-03-31",
+              "table_row": "Stockholders\u2019 deficit ( 1,185,303 ) ( 953,026 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "-1185303",
+              "fact_id": "Fact000543",
+              "context_id": "AsOf2026-03-31",
+              "table_row": "Balance as of March 31, 2026 30,000,000 $ 30,000 10,881,149 $ 1,088 \u2013 $ \u2013 $ ( 2,469,400 ) $ 10,877,009 $ 3,557 $ ( 9,627,557 ) $ ( 1,185,303 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "StockholdersEquity",
+            "end": "2025-03-31",
+            "val": -953026,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "-953026",
+              "fact_id": "Fact000203",
+              "context_id": "AsOf2025-03-31",
+              "table_row": "Stockholders\u2019 deficit ( 1,185,303 ) ( 953,026 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "-953026",
+              "fact_id": "Fact000446",
+              "context_id": "AsOf2025-03-31",
+              "table_row": "Balance as of March 31, 2025 30,000,000 $ 30,000 665,079 $ 67 \u2013 $ \u2013 $ \u2013 $ 6,459,230 $ 1,055 $ ( 7,443,378 ) $ ( 953,026 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "StockholdersEquity",
+            "end": "2024-03-31",
+            "val": -3032577,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2024Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2024-03-31",
+              "unit": "USD",
+              "value": "-3032577",
+              "fact_id": "Fact000380",
+              "context_id": "AsOf2024-03-31",
+              "table_row": "Balance as of April 1, 2024 30,000,000 $ 30,000 563,417 $ 56 15,000 $ 2 $ \u2013 $ 6,329,244 $ ( 409 ) $ ( 9,391,470 ) $ ( 3,032,577 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2026-03-31",
+            "val": 8789,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "8789",
+              "fact_id": "Fact000078",
+              "context_id": "AsOf2026-03-31",
+              "table_row": "Cash and cash equivalents $ 8,789 $ 2,417"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2025-03-31",
+            "val": 2417,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2025Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000774415",
+              "start": null,
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "2417",
+              "fact_id": "Fact000079",
+              "context_id": "AsOf2025-03-31",
+              "table_row": "Cash and cash equivalents $ 8,789 $ 2,417"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "NetIncomeLoss",
+            "start": "2025-04-01",
+            "end": "2026-03-31",
+            "val": -2184179,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000774415",
+              "start": "2025-04-01",
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "-2184179",
+              "fact_id": "Fact000253",
+              "context_id": "From2025-04-01to2026-03-31",
+              "table_row": "NET (LOSS) INCOME ( 2,184,179 ) 1,948,092"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000774415",
+              "start": "2025-04-01",
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "-2184179",
+              "fact_id": "Fact000286",
+              "context_id": "From2025-04-01to2026-03-31",
+              "table_row": "Net (loss) income $ ( 2,184,179 ) $ 1,948,092"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000774415",
+              "start": "2025-04-01",
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "-2184179",
+              "fact_id": "Fact000534",
+              "context_id": "From2025-04-01to2026-03-31",
+              "table_row": "Net loss for the year \u2013 \u2013 \u2013 \u2013 \u2013 \u2013 \u2013 \u2013 \u2013 ( 2,184,179 ) ( 2,184,179 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000774415",
+              "start": "2025-04-01",
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "-2184179",
+              "fact_id": "Fact000830",
+              "context_id": "From2025-04-01to2026-03-31",
+              "table_row": "Segment profit (loss) $ ( 17,991 ) $ ( 45,497 ) $ ( 11,666 ) $ ( 438,722 ) $ ( 2,154,522 ) $ 2,432,311 $ ( 2,184,179 ) $ 1,948,092"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "NetIncomeLoss",
+            "start": "2024-04-01",
+            "end": "2025-03-31",
+            "val": 1948092,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000774415",
+              "start": "2024-04-01",
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "1948092",
+              "fact_id": "Fact000254",
+              "context_id": "From2024-04-012025-03-31",
+              "table_row": "NET (LOSS) INCOME ( 2,184,179 ) 1,948,092"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000774415",
+              "start": "2024-04-01",
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "1948092",
+              "fact_id": "Fact000287",
+              "context_id": "From2024-04-012025-03-31",
+              "table_row": "Net (loss) income $ ( 2,184,179 ) $ 1,948,092"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000774415",
+              "start": "2024-04-01",
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "1948092",
+              "fact_id": "Fact000437",
+              "context_id": "From2024-04-012025-03-31",
+              "table_row": "Net loss for the year \u2013 \u2013 \u2013 \u2013 \u2013 \u2013 \u2013 \u2013 \u2013 1,948,092 1,948,092"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000774415",
+              "start": "2024-04-01",
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "1948092",
+              "fact_id": "Fact000831",
+              "context_id": "From2024-04-012025-03-31",
+              "table_row": "Segment profit (loss) $ ( 17,991 ) $ ( 45,497 ) $ ( 11,666 ) $ ( 438,722 ) $ ( 2,154,522 ) $ 2,432,311 $ ( 2,184,179 ) $ 1,948,092"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2025-04-01",
+            "end": "2026-03-31",
+            "val": -156676,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000774415",
+              "start": "2025-04-01",
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "-156676",
+              "fact_id": "Fact000325",
+              "context_id": "From2025-04-01to2026-03-31",
+              "table_row": "Net cash used in operating activities ( 156,676 ) ( 85,555 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2024-04-01",
+            "end": "2025-03-31",
+            "val": -85555,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000774415",
+              "start": "2024-04-01",
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "-85555",
+              "fact_id": "Fact000326",
+              "context_id": "From2024-04-012025-03-31",
+              "table_row": "Net cash used in operating activities ( 156,676 ) ( 85,555 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+            "start": "2025-04-01",
+            "end": "2026-03-31",
+            "val": 9437,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "entity_cik": "0000774415",
+              "start": "2025-04-01",
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "9437",
+              "fact_id": "Fact000337",
+              "context_id": "From2025-04-01to2026-03-31",
+              "table_row": "Cash outflow from purchases of property and equipment ( 9,437 ) \u2013"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+            "start": "2024-04-01",
+            "end": "2025-03-31",
+            "val": 0,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "entity_cik": "0000774415",
+              "start": "2024-04-01",
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "-0",
+              "fact_id": "Fact000338",
+              "context_id": "From2024-04-012025-03-31",
+              "table_row": "Cash outflow from purchases of property and equipment ( 9,437 ) \u2013"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "Revenues",
+            "start": "2025-04-01",
+            "end": "2026-03-31",
+            "val": 830662,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000774415",
+              "start": "2025-04-01",
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "830662",
+              "fact_id": "Fact000208",
+              "context_id": "From2025-04-01to2026-03-31",
+              "table_row": "Revenue, net $ 830,662 $ 76,921"
+            },
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000774415",
+              "start": "2025-04-01",
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "830662",
+              "fact_id": "Fact000722",
+              "context_id": "From2025-04-01to2026-03-31",
+              "table_row": "Revenues, net $ 773,062 $ \u2013 $ 57,600 $ 76,921 $ \u2013 $ \u2013 $ 830,662 $ 76,921"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000774415",
+            "source_sha256": "d161592baa906fe7ccf6c16fa8780854f3056198dfdc75735e6198af5611c726",
+            "tag": "Revenues",
+            "start": "2024-04-01",
+            "end": "2025-03-31",
+            "val": 76921,
+            "accn": "0001683168-26-005722",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-07-23",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000774415",
+              "start": "2024-04-01",
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "76921",
+              "fact_id": "Fact000209",
+              "context_id": "From2024-04-012025-03-31",
+              "table_row": "Revenue, net $ 830,662 $ 76,921"
+            },
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000774415",
+              "start": "2024-04-01",
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "76921",
+              "fact_id": "Fact000723",
+              "context_id": "From2024-04-012025-03-31",
+              "table_row": "Revenues, net $ 773,062 $ \u2013 $ 57,600 $ 76,921 $ \u2013 $ \u2013 $ 830,662 $ 76,921"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0000787496",
+      "accession": "0001829126-26-010112",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/787496/000182912626010112/longevity_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:34.469631+00:00",
+        "bytes": 519372,
+        "sha256": "edb975762a3fe1e6e2c9c6be3f4a0fc571d6bbe82d751a0dfe8cf26443ff58a5",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000787496-0001829126-26-010112-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0000787496",
+            "source_sha256": "4f0324c3c6d838ded15951fc977222dcaeb505e8b14b3460b61f21e9bccc6180",
+            "tag": "StockholdersEquity",
+            "end": "2026-05-31",
+            "val": -134857,
+            "accn": "0001829126-26-010112",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-09-15",
+            "frame": "CY2026Q2I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000787496",
+              "start": null,
+              "end": "2026-05-31",
+              "unit": "USD",
+              "value": "-134857",
+              "fact_id": "Fact000137",
+              "context_id": "AsOf2026-05-31",
+              "table_row": "Total Stockholders\u2019 deficit ( 134,857 ) ( 52,725 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000787496",
+              "start": null,
+              "end": "2026-05-31",
+              "unit": "USD",
+              "value": "-134857",
+              "fact_id": "Fact000268",
+              "context_id": "AsOf2026-05-31",
+              "table_row": "Balance, May\u00a031, 2026 - $ - - $ - 568,735,798 $ 568,736 $ 13,644,824 $ ( 14,348,417 ) $ ( 134,857 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000787496",
+            "source_sha256": "4f0324c3c6d838ded15951fc977222dcaeb505e8b14b3460b61f21e9bccc6180",
+            "tag": "StockholdersEquity",
+            "end": "2025-05-31",
+            "val": -52725,
+            "accn": "0001829126-26-010112",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-09-15",
+            "frame": "CY2025Q2I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000787496",
+              "start": null,
+              "end": "2025-05-31",
+              "unit": "USD",
+              "value": "-52725",
+              "fact_id": "Fact000138",
+              "context_id": "AsOf2025-05-31",
+              "table_row": "Total Stockholders\u2019 deficit ( 134,857 ) ( 52,725 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000787496",
+              "start": null,
+              "end": "2025-05-31",
+              "unit": "USD",
+              "value": "-52725",
+              "fact_id": "Fact000215",
+              "context_id": "AsOf2025-05-31",
+              "table_row": "Balance, May\u00a031, 2025 - $ - 10,000,000 $ 10,000 28,436,782 $ 28,437 $ 14,175,123 $ ( 14,266,285 ) $ ( 52,725 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000787496",
+              "start": null,
+              "end": "2025-05-31",
+              "unit": "USD",
+              "value": "-52725",
+              "fact_id": "Fact000228",
+              "context_id": "AsOf2025-05-31",
+              "table_row": "Balance, May\u00a031, 2025 - $ - 10,000,000 $ 10,000 28,436,782 $ 28,437 $ 14,175,123 $ ( 14,266,285 ) $ ( 52,725 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000787496",
+            "source_sha256": "4f0324c3c6d838ded15951fc977222dcaeb505e8b14b3460b61f21e9bccc6180",
+            "tag": "StockholdersEquity",
+            "end": "2024-05-31",
+            "val": -45102,
+            "accn": "0001829126-26-010112",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-09-15",
+            "frame": "CY2024Q2I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000787496",
+              "start": null,
+              "end": "2024-05-31",
+              "unit": "USD",
+              "value": "-45102",
+              "fact_id": "Fact000188",
+              "context_id": "AsOf2024-05-31",
+              "table_row": "Balance, May\u00a031, 2024 - $ - 10,000,000 $ 10,000.00 28,436,782 $ 28,437 $ 14,130,021 $ ( 14,213,560 ) $ ( 45,102 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000787496",
+            "source_sha256": "4f0324c3c6d838ded15951fc977222dcaeb505e8b14b3460b61f21e9bccc6180",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2026-05-31",
+            "val": 0,
+            "accn": "0001829126-26-010112",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-09-15",
+            "frame": "CY2026Q2I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000787496",
+              "start": null,
+              "end": "2026-05-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000336",
+              "context_id": "AsOf2026-05-31",
+              "table_row": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000787496",
+            "source_sha256": "4f0324c3c6d838ded15951fc977222dcaeb505e8b14b3460b61f21e9bccc6180",
+            "tag": "NetIncomeLoss",
+            "start": "2025-06-01",
+            "end": "2026-05-31",
+            "val": -82132,
+            "accn": "0001829126-26-010112",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-09-15",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000787496",
+              "start": "2025-06-01",
+              "end": "2026-05-31",
+              "unit": "USD",
+              "value": "-82132",
+              "fact_id": "Fact000161",
+              "context_id": "From2025-06-01to2026-05-31",
+              "table_row": "Net loss $ ( 82,132 ) $ ( 52,725 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000787496",
+              "start": "2025-06-01",
+              "end": "2026-05-31",
+              "unit": "USD",
+              "value": "-82132",
+              "fact_id": "Fact000279",
+              "context_id": "From2025-06-01to2026-05-31",
+              "table_row": "Net (loss) $ ( 82,132 ) $ ( 52,725 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000787496",
+              "start": "2025-06-01",
+              "end": "2026-05-31",
+              "unit": "USD",
+              "value": "-82132",
+              "fact_id": "Fact000338",
+              "context_id": "From2025-06-01to2026-05-31",
+              "table_row": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000787496",
+            "source_sha256": "4f0324c3c6d838ded15951fc977222dcaeb505e8b14b3460b61f21e9bccc6180",
+            "tag": "NetIncomeLoss",
+            "start": "2024-06-01",
+            "end": "2025-05-31",
+            "val": -52725,
+            "accn": "0001829126-26-010112",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-09-15",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000787496",
+              "start": "2024-06-01",
+              "end": "2025-05-31",
+              "unit": "USD",
+              "value": "-52725",
+              "fact_id": "Fact000162",
+              "context_id": "From2024-06-012025-05-31",
+              "table_row": "Net loss $ ( 82,132 ) $ ( 52,725 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000787496",
+              "start": "2024-06-01",
+              "end": "2025-05-31",
+              "unit": "USD",
+              "value": "-52725",
+              "fact_id": "Fact000280",
+              "context_id": "From2024-06-012025-05-31",
+              "table_row": "Net (loss) $ ( 82,132 ) $ ( 52,725 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000787496",
+            "source_sha256": "4f0324c3c6d838ded15951fc977222dcaeb505e8b14b3460b61f21e9bccc6180",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2025-06-01",
+            "end": "2026-05-31",
+            "val": -104213,
+            "accn": "0001829126-26-010112",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-09-15",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000787496",
+              "start": "2025-06-01",
+              "end": "2026-05-31",
+              "unit": "USD",
+              "value": "-104213",
+              "fact_id": "Fact000288",
+              "context_id": "From2025-06-01to2026-05-31",
+              "table_row": "Net cash (used in) operating activities ( 104,213 ) ( 18,584 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000787496",
+            "source_sha256": "4f0324c3c6d838ded15951fc977222dcaeb505e8b14b3460b61f21e9bccc6180",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2024-06-01",
+            "end": "2025-05-31",
+            "val": -18584,
+            "accn": "0001829126-26-010112",
+            "fy": 2026,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-09-15",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000787496",
+              "start": "2024-06-01",
+              "end": "2025-05-31",
+              "unit": "USD",
+              "value": "-18584",
+              "fact_id": "Fact000289",
+              "context_id": "From2024-06-012025-05-31",
+              "table_row": "Net cash (used in) operating activities ( 104,213 ) ( 18,584 )"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0000845385",
+      "accession": "0001213900-23-024619",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/845385/000121390023024619/f10k2022_princetoncap.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:37.835881+00:00",
+        "bytes": 1935476,
+        "sha256": "31d7f56036aada6af1290d9b8dc833cc199c22e33b6fde49640ac68eb99954e9",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000845385-0001213900-23-024619-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "Revenues",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "val": 8757000,
+            "accn": "0001213900-23-024619",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-30",
+            "frame": "CY2022",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000845385",
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "8757000",
+              "fact_id": null,
+              "context_id": "c0",
+              "table_row": "Net Revenue (Loss) $ 8,757 $ 8,182 $ 6,935"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "Revenues",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "val": 8182000,
+            "accn": "0001213900-23-024619",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-30",
+            "frame": "CY2021",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000845385",
+              "start": "2021-01-01",
+              "end": "2021-12-31",
+              "unit": "USD",
+              "value": "8182000",
+              "fact_id": null,
+              "context_id": "c5",
+              "table_row": "Net Revenue (Loss) $ 8,757 $ 8,182 $ 6,935"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "Revenues",
+            "start": "2020-01-01",
+            "end": "2020-12-31",
+            "val": 6935000,
+            "accn": "0001213900-23-024619",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-30",
+            "frame": "CY2020",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000845385",
+              "start": "2020-01-01",
+              "end": "2020-12-31",
+              "unit": "USD",
+              "value": "6935000",
+              "fact_id": null,
+              "context_id": "c6",
+              "table_row": "Net Revenue (Loss) $ 8,757 $ 8,182 $ 6,935"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0000845385",
+      "accession": "0001213900-26-036469",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/845385/000121390026036469/ea0283137-10k_princeton.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:41.953183+00:00",
+        "bytes": 1871978,
+        "sha256": "0fc638f4ee6423e94f52d337d4543ef24341ae5e21cf3bdca31f3d4cd80dea64",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000845385-0001213900-26-036469-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "Assets",
+            "end": "2025-12-31",
+            "val": 14758599,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "14758599",
+              "fact_id": "ixv-19791",
+              "context_id": "c7",
+              "table_row": "Total assets 14,758,599 21,207,879"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "Assets",
+            "end": "2024-12-31",
+            "val": 21207879,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "21207879",
+              "fact_id": "ixv-19792",
+              "context_id": "c8",
+              "table_row": "Total assets 14,758,599 21,207,879"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "Liabilities",
+            "end": "2025-12-31",
+            "val": 495598,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "495598",
+              "fact_id": "ixv-19802",
+              "context_id": "c7",
+              "table_row": "Total liabilities 495,598 164,613"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "Liabilities",
+            "end": "2024-12-31",
+            "val": 164613,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "164613",
+              "fact_id": "ixv-19803",
+              "context_id": "c8",
+              "table_row": "Total liabilities 495,598 164,613"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "StockholdersEquity",
+            "end": "2025-12-31",
+            "val": 14263001,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "14263001",
+              "fact_id": "ixv-19820",
+              "context_id": "c7",
+              "table_row": "Total net assets $ 14,263,001 $ 21,043,266"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "14263001",
+              "fact_id": "ixv-19935",
+              "context_id": "c7",
+              "table_row": "Net Assets at December 31 $ 14,263,001 $ 21,043,266 $ 31,904,562"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "StockholdersEquity",
+            "end": "2024-12-31",
+            "val": 21043266,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "21043266",
+              "fact_id": "ixv-19821",
+              "context_id": "c8",
+              "table_row": "Total net assets $ 14,263,001 $ 21,043,266"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "21043266",
+              "fact_id": "ixv-19918",
+              "context_id": "c8",
+              "table_row": "Net assets at beginning of year $ 21,043,266 $ 31,904,562 $ 32,083,462"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "21043266",
+              "fact_id": "ixv-19936",
+              "context_id": "c8",
+              "table_row": "Net Assets at December 31 $ 14,263,001 $ 21,043,266 $ 31,904,562"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "StockholdersEquity",
+            "end": "2023-12-31",
+            "val": 31904562,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2023Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "31904562",
+              "fact_id": "ixv-19919",
+              "context_id": "c17",
+              "table_row": "Net assets at beginning of year $ 21,043,266 $ 31,904,562 $ 32,083,462"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "31904562",
+              "fact_id": "ixv-19937",
+              "context_id": "c17",
+              "table_row": "Net Assets at December 31 $ 14,263,001 $ 21,043,266 $ 31,904,562"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "StockholdersEquity",
+            "end": "2022-12-31",
+            "val": 32083462,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2022Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "32083462",
+              "fact_id": "ixv-19920",
+              "context_id": "c18",
+              "table_row": "Net assets at beginning of year $ 21,043,266 $ 31,904,562 $ 32,083,462"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2025-12-31",
+            "val": 241832,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "241832",
+              "fact_id": "ixv-19779",
+              "context_id": "c7",
+              "table_row": "Cash and cash equivalents 241,832 1,290,864"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "241832",
+              "fact_id": "ixv-20228",
+              "context_id": "c7",
+              "table_row": "Cash and Cash Equivalents $ 241,832 $ 1,290,864"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2024-12-31",
+            "val": 1290864,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "1290864",
+              "fact_id": "ixv-19780",
+              "context_id": "c8",
+              "table_row": "Cash and cash equivalents 241,832 1,290,864"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000845385",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "1290864",
+              "fact_id": "ixv-20229",
+              "context_id": "c8",
+              "table_row": "Cash and Cash Equivalents $ 241,832 $ 1,290,864"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "NetIncomeLoss",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -6780265,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-6780265",
+              "fact_id": "ixv-19897",
+              "context_id": "c0",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 ) $ ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-6780265",
+              "fact_id": "ixv-19929",
+              "context_id": "c0",
+              "table_row": "Net decrease in net assets resulting from operations ( 6,780,265 ) ( 10,861,296 ) ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-6780265",
+              "fact_id": "ixv-19944",
+              "context_id": "c0",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 ) $ ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-6780265",
+              "fact_id": "ix_168_fact",
+              "context_id": "c0",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 ) $ ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-6780265",
+              "fact_id": "ixv-20571",
+              "context_id": "c0",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "NetIncomeLoss",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -10861296,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-10861296",
+              "fact_id": "ixv-19898",
+              "context_id": "c9",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 ) $ ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-10861296",
+              "fact_id": "ixv-19930",
+              "context_id": "c9",
+              "table_row": "Net decrease in net assets resulting from operations ( 6,780,265 ) ( 10,861,296 ) ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-10861296",
+              "fact_id": "ixv-19945",
+              "context_id": "c9",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 ) $ ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-10861296",
+              "fact_id": "ix_169_fact",
+              "context_id": "c9",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 ) $ ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-10861296",
+              "fact_id": "ixv-20572",
+              "context_id": "c9",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "NetIncomeLoss",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": -178900,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-178900",
+              "fact_id": "ixv-19899",
+              "context_id": "c10",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 ) $ ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-178900",
+              "fact_id": "ixv-19931",
+              "context_id": "c10",
+              "table_row": "Net decrease in net assets resulting from operations ( 6,780,265 ) ( 10,861,296 ) ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-178900",
+              "fact_id": "ixv-19946",
+              "context_id": "c10",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 ) $ ( 178,900 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000845385",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-178900",
+              "fact_id": "ix_170_fact",
+              "context_id": "c10",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 6,780,265 ) $ ( 10,861,296 ) $ ( 178,900 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -1049032,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000845385",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-1049032",
+              "fact_id": "ixv-19981",
+              "context_id": "c0",
+              "table_row": "Net cash provided by (used in) operating activities ( 1,049,032 ) ( 683,795 ) 413,113"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -683795,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000845385",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-683795",
+              "fact_id": "ixv-19982",
+              "context_id": "c9",
+              "table_row": "Net cash provided by (used in) operating activities ( 1,049,032 ) ( 683,795 ) 413,113"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000845385",
+            "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 413113,
+            "accn": "0001213900-26-036469",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-30",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000845385",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "413113",
+              "fact_id": "ixv-19983",
+              "context_id": "c10",
+              "table_row": "Net cash provided by (used in) operating activities ( 1,049,032 ) ( 683,795 ) 413,113"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0000878932",
+      "accession": "0001096906-26-000571",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/878932/000109690626000571/equus_10ka.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:45.784007+00:00",
+        "bytes": 1815972,
+        "sha256": "cb305e870175c01cfd67f178e39b00a0f11f5fe456200933dc6574b23f519fa9",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000878932-0001096906-26-000571-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "Assets",
+            "end": "2025-12-31",
+            "val": 21338000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2025Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "21338000",
+              "fact_id": "fid_4195",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total assets 21,338 29,936"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "Assets",
+            "end": "2024-12-31",
+            "val": 29936000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "29936000",
+              "fact_id": "fid_4196",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total assets 21,338 29,936"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "Liabilities",
+            "end": "2025-12-31",
+            "val": 4768000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2025Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "4768000",
+              "fact_id": "fid_4208",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total liabilities 4,768 426"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "Liabilities",
+            "end": "2024-12-31",
+            "val": 426000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "426000",
+              "fact_id": "fid_4209",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total liabilities 4,768 426"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "StockholdersEquity",
+            "end": "2025-12-31",
+            "val": 16570000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2025Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "16570000",
+              "fact_id": "fid_4222",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total net assets $ 16,570 $ 29,510"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "16570000",
+              "fact_id": "fid_4379",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Balances as of December 31, 2025 13,967 $ 14 $ 76,009 $ ( 59,453 ) $ 16,570"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "StockholdersEquity",
+            "end": "2024-12-31",
+            "val": 29510000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "29510000",
+              "fact_id": "fid_4223",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total net assets $ 16,570 $ 29,510"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "29510000",
+              "fact_id": "fid_4357",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Balances as of December 31, 2024 13,586 14 74,785 ( 45,289 ) 29,510"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "StockholdersEquity",
+            "end": "2023-12-31",
+            "val": 48287000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2023Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "48287000",
+              "fact_id": "fid_4348",
+              "context_id": "AsOf2023-12-31",
+              "table_row": "Balances as of December 31, 2023 13,586 14 74,785 ( 26,512 ) 48,287"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "StockholdersEquity",
+            "end": "2022-12-31",
+            "val": 35237000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2022Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "35237000",
+              "fact_id": "fid_4334",
+              "context_id": "AsOf2022-12-31",
+              "table_row": "Balances as of January 1, 2023 13,518 13 74,685 ( 39,461 ) 35,237"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2025-12-31",
+            "val": 133000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2025Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "133000",
+              "fact_id": "fid_4187",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Cash and cash equivalents 133 262"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "133000",
+              "fact_id": "fid_4103",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Cash and cash equivalents $ 133 $ 133 $ 133 $ \u2014 $ \u2014"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "133000",
+              "fact_id": "fid_4001",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Cash and cash equivalents at end of period $ 133 $ 262 $ 6,533"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2024-12-31",
+            "val": 262000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "262000",
+              "fact_id": "fid_4188",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Cash and cash equivalents 133 262"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "262000",
+              "fact_id": "fid_4104",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Cash and cash equivalents $ 262 $ 262 $ 262 $ \u2014 $ \u2014"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "262000",
+              "fact_id": "fid_3340",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Cash and cash equivalents at end of period $ 133 $ 262 $ 6,533"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2023-12-31",
+            "val": 6533000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2023Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0000878932",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "6533000",
+              "fact_id": "fid_3343",
+              "context_id": "AsOf2023-12-31",
+              "table_row": "Cash and cash equivalents at end of period $ 133 $ 262 $ 6,533"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "NetIncomeLoss",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -14164000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-14164000",
+              "fact_id": "fid_4313",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 14,164 ) $ ( 18,777 ) $ 12,949"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-14164000",
+              "fact_id": "fid_4374",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net decrease in net assets resulting from operations \u2014 \u2014 \u2014 ( 14,164 ) ( 14,164 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-14164000",
+              "fact_id": "fid_4381",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 14,164 ) $ ( 18,777 ) $ 12,949"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-14164000",
+              "fact_id": "fid_4024",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net income (loss) attributable to common shareholders $ ( 14,164 ) $ ( 18,777 ) $ 12,949"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "NetIncomeLoss",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -18777000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-18777000",
+              "fact_id": "fid_4314",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 14,164 ) $ ( 18,777 ) $ 12,949"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-18777000",
+              "fact_id": "fid_4352",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "Net increase in net assets resulting from operations \u2014 \u2014 \u2014 ( 18,777 ) ( 18,777 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-18777000",
+              "fact_id": "fid_4382",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 14,164 ) $ ( 18,777 ) $ 12,949"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-18777000",
+              "fact_id": "fid_4030",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "Net income (loss) attributable to common shareholders $ ( 14,164 ) $ ( 18,777 ) $ 12,949"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "NetIncomeLoss",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 12949000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "12949000",
+              "fact_id": "fid_4315",
+              "context_id": "From2023-01-01to2023-12-31",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 14,164 ) $ ( 18,777 ) $ 12,949"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "12949000",
+              "fact_id": "fid_4343",
+              "context_id": "From2023-01-01to2023-12-31",
+              "table_row": "Net increase in net assets resulting from operations \u2014 \u2014 \u2014 12,949 12,949"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "12949000",
+              "fact_id": "fid_4383",
+              "context_id": "From2023-01-01to2023-12-31",
+              "table_row": "Net decrease in net assets resulting from operations $ ( 14,164 ) $ ( 18,777 ) $ 12,949"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000878932",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "12949000",
+              "fact_id": "fid_4034",
+              "context_id": "From2023-01-01to2023-12-31",
+              "table_row": "Net income (loss) attributable to common shareholders $ ( 14,164 ) $ ( 18,777 ) $ 12,949"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -2129000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000878932",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-2129000",
+              "fact_id": "fid_4448",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net cash (used in) provided by operating activities ( 2,129 ) 38,234 ( 51,359 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 38234000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000878932",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "38234000",
+              "fact_id": "fid_4449",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "Net cash (used in) provided by operating activities ( 2,129 ) 38,234 ( 51,359 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000878932",
+            "source_sha256": "a2d55934bc12c170293e3935fdcee8249cfccd7eb3e3ddc170de1c0a6b15cc25",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": -51359000,
+            "accn": "0001096906-26-000571",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2026-04-20",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000878932",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-51359000",
+              "fact_id": "fid_4450",
+              "context_id": "From2023-01-01to2023-12-31",
+              "table_row": "Net cash (used in) provided by operating activities ( 2,129 ) 38,234 ( 51,359 )"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0000889353",
+      "accession": "0001096906-26-000918",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/889353/000109690626000918/sntl_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:49.622024+00:00",
+        "bytes": 1681711,
+        "sha256": "5fef71595a7497c7aede16a5ef97b2ae79fe345d39d5562a91deb97d30e28dff",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000889353-0001096906-26-000918-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "Assets",
+            "end": "2025-12-31",
+            "val": 2641112,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000889353",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "2641112",
+              "fact_id": "fid_3314",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Assets $ 2,641,112 $ 819,743"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "Assets",
+            "end": "2024-12-31",
+            "val": 819743,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0000889353",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "819743",
+              "fact_id": "fid_3315",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Assets $ 2,641,112 $ 819,743"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "Liabilities",
+            "end": "2025-12-31",
+            "val": 5488797,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000889353",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "5488797",
+              "fact_id": "fid_3341",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Liabilities 5,488,797 5,150,415"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "Liabilities",
+            "end": "2024-12-31",
+            "val": 5150415,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0000889353",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "5150415",
+              "fact_id": "fid_3342",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Liabilities 5,488,797 5,150,415"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "StockholdersEquity",
+            "end": "2025-12-31",
+            "val": -2478734,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000889353",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-2478734",
+              "fact_id": "fid_3358",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Stockholders' equity (deficit) ( 2,478,734 ) ( 4,069,517 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "StockholdersEquity",
+            "end": "2024-12-31",
+            "val": -4069517,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0000889353",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-4069517",
+              "fact_id": "fid_3359",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Stockholders' equity (deficit) ( 2,478,734 ) ( 4,069,517 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "NetIncomeLoss",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 1664817,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0000889353",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1664817",
+              "fact_id": "fid_3138",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -1320175,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000889353",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-1320175",
+              "fact_id": "fid_3797",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net cash provided by (used in) operating activities ( 1,320,175 ) ( 123,755 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -123755,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0000889353",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-123755",
+              "fact_id": "fid_3798",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "Net cash provided by (used in) operating activities ( 1,320,175 ) ( 123,755 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "Revenues",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 1933422,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000889353",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1933422",
+              "fact_id": "fid_3366",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Revenue $ 1,933,422 $ -"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0000889353",
+            "source_sha256": "554a6e40383a9d05a00c5eedf7f801577cc97f28ceff1237fe0b3ef47321bdd8",
+            "tag": "Revenues",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001096906-26-000918",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-06-05",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0000889353",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_3367",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "Revenue $ 1,933,422 $ -"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001009919",
+      "accession": "0001683168-26-000412",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1009919/000168316826000412/invech_10k-123125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:53.192899+00:00",
+        "bytes": 457683,
+        "sha256": "b3b9d17d26e03ccca6811e3113532bc0c3524af03c8e8b13dd25ff11bc350983",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001009919-0001683168-26-000412-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "Assets",
+            "end": "2025-12-31",
+            "val": 1500,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001009919",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1500",
+              "fact_id": "Fact000094",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Assets $ 1,500 $ 1,260"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "Assets",
+            "end": "2024-12-31",
+            "val": 1260,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001009919",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "1260",
+              "fact_id": "Fact000095",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Assets $ 1,500 $ 1,260"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "Liabilities",
+            "end": "2025-12-31",
+            "val": 63649,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001009919",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "63649",
+              "fact_id": "Fact000112",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Liabilities 63,649 9,834"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "Liabilities",
+            "end": "2024-12-31",
+            "val": 9834,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001009919",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "9834",
+              "fact_id": "Fact000113",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Liabilities 63,649 9,834"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "StockholdersEquity",
+            "end": "2025-12-31",
+            "val": -62149,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001009919",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-62149",
+              "fact_id": "Fact000173",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Stockholders\u2019 Deficit ( 62,149 ) ( 8,574 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001009919",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-62149",
+              "fact_id": "Fact000251",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Balance at December 31, 2025 300,000 $ 300 100,521,335 $ 100,521 $ 202,113 $ ( 365,083 ) $ ( 62,149 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "StockholdersEquity",
+            "end": "2024-12-31",
+            "val": -8574,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001009919",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-8574",
+              "fact_id": "Fact000174",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Stockholders\u2019 Deficit ( 62,149 ) ( 8,574 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001009919",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-8574",
+              "fact_id": "Fact000231",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Balance at December 31, 2024 300,000 300 100,521,335 100,521 197,670 ( 307,065 ) ( 8,574 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "StockholdersEquity",
+            "end": "2023-12-31",
+            "val": -33475,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "frame": "CY2023Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001009919",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-33475",
+              "fact_id": "Fact000210",
+              "context_id": "AsOf2023-12-31",
+              "table_row": "Balance at December 31, 2023 300,000 $ 300 10,521,335 $ 10,521 $ 202,294 $ ( 246,590 ) $ ( 33,475 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "NetIncomeLoss",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -58018,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001009919",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-58018",
+              "fact_id": "Fact000191",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net Loss $ ( 58,018 ) $ ( 60,475 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001009919",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-58018",
+              "fact_id": "Fact000245",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net loss \u2013 \u2013 \u2013 \u2013 \u2013 ( 58,018 ) ( 58,018 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001009919",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-58018",
+              "fact_id": "Fact000258",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net loss $ ( 58,018 ) $ ( 60,475 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "NetIncomeLoss",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -60475,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001009919",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-60475",
+              "fact_id": "Fact000192",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net Loss $ ( 58,018 ) $ ( 60,475 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001009919",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-60475",
+              "fact_id": "Fact000225",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net loss \u2013 \u2013 \u2013 \u2013 \u2013 ( 60,475 ) ( 60,475 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001009919",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-60475",
+              "fact_id": "Fact000259",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net loss $ ( 58,018 ) $ ( 60,475 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -58258,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001009919",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-58258",
+              "fact_id": "Fact000270",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net cash used in operating activities ( 58,258 ) ( 61,735 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001009919",
+            "source_sha256": "7d30c1bd373d49825b6e7689f93acd7d0bab61b71b5b1c4a2337e0f26d9fdfdc",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -61735,
+            "accn": "0001683168-26-000412",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-20",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001009919",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-61735",
+              "fact_id": "Fact000271",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net cash used in operating activities ( 58,258 ) ( 61,735 )"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001043150",
+      "accession": "0001683168-24-008957",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1043150/000168316824008957/eline_i10k-123123.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:56.409963+00:00",
+        "bytes": 397798,
+        "sha256": "8d349c9ca64cfc0da50346c4867c8d2da297a0bc3e11fffe8aca0f506e1b8b01",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001043150-0001683168-24-008957-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 0,
+            "accn": "0001683168-24-008957",
+            "fy": 2023,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2024-12-23",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "entity_cik": "0001043150",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-0",
+              "fact_id": "Fact000248",
+              "context_id": "From2023-01-01to2023-12-31",
+              "table_row": "Acquisition of property, plant and equipment \u2013 \u2013"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "val": 0,
+            "accn": "0001683168-24-008957",
+            "fy": 2023,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2024-12-23",
+            "frame": "CY2022",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "entity_cik": "0001043150",
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "-0",
+              "fact_id": "Fact000249",
+              "context_id": "From2022-01-012022-12-31",
+              "table_row": "Acquisition of property, plant and equipment \u2013 \u2013"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001043150",
+      "accession": "0001683168-26-002993",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1043150/000168316826002993/eegi_i10k-123125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:59.787215+00:00",
+        "bytes": 504898,
+        "sha256": "0683b9a39b28ee00725dd69925af68e7422f373dc1f63bcca8a06266d4fa0375",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001043150-0001683168-26-002993-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "Assets",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000081",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Assets $ \u2013 $ \u2013"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "Assets",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000082",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Assets $ \u2013 $ \u2013"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "Liabilities",
+            "end": "2025-12-31",
+            "val": 134301,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "134301",
+              "fact_id": "Fact000099",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Liabilities 134,301 89,309"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "Liabilities",
+            "end": "2024-12-31",
+            "val": 89309,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "89309",
+              "fact_id": "Fact000100",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Liabilities 134,301 89,309"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "StockholdersEquity",
+            "end": "2025-12-31",
+            "val": -134301,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-134301",
+              "fact_id": "Fact000133",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Stockholders\u2019 Deficit ( 134,301 ) ( 89,309 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-134301",
+              "fact_id": "Fact000237",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Balance, December 31, 2025 1 $ \u2013 8,524,529,727 $ 8,524,530 $ 6,566,159 $ ( 15,224,990 ) $ ( 134,301 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "StockholdersEquity",
+            "end": "2024-12-31",
+            "val": -89309,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-89309",
+              "fact_id": "Fact000134",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Stockholders\u2019 Deficit ( 134,301 ) ( 89,309 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-89309",
+              "fact_id": "Fact000211",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Balance, December 31, 2024 1 $ \u2013 8,524,529,727 $ 8,524,530 $ 6,566,159 $ ( 15,179,998 ) $ ( 89,309 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-89309",
+              "fact_id": "Fact000221",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Balance, December 31, 2024 1 $ \u2013 8,524,529,727 $ 8,524,530 $ 6,566,159 $ ( 15,179,998 ) $ ( 89,309 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "StockholdersEquity",
+            "end": "2023-12-31",
+            "val": -56432,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2023Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001043150",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-56432",
+              "fact_id": "Fact000195",
+              "context_id": "AsOf2023-12-31",
+              "table_row": "Balance, December 31, 2023 1 $ \u2013 8,524,529,727 $ 8,524,530 $ 6,566,159 $ ( 15,147,121 ) $ ( 56,432 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "NetIncomeLoss",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -44992,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001043150",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-44992",
+              "fact_id": "Fact000172",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net loss $ ( 44,992 ) $ ( 32,877 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001043150",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-44992",
+              "fact_id": "Fact000231",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net loss \u2013 \u2013 \u2013 \u2013 \u2013 ( 44,992 ) ( 44,992 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001043150",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-44992",
+              "fact_id": "Fact000246",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net loss $ ( 44,992 ) $ ( 32,877 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "NetIncomeLoss",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -32877,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001043150",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-32877",
+              "fact_id": "Fact000173",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net loss $ ( 44,992 ) $ ( 32,877 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001043150",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-32877",
+              "fact_id": "Fact000205",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net loss \u2013 \u2013 \u2013 \u2013 \u2013 ( 32,877 ) ( 32,877 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001043150",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-32877",
+              "fact_id": "Fact000247",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net loss $ ( 44,992 ) $ ( 32,877 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -49191,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001043150",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-49191",
+              "fact_id": "Fact000261",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net Cash Used in Operating Activities ( 49,191 ) ( 37,220 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -37220,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001043150",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-37220",
+              "fact_id": "Fact000262",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net Cash Used in Operating Activities ( 49,191 ) ( 37,220 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "Revenues",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001043150",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000139",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Revenues $ \u2013 $ \u2013"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001043150",
+            "source_sha256": "bac3f460c89c2738f8fa4406a14f3e2ad295311324503699bd30eb3c6af67263",
+            "tag": "Revenues",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001683168-26-002993",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001043150",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000140",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Revenues $ \u2013 $ \u2013"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001119190",
+      "accession": "0001493152-24-011766",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1119190/000149315224011766/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:20:03.351461+00:00",
+        "bytes": 4094711,
+        "sha256": "dd9cdd9944966e229bdb40383a2b54197c0c986626737918017de6e3b6732eef",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001119190-0001493152-24-011766-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 1005856,
+            "accn": "0001493152-24-011766",
+            "fy": 2023,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2024-03-28",
+            "frame": "CY2023",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001119190",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "1005856",
+              "fact_id": "Fact000269",
+              "context_id": "From2023-01-01to2023-12-31",
+              "table_row": "REVENUES $ 1,005,856 $ 454,080"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001119190",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "1005856",
+              "fact_id": "Fact003840",
+              "context_id": "From2023-01-01to2023-12-31",
+              "table_row": "Segmented\n    operating revenues $ 373,505 $ 632,351 $ 1,005,856"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "val": 454080,
+            "accn": "0001493152-24-011766",
+            "fy": 2023,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2024-03-28",
+            "frame": "CY2022",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001119190",
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "454080",
+              "fact_id": "Fact000270",
+              "context_id": "From2022-01-012022-12-31",
+              "table_row": "REVENUES $ 1,005,856 $ 454,080"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001119190",
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "454080",
+              "fact_id": "Fact003796",
+              "context_id": "From2022-01-012022-12-31",
+              "table_row": "Segmented\n    operating revenues $ 150,363 $ 303,717 $ 454,080"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001119190",
+      "accession": "0001493152-26-013966",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1119190/000149315226013966/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:20:07.341220+00:00",
+        "bytes": 2366728,
+        "sha256": "cd58f4a66a94a474c323ab559d617d25ab6f3ca75b8ceaae203f59c3f24c393b",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001119190-0001493152-26-013966-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "Assets",
+            "end": "2025-12-31",
+            "val": 1355576,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1355576",
+              "fact_id": "Fact000095",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "TOTAL ASSETS $ 1,355,576 $ 23,222,903"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "Assets",
+            "end": "2024-12-31",
+            "val": 23222903,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "23222903",
+              "fact_id": "Fact000096",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "TOTAL ASSETS $ 1,355,576 $ 23,222,903"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "Liabilities",
+            "end": "2025-12-31",
+            "val": 4225990,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "4225990",
+              "fact_id": "Fact000146",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Liabilities 4,225,990 26,686,146"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "Liabilities",
+            "end": "2024-12-31",
+            "val": 26686146,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "26686146",
+              "fact_id": "Fact000147",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Liabilities 4,225,990 26,686,146"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "StockholdersEquity",
+            "end": "2025-12-31",
+            "val": -2870414,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-2870414",
+              "fact_id": "Fact000265",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Stockholders\u2019 Deficit ( 2,870,414 ) ( 3,463,243 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-2870414",
+              "fact_id": "Fact000811",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Balance - December 31,\n    2025 7,000,000 $ 70 335,445 $ 3 2,301 $ - 100,000 $ 1 53,618,782,943 $ 536,188 $ 131,203,533 $ 200,000 $ - $ ( 134,810,209 ) $ ( 2,870,414 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-2870414",
+              "fact_id": "Fact000832",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Balance 7,000,000 $ 70 335,445 $ 3 2,301 $ - 100,000 $ 1 53,618,782,943 $ 536,188 $ 131,203,533 $ 200,000 ) $ - $ ( 134,810,209 ) $ ( 2,870,414 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "StockholdersEquity",
+            "end": "2024-12-31",
+            "val": -3463243,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-3463243",
+              "fact_id": "Fact000266",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Stockholders\u2019 Deficit ( 2,870,414 ) ( 3,463,243 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-3463243",
+              "fact_id": "Fact000574",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Balance - December 31,\n    2024 7,000,000 $ 70 349,091 $ 3 12,350 $ - 100,000 $ 1 32,748,842,520 $ 327,488 $ 114,185,329 $ - $ - $ ( 117,976,134 ) $ ( 3,463,243 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-3463243",
+              "fact_id": "Fact000595",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Balance - January 1, 2025 7,000,000 $ 70 349,091 $ 3 12,350 $ - 100,000 $ 1 32,748,842,520 $ 327,488 $ 114,185,329 $ - $ - $ ( 117,976,134 ) $ ( 3,463,243 )"
+            },
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-3463243",
+              "fact_id": "Fact000616",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Balance 7,000,000 $ 70 349,091 $ 3 12,350 $ - 100,000 $ 1 32,748,842,520 $ 327,488 $ 114,185,329 $ - $ - $ ( 117,976,134 ) $ ( 3,463,243 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "StockholdersEquity",
+            "end": "2023-12-31",
+            "val": -4125739,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2023Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "StockholdersEquity",
+              "entity_cik": "0001119190",
+              "start": null,
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "-4125739",
+              "fact_id": "Fact000405",
+              "context_id": "AsOf2023-12-31",
+              "table_row": "Balance - January 1, 2024 7,000,000 $ 70 379,875 $ 4 12,280 $ - - $ - 11,263,429,223 $ 112,634 $ 99,413,439 $ - $ ( 122,144 ) $ ( 103,529,742 ) $ ( 4,125,739 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "NetIncomeLoss",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -15973496,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001119190",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-15973496",
+              "fact_id": "Fact000352",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "NET\n    LOSS ( 15,973,496 ) ( 14,446,392 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001119190",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-15973496",
+              "fact_id": "Fact000800",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net loss\n    for the year - - - - - - - - - - - - - ( 15,973,496 ) ( 15,973,496 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001119190",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-15973496",
+              "fact_id": "Fact000847",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net\n    loss $ ( 15,973,496 ) $ ( 14,446,392 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "NetIncomeLoss",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -14446392,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001119190",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-14446392",
+              "fact_id": "Fact000353",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "NET\n    LOSS ( 15,973,496 ) ( 14,446,392 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001119190",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-14446392",
+              "fact_id": "Fact000563",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net loss\n    for the year - - - - - - - - - - - - - ( 14,446,392 ) ( 14,446,392 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001119190",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-14446392",
+              "fact_id": "Fact000848",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net\n    loss $ ( 15,973,496 ) $ ( 14,446,392 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -1656535,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001119190",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-1656535",
+              "fact_id": "Fact000913",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net\n    cash used in operating activities ( 1,656,535 ) ( 3,183,582 )"
+            },
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001119190",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-1656535",
+              "fact_id": "Fact001027",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": null
+            }
+          ]
+        },
+        {
+          "selected": {
+            "cik": "0001119190",
+            "source_sha256": "ae41f262c7c3dc672b8f78ae00e5f1e6a3a47a2d9cc7e46562b75f104c4035f7",
+            "tag": "NetCashProvidedByUsedInOperatingActivities",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -3183582,
+            "accn": "0001493152-26-013966",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001119190",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-3183582",
+              "fact_id": "Fact000914",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net\n    cash used in operating activities ( 1,656,535 ) ( 3,183,582 )"
+            },
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001119190",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-3183582",
+              "fact_id": "Fact001029",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": null
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    }
+  ],
+  "publication_approved": false,
+  "claim_boundary": "Latest-selected core observations only. Matches enforce entity, period, unit, value, scale/sign, and exclude dimensional/nil contexts. Unsupported formats or unmatched rows remain unresolved; numerical equality alone does not establish concept scope or all-history accuracy."
+}

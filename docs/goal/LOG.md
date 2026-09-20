@@ -1187,3 +1187,22 @@ No source bytes, old exclusions or release pointers changed. Deterministic repla
 is identical; 13 selector tests pass. Receipt/script and COMPANY_IDENTITY_REVIEW.md
 preserve the review queue and limitations. No network, returns or broker activity.
 Prior website75b84b22 CI35496306735 passes. Full owner goal remains active.
+
+## 2026-09-20 — filing evidence for ten identity-review cases
+
+Captured 13 latest-selected core filing indexes and primary documents:26HTTP200
+bodies, independently verified hashes/lengths. All13cover CIKs match. All137selected
+core observations match source inline facts with entity, period, currency, value,
+scale/sign and dimensional/nil exclusions. Regenerated targets match exactly.
+Reports, capture/target/comparison scripts retained; bodies ignored and not yet
+sealed. No general CIK coercion, admission, old exclusion mutation or release
+change. A versioned exact-source identity exception remains a proposed next step,
+not publication approval or all-history verification. Website4e169847 CI35496483722
+passes. No return-data access, broker operation or production publication.
+
+Follow-up verification: target/filing coverage must be exact and unique, review
+input hashes must agree, and cover identities are re-extracted from captured
+bytes rather than trusted from report metadata. The hardened comparison exits0
+and reproduces the original report byte-for-byte. Prior user-facing turn only
+rechecked browser tabs and reported the baseline; this turn completes evidence
+review and preservation. Category URL exports remain pending.

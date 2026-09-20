@@ -47,8 +47,11 @@ identical. This new material is outside the earlier v3 archive. See SOURCE_CAPAC
 
 Identity audit reproduces all 106 INVALID_ENTITY exclusions from captured bytes.
 Ten named records with matching CIK text have at least four qualifying core
-histories and need filing-scope review. No CIK normalization or policy change;
-13 selector tests pass. See COMPANY_IDENTITY_REVIEW.md. Parent/subsidiary name
+histories. Their 13 latest core filings are now captured: all cover CIKs and all
+137 selected observations match, enforcing context identity and units. The 26
+source responses verify. No CIK normalization or policy change; old exclusions
+and release remain unchanged. Versioned exception design is pending. These new
+filing bodies are outside the sealed archive. The 13 selector tests passed. See COMPANY_IDENTITY_REVIEW.md. Parent/subsidiary name
 conflicts mean numeric-string conversion alone is not an acceptance rule.
 
 ## Delivery and retention
@@ -78,7 +81,7 @@ still need URL-level exports. See INDEXING_BASELINE.md. Browser tab/export acces
 works; assistive access is denied, Apple Events JavaScript disabled and screenshot
 capture unavailable. No settings were bypassed.
 
-Website 75b84b22 passed CI35496306735; the prior full local build/verify passed
+Website 4e169847 passed CI35496483722; the prior full local build/verify passed
 6 + 384 tests and final audits. Engine PR68 ce93d8c fixes nested agent-state copying;
 13 focused tests and Ruff pass, and full CI35494803169 now passes all six jobs.
 PR69/70 previously passed; verify their current state before release.

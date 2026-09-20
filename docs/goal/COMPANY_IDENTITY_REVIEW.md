@@ -45,11 +45,52 @@ alone proves wrong identity. This case demonstrates the need for filing entity a
 context review before accepting text CIKs. It does not justify automatic rejection
 of every shared filing, nor automatic admission of every numeric string.
 
-Next: inspect the original filing identity and selected fact contexts for the ten
-priority cases, then propose an explicit, versioned identity policy if supported.
+The initial audit queued original filing identity and selected fact contexts for
+the ten priority cases; the completed comparison is recorded below. Next, propose
+an explicit, versioned identity policy if supported by the remaining scope review.
 Any new policy must retain original bytes, preserve prior policy replay and refuse
 missing names, malformed/zero/out-of-range identifiers and mismatched entities.
 Do not silently change the v3 release or revisit rejected network requests.
 
-No network request, broker operation, return-data read or page publication occurred.
+The initial exclusion audit made no network request. Neither that audit nor the
+filing review involved broker operations, return-data reads or page publication.
 The 54,416-URL candidate and measured 262-page indexing baseline are unchanged.
+
+## Filing verification completed — 2026-09-20
+
+Captured the original filing indexes and primary documents for all 13 distinct
+latest-selected core accessions across the ten priority companies. All 26 HTTP
+responses are 200; original body hashes and byte lengths independently verify.
+Each filing's cover CIK matches the requested company. The fact comparison also
+requires the context's entity identifier to match, excludes dimensional and nil
+facts, and checks period, currency unit, value, scale and sign.
+
+All **137 selected core observations match**. Target regeneration reproduces its
+JSON exactly. Comparison replay is byte-identical. The comparator verifies the
+shared review-input hash, rejects duplicate or missing filing coverage, accounts
+for every target row and reads cover identifiers directly from captured bytes.
+This verifies the inspected observations and identity representation;
+it does not establish all-history accuracy, all extended concepts, semantic scope
+of every measure, independent investment evidence or publication readiness.
+
+Retained scripts and reports:
+
+- `capture-company-identity-filings.py` and
+  `company-identity-filing-review-20260920.json`: capture receipts, cover identities
+  and context identifiers. Original responses are in ignored `identity-filings`.
+- `prepare-company-identity-filing-targets.mjs` and
+  `company-identity-filing-targets-20260920.json`: diagnostic observations rebuilt
+  from exact original company-facts bytes.
+- `compare-company-identity-filings.py` and
+  `company-identity-inline-comparison-20260920.json`: 137 comparisons with source
+  hashes, context references and matching table rows.
+
+No network request was retried after an access denial. These are distinct filing
+resources, not retries of the denied bulk archive. The capture completes without
+403/429 responses. Previously captured source bytes and release objects are unchanged.
+New filing captures are not yet in a sealed archive.
+
+The evidence supports considering a versioned, exact-source identity exception
+for these ten captures. Such a change must preserve old exclusion replay, bind the
+reviewed raw bytes and reject altered source bytes pending renewed review. It has
+not been implemented or activated. No general numeric-string coercion is approved.
