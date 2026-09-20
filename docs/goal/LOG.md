@@ -364,3 +364,17 @@ explicit supporting-table allowlist and retained full table text; older helpers 
 Report replays byte-identically.25renderer/ledger tests pass with exactly36intended
 transitions.226reviewed (48presentation-only),942pending,8withdrawn. No new runtime,
 archive, deployment or indexing gain. Legacy review gaps remain explicit.
+
+## 2026-09-20 — preferred conversion, capital units and unvested shares
+
+PR69merged0424a7e3after four passing CI35531462481checks and exact tree equality
+e4a7e313c608f3da841cc89db52f1dfeeabdf751. Reviewed48MacroGenics/Standard BioTools/
+South Dakota Soybean Processors/Neuronetics observations. Preserved preferred
+induced-conversion numerator effects, total/component EPS distinction, LLCcapital
+units, noncontrolling interests and issued-but-unvested basic-share exclusions.
+MacroGenics anti-dilution paragraph was omitted by block-only extraction; direct
+inspection found it in an inline continuation beside a table. Version4captures
+leaf spans/continuations, leaving earlier replay helpers unchanged. Report replays
+exactly;26renderer/ledger tests pass and only48intended rows advance.274reviewed,
+894pending,8withdrawn;48reviews remain presentation-only. No runtime rebuild,
+new archive, production deployment or indexing gain.
