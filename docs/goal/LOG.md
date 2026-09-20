@@ -468,3 +468,16 @@ Created signed squash6cb4b786on migrated main from reviewed537ef1de. Full tree
 comparison is identical and local signature reports G. Original branches retained;
 no force-push or protection change. Disabled PR71auto-merge before replacement.
 Combined batches7–10contain98new reviews and require fresh remote CI.
+
+## 2026-09-20 — signed release merged; warrant inclusion and period-end context
+
+PR72passed all four CI35532774579checks at2bc1eb47and merged5bedaf19without
+policy bypass. Exact merged/tested tree453b8374982290bb22cd95b26bc67f5803b00ca8.
+PR71was closed as superseded; original branches preserved. Reviewed24American Well/
+iHeartMedia observations against statements and original EPS note footnotes.
+American Well numerator follows noncontrolling allocation, excluded potential
+shares are period-end counts; iHeartMedia includes all Special Warrants in both
+denominators while excluding other equity awards. Scales0/3preserved.31targeted
+tests pass; report replays byte-identically, only24ledger rows advance.396reviewed,
+772pending,8withdrawn;60presentation-only. No runtime rebuild, archive supplement,
+production deployment or indexing gain. Full owner goals remain active.
