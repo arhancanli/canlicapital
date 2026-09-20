@@ -832,3 +832,22 @@ test('National Healthcare and TELA retain excluded and already-included share di
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+test('Compass and Snap preserve merger consideration and award forfeiture context', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['compass', '0001563190', /including 10.1 million minimum issuable shares/, 562153375, '2025-12-31'],
+    ['snap', '0001564408', /forfeiture risk has not lapsed/, 1694598000, '2025-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v19' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});

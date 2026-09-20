@@ -9,24 +9,23 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch28-20260921`. PR95merged5d0a3b25after four passing
-CI35537247204checks atddb888bd. Tested and merged trees match exactly.
+`evidence/share-context-batch29-20260921`. PR96mergede4dc9e4dafter four passing
+CI35537754464checks at833bd38d. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch28-20260921.json.gz.
-Of1,176batch observations,794reviewed/362pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch29-20260921.json.gz.
+Of1,176batch observations,818reviewed/338pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover National Healthcare Properties and TELA Bio. National
-Healthcare's selected statement denominator excludes anti-dilutive equivalents;
-its EPS note displays additions but explicitly footnotes their exclusion from
-loss-per-share calculations. The note's inconsistent share-exception heading is
-retained, not used to rescale the statement's scale-three shares. Prior dividends
-and the one-for-four split are already reflected. TELA's nominal-exercise-price
-prefunded warrants are already included from closing dates; no second addition.
-50renderer/ledger tests pass; source report replays byte-identically. Next new index77; earlier gaps remain.
-96presentation-only reviews retain limits.
+Latest24reviews cover Compass and Snap. Compass's 2025 denominator includes
+38.5million merger-consideration shares, including10.1million minimum issuable
+shares; the January2026finalization is not substituted into2025. Its three classes
+have substantially identical economic rights. Snap's basic denominator accounts
+for unvested restricted awards; potential dilution is excluded in loss periods.
+Statement scale-zero Compass and scale-three Snap shares remain unchanged.
+51renderer/ledger tests pass; report replays byte-identically. Next new index79;
+earlier gaps remain.96presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against

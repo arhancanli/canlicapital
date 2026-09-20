@@ -825,3 +825,17 @@ from closing dates; no double counting. Report replays byte-identically;50render
 accidentally conflated priority count back to600reviewed; batch count is separate.
 No runtime rebuild, archival supplement, deployment or indexing gain. Next index77;
 all owner objectives remain active.
+
+## 2026-09-21 — merger consideration and forfeitable awards
+
+Previous turn completed24National Healthcare/TELA reviews. PR96four CI35537754464
+checks passed at833bd38d; mergede4dc9e4d648e027c110578127ab8ac629efb2d60,
+full tree07a6ff2f7ca14408489dac5c02f2c556ee975862matches tested head. Reviewed
+24Compass/Snap observations. Compass's2025denominator includes38.5million merger
+consideration shares, including10.1million minimum issuable shares; January2026
+finalization to10.5million is not substituted. Snap's basic denominator adjusts
+for forfeitable RSAs; options/RSUs/RSAs/notes excluded from loss-period dilution.
+Both retain two-class context and original units/values.51renderer/ledger tests
+pass; report replays byte-identically; exactly24rows advance.818reviewed/338pending/
+20withdrawn,96presentation-only. Next index79; no runtime rebuild, archival
+supplement, deployment or indexing gain. All owner objectives remain active.

@@ -1,6 +1,228 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001563190",
+  "include_on_overview": true,
+  "source_sha256": "770545ce47f01dcaddb2df911c9be750497bc947ea21b3b0e957219cedd5cb01",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Compass in 2023\u20132025, the two-class method gives the same loss per share for Class A, B and C common stock because their economic rights are substantially identical apart from voting rights. Potential dilution is excluded in loss periods. The 2025 denominator already includes the filing\u2019s 38.5 million merger-consideration shares from the January 13 acquisition date, including 10.1 million minimum issuable shares; the January 2026 finalization to 10.5 million is not substituted into the selected 2025 figures. Full scale-zero shares remain under the share/per-share exception to the millions heading.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1563190/000156319026000057/comp-20251231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.69,
+      "accn": "0001563190-26-000057",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.31,
+      "accn": "0001563190-26-000057",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.1,
+      "accn": "0001563190-26-000057",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.69,
+      "accn": "0001563190-26-000057",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.31,
+      "accn": "0001563190-26-000057",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.1,
+      "accn": "0001563190-26-000057",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 466522935,
+      "accn": "0001563190-26-000057",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 501514681,
+      "accn": "0001563190-26-000057",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 562153375,
+      "accn": "0001563190-26-000057",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 466522935,
+      "accn": "0001563190-26-000057",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 501514681,
+      "accn": "0001563190-26-000057",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 562153375,
+      "accn": "0001563190-26-000057",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001564408",
+  "include_on_overview": true,
+  "source_sha256": "8618cf9ed2d5a68488682be3e8184b74557ee6c3e218fb709c2f3705d5d783d8",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Snap in 2023\u20132025, the statement reports combined weighted-average shares for Class A, B and C, with class-specific loss-per-share accounting under the two-class method. Basic shares are adjusted for restricted stock awards whose forfeiture risk has not lapsed. Potential shares from options, RSUs, RSAs and convertible notes are excluded as anti-dilutive in these loss periods. The filing uses the if-converted method for potential dilution from its convertible notes. Scale-three share counts and scale-zero EPS remain unchanged under the statement\u2019s thousands heading.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.82,
+      "accn": "0001564408-26-000013",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.42,
+      "accn": "0001564408-26-000013",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.27,
+      "accn": "0001564408-26-000013",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.82,
+      "accn": "0001564408-26-000013",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.42,
+      "accn": "0001564408-26-000013",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.27,
+      "accn": "0001564408-26-000013",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 1612504000,
+      "accn": "0001564408-26-000013",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1659147000,
+      "accn": "0001564408-26-000013",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1694598000,
+      "accn": "0001564408-26-000013",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 1612504000,
+      "accn": "0001564408-26-000013",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1659147000,
+      "accn": "0001564408-26-000013",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1694598000,
+      "accn": "0001564408-26-000013",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001561032",
   "include_on_overview": true,
   "source_sha256": "81808284c6bd07cc36d8cf84906c4262ac7af87abf5baa60ace8b6f99a5aef55",
