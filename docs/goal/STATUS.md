@@ -1,200 +1,111 @@
 # Current state
 
-Updated 2026-09-20. Goal **ACTIVE, NOT ACHIEVED**. Owner resumed the goal. Codex implements directly;
-Hermes remains stopped. All owner objectives remain in REQUIREMENTS.md.
-Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.md.
+Updated September20,2026. Goal **ACTIVE, NOT ACHIEVED**. Codex implements directly;
+Hermes remains stopped. All objectives and claim boundaries are in REQUIREMENTS.md.
+Prior detailed status is preserved unchanged in
+history/STATUS-20260920-through-fourth-v9.md; earlier history remains linked there.
 
-## Active work and exact handles
+## Current checkout and releases
 
-- Fourth v9 withholds Nika's unresolved no-income-as-revenue history at exact
-  source72455d4e. Full683company comparison proves only that history removed;
-  all other selected fields/source descriptors unchanged except policy.
-  Verify60847passes403tests; staging49194, catalog/release37887, HTTP7472,
-  browser67031and storage74366terminal success.18,410URLs/1,366downloads and
-  102browser checks pass. Archive/restore v9pending; older v6archive retained.
+Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
+Branch release/verified-checkpoints-20260920; draft PR16:
+https://github.com/arhancanli/canlicapital/pull/16.
+Code checkpoint99f16517includes source-bound Nika withholding, full cohort verification
+and archive support. All local jobs are terminal; no source capture is running.
+Remote CI at99f16517last checked: three jobs passed, production build running.
 
-- Fifth v8 now excludes three further unsupported revenue histories: Eaton major
-  customers, Annovis substantial-revenue wording, Minerva product-sales revenue.
-  Full672company transition preserves every other selected field and source.
-  Verification97848, staging89411, HTTP83393, browser3980, storage23665 are all
-  terminal exit0, re-polled after owner interruption. Archive46171 and isolated restore40905 completed successfully for v8;
-  all4,887members verified and2,041runtime objects reproduce. V7archive remains retained. Broader editorial review is open.
-  Last verified remoteCI35503151538 on c18132fb passed; d4256aa8run was cancelled.
-- Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
-  4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
-  Integration PR71 merged under owner publication approval as
-  0aff241a8dfac0b31de7ae5b4eee2755f501262c. Its tree exactly matches867d211.
-  PR-event CI35502099188 passed all six jobs before merge. Post-merge
-  Dependency Graph35504256572 and all six CI35504254363jobs passed; runtime activation remains pending.
-- Deployed-source refresh imported28newer public evidence files, rebuilt dependent
-  pages, and passed build59437/verify49746. Original1,060chain entries preserved.
-  Supabase production identity/access remains pending; saved login returns403
-  for historical production reference. Sensitive Vercel exports are unreadable
-  placeholders, not evidence of invalid configuration. No migration attempted.
-- Website PR15 merged as4a1fcd16; its tree equals tested6719ba52. Four CIjobs
-  pass. Current worktree branch release/verified-checkpoints-20260920.
-  Preview https://meridian-3e5mqtw82-arhans-projects-ac470eaa.vercel.app
-  is READY. Updated hosted API checks60950 pass all four unavailable-store
-  contracts. Full local suite402tests passes. Prior preview static scan83074
-  verified326pages and one connection reset; targeted80347recheck passes that
-  URL on both previews plus current home/developers. Static source did not change
-  between previews. Exact327sitemap membership and three evidence hashes match.
-  No production migration, publisher-pointer change or production promotion.
-- No source capture or pending CI establishes completion, deployment or indexing.
+Website PR15merged as4a1fcd16. Its tree equals tested6719ba52; all four CIjobs passed.
+Preview https://meridian-3e5mqtw82-arhans-projects-ac470eaa.vercel.app is READY.
+The static scan verified326pages plus one connection reset; targeted recheck passed
+that URL on both previews. Exact327sitemap membership and three evidence hashes
+match. Updated preview verifies four unavailable-store API contracts. These are
+preview checks, not successful production database operations.
 
-## Measured outcomes
+MCP0.1.2 is published and latest on npm and the official MCP registry. Downloaded
+npm bytes exactly match the tested tarball. Receipts: artifacts/platform/mcp-*
+publication-20260920.json.48MCP tests/packed stdio checks passed; real adoption
+remains unestablished. Smithery/Glama listings are unverified.
 
-| Measure | Evidence |
+Engine PR71merged as0aff241a; tree equals tested867d211. All six pre-merge and
+post-merge CI35504254363jobs passed. Portable baseline4,366passed55skipped;
+serial performance1passed; PostgreSQL11passed. Original dirty running engine
+was not reset or activated. Constituent PR68/69/70closure state needs checking.
+Website Dependabot alert1was confirmed fixed at10:32:48UTC; no alert dismissed.
+
+## Measured outcomes and limits
+
+| Measure | Verified scope |
 | --- | --- |
-| Google indexed baseline | 262 as of September14; September20 export, aggregate only |
-| Google not indexed | 40:32noindex,3redirects,3discovered,2crawled |
-| Live sitemap | 263URLs, checkedSeptember20 |
-| Local static build | 690HTML:327indexable,363noindex |
-| Three-cohort candidate | 1,968companies,52,408histories,40directories:54,416URLs |
-| Separate fourth candidate v9 | 683companies,17,713histories,14directories:18,410URLs |
-| Separate fifth review candidate v8 | 672companies,17,227histories,14directories:17,913URLs |
-| Indexed minimum / target | 800,000 / 1,000,000 actually indexed canonical pages |
-| Search intent | 104owners,147query hypotheses,223unassigned static pages |
-| Forward engine evidence | Five daily returns,four sleeves; IMMATURE_RECORD_TOO_SHORT |
+| Indexed baseline | Google aggregate262indexed as of Sep14, exported Sep20; not a canonical URL-level count |
+| Not indexed | 40:32noindex,3redirects,3discovered,2crawled |
+| Production sitemap baseline | 263URLs checked Sep20; recheck after deployment |
+| Static candidate | 690HTML:327indexable,363noindex |
+| Three-cohort v3 | 1,968companies,52,408histories,40directories:54,416URLs |
+| Fourth v9 | 683companies,17,713histories,14directories:18,410URLs |
+| Fifth v8 | 672companies,17,227histories,14directories:17,913URLs |
+| Search intent | 104owners,147query hypotheses,223unassigned pages |
+| Forward evidence | Five returns,four sleeves; IMMATURE_RECORD_TOO_SHORT |
 
-Candidates remain local/noindex. Fourth and fifth are separate from the prior release.
-Static/company families overlap at pilots; do not add these counts into an indexed
-claim. No new search-engine or investment outcome is established.
+Company cohorts remain local/noindex. Pilots overlap static pages: do not sum these
+as live/indexed counts. Goals remain800,000actually indexed canonical pages,
+target1m; source-backed quality/SEO and relevant intent; real API/MCP/repository
+adoption; combined NET FORWARD Sharpe>2,at least14economically distinct qualified
+sleeves and realized maxDD<=10%. No investment-outcome completion claim.
 
-## Source coverage and editorial quality
+## Current source and recovery checkpoints
 
-Fourth capture finished08:04:05UTC:683review candidates,200content exclusions
-(71coverage,129identity),117verifiedHTTP404outcomes. Full source replay has no
-errors. V6excludes five additional mis-scoped histories: Liberty equipment
-capitalization threshold, GHST cash-equivalents-only zeros, Nelnet and
-Cooper-Standard intersegment revenue zeros, NOVAGOLD principal-asset revenue.
-Earlier policy versions remain reproducible but are not publishable for this
-cohort. Original source bytes are preserved.
+Fourth v9withholds only Nika Revenues at source72455d4e: the tagged no-income
+wording does not unambiguously establish total revenue. Full683company comparison
+proves every other selected field/source unchanged except policy.403website tests,
+18,410HTTP pages/1,366downloads and102browser checks pass.2,074runtime objects,
+245,821,972bytes.3,145overlapping quality flags remain, including21zero histories.
+Archive4,959files734,187,520bytes,SHA570ee00d7ee6f8510dbb839cd4452f5400da3635f01960bda0a182499a826f97.
+Isolated restore replays683companies317exclusions, exact runtime objects and all
+four scope reports. Releasee932c19db7bdcee76a56f01ec65a7da3bbd7f9a0b2ea2a4d76ba712902d36dce.
+Receipts: artifacts/seo/company-fourth-*-v9.json and company-fourth-v9-evidence-*.json.
+Historical v6archive remains intact; current correction does not approve all history.
 
-Priority review reproduced120observations across36filings;14unusual equality
-groups have latest-filing context. This is not all-history or editorial approval.
-V6still has3,146overlapping quality flags, including22zero histories. A new
-source-bound review supports21latest zero contexts; Nika remains unresolved
-because its tagged narrative says no income rather than an explicit revenue total.
-The new v9policy withholds this exact history pending an unambiguous source;
-this is not an assertion of nonzero revenue. V6remains reproducible historical evidence.
-All-history, usefulness and unit reviews remain open. The corrected priority queue
-now enumerates430observations across185filings for50concepts/26companies;154filings
-are additional to its31latest filings. No new historical review approval.
-See COMPANY_EDITORIAL_POLICY.md.
+Fifth v8excludes Livento real-estate revenue, Eaton major customers, Annovis
+materiality wording and Minerva product-sales scope.17,913HTTP pages/1,344downloads,
+90browser checks,2,041runtime objects203,939,518bytes pass.3,298quality flags remain.
+Archive4,887files662,538,240bytes,SHA34284ad7d17398ffbfc2356e3db0fbb0ba669f9f2807ea6019c98dfa2202cf00.
+Restore reproduces672companies328exclusions, exact runtime objects and both scope
+reports. Release548419b07d725f975d36e6c6a80f907d1b29009cdb5ae99e058c5456c7728e4f.
 
-Fifth queue contains1,000new issuers, disjoint from all four website queues,
-both staged deliveries and600retained engine acquisition identities. Queue SHA
-fd201365f9ddc9f84aee360a88dd7a67cb11cdc7d27b3572ef18dff186a3b75c.
-After reserving this batch,3,467discovered identities remain unqueued. No retries
-of prior outcomes. Collector stops on403/429; a previous SEC bulk archive HEAD
-returned403 and was not retried. Do not use alternate paths to retry that archive.
+Three-cohort v3:54,416HTTP pages/3,936downloads,114browser checks,6,249runtime
+objects. Eight source-scope exclusions,6,705quality flags.13,183file archive SHA
+27d5ffe86251571d767106e0ab06f81b420da4d4fe841f412a48bcba627ea76f restores successfully.
+Earlier versions and failures remain preserved. All archives are local, not offsite.
 
-Pinned current discovery has8,031CIKs. The earlier capacity upper bound253,575URLs
-under34concepts shows that this discovery alone cannot reach800,000. Broader sources
-and useful content families remain necessary; no artificial variants.
-New offline inventory of2,651captured companies found94unused us-gaap concepts
-with recent varying histories in at least1,000companies. These are taxonomy-review
-candidates, not approved concepts or indexed pages. Full inventory retained locally
-with a tracked hash-bound summary; see SOURCE_CAPACITY.md.
-Retained discovery adds56unattempted identity candidates;37bindings verify.
-Identity review preserved106exclusions;137core values match13filings, but Princeton
-Revenues describes a portfolio company. No string-CIK admission policy is approved.
-See SOURCE_CAPACITY.md and COMPANY_IDENTITY_REVIEW.md.
+Deployed public evidence was refreshed into candidate45987764.163content hashes,
+two commitment signatures and1,063transparency entries verify; original1,060prefix
+unchanged.627disclosed payloads,436opaque commitments. No engine determinism claim.
+See EVIDENCE_REFRESH.md and artifacts/algo/deployed-evidence-refresh-20260920.json.
 
-## Verified delivery and retention
+## Next work and external dependencies
 
-Current fourth-v9releasee932c19db7bdcee76a56f01ec65a7da3bbd7f9a0b2ea2a4d76ba712902d36dce:
-683companies17,713histories14directories18,410URLs;1,366downloads.
-AllHTTPchecks and102browser checks pass, maximum3clicks. Runtime plan
-2,074objects245,821,972bytes verified.3,145overlapping quality flags remain,
-including21zero histories. No full editorial approval. New v9archive pending.
+- Owner publication approval persists. Production Supabase project/account is
+  pending owner response: saved CLI sees four inactive projects and historical
+  production returns403. Vercel variables are sensitive/unreadable; export
+  placeholders do not prove invalid configuration. No migration attempted.
+- Apply and verify key-revocation migration against the confirmed project before
+  production API deployment; exercise a disposable synthetic key lifecycle.
+  Coordinate website activation with the running publisher's design-source pointer,
+  currently canlicapital-website-20260908. Both hourly and nightly paths use it.
+  Never reset the dirty engine or alter trading to deploy the website. KEY_REVOCATION.md.
+- Approved object storage/retention destination and access are pending. No bucket,
+  upload or hosted company capacity claim. Verify remote bytes and hosted behavior.
+- Continue all-history scope/unit/usefulness review; latest-filing numerical equality
+  is insufficient. Fourth priority queue430observations/185filings remains incomplete.
+  Review94unused high-coverage concept candidates before adding definitions/pages.
+- Discovery8,031CIKs and34old concepts cannot alone reach800k; prior upper bound
+  253,575URLs.3,467identities remain unqueued after fifth reservation. Additional
+  useful sources/families are required. No artificial keyword variants. A SEC bulk
+  archive HEAD returned403: do not retry it through alternate paths. SOURCE_CAPACITY.md.
+- Search Console needs URL-level exports for3discovered/2crawled exclusions.
+  Browser JavaScript/assistive restrictions were not bypassed. INDEXING_BASELINE.md.
+- Engine research needs owner-reserved blind labels and protocol decisions; no
+  synthetic substitute or unapproved sleeve admission. No broker orders.
 
-Current fifth v8release548419b07d725f975d36e6c6a80f907d1b29009cdb5ae99e058c5456c7728e4f:
-17,913URLs/1,344downloads pass HTTP;90browser checks pass, including all four
-excluded-history notices/routes. Remaining3,298flagged histories include29zeros.
-Three new scope dispositions replay from captured originals; Eaton label and
-presentation files returned200. No replacement source values. V8archive662,538,240bytes,4,887files:
-SHA25634284ad7d17398ffbfc2356e3db0fbb0ba669f9f2807ea6019c98dfa2202cf00.
-Isolated restore reproduces672companies/328exclusions, all2,041runtime objects
-and both scope reports. Archive/restore receipts tracked under artifacts/seo/.
-This is local portability, not offsite backup or editorial approval.
-
-Historical v7checkpoint below remains reproducible; its archive does not include
-the latest v8corrections and must not be treated as the current release.
-
-Fifth v7release7e2314ca91c4731f82361caa956d38499f0fa6edcafbd8047b892a599ba35713:
-17,916URLs/1,344downloads pass local HTTP;72browser checks across12routes pass,
-including Livento's exclusion notice and404for the removed route. Maximum3clicks.
-Runtime plan verifies2,041objects203,947,632bytes; no upload. Archive655,052,800bytes
-contains4,883files; SHA6292b6cd39da912360ac47e59cc60c6f9e4f55a8fb05bb1b1ea8da2f3f974766.
-Isolated saved-code restore replays672candidates/328exclusions with zero errors,
-exact runtime objects and the Livento scope report. Temporary restore removed.
-Quality flags3,301histories,including32constant zero histories. Prior priority
-55concepts/29companies/31filings reproduced111numbers(50inline,61XBRL), not full
-scope approval. Livento's real-estate-sale revenue is now excluded under exact
-source-bound v7; earlier v6remains reproducible but not publishable as-is.
-Full cohort comparison proves only that history was removed. All other content,
-original data, identity exclusions and owner goals remain unchanged.
-
-Fourth-v6release:056a2826bbeb15bc019f99eb6a18e8e9b3c0550305398423e307236f2c30a338.
-All18,411URLs and1,366downloads pass local HTTP;96browser checks across16routes
-pass. Maximum3clicks from directory;31,467HTMLbytes. Runtime plan verifies
-2,074objects245,823,578bytes. No upload or hosted capacity claim.
-Archive:4,959files709,232,640bytes,SHA
-48b9e18a845f3ed4c7acd142e67d73d985012370cee8f42ea141cb34c6df2871.
-Isolated saved-code restore reproduces683candidates,317exclusions,exact runtime
-objects and all five editorial exclusions. Temporary restores removed.
-
-Prior three-cohort-v3release:
-05cd9ff3582accff5277d49c1eb1eba7e55af8efe68fee1b2200219a88eb9f05.
-54,416URLs,3,936downloads,114browser checks pass;6,249runtime objects.
-Archive SHA27d5ffe86251571d767106e0ab06f81b420da4d4fe841f412a48bcba627ea76f.
-Its8scope corrections and6,705quality flags remain documented; no full editorial
-approval. Separate identity and fourth-editorial supplements also restore cleanly.
-All archives are local. Offsite retention and hosted preview remain unverified.
-
-## Code and platform verification
-
-Website6719ba52 passed all four CIjobs and merged as4a1fcd16. Local v8verification passes6+395tests
-and audits. Prior MCP test failure35500519399 is preserved; test-only deterministic
-deadline correction passed48MCP tests and complete remoteCI35500716863.
-Current refreshed source evidence:163hashes,2signatures and1,063transparency entries verify;
-old953entry prefix unchanged. See EVIDENCE_REFRESH.md.
-
-Engine PR68ce93d8c,69at783ad0c,70ate0a257c remain open with passing individual CI.
-Integration867d211 combines them in an isolated worktree. Ruff,strict mypy184files,
-publication preparation integrity and serial performance pass. Initial local
-suite4385pass33skip2fail exposed a launchd test worktree assumption; corrected test
-passes4focused cases. Latest complete CI passed as recorded above; platform/workspace skips remain disclosed. Main now contains the verified squash merge0aff241a. No runtime,
-broker or owner contract changed. Publication checks establish
-preparation integrity, not independent result reproduction or data-license approval.
-
-MCP0.1.2 is now published on npm and is the latest version. Owner browser
-authorization completed; publish exited0. Downloaded registry tarball matches
-the exact tested SHA256 and integrity. Receipt: artifacts/platform/mcp-publication-20260920.json.
-48tests,isolated install/stdio and two read-only live checks passed before publication.
-Official MCP registry0.1.2 is now published, active and latest. GitHub login66928
-and publish92286 completed successfully; the public registry response verifies
-matching server/package versions. Receipt: artifacts/platform/mcp-registry-publication-20260920.json. Real adoption remains unestablished;12observed validations are unattributed.
-API key revocation and PostgreSQL race tests pass, but production migration is not
-applied. The default branch now includes the dependency fix from PR15; alert state
-was confirmed fixed by GitHub at2026-09-20T10:32:48Z. Candidate audits passed; no alert dismissed.
-
-## External decisions and remaining goals
-
-- Owner now explicitly approves publication of all tested releases, including
-  exact MCP0.1.2. Do not ask again. npm authentication and publication succeeded;
-  the exact reviewed package is verified on the public registry.
-- Approved object-storage destination/access is pending. Prepare hosted verification
-  once available; no provider creation, upload or activation has occurred.
-- Google's3discovered/2crawled URLs need category exports. Browser tab/export access
-  works; JavaScript/assistive restrictions were not bypassed. See INDEXING_BASELINE.md.
-- Engine targets remain combined NET FORWARD Sharpe>2,at least14economically
-  distinct qualified sleeves,maxDD<=10%. Five returns/four sleeves do not prove
-  them. Independent blind labels and owner-reserved research protocols remain
-  owner actions; synthetic Hermes prototypes remain UNAPPROVED. No broker orders.
-
-Continue independent source/editorial work while polling the exact active jobs.
-Npm/official-registry0.1.2 publication, websitePR15and enginePR71merges are verified. No new website
-production deployment, running-engine activation or investment outcome is claimed.
+No production migration, new website production activation, running-engine
+activation, actual indexing gain or investment outcome is claimed by these changes.
