@@ -110,3 +110,15 @@ the affected concept must be omitted under a source-bound semantic disposition.
 See COMPANY_IDENTITY_REVIEW.md. Do not use a matching CIK, number, unit or table row
 in isolation as proof of company-wide measure scope. This applies to all review
 queues, including those with no automatic flags.
+
+
+Fourth-cohort v4 adds one source-bound exclusion: Liberty Star1172178
+PaymentsToAcquirePropertyPlantAndEquipment. Its2021USD500fact is presented only
+in the accounting-policy narrative, where the primary filing describes the
+capitalization threshold, not annual purchases. Original instance, presentation,
+label and calculation linkbases are captured and hash-verified. See
+company-fourth-liberty-disposition-20260920.json and review-liberty-equipment-scope.py.
+The prior held discrepancy and v3 remain reproducible; v3 is not publishable for
+this cohort. Corrected v4 has683companies17,718histories and3,150overlapping flags.
+The remaining26constant histories are zero-valued; numerical equality does not
+establish their accounting scope or usefulness. Those reviews remain open.

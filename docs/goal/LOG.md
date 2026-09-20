@@ -1436,3 +1436,34 @@ Liberty Star's rendered-statement discrepancy remains on hold; matching the XBRL
 fact does not explain its accounting scope. Constant/zero series semantic review,
 archive and broader source capacity work remain open. EngineCI35498286728 still
 reports its offline test job live, five other jobs passed. No deployment.
+
+## 2026-09-20 — capitalization threshold excluded under frozen v4 policy
+
+Previous turn reproduced120priority observations, without clearing semantic scope.
+Captured Liberty2021presentation,label,calculation linkbases, all200;79154capture
+terminal0. USD500appears only in the accounting-policy narrative presentation
+role, not cash-flow calculations. Primary note explicitly says equipment above
+USD500is capitalized. Reproducible scope script confirms source hashes, passage,
+sole presentation role and absence of calculation relationships. Prior hold
+remains preserved; new disposition excludes the concept from this exact snapshot.
+
+Added extended-v4 inheriting frozen v3 plus this one exclusion; old policies
+unchanged. Updated identity archive dependency closure for the new imported module.
+14selector tests pass, including changed-source hold and v3 preservation. Exact
+captured Liberty replay confirms only the spending concept is removed and every
+other concept remains identical. Full npm verify56501exit0:6+391tests and audits.
+Restored only generated source-date/sitemap churn from a clean initial state.
+Staging46201,catalog7668,quality68190,release69398 all exit0. Corrected fourth cohort:
+683companies17,718histories,26constant/zero histories,3,150overlapping flags.
+Separate release2e940b8a07ca63566486da9ed169051772a699e35570bf385bf044d5fee3650d.
+HTTP61346 and browser14837 are live; v3 measurements are not v4 verification.
+
+EngineCI35498286728 completedSUCCESS. Dispatched complete latest-head run
+35499961114 on867d211; confirmedIN_PROGRESS. One initial poll used the website
+repository and returned404; explicit alphac repository lookup confirmed live job.
+No running engine or production branch change. No npm publication or deployment.
+
+Fourth-v4 verification completed: HTTP61346/browser14837 both exit0. All18,415URLs
+and1,366downloads pass, exact sitemap membership, maximum3clicks and31,467HTMLbytes.
+72browser checks over12sampled routes include the new exclusion notice. Servers
+closed by their harnesses. No hosted capacity, publication or indexing claim.

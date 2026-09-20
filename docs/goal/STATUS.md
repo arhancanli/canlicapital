@@ -30,28 +30,30 @@ HTTP404 outcomes. Full source replay has zero errors; all 117 error bodies and
 receipts were separately verified. Queue remains disjoint from prior website
 queues, the existing delivery and 600 retained engine acquisition identities.
 There are 4,467 remaining unqueued discovery identities after these holdbacks.
-Separate extended-v3 staging contains 683 companies and 17,719 histories, with
-3,151 overlapping quality flags. Catalog construction passed (root
-93abb688d0b8ec940ec41e38f1c5b95e8b2873748b7bff19747693ad6bc1875a).
+Separate corrected extended-v4 staging contains 683 companies and 17,718 histories,
+with 3,150 overlapping quality flags. The prior fourth-cohort v3 is retained for
+reproduction but includes a newly identified scope error and is not publishable. Catalog construction passed (root
+4f85487987819064ebdf62d4f1b37a7ea058d1582dfecced38f16e20defa8880).
 This cohort is not combined with the existing release or editorially approved;
 its evidence archive and editorial review remain outstanding. Full local HTTP
-checks pass for 18,416 URLs and 1,366 downloads; 66 browser checks across 11
+checks pass for 18,415 URLs and 1,366 downloads; 72 browser checks across 12
 sampled routes, two engines and three viewport widths pass. Priority filing
 review covers 55 concepts across 30 companies and 36 latest selected filings.
 Priority filing capture now covers all 36 filings (72 verified index/primary
 responses). Inline comparison matched 73 of 120 observations. Original XBRL review now
 reproduces the other 47 across 19 instances; offline replay is byte-identical.
-All 120 priority observations reproduce numerically. The 14 unusual equal-vector
+All 120 pre-exclusion priority observations reproduce numerically. The 14 unusual equal-vector
 groups have latest-filing table evidence supporting equal totals while retaining
-distinct concepts; this does not clear every historical observation or other flags. Liberty Star's USD500 equipment-purchase fact
-matches its 2021 XBRL instance but is not reconciled to the rendered cash-flow
-statement; recorded HOLD_PENDING_SOURCE_RECONCILIATION. No concept admission or
-exclusion inferred solely from that discrepancy. See company-fourth-filing-capture,
+distinct concepts; this does not clear every historical observation or other flags. Liberty Star's USD500 equipment-purchase fact is now resolved as an equipment
+capitalization threshold: its sole presentation role is the accounting-policy
+narrative, and the primary note states the threshold explicitly. Source-bound v4
+excludes this concept; all other selected concepts reproduce unchanged. The prior
+hold is retained as historical evidence. See company-fourth-filing-capture,
 company-fourth-inline-comparison and company-fourth-liberty-scope dated receipts.
 
 Resume safeguards passed 6+390 tests and audits. The completed capture had loaded
 the older collector; its full legacy report was replayed without restarting it.
-See company-fourth-reviewed-20260920.json and company-fourth-selected-quality-v3.json.
+See company-fourth-reviewed-20260920.json and company-fourth-selected-quality-v4.json.
 
 Independent frozen partial review now covers278outcomes:177core-policy candidates,
 70reproduced content exclusions,31HTTP404outcomes and zero reproduction errors.
@@ -151,8 +153,9 @@ Both failures exposed a test assumption that launchd points into this worktree;
 the configured running-engine path was correct. The test now checks shared Git
 repository identity while executing the candidate script with launchd's Python.
 All four focused tests and Ruff pass; serial performance test also passes.
-Remote CI35498286728 is still running on the older combined head74c5461;
-it does not verify the subsequent test fix. Latest-head complete CI remains due.
+Remote CI35498286728 passed all jobs on combined head74c5461. Fresh full
+CI35499961114 is now running on latest head867d211, including the worktree test
+correction. Do not transfer the older run's result to this latest revision.
 Original PRs remain open and runtime unchanged. Receipt:
 artifacts/platform/engine-integration-20260920.json records the initial checkpoint;
 this status and LOG record the subsequent results.
@@ -192,3 +195,8 @@ decisions cannot be automated away. No broker orders or unauthorized activation.
 
 No PR was merged, provider created, production migration applied or broker order
 issued by this work. The goal remains active. See EXECUTION_LEDGER.md.
+
+Current fourth-v4 delivery verification: HTTP61346 and browser14837 completed
+successfully, with zero failures. Prior v3 measurements remain historical.
+New release hash:2e940b8a07ca63566486da9ed169051772a699e35570bf385bf044d5fee3650d.
+Full website verification passed6+391tests and audits after the v4 change.

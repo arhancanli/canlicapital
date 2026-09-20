@@ -156,3 +156,15 @@ test('v3 scopes new exclusions without changing the frozen v2 policy', () => {
     assert.throws(() => companyReference(raw, { fetchedAt: record.fetched_at, expectedCik: cik, selectionPolicy: 'extended-v3' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
   }
 });
+
+test('v4 holds changed Liberty source without altering v3 selection', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const source = JSON.parse(gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))));
+  source.cik = 1172178;
+  source.facts['us-gaap'].PaymentsToAcquirePropertyPlantAndEquipment = { units: { USD: [2021, 2022, 2023].map(year => ({ ...row, start: `${year}-01-01`, end: `${year}-12-31`, val: 500 })) } };
+  const raw = JSON.stringify(source), options = { fetchedAt: record.fetched_at, expectedCik: '0001172178' };
+  const previous = companyReference(raw, { ...options, selectionPolicy: 'extended-v3' });
+  assert.ok(previous.concepts.some(c => c.tag === 'PaymentsToAcquirePropertyPlantAndEquipment'));
+  verifyCompanyReference(previous, raw);
+  assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v4' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+});
