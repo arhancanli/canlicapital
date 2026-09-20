@@ -1,6 +1,5 @@
 """Restore a sealed company archive in isolation and replay its saved source code."""
 import argparse
-import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -8,7 +7,7 @@ import subprocess
 import tarfile
 import tempfile
 
-from package_company_evidence import file_hash, safe_name, verify
+from package_company_evidence import evidence_profile, file_hash, safe_name, verify
 
 
 def restore_check(archive, summary_path):
@@ -16,10 +15,8 @@ def restore_check(archive, summary_path):
     if file_hash(archive) != summary['archive_sha256']:
         raise ValueError('Archive differs from independently retained summary')
     profile = summary['metadata'].get('profile', 'two-cohort')
-    if profile not in ('two-cohort', 'three-cohort'):
-        raise ValueError('Unknown archive profile')
-    prefix = 'company-three-cohort' if profile == 'three-cohort' else 'company-combined'
-    cohorts = ['fresh-review', 'next-1000'] + (['third-1000'] if profile == 'three-cohort' else [])
+    config = evidence_profile(profile)
+    prefix, suffix, cohorts = config['prefix'], config['suffix'], config['cohorts']
     with tempfile.TemporaryDirectory(prefix='canli-evidence-restore-') as temp:
         restored = Path(temp) / 'restored'
         manifest = verify(archive, restored)
@@ -51,12 +48,12 @@ def restore_check(archive, summary_path):
             reports[name] = {'complete': True, 'companies': len(report['candidates']),
                              'exclusions': len(report['exclusions']), 'errors': 0}
         local = workspace / 'artifacts/seo/corpus-local'
-        original_plan = local / (prefix + '-storage-plan.json')
+        original_plan = local / config['plan_name']
         if file_hash(original_plan) != summary['metadata']['runtime_plan_sha256']:
             raise ValueError('Restored runtime plan binding differs')
         output = Path(temp) / 'restored-storage-plan.json'
-        subprocess.run(['node', 'scripts/prepare-company-storage.mjs', str(local / (prefix + '-catalog-extended')),
-                        str(local / (prefix + '-delivery-extended')), str(output)], cwd=workspace,
+        subprocess.run(['node', 'scripts/prepare-company-storage.mjs', str(local / (prefix + '-catalog-' + suffix)),
+                        str(local / (prefix + '-delivery-' + suffix)), str(output)], cwd=workspace,
                        check=True, stdout=subprocess.DEVNULL)
         original = json.loads(original_plan.read_text())
         replayed = json.loads(output.read_text())

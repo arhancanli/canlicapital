@@ -163,3 +163,41 @@ python3 scripts/verify_company_evidence_restore.py \
 This is verified local portability. No remote copy, upload, hosted configuration
 or disaster-recovery claim follows from it. Destination access and independent
 remote-byte verification remain open.
+
+## Corrected v3 archive — 2026-09-20
+
+The corrected candidate has a separate sealed archive:
+`artifacts/seo/corpus-local/three-cohort-v3-evidence-20260920.tar`.
+It contains13,183files and1,695,528,960archivebytes. Independently retained SHA-256:
+`27d5ffe86251571d767106e0ab06f81b420da4d4fe841f412a48bcba627ea76f`.
+Tracked summary and restore receipts are
+`artifacts/seo/company-three-cohort-v3-evidence-archive-summary.json` and
+`artifacts/seo/company-three-cohort-v3-evidence-restore.json`.
+
+This archive includes all three completed queues and their exclusions, all three
+editorial-filing directories (including constant-history/XBRL evidence and retained
+failure logs), the corrected v3 runtime and pointers, repository df5acde5, and the
+exact newer packager as a separate file. Earlier sealed archives remain intact.
+The CLI profile is `three-cohort-v3`; the historical default remains `two-cohort`.
+Builder and restore share explicit profile configuration, so v3 paths cannot
+silently resolve to the earlier extended-v1 inventory.
+
+An isolated restore verified the whole-file SHA and every archive member. Saved
+repository code reproduced342+853+766eligible captures and381verified exclusions,
+with zero replay errors. All6,249runtime keys, hashes and byte lengths and exact
+release/catalog/download roots match the v3 plan. Source/runtime replay did not
+read original local capture or object directories. The temporary restore was
+removed afterward. Eleven archive/corpus tests pass.
+
+```sh
+# Choose a new output receipt path; existing receipts are never overwritten.
+python3 scripts/verify_company_evidence_restore.py \
+  artifacts/seo/corpus-local/three-cohort-v3-evidence-20260920.tar \
+  artifacts/seo/company-three-cohort-v3-evidence-archive-summary.json \
+  /tmp/canli-v3-new-restore-receipt.json
+```
+
+The restore verifies captured bytes and source/runtime reproduction; it does not
+claim independent replication of every manual editorial judgment. No remote copy
+or production activation has occurred. Remote destination access, verified remote
+bytes and hosted behavior remain outstanding.

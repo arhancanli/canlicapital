@@ -103,14 +103,27 @@ def complete_cohort(report, queue):
         raise ValueError('Completed cohort must cover the exact original queue')
 
 
-def build(root, output, profile='two-cohort'):
-    if profile not in ('two-cohort', 'three-cohort'):
+def evidence_profile(profile):
+    if profile not in ('two-cohort', 'three-cohort', 'three-cohort-v3'):
         raise ValueError('Unknown evidence profile')
-    prefix = 'company-three-cohort' if profile == 'three-cohort' else 'company-combined'
-    cohorts = ['fresh-review', 'next-1000'] + (['third-1000'] if profile == 'three-cohort' else [])
-    editorial = ['editorial-filings'] + (['editorial-third-filings'] if profile == 'three-cohort' else [])
+    three = profile != 'two-cohort'
+    v3 = profile == 'three-cohort-v3'
+    prefix = 'company-three-cohort' if three else 'company-combined'
+    plan_name = prefix + ('-storage-plan-v3.json' if v3 else '-storage-plan.json')
+    return {'prefix': prefix, 'suffix': 'v3' if v3 else 'extended',
+            'summary': prefix + ('-storage-plan-v3-summary.json' if v3 else '-storage-plan-summary.json'),
+            'plan_name': plan_name,
+            'cohorts': ['fresh-review', 'next-1000'] + (['third-1000'] if three else []),
+            'editorial': ['editorial-filings'] + (['editorial-third-filings'] if three else [])
+                         + (['editorial-constant-filings'] if v3 else [])}
+
+
+def build(root, output, profile='two-cohort'):
+    config = evidence_profile(profile)
+    prefix, suffix = config['prefix'], config['suffix']
+    cohorts, editorial = config['cohorts'], config['editorial']
     local = root / 'artifacts/seo/corpus-local'
-    summary = json.loads((root / f'artifacts/seo/{prefix}-storage-plan-summary.json').read_text())
+    summary = json.loads((root / 'artifacts/seo' / config['summary']).read_text())
     plan_path = root / summary['local_plan']
     if file_hash(plan_path) != summary['plan_sha256']:
         raise ValueError('Runtime plan binding changed')
@@ -136,9 +149,9 @@ def build(root, output, profile='two-cohort'):
     for directory in editorial:
         for path in sorted((local / directory).iterdir()):
             add(path)
-    if profile == 'three-cohort':
+    if 'third-1000' in cohorts:
         add(local / 'third-1000-original-review.json')
-    for relative in [f'{prefix}-delivery-extended/delivery.json', f'{prefix}-delivery-extended/company-release.json', f'{prefix}-catalog-extended/catalog.json']:
+    for relative in [f'{prefix}-delivery-{suffix}/delivery.json', f'{prefix}-delivery-{suffix}/company-release.json', f'{prefix}-catalog-{suffix}/catalog.json']:
         add(local / relative)
     add(plan_path)
     with tempfile.TemporaryDirectory() as temp:
@@ -157,7 +170,7 @@ if __name__ == '__main__':
     parser.add_argument('archive', type=Path)
     parser.add_argument('--root', type=Path, default=Path.cwd())
     parser.add_argument('--destination', type=Path)
-    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort'], default='two-cohort')
+    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3'], default='two-cohort')
     args = parser.parse_args()
     if args.mode == 'restore' and args.destination is None:
         parser.error('restore requires --destination (must not exist)')

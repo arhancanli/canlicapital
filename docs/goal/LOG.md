@@ -1067,3 +1067,15 @@ FullHTTP11564running; nextpollsamehandle thenupdatearchive/restore.
 
 FullHTTP11564exit0:54,416URLs/3,936downloads,exacttwoshard sitemap,no failures,
 maxHTML36,223bytes/four-link bound. Allv3localchecks complete;archiveupdate next.
+
+## 2026-09-20 — corrected v3 archive and isolated restore
+
+Previous turn fixed8source-scope interpretations andverifiedv3delivery;df5acde5
+CI35493915578passes. Addedexplicitv3profilewithsharedbuilder/restoreconfiguration,
+retainingoldprofiles. Elevenarchive/corpus tests pass. Build/restore22247exit0:
+13,183files/1,695,528,960bytes,SHA27d5ffe86251571d767106e0ab06f81b420da4d4fe841f412a48bcba627ea76f.
+Newarchiveincludesconstantfilingcomparisons/captures andv3runtime. Wholehash+every
+member verified; temporarysaved-repositoryreplay matchesallthreequeues and381
+exclusions,6,249runtimeobjects/828,340,450bytes,allrelease/catalog/downloadroots.
+Verifier sourcehash checked;temporaryrestore removed;olderarchives preserved.
+No remote durability,productionactivation orgoalcompletion claimed.

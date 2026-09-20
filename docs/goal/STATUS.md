@@ -22,8 +22,10 @@ pass. Browser80933passed114checks, including allaffectedoverviews andhistory404s
 mobileData443scope explanation inspected. Quality87267passed:6,705flags retained.
 Storage37363passed:6,249objects/828,340,450bytes. FullHTTP11564passed54,416pages/3,936downloads, exactsitemap, nofailures.
 
-Next: updatedv3archive andisolatedrestore. Currentsealedarchive
-coversv1 andexcludesnewconstantfilings/v3runtime. Remote destination/access and
+V3archive andisolatedrestore nowpass:13,183files,allthreequeues,381verified
+exclusions,and6,249runtimeobjects. Newconstantfilings included;olderarchivesretained.
+Next: remote retention/hostedverification when access is available and remaining
+editorial/usefulness/search-intent work. Remote destination/access and
 Search Console evidence remainpending. LatestcompletedCI:a43fdef7/run35493322351
 passed. Currentv3revision needsits ownCI. Engine61b587fpassedCI;fivecurrentepoch
 returns/foursleeves remaininsufficient forownerperformancegoals. Goalactive;
@@ -398,3 +400,18 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
 
 - HTTP11564nowexit0:54,416pages/3,936downloads, exactsitemap,no failures,
   maxHTML36,223bytes andfour-link bound from/companies. No currentjob remainslive.
+
+## Corrected v3 portability — 2026-09-20
+
+- Newexplicitthree-cohort-v3 archiveprofile shares pathconfiguration withrestore;
+  oldprofiles/default retained. Eleven archive/corpus tests pass.
+- Build/restore22247exit0:13,183files/1,695,528,960archivebytes;SHA27d5ffe8…,
+  exactsummary company-three-cohort-v3-evidence-archive-summary.json. Contains
+  correctedruntime,threecompletedqueues/exclusions,allthreefilingdirectories,
+  repositorydf5acde5 and exactnewerpackager. Earliersealedarchives unchanged.
+- Isolatedrestore checks wholeSHA andeverymember, replays342+853+766eligible
+  captureswith381verifiedexclusions/zeroerrors, andexactlyreproduces6,249runtime
+  keys/hashes/bytes andallroots. No originalcapture/runtimeobjectsread. Temporary
+  restore removed. Verifiercodehash matchescurrentretainedscript.
+- Priorv3df5acde5 CI35493915578 passes. No offsiteupload, hosteddeployment or
+  actualindexing claim. Newarchiveupdate needsits ownCI.
