@@ -75,6 +75,9 @@ def compare(raw, cik, rows):
                 continue
             start = ctx.findtext('x:period/x:startDate', namespaces=NS)
             end = ctx.findtext('x:period/x:endDate', namespaces=NS) or ctx.findtext('x:period/x:instant', namespaces=NS)
+            # XML date values can be formatted with surrounding whitespace.
+            start = start.strip() if start is not None else None
+            end = end.strip() if end is not None else None
             if start != row.get('start') or end != row['end']:
                 continue
             try:

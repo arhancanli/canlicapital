@@ -571,3 +571,46 @@ match comparison evidence. Parent capture completeness is explicitly separate fr
 subset completeness. No new XML acquisition yet; start after primary capture
 terminates, with existing access-stop and pacing behavior. No numerical gap closed
 by URL selection alone and no production admission.
+
+## 2026-09-20 — source review tooling merged and continuity consolidated
+
+Previous turn pinned25exact XBRL inputs. PR32mergedb5dc0ac2 after all four
+CI35516768834checks pass at0dcfa6f7. Both trees40d3071a73e02164a89fb58289696e8c08bcf537.
+Newbranchresearch/company-legacy-evidence-20260920; postmerge checks pending.
+Both43531and26312polled live;129capture entries/4573storage objects at checkpoint.
+Consolidated current STATUS and archived prior detail to remove obsolete draft,
+active-check and branch claims. All owner objectives and open gates preserved.
+No production release or source-admission claim.
+
+## 2026-09-20 — primary acquisition complete; legacy date parsing corrected
+
+Primary43531terminal0: all159index/primary pairs verified, immutable completed
+receipt retained. Union of disjoint prior targets excludes already-compared rows;
+final primary25429adds138/264matches, for433/610across all200primary filings.
+XBRL49534first25filings gives39/51;12unmatched values exist under whitespace-padded
+instant dates. Comparator now strips surrounding date whitespace while exact
+mismatches still fail; fiveXMLtests pass. Original report preserved; separate
+offline replay51/51. Thus484/610numerically reproduced, not semantic admission.
+SecondXBRL18988active for51filings/126observations using pre-fix helper; inspect and
+replay offline under corrected helper once terminal. No parallel primary collector.
+Postmerge PR32 CI35516871919passed. Scope/archival/production gates remain open.
+
+SecondXBRL18988terminal0:116/126initial matches; corrected offline date-whitespace
+replay126/126. Original preserved. Exact observation-set union against all38priority
+groups verifies610/610with no omissions/double credit. Numerical closure only;
+primary-context/usefulness and other groups remain open. Only26312bulk remains
+known active. New evidence/date fix in draft PR33.
+
+## 2026-09-20 — isolated priority equality archive replay
+
+Previous turn closed610/610numerical observations and preserved failures. New
+archive/replay46444terminal0:941files/293,847,040bytes, checksum
+cb89a5df08529157f6bc2e42f3d498b6b9d5b05fcfc2960c46e7f048adf436bc.
+All member bytes verified in temporary restore; locked dependencies installed
+from bundled wheels with no index/network. Archived prior helper replays original
+primary reports while later supplemental instances are held outside scan scope;
+current helper then replays corrected XBRL reports. All five reports byte-identical;
+exact610observation queue union matches without duplicate credit. No original
+capture directories used by replay. Not manual-scope rerun, queue regeneration or
+offsite backup. Bulk26312polled live;5129objects/0failures at checkpoint. PR33
+CI35517263780passes at1a019807; packager additions pending their own checks.
