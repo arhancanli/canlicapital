@@ -896,3 +896,31 @@ rows. HNOwithdrawal removes one earlier reviewed and three pending observations;
 actual captured source replays v12and verifies exclusion. No double credit, source
 rewrites or old ledger changes. Two generated outputs are byte-identical. This is
 policy accounting, not a claim that the full corpus has been rebuilt or admitted.
+
+## 2026-09-20 — first historical liability batch and PR41 merge
+
+17retained balance sheets support34previously pending Birdie/Vemanti/Caro
+observations. Full table text, source hashes and comparative dates preserved;
+report replays identically. New ledger223reviewed/379pending/8withdrawn covers
+the original610keys exactly once and replays identically. Supplements are bound
+and cannot reuse credited rows. PR41merged27f947e2 after four checks and exact
+tested/merged tree equality. Remaining reviews and v12rebuild remain open.
+
+## 2026-09-20 — second historical balance-sheet batch
+
+Opened PR42for the first34liability reviews. Reviewed30more observations from
+10Gold Rock/Nika balance sheets; retained historical long-term Nika liabilities
+as a boundary on the asset-only conclusion. Context and combined ledger each
+replay byte-identically. Updated exact counts253reviewed/349pending/8withdrawn.
+No value changes, blanket company admission, rebuild, upload or deployment.
+
+## 2026-09-20 — Atlantica review and explicit arithmetic conflict
+
+Reviewed15historical balance sheets and58additional observations. Two2023
+liability observations stay unresolved: displayed components exceed both totals
+by18,000USD; related-party note differs between filings. Preserved both without
+correction or assuming typo. Fulltables/arithmetic report replays identically.
+Initial ambiguous label extraction failed before output; numeric-column matching
+now distinguishes liabilities from liabilities/equity. Combined ledger311reviewed/
+291pending/8withdrawn retains all610keys and no credit for the conflicting pair.
+Resolve or withhold before admission. No publication or rebuild.
