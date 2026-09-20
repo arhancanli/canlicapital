@@ -1,0 +1,514 @@
+{
+  "schema": "canli.theriva-filing-discrepancies.v1",
+  "publication_approved": false,
+  "cik": "0000894158",
+  "source_sha256": "0de75e0c14bf762eac1125a82293caea25684675d03e66311f5d17f900dbb0a7",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "receipt_sha256": "f3e9a17cad49ff67a1ec4101c3f80feabe558708ae8d91df8149c04c12a89f8b",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/894158/000110465926026767/tmb-20251231x10k.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T23:13:23.496126+00:00",
+    "bytes": 2864489,
+    "sha256": "e23bec0fd4ec8a53f1d8f3e62167b8ecbcbb1c71653d6a5a9235a40cad7ef0d1",
+    "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0000894158-0001104659-26-026767-primary.response"
+  },
+  "code_sha256": "899980b64f05ed465451a6a0ff0bffbad0387cb68a0a2fba10266dd47eb194ea",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "selected_observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -19.03,
+      "accn": "0001104659-26-026767",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-12",
+      "frame": "CY2024",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -2.08,
+      "accn": "0001104659-26-026767",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-12",
+      "frame": "CY2025",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -19.03,
+      "accn": "0001104659-26-026767",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-12",
+      "frame": "CY2024",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -2.08,
+      "accn": "0001104659-26-026767",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-12",
+      "frame": "CY2025",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1348126,
+      "accn": "0001104659-26-026767",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-12",
+      "frame": "CY2024",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 12140697,
+      "accn": "0001104659-26-026767",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-12",
+      "frame": "CY2025",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1348126,
+      "accn": "0001104659-26-026767",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-12",
+      "frame": "CY2024",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 12140697,
+      "accn": "0001104659-26-026767",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-12",
+      "frame": "CY2025",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ],
+  "comparison": {
+    "checks": [
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -19.03,
+          "accn": "0001104659-26-026767",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "-19.03",
+            "fact_id": "Tc_Q6Oznm62rk-0orkJJA7wtw_25_6",
+            "context_id": "Duration_1_1_2024_To_12_31_2024_wepQtIn29U6h6o977xcQXg",
+            "table_row": "Net Loss Per Share\u00a0- Basic and Dilutive \u200b $ ( 2.08 ) \u200b $ ( 19.03 )",
+            "preceding_rows": [
+              "Net Loss Attributable to Common Stockholders \u200b $ ( 25,249 ) \u200b $ ( 25,653 )",
+              "\u200b \u200b \u200b \u200b \u200b"
+            ],
+            "table_header_rows": [
+              "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+              "\u200b \u200b For the\u00a0year ended",
+              "\u200b \u200b December\u00a031,",
+              "\u200b \u200b\u00a0\u200b\u00a0\u200b 2025 \u200b\u00a0\u200b\u00a0\u200b 2024",
+              "Operating Costs and Expenses: \u200b \u200b \u200b \u200b"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -2.08,
+          "accn": "0001104659-26-026767",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "-2.08",
+            "fact_id": "Tc_q_gWRg4sE02tJixJvDvo3A_25_3",
+            "context_id": "Duration_1_1_2025_To_12_31_2025_2dRQPyqyb06a7k0ZzxFUSQ",
+            "table_row": "Net Loss Per Share\u00a0- Basic and Dilutive \u200b $ ( 2.08 ) \u200b $ ( 19.03 )",
+            "preceding_rows": [
+              "Net Loss Attributable to Common Stockholders \u200b $ ( 25,249 ) \u200b $ ( 25,653 )",
+              "\u200b \u200b \u200b \u200b \u200b"
+            ],
+            "table_header_rows": [
+              "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+              "\u200b \u200b For the\u00a0year ended",
+              "\u200b \u200b December\u00a031,",
+              "\u200b \u200b\u00a0\u200b\u00a0\u200b 2025 \u200b\u00a0\u200b\u00a0\u200b 2024",
+              "Operating Costs and Expenses: \u200b \u200b \u200b \u200b"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -19.03,
+          "accn": "0001104659-26-026767",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "-19.03",
+            "fact_id": "Tc_Q6Oznm62rk-0orkJJA7wtw_25_6_2",
+            "context_id": "Duration_1_1_2024_To_12_31_2024_wepQtIn29U6h6o977xcQXg",
+            "table_row": "Net Loss Per Share\u00a0- Basic and Dilutive \u200b $ ( 2.08 ) \u200b $ ( 19.03 )",
+            "preceding_rows": [
+              "Net Loss Attributable to Common Stockholders \u200b $ ( 25,249 ) \u200b $ ( 25,653 )",
+              "\u200b \u200b \u200b \u200b \u200b"
+            ],
+            "table_header_rows": [
+              "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+              "\u200b \u200b For the\u00a0year ended",
+              "\u200b \u200b December\u00a031,",
+              "\u200b \u200b\u00a0\u200b\u00a0\u200b 2025 \u200b\u00a0\u200b\u00a0\u200b 2024",
+              "Operating Costs and Expenses: \u200b \u200b \u200b \u200b"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -2.08,
+          "accn": "0001104659-26-026767",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "-2.08",
+            "fact_id": "Tc_q_gWRg4sE02tJixJvDvo3A_25_3_2",
+            "context_id": "Duration_1_1_2025_To_12_31_2025_2dRQPyqyb06a7k0ZzxFUSQ",
+            "table_row": "Net Loss Per Share\u00a0- Basic and Dilutive \u200b $ ( 2.08 ) \u200b $ ( 19.03 )",
+            "preceding_rows": [
+              "Net Loss Attributable to Common Stockholders \u200b $ ( 25,249 ) \u200b $ ( 25,653 )",
+              "\u200b \u200b \u200b \u200b \u200b"
+            ],
+            "table_header_rows": [
+              "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+              "\u200b \u200b For the\u00a0year ended",
+              "\u200b \u200b December\u00a031,",
+              "\u200b \u200b\u00a0\u200b\u00a0\u200b 2025 \u200b\u00a0\u200b\u00a0\u200b 2024",
+              "Operating Costs and Expenses: \u200b \u200b \u200b \u200b"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 1348126,
+          "accn": "0001104659-26-026767",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "shares",
+            "value": "1348126",
+            "fact_id": "Tc_jkatPYwrykSpSN9qkJzLjA_27_6_2",
+            "context_id": "Duration_1_1_2024_To_12_31_2024_wepQtIn29U6h6o977xcQXg",
+            "table_row": "Weighted average number of shares outstanding during the period\u00a0- basic and dilutive \u200b 12,140,697 \u200b 1,348,126",
+            "preceding_rows": [
+              "Net Loss Per Share\u00a0- Basic and Dilutive \u200b $ ( 2.08 ) \u200b $ ( 19.03 )",
+              "\u200b \u200b \u200b \u200b \u200b"
+            ],
+            "table_header_rows": [
+              "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+              "\u200b \u200b For the\u00a0year ended",
+              "\u200b \u200b December\u00a031,",
+              "\u200b \u200b\u00a0\u200b\u00a0\u200b 2025 \u200b\u00a0\u200b\u00a0\u200b 2024",
+              "Operating Costs and Expenses: \u200b \u200b \u200b \u200b"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 12140697,
+          "accn": "0001104659-26-026767",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "shares",
+            "value": "12140697",
+            "fact_id": "Tc_sWRZ4RuU6kOnHNa0y4PxDg_27_3_2",
+            "context_id": "Duration_1_1_2025_To_12_31_2025_2dRQPyqyb06a7k0ZzxFUSQ",
+            "table_row": "Weighted average number of shares outstanding during the period\u00a0- basic and dilutive \u200b 12,140,697 \u200b 1,348,126",
+            "preceding_rows": [
+              "Net Loss Per Share\u00a0- Basic and Dilutive \u200b $ ( 2.08 ) \u200b $ ( 19.03 )",
+              "\u200b \u200b \u200b \u200b \u200b"
+            ],
+            "table_header_rows": [
+              "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+              "\u200b \u200b For the\u00a0year ended",
+              "\u200b \u200b December\u00a031,",
+              "\u200b \u200b\u00a0\u200b\u00a0\u200b 2025 \u200b\u00a0\u200b\u00a0\u200b 2024",
+              "Operating Costs and Expenses: \u200b \u200b \u200b \u200b"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 1348126,
+          "accn": "0001104659-26-026767",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "shares",
+            "value": "1348126",
+            "fact_id": "Tc_jkatPYwrykSpSN9qkJzLjA_27_6",
+            "context_id": "Duration_1_1_2024_To_12_31_2024_wepQtIn29U6h6o977xcQXg",
+            "table_row": "Weighted average number of shares outstanding during the period\u00a0- basic and dilutive \u200b 12,140,697 \u200b 1,348,126",
+            "preceding_rows": [
+              "Net Loss Per Share\u00a0- Basic and Dilutive \u200b $ ( 2.08 ) \u200b $ ( 19.03 )",
+              "\u200b \u200b \u200b \u200b \u200b"
+            ],
+            "table_header_rows": [
+              "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+              "\u200b \u200b For the\u00a0year ended",
+              "\u200b \u200b December\u00a031,",
+              "\u200b \u200b\u00a0\u200b\u00a0\u200b 2025 \u200b\u00a0\u200b\u00a0\u200b 2024",
+              "Operating Costs and Expenses: \u200b \u200b \u200b \u200b"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 12140697,
+          "accn": "0001104659-26-026767",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "shares",
+            "value": "12140697",
+            "fact_id": "Tc_sWRZ4RuU6kOnHNa0y4PxDg_27_3",
+            "context_id": "Duration_1_1_2025_To_12_31_2025_2dRQPyqyb06a7k0ZzxFUSQ",
+            "table_row": "Weighted average number of shares outstanding during the period\u00a0- basic and dilutive \u200b 12,140,697 \u200b 1,348,126",
+            "preceding_rows": [
+              "Net Loss Per Share\u00a0- Basic and Dilutive \u200b $ ( 2.08 ) \u200b $ ( 19.03 )",
+              "\u200b \u200b \u200b \u200b \u200b"
+            ],
+            "table_header_rows": [
+              "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+              "\u200b \u200b For the\u00a0year ended",
+              "\u200b \u200b December\u00a031,",
+              "\u200b \u200b\u00a0\u200b\u00a0\u200b 2025 \u200b\u00a0\u200b\u00a0\u200b 2024",
+              "Operating Costs and Expenses: \u200b \u200b \u200b \u200b"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      }
+    ],
+    "rejected_facts": {}
+  },
+  "statement": {
+    "table_index": 232,
+    "headings": [
+      "\u200b",
+      "(In thousands, except share and per share amounts)",
+      "Consolidated Statements of Operations and Comprehensive Loss",
+      "Theriva Biologics, Inc. and Subsidiaries",
+      "Table of Contents",
+      "87"
+    ],
+    "text": "\u200b \u200b \u200b \u200b \u200b \u200b \u200b \u200b \u200b For the year ended \u200b \u200b December 31, \u200b \u200b \u200b \u200b 2025 \u200b \u200b \u200b 2024 Operating Costs and Expenses: \u200b \u200b \u200b \u200b General and administrative \u200b $ 15,447 \u200b $ 7,396 Research and development \u200b 8,604 \u200b 12,031 In-process research and development impairment \u200b \u200b \u2014 \u200b \u200b 1,325 Goodwill impairment \u200b \u200b \u2014 \u200b \u200b 5,594 Total Operating Costs and Expenses \u200b 24,051 \u200b 26,346 \u200b \u200b \u200b \u200b \u200b \u200b \u200b Loss from Operations \u200b ( 24,051 ) \u200b ( 26,346 ) Other Income: \u200b \u200b \u200b \u200b Foreign currency exchange gain (loss) \u200b \u200b 25 \u200b \u200b ( 4 ) Interest income \u200b 287 \u200b 697 Total Other Income \u200b \u200b 312 \u200b \u200b 693 \u200b \u200b \u200b \u200b \u200b \u200b \u200b Net Loss before income taxes \u200b \u200b ( 23,739 ) \u200b \u200b ( 25,653 ) Income tax benefit \u200b \u200b \u2014 \u200b \u200b \u2014 Net loss \u200b $ ( 23,739 ) \u200b $ ( 25,653 ) \u200b \u200b \u200b \u200b \u200b \u200b \u200b Less deemed dividend from warrant inducement \u200b \u200b ( 1,510 ) \u200b \u200b \u2014 \u200b \u200b \u200b \u200b \u200b \u200b \u200b Net Loss Attributable to Common Stockholders \u200b $ ( 25,249 ) \u200b $ ( 25,653 ) \u200b \u200b \u200b \u200b \u200b Net Loss Per Share - Basic and Dilutive \u200b $ ( 2.08 ) \u200b $ ( 19.03 ) \u200b \u200b \u200b \u200b \u200b Weighted average number of shares outstanding during the period - basic and dilutive \u200b 12,140,697 \u200b 1,348,126 \u200b \u200b \u200b \u200b \u200b \u200b \u200b Net Loss \u200b \u200b ( 23,739 ) \u200b \u200b ( 25,653 ) Gain (loss) on foreign currency translation \u200b \u200b 1,933 \u200b \u200b ( 1,210 ) Total comprehensive loss \u200b $ ( 21,806 ) \u200b $ ( 26,863 )"
+  },
+  "disclosures": [
+    {
+      "required_text": "Net loss attributable to common stockholders for the years ended December 31, 2025 and 2024 was $ 23.7 million and $ 25.7 million",
+      "paragraph": "Basic net loss per share is computed by dividing net loss attributable to common shareholders by the weighted average number of common shares outstanding. Diluted net loss per share is computed by dividing net loss by the weighted average number of common shares outstanding including the effect of common share equivalents. Diluted net loss per share assumes the issuance of potential dilutive common shares outstanding for the period and adjusts for any changes in income and the repurchase of common shares that would have occurred from the assumed issuance, unless such effect is anti-dilutive. Net loss attributable to common stockholders for the years ended December 31, 2025 and 2024 was $ 23.7 million and $ 25.7 million, respectively. The number of eligible options and warrants for the purchase of Common Stock that were excluded from the computations of net loss per common share for the year ended December 31, 2025 were 1,114,428 and 16,339,060 , respectively, and for the year ended December 31, 2024 were 175,034 and 1,428,600 , respectively, because their effect is anti-dilutive."
+    },
+    {
+      "required_text": "On October 26, 2024, we effected a one for twenty-five reverse stock split",
+      "paragraph": "On October 26, 2024, we effected a one for twenty-five reverse stock split (the \u201cReverse Stock Split\u201d) of our authorized, issued and outstanding common stock, par value $0.001 per share (\u201cCommon Stock\u201d). Unless otherwise noted, all references to share amounts from dates prior to completion of the Reverse Stock Split that are included in this Annual Report have been retroactively restated to reflect the Reverse Stock Split."
+    },
+    {
+      "required_text": "The Reverse Stock Split went effective on August 26, 2024",
+      "paragraph": "On August 15, 2024, the Board of Directors of the Company approved a reverse stock split of the Company\u2019s authorized, issued and outstanding shares of common stock, par value $ 0.001 per share (\u201cCommon Stock\u201d), at a ratio of one (1) share of Common Stock for every twenty - five (25) shares of Common Stock (the \u201cReverse Stock Split\u201d). The Reverse Stock Split went effective on August 26, 2024 (the \u201cEffective Time)."
+    },
+    {
+      "required_text": "All affected share amounts and exercise/conversion prices in the consolidated financial statements and footnotes below have been adjusted retroactively",
+      "paragraph": "All affected share amounts and exercise/conversion prices in the consolidated financial statements and footnotes below have been adjusted retroactively for the Reverse Stock Split."
+    },
+    {
+      "required_text": "because their effect is anti-dilutive",
+      "paragraph": "Basic net loss per share is computed by dividing net loss attributable to common shareholders by the weighted average number of common shares outstanding. Diluted net loss per share is computed by dividing net loss by the weighted average number of common shares outstanding including the effect of common share equivalents. Diluted net loss per share assumes the issuance of potential dilutive common shares outstanding for the period and adjusts for any changes in income and the repurchase of common shares that would have occurred from the assumed issuance, unless such effect is anti-dilutive. Net loss attributable to common stockholders for the years ended December 31, 2025 and 2024 was $ 23.7 million and $ 25.7 million, respectively. The number of eligible options and warrants for the purchase of Common Stock that were excluded from the computations of net loss per common share for the year ended December 31, 2025 were 1,114,428 and 16,339,060 , respectively, and for the year ended December 31, 2024 were 175,034 and 1,428,600 , respectively, because their effect is anti-dilutive."
+    }
+  ],
+  "arithmetic_check": {
+    "statement_common_loss_usd": -25249000,
+    "net_loss_before_deemed_dividend_usd": -23739000,
+    "deemed_dividend_usd": 1510000,
+    "weighted_shares": 12140697,
+    "statement_common_loss_per_share": "-2.08",
+    "before_deemed_dividend_per_share": "-1.96"
+  },
+  "disposition": "ACCOUNTING_SCOPE_REVIEW_PENDING",
+  "findings": [
+    "Eight selected facts match the main statement. The per-share narrative labels 2025 common-stockholder loss as $23.7 million, while the statement distinguishes $23.739 million net loss from $25.249 million loss attributable to common stockholders after a $1.510 million deemed dividend.",
+    "One passage dates the one-for-25 reverse split October 26, 2024; the corporate history and stock note use August 26, 2024. Dates remain conflicting; no silent correction.",
+    "The filing states retroactive share adjustment and excludes options/warrants as anti-dilutive. Numerical matching alone does not resolve the narrative discrepancies."
+  ],
+  "scope": "Exactly eight batch2 observations from one filing. Pending accounting-context decision; not a new policy hold or approved history. No source replacement, restatement, publication, or indexing claim."
+}

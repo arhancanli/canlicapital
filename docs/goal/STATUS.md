@@ -9,7 +9,7 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/hosted-v22-transfer-20260921`. PR118 merged as
+`evidence/batch2-primary-review-20260921`. PR118 merged as
 `4371292467702019b988c65bf910cd66a80e19fc` after all four checks in CI35542487234
 passed at99993be0. Tested/merged tree1b57f7c9ab3e943d97ad8bdea2096e8bff937269 matches.
 
@@ -77,18 +77,32 @@ removed. Supabase CLI absent. Existing owner-provided Supabase credential then
 retrieved existing project key through documented Management API; project/role
 validated in memory. No new keys, policy/limits changes or credentials in records.
 
-Parallel source phase: batch2 capture **11834 RUNNING**, output
-/tmp/canli-basic-diluted-batch2-capture.log. Exact target file
-company-basic-diluted-capture-batch2-targets-20260921.json binds100missing filings,
-87companies/800observations to frozen v22 selected records and sources. No overlap
-with batch1. Versioned v2 preparer preserves the old preparer, verifies retained
-receipt hashes/URLs and conflicts, and skips retained primaries. Initial draft
-before stronger retained-URL checks preserved in corpus-local. Capture uses existing
-one-second spacing and hard403/429stop. Report company-basic-diluted-capture-batch2-
-20260921.json is mutable until terminal; do not commit it as completed yet.
-No batch2 numeric or accounting-scope approval. Batch1ledger unchanged. Next after
-capture terminal: bind exact target/receipt inputs and run offline numerical review;
-retain gaps, then inspect statement/disclosure context. Keep v22 uploader/plan stable.
+PR122 merged asdc07d21d4c173fdb2608a5e02dfa771fde850241 after all four
+CI35544086154checks passed at318cbf52. Tested/merged tree
+cdb8de808d2171ffd0f3c9028526c7fa0688d6c0 matches.
+
+Batch2 capture **11834 TERMINAL0**:100primaries/87companies/800observations,
+zero acquisition gaps. Binder verifies exact target/receipt inputs. Inline comparison
+**66734 TERMINAL0**:744/800matches;56unmatched across7legacy filings retained.
+Legacy acquisition **76839 TERMINAL0** retained all7original instances; generic
+compound-unit replay verifies56/56 and exact combined800/800. Byte-identical second
+replay passed. Same generic runner reproduces batch1's78legacy checks/1,176combined
+matches with identical per-filing checks. Original currency-only acquisition results
+and inline gaps preserved. Summary company-basic-diluted-batch2-summary-20260921.json
+pins every input; primary JSON retained compressed with verified lossless roundtrip.
+
+All800batch2observations remain accounting-scope pending, separate from the closed
+batch1registry. Theriva’s first8facts match its main statement, but narrative calls
+2025common-stockholder loss$23.7m versus statement$25.249m after$1.510m deemed
+dividend; filing also gives October26 versus August26,2024split dates. New report
+company-theriva-filing-discrepancies-20260921.json and replay script preserve both,
+with actual source fixture and8numerical matches. Report replays byte-identically;
+disposition ACCOUNTING_SCOPE_REVIEW_PENDING, no holds/notes/policy changed.
+Next inspect statement/disclosure context, retain unresolved conflicts and implement
+batch-specific review registration without changing batch1 evidence.
+
+Storage44227remains live,426objects/zero failures at last checkpoint. No source
+capture/comparison jobs remain active. Uploader/plan unchanged; no production activation.
 
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
 Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly
