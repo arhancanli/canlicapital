@@ -1255,3 +1255,12 @@ still live; no renderer edits. Added v22 archive profile, current quality/discov
 and pinned scope supplement; restore replays all selected records and sitemaps
 plus61scope outputs. Five archive-safety tests pass. Archive build/restore pending.
 All owner objectives unchanged; no hosted release or new indexing evidence.
+
+HTTP91808TERMINAL0:90,732pages/6,646downloads, exact90,732sitemap URLs, zero
+failures, four-click maximum. Code hashes verified. PR120 merged82224901 from
+876c1012, all four CI35543187882passed; tree31b486792c6103e84b04543627dbaaf1b3ae9519
+identical. Archive80580TERMINAL0:23,161files/3,158,446,080bytes, SHA
+71f60cfd69cb177bcebc988201bbc2d4fe3b93c719d7e82fea132996885c391d, saved code
+09a9750647fcee8009cfdf661a67479517d9d5ad. Summary retained. Isolated restore14219
+RUNNING at /tmp/canli-v22-archive-restore.log. Unpublished branch rebased onto
+merged main with identical full treebc8158161e70242e0194f6ba76aee83fba8c5456.
