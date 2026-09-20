@@ -929,3 +929,15 @@ package files. Neither command published or generated a tarball. Public status
 GET succeeded with no credential/keyissuance/validationmutation;12total validations
 are telemetry only. Source receipt and status contain limits; adoption remains open.
 Prior website CI35490262960 passes; engine35489715539 still running.
+
+
+## 2026-09-20 — genuinely new source cohort capture
+
+Previous turn progress:MCP reliability48tests+CI. Freshad264cef CI35490429296 passes.
+Batch selector skipped only accepted companies and would silently reacquire147
+prior exclusions/failures. Added optional SHA-pinned priorqueue ledger and tests;
+all376tests+audits pass. New1,000queue excludes both priorqueues and combinedcohort;
+from8,031 fixed discovery IDs,5,687 remain after this queue. No eligibility/page
+extrapolation. Capture session73982 started04:59:42Z, verified stilllive at49rows
+(41revieweligible,5excluded,3HTTPerrors), unfinished. Originalqueue/captures remain
+untouched; no duplicatejob or automatic403/429retry. Resume by polling samehandle.

@@ -233,3 +233,21 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   Receipt artifacts/developer/mcp-status-check-20260920.json binds local handler.
 - Prior websitedfdae74a CI35490262960 passes. Engine61b587f run35489715539 still
   running when checked; no current complete engine CI pass claimed.
+
+## Third1,000 source capture — 2026-09-20
+
+- Fixed batch selection to skip pinned prior queues as well as accepted companies;
+  three regressions cover exclusion membership, tampering and queue preservation.
+  Full verify passes376 tests(6+370) and final audits; log/tmp/canli-batch-selection-verify.log.
+- Retained ticker snapshot has8,031 CIKs; skipped1,197 already staged and147 prior
+  non-admissions; new queue1,000, remaining unqueued5,687. Not publishable counts.
+  Receipts:company-prior-capture-queues.json and company-third-batch-selection.json.
+- Capture started2026-09-20T04:59:42Z; live exec session **73982**, directory
+  artifacts/seo/corpus-local/third-1000, log/tmp/canli-third1000-capture.log.
+  Last verified49/1000 processed:41 eligible-for-review,5 excluded,3HTTP errors,
+  stopped=null, no finished_at. This is an incomplete checkpoint, not acceptance.
+- On continuation poll73982 first; do not launch another capture from a stale
+  progress file or an observation timeout. Finish/replay the original queue before
+  confirmed404 review or staging; preserve every failure. Existing release unchanged.
+- Websitead264cef CI35490429296 passed, including new MCP CI. Engine61b587f
+  run35489715539 remained active at the last poll.

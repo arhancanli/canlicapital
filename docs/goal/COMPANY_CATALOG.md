@@ -282,3 +282,30 @@ nor successful rendering grants publication approval.
 The original349-company extended release stays unchanged. Combining deliveries
 must validate sources and rebuild both indexes, retaining capture/exclusion
 provenance. The delivery download_index is an object root, not an appendable list.
+
+
+## Third source batch and prior-queue exclusion
+
+`prepare-company-batch.mjs` accepts an optional fifth argument containing a
+`canli.company-prior-queues.v1` ledger with `queues: [{path, sha256}]`. Queue paths
+resolve from the working directory. It verifies every exact queue hash and unique
+ten-digit identity list before selecting. All prior queued identifiers are skipped,
+including exclusions/failures; this is reservation membership, not proof of a
+completed request. Retrying failed identifiers requires a separate explicit review.
+The selector still refuses to overwrite a differing destination queue.
+
+The third1,000 queue uses the retained SEC ticker file captured2026-09-19T14:42:18Z,
+not a newly fetched universe. From8,031 discovery CIKs it skips1,197 in the combined
+cohort plus147 only in prior queues, selects1,000, and leaves5,687 unqueued. Five
+existing cohort CIKs are absent from this ticker snapshot; none is silently removed.
+This is a discovery inventory, not coverage of all SEC issuers or a page estimate.
+
+```sh
+node scripts/prepare-company-batch.mjs artifacts/seo/corpus-local/next-1000/company_tickers.json artifacts/seo/corpus-local/company-combined-delivery-extended/delivery.json artifacts/seo/corpus-local/third-1000/ciks.json 1000 artifacts/seo/company-prior-capture-queues.json
+node scripts/refresh-company-candidates.mjs artifacts/seo/corpus-local/third-1000/ciks.json artifacts/seo/corpus-local/third-1000
+```
+
+Do not run the capture command concurrently with the active job. Inspect its actual
+process/session before a resume. Captures are review inputs: finish the queue,
+reproduce exclusions and bind confirmed404 bodies before staging.403/429 stop the
+job with no automatic retry. The active release and32,954 staged routes are unchanged.
