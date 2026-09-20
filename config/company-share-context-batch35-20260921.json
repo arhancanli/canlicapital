@@ -1,0 +1,58 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001595527",
+      "accession": "0001628280-26-025292",
+      "source_sha256": "5de12b91b1b4b2d7651c9be3acaab9b1cfc25b667372791fcb971cd8bdb56f39",
+      "primary_sha256": "185fe4c229cedafacaff21f77abf6c5b306199ad6e9c9ea1285e2030fab2759c",
+      "fixture": "scripts/fixtures/editorial/american-strategic-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 56,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "weighted",
+        "except share and per share"
+      ],
+      "paragraph_requires": [
+        "the Company applies the two-class method of computing earnings per share",
+        "All references made to share or per share amounts in the accompanying consolidated financial statements and applicable disclosures have been retroactively adjusted",
+        "No LTIP Unit share equivalents were included in the computation for the years ended December 31, 2025, 2024 and 2023"
+      ],
+      "reader_note": "For American Strategic Investment in 2023\u20132025, the filing applies two-class accounting to participating restricted shares, Class A Units and unearned LTIP Units. Its EPS table reports zero numerator adjustments for all three years. Potential common equivalents are excluded as anti-dilutive; the LTIP discussion also states that no units would have been earned under the stated measurement conditions and/or that loss-period dilution would be anti-dilutive. The January 2023 one-for-eight reverse split is already reflected retrospectively. Full scale-zero shares and EPS are retained without a second split adjustment.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001600641",
+      "accession": "0001600641-26-000007",
+      "source_sha256": "338eca9f9e4aa9bfda44b66e11b593a2d71926ee844768056632fe0bf3d5966a",
+      "primary_sha256": "0279a5e16c1bf6b1541b55a7dd227cf71a801c1aa7c1d76aacd981b9493fff64",
+      "fixture": "scripts/fixtures/editorial/1stdibs-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 58,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted",
+        "except share and per share"
+      ],
+      "paragraph_requires": [
+        "including potential dilutive common shares using the treasury stock method",
+        "outstanding stock options and restricted stock units have been excluded"
+      ],
+      "reader_note": "For 1stdibs.com in 2023\u20132025, outstanding options and restricted stock units are excluded from diluted loss per share because their effect is anti-dilutive in each presented period. The filing describes the treasury-stock method for potential dilution; basic shares exclude that potential dilution. Full scale-zero share counts and EPS remain unchanged under the statement\u2019s share/per-share exception to its thousands heading.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
