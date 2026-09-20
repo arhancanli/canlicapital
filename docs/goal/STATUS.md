@@ -24,7 +24,7 @@ Create of delivery/objects/54f880cf171ac6dff01c2e394b1a4aea0d1b31cca2f482974a1b7
 returned429 and stopped without retry.54read retries/4write recovery events preceded
 that stop. Receipt corpus-local/company-five-cohort-transfer-20260920.json remains
 unchanged; stop summary company-five-cohort-storage-stop-20260920.json.
-No uploader or other long-running job is active. Do not poll/restart26312as live.
+Original uploader26312 is terminal. Paced recovery77617 is active, confirmed by a live handle and fresh receipt. Do not poll/restart26312as live.
 Read-only provider logs show DatabaseError/429 at2026-09-20T14:53:06.280000, with
 pool/connection indicators. No raw headers/messages or credentials stored. Project
 ACTIVE_HEALTHY at15:00UTC, aggregate17connections/max60, not proof of storage pool
@@ -36,9 +36,16 @@ context, not conclusive diagnosis: https://supabase.com/docs/guides/storage/debu
 Uploader now retains sanitized numeric/date Retry-After metadata without changing
 429hard-stop behavior.18storage/planner tests pass including single denied create,
 no retry and omission of arbitrary upstream header/body content.
-Next storage action: prepare lower-concurrency/paced recovery with a fresh receipt
-and full immutable reconciliation; respect any further access/429stop. No recovery
-has been launched, no limits/settings/billing changed.
+Paced recovery77617 launched from e5177ec0 after20storage/planner tests passed.
+One worker, minimum500ms between request starts, read/write bounds3/2 and shared
+retry budgets200/50. Fresh receipt corpus-local/company-five-cohort-transfer-
+resume1-20260920.json records code SHA4d9b812261243ed1421f45e1be981a4899417338b3a8a407f0a88a0f24207afc.
+Initial checkpoint36objects verified, zero failures, incomplete; these are
+reverified objects, not36new uploads. Existing objects are independently checked;
+only absent objects can be created. Any429/permission/corruption stops recovery.
+Original failure receipt unchanged; no limits/settings/billing changed.
+The previous credential-waiting launcher88342 had no recoverable session handle;
+it was explicitly terminated before launching77617, so no duplicate uploader exists.
 
 Primary acquisition43531 is terminal exit0: all159index/primary pairs verified,
 complete receipt company-equal-history-capture-complete-20260920.json. All200
@@ -59,7 +66,7 @@ addition; current additions require their own checks.
 
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
-superseded v3plan. No process is currently known active. Archive/replay46444completed exit0.
+superseded v3plan. Paced uploader77617 is active at the checkpoint above. Archive/replay46444completed exit0.
 
 ## Current filing-context improvement
 

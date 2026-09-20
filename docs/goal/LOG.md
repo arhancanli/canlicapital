@@ -650,3 +650,14 @@ No uploader restarted or limits changed. Added sanitized Retry-After retention;
 18tests pass including no retry for429and omission of arbitrary upstream content.
 Fresh failed-key public inspection retained; next step is paced/concurrency1
 recovery design with all current fail-closed reconciliation rules intact.
+
+## 2026-09-20 — paced immutable storage recovery
+
+Previous goal turn only reaffirmed objectives; no implementation progress. Verified
+local e5177ec0 pacing commit and PR35 still at52031799. All20storage/planner tests
+pass. Credential-waiting launcher88342 was terminated before replacement77617;
+no uploader had started in the old launcher. New transfer is confirmed live with
+36reverified objects/zero failures at the initial checkpoint. One worker and500ms
+minimum between request starts, same bounded reconciliation and hard stops.
+Fresh resume1receipt preserves original5625-object429failure without overwriting.
+No provider settings changed; no production expansion or indexing gain.
