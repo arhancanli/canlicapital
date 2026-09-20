@@ -33,3 +33,19 @@ use a disposable synthetic key to check issue, validate, revoke, repeated revoke
 and rejection of a later validation. Do not use an owner's existing key. Keep the
 successful migration if application deployment is rolled back: removing row locks
 would restore the race. Never clear revoked_at as a rollback step.
+
+## Deployment coordination — September20 release review
+
+The running publisher reads
+`/Users/arhancanli/alphaforge/config/site_landing_design_source.txt`, currently
+pointing at `/Users/arhancanli/canlicapital-website-20260908`. Both nightly
+`live_publish.sh` and change-gated `live_deploy_hourly.sh` use the site snapshot
+helper. The hourly path runs downstream of the minute25 live tick.
+
+A manual deployment alone would be replaced by a later refresh of the old site.
+After database identity, migration and hosted API checks pass, roll out the
+approved website revision through that source selection as part of publication.
+Use a dedicated clean release checkout and the reviewed snapshot helper. Preserve
+the fresh public evidence overlay and the publisher's existing gates. Do not
+reset the dirty running engine or change the trading loop to deploy the website.
+The source-selection file has not been changed by this release work.

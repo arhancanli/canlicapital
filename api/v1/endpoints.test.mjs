@@ -73,3 +73,42 @@ test("breadth returns the ceiling, sleeves required and whether a target is reac
   assert.equal(ok.target.reachable, true);
   assert.ok(Number.isInteger(ok.target.sleeves_required));
 });
+
+
+test("missing database configuration preserves API unavailable and badge contracts", async (t) => {
+  const names = ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY"];
+  const saved = Object.fromEntries(names.map(name => [name, process.env[name]]));
+  t.after(() => { for (const name of names) {
+    if (saved[name] === undefined) delete process.env[name]; else process.env[name] = saved[name];
+  } });
+  for (const name of names) delete process.env[name];
+  const { Readable } = await import("node:stream");
+  const { validatorHandler } = await import("../_lib/handler.js");
+  const { default: status } = await import("./validate/status.js");
+  const { default: receipt } = await import("./receipts/[id].js");
+  const { default: badge } = await import("./receipts/[id]/badge.js");
+  let computeCalls = 0;
+  const validate = validatorHandler({ endpoint: "validate/breadth", sourcesPaths: ["js/breadth-core.js"], compute: () => { computeCalls++; return {}; } });
+  for (const [name, handler, expected] of [["status", status, 503], ["receipt", receipt, 503], ["badge", badge, 404], ["validator", validate, 503]]) {
+    const req = Readable.from([Buffer.from("{}")]);
+    req.method = name === "validator" ? "POST" : "GET";
+    req.headers = { authorization: "Bearer ck_live_" + "a".repeat(43), "content-length": "2" };
+    req.query = { id: "0".repeat(24) };
+    const res = { headers: {}, setHeader(k, v) { this.headers[k] = v; }, end(body) { this.body = body; } };
+    await handler(req, res);
+    assert.equal(res.statusCode, expected, name);
+    assert.doesNotMatch(res.body, /SUPABASE|service_role|stack/i);
+    if (name === "badge") assert.match(res.headers["Content-Type"], /image\/svg/);
+    else {
+      const body = JSON.parse(res.body);
+      assert.equal(body.schema, "canli.api.v1");
+      assert.equal(res.headers["Cache-Control"], "no-store");
+      if (name === "status") {
+        assert.equal(body.data.store_reachable, false);
+        assert.equal(body.data.usage_available, false);
+        assert.equal(body.data.usage, null);
+      } else assert.equal(body.error.code, "store_unavailable");
+    }
+  }
+  assert.equal(computeCalls, 0);
+});

@@ -24,6 +24,10 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
   Supabase production identity/access remains pending; saved login returns403
   for historical production reference. Sensitive Vercel exports are unreadable
   placeholders, not evidence of invalid configuration. No migration attempted.
+- Preview45987764 is READY at meridian-30lt4iikd-arhans-projects-ac470eaa.vercel.app.
+  Static327-page check83074 remains live. Hosted status500 exposed missing-store
+  initialization outside error handling; corrected status/validator/receipt/badge
+  paths pass28focused tests and full83502verification. Updated preview pending.
 - No source capture or pending CI establishes completion, deployment or indexing.
 
 ## Measured outcomes

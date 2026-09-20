@@ -19,10 +19,12 @@ async function readUsage(store) {
 export function createStatusHandler({ store } = {}) {
   return async function handler(req, res) {
     if (req.method !== "GET") { res.setHeader("Allow", "GET"); return send(res, 405, { error: "GET only" }); }
-    const activeStore = store ?? defaultStore();
+    let activeStore;
     let store_ok = false;
-    try { store_ok = await activeStore.ping(); } catch (e) { console.error("[validation-api] status ping failed", e.message); }
-    const { usage, usage_available } = await readUsage(activeStore);
+    try { activeStore = store ?? defaultStore(); store_ok = await activeStore.ping(); } catch (e) { console.error("[validation-api] status ping failed", e.message); }
+    const { usage, usage_available } = activeStore
+      ? await readUsage(activeStore)
+      : { usage: null, usage_available: false };
     const body = envelope({
       endpoint: "validate/status",
       claimClass: "OBSERVED",

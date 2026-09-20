@@ -262,3 +262,31 @@ failed inner_text for an offscreen count; diagnostic confirmed the expected
 timestamp and no overflow. Scrolling and checking DOM text passed all six
 Chromium/WebKit320/390/1440checks. Receipt preserves that probe limitation.
 Previous d8102f19websiteCI now all four jobs pass; new refresh CI follows push.
+
+## 2026-09-20 — hosted preview and publisher path
+
+Previous turn refreshed deployed evidence and passed401tests/six browser checks.
+Read continuity and created an isolated upload snapshot of45987764; a separate
+clone passed the Vercel build. First upload86129 failed fetch/upload before any
+deployment existed; authenticated project list confirmed no candidate deployment.
+Retried the same snapshot with compressed upload42450, exit0. Preview
+dpl_2z8EMqrB4ZKrqfcFo3ZJhzZT5sLa is READY and binds candidateRevision45987764.
+URL:https://meridian-30lt4iikd-arhans-projects-ac470eaa.vercel.app.
+All four GitHub checks on45987764 pass. Hosted327-page verification83074 and
+API/error probe23739 are in progress; no production promotion.
+
+Read actual launchd/source configuration: minute25 live tick calls the change-gated
+hourly publisher; nightly publisher also shares site_snapshot.sh. Current design
+source points to canlicapital-website-20260908. Documented coordinated rollout
+requirement; neither that pointer nor the running engine was changed.
+PR15description now reflects all corrected cohorts, current verification and
+separately completed MCP publication. Database access question remains pending.
+
+Hosted API probe23739 finished: keys/revokeGET405,no-store; absent route404;
+validate/status unexpectedly500/non-JSON with unconfigured preview database.
+Traced construction outside catch in status, shared validators and receipt/badge
+handlers. Moved store initialization inside existing failure boundaries; no
+change to success, quota, persistence or badge-not-found semantics. Added a
+missing-configuration regression covering all four paths, no secret response
+leakage and no validator compute.28focused tests pass. Full83502verify passes.
+Hosted static327-page check83074 still running; no restart.
