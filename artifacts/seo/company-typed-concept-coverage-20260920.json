@@ -1,0 +1,4028 @@
+{
+  "schema": "canli.company-typed-concept-coverage.v1",
+  "publication_approved": false,
+  "source_companies": 2651,
+  "inputs": {
+    "summary": {
+      "path": "artifacts/seo/company-concept-coverage-summary-20260920.json",
+      "sha256": "24531ffaed3ed06b9b91d3c568eef8197752471780977c6b1d372959b4568efc"
+    },
+    "inventory": {
+      "path": "artifacts/seo/corpus-local/company-concept-coverage-inventory-20260920.json",
+      "sha256": "ea962be62f80f2237cafb216950286b0290da1c9fe5fd2c4fbdefb0fae375d28"
+    },
+    "taxonomy": {
+      "url": "https://xbrl.fasb.org/us-gaap/2026/elts/us-gaap-2026.xsd",
+      "sha256": "5df2d5054b8a37ef1a00bbbad621317833e7c2cb65a421a283128efbd707da7e",
+      "bytes": 4966701,
+      "fetched_at": "2026-09-19T14:12:33.927326+00:00",
+      "target_namespace": "http://fasb.org/us-gaap/2026",
+      "local_path": "artifacts/seo/corpus-local/taxonomy/us-gaap-2026.xsd",
+      "receipt_sha256": "1ba10791261c00dd2dcbb786add2536373b46d95d565e7ca2a5d03c2991fbcde"
+    },
+    "selector_sha256": "07da1f89de86247cd2d7cbe516fd5635f39bba7b088c75d216c45058b86333b1",
+    "selector_compatibility": {
+      "original_path": "artifacts/seo/corpus-local/typed-concept-review/inventory-selector.mjs",
+      "original_sha256": "01c3575b35043c4f7a8e26d6a0bb87c1e9529f74cd9e93ce3794447cf110c3f3",
+      "current_sha256": "07da1f89de86247cd2d7cbe516fd5635f39bba7b088c75d216c45058b86333b1",
+      "observation_and_dependency_block_sha256": "6a314ec11f45d4069cb27676eda5a09a67870ac66a047fcd6306b2feff0fbb01",
+      "byte_identical": true
+    },
+    "code_sha256": "1d90ccbcd9756209c69ad545ff21b0d2674be4575676d2fb4b45e61c6637ee19"
+  },
+  "rules": {
+    "minimum_reporting_ends": 3,
+    "minimum_distinct_values": 2,
+    "recent_window_days": 732,
+    "units_by_type": {
+      "xbrli:monetaryItemType": "USD",
+      "xbrli:sharesItemType": "shares",
+      "dtr-types:percentItemType": "pure"
+    },
+    "taxonomy_period_enforced": true
+  },
+  "reviewed_concepts": 94,
+  "recent_company_concept_pairs": 140596,
+  "concepts": [
+    {
+      "tag": "LiabilitiesAndStockholdersEquity",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 2550,
+      "companies_with_history": 2618,
+      "recent_companies": 2550,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 57,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of liabilities and equity items, including the portion of equity attributable to noncontrolling interests, if any."
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseRightOfUseAsset",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 2150,
+      "companies_with_history": 2237,
+      "recent_companies": 2150,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 35,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 8,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 8,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lessee's right to use underlying asset under operating lease."
+        }
+      ]
+    },
+    {
+      "tag": "CommonStockSharesIssued",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:sharesItemType",
+        "balance": null
+      },
+      "measured_unit": "shares",
+      "untyped_recent_companies": 2130,
+      "companies_with_history": 2276,
+      "recent_companies": 2130,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Total number of common shares of an entity that have been sold or granted to shareholders (includes common shares that were issued, repurchased and remain in the treasury). These shares represent capital invested by the firm's shareholders and owners, and may be all or only a portion of the number of shares authorized. Shares issued include shares outstanding and shares held in the treasury."
+        }
+      ]
+    },
+    {
+      "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 2128,
+      "companies_with_history": 2257,
+      "recent_companies": 2128,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 39,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 4,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of income (loss) from continuing operations, including income (loss) from equity method investments, before deduction of income tax expense (benefit), and income (loss) attributable to noncontrolling interest."
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseLiability",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 2073,
+      "companies_with_history": 2159,
+      "recent_companies": 2073,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 35,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 4,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Present value of lessee's discounted obligation for lease payments from operating lease."
+        }
+      ]
+    },
+    {
+      "tag": "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 2052,
+      "companies_with_history": 2197,
+      "recent_companies": 2052,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 36,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 11,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 6,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of cash and cash equivalents, and cash and cash equivalents restricted to withdrawal or usage. Excludes amount for disposal group and discontinued operations. Cash includes, but is not limited to, currency on hand, demand deposits with banks or financial institutions, and other accounts with general characteristics of demand deposits. Cash equivalents include, but are not limited to, short-term, highly liquid investments that are both readily convertible to known amounts of cash and so near their maturity that they present insignificant risk of changes in value because of changes in interest rates."
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDue",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 2009,
+      "companies_with_history": 2101,
+      "recent_companies": 2009,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 34,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lessee's undiscounted obligation for lease payment for operating lease."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxAssetsValuationAllowance",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 2003,
+      "companies_with_history": 2175,
+      "recent_companies": 2003,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 48,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 8,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 11,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 9,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of deferred tax assets for which it is more likely than not that a tax benefit will not be realized."
+        }
+      ]
+    },
+    {
+      "tag": "CommonStockValue",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1986,
+      "companies_with_history": 2170,
+      "recent_companies": 1986,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 56,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Aggregate par or stated value of issued nonredeemable common stock (or common stock redeemable solely at the option of the issuer). This item includes treasury stock repurchased by the entity. Note: elements for number of nonredeemable common shares, par value and other disclosure concepts are in another section within stockholders' equity."
+        }
+      ]
+    },
+    {
+      "tag": "CommonStockSharesOutstanding",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:sharesItemType",
+        "balance": null
+      },
+      "measured_unit": "shares",
+      "untyped_recent_companies": 1982,
+      "companies_with_history": 2146,
+      "recent_companies": 1982,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 0,
+      "examples": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 5,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "description": "Number of shares of common stock outstanding. Common stock represent the ownership interest in a corporation."
+        }
+      ]
+    },
+    {
+      "tag": "InterestPaidNet",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1969,
+      "companies_with_history": 2151,
+      "recent_companies": 1969,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 38,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 11,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 11,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 10,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of cash paid for interest, excluding capitalized interest, classified as operating activity. Includes, but is not limited to, payment to settle zero-coupon bond for accreted interest of debt discount and debt instrument with insignificant coupon interest rate in relation to effective interest rate of borrowing attributable to accreted interest of debt discount."
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityUndiscountedExcessAmount",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1964,
+      "companies_with_history": 2039,
+      "recent_companies": 1964,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 32,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lessee's undiscounted obligation for lease payments in excess of discounted obligation for lease payments for operating lease."
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueYearTwo",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1960,
+      "companies_with_history": 2051,
+      "recent_companies": 1960,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 32,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lessee's undiscounted obligation for lease payment for operating lease to be paid in second fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueNextTwelveMonths",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1955,
+      "companies_with_history": 2032,
+      "recent_companies": 1955,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 33,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 6,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lessee's undiscounted obligation for lease payment for operating lease to be paid in next fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxAssetsGross",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1933,
+      "companies_with_history": 2083,
+      "recent_companies": 1933,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 42,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 16,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 11,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount before allocation of valuation allowances of deferred tax asset attributable to deductible temporary differences and carryforwards."
+        }
+      ]
+    },
+    {
+      "tag": "EffectiveIncomeTaxRateReconciliationAtFederalStatutoryIncomeTaxRate",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "dtr-types:percentItemType",
+        "balance": null
+      },
+      "measured_unit": "pure",
+      "untyped_recent_companies": 1917,
+      "companies_with_history": 2036,
+      "recent_companies": 1917,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 43,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Percentage of domestic federal statutory tax rate applicable to pretax income (loss)."
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueYearThree",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1904,
+      "companies_with_history": 2003,
+      "recent_companies": 1904,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 32,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lessee's undiscounted obligation for lease payment for operating lease to be paid in third fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredIncomeTaxExpenseBenefit",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1897,
+      "companies_with_history": 2071,
+      "recent_companies": 1897,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 51,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 18,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of deferred income tax expense (benefit) pertaining to income (loss) from continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "AccumulatedOtherComprehensiveIncomeLossNetOfTax",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1873,
+      "companies_with_history": 2099,
+      "recent_companies": 1873,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 52,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 18,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Accumulated change in equity from transactions and other events and circumstances from non-owner sources, net of tax effect, at period end. Excludes Net Income (Loss), and accumulated changes in equity from transactions resulting from investments by owners and distributions to owners. Includes foreign currency translation items, certain pension adjustments, unrealized gains and losses on certain investments in debt and equity securities, other than temporary impairment (OTTI) losses related to factors other than credit losses on available-for-sale and held-to-maturity debt securities that an entity does not intend to sell and it is not more likely than not that the entity will be required to sell before recovery of the amortized cost basis, as well as changes in the fair value of derivatives related to the effective portion of a designated cash flow hedge."
+        }
+      ]
+    },
+    {
+      "tag": "ComprehensiveIncomeNetOfTax",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1866,
+      "companies_with_history": 2162,
+      "recent_companies": 1866,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 52,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 16,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount after tax of increase (decrease) in equity from transactions and other events and circumstances from net income and other comprehensive income, attributable to parent entity. Excludes changes in equity resulting from investments by owners and distributions to owners."
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseWeightedAverageDiscountRatePercent",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "dtr-types:percentItemType",
+        "balance": null
+      },
+      "measured_unit": "pure",
+      "untyped_recent_companies": 1865,
+      "companies_with_history": 1915,
+      "recent_companies": 1865,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 31,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Weighted average discount rate for operating lease calculated at point in time."
+        }
+      ]
+    },
+    {
+      "tag": "AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1860,
+      "companies_with_history": 2254,
+      "recent_companies": 1860,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 48,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of accumulated depreciation, depletion and amortization for physical assets used in the normal conduct of business to produce goods and services."
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueYearFour",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1811,
+      "companies_with_history": 1919,
+      "recent_companies": 1811,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 31,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 6,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lessee's undiscounted obligation for lease payment for operating lease to be paid in fourth fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseLiabilityCurrent",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1728,
+      "companies_with_history": 1800,
+      "recent_companies": 1728,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 29,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 5,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Present value of lessee's discounted obligation for lease payments from operating lease, classified as current."
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseLiabilityNoncurrent",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1727,
+      "companies_with_history": 1798,
+      "recent_companies": 1727,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 28,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 8,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Present value of lessee's discounted obligation for lease payments from operating lease, classified as noncurrent."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredFederalIncomeTaxExpenseBenefit",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1724,
+      "companies_with_history": 1845,
+      "recent_companies": 1724,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 14,
+      "examples": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "Amount of deferred federal income tax expense (benefit) pertaining to income (loss) from continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "CurrentStateAndLocalTaxExpenseBenefit",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1718,
+      "companies_with_history": 1805,
+      "recent_companies": 1718,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 11,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 3,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of current state and local tax expense (benefit) pertaining to income (loss) from continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "PropertyPlantAndEquipmentGross",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1714,
+      "companies_with_history": 2142,
+      "recent_companies": 1714,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 46,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount before accumulated depreciation, depletion and amortization of physical assets used in the normal conduct of business and not intended for resale. Examples include, but are not limited to, land, buildings, machinery and equipment, office equipment, and furniture and fixtures."
+        }
+      ]
+    },
+    {
+      "tag": "EffectiveIncomeTaxRateContinuingOperations",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "dtr-types:percentItemType",
+        "balance": null
+      },
+      "measured_unit": "pure",
+      "untyped_recent_companies": 1702,
+      "companies_with_history": 1785,
+      "recent_companies": 1702,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 35,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 11,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Percentage of current income tax expense (benefit) and deferred income tax expense (benefit) pertaining to continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "CurrentFederalTaxExpenseBenefit",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1700,
+      "companies_with_history": 1824,
+      "recent_companies": 1700,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 14,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of current federal tax expense (benefit) pertaining to income (loss) from continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueYearFive",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1692,
+      "companies_with_history": 1786,
+      "recent_companies": 1692,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 29,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 5,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lessee's undiscounted obligation for lease payment for operating lease to be paid in fifth fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredIncomeTaxLiabilities",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1691,
+      "companies_with_history": 1787,
+      "recent_companies": 1691,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 31,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 15,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 10,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of deferred tax liability attributable to taxable temporary differences."
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeasePayments",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1685,
+      "companies_with_history": 1768,
+      "recent_companies": 1685,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 34,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of cash outflow from operating lease, excluding payments to bring another asset to condition and location necessary for its intended use."
+        }
+      ]
+    },
+    {
+      "tag": "CurrentIncomeTaxExpenseBenefit",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1673,
+      "companies_with_history": 1836,
+      "recent_companies": 1673,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 46,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of current income tax expense (benefit) pertaining to taxable income (loss) from continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "IncomeTaxesPaidNet",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1653,
+      "companies_with_history": 1748,
+      "recent_companies": 1653,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 38,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 3,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 11,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The amount of cash paid during the current period to foreign, federal, state, and local authorities as taxes on income, net of any cash received during the current period as refunds for the overpayment of taxes."
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueAfterYearFive",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1602,
+      "companies_with_history": 1700,
+      "recent_companies": 1602,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 27,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 3,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lessee's undiscounted obligation for lease payment for operating lease due after fifth fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "IncomeTaxReconciliationIncomeTaxExpenseBenefitAtFederalStatutoryIncomeTaxRate",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1600,
+      "companies_with_history": 1694,
+      "recent_companies": 1600,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 39,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 14,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The amount of income tax expense or benefit for the period computed by applying the domestic federal statutory tax rates to pretax income from continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseCost",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1585,
+      "companies_with_history": 1658,
+      "recent_companies": 1585,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 34,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 6,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of single lease cost, calculated by allocation of remaining cost of lease over remaining lease term. Includes, but is not limited to, single lease cost, after impairment of right-of-use asset, calculated by amortization of remaining right-of-use asset and accretion of lease liability."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxAssetsOther",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1583,
+      "companies_with_history": 1819,
+      "recent_companies": 1583,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 40,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 15,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 5,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount, before allocation of valuation allowance, of deferred tax asset attributable to deductible temporary differences, classified as other."
+        }
+      ]
+    },
+    {
+      "tag": "Depreciation",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1573,
+      "companies_with_history": 1880,
+      "recent_companies": 1573,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 31,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "The amount of expense recognized in the current period that reflects the allocation of the cost of tangible assets over the assets' useful lives. Includes production and non-production related depreciation."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredStateAndLocalIncomeTaxExpenseBenefit",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1570,
+      "companies_with_history": 1671,
+      "recent_companies": 1570,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 10,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 3,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "Amount of deferred state and local tax expense (benefit) pertaining to income (loss) from continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "OtherAssetsNoncurrent",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1538,
+      "companies_with_history": 1710,
+      "recent_companies": 1538,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 37,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 19,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of noncurrent assets classified as other."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxAssetsNet",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1520,
+      "companies_with_history": 1814,
+      "recent_companies": 1520,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 44,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 9,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 4,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount after allocation of valuation allowances of deferred tax asset attributable to deductible temporary differences and carryforwards."
+        }
+      ]
+    },
+    {
+      "tag": "AmortizationOfIntangibleAssets",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1509,
+      "companies_with_history": 1835,
+      "recent_companies": 1509,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 42,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 16,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The aggregate expense charged against earnings to allocate the cost of intangible assets (nonphysical assets not used in production) in a systematic and rational manner to the periods expected to benefit from such assets. As a noncash expense, this element is added back to net income when calculating cash provided by or used in operations using the indirect method."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxAssetsOperatingLossCarryforwards",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1499,
+      "companies_with_history": 1773,
+      "recent_companies": 1499,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 42,
+      "examples": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 11,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 12,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "description": "Amount before allocation of valuation allowances of deferred tax asset attributable to deductible operating loss carryforwards."
+        }
+      ]
+    },
+    {
+      "tag": "EffectiveIncomeTaxRateReconciliationStateAndLocalIncomeTaxes",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "dtr-types:percentItemType",
+        "balance": null
+      },
+      "measured_unit": "pure",
+      "untyped_recent_companies": 1443,
+      "companies_with_history": 1500,
+      "recent_companies": 1443,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 23,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 6,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 17,
+          "latest_end": "2024-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Percentage of the difference between reported income tax expense (benefit) and expected income tax expense (benefit) computed by applying the domestic federal statutory income tax rates to pretax income (loss) from continuing operations applicable to state and local income tax expense (benefit), net of federal tax expense (benefit)."
+        }
+      ]
+    },
+    {
+      "tag": "UnrecognizedTaxBenefits",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1430,
+      "companies_with_history": 1593,
+      "recent_companies": 1430,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 32,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 3,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of unrecognized tax benefits."
+        }
+      ]
+    },
+    {
+      "tag": "RightOfUseAssetObtainedInExchangeForOperatingLeaseLiability",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1428,
+      "companies_with_history": 1571,
+      "recent_companies": 1428,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 29,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 5,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of increase in right-of-use asset obtained in exchange for operating lease liability."
+        }
+      ]
+    },
+    {
+      "tag": "IncreaseDecreaseInAccountsReceivable",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1423,
+      "companies_with_history": 1622,
+      "recent_companies": 1423,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 31,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 16,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The increase (decrease) during the reporting period in amount due within one year (or one business cycle) from customers for the credit sale of goods and services."
+        }
+      ]
+    },
+    {
+      "tag": "DepreciationDepletionAndAmortization",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1404,
+      "companies_with_history": 1761,
+      "recent_companies": 1404,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 30,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 18,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 19,
+          "latest_end": "2025-09-30"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The aggregate expense recognized in the current period that allocates the cost of tangible assets, intangible assets, or depleting assets to periods that benefit from use of the assets."
+        }
+      ]
+    },
+    {
+      "tag": "OtherNonoperatingIncomeExpense",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1385,
+      "companies_with_history": 1683,
+      "recent_companies": 1385,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 35,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 9,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of income (expense) related to nonoperating activities, classified as other."
+        }
+      ]
+    },
+    {
+      "tag": "IncomeTaxReconciliationStateAndLocalIncomeTaxes",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1384,
+      "companies_with_history": 1450,
+      "recent_companies": 1384,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 11,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 14,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of the difference between reported income tax expense (benefit) and expected income tax expense (benefit) computed by applying the domestic federal statutory income tax rates to pretax income (loss) from continuing operations attributable to state and local income tax expense (benefit)."
+        }
+      ]
+    },
+    {
+      "tag": "FiniteLivedIntangibleAssetsAccumulatedAmortization",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1359,
+      "companies_with_history": 1680,
+      "recent_companies": 1359,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 42,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 16,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Accumulated amount of amortization of assets, excluding financial assets and goodwill, lacking physical substance with a finite life."
+        }
+      ]
+    },
+    {
+      "tag": "AllocatedShareBasedCompensationExpense",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1349,
+      "companies_with_history": 1782,
+      "recent_companies": 1349,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 24,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "Amount of expense for award under share-based payment arrangement. Excludes amount capitalized."
+        }
+      ]
+    },
+    {
+      "tag": "ProfitLoss",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1345,
+      "companies_with_history": 1800,
+      "recent_companies": 1345,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 46,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 18,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 18,
+          "latest_end": "2025-09-30"
+        },
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The consolidated profit or loss for the period, net of income taxes, including the portion attributable to the noncontrolling interest."
+        }
+      ]
+    },
+    {
+      "tag": "FiniteLivedIntangibleAssetsAmortizationExpenseNextTwelveMonths",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1330,
+      "companies_with_history": 1598,
+      "recent_companies": 1330,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 37,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 14,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of amortization for assets, excluding financial assets and goodwill, lacking physical substance with finite life expected to be recognized in next fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "FiniteLivedIntangibleAssetsAmortizationExpenseYearTwo",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1325,
+      "companies_with_history": 1600,
+      "recent_companies": 1325,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 36,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 14,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of amortization for assets, excluding financial assets and goodwill, lacking physical substance with finite life expected to be recognized in second fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "OtherLiabilitiesNoncurrent",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1314,
+      "companies_with_history": 1493,
+      "recent_companies": 1314,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 33,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 14,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of liabilities classified as other, due after one year or the normal operating cycle, if longer."
+        }
+      ]
+    },
+    {
+      "tag": "FiniteLivedIntangibleAssetsAmortizationExpenseYearThree",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1306,
+      "companies_with_history": 1585,
+      "recent_companies": 1306,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 36,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 14,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of amortization for assets, excluding financial assets and goodwill, lacking physical substance with finite life expected to be recognized in third fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "IncreaseDecreaseInInventories",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1304,
+      "companies_with_history": 1483,
+      "recent_companies": 1304,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 30,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 18,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The increase (decrease) during the reporting period in the aggregate value of all inventory held by the reporting entity, associated with underlying transactions that are classified as operating activities."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxLiabilitiesPropertyPlantAndEquipment",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1303,
+      "companies_with_history": 1565,
+      "recent_companies": 1303,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 16,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 10,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of deferred tax liability attributable to taxable temporary differences from property, plant, and equipment."
+        }
+      ]
+    },
+    {
+      "tag": "FiniteLivedIntangibleAssetsAmortizationExpenseYearFour",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1277,
+      "companies_with_history": 1561,
+      "recent_companies": 1277,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 36,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 14,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of amortization for assets, excluding financial assets and goodwill, lacking physical substance with finite life expected to be recognized in fourth fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1263,
+      "companies_with_history": 1602,
+      "recent_companies": 1263,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 29,
+      "examples": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 17,
+          "latest_end": "2025-09-30"
+        },
+        {
+          "cik": "0000003453",
+          "source_sha256": "3e6a697ff210d1af84cae8d732d19785be30ee010b3bf72be79ee84f29a1ffcc",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "description": "Amount of increase to additional paid-in capital (APIC) for recognition of cost for award under share-based payment arrangement."
+        }
+      ]
+    },
+    {
+      "tag": "CommonStockSharesAuthorized",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:sharesItemType",
+        "balance": null
+      },
+      "measured_unit": "shares",
+      "untyped_recent_companies": 1250,
+      "companies_with_history": 1314,
+      "recent_companies": 1250,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 0,
+      "examples": [
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-27"
+        },
+        {
+          "cik": "0000003570",
+          "source_sha256": "684f04fe4f6954f73f43187b2ffc28ce84963e21731c2acd83d59c86282f0fb3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The maximum number of common shares permitted to be issued by an entity's charter and bylaws."
+        }
+      ]
+    },
+    {
+      "tag": "LeaseCost",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1248,
+      "companies_with_history": 1328,
+      "recent_companies": 1248,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 21,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 7,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 6,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of lease cost recognized by lessee for lease contract."
+        }
+      ]
+    },
+    {
+      "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesDomestic",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1234,
+      "companies_with_history": 1360,
+      "recent_companies": 1234,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 25,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 4,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The portion of earnings or loss from continuing operations before income taxes that is attributable to domestic operations."
+        }
+      ]
+    },
+    {
+      "tag": "FiniteLivedIntangibleAssetsAmortizationExpenseYearFive",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1230,
+      "companies_with_history": 1504,
+      "recent_companies": 1230,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 34,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 14,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of amortization for assets, excluding financial assets and goodwill, lacking physical substance with finite life expected to be recognized in fifth fiscal year following current fiscal year. Excludes interim and annual periods when interim periods are reported from current statement of financial position date (rolling approach)."
+        }
+      ]
+    },
+    {
+      "tag": "CurrentForeignTaxExpenseBenefit",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1228,
+      "companies_with_history": 1309,
+      "recent_companies": 1228,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 19,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of current foreign income tax expense (benefit) pertaining to income (loss) from continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:sharesItemType",
+        "balance": null
+      },
+      "measured_unit": "shares",
+      "untyped_recent_companies": 1193,
+      "companies_with_history": 1729,
+      "recent_companies": 1193,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 15,
+          "latest_end": "2025-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 14,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Securities (including those issuable pursuant to contingent stock agreements) that could potentially dilute basic earnings per share (EPS) or earnings per unit (EPU) in the future that were not included in the computation of diluted EPS or EPU because to do so would increase EPS or EPU amounts or decrease loss per share or unit amounts for the period presented."
+        }
+      ]
+    },
+    {
+      "tag": "AdditionalPaidInCapital",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1183,
+      "companies_with_history": 1464,
+      "recent_companies": 1183,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 32,
+      "examples": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000003499",
+          "source_sha256": "d6a17335bc2923657aeed802162404e4e0746fe690b1714e532614a444eabc7e",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "description": "Excess of issue price over par or stated value of the entity's capital stock and amounts received from other transactions involving the entity's stock or stockholders. Includes adjustments to additional paid in capital. Some examples of such adjustments include recording the issuance of debt with a beneficial conversion feature and certain tax consequences of equity instruments awarded to employees. Use this element for the aggregate amount of additional paid-in capital associated with common and preferred stock. For additional paid-in capital associated with only common stock, use the element additional paid in capital, common stock. For additional paid-in capital associated with only preferred stock, use the element additional paid in capital, preferred stock."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxLiabilitiesOther",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1152,
+      "companies_with_history": 1441,
+      "recent_companies": 1152,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 32,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 13,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 4,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of deferred tax liability attributable to taxable temporary differences classified as other."
+        }
+      ]
+    },
+    {
+      "tag": "EffectiveIncomeTaxRateReconciliationOtherAdjustments",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "dtr-types:percentItemType",
+        "balance": null
+      },
+      "measured_unit": "pure",
+      "untyped_recent_companies": 1150,
+      "companies_with_history": 1304,
+      "recent_companies": 1150,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 18,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 5,
+          "latest_end": "2025-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 18,
+          "latest_end": "2025-09-30"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Percentage of the difference between reported income tax expense (benefit) and expected income tax expense (benefit) computed by applying the domestic federal statutory income tax rates to pretax income (loss) from continuing operations attributable to other adjustments."
+        }
+      ]
+    },
+    {
+      "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesForeign",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1147,
+      "companies_with_history": 1225,
+      "recent_companies": 1147,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 25,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 4,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The portion of earnings or loss from continuing operations before income taxes that is attributable to foreign operations, which is defined as Income or Loss generated from operations located outside the entity's country of domicile."
+        }
+      ]
+    },
+    {
+      "tag": "IntangibleAssetsNetExcludingGoodwill",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1144,
+      "companies_with_history": 1442,
+      "recent_companies": 1144,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 38,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Sum of the carrying amounts of all intangible assets, excluding goodwill, as of the balance sheet date, net of accumulated amortization and impairment charges."
+        }
+      ]
+    },
+    {
+      "tag": "EmployeeRelatedLiabilitiesCurrent",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1142,
+      "companies_with_history": 1311,
+      "recent_companies": 1142,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 15,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "Total of the carrying values as of the balance sheet date of obligations incurred through that date and payable for obligations related to services received from employees, such as accrued salaries and bonuses, payroll taxes and fringe benefits. Used to reflect the current portion of the liabilities (due within one year or within the normal operating cycle if longer)."
+        }
+      ]
+    },
+    {
+      "tag": "PrepaidExpenseAndOtherAssetsCurrent",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1121,
+      "companies_with_history": 1274,
+      "recent_companies": 1121,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 22,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 5,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of asset related to consideration paid in advance for costs that provide economic benefits in future periods, and amount of other assets that are expected to be realized or consumed within one year or the normal operating cycle, if longer."
+        }
+      ]
+    },
+    {
+      "tag": "IncomeTaxReconciliationChangeInDeferredTaxAssetsValuationAllowance",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1120,
+      "companies_with_history": 1357,
+      "recent_companies": 1120,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 32,
+      "examples": [
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "reporting_ends": 11,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000003545",
+          "source_sha256": "950aef3ada1ebf5e02379b42085b99622b62664f678de311989a4ab86326ea90",
+          "reporting_ends": 6,
+          "latest_end": "2025-09-30"
+        },
+        {
+          "cik": "0000004281",
+          "source_sha256": "6492e3d33c64f39adc48757ccf5feff27df9c0e708b37bb641b251e9ff12eb59",
+          "reporting_ends": 3,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of the difference between reported income tax expense (benefit) and expected income tax expense (benefit) computed by applying the domestic federal statutory income tax rates to pretax income (loss) from continuing operations attributable to increase (decrease) in the valuation allowance for deferred tax assets."
+        }
+      ]
+    },
+    {
+      "tag": "IncomeTaxReconciliationOtherAdjustments",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1120,
+      "companies_with_history": 1292,
+      "recent_companies": 1120,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 26,
+      "examples": [
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 7,
+          "latest_end": "2024-12-28"
+        },
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000003453",
+          "source_sha256": "3e6a697ff210d1af84cae8d732d19785be30ee010b3bf72be79ee84f29a1ffcc",
+          "reporting_ends": 6,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of the difference between reported income tax expense (benefit) and expected income tax expense (benefit) computed by applying the domestic federal statutory income tax rates to pretax income (loss) from continuing operations attributable to other adjustments."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredForeignIncomeTaxExpenseBenefit",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1110,
+      "companies_with_history": 1203,
+      "recent_companies": 1110,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 17,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-27"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 18,
+          "latest_end": "2025-09-30"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "Amount of deferred foreign income tax expense (benefit) pertaining to income (loss) from continuing operations."
+        }
+      ]
+    },
+    {
+      "tag": "UnrecognizedTaxBenefitsIncreasesResultingFromCurrentPeriodTaxPositions",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1082,
+      "companies_with_history": 1333,
+      "recent_companies": 1082,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 23,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-27"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 18,
+          "latest_end": "2025-09-30"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "Amount of increase in unrecognized tax benefits resulting from tax positions that have been or will be taken in current period tax return."
+        }
+      ]
+    },
+    {
+      "tag": "AdditionalPaidInCapitalCommonStock",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1080,
+      "companies_with_history": 1340,
+      "recent_companies": 1080,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 30,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-27"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 18,
+          "latest_end": "2025-09-30"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Value received from shareholders in common stock-related transactions that are in excess of par value or stated value and amounts received from other stock-related transactions. Includes only common stock transactions (excludes preferred stock transactions). May be called contributed capital, capital in excess of par, capital surplus, or paid-in capital."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxLiabilities",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1070,
+      "companies_with_history": 1584,
+      "recent_companies": 1070,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 37,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 13,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 17,
+          "latest_end": "2025-09-30"
+        },
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "reporting_ends": 12,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount, after deferred tax asset, of deferred tax liability attributable to taxable differences without jurisdictional netting."
+        }
+      ]
+    },
+    {
+      "tag": "AccruedLiabilitiesCurrent",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1056,
+      "companies_with_history": 1305,
+      "recent_companies": 1056,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 28,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 18,
+          "latest_end": "2025-05-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Carrying value as of the balance sheet date of obligations incurred and payable, pertaining to costs that are statutory in nature, are incurred on contractual obligations, or accumulate over time and for which invoices have not yet been received or will not be rendered. Examples include taxes, interest, rent and utilities. Used to reflect the current portion of the liabilities (due within one year or within the normal operating cycle if longer)."
+        }
+      ]
+    },
+    {
+      "tag": "IncreaseDecreaseInPrepaidDeferredExpenseAndOtherAssets",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1053,
+      "companies_with_history": 1243,
+      "recent_companies": 1053,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 15,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "Amount of increase (decrease) in prepaid expenses, and assets classified as other."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredIncomeTaxLiabilitiesNet",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1046,
+      "companies_with_history": 1179,
+      "recent_companies": 1046,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 22,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 8,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 5,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount, after deferred tax asset, of deferred tax liability attributable to taxable differences with jurisdictional netting."
+        }
+      ]
+    },
+    {
+      "tag": "FiniteLivedIntangibleAssetsGross",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1046,
+      "companies_with_history": 1345,
+      "recent_companies": 1046,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 35,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 13,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-27"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount before amortization of assets, excluding financial assets and goodwill, lacking physical substance with a finite life."
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxAssetsLiabilitiesNet",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1040,
+      "companies_with_history": 1716,
+      "recent_companies": 1040,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 38,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 14,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount, after allocation of valuation allowances and deferred tax liability, of deferred tax asset attributable to deductible differences and carryforwards, without jurisdictional netting."
+        }
+      ]
+    },
+    {
+      "tag": "GeneralAndAdministrativeExpense",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1034,
+      "companies_with_history": 1234,
+      "recent_companies": 1034,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 31,
+      "examples": [
+        {
+          "cik": "0000003453",
+          "source_sha256": "3e6a697ff210d1af84cae8d732d19785be30ee010b3bf72be79ee84f29a1ffcc",
+          "reporting_ends": 7,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000003499",
+          "source_sha256": "d6a17335bc2923657aeed802162404e4e0746fe690b1714e532614a444eabc7e",
+          "reporting_ends": 17,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000003545",
+          "source_sha256": "950aef3ada1ebf5e02379b42085b99622b62664f678de311989a4ab86326ea90",
+          "reporting_ends": 17,
+          "latest_end": "2025-09-30"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "description": "The aggregate total of expenses of managing and administering the affairs of an entity, including affiliates of the reporting entity, which are not directly or indirectly associated with the manufacture, sale or creation of a product or product line."
+        }
+      ]
+    },
+    {
+      "tag": "ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsOutstandingNumber",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:sharesItemType",
+        "balance": null
+      },
+      "measured_unit": "shares",
+      "untyped_recent_companies": 1033,
+      "companies_with_history": 1738,
+      "recent_companies": 1033,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 0,
+      "examples": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 17,
+          "latest_end": "2025-09-30"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "Number of options outstanding, including both vested and non-vested options."
+        }
+      ]
+    },
+    {
+      "tag": "AllowanceForDoubtfulAccountsReceivableCurrent",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1029,
+      "companies_with_history": 1323,
+      "recent_companies": 1029,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 23,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 19,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 3,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "reporting_ends": 15,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of allowance for credit loss on accounts receivable, classified as current."
+        }
+      ]
+    },
+    {
+      "tag": "LongTermDebt",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1027,
+      "companies_with_history": 1534,
+      "recent_companies": 1027,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 35,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 18,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "reporting_ends": 13,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000003453",
+          "source_sha256": "3e6a697ff210d1af84cae8d732d19785be30ee010b3bf72be79ee84f29a1ffcc",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount, after unamortized (discount) premium and debt issuance costs, of long-term debt. Includes, but not limited to, notes payable, bonds payable, debentures, mortgage loans and commercial paper. Excludes capital lease obligations."
+        }
+      ]
+    },
+    {
+      "tag": "EffectiveIncomeTaxRateReconciliationChangeInDeferredTaxAssetsValuationAllowance",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "dtr-types:percentItemType",
+        "balance": null
+      },
+      "measured_unit": "pure",
+      "untyped_recent_companies": 1014,
+      "companies_with_history": 1178,
+      "recent_companies": 1014,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 8,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 3,
+          "latest_end": "2024-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 15,
+          "latest_end": "2024-12-31"
+        },
+        {
+          "cik": "0000003545",
+          "source_sha256": "950aef3ada1ebf5e02379b42085b99622b62664f678de311989a4ab86326ea90",
+          "reporting_ends": 5,
+          "latest_end": "2025-09-30"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "description": "Percentage of the difference between reported income tax expense (benefit) and expected income tax expense (benefit) computed by applying the domestic federal statutory income tax rates to pretax income (loss) from continuing operations attributable to changes in the valuation allowance for deferred tax assets."
+        }
+      ]
+    },
+    {
+      "tag": "IncreaseDecreaseInAccountsPayable",
+      "taxonomy": {
+        "period_type": "duration",
+        "type": "xbrli:monetaryItemType",
+        "balance": "debit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1010,
+      "companies_with_history": 1237,
+      "recent_companies": 1010,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 27,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "reporting_ends": 17,
+          "latest_end": "2026-05-31"
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "reporting_ends": 16,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "The increase (decrease) during the reporting period in the aggregate amount of liabilities incurred (and for which invoices have typically been received) and payable to vendors for goods and services received that are used in an entity's business."
+        }
+      ]
+    },
+    {
+      "tag": "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+      "taxonomy": {
+        "period_type": "instant",
+        "type": "xbrli:monetaryItemType",
+        "balance": "credit"
+      },
+      "measured_unit": "USD",
+      "untyped_recent_companies": 1009,
+      "companies_with_history": 1475,
+      "recent_companies": 1009,
+      "selector_error_companies": 0,
+      "companies_with_excluded_unit_rows": 44,
+      "examples": [
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "reporting_ends": 20,
+          "latest_end": "2025-12-31"
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "reporting_ends": 19,
+          "latest_end": "2025-09-30"
+        },
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "reporting_ends": 14,
+          "latest_end": "2025-12-31"
+        }
+      ],
+      "source_descriptions": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "description": "Amount of stockholders' equity (deficit), net of receivables from officers, directors, owners, and affiliates of the entity, attributable to both the parent and noncontrolling interests. Amount excludes temporary equity. Alternate caption for the concept is permanent equity."
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "left": "LiabilitiesAndStockholdersEquity",
+      "right": "Assets",
+      "companies_with_both": 2615,
+      "companies_with_three_shared_ends": 2615,
+      "full_value_history_equal_companies": 2013,
+      "shared_observations": 40751,
+      "equal_observations": 39931,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "shared": 17,
+          "equal": 15,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000001800",
+          "shared": 19,
+          "equal": 17,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000002098",
+          "shared": 16,
+          "equal": 16,
+          "full_value_history_equal": true
+        },
+        {
+          "cik": "0000002186",
+          "shared": 16,
+          "equal": 16,
+          "full_value_history_equal": true
+        },
+        {
+          "cik": "0000002488",
+          "shared": 17,
+          "equal": 17,
+          "full_value_history_equal": true
+        }
+      ]
+    },
+    {
+      "left": "CommonStockSharesIssued",
+      "right": "CommonStockSharesOutstanding",
+      "companies_with_both": 2019,
+      "companies_with_three_shared_ends": 2003,
+      "full_value_history_equal_companies": 651,
+      "shared_observations": 27901,
+      "equal_observations": 18676,
+      "examples": [
+        {
+          "cik": "0000002098",
+          "shared": 5,
+          "equal": 0,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000002186",
+          "shared": 16,
+          "equal": 7,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000002488",
+          "shared": 15,
+          "equal": 0,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000003197",
+          "shared": 11,
+          "equal": 11,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000003499",
+          "shared": 16,
+          "equal": 0,
+          "full_value_history_equal": false
+        }
+      ]
+    },
+    {
+      "left": "OperatingLeaseLiability",
+      "right": "LesseeOperatingLeaseLiabilityPaymentsDue",
+      "companies_with_both": 2016,
+      "companies_with_three_shared_ends": 2001,
+      "full_value_history_equal_companies": 0,
+      "shared_observations": 12728,
+      "equal_observations": 74,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "shared": 7,
+          "equal": 0,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000001800",
+          "shared": 7,
+          "equal": 0,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000002186",
+          "shared": 4,
+          "equal": 0,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000002488",
+          "shared": 7,
+          "equal": 0,
+          "full_value_history_equal": false
+        },
+        {
+          "cik": "0000002969",
+          "shared": 6,
+          "equal": 0,
+          "full_value_history_equal": false
+        }
+      ]
+    }
+  ],
+  "scope": "Offline coverage and numerical-overlap triage only. Taxonomy types do not establish source-tag scope, distinct reader value or editorial approval. Equal reported histories do not prove semantic equivalence. No new pages or publication policy."
+}
