@@ -545,3 +545,16 @@ share table itself, irrespective of net loss. Retain both distinctions; no value
 changes.33renderer/ledger tests pass and source report replays byte-identically.
 432reviewed/730pending/14withdrawn;72presentation-only. V18holds unchanged.
 No runtime rebuild, archival supplement, production deployment or indexing gain.
+
+## 2026-09-20 — preferred-dividend numerator and rounded note counts
+
+PR77passed four CI35533717524checks atd0d060bd; mergedccde4c02with exact tree
+6081e3734a2005459b5abb03c64095ba5ffba6db. Reviewed24Safe Bulkers/Ardelyx
+observations: preferred dividends reduce Safe Bulkers common-share numerator;
+explicit no-potential-dilution text retained. Ardelyx main statement has full
+scale0share counts whereas note56rounds to thousands; no substitution. Hypothetical
+treasury-stock additions remain excluded in loss periods.34renderer/ledger tests
+pass, report replays byte-identically, only24new transitions.456reviewed/706pending/
+14withdrawn;72presentation-only. Plastec legacyindex45needs separate original
+statement mapping. No runtime rebuild, archive supplement, deployment or indexing
+gain. All owner objectives remain active.
