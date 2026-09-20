@@ -89,7 +89,7 @@ def restore_check(archive, summary_path):
             if file_hash(path) != expected:
                 raise ValueError('Restored editorial scope differs: ' + report)
             scope_replays[report] = expected
-        if profile in ('five-cohort-v10', 'five-cohort-v11'):
+        if profile in ('five-cohort-v10', 'five-cohort-v11', 'five-cohort-v14'):
             env = Path(temp) / 'editorial-venv'
             subprocess.run([sys.executable, '-m', 'venv', str(env)], check=True, capture_output=True)
             python = str(env / 'bin/python')
@@ -106,7 +106,7 @@ def restore_check(archive, summary_path):
             if file_hash(output) != expected:
                 raise ValueError('Restored Birdie scope differs')
             scope_replays[report] = expected
-        if profile == 'five-cohort-v11':
+        if profile in ('five-cohort-v11', 'five-cohort-v14'):
             report = 'company-legacy-revenue-context-20260920.json'
             output = Path(temp) / report
             subprocess.run([python, 'scripts/review-legacy-revenue-context.py', str(output)],
@@ -115,6 +115,26 @@ def restore_check(archive, summary_path):
             if file_hash(output) != expected:
                 raise ValueError('Restored legacy revenue context differs')
             scope_replays[report] = expected
+        if profile == 'five-cohort-v14':
+            base = 'artifacts/seo/corpus-local/'
+            checks = [
+                ('review-basic-diluted-filings.py', [base + 'company-basic-diluted-targets-20260920.json'], base + 'company-basic-diluted-primary-review-20260920.json'),
+                ('review-basic-diluted-legacy.py', [base + 'company-basic-diluted-targets-20260920.json', base + 'company-basic-diluted-primary-review-20260920.json'], 'artifacts/seo/company-basic-diluted-legacy-review-20260920.json'),
+                ('review-varonis-unit-scope.py', [], 'artifacts/seo/company-varonis-unit-scope-20260920.json'),
+            ]
+            for script, inputs, report in checks:
+                output = Path(temp) / Path(report).name
+                subprocess.run([python, 'scripts/' + script, *inputs, str(output)], cwd=workspace, check=True, capture_output=True)
+                expected = file_hash(workspace / report)
+                if file_hash(output) != expected:
+                    raise ValueError('Restored context differs: ' + report)
+                scope_replays[Path(report).name] = expected
+            quality_output = Path(temp) / 'quality.json'
+            subprocess.run(['node', 'scripts/audit-company-selected-quality.mjs', str(local / 'company-five-cohort-delivery-v14'), str(quality_output)], cwd=workspace, check=True, capture_output=True)
+            quality = json.loads((workspace / 'artifacts/seo/company-five-cohort-v14-selected-quality-summary-20260920.json').read_bytes())
+            if file_hash(quality_output) != quality['full_report']['sha256']:
+                raise ValueError('Restored current quality audit differs')
+            scope_replays['company-five-cohort-selected-quality-v14-20260920.json'] = file_hash(quality_output)
         receipt = {'schema': 'canli.company-evidence-restore.v1', 'archive_sha256': summary['archive_sha256'],
                    'repository_revision': summary['metadata']['repository_revision'], 'restored_files': summary['files'],
                    'source_replays': reports, 'runtime_objects_replayed': replayed['objects'],
