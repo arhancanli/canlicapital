@@ -8,7 +8,7 @@ history/STATUS-20260920-through-fourth-v9.md; earlier history remains linked the
 ## Current checkout and releases
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch fix/company-storage-write-reconciliation-20260920. PR21 merged as9f1e607c;
+Branch fix/company-storage-stream-recovery-20260920. PR21 merged as9f1e607c;
 tree matches tested219a7205 and all four pre-merge CI jobs passed.
 PR22 merged as4337d655 after all four CI35511309210jobs passed; tested and
 merged trees match5e83e54c. It includes bounded read recovery and hosted audit.
@@ -166,7 +166,7 @@ intact. Current change verifies bytes after ambiguous create failures; an explic
 writeAttempts=2 permits one further create-only request only after absence, with
 a global10retry budget. Default remains one write attempt. Permission failures,
 rate limits and corruption never trigger another write. Sixteen storage tests pass.
-No uploader is running at this checkpoint; next resume must use a fresh receipt.
+Resume4 is active; exact handle and latest checkpoint are recorded below.
 
 
 Isolated preview at9f1e607c is READY:
@@ -186,3 +186,23 @@ Verified candidate inventory across three batches:3,323unique company pages and
 67directory pages and90,738total candidate URLs. The combined catalog is not yet
 built; counts include existing pilot overlaps and are not new live/indexed pages.
 company-expansion-candidate-counts-20260920.json binds all three manifests.
+
+PR23merged as1811814b647fedbbef7639ea96fa0ae670c3992a after all four
+CI35511895380jobs passed at ac2584c1. Both trees match
+2b9774a5f96274c724a705004859078d6f7c117a; post-merge checks pending.
+Resume4session65658is confirmed active, using ac2584c1 with concurrency4,
+readAttempts3/writeAttempts2. Receipt:
+corpus-local/company-three-cohort-remote-transfer-resume4-20260920.json.
+Latest checkpoint612verified objects/44,466,024bytes, no recovery events or
+failures. Poll this exact handle before treating it as stopped or restarting.
+Production remains unchanged; hosted successful-data checks await full transfer.
+
+Resume4session65658is now terminal exit1 after695verified objects. The failure
+was a response-body ECONNRESET, outside the earlier request-header retry catch.
+The preserved stop receipt records exact bytes and prior successful read recovery.
+Current fix applies bounded retry classification to interrupted successful bodies,
+discards partial bytes, and refuses retries for broken401/403/429or ambiguous400
+responses. Eighteen storage tests pass. No uploader is active at this checkpoint.
+In parallel,17older primary filings for two cash histories were captured. Initial
+inline comparison leaves18historical observations for XML review; source work
+remains separate from publication and current runtime objects are unchanged.
