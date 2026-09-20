@@ -1,0 +1,47 @@
+{
+  "schema": "canli.eventiko-equal-history-scope.v1",
+  "publication_approved": false,
+  "comparisons": [
+    {
+      "path": "artifacts/seo/company-eventiko-history-review-20260920.json",
+      "sha256": "364a4f4c561d9adeccf2e5a280272d86877d615266d202b7756c91dffeafc1d9"
+    },
+    {
+      "path": "artifacts/seo/company-equal-history-retained-review-20260920.json",
+      "sha256": "9e8e11a03b86bf08e0d1633cf21ea7897ef0b4d3b055553da07ee4e1be2f09a2"
+    }
+  ],
+  "cik": "0001816554",
+  "reviewed_observations": 8,
+  "reporting_ends": [
+    "2022-04-30",
+    "2023-04-30",
+    "2024-04-30",
+    "2025-04-30"
+  ],
+  "findings": [
+    "Both selected histories reproduce all four reporting instants in three retained primary filings.",
+    "The 2023 balance sheet presents Website Development and Total Fixed Assets at11,000, and a separate Accounts Payable line at11,000; 2022,2024,2025 selected amounts are zero.",
+    "Matching values therefore do not establish interchangeable accounting measures. Asset and liability lines are separately presented.",
+    "Related-party loans and total current liabilities remain nonzero. Do not equate zero accounts payable with zero liabilities.",
+    "The asset line is website development under fixed assets; preserve this company-specific scope rather than imply physical productive assets."
+  ],
+  "primary_filings": [
+    {
+      "accession": "0001683168-23-003970",
+      "sha256": "c3f536ade64e26ad78d1dd576312af1056b1c0c22e228d6a4fab953ad3b3437f",
+      "url": "https://www.sec.gov/Archives/edgar/data/1816554/000168316823003970/eventiko_10k-043023.htm"
+    },
+    {
+      "accession": "0001683168-24-005079",
+      "sha256": "6fe5b837f7e14ce4adcb06dcd7fe1b173b0a65a07cc64c119389dbe2a0ef497a",
+      "url": "https://www.sec.gov/Archives/edgar/data/1816554/000168316824005079/eventiko_i10k-043024.htm"
+    },
+    {
+      "accession": "0001683168-25-005216",
+      "sha256": "a323567dab1aa90d3780b968367c58dd07c8479204ee53ce0d53b3bf492ab319",
+      "url": "https://www.sec.gov/Archives/edgar/data/1816554/000168316825005216/eventiko_i10k-043025.htm"
+    }
+  ],
+  "scope": "Limited to selected AccountsPayableCurrent/PropertyPlantAndEquipmentNet histories and table context. No company-wide quality admission or automatic publication; reader usefulness and appropriate explanatory copy remain open."
+}

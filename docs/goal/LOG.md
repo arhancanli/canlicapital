@@ -523,3 +523,16 @@ EVENTIKO2024–2025 separate zero payable/fixed-asset lines with nonzero related
 loans. Website Development appears in fixed assets; earlier11,000values remain
 outside this primary comparison. Limited scope notes retained, no broad approval.
 Bulk26312 polled live;3914objects/0failures at checkpoint.
+
+## 2026-09-20 — historical acquisition and EVENTIKO scope completion
+
+Previous turn reproduced212retained observations and documented gaps. PR32 checks
+pass at144cd463. Prepared full159missing-filing acquisition queue without dropping
+observations; legacy latest_selected_accession field explicitly means exact target,
+not latest company filing. Paced session43531 active; unchanged403/429stop rules.
+First EVENTIKO captures close4additional selected observations. All8selected values
+across2022–2025 now reproduce in3primary filings:2023Website Development/Total Fixed
+Assets11,000 and separateAccounts Payable11,000, other selected instants zero.
+Nonzero related-party liabilities are separately disclosed. Scope notes preserve
+these distinctions; no automatic deduplication, company-wide admission or release.
+Bulk26312live;4074objects/0failures at checkpoint. Full historical capture unfinished.

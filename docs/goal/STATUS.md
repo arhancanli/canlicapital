@@ -21,7 +21,7 @@ concurrency4, readAttempts3, writeAttempts2, total read budget200/write budget50
 Per-object limits, permission/rate-limit/corruption stops, exact-byte verification
 and create-only reconciliation remain enforced. Twenty storage/planner tests pass.
 Receipt: corpus-local/company-five-cohort-transfer-20260920.json.
-Latest observed checkpoint: 3914 verified objects, 0 failures. Session26312 was polled live this turn.
+Latest observed checkpoint: 4074 verified objects, 0 failures. Session26312 was polled live this turn.
 Poll exact handle before restarting. Prior v3resume5session23870 is terminal after
 1,721objects/126,028,025bytes; receipt and failures preserved. Do not restart oldv3.
 Full transfer and page activation remain incomplete. Separate representative
@@ -150,7 +150,20 @@ Two limited primary-table interpretations retained for3M2023–2025and
 EVENTIKO2024–2025; no all-history source/admission claim. See company-equal-history-
 {retained-targets,retained-review,scope-notes}-20260920.json.
 
-Next: review the remaining primary contexts and missing historical filings; complete bulk transfer and full-corpus
+Missing historical capture session43531 is active, using existing paced
+capture-company-editorial-filings.py with unchanged403/429stop/no-retry behavior.
+Targets company-equal-history-capture-targets-20260920.json bind all159filings/
+398observations (385concept/accession targets). Partial receipt in corpus-local/
+company-equal-history-capture-20260920.json; exact handle must be polled.
+EVENTIKO first two historical captures complete and4additional observations match.
+Together with prior4, all8selected observations across4reporting dates/3filings
+are numerically and context reviewed for this pair. Separate11,000asset and payable
+lines are explicit; fixed assets list website development. Not interchangeable
+concepts or evidence of zero total liabilities. Scope receipt company-eventiko-
+history-scope-20260920.json; reader usefulness/copy and admission still pending.
+PR32 CI35516294193 passed all four checks at144cd463 before current additions.
+
+Next: finish capture and review remaining primary contexts; complete bulk transfer and full-corpus
 checks plus remaining editorial/admission work before production activation.
 The owner's publication approval persists. The prior 1–3day estimate and possible
 first batch tonight were provisional, not measured forecasts or release promises.
