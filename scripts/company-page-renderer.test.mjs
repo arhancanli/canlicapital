@@ -11,6 +11,28 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
+test('predecessor opening balance keeps its original unit and date with precise context', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/sofi-predecessor-reviewed-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0001818874', fetchedAt: '2026-09-19T11:21:38.728Z', selectionPolicy: 'extended-v15' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record);
+  const rows = record.concepts.find(c => c.tag === 'StockholdersEquity').observations;
+  assert.equal(rows.filter(r => r.unit === 'USN').length, 1);
+  assert.ok(rows.some(r => r.unit === 'USN' && r.val === 0 && r.end === '2020-07-09'));
+  assert.ok(rows.some(r => r.unit === 'USD'));
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  for (const target of ['StockholdersEquity', 'overview']) {
+    const html = renderCompanyPages(record, { target })[0].html;
+    assert.match(html, /Social Capital Hedosophia Holdings Corp. V/);
+    assert.match(html, /end of July 9 is the same boundary as the start of July 10/);
+    assert.match(html, /fund code distinct from USD/);
+    assert.match(html, /does not explain that unit choice/);
+    assert.match(html, /tm2113577d1_10ka.htm/);
+  }
+  assert.deepEqual(record.concepts, original.concepts);
+  assert.equal(companyFilingNotes(record, 'Revenues').length, 0);
+});
+
 test('TECHCOM retains reported totals and renders the precision caveat against actual captured facts', () => {
   const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/techcom-reviewed-source.json.gz', import.meta.url)));
   const record = companyReference(raw, { expectedCik: '0001481443', fetchedAt: '2026-09-20T09:08:57.187Z', selectionPolicy: 'extended-v13' });
@@ -39,7 +61,7 @@ test('filing context requires the reviewed issuer, snapshot and all reviewed obs
     assert.equal(companyFilingNotes(record, 'Assets').length, 0);
     for (const key of ['start', 'end', 'unit', 'val', 'accn']) {
       const changed = structuredClone(record);
-      changed.concepts[1].observations[0][key] = key === 'val' ? -1 : 'changed';
+      changed.concepts[0].observations[0][key] = key === 'val' ? -1 : 'changed';
       assert.equal(companyFilingNotes(changed, note.tags[0]).length, 0);
     }
   }

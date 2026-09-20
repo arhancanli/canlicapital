@@ -8,7 +8,7 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/currency-context-20260920`. PR51 merged9ea2b5aa; currency review below.
+`evidence/predecessor-opening-context-20260920`. PR52 mergeda7ffd485; predecessor context below.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
@@ -17,9 +17,9 @@ rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
 comparison64980completed exit0. Combined v14pipeline16429 and current quality audit40310completed exit0; no uploader.
-Next: verify updated PR52 exact-head CI; finish SoFi
-predecessor opening-balance interpretation,
-remaining basic/diluted source coverage and corpus scope/usefulness flags, then complete hosted
+Next: archive the new currency/standards evidence and verify predecessor-note CI;
+continue remaining basic/diluted source coverage and corpus scope/usefulness flags,
+then rebuild the v15runtime and complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
 Priority queue closure alone is not whole-corpus admission.
@@ -314,3 +314,30 @@ PR52 original evidence-only head9d1f54e8 passed four checks in35526616925;
 updated policy head needs fresh CI. Currency reports remain historical evidence
 whose descriptions of pending implementation are superseded here. SoFi context,
 broader editorial review, new runtime/archival build and hosted gates remain open.
+
+## Predecessor opening-balance context
+
+PR52 mergeda7ffd4852e912f2206d58adb59ef4992d08fed35 after all four checks
+in35526857810passed atc42d4bff290a859713ea50f2150e5340e00922ea.
+Tested/merged trees e2fabf8e2cf5b25b3accf9a2f6c8f20ce6d0f8cc.
+Previous goal turn implemented v15 and verified all3,323company transitions.
+
+SoFi predecessor zero equity reviewed with explicit limitation: XML instant
+2020-07-09denotes midnight at the start of July10, matching the primary inception
+opening balance. Original issuer is Social Capital Hedosophia Holdings Corp.V.
+Captured XBRL International date guidance and SIX ISO4217list (published2026-09-17)
+confirm date semantics and USN as a defined US Dollar (Next day) fund code.
+Neither source certifies why this issuer used USN for equity. Retain zero/date/unit
+separately from USD with that caveat; no correction, conversion or full admission.
+Standards capture35523terminal0; bodies and receipts remain locally retained.
+Firecrawl CLI unavailable; web tool located primary standards; XML fetched directly
+after web tool reported unsupported content type. No access-control bypass.
+
+New source-bound notice appears on equity history and overview only; actual
+captured-source regression plus existing renderer tests12/12pass. Generic stale
+context test now supports one-observation notes. Review report
+company-predecessor-opening-context-20260920.json independently replays byte-for-byte.
+Source fixture committed; full currency/standards archive not yet sealed. All three
+specific currency targets now have dispositions (two exact holds, one contextual
+retention). Broader editorial, rebuilt runtime, hosted/production and all long-term
+owner outcomes remain open. No active collector, uploader or indexing gain.
