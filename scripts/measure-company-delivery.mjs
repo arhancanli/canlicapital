@@ -7,6 +7,7 @@ import { gunzipSync } from 'node:zlib';
 import { companyPreviewServer } from './lib/company-preview-server.mjs';
 import { catalogHash } from '../api/_lib/company-catalog.js';
 import { verifyCompanyReference } from './lib/company-reference.mjs';
+import { referenceCrawlGraph } from './lib/reference-crawl-graph.mjs';
 const [catalogDir, deliveryDir, distDir, output, discoveryDir] = process.argv.slice(2);
 if (!output) throw new Error('Usage: node scripts/measure-company-delivery.mjs CATALOG DELIVERY DIST REPORT [DISCOVERY]');
 const app = await companyPreviewServer({ catalogDir, deliveryDir, distDir, discoveryDir });
@@ -16,7 +17,7 @@ const report = { schema: 'canli.company-delivery-measurement.v1', publication_ap
 const durations = [];
 const assets = new Set();
 const served = new Set();
-const edges = new Map();
+const graph = referenceCrawlGraph();
 async function page(path) {
   const start = performance.now(), response = await fetch(base + path), html = await response.text();
   durations.push(performance.now() - start);
@@ -24,11 +25,11 @@ async function page(path) {
   assert.ok(html.includes(`rel="canonical" href="https://canlicapital.com${path}"`));
   assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
   assert.ok(!html.includes('/css/paper.css'));
-  for (const match of html.matchAll(/(?:src|href)="(\/assets\/[^"?]+)"/g)) assets.add(match[1]);
+  for (const match of html.matchAll(/(?:src|href)="(\/assets\/[^"?]+)"/g)) assets.add(Buffer.from(match[1]).toString());
   report.maxHtmlBytes = Math.max(report.maxHtmlBytes, Buffer.byteLength(html));
   assert.ok(Buffer.byteLength(html) <= 256 * 1024);
   served.add("https://canlicapital.com" + path);
-  edges.set(path, [...html.matchAll(/href="(\/companies(?:\/[^"#?]*)?)"/g)].map(match => match[1]));
+  graph.recordPage(path, [...html.matchAll(/href="(\/companies(?:\/[^"#?]*)?)"/g)].map(match => match[1]));
   return html;
 }
 try {
@@ -48,6 +49,7 @@ try {
       assert.equal(structured[0]['@type'], 'Dataset'); assert.equal(structured[0].creator.name, record.name);
       if (tag) report.histories++; else report.companies++;
     }
+    if (report.companies % 100 === 0) console.log(JSON.stringify({ companies: report.companies, histories: report.histories, heapUsed: process.memoryUsage().heapUsed, crawlGraph: graph.stats() }));
   }
   const found = new Set();
   for (let i = 1; i <= app.directoryPages; i++) {
@@ -76,12 +78,10 @@ try {
     assert.deepEqual([...urls].sort(), [...served].sort());
     report.sitemapHttpUrls = urls.length;
   }
-  const depth = new Map([['/companies', 0]]), queue = ['/companies'];
-  for (let i = 0; i < queue.length; i++) for (const child of edges.get(queue[i]) ?? []) {
-    if (edges.has(child) && !depth.has(child)) { depth.set(child, depth.get(queue[i]) + 1); queue.push(child); }
-  }
-  assert.equal(depth.size, served.size, 'Orphan reference page');
-  report.maxClicksFromCompanyDirectory = Math.max(...depth.values());
+  const reachability = graph.reachableFrom('/companies');
+  assert.equal(reachability.pages, served.size, 'Orphan reference page');
+  report.maxClicksFromCompanyDirectory = reachability.maxDepth;
+  report.crawlGraph = graph.stats();
   report.referencePages = report.companies + report.histories + report.directories;
   report.assets = assets.size; report.catalog = app.catalog.stats();
   report.downloadIndex = app.downloadIndex.stats();
@@ -90,5 +90,5 @@ try {
   durations.sort((a, b) => a - b); report.localHtmlMedianMs = durations[Math.floor(durations.length / 2)]; report.localHtmlP95Ms = durations[Math.floor(durations.length * .95)];
 } catch (error) { report.failures.push(error.stack); process.exitCode = 1; }
 finally { app.server.closeAllConnections(); await new Promise(resolve => app.server.close(resolve)); }
-report.code = Object.fromEntries(['scripts/measure-company-delivery.mjs', 'scripts/lib/company-preview-server.mjs', 'scripts/lib/company-page-renderer.mjs', 'api/_lib/company-html.js', 'api/_lib/company-download-index.js', 'api/_lib/company-download.js', 'scripts/lib/build-company-download-index.mjs', 'api/_lib/company-directory-html.js', 'scripts/lib/company-directory.mjs', 'api/_lib/company-catalog.js'].map(path => [path, catalogHash(readFileSync(path))]));
+report.code = Object.fromEntries(['scripts/measure-company-delivery.mjs', 'scripts/lib/reference-crawl-graph.mjs', 'scripts/lib/company-preview-server.mjs', 'scripts/lib/company-page-renderer.mjs', 'api/_lib/company-html.js', 'api/_lib/company-download-index.js', 'api/_lib/company-download.js', 'scripts/lib/build-company-download-index.mjs', 'api/_lib/company-directory-html.js', 'scripts/lib/company-directory.mjs', 'api/_lib/company-catalog.js'].map(path => [path, catalogHash(readFileSync(path))]));
 writeFileSync(resolve(output), JSON.stringify(report, null, 2) + '\n'); console.log(JSON.stringify(report, null, 2));

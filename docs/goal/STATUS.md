@@ -9,14 +9,29 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/runtime-v22-20260921`. PR117 merged as
-`bd211f950ab1c317ea8a23915e338302f871d0ea` after all four checks in CI35542042146
-passed at0c216a1f. Tested and merged tree053545bbabd9cd80865e700ce159f2d9c2aa762d
-match. The local v22 runtime build and inventory verification are complete.
+`evidence/runtime-v22-browser-20260921`. PR118 merged as
+`4371292467702019b988c65bf910cd66a80e19fc` after all four checks in CI35542487234
+passed at99993be0. Tested/merged tree1b57f7c9ab3e943d97ad8bdea2096e8bff937269 matches.
 
-Active process: full local HTTP measurement **31666** (PID22415 at the last check).
-Poll that handle. It is not a completed audit and must not be restarted on timeout.
-Expected report: company-five-cohort-v22-http-measurement-20260921.json.
+Initial full HTTP audit31666 is TERMINAL134: Node heap exhausted at about4GB.
+Failure log and hashed failure receipt are retained; no successful audit report.
+The audit retained regex-derived paths in an all-page graph. Updated audit interns
+copied paths, stores deduplicated numeric edges, and reports progress every100
+companies. Two graph tests cover reachability, shortest paths, cycles, orphans,
+unrendered links and repeated-link storage; tests added to CI. No page checks removed.
+
+Active process: HTTP retry **13997**, output /tmp/canli-http-v22-retry.log. At the
+last progress check,200 companies/5,387 histories, heap60,694,368bytes. Poll exact
+handle; do not restart on timeout. Expected successful report remains
+company-five-cohort-v22-http-measurement-20260921.json. Audit is not yet passed.
+
+Representative browser audit54972 TERMINAL0:40 Chromium/WebKit cases at390/1440px
+passed, including source notes, canonical/breadcrumb/developer links, layout and
+two absent Iovance-history404s per viewport/engine. Original report and script retained.
+Manual mobile screenshot review found excessive repetition of14Iovance withholding
+notices; group/reduce repetition while preserving exact facts/source links before
+release. Do not edit the renderer while the current audit is running, since its
+report hashes must refer to the code actually exercised.
 
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
 Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly
@@ -63,7 +78,7 @@ The storage plan contains10,360 immutable objects totaling1,280,333,696 bytes.
 Five stage jobs, combination68103, catalog90535, quality42445, release26878,
 discovery29316, storage18544 and app build51617 all finished with exit0.
 
-Next: finish HTTP audit31666, investigate failures if any, complete current runtime
+Next: finish HTTP retry13997, investigate failures if any, complete current runtime
 retention and hosted delivery gates. Broader source/usefulness work remains open.
 No production deployment or confirmed indexing gain.
 
