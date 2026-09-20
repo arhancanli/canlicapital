@@ -1,0 +1,75 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0000805928",
+      "accession": "0000805928-26-000031",
+      "source_sha256": "29281722969dbfb4cc01c6baf71eff40590d14112b001ef6d315188df64177e1",
+      "primary_sha256": "5a59358b9b2e3e161a4ff7e823b63056f75c495867c6d61d3a57d011d332f8cc",
+      "fixture": "scripts/fixtures/editorial/axogen-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 36,
+      "share_scale": "0",
+      "table_requires": [
+        "(in thousands, except share and per share amounts)"
+      ],
+      "paragraph_requires": [
+        "Diluted net loss per share is the same as basic net loss per common share for all periods presented"
+      ],
+      "reader_note": "For 2023\u20132025, Axogen reports equal basic and diluted net loss per share because potentially dilutive securities would be anti-dilutive. Its EPS note identifies stock options, restricted stock units and performance stock units, and separately lists excluded share equivalents. Shares and per-share amounts are exempt from the thousands heading. Excluded potential shares are not added to the reported denominator, and basic and diluted denominators should not be added together.",
+      "disposition": "REVIEWED_LOSS_PERIOD_DILUTION_AND_SHARE_SCALE"
+    },
+    {
+      "cik": "0000818033",
+      "accession": "0001193125-26-073515",
+      "source_sha256": "8fd25ff077a16f81184199b9f7eb0d0d01ac0f8ba4c3b98a3b2cdfc2ad777b2a",
+      "primary_sha256": "99a6f9b322628e8c3106b73efdb6366ae74e83d5b3e30801190e19f8b96a8fd5",
+      "fixture": "scripts/fixtures/editorial/heron-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 12,
+      "share_scale": "3",
+      "table_requires": [
+        "Shares used in computing basic and diluted net loss per share"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except per share amounts)",
+        "Because we have incurred a net loss for all periods presented"
+      ],
+      "reader_note": "For 2023\u20132025, Heron excludes common stock equivalents from loss per share because their effect would be anti-dilutive. The statement presents weighted-average shares in thousands and its inline facts encode scale three; these pages retain the resulting share counts. Per-share figures are exempt from that scale. Basic and diluted measures retain distinct definitions; matching denominators should not be added.",
+      "disposition": "REVIEWED_LOSS_PERIOD_DILUTION_AND_SHARE_SCALE"
+    },
+    {
+      "cik": "0000839470",
+      "accession": "0001104659-26-032111",
+      "source_sha256": "9224e7b1d003dfd5559a90ed7db1b130daa19bb64307ecc23005b8a8a86b1877",
+      "primary_sha256": "bc3cee29d017f950b3faa23087594362fa68c70bbcb858f343cd6e314b23ac62",
+      "fixture": "scripts/fixtures/editorial/westwater-reviewed-source.json.gz",
+      "observations": 8,
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 115,
+      "share_scale": "0",
+      "table_requires": [
+        "BASIC AND DILUTED LOSS PER SHARE"
+      ],
+      "paragraph_requires": [
+        "(expressed in thousands of dollars, except share and per share amounts)",
+        "potentially dilutive shares, comprised of unvested RSUs"
+      ],
+      "reader_note": "For 2024\u20132025, Westwater excludes potentially dilutive shares associated with unvested restricted stock units, stock options and convertible notes because their effect on loss per share would be anti-dilutive. The disclosed potential shares at period end are not weighted-average shares used in EPS. Shares and per-share amounts are exempt from the statement\u2019s thousands heading. The reported denominators are retained without adding excluded potential shares or adding basic and diluted counts.",
+      "disposition": "REVIEWED_LOSS_PERIOD_DILUTION_AND_SHARE_SCALE"
+    }
+  ]
+}

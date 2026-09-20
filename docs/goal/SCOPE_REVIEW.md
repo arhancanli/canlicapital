@@ -35,3 +35,11 @@ production or approve full histories, issuers or the corpus. The initial registe
 output exactly matches every row and count in the frozen v6ledger. Historical
 version-specific scripts remain available for their original reproductions; do not
 copy another one for each future review batch.
+
+For filings with fully inspected statement and disclosure requirements, retain a
+versioned `canli.reviewed-share-context-spec.v1` JSON file. Replay it using
+`scripts/review-share-context-spec.py SPEC.json OUTPUT.json`. The spec pins the
+primary/source hashes, exact periods, observation count, table, required text,
+share scale and reader explanation. It records a completed review, not a rule
+that automatically approves new filings with matching keywords. The first such
+spec is `config/company-loss-context-batch2-20260920.json`.

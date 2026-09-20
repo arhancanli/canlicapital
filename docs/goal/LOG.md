@@ -308,3 +308,16 @@ ledger reads tracked inputs and reproduces every1176v6row, evidence link and cou
 Four tests cover exact corpus equivalence, deterministic gzip, limited status retention,
 duplicate/stale/misattributed evidence and hold conflicts; added to routine verification.
 Documented source-review workflow in SCOPE_REVIEW.md. No deployment/indexing claim.
+
+## 2026-09-20 — three loss-period filings through the review registry
+
+PR65merged3bba67c9after four passing CI35530559713checks and exact tested/merged
+treee441f944b3d3073544c75e7ba1d9e8a0a14d6a0c. Reviewed32Axogen/Heron/Westwater
+observations against original statement and EPS policies. Heronshares correctly
+encode scale3; Axogen/Westwater exempt shares from thousands. Potential shares
+remain separate from selected weighted-average denominators. Added declarative
+review specifications and reusable replay helper; source-bound notes retain values.
+22renderer/ledger tests pass. Report replays byte-identically, ledger deterministic;
+comparison to frozen v6proves only32new review states/evidence links change.
+Current106reviewed (24presentation-only),1,062pending,8withdrawn. No new runtime,
+archive, deployment or indexing gain. Entire owner objective remains active.
