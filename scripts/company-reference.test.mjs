@@ -202,3 +202,16 @@ test('v7 requires source-bound Livento scope evidence and preserves v6', () => {
   verifyCompanyReference(companyReference(raw, { ...options, selectionPolicy: 'extended-v6' }), raw);
   assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v7' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
 });
+
+
+test('v8 requires new source reviews for narrower zero-revenue claims and preserves v7', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const source = JSON.parse(gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))));
+  for (const [cik, tag] of [['0001551182', 'Revenues'], ['0001477845', 'RevenueFromContractWithCustomerExcludingAssessedTax'], ['0001598646', 'RevenueFromContractWithCustomerExcludingAssessedTax']]) {
+    source.cik = Number(cik);
+    source.facts['us-gaap'][tag] = { units: { USD: [2021, 2022, 2023].map(year => ({ ...row, start: `${year}-01-01`, end: `${year}-12-31`, val: 0 })) } };
+    const raw = JSON.stringify(source), options = { fetchedAt: record.fetched_at, expectedCik: cik };
+    verifyCompanyReference(companyReference(raw, { ...options, selectionPolicy: 'extended-v7' }), raw);
+    assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v8' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  }
+});

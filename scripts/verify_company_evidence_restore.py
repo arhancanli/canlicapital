@@ -75,8 +75,10 @@ def restore_check(archive, summary_path):
                 ('review-fourth-zero-scope.py', 'company-fourth-zero-dispositions-20260920.json'),
                 ('review-novagold-revenue-scope.py', 'company-fourth-novagold-disposition-20260920.json'),
             ]
-        elif profile == 'fifth-cohort-v7':
+        elif profile in ('fifth-cohort-v7', 'fifth-cohort-v8'):
             scope_checks = [('review-livento-revenue-scope.py', 'company-fifth-livento-scope-hold-20260920.json')]
+            if profile == 'fifth-cohort-v8':
+                scope_checks.append(('review-fifth-zero-scope.py', 'company-fifth-zero-dispositions-20260920.json'))
         for script, report in scope_checks:
             path = workspace / 'artifacts/seo' / report
             expected = file_hash(path)

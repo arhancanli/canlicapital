@@ -155,3 +155,21 @@ exit0:672candidates/328exclusions reproduce, exact2,041runtime objects and
 203,947,632bytes match, Livento scope report byte-identical. Temporary restore
 removed. No offsite or publication claim. RemoteCI35503101079 is running on
 the sealed candidate; previous563ca9b1CI35502859034passed.
+
+## 2026-09-20 — three further scope corrections, v8 checkpoint
+
+Previous turn progressed through Livento v7and isolated restore. Read continuity
+and inspected remaining zero histories. Eaton label/presentation capture48560
+finished200/200; evidence establishes major-customer revenue scope, while primary
+net sales are nonzero. Annovis materiality-qualified narrative and Minerva product
+sales narrative do not establish zero totals. Reproducible source-bound report
+retains original bodies, numerical comparisons and limitations; replay byte-identical.
+
+Added v8with three exact exclusions; older policies remain reproducible. Changed
+source guard passes. Full verification97848 passes6+395tests/audits; five archive
+safety tests pass. Staging89411 yields17,227histories/17,913URLs. Full-cohort
+transition changes only the three histories. HTTP83393 passes17,913URLs and1,344
+downloads; browser3980 passes90checks; storage23665 passes. All handles were
+re-polled terminal exit0 after the owner interrupted for a status update.
+V8archive/restore remains pending; prior v7archive is unchanged. RemoteCI on
+c18132fb passed; earlierd4256aa8run was cancelled by replacement. Nothing deployed.

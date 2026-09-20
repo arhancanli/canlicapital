@@ -6,12 +6,13 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 
 ## Active work and exact handles
 
-- Fifth capture and exclusion verification are complete. New v7excludes Livento
-  Revenues using its exact captured source; full672company comparison confirms
-  all other histories and original source descriptors are unchanged. Staging50859,
-  HTTP65731, browser67875, storage8820 and full verification11557 finished exit0.
-  Archive74368 and isolated restore41363 now pass; no active local process.
-  Broader editorial review remains open. RemoteCI35503101079 on d4256aa8 is running.
+- Fifth v8 now excludes three further unsupported revenue histories: Eaton major
+  customers, Annovis substantial-revenue wording, Minerva product-sales revenue.
+  Full672company transition preserves every other selected field and source.
+  Verification97848, staging89411, HTTP83393, browser3980, storage23665 are all
+  terminal exit0, re-polled after owner interruption. Archive/restore for v8 is
+  still pending; v7archive remains retained. Broader editorial review is open.
+  Last verified remoteCI35503151538 on c18132fb passed; d4256aa8run was cancelled.
 - Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
   4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
   Draft integration PR71 is open at the tested head:
@@ -29,7 +30,7 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 | Local static build | 690HTML:327indexable,363noindex |
 | Three-cohort candidate | 1,968companies,52,408histories,40directories:54,416URLs |
 | Separate fourth candidate v6 | 683companies,17,714histories,14directories:18,411URLs |
-| Separate fifth review candidate v7 | 672companies,17,230histories,14directories:17,916URLs |
+| Separate fifth review candidate v8 | 672companies,17,227histories,14directories:17,913URLs |
 | Indexed minimum / target | 800,000 / 1,000,000 actually indexed canonical pages |
 | Search intent | 104owners,147query hypotheses,223unassigned static pages |
 | Forward engine evidence | Five daily returns,four sleeves; IMMATURE_RECORD_TOO_SHORT |
@@ -79,6 +80,15 @@ See SOURCE_CAPACITY.md and COMPANY_IDENTITY_REVIEW.md.
 
 ## Verified delivery and retention
 
+Current fifth v8release548419b07d725f975d36e6c6a80f907d1b29009cdb5ae99e058c5456c7728e4f:
+17,913URLs/1,344downloads pass HTTP;90browser checks pass, including all four
+excluded-history notices/routes. Remaining3,298flagged histories include29zeros.
+Three new scope dispositions replay from captured originals; Eaton label and
+presentation files returned200. No replacement source values. New archive pending.
+
+Historical v7checkpoint below remains reproducible; its archive does not include
+the latest v8corrections and must not be treated as the current release.
+
 Fifth v7release7e2314ca91c4731f82361caa956d38499f0fa6edcafbd8047b892a599ba35713:
 17,916URLs/1,344downloads pass local HTTP;72browser checks across12routes pass,
 including Livento's exclusion notice and404for the removed route. Maximum3clicks.
@@ -112,7 +122,7 @@ All archives are local. Offsite retention and hosted preview remain unverified.
 
 ## Code and platform verification
 
-Website5cd1051e passed allCI35502460335jobs. Local v7verification passes6+394tests
+Websitec18132fb passed allCI35503151538jobs. Local v8verification passes6+395tests
 and audits. Prior MCP test failure35500519399 is preserved; test-only deterministic
 deadline correction passed48MCP tests and complete remoteCI35500716863.
 Current source evidence:163hashes,2signatures and1,060transparency entries verify;

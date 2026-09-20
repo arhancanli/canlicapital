@@ -187,3 +187,19 @@ source descriptors. No substitute value or altered source fact.
 
 Corrected candidate17,230histories/17,916URLs passes complete local delivery and
 72browser checks; this does not approve the remaining3,301flagged histories.
+
+## Fifth cohort v8: three additional unsupported zero totals
+
+Eaton1551182 Revenues is labeled major-customer revenue; the original primary
+filing states no customer exceeded10%of sales and reports nonzero net sales.
+Annovis1477845 tags the word “no” inside “not generated substantial revenues”;
+that materiality qualification does not establish a zero total. Minerva1598646
+tags no revenue from product sales, which does not establish total revenue from
+contracts with customers. The latter two do not imply actual total revenue is
+nonzero. Source-bound dispositions and original XBRL numerical matches are in
+company-fifth-zero-dispositions-20260920.json, reproduced by review-fifth-zero-scope.py.
+
+Immutable v8inherits v7and excludes only these three exact source/tag bindings.
+Changed sources require renewed review. Full672company transition proves every
+other selected value and original source descriptor unchanged. Corrected candidate
+has17,227histories; broader quality review remains open.

@@ -29,6 +29,7 @@ SCRIPTS = [
     'lib/company-editorial-v4.mjs', 'lib/company-editorial-v5.mjs',
     'lib/company-editorial-v6.mjs',
     'lib/company-editorial-v7.mjs',
+    'lib/company-editorial-v8.mjs',
 ]
 
 
