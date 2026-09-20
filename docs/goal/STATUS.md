@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-review/techcom-historical-context-20260920. PR34 merged as
+review/remaining-priority-context-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -536,3 +536,66 @@ company-apple-lithium-liability-20260920.json replays byte-identically.
 V13-batch2ledger combines exact pending-only supplements:463active reviewed,
 137pending,10withdrawn; original610key partition and offline replay pass. Two
 TECHCOMlatest rows still unresolved. No full corpus rebuild or publication.
+
+## Visium/GRN review and remaining amendment gap
+
+PR44merged919b2f55754f512cfae4792f38e0175d1c6dcf7a after four checks in
+CI35523103496passed at69d1f656. Tested/merged tree
+4e379a8d7019a18363383da1fbc970f2e2157790.
+40additional observations reviewed from15Visium/GRN primary tables. GRNnotes
+preserve related-party liabilities and net-of-discount short-term debt. Two Visium
+2013asset observations selected from0001493152-16-007138remain pending: retained
+primary is a10-K/Awithout balance sheets; earlier2013filing does not close selected
+amendment context. Need original2014primary or explicit disposition.
+company-visium-grn-balance-20260920.json and cumulative v13-batch3ledger replay
+byte-identically. Exact counts503active reviewed/97pending/10withdrawn cover610
+original keys. Broader corpus flags, TECHCOMlatest discrepancy, v13rebuild and
+publication remain open. No uploader or deployment.
+
+## Four-issuer historical liability review
+
+PR45open.52additional observations reviewed from25Global Technologies,WEED,
+Glucose Health and Global Warming Solutions primary tables. Global Technologies
+selected2024liabilities are explicitly restated1,236,037USD rather than earlier
+6,830,211USD; retained without substitution. WEEDhistorical unaudited comparative
+labels, United Mines naming, leases and asset retirement classifications retained.
+Glucosehistorical Bio-Solutions/convertible debt context preserved. Report
+company-four-issuer-liability-20260920.json replays byte-identically.
+V13-batch4ledger:555active reviewed,45pending,10withdrawn; exact original610keys
+and byte-identical replay. Remaining amendment/TECHCOMdiscrepancy and smaller
+historical queues still open; broader corpus flags not covered by these counts.
+No full rebuild, uploader, deployment or indexing gain.
+
+## Remaining retained context narrowed to four observations
+
+36additional observations reviewed from17Morgan/North America Frac Sand/Emo/
+Green Stream/Atacama tables. Preserve sole-payable current totals, asset-only
+conclusions, reported preferred-stock/related-party classifications and period gaps.
+Report company-small-issuer-context-20260920.json replay byte-identical.
+Five more observations reviewed by rechecking retained HNO/Green Stream sources:
+three net losses preserve restated values without reinstating operating loss; two
+2020Green Stream liabilities use the original2021comparative table linked to the
+XBRL-only amendment with selected accession unchanged. Report company-retained-
+final-context-20260920.json replay identical. Initial helper stopped before output
+because it included a different Green Stream accession; exact amendment filter
+now restricts fixed review to the intended two rows. Original evidence unchanged.
+Cumulative v13-batch6ledger:596active reviewed,4pending,10withdrawn; exact610key
+partition and byte-identical replay. Pending:2Visium2013asset observations from
+2014amendment lacking balance sheets;2TECHCOM2025liabilities with1USDcomponent
+discrepancy. These must receive evidence-backed dispositions. Other corpus flags
+remain outside this queue; no full rebuild or deployment.
+
+## Visium amendment context resolved from original filing
+
+SEC search identified original accession0001493152-16-007114, filedFebruary3,2016.
+Capture77538completed0; original index/primary retained with exact hashes and
+NuState CIKidentity verified. Table87presents2014/2013cash/current assets/total
+assets65/471USD. Selected amendment0001493152-16-007138explicitly adds XBRL
+only with no other changes; selected accessions/values unchanged.
+company-visium-original-context-20260920.json replays byte-identically and binds
+original capture plus amendment bytes. Initial helper used all Visium pending
+rows; fixed exact accession filter before generating report, no evidence changed.
+V13-batch7ledger now598active reviewed/2pending/10withdrawn. Only TECHCOM2025
+liability discrepancy remains in priority queue. Raw inline totals have decimals0;
+precision implications still need evaluation, not an assumed rounding explanation.
+New original capture is not yet in a sealed archive; no full rebuild/deployment.
