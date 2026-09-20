@@ -1,0 +1,54 @@
+{
+  "schema": "canli.hosted-company-staging-audit.v1",
+  "origin": "https://meridian-omfw4yrid-arhans-projects-ac470eaa.vercel.app",
+  "manifest_sha256": "f076234deaccbfa94ddb7d1c1faceffcc75e37d9db534591e74ea892f76eac2a",
+  "mode": "unavailable",
+  "publication_approved": false,
+  "complete": true,
+  "checks": [
+    {
+      "path": "/not-a-company-route",
+      "method": "GET",
+      "status": 404,
+      "bytes": 27,
+      "elapsed_ms": 1097,
+      "sha256": "c204a013f0244a547bc7ab8034faafebbc3537a3dc33da99fbcce6e17d358bba",
+      "robots": "noindex",
+      "cache_control": "no-store"
+    },
+    {
+      "path": "/companies",
+      "method": "POST",
+      "status": 405,
+      "bytes": 18,
+      "elapsed_ms": 638,
+      "sha256": "371b26886bee5e559d5016b17b1479cb7a9154865da5a0f11563580ea99ff033",
+      "robots": "noindex",
+      "cache_control": "no-store"
+    },
+    {
+      "path": "/companies",
+      "method": "GET",
+      "status": 503,
+      "bytes": 41,
+      "elapsed_ms": 1564,
+      "sha256": "b27beeb7f88dece76acd1c222247ed28f1bc8de895954d8c9c23d34b53bb6730",
+      "robots": "noindex",
+      "cache_control": "no-store"
+    },
+    {
+      "path": "/companies",
+      "method": "HEAD",
+      "status": 503,
+      "bytes": 0,
+      "elapsed_ms": 672,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": "noindex",
+      "cache_control": "no-store"
+    }
+  ],
+  "failures": [],
+  "code_sha256": "ccd6fe2da747733219ef4f498deed7015224ff4823832b3377efa28ede6f86dc",
+  "scope": "Explicit staging API sample. Not canonical-route activation, complete corpus HTTP verification, indexing evidence or a cloud-load benchmark.",
+  "passed": true
+}

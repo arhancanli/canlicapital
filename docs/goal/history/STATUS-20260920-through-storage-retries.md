@@ -8,11 +8,9 @@ history/STATUS-20260920-through-fourth-v9.md; earlier history remains linked the
 ## Current checkout and releases
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch fix/company-storage-read-recovery-20260920. PR21 merged as9f1e607c;
-tree matches tested219a7205 and all four pre-merge CI jobs passed.
-PR22 carries bounded read recovery and hosted wrapper audit.
-Post-PR19 Dependabot check reports no open alerts. Current work is storage
-transport diagnosis and hosted staging, not page activation.
+Branch feat/company-storage-transfer-20260920. PR19 merged as514c092d;
+post-merge CI35510323267/35510261053passes and Dependabot reports no open alerts.
+Current work is verified candidate storage transfer, not page activation.
 Production application revision9608542ce019307674269667c4aa16ebc69dd43e is live
 on canlicapital.com. Dedicated clean publisher checkout:
 /Users/arhancanli/canlicapital-production-20260920.
@@ -148,28 +146,55 @@ companyfacts target regeneration or offsite recovery. No new pages admitted.
 Production database migration and website activation are verified. No
 running-engine trading activation, actual indexing gain or investment outcome is claimed.
 
-## Current storage and preview checkpoint
+Legacy supplement: the two XML files were retained under EX-101.INS filenames,
+not absent. Exact legacy index, primary source and accession bindings verify.
+Eight additional numerical matches and primary table extracts are retained in
+company-legacy-concept-supplement-20260920.json; original report unchanged.
+Local12file/17,643,520byte archive restores and replays exact supplement bytes.
+No new source request, concept admission, publication or indexing gain.
 
-Supabase staging bucket company-reference-staging exists, public read with no
-public write policies added. JSON/gzip canary matches exact bytes and GET cache
-metadata. Full three-cohort plan is6,249objects/828,340,450bytes.
-All upload sessions are terminal:30526transport failure after69verified objects;
-81071HTTP502after240;58999unknown transport error after336. Last run used d0416673
-with bounded transient-read retries; the unknown category correctly stopped.
-Original receipts and tracked company-storage-*-stop-20260920.json remain intact.
-Do not claim complete transfer or restart based only on these old handles.
-Next: diagnose the transport subtype using sanitized machine labels, then resume
-with a fresh receipt only after checking actual endpoint state. Writes never
-auto-retry or overwrite; read attempts are explicit and bounded.
+PR19: https://github.com/arhancanli/canlicapital/pull/19. Includes the legacy
+supplement and patched Soup Sieve2.9.0 current lock (Python>=3.10) for moderate
+Dependabot alerts2/3. Historical parser archive remains intact; current corpus
+tests17/17pass under a clean Python3.12 environment.
+Both the full40-filing report and eight-observation supplement reproduce
+byte-identically under the patched dependency.
 
-Isolated preview at9f1e607c is READY:
-https://meridian-omfw4yrid-arhans-projects-ac470eaa.vercel.app
-Deployment dpl_Gw2aMA1cscjaGtV3c9JzF95voFai. First CLI attempt failed before a
-deployment existed; the inspected second attempt succeeded. Public storage settings
-apply only to this deployment. Four hosted unavailable-state checks pass:404,405,
-503GET/HEAD, noindex/no-store. Ready-state data, canonical routes and corpus-wide
-HTTP/browser verification remain pending. The clean preview source remains at
-/Users/arhancanli/canlicapital-company-preview-20260920. Production pointer unchanged.
+PR19 merged as514c092dfeab6c3d0aced9446d12ce56618c0aac after all four
+CI35510179271jobs passed at4c8e1557. Tested and merged trees both
+8a3b53001913a9224fb8ba880778c13e0a556ad6. Post-merge CI and Dependabot
+closure are pending; alerts2/3still reported open immediately after merge.
+Production remains unchanged.
 
-Current12storage regressions/planner tests pass. Earlier detailed status preserved
-in history/STATUS-20260920-through-storage-retries.md. Overall goal remains active.
+Storage transfer: six uploader regressions and three planner tests pass; complete
+v3preflight6,249objects/828,340,450bytes passes. No production variables changed.
+See STORAGE_READINESS.md and company-storage-canary-20260920.json.
+
+Storage PR21: https://github.com/arhancanli/canlicapital/pull/21. Initial full
+transfer stopped with exit1 after69verified objects/5,105,149bytes on a transport
+read failure. Original receipt and failure remain preserved. Bounded read-only
+inspection confirms endpoint availability and one created-but-unrecorded object;
+no assumption that failure meant upload absence. Added failing-key/transport-type
+evidence, code hash and GET cache-control enforcement; nine storage tests pass.
+A separate controlled resume will reverify existing objects at concurrency2.
+
+Controlled resume is running via exec session81071 at reviewed candidate219a7205,
+concurrency2; receipt corpus-local/company-three-cohort-remote-transfer-resume1-20260920.json.
+Poll this exact handle before inferring completion or starting another transfer.
+Original session30526is terminal exit1; no other uploader remains active.
+PR21updated CI is pending. No production deployment required for this script.
+
+PR21merged as9f1e607c after all four CI35510772919jobs passed. Tested and
+merged trees match4e2989ec. Resume1session81071is now terminal exit1 after
+240verified objects/18,275,734bytes; preserved receipt identifies HTTP502 on a
+public read. No uploader is currently running. Added explicit opt-in read-only
+retries: at most3attempts/object and10retries/run for recognized transport faults
+or502/503/504. Permission, rate-limit, corruption and writes never auto-retry.
+All11storage tests pass, including retry budgets and create-once behavior.
+
+Clean preview checkout canlicapital-company-preview-20260920 at9f1e607c validates
+in an isolated build clone. First CLI upload failed with fetch failed; API listing
+confirmed no new deployment. A bounded second preview attempt is underway.
+Deployment-local public storage settings only; no production environment changes.
+The scheduled publisher has since created READY deployment dpl_C1LAYUEx6VtXiiUxi3ZatwXqfRTu
+using production application revision9608542c; no claim that preview changed production.
