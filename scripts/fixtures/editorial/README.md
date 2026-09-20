@@ -17,3 +17,10 @@ https://data.sec.gov/api/xbrl/companyfacts/CIK0001342916.json captured at
 `04f062ef5e20caad0e3d8bf8913f2790f3550faf496fbcc8e4266d8eb14abe28`.
 This fixed historical fixture tests the source-bound v12 operating-loss exclusion;
 it is not a claim about the current upstream response.
+
+`atlantica-reviewed-source.json.gz` retains the exact response from
+https://data.sec.gov/api/xbrl/companyfacts/CIK0001062506.json captured at
+2026-09-20T05:18:35.368Z. Uncompressed SHA256:
+`b6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8`.
+The fixed historical fixture verifies both source-bound v13 liability-period
+holdbacks and unchanged other observations; it does not represent a fresh fetch.

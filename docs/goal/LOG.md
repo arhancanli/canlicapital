@@ -924,3 +924,11 @@ Initial ambiguous label extraction failed before output; numeric-column matching
 now distinguishes liabilities from liabilities/equity. Combined ledger311reviewed/
 291pending/8withdrawn retains all610keys and no credit for the conflicting pair.
 Resolve or withhold before admission. No publication or rebuild.
+
+## 2026-09-20 — Atlantica holdback implementation and PR42 merge
+
+Implemented exact source-bound v13holdbacks for both2023liability observations.
+Real capture tests show unchanged histories except those rows, preserved assets,
+explanatory notices and inherited HNO/DBMM exclusions.33selector/renderer and
+8delivery/release tests pass. PR42mergeddb3de119 after four CIchecks and exact
+tested/merged tree equality. No full rebuild, upload or deployment.
