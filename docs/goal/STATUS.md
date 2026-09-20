@@ -24,21 +24,23 @@ identify the exact indexed canonical set.
 
 ## Content quality and source capacity
 
-Fourth1,000-issuer capture started September20 at07:39:43UTC, tool session29020.
-Queue is disjoint from all three prior website queues, the1,968-company delivery
-and600retained engine acquisition identities. These additional holdbacks remove
-220otherwise-unqueued discovery identities;4,467remain after the new queue.
-Capture is unfinished at this checkpoint: poll the same handle and inspect
-`corpus-local/fourth-1000/refresh.json`; do not launch a duplicate or infer completion.
-No new company admission, staged page or indexing count is claimed. Selection
-and holdback reports reproduce exactly; nine queue/capture tests pass.
-Resume review found implicit failure retries and completed-report rewrites.
-Corrected collector now binds the full queue, preserves recorded failures and
-completed reports, rejects access-stop resumes, and detects missing/altered prior
-evidence. Full verification passes6+390tests and audits. The live session29020
-predates this fix and is not restarted; legacy partial reports without a queue
-binding require inspection. Latest observed193/1000processed,129review candidates,
-45exclusions,19HTTPerrors; capture still running.
+Fourth 1,000-issuer capture completed at 08:04:05 UTC: 683 review candidates,
+200 content exclusions (71 insufficient coverage, 129 invalid entity), and 117
+HTTP404 outcomes. Full source replay has zero errors; all 117 error bodies and
+receipts were separately verified. Queue remains disjoint from prior website
+queues, the existing delivery and 600 retained engine acquisition identities.
+There are 4,467 remaining unqueued discovery identities after these holdbacks.
+Separate extended-v3 staging contains 683 companies and 17,719 histories, with
+3,151 overlapping quality flags. Catalog construction passed (root
+93abb688d0b8ec940ec41e38f1c5b95e8b2873748b7bff19747693ad6bc1875a).
+This cohort is not combined with the existing release or editorially approved;
+its evidence archive and editorial review remain outstanding. Full local HTTP
+checks pass for 18,416 URLs and 1,366 downloads; 66 browser checks across 11
+sampled routes, two engines and three viewport widths pass. Priority filing
+review covers 55 concepts across 30 companies and 36 latest selected filings.
+Resume safeguards passed 6+390 tests and audits. The completed capture had loaded
+the older collector; its full legacy report was replayed without restarting it.
+See company-fourth-reviewed-20260920.json and company-fourth-selected-quality-v3.json.
 
 Independent frozen partial review now covers278outcomes:177core-policy candidates,
 70reproduced content exclusions,31HTTP404outcomes and zero reproduction errors.
@@ -131,13 +133,18 @@ artifacts/seo/dependency-audit-20260920.json.
 
 Combined engine candidate now exists in isolated worktree
 `/Users/arhancanli/alphac-integration-20260920`, branch
-`integration/owner-goals-20260920`, head74c5461. PR69,70and68 merge cleanly on
-maincb59488. Frozen dependency sync, Ruff, strict mypy(184files) and tracked
-publication-bundle integrity pass. Local portable offline tests are running in
-session89693; completeCI35498286728 was queued for this exact combined head.
-Poll these existing jobs; combined verification is not yet complete. Original
-PRs remain open; no running engine, broker, owner contract or production branch
-changed. Receipt: artifacts/platform/engine-integration-20260920.json.
+`integration/owner-goals-20260920`, current head867d211. PR69,70and68 merged
+cleanly on maincb59488. Frozen sync, Ruff, strict mypy (184 files) and publication
+integrity passed. Initial local offline suite: 4,385 passed, 33 skipped, 2 failed.
+Both failures exposed a test assumption that launchd points into this worktree;
+the configured running-engine path was correct. The test now checks shared Git
+repository identity while executing the candidate script with launchd's Python.
+All four focused tests and Ruff pass; serial performance test also passes.
+Remote CI35498286728 is still running on the older combined head74c5461;
+it does not verify the subsequent test fix. Latest-head complete CI remains due.
+Original PRs remain open and runtime unchanged. Receipt:
+artifacts/platform/engine-integration-20260920.json records the initial checkpoint;
+this status and LOG record the subsequent results.
 
 API/MCP onboarding, provenance, error handling and key revocation are implemented
 and tested. MCP has 48 passing tests at the last checkpoint; the PostgreSQL

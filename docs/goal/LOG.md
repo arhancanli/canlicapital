@@ -1342,3 +1342,50 @@ PR, production merge or runtime activation. Receipt records exact heads/lockhash
 passing checks and unfinished jobs. Same websitecapture29020 remainslive; latest
 785/1000(519review candidates,175excluded,91HTTPerrors). Owner npm release decision
 remains pending; no approval inferred or publication performed.
+
+## 2026-09-20 — fourth cohort completion and integration test correction
+
+Capture29020, error-body verification29952, final replay29016, staging53349,
+quality48996 and catalog72265 all completed successfully. Fourth cohort contains
+683 review candidates, 200 content exclusions and 117 verified HTTP404 outcomes.
+Separate staging has 17,719 histories and 3,151 overlapping flags; catalog root
+93abb688d0b8ec940ec41e38f1c5b95e8b2873748b7bff19747693ad6bc1875a.
+Editorial, HTTP/browser, archive and release integration work remains outstanding.
+Existing 1,968-company release and production remain unchanged.
+
+Initial combined engine pytest89693 failed: 4,385 passed, 33 skipped, 2 failed.
+Preserved log: /tmp/canli-engine-integration-pytest.log. Both failures concerned
+launchd test worktree path assumptions. Fix867d2113698d41d9f697adad5aeb7006dddc23a1
+checks shared Git identity, with same-repository acceptance and unrelated-repository
+rejection coverage. All four focused tests and Ruff passed. Serial performance
+61174 passed (1 test). Old-head CI35498286728 remains in progress; it cannot
+establish current-head verification. No runtime configuration changed.
+
+Owner requests notification when deployment is needed. MCP0.1.2 remains ready
+for the previously requested publication decision; this message is not explicit
+publication approval. Company expansion and engine integration are not yet
+release-ready. Goal remains active.
+
+## 2026-09-20 — fourth cohort delivery verification and editorial targets
+
+Previous turn was progress: verified catalog completion and corrected continuity.
+Built a separate source-verified release pointer and discovery sitemap, without
+changing the existing three-cohort release. Full HTTP23014 and browser89679 both
+exit0. All18,416 URLs (683 companies,17,719 histories,14 directories),1,366downloads
+and exact sitemap membership pass; maximum3clicks from company directory and
+31,467HTML bytes. Browser sample:66checks,11routes,two engines,three widths,
+zero failures. Local sequential measurements do not establish hosted capacity.
+Both HTTP servers were managed and shut down at test completion.
+
+Added deterministic prepare-company-editorial-targets.py, binding quality and
+selected-record hashes. Priority queue:55concepts across30companies,36latest
+selected filings, covering27constant histories and14unusual equality groups.
+Replay is byte-identical and a mismatched quality input is rejected. Common
+EPS/share equality pairs and other flags remain outside this priority subset.
+Only one constant history is nonzero: Liberty Star capital purchases, USD500;
+this is a review target, not a source-error conclusion. No editorial approvals.
+Reports and queue are retained; source filing review and archive remain next.
+
+Engine CI35498286728 re-polled: five jobs pass, offline pytest remains live on
+74c5461. Latest867d211 still needs full remote verification. No duplicate job or
+production activation. MCP publication decision remains pending.

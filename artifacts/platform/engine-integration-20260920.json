@@ -548,5 +548,26 @@
       "url": "https://github.com/arhancanli/alphac/actions/runs/35498286728"
     }
   },
-  "scope": "Isolated combined candidate; original PRs remain unmerged and running engine untouched. Test checks do not establish investment outcomes."
+  "scope": "Isolated combined candidate; original PRs remain unmerged and running engine untouched. Test checks do not establish investment outcomes.",
+  "subsequent_checkpoint": {
+    "integration_head": "867d2113698d41d9f697adad5aeb7006dddc23a1",
+    "initial_offline_suite": {
+      "passed": 4385,
+      "skipped": 33,
+      "failed": 2,
+      "log_sha256": "ea32799a44b9498af56d5240bc6057faed44ecc2d7aa3f1465efc82973f1c7c9"
+    },
+    "fix": "Launchd test accepts worktrees with identical Git common directory and rejects unrelated repositories; candidate script still executed under configured interpreter.",
+    "focused_tests_passed": 4,
+    "serial_performance_tests_passed": 1,
+    "ruff": "PASS",
+    "old_head_ci": {
+      "run_id": 35498286728,
+      "status": "IN_PROGRESS_AT_CHECKPOINT",
+      "passed_jobs": 5,
+      "pending_job": "pytest (offline)",
+      "head": "74c5461e7cf9cf4c8bd30b66a293d6cb4129865d"
+    },
+    "latest_head_complete_ci": "NOT_YET_RUN"
+  }
 }
