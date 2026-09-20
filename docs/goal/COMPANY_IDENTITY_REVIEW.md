@@ -88,7 +88,8 @@ Retained scripts and reports:
 No network request was retried after an access denial. These are distinct filing
 resources, not retries of the denied bulk archive. The capture completes without
 403/429 responses. Previously captured source bytes and release objects are unchanged.
-New filing captures are not yet in a sealed archive.
+At this capture checkpoint the new bodies were not sealed; the later supplement
+and its verified restore are recorded below.
 
 The evidence supports considering a versioned, exact-source identity exception
 for these ten captures. Such a change must preserve old exclusion replay, bind the
@@ -116,3 +117,33 @@ extracts the surrounding passage and table into
 disposition with reproducible source evidence, not automated semantic validation
 or full-history approval. Admission design must incorporate this finding; the
 137 numerical matches must never be represented as 137 approved company measures.
+
+## Local evidence supplement and restore
+
+`corpus-local/identity-review-evidence-20260920.tar` contains 77 files and
+26,521,600 bytes. SHA256:
+`b48b199b8d459e42641cd8e444e73d5d05f4aa4443a40855f81c287779e3a853`.
+It preserves ten original compressed company-facts sources, all 26 filing/index
+bodies and receipts, five reports, and the exact scripts and local module closure.
+The manifest records Python, BeautifulSoup and Node versions; those runtimes and
+third-party packages are not bundled. This is local retention, not an offsite backup.
+
+The builder uses the existing archive verifier to check every member and restores
+into a separate temporary workspace. It regenerates targets, numeric comparisons
+and the Princeton disposition from archived bytes, requiring identical output
+hashes. The capture report is retained and hash-verified, not refetched or rebuilt;
+the original 106-case exclusion audit is an input and is not rerun. Temporary files
+are removed. No network capture command is invoked during replay.
+
+Replay with:
+
+```sh
+python3 scripts/package_identity_evidence.py replay \
+  artifacts/seo/corpus-local/identity-review-evidence-20260920.tar \
+  --sha256 b48b199b8d459e42641cd8e444e73d5d05f4aa4443a40855f81c287779e3a853
+```
+
+The result is retained in `company-identity-evidence-restore-20260920.json`.
+This supplement neither replaces the v3 archive nor includes the separate retained
+issuer-discovery review. The saved repository revision identifies report provenance;
+the new packaging script's own bytes are included and hash-bound in the manifest.

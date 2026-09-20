@@ -51,7 +51,7 @@ histories. Their 13 latest core filings are now captured: all cover CIKs and all
 137 selected observations match, enforcing context identity and units. The 26
 source responses verify. No CIK normalization or policy change; old exclusions
 and release remain unchanged. Versioned exception design is pending. These new
-filing bodies are outside the sealed archive. Subsequent scope inspection found
+filing bodies are now sealed in a separate identity-review supplement. Scope inspection found
 Princeton's three matching Revenues observations describe unconsolidated portfolio
 company Advantis, requiring concept exclusion before any identity admission.
 Source passage and disposition are retained; no policy change. The 13 selector
@@ -71,6 +71,12 @@ Isolated restore replays three queues, 381 exclusions and exact runtime objects.
 Remote destination/access, offsite retention and hosted preview remain unresolved.
 The storage question is pending; permission and access are not assumed.
 
+Identity supplement: 77 files / 26,521,600 bytes, archive SHA256
+b48b199b8d459e42641cd8e444e73d5d05f4aa4443a40855f81c287779e3a853.
+Isolated restore reproduces diagnostic targets, 137 comparisons and the Princeton
+scope disposition byte-for-byte. Original v3 archive remains separate; retained
+issuer discovery is still outside these archives. See COMPANY_IDENTITY_REVIEW.md.
+
 ## Evidence and verification
 
 Website refresh aee1ff55 imported 53 changed/added source files, excluded seven agent
@@ -85,10 +91,15 @@ still need URL-level exports. See INDEXING_BASELINE.md. Browser tab/export acces
 works; assistive access is denied, Apple Events JavaScript disabled and screenshot
 capture unavailable. No settings were bypassed.
 
-Website 4e169847 passed CI35496483722; the prior full local build/verify passed
+Website e9bb4829 passed CI35497231896; the prior full local build/verify passed
 6 + 384 tests and final audits. Engine PR68 ce93d8c fixes nested agent-state copying;
 13 focused tests and Ruff pass, and full CI35494803169 now passes all six jobs.
 PR69/70 previously passed; verify their current state before release.
+
+Fresh npm audits of root, design-system and MCP report zero known vulnerabilities.
+GitHub alert1 remains open on the default branch's esbuild0.23.1; PR15 already
+contains the0.25.12 fix (093fb0fd). No alert dismissed or merge performed. Receipt:
+artifacts/seo/dependency-audit-20260920.json.
 
 ## Platform and governed engine
 

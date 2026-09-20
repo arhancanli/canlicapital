@@ -1218,3 +1218,19 @@ identity admission. New script verifies original body hash/length and preserves
 the table and identifying passage. Existing INVALID_ENTITY exclusion remains;
 no normalization, policy change, new candidate or publication. Numerical matching
 is explicitly separated from semantic acceptance. Full owner goal remains active.
+
+## 2026-09-20 — dependency checkpoint and identity evidence retention
+
+Previous turn's Princeton scope disposition was progress; e9bb4829 now passes
+all CI35497231896 jobs. GitHub alert1 is default-branch esbuild0.23.1; candidate
+already fixes it in093fb0fd with0.25.12. Fresh registry audits of all three npm
+packages exit0 with zero known vulnerabilities; bound lock hashes and audit
+responses retained. No redundant dependency update, dismissal or merge.
+
+Sealed a separate identity supplement using the existing exact-member archive
+verifier:77files/26,521,600bytes, SHAb48b199b8d459e42641cd8e444e73d5d05f4aa4443a40855f81c287779e3a853.
+Build/replay56222 exits0. Temporary isolated restore reproduces targets,137numeric
+comparisons and Princeton disposition byte-for-byte using only archived inputs.
+Capture report is hash-preserved, not refetched; full106caseaudit not rerun.
+Originalv3archive preserved. Runtime versions recorded, not bundled. Supplement
+is localonly; retained discovery and offsite retention remain outstanding.
