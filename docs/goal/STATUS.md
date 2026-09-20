@@ -9,31 +9,27 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch14-20260920`. PR77mergedccde4c02after four passing
-CI35533717524checks atd0d060bd. Tested/merged tree
-6081e3734a2005459b5abb03c64095ba5ffba6db matches exactly.
+`evidence/share-context-batch15-20260920`. PR78merged977e31faafter four passing
+CI35533849160checks at2a2e93c5. Tested/merged tree
+b2c290b397dad859913faedf9936527fca52b304 matches exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch14-20260920.json.gz.
-Of1,176batch observations,456reviewed/706pending/14withdrawn.72reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch15-20260920.json.gz.
+Of1,176batch observations,480reviewed/682pending/14withdrawn.72reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-V18adds six exact Iovance2023–2025basic/diluted share holds. Original statement
-heading is thousands, but tags encode235131/289877/357345as scale0shares.
-Do not multiply or replace values. Hash-bound report retains facts/units/contexts
-and heading; replay is byte-identical.60selector/renderer/ledger tests pass,
-including exact six-only removal, EPS/older-period preservation and inherited holds.
-Earlier Iovance2019–2022share rows also need original-filing review; no admission
-inferred. Six Iovance EPSrows in this batch remain pending. Blink12rows now reviewed,
-including revised2024EPS(-2.00versus prior-1.96) and separate out-of-money
-exclusions omitted from its potential-share table. All33renderer/ledger tests pass;
-report replays byte-identically. Latest24reviews cover Safe Bulkers preferred-dividend numerator and Ardelyx
-full share counts versus rounded-thousands EPSnote. Source report replays exactly;
-34renderer/ledger tests pass. Next new index48; Plastec legacyindex45and
-older pending gaps remain. INVOlegacy mapping
-also pending. V18full-corpus comparison passed; runtime rebuild/quality inventory
-and updated archival supplement remain undone. No deployment or indexing gain.
+Latest24reviews cover MongoDBJanuary31fiscal ends2024–2026and Workiva2023–2025
+two-class allocation. MongoDB potential shares/capped calls are excluded as anti-
+dilutive; Workivaallocates loss proportionately across ClassA/Bwith identical
+liquidation/dividend rights. Selected denominator combines classes. Sharescale0
+and dates remain unchanged.35renderer/ledger tests pass; report replays exactly.
+Next new index50; INVOindex40,Plastecindex45and earlier legacy/context gaps remain.
+
+V18six Iovance2023–2025share-scale holds remain enforced. Earlier2019–2022share
+rows need original-filing review and six EPSbatch rows are still pending. Whole-
+corpus comparison passed; current runtime rebuild, quality inventory and updated
+archival supplement remain undone. No production or indexing gain.
 
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss

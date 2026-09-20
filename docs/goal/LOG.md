@@ -558,3 +558,15 @@ pass, report replays byte-identically, only24new transitions.456reviewed/706pend
 14withdrawn;72presentation-only. Plastec legacyindex45needs separate original
 statement mapping. No runtime rebuild, archive supplement, deployment or indexing
 gain. All owner objectives remain active.
+
+## 2026-09-20 — January fiscal years and two-class allocation
+
+PR78passed four CI35533849160checks at2a2e93c5; merged977e31fawith exact tree
+b2c290b397dad859913faedf9936527fca52b304. Reviewed24MongoDB/Workivaobservations.
+MongoDBendsJanuary31,2024–2026; capped calls/potential shares excluded as anti-
+dilutive, not additional denominator shares. WorkivaClassA/Bproportional loss
+allocation follows identical liquidation/dividend rights; combined main-statement
+counts retained rather than a single-class denominator.35renderer/ledger tests
+pass; source report replays byte-identically; only24new transitions.480reviewed/
+682pending/14withdrawn,72presentation-only. No runtime rebuild, archive supplement,
+production deployment or indexing gain. All owner objectives remain active.
