@@ -756,3 +756,7 @@ starting82504 with one worker/500ms spacing, same bounded retries and hard stops
 Fresh v10receipt pins the current uploader; no credentials written to disk.
 Added v10archive profile and isolated Birdie scope replay using locked offline
 wheels. Five archive-verifier tests pass; build/replay still pending.
+
+Archive build/replay39153started from committed3ddb2536. V10transfer82504also
+confirmed live; initial32objects verified with zero failures. Both jobs remain
+pending; do not treat an output archive's existence as successful replay.

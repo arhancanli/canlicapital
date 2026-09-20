@@ -166,8 +166,12 @@ Paths corpus-local/company-five-cohort-{delivery,catalog,discovery}-v10 and
 company-five-cohort-storage-plan-v10.json. Plan10,360objects/1,280,300,997bytes;
 3,323keys shared withv9,7,037new keys. Shared keys are not remote verification.
 Audit company-five-cohort-v10-discovery-audit-20260920.json binds all roots.
-Next: immutable v10transfer, archival replay, remaining editorial and hosted
-verification. No deployment or indexed gain. Production remains327sitemap URLs.
+V10transfer82504 is active (fresh v10transfer receipt), one worker/500ms.
+Archive build/replay39153 is active from repository3ddb2536; output
+corpus-local/five-cohort-v10-evidence-20260920.tar. Summary and restore receipts
+use prefix company-five-cohort-v10-evidence-. Do not claim completion until
+terminal success and receipt verification. Remaining editorial and hosted
+verification stay open. No deployment or indexed gain. Production remains327sitemap URLs.
 
 ## Previous v9 candidate (preserved; superseded)
 
