@@ -55,3 +55,23 @@ no relabeling/conversion or replacement values. Actual source regression verifie
 all other values unchanged, visible notices and inherited policy decisions.
 35selector/renderer,8delivery/release and31corpus/XML/unit tests pass. No collector,
 rebuild or uploader active; new evidence archive and remaining corpus review open.
+
+## 2026-09-20 — complete v14 cohort transition
+
+Previous turn verified150/150baseline observations and implemented Varonis holds.
+PR49mergeda2f32bf2with four checks and exact tree equality. Rebuilt all five cohorts
+under v14in51634(terminal0). Full comparison64980(terminal0) verifies all3,323
+companies, unchanged source descriptors and exact intended changes only.12selected
+observations removed in total, one whole history; current histories87,346. Combined
+catalog/release/discovery/storage pipeline16429active; poll its existing handle.
+Broader editorial, archival and hosted gates remain open; no publication/indexing gain.
+
+## 2026-09-20 — v14 combined candidate and current quality audit complete
+
+Pipeline16429terminal0: all five combined build stages and independent sitemap/
+plan audit pass.90,736candidate URLs; exactly the held HNOhistory removed vs v11.
+10,360runtime objects/1,280,306,303bytes, no remote verification claim. All roots
+recorded in v14discovery receipt and STATUS. Quality audit40310terminal0:
+13,142flagged histories,747equal-vector groups; exact current source/policy replay.
+Full quality JSON/gzip bound by versioned summary; old reports preserved. No uploader,
+production activation or indexing gain. Full v14archive and broader review pending.
