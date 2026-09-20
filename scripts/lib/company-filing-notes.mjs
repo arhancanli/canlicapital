@@ -1,5 +1,227 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
+{
+  "cik": "0001315098",
+  "include_on_overview": true,
+  "source_sha256": "da93dfbe41ad0be3c80f12e25819e45a48e960678647dc8d7235efdfce5aa481",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Roblox uses loss attributable to common stockholders after noncontrolling interests as its EPS numerator, rather than consolidated net loss. Potential common-stock equivalents are excluded as anti-dilutive for all periods presented. Weighted-average share counts are reported in thousands and tagged with scale three; EPS uses scale zero. The equal basic and diluted denominators are alternative measures and should not be added together.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1315098/000131509826000024/rblx-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.87,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1.44,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -1.54,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.87,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1.44,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -1.54,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 616445000,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 647482000,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 689612000,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 616445000,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 647482000,
+      "accn": "0001315098-26-000024"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 689612000,
+      "accn": "0001315098-26-000024"
+    }
+  ]
+},
+{
+  "cik": "0001339970",
+  "include_on_overview": true,
+  "source_sha256": "c3475f065ea6b54c344b2c997462c8932379247c1ed7107b14d14669b6000cf2",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, aTyr Pharma uses loss attributable to the company after the Pangu BioPharma noncontrolling interest. Potential common-stock equivalents are excluded because of the loss position. The main statement explicitly exempts shares and per-share data from its thousands heading, and the original share tags use scale zero. The EPS note repeats those full share counts under a heading that exempts only per-share data; that heading inconsistency is retained here, not used to multiply the counts by 1,000. Basic and diluted denominators should not be added together.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1339970/000133997026000008/atyr-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.94,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.86,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.8,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.94,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.86,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.8,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 53606488,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 74261265,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 92985359,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 53606488,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 74261265,
+      "accn": "0001339970-26-000008"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 92985359,
+      "accn": "0001339970-26-000008"
+    }
+  ]
+},
   {
     "cik": "0000066740",
     "source_sha256": "571391ded2a92e8cb1e7be5c22f3ac192f7fe9d4cada2dbdb985261297e6ecd4",

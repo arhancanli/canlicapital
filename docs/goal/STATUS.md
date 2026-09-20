@@ -9,24 +9,25 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch6-20260920`. PR69merged0424a7e3after all four
-CI35531462481checks passed atea0132c8. Tested/merged tree
-e4a7e313c608f3da841cc89db52f1dfeeabdf751.
+`evidence/share-context-batch7-20260920`. PR70merged8baa1bd8after all four
+CI35531739016checks passed at91a22a12. Tested/merged tree
+9cfb5eb18799c5799e280681ec632f4951879e60.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch6-20260920.json.gz.
-Of1,176batch observations,274reviewed/894pending/8withdrawn.48reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch7-20260920.json.gz.
+Of1,176batch observations,298reviewed/870pending/8withdrawn.48reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest48reviews cover MacroGenics loss dilution, Standard BioTools preferred-stock
-induced-conversion numerator/total versus component EPS, South Dakota Soybean
-Processors LLC capital units and noncontrolling interests, and Neuronetics unvested-
-share exclusions. Values unchanged;26renderer/ledger tests pass with exactly48
-intended transitions. Source report replays byte-identically. Replay v4retains
-narrative in inline continuation/span nodes; MacroGenics text was verified directly
-there after block-only extraction missed it. Prior helpers remain frozen. Legacy
-filings still require separate statement mapping and accounting review.
+Latest24reviews cover Roblox and aTyr Pharma2023–2025loss allocation after
+noncontrolling interests and loss-period dilution exclusions. Roblox shares use
+scale3; aTyr's main statement explicitly exempts shares from thousands and tags
+scale0, while its EPS note repeats the full counts under a less precise heading.
+The reader note retains this inconsistency without rescaling.27renderer/ledger
+tests pass with exactly24intended transitions; source report replays byte-identically.
+Kronos and The9 entries30/31 remain pending, as do legacy statement mappings.
+Prior batch6reviewed48MacroGenics/Standard BioTools/South Dakota Soybean/Neuronetics
+observations with preferred conversion, LLC unit and unvested-share context.
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
 periods, NLI/Weis combined/restated presentation, Blue Dolphin historical instruments,

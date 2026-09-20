@@ -378,3 +378,20 @@ leaf spans/continuations, leaving earlier replay helpers unchanged. Report repla
 exactly;26renderer/ledger tests pass and only48intended rows advance.274reviewed,
 894pending,8withdrawn;48reviews remain presentation-only. No runtime rebuild,
 new archive, production deployment or indexing gain.
+
+## 2026-09-20 — noncontrolling allocation and ambiguous EPS-note heading
+
+Previous status turn verified PR70's four successful CI checks, enabling merge.
+PR70merged8baa1bd829137844e9d0bc75887e972489b4fd9f; tested/merged tree
+9cfb5eb18799c5799e280681ec632f4951879e60 matches. Reviewed24Roblox/aTyr
+2023–2025observations against main statements, EPS reconciliations and loss-period
+anti-dilution disclosures. Roblox uses scale3shares; aTyr scale0is supported by
+main-statement share exemption and both sets of original tags. Its EPS-note heading
+exempts only per-share data despite repeating full share counts; retained explicit
+inconsistency rather than multiplying values. Broad keyword diagnostic truncated;
+follow-up inspected exact statement headings and note tables directly. No review
+was inferred from keyword presence alone.27renderer/ledger tests pass, report
+replays byte-identically, ledger permits only24new review transitions. Current
+298reviewed (48presentation-only)/870pending/8withdrawn. Kronos/The9 remain pending.
+Preserved unrelated untracked ATTRIBUTION-REVIEW-20260920.md without including it.
+No new runtime build, archive supplement, deployment or confirmed indexing gain.

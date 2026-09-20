@@ -1,0 +1,57 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001315098",
+      "accession": "0001315098-26-000024",
+      "source_sha256": "da93dfbe41ad0be3c80f12e25819e45a48e960678647dc8d7235efdfce5aa481",
+      "primary_sha256": "2d435eb5a8a91a1e691e0313d1f3648503bc75d0cadd5a45c02ae588b6fcaa55",
+      "fixture": "scripts/fixtures/editorial/roblox-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 70,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss attributable to common stockholders"
+      ],
+      "paragraph_requires": [
+        "The following table presents the calculation of basic and diluted net loss per share (in thousands, except per share data):",
+        "have been excluded from the calculation of diluted net loss per share attributable to common stockholders as their effect is anti-dilutive for all periods presented."
+      ],
+      "reader_note": "For 2023\u20132025, Roblox uses loss attributable to common stockholders after noncontrolling interests as its EPS numerator, rather than consolidated net loss. Potential common-stock equivalents are excluded as anti-dilutive for all periods presented. Weighted-average share counts are reported in thousands and tagged with scale three; EPS uses scale zero. The equal basic and diluted denominators are alternative measures and should not be added together.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001339970",
+      "accession": "0001339970-26-000008",
+      "source_sha256": "c3475f065ea6b54c344b2c997462c8932379247c1ed7107b14d14669b6000cf2",
+      "primary_sha256": "60973c17b29f388f39262eef607691dce7eb8a8949ff289026118f58cd6bc65a",
+      "fixture": "scripts/fixtures/editorial/atyr-pharma-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 7,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss attributable to aTyr Pharma, Inc."
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share data)",
+        "For all periods presented, there is no difference in the number of shares used to calculate basic and diluted shares outstanding due to our net loss position.",
+        "The following table summarizes our net loss per share (in thousands, except per share data):"
+      ],
+      "reader_note": "For 2023\u20132025, aTyr Pharma uses loss attributable to the company after the Pangu BioPharma noncontrolling interest. Potential common-stock equivalents are excluded because of the loss position. The main statement explicitly exempts shares and per-share data from its thousands heading, and the original share tags use scale zero. The EPS note repeats those full share counts under a heading that exempts only per-share data; that heading inconsistency is retained here, not used to multiply the counts by 1,000. Basic and diluted denominators should not be added together.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+      "supporting_table_indexes": [
+        13
+      ]
+    }
+  ]
+}
