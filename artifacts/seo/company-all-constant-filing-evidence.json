@@ -1,0 +1,1822 @@
+{
+  "schema": "canli.editorial-filing-inspection.v1",
+  "scope": "All constant-history cases; latest selected accession only. Original filing captures, not an assertion covering every historical filing or approval for publication. Comparison extraction excludes dimensional and nil facts, applies inline scale/sign, and recognizes only listed decimal/zero formats. Missing matches remain unresolved, not errors inferred in the issuer data.",
+  "publication_approved": false,
+  "groups": [
+    {
+      "cik": "0000030625",
+      "name": "FLOWSERVE CORP",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "1a4bfef35e9d21819890247b4b81b712050afe85a6ae179f8a94f1b169446491",
+      "source_sha256": "f84434cf6b3e61f1ce7199d02e6afccc92527e1628553fd9f596c156ed118646",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/30625/000003062526000003/0000030625-26-000003-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:25.952935+00:00",
+        "bytes": 13362,
+        "sha256": "e19ca3f51887a1e5c4b78010bc65a677f9d9cec258de8fcbd5b1d48633558f9f"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/30625/000003062526000003/fls-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:28.431815+00:00",
+        "bytes": 3827294,
+        "sha256": "a41c1efe60748aa953d163e1917348fd4e45e193bf85704ef5af57fb88550a52"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-2039",
+              "context_id": "c-1",
+              "table_row": "Intersegment sales 5,113 5,464 10,577 ( 10,577 ) \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-2076",
+              "context_id": "c-6",
+              "table_row": "Intersegment sales 4,416 5,641 10,057 ( 10,057 ) \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-2113",
+              "context_id": "c-7",
+              "table_row": "Intersegment sales 3,487 6,448 9,935 ( 9,935 ) \u2014"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0000315545",
+      "name": "PROVECTUS BIOPHARMACEUTICALS, INC.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "dcae4f826b36dd3104c3f7c08b7e8e2563abefdc0d2aea0f5cd230b6e65d7568",
+      "source_sha256": "5c46f06a9f23badc21fb49ef63f53fb89ac39f7570babcbf8a64cddf67fb05d2",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/315545/000119312516523701/0001193125-16-523701-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:27.863908+00:00",
+        "bytes": 11553,
+        "sha256": "91d257e6ab29ef6774dfda3fc123afccca2686f2c5a94bc8dbdf9a6b5e8581a9"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/315545/000119312516523701/d105545d10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:30.273787+00:00",
+        "bytes": 846993,
+        "sha256": "e806e521dbed938412937b55b1e20d3ca7eceb8de30cc9c09bd42c44bd3a0486"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000724445",
+      "name": "BURZYNSKI RESEARCH INSTITUTE INC",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "662ff48abfbed75ec839226fc62fa50aa4a5fec938e6034dbb5e4ac1d9371cf1",
+      "source_sha256": "280fe93908eb6d3bca8df7351a6ce86b0d12e15fb5a41d56bd44784f717cff04",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/724445/000155837025008021/0001558370-25-008021-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:32.360352+00:00",
+        "bytes": 11846,
+        "sha256": "44f760d7b8e6af7b51a0c991219f4130e817d1fc99e18feca25ace299e7e2f4b"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/724445/000155837025008021/bzyr-20250228x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:34.002119+00:00",
+        "bytes": 1163715,
+        "sha256": "0c1c6d14b9bb98376c49bca4c9ae9af3f3c96b6da8edb5aa07178c3027696e95"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2024-03-01",
+          "end": "2025-02-28",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2023-03-01",
+          "end": "2024-02-29",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000749647",
+      "name": "Imunon, Inc.",
+      "tags": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax"
+      ],
+      "selected_sha256": "3ded29900eca8d850af6fbf238d3a7058c58375af95ec12346af37d335853590",
+      "source_sha256": "cf2e46071525a607b4d539753f5129368297f1e667d6fa4f8829e76132e7a85a",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/749647/000149315224011616/0001493152-24-011616-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:30.490716+00:00",
+        "bytes": 12351,
+        "sha256": "0e977d4705c3570f9a3d41c733088fcf61cbb50fb9de06b175471e16aeddbf67"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/749647/000149315224011616/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:32.233609+00:00",
+        "bytes": 1859135,
+        "sha256": "5b23a4bd422e189610f9353cfc0b39c2f8a5e264f0f9e553193de726484ce5be"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "unit": "USD",
+          "value": 500000,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "500000",
+              "fact_id": "Fact000203",
+              "context_id": "From2022-01-012022-12-31",
+              "table_row": "Licensing revenue $ - $ 500,000"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0000773717",
+      "name": "AMERICAN CLEAN RESOURCES GROUP, INC.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "619903e1f9d80e85a6b3fa06a2b176920a3a322209a93556435474ac616f33ba",
+      "source_sha256": "e64d201c9854ef0bd331f6e6e2194526b310845a7e65d8790a98c75e45e96196",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/773717/000114420417020519/0001144204-17-020519-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:36.103167+00:00",
+        "bytes": 11840,
+        "sha256": "fd2e9258ec6c5bc181d5dff520f70053c4c7d159b69d5ef80bae4be7c305648b"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/773717/000114420417020519/v464031_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:37.793794+00:00",
+        "bytes": 780558,
+        "sha256": "aacf177b8b1b0729f711edd4c3705ccfdf276f52c2e5c733d6d0ded8c9019d89"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000783324",
+      "name": "VISTA GOLD CORP.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "130ad323e7c693e840359657d26d781d110d149a1c142e54e5f8cb2730c7780c",
+      "source_sha256": "f6bad628fddbf9c8ea577c52a2cb3ef5aa1d0967585d381e5293fc40a83556f2",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/783324/000078332418000007/0000783324-18-000007-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:39.578301+00:00",
+        "bytes": 19948,
+        "sha256": "93e3dcbe2fc246db77d86fbef99e7c008b0aa939db9e843d156c8b78362100ae"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/783324/000078332418000007/c324-20171231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:41.460330+00:00",
+        "bytes": 3785193,
+        "sha256": "49dc13c16e4e7686b176000a14e4e2d947c03d127f372ab6d66a7e57aa84f3a1"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000783324",
+      "name": "VISTA GOLD CORP.",
+      "tags": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax"
+      ],
+      "selected_sha256": "130ad323e7c693e840359657d26d781d110d149a1c142e54e5f8cb2730c7780c",
+      "source_sha256": "f6bad628fddbf9c8ea577c52a2cb3ef5aa1d0967585d381e5293fc40a83556f2",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/783324/000078332426000009/0000783324-26-000009-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:43.673596+00:00",
+        "bytes": 17803,
+        "sha256": "d3cda0ecc21c099fa689e96228d0147b2c93f39c0a8904d919bd8c21eb47265f"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/783324/000078332426000009/vgz-20251231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:45.479887+00:00",
+        "bytes": 2286370,
+        "sha256": "b2f3a561b238b8f464fc6532f700b13c7c2ab2bf3236a904fd4e2299296434b7"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000797564",
+      "name": "HST Global, Inc.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "2f0f4f61f15706f04f698b2eeea51d61b00145bf1019603a3cd78b4167fa6c4a",
+      "source_sha256": "0765178d9d9ac3eff014f9058fc9a05dc5adaa6190efef9697f0be524ef47a8f",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/797564/000167479624000003/0001674796-24-000003-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:47.337700+00:00",
+        "bytes": 11579,
+        "sha256": "db17fcd6b5cc97a847fe66cadf6ec866fb2450578f64f2c857d578280b85d9e1"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/797564/000167479624000003/hstc-20231231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:49.155754+00:00",
+        "bytes": 259664,
+        "sha256": "8d150361840d2b18fb0a7b28ea63e2365c5a6a44fb78dafb1ba615c6650190d3"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "ixv-2890",
+              "context_id": "Y23",
+              "table_row": "Revenues $ - $ -"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "ixv-2891",
+              "context_id": "Y22",
+              "table_row": "Revenues $ - $ -"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0000811830",
+      "name": "SANTANDER HOLDINGS USA, INC.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "971ebe8f7cbaf6bb4cbc2bc09b01ca42e88a0442d271653db1d5288fc04d58d3",
+      "source_sha256": "caa0cbe7722633cc01df7c48f42fc68280f53888bb41d6e29b2dadd318dd47c8",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/811830/000081183022000016/0000811830-22-000016-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:34.144716+00:00",
+        "bytes": 11959,
+        "sha256": "a1d99a3e514bcdc2f1a421b1184632d981b0aad044c2fca0365e80d641f85e15"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/811830/000081183022000016/sov-20211231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:36.128593+00:00",
+        "bytes": 11126405,
+        "sha256": "7519b8e853b26e64ab0b422a1cfb96b0a71daa03194ae64a1509fdd30cc7e507"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2021-01-01",
+              "end": "2021-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjAwMjQ2Yzc3NGU0NjQ3YzM5ZmY4MTEyMzdhZDk4MDUxL3NlYzowMDI0NmM3NzRlNDY0N2MzOWZmODExMjM3YWQ5ODA1MV8yNDQvZnJhZzoyMDEwYWQ3YTIzYjI0NjUxOTQyZWM1OTY1NmI4ZjJmOS90YWJsZTpiNmU5NGQ4NTAxZDc0NjI3ODFkZjQyM2RhNDk0NDU3YS90YWJsZXJhbmdlOmI2ZTk0ZDg1MDFkNzQ2Mjc4MWRmNDIzZGE0OTQ0NTdhXzgtMTEtMS0xLTMyNDEz_9ef59778-65e9-4f73-b6c8-7786657aa1ce",
+              "context_id": "if6c0c1f3ed4449fc8afcf69caf0d5370_D20210101-20211231",
+              "table_row": "Intersegment revenue/(expense) ( 785 ) 13,874 3,451 ( 16,540 ) \u2014 \u2014 \u2014 \u2014 \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2020-01-01",
+              "end": "2020-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjAwMjQ2Yzc3NGU0NjQ3YzM5ZmY4MTEyMzdhZDk4MDUxL3NlYzowMDI0NmM3NzRlNDY0N2MzOWZmODExMjM3YWQ5ODA1MV8yNDQvZnJhZzoyMDEwYWQ3YTIzYjI0NjUxOTQyZWM1OTY1NmI4ZjJmOS90YWJsZTo5YzA5MDc2YmQ2OTY0ZjY4ODRkMzEyY2ZhZGU1MTllZS90YWJsZXJhbmdlOjljMDkwNzZiZDY5NjRmNjg4NGQzMTJjZmFkZTUxOWVlXzgtMTEtMS0xLTMyNDEz_aec0fe62-70cf-4dec-b7aa-7f3f4d44165c",
+              "context_id": "ic63e5d23231049b7ae0adc2a11d0a86f_D20200101-20201231",
+              "table_row": "Intersegment revenue/(expense) ( 856 ) 12,617 4,879 ( 16,640 ) \u2014 \u2014 \u2014 \u2014 \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2019-01-01",
+              "end": "2019-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjAwMjQ2Yzc3NGU0NjQ3YzM5ZmY4MTEyMzdhZDk4MDUxL3NlYzowMDI0NmM3NzRlNDY0N2MzOWZmODExMjM3YWQ5ODA1MV8yNDQvZnJhZzoyMDEwYWQ3YTIzYjI0NjUxOTQyZWM1OTY1NmI4ZjJmOS90YWJsZTpiZWM0NzBhYzM0M2I0Y2IwOGU3ZGU2ZDhmZWY5NjRkYy90YWJsZXJhbmdlOmJlYzQ3MGFjMzQzYjRjYjA4ZTdkZTZkOGZlZjk2NGRjXzktMTEtMS0xLTMyNDEz_0279b3ef-7f75-4334-9179-fa1a8352dec2",
+              "context_id": "i0159f9e252084c7c8cada170dd832093_D20190101-20191231",
+              "table_row": "Intersegment revenue/(expense) (1) ( 933 ) 9,403 5,950 ( 14,420 ) \u2014 \u2014 \u2014 \u2014 \u2014"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0000812152",
+      "name": "RIDGEFIELD ACQUISITION CORP.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "ac3688837798857b669dcf682d44044d6f7131c9463bdb3f252b16a0cf7e9a6c",
+      "source_sha256": "fd1d229652c11dca11b2e2750eb1813304eb8cf2f04cc08523018d11956cac19",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/812152/000114420417018228/0001144204-17-018228-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:51.773055+00:00",
+        "bytes": 11196,
+        "sha256": "ede1f4d342ac17fc7437b242d9d39a5c3ddb524eb5f053873e659cb35d07129b"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/812152/000114420417018228/v462762_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:53.585045+00:00",
+        "bytes": 260994,
+        "sha256": "105b801b9514adfbc3d97b099f64ce1d72cfa6b244c46e6d4533932a997430e5"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000812152",
+      "name": "RIDGEFIELD ACQUISITION CORP.",
+      "tags": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax"
+      ],
+      "selected_sha256": "ac3688837798857b669dcf682d44044d6f7131c9463bdb3f252b16a0cf7e9a6c",
+      "source_sha256": "fd1d229652c11dca11b2e2750eb1813304eb8cf2f04cc08523018d11956cac19",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/812152/000141057825000352/0001410578-25-000352-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:55.392624+00:00",
+        "bytes": 11932,
+        "sha256": "6c3dca070ed32c206bc20794fcab47c06101f574167ed84edd4751ea53c50738"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/812152/000141057825000352/rdga-20241231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:58:57.329268+00:00",
+        "bytes": 891872,
+        "sha256": "9cacb7c29fb12040bdc60843e2bf64ce36ca2abd6131d8e583f08d3ffdfab5b3"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000818479",
+      "name": "DENTSPLY SIRONA Inc.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "46797ef38c17318b870af8a455772977380e2fb219cf6c2a7f2f25023d92f1fe",
+      "source_sha256": "f6c1bd37486e91a38a99cf9ec5d3b97006986f8446a04bec87caec0cbf411fb5",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/818479/000081847917000007/0000818479-17-000007-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:38.798011+00:00",
+        "bytes": 15950,
+        "sha256": "b724473448ffcadbf95ed6a46fcb53a91378af9af32897dd9a6ac5411b69e7cd"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/818479/000081847917000007/dentsplysirona201610-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:40.525639+00:00",
+        "bytes": 4810150,
+        "sha256": "be9d756a0a104d311358df6b61df86d4bbbdec9c364a5ef26fb9ea501fe61e7a"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2014-01-01",
+          "end": "2014-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000825313",
+      "name": "ALLIANCEBERNSTEIN HOLDING L.P.",
+      "tags": [
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "selected_sha256": "f6ec89c12094c49a2c450fd8a8daea544a7f12226f3431c0507ac98c086f60a2",
+      "source_sha256": "61eaab92369728899d02e53094312395ae65e15d19305845c19764d0801b7975",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531319000006/0000825313-19-000006-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:00.698812+00:00",
+        "bytes": 18982,
+        "sha256": "6a068fd15bb7b22850fa721005f0f4a28a783f54dba1f87f6c036bff5631cf0b"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531319000006/ab-20181231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:02.603438+00:00",
+        "bytes": 5527160,
+        "sha256": "c9e2c6216d3f779d51672dd5433e05bbc80d05db8b1476006d4327cb9f9570c3"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "CashAndCashEquivalentsAtCarryingValue",
+          "start": null,
+          "end": "2018-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "CashAndCashEquivalentsAtCarryingValue",
+          "start": null,
+          "end": "2017-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "CashAndCashEquivalentsAtCarryingValue",
+          "start": null,
+          "end": "2016-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "CashAndCashEquivalentsAtCarryingValue",
+          "start": null,
+          "end": "2015-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000856984",
+      "name": "QHSLab, Inc.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "4a9c517390c49658a179108f77c1acd99bfbfe4d920e4ffff6a2a0b536d5a84c",
+      "source_sha256": "567b88de3249cdc5207b56b3566b6abed1e619516b4e04d582aa059617ce6475",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/856984/000129534516000517/0001295345-16-000517-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:05.912130+00:00",
+        "bytes": 11211,
+        "sha256": "98bac8f059ea6da033ed420735c4d8951583d262b732800d7023952a1f4c7f79"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/856984/000129534516000517/usaq12312015.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:07.608858+00:00",
+        "bytes": 224966,
+        "sha256": "e671995db5152998d842391ff7964abe4fffe44e29f8b6d1811a67c1619ef3b5"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2014-01-01",
+          "end": "2014-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000907654",
+      "name": "Oruka Therapeutics, Inc.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "e44709455d014775cb0edca8abef6f04c554634366052f1e60c664e1c5816168",
+      "source_sha256": "3e23b48bd43d48690cc2da8767bd994ea7ae37e724c61a9cefa6f2950dc21518",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/907654/000095017024009809/0000950170-24-009809-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:09.305642+00:00",
+        "bytes": 10858,
+        "sha256": "2cee1633e5c36f19d2c680bdf8cf9e981837c0f9ceb6fa80fe7f8718c9d6bc04"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/907654/000095017024009809/abio-20231231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:10.977673+00:00",
+        "bytes": 2058783,
+        "sha256": "dd25cdd897ee2fbd4ad4f98db9f40b7c0322d345ebba4d0ce060d32563523f6c"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0000943535",
+      "name": "WORLD HEALTH ENERGY HOLDINGS, INC.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "875d54e36fcdb3776522ea576793b06863fd0e4bc2c60cc74b3a9e665d9bd04a",
+      "source_sha256": "92f08c10292ee61a8402393503e39a04177155024d516f8fdc7961e83767f0ba",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/943535/000143774918015688/0001437749-18-015688-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:12.786126+00:00",
+        "bytes": 17450,
+        "sha256": "b035ef3f31eea1d0c1a9051e509ad3d9b587542082848a39c5a0ef7684afa1f0"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/943535/000143774918015688/when20180814_10ka.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:14.610040+00:00",
+        "bytes": 451586,
+        "sha256": "2ef4031664bfb8b6b29789ec6c6535da96ca77cd0e3e01eaa1c320cc25df3a4d"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001022899",
+      "name": "Protagenic Therapeutics, Inc.\\new",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "561299e01a19374e34526d119d7c181b54f9f4d93825facab49e4a6312f756ba",
+      "source_sha256": "65b45c5addd26cd3e105dbeb1582537b1352dc73c447a8d926c77d81587fc033",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1022899/000149315226038255/0001493152-26-038255-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:16.347169+00:00",
+        "bytes": 13451,
+        "sha256": "0fa1182dfe337937550fa403640a8bb893eb6e3bc9cfe026875f2ee9c7515ad3"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1022899/000149315226038255/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:18.342741+00:00",
+        "bytes": 1979982,
+        "sha256": "e09abaadbcc31617053633f7330af22b1340c60420807832535c3318f63741b0"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2025-04-01",
+          "end": "2026-03-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2024-04-01",
+          "end": "2025-03-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001025771",
+      "name": "Chase Packaging Corporation",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "550ff4342f8795180f2e60b5128d74a4343baf6c0a5fae2c1c31f8486b9f38fe",
+      "source_sha256": "d06fd04a747c2e236088b5e44e0a350f7e6abf0efb9f3fde41f2731914f2e905",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1025771/000147793225002339/0001477932-25-002339-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:20.182135+00:00",
+        "bytes": 11541,
+        "sha256": "789bd22c84bb2e6aefcb802292f7b126e5d9bb0696c4ffd85cfba64f81e26d7f"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1025771/000147793225002339/cpka_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:21.999092+00:00",
+        "bytes": 547757,
+        "sha256": "b38af2d2425c04e1b90d17f2a3e21d67a07cb83a0c6fe79bfa8a7f5a812a250e"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_52",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "NET SALES $ \u2014 $ \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_53",
+              "context_id": "From2023-01-01to2023-12-31",
+              "table_row": "NET SALES $ \u2014 $ \u2014"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0001030469",
+      "name": "OFG Bancorp",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "6287c958d48b7ea8e7afc490c19c55da1c2ed8b796b845c461d640ef89ac5eba",
+      "source_sha256": "a673952e213f640801c3d042d5d05e7c11a74bade78ac157fec9be9ee69c7700",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1030469/000103046924000007/0001030469-24-000007-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:43.775669+00:00",
+        "bytes": 13318,
+        "sha256": "3f7af159abbdc0ad7c85b9d9bab72233880a9b43a8fa8447cd3c0568dbf24ce1"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1030469/000103046924000007/ofg-20231231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:45.677282+00:00",
+        "bytes": 6368615,
+        "sha256": "bf590fe75ea2c54d48f84ba960712ebf2eb00a6e6984d4645305c67693c53d78"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-3893",
+              "context_id": "c-1",
+              "table_row": "Intersegment revenue 1,641 \u2014 \u2014 1,641 ( 1,641 ) \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-3967",
+              "context_id": "c-6",
+              "table_row": "Intersegment revenue $ 2,187 $ \u2014 $ \u2014 $ 2,187 $ ( 2,187 ) $ \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2021-01-01",
+              "end": "2021-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-4039",
+              "context_id": "c-7",
+              "table_row": "Intersegment revenue $ 2,355 $ \u2014 $ \u2014 $ 2,355 $ ( 2,355 ) $ \u2014"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0001042418",
+      "name": "Inhibitor Therapeutics, Inc.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "2e0aca7848cde054c89147d4c006f93f3c6bb885b5ad59eb90a9296af91831d4",
+      "source_sha256": "4142a89736990e49cb86be8cc08735b878648c52aa079c470055b2d7cd387cb7",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1042418/000119312522088832/0001193125-22-088832-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:24.552291+00:00",
+        "bytes": 12644,
+        "sha256": "adec7e370f2de2c9e32940a646396decf2adc9b7d4098c8e77d9fef404af88bd"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1042418/000119312522088832/d205626d10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:26.295711+00:00",
+        "bytes": 1671032,
+        "sha256": "e1f215c6bbb9bb14459c4df4e16e188c130faa9bf8498740ba18784c61129b0b"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2021-01-01",
+              "end": "2021-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": null,
+              "context_id": "P01_01_2021To12_31_2021",
+              "table_row": "Revenues: $ \u2014 $ \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2020-01-01",
+              "end": "2020-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": null,
+              "context_id": "P01_01_2020To12_31_2020",
+              "table_row": "Revenues: $ \u2014 $ \u2014"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0001062506",
+      "name": "ATLANTICA INC.",
+      "tags": [
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "selected_sha256": "e714ca18884f6e4ad13782cabfb95c816acec0cea16f64f286c16bd30b2c3156",
+      "source_sha256": "b6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812321000030/0001548123-21-000030-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:28.166717+00:00",
+        "bytes": 11524,
+        "sha256": "abac00b192e110d4b4420a68ebb957b7cd1616e79a3e4a96fb5faf21b2f0ecc8"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812321000030/k20.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:29.899974+00:00",
+        "bytes": 333117,
+        "sha256": "3b339e66a6efc5f34dea6ed503f2d314493205e5b5f29378795a7004862b0743"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "CashAndCashEquivalentsAtCarryingValue",
+          "start": null,
+          "end": "2020-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "CashAndCashEquivalentsAtCarryingValue",
+          "start": null,
+          "end": "2019-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "CashAndCashEquivalentsAtCarryingValue",
+          "start": null,
+          "end": "2018-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001062506",
+      "name": "ATLANTICA INC.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "e714ca18884f6e4ad13782cabfb95c816acec0cea16f64f286c16bd30b2c3156",
+      "source_sha256": "b6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/0001062506-26-000010-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:31.546804+00:00",
+        "bytes": 11715,
+        "sha256": "8b98a217f152195409805a2f28ae9236f460fbdd22b69154f0737bb011fb6a58"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/alda10k123125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:33.478887+00:00",
+        "bytes": 390392,
+        "sha256": "c6cd6a01e821244936276203a5da114612c5313e9cf7202938fe0eb069b50421"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-0",
+              "fact_id": "Fact000132",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "REVENUES $ - $ -"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-0",
+              "fact_id": "Fact000133",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "REVENUES $ - $ -"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0001066684",
+      "name": "THEGLOBE.COM,\u00a0INC.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "a8d98b695d9346cb0f842d8f453ce10facd629a8b3f3e462252af3f3f4a4fde1",
+      "source_sha256": "17c0b8de499dadae4750c2a1b818eeda06900c79c219393473364084a61ec623",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1066684/000110465926038019/0001104659-26-038019-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:35.160436+00:00",
+        "bytes": 11218,
+        "sha256": "0e5c757da434941d9c90fa35800396f299eb32616a9c3e68bc3e5b54ccb0097f"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1066684/000110465926038019/tglo-20251231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:36.785886+00:00",
+        "bytes": 598382,
+        "sha256": "9eb43570231f9a1005aae71c6629112f3f0913ef9e6527c86e31bdec0b677cf4"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Tc_agfmwLqfbUuwE38jLi1IVg_4_3",
+              "context_id": "Duration_1_1_2025_To_12_31_2025_vrhtzWGAFk-xaVVjIB501A",
+              "table_row": "Net Revenue \u200b $ \u2014 \u200b $ \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Tc_FB-3DqFKJ0OhehAje-HYVQ_4_6",
+              "context_id": "Duration_1_1_2024_To_12_31_2024_XUD8UlHOZEOky9kiO_-ejA",
+              "table_row": "Net Revenue \u200b $ \u2014 \u200b $ \u2014"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0001068689",
+      "name": "DATA443 RISK MITIGATION, INC.",
+      "tags": [
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "selected_sha256": "98b99ba069c84d85f98769ede2bab3e753cb28f7a4c974a8e7b11f54ce23cff2",
+      "source_sha256": "410b5d6f7c09ea51f2d93e0126b94d32896605cae1ac3cab61be79ac2eeeb2ce",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1068689/000149315226016943/0001493152-26-016943-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:38.400584+00:00",
+        "bytes": 16256,
+        "sha256": "033d81a677e9ad55e71b749a387703fe957f88f0007794a5ade8b99ffc4ac008"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1068689/000149315226016943/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:40.846194+00:00",
+        "bytes": 2798813,
+        "sha256": "ec472f4d17785c13798247ca88f4b0b55055a29a2a229f7617aba1ae2641e0f8"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "CashAndCashEquivalentsAtCarryingValue",
+          "start": null,
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "CashAndCashEquivalentsAtCarryingValue",
+          "start": null,
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001074871",
+      "name": "MODULAR MEDICAL, INC.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "0a721cca5f32223aa3dfe3561754ecba8eec8c75800fe3bb12a1069e228797d8",
+      "source_sha256": "35d9c7a349fec6383baca56e8aa4820d6d19d2f4955371898b75285f3bf308e4",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1074871/000101905618000822/0001019056-18-000822-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:43.098951+00:00",
+        "bytes": 11122,
+        "sha256": "65705268babc014e6c0d96ee1b3b05622fe11154dadc0e8c404b3ce6cce7e140"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1074871/000101905618000822/modular_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:44.748510+00:00",
+        "bytes": 419639,
+        "sha256": "8732f447b80242f735a8021fd97ce5728186df8953b5656c5d9ffd17e6ca7d8d"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2017-04-01",
+          "end": "2018-03-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2016-04-01",
+          "end": "2017-03-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001080448",
+      "name": "PATRIOT GOLD CORP.",
+      "tags": [
+        "PaymentsToAcquirePropertyPlantAndEquipment"
+      ],
+      "selected_sha256": "42a95798e222632d7d0fd0570bb7ac7875a387a5069085b88aa41b8d0422e26d",
+      "source_sha256": "5d0127695a5898d2b1d300d00f7c27dc0e37fcecc3de75df1c7f011bc54e21b4",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1080448/000093980213000141/0000939802-13-000141-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:46.430394+00:00",
+        "bytes": 11838,
+        "sha256": "48b5e33cb28a9dd0c27a3be2d77c63de47eaa66b1044b5147852c735fd01b1de"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1080448/000093980213000141/form10k053113.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:48.288088+00:00",
+        "bytes": 2187459,
+        "sha256": "44b0c4ee6e55de9214c93e13f7902db1f9b81686e1a6bacbc0e469ebaea6f320"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "start": "2012-06-01",
+          "end": "2013-05-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "start": "2011-06-01",
+          "end": "2012-05-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001082733",
+      "name": "VISIUM TECHNOLOGIES, INC.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "b048e5661577907b81dfbbdd4a43a2c271d3da7f45b7a58a65ca131da5f6cbe0",
+      "source_sha256": "251e725d3fea86663694ee893db7d76a6baba7bfe2f9d7a6c5950fa9a1f9d907",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495425011506/0001654954-25-011506-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:50.320172+00:00",
+        "bytes": 12975,
+        "sha256": "30c06ada99990a8ed7065456e1d961f876a5941cdc7ec276459e96f31642ecb6"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495425011506/vism_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:52.177200+00:00",
+        "bytes": 1344532,
+        "sha256": "32996e9da4e5b759f8c1ad68bd9db345b7ab97cf14a71787b7040105c0a2b35c"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2024-07-01",
+          "end": "2025-06-30",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-07-01",
+              "end": "2025-06-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_3346",
+              "context_id": "From2024-07-01to2025-06-30",
+              "table_row": "Revenues $ - $ -"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2023-07-01",
+          "end": "2024-06-30",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2023-07-01",
+              "end": "2024-06-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_3347",
+              "context_id": "From2023-07-01to2024-06-30",
+              "table_row": "Revenues $ - $ -"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0001134115",
+      "name": "INTERNATIONAL TOWER HILL MINES LTD",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "d5ab363874a3e1aaa559b3ae77d222a6746a25842d53dd4f5026d0e53218b8e0",
+      "source_sha256": "113e9b44c884142988c45b22afafafbbfacc34d3eb5f434aedf8135e2838e20b",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134115/000110465926026416/0001104659-26-026416-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:54.144504+00:00",
+        "bytes": 12948,
+        "sha256": "7d71756f66bd1114ddf3ec175b6666f188374ba2377efda38d0bd5fdc1dc4a6b"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134115/000110465926026416/thm-20251231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:55.865330+00:00",
+        "bytes": 1882228,
+        "sha256": "a485892cbc358ead176c276792e35a17bc531331f4599942a5a55d2c8a3827ad"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001211583",
+      "name": "FENNEC PHARMACEUTICALS INC.",
+      "tags": [
+        "PaymentsToAcquirePropertyPlantAndEquipment"
+      ],
+      "selected_sha256": "0ceb320ef8197d8827b18cbb32068e3595a226bb4035c3695d3896a336198d5d",
+      "source_sha256": "f5de26e280e9814def3db187bfe6961cb26c6e601a5f986375859c81818e8ab8",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1211583/000114420414019399/0001144204-14-019399-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:57.917453+00:00",
+        "bytes": 11294,
+        "sha256": "0a55d36ea5054733c8f85428f7fa8fb72eb742fe2e12b478d9ac4479a2351e70"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1211583/000114420414019399/v372442_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:59.862538+00:00",
+        "bytes": 890372,
+        "sha256": "30785a32a873fa5555502cf701249c966d0e89fbf09b41354c978108f0aae8f8"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "start": "2013-01-01",
+          "end": "2013-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "start": "2012-01-01",
+          "end": "2012-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001227654",
+      "name": "Compass Minerals International, Inc.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "1737645814926bd0db88b2733820b3390c6bfe192faa2d97985995e89da3e595",
+      "source_sha256": "e35c63d958ef9b086a4a3940b05df1180411e5e375b2a0bd4518328b58fcc764",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1227654/000114036114009227/0001140361-14-009227-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:48.317982+00:00",
+        "bytes": 14749,
+        "sha256": "6fdf1ad230324bb99bd7cebb184875e7ace9da7a358dde5262318abf06d38c12"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1227654/000114036114009227/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:51.381441+00:00",
+        "bytes": 2151595,
+        "sha256": "c6a6ca46a326a67d60b0a39c025c9ef65b6654fbe3ce73f8fbb76522243f2406"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2013-01-01",
+          "end": "2013-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2012-01-01",
+          "end": "2012-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2011-01-01",
+          "end": "2011-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001374690",
+      "name": "LARIMAR THERAPEUTICS, INC.",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "09e6fcac3997dd4fdb66fc6163fd3b9a64a9d7502fbd41dd9854354c2395cfd4",
+      "source_sha256": "08638b3759f4b65e6e121b92d928b796b8584ccbcb8cfc63b68c5bc067fd2552",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1374690/000156459020008984/0001564590-20-008984-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T06:00:02.322778+00:00",
+        "bytes": 12857,
+        "sha256": "127df6aadbda0e88f3be44dd18073dfc2bb320ce244d120a39a244e5ff5816c4"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1374690/000156459020008984/zfgn-10k_20191231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T06:00:04.878227+00:00",
+        "bytes": 3453466,
+        "sha256": "36dd7a2d89cb633b70e7833a1128d13faaba23a6e6c4bd64b1b96173824ab17a"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2018-01-01",
+          "end": "2018-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        },
+        {
+          "tag": "Revenues",
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [],
+          "matched": false
+        }
+      ],
+      "all_inspected_accession_rows_match": false
+    },
+    {
+      "cik": "0001612720",
+      "name": "NextDecade Corp",
+      "tags": [
+        "Revenues"
+      ],
+      "selected_sha256": "4bcc17aaaa78781ec9262ecdd82cda8e813f62c76a0d9a732496f55e7f1102d9",
+      "source_sha256": "f2086d6eb13febf793824610b3e3cd67aeddb7b820b462db18574b9142f6264a",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1612720/000161272026000009/0001612720-26-000009-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T06:00:06.737712+00:00",
+        "bytes": 20860,
+        "sha256": "2bcfb5b74ca0d628e081b54fffe24d6215af163414c8020859f0317669e52bee"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1612720/000161272026000009/next-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T06:00:08.489533+00:00",
+        "bytes": 1543660,
+        "sha256": "d9c42b7e68335667b0995781eddb246abc32b68b26109ddf6932b4e03c65c8ef"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Revenues",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-129",
+              "context_id": "c-1",
+              "table_row": "Revenues $ \u2014 $ \u2014 $ \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-130",
+              "context_id": "c-8",
+              "table_row": "Revenues $ \u2014 $ \u2014 $ \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-131",
+              "context_id": "c-9",
+              "table_row": "Revenues $ \u2014 $ \u2014 $ \u2014"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    },
+    {
+      "cik": "0001701541",
+      "name": "BLACK DIAMOND THERAPEUTICS, INC.",
+      "tags": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax"
+      ],
+      "selected_sha256": "2f0b3206de67291b77945aec7d664afabc2cfa7f87f32bf4049e157dc36e9c2a",
+      "source_sha256": "83c9b39ed87bea5941c5d66910af8cb00c0034506f171838a44f7760e1828384",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1701541/000170154121000018/0001701541-21-000018-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T06:00:10.380584+00:00",
+        "bytes": 17661,
+        "sha256": "164763008c0405b6a1e5ac7f85865028f826c090ea16419c24101ef26f49ab0a"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1701541/000170154121000018/bdtx-20201231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T06:00:12.426707+00:00",
+        "bytes": 2050230,
+        "sha256": "e618c3db6607e94bdfae68a37f9b20fc1533480c1c07932a9c284913e977f066"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2020-01-01",
+              "end": "2020-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjlmZDZjM2Y4ODk1ODQzZDZhZGZmNDMxODdhZmVjYjcwL3NlYzo5ZmQ2YzNmODg5NTg0M2Q2YWRmZjQzMTg3YWZlY2I3MF8xMzYvZnJhZzo4NGFkY2ExY2EyZTM0ZTRkODk1YTE2ZjhmYTNjNzBiMS90YWJsZTo3NWUxMDNiNDlkNmM0YzUxYmNkMDJjNmU0MTM5OWY2NS90YWJsZXJhbmdlOjc1ZTEwM2I0OWQ2YzRjNTFiY2QwMmM2ZTQxMzk5ZjY1XzMtOS0xLTEtMA_bbb4579a-24de-43db-aacd-549dde12f50c",
+              "context_id": "ieb238077d48640ab846dd06804ddc726_D20200101-20201231",
+              "table_row": "Revenue $ \u2014 $ \u2014 $ \u2014 $ \u2014 $ \u2014"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2019-01-01",
+              "end": "2019-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjlmZDZjM2Y4ODk1ODQzZDZhZGZmNDMxODdhZmVjYjcwL3NlYzo5ZmQ2YzNmODg5NTg0M2Q2YWRmZjQzMTg3YWZlY2I3MF8xMzYvZnJhZzo4NGFkY2ExY2EyZTM0ZTRkODk1YTE2ZjhmYTNjNzBiMS90YWJsZTpmZDNmNWJmNDliM2M0YWRiYWFlZjRjMDUwYzBlZTQzMy90YWJsZXJhbmdlOmZkM2Y1YmY0OWIzYzRhZGJhYWVmNGMwNTBjMGVlNDMzXzMtOS0xLTEtMA_435fac4e-02d3-4ce4-bf68-0f7bb4e8078e",
+              "context_id": "i110918442cd84a0b928080c17a2b987e_D20190101-20191231",
+              "table_row": "Revenue $ \u2014 $ \u2014 $ \u2014 $ \u2014 $ \u2014"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true
+    }
+  ],
+  "decision_boundary": "Completed primary capture for all33 constant-history cases. Successful inline comparisons establish selected numerical matches only, not universal measure scope. Failed inline comparisons may reflect older non-inline filings or unsupported formats; separate XBRL inspection is pending. Do not infer issuer error or approval from an unmatched extraction.",
+  "capture_code_sha256": "99f0a955affb7baa8ec8959e1f2d81bab15223fa583ff1fed3a0b7e9aea6074d",
+  "comparison_code_sha256": "c73b6a5b33e0746b0585e7687ee7021b0b80dd48235057b5f541031093e59e46"
+}

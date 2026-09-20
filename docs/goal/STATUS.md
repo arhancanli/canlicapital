@@ -15,15 +15,19 @@ New extended-v2 policy applies exact-source-hash exclusions, explains them on th
 company overview, and keeps original SEC downloads. All1,968 staged records were
 compared: only the three reviewed concepts changed;52,413histories remain. Local
 build and383tests(6+377) pass. Corrected candidate catalog/release/discovery built;
-fullHTTP job19226 is running; poll that same handle before any restart. Browser
-job22919 passed84checks, including three overview explanations and excluded
-history404s. No complete v2HTTP result claimed yet.
+fullHTTP19226 passed54,421pages/3,936downloads with exactsitemap and nofailures.
+Browser22919 passed84checks, including affectedoverviews andhistory404s.
+CI60100bd6/run35492885392 passes. Two additional scope errors at Dentsply and
+Compass are now confirmed; v2 is not a publication candidate as-is.
 
 The prior three-cohort archive(12,952files) and isolatedrestore passed for its
 extended-v1scope. It excludes the new constant-history filing review and corrected
 v2runtime. Updated storage inventory/archive required after v2verification.
 Remote retention destination/access and Search Console measurement remain pending.
-Two older non-inline revenue filings remain unresolved; no broad zero-value filter.
+All33constant-history primaryfilings captured;12completeinlinecomparisons and
+21requiring separateXBRL. Additionalcapture15210 completed after fixing embedded
+label-linkbase support;21case bundles/42unique bodies hashverified. Prior56575 exited1, failure retained;
+existingverifiedcaptures reused. Finishreview before nextpolicyversion.
 
 Latest completed website CI:7e111ee9/run35492406633 passes. New editorial correction
 needs its own CI. Engine PR68 at61b587f passed full CI35489715539; five current-epoch
@@ -362,3 +366,21 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
 
 - Browser22919 nowexit0:84checks/14routes, allsix engine/width combinations;
   allthree reviewed exclusions have overview notices, filinglinks and genuine404s.
+
+## Constant-history scope review expansion — 2026-09-20
+
+- Previous HTTP19226 completedexit0:54,421pages/3,936downloads, exactsitemap,
+  nofailures. CI60100bd6/run35492885392 also passes.
+- Dentsply2016 andCompass2013 instance/label-linkbase review matched6selected
+  observations with entity/period/unit/value and dimensional/nil exclusions.
+  Filinglabels explicitly identifyintersegment sales. These two additionalgeneric
+  revenuehistories need exclusion in the nextpolicy; v2stillcontains them.
+- All33constant-history cases captured under84526exit0:12completeinline numerical
+  comparisons;21unresolvedbythat extraction, not21issuererrors. Fullnumericmatch
+  doesnot establishmeasure scope. Sourcebody/schema/label inspection continues.
+- AdditionalXBRLcapture56575 exited1 becauseOruka's labels are embedded inXSD.
+  Added support, retainedfailurelog, resumedas15210 usingverifiedcachedbytes; nowexit0.
+  No403/429retry orduplicated originalsourcecapture. All21case bundles and42unique
+  captured bodies verified bystatus/hash/length. Next compareinstances andscope.
+- Newfilingmaterial outsidecurrentsealedarchive. Exactdecisions andsourcebinding:
+  company-noninline-revenue-scope-review.json andcompany-all-constant-filing-evidence.json.

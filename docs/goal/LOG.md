@@ -1034,3 +1034,19 @@ Originalv1archive remains reproducible butno longer a publishablecandidateas-is.
 
 Browser22919exit0:84checks/14routes including allthree scopedexclusionoverviews
 and theirhistory404s. HTTP19226stillrunning; samehandle mustberesumed.
+
+## 2026-09-20 — older XBRL scope proof and complete constant-case acquisition
+
+Previous turn implementedsemanticfix(v2), notcompletion. SameHTTP19226nowexit0
+and60100bd6CI35492885392passes. Read olderDentsply/Compass XBRLinstances+labels:
+sixselectedvalues match, labels explicitlyintersegmentsales. Confirmedtwoadditional
+exclusions required; keepv2reproducible, noapprovalforpublication. All33constant
+cases captured84526exit0;12completeinlinecomparisons,21needseparateXBRL. These
+areverificationgaps, not automaticallybadfacts. Additionalcapture56575 failedon
+embeddedlabel-layout inOrukaXSD, preservedfailure andaddedlayoutsupport. Resumed
+samecaptureworkfromverifiedcache as15210, stillrunning atcheckpoint. No retry
+onaccess/rate-limiterrors. Next finishsource-review andmakecoherentpolicyupdate.
+
+Capture15210 nowexit0:21case bundles,42uniqueinstance/label-or-schema bodies,
+allstatus200 withverifiedlength/hash. No acquisitionprocess remainsrunning.
+Next: offlineinstance/context/unit/value andscope review, thennextpolicyversion.

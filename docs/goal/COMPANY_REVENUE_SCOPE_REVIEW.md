@@ -43,3 +43,21 @@ pages and links and includes the overview explanation. Receipt:
 `artifacts/seo/company-editorial-v2-migration.json`. Combined catalog, HTTP,
 sitemap, browser and archive verification for the corrected candidate remain
 separate required checks. No publication or indexing claim follows from this fix.
+
+## Later non-inline review — 2026-09-20
+
+Dentsply and Compass are now resolved as two additional scope errors. Their saved
+XBRL instances match all six selected observations by entity, period, unit and
+value. Dentsply's linked terse label is Intersegment net sales; Compass's label is
+Intersegment sales. See company-noninline-revenue-scope-review.json for source
+hashes, context IDs and label roles. The primary documents also contain the
+corresponding intersegment headings. These two cases supersede the unresolved
+entries above and require exclusion in the next policy version. Do not publish
+v2 as-is merely because its technical checks pass.
+
+The broader constant-case review captured all33 primary filings;12complete inline
+comparisons pass numerically and21need standalone XBRL inspection. An unmatched
+extraction can reflect a non-inline filing or unsupported transform and is not
+an issuer-data error. The next policy change awaits that broader review. The
+latest v2 full HTTP replay and84browser checks pass but do not resolve these
+additional semantic release gates.
