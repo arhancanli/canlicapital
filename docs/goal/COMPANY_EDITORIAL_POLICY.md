@@ -35,8 +35,9 @@ explain each company's reported equality without inspecting its filings.
 
 The other pairs are total/current liabilities (two companies), alternative revenue
 tags (two), accounts payable/net property and equipment (one), and operating
-expenses/selling-general-administrative expense (one). Keep these in the review
-queue. Neither a plausible relationship nor an unusual match proves an error.
+expenses/selling-general-administrative expense (one). These six pairs were inspected against original filings on2026-09-20; see
+COMPANY_PAIR_REVIEW.md and its bound receipt. Retain distinct concepts with comparison
+context. This resolves equality-driven deduplication only; other review remains open.
 
 No histories were dropped, source values edited or flags cleared in this change.
 The unchanged quality queue is in company-combined-selected-quality-extended.json.

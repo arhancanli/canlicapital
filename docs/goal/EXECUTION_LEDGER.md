@@ -13,7 +13,7 @@ Authority: REQUIREMENTS.md (all goals), STATUS.md (current facts), PHASES.md
 |T03 Consolidate continuity |Complete locally |Current STATUS separate from archived history; all objectives preserved |
 |T04 New-cohort staging |Locally verified |23,568 pages/1,706 downloads replayed;54 browser checks;147 exclusions retained |
 |T04b Combined-cohort construction |Locally verified |32,954 pages/2,404 downloads replayed;54 browser checks;368 full-suite tests;source evidence retained |
-|T05 Editorial/source/intent quality |Disclosures verified; editorial review ongoing |338 matching-history pages and24 constant-unit pages explained;373tests,66browser checks,fullHTTP replay; no publication approval |
+|T05 Editorial/source/intent quality |Disclosures verified; editorial review ongoing |338 matching-history pages and24 constant-unit pages explained;six unusual matching pairs inspected against original filings;373tests,66browser checks,fullHTTP replay; no publication approval |
 |T06 Storage and release |Runtime plan verified; access pending |3,927 objects/505,062,941 bytes; separate capture backup and hosted/production evidence pending |
 |T07 Search indexing and adoption |Unestablished |Search-engine and genuine API/MCP/repository usage evidence |
 |T08 Governed engine outcomes |Evidence inspected; outcomes unestablished |Five returns/four sleeves; report hashes verified; three PRs pass; activation projection verified; spin-off evidence integrity repaired |

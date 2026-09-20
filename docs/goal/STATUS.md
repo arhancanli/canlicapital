@@ -24,9 +24,9 @@ integration. Prior releases remain unchanged; publication is not approved.
   pages, 676 flagged histories, 147 exclusions, 0 errors**. Exclusions: 51 invalid
   entities, 35 insufficient coverage, 61 captured 404 responses. No captures rewritten.
   Receipt: artifacts/seo/company-next-batch-codex-review.json.
-- Website PR15 OPEN at **34a166c8**, pushed on 2026-09-20. CI run
-  **35489594591** completed successfully for this exact head. Prior **e43a0a6f**
-  also passed **35489349842**. No production deployment claimed.
+- Website PR15 OPEN at **fb0a05de**; CI **35489967924** completed successfully
+  for this exact head. New editorial evidence below has separate commit/CI state.
+  No production deployment claimed.
 
 ## Counts and boundaries
 
@@ -199,3 +199,18 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   change in the audit definition or source values.
 - Website prior6108a391 CI35489757169 passed. Engine61b587f run35489715539
   remains in progress at this check. New website changes require their own CI.
+
+## Exceptional matching-history review — 2026-09-20
+
+- Inspected six pairs across five companies against their latest selected filings;
+  all28 selected observations match undimensioned inline facts after period, unit,
+  scale and sign checks. Also inspected Eventiko2024 for the11000 asset/liability
+  values and separate source rows. All12 capture bodies(6indexes/6primaryfilings)
+  match retained receipt hashes and byte lengths.
+- Decision: retain distinct concepts with comparison context, no equality-driven
+  merging. COMPANY_PAIR_REVIEW.md and company-exceptional-pairs-filing-evidence.json
+  record scope, facts and limitations. Other editorial/release gates remain open.
+- New filing captures live in ignored corpus-local/editorial-filings and must join
+  the separate durable evidence backup. Existing runtime upload inventory excludes
+  them. Initial web-reader error and Python403 retained as failures, not evidence.
+- Websitefb0a05de CI35489967924 passed; engine61b587f CI35489715539 remains running.

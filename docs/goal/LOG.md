@@ -897,3 +897,19 @@ engines and three widths; matching-history mobile screenshot inspected. New cont
 covers338 matching pages,24 with constant units(19zero); this differs from20
 all-units-constant flags by design. Verification4148 exit0:373tests+audits.
 Prior website6108a391 CI35489757169 passes; engine61b587f CI35489715539 still running.
+
+
+## 2026-09-20 — original-filing review of exceptional equal vectors
+
+Previous turn was progress: contextual rendering,373tests,fullHTTP and66browser
+checks. Current turn inspected the six unusual pair groups against captured
+companyfacts and original primary filings. Node captures succeeded after the
+web-reader failed and initial Python3M request returned403. Preserved12body hashes
+for six unique primary filings/indexes, including additional Eventiko2024. Matched
+28 selected latest-accession observations under undimensioned context/period/unit
+and scale/sign checks, plus inspected four Eventiko2024 facts. Source selected
+records replay independently. Decision retain separate concepts with comparison
+links; no automatic merge based on equal values. Review is Codex source inspection,
+not independent human replication or all-history/publication approval. Documents
+and bound receipt preserve scope. No application code changed in this turn.
+Websitefb0a05de CI35489967924 passes; engine61b587f run35489715539 still running.
