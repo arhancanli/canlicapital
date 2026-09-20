@@ -1,0 +1,55 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001468748",
+      "accession": "0001193125-26-134887",
+      "source_sha256": "fa937f3241c45706b9bd1bff3d57d7c6bde0b88302772aa7c62bc4ffe51766d7",
+      "primary_sha256": "f9e16176333b50a40ab7ffed55e25b324a0e85dc78a1172e0072bfd47a8a1c0a",
+      "fixture": "scripts/fixtures/editorial/kodiak-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 32,
+      "share_scale": "0",
+      "table_requires": [
+        "Numerator: Net loss"
+      ],
+      "paragraph_requires": [
+        "The following table sets forth the computation of basic and diluted net loss per share attributable to common stockholders (in thousands, except share and per share data):",
+        "Since the Company has reported net loss for all periods presented, diluted net loss per share is the same as basic net loss per common share for those periods."
+      ],
+      "reader_note": "For 2023\u20132025, Kodiak uses net loss attributable to common stockholders as its EPS numerator and excludes potential common shares as antidilutive in the loss periods. The 2023 comprehensive-loss figure is a separate measure and does not replace net loss for EPS. Shares and per-share amounts are exempt from the thousands heading and use scale-zero tags. Excluded common-share equivalents are not added to the weighted-average denominator.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001477333",
+      "accession": "0001477333-26-000016",
+      "source_sha256": "04cc636210456fc5163996c546c38dd049e53b5f9ce59b8f824f1725b06afe11",
+      "primary_sha256": "b54a362466f023bf853c83ad8f6f1dc529b462049c25970e34e595cc4a497f73",
+      "fixture": "scripts/fixtures/editorial/cloudflare-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 27,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss per share attributable to common stockholders, basic and diluted"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except per share data)",
+        "The holders of early exercised shares subject to repurchase do not have a contractual obligation to share in the losses of the Company.",
+        "Vested RSUs that have not been settled have been included in the appropriate common share class used to calculate basic net loss per share.",
+        "all potentially dilutive securities are antidilutive and accordingly, basic net loss per share equals diluted net loss per share."
+      ],
+      "reader_note": "For 2023\u20132025, Cloudflare allocates net losses proportionately to Class A and Class B common shares under the two-class method. Participating early-exercise shares subject to repurchase have no obligation to share losses and receive no loss allocation. Basic weighted-average shares exclude shares subject to repurchase but include vested, unsettled RSUs in the appropriate common-share class. Other potential dilution is excluded as antidilutive in these loss periods. The combined statement share counts are in thousands with scale-three tags; EPS uses scale zero. Reported counts are retained without adding excluded or already-included instruments.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

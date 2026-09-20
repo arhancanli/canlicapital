@@ -1,6 +1,228 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001468748",
+  "include_on_overview": true,
+  "source_sha256": "fa937f3241c45706b9bd1bff3d57d7c6bde0b88302772aa7c62bc4ffe51766d7",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Kodiak uses net loss attributable to common stockholders as its EPS numerator and excludes potential common shares as antidilutive in the loss periods. The 2023 comprehensive-loss figure is a separate measure and does not replace net loss for EPS. Shares and per-share amounts are exempt from the thousands heading and use scale-zero tags. Excluded common-share equivalents are not added to the weighted-average denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1468748/000119312526134887/kod-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -4.97,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -3.35,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -4.32,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -4.97,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -3.35,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -4.32,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 52414256,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 52583148,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 53208311,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 52414256,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 52583148,
+      "accn": "0001193125-26-134887"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 53208311,
+      "accn": "0001193125-26-134887"
+    }
+  ]
+},
+{
+  "cik": "0001477333",
+  "include_on_overview": true,
+  "source_sha256": "04cc636210456fc5163996c546c38dd049e53b5f9ce59b8f824f1725b06afe11",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Cloudflare allocates net losses proportionately to Class A and Class B common shares under the two-class method. Participating early-exercise shares subject to repurchase have no obligation to share losses and receive no loss allocation. Basic weighted-average shares exclude shares subject to repurchase but include vested, unsettled RSUs in the appropriate common-share class. Other potential dilution is excluded as antidilutive in these loss periods. The combined statement share counts are in thousands with scale-three tags; EPS uses scale zero. Reported counts are retained without adding excluded or already-included instruments.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1477333/000147733326000016/cloud-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.55,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.23,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.29,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.55,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.23,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.29,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 333656000,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 341411000,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 348421000,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 333656000,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 341411000,
+      "accn": "0001477333-26-000016"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 348421000,
+      "accn": "0001477333-26-000016"
+    }
+  ]
+},
+{
   "cik": "0001470129",
   "include_on_overview": true,
   "source_sha256": "01950acba447b82b7b44f1f15b43d38d4d36d713a72efbec54a89ccef55fa5ab",

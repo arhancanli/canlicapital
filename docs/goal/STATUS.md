@@ -9,25 +9,24 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/legacy-visitiq-context-20260921`. PR80mergedeb94eb91after four passing
-CI35534133763checks ata5828902. Tested/merged tree
-e82d80d6545c77a931f7f224fd4ac18f900d9c81 matches exactly.
+`evidence/share-context-batch17-20260921`. PR81mergedfa79beafafter four passing
+CI35534364504checks atcc0d3ce4. Tested/merged tree
+d3e9d093225f7c3e22b91d236b5e8884df93b92f matches exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-legacy1-20260921.json.gz.
-Of1,176batch observations,516reviewed/646pending/14withdrawn.84reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch17-20260921.json.gz.
+Of1,176batch observations,540reviewed/622pending/14withdrawn.84reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest12reviews map legacy China Bilingual(nowVisitIQCIK) XMLfacts to explicit
-annual columns in original2012filing tables72/73. Selected2010calendar year and
-2011/2012August years remain distinct from the eight-month2011column (EPS0.31
-versus annual0.45). Historical issuer identified; no current-operations inference.
-All12remain presentation-only because generic loss-period policy does not explain
-equality in these profitable periods.37renderer/ledger tests pass; report replays
-byte-identically, rechecks XMLnamespace/unit/period matching and exact HTMLcells.
-Kodiakindex52inspected but not adjudicated; then new index54. Earlier legacy and
-other context gaps remain open.
+Latest24reviews cover Kodiak and Cloudflare2023–2025EPS. Kodiaknet loss remains
+separate from comprehensive loss. Cloudflareparticipating early-exercise shares
+subject to repurchase have no loss-sharing obligation; basic shares exclude them,
+but include vested unsettled RSUs. ClassA/Ballocate loss proportionately; potential
+dilution excluded in loss periods. Sharescales0/3retained.38renderer/ledger tests
+pass; source report replays byte-identically. Next new index55; earlier gaps remain.
+Previous12legacy China Bilingualreviews remain presentation-only with annual versus
+eight-month2011mapping and historical issuer context preserved.
 
 V18six Iovance2023–2025share-scale holds remain enforced. Earlier2019–2022share
 rows need original-filing review and six EPSbatch rows are still pending. Whole-
