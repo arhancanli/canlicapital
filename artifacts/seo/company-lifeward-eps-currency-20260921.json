@@ -1,0 +1,477 @@
+{
+  "schema": "canli.lifeward-eps-currency.v1",
+  "publication_approved": false,
+  "targets_sha256": "cd81acbe9da201f5c8da6f0480c87869ac5a4d40b7e95343d187c2af9bd57617",
+  "receipt_sha256": "ae7cdd8ccefb852623b5954ea92e38780c805361e597e714ac03e3c515c57b90",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1607962/000117891324000730/zk2431037.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T17:59:01.943106+00:00",
+    "bytes": 2367945,
+    "sha256": "2891960fabc5236814430ff3639d55f35c47c8757c68fd4048732d4c3d4a1381",
+    "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001607962-0001178913-24-000730-primary.response"
+  },
+  "source_sha256": "65d510c294653d7f3865b561279f8eb53c45e516643e1812cfe6330a41480012",
+  "code_sha256": "b5666692facd7b3961ed0b29a62d3af207e1f3d3915f6be291a6ed57a170de18",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "selected_observations": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -0.27,
+      "accn": "0001178913-24-000730",
+      "fy": 2023,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2024-02-27",
+      "frame": "CY2021",
+      "unit": "ILS/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -0.31,
+      "accn": "0001178913-24-000730",
+      "fy": 2023,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2024-02-27",
+      "frame": "CY2022",
+      "unit": "ILS/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.37,
+      "accn": "0001178913-24-000730",
+      "fy": 2023,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2024-02-27",
+      "frame": "CY2023",
+      "unit": "ILS/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -0.27,
+      "accn": "0001178913-24-000730",
+      "fy": 2023,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2024-02-27",
+      "frame": "CY2021",
+      "unit": "ILS/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -0.31,
+      "accn": "0001178913-24-000730",
+      "fy": 2023,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2024-02-27",
+      "frame": "CY2022",
+      "unit": "ILS/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.37,
+      "accn": "0001178913-24-000730",
+      "fy": 2023,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2024-02-27",
+      "frame": "CY2023",
+      "unit": "ILS/shares",
+      "tag": "EarningsPerShareDiluted"
+    }
+  ],
+  "comparison": {
+    "checks": [
+      {
+        "selected": {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.27,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2021",
+          "unit": "ILS/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "ILS/shares",
+            "value": "-0.27",
+            "fact_id": "Fxbrl_20240225004840147",
+            "context_id": "C_20210101to20211231",
+            "table_row": "Net loss per ordinary share, basic and diluted $ ( 0.37 ) $ ( 0.31 ) $ ( 0.27 )",
+            "preceding_rows": [
+              "Net loss $ ( 22,133 ) $ ( 19,569 ) $ ( 12,736 )",
+              ""
+            ],
+            "table_header_rows": [
+              "Year ended December 31,",
+              "2023 2022 2021",
+              "Revenue $ 13,854 $ 5,511 $ 5,966",
+              "Cost of revenue 9,401 3,606 3,063",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": -0.31,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2022",
+          "unit": "ILS/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "ILS/shares",
+            "value": "-0.31",
+            "fact_id": "Fxbrl_20240225004830611",
+            "context_id": "C_20220101to20221231",
+            "table_row": "Net loss per ordinary share, basic and diluted $ ( 0.37 ) $ ( 0.31 ) $ ( 0.27 )",
+            "preceding_rows": [
+              "Net loss $ ( 22,133 ) $ ( 19,569 ) $ ( 12,736 )",
+              ""
+            ],
+            "table_header_rows": [
+              "Year ended December 31,",
+              "2023 2022 2021",
+              "Revenue $ 13,854 $ 5,511 $ 5,966",
+              "Cost of revenue 9,401 3,606 3,063",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": -0.37,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2023",
+          "unit": "ILS/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "unit": "ILS/shares",
+            "value": "-0.37",
+            "fact_id": "Fxbrl_20240225004814776",
+            "context_id": "C_20230101to20231231",
+            "table_row": "Net loss per ordinary share, basic and diluted $ ( 0.37 ) $ ( 0.31 ) $ ( 0.27 )",
+            "preceding_rows": [
+              "Net loss $ ( 22,133 ) $ ( 19,569 ) $ ( 12,736 )",
+              ""
+            ],
+            "table_header_rows": [
+              "Year ended December 31,",
+              "2023 2022 2021",
+              "Revenue $ 13,854 $ 5,511 $ 5,966",
+              "Cost of revenue 9,401 3,606 3,063",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.27,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2021",
+          "unit": "ILS/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "ILS/shares",
+            "value": "-0.27",
+            "fact_id": "Fxbrl_20240225004938878",
+            "context_id": "C_20210101to20211231",
+            "table_row": "Net loss per ordinary share, basic and diluted $ ( 0.37 ) $ ( 0.31 ) $ ( 0.27 )",
+            "preceding_rows": [
+              "Net loss $ ( 22,133 ) $ ( 19,569 ) $ ( 12,736 )",
+              ""
+            ],
+            "table_header_rows": [
+              "Year ended December 31,",
+              "2023 2022 2021",
+              "Revenue $ 13,854 $ 5,511 $ 5,966",
+              "Cost of revenue 9,401 3,606 3,063",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": -0.31,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2022",
+          "unit": "ILS/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "ILS/shares",
+            "value": "-0.31",
+            "fact_id": "Fxbrl_20240225004929118",
+            "context_id": "C_20220101to20221231",
+            "table_row": "Net loss per ordinary share, basic and diluted $ ( 0.37 ) $ ( 0.31 ) $ ( 0.27 )",
+            "preceding_rows": [
+              "Net loss $ ( 22,133 ) $ ( 19,569 ) $ ( 12,736 )",
+              ""
+            ],
+            "table_header_rows": [
+              "Year ended December 31,",
+              "2023 2022 2021",
+              "Revenue $ 13,854 $ 5,511 $ 5,966",
+              "Cost of revenue 9,401 3,606 3,063",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": -0.37,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2023",
+          "unit": "ILS/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "unit": "ILS/shares",
+            "value": "-0.37",
+            "fact_id": "Fxbrl_20240225004900065",
+            "context_id": "C_20230101to20231231",
+            "table_row": "Net loss per ordinary share, basic and diluted $ ( 0.37 ) $ ( 0.31 ) $ ( 0.27 )",
+            "preceding_rows": [
+              "Net loss $ ( 22,133 ) $ ( 19,569 ) $ ( 12,736 )",
+              ""
+            ],
+            "table_header_rows": [
+              "Year ended December 31,",
+              "2023 2022 2021",
+              "Revenue $ 13,854 $ 5,511 $ 5,966",
+              "Cost of revenue 9,401 3,606 3,063",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      }
+    ],
+    "rejected_facts": {}
+  },
+  "inline_evidence": [
+    {
+      "selected": {
+        "start": "2021-01-01",
+        "end": "2021-12-31",
+        "val": -0.27,
+        "accn": "0001178913-24-000730",
+        "fy": 2023,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2024-02-27",
+        "frame": "CY2021",
+        "unit": "ILS/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"C_20210101to20211231\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Fxbrl_20240225004840147\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"NIS_per_Share\">0.27</ix:nonfraction>",
+      "unit_xml": "<xbrli:unit id=\"NIS_per_Share\"><xbrli:divide><xbrli:unitnumerator><xbrli:measure>iso4217:ILS</xbrli:measure></xbrli:unitnumerator><xbrli:unitdenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitdenominator></xbrli:divide></xbrli:unit>",
+      "context_xml": "<xbrli:context id=\"C_20210101to20211231\"><xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001607962</xbrli:identifier></xbrli:entity><xbrli:period>\n<xbrli:startdate>2021-01-01</xbrli:startdate>\n<xbrli:enddate>2021-12-31</xbrli:enddate>\n</xbrli:period></xbrli:context>"
+    },
+    {
+      "selected": {
+        "start": "2022-01-01",
+        "end": "2022-12-31",
+        "val": -0.31,
+        "accn": "0001178913-24-000730",
+        "fy": 2023,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2024-02-27",
+        "frame": "CY2022",
+        "unit": "ILS/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"C_20220101to20221231\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Fxbrl_20240225004830611\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"NIS_per_Share\">0.31</ix:nonfraction>",
+      "unit_xml": "<xbrli:unit id=\"NIS_per_Share\"><xbrli:divide><xbrli:unitnumerator><xbrli:measure>iso4217:ILS</xbrli:measure></xbrli:unitnumerator><xbrli:unitdenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitdenominator></xbrli:divide></xbrli:unit>",
+      "context_xml": "<xbrli:context id=\"C_20220101to20221231\"><xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001607962</xbrli:identifier></xbrli:entity><xbrli:period>\n<xbrli:startdate>2022-01-01</xbrli:startdate>\n<xbrli:enddate>2022-12-31</xbrli:enddate>\n</xbrli:period></xbrli:context>"
+    },
+    {
+      "selected": {
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "val": -0.37,
+        "accn": "0001178913-24-000730",
+        "fy": 2023,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2024-02-27",
+        "frame": "CY2023",
+        "unit": "ILS/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"C_20230101to20231231\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Fxbrl_20240225004814776\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"NIS_per_Share\">0.37</ix:nonfraction>",
+      "unit_xml": "<xbrli:unit id=\"NIS_per_Share\"><xbrli:divide><xbrli:unitnumerator><xbrli:measure>iso4217:ILS</xbrli:measure></xbrli:unitnumerator><xbrli:unitdenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitdenominator></xbrli:divide></xbrli:unit>",
+      "context_xml": "<xbrli:context id=\"C_20230101to20231231\"><xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001607962</xbrli:identifier></xbrli:entity><xbrli:period>\n<xbrli:startdate>2023-01-01</xbrli:startdate>\n<xbrli:enddate>2023-12-31</xbrli:enddate>\n</xbrli:period></xbrli:context>"
+    },
+    {
+      "selected": {
+        "start": "2021-01-01",
+        "end": "2021-12-31",
+        "val": -0.27,
+        "accn": "0001178913-24-000730",
+        "fy": 2023,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2024-02-27",
+        "frame": "CY2021",
+        "unit": "ILS/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"C_20210101to20211231\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Fxbrl_20240225004938878\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"NIS_per_Share\"><ix:nonfraction contextref=\"C_20210101to20211231\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Fxbrl_20240225004840147\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"NIS_per_Share\">0.27</ix:nonfraction></ix:nonfraction>",
+      "unit_xml": "<xbrli:unit id=\"NIS_per_Share\"><xbrli:divide><xbrli:unitnumerator><xbrli:measure>iso4217:ILS</xbrli:measure></xbrli:unitnumerator><xbrli:unitdenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitdenominator></xbrli:divide></xbrli:unit>",
+      "context_xml": "<xbrli:context id=\"C_20210101to20211231\"><xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001607962</xbrli:identifier></xbrli:entity><xbrli:period>\n<xbrli:startdate>2021-01-01</xbrli:startdate>\n<xbrli:enddate>2021-12-31</xbrli:enddate>\n</xbrli:period></xbrli:context>"
+    },
+    {
+      "selected": {
+        "start": "2022-01-01",
+        "end": "2022-12-31",
+        "val": -0.31,
+        "accn": "0001178913-24-000730",
+        "fy": 2023,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2024-02-27",
+        "frame": "CY2022",
+        "unit": "ILS/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"C_20220101to20221231\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Fxbrl_20240225004929118\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"NIS_per_Share\"><ix:nonfraction contextref=\"C_20220101to20221231\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Fxbrl_20240225004830611\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"NIS_per_Share\">0.31</ix:nonfraction></ix:nonfraction>",
+      "unit_xml": "<xbrli:unit id=\"NIS_per_Share\"><xbrli:divide><xbrli:unitnumerator><xbrli:measure>iso4217:ILS</xbrli:measure></xbrli:unitnumerator><xbrli:unitdenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitdenominator></xbrli:divide></xbrli:unit>",
+      "context_xml": "<xbrli:context id=\"C_20220101to20221231\"><xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001607962</xbrli:identifier></xbrli:entity><xbrli:period>\n<xbrli:startdate>2022-01-01</xbrli:startdate>\n<xbrli:enddate>2022-12-31</xbrli:enddate>\n</xbrli:period></xbrli:context>"
+    },
+    {
+      "selected": {
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "val": -0.37,
+        "accn": "0001178913-24-000730",
+        "fy": 2023,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2024-02-27",
+        "frame": "CY2023",
+        "unit": "ILS/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"C_20230101to20231231\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Fxbrl_20240225004900065\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"NIS_per_Share\"><ix:nonfraction contextref=\"C_20230101to20231231\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Fxbrl_20240225004814776\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"NIS_per_Share\">0.37</ix:nonfraction></ix:nonfraction>",
+      "unit_xml": "<xbrli:unit id=\"NIS_per_Share\"><xbrli:divide><xbrli:unitnumerator><xbrli:measure>iso4217:ILS</xbrli:measure></xbrli:unitnumerator><xbrli:unitdenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitdenominator></xbrli:divide></xbrli:unit>",
+      "context_xml": "<xbrli:context id=\"C_20230101to20231231\"><xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001607962</xbrli:identifier></xbrli:entity><xbrli:period>\n<xbrli:startdate>2023-01-01</xbrli:startdate>\n<xbrli:enddate>2023-12-31</xbrli:enddate>\n</xbrli:period></xbrli:context>"
+    }
+  ],
+  "zero_based_table_index": 151,
+  "statement_headers": [
+    "",
+    "U.S. dollars in thousands (except share and per share data)",
+    "CONSOLIDATED STATEMENTS OF OPERATIONS",
+    "REWALK ROBOTICS LTD. AND SUBSIDIARIES",
+    ""
+  ],
+  "primary_table": "Year ended December 31, 2023 2022 2021 Revenue $ 13,854 $ 5,511 $ 5,966 Cost of revenue 9,401 3,606 3,063 Gross profit 4,453 1,905 2,903 Operating expenses: Research and development, net 4,148 4,031 2,939 Sales and marketing 13,922 9,842 6,993 General and administrative 9,995 7,134 5,626 Total operating expenses 28,065 21,007 15,558 Operating loss ( 23,612 ) ( 19,102 ) ( 12,655 ) Financial income, net 1,467 * ) 13 Loss before income taxes ( 22,145 ) ( 19,102 ) ( 12,642 ) Taxes on income (benefit) ( 12 ) 467 94 Net loss $ ( 22,133 ) $ ( 19,569 ) $ ( 12,736 ) Net loss per ordinary share, basic and diluted $ ( 0.37 ) $ ( 0.31 ) $ ( 0.27 ) Weighted average number of shares used in computing net loss per ordinary share, basic and diluted 59,719,064 62,378,797 47,935,652",
+  "supporting_note_table": "Year ended December 31, 2023 2022 2021 Net loss $ ( 22,133 ) $ ( 19,569 ) $ ( 12,736 ) Net loss attributable to ordinary shares ( 22,133 ) ( 19,569 ) ( 12,736 ) Shares used in computing net loss per ordinary shares, basic and diluted 59,719,064 62,378,797 47,935,652 Net loss per ordinary share, basic and diluted $ ( 0.37 ) $ ( 0.31 ) $ ( 0.27 )",
+  "disposition": "SIX_EXACT_EPS_OBSERVATIONS_REQUIRE_HOLD",
+  "reason": "Historical ReWalk statement labels EPS in U.S. dollars, while six original inline EPS facts encode ILS per share. The source conflict is retained; no conversion, relabeling or replacement values.",
+  "scope": "Only six exact 2021\u20132023 ILS/share observations in this capture. USD EPS, share counts and later filings remain outside this hold review; no issuer or publication approval."
+}
