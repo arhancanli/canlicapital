@@ -1,0 +1,667 @@
+{
+  "schema": "canli.siebert-dilution-context.v1",
+  "publication_approved": false,
+  "target_sha256": "cd81acbe9da201f5c8da6f0480c87869ac5a4d40b7e95343d187c2af9bd57617",
+  "source_sha256": "daeca46d576d2ff5c72e9a029274ce4aed4a696365902d8ba9560911d4b7ee50",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/65596/000121390026036500/ea0281594-10k_siebert.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T17:59:33.289637+00:00",
+    "bytes": 1816362,
+    "sha256": "0070261cdb539be3f6698d0bbcaedc6ae74e85cac8677ffbb3643c434c256748",
+    "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0000065596-0001213900-26-036500-primary.response"
+  },
+  "receipt_sha256": "182be173084dd0d826449280c85f37d0e1333a4b504f362a676173801d868474",
+  "code_sha256": "6721ec2090529047664bf2c7f1d55707c3b033022cd50f26fb1ab4b802021fb9",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "selected_observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0.33,
+      "accn": "0001213900-26-036500",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-30",
+      "frame": "CY2024",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.13,
+      "accn": "0001213900-26-036500",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-30",
+      "frame": "CY2025",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0.33,
+      "accn": "0001213900-26-036500",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-30",
+      "frame": "CY2024",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.13,
+      "accn": "0001213900-26-036500",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-30",
+      "frame": "CY2025",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 39951510,
+      "accn": "0001213900-26-036500",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-30",
+      "frame": "CY2024",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 40362780,
+      "accn": "0001213900-26-036500",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-30",
+      "frame": "CY2025",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 39951510,
+      "accn": "0001213900-26-036500",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-30",
+      "frame": "CY2024",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 40362780,
+      "accn": "0001213900-26-036500",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-03-30",
+      "frame": "CY2025",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ],
+  "comparison": {
+    "checks": [
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0.33,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "0.33",
+            "fact_id": "ixv-18177",
+            "context_id": "c5",
+            "table_row": "Basic and diluted $ 0.13 $ 0.33",
+            "preceding_rows": [
+              "",
+              "Net income available to common stockholders per share of common stock"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Revenue",
+              "Commissions and fees $ 8,941,000 $ 9,615,000",
+              "Interest, marketing and distribution fees 27,624,000 32,407,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "0.33",
+            "fact_id": "ixv-18916",
+            "context_id": "c5",
+            "table_row": "Basic $ 0.13 $ 0.33",
+            "preceding_rows": [
+              "",
+              "Net income per share attributable to common stockholders:"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Net income $ 5,121,000 $ 13,303,000",
+              "Less net income attributable to noncontrolling interests \u2014 17,000",
+              "Net income available to common stockholders $ 5,121,000 $ 13,286,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0.13,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "0.13",
+            "fact_id": "ixv-18175",
+            "context_id": "c0",
+            "table_row": "Basic and diluted $ 0.13 $ 0.33",
+            "preceding_rows": [
+              "",
+              "Net income available to common stockholders per share of common stock"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Revenue",
+              "Commissions and fees $ 8,941,000 $ 9,615,000",
+              "Interest, marketing and distribution fees 27,624,000 32,407,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "0.13",
+            "fact_id": "ixv-18915",
+            "context_id": "c0",
+            "table_row": "Basic $ 0.13 $ 0.33",
+            "preceding_rows": [
+              "",
+              "Net income per share attributable to common stockholders:"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Net income $ 5,121,000 $ 13,303,000",
+              "Less net income attributable to noncontrolling interests \u2014 17,000",
+              "Net income available to common stockholders $ 5,121,000 $ 13,286,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0.33,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "0.33",
+            "fact_id": "ixv-18176",
+            "context_id": "c5",
+            "table_row": "Basic and diluted $ 0.13 $ 0.33",
+            "preceding_rows": [
+              "",
+              "Net income available to common stockholders per share of common stock"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Revenue",
+              "Commissions and fees $ 8,941,000 $ 9,615,000",
+              "Interest, marketing and distribution fees 27,624,000 32,407,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "0.33",
+            "fact_id": "ixv-18918",
+            "context_id": "c5",
+            "table_row": "Diluted $ 0.13 $ 0.33",
+            "preceding_rows": [
+              "Net income per share attributable to common stockholders:",
+              "Basic $ 0.13 $ 0.33"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Net income $ 5,121,000 $ 13,303,000",
+              "Less net income attributable to noncontrolling interests \u2014 17,000",
+              "Net income available to common stockholders $ 5,121,000 $ 13,286,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0.13,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "0.13",
+            "fact_id": "ixv-18174",
+            "context_id": "c0",
+            "table_row": "Basic and diluted $ 0.13 $ 0.33",
+            "preceding_rows": [
+              "",
+              "Net income available to common stockholders per share of common stock"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Revenue",
+              "Commissions and fees $ 8,941,000 $ 9,615,000",
+              "Interest, marketing and distribution fees 27,624,000 32,407,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "0.13",
+            "fact_id": "ixv-18917",
+            "context_id": "c0",
+            "table_row": "Diluted $ 0.13 $ 0.33",
+            "preceding_rows": [
+              "Net income per share attributable to common stockholders:",
+              "Basic $ 0.13 $ 0.33"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Net income $ 5,121,000 $ 13,303,000",
+              "Less net income attributable to noncontrolling interests \u2014 17,000",
+              "Net income available to common stockholders $ 5,121,000 $ 13,286,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 39951510,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "shares",
+            "value": "39951510",
+            "fact_id": "ixv-18180",
+            "context_id": "c5",
+            "table_row": "Basic and diluted 40,362,780 39,951,510",
+            "preceding_rows": [
+              "",
+              "Weighted average shares outstanding"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Revenue",
+              "Commissions and fees $ 8,941,000 $ 9,615,000",
+              "Interest, marketing and distribution fees 27,624,000 32,407,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 40362780,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "shares",
+            "value": "40362780",
+            "fact_id": "ixv-18178",
+            "context_id": "c0",
+            "table_row": "Basic and diluted 40,362,780 39,951,510",
+            "preceding_rows": [
+              "",
+              "Weighted average shares outstanding"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Revenue",
+              "Commissions and fees $ 8,941,000 $ 9,615,000",
+              "Interest, marketing and distribution fees 27,624,000 32,407,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 39951510,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "shares",
+            "value": "39951510",
+            "fact_id": "ixv-18181",
+            "context_id": "c5",
+            "table_row": "Basic and diluted 40,362,780 39,951,510",
+            "preceding_rows": [
+              "",
+              "Weighted average shares outstanding"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Revenue",
+              "Commissions and fees $ 8,941,000 $ 9,615,000",
+              "Interest, marketing and distribution fees 27,624,000 32,407,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "shares",
+            "value": "39951510",
+            "fact_id": "ixv-18910",
+            "context_id": "c5",
+            "table_row": "Weighted-average common shares outstanding - basic 40,362,780 39,951,510",
+            "preceding_rows": [
+              "Net income available to common stockholders $ 5,121,000 $ 13,286,000",
+              ""
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Net income $ 5,121,000 $ 13,303,000",
+              "Less net income attributable to noncontrolling interests \u2014 17,000",
+              "Net income available to common stockholders $ 5,121,000 $ 13,286,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 40362780,
+          "accn": "0001213900-26-036500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "shares",
+            "value": "40362780",
+            "fact_id": "ixv-18179",
+            "context_id": "c0",
+            "table_row": "Basic and diluted 40,362,780 39,951,510",
+            "preceding_rows": [
+              "",
+              "Weighted average shares outstanding"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Revenue",
+              "Commissions and fees $ 8,941,000 $ 9,615,000",
+              "Interest, marketing and distribution fees 27,624,000 32,407,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "shares",
+            "value": "40362780",
+            "fact_id": "ixv-18909",
+            "context_id": "c0",
+            "table_row": "Weighted-average common shares outstanding - basic 40,362,780 39,951,510",
+            "preceding_rows": [
+              "Net income available to common stockholders $ 5,121,000 $ 13,286,000",
+              ""
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2025 2024",
+              "Net income $ 5,121,000 $ 13,303,000",
+              "Less net income attributable to noncontrolling interests \u2014 17,000",
+              "Net income available to common stockholders $ 5,121,000 $ 13,286,000"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      }
+    ],
+    "rejected_facts": {}
+  },
+  "conflicts": [
+    {
+      "year": 2025,
+      "selected_diluted": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": 40362780,
+        "accn": "0001213900-26-036500",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-03-30",
+        "frame": "CY2025",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "note_basic": 40362780,
+      "note_increment": 314360,
+      "note_diluted": 40677140,
+      "note_inline_xml": [
+        "<ix:nonfraction contextref=\"c0\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"ixv-18909\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"shares\">40,362,780</ix:nonfraction>",
+        "<ix:nonfraction contextref=\"c0\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"ixv-18911\" name=\"us-gaap:WeightedAverageNumberOfSharesRestrictedStock\" scale=\"0\" unitref=\"shares\">314,360</ix:nonfraction>",
+        "<ix:nonfraction contextref=\"c0\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"ixv-18913\" name=\"us-gaap:WeightedAverageNumberDilutedSharesOutstandingAdjustment\" scale=\"0\" unitref=\"shares\">40,677,140</ix:nonfraction>"
+      ],
+      "context_xml": "<xbrli:context id=\"c0\" xmlns=\"\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0000065596</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>"
+    },
+    {
+      "year": 2024,
+      "selected_diluted": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": 39951510,
+        "accn": "0001213900-26-036500",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-03-30",
+        "frame": "CY2024",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "note_basic": 39951510,
+      "note_increment": 223170,
+      "note_diluted": 40174680,
+      "note_inline_xml": [
+        "<ix:nonfraction contextref=\"c5\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"ixv-18910\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"shares\">39,951,510</ix:nonfraction>",
+        "<ix:nonfraction contextref=\"c5\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"ixv-18912\" name=\"us-gaap:WeightedAverageNumberOfSharesRestrictedStock\" scale=\"0\" unitref=\"shares\">223,170</ix:nonfraction>",
+        "<ix:nonfraction contextref=\"c5\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"ixv-18914\" name=\"us-gaap:WeightedAverageNumberDilutedSharesOutstandingAdjustment\" scale=\"0\" unitref=\"shares\">40,174,680</ix:nonfraction>"
+      ],
+      "context_xml": "<xbrli:context id=\"c5\" xmlns=\"\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0000065596</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>"
+    }
+  ],
+  "tables": [
+    {
+      "index": 96,
+      "text": "Year Ended December 31, 2025 2024 Revenue Commissions and fees $ 8,941,000 $ 9,615,000 Interest, marketing and distribution fees 27,624,000 32,407,000 Principal transactions and proprietary trading 17,479,000 14,616,000 Market making 2,196,000 2,255,000 Stock borrow / stock loan 29,034,000 19,249,000 Advisory fees 3,324,000 2,369,000 Other income 4,835,000 3,390,000 Investment banking 769,000 \u2014 Total Revenue 94,202,000 83,901,000 Expenses Employee compensation and benefits 58,475,000 43,999,000 Clearing fees, including execution costs 2,149,000 1,607,000 Technology and communications 5,255,000 3,940,000 Other general and administrative 6,946,000 4,488,000 Data processing 3,989,000 3,200,000 Rent and occupancy 1,855,000 1,631,000 Professional fees 6,033,000 5,578,000 Depreciation and amortization 2,399,000 1,380,000 Interest expense 452,000 262,000 Advertising and promotion 1,083,000 348,000 Total Expenses 88,636,000 66,433,000 Operating income 5,566,000 17,468,000 Income before provision for income taxes 5,566,000 17,468,000 Provision for income taxes 445,000 4,165,000 Net income 5,121,000 13,303,000 Less net income attributable to noncontrolling interests \u2014 17,000 Net income available to common stockholders $ 5,121,000 $ 13,286,000 Net income available to common stockholders per share of common stock Basic and diluted $ 0.13 $ 0.33 Weighted average shares outstanding Basic and diluted 40,362,780 39,951,510"
+    },
+    {
+      "index": 142,
+      "text": "Year Ended December 31, 2025 2024 Net income $ 5,121,000 $ 13,303,000 Less net income attributable to noncontrolling interests \u2014 17,000 Net income available to common stockholders $ 5,121,000 $ 13,286,000 Weighted-average common shares outstanding - basic 40,362,780 39,951,510 Dilutive effect of unvested shares 314,360 223,170 Weighted-average common shares used to compute diluted loss per share 40,677,140 40,174,680 Net income per share attributable to common stockholders: Basic $ 0.13 $ 0.33 Diluted $ 0.13 $ 0.33"
+    }
+  ],
+  "disposition": "TWO_SELECTED_DILUTED_SHARE_OBSERVATIONS_REQUIRE_HOLD",
+  "reason": "The main statement combines basic/diluted denominators, but Note19 separately adds unvested-share dilution and reports higher diluted totals for the same years. Note totals use an adjustment tag. Preserve both conflicting source presentations and withhold the two selected diluted-share observations; do not substitute note totals or infer that equal rounded EPS means equal denominators.",
+  "scope": "Two exact selected observations require holds. The other six batch observations are numerically reproduced but not newly scope-approved by this report. No other years, full-history admission, source correction or publication claim."
+}
