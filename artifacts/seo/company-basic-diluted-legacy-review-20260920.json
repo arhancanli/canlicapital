@@ -1,0 +1,394 @@
+{
+  "schema": "canli.basic-diluted-legacy-review.v1",
+  "publication_approved": false,
+  "targets_sha256": "ff43b266ba51962010350beef1cdb683379110639b1fadfb70de68e7f0a4448e",
+  "primary_review_sha256": "f89cb24ae2abf9196bf26311beac11f4a6448b87244416413fc5429d537a3ebd",
+  "code_sha256": "67ccb92adc2d4f024d0e931b8414857237343c6a9576a4c54393d0499792f5bd",
+  "filings": [
+    {
+      "cik": "0000812152",
+      "accession": "0001144204-17-018228",
+      "receipt_path": "artifacts/seo/corpus-local/editorial-constant-filings/0000812152-0001144204-17-018228-instance.receipt.json",
+      "receipt_sha256": "dc86718e70cba0f5703ce7d2d45dd109caf636d62344a72b4d8ca09cc711fe43",
+      "receipt": {
+        "url": "https://www.sec.gov/Archives/edgar/data/812152/000114420417018228/rdga-20161231.xml",
+        "status": 200,
+        "captured_at": "2026-09-20T06:02:14.227876+00:00",
+        "bytes": 133696,
+        "sha256": "b9a485544e4569d41c7f200ad56d7b3f26e916878bce349756ceae3ec95ec431"
+      },
+      "primary_path": "artifacts/seo/corpus-local/editorial-constant-filings/0000812152-0001144204-17-018228-primary.response",
+      "primary_sha256": "105b801b9514adfbc3d97b099f64ce1d72cfa6b244c46e6d4533932a997430e5",
+      "zero_based_table_index": 54,
+      "primary_table": "Years Ended December 31, 2016 2015 REVENUES $ \u2014 $ \u2014 General and administrative expenses 18,529 27,116 Total Expenses 18,529 27,116 OTHER INCOME (EXPENSE) Other income (2,332 ) 957 Interest (8,634 ) (6,373 ) Total Other Income (Expense) (10,966 ) (5,416 ) NET LOSS $ (29,495 ) $ (32,532 ) NET LOSSPER COMMON SHARE Basic $ (0.02 ) $ (0.03 ) Dilutive $ (0.02 ) $ (0.03 ) WEIGHTED AVERAGE NUMBER OF COMMON SHARES OUTSTANDING - Basic 1,260,773 1,260,773 Dilutive 1,260,773 1,260,773",
+      "checks": [
+        {
+          "selected": {
+            "tag": "EarningsPerShareBasic",
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": -0.03,
+            "accn": "0001144204-17-018228",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-31",
+            "frame": "CY2015",
+            "unit": "USD/shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "P01_01_2015To12_31_2015",
+              "unit_id": "USD_per_Share",
+              "value": "-0.03"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": -0.03,
+            "accn": "0001144204-17-018228",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-31",
+            "frame": "CY2015",
+            "unit": "USD/shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "P01_01_2015To12_31_2015",
+              "unit_id": "USD_per_Share",
+              "value": "-0.03"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 1260773,
+            "accn": "0001144204-17-018228",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-31",
+            "frame": "CY2015",
+            "unit": "shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "P01_01_2015To12_31_2015",
+              "unit_id": "shares",
+              "value": "1260773"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 1260773,
+            "accn": "0001144204-17-018228",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-31",
+            "frame": "CY2015",
+            "unit": "shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "P01_01_2015To12_31_2015",
+              "unit_id": "shares",
+              "value": "1260773"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cik": "0001074871",
+      "accession": "0001019056-18-000822",
+      "receipt_path": "artifacts/seo/corpus-local/editorial-constant-filings/0001074871-0001019056-18-000822-instance.receipt.json",
+      "receipt_sha256": "835a16c5dd2369cb04eb846cf207bba7f95ac2a8c6ff10b0f478c47375e99381",
+      "receipt": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1074871/000101905618000822/modd-20180331.xml",
+        "status": 200,
+        "captured_at": "2026-09-20T06:03:53.866266+00:00",
+        "bytes": 185541,
+        "sha256": "0d51bbed3bb00b2aad38886bbecb8573285a81277a69fcc85e7f21774cb22cbc"
+      },
+      "primary_path": "artifacts/seo/corpus-local/editorial-constant-filings/0001074871-0001019056-18-000822-primary.response",
+      "primary_sha256": "8732f447b80242f735a8021fd97ce5728186df8953b5656c5d9ffd17e6ca7d8d",
+      "zero_based_table_index": 53,
+      "primary_table": "March 31, 2018 March 31, 2017 Net Revenues $ \u2014 $ \u2014 Operating Expenses: Professional expenses 232,961 17,830 Research and development 332,642 \u2014 Depreciation expense 1,861 \u2014 General and administration expenses 98,700 11,588 Total Operating Expenses 666,164 29,418 Loss From Operations (666,164 ) (29,418 ) Other Income (Expenses): Interest income 8,518 962 Loss Before Income Taxes (657,646 ) (28,456 ) Provision for income taxes 1,600 800 Net Loss $ (659,246 ) $ (29,256 ) Net Loss Per Share Basic and Diluted: $ (0.049 ) $ (0.003 ) Weighted average number of shares used in computing basic and diluted net loss per share: Basic 13,336,309 9,732,986 Diluted 13,336,309 9,732,986",
+      "checks": [
+        {
+          "selected": {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2016-04-01",
+            "end": "2017-03-31",
+            "val": 9732986,
+            "accn": "0001019056-18-000822",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-06-29",
+            "frame": "CY2016",
+            "unit": "shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "From2016-04-01to2017-03-31",
+              "unit_id": "Shares",
+              "value": "9732986"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2016-04-01",
+            "end": "2017-03-31",
+            "val": 9732986,
+            "accn": "0001019056-18-000822",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-06-29",
+            "frame": "CY2016",
+            "unit": "shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "From2016-04-01to2017-03-31",
+              "unit_id": "Shares",
+              "value": "9732986"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cik": "0001506251",
+      "accession": "0001185185-14-000261",
+      "receipt_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001506251-0001185185-14-000261-instance.receipt.json",
+      "receipt_sha256": "cde8885e52852612caf108d571676e7cecfb48a13e10e20a27c9e551403ac0e8",
+      "receipt": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1506251/000118518514000261/trlo-20130930.xml",
+        "status": 200,
+        "bytes": 296392,
+        "sha256": "b640c662c8921aea762103216f789d65e937bd01ab157263b9bf8d1c6376cc65",
+        "captured_at": "2026-09-20T09:36:01.791015+00:00",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001506251-0001185185-14-000261-instance.response"
+      },
+      "primary_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001506251-0001185185-14-000261-primary.response",
+      "primary_sha256": "6ef79b75475797b1f42d4a3dbb4f07d26368f111861039c73ada78fb9073b4d0",
+      "zero_based_table_index": 18,
+      "primary_table": "September 9, For the For the 2010 Year Ended Year Ended (inception) to September 30 September 30 September 30 2013 2012 2013 Revenue $ - $ - $ - Operating expenses: General and administrative 2,893 4,059 19,139 Professional Fees 25,225 15,559 69,734 Total operating expenses 28,118 19,618 88,873 Net Operating Loss (28,118 ) (19,618 ) (88,873 ) Other income (expense): Interest expense (3,251 ) (2,388 ) (6,343 ) Loss before provision for income taxes (31,369 ) (22,006 ) (95,216 ) Provision for income taxes - - - Net income (loss) $ (31,369 ) $ (22,006 ) $ (95,216 ) Net income (loss) per share - basic $ (0.00 ) $ (0.00 ) Net income (loss) per share - diluted $ (0.00 ) $ (0.00 ) Weighted average shares outstanding - basic 18,000,000 18,000,000 Weighted average shares outstanding - diluted 18,000,000 18,000,000",
+      "checks": [
+        {
+          "selected": {
+            "tag": "EarningsPerShareBasic",
+            "start": "2011-10-01",
+            "end": "2012-09-30",
+            "val": 0,
+            "accn": "0001185185-14-000261",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-06",
+            "frame": "CY2012",
+            "unit": "USD/shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c3_From1Oct2011To30Sep2012",
+              "unit_id": "usdPershares",
+              "value": "0.00"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "EarningsPerShareBasic",
+            "start": "2012-10-01",
+            "end": "2013-09-30",
+            "val": 0,
+            "accn": "0001185185-14-000261",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-06",
+            "frame": "CY2013",
+            "unit": "USD/shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c2_From1Oct2012To30Sep2013",
+              "unit_id": "usdPershares",
+              "value": "0.00"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2011-10-01",
+            "end": "2012-09-30",
+            "val": 0,
+            "accn": "0001185185-14-000261",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-06",
+            "frame": "CY2012",
+            "unit": "USD/shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c3_From1Oct2011To30Sep2012",
+              "unit_id": "usdPershares",
+              "value": "0.00"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2012-10-01",
+            "end": "2013-09-30",
+            "val": 0,
+            "accn": "0001185185-14-000261",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-06",
+            "frame": "CY2013",
+            "unit": "USD/shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c2_From1Oct2012To30Sep2013",
+              "unit_id": "usdPershares",
+              "value": "0.00"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2011-10-01",
+            "end": "2012-09-30",
+            "val": 18000000,
+            "accn": "0001185185-14-000261",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-06",
+            "frame": "CY2012",
+            "unit": "shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c3_From1Oct2011To30Sep2012",
+              "unit_id": "shares",
+              "value": "18000000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2012-10-01",
+            "end": "2013-09-30",
+            "val": 18000000,
+            "accn": "0001185185-14-000261",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-06",
+            "frame": "CY2013",
+            "unit": "shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c2_From1Oct2012To30Sep2013",
+              "unit_id": "shares",
+              "value": "18000000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2011-10-01",
+            "end": "2012-09-30",
+            "val": 18000000,
+            "accn": "0001185185-14-000261",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-06",
+            "frame": "CY2012",
+            "unit": "shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c3_From1Oct2011To30Sep2012",
+              "unit_id": "shares",
+              "value": "18000000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2012-10-01",
+            "end": "2013-09-30",
+            "val": 18000000,
+            "accn": "0001185185-14-000261",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-06",
+            "frame": "CY2013",
+            "unit": "shares"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c2_From1Oct2012To30Sep2013",
+              "unit_id": "shares",
+              "value": "18000000"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "observations": 14,
+  "matched_observations": 14,
+  "combined_retained_observations": 150,
+  "combined_retained_matches": 150,
+  "scope": "Previously unmatched retained legacy observations only; exact entity/period/unit/value XBRL comparison and retained primary tables. No tag equivalence, dilution-context certification, new acquisition or admission. Rounded zero EPS does not imply zero net loss."
+}

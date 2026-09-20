@@ -50,5 +50,26 @@ class BasicDilutedTests(unittest.TestCase):
         self.assertTrue(self.matches(ratio('c:CAD'), {**self.row, 'unit': 'CAD/shares'}))
 
 
+legacy_spec = importlib.util.spec_from_file_location('basic_diluted_legacy', Path(__file__).with_name('review-basic-diluted-legacy.py'))
+legacy = importlib.util.module_from_spec(legacy_spec)
+legacy_spec.loader.exec_module(legacy)
+
+class LegacyBasicDilutedTests(BasicDilutedTests):
+    def matches(self, unit, row=None, extra=''):
+        raw = f'''<x:xbrl xmlns:x="http://www.xbrl.org/2003/instance"
+          xmlns:c="http://www.xbrl.org/2003/iso4217" xmlns:g="http://fasb.org/us-gaap/2016" {extra}>
+          <x:context id="annual"><x:entity><x:identifier>0000000001</x:identifier></x:entity>
+          <x:period><x:startDate> 2025-01-01 </x:startDate><x:endDate> 2025-12-31 </x:endDate></x:period></x:context>
+          <x:unit id="u">{unit}</x:unit>
+          <g:EarningsPerShareBasic contextRef="annual" unitRef="u">-1.25</g:EarningsPerShareBasic>
+          </x:xbrl>'''.encode()
+        return legacy.compare(raw, '0000000001', [row or self.row])[0]['matched']
+
+    def test_duplicate_unit_ids_fail_closed(self):
+        raw = b'<x:xbrl xmlns:x="http://www.xbrl.org/2003/instance"><x:unit id="u"/><x:unit id="u"/></x:xbrl>'
+        with self.assertRaisesRegex(ValueError, 'Duplicate context/unit id'):
+            legacy.compare(raw, '0000000001', [self.row])
+
+
 if __name__ == '__main__':
     unittest.main()
