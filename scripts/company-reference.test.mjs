@@ -429,6 +429,36 @@ test('v15 preserves unrelated facts and exposes two distinct currency-context ho
   }
 });
 
+test('v17 withholds only Siebert conflicting diluted denominators and preserves other facts', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/siebert-reviewed-source.json.gz', import.meta.url)));
+  const options = { expectedCik: '0000065596', fetchedAt: '2026-09-20T00:00:00Z' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v16' });
+  const diagnostics = {};
+  const after = companyReference(raw, { ...options, diagnostics, selectionPolicy: 'extended-v17' });
+  const expected = structuredClone(before.concepts);
+  const diluted = expected.find(c => c.tag === 'WeightedAverageNumberOfDilutedSharesOutstanding');
+  assert.equal(diluted.observations.filter(r => r.accn === '0001213900-26-036500').length, 2);
+  diluted.observations = diluted.observations.filter(r => r.accn !== '0001213900-26-036500');
+  assert.deepEqual(after.concepts, expected);
+  assert.equal(diagnostics.editorial_observation_excluded, 2);
+  assert.equal(after.editorial_exclusions.length, 2);
+  verifyCompanyReference(after, raw);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v17' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  for (const target of ['overview', diluted.tag]) {
+    const html = renderCompanyPages(after, { target })[0].html;
+    assert.match(html, /Note 19 reports a higher diluted total/);
+    assert.match(html, /ea0281594-10k_siebert.htm/);
+  }
+  const oldRaw = gunzipSync(readFileSync(new URL('./fixtures/editorial/valhi-reviewed-source.json.gz', import.meta.url)));
+  const oldOptions = { expectedCik: '0000059255', fetchedAt: options.fetchedAt };
+  const old = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v16' });
+  const next = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v17' });
+  assert.deepEqual(next.concepts, old.concepts);
+  assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
+});
+
 test('v16 excludes eight Valhi scale conflicts and applies existing history-quality rules', async () => {
   const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/valhi-reviewed-source.json.gz', import.meta.url)));
   const options = { expectedCik: '0000059255', fetchedAt: '2026-09-19T14:48:49.937Z' };
