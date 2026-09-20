@@ -1174,3 +1174,16 @@ in the old sealed archive. It does not materially close the 800,000-page gap.
 Engine ce93d8c CI35494803169 now passes all six jobs. Website 0e911990 CI35496075672
 passes. Current status and phases corrected to reflect measured indexing and the
 remaining hosted-release work. Owner goal stays active.
+
+## 2026-09-20 — identity-exclusion audit, without weakening admission
+
+Verified all 106 INVALID_ENTITY outcomes against complete capture queues, original
+body hashes and unchanged v3 selector. Of 102 matching numeric CIK strings, many
+lack a name or enough core history. Categories:45missing names,48below-four-core
+histories,10priority identity/scope reviews,3other missing identifiers. Extended
+concept eligibility was not assessed. Entergy Arkansas discovery versus Entergy
+Corporation response shows why blindly coercing identifiers is insufficient.
+No source bytes, old exclusions or release pointers changed. Deterministic replay
+is identical; 13 selector tests pass. Receipt/script and COMPANY_IDENTITY_REVIEW.md
+preserve the review queue and limitations. No network, returns or broker activity.
+Prior website75b84b22 CI35496306735 passes. Full owner goal remains active.
