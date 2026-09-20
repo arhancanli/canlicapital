@@ -772,3 +772,13 @@ Recorded latest-period context for14remaining priority pairs/28observations,
 preserving three legacy primary tables and distinct concepts despite equality.
 A second offline output matches byte-for-byte. This later report is outside the
 just-completed archive; full-history review remains pending.
+
+## 2026-09-20 — correction merged and historical scope accounting
+
+Previous turn completed v10archive and latest-context notes. PR37mergedcf86ac95
+after four checks passed at10b451cd; exact tested/merged tree equality verified.
+New exact observation ledger deduplicates scope reports against610priority rows:
+90reviewed,3withdrawn,87active reviewed and520pending. Original numeric closure
+remains610/610; this separate scope count does not equate numeric match with
+semantic admission. Full pending rows retained and offline replay byte-identical.
+Transfer82504 remains independently active.

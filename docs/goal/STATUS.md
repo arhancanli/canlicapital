@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-fix/birdie-expense-scope-20260920. PR34 merged as
+research/company-historical-scope-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -144,6 +144,19 @@ Three legacy tables are source-hash checked. Offline replay is byte-identical;
 manual interpretations are recorded, not independently certified. This report was
 created after the v10archive and is not claimed archived there. Broader historical
 scope,712basic/diluted groups and other flags remain open.
+
+## Exact priority scope coverage
+
+PR37 mergedcf86ac95f4a0233138e253ee5ebe1997905513d9 after four CI35520397809
+checks passed at10b451cd; both treesdfad64d51e92d3adf227250eaff3857f5a9dbadc.
+company-priority-scope-coverage-20260920.json deduplicates the exact observation
+keys supported by all retained scope reports:610original priority observations,
+90with recorded context review, including3withdrawn Birdie SG&A observations.
+87active observations have scope review;520still need it. The full pending queue
+retains issuer, exact selected row and accession. Report replays byte-for-byte.
+This counts recorded reviews, not machine-certified interpretation or admission.
+It excludes712basic/diluted groups and other corpus flags. Next: review historical
+primary context in this exact queue without double-crediting latest-period work.
 
 ## Immediate next work
 
