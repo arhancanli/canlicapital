@@ -1241,3 +1241,17 @@ New script/report preserve prior evidence; mobile screenshot inspected.
 Fresh full HTTP91808RUNNING at /tmp/canli-v22-grouped-http.log, new report path
 company-five-cohort-v22-grouped-notices-http-20260921.json. Keep renderer stable
 until terminal. No production deployment/indexing gain; full owner goals remain.
+
+Published PR120 at876c1012b12721580f5c88adfcd54405481a8d0f; CI35543187882
+confirmed live. HTTP91808 confirmed live,900companies/23,902histories at last
+progress line. Owner attribution file remains untouched.
+
+
+## 2026-09-21 — current runtime archive phase
+
+Previous turn made progress: grouped notices,101tests/40browser cases, PR120.
+Re-read all goal records. PR120 all four CI35543187882checks passed. HTTP91808
+still live; no renderer edits. Added v22 archive profile, current quality/discovery
+and pinned scope supplement; restore replays all selected records and sitemaps
+plus61scope outputs. Five archive-safety tests pass. Archive build/restore pending.
+All owner objectives unchanged; no hosted release or new indexing evidence.

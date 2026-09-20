@@ -9,7 +9,7 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`fix/company-withholding-notices-20260921`. PR118 merged as
+`evidence/runtime-v22-archive-20260921`. PR118 merged as
 `4371292467702019b988c65bf910cd66a80e19fc` after all four checks in CI35542487234
 passed at99993be0. Tested/merged tree1b57f7c9ab3e943d97ad8bdea2096e8bff937269 matches.
 
@@ -41,7 +41,7 @@ Iovance groups with Enter, expanded no-overflow checks and exact all14row/source
 comparison against selected JSON. Mobile screenshot inspected. Earlier40case
 report preserved. No accessibility certification claim.
 
-Fresh full HTTP audit **91808 RUNNING**, output /tmp/canli-v22-grouped-http.log;
+PR120 OPEN at876c1012b12721580f5c88adfcd54405481a8d0f; all four CI35543187882 checks passed. Fresh full HTTP audit **91808 RUNNING**, output /tmp/canli-v22-grouped-http.log;
 expected report company-five-cohort-v22-grouped-notices-http-20260921.json. Poll
 exact handle, do not restart on timeout. Keep rendered/audit code stable during
 this run. Previous full pass covers the preceding renderer only.
@@ -80,7 +80,12 @@ source fixtures, original captures and registry retained. Five archive safety te
 pass. Code base2389305a; the new packager itself is saved/hash-bound in the archive.
 This is local restoration of recorded interpretations, not independent certification,
 full-corpus/runtime replay or offsite backup. The newer v22 runtime has not yet
-been sealed in a refreshed full-runtime archive.
+been sealed in a refreshed full-runtime archive. Current archive phase extends
+the existing profiles without changing older inputs: current objects, all five
+source queues, current quality/discovery, and the pinned835-file scope supplement.
+Restore additionally regenerates every selected company record and sitemap, then
+replays the nested61-output supplement offline. Five archive safety tests pass;
+actual pack/restore has not yet completed.
 
 V22 runtime verification31067 TERMINAL0 proves the exact 90,732 sitemap leaf URLs:
 3,323 company overviews, 87,342 histories and 67 directories. Shards contain40,732
