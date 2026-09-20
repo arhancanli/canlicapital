@@ -285,3 +285,9 @@ retries across the run. Every request still uses x-upsert:false; no overwrite is
 possible through this tool. This supersedes earlier no-write-retry wording only
 for this explicitly enabled reconciliation policy. Unknown HTTP errors,401/403,
 429and corrupt bytes stop. All16storage tests pass.
+
+Response-body resets are now classified within the bounded read policy, not only
+failures before headers. Every retry starts a new empty buffer and verifies full
+length/hash; partial content can never be credited. Interrupted401/403/429and
+ambiguous400error bodies do not retry. Body cancellation failures after received
+headers do not override HTTP status. Eighteen storage/planner tests pass.

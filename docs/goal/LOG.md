@@ -316,3 +316,28 @@ another write. Explicit writeAttempts=2 permits one more immutable create after
 confirmed absence; global10retry bound. Defaults, permission errors, rate limits,
 corruption and unknown HTTP failures cannot trigger blind writes. Sixteen storage
 tests pass, including lost reply, absent-object retry, corruption and global budget.
+
+PR23merged as1811814b647fedbbef7639ea96fa0ae670c3992a after all four
+CI35511895380jobs passed at ac2584c1. Both trees match
+2b9774a5f96274c724a705004859078d6f7c117a; post-merge checks pending.
+Resume4session65658is confirmed active, using ac2584c1 with concurrency4,
+readAttempts3/writeAttempts2. Receipt:
+corpus-local/company-three-cohort-remote-transfer-resume4-20260920.json.
+Latest checkpoint612verified objects/44,466,024bytes, no recovery events or
+failures. Poll this exact handle before treating it as stopped or restarting.
+Production remains unchanged; hosted successful-data checks await full transfer.
+
+## 2026-09-20 — response stream recovery
+
+Previous turn made progress: PR23merged, fresh runtime transfer and candidate
+counts were verified. Post-merge main checks are successful. Resume4session65658
+then ended at695verified objects on a response-body ECONNRESET. Partial buffers
+were discarded and not credited. Stream errors now use the same bounded read
+recovery classifier as request errors. Broken denied/rate-limited/ambiguous400
+responses still cannot trigger retries; HTTP status remains authoritative.
+Eighteen storage tests pass. Every earlier partial receipt remains unchanged.
+
+While storage ran, captured17older primary cash filings for18remaining observations.
+Latest two retained statements provide seven numerical matches and five visible
+year-end columns, with18earlier observations explicitly outstanding. Separate
+source review continues; no editorial policy or production page was changed.

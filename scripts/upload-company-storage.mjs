@@ -46,9 +46,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
       base.pathname !== '/' || !/^[a-z0-9][a-z0-9-]{0,62}$/.test(bucket) || !serviceKey) throw new Error('Invalid storage destination');
   const publicBase = `${base.origin}/storage/v1/object/public/${bucket}/`;
   const auth = { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` };
-  async function request(url, options) {
-    try { return await fetcher(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(60_000) }); }
-    catch (error) {
+  function transportFailure(error) {
       const code = ['TimeoutError', 'AbortError'].includes(error?.name) ? error.name : (error?.cause?.code ?? error?.code ?? error?.name);
       const safe = ['ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'ENOTFOUND', 'UND_ERR_CONNECT_TIMEOUT', 'UND_ERR_SOCKET', 'TimeoutError', 'AbortError'].includes(code) ? code : 'UNKNOWN_TRANSPORT';
       // Preserve machine error categories, never upstream messages, URLs or stacks.
@@ -56,8 +54,11 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
         .filter(value => typeof value === 'string' && /^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(value));
       const failure = new Error(`Storage request failed (${safe}; ${[...new Set(labels)].join(',')})`);
       failure.retryableRead = safe !== 'UNKNOWN_TRANSPORT';
-      throw failure;
-    }
+      return failure;
+  }
+  async function request(url, options) {
+    try { return await fetcher(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(60_000) }); }
+    catch (error) { throw transportFailure(error); }
   }
   const adapter = {
     destination: publicBase,
@@ -65,13 +66,22 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
       if (!KEY.test(file.key)) throw new Error('Invalid object key');
       const response = await request(publicBase + file.key, { headers: { 'Accept-Encoding': 'identity' } });
       if (!response.ok) {
+        if ([401, 403, 429].includes(response.status)) {
+          await response.body?.cancel().catch(() => {});
+          throw new Error(`Storage read rejected (${response.status})`);
+        }
         // Supabase returns HTTP400 with an embedded404 for absent objects. Never
         // treat authorization, throttling or arbitrary HTTP400 as absence.
         const parts = []; let size = 0;
-        for await (const chunk of response.body) {
+        try { for await (const chunk of response.body) {
           size += chunk.length;
           if (size > 4096) throw new Error('Storage error response exceeds bound');
           parts.push(chunk);
+        } } catch (error) {
+          if (!error?.cause?.code && !['AbortError', 'TimeoutError'].includes(error?.name)) throw error;
+          const failure = transportFailure(error);
+          failure.retryableRead = [502, 503, 504].includes(response.status);
+          throw failure;
         }
         const body = Buffer.concat(parts).toString('utf8');
         let error; try { error = JSON.parse(body); } catch { /* fail closed */ }
@@ -87,7 +97,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
           response.headers.get('content-type')?.split(';')[0].trim() !== file.content_type ||
           !['public', 'max-age=31536000', 'immutable'].every(value => cache.includes(value)) ||
           cache.some(value => ['private', 'no-store', 'no-cache'].includes(value))) {
-        await response.body?.cancel(); throw new Error('Storage representation changed');
+        await response.body?.cancel().catch(() => {}); throw new Error('Storage representation changed');
       }
       const chunks = []; let length = 0;
       for await (const chunk of response.body) {
@@ -106,7 +116,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
         method: 'POST', headers: { ...auth, 'Content-Type': file.content_type,
           'Cache-Control': file.cache_control, 'x-upsert': 'false' }, body: raw,
       }); } catch (error) { error.ambiguousWrite = true; throw error; }
-      await response.body?.cancel();
+      await response.body?.cancel().catch(() => {});
       if (!response.ok) {
         const error = new Error(`Storage create rejected (${response.status}); no overwrite`);
         error.ambiguousWrite = [409, 502, 503, 504].includes(response.status);
@@ -118,6 +128,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
     for (let attempt = 1; ; attempt++) {
       try { return await adapter.readOnce(file); }
       catch (error) {
+        if (error.retryableRead === undefined && (error?.cause?.code || ['TimeoutError', 'AbortError'].includes(error?.name))) error = transportFailure(error);
         if (!error.retryableRead || attempt >= readAttempts || retries >= retryBudget) throw error;
         retries++;
         onRetry({ attempt, error: error.message, delay_ms: attempt * 1000, global_retry_number: retries });
