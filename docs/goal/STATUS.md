@@ -10,18 +10,30 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`fix/siebert-dilution-scope-20260920`. PR59mergedc7ce7ed7 after all four
-CI35529128490checks passed at1bc700eda1775915e04cd1b2c1001372a68f063e.
-Tested/merged tree5c6eea93dabbb7a6af52948b44cd184456793a8b.
+`evidence/five-cohort-v17-20260920`. PR60merged
+b1c3018eb6924500c06403f44c2a5a3ae33221ec after all four CI35529361367checks
+passed atdd60c613. Tested/merged tree93012bd2e5459894f77316fe2979e92b978111ea.
+
+Whole-corpus v17comparison29434 TERMINAL exit0:3,323companies/87,344histories,
+12exact observation holds sincev14plus the previous two Valhi constant-history
+omissions (six residual observations). Every other field and source byte unchanged
+except policy metadata and notices. Receipt company-five-cohort-v17-transition-
+20260920.json; this is not a new runtime/catalog/sitemap/storage build.
+
+Celldex twelve2023–2025observations scope-reviewed: explicit loss-period
+anti-dilution, exclusion of issued unvested restricted stock from basic shares,
+statement thousands scale encoded as scale3 for shares and scale0 for EPS.
+Source-bound notes on four histories/overview preserve reported values.14renderer
+tests pass; context report and v3batch ledger replay byte-identically. Current
+batch26reviewed/1,142pending/8withdrawn. Earlier ledgers remain frozen.
 
 V17adds two exact Siebert diluted-denominator holds (2024/2025). Main statement
 combines basic/diluted counts, while Note19adds unvested-share dilution and reports
 higher diluted totals. Note totals use an adjustment tag; no substitution or tag
 correction. Source-bound report and v2ledger replay byte-identically. Actual-source
 regression verifies other concepts/periods unchanged and visible source-linked
-notices;40selector/renderer tests pass. Batch scope now14reviewed/1,154pending/
-8withdrawn. Frozen v1ledger preserved. Full v17corpus transition and runtime rebuild
-remain pending; v16comparison below is historical current coverage, not v17proof.
+notices;40selector/renderer tests pass. The previous v2ledger records14reviewed/1,154pending/8withdrawn; superseded by
+v3above. Runtime rebuild and archival supplement remain pending.
 
 Offline context index71727 TERMINAL exit0 covers all100primaries/1,176observations.
 All identities, source hashes, observations and matched-location counts reconcile
@@ -55,10 +67,10 @@ then rebuild current runtime/quality inventory and finish hosted release gates.
 
 ## Editorial policy and evidence
 
-Cumulative extended-v16 preserves frozen earlier versions and all reviewed holds:
+Cumulative extended-v17 preserves frozen earlier versions and all reviewed holds:
 Birdie SG&A, disputed DBMM revenue period, HNO operating-loss history, two Atlantica
 liability periods, six Varonis AFN/share facts, Monolithic AFN revenue, 51Talk SAR
-cash/time-deposit component, eight Valhi weighted-share scale conflicts.
+cash/time-deposit component, eight Valhi weighted-share scale conflicts and two Siebert denominator conflicts.
 No relabeling, rescaling, invented values or source alteration.
 
 Valhi original tags28.5shares/scale0 conflict with in-millions headings in two
@@ -86,7 +98,7 @@ coverage remains open; do not present either sample as full-corpus admission.
 
 Current built-v14quality inventory:13,142flagged histories; overlapping reasons
 10,630historical-only,1,307multi-unit,400partially historical units,75constant,
-74zero-only,1,494pages in747equal groups. V16needs refreshed inventory. Flags are
+74zero-only,1,494pages in747equal groups. V17needs refreshed inventory. Flags are
 not automatically defects; unflagged pages are not automatically admitted.
 
 ## Retained archives

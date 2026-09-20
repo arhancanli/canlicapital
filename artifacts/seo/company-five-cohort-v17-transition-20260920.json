@@ -1,0 +1,159 @@
+{
+  "schema": "canli.five-cohort-v17-transition.v1",
+  "publication_approved": false,
+  "previous_manifest_sha256": "7f2540f7d8393615efff856479b41b5994aac1d258d0e4de1d116ca616c76472",
+  "code_sha256": "7e1f0ae362a1be8a3b44c0aec7e1472602b404844c888c2570dffe4c3350f031",
+  "selector_sha256": "b0c37748be9288d6cbd9dd3f367adb9b36d44e7d439045fc577f4b5ad7ebf4e3",
+  "policy_sha256": "c2b51a08c19065e9d2a8ad68333724ca893fc609ed2485dfb7230beba35cc4d1",
+  "companies": 3323,
+  "histories": 87344,
+  "explicit_observation_holds": 12,
+  "residual_constant_observations_omitted": 6,
+  "removed_histories": 2,
+  "changes": [
+    {
+      "cik": "0000059255",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "observation": {
+        "start": "2022-01-01",
+        "end": "2022-12-31",
+        "val": 28.5,
+        "unit": "shares",
+        "accn": "0001558370-25-002409"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0000059255",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "observation": {
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "val": 28.5,
+        "unit": "shares",
+        "accn": "0001104659-26-025847"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0000059255",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "observation": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": 28.5,
+        "unit": "shares",
+        "accn": "0001104659-26-025847"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0000059255",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "observation": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": 28.5,
+        "unit": "shares",
+        "accn": "0001104659-26-025847"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0000059255",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "observation": {
+        "start": "2022-01-01",
+        "end": "2022-12-31",
+        "val": 28.5,
+        "unit": "shares",
+        "accn": "0001558370-25-002409"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0000059255",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "observation": {
+        "start": "2023-01-01",
+        "end": "2023-12-31",
+        "val": 28.5,
+        "unit": "shares",
+        "accn": "0001104659-26-025847"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0000059255",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "observation": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": 28.5,
+        "unit": "shares",
+        "accn": "0001104659-26-025847"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0000059255",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "observation": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": 28.5,
+        "unit": "shares",
+        "accn": "0001104659-26-025847"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0000065596",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "observation": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": 39951510,
+        "unit": "shares",
+        "accn": "0001213900-26-036500"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0000065596",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "observation": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": 40362780,
+        "unit": "shares",
+        "accn": "0001213900-26-036500"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0001280452",
+      "tag": "Revenues",
+      "observation": {
+        "start": "2012-01-01",
+        "end": "2012-12-31",
+        "val": 213813000,
+        "unit": "AFN",
+        "accn": "0001437749-14-003761"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0001659494",
+      "tag": "CashAndCashEquivalentsAtCarryingValue",
+      "observation": {
+        "end": "2025-12-31",
+        "val": 54062000,
+        "unit": "SAR",
+        "accn": "0001104659-26-047273"
+      },
+      "removed_observations": 1
+    }
+  ],
+  "scope": "Every v14 company source and selected record verified, then reselected under v17. Exact differences are policy metadata, twelve held observations and their notices, and two Valhi share histories omitted because their remaining three observations are constant. Original source bytes remain unchanged. No new delivery/catalog/discovery build, hosted transfer, production or indexing claim."
+}

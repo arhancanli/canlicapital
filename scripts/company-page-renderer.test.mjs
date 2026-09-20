@@ -11,6 +11,27 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
+test('Celldex loss-period context preserves correctly scaled source observations', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/celldex-reviewed-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0000744218', fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record.concepts);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+  for (const target of [...tags, 'overview']) {
+    const html = renderCompanyPages(record, { target })[0].html;
+    assert.match(html, /Basic weighted-average shares exclude issued restricted stock/);
+    assert.match(html, /Per-share amounts are not scaled by thousands/);
+    assert.match(html, /cldx-20251231x10k.htm/);
+  }
+  assert.deepEqual(record.concepts, original);
+  const shares = record.concepts.find(c => c.tag === tags[2]).observations;
+  assert.ok(shares.some(r => r.end === '2025-12-31' && r.val === 66422000 && r.unit === 'shares'));
+  const changed = structuredClone(record);
+  changed.concepts.find(c => c.tag === tags[2]).observations.find(r => r.end === '2025-12-31').val = 66422;
+  assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+});
+
 test('111 ordinary-share histories explain dilution, scale and ADS distinction without changing facts', () => {
   const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/111-reviewed-source.json.gz', import.meta.url)));
   const record = companyReference(raw, { expectedCik: '0001738906', fetchedAt: '2026-09-19T11:20:52.392Z', selectionPolicy: 'extended-v16' });
