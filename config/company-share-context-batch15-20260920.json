@@ -1,0 +1,58 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001441816",
+      "accession": "0001628280-26-016799",
+      "source_sha256": "8947052d6912d9ac6b35470f5e331ef6fe1f4b4cf782fab20822c9cb66738997",
+      "primary_sha256": "11778ddc8ea928496047a1befe4d34d777a5c4d794ac797f0ffc68fc39c6a52b",
+      "fixture": "scripts/fixtures/editorial/mongodb-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2024-01-31",
+        "2025-01-31",
+        "2026-01-31"
+      ],
+      "table_index": 50,
+      "share_scale": "0",
+      "table_requires": [
+        "Numerator: Net loss"
+      ],
+      "paragraph_requires": [
+        "(in thousands of U.S. dollars, except share and per share data)",
+        "Basic and diluted net loss per share was the same for each year presented, as the inclusion of all potential common shares outstanding would have been anti-dilutive due to the net loss reported for each year presented.",
+        "Capped Calls, which were not included for the purpose of calculating the number of diluted shares outstanding, as their effect would have been anti-dilutive."
+      ],
+      "reader_note": "For MongoDB\u2019s fiscal years ended January 31, 2024, 2025 and 2026, basic and diluted EPS use the same reported denominator because potential shares are anti-dilutive in the loss periods. These are January fiscal-year ends, not December calendar-year ends. The filing also excludes capped calls from diluted-share calculations as anti-dilutive; they are not additional denominator shares. Shares and per-share data are exempt from the thousands-of-dollars heading and use scale-zero tags.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001445305",
+      "accession": "0001445305-26-000016",
+      "source_sha256": "fed299a58af45a71b19014f7c9dcfcdf2c928b4a896b7597fddfc363e87d872a",
+      "primary_sha256": "be172b3f6b299b2bb268e319db0703461c8ca0efa868c3586f82bbe90d6597e7",
+      "fixture": "scripts/fixtures/editorial/workiva-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 21,
+      "share_scale": "0",
+      "table_requires": [
+        "Weighted-average common shares outstanding - basic and diluted",
+        "(in thousands, except share and per share amounts)"
+      ],
+      "paragraph_requires": [
+        "As the liquidation and dividend rights are identical, the net loss is allocated on a proportionate basis.",
+        "In periods in which we incurred a net loss, all potentially dilutive securities are antidilutive and accordingly, basic net loss per share equals diluted net loss per share."
+      ],
+      "reader_note": "For 2023\u20132025, Workiva applies the two-class method and allocates net loss proportionately between Class A and Class B shares because their liquidation and dividend rights are identical. The selected statement denominator combines both classes; the separate class denominators in the EPS note should not replace it. Potential stock awards and convertible-note shares are excluded as antidilutive in these loss periods. Shares and per-share amounts are exempt from the statement\u2019s thousands heading and use scale-zero tags.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+      "supporting_table_indexes": [
+        64
+      ]
+    }
+  ]
+}
