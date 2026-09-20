@@ -1,0 +1,24 @@
+{
+  "schema": "canli.company-evidence-restore.v1",
+  "archive_sha256": "6292b6cd39da912360ac47e59cc60c6f9e4f55a8fb05bb1b1ea8da2f3f974766",
+  "repository_revision": "d4256aa81973fc2cff73d47e0fa4695118a29911",
+  "restored_files": 4883,
+  "source_replays": {
+    "fifth-1000": {
+      "complete": true,
+      "companies": 672,
+      "exclusions": 328,
+      "errors": 0
+    }
+  },
+  "runtime_objects_replayed": 2041,
+  "runtime_bytes": 203947632,
+  "release_hash": "7e2314ca91c4731f82361caa956d38499f0fa6edcafbd8047b892a599ba35713",
+  "objects_exactly_match_original_plan": true,
+  "editorial_scope_reports_reproduced": {
+    "company-fifth-livento-scope-hold-20260920.json": "bf359ad8d350a4bd9e7ae167cccb7fe4b45ae28851eff9fec375257776ad5f86"
+  },
+  "remote_backup_verified": false,
+  "verification_code_sha256": "0f420131c279a45b8f6aaadf2ad686025d4f075378b1a461b8eb300392ab31be",
+  "scope": "Whole archive SHA checked against separate summary; every member verified; isolated temporary restore; saved repository source replays all named cohorts and runtime objects. No reads of original runtime objects or capture directories. Temporary restore removed after verification; archive remains local."
+}

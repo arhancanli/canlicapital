@@ -147,3 +147,11 @@ including excluded-route404, and storage8820 verifies2,041objects203,947,632byte
 Archive profile extended for fifth-v7with saved-code Livento scope replay; five
 archive safety tests pass. Sealing this candidate before archive/restore work.
 No publication, upload or wider editorial approval.
+
+Fifth-v7archive74368 completed:4,883files655,052,800bytes, SHA
+6292b6cd39da912360ac47e59cc60c6f9e4f55a8fb05bb1b1ea8da2f3f974766.
+Snapshotd4256aa81973fc2cff73d47e0fa4695118a29911. Isolated restore41363 finished
+exit0:672candidates/328exclusions reproduce, exact2,041runtime objects and
+203,947,632bytes match, Livento scope report byte-identical. Temporary restore
+removed. No offsite or publication claim. RemoteCI35503101079 is running on
+the sealed candidate; previous563ca9b1CI35502859034passed.

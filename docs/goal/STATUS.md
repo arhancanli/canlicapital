@@ -10,7 +10,8 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
   Revenues using its exact captured source; full672company comparison confirms
   all other histories and original source descriptors are unchanged. Staging50859,
   HTTP65731, browser67875, storage8820 and full verification11557 finished exit0.
-  Packaging/isolated restore is next; broader editorial review remains open.
+  Archive74368 and isolated restore41363 now pass; no active local process.
+  Broader editorial review remains open. RemoteCI35503101079 on d4256aa8 is running.
 - Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
   4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
   Draft integration PR71 is open at the tested head:
@@ -81,7 +82,10 @@ See SOURCE_CAPACITY.md and COMPANY_IDENTITY_REVIEW.md.
 Fifth v7release7e2314ca91c4731f82361caa956d38499f0fa6edcafbd8047b892a599ba35713:
 17,916URLs/1,344downloads pass local HTTP;72browser checks across12routes pass,
 including Livento's exclusion notice and404for the removed route. Maximum3clicks.
-Runtime plan verifies2,041objects203,947,632bytes; no upload. Archive/restore pending.
+Runtime plan verifies2,041objects203,947,632bytes; no upload. Archive655,052,800bytes
+contains4,883files; SHA6292b6cd39da912360ac47e59cc60c6f9e4f55a8fb05bb1b1ea8da2f3f974766.
+Isolated saved-code restore replays672candidates/328exclusions with zero errors,
+exact runtime objects and the Livento scope report. Temporary restore removed.
 Quality flags3,301histories,including32constant zero histories. Prior priority
 55concepts/29companies/31filings reproduced111numbers(50inline,61XBRL), not full
 scope approval. Livento's real-estate-sale revenue is now excluded under exact
