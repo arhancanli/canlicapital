@@ -687,3 +687,16 @@ Source report replays byte-identically;42renderer/ledger tests pass; exact24rows
 advance.624reviewed/532pending/20withdrawn,96presentation-only. Next new index63;
 earlier gaps and archive/runtime/hosting work remain. No deployment/indexing gain;
 all owner objectives remain active.
+
+## 2026-09-21 — preferred participation and basic performance-unit exclusion
+
+Previous turn completed24CIM/X4reviews. PR87four CI35535824498checks passed
+at7774c32a; merged4de86bfc, identical treeb37a4a629dd5d4273404fd25b745089a2f07f913.
+Reviewed24Quanterix/Upland2023–2025observations. Quanterixscale3shares and loss
+exclusions retained. Uplandcommon-stockholder loss follows preferred dividends/
+accretion; two-class participation and if-converted/treasury-stock methods kept
+distinct. Unvested contingent performance units also excluded from basic EPS.
+Source report replays byte-identically;43renderer/ledger tests pass, exactly24rows
+advance.648reviewed/508pending/20withdrawn,96presentation-only. No value/unit
+changes, runtime rebuild, deployment or indexing gain. Next new index65; earlier
+gaps and archive/runtime/hosting work remain. All owner objectives active.

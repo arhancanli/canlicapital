@@ -1,0 +1,56 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001503274",
+      "accession": "0001503274-26-000013",
+      "source_sha256": "0567e5301d075e810075880fb0b6519976642adf250f705aefd7906134fbfc48",
+      "primary_sha256": "fe7304ea1dc97057312cac4f63e69f7be71bf780869b2f99b0d6dbb5a8fc9af7",
+      "fixture": "scripts/fixtures/editorial/quanterix-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 62,
+      "share_scale": "3",
+      "table_requires": [
+        "Numerator: Net loss",
+        "Weighted average common shares outstanding"
+      ],
+      "paragraph_requires": [
+        "The following table presents the computation of basic and diluted net loss per share (in thousands, except per share data):",
+        "Accordingly, basic and diluted net loss per common share attributable to common stockholders were the same for all periods presented."
+      ],
+      "reader_note": "For 2023\u20132025, Quanterix excludes potential shares from unvested stock, restricted stock units, options and employee stock purchases as anti-dilutive in its loss periods. These excluded equivalents are not additions to the weighted-average denominator. The EPS numerator is net loss. The statement and EPS note report share counts in thousands with scale-three tags, while EPS uses scale zero; original values and units are retained.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001505155",
+      "accession": "0001505155-26-000007",
+      "source_sha256": "c10c8cb7414254a52ec5a870a40d6cb158c788a14a47fae5ec37d1e0ebd7d6b1",
+      "primary_sha256": "0c16ac8b8e78f6bb3f46949ace7c900eaa32261a8f96e823f0d323fe73eb06fe",
+      "fixture": "scripts/fixtures/editorial/upland-software-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 55,
+      "share_scale": "0",
+      "table_requires": [
+        "Preferred stock dividends and accretion",
+        "Net loss attributable to common stockholders"
+      ],
+      "paragraph_requires": [
+        "The following table sets for the computations of net loss per share (in thousands, except share and per share amounts):",
+        "The Company computes loss per share of Common Stock and Series A Preferred Stock using the two-class method.",
+        "Due to the net losses incurred for the years ended December 31, 2025, 2024 and 2023"
+      ],
+      "reader_note": "For 2023\u20132025, Upland Software uses common-stockholder net loss after preferred dividends and accretion as its EPS numerator. Series A preferred stock participates under the two-class method. Potential dilution is assessed using if-converted treatment for preferred stock and the treasury-stock method for equity awards, but excluded in these loss periods. Contingently issuable performance units are also excluded from basic EPS because vesting conditions were not met. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags; excluded instruments are not added to the denominator.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
