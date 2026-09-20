@@ -700,3 +700,16 @@ Source report replays byte-identically;43renderer/ledger tests pass, exactly24ro
 advance.648reviewed/508pending/20withdrawn,96presentation-only. No value/unit
 changes, runtime rebuild, deployment or indexing gain. Next new index65; earlier
 gaps and archive/runtime/hosting work remain. All owner objectives active.
+
+## 2026-09-21 — Domo January periods and combined classes
+
+Previous turn completed24Quanterix/Upland reviews. PR88four CI35535981618checks
+passed at37f22377; merged9c94f21a, identical treebfbab86e260a1bda019bc24cb8f8c6b27a18786e.
+Reviewed12Domo observations for January31,2024–2026. Two-class loss sharing and
+combined denominator retained; class-specific note counts are components rather
+than additions. Potential dilution excluded in loss periods; scale3shares/scale0EPS
+and original dates/values unchanged. Source report replays byte-identically;
+44renderer/ledger tests pass, exactly12rows advance.660reviewed/496pending/
+20withdrawn,96presentation-only. Next index66Phoenix legacy14requires original
+XML/statement mapping; earlier gaps remain. No runtime rebuild, archive supplement,
+deployment or indexing gain. All owner goals remain active.
