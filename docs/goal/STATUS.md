@@ -151,3 +151,10 @@ Eight additional numerical matches and primary table extracts are retained in
 company-legacy-concept-supplement-20260920.json; original report unchanged.
 Local12file/17,643,520byte archive restores and replays exact supplement bytes.
 No new source request, concept admission, publication or indexing gain.
+
+PR19: https://github.com/arhancanli/canlicapital/pull/19. Includes the legacy
+supplement and patched Soup Sieve2.9.0 current lock (Python>=3.10) for moderate
+Dependabot alerts2/3. Historical parser archive remains intact; current corpus
+tests17/17pass under a clean Python3.12 environment.
+Both the full40-filing report and eight-observation supplement reproduce
+byte-identically under the patched dependency.

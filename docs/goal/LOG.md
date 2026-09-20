@@ -214,3 +214,11 @@ Isolated12file archive restore reruns the supplement and reproduces exact SHA
 aba1b76ef26079fdb6ae3b5a9ed2f42661eaee60cd5e35be9165f4a69668ea34.
 No acquisition, retry, definition change or production deployment. Numerical
 coverage198/198 is not all-history review, concept admission or new indexed pages.
+
+The push exposed two new moderate Soup Sieve advisories (Dependabot2/3).
+Updated the current lock to patched2.9.0, with wheel SHA independently checked
+against PyPI metadata. It requires Python>=3.10; system3.9 rejected the package,
+so verification uses a clean3.12 environment. Historical locks, wheels and
+receipts remain unchanged. All17corpus tests pass under the patched dependency.
+Both the full40-filing report and eight-observation supplement reproduce
+byte-identically under the patched dependency.
