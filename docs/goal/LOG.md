@@ -1003,3 +1003,17 @@ added without comparator changes.92selector/renderer/ledger tests pass; report
 replays identically.1062reviewed/88pending/26withdrawn,104presentation-only.
 Remaining Valhi6/Siebert6/Cedar8/Freddie12/Rockwell12/INVO16/Iovance6/Plastec12/
 Outset6/historicalLifeward4. No rebuild/deployment/indexing gain; all goals active.
+
+## 2026-09-21 — Cedar numerator allocation and independently bound filing notes
+
+Previous turn completed16Emerson/Reliability reviews. PR109four CI35539930936checks
+passed atf7a3adeb; merged4e9baa4a751d274e8aad037c7326b49b6596ea33, full tree
+45ddc02a2f86e2be65d7b356f02b60dc6b4fb71bmatches tested head. Reviewed8newerCedar
+rows as presentation-only: preferred allocations produce positive common income
+in2025despite consolidated loss; basic policy does not establish diluted equality.
+Initial test90251had one failure: old2020mutation expected all notes absent, but
+new2024/2025note remains valid. Replaced with independent suppression assertions
+in both directions; no renderer behavior weakened.93selector/renderer/ledger tests
+pass; report replays identically.1070reviewed/80pending/26withdrawn,112presentation-
+only. Remaining Valhi6/Siebert6/Freddie12/Rockwell12/INVO16/Iovance6/Plastec12/
+Outset6/historicalLifeward4. No rebuild/deployment/indexing gain; all goals active.

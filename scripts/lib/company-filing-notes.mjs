@@ -1,6 +1,85 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0000761648",
+  "include_on_overview": true,
+  "source_sha256": "dbcce42a16a42a13e297263e7e6f4477ce22ddf0a881b5df29c7b785e0ed456f",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Cedar\u2019s 2024\u20132025 figures, EPS uses income attributable to common shareholders after preferred dividends and deemed contributions on preferred stock. In 2025, these allocations produce positive common-shareholder income despite a consolidated net loss; that loss alone cannot explain dilution treatment. The filing labels its EPS policy as basic, while the retained inline facts report equal basic and diluted EPS and share counts. This review confirms that presentation and numerator reconciliation only; it does not establish a reason for the equal diluted figures or carry forward a prior filing\u2019s dilution explanation. All values remain as reported.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/761648/000076164826000008/cdr-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0.14,
+      "accn": "0000761648-26-000008",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.79,
+      "accn": "0000761648-26-000008",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0.14,
+      "accn": "0000761648-26-000008",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.79,
+      "accn": "0000761648-26-000008",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 13718169,
+      "accn": "0000761648-26-000008",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 13718169,
+      "accn": "0000761648-26-000008",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 13718169,
+      "accn": "0000761648-26-000008",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 13718169,
+      "accn": "0000761648-26-000008",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0000032621",
   "include_on_overview": true,
   "source_sha256": "1d6283e2a0a26d0064cc9de5093d303f6e5a17f747fe99c3e1ac4f7c91673739",
