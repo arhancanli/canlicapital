@@ -46,3 +46,19 @@ SHA8e7bad2ae40a1376dbe7a5ac7462689710d0597b7229134b16b3620ecf5e1276.
 Five returns, four sleeves, IMMATURE_RECORD_TOO_SHORT. Neither this refresh nor
 signature verification establishes Sharpe>2,14qualified sleeves, future drawdown,
 actual search indexing, outside adoption or independent replication.
+
+## Deployed-source refresh — 2026-09-20
+
+Retrieved the authenticated Vercel source archive for production deployment
+dpl_6xdeHvXKGwt9Nx5Bxsz8DAnyENdq. Its2,851files differ from recorded commit
+894ec07d in52public-data files only; application files match the recorded commit.
+The candidate already descends from that commit.28glassbox/paper-state files
+needed refresh; no nested agent state was present in that scope.
+
+Imported exact deployed source bytes, then regenerated dependent pages/contracts
+and vectors. Receipt distinguishes source and final hashes:
+artifacts/algo/deployed-evidence-refresh-20260920.json. Full build/verify passed.
+163content hashes and2commitment signatures verify; all1,063chain entries verify,
+with the prior1,060-entry prefix unchanged.627payloads disclosed,436opaque.
+No engine determinism or independent investment-result reproduction claim.
+Indexable inventory remains327; no candidate production deployment performed.

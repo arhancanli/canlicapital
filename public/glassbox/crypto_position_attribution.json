@@ -1,14 +1,14 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "Latest-cycle arithmetic attribution for the locally simulated crypto paper account. It is not Alpaca attestation, a Sharpe estimate, a return trial, or permission to change the strategy. Historical rows without marks remain explicitly unavailable.",
-  "content_hash": "sha256:be17567c4117a5f9040b2b2cdc42d7a10b6232cf57b061d1e5470c6ca4c97a23",
+  "content_hash": "sha256:7ff07e6874b5895af812c4a083da102c49dc309708aab874154c87f78b6e5f1d",
   "historical_boundary": "No historical mark backfill. Completeness begins only with a cycle genuinely persisted by the mark-aware runtime.",
   "latest_cycle": {
-    "account_ts": 1789884000000,
-    "cash_quote": 93092.52695638867,
+    "account_ts": 1789894800000,
+    "cash_quote": 93092.23465036061,
     "complete_mark_count": 9,
-    "cycle_ts": 1789884000000,
-    "equity_quote": 89219.98519138867,
+    "cycle_ts": 1789894800000,
+    "equity_quote": 89322.19287536062,
     "expected_position_count": 9,
     "fallback_mark_count": 0,
     "max_abs_market_value_residual_quote": 0.0,
@@ -16,9 +16,9 @@
     "order_book_mark_count": 9,
     "position_arithmetic_passes": true,
     "reconciliation_passes": true,
-    "reconciliation_residual_quote": -1.4551915228366852e-11,
+    "reconciliation_residual_quote": 0.0,
     "reconciliation_tolerance_quote": 0.01,
-    "reconstructed_equity_quote": 89219.98519138868,
+    "reconstructed_equity_quote": 89322.19287536062,
     "stored_position_count": 9
   },
   "missing_columns": [],
@@ -26,62 +26,62 @@
   "positions": [
     {
       "avg_entry_price": 87.02903475868968,
-      "cycle_ts": 1789884000000,
+      "cycle_ts": 1789894800000,
       "instrument_id": "BINANCE:PERP:BZUSDT",
-      "mark_price": 100.185,
+      "mark_price": 100.435,
       "mark_source": "order_book_mid",
-      "market_value_quote": 5135.4830999999995,
+      "market_value_quote": 5148.298099999999,
       "opened_ts": 1785369600000,
       "qty": 51.25999999999999,
-      "unrealized_pnl_quote": 674.3747782695672
+      "unrealized_pnl_quote": 687.1897782695672
     },
     {
       "avg_entry_price": 83.47,
-      "cycle_ts": 1789884000000,
+      "cycle_ts": 1789894800000,
       "instrument_id": "BINANCE:PERP:CLUSDT",
-      "mark_price": 96.82499999999999,
+      "mark_price": 97.13499999999999,
       "mark_source": "order_book_mid",
-      "market_value_quote": 4995.20175,
+      "market_value_quote": 5011.1946499999995,
       "opened_ts": 1785369600000,
       "qty": 51.59,
-      "unrealized_pnl_quote": 688.9844499999995
+      "unrealized_pnl_quote": 704.9773499999997
     },
     {
       "avg_entry_price": 78.505,
-      "cycle_ts": 1789884000000,
+      "cycle_ts": 1789894800000,
       "instrument_id": "BINANCE:PERP:HYPEUSDT",
-      "mark_price": 90.9045,
+      "mark_price": 90.5955,
       "mark_source": "order_book_mid",
-      "market_value_quote": -1747.1844899999974,
+      "market_value_quote": -1741.2455099999972,
       "opened_ts": 1789603200000,
       "qty": -19.21999999999997,
-      "unrealized_pnl_quote": -238.3183899999997
+      "unrealized_pnl_quote": -232.37940999999975
     },
     {
       "avg_entry_price": 0.06992313292813761,
-      "cycle_ts": 1789884000000,
+      "cycle_ts": 1789894800000,
       "instrument_id": "BINANCE:PERP:LABUSDT",
-      "mark_price": 0.056245,
+      "mark_price": 0.052825,
       "mark_source": "order_book_mid",
-      "market_value_quote": -935.2418600000001,
+      "market_value_quote": -878.3741,
       "opened_ts": 1785369600000,
       "qty": -16628.0,
-      "unrealized_pnl_quote": 227.43999432907208
+      "unrealized_pnl_quote": 284.30775432907217
     },
     {
       "avg_entry_price": 254.05519006211182,
-      "cycle_ts": 1789884000000,
+      "cycle_ts": 1789894800000,
       "instrument_id": "BINANCE:PERP:TAOUSDT",
-      "mark_price": 253.875,
+      "mark_price": 252.215,
       "mark_source": "order_book_mid",
-      "market_value_quote": -3065.5406249999983,
+      "market_value_quote": -3045.4961249999983,
       "opened_ts": 1788998400000,
       "qty": -12.074999999999994,
-      "unrealized_pnl_quote": 2.175795000000217
+      "unrealized_pnl_quote": 22.220295000000167
     },
     {
       "avg_entry_price": 63.39,
-      "cycle_ts": 1789884000000,
+      "cycle_ts": 1789894800000,
       "instrument_id": "BINANCE:PERP:XAGUSDT",
       "mark_price": 66.445,
       "mark_source": "order_book_mid",
@@ -92,43 +92,43 @@
     },
     {
       "avg_entry_price": 4286.58,
-      "cycle_ts": 1789884000000,
+      "cycle_ts": 1789894800000,
       "instrument_id": "BINANCE:PERP:XAUUSDT",
-      "mark_price": 4376.985,
+      "mark_price": 4377.155,
       "mark_source": "order_book_mid",
-      "market_value_quote": -6679.2791099999995,
+      "market_value_quote": -6679.53853,
       "opened_ts": 1789603200000,
       "qty": -1.526,
-      "unrealized_pnl_quote": -137.9580299999996
+      "unrealized_pnl_quote": -138.21744999999973
     },
     {
       "avg_entry_price": 1.3004,
-      "cycle_ts": 1789884000000,
+      "cycle_ts": 1789894800000,
       "instrument_id": "BINANCE:PERP:XRPUSDT",
-      "mark_price": 1.37955,
+      "mark_price": 1.37885,
       "mark_source": "order_book_mid",
-      "market_value_quote": 1567.5826650000004,
+      "market_value_quote": 1566.7872550000002,
       "opened_ts": 1789603200000,
       "qty": 1136.3000000000002,
-      "unrealized_pnl_quote": 89.93814500000008
+      "unrealized_pnl_quote": 89.14273499999992
     },
     {
       "avg_entry_price": 1246.36,
-      "cycle_ts": 1789884000000,
+      "cycle_ts": 1789894800000,
       "instrument_id": "BINANCE:PERP:ZECUSDT",
-      "mark_price": 1449.7649999999999,
+      "mark_price": 1441.125,
       "mark_source": "order_book_mid",
-      "market_value_quote": 1359.87957,
+      "market_value_quote": 1351.7752500000001,
       "opened_ts": 1788998400000,
       "qty": 0.9380000000000002,
-      "unrealized_pnl_quote": 190.79389
+      "unrealized_pnl_quote": 182.68957000000012
     }
   ],
   "schema": "canli.alphac-crypto-position-attribution.v1",
   "source_binding": {
     "binding_scope": "latest equity row and same-cycle position snapshot rows",
     "path": "var/trading_crypto_perp.sqlite",
-    "query_payload_sha256": "84d48defc37d317f5fcf8ffd3559cdb83cb13f3a6d250cc4093fdc11dae33c24"
+    "query_payload_sha256": "18631323584894a8d83a32a2d1410dfbfdf2ba653d069ee46d7b26a42a176535"
   },
   "status": "COMPLETE"
 }

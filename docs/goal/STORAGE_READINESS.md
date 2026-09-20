@@ -201,3 +201,16 @@ The restore verifies captured bytes and source/runtime reproduction; it does not
 claim independent replication of every manual editorial judgment. No remote copy
 or production activation has occurred. Remote destination access, verified remote
 bytes and hosted behavior remain outstanding.
+
+## Sensitive environment export clarification — 2026-09-20
+
+Vercel project metadata confirms all six production variables have type sensitive.
+These values are not readable after creation; exported placeholders cannot be
+used to validate the real Supabase URL or credentials. Earlier parsing failures
+do not identify a production configuration defect. No variables were changed.
+Reference: https://vercel.com/docs/environment-variables/sensitive-environment-variables
+
+The saved Supabase CLI identity can list four inactive projects including
+canlicapital-preview. The historical production reference bpnensyowfmdwhqmfdrg
+returns403; do not retry through alternate identities or guess the migration target.
+Owner was asked for the current production project/account. No migration applied.

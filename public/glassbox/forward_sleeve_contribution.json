@@ -1,7 +1,7 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "Descriptive arithmetic attribution of the published paper curve only. It is not a Sharpe estimate, evidence of expected sleeve performance, permission to reweight, or a return trial. The strategic-overlay residual is not alpha.",
-  "content_hash": "sha256:a8c3255cf42a7ccda3ef6104b5453bc5b3b89be4e589b647cc43d6a9f44251b4",
+  "content_hash": "sha256:2fe224b0b9b849c0d2712a4964cf02bfa970b63f5872ba33df11db192de3628e",
   "daily": [
     {
       "book_return": 0.0,
@@ -455,33 +455,33 @@
       "strategic_overlay_and_rounding_residual": 1.565347074183876e-09
     },
     {
-      "book_return": 0.0012821737342840756,
+      "book_return": 0.0015692260208786113,
       "date": "2026-09-20",
       "sleeve_contributions": {
-        "crypto": 0.000633417428687999,
+        "crypto": 0.0009205265468679724,
         "equity": 0.0006487544930912637,
         "macro_surprise": 0.0,
         "managed_futures": 0.0
       },
-      "strategic_overlay_and_rounding_residual": 1.8125048129036259e-09
+      "strategic_overlay_and_rounding_residual": -5.501908062477412e-08
     }
   ],
   "decision": "MONITOR_ONLY_NO_WEIGHT_CHANGE",
   "largest_loss_driver": {
-    "absolute_share_of_negative_book_return": 0.980859262725228,
-    "additive_contribution": -0.02572422979229011,
+    "absolute_share_of_negative_book_return": 0.9806452533833955,
+    "additive_contribution": -0.025437120674110136,
     "dominates_current_loss": true,
     "sleeve": "crypto"
   },
   "record": {
-    "book_additive_return": -0.026226218959096825,
+    "book_additive_return": -0.02593916667250229,
     "daily_return_observations": 42,
     "first_mark": "2026-08-07",
     "last_mark": "2026-09-20"
   },
   "schema": "canli.alphac-forward-sleeve-contribution.v1",
   "sleeve_additive_contributions": {
-    "crypto": -0.02572422979229011,
+    "crypto": -0.025437120674110136,
     "equity": -0.0010115617641287544,
     "macro_surprise": -0.0003163199434695896,
     "managed_futures": 0.001419638242462301
@@ -511,8 +511,8 @@
     },
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "b9af85176477459e3b14dd71a30bdca40ede9b26c5216d3d9851456bae1873e5"
+      "sha256": "facd7173a0f0aa8c6ff4b5b559f9d9716e85d6c0bbc30e56830c4f1868e0b107"
     }
   },
-  "strategic_overlay_and_rounding_residual": -0.0005937457016706726
+  "strategic_overlay_and_rounding_residual": -0.0005938025332561103
 }

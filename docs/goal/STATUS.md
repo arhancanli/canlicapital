@@ -19,6 +19,11 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
   0aff241a8dfac0b31de7ae5b4eee2755f501262c. Its tree exactly matches867d211.
   PR-event CI35502099188 passed all six jobs before merge. Post-merge
   CI35504256572 and35504254363 are running; runtime activation remains pending.
+- Deployed-source refresh imported28newer public evidence files, rebuilt dependent
+  pages, and passed build59437/verify49746. Original1,060chain entries preserved.
+  Supabase production identity/access remains pending; saved login returns403
+  for historical production reference. Sensitive Vercel exports are unreadable
+  placeholders, not evidence of invalid configuration. No migration attempted.
 - No source capture or pending CI establishes completion, deployment or indexing.
 
 ## Measured outcomes
@@ -130,7 +135,7 @@ All archives are local. Offsite retention and hosted preview remain unverified.
 Website97b90b3b passed all four CI35503755856jobs. Local v8verification passes6+395tests
 and audits. Prior MCP test failure35500519399 is preserved; test-only deterministic
 deadline correction passed48MCP tests and complete remoteCI35500716863.
-Current source evidence:163hashes,2signatures and1,060transparency entries verify;
+Current refreshed source evidence:163hashes,2signatures and1,063transparency entries verify;
 old953entry prefix unchanged. See EVIDENCE_REFRESH.md.
 
 Engine PR68ce93d8c,69at783ad0c,70ate0a257c remain open with passing individual CI.

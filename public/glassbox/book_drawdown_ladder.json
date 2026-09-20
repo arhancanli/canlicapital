@@ -42,9 +42,9 @@
       "status": "MECHANISM_LIVE_BOUND_ENFORCED_UP_TO_ONE_DAY_OVERSHOOT"
     },
     "live_curve_source": {
-      "generated_at": "2026-09-20T06:26:15.824201+00:00",
+      "generated_at": "2026-09-20T09:26:33.398017+00:00",
       "path": "data/paper/state.json",
-      "sha256": "sha256:b9af85176477459e3b14dd71a30bdca40ede9b26c5216d3d9851456bae1873e5"
+      "sha256": "sha256:facd7173a0f0aa8c6ff4b5b559f9d9716e85d6c0bbc30e56830c4f1868e0b107"
     },
     "rearms_register": {
       "entries": 0,
@@ -53,7 +53,7 @@
   },
   "capital_kind": "PAPER_ONLY",
   "claim_boundary": "The declared book-level drawdown ladder replayed over the combined book's published daily paper marks. It reports the multiplier the contract would have in force today. Whether any live cycle applies it is recorded in config/live_change_contract.json and config/drawdown_control_contract.json activation; a multiplier of 1.0 means the brake is not engaged, not that it is absent. A brake bounds each drawdown episode up to a one-day overshoot; it does not make losses impossible.",
-  "content_hash": "sha256:19629dbe08af7c54cde007ef7119ba317d9303d2212e163c3d87f0181c94ada7",
+  "content_hash": "sha256:9640ae796a02d26b19f0ae92a371953899683fc8d137966675d4c7be68f0a88f",
   "daily": [
     {
       "date": "2026-08-08",
@@ -344,16 +344,16 @@
     },
     {
       "date": "2026-09-20",
-      "drawdown": 0.027158663211998446,
+      "drawdown": 0.02687976447841045,
       "high_water_mark": 100108.02,
       "multiplier_applied_to_this_day": 1.0,
       "state_after_close": "NORMAL"
     }
   ],
   "days_at_reduced_gross": 0,
-  "drawdown": 0.027158663211998446,
-  "equity": 97389.22,
-  "generated_at": "2026-09-20T06:26:16.445803+00:00",
+  "drawdown": 0.02687976447841045,
+  "equity": 97417.14,
+  "generated_at": "2026-09-20T09:26:34.032656+00:00",
   "gross_multiplier": 1.0,
   "halts": [],
   "high_water_mark": 100108.02,

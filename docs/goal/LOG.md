@@ -239,3 +239,26 @@ Registry login66928 finished success before owner asked which GitHub account.
 Opened arhancanli's account page; completed device code was not copied for reuse.
 Publish92286 finished exit0. Public registry confirms exact server0.1.2 and npm
 package0.1.2, active/latest. Receipt retained; npm publication was not repeated.
+
+## 2026-09-20 — deployed source audit and evidence refresh
+
+Previous goal turn completed official registry publication. Read continuity;
+production deployment source was captured and compared against commit894ec07d.
+All differences are52public data files; no application-code divergence. Source
+archive has2,851files. Candidate included25of those changes; newer public evidence
+needed refresh. Imported28glassbox/paper-state files with exact source hashes and
+regenerated dependent outputs. Build59437 and verify49746 terminal exit0.
+163hashes,2signatures and1,063chain entries verify, prior1,060prefix unchanged.
+Receipt binds deployed archive and before/source/final hashes. No engine outcome.
+
+Earlier isolated snapshot91707 passed build but predates this evidence refresh;
+do not deploy it as the latest candidate. Supabase saved identity sees four inactive
+projects and returns403for historical production; asked owner for current project.
+Vercel variables are sensitive and unreadable, not proven malformed. No mutation.
+Engine post-merge CI35504254363 still live; Dependency Graph35504256572 passed.
+
+Refresh verification totals6+395tests, zero failures. Browser probe initially
+failed inner_text for an offscreen count; diagnostic confirmed the expected
+timestamp and no overflow. Scrolling and checking DOM text passed all six
+Chromium/WebKit320/390/1440checks. Receipt preserves that probe limitation.
+Previous d8102f19websiteCI now all four jobs pass; new refresh CI follows push.
