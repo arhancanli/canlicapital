@@ -1172,3 +1172,25 @@ test('legacy Freddie and Rockwell context preserves warrant inclusion, scale and
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+
+test('INVO and Plastec retain disputed share holds and limited historical presentation', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['invo', '0001417926', /Both 2014 share counts remain withheld/, 107055085, '2013-12-31'],
+    ['plastec', '0001433309', /presentation-only review/, 12938128, '2015-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v21' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original.concepts);
+    assert.deepEqual(record.editorial_exclusions, original.editorial_exclusions);
+    if (cik === '0001417926') assert.equal(record.editorial_exclusions.length, 2);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});

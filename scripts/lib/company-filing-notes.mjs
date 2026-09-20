@@ -1,6 +1,244 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001417926",
+  "include_on_overview": true,
+  "source_sha256": "685ad9dc506bdfe829560566a030c772be69de24616cba6e2a255a48eadc071b",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For INVO Bioscience in 2011\u20132014, potential shares were excluded from diluted loss per share because their inclusion would have been anti-dilutive during losses. The reviewed figures are USD EPS for those four years and full weighted-average share counts for 2011\u20132013. Both 2014 share counts remain withheld: the main statement reports 112,672,160 while the per-share note reports 112,670,160. EPS is retained as reported, not recomputed from either disputed denominator. These are the historical filing\u2019s share and period conventions.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1417926/000118518517000595/invobioscience10k123115.htm",
+  "observations": [
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": -0.01,
+      "accn": "0001185185-17-000595",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2012-01-01",
+      "end": "2012-12-31",
+      "val": -0.01,
+      "accn": "0001185185-17-000595",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2013-01-01",
+      "end": "2013-12-31",
+      "val": -0.01,
+      "accn": "0001185185-17-000595",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2014-01-01",
+      "end": "2014-12-31",
+      "val": -0.02,
+      "accn": "0001185185-17-000595",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": -0.01,
+      "accn": "0001185185-17-000595",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2012-01-01",
+      "end": "2012-12-31",
+      "val": -0.01,
+      "accn": "0001185185-17-000595",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2013-01-01",
+      "end": "2013-12-31",
+      "val": -0.01,
+      "accn": "0001185185-17-000595",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2014-01-01",
+      "end": "2014-12-31",
+      "val": -0.02,
+      "accn": "0001185185-17-000595",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": 78656439,
+      "accn": "0001185185-17-000595",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2012-01-01",
+      "end": "2012-12-31",
+      "val": 89061776,
+      "accn": "0001185185-17-000595",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2013-01-01",
+      "end": "2013-12-31",
+      "val": 107055085,
+      "accn": "0001185185-17-000595",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2011-01-01",
+      "end": "2011-12-31",
+      "val": 78656439,
+      "accn": "0001185185-17-000595",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2012-01-01",
+      "end": "2012-12-31",
+      "val": 89061776,
+      "accn": "0001185185-17-000595",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2013-01-01",
+      "end": "2013-12-31",
+      "val": 107055085,
+      "accn": "0001185185-17-000595",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001433309",
+  "include_on_overview": true,
+  "source_sha256": "cf4b5a43bd4fd766c3e43344162a2a5fabd8aa1327866bec066af37167006276",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Plastec Technologies in 2013\u20132015, these figures are Hong Kong dollars per ordinary share and full weighted-average ordinary-share counts. The filing says share and per-share amounts were already retroactively restated for the reverse acquisition and recapitalization; no second adjustment is applied. The statements report equal basic and diluted measures, but this review does not establish a specific cause across all three profitable years. This is a presentation-only review; the generic dilution policy is not evidence of the absence of potential shares.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1433309/000114420416092975/v434832_20f.htm",
+  "observations": [
+    {
+      "start": "2013-01-01",
+      "end": "2013-12-31",
+      "val": 6,
+      "accn": "0001144204-16-092975",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2014-01-01",
+      "end": "2014-12-31",
+      "val": 13,
+      "accn": "0001144204-16-092975",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2015-01-01",
+      "end": "2015-12-31",
+      "val": 10.2,
+      "accn": "0001144204-16-092975",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2013-01-01",
+      "end": "2013-12-31",
+      "val": 6,
+      "accn": "0001144204-16-092975",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2014-01-01",
+      "end": "2014-12-31",
+      "val": 13,
+      "accn": "0001144204-16-092975",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2015-01-01",
+      "end": "2015-12-31",
+      "val": 10.2,
+      "accn": "0001144204-16-092975",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2013-01-01",
+      "end": "2013-12-31",
+      "val": 13503623,
+      "accn": "0001144204-16-092975",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2014-01-01",
+      "end": "2014-12-31",
+      "val": 12938128,
+      "accn": "0001144204-16-092975",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2015-01-01",
+      "end": "2015-12-31",
+      "val": 12938128,
+      "accn": "0001144204-16-092975",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2013-01-01",
+      "end": "2013-12-31",
+      "val": 13503623,
+      "accn": "0001144204-16-092975",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2014-01-01",
+      "end": "2014-12-31",
+      "val": 12938128,
+      "accn": "0001144204-16-092975",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2015-01-01",
+      "end": "2015-12-31",
+      "val": 12938128,
+      "accn": "0001144204-16-092975",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001026214",
   "include_on_overview": true,
   "source_sha256": "67fd5b3cf55c379343fd9ffb7271dc8d90538e78bcc7f7e0d592939e3a19939b",

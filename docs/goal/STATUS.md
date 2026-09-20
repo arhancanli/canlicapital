@@ -9,81 +9,51 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/legacy-freddie-rockwell-20260921`. PR112mergedba00e380after four passing
-CI35540761773checks at8643dbf1. Tested and merged trees match exactly.
+`evidence/invo-denominator-hold-20260921`. PR113 merged46752f829f103753f8f7562ca7cb8d30713a3701
+after four passing CI35541174312 checks atd68ac77d. Tree matches tested head.
+PR114 remains open; this branch includes its exact legacy review commit.
 
-Latest registered ledger:company-basic-diluted-registered-scope-legacy24-20260921.json.gz.
-Of1,176batch observations,1122reviewed/28pending/26withdrawn.118reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch1-closed-20260921.json.gz.
+Of1,176batch observations,1148reviewed/0pending/28withdrawn.118reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-V20withholds six exact Lifeward/ReWalk2021–2023ILS/share EPSobservations. The
-historical ReWalk statement labels U.S. dollars; original tags encode ILS/share.
-Source/capture/unit/context evidence retained in company-lifeward-eps-currency-
-20260921.json. No relabeling, conversion or replacement values. USD EPS and shares
-remain unchanged; four other batch observations for this issuer are now reviewed.
-V20whole-corpus comparison99298TERMINAL0verified3,323companies/87,344histories
-against frozenv14. Exactly30held observations sincev14(including six Lifeward),
-two prior Valhi history omissions, policy/notices; all other fields unchanged.
-Report company-five-cohort-v20-transition-20260921.json pins verified inputs/code.
-Latest18reviews cover only Valhi/Iovance/Outset EPS; share holds remain unchanged.
-V5replay allows explicit exact target-row subsets, rejecting altered/duplicate rows.
-Valhi six EPS rows are presentation-only; Iovance/Outset retain disclosed loss
-anti-dilution. Notes explicitly do not recompute EPS from withheld share counts.
-Report replays byte-identically;94selector/renderer/ledger tests plus3subset tests
-pass, subset tests added to CI. Remaining28: INVO16, Plastec12. Iovance older non-batch share review remains
-separate. Runtime/quality rebuild and archival supplement pending.
-Historical ReWalk2021 USD EPS and share counts now have exact-source context,
-separate from newer split-adjusted figures. Four rows advance; all six ILS holds
-remain. Replay byte-identical;95selector/renderer/ledger tests pass.
-Siebert six basic-share/EPS rows now reviewed against note142: dilutive unvested
-shares produce higher denominators while EPS rounds to the same cent. Two disputed
-diluted counts remain held. Replay identical;96tests pass. PR112 has merged;
-PR113CI35540910125 is running. New legacy review is stacked on PR113.
-Freddie2009–2011 and Rockwell2015–2017 add24original legacy statement mappings.
-Freddie Treasury warrant shares are already included in basic; preferred dividends
-affect common loss, and statement share counts are in thousands. Rockwell excludes
-options/restricted grants/warrants for losses. Report replays exactly;97tests pass.
-118presentation-only reviews retain limits.
-V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
-conversion. EPS now reviewed separately; older periods remain outside the hold report.
-V19comparison61020TERMINAL0verified all3,323companies/87,344histories against
-frozenv14. Exactly24held observations sincev14(including six new Outset), two prior
-Valhi history omissions, policy/notices; every other field/source byte unchanged.
-Report company-five-cohort-v19-transition-20260921.json pins inputs/code/policy.
-Runtime rebuild, refreshed quality inventory and archival supplement remain pending.
+V21 adds two exact INVO2014 share holds: original statement30 reports112,672,160,
+while per-share note35 reports112,670,160. Legacy XML matches the main statement;
+no replacement or rounding correction. Capture/hash/XML/column evidence retained
+in company-invo-denominator-conflict-20260921.json. Other14INVOobservations now
+reviewed with explicit loss anti-dilution and preserved denominator conflict.
+Plastec12observations reviewed as presentation-only: HKD per ordinary share,
+full share counts and already-restated reverse-acquisition basis. Generic dilution
+policy does not establish equality cause across all three profitable years.
+Both reports replay byte-identically;107selector/renderer/ledger/delivery/release
+tests pass. Batch1 scope has no pending observations:1148reviewed/28withdrawn,
+130presentation-only. This is not whole-corpus admission or publication approval.
 
-V18six Iovance2023–2025share-scale holds remain enforced. Earlier2019–2022share
-rows need original-filing review and six EPSbatch rows are now reviewed separately. Whole-
-corpus comparison passed; current runtime rebuild, quality inventory and updated
-archival supplement remain undone. No production or indexing gain.
+V21whole-corpus comparison18090TERMINAL0verified3,323companies/87,344histories
+against frozenv14. Exactly32held observations sincev14, two prior Valhi constant
+history omissions and policy/notices; all other fields/source bytes unchanged.
+Report company-five-cohort-v21-transition-20260921.json pins code/source inputs.
+Latest built runtime remainsv14at90,736candidate URLs; runtime/quality rebuild,
+archive supplement and hosting remain pending. Older Iovance2019–2022shares need
+original-filing review separately; broader capture/scope/usefulness remain open.
 
+PR113 initially could not merge after PR112squash. Verified main tree identical
+to its already-included parent8643dbf1, resolved eight conflicts preserving the
+entire tested tree3bc15b4bf7947ee210470ccbfc6c5efa83a00c32, normal signed merge
+commitd68ac77d, fresh four-check CIpassed, then exact-head squash merged.
+No force push or check bypass. PR114 may need the same ancestry reconciliation.
 
-Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
-periods, NLI/Weis combined/restated presentation, Blue Dolphin historical instruments,
-NexMetals positive loss magnitudes/consolidation, Cedar vested-share/FFO distinction,
-Axogen/Heron/Westwater loss dilution, and FuelCell/Achieve/Southern Copper/Genesis
-split/dividend, wording and partnership conventions. Scope remains observation-specific.
-
-V18whole-corpus comparison7090TERMINAL0:3,323companies/87,344histories. Exactly18
-holds sincev14, two prior Valhi constant-history omissions (six residual observations),
-metadata/notices; all other fields/source bytes unchanged. Frozenv14manifest SHA
-7f2540f7d8393615efff856479b41b5994aac1d258d0e4de1d116ca616c76472 verified.
-Initial42325TERMINAL1had expected notice-order mismatch; audit now follows selector
-concept order, full deep equality retained. Report company-five-cohort-v18-transition-
-20260920.json pins code/selector/policy. This is selector replay, not a new runtime.
-Latest built runtime remainsv14at90,736candidate URLs.
-
-No collector, comparison, archive or uploader active at this checkpoint. Next:
-continue remaining primary/legacy accounting-context review, retain updated archival
-supplement, then rebuild current runtime/quality inventory and finish hosted gates.
-No new deployment or confirmed indexing gain. Current context/registry supplements
-are committed evidence but not yet sealed in an updated restore-tested archive.
+No local collector/comparison/uploader remains active at this checkpoint.
+Next: integrate pending reviewed PRs, review older Iovance scope, seal/replay the
+updated archival supplement, rebuild current runtime/quality inventory and finish
+hosted delivery gates. No deployment or confirmed indexing gain. Current evidence
+is committed but not yet sealed in an updated restore-tested archive.
 
 ## Editorial policy and evidence
 
-Cumulative extended-v20 preserves frozen earlier versions and all reviewed holds:
+Cumulative extended-v21 preserves frozen earlier versions and all reviewed holds:
 Birdie SG&A, disputed DBMM revenue period, HNO operating-loss history, two Atlantica
 liability periods, six Varonis AFN/share facts, Monolithic AFN revenue, 51Talk SAR
 cash/time-deposit component, eight Valhi weighted-share scale conflicts, two Siebert denominator conflicts, six Iovance share-scale conflicts and six Outset share-scale conflicts.
@@ -114,7 +84,7 @@ coverage remains open; do not present either sample as full-corpus admission.
 
 Current built-v14quality inventory:13,142flagged histories; overlapping reasons
 10,630historical-only,1,307multi-unit,400partially historical units,75constant,
-74zero-only,1,494pages in747equal groups. V19needs refreshed inventory. Flags are
+74zero-only,1,494pages in747equal groups. V21needs refreshed inventory. Flags are
 not automatically defects; unflagged pages are not automatically admitted.
 
 ## Retained archives
@@ -138,7 +108,7 @@ artifacts/seo retain hashes, limitations and original failures.
 
 Latest built combined runtime remains v14:3,323companies +87,346histories
 +67directories =90,736candidate URLs. Two verified sitemap shards40,736/50,000.
-10,360objects/1,280,306,303bytes. V19selected changes are not yet that runtime.
+10,360objects/1,280,306,303bytes. V21selected changes are not yet that runtime.
 Release10f90cd6849d5b0a358f2b9c7fed37ceaa8587561053cc490cd34072733a98e1;
 other v14roots in historical STATUS and versioned discovery/plan receipts.
 
