@@ -1206,3 +1206,15 @@ bytes rather than trusted from report metadata. The hardened comparison exits0
 and reproduces the original report byte-for-byte. Prior user-facing turn only
 rechecked browser tabs and reported the baseline; this turn completes evidence
 review and preservation. Category URL exports remain pending.
+
+## 2026-09-20 — identity matches expose a subsidiary-scope error
+
+Previous turn committed and pushed filing comparison evidence as3e903ee0; this
+turn inspected matching table rows and surrounding narrative. Princeton's three
+Revenues observations (2020–2022) belong to unconsolidated portfolio company
+Advantis Certified Staffing Solutions despite matching undimensioned Princeton
+contexts. Recorded exact-source concept-exclusion requirement before any future
+identity admission. New script verifies original body hash/length and preserves
+the table and identifying passage. Existing INVALID_ENTITY exclusion remains;
+no normalization, policy change, new candidate or publication. Numerical matching
+is explicitly separated from semantic acceptance. Full owner goal remains active.

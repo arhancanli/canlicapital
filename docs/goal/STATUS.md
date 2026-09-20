@@ -51,7 +51,11 @@ histories. Their 13 latest core filings are now captured: all cover CIKs and all
 137 selected observations match, enforcing context identity and units. The 26
 source responses verify. No CIK normalization or policy change; old exclusions
 and release remain unchanged. Versioned exception design is pending. These new
-filing bodies are outside the sealed archive. The 13 selector tests passed. See COMPANY_IDENTITY_REVIEW.md. Parent/subsidiary name
+filing bodies are outside the sealed archive. Subsequent scope inspection found
+Princeton's three matching Revenues observations describe unconsolidated portfolio
+company Advantis, requiring concept exclusion before any identity admission.
+Source passage and disposition are retained; no policy change. The 13 selector
+tests passed. See COMPANY_IDENTITY_REVIEW.md. Parent/subsidiary name
 conflicts mean numeric-string conversion alone is not an acceptance rule.
 
 ## Delivery and retention

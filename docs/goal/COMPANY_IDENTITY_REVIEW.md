@@ -94,3 +94,25 @@ The evidence supports considering a versioned, exact-source identity exception
 for these ten captures. Such a change must preserve old exclusion replay, bind the
 reviewed raw bytes and reject altered source bytes pending renewed review. It has
 not been implemented or activated. No general numeric-string coercion is approved.
+
+## Semantic review: Princeton revenue is a portfolio-company measure
+
+Further inspection of the surrounding filing text found that the three matching
+Princeton `Revenues` observations for 2020–2022 describe Advantis Certified Staffing
+Solutions, Inc. The filing labels the table as summarized financial information
+for an unconsolidated controlled portfolio company. The amounts are USD6,935,000,
+USD8,182,000 and USD8,757,000 respectively. They use Princeton CIK contexts without
+dimensions, illustrating why numerical and context identity checks are insufficient.
+
+Disposition: **exclude this concept before any identity admission** for source
+SHA256 `2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854`.
+Do not replace these observations with a different revenue tag or inferred values.
+The existing INVALID_ENTITY exclusion already prevents this company from entering
+the current release. No selector, policy or release pointer changed.
+
+`scripts/review-princeton-revenue-scope.py` verifies the original primary body and
+extracts the surrounding passage and table into
+`artifacts/seo/princeton-revenue-scope-20260920.json`. This is a manual semantic
+disposition with reproducible source evidence, not automated semantic validation
+or full-history approval. Admission design must incorporate this finding; the
+137 numerical matches must never be represented as 137 approved company measures.
