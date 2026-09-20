@@ -1,0 +1,105 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001125345",
+      "accession": "0001125345-26-000017",
+      "source_sha256": "b98f37ad513447e13e54e3c8aab52fa06dadb3378578ec24da5fc8f74c693219",
+      "primary_sha256": "6676687ba36b8c10e256d8387d441673280684b68ff066f0c1ba190e9663b84e",
+      "fixture": "scripts/fixtures/editorial/macrogenics-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 17,
+      "share_scale": "0",
+      "table_requires": [
+        "Basic and diluted net loss per common share"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except share and per share data)",
+        "All stock options and restricted stock units (RSUs) are excluded from the per share calculations as such securities were anti-dilutive for all periods presented."
+      ],
+      "reader_note": "For 2023\u20132025, MacroGenics reports equal basic and diluted loss per common share and explicitly excludes stock options and restricted stock units because they are anti-dilutive. Shares and per-share amounts are exempt from the statement\u2019s thousands heading. The excluded instruments are not added to the weighted-average denominator, and basic and diluted counts should not be added together.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001162194",
+      "accession": "0001193125-26-108326",
+      "source_sha256": "a456503a84818adf93963f66898da8214b4c8773c8d6098feaf8922448cbaa0f",
+      "primary_sha256": "f5ccd1b251f5b56af52d4273590a52be784c4f1f49ea132fe119ae714c0088bb",
+      "fixture": "scripts/fixtures/editorial/standard-biotools-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 43,
+      "share_scale": "3",
+      "table_requires": [
+        "Induced conversion of redeemable preferred stock",
+        "Weighted-average shares outstanding during the period"
+      ],
+      "paragraph_requires": [
+        "in-substance distribution to the Investors, and was included as a reduction to the numerator in calculating earnings per share",
+        "have been excluded from the calculation of diluted net loss per share as their effect is anti-dilutive for all periods presented.",
+        "(In thousands, except per share amounts)"
+      ],
+      "reader_note": "For 2023\u20132025, Standard BioTools reports total loss per share attributable to common stockholders, distinct from continuing-operations and discontinued-operations per-share figures. Its 2024 common-stockholder numerator includes an induced-conversion adjustment for Series B preferred stock. Potentially dilutive instruments are excluded as anti-dilutive. Weighted-average shares are in thousands and tagged with scale three; per-share figures are not scaled. The reported total and its components are retained without substituting consolidated net loss or recalculating rounded EPS.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001163609",
+      "accession": "0001163609-26-000010",
+      "source_sha256": "d9218bf4ec27955c4ad39b6bf08f993680612291077680c22092b5b68404ac3e",
+      "primary_sha256": "e6bffc011e31f8fd268f67515e80b4bb16ee1d71a402d8cadab57a35f4e4cf8a",
+      "fixture": "scripts/fixtures/editorial/south-dakota-soybean-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 23,
+      "share_scale": "0",
+      "table_requires": [
+        "Basic and diluted earnings per capital unit",
+        "Net income attributable to Company"
+      ],
+      "paragraph_requires": [
+        "The Company has no other capital units or other member equity instruments that are dilutive for purposes of calculating earnings per capital unit."
+      ],
+      "reader_note": "For 2023\u20132025, South Dakota Soybean Processors reports earnings per LLC capital unit, not per corporate common share. The source taxonomy\u2019s share concepts represent capital units here. The numerator is income attributable to the Company after noncontrolling interests. The filing states that it has no other capital units or member-equity instruments that are dilutive for this calculation. The reported unit counts and per-unit values are retained without adding basic and diluted denominators.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001227636",
+      "accession": "0001104659-26-029004",
+      "source_sha256": "dcdb8ba5f0cefabeaf77b7363d1e812344193a011fab40162092f562c9316dfd",
+      "primary_sha256": "ae9732907aea5c9072f139d159fe592e48a33c09fc0166a347a6cfa659b19d14",
+      "fixture": "scripts/fixtures/editorial/neuronetics-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 285,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss attributable to Neuronetics stockholders",
+        "Weighted average common shares outstanding, basic and diluted"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except per share data)",
+        "A net loss cannot be diluted, so when the Company is in a net loss position, basic and diluted loss per common share are the same.",
+        "excluded from the Company\u2019s computation of weighted-average shares outstanding in the determination of basic loss per share until vesting occurs."
+      ],
+      "reader_note": "For 2023\u20132025, Neuronetics\u2019 EPS numerator is loss attributable to its stockholders after noncontrolling interests. Issued but unvested restricted stock is excluded from basic weighted-average shares until vesting. Potential dilution is excluded in the loss periods, producing equal basic and diluted loss per share. Statement share counts are in thousands and tagged with scale three; per-share amounts use scale zero. Reported values are preserved without adding excluded potential shares.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

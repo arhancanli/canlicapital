@@ -54,3 +54,8 @@ Batch5uses replay v3with an optional explicit `supporting_table_indexes` list.
 Plug Power’s2025diluted-share fact appears only in its EPSnote table, while other
 facts also appear in the main statement. Every allowed table is retained in the
 report; matching elsewhere in the filing is insufficient. V1/V2remain frozen.
+
+Batch6uses replay v4to include text held directly in leaf spans and inline-XBRL
+continuations. MacroGenics places its dilution paragraph in a continuation beside
+an embedded table, so leaf paragraph/division extraction omitted it. The original
+source was inspected before adding that narrowly bound review requirement.
