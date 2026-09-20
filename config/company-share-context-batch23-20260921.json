@@ -1,0 +1,31 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001505952",
+      "accession": "0001628280-26-025356",
+      "source_sha256": "dbe72071d927a7f34e2f5851cf698c1d63871c6a6a679a786437cfeb943e0717",
+      "primary_sha256": "e7e6fff2add03fd10ab35ec5160c461d157b6b2dc881bbe6a2cec805e113b998",
+      "fixture": "scripts/fixtures/editorial/domo-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2024-01-31",
+        "2025-01-31",
+        "2026-01-31"
+      ],
+      "table_index": 24,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "number of shares used in computing net loss per share, basic and diluted"
+      ],
+      "paragraph_requires": [
+        "The Company computes net loss per share using the two-class method",
+        "Since the Company was in a loss position for all periods presented",
+        "(in thousands, except per share amounts)"
+      ],
+      "reader_note": "For Domo\u2019s fiscal years ended January 31, 2024, 2025 and 2026, Class A and Class B share equally in net losses under the two-class method because their liquidation and dividend rights are substantially identical, apart from voting rights. The selected statement denominator combines both classes; the individual class counts in the EPS note are components, not additional shares. Potential dilution is excluded in the loss periods. Shares are reported in thousands with scale-three tags and EPS uses scale zero. January fiscal dates and original values are retained.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

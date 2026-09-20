@@ -9,22 +9,22 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch22-20260921`. PR87merged4de86bfcafter four passing
-CI35535824498checks at7774c32a. Tested and merged trees match exactly.
+`evidence/share-context-batch23-20260921`. PR88merged9c94f21aafter four passing
+CI35535981618checks at37f22377. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch22-20260921.json.gz.
-Of1,176batch observations,648reviewed/508pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch23-20260921.json.gz.
+Of1,176batch observations,660reviewed/496pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover Quanterix and Upland Software2023–2025EPS. Quanterix
-retains scale3shares and excludes potential equivalents in loss periods. Upland
-uses common-stockholder loss after preferred dividends/accretion, two-class
-participation, if-converted preferred treatment and treasury-stock award treatment.
-Unvested contingent performance units are excluded from basic EPS. Full scale0
-share counts retained.43renderer/ledger tests pass; report replays byte-identically.
-Next new index65; earlier gaps remain.96presentation-only reviews retain limits.
+Latest12reviews cover Domo fiscal years ended January31,2024–2026. The combined
+ClassA/Bdenominator is retained; individual-class EPS-note counts are components,
+not additions. Substantially identical dividend/liquidation rights support equal
+loss sharing under the two-class method; potential dilution excluded in loss
+periods. Scale3shares/scale0EPSand fiscal dates unchanged.44renderer/ledger tests
+pass; source report replays byte-identically. Next index66Phoenix New Media needs
+legacy XML/statement mapping.96presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against

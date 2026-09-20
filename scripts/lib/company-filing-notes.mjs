@@ -1,6 +1,117 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001505952",
+  "include_on_overview": true,
+  "source_sha256": "dbe72071d927a7f34e2f5851cf698c1d63871c6a6a679a786437cfeb943e0717",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Domo\u2019s fiscal years ended January 31, 2024, 2025 and 2026, Class A and Class B share equally in net losses under the two-class method because their liquidation and dividend rights are substantially identical, apart from voting rights. The selected statement denominator combines both classes; the individual class counts in the EPS note are components, not additional shares. Potential dilution is excluded in the loss periods. Shares are reported in thousands with scale-three tags and EPS uses scale zero. January fiscal dates and original values are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1505952/000162828026025356/domo-20260131.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-02-01",
+      "end": "2024-01-31",
+      "unit": "USD/shares",
+      "val": -2.1,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "unit": "USD/shares",
+      "val": -2.13,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "unit": "USD/shares",
+      "val": -1.45,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-02-01",
+      "end": "2024-01-31",
+      "unit": "USD/shares",
+      "val": -2.1,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "unit": "USD/shares",
+      "val": -2.13,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "unit": "USD/shares",
+      "val": -1.45,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-02-01",
+      "end": "2024-01-31",
+      "unit": "shares",
+      "val": 36050000,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "unit": "shares",
+      "val": 38501000,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "unit": "shares",
+      "val": 40984000,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-02-01",
+      "end": "2024-01-31",
+      "unit": "shares",
+      "val": 36050000,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "unit": "shares",
+      "val": 38501000,
+      "accn": "0001628280-26-025356"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "unit": "shares",
+      "val": 40984000,
+      "accn": "0001628280-26-025356"
+    }
+  ]
+},
+{
   "cik": "0001503274",
   "include_on_overview": true,
   "source_sha256": "0567e5301d075e810075880fb0b6519976642adf250f705aefd7906134fbfc48",
