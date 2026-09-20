@@ -1065,3 +1065,49 @@ note142. No substitution or lifting holds. Report replays byte-identically;
 118presentation-only. Remaining Freddie12/Rockwell12/INVO16/Plastec12; older Iovance
 review separate. No runtime rebuild, archival supplement, deployment or index gain.
 All owner objectives remain active.
+
+
+## 2026-09-21 — original Freddie/Rockwell legacy statement mappings
+
+Previous turn reviewed six Siebert observations and opened PR113. PR112 all four
+CI35540761773checks passed at8643dbf1; mergedba00e38060c53c072827cf72c540f8e2b97c02dd,
+full tree5765e763ba0433c02e99422018bb61f9a9a9ac90 matches tested head. PR113 CI
+35540910125running; this branch builds on its head187d8c75 without claiming merge.
+Mapped24legacy XML observations to exact original statement years/rows/columns.
+Freddie2009–2011 uses common loss after preferred dividends/noncontrolling interests;
+Treasury nominal-price warrant already included in basic, separate anti-dilutive
+potential shares excluded; statement thousands mapped to full source shares.
+Rockwell2015–2017 excludes options, restricted grants and warrants during losses.
+First replay failed parsing '$' because Rockwell column spacing differs; original
+script retained at corpus-local/rejected-freddie-rockwell-context-v1.py. Corrected
+explicit per-filing column coordinates, no value/helper changes. Final report
+replays byte-identically;97selector/renderer/ledger tests pass. Ledger1122reviewed/
+28pending/26withdrawn,118presentation-only. RemainingINVO16/Plastec12; older Iovance
+scope separate. Archive supplement/runtime refresh/hosting remain pending; no
+production or indexing gain. All owner objectives remain active.
+
+
+## 2026-09-21 — batch1 closure, INVO conflict holds and full v21 comparison
+
+Previous turn added24Freddie/Rockwell reviews in PR114. Found original INVO2014
+statement112,672,160 versus note112,670,160 denominator conflict. V21withholds
+two exact observations, preserves source values and adds visible source notices.
+Reviewed other14INVOrows (loss anti-dilution) and12Plastecrows (HKD, ordinary shares,
+already-restated recapitalization; presentation-only cause limit). Both replay
+reports byte-identical.107selector/renderer/ledger/delivery/release tests pass;
+ledger1148reviewed/0pending/28withdrawn,130presentation-only. First batch of100
+primaries now accounted for, not whole-corpus or publication approval.
+V21comparison18090TERMINAL0verified3,323companies/87,344histories against frozenv14:
+32exact held observations, prior two Valhi constant-history omissions, policy/notices
+only; all other fields/source bytes unchanged. Earlier106tests passed before notes.
+
+PR113 merge initially rejected because squash ancestry produced eight conflicts.
+Verified main matched8643dbf1tree, already ancestor of PR113; resolved all eight
+files to reviewed head and asserted full tree unchanged3bc15b4bf7947ee210470ccbfc6c5efa83a00c32.
+Normal signed merge commitd68ac77d; fresh CI35541174312all four passed; then merged
+exact head and verified matching merged tree. PR114 still open. No forced pushes,
+admin bypass or silent content changes. Current branch includes both PR114 and
+reconciled PR113 ancestry. Initial draft INVO/Plastec report saved before formatting
+replay script; final report code hash regenerated and independently replayed.
+Next older Iovance review, archive supplement, runtime/quality refresh and hosting.
+No deployment/indexing gain. Full owner goal remains active.

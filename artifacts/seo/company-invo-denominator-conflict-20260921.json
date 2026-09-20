@@ -1,0 +1,117 @@
+{
+  "schema": "canli.invo-denominator-conflict.v1",
+  "publication_approved": false,
+  "source_sha256": "685ad9dc506bdfe829560566a030c772be69de24616cba6e2a255a48eadc071b",
+  "target_sha256": "cd81acbe9da201f5c8da6f0480c87869ac5a4d40b7e95343d187c2af9bd57617",
+  "receipt_sha256": "4b073f5fbf80e3577319901ca3e76bb1422a2172ff4955f37b25ae65868f3c86",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1417926/000118518517000595/invobioscience10k123115.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T17:53:42.470737+00:00",
+    "bytes": 3373282,
+    "sha256": "3b8ae21fc87104eb128ec2b99768fcca1d1f12e6ac5893a40055ccbae3764d2f",
+    "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001417926-0001185185-17-000595-primary.response"
+  },
+  "instance_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1417926/000118518517000595/ivob-20151231.xml",
+    "status": 200,
+    "bytes": 5393071,
+    "sha256": "9bd79588b17bea2bdbc75939f8c07ddd7554c4b242f0ecf224307c76d290fd01",
+    "captured_at": "2026-09-20T18:03:12.109942+00:00",
+    "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001417926-0001185185-17-000595-instance.response"
+  },
+  "legacy_report_sha256": "c4b4b3c6df336488aeea214046d2db87c169e264af554d8075c4fa910a57971f",
+  "code_sha256": "c5d789135c625b3b1390f3b29df9be1e69ba4acb6ca7092b4a734e7e27ca2a48",
+  "helper_sha256": "fc27ceee7bdb441eb4b8c84b86f3d9761f9eb04e423458143c2ddbc66ce21475",
+  "selected_observations": [
+    {
+      "start": "2014-01-01",
+      "end": "2014-12-31",
+      "val": 112672160,
+      "accn": "0001185185-17-000595",
+      "fy": 2015,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2017-03-17",
+      "frame": "CY2014",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2014-01-01",
+      "end": "2014-12-31",
+      "val": 112672160,
+      "accn": "0001185185-17-000595",
+      "fy": 2015,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2017-03-17",
+      "frame": "CY2014",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ],
+  "checks": [
+    {
+      "selected": {
+        "start": "2014-01-01",
+        "end": "2014-12-31",
+        "val": 112672160,
+        "accn": "0001185185-17-000595",
+        "fy": 2015,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-17",
+        "frame": "CY2014",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "c6_From1Jan2014To31Dec2014",
+          "unit_id": "shares",
+          "value": "112672160"
+        }
+      ]
+    },
+    {
+      "selected": {
+        "start": "2014-01-01",
+        "end": "2014-12-31",
+        "val": 112672160,
+        "accn": "0001185185-17-000595",
+        "fy": 2015,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2017-03-17",
+        "frame": "CY2014",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "matched": true,
+      "matches": [
+        {
+          "context_id": "c6_From1Jan2014To31Dec2014",
+          "unit_id": "shares",
+          "value": "112672160"
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_index": 30,
+      "text": "For the Twelve For the Twelve For the Twelve For the Twelve For the Twelve Months Ended Months Ended Months Ended Months Ended Months Ended December 31, December 31, December 31, December 31, December 31, 2015 2014 2013 2012 2011 Revenue $ 11,689 $ 16,588 $ 27,063 $ 56,377 $ 71,503 Cost of goods sold: 7,810 7,682 10,584 20,880 17,912 Gross Margin 3,879 8,906 16,479 35,497 53,591 Selling, general and administrative expenses 598,953 1,689,482 621,712 587,796 756,717 Total operating expenses 598,953 1,689,482 621,712 587,796 756,717 Loss from operations (595,074 ) (1,680,576 ) (605,233 ) (552,299 ) (703,126 ) Other (Income) Expenses: Loss (Gain) on settlement of debt 4,332,155 - - (3,244 ) (1,886 ) Loss (Gain) in fair value of derivative liability - - 103,550 24,489 (94,455 ) Value of derivative liability in excess of principal of note - - - - 34,970 Interest expense 32,018 51,896 51,896 92,910 155,716 Total other ( income) expenses 4,364,173 51,896 155,446 114,155 94,345 Loss before income taxes (4,959,247 ) (1,732,472 ) (760,679 ) (666,454 ) (797,471 ) Provisions for income taxes - - - - - Net Loss $ (4,959,247 ) $ (1,732,472 ) $ (760,679 ) $ (666,454 ) $ (797,471 ) Basic net loss per weighted average shares of common stock $ (0.04 ) $ (0.02 ) $ (0.01 ) $ (0.01 ) $ (0.01 ) Diluted net loss per weighted average shares of common stock $ (0.04 ) $ (0.02 ) $ (0.01 ) $ (0.01 ) $ (0.01 ) Basic weighted average number of shares of common stock 128,567,615 112,672,160 107,055,085 89,061,776 78,656,439 Diluted weighted average number of shares of common stock 128,567,615 112,672,160 107,055,085 89,061,776 78,656,439"
+    },
+    {
+      "table_index": 35,
+      "text": "Twelve Months Ended December 31, 2015 2014 2013 2012 2011 Loss to common shareholders (Numerator) $ (4,959,247 ) $ (1,732,472 ) $ (760,679 ) $ (666,454 ) $ (797,471 ) Basic and diluted weighted-average number of common shares outstanding (Denominator) 128,567,615 112,670,160 107,055,085 89,061,776 78,656,439"
+    }
+  ],
+  "statement_value": 112672160,
+  "note_value": 112670160,
+  "difference": 2000,
+  "disposition": "TWO_EXACT_SHARE_OBSERVATIONS_REQUIRE_HOLD",
+  "scope": "Two 2014 share observations only. Original XML matches the main statement, which conflicts with the per-share note. No replacement, rounding correction, EPS recomputation or approval of other observations."
+}

@@ -595,3 +595,37 @@ test('v20 holds only six historical ReWalk ILS EPS facts and preserves USD and s
   assert.deepEqual(next.concepts, old.concepts);
   assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
 });
+
+
+test('v21 withholds only conflicting INVO 2014 shares and retains EPS and other periods', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/invo-reviewed-source.json.gz', import.meta.url)));
+  const options = { expectedCik: '0001417926', fetchedAt: '2026-09-20T00:00:00Z' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v20' });
+  const diagnostics = {};
+  const after = companyReference(raw, { ...options, diagnostics, selectionPolicy: 'extended-v21' });
+  const expected = structuredClone(before.concepts);
+  for (const tag of ['WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const concept = expected.find(c => c.tag === tag);
+    const held = r => r.accn === '0001185185-17-000595' && r.end === '2014-12-31' && r.val === 112672160;
+    assert.equal(concept.observations.filter(held).length, 1);
+    concept.observations = concept.observations.filter(r => !held(r));
+  }
+  assert.deepEqual(after.concepts, expected);
+  assert.equal(diagnostics.editorial_observation_excluded, 2);
+  assert.equal(after.editorial_exclusions.length, 2);
+  verifyCompanyReference(after, raw);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v21' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  for (const target of ['overview', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const html = renderCompanyPages(after, { target })[0].html;
+    assert.match(html, /112,672,160 while the per-share note reports 112,670,160/);
+    assert.match(html, /invobioscience10k123115/);
+  }
+  const priorRaw = gunzipSync(readFileSync(new URL('./fixtures/editorial/lifeward-reviewed-source.json.gz', import.meta.url)));
+  const priorOptions = { expectedCik: '0001607962', fetchedAt: options.fetchedAt };
+  const old = companyReference(priorRaw, { ...priorOptions, selectionPolicy: 'extended-v20' });
+  const next = companyReference(priorRaw, { ...priorOptions, selectionPolicy: 'extended-v21' });
+  assert.deepEqual(next.concepts, old.concepts);
+  assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
+});
