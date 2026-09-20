@@ -1,0 +1,58 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001779578",
+      "accession": "0001104659-26-085247",
+      "source_sha256": "33210dced8349befe86035f27f40b7d791195a7c7d46a49edee117719fcc79c3",
+      "primary_sha256": "76caa9a307d4fea1f1724a46512fe2e90da392f61931d65b0247bb1e1f2e66a9",
+      "fixture": "scripts/fixtures/editorial/bgm-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-09-30",
+        "2024-09-30",
+        "2025-09-30"
+      ],
+      "table_index": 355,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Denominator"
+      ],
+      "paragraph_requires": [
+        "There were no other diluted shares for the years ended September 30, 2025, 2024 and 2023",
+        "These changes have not been audited by us",
+        "retroactively adjusted to reflect the share consolidation"
+      ],
+      "reader_note": "For BGM\u2019s years ended September 30, 2023, 2024 and 2025, EPS uses net loss attributable to ordinary shareholders after noncontrolling interests, rather than consolidated or comprehensive loss. The filing excludes anti-dilutive potential shares and states there were no other diluted shares for these years. Its June 2024 five-for-one consolidation is already reflected. The prior auditor explicitly says it did not audit the subsequent adjustment to the 2023 share and EPS figures; this review preserves that limitation and does not certify those adjustments. Full share counts, USD EPS and September fiscal dates remain as reported.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001801834",
+      "accession": "0001178913-26-001782",
+      "source_sha256": "69957b292dd87f8273b7f0da3d6920fe4fe565acb96e32ac6604e47f9a8bcfd8",
+      "primary_sha256": "1cf3641a05e796b0c8ac467a340ecf34eadf0d20021e3d7cc70e8924b9bf92f1",
+      "fixture": "scripts/fixtures/editorial/prf-technologies-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 495,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Denominator"
+      ],
+      "paragraph_requires": [
+        "including unconditional prefunded warrants exercisable for little consideration",
+        "all outstanding share options, contingent pre-funded warrants, and warrants have been excluded",
+        "On February 6, 2026, the Company effected a 1-for-5 reverse share split",
+        "U.S. dollars in thousands (except share and per share amount)"
+      ],
+      "reader_note": "For PRF Technologies in 2023\u20132025, the basic denominator already includes unconditional prefunded warrants exercisable for little consideration. Contingent prefunded warrants, options and other warrants are excluded from diluted loss per share as anti-dilutive; the two warrant categories are not interchangeable. EPS uses net loss applicable to ordinary shareholders after noncontrolling interests. The February 2026 one-for-five reverse split is already reflected retrospectively in the presented shares and per-share amounts. Full scale-zero share counts and EPS remain unchanged, with no additional split adjustment.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

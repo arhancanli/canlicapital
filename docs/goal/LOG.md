@@ -973,3 +973,18 @@ tests pass; report replays byte-identically; exactly24rows advance.1022reviewed/
 128pending/26withdrawn,96presentation-only. Next98/99,97already reviewed; historical
 Lifeward four rows/earlier gaps remain. No rebuild/deployment/indexing gain.
 All owner objectives remain active.
+
+## 2026-09-21 — auditor adjustment limits and distinct prefunded warrants
+
+Previous turn completed24Check-Cap/Tenable reviews. PR107four CI35539516711checks
+passed at04415d97; merged67f693c52ec9175deeb05b7ea5bcaf1a5e736cc2, full tree
+71698a28bb6eff9d2da7c6e8e0662aaa1f597911matches tested head. Reviewed24BGM/PRFrows.
+BGMprior auditor explicitly did not audit subsequent2023split adjustments; caveat
+retained. Initial replay terminal1failed BGMbasic-share table membership; retained
+rejected spec and added exact statement339support, comparator unchanged. PRFbasic
+includes unconditional prefunded warrants, distinct from excluded contingent ones.
+91selector/renderer/ledger tests pass; report replays byte-identically.1046reviewed/
+104pending/26withdrawn,96presentation-only. Remaining104mapped directly from ledger:
+Emerson8/Reliability8/Valhi6/Siebert6/Cedar8/Freddie12/Rockwell12/INVO16/Iovance6/
+Plastec12/Outset6/historicalLifeward4. All new index entries visited; these gaps
+remain. No rebuild/deployment/indexing gain. All owner objectives remain active.
