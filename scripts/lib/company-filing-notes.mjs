@@ -234,6 +234,25 @@ export const FILING_NOTES = [
       "accn": "0001683168-26-002393"
     }
   ]
+},
+{
+  "cik": "0001818874",
+  "include_on_overview": true,
+  "source_sha256": "e2de0cfed1d347a12db62fae8e229db2371c401fae7b357985c4e1932a1d129a",
+  "tags": [
+    "StockholdersEquity"
+  ],
+  "text": "The zero equity observation dated July 9, 2020 comes from Social Capital Hedosophia Holdings Corp. V, the predecessor issuer, whose statement presents the opening balance at July 10 inception. In XBRL, the end of July 9 is the same boundary as the start of July 10. The original filing tags this amount as USN (US Dollar, next day), a fund code distinct from USD. The filing does not explain that unit choice for equity. This page preserves the reported zero, source date and unit without conversion; it is not a measure of the later SoFi operating business.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1818874/000110465921053909/tm2113577d1_10ka.htm",
+  "observations": [
+    {
+      "tag": "StockholdersEquity",
+      "end": "2020-07-09",
+      "unit": "USN",
+      "val": 0,
+      "accn": "0001104659-21-053909"
+    }
+  ]
 }
 ];
 
