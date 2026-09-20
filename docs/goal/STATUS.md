@@ -6,10 +6,28 @@ Previous status preserved byte-for-byte in
 [history/STATUS-20260920-through-share-context-batch3.md](history/STATUS-20260920-through-share-context-batch3.md),
 which links older records. Historical process states are not live telemetry.
 
+## Latest verified transition
+
+PR124 merged as d1bd669d1fcb06fdcfac816f1db0dab68ac2e684 after all four checks
+passed; exact tested/merged tree119dee9548fef3d5e506751c9f8e1a8d0d09d116 matches.
+Batch2 first context review:24reviewed/776pending/0withdrawn. Three decisions cover
+Aspira2024/25 and Sangamo2021/22,2024/25. Full captured paragraphs establish loss
+allocation, anti-dilution and share units. Report company-share-context-batch2-first-
+20260921.json replays byte-identically; new scope-v2 ledger changes only24states
+and their evidence links, all800observations unchanged. Theriva remains pending.
+V6 review runner adds pinned target and receipt inputs with confined capture paths;
+v5 remains unchanged. Five Python tests, seven ledger tests and65renderer tests pass.
+Reader notes require exact source and all reviewed observations. New renderer code
+needs fresh HTTP/browser validation before deployment; earlier v22HTTP report is
+historical evidence for its pinned renderer. No policy/data/runtime-object changes.
+Transfer44227polled live,1,131of10,360objects/zero failures; uploader/plan unchanged.
+Next publish this review change, continue context coverage and finish hosted transfer.
+No production expansion, additional Google submission or new indexing evidence.
+
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/batch2-scope-ledger-20260921`. PR118 merged as
+`evidence/batch2-context-first-20260921`. PR118 merged as
 `4371292467702019b988c65bf910cd66a80e19fc` after all four checks in CI35542487234
 passed at99993be0. Tested/merged tree1b57f7c9ab3e943d97ad8bdea2096e8bff937269 matches.
 
@@ -117,7 +135,9 @@ closure, deterministic output, changed input hash and attempted Theriva pending
 promotion. New tests included in normal CI. Next inspect actual context and register
 only completed source-bound decisions; Theriva remains pending.
 
-Storage44227remains live,677objects/zero failures at last checkpoint. No source
+PR124 OPEN at8fd874017aa54d07567edbe4a1639ef7e3ea41b9; all four CI35544908133checks passed.
+Unpublished rebase preserved full tree119dee9548fef3d5e506751c9f8e1a8d0d09d116.
+Storage44227remains live,954of10,360objects/zero failures at latest owner checkpoint. No source
 capture/comparison jobs active. Uploader/plan unchanged; no production activation.
 
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.

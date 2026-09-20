@@ -87,3 +87,13 @@ the original acquisition target and the exact source hash; registration uses the
 same explicit decision fields as batch1. Pending and hold-required dispositions
 cannot be registered as approved. A checked number is not a reviewed accounting
 interpretation. The Theriva pending report therefore cannot advance this ledger.
+
+
+Batch2 first registered context decisions (September21):24reviewed/776pending,
+with original800pending ledger retained. Spec company-share-context-batch2-first-
+20260921.json uses the new v6 replay runner (spec schema v2), explicit target hash,
+confined capture directory and per-decision receipt hashes. V1 specs/v5 runner stay
+unchanged. Exact source fixtures, periods, primary statement tables, scale tags and
+full reviewed disclosures support Aspira and two Sangamo filings. Reader notes retain
+participating-warrant loss allocation and Sangamo noncontrolling loss/share units.
+Theriva unresolved discrepancies remain pending. No whole-corpus approval.
