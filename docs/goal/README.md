@@ -20,7 +20,7 @@ transitions, not continuous telemetry or proof that background work is running.
 
 Working locations:
 
-- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/scope-v19-release-checks-20260921`. PR150 passed CI and merged. Current local HTTP17917 and browser26941 checks passed (90,732 pages / 900 browser cases); scope-v19 archive24637 restored successfully. Recovery uploader79720 is active after the preserved HTTP520 failure of44227. The expansion remains unpublished. See STATUS.md for exact evidence and EXECUTION_LEDGER.md for all goal areas.
+- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/digital-ally-denominator-20260921`. PR151 passed CI and merged. Current local HTTP17917 and browser26941 checks passed (90,732 pages / 900 browser cases); scope-v19 archive24637 restored successfully. Recovery uploader79720 is active after the preserved HTTP520 failure of44227. The expansion remains unpublished. See STATUS.md for exact evidence and EXECUTION_LEDGER.md for all goal areas.
 - Production checkout: `/Users/arhancanli/canlicapital-production-20260920`; last verified application revision9608542c. Inspect actual deployment/alias state before claiming new production behavior.
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.

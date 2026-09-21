@@ -60,6 +60,7 @@ test('ledger is deterministic and pending evidence cannot be registered as revie
       ['company-wright-unit-discrepancy-20260921.json', '0001279715'],
       ['company-stereotaxis-unit-discrepancy-20260921.json', '0001289340'],
       ['company-femasys-warrant-date-discrepancy-20260921.json', '0001339005'],
+      ['company-digital-ally-denominator-discrepancy-20260921.json', '0001342958'],
     ]) {
       registry.reviews = [{ report, sha256: createHash('sha256').update(readFileSync('artifacts/seo/' + report)).digest('hex'),
         cik, decision_index: null, observations: 8,

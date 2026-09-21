@@ -1,0 +1,1166 @@
+{
+  "schema": "canli.digital-ally-denominator-discrepancy.v1",
+  "publication_approved": false,
+  "cik": "0001342958",
+  "source_sha256": "7d66d677efc19dd49d39a5a0020f9258c1f61e3f3bacefece8eb7eb7570ee2dd",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1342958/000149315226016236/form10-k.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T23:16:46.696381+00:00",
+    "bytes": 3541472,
+    "sha256": "fdafd3b70e0a95fd3780e9c7a656c2f6a459d0d74df63f9771a9c1029e7b3ea6",
+    "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001342958-0001493152-26-016236-primary.response"
+  },
+  "receipt_sha256": "d6d16d27493ab26ad9467881e9ceead61386fcfb299899346c46d99858aad5f7",
+  "code_sha256": "56fef4802dcdc3dea676a51a30afddf0f638238b83f76c6605928115904a63bd",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "locator_sha256": "296e8aa98f702bd88efcf5072f7f7b4d4f0d9f2173b4eb1e7c61136799c5c540",
+  "selected_observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -33488.74,
+      "accn": "0001493152-26-016236",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-04-13",
+      "frame": "CY2024",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -17.23,
+      "accn": "0001493152-26-016236",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-04-13",
+      "frame": "CY2025",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -33488.74,
+      "accn": "0001493152-26-016236",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-04-13",
+      "frame": "CY2024",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -17.23,
+      "accn": "0001493152-26-016236",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-04-13",
+      "frame": "CY2025",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 593,
+      "accn": "0001493152-26-016236",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-04-13",
+      "frame": "CY2024",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 387144,
+      "accn": "0001493152-26-016236",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-04-13",
+      "frame": "CY2025",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 593,
+      "accn": "0001493152-26-016236",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-04-13",
+      "frame": "CY2024",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 387144,
+      "accn": "0001493152-26-016236",
+      "fy": 2025,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2026-04-13",
+      "frame": "CY2025",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ],
+  "comparison": {
+    "checks": [
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -33488.74,
+          "accn": "0001493152-26-016236",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-13",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "-33488.74",
+            "fact_id": "Fact000362",
+            "context_id": "From2024-01-012024-12-31",
+            "table_row": "Net loss attributable\n    to common stockholders per share \u2013 basic $ ( 17.23 ) $ ( 33,488.74 )",
+            "preceding_rows": [
+              "Continuing operations $ ( 15.38 ) $ ( 30,204.62 )",
+              "Discontinued operations ( 1.85 ) ( 3,284.12 )"
+            ],
+            "table_header_rows": [
+              "December 31, 2025 December 31, 2024",
+              "Revenue:",
+              "Product $ 4,337,276 $ 5,404,317",
+              "Service\n    and other 9,416,879 8,114,835",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "-33488.74",
+            "fact_id": "Fact002866",
+            "context_id": "From2024-01-012024-12-31",
+            "table_row": "Basic: $ ( 17.23 ) $ ( 33,488.74 )",
+            "preceding_rows": [
+              "",
+              "Net loss per share:"
+            ],
+            "table_header_rows": [
+              "2025 2024",
+              "Year\n    ended December 31,",
+              "2025 2024",
+              "Numerator for basic and diluted\n    loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 )",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -17.23,
+          "accn": "0001493152-26-016236",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-13",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "-17.23",
+            "fact_id": "Fact000361",
+            "context_id": "From2025-01-01to2025-12-31",
+            "table_row": "Net loss attributable\n    to common stockholders per share \u2013 basic $ ( 17.23 ) $ ( 33,488.74 )",
+            "preceding_rows": [
+              "Continuing operations $ ( 15.38 ) $ ( 30,204.62 )",
+              "Discontinued operations ( 1.85 ) ( 3,284.12 )"
+            ],
+            "table_header_rows": [
+              "December 31, 2025 December 31, 2024",
+              "Revenue:",
+              "Product $ 4,337,276 $ 5,404,317",
+              "Service\n    and other 9,416,879 8,114,835",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "-17.23",
+            "fact_id": "Fact002865",
+            "context_id": "From2025-01-01to2025-12-31",
+            "table_row": "Basic: $ ( 17.23 ) $ ( 33,488.74 )",
+            "preceding_rows": [
+              "",
+              "Net loss per share:"
+            ],
+            "table_header_rows": [
+              "2025 2024",
+              "Year\n    ended December 31,",
+              "2025 2024",
+              "Numerator for basic and diluted\n    loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 )",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -33488.74,
+          "accn": "0001493152-26-016236",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-13",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "-33488.74",
+            "fact_id": "Fact000374",
+            "context_id": "From2024-01-012024-12-31",
+            "table_row": "Net loss attributable to common\n    stockholders per share \u2013 diluted $ ( 17.23 ) $ ( 33,488.74 )",
+            "preceding_rows": [
+              "Continuing operations $ ( 15.38 ) $ ( 30,204.62 )",
+              "Discontinued operations ( 1.85 ) ( 3,284.12 )"
+            ],
+            "table_header_rows": [
+              "December 31, 2025 December 31, 2024",
+              "Revenue:",
+              "Product $ 4,337,276 $ 5,404,317",
+              "Service\n    and other 9,416,879 8,114,835",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "USD/shares",
+            "value": "-33488.74",
+            "fact_id": "Fact002875",
+            "context_id": "From2024-01-012024-12-31",
+            "table_row": "Diluted: $ ( 17.23 ) $ ( 33,488.74 )",
+            "preceding_rows": [
+              "Discontinued operations ( 1.85 ) ( 3,284.12 )",
+              ""
+            ],
+            "table_header_rows": [
+              "2025 2024",
+              "Year\n    ended December 31,",
+              "2025 2024",
+              "Numerator for basic and diluted\n    loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 )",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -17.23,
+          "accn": "0001493152-26-016236",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-13",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "-17.23",
+            "fact_id": "Fact000373",
+            "context_id": "From2025-01-01to2025-12-31",
+            "table_row": "Net loss attributable to common\n    stockholders per share \u2013 diluted $ ( 17.23 ) $ ( 33,488.74 )",
+            "preceding_rows": [
+              "Continuing operations $ ( 15.38 ) $ ( 30,204.62 )",
+              "Discontinued operations ( 1.85 ) ( 3,284.12 )"
+            ],
+            "table_header_rows": [
+              "December 31, 2025 December 31, 2024",
+              "Revenue:",
+              "Product $ 4,337,276 $ 5,404,317",
+              "Service\n    and other 9,416,879 8,114,835",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "USD/shares",
+            "value": "-17.23",
+            "fact_id": "Fact002874",
+            "context_id": "From2025-01-01to2025-12-31",
+            "table_row": "Diluted: $ ( 17.23 ) $ ( 33,488.74 )",
+            "preceding_rows": [
+              "Discontinued operations ( 1.85 ) ( 3,284.12 )",
+              ""
+            ],
+            "table_header_rows": [
+              "2025 2024",
+              "Year\n    ended December 31,",
+              "2025 2024",
+              "Numerator for basic and diluted\n    loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 )",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 593,
+          "accn": "0001493152-26-016236",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-13",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "shares",
+            "value": "593",
+            "fact_id": "Fact000383",
+            "context_id": "From2024-01-012024-12-31",
+            "table_row": "Diluted 387,144 593",
+            "preceding_rows": [
+              "Weighted average shares outstanding:",
+              "Basic 387,144 593"
+            ],
+            "table_header_rows": [
+              "December 31, 2025 December 31, 2024",
+              "Revenue:",
+              "Product $ 4,337,276 $ 5,404,317",
+              "Service\n    and other 9,416,879 8,114,835",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "shares",
+            "value": "593",
+            "fact_id": "Fact002863",
+            "context_id": "From2024-01-012024-12-31",
+            "table_row": "Denominator for diluted\n    loss per share \u2013 adjusted weighted average shares outstanding 387,144 593",
+            "preceding_rows": [
+              "Dilutive effect of shares\n    issuable upon conversion of convertible debt and the exercise of stock options and warrants outstanding \u2014 \u2014",
+              ""
+            ],
+            "table_header_rows": [
+              "2025 2024",
+              "Year\n    ended December 31,",
+              "2025 2024",
+              "Numerator for basic and diluted\n    loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 )",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 387144,
+          "accn": "0001493152-26-016236",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-13",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "shares",
+            "value": "387144",
+            "fact_id": "Fact000382",
+            "context_id": "From2025-01-01to2025-12-31",
+            "table_row": "Diluted 387,144 593",
+            "preceding_rows": [
+              "Weighted average shares outstanding:",
+              "Basic 387,144 593"
+            ],
+            "table_header_rows": [
+              "December 31, 2025 December 31, 2024",
+              "Revenue:",
+              "Product $ 4,337,276 $ 5,404,317",
+              "Service\n    and other 9,416,879 8,114,835",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "shares",
+            "value": "387144",
+            "fact_id": "Fact002862",
+            "context_id": "From2025-01-01to2025-12-31",
+            "table_row": "Denominator for diluted\n    loss per share \u2013 adjusted weighted average shares outstanding 387,144 593",
+            "preceding_rows": [
+              "Dilutive effect of shares\n    issuable upon conversion of convertible debt and the exercise of stock options and warrants outstanding \u2014 \u2014",
+              ""
+            ],
+            "table_header_rows": [
+              "2025 2024",
+              "Year\n    ended December 31,",
+              "2025 2024",
+              "Numerator for basic and diluted\n    loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 )",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 593,
+          "accn": "0001493152-26-016236",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-13",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "shares",
+            "value": "593",
+            "fact_id": "Fact000380",
+            "context_id": "From2024-01-012024-12-31",
+            "table_row": "Basic 387,144 593",
+            "preceding_rows": [
+              "",
+              "Weighted average shares outstanding:"
+            ],
+            "table_header_rows": [
+              "December 31, 2025 December 31, 2024",
+              "Revenue:",
+              "Product $ 4,337,276 $ 5,404,317",
+              "Service\n    and other 9,416,879 8,114,835",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "unit": "shares",
+            "value": "593",
+            "fact_id": "Fact002857",
+            "context_id": "From2024-01-012024-12-31",
+            "table_row": "Denominator for basic loss per share \u2013 weighted average shares\n    outstanding 387,144 593",
+            "preceding_rows": [
+              "Numerator for basic and\n    diluted loss per share \u2013 Net loss attributable to common stockholders \u2013 discontinued operations (net of noncontrolling\n    interests) $ ( 715,578 ) $ ( 1,946,042 )",
+              ""
+            ],
+            "table_header_rows": [
+              "2025 2024",
+              "Year\n    ended December 31,",
+              "2025 2024",
+              "Numerator for basic and diluted\n    loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 )",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 387144,
+          "accn": "0001493152-26-016236",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-04-13",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "shares",
+            "value": "387144",
+            "fact_id": "Fact000379",
+            "context_id": "From2025-01-01to2025-12-31",
+            "table_row": "Basic 387,144 593",
+            "preceding_rows": [
+              "",
+              "Weighted average shares outstanding:"
+            ],
+            "table_header_rows": [
+              "December 31, 2025 December 31, 2024",
+              "Revenue:",
+              "Product $ 4,337,276 $ 5,404,317",
+              "Service\n    and other 9,416,879 8,114,835",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "unit": "shares",
+            "value": "387144",
+            "fact_id": "Fact002856",
+            "context_id": "From2025-01-01to2025-12-31",
+            "table_row": "Denominator for basic loss per share \u2013 weighted average shares\n    outstanding 387,144 593",
+            "preceding_rows": [
+              "Numerator for basic and\n    diluted loss per share \u2013 Net loss attributable to common stockholders \u2013 discontinued operations (net of noncontrolling\n    interests) $ ( 715,578 ) $ ( 1,946,042 )",
+              ""
+            ],
+            "table_header_rows": [
+              "2025 2024",
+              "Year\n    ended December 31,",
+              "2025 2024",
+              "Numerator for basic and diluted\n    loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 )",
+              ""
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      }
+    ],
+    "rejected_facts": {}
+  },
+  "disclosures": [
+    "The Company owned a 51% equity interest in its consolidated subsidiary, Nobility Healthcare. As a result, the noncontrolling shareholders or minority interest is allocated 49% of the income/loss of Nobility Healthcare which is reflected in the statement of income (loss) as \u201cnet income (loss) attributable to noncontrolling interests of consolidated subsidiary.\u201d We reported net income (loss) attributable to noncontrolling interests of consolidated subsidiary of $(687,516) and $(1,871,578) for the years ended December 31, 2025 and 2024, respectively. Nobility Healthcare was subsequently sold in January 2026.",
+    "On May 6, 2025, the Company, acting pursuant to authority received at an annual meeting of its stockholders on December 17, 2024, filed with the Secretary of State of the State of Nevada a certificate of amendment (the \u201cCharter Amendment\u201d) to its articles of incorporation, as amended (the \u201cArticles of Incorporation\u201d), which effected a one-for-twenty reverse stock split (the \u201cReverse Stock Split\u201d) of all of the Company\u2019s outstanding shares of common stock, par value $ 0.001 per share (the \u201cCommon Stock\u201d). Pursuant to the Charter Amendment, the Reverse Stock Split became effective on May 6, 2025. As a result of the Reverse Stock Split, every twenty (20) shares of Common Stock were exchanged for one (1) share of Common Stock. The Common Stock began trading on the Nasdaq Capital Market on a split-adjusted basis at the start of trading on May 7, 2025. The Reverse Stock Split did not affect the total number of shares of capital stock, including the Common Stock, that the Company is authorized to issue, which remain as set forth pursuant to the Articles of Incorporation. No fractional shares of Common Stock were issued in connection with the Reverse Stock Split. Stockholders who otherwise were entitled to receive fractional shares of Common Stock were automatically entitled to receive an additional fraction of a share of Common Stock to round up to the next whole share, at a participant level. The Reverse Stock Split also had a proportionate effect on all other options and warrants of the Company outstanding as of the effective date of the Reverse Stock Split. All historical share and per-share amounts reflected throughout the Company\u2019s consolidated financial statements and other financial information in this Report have been adjusted to reflect the Reverse Stock Split as if the split occurred as of the earliest period presented. The par value per share of the Company\u2019s Common Stock was not affected by the Reverse Stock Split.",
+    "On May 22, 2025, the Company, acting pursuant to authority received at a special meeting of its stockholders on May 6, 2025, filed with the Secretary of State of the State of Nevada a certificate of amendment (the \u201cMay 22, 2025 Charter Amendment\u201d) to its articles of incorporation, as amended, to effect a one (1)-for-one hundred (100) share reverse split (the \u201cMay 22, 2025 Reverse Stock Split\u201d) of all of the Company\u2019s outstanding shares of Common Stock, par value $ 0.001 per share. Pursuant to the May 22, 2025 Charter Amendment, the Reverse Stock Split became effective on May 22, 2025. As a result of the May 22, 2025 Reverse Stock Split, every one hundred (100) shares of Common Stock were exchanged for one (1) share of Common Stock. The Common Stock will begin trading on a split-adjusted basis on Nasdaq effective with the open of the market on Friday, May 23, 2025. The May 22, 2025 Reverse Stock Split did not affect the total number of shares of capital stock, including the Common Stock, that the Company is authorized to issue, which remain as set forth pursuant to the Articles of Incorporation. No fractional shares of Common Stock were issued in connection with the May 22, 2025 Reverse Stock Split. Stockholders who otherwise were entitled to receive fractional shares of Common Stock were automatically entitled to receive an additional fraction of a share of Common Stock to round up to the next whole share, at a participant level. The May 22, 2025 Reverse Stock Split also had a proportionate effect on all other options and warrants of the Company outstanding as of the effective date of the May 22, 2025 Reverse Stock Split. All historical share and per-share amounts reflected throughout the Company\u2019s consolidated financial statements and other financial information in this Report have been adjusted to reflect the May 22, 2025 Reverse Stock Split as if the split occurred as of the earliest period presented. The par value per share of the Company\u2019s Common Stock was not affected by the May 22, 2025 Reverse Stock Split.",
+    "On January 8, 2026, the Company, acting pursuant to a resolution of its Board of Directors, filed with the Secretary of State of the State of Nevada a certificate of amendment (the \u201cJanuary 8, 2026 Charter Amendment\u201d) to its articles of incorporation, as amended, to effect a one (1)-for-three (3) share reverse split (the \u201cJanuary 8, 2026 Reverse Stock Split\u201d) of all of the Company\u2019s outstanding shares of Common Stock, par value $ 0.001 per share. Pursuant to the January 8, 2026 Charter Amendment, the Reverse Stock Split became effective on January 8, 2026. As a result of the January 8, 2026 Reverse Stock Split, every three (3) shares of Common Stock were exchanged for one (1) share of Common Stock. The Common Stock will begin trading on a split-adjusted basis on Nasdaq effective with the open of the market on January 9, 2026. The January 8, 2026 Reverse Stock Split had a proportionate affect on the total number of shares of capital stock, including the Common Stock, that the Company is authorized to issue, which resulted in a reduction of authorized common shares from 200,000,000 to 66,666,667 as set forth pursuant to the Articles of Incorporation. No fractional shares of Common Stock were issued in connection with the January 8, 2026 Reverse Stock Split. Stockholders who otherwise were entitled to receive fractional shares of Common Stock were automatically entitled to receive an additional fraction of a share of Common Stock to round up to the next whole share, at a participant level. The January 8, 2026 Reverse Stock Split also had a proportionate effect on all other options and warrants of the Company outstanding as of the effective date of the January 8, 2026 Reverse Stock Split. All historical share and per-share amounts reflected throughout the Company\u2019s consolidated financial statements and other financial information in this Report have been adjusted to reflect the January 8, 2026 Reverse Stock Split as if the split occurred as of the earliest period presented.",
+    "Basic loss per share is based upon the weighted average number of shares of common stock outstanding during the period. For the years ended December 31, 2025 and 2024, all shares issuable upon conversion of convertible debt and the exercise of outstanding stock options and warrants were antidilutive, and, therefore, not included in the computation of diluted loss per share.",
+    "The 2025 Senior Secured Convertible Notes with an outstanding principal balance of $ 1,070,000 as of December 31, 2025 are excluded from the diluted loss per share calculation. The notes are convertible at a 10 % discount to the five-day volume-weighted average price preceding conversion; as the conversion price is variable, the number of shares issuable upon conversion is indeterminate and has been excluded from the table above. Subsequent to December 31, 2025, the holder of the Senior Secured Convertible Note exercised its right to convert $ 1,070,000 of the outstanding balance of the Senior Secured Convertible Notes into 558,041 shares of the Company\u2019s common stock. There are no remaining balances under the Senior Secured Convertible Notes after consideration of such conversions."
+  ],
+  "tables": [
+    {
+      "table_index": 167,
+      "text": "December 31, 2025 December 31, 2024 Revenue: Product $ 4,337,276 $ 5,404,317 Service and other 9,416,879 8,114,835 Total revenue 13,754,155 13,519,152 Cost of revenue: Product 6,333,622 5,899,130 Service and other 6,071,478 4,496,004 Total cost of revenue 12,405,100 10,395,134 Gross profit 1,349,055 3,124,018 Selling, general and administrative expenses: Research and development expense 551,447 1,339,673 Selling, advertising and promotional expense 721,690 2,120,965 General and administrative expense 8,424,672 10,538,306 Goodwill and intangible asset impairment charge 2,533,667 508,000 Total selling, general and administrative expenses 12,231,476 14,506,944 Operating loss ( 10,882,421 ) ( 11,382,926 ) Other income (expense): Interest income 116,545 69,509 Interest expense ( 1,102,352 ) ( 3,816,317 ) Other income 346,024 26,733 Loss on litigation \u2014 ( 1,959,396 ) Loss on disposal of intangibles \u2014 ( 119,979 ) Change in fair value of warrant derivative liabilities 3,331,616 ( 1,240,407 ) Gain on the extinguishment of liabilities 2,234,658 917,935 Loss on extinguishment of debt \u2014 ( 753,339 ) Gain on sale of property, plant and equipment \u2014 360,082 Total other income (expense) from continuing operations 4,926,491 ( 6,515,179 ) Loss before income tax benefit (provision) from continuing operations ( 5,955,930 ) ( 17,898,105 ) Income tax expense benefit (provision) \u2014 \u2014 Net loss from continuing operations ( 5,955,930 ) ( 17,898,105 ) Discontinued operations: Loss from discontinued operations (including impairment charge on disposal of $ 1,527,634 as of December 31, 2025) ( 1,403,094 ) ( 3,817,620 ) Income tax expense benefit (provision) \u2014 \u2014 Net loss from discontinued operations ( 1,403,094 ) ( 3,817,620 ) Net loss ( 7,359,024 ) ( 21,715,725 ) Net income attributable to noncontrolling interests 687,516 1,871,578 Net loss attributable to common stockholders $ ( 6,671,508 ) $ ( 19,844,147 ) Net loss per share attributable to common stockholders\u2019 information: Basic: Continuing operations $ ( 15.38 ) $ ( 30,204.62 ) Discontinued operations ( 1.85 ) ( 3,284.12 ) Net loss attributable to common stockholders per share \u2013 basic $ ( 17.23 ) $ ( 33,488.74 ) Diluted: Continuing operations $ ( 15.38 ) $ ( 30,204.62 ) Discontinued operations ( 1.85 ) ( 3,284.12 ) Net loss attributable to common stockholders per share \u2013 diluted $ ( 17.23 ) $ ( 33,488.74 ) Weighted average shares outstanding: Basic 387,144 593 Diluted 387,144 593",
+      "verified_rows": {
+        "48": "Net loss ( 7,359,024 ) ( 21,715,725 )",
+        "50": "Net income attributable to noncontrolling interests 687,516 1,871,578",
+        "52": "Net loss attributable to common stockholders $ ( 6,671,508 ) $ ( 19,844,147 )",
+        "58": "Net loss attributable to common stockholders per share \u2013 basic $ ( 17.23 ) $ ( 33,488.74 )",
+        "63": "Net loss attributable to common stockholders per share \u2013 diluted $ ( 17.23 ) $ ( 33,488.74 )",
+        "66": "Basic 387,144 593",
+        "67": "Diluted 387,144 593"
+      }
+    },
+    {
+      "table_index": 261,
+      "text": "2025 2024 Year ended December 31, 2025 2024 Numerator for basic and diluted loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 ) Numerator for basic and diluted loss per share \u2013 Net loss attributable to common stockholders \u2013 discontinued operations (net of noncontrolling interests) $ ( 715,578 ) $ ( 1,946,042 ) Denominator for basic loss per share \u2013 weighted average shares outstanding 387,144 593 Dilutive effect of shares issuable upon conversion of convertible debt and the exercise of stock options and warrants outstanding \u2014 \u2014 Denominator for diluted loss per share \u2013 adjusted weighted average shares outstanding 387,144 593 Net loss per share: Basic: $ ( 17.23 ) $ ( 33,488.74 ) Continuing operations ( 15.38 ) ( 30,204.62 ) Discontinued operations ( 1.85 ) ( 3,284.12 ) Diluted: $ ( 17.23 ) $ ( 33,488.74 ) Continuing operations ( 15.38 ) ( 30,204.62 ) Discontinued operations ( 1.85 ) ( 3,284.12 )",
+      "verified_rows": {
+        "3": "Numerator for basic and diluted loss per share \u2013 Net loss attributable to common stockholders \u2013 continuing operations $ ( 5,955,930 ) $ ( 17,898,105 )",
+        "5": "Numerator for basic and diluted loss per share \u2013 Net loss attributable to common stockholders \u2013 discontinued operations (net of noncontrolling interests) $ ( 715,578 ) $ ( 1,946,042 )",
+        "7": "Denominator for basic loss per share \u2013 weighted average shares outstanding 387,144 593",
+        "10": "Denominator for diluted loss per share \u2013 adjusted weighted average shares outstanding 387,144 593",
+        "13": "Basic: $ ( 17.23 ) $ ( 33,488.74 )",
+        "17": "Diluted: $ ( 17.23 ) $ ( 33,488.74 )"
+      }
+    }
+  ],
+  "inline_evidence": [
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": -33488.74,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2024",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact000362\" name=\"us-gaap:EarningsPerShareBasic\" sign=\"-\" unitref=\"USDPShares\">33,488.74</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USDPShares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": -33488.74,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2024",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact002866\" name=\"us-gaap:EarningsPerShareBasic\" sign=\"-\" unitref=\"USDPShares\">33,488.74</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USDPShares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": -17.23,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2025",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact000361\" name=\"us-gaap:EarningsPerShareBasic\" sign=\"-\" unitref=\"USDPShares\">17.23</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USDPShares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": -17.23,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2025",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact002865\" name=\"us-gaap:EarningsPerShareBasic\" sign=\"-\" unitref=\"USDPShares\">17.23</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USDPShares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": -33488.74,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2024",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact000374\" name=\"us-gaap:EarningsPerShareDiluted\" sign=\"-\" unitref=\"USDPShares\">33,488.74</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USDPShares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": -33488.74,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2024",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact002875\" name=\"us-gaap:EarningsPerShareDiluted\" sign=\"-\" unitref=\"USDPShares\">33,488.74</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USDPShares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": -17.23,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2025",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact000373\" name=\"us-gaap:EarningsPerShareDiluted\" sign=\"-\" unitref=\"USDPShares\">17.23</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USDPShares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": -17.23,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2025",
+        "unit": "USD/shares",
+        "tag": "EarningsPerShareDiluted"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact002874\" name=\"us-gaap:EarningsPerShareDiluted\" sign=\"-\" unitref=\"USDPShares\">17.23</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USDPShares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": 593,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2024",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact000383\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" unitref=\"Shares\">593</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"Shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": 593,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2024",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact002863\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" unitref=\"Shares\">593</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"Shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": 387144,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2025",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact000382\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" unitref=\"Shares\">387,144</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"Shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": 387144,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2025",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact002862\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" unitref=\"Shares\">387,144</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"Shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": 593,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2024",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact000380\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" unitref=\"Shares\">593</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"Shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": 593,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2024",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact002857\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" unitref=\"Shares\">593</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"Shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": 387144,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2025",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact000379\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" unitref=\"Shares\">387,144</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"Shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": 387144,
+        "accn": "0001493152-26-016236",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-04-13",
+        "frame": "CY2025",
+        "unit": "shares",
+        "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+      },
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"INF\" format=\"ixt:numdotdecimal\" id=\"Fact002856\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" unitref=\"Shares\">387,144</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"Shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>"
+    }
+  ],
+  "supporting_inline_evidence": [
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": -7359024,
+        "unit": "USD",
+        "tag": "ProfitLoss"
+      },
+      "normalized_value": "-7359024",
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact000340\" name=\"us-gaap:ProfitLoss\" sign=\"-\" unitref=\"USD\">7,359,024</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": -687516,
+        "unit": "USD",
+        "tag": "NetIncomeLossAttributableToNoncontrollingInterest"
+      },
+      "normalized_value": "-687516",
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact000343\" name=\"us-gaap:NetIncomeLossAttributableToNoncontrollingInterest\" sign=\"-\" unitref=\"USD\">687,516</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": -6671508,
+        "unit": "USD",
+        "tag": "NetIncomeLoss"
+      },
+      "normalized_value": "-6671508",
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact000346\" name=\"us-gaap:NetIncomeLoss\" sign=\"-\" unitref=\"USD\">6,671,508</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": -5955930,
+        "unit": "USD",
+        "tag": "NetIncomeLossFromContinuingOperationsAvailableToCommonShareholdersBasic"
+      },
+      "normalized_value": "-5955930",
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact002850\" name=\"us-gaap:NetIncomeLossFromContinuingOperationsAvailableToCommonShareholdersBasic\" sign=\"-\" unitref=\"USD\">5,955,930</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "val": -715578,
+        "unit": "USD",
+        "tag": "NetIncomeLossFromDiscontinuedOperationsAvailableToCommonShareholdersBasic"
+      },
+      "normalized_value": "-715578",
+      "fact_xml": "<ix:nonfraction contextref=\"From2025-01-01to2025-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact002853\" name=\"us-gaap:NetIncomeLossFromDiscontinuedOperationsAvailableToCommonShareholdersBasic\" sign=\"-\" unitref=\"USD\">715,578</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2025-01-01to2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2025-01-01</xbrli:startdate>\n<xbrli:enddate>2025-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": -21715725,
+        "unit": "USD",
+        "tag": "ProfitLoss"
+      },
+      "normalized_value": "-21715725",
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact000341\" name=\"us-gaap:ProfitLoss\" sign=\"-\" unitref=\"USD\">21,715,725</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": -1871578,
+        "unit": "USD",
+        "tag": "NetIncomeLossAttributableToNoncontrollingInterest"
+      },
+      "normalized_value": "-1871578",
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact000344\" name=\"us-gaap:NetIncomeLossAttributableToNoncontrollingInterest\" sign=\"-\" unitref=\"USD\">1,871,578</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 167,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": -19844147,
+        "unit": "USD",
+        "tag": "NetIncomeLoss"
+      },
+      "normalized_value": "-19844147",
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact000347\" name=\"us-gaap:NetIncomeLoss\" sign=\"-\" unitref=\"USD\">19,844,147</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": -17898105,
+        "unit": "USD",
+        "tag": "NetIncomeLossFromContinuingOperationsAvailableToCommonShareholdersBasic"
+      },
+      "normalized_value": "-17898105",
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact002851\" name=\"us-gaap:NetIncomeLossFromContinuingOperationsAvailableToCommonShareholdersBasic\" sign=\"-\" unitref=\"USD\">17,898,105</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    },
+    {
+      "table_index": 261,
+      "selected": {
+        "start": "2024-01-01",
+        "end": "2024-12-31",
+        "val": -1946042,
+        "unit": "USD",
+        "tag": "NetIncomeLossFromDiscontinuedOperationsAvailableToCommonShareholdersBasic"
+      },
+      "normalized_value": "-1946042",
+      "fact_xml": "<ix:nonfraction contextref=\"From2024-01-012024-12-31\" decimals=\"0\" format=\"ixt:numdotdecimal\" id=\"Fact002854\" name=\"us-gaap:NetIncomeLossFromDiscontinuedOperationsAvailableToCommonShareholdersBasic\" sign=\"-\" unitref=\"USD\">1,946,042</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"From2024-01-012024-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001342958</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2024-01-01</xbrli:startdate>\n<xbrli:enddate>2024-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+      "unit_xml": "<xbrli:unit id=\"USD\">\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unit>"
+    }
+  ],
+  "diagnostics": [
+    {
+      "year": "2025",
+      "consolidated_loss": -7359024,
+      "noncontrolling_loss": -687516,
+      "common_stockholder_loss": -6671508,
+      "continuing": -5955930,
+      "discontinued_net_of_nci": -715578,
+      "reported_shares": 387144,
+      "reported_eps": "-17.23",
+      "ratio_using_reported_shares": "-17.23262661955241460541813899",
+      "ratio_rounded_to_two_decimals": "-17.23",
+      "matches_reported_eps": true,
+      "scope": "Diagnostic arithmetic on reported values only; not corrected EPS or an approved reconstructed denominator."
+    },
+    {
+      "year": "2024",
+      "consolidated_loss": -21715725,
+      "noncontrolling_loss": -1871578,
+      "common_stockholder_loss": -19844147,
+      "continuing": -17898105,
+      "discontinued_net_of_nci": -1946042,
+      "reported_shares": 593,
+      "reported_eps": "-33488.74",
+      "ratio_using_reported_shares": "-33463.99156829679595278246206",
+      "ratio_rounded_to_two_decimals": "-33463.99",
+      "matches_reported_eps": false,
+      "scope": "Diagnostic arithmetic on reported values only; not corrected EPS or an approved reconstructed denominator."
+    }
+  ],
+  "disposition": "ACCOUNTING_SCOPE_REVIEW_PENDING",
+  "finding": "Negative inline noncontrolling-interest facts and the explicit loss-allocation disclosure reconcile consolidated to common-stockholder loss, despite the abbreviated visible income label. In 2024, reported common loss divided by the reported 593 shares produces -33463.99 at two decimals, not the reported -33488.74. Share facts declare decimals INF; do not silently infer a fractional denominator or use reverse-split disclosures as proof of an unreported rounding adjustment. The 2025 displayed loss ratio rounds to reported EPS. Both years remain pending in this report.",
+  "scope": "Eight selected 2024/25 observations remain pending; no earlier-year approval, public note, review registration, policy hold, source replacement or publication approval."
+}
