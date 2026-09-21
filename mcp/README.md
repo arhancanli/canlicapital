@@ -36,6 +36,7 @@ repository for the full design.
 | `validate_breadth` | `POST /api/v1/validate/breadth` | yes |
 | `get_receipt` | `GET /api/v1/receipts/{id}` | no |
 | `service_status` | `GET /api/v1/validate/status` | no |
+| `company_financial_history` | `GET /company-data/{cik}.json` | no |
 
 `validate_deflated_sharpe` accepts exactly one of two input shapes, never a mix of both:
 
@@ -47,6 +48,15 @@ repository for the full design.
 
 Sending fields from both shapes, or from neither, is rejected before any request leaves the
 process; see `src/schemas.mjs`.
+
+`company_financial_history` is different from the other tools: it reads the public company
+reference at canlicapital.com, not the validation API. Give it a CIK (1 to 10 digits) to list a
+company's available financial histories, or a CIK and a us-gaap concept such as `Revenues` to
+get the observations, newest first (`limit` defaults to 40, maximum 200). Every observation
+keeps its filing accession, form, filed date and unit, and the result carries the SHA-256 of the
+original SEC response and the record's own boundary sentence: these are accounting values as
+reported to the SEC, not market prices, returns or a recommendation. Companies and concepts
+outside the current release return an error with the available concepts listed.
 
 ## Configuration
 

@@ -9,6 +9,11 @@ under io.github.arhancanli/canli-validation-mcp. Receipt:
 `artifacts/platform/mcp-registry-publication-20260920.json`.
 Smithery and Glama publication remain unverified. Do not repeat the npm publication commands below for this version.
 
+Candidate, September 21, 2026: `canli-validation-mcp@0.2.0` adds the `company_financial_history`
+tool over the public company reference (no key). The package, lockfile and registry manifest
+describe 0.2.0; it is NOT published until the owner runs the commands below and records the
+tarball hash here. Until then 0.1.2 remains the latest published version.
+
 ## Official registry (registry.modelcontextprotocol.io)
 
 The manifest is `mcp/server.json`. Its top-level and npm package versions must match

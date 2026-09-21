@@ -16,7 +16,9 @@ import {
   toolValidateDeflatedSharpe,
   toolValidateOverfitting,
   toolValidatePaperEvidence,
+  toolCompanyFinancialHistory,
 } from "../src/server.mjs";
+import { COMPANY_REFERENCE_BOUNDARY } from "../src/schemas.mjs";
 
 const LIMITS_TEXT = [
   "This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.",
@@ -374,4 +376,76 @@ test("service_status: error envelope passthrough (store unreachable)", async () 
   const result = await toolServiceStatus(session);
 
   assert.deepEqual(parsedText(result), body);
+});
+
+// ---------------------------------------------------------------------------------------------
+// company_financial_history (public company reference file, no key)
+// ---------------------------------------------------------------------------------------------
+
+const COMPANY_RECORD = {
+  schema: "canli.company-reference.v1",
+  cik: "0000320193",
+  name: "Apple Inc.",
+  source_url: "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+  source_sha256: "a".repeat(64),
+  fetched_at: "2026-09-19T00:00:00Z",
+  policy: "Latest-filed annual-report facts per unit and reporting period at capture time.",
+  claim_boundary: COMPANY_REFERENCE_BOUNDARY,
+  source_snapshot: `/company-data/sources/${"a".repeat(64)}.json.gz`,
+  concepts: [
+    { tag: "Assets", taxonomy: "us-gaap", label: "Total assets", kind: "instant", meaning: "Resources recognized on the balance sheet.", observations: [
+      { end: "2024-09-28", val: 364980000000, accn: "0000320193-24-000123", fy: 2024, fp: "FY", form: "10-K", filed: "2024-11-01", unit: "USD" },
+      { end: "2025-09-27", val: 359241000000, accn: "0000320193-25-000079", fy: 2025, fp: "FY", form: "10-K", filed: "2025-10-31", unit: "USD" },
+      { end: "2023-09-30", val: 352583000000, accn: "0000320193-23-000106", fy: 2023, fp: "FY", form: "10-K", filed: "2023-11-03", unit: "USD" },
+    ] },
+    { tag: "NetIncomeLoss", taxonomy: "us-gaap", label: "Net income", kind: "duration", meaning: "Profit after expenses.", observations: [] },
+  ],
+};
+
+function companyFetch(status, body, seen) {
+  return async (url, init) => {
+    seen?.push({ url, init });
+    return { status, text: async () => (typeof body === "string" ? body : JSON.stringify(body)) };
+  };
+}
+
+test("company_financial_history: overview lists histories with provenance and the record's boundary", async () => {
+  const seen = [];
+  const session = createSession({ base: "https://example.test", fetchImpl: companyFetch(200, COMPANY_RECORD, seen) });
+  const result = await toolCompanyFinancialHistory(session, { cik: "320193" });
+  assert.equal(result.isError, undefined);
+  assert.equal(seen[0].url, "https://example.test/company-data/0000320193.json");
+  assert.equal(seen[0].init.redirect, "error");
+  const body = JSON.parse(result.content[0].text);
+  assert.equal(body.claim_boundary, COMPANY_REFERENCE_BOUNDARY);
+  assert.equal(body.source.sec_response_sha256, "a".repeat(64));
+  assert.equal(body.source.snapshot, `https://example.test/company-data/sources/${"a".repeat(64)}.json.gz`);
+  assert.deepEqual(body.histories.map((h) => [h.concept, h.observations]), [["Assets", 3], ["NetIncomeLoss", 0]]);
+  assert.equal(body.histories[0].page, "https://example.test/companies/0000320193/Assets");
+});
+
+test("company_financial_history: a concept returns observations newest first, limited, with units", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: companyFetch(200, COMPANY_RECORD) });
+  const body = JSON.parse((await toolCompanyFinancialHistory(session, { cik: "0000320193", concept: "Assets", limit: 2 })).content[0].text);
+  assert.deepEqual(body.history.observations.map((o) => o.end), ["2025-09-27", "2024-09-28"]);
+  assert.equal(body.history.total_observations, 3);
+  assert.equal(body.history.returned, 2);
+  assert.deepEqual(body.history.units, ["USD"]);
+  assert.equal(body.history.observations[0].accn, "0000320193-25-000079");
+  assert.equal(body.page, "https://example.test/companies/0000320193/Assets");
+});
+
+test("company_financial_history: unknown concept, missing company and foreign records are errors", async () => {
+  const unknown = await toolCompanyFinancialHistory(createSession({ base: "https://example.test", fetchImpl: companyFetch(200, COMPANY_RECORD) }), { cik: "320193", concept: "Goodwill" });
+  assert.equal(unknown.isError, true);
+  assert.deepEqual(JSON.parse(unknown.content[0].text).error.available, ["Assets", "NetIncomeLoss"]);
+  const missing = await toolCompanyFinancialHistory(createSession({ base: "https://example.test", fetchImpl: companyFetch(404, "Company source not found") }), { cik: "9999999999" });
+  assert.equal(missing.isError, true);
+  assert.equal(JSON.parse(missing.content[0].text).error.code, "not_found");
+  const foreign = await toolCompanyFinancialHistory(createSession({ base: "https://example.test", fetchImpl: companyFetch(200, { ...COMPANY_RECORD, cik: "0000000001" }) }), { cik: "320193" });
+  assert.equal(foreign.isError, true);
+  assert.equal(JSON.parse(foreign.content[0].text).error.code, "unexpected_record");
+  const down = await toolCompanyFinancialHistory(createSession({ base: "https://example.test", fetchImpl: companyFetch(503, "unavailable") }), { cik: "320193" });
+  assert.equal(down.isError, true);
+  await assert.rejects(toolCompanyFinancialHistory(createSession({ base: "https://example.test", fetchImpl: companyFetch(200, COMPANY_RECORD) }), { cik: "AAPL" }), /CIK is 1 to 10 digits/);
 });

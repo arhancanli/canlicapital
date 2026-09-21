@@ -110,6 +110,19 @@ export const getReceiptInput = z
 
 export const emptyInput = z.object({}).strict();
 
+// company_financial_history reads the public company reference, not the validation API.
+export const companyHistoryInput = z
+  .object({
+    cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits"),
+    concept: z.string().regex(/^[A-Za-z][A-Za-z0-9]{0,99}$/, "A concept is a us-gaap tag such as Revenues or Assets").optional(),
+    limit: z.number().int().min(1).max(200).optional(),
+  })
+  .strict();
+
+// The company reference carries its own boundary sentence in every record (claim_boundary),
+// written by scripts/lib/company-reference.mjs. A test pins this copy to that source verbatim.
+export const COMPANY_REFERENCE_BOUNDARY = "Public company accounting reference, not market prices, returns, an investment recommendation, or ALPHAC performance. Validate a separately constructed return series with the validation API; accounting values are not returns.";
+
 // ---------------------------------------------------------------------------------------------
 // Boundary language: verbatim sentences from api/_lib/limits.js LIMITS_TEXT. A test asserts each
 // of these strings is still present, byte for byte, in that source array, so this module cannot
@@ -141,4 +154,5 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   validate_breadth: `Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,
   get_receipt: `Fetch a stored verdict by its content-hash id (GET /api/v1/receipts/{id}), immutable and cacheable. ${LIMITS_SENTENCES.unsigned}`,
   service_status: `Service, store and quota constants for the validation API (GET /api/v1/validate/status); no key required. ${LIMITS_SENTENCES.scope}`,
+  company_financial_history: `SEC-reported financial history for one company from the canlicapital.com company reference (GET /company-data/{cik}.json). Without a concept it lists the available histories; with one it returns observations, newest first, each with its filing accession, form, filed date and unit, plus the SHA-256 of the original SEC response. No key required. ${COMPANY_REFERENCE_BOUNDARY}`,
 });

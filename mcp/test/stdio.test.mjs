@@ -67,6 +67,7 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   const { tools } = await client.listTools();
   const names = tools.map((tool) => tool.name).sort();
   assert.deepEqual(names, [
+    "company_financial_history",
     "get_key",
     "get_receipt",
     "service_status",
