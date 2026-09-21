@@ -1,0 +1,155 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001427570",
+      "accession": "0001213900-26-029500",
+      "source_sha256": "e9e180b564dba06b45ebc92dbe73d3517b119f18b570aeb941ffd4f1237c5ec8",
+      "primary_sha256": "e92faad6aa9b777bdf2fc8f2be0db48b853f78152a48b38958bb0f3b2209b84a",
+      "receipt_sha256": "6b4e24bccbe100077f1e54a5ef0b4056bde99c583f287d91509fc6999f699235",
+      "fixture": "scripts/fixtures/editorial/batch2-0001427570-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -6001.39,
+          "accn": "0001213900-26-029500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-18",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -4.86,
+          "accn": "0001213900-26-029500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-18",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -6001.39,
+          "accn": "0001213900-26-029500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-18",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -4.86,
+          "accn": "0001213900-26-029500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-18",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 241,
+          "accn": "0001213900-26-029500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-18",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 2161342,
+          "accn": "0001213900-26-029500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-18",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 241,
+          "accn": "0001213900-26-029500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-18",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 2161342,
+          "accn": "0001213900-26-029500",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-18",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 318,
+      "supporting_table_indexes": [
+        320,
+        370
+      ],
+      "share_scale": "0",
+      "table_requires": [
+        "10,477,713",
+        "215,706",
+        "10,262,007",
+        "1,447,461",
+        "4.86",
+        "6,001.39",
+        "2,161,342",
+        "241"
+      ],
+      "paragraph_requires": [
+        "Net loss per share information is determined using the two-class method, which includes the weighted average number of shares of common stock outstanding during the period and other securities that participate in dividends (a \u201cparticipating security\u201d). The Company considered its Preferred Stock to be participating securities because the shares included rights to participate in dividends with the common stock.",
+        "Under the two-class method, basic net loss per share attributable to common stockholders is computed by dividing the net income attributable to common stockholders by the weighted-average number of shares of common stock outstanding during the period. The net loss attributable to common stockholders is calculated by adjusting the net loss of the Company for the accretion on the Preferred Stock. Net losses are not allocated to preferred stockholders as they do not have an obligation to share in the Company\u2019s net losses. In periods with net income attributable to common stockholders, the Company would allocate net income first to preferred stockholders based on dividend rights under the Company\u2019s certificate of incorporation and then to preferred and common stockholders based on ownership interests. Diluted net loss per share attributable to common stockholders is computed using the more dilutive of (1) the two-class method or (2) the if-converted method.",
+        "During the years ended December 31, 2025 and 2024, diluted earnings per common share is the same as basic earnings per common share because, as the Company incurred a net loss during each period presented, the potentially dilutive securities from the assumed exercise of all outstanding stock options would have an anti-dilutive effect. The number of shares potentially issuable at December 31, 2024 upon conversion of the debt was not calculable and would be anti-dilutive.",
+        "The Company has accounted for the transaction as a reverse recapitalization with VTI as the accounting acquirer. Because VTI is the accounting acquirer, its historical financial statements became the Company\u2019s historical financial statements, and such assets and liabilities continued to be recorded at their historical carrying values. The impact of the recapitalization has been retroactively applied to all periods presented. Immediately after the closing of the Merger and the consummation of a private placement offering, the former holders of common stock of VTI owned, in the aggregate, approximately 88 % of the common shares, with Reshape\u2019s shareholders immediately prior to the Merger owning approximately 12 % of common shares outstanding.",
+        "In August 2025, VTI issued warrants to certain preferred shareholders, who agreed to participate in the Concurrent Financing, to purchase 6,008,589 shares of VTI common stock at $ 0.001 per share. The warrants were immediately exercised, and VTI received $ 6,009 in proceeds from such exercise. The fair value of the warrants, or $ 2,457,513 , is considered a shareholder transaction and recorded analogous to a \u201cdeemed dividend\u201d in the Consolidated Statement of Stockholders\u2019 Equity.",
+        "Such shareholders received an aggregate of 1,238,604 additional shares of preferred stock. The estimated fair value of such additional preferred shares was $ 19,421,311 is considered a shareholder transaction and recorded analogous to a \u201cdeemed dividend\u201d in the Consolidated Statement of Stockholders\u2019 Equity."
+      ],
+      "reader_note": "Pending accounting-scope review: Vyome's 2024/2025 tagged EPS and shares match the displayed statement, but this review has not reconciled the two-class common-stockholder numerator and recapitalized denominator. The filing distinguishes consolidated and owner-attributable loss, says the common numerator adjusts loss for preferred-stock accretion, and records separate deemed-dividend transactions. VTI is the accounting acquirer and the recapitalization is retrospectively applied. Do not treat consolidated loss or owner-attributable loss alone as a proven common numerator, add equity transactions indiscriminately, invent an unrounded denominator, infer an EPS correction or approve these observations from numerical matching alone.",
+      "disposition": "ACCOUNTING_SCOPE_REVIEW_PENDING"
+    }
+  ]
+}
