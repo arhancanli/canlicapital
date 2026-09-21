@@ -12,51 +12,48 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-PR158 merged asb1069ab6b50db233b1e4be5ecc91515b10d53cde after all four
-CI35556099271 checks passed atf11d69fb4c78f74128b4311a45a4c11709752d66.
-Tested and merged treed6c3431126a41e9bb677a7111e4f1a30775228ef verified.
-Current branch: evidence/batch2-fourteenth-contexts-20260921. Previous turn made
-progress by restoring34 reports and verifying the six-return engine baseline.
+PR159 merged as842b2916ceea93dc72b5e5b36952a2ffe87d9235 after all four
+CI35556540087 checks passed at505c0de01951142aad6c5d302842f2d32f8ba081.
+Tested and merged tree174072c826d0cccff3112e6ea1a4035de77c68d0 verified.
+Current branch: evidence/batch2-fifteenth-contexts-20260921. Previous turn advanced24
+observations and retained the completed1,020-case browser checkpoint.
 
-Browser39143 completed with exit0 before new notes were installed. Scope-v22
-report company-v22-scope-v22-browser-20260921.json:1,020 cases,56 registered filings,
-245 note-bearing paths,1,120 exact note/source checks,zero failures. Chromium/WebKit
-390/1440px; all29 input hashes plus runner matched at completion. It covers the
-Sutro and preceding three-company additions, not the later scope-v23 notes below.
-No renderer/registry/runtime edits occurred during the audit.
+Four captured filing contexts reviewed with unchanged v7 validator:
+- Daré2024/25: full dollars/shares, loss-period exclusions. July1,2024 one-for12
+  split restatement explicitly omits whole shares issued instead of fractions;
+  transaction disclosure separately says fractions rounded up. Both retained.
+- Eledon2024/25: two-class loss allocation to common/Series X/X1 preferred stock.
+  Common EPS uses31.992m/42.328m common losses; no reconstructed conversion formula.
+  Basic weighted-average shares already include12,443,755/36,629,572 prefunded-warrant
+  shares for nominal exercise consideration. Other potential instruments excluded.
+- Neurogene2024/25: dollar thousands/full shares; prefunded warrants included from
+  issuance. Year-end6,124,996/6,792,559 balances are not extra weighted-average shares.
+  December18,2023 reverse merger disclosed to distinguish earlier issuer history.
+- Neoleukin2021/22: historical filing preserved separately, dollar thousands/full
+  shares;12,663,010 prefunded warrants outstanding each year-end already included
+  from issuance. No silent restatement onto the later Neurogene basis.
 
-Three more2024/25 captured contexts validated and now registered:
-- SELLAS: dollar thousands/full shares; prefunded warrants and abeyance shares
-  already enter basic shares for nominal consideration. Other potential shares
-  excluded during losses; excluded-securities table uses thousands.
-- Gevo: statement and EPS note distinguish32.629m consolidated loss from33.836m
-  loss attributable to Gevo after1.207m noncontrolling income allocation. Separate
- 79k redemption-value adjustment appears in equity. Full conditional EPS adjustment
-  policy retained: only to extent redemption exceeds fair value cumulatively.
-  Reader note preserves reported numerator without constructing another adjustment.
-- Aquestive: explicit full-share and dollars-per-share row labels distinguish units
-  from dollar thousands. Loss-period instruments excluded;2022 prefunded warrants
-  were fully exercised in2022 and are not a new2024/25 outstanding balance.
+Report company-share-context-batch2-fifteenth-20260921.json checks32 observations
+against40 inline facts and16 full disclosures. Report64181 and replay/ledger/tests
+52328 terminal0; report byte-identical on replay. Scope-v24 now504 reviewed /
+296 pending /0 withdrawn,64 presentation-only. Exactly32 state/evidence transitions;
+all800 observation metadata and prior472 decisions preserved.94 renderer/numerics/
+scope tests pass. Notes cover15 paths, retain numerical data and exact source/fact
+bindings; changing one Neurogene accession removes only that note, preserving the
+other historical note. Nine unresolved reports remain pending. No source values,
+selector policy or runtime objects changed.
 
-Report company-share-context-batch2-fourteenth-20260921.json (unchanged v7) checks
-24 selected observations against40 inline facts and14 disclosures. Report5355 and
-independent replay67946 terminal0, byte-identical. Scope-v23 now472 reviewed /
-328 pending /0 withdrawn,64 presentation-only. Exactly24 state/evidence changes;
-all800 observation metadata and prior448 decisions preserved.93 renderer/numerics/
-scope tests pass, including15 affected paths, unchanged data and removal after a
-bound fact changes. Nine pending discrepancy/hidden-mapping reports stay pending.
-No source values, selector policy or runtime objects changed.
+Latest browser checkpoint remains scope-v22:1,020 cases/1,120 note-source checks,
+zero failures; current scope-v23/24 notes need later relevant release checks.
+Latest sealed scope-v22 archive remains693 files/34 reports/all nine pending reports;
+newer notes and ledgers need archive coverage. Earlier full HTTP covered90,732
+pages/6,646 downloads. No browser/archive audit is running now.
 
-Latest sealed scope-v22 archive:693 files/34 reports, all nine pending reports;
-SHAef1d3056112af0834125ef7531d94e040808759b2f373e697dd123c25192c8e5.
-All34 restored report hashes rechecked before new registration. New scope-v23
-notes/ledger need later archive coverage and relevant release checks. Earlier
-full HTTP checks cover90,732 pages/6,646 downloads. No audits remain running.
-Engine checkpoint remains six current-epoch returns/four sleeves, immature; no
-new strategy outcome, runtime activation or broker action. All goals retained.
-
-Recovery79720 active; receipt7065 verified objects,0 failures,incomplete.
-Same bounded uploader/plan, original520 evidence retained, no additive count.
-No production deployment or indexing gains verified;90,732 candidates remain
-unpublished and last confirmed indexed baseline262. Owner attribution file untouched.
-Next publish current notes, continue remaining source review and hosted readiness.
+Recovery79720 active; receipt7214 verified objects,0 failures,incomplete.
+Same bounded uploader/plan; previous520 evidence retained, counts not additive.
+No production deployment or new indexed-page evidence;90,732 candidates unpublished,
+last confirmed indexing baseline262. Engine baseline six current-epoch returns/four
+sleeves remains immature; no runtime activation or broker action. All indexing,
+quality/SEO/intent, developer-adoption and governed-engine goals stay active.
+Next publish these reviews, continue remaining source review and hosted readiness.
+Owner attribution file untouched.
