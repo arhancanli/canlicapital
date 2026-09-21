@@ -1,6 +1,164 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001382101",
+  "include_on_overview": true,
+  "source_sha256": "edbbe5f19eb32d9e9b30b5efb21d584273fd4e0e4ee6ba6b9ca96185a3d014ff",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Sutro Biopharma's selected 2022 and 2023 observations come from its 2024 annual filing, which displays dollars in thousands but full shares and unscaled EPS. Potential options, restricted stock units, warrants and employee stock purchase plan shares are excluded as anti-dilutive during losses. This review preserves those historical reported values; it does not apply the later reverse split to them or approve the separate 2024 column in this older filing.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1382101/000095017025038884/stro-20241231.htm",
+  "observations": [
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -2.35,
+      "accn": "0000950170-25-038884",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -1.78,
+      "accn": "0000950170-25-038884",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -2.35,
+      "accn": "0000950170-25-038884",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -1.78,
+      "accn": "0000950170-25-038884",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 50739185,
+      "accn": "0000950170-25-038884",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 60163542,
+      "accn": "0000950170-25-038884",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 50739185,
+      "accn": "0000950170-25-038884",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 60163542,
+      "accn": "0000950170-25-038884",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001382101",
+  "include_on_overview": true,
+  "source_sha256": "edbbe5f19eb32d9e9b30b5efb21d584273fd4e0e4ee6ba6b9ca96185a3d014ff",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Sutro Biopharma's 2025 filing presents its 2024 and 2025 share and per-share amounts after the one-for-ten reverse split, reflected in trading from December 3, 2025. It states that fractional shares were rounded up and all presented periods were adjusted retroactively. Dollar amounts are in thousands; shares and EPS are unscaled. Options, restricted stock units, warrants and employee stock purchase plan shares are excluded as anti-dilutive during losses. Earlier observations from a different filing are not automatically rescaled to this basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1382101/000119312526119873/stro-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -29.4,
+      "accn": "0001193125-26-119873",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -22.49,
+      "accn": "0001193125-26-119873",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -29.4,
+      "accn": "0001193125-26-119873",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -22.49,
+      "accn": "0001193125-26-119873",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 7736734,
+      "accn": "0001193125-26-119873",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 8497798,
+      "accn": "0001193125-26-119873",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 7736734,
+      "accn": "0001193125-26-119873",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 8497798,
+      "accn": "0001193125-26-119873",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001380106",
   "include_on_overview": true,
   "source_sha256": "8c4362d2b05e0f4a0adf4f8af9763ce28a8aa93bae8a254f07b04a87d0491d12",
