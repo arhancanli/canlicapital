@@ -1,4 +1,5 @@
 import { catalogHash } from './company-catalog.js';
+import { fetchStorage } from './company-catalog-http.js';
 import { DOWNLOAD_LIMITS, validateDownloadDescriptor } from './company-download-index.js';
 export function createHttpDownloadReader({ baseUrl, fetcher = fetch }) {
   const base = new URL(baseUrl);
@@ -6,7 +7,7 @@ export function createHttpDownloadReader({ baseUrl, fetcher = fetch }) {
   base.pathname = base.pathname.replace(/\/?$/, '/');
   return async item => {
     validateDownloadDescriptor(item);
-    const response = await fetcher(new URL(item.storage_path, base), { redirect: 'error', signal: AbortSignal.timeout(10000) });
+    const response = await fetchStorage(fetcher, new URL(item.storage_path, base), { redirect: 'error' });
     if (!response.ok) throw new Error('Download storage unavailable');
     const length = response.headers.get('content-length');
     if (length !== null && Number(length) !== item.bytes) { await response.body?.cancel(); throw new Error('Download byte count mismatch'); }

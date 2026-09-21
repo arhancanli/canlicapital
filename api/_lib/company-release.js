@@ -5,7 +5,7 @@ import { createCompanyDirectoryHandler } from './company-directory-html.js';
 import { createCompanyDownloadHandler } from './company-download.js';
 
 const hashPattern = /^[a-f0-9]{64}$/;
-export async function loadCompanyRelease({ releaseHash, readReleaseObject, readCatalogObject, readDownloadIndexObject, readDownload, assets }) {
+export async function loadCompanyRelease({ releaseHash, readReleaseObject, readCatalogObject, readDownloadIndexObject, readDownload, assets, indexable = false, directoryIndexable = false }) {
   if (!hashPattern.test(releaseHash)) throw new Error('Invalid company release hash');
   const bytes = Buffer.from(await readReleaseObject(releaseHash, 4096));
   if (bytes.length > 4096 || catalogHash(bytes) !== releaseHash) throw new Error('Company release byte binding failed');
@@ -15,10 +15,12 @@ export async function loadCompanyRelease({ releaseHash, readReleaseObject, readC
   const downloads = createCompanyDownloadIndex({ rootHash: release.download_root, readObject: readDownloadIndexObject });
   const first = await catalog.directoryPage(1);
   if (first.total !== release.companies) throw new Error('Company release count does not match catalog');
-  // Public indexing remains disabled here. Production activation is a separate
-  // reviewed operation; an object claiming approval cannot enable it remotely.
-  const company = createCompanyHtmlHandler({ catalog, assets });
-  const directory = createCompanyDirectoryHandler({ catalog, assets });
+  // Indexing is decided only by the caller from the bundled, reviewed activation
+  // (see company-activation.js). The release object's publication_approved field
+  // is never consulted, so storage contents cannot enable indexing remotely.
+  if (indexable !== false && typeof indexable !== 'function') throw new Error('Company indexing must be false or an admission predicate');
+  const company = createCompanyHtmlHandler({ catalog, assets, indexable });
+  const directory = createCompanyDirectoryHandler({ catalog, assets, indexable: directoryIndexable === true });
   const download = createCompanyDownloadHandler({ index: downloads, readDownload });
   return { releaseHash, release, catalog, downloads, company, directory, download };
 }

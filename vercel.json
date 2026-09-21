@@ -212,6 +212,18 @@
   ],
   "rewrites": [
     {
+      "source": "/companies",
+      "destination": "/api/v1/company-reference?path=/companies"
+    },
+    {
+      "source": "/companies/:path*",
+      "destination": "/api/v1/company-reference?path=/companies/:path*"
+    },
+    {
+      "source": "/company-data/:path*",
+      "destination": "/api/v1/company-reference?path=/company-data/:path*"
+    },
+    {
       "source": "/api/v1/status",
       "destination": "/api/v1/status.json"
     },
@@ -246,7 +258,7 @@
   ],
   "functions": {
     "api/v1/company-reference.js": {
-      "includeFiles": "dist/company-page-assets.json",
+      "includeFiles": "{dist/company-page-assets.json,config/company-production-activation.json,config/company-admission-v22.json}",
       "maxDuration": 60
     }
   }

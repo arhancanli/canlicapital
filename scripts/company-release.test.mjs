@@ -61,7 +61,7 @@ test('configured public wrapper uses bounded HTTP storage, compiled assets and a
   const res = response();
   await handler({ method: 'GET', query: { path: '/companies/' + record.cik }, headers: {} }, res);
   assert.equal(res.statusCode, 200); assert.equal(res.headers['X-Robots-Tag'], 'noindex'); assert.match(res.body, /assets\/company.css/); assert.ok(requests > 0);
-  const missing = createConfiguredCompanyReference({ environment: () => ({}), readAssets: () => { throw new Error('Should not load assets'); } });
+  const missing = createConfiguredCompanyReference({ environment: () => ({}), loadActivation: () => ({ enabled: false }), readAssets: () => { throw new Error('Should not load assets'); } });
   const down = response(); await missing({ method: 'GET', query: { path: '/companies' } }, down);
   assert.equal(down.statusCode, 503); assert.equal(down.headers['Cache-Control'], 'no-store');
 });
