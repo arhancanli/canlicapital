@@ -2020,3 +2020,39 @@ Transfer44227 polled live this turn; latest4,873/10,360objects/zero failures;
 uploader/plan unchanged. No production activation/new indexing gain. All SEO,
 indexed-page, developer-adoption and governed-engine objectives remain active.
 Owner attribution file untouched.
+
+PR143 published at71d35a177b4ee3dd6eb826a59caf758de15cb262; CI pending.
+Push terminal0; unpublished rebase preserved full tree
+7975ab717e24ea36e1f9d0b654dfd3fc7387a4bd. Owner attribution file untouched.
+
+## 2026-09-21 — MaxCyte hidden mapping and historical unit conventions
+
+Worktree branch `evidence/maxcyte-filing-context-20260921`.
+Previous turn made progress:24Rocket/Dror/ClearPoint observations reviewed and PR143.
+PR143 merged as6a4a5683700f6a5d1ce121d7c595b8c24ff2719f after four
+CI35550242180 checks passed at71d35a17; full tested/merged tree
+7975ab717e24ea36e1f9d0b654dfd3fc7387a4bd matches.
+Twelfth report adds16MaxCyte2020/21and2024/25observations. Newer filing displays
+thousands of dollars/full shares and excludes options/RSUs during losses; older
+filing uses full dollars/full shares and excludes options/stock purchase warrants.
+Excluded counts in millions are rounded, not additions to weighted-average shares.
+Only two selected older years reviewed; displayed2019column does not gain approval.
+Initial generic v7replay29346 TERMINAL1 at statement-membership check because older
+diluted facts are hidden. Generic runner unchanged. New source-pinned
+review-maxcyte-share-context.py requires exact two accessions/primary/source hashes.
+Older diluted EPS has explicit SEC links in the visible basic row. Older diluted
+shares have no DOM link: mapped to unique same-context/unit/full-value visible basic
+shares with combined row and explicit loss-period exclusion disclosure. Report
+retains that distinction and hidden/peer/context/unit/link XML. Unexpected mappings
+fail closed. Newer filing must retain direct statement membership.
+Report replay byte-identical.3mapping tests cover successful EPS/disclosed shares,
+eight EPS mutations and six share-pair mutations; added to CI.86renderer/ledger tests
+pass. scope-v16now320reviewed/480pending/0withdrawn,16presentation-only unchanged.
+Only16states/evidence links changed; all800rows and prior304decisions preserved.
+Four discrepancy reports remain pending. No source/policy/runtime-object changes.
+New reader notes need fresh relevant release checks and later archive coverage;
+previous HTTP/browser/archive evidence remains tied to its historical inputs.
+Next publish MaxCyte review and continue pending/legacy contexts and hosted delivery.
+Transfer44227 polled live this turn; latest5,146/10,360objects/zero failures;
+uploader/plan unchanged. No production activation or new indexing gain. All owner
+SEO/indexing, developer-adoption and governed-engine goals active; owner file untouched.

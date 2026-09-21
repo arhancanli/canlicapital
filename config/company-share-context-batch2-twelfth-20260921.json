@@ -1,0 +1,281 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001287098",
+      "accession": "0001104659-26-034557",
+      "source_sha256": "bf885643e4ac829812a590e85ffccacb74e5a1dbcbb30dc2694b3cf04e7ecdf9",
+      "primary_sha256": "9172489f042157874b1ca97f56d9997115d2d0b9c56708f8093be19b9b67f9ef",
+      "receipt_sha256": "32b8a4c70ec9cb033b11d09cabd436d0ec8f1807c994b1dc2de45033019b34b3",
+      "fixture": "scripts/fixtures/editorial/batch2-0001287098-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -0.39,
+          "accn": "0001104659-26-034557",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-25",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.42,
+          "accn": "0001104659-26-034557",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-25",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -0.39,
+          "accn": "0001104659-26-034557",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-25",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.42,
+          "accn": "0001104659-26-034557",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-25",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 104849222,
+          "accn": "0001104659-26-034557",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-25",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 106427854,
+          "accn": "0001104659-26-034557",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-25",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 104849222,
+          "accn": "0001104659-26-034557",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-25",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 106427854,
+          "accn": "0001104659-26-034557",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-25",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 232,
+      "supporting_table_indexes": [],
+      "share_scale": "0",
+      "table_requires": [
+        "44,630",
+        "41,055",
+        "106,427,854",
+        "104,849,222",
+        "0.42",
+        "0.39"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share amounts)",
+        "For periods of net loss, diluted loss per share is calculated similarly to basic loss per share because the impact of all dilutive potential common shares is anti-dilutive. The number of anti-dilutive shares, consisting of stock options and restricted stock units excluded from the computation of diluted loss per share, was 15.4 million and 16.3 million for the years ended December 31, 2025 and 2024, respectively."
+      ],
+      "reader_note": "MaxCyte's 2024 and 2025 basic and diluted loss EPS are equal because potential common shares are anti-dilutive during losses. The filing describes excluded options and restricted stock units as 16.3 million and 15.4 million shares, respectively; these rounded excluded amounts are not additions to the reported weighted-average denominator. Dollar losses are displayed in thousands, while shares and per-share amounts are unscaled.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001287098",
+      "accession": "0001558370-22-004081",
+      "source_sha256": "bf885643e4ac829812a590e85ffccacb74e5a1dbcbb30dc2694b3cf04e7ecdf9",
+      "primary_sha256": "61724714768d887fe94ec09cc7aee42ec5529d78c7cbb89a4efec92004e5fbc2",
+      "receipt_sha256": "e88e47de909086bd8fdc4ce8ad22ec39c440c0cc5d6a48d7422b928ee2d82ee9",
+      "fixture": "scripts/fixtures/editorial/batch2-0001287098-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": -0.23,
+          "accn": "0001558370-22-004081",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-03-22",
+          "frame": "CY2019",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": -0.17,
+          "accn": "0001558370-22-004081",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-03-22",
+          "frame": "CY2020",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": -0.23,
+          "accn": "0001558370-22-004081",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-03-22",
+          "frame": "CY2019",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": -0.17,
+          "accn": "0001558370-22-004081",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-03-22",
+          "frame": "CY2020",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": 56397524,
+          "accn": "0001558370-22-004081",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-03-22",
+          "frame": "CY2019",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": 69464751,
+          "accn": "0001558370-22-004081",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-03-22",
+          "frame": "CY2020",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": 56397524,
+          "accn": "0001558370-22-004081",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-03-22",
+          "frame": "CY2019",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": 69464751,
+          "accn": "0001558370-22-004081",
+          "fy": 2021,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2022-03-22",
+          "frame": "CY2020",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2019-12-31",
+        "2020-12-31"
+      ],
+      "table_index": 244,
+      "supporting_table_indexes": [],
+      "share_scale": "0",
+      "table_requires": [
+        "19,082,200",
+        "11,816,400",
+        "90,619,057",
+        "69,464,751",
+        "0.21",
+        "0.17"
+      ],
+      "paragraph_requires": [
+        "For periods of net loss, diluted loss per share is calculated similarly to basic loss per share because the impact of all dilutive potential common shares is anti-dilutive. The number of anti-dilutive shares, consisting of stock options and stock purchase warrants, which has been excluded from the computation of diluted loss per share, was 12.4 million, 12.9 million and 10.4 million for the years ended December 31, 2021, 2020 and 2019, respectively."
+      ],
+      "reader_note": "MaxCyte's historical 2020 and 2021 filing reports full dollar losses and unscaled share counts. Options and stock purchase warrants are excluded as anti-dilutive during losses; the note describes 12.9 million and 12.4 million excluded shares, respectively. Those rounded excluded amounts are not additional weighted-average shares. This review covers the two selected years, not the separate 2019 column also shown in the filing.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

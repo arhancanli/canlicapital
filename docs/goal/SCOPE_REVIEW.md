@@ -180,3 +180,8 @@ Wright table54unit-heading conflict remains pending; no automatic scale correcti
 Eleventh batch2review adds24Rocket/Dror/ClearPoint observations. Preserve period-end
 excluded-instrument scope, as-converted preferred exclusion counts, approximate
 amounts and rounded losses. scope-v15:304reviewed/496pending;16presentation-only.
+
+MaxCyte source-pinned runner preserves2020/21hidden EPS explicit links and separately
+disclosed shared loss denominator without pretending hidden shares have DOM links.
+Newer2024/25facts require visible statement membership. Rounded exclusions and
+different dollar-display conventions retained. scope-v16:320reviewed/480pending.

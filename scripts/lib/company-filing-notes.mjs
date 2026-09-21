@@ -1,6 +1,164 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001287098",
+  "include_on_overview": true,
+  "source_sha256": "bf885643e4ac829812a590e85ffccacb74e5a1dbcbb30dc2694b3cf04e7ecdf9",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "MaxCyte's 2024 and 2025 basic and diluted loss EPS are equal because potential common shares are anti-dilutive during losses. The filing describes excluded options and restricted stock units as 16.3 million and 15.4 million shares, respectively; these rounded excluded amounts are not additions to the reported weighted-average denominator. Dollar losses are displayed in thousands, while shares and per-share amounts are unscaled.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1287098/000110465926034557/mxct-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.39,
+      "accn": "0001104659-26-034557",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.42,
+      "accn": "0001104659-26-034557",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.39,
+      "accn": "0001104659-26-034557",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.42,
+      "accn": "0001104659-26-034557",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 104849222,
+      "accn": "0001104659-26-034557",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 106427854,
+      "accn": "0001104659-26-034557",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 104849222,
+      "accn": "0001104659-26-034557",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 106427854,
+      "accn": "0001104659-26-034557",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001287098",
+  "include_on_overview": true,
+  "source_sha256": "bf885643e4ac829812a590e85ffccacb74e5a1dbcbb30dc2694b3cf04e7ecdf9",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "MaxCyte's historical 2020 and 2021 filing reports full dollar losses and unscaled share counts. Options and stock purchase warrants are excluded as anti-dilutive during losses; the note describes 12.9 million and 12.4 million excluded shares, respectively. Those rounded excluded amounts are not additional weighted-average shares. This review covers the two selected years, not the separate 2019 column also shown in the filing.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1287098/000155837022004081/mxct-20211231x10k.htm",
+  "observations": [
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.23,
+      "accn": "0001558370-22-004081",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -0.17,
+      "accn": "0001558370-22-004081",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.23,
+      "accn": "0001558370-22-004081",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -0.17,
+      "accn": "0001558370-22-004081",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": 56397524,
+      "accn": "0001558370-22-004081",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": 69464751,
+      "accn": "0001558370-22-004081",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": 56397524,
+      "accn": "0001558370-22-004081",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": 69464751,
+      "accn": "0001558370-22-004081",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001281895",
   "include_on_overview": true,
   "source_sha256": "0bcbe84a05b7de7c12edb430923484b522633d995abac19aad70bdfd9e60b3ef",
