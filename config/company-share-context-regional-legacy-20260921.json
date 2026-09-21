@@ -1,0 +1,154 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001004724",
+      "accession": "0001004724-17-000021",
+      "source_sha256": "f1e6a37875ed9bad416e92c78341131484deab37089c4e801d52524979860e6b",
+      "primary_sha256": "7b75680a04ec5e81c185ad4c1183339f58672b9bacb561bc4f2c635af815a725",
+      "receipt_sha256": "3a046e1ae103656c9bde218432a733bab1efaae4c33546669e6d8b8d235385ed",
+      "fixture": "scripts/fixtures/editorial/batch2-0001004724-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "val": -1.46,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2015",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": -0.74,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2016",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "val": -1.46,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2015",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": -0.74,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2016",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "val": 19680000,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2015",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": 19892000,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2016",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "val": 19680000,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2015",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": 19892000,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2016",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2015-12-31",
+        "2016-12-31"
+      ],
+      "table_index": 112,
+      "supporting_table_indexes": [],
+      "share_scale": "3",
+      "table_requires": [
+        "14,797",
+        "28,726",
+        "0.74",
+        "1.46",
+        "19,892",
+        "19,680"
+      ],
+      "paragraph_requires": [
+        "(Amounts in 000's, except per share data)",
+        "Basic earnings per share is computed by dividing net income or loss attributable to common stockholders by the weighted-average number of shares of common stock outstanding during the period. Diluted earnings per share is similar to basic earnings per share except net income or loss is adjusted by the impact of the assumed issuance of convertible shares and the weighted-average number of shares of common stock outstanding (which includes potentially dilutive securities, such as options, warrants, non-vested shares, and additional shares issuable under convertible notes outstanding during the period when such potentially dilutive securities are not anti-dilutive). Potentially dilutive securities from options, warrants and unvested restricted shares are calculated in accordance with the treasury stock method, which assumes that proceeds from the exercise of all options and warrants with exercise prices exceeding the average market value are used to repurchase common stock at market value. The incremental shares remaining after the proceeds are exhausted represent the potentially dilutive effect of the securities. Potentially dilutive securities from convertible promissory notes are calculated based on the assumed issuance at the beginning of the period, as well as any adjustment to income that would result from their assumed issuance. For 2016 and 2015 , potentially dilutive securities of 4.4 million and 4.5 million , respectively, were excluded from the diluted loss per share calculation because including them would have been anti-dilutive in both periods."
+      ],
+      "reader_note": "Regional Health Properties' predecessor AdCare reports 2015 and 2016 dollar amounts and share counts in thousands, except EPS. The common-stockholder losses include discontinued operations, the reported noncontrolling-interest allocation and preferred dividends: $28.726 million in 2015 and $14.797 million in 2016. The selected denominators are 19,680,000 and 19,892,000 weighted-average shares. The filing excludes potentially dilutive securities in both loss periods; its rounded 4.5 million and 4.4 million excluded securities are not additions to those denominators. These historical observations retain the share basis reported in this filing.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1004724/000100472417000021/adk-20161231.xml",
+        "status": 200,
+        "bytes": 3975260,
+        "sha256": "bd2278e083f036c31ec62f00b2ed4211a7be0ee60f71f8709b110f7922ee99ff",
+        "captured_at": "2026-09-20T23:22:15.431701+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001004724-0001004724-17-000021-instance.response"
+      }
+    }
+  ]
+}

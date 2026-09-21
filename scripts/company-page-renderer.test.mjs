@@ -1916,3 +1916,31 @@ test('Fate, Range, Marvion and Biodesix preserve filing-specific EPS context', (
     assert.equal(companyFilingNotes({ ...record, source_sha256: '0'.repeat(64) }, 'EarningsPerShareBasic').length, 0);
   }
 });
+
+test('Southern Copper and historical AdCare bind legacy years, share scale and interpretation limits', () => {
+  for (const [cik, count, phrases] of [
+    ['0001001838', 2, [/after noncontrolling interests/, /878,713,000 shares/, /does not establish the reason/, /share observations cover 2008 only/, /For 2023–2025/, /shares in millions/]],
+    ['0001004724', 1, [/predecessor AdCare/, /preferred dividends/, /19,680,000 and 19,892,000/, /historical observations retain the share basis/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic');
+    assert.equal(notes.length, count);
+    for (const note of notes) {
+      const changed = structuredClone(record), row = note.observations[0];
+      changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+      const remaining = companyFilingNotes(changed, row.tag);
+      assert(!remaining.includes(note));
+      assert.equal(remaining.length, notes.length - 1);
+    }
+    assert.equal(companyFilingNotes({ ...record, source_sha256: '0'.repeat(64) }, 'EarningsPerShareBasic').length, 0);
+  }
+});

@@ -65,6 +65,7 @@ test('ledger is deterministic and pending evidence cannot be registered as revie
       ['company-fuwei-hidden-eps-pending-20260921.json', '0001381074'],
       ['company-raphael-eps-sign-discrepancy-20260921.json', '0001415397'],
       ['company-vyome-two-class-pending-20260921.json', '0001427570', 0],
+      ['company-the9-profit-loss-pending-20260921.json', '0001296774', 0],
     ]) {
       registry.reviews = [{ report, sha256: createHash('sha256').update(readFileSync('artifacts/seo/' + report)).digest('hex'),
         cik, decision_index, observations: 8,

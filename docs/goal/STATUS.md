@@ -1,69 +1,84 @@
 # Current state
 
-Updated September 21, 2026. Goal ACTIVE, NOT ACHIEVED. Codex implements directly;
-Hermes delegation is stopped. All objectives and publication authorization remain
-in REQUIREMENTS.md. EXECUTION_LEDGER.md covers every goal area.
+Updated September 21, 2026. Goal ACTIVE, NOT ACHIEVED. All objectives and
+publication authorization remain in REQUIREMENTS.md.
 
-Earlier checkpoints, frozen v22 runtime hashes, retained failures and detailed
-baseline evidence are preserved in
-[history/STATUS-20260921-before-scope-v19-release-checkpoint.md](history/STATUS-20260921-before-scope-v19-release-checkpoint.md).
-Historical process states are not live telemetry. Verify actual files, PRs and
-process handles before relying on any recorded state.
+Codex reached its usage limit at 04:46Z on September 21 (reset stated as
+September 27). Work continues on the same goal from these records in the
+meantime, under the same evidence rules. Hermes remains stopped.
+
+The previous STATUS, with every hash and process handle through PR169, is
+preserved at
+[history/STATUS-20260921-before-continuation.md](history/STATUS-20260921-before-continuation.md).
+Earlier checkpoints are in `history/`. Recorded states are not live telemetry.
 
 ## Latest verified transition
 
-PR167 merged asd337057435d58c79f5839c2ba257f3112d919ef4 after all four
-CI35560759388 checks passed at88b36f3465c94e26e61ff676594091dd9942efe3.
-Tested/merged tree3fb3e48603d5c3acf17610282bff1a9cb3890fca verified identical.
-Current branch: evidence/batch2-fate-range-marvion-biodesix-20260921.
+**Storage transfer complete.** Recovery79720 finished after the last Codex poll.
+Receipt `artifacts/seo/corpus-local/company-five-cohort-storage-transfer-v22-recovery-20260921.json`:
+`complete=true`, 10,360/10,360 files, 0 failures, 15 read retries, one write
+recovery, plan SHA `7518e204…3aab`, release `7573eb42…c5fc`, destination
+`company-reference-staging`. The process is no longer running (checked by PID).
+Transfer only: not a capture backup, editorial admission or production activation.
 
-Scope-v29 HTTP95414 completed exit0:90,732 pages/6,646 downloads/exact90,732 sitemap
-URLs, zero failures and maximum four directory clicks. All recorded code hashes
-matched at completion. Browser37320 completed exit0 BEFORE registry/notes edits:
-1,392 cases,77 filing reviews,340 note-bearing paths,1,540 exact note/source checks,
-zero failures. All38 inputs and runner hashes verified. Chromium/WebKit390/1440.
-No HTTP/browser/archive audit remains live. Reports are immutable scope-v29 evidence;
-the later scope-v30 notes below need relevant future release/archive coverage.
+**Clean hosted readiness passed.** Codex's final action reran
+`scripts/audit-hosted-company-staging.mjs` (SHA `46c6fc6b…bbf4`, matches the
+file) against the clean-route noindex preview
+https://meridian-gb8qguqpt-arhans-projects-ac470eaa.vercel.app. Report
+`artifacts/seo/company-v22-clean-hosted-readiness-probe-complete-20260921.json`:
+23 checks, 0 failures, `passed=true` (16×200, 3×304, 3×404, 1×405). This supersedes
+the earlier 7/20 download failures (that failed report stays retained). A manual
+spot-check of the directory, a company page, a company download and an unknown
+company: 200/200/200/404, all `X-Robots-Tag: noindex`. Representative sample
+only: not full-corpus hosted HTTP, cloud load/cost or production.
 
-Four new replayable source-pinned reports cover five filings/40 observations:
-- Fate2020/21 from the2022 filing: dollar thousands/full shares, loss anti-dilution;
-  January2021 nominal-price prefunded warrants already included in basic EPS.
-- Fate2024/25: weighted common+prefunded denominators reconcile exactly to113,685,177
-  and118,789,974. Other potential shares excluded during losses. Separate old/new
-  filing notes remain bound independently.
-- Range2024/25: full dollars/shares, continuing/discontinued operations reconcile.
-  Source labels options/warrants anti-dilutive but profitable2025 exclusion calculation
-  not independently established; all eight observations explicitly presentation-only.
-- Marvion2024/25: displayed zero is rounded loss/profit, not break-even.2024 exclusion
-  explained by loss;2025 equal-denominator cause not established. Eight presentation-only.
-- Biodesix2024/25: dollar and share thousands,7,551=7,551,000 shares; retrospective
-  one-for20 split September15,2025; loss exclusions cover options/warrants/RSUs/ESPP.
-Generic v7 unchanged. Reports/replays all byte-identical:64 inline facts/14 disclosures.
-First Fate attempt82856 failed a table requirement because denominator components
-were assigned to statement10 rather than reconciliation14. Original spec retained
-in artifacts/seo/company-fate-initial-spec-20260921.json; corrected table14 plus
-support10/15 passed63702 and replay59183. No validator weakening or source edits.
+**PR169** (Southern Copper/AdCare legacy context, The9 conflict retained): all
+four CI checks passed at `076faca1`. Open; merge needs the owner (see below).
 
-Scope-v30:656 reviewed/144 pending/0 withdrawn;96 presentation-only included.
-Exactly40 state/evidence transitions,16limited; all800values/metadata and all prior616
-review decisions preserved. All eleven previously unresolved reports remain pending.
-100 renderer/numerics/scope tests passed,5372 terminal0. New notes cover20 paths,
-preserve source numbers and disappear only when their exact source/facts no longer
-match. Fate's other accession remains independently bound. No uploader/runtime edits.
+## Editorial scope (unchanged since PR169)
 
-Latest sealed archive remains scope-v29:45 reports/745 files, SHA
-c7a06a92a3d0186162411a06a7be243215c2395dd5a9ee642f7d1804d661f4f3.
-Next archive must include scope-v30 and the retained initial Fate spec as a fixture.
-Remaining review queue:88observations in11 documented pending cases, plus56 across
-Southern Copper2010, Regional Health2016 and2025, Inhibitor2013, MacroGenics2014,
-Stereotaxis2014 and The92022 filings. Southern Copper/Regional Health source reading
-begun only; no extra dispositions or notes registered.
+Batch1: 1,148 reviewed (130 presentation-only), 28 withdrawn, none pending.
+Batch2 scope-v31: 672 reviewed (104 presentation-only), 128 pending, 0 withdrawn.
+Remaining 128: 96 in 12 documented unresolved reports; 32 across Regional Health
+2025, Inhibitor 2013, MacroGenics 2014 and Stereotaxis 2014 not yet reviewed.
+The wider deferred basic/diluted queue (10,206 observations, 2,696 filings,
+464 companies at the original baseline) is larger than batches 1–2.
 
-Recovery79720 specifically polled live; latest receipt9,628/10,360 verified objects,
-zero failures,incomplete. Same bounded policy/plan; do not restart or mutate inputs.
-Hosted clean preview still scope-v28; last readiness7/20 failures on downloads remains
-unresolved. Expansion90,732 candidates unpublished, confirmed indexed baseline262.
-All SEO/indexing/intent/developer/API/MCP/repository/engine goals remain active;
-engine evidence six current-epoch returns/four sleeves, immature, no new runtime action.
-Owner attribution file untouched. Next publish reviews, continue remaining source
-contexts and verify hosted downloads when the dependency transfer is complete.
+## Release evidence
+
+Latest full release checks: scope-v29 (HTTP 90,732 pages/6,646 downloads;
+browser 1,392 cases/1,540 note-source checks). Latest sealed archive scope-v29
+(45 reports/745 files, SHA `c7a06a92…f4f3`). Scope-v30/31 notes still need
+release-check and archive coverage.
+
+## Counts (keep separate)
+
+Candidate URLs 90,732 (3,323 overviews, 87,342 histories, 67 directories), none
+live. Live sitemap 327 URLs (fetched September 21). Last confirmed indexed 262
+(September 14). Goal 800,000 indexed, target 1,000,000.
+
+## Remaining gates before production activation
+
+1. Merge PR169.
+2. Release scope: resolve or explicitly withhold the values in the 12 unresolved
+   reports; review or withhold the 32 unreviewed observations.
+3. Release checks and archive for the final scope.
+4. Production activation code. Company handlers support `indexable`, but nothing
+   sets it; production `vercel.json` has no company rewrites; the 327 live static
+   URLs must keep working.
+5. Sitemaps for the admitted scope, preview verification, production deploy,
+   then Search Console submission and measurement.
+
+## Other objectives
+
+Developer adoption: 0 stars on both repos; MCP 0.1.2 got 33 npm downloads
+(September 13–19). Engine: live forward-evidence report
+`IMMATURE_RECORD_TOO_SHORT` (paper only). The ALPHAC nightly health check has been
+red since September 16 on one test
+(`tests/unit/test_wave1_data_rights.py::test_wave1_raw_vendor_rows_are_excluded_and_sources_are_mapped`).
+
+## Next action
+
+Owner merges PR169. Then release-scope gate 2 and the production-activation
+build (gate 4) proceed in an isolated branch, with preview verification before
+any production change.

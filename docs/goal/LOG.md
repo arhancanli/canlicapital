@@ -3546,3 +3546,91 @@ All SEO/indexing/intent/developer/API/MCP/repository/engine goals remain active;
 engine evidence six current-epoch returns/four sleeves, immature, no new runtime action.
 Owner attribution file untouched. Next publish reviews, continue remaining source
 contexts and verify hosted downloads when the dependency transfer is complete.
+
+
+PR168 published: https://github.com/arhancanli/canlicapital/pull/168 at828e2830e65ff4cbea0784e5787eca659085d41e, tree669388541381fb21a397369dbc66e93feff7b7b3. Push52960/PR-create75086 terminal0. CI pending. Latest recovery receipt9687/10,360 verified objects, zero failures, incomplete; recovery79720 last specifically polled live. No audit running; no new production/indexing claim. Owner attribution file untouched.
+
+
+## 2026-09-21 — Two legacy contexts and The9 pending conflict
+
+PR168 merged as146b4df10d9bb08f099dceadf68eba6cc1cf26cf after all four
+CI35561582618 checks passed at828e2830e65ff4cbea0784e5787eca659085d41e.
+Merged/tested tree669388541381fb21a397369dbc66e93feff7b7b3 verified identical.
+Current branch: evidence/batch2-remaining-legacy-20260921.
+
+Two new source-pinned legacy reviews cover16 observations:
+- Southern Copper2008–2010: EPS uses SCC-attributable earnings after NCI, not
+  consolidated income. Statement dollars/shares are thousands; selected2008 shares
+  878,713 represent878,713,000. Three selected EPS years but only2008selected shares.
+  Combined basic/diluted presentation does not establish cause: eight limited reviews.
+  Existing2023–2025 note remains separately bound, with its distinct million-share basis.
+- Regional Health predecessor AdCare2015/16: full-share normalization from thousands;
+  common losses28.726m/14.797m include discontinued operations, reported NCI allocation
+  and preferred dividends. Explicit loss-period anti-dilution; rounded excluded
+  securities4.5m/4.4m do not add to weighted denominators19.680m/19.892m.
+Source-specific runners retain strict issuer/accession/primary/source/instance hashes,
+legacy entity/period/unit/value checks, exact visible year/row/cell mappings and XML.
+Existing legacy comparator unchanged. Both reports reproduce byte-identically.
+
+Southern initial wrapper39319 terminal1 assumed newer FASB namespace; source uses
+exact http://xbrl.us/us-gaap/2009-01-31 already supported by legacy-v2. Corrected only
+source-specific wrapper. Failed script retained company-southern-initial-runner-
+20260921.py.gz; raw SHA365ad7564f092e00ad6e0b9dc1980ba71e0be63b78eeb5c750ed633ec11fe4e1.
+
+The9 new pending report company-the9-profit-loss-pending-20260921.json uses unchanged
+v7 with nested decision0 ACCOUNTING_SCOPE_REVIEW_PENDING. Eight observations/16inline
+facts/four disclosures; report79740 and replay96951 terminal0, byte-identical.2020
+common income396,693,266RMB and positive2.42EPS conflict with a note attributing all
+period exclusions to net losses. Selected2020/21CNY and2022USD convenience EPS are
+per ordinary share, not ADS. No source correction or public note. All eight remain
+pending; twelve unresolved reports now covered by the rejection test.
+
+Scope-v31:672 reviewed/128 pending/0 withdrawn,104presentation-only included.
+Exactly16 state/evidence changes (eight limited), all800metadata/values and previous
+656decisions unchanged.101renderer/numerics/scope tests pass31185. Initial test52300
+failed because it expected one Southern note; corrected to require both old/new
+filing notes and independently remove each on binding mismatch. Runtime untouched.
+
+Latest full release evidence remains scope-v29: HTTP90,732pages/6,646downloads and
+browser1,392cases/1,540note-source checks passed; all hashes matched at completion.
+Latest sealed archive scope-v29:45reports/745files, SHA
+c7a06a92a3d0186162411a06a7be243215c2395dd5a9ee642f7d1804d661f4f3.
+Scope-v30/31 need later release/archive coverage. Next archive must include initial
+Fate spec, initial Southern runner, The9 pending spec/report/fixture and new runners.
+No audits currently running. Batch release checks after remaining contexts are ready.
+Remaining128:96in12documented pending cases;32across Regional Health2025, Inhibitor2013,
+MacroGenics2014 and Stereotaxis2014 not yet context-reviewed.
+
+Recovery79720 specifically polled live; receipt9,888/10,360 verified,zero failures,
+incomplete. Immutable uploader/plan unchanged. Hosted clean preview stillscope-v28;
+last download readiness failures unresolved. Expansion90,732unpublished, lastconfirmed
+indexed262. All SEO/intent/adoption/API/MCP/repository/engine objectives remain active;
+engine six-current-epoch-return/four-sleeve evidence immature. Owner attribution file
+untouched. Next publish this review, finish remaining contexts and verify hosted
+readiness once storage dependencies are available; no restart on observation timeout.
+
+
+PR169 published https://github.com/arhancanli/canlicapital/pull/169 at076faca1255c5f638a609a540e3687139153302b, treec343790283f8b4e9256f3099170ddbe409de0edd. Push52513/PR-create63281 terminal0. CI pending. Recovery79720 specifically polled live; receipt9930/10,360 verified, zero failures,incomplete. No audits running, no uploader restart. Owner attribution file untouched.
+
+## 2026-09-21 — Work continues after the Codex usage limit; storage and hosted readiness complete
+
+Codex stopped at 04:46Z with "usage limit" (stated reset September 27). Its last
+turn had just verified the 29 objects needed for the hosted smoke test and reran
+the hosted checks. The Codex rollout, this folder and live evidence were read
+before changing anything.
+
+Verified now:
+- Recovery79720 is no longer running. Its receipt says complete=true,
+  10,360/10,360 files, 0 failures, 15 read retries, 1 write recovery. Same plan
+  (7518e204…) and release (7573eb42…).
+- Clean hosted readiness report company-v22-clean-hosted-readiness-probe-complete-20260921.json:
+  23 checks, 0 failures, passed=true. Runner hash 46c6fc6b… matches
+  scripts/audit-hosted-company-staging.mjs. The earlier failed 7/20 report stays retained.
+- Manual spot-check of the preview: /companies 200, /companies/0000001750 200,
+  /company-data/0000001750.json 200 (146,299 bytes), /companies/9999999999 404;
+  all noindex.
+- PR169 CI: four checks passed at 076faca1. Still open.
+- Live sitemap 327 URLs. Repos 0 stars. Engine report IMMATURE_RECORD_TOO_SHORT.
+
+No production, indexing, editorial or engine change. Previous STATUS preserved at
+history/STATUS-20260921-before-continuation.md. Owner attribution file untouched.

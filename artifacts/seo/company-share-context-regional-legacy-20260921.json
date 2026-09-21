@@ -1,0 +1,624 @@
+{
+  "schema": "canli.reviewed-share-context.v1",
+  "publication_approved": false,
+  "spec_sha256": "ab720e5562050623a39714bbf7fdeb972d4c7809cb6a8a9e7c79e21985542688",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "code_sha256": "223d1ecb218df7516c1dd89dbaf0c065b8e049f0c45718f42cca96e9decad370",
+  "helper_sha256": "fc27ceee7bdb441eb4b8c84b86f3d9761f9eb04e423458143c2ddbc66ce21475",
+  "decisions": [
+    {
+      "cik": "0001004724",
+      "source_sha256": "f1e6a37875ed9bad416e92c78341131484deab37089c4e801d52524979860e6b",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1004724/000100472417000021/a12312016-documentx10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T23:13:57.848966+00:00",
+        "bytes": 3762834,
+        "sha256": "7b75680a04ec5e81c185ad4c1183339f58672b9bacb561bc4f2c635af815a725",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001004724-0001004724-17-000021-primary.response"
+      },
+      "receipt_sha256": "3a046e1ae103656c9bde218432a733bab1efaae4c33546669e6d8b8d235385ed",
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1004724/000100472417000021/adk-20161231.xml",
+        "status": 200,
+        "bytes": 3975260,
+        "sha256": "bd2278e083f036c31ec62f00b2ed4211a7be0ee60f71f8709b110f7922ee99ff",
+        "captured_at": "2026-09-20T23:22:15.431701+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001004724-0001004724-17-000021-instance.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "val": -1.46,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2015",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": -0.74,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2016",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "val": -1.46,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2015",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": -0.74,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2016",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "val": 19680000,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2015",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": 19892000,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2016",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "val": 19680000,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2015",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "val": 19892000,
+          "accn": "0001004724-17-000021",
+          "fy": 2016,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2017-04-17",
+          "frame": "CY2016",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "comparison": {
+        "checks": [
+          {
+            "selected": {
+              "start": "2015-01-01",
+              "end": "2015-12-31",
+              "val": -1.46,
+              "accn": "0001004724-17-000021",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "frame": "CY2015",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "FD2015Q4YTD",
+                "unit_id": "usdPerShare",
+                "value": "-1.46"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2016-01-01",
+              "end": "2016-12-31",
+              "val": -0.74,
+              "accn": "0001004724-17-000021",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "frame": "CY2016",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "FD2016Q4YTD",
+                "unit_id": "usdPerShare",
+                "value": "-0.74"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2015-01-01",
+              "end": "2015-12-31",
+              "val": -1.46,
+              "accn": "0001004724-17-000021",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "frame": "CY2015",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "FD2015Q4YTD",
+                "unit_id": "usdPerShare",
+                "value": "-1.46"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2016-01-01",
+              "end": "2016-12-31",
+              "val": -0.74,
+              "accn": "0001004724-17-000021",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "frame": "CY2016",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "FD2016Q4YTD",
+                "unit_id": "usdPerShare",
+                "value": "-0.74"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2015-01-01",
+              "end": "2015-12-31",
+              "val": 19680000,
+              "accn": "0001004724-17-000021",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "frame": "CY2015",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "FD2015Q4YTD",
+                "unit_id": "shares",
+                "value": "19680000"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2016-01-01",
+              "end": "2016-12-31",
+              "val": 19892000,
+              "accn": "0001004724-17-000021",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "frame": "CY2016",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "FD2016Q4YTD",
+                "unit_id": "shares",
+                "value": "19892000"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2015-01-01",
+              "end": "2015-12-31",
+              "val": 19680000,
+              "accn": "0001004724-17-000021",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "frame": "CY2015",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "FD2015Q4YTD",
+                "unit_id": "shares",
+                "value": "19680000"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2016-01-01",
+              "end": "2016-12-31",
+              "val": 19892000,
+              "accn": "0001004724-17-000021",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "frame": "CY2016",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "FD2016Q4YTD",
+                "unit_id": "shares",
+                "value": "19892000"
+              }
+            ]
+          }
+        ]
+      },
+      "legacy_evidence": [
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": -1.46,
+            "accn": "0001004724-17-000021",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-17",
+            "frame": "CY2015",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "table_index": 112,
+          "row_index": 41,
+          "cells": [
+            "",
+            "",
+            "$",
+            "(0.74",
+            ")",
+            "",
+            "$",
+            "(1.46",
+            ")"
+          ],
+          "visible_value": "-1.46",
+          "normalized_value": "-1.46",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareBasic xmlns:ns0=\"http://fasb.org/us-gaap/2016-01-31\" contextRef=\"FD2015Q4YTD\" decimals=\"2\" id=\"Fact-CEC39F37EBDA2E70E1B96A985C8F0AA2\" unitRef=\"usdPerShare\">-1.46</ns0:EarningsPerShareBasic>\n\t",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FD2015Q4YTD\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001004724</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:startDate>2015-01-01</ns0:startDate>\n\t\t\t<ns0:endDate>2015-12-31</ns0:endDate>\n\t\t</ns0:period>\n\t</ns0:context>\n\t",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"usdPerShare\">\n\t\t<ns0:divide>\n\t\t\t<ns0:unitNumerator>\n\t\t\t\t<ns0:measure>iso4217:USD</ns0:measure>\n\t\t\t</ns0:unitNumerator>\n\t\t\t<ns0:unitDenominator>\n\t\t\t\t<ns0:measure>xbrli:shares</ns0:measure>\n\t\t\t</ns0:unitDenominator>\n\t\t</ns0:divide>\n\t</ns0:unit>\n\t"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": -0.74,
+            "accn": "0001004724-17-000021",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-17",
+            "frame": "CY2016",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "table_index": 112,
+          "row_index": 41,
+          "cells": [
+            "",
+            "",
+            "$",
+            "(0.74",
+            ")",
+            "",
+            "$",
+            "(1.46",
+            ")"
+          ],
+          "visible_value": "-0.74",
+          "normalized_value": "-0.74",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareBasic xmlns:ns0=\"http://fasb.org/us-gaap/2016-01-31\" contextRef=\"FD2016Q4YTD\" decimals=\"2\" id=\"Fact-FCAA205A9B6B0EF17E4F6A985C9F89E2\" unitRef=\"usdPerShare\">-0.74</ns0:EarningsPerShareBasic>\n\t",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FD2016Q4YTD\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001004724</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:startDate>2016-01-01</ns0:startDate>\n\t\t\t<ns0:endDate>2016-12-31</ns0:endDate>\n\t\t</ns0:period>\n\t</ns0:context>\n\t",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"usdPerShare\">\n\t\t<ns0:divide>\n\t\t\t<ns0:unitNumerator>\n\t\t\t\t<ns0:measure>iso4217:USD</ns0:measure>\n\t\t\t</ns0:unitNumerator>\n\t\t\t<ns0:unitDenominator>\n\t\t\t\t<ns0:measure>xbrli:shares</ns0:measure>\n\t\t\t</ns0:unitDenominator>\n\t\t</ns0:divide>\n\t</ns0:unit>\n\t"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": -1.46,
+            "accn": "0001004724-17-000021",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-17",
+            "frame": "CY2015",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "table_index": 112,
+          "row_index": 41,
+          "cells": [
+            "",
+            "",
+            "$",
+            "(0.74",
+            ")",
+            "",
+            "$",
+            "(1.46",
+            ")"
+          ],
+          "visible_value": "-1.46",
+          "normalized_value": "-1.46",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareDiluted xmlns:ns0=\"http://fasb.org/us-gaap/2016-01-31\" contextRef=\"FD2015Q4YTD\" decimals=\"2\" id=\"Fact-3226522F22D2F2B065086A985CA1CF3C\" unitRef=\"usdPerShare\">-1.46</ns0:EarningsPerShareDiluted>\n\t",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FD2015Q4YTD\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001004724</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:startDate>2015-01-01</ns0:startDate>\n\t\t\t<ns0:endDate>2015-12-31</ns0:endDate>\n\t\t</ns0:period>\n\t</ns0:context>\n\t",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"usdPerShare\">\n\t\t<ns0:divide>\n\t\t\t<ns0:unitNumerator>\n\t\t\t\t<ns0:measure>iso4217:USD</ns0:measure>\n\t\t\t</ns0:unitNumerator>\n\t\t\t<ns0:unitDenominator>\n\t\t\t\t<ns0:measure>xbrli:shares</ns0:measure>\n\t\t\t</ns0:unitDenominator>\n\t\t</ns0:divide>\n\t</ns0:unit>\n\t"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": -0.74,
+            "accn": "0001004724-17-000021",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-17",
+            "frame": "CY2016",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "table_index": 112,
+          "row_index": 41,
+          "cells": [
+            "",
+            "",
+            "$",
+            "(0.74",
+            ")",
+            "",
+            "$",
+            "(1.46",
+            ")"
+          ],
+          "visible_value": "-0.74",
+          "normalized_value": "-0.74",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareDiluted xmlns:ns0=\"http://fasb.org/us-gaap/2016-01-31\" contextRef=\"FD2016Q4YTD\" decimals=\"2\" id=\"Fact-D4C4A70FDC47D132216A6A985CA54DF5\" unitRef=\"usdPerShare\">-0.74</ns0:EarningsPerShareDiluted>\n\t",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FD2016Q4YTD\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001004724</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:startDate>2016-01-01</ns0:startDate>\n\t\t\t<ns0:endDate>2016-12-31</ns0:endDate>\n\t\t</ns0:period>\n\t</ns0:context>\n\t",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"usdPerShare\">\n\t\t<ns0:divide>\n\t\t\t<ns0:unitNumerator>\n\t\t\t\t<ns0:measure>iso4217:USD</ns0:measure>\n\t\t\t</ns0:unitNumerator>\n\t\t\t<ns0:unitDenominator>\n\t\t\t\t<ns0:measure>xbrli:shares</ns0:measure>\n\t\t\t</ns0:unitDenominator>\n\t\t</ns0:divide>\n\t</ns0:unit>\n\t"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 19680000,
+            "accn": "0001004724-17-000021",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-17",
+            "frame": "CY2015",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "table_index": 112,
+          "row_index": 44,
+          "cells": [
+            "Basic and diluted",
+            "",
+            "19,892",
+            "",
+            "",
+            "19,680",
+            ""
+          ],
+          "visible_value": "19680",
+          "normalized_value": "19680000",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfDilutedSharesOutstanding xmlns:ns0=\"http://fasb.org/us-gaap/2016-01-31\" contextRef=\"FD2015Q4YTD\" decimals=\"-3\" id=\"Fact-502D7A9C6504112568036A985CA4D871\" unitRef=\"shares\">19680000</ns0:WeightedAverageNumberOfDilutedSharesOutstanding>\n\t",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FD2015Q4YTD\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001004724</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:startDate>2015-01-01</ns0:startDate>\n\t\t\t<ns0:endDate>2015-12-31</ns0:endDate>\n\t\t</ns0:period>\n\t</ns0:context>\n\t",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n\t\t<ns0:measure>xbrli:shares</ns0:measure>\n\t</ns0:unit>\n\t"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 19892000,
+            "accn": "0001004724-17-000021",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-17",
+            "frame": "CY2016",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "table_index": 112,
+          "row_index": 44,
+          "cells": [
+            "Basic and diluted",
+            "",
+            "19,892",
+            "",
+            "",
+            "19,680",
+            ""
+          ],
+          "visible_value": "19892",
+          "normalized_value": "19892000",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfDilutedSharesOutstanding xmlns:ns0=\"http://fasb.org/us-gaap/2016-01-31\" contextRef=\"FD2016Q4YTD\" decimals=\"-3\" id=\"Fact-A9A7EB935208A872687C6A985CA3EE89\" unitRef=\"shares\">19892000</ns0:WeightedAverageNumberOfDilutedSharesOutstanding>\n\t",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FD2016Q4YTD\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001004724</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:startDate>2016-01-01</ns0:startDate>\n\t\t\t<ns0:endDate>2016-12-31</ns0:endDate>\n\t\t</ns0:period>\n\t</ns0:context>\n\t",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n\t\t<ns0:measure>xbrli:shares</ns0:measure>\n\t</ns0:unit>\n\t"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 19680000,
+            "accn": "0001004724-17-000021",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-17",
+            "frame": "CY2015",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "table_index": 112,
+          "row_index": 44,
+          "cells": [
+            "Basic and diluted",
+            "",
+            "19,892",
+            "",
+            "",
+            "19,680",
+            ""
+          ],
+          "visible_value": "19680",
+          "normalized_value": "19680000",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfSharesOutstandingBasic xmlns:ns0=\"http://fasb.org/us-gaap/2016-01-31\" contextRef=\"FD2015Q4YTD\" decimals=\"-3\" id=\"Fact-5F15A094A267349D1CDE6A985CA35802\" unitRef=\"shares\">19680000</ns0:WeightedAverageNumberOfSharesOutstandingBasic>\n\t",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FD2015Q4YTD\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001004724</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:startDate>2015-01-01</ns0:startDate>\n\t\t\t<ns0:endDate>2015-12-31</ns0:endDate>\n\t\t</ns0:period>\n\t</ns0:context>\n\t",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n\t\t<ns0:measure>xbrli:shares</ns0:measure>\n\t</ns0:unit>\n\t"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 19892000,
+            "accn": "0001004724-17-000021",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-17",
+            "frame": "CY2016",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "table_index": 112,
+          "row_index": 44,
+          "cells": [
+            "Basic and diluted",
+            "",
+            "19,892",
+            "",
+            "",
+            "19,680",
+            ""
+          ],
+          "visible_value": "19892",
+          "normalized_value": "19892000",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfSharesOutstandingBasic xmlns:ns0=\"http://fasb.org/us-gaap/2016-01-31\" contextRef=\"FD2016Q4YTD\" decimals=\"-3\" id=\"Fact-55CB260780231E91659F6A985CA48672\" unitRef=\"shares\">19892000</ns0:WeightedAverageNumberOfSharesOutstandingBasic>\n\t",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FD2016Q4YTD\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001004724</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:startDate>2016-01-01</ns0:startDate>\n\t\t\t<ns0:endDate>2016-12-31</ns0:endDate>\n\t\t</ns0:period>\n\t</ns0:context>\n\t",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n\t\t<ns0:measure>xbrli:shares</ns0:measure>\n\t</ns0:unit>\n\t"
+            }
+          ]
+        }
+      ],
+      "table_index": 112,
+      "table_text": "Year Ended December 31, 2016 2015 Revenues: Rental revenues $ 26,287 $ 17,254 Management fee and other revenues 1,050 1,146 Total revenues 27,337 18,400 Expenses: Facility rent expense 8,694 5,758 Depreciation and amortization 5,296 7,345 General and administrative expenses 7,714 10,544 Other operating expenses 1,378 2,394 Total expenses 23,082 26,041 Income (loss) from operations 4,255 (7,641 ) Other (income) expense: Interest expense, net 6,885 8,462 Loss on extinguishment of debt 245 680 Gain on disposal of assets (8,750 ) \u2014 Other expense 72 918 Total other (income) expense, net (1,548 ) 10,060 Income (loss) from continuing operations before income taxes 5,803 (17,701 ) Income tax (benefit) expense (163 ) 110 Income (loss) from continuing operations 5,966 (17,811 ) Loss from discontinued operations, net of tax (13,428 ) (4,892 ) Net loss (7,462 ) (22,703 ) Loss attributable to noncontrolling interests \u2014 815 Net loss attributable to AdCare Health Systems, Inc. (7,462 ) (23,518 ) Preferred stock dividends (7,335 ) (5,208 ) Net loss attributable to AdCare Health Systems, Inc. common stockholders $ (14,797 ) $ (28,726 ) Net loss per share of common stock attributable to AdCare Health Systems, Inc. Basic and diluted: Continuing Operations $ (0.07 ) $ (1.17 ) Discontinued Operations (0.67 ) (0.29 ) $ (0.74 ) $ (1.46 ) Weighted average shares of common stock outstanding: Basic and diluted 19,892 19,680",
+      "disclosures": [
+        "(Amounts in 000's, except per share data)",
+        "Basic earnings per share is computed by dividing net income or loss attributable to common stockholders by the weighted-average number of shares of common stock outstanding during the period. Diluted earnings per share is similar to basic earnings per share except net income or loss is adjusted by the impact of the assumed issuance of convertible shares and the weighted-average number of shares of common stock outstanding (which includes potentially dilutive securities, such as options, warrants, non-vested shares, and additional shares issuable under convertible notes outstanding during the period when such potentially dilutive securities are not anti-dilutive). Potentially dilutive securities from options, warrants and unvested restricted shares are calculated in accordance with the treasury stock method, which assumes that proceeds from the exercise of all options and warrants with exercise prices exceeding the average market value are used to repurchase common stock at market value. The incremental shares remaining after the proceeds are exhausted represent the potentially dilutive effect of the securities. Potentially dilutive securities from convertible promissory notes are calculated based on the assumed issuance at the beginning of the period, as well as any adjustment to income that would result from their assumed issuance. For 2016 and 2015 , potentially dilutive securities of 4.4 million and 4.5 million , respectively, were excluded from the diluted loss per share calculation because including them would have been anti-dilutive in both periods."
+      ],
+      "reader_note": "Regional Health Properties' predecessor AdCare reports 2015 and 2016 dollar amounts and share counts in thousands, except EPS. The common-stockholder losses include discontinued operations, the reported noncontrolling-interest allocation and preferred dividends: $28.726 million in 2015 and $14.797 million in 2016. The selected denominators are 19,680,000 and 19,892,000 weighted-average shares. The filing excludes potentially dilutive securities in both loss periods; its rounded 4.5 million and 4.4 million excluded securities are not additions to those denominators. These historical observations retain the share basis reported in this filing.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ],
+  "scope": "Eight source-pinned 2015/16 observations only: legacy entity/period/compound-unit/value checks plus explicit visible fiscal-year columns and signed statement cells. No later-period restatement, whole-history or publication approval."
+}
