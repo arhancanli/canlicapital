@@ -5,6 +5,7 @@ import tarfile
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('archive', Path(__file__).with_name('package_company_evidence.py'))
 module = importlib.util.module_from_spec(spec)
@@ -12,6 +13,29 @@ spec.loader.exec_module(module)
 
 
 class EvidenceArchiveTests(unittest.TestCase):
+    def test_batch_profile_rejects_changed_inputs_before_packaging(self):
+        import package_batch2_evidence as batch
+        import hashlib
+        for changed in ['registry', 'ledger', 'pending', 'fixture']:
+            with self.subTest(changed=changed), tempfile.TemporaryDirectory() as temp:
+                root = Path(temp).resolve()
+                names = dict(registry=batch.REGISTRY, ledger='artifacts/seo/ledger.json.gz',
+                             pending='artifacts/seo/pending.json', fixture='scripts/fixture.json.gz')
+                descriptors = {}
+                for key, name in names.items():
+                    path = root / name
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    path.write_bytes(b'original')
+                    descriptors[key] = dict(path=name, sha256=hashlib.sha256(b'original').hexdigest())
+                profile = dict(schema='canli.batch2-archive-profile.v1',
+                               registry=descriptors['registry'], ledger=descriptors['ledger'],
+                               pending=[descriptors['pending']], fixtures=[descriptors['fixture']], scope='test')
+                (root / 'profile.json').write_text(json.dumps(profile))
+                (root / names[changed]).write_bytes(b'changed')
+                with patch.object(batch, 'ROOT', root), self.assertRaisesRegex(ValueError, 'Archive profile dependency changed'):
+                    batch.build(root / 'result.tar', 'profile.json')
+                self.assertFalse((root / 'result.tar').exists())
+
     def test_restore_rejects_untrusted_archive_before_extraction(self):
         from verify_company_evidence_restore import restore_check
         with tempfile.TemporaryDirectory() as temp:

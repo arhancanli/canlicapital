@@ -2093,3 +2093,88 @@ and later archive coverage. All original indexing, SEO, developer-adoption and
 governed-engine goals remain active. No production or new indexing gain.
 Transfer44227 was polled live this turn; latest receipt: 5,363 of 10,360 objects,
 zero failures. Uploader and plan unchanged. Owner attribution file untouched.
+
+PR145 published at 25d8c4659b941b7935d557a8e0b2e9c3d68dfcaa; CI pending.
+Push completed with exit0; unpublished rebase preserved full tree
+1ff89f1daf5b577c276569cec51cfe710391dc42. Owner attribution file untouched.
+
+## 2026-09-21 — Scope-v16 release checks started after PR145 merge
+
+Previous goal turn yielded actionable evidence: all four PR145 CI checks passed;
+this turn merged the reviewed head25d8c465 as6670f7a7d9457ec22c13b209088e851193776a35.
+Fetched main and verified identical full tree1ff89f1daf5b577c276569cec51cfe710391dc42.
+Current branch: evidence/batch2-scope-v16-release-checks-20260921.
+
+Fresh whole-corpus HTTP job75012 RUNNING; log /tmp/canli-v22-scope-v16-http.log;
+output artifacts/seo/company-v22-scope-v16-http-20260921.json.
+Fresh browser job73212 RUNNING; log /tmp/canli-v22-scope-v16-browser.log;
+output artifacts/seo/company-v22-scope-v16-browser-20260921.json.
+These runs cover the current notes/registry:40 registered filing reviews across34
+companies. Do not change registry, reader notes, renderer or other pinned inputs
+while audits run. Latest observed progress:900companies/24,802pages HTTP and150
+browser cases; neither run is yet a completed release result. Poll exact handles.
+
+Uploader44227 polled live, still running. Latest observed receipt5,759/10,360
+objects, zero failures, incomplete. Uploader, storage plan and runtime objects
+unchanged. No production activation or new indexed-page evidence.
+
+Read captured LENSAR2024/25 tables19/61/62/63 and full two-class/loss disclosures:
+shares are displayed in thousands (scale3); excluded instrument balances differ
+from excluded weighted-average shares. Read Femasys2024/25 tables16/49/50 and
+loss/pre-funded warrant disclosures: denominator includes pre-funded warrants;
+EPS note references November2025 pre-funded warrants while issuance note describes
+August2025. These are preliminary inspections only, with no new approval, public
+note, ledger registration or source alteration. Continue source review after this
+release-check checkpoint, retaining any unresolved date/attribution conflict.
+
+Ledger remains320reviewed/480pending/0withdrawn, including16presentation-only.
+Five discrepancy reports remain pending. Newer notes and pending reports still
+need an updated isolated archive: existing scope-v13 archive remains immutable
+and covers its historical inputs only. All original SEO/indexing, API/MCP and
+repository adoption, and governed-engine outcome goals remain active. Owner
+ATTRIBUTION-REVIEW file untouched.
+
+## 2026-09-21 — Current notes pass release checks; scope-v16 archive restored
+
+Previous turn made progress by merging PR145 and starting audits; this turn
+completed those checks and extended isolated evidence restoration.
+Branch: evidence/batch2-scope-v16-release-checks-20260921. PR145 merged as
+6670f7a7d9457ec22c13b209088e851193776a35; full tested/merged tree verified identical.
+
+HTTP75012 TERMINAL0: company-v22-scope-v16-http-20260921.json verifies all
+90,732reference pages,6,646downloads and90,732HTTP sitemap URLs, zero failures,
+maximum four clicks from the company directory and36,223HTML bytes. Code pins
+checked against current files. Local sequential HTTP, not hosted load/indexing.
+Browser73212 TERMINAL0: company-v22-scope-v16-browser-20260921.json records720
+Chromium/WebKit cases at390/1440px,40registered filings across34companies,
+170note-bearing paths and800exact reader-note/source checks; zero failures.
+Current input hashes verified. Withheld rows/keyboard controls, developer links,
+canonical/structured-data paths and omitted-history404s checked. Mobile Chromium
+and WebKit Idaho screenshots inspected. Not full accessibility certification.
+
+Archive51992 TERMINAL0: company-batch2-evidence-scope-v16-20260921.tar contains
+644files/272,465,920bytes; SHA7d758bc596cfc184fbf0baf25a1fa3a40d21deb759be701d31ee5246597b31e3.
+All24reports replay byte-identically in an isolated temporary environment with
+hash-locked parser dependencies installed offline. Includes all100primary captures,
+seven legacy instances, registered reviews through scope-v16, five pending reports
+and the320reviewed/480pending ledger (16presentation-only). Receipt:
+company-batch2-evidence-archive-scope-v16-20260921.json. Earlier archive unchanged.
+This is local reproduction, not independent certification or hosted backup.
+Saved base revision25d8c465; modified packager and profile are saved/hash-bound
+inside archive and were checked against current files after replay.
+
+Packager now accepts an explicit hash-pinned build profile binding registry,
+ledger, pending reports and fixtures; restored receipt uses sealed archive scope.
+Six archive safety tests pass and are now in CI. Initial profile mutation test
+fixture used macOS /var symlink path and failed the existing canonical-path guard;
+resolved only the temporary fixture root, preserving the guard. Tests now prove
+changed registry/ledger/pending/fixture bytes fail before creating an archive.
+
+Uploader44227 polled live this turn; latest observed5964/10,360objects, zero
+failures, incomplete. Uploader, plan and runtime objects unchanged. No production
+activation or new indexed-page evidence. Owner attribution file untouched.
+
+Next publish this checkpoint, finish storage transfer and verify hosted delivery;
+continue pending source/accounting/usefulness review. LENSAR/Femasys inspections
+remain preliminary (see preceding log). Ledger unchanged; all original indexing,
+SEO/search-intent, developer-adoption and governed-engine goals remain active.

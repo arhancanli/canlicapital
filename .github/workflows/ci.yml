@@ -50,6 +50,7 @@ jobs:
           python3 scripts/review-maxcyte-share-context.test.py
           python3 scripts/review-plug-share-context.test.py
           python3 scripts/review-biopath-share-context.test.py
+          python3 scripts/test_company_evidence_archive.py
           npm run test:corpus
       - name: Verify change-notification batching
         run: npm run test:indexnow
