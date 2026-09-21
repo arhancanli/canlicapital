@@ -1956,3 +1956,35 @@ and later archive coverage. No source/policy/runtime-object changes or indexing 
 Transfer44227 polled live this turn; latest4,445/10,360objects/zero failures;
 uploader/plan unchanged. All SEO/indexing, developer adoption and governed engine
 goals remain active. Owner attribution file untouched.
+
+PR141 published at5203097e7878a2b820b6a463d83e411df74a62cf; CI pending.
+Push terminal0; unpublished rebase preserved full tree
+f5f4a590cbd3da24be48c3a0eed7a9124cf3c813. Owner attribution file untouched.
+
+## 2026-09-21 — Wright contradictory statement units retained
+
+Worktree branch `evidence/wright-unit-discrepancy-20260921`.
+Previous turn made progress:16Exagen/Immunic observations reviewed and PR141.
+PR141 merged asae0142d1efb7bc0c8d0019afc3afb92a00ae6804 after all four
+CI35549780477 checks passed at5203097e; exact tested/merged tree
+f5f4a590cbd3da24be48c3a0eed7a9124cf3c813 matches.
+Wright discrepancy retained in company-wright-unit-discrepancy-20260921.json,
+replay runner scripts/review-wright-unit-discrepancy.py and actual source fixture.
+All8numbers match, but table54heading 'in thousands, except per share amounts'
+conflicts with full20,620,711share tags at scale0. Table51balance sheet separately
+states21,628,680issued minus1,007,969treasury equals20,620,711outstanding. Exact
+statement rows, heading XML, share/EPS fact XML/context/unit, balance-sheet text and
+scale3USD net-loss tags retained. Diagnostic ratios distinguish full shares versus
+hypothetical thousand-share interpretation without treating ratios or period-end
+shares as accounting approval. Source/receipt/primary/code hashes pinned.
+Final report replays byte-identically. Initial draft retained corpus-local; final
+adds explicit loss-tag assertions/evidence. Disposition ACCOUNTING_SCOPE_REVIEW_PENDING;
+no public note, policy hold, corrected data or review registration. Ledger tests now
+reject all four unresolved reports (Theriva, Community, Morgan, Wright).7tests pass.
+Batch2 scope-v14 remains280reviewed/520pending/0withdrawn,16presentation-only.
+No renderer/source/runtime-object change this turn. Latest HTTP/browser and archive
+snapshots predate Exagen/Immunic; new notes still need relevant release verification
+and later archive coverage. Next continue pending filing contexts and hosted delivery.
+Transfer44227 polled live this turn; latest4,662/10,360objects/zero failures;
+uploader/plan unchanged. No production activation/new indexing gain. All original
+SEO/indexing, developer-adoption and governed-engine goals active; owner file untouched.
