@@ -1,17 +1,17 @@
 {
   "schema": "canli.company-production-activation.v1",
   "enabled": true,
-  "release_hash": "7573eb42d7966d70a45d12513f7a5b2ef75195ffa25d5b30f39ba9a5c3f4c5fc",
+  "release_hash": "4a5d9160bfa85ba10cea83467c64402629321e5445fe0dd9990571bf43b36ce2",
   "catalog_base_url": "https://bpnensyowfmdwhqmfdrg.supabase.co/storage/v1/object/public/company-reference-staging/catalog/",
   "delivery_base_url": "https://bpnensyowfmdwhqmfdrg.supabase.co/storage/v1/object/public/company-reference-staging/delivery/",
   "admission": {
-    "path": "config/company-admission-v22.json",
-    "sha256": "87639df2eafffa026deb31fb6930a2c9c8cb196540baf2e4ba945d4006e17d78"
+    "path": "config/company-admission-v23.json",
+    "sha256": "93d4a9709ecd66097fdff2843e2671e3c248525aefdda1f37bfc239af2ddc4f2"
   },
   "approval": {
     "date": "2026-09-21",
     "by": "owner",
-    "scope": "clean set: 77,359 admitted URLs (3,308 overviews, 73,984 unflagged histories, 67 directory pages); 12,959 flagged histories and 15 companies with pending accounting-scope review stay noindex",
-    "basis": "Owner publication approval of 2026-09-20 and release-size decision of 2026-09-21; storage transfer 10,360/10,360 verified; clean hosted readiness 23/23."
+    "scope": "clean set v23: 132,876 admitted URLs (6,376 overviews, 126,372 unflagged histories, 128 directory pages); 30,342 flagged histories and 15 companies with pending accounting-scope review stay noindex",
+    "basis": "Owner's standing full permission of 2026-09-21 under the clean-set rule chosen for v22; v23 verified by scripts/verify-v23-runtime.mjs and the local HTTP audit; storage transfer and hosted readiness receipts required before merge."
   }
 }
