@@ -1,0 +1,643 @@
+{
+  "schema": "canli.reviewed-share-context.v1",
+  "publication_approved": false,
+  "spec_sha256": "2b0a47cfec7caa5e1acdaa37860f1de3089db4dd9608f1799d8049d7c3e888fc",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "code_sha256": "ff8565ac2ef713ec8b7cc8e30de750d973ae3f934f8c75f779ca2459725fa8d4",
+  "helper_sha256": "fc27ceee7bdb441eb4b8c84b86f3d9761f9eb04e423458143c2ddbc66ce21475",
+  "decisions": [
+    {
+      "cik": "0001001838",
+      "source_sha256": "bf9ab0f125f067fed8780461c2fcc2364e03d08ca32b598c380969308a378be0",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1001838/000110465911011083/a11-2140_110k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T23:13:53.515886+00:00",
+        "bytes": 5793629,
+        "sha256": "eaa33f247e7837220c701a7ed525167dfd6c31fdcb9724c9e8be4caf9e2477f6",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001001838-0001104659-11-011083-primary.response"
+      },
+      "receipt_sha256": "d5fd9b915a0ad2409bbad1959b7d6244123557d9b441c5c3652eacc68b5c8b05",
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1001838/000110465911011083/scco-20101231.xml",
+        "status": 200,
+        "bytes": 2596407,
+        "sha256": "535d5f6a86fa522d6816df71b8b46d6fd48f7f0671559ec402247c3716440972",
+        "captured_at": "2026-09-20T23:22:13.503924+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001001838-0001104659-11-011083-instance.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2008-01-01",
+          "end": "2008-12-31",
+          "val": 1.6,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2008",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2009-01-01",
+          "end": "2009-12-31",
+          "val": 1.09,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2009",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2010-01-01",
+          "end": "2010-12-31",
+          "val": 1.83,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2010",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2008-01-01",
+          "end": "2008-12-31",
+          "val": 1.6,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2008",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2009-01-01",
+          "end": "2009-12-31",
+          "val": 1.09,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2009",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2010-01-01",
+          "end": "2010-12-31",
+          "val": 1.83,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2010",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2008-01-01",
+          "end": "2008-12-31",
+          "val": 878713000,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2008",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2008-01-01",
+          "end": "2008-12-31",
+          "val": 878713000,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2008",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "comparison": {
+        "checks": [
+          {
+            "selected": {
+              "start": "2008-01-01",
+              "end": "2008-12-31",
+              "val": 1.6,
+              "accn": "0001104659-11-011083",
+              "fy": 2010,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2011-03-01",
+              "frame": "CY2008",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "D2008",
+                "unit_id": "USDPerShare",
+                "value": "1.60"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2009-01-01",
+              "end": "2009-12-31",
+              "val": 1.09,
+              "accn": "0001104659-11-011083",
+              "fy": 2010,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2011-03-01",
+              "frame": "CY2009",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "D2009",
+                "unit_id": "USDPerShare",
+                "value": "1.09"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2010-01-01",
+              "end": "2010-12-31",
+              "val": 1.83,
+              "accn": "0001104659-11-011083",
+              "fy": 2010,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2011-03-01",
+              "frame": "CY2010",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "D2010",
+                "unit_id": "USDPerShare",
+                "value": "1.83"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2008-01-01",
+              "end": "2008-12-31",
+              "val": 1.6,
+              "accn": "0001104659-11-011083",
+              "fy": 2010,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2011-03-01",
+              "frame": "CY2008",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "D2008",
+                "unit_id": "USDPerShare",
+                "value": "1.60"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2009-01-01",
+              "end": "2009-12-31",
+              "val": 1.09,
+              "accn": "0001104659-11-011083",
+              "fy": 2010,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2011-03-01",
+              "frame": "CY2009",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "D2009",
+                "unit_id": "USDPerShare",
+                "value": "1.09"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2010-01-01",
+              "end": "2010-12-31",
+              "val": 1.83,
+              "accn": "0001104659-11-011083",
+              "fy": 2010,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2011-03-01",
+              "frame": "CY2010",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "D2010",
+                "unit_id": "USDPerShare",
+                "value": "1.83"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2008-01-01",
+              "end": "2008-12-31",
+              "val": 878713000,
+              "accn": "0001104659-11-011083",
+              "fy": 2010,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2011-03-01",
+              "frame": "CY2008",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "D2008",
+                "unit_id": "shares",
+                "value": "878713000"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2008-01-01",
+              "end": "2008-12-31",
+              "val": 878713000,
+              "accn": "0001104659-11-011083",
+              "fy": 2010,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2011-03-01",
+              "frame": "CY2008",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "D2008",
+                "unit_id": "shares",
+                "value": "878713000"
+              }
+            ]
+          }
+        ]
+      },
+      "legacy_evidence": [
+        {
+          "selected": {
+            "start": "2008-01-01",
+            "end": "2008-12-31",
+            "val": 1.6,
+            "accn": "0001104659-11-011083",
+            "fy": 2010,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2011-03-01",
+            "frame": "CY2008",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "table_index": 91,
+          "row_index": 27,
+          "cells": [
+            "Net earnings \u2014 basic and diluted",
+            "",
+            "$",
+            "1.83",
+            "",
+            "$",
+            "1.09",
+            "",
+            "$",
+            "1.60",
+            ""
+          ],
+          "visible_value": "1.60",
+          "normalized_value": "1.60",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareBasic xmlns:ns0=\"http://xbrl.us/us-gaap/2009-01-31\" contextRef=\"D2008\" decimals=\"2\" unitRef=\"USDPerShare\">1.60</ns0:EarningsPerShareBasic>\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"D2008\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001001838</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:startDate>2008-01-01</ns0:startDate>\n      <ns0:endDate>2008-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"USDPerShare\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:USD</ns0:measure>\n      </ns0:unitNumerator>\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": 1.09,
+            "accn": "0001104659-11-011083",
+            "fy": 2010,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2011-03-01",
+            "frame": "CY2009",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "table_index": 91,
+          "row_index": 27,
+          "cells": [
+            "Net earnings \u2014 basic and diluted",
+            "",
+            "$",
+            "1.83",
+            "",
+            "$",
+            "1.09",
+            "",
+            "$",
+            "1.60",
+            ""
+          ],
+          "visible_value": "1.09",
+          "normalized_value": "1.09",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareBasic xmlns:ns0=\"http://xbrl.us/us-gaap/2009-01-31\" contextRef=\"D2009\" decimals=\"2\" unitRef=\"USDPerShare\">1.09</ns0:EarningsPerShareBasic>\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"D2009\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001001838</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:startDate>2009-01-01</ns0:startDate>\n      <ns0:endDate>2009-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"USDPerShare\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:USD</ns0:measure>\n      </ns0:unitNumerator>\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 1.83,
+            "accn": "0001104659-11-011083",
+            "fy": 2010,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2011-03-01",
+            "frame": "CY2010",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "table_index": 91,
+          "row_index": 27,
+          "cells": [
+            "Net earnings \u2014 basic and diluted",
+            "",
+            "$",
+            "1.83",
+            "",
+            "$",
+            "1.09",
+            "",
+            "$",
+            "1.60",
+            ""
+          ],
+          "visible_value": "1.83",
+          "normalized_value": "1.83",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareBasic xmlns:ns0=\"http://xbrl.us/us-gaap/2009-01-31\" contextRef=\"D2010\" decimals=\"2\" unitRef=\"USDPerShare\">1.83</ns0:EarningsPerShareBasic>\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"D2010\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001001838</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:startDate>2010-01-01</ns0:startDate>\n      <ns0:endDate>2010-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"USDPerShare\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:USD</ns0:measure>\n      </ns0:unitNumerator>\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2008-01-01",
+            "end": "2008-12-31",
+            "val": 1.6,
+            "accn": "0001104659-11-011083",
+            "fy": 2010,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2011-03-01",
+            "frame": "CY2008",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "table_index": 91,
+          "row_index": 27,
+          "cells": [
+            "Net earnings \u2014 basic and diluted",
+            "",
+            "$",
+            "1.83",
+            "",
+            "$",
+            "1.09",
+            "",
+            "$",
+            "1.60",
+            ""
+          ],
+          "visible_value": "1.60",
+          "normalized_value": "1.60",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareDiluted xmlns:ns0=\"http://xbrl.us/us-gaap/2009-01-31\" contextRef=\"D2008\" decimals=\"2\" unitRef=\"USDPerShare\">1.60</ns0:EarningsPerShareDiluted>\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"D2008\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001001838</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:startDate>2008-01-01</ns0:startDate>\n      <ns0:endDate>2008-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"USDPerShare\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:USD</ns0:measure>\n      </ns0:unitNumerator>\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": 1.09,
+            "accn": "0001104659-11-011083",
+            "fy": 2010,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2011-03-01",
+            "frame": "CY2009",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "table_index": 91,
+          "row_index": 27,
+          "cells": [
+            "Net earnings \u2014 basic and diluted",
+            "",
+            "$",
+            "1.83",
+            "",
+            "$",
+            "1.09",
+            "",
+            "$",
+            "1.60",
+            ""
+          ],
+          "visible_value": "1.09",
+          "normalized_value": "1.09",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareDiluted xmlns:ns0=\"http://xbrl.us/us-gaap/2009-01-31\" contextRef=\"D2009\" decimals=\"2\" unitRef=\"USDPerShare\">1.09</ns0:EarningsPerShareDiluted>\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"D2009\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001001838</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:startDate>2009-01-01</ns0:startDate>\n      <ns0:endDate>2009-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"USDPerShare\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:USD</ns0:measure>\n      </ns0:unitNumerator>\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 1.83,
+            "accn": "0001104659-11-011083",
+            "fy": 2010,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2011-03-01",
+            "frame": "CY2010",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "table_index": 91,
+          "row_index": 27,
+          "cells": [
+            "Net earnings \u2014 basic and diluted",
+            "",
+            "$",
+            "1.83",
+            "",
+            "$",
+            "1.09",
+            "",
+            "$",
+            "1.60",
+            ""
+          ],
+          "visible_value": "1.83",
+          "normalized_value": "1.83",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareDiluted xmlns:ns0=\"http://xbrl.us/us-gaap/2009-01-31\" contextRef=\"D2010\" decimals=\"2\" unitRef=\"USDPerShare\">1.83</ns0:EarningsPerShareDiluted>\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"D2010\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001001838</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:startDate>2010-01-01</ns0:startDate>\n      <ns0:endDate>2010-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"USDPerShare\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:USD</ns0:measure>\n      </ns0:unitNumerator>\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2008-01-01",
+            "end": "2008-12-31",
+            "val": 878713000,
+            "accn": "0001104659-11-011083",
+            "fy": 2010,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2011-03-01",
+            "frame": "CY2008",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "table_index": 91,
+          "row_index": 30,
+          "cells": [
+            "Weighted average shares outstanding \u2014 basic and diluted",
+            "",
+            "850,000",
+            "",
+            "850,697",
+            "",
+            "878,713",
+            ""
+          ],
+          "visible_value": "878713",
+          "normalized_value": "878713000",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfDilutedSharesOutstanding xmlns:ns0=\"http://xbrl.us/us-gaap/2009-01-31\" contextRef=\"D2008\" decimals=\"-3\" unitRef=\"shares\">878713000</ns0:WeightedAverageNumberOfDilutedSharesOutstanding>\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"D2008\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001001838</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:startDate>2008-01-01</ns0:startDate>\n      <ns0:endDate>2008-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n    <ns0:measure>xbrli:shares</ns0:measure>\n  </ns0:unit>\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2008-01-01",
+            "end": "2008-12-31",
+            "val": 878713000,
+            "accn": "0001104659-11-011083",
+            "fy": 2010,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2011-03-01",
+            "frame": "CY2008",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "table_index": 91,
+          "row_index": 30,
+          "cells": [
+            "Weighted average shares outstanding \u2014 basic and diluted",
+            "",
+            "850,000",
+            "",
+            "850,697",
+            "",
+            "878,713",
+            ""
+          ],
+          "visible_value": "878713",
+          "normalized_value": "878713000",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfSharesOutstandingBasic xmlns:ns0=\"http://xbrl.us/us-gaap/2009-01-31\" contextRef=\"D2008\" decimals=\"-3\" unitRef=\"shares\">878713000</ns0:WeightedAverageNumberOfSharesOutstandingBasic>\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"D2008\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001001838</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:startDate>2008-01-01</ns0:startDate>\n      <ns0:endDate>2008-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n    <ns0:measure>xbrli:shares</ns0:measure>\n  </ns0:unit>\n  "
+            }
+          ]
+        }
+      ],
+      "table_index": 91,
+      "table_text": "For the years ended December 31, (in thousands, except for per share amounts) 2010 2009 2008 Net sales $ 5,149,500 $ 3,734,280 $ 4,850,820 Operating cost and expenses: Cost of sales (exclusive of depreciation, amortization and depletion shown separately below) 2,099,438 1,823,673 2,182,206 Selling, general and administrative 88,305 78,291 102,432 Depreciation, amortization and depletion 323,240 322,590 327,302 Exploration 34,313 24,578 36,990 Total operating costs and expenses 2,545,296 2,249,132 2,648,930 Operating income 2,604,204 1,485,148 2,201,890 Interest expense (167,949 ) (99,793 ) (105,928 ) Capitalized interest 7,462 2,156 6,776 Gain (loss) on derivative instruments \u2014 4,236 (74,628 ) Other income (expense) (20,737 ) 6,077 17,272 Interest income 7,800 6,610 48,400 Income before income taxes 2,430,780 1,404,434 2,093,782 Income taxes 868,071 469,861 679,323 Net income 1,562,709 934,573 1,414,459 Less: Net income attributable to the non-controlling interest 8,658 5,192 7,866 Net income attributable to SCC $ 1,554,051 $ 929,381 $ 1,406,593 Per common share amounts attributable to SCC: Net earnings \u2014 basic and diluted $ 1.83 $ 1.09 $ 1.60 Dividends paid $ 1.68 $ 0.44 $ 1.94 Weighted average shares outstanding \u2014 basic and diluted 850,000 850,697 878,713",
+      "disclosures": [
+        "For the years ended December 31, (in thousands, except for per share amounts) 2010 2009 2008",
+        "Less: Net income attributable to the non-controlling interest 8,658 5,192 7,866",
+        "Net income attributable to SCC $ 1,554,051 $ 929,381 $ 1,406,593"
+      ],
+      "reader_note": "Southern Copper's selected 2008\u20132010 EPS uses earnings attributable to SCC after noncontrolling interests, rather than consolidated net income. The statement reports dollars and shares in thousands, except per-share amounts: the selected 2008 weighted-average count of 878,713 represents 878,713,000 shares. It presents basic and diluted EPS and shares together. This review verifies that presentation and the selected values but does not establish the reason the basic and diluted measures are equal. The selected share observations cover 2008 only; the EPS observations cover all three years.",
+      "disposition": "REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED"
+    }
+  ],
+  "scope": "Eight source-pinned 2008\u20132010 observations only: legacy entity/period/compound-unit/value checks plus explicit visible fiscal-year columns and signed statement cells. No later-period restatement, whole-history or publication approval."
+}

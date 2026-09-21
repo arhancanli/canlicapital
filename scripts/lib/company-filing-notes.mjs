@@ -1,6 +1,164 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001001838",
+  "include_on_overview": true,
+  "source_sha256": "bf9ab0f125f067fed8780461c2fcc2364e03d08ca32b598c380969308a378be0",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Southern Copper's selected 2008\u20132010 EPS uses earnings attributable to SCC after noncontrolling interests, rather than consolidated net income. The statement reports dollars and shares in thousands, except per-share amounts: the selected 2008 weighted-average count of 878,713 represents 878,713,000 shares. It presents basic and diluted EPS and shares together. This review verifies that presentation and the selected values but does not establish the reason the basic and diluted measures are equal. The selected share observations cover 2008 only; the EPS observations cover all three years.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1001838/000110465911011083/a11-2140_110k.htm",
+  "observations": [
+    {
+      "start": "2008-01-01",
+      "end": "2008-12-31",
+      "val": 1.6,
+      "accn": "0001104659-11-011083",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "val": 1.09,
+      "accn": "0001104659-11-011083",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "val": 1.83,
+      "accn": "0001104659-11-011083",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2008-01-01",
+      "end": "2008-12-31",
+      "val": 1.6,
+      "accn": "0001104659-11-011083",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2009-01-01",
+      "end": "2009-12-31",
+      "val": 1.09,
+      "accn": "0001104659-11-011083",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "val": 1.83,
+      "accn": "0001104659-11-011083",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2008-01-01",
+      "end": "2008-12-31",
+      "val": 878713000,
+      "accn": "0001104659-11-011083",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2008-01-01",
+      "end": "2008-12-31",
+      "val": 878713000,
+      "accn": "0001104659-11-011083",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001004724",
+  "include_on_overview": true,
+  "source_sha256": "f1e6a37875ed9bad416e92c78341131484deab37089c4e801d52524979860e6b",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Regional Health Properties' predecessor AdCare reports 2015 and 2016 dollar amounts and share counts in thousands, except EPS. The common-stockholder losses include discontinued operations, the reported noncontrolling-interest allocation and preferred dividends: $28.726 million in 2015 and $14.797 million in 2016. The selected denominators are 19,680,000 and 19,892,000 weighted-average shares. The filing excludes potentially dilutive securities in both loss periods; its rounded 4.5 million and 4.4 million excluded securities are not additions to those denominators. These historical observations retain the share basis reported in this filing.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1004724/000100472417000021/a12312016-documentx10k.htm",
+  "observations": [
+    {
+      "start": "2015-01-01",
+      "end": "2015-12-31",
+      "val": -1.46,
+      "accn": "0001004724-17-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2016-01-01",
+      "end": "2016-12-31",
+      "val": -0.74,
+      "accn": "0001004724-17-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2015-01-01",
+      "end": "2015-12-31",
+      "val": -1.46,
+      "accn": "0001004724-17-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2016-01-01",
+      "end": "2016-12-31",
+      "val": -0.74,
+      "accn": "0001004724-17-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2015-01-01",
+      "end": "2015-12-31",
+      "val": 19680000,
+      "accn": "0001004724-17-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2016-01-01",
+      "end": "2016-12-31",
+      "val": 19892000,
+      "accn": "0001004724-17-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2015-01-01",
+      "end": "2015-12-31",
+      "val": 19680000,
+      "accn": "0001004724-17-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2016-01-01",
+      "end": "2016-12-31",
+      "val": 19892000,
+      "accn": "0001004724-17-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001434316",
   "include_on_overview": true,
   "source_sha256": "0d3cfe19fd70310e30c155481681c8ab78f983607cbe93ec4d5e89a1219f24a2",
