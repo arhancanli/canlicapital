@@ -147,3 +147,35 @@ this is not page approval. Numerical overlap exposes a duplication risk:2,013
 companies have identical full values for liabilities-and-equity and assets.
 See CONCEPT_REVIEW.md for exact counts, scope constraints, six next-review
 candidates and the source-bound reproducible report. No source policy changed.
+
+## SEC bulk companyfacts inventory (2026-09-21)
+
+The earlier 403 on companyfacts.zip came from a request without a declared
+User-Agent. With `CanliCapital research https://canlicapital.com` the archive
+answers 200: 1,409,212,553 bytes, last modified 2026-09-19. It is cached,
+ignored, at `artifacts/seo/corpus-local/sec-bulk/` (SHA-256 `ee099c73…17b6`).
+`scripts/audit-sec-companyfacts-capacity.py` produced
+`artifacts/seo/sec-companyfacts-capacity-20260919.json`.
+
+| Measure | Count |
+| --- | ---: |
+| Entities in the archive | 20,390 |
+| With US-GAAP facts from 10-K/10-Q/20-F/40-F | 16,546 |
+| Active filers (a filing in the two years before the snapshot) | 7,281 |
+| With at least 4 of the current 34 concepts | 16,137 |
+| Current-34 histories, all entities | 375,915 |
+| Current-34 histories, active filers | 161,431 |
+| XBRL filings (10-K/10-Q/20-F/40-F, with amendments) | 413,535 |
+| Filings per company, median / p90 | 18 / 61 |
+
+These are capacity counts, not eligible, admitted, released or indexed pages.
+The current release has 3,323 companies and 87,342 histories. The ticker list
+missed a large share of active filers, and many more historical filers exist.
+Historical filers produce historical-only histories, which the current release
+withholds from indexing.
+
+Of the next most-reported tags among active filers, the top 25 would add 129,870
+histories and the top 50 would add 231,875. Many are technical (lease payment
+schedules by year, par value, authorized shares) and need a curated, useful subset.
+Filing-level pages (up to 413,535) would be a new content family and need their
+own reader task, editorial rules and review before any release.
