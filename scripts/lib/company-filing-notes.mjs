@@ -1,6 +1,164 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001362190",
+  "include_on_overview": true,
+  "source_sha256": "ff98d56fcf789f6a2b9b81e6ac2cc37d42092c28bddca9bce294d53b1d2e77bc",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "AudioEye's 2024 and 2025 statements display dollar losses and weighted-average shares in thousands, except for per-share amounts. The share tags therefore represent 11,888,000 and 12,416,000 shares, respectively. Options and restricted stock units are potential common shares under the treasury stock method; during losses, common stock equivalents are excluded as anti-dilutive, so basic and diluted loss EPS are equal.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1362190/000110465926027159/aeye-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.36,
+      "accn": "0001104659-26-027159",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.25,
+      "accn": "0001104659-26-027159",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.36,
+      "accn": "0001104659-26-027159",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.25,
+      "accn": "0001104659-26-027159",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 11888000,
+      "accn": "0001104659-26-027159",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 12416000,
+      "accn": "0001104659-26-027159",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 11888000,
+      "accn": "0001104659-26-027159",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 12416000,
+      "accn": "0001104659-26-027159",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001374690",
+  "include_on_overview": true,
+  "source_sha256": "08638b3759f4b65e6e121b92d928b796b8584ccbcb8cfc63b68c5bc067fd2552",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Larimar Therapeutics' 2023 and 2024 statements display dollar losses in thousands but full share counts and unscaled EPS. Before their August 11, 2023 exercise, prefunded warrants were already included in basic weighted-average shares because little or no consideration was required; exercise issued 628,403 common shares. Options outstanding at year-end (4,888,502 in 2023 and 7,135,390 in 2024) are excluded as anti-dilutive during losses, not added to the reported denominator. Basic and diluted loss EPS are equal.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1374690/000095017025043925/lrmr-20241231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.84,
+      "accn": "0000950170-25-043925",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.32,
+      "accn": "0000950170-25-043925",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.84,
+      "accn": "0000950170-25-043925",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.32,
+      "accn": "0000950170-25-043925",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 43901241,
+      "accn": "0000950170-25-043925",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 61256084,
+      "accn": "0000950170-25-043925",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 43901241,
+      "accn": "0000950170-25-043925",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 61256084,
+      "accn": "0000950170-25-043925",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001343009",
   "include_on_overview": true,
   "source_sha256": "915b78bb9f3d1ecdaff39577a9e5db4b6d0b32a87b795bd1dd92ab6d7b14ac19",

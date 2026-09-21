@@ -1,0 +1,287 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001362190",
+      "accession": "0001104659-26-027159",
+      "source_sha256": "ff98d56fcf789f6a2b9b81e6ac2cc37d42092c28bddca9bce294d53b1d2e77bc",
+      "primary_sha256": "18d35d31cd2c48d548a67fda85039733ba83488286034ccf28fabce4d35c21d8",
+      "receipt_sha256": "d4ecfaeb30370d8609b70a9986326670f2fa671af16bcd8f43df4120ed06339a",
+      "fixture": "scripts/fixtures/editorial/batch2-0001362190-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -0.36,
+          "accn": "0001104659-26-027159",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.25,
+          "accn": "0001104659-26-027159",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -0.36,
+          "accn": "0001104659-26-027159",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.25,
+          "accn": "0001104659-26-027159",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 11888000,
+          "accn": "0001104659-26-027159",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 12416000,
+          "accn": "0001104659-26-027159",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 11888000,
+          "accn": "0001104659-26-027159",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 12416000,
+          "accn": "0001104659-26-027159",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 111,
+      "supporting_table_indexes": [],
+      "share_scale": "3",
+      "table_requires": [
+        "(in thousands, except per share data)",
+        "3,077",
+        "4,254",
+        "12,416",
+        "11,888",
+        "0.25",
+        "0.36"
+      ],
+      "paragraph_requires": [
+        "Basic EPS is calculated by dividing net income (loss) available to common stockholders by the weighted average number of shares of the Company\u2019s common stock outstanding during the period. Diluted EPS is calculated based on the net income (loss) available to common stockholders and the weighted average number of shares of common stock outstanding during the period, adjusted for the effects of all potential dilutive common stock issuances related to options and restricted stock units. The dilutive effect of our stock-based awards is computed using the treasury stock method, which assumes all stock-based awards are exercised and the hypothetical proceeds from exercise are used to purchase common stock at the average market price during the period. The incremental shares (i.e., the difference between shares assumed to be issued versus purchased), to the extent they would have been dilutive, are included in the",
+        "denominator of the diluted EPS calculation. However, when a net loss exists, no potential common stock equivalents are included in the computation of the diluted per-share amount because the computation would result in an anti-dilutive per-share amount.",
+        "Potentially dilutive securities outstanding as of December 31, 2025 and 2024, which were excluded from the computation of basic and diluted net loss per share for the years then ended, are as follows:"
+      ],
+      "reader_note": "AudioEye's 2024 and 2025 statements display dollar losses and weighted-average shares in thousands, except for per-share amounts. The share tags therefore represent 11,888,000 and 12,416,000 shares, respectively. Options and restricted stock units are potential common shares under the treasury stock method; during losses, common stock equivalents are excluded as anti-dilutive, so basic and diluted loss EPS are equal.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001374690",
+      "accession": "0000950170-25-043925",
+      "source_sha256": "08638b3759f4b65e6e121b92d928b796b8584ccbcb8cfc63b68c5bc067fd2552",
+      "primary_sha256": "4e135a318730ddfbb2b4ff368ce8e12e53dbd99f2539cbf2b204b7fa1c03e25f",
+      "receipt_sha256": "b308c9f1b41671aeafc5db2ee38357c1ec186e05d826f8facc2040c7ab85b6b4",
+      "fixture": "scripts/fixtures/editorial/batch2-0001374690-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": -0.84,
+          "accn": "0000950170-25-043925",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-24",
+          "frame": "CY2023",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -1.32,
+          "accn": "0000950170-25-043925",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-24",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": -0.84,
+          "accn": "0000950170-25-043925",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-24",
+          "frame": "CY2023",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -1.32,
+          "accn": "0000950170-25-043925",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-24",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": 43901241,
+          "accn": "0000950170-25-043925",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-24",
+          "frame": "CY2023",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 61256084,
+          "accn": "0000950170-25-043925",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-24",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": 43901241,
+          "accn": "0000950170-25-043925",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-24",
+          "frame": "CY2023",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 61256084,
+          "accn": "0000950170-25-043925",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-24",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31"
+      ],
+      "table_index": 17,
+      "supporting_table_indexes": [],
+      "share_scale": "0",
+      "table_requires": [
+        "80,604",
+        "36,949",
+        "61,256,084",
+        "43,901,241",
+        "1.32",
+        "0.84"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except share and per share data)",
+        "Basic net loss per share is computed by dividing the net loss attributable to common stockholders by the weighted average number of common shares outstanding for the period. Prior to August 11, 2023, basic shares outstanding includes the weighted average effect of the Company\u2019s prefunded warrants issued in June 2020, the exercise of which requires little or no consideration for the delivery of shares of common stock. These prefunded warrants were exercised on August 11, 2023 and the Company received cash proceeds of less than $ 0.1 million. Accordingly, the 628,403 shares were issued upon the exercise of these warrants and are included in issued and outstanding common stock.",
+        "Diluted net loss per share attributable to common stockholders is computed by dividing the diluted net loss attributable to common stockholders by the weighted average number of common shares, including potentially dilutive common stock equivalents assuming the dilutive effect of outstanding stock options, outstanding restricted stock units, and unvested restricted common shares, as determined using the treasury stock method. For periods in",
+        "which the Company has reported net losses (all periods since inception), diluted net loss per common share attributable to common stockholders is the same as basic net loss per common share attributable to common stockholders, since dilutive common stock equivalents are not assumed to have been issued if their effect is antidilutive.",
+        "The Company excluded 7,135,390 and 4,888,502 options to purchase common stock, outstanding as of December 31, 2024 and 2023 respectively, from the computation of diluted net loss per share for the twelve months ended December 31, 2024 and 2023 , respectively, because they had an anti-dilutive impact due to the net loss incurred for the periods."
+      ],
+      "reader_note": "Larimar Therapeutics' 2023 and 2024 statements display dollar losses in thousands but full share counts and unscaled EPS. Before their August 11, 2023 exercise, prefunded warrants were already included in basic weighted-average shares because little or no consideration was required; exercise issued 628,403 common shares. Options outstanding at year-end (4,888,502 in 2023 and 7,135,390 in 2024) are excluded as anti-dilutive during losses, not added to the reported denominator. Basic and diluted loss EPS are equal.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

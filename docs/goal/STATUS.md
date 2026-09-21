@@ -12,50 +12,45 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-The previous turn completed current release checks and published PR151. PR151
-merged as0d54bdb4b290cc6315e9cba7dae36935e35a4b1f after all four CI35553465163
-checks passed at9ed2adb29399d52feb6bea1f317e1e78c9c27a83. Tested/merged tree:
-0b06366dd7808ebe05026f379e475cfaca6b168c. Current branch:
-evidence/digital-ally-denominator-20260921.
+The previous turn preserved Digital Ally's unresolved denominator and published
+PR152. PR152 merged as1968be0c46468d4f8c1e8c9eb2f3d5c8ceea383e after all four
+CI35553887300 checks passed atd144e388680dc0d1b750fa25c7792962e10cf3bb.
+Tested and merged tree76f1c84b5c7a6a1f51bf3c7729e443a5a03b2bf4 matches.
+Current branch: evidence/audioeye-larimar-context-20260921.
 
-Digital Ally's captured2024/25 statement and EPS-note facts match the eight selected
-observations. Negative inline noncontrolling-interest facts and an explicit Nobility
-Healthcare loss disclosure reconcile consolidated loss to common-stockholder loss.
-Both continuing and discontinued components reconcile after that allocation.
-However, 2024 common loss19,844,147 divided by593 reported shares rounds to loss
-EPS33,463.99, not the reported33,488.74. Shares declare decimals INF. A fractional
-or rounded denominator is not established by the captured filing. The 2025 ratio
-rounds to reported17.23. These are diagnostics, not corrected EPS or approved
-reconstructed denominators. Preserve the three retrospective split disclosures
-(May6,2025 one-for20; May22,2025 one-for100; January8,2026 one-for3) and variable-price
-convertible-note exclusion without assuming they resolve the2024 mismatch.
+AudioEye's2024/25 statements display dollars and weighted-average shares in
+thousands, with unscaled EPS. Selected share facts use scale3 and represent
+11,888,000/12,416,000 shares. Full treasury-stock/loss-exclusion disclosure is
+retained across its paragraph break. Potential common shares are excluded during
+losses; no dilution cause inferred solely from matching numbers.
 
-Report company-digital-ally-denominator-discrepancy-20260921.json retains exact
-statement rows, six full disclosures,16 selected inline facts and10 supplemental
-USD numerator facts with context/unit XML. Source SHA:
-7d66d677efc19dd49d39a5a0020f9258c1f61e3f3bacefece8eb7eb7570ee2dd.
-Primary SHA:fdafd3b70e0a95fd3780e9c7a656c2f6a459d0d74df63f9771a9c1029e7b3ea6.
-Both years remain ACCOUNTING_SCOPE_REVIEW_PENDING. No registration, public note,
-policy hold, source change or numerical correction.
+Larimar's2023/24 statements use dollar thousands but full shares. Prefunded
+warrants were included in basic weighted-average shares before August11,2023
+exercise, which issued628,403 common shares. Year-end options4,888,502/7,135,390
+are excluded as anti-dilutive during losses, not added to the weighted denominator.
+The basic-share paragraph and split diluted-loss paragraph are preserved in full.
 
-Initial replay87040 stopped because the shared comparator deliberately rejects
-scalar USD units. Initial runner preserved in corpus-local/company-digital-ally-initial-runner-20260921.py.gz,
-raw SHA12af1d47200a7fddab33cc4b1400e17b3089902d6b3dcfb1f95bf08424a1bde5.
-Shared comparator/locator unchanged. Source-specific numerator checks require
-exact USD unit structure/namespace, validated EPS contexts, table membership,
-unique facts, signs/values and precision. Corrected39662/replay33907 completed
-with exit0; reports byte-identical. Seven ledger tests pass, including rejection
-of all seven pending discrepancy reports as approved reviews.
+Report company-share-context-audioeye-larimar-20260921.json uses the unchanged
+v7 validator and replays byte-for-byte. Sixteen selected observations match exact
+statement/entity/context/unit/scale facts. Scope-v20 now has408 reviewed /392 pending /
+0 withdrawn, including64 presentation-only. Exactly16 state/evidence transitions;
+all800 observation metadata and prior392 decisions preserved.90 renderer/ledger
+tests pass: all10 affected paths, share scales, prefunded basic inclusion, loss
+exclusions, unchanged data and removal after a selected observation changes.
+No source correction, selector policy or runtime-object change.
 
-Scope-v19 remains392 reviewed /408 pending /0 withdrawn, including64 presentation-only.
-Current HTTP17917/browser26941 checks still match unchanged reader-note/runtime
-inputs. The new pending report needs later archive coverage; prior665-file archive
-remains immutable and covers its six historical pending reports.
+Myomo inspected but not registered: one prefunded-warrant inclusion description
+lists January2023/August2023 offering closings; another also lists January2024.
+Both give3,763,258/7,061,519 outstanding at year-end2025/24 and a $0.0001 exercise
+price. Issuance-date weighting remains to be resolved; no new approval or correction.
+Seven discrepancy reports remain pending. New AudioEye/Larimar reader notes need
+updated relevant release checks and later archive coverage; earlier scope-v19
+checks/archive retain their pinned historical coverage. Runtime remains v22.
 
-Recovery79720 polled live; latest 4304 reverified objects, zero failures, incomplete.
-Same uploader/plan/bounded policy. Original44227 remains terminal after6,023 verified
-objects and HTTP520; counts are not additive uploads. No production deployment or
-new indexing evidence. Owner attribution file untouched. Next publish this pending
-review, continue unresolved contexts and monitor hosted readiness. All original
+Recovery79720 polled live; latest 5027 reverified objects, zero failures, incomplete.
+Same uploader/plan/bounded policy; original44227 remains terminal after6,023 verified
+objects and HTTP520. Counts are not additive uploads. No production deployment or
+new indexed-page evidence. Owner attribution file untouched. Next publish these
+reviews, continue pending contexts and monitor hosted readiness. All original
 indexing, quality/SEO/search-intent, developer-adoption and governed-engine goals
 remain active.
