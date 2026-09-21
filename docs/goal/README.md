@@ -21,7 +21,8 @@ transitions, not continuous telemetry or proof that background work is running.
 Working locations:
 
 - Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/batch2-remaining-legacy-20260921`. PR168 merged with tested tree verified. Scope-v31:672 reviewed/128 pending;101 targeted tests pass. Latest full release checks/archive cover scope-v29. Recovery79720 running; expansion unpublished. STATUS.md records exact evidence.
-- Production checkout: `/Users/arhancanli/canlicapital-production-20260920`; last verified application revision9608542c. Inspect actual deployment/alias state before claiming new production behavior.
+- Production checkout: `/Users/arhancanli/canlicapital-production-20260920` (the hourly deploy's design source), detached at f6d37926 (PR170) since 2026-09-21. Inspect actual deployment/alias state before claiming new production behavior.
+- Activation: `config/company-production-activation.json` pins release 7573eb42…, storage bases and `config/company-admission-v22.json`. Rebuild admission with `scripts/build-company-admission.mjs` from the v22 discovery, selected-quality report and scope ledgers.
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.
 - SEC collector quality: `/Users/arhancanli/alphac-source-quality-20260919`, branch `fix/sec-companyfacts-source-quality`; PR https://github.com/arhancanli/alphac/pull/70. Tests use the security worktree's existing Python environment; do not commit a .venv symlink.
