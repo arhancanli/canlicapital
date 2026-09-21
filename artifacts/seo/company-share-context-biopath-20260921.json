@@ -1,0 +1,600 @@
+{
+  "schema": "canli.reviewed-share-context.v1",
+  "publication_approved": false,
+  "spec_sha256": "d5298ba422b2d23059fac62a79e3e101e5e9fd0cfb4f47571e7437a0b3c9413a",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "code_sha256": "13588df6510fc6eb833493c95d682b2fbc7b1587b5814de5f14f8fbaaa9a9e0d",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "decisions": [
+    {
+      "cik": "0001133818",
+      "source_sha256": "ba1a5b94a703d7df40927e88576df9dbcb07b38680ce9a942065f8bd6fea9eee",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1133818/000155837025003837/bpth-20241231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T23:15:07.874559+00:00",
+        "bytes": 2136877,
+        "sha256": "61aa4b3fccbf00c969a8bdaafd57663d39fadf3044a1d0e8cffb02f5d515a9b9",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001133818-0001558370-25-003837-primary.response"
+      },
+      "receipt_sha256": "8ab30bac2e5a0072d08e541d3a17e6d4c3aa26f971417be11fed3e04635117f6",
+      "selected_observations": [
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": -33.63,
+          "accn": "0001558370-25-003837",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-27",
+          "frame": "CY2023",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -4.12,
+          "accn": "0001558370-25-003837",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-27",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": -33.63,
+          "accn": "0001558370-25-003837",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-27",
+          "frame": "CY2023",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -4.12,
+          "accn": "0001558370-25-003837",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-27",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": 478000,
+          "accn": "0001558370-25-003837",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-27",
+          "frame": "CY2023",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 2401000,
+          "accn": "0001558370-25-003837",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-27",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "val": 478000,
+          "accn": "0001558370-25-003837",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-27",
+          "frame": "CY2023",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 2401000,
+          "accn": "0001558370-25-003837",
+          "fy": 2024,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-03-27",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "comparison": {
+        "checks": [
+          {
+            "selected": {
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "val": -33.63,
+              "accn": "0001558370-25-003837",
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-03-27",
+              "frame": "CY2023",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2023-01-01",
+                "end": "2023-12-31",
+                "unit": "USD/shares",
+                "value": "-33.63",
+                "fact_id": "Tc_yG4qqwmXaEOHxi2wi4VqZA_21_6",
+                "context_id": "Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg",
+                "table_row": "Net loss per share, basic and diluted \u200b $ ( 4.12 ) \u200b $ ( 33.63 )",
+                "preceding_rows": [
+                  "Net loss \u200b $ ( 9,894 ) \u200b $ ( 16,078 )",
+                  "\u200b \u200b \u200b"
+                ],
+                "table_header_rows": [
+                  "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+                  "\u200b \u200b Year Ended December\u00a031,",
+                  "\u200b 2024 2023",
+                  "\u200b \u200b \u200b",
+                  "Operating expenses \u200b \u200b"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": -4.12,
+              "accn": "0001558370-25-003837",
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-03-27",
+              "frame": "CY2024",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-4.12",
+                "fact_id": "Tc_ftvo6CItHEKM7bE1NbEpdg_21_3",
+                "context_id": "Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g",
+                "table_row": "Net loss per share, basic and diluted \u200b $ ( 4.12 ) \u200b $ ( 33.63 )",
+                "preceding_rows": [
+                  "Net loss \u200b $ ( 9,894 ) \u200b $ ( 16,078 )",
+                  "\u200b \u200b \u200b"
+                ],
+                "table_header_rows": [
+                  "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+                  "\u200b \u200b Year Ended December\u00a031,",
+                  "\u200b 2024 2023",
+                  "\u200b \u200b \u200b",
+                  "Operating expenses \u200b \u200b"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "val": -33.63,
+              "accn": "0001558370-25-003837",
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-03-27",
+              "frame": "CY2023",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2023-01-01",
+                "end": "2023-12-31",
+                "unit": "USD/shares",
+                "value": "-33.63",
+                "fact_id": "Hidden_CS9DPM1OkkWRR2xxEKNE9w",
+                "context_id": "Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg",
+                "table_row": null,
+                "preceding_rows": [],
+                "table_header_rows": [],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": -4.12,
+              "accn": "0001558370-25-003837",
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-03-27",
+              "frame": "CY2024",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-4.12",
+                "fact_id": "Hidden_H59tG1ArmEaUPHOGLI_LcA",
+                "context_id": "Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g",
+                "table_row": null,
+                "preceding_rows": [],
+                "table_header_rows": [],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "val": 478000,
+              "accn": "0001558370-25-003837",
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-03-27",
+              "frame": "CY2023",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2023-01-01",
+                "end": "2023-12-31",
+                "unit": "shares",
+                "value": "478000",
+                "fact_id": "Hidden_BHNL_z50xkWqhujNC1_peA",
+                "context_id": "Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg",
+                "table_row": null,
+                "preceding_rows": [],
+                "table_header_rows": [],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": 2401000,
+              "accn": "0001558370-25-003837",
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-03-27",
+              "frame": "CY2024",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "2401000",
+                "fact_id": "Hidden_CXTlqMgHBUeIKPcjR0BtVg",
+                "context_id": "Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g",
+                "table_row": null,
+                "preceding_rows": [],
+                "table_header_rows": [],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "val": 478000,
+              "accn": "0001558370-25-003837",
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-03-27",
+              "frame": "CY2023",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2023-01-01",
+                "end": "2023-12-31",
+                "unit": "shares",
+                "value": "478000",
+                "fact_id": "Tc_NgyZCCgickuY5W9HHN8o7g_23_6",
+                "context_id": "Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg",
+                "table_row": "Basic and diluted weighted average number of common shares outstanding \u200b 2,401 \u200b 478",
+                "preceding_rows": [
+                  "Net loss per share, basic and diluted \u200b $ ( 4.12 ) \u200b $ ( 33.63 )",
+                  "\u200b \u200b \u200b \u200b \u200b \u200b \u200b"
+                ],
+                "table_header_rows": [
+                  "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+                  "\u200b \u200b Year Ended December\u00a031,",
+                  "\u200b 2024 2023",
+                  "\u200b \u200b \u200b",
+                  "Operating expenses \u200b \u200b"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": 2401000,
+              "accn": "0001558370-25-003837",
+              "fy": 2024,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-03-27",
+              "frame": "CY2024",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "2401000",
+                "fact_id": "Tc_pKltfLwcF0CYXZ8Y63_d2Q_23_3",
+                "context_id": "Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g",
+                "table_row": "Basic and diluted weighted average number of common shares outstanding \u200b 2,401 \u200b 478",
+                "preceding_rows": [
+                  "Net loss per share, basic and diluted \u200b $ ( 4.12 ) \u200b $ ( 33.63 )",
+                  "\u200b \u200b \u200b \u200b \u200b \u200b \u200b"
+                ],
+                "table_header_rows": [
+                  "\u200b \u200b \u200b \u200b \u200b \u200b \u200b",
+                  "\u200b \u200b Year Ended December\u00a031,",
+                  "\u200b 2024 2023",
+                  "\u200b \u200b \u200b",
+                  "Operating expenses \u200b \u200b"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          }
+        ],
+        "rejected_facts": {}
+      },
+      "inline_evidence": [
+        {
+          "selected": {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": -33.63,
+            "accn": "0001558370-25-003837",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-03-27",
+            "frame": "CY2023",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Tc_yG4qqwmXaEOHxi2wi4VqZA_21_6\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"Unit_Divide_USD_shares_XQ6l2V5Jr0eTGoyrzu2FbA\">33.63</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -4.12,
+            "accn": "0001558370-25-003837",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-03-27",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Tc_ftvo6CItHEKM7bE1NbEpdg_21_3\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"Unit_Divide_USD_shares_XQ6l2V5Jr0eTGoyrzu2FbA\">4.12</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": -33.63,
+            "accn": "0001558370-25-003837",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-03-27",
+            "frame": "CY2023",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg\" decimals=\"2\" id=\"Hidden_CS9DPM1OkkWRR2xxEKNE9w\" name=\"us-gaap:EarningsPerShareDiluted\" sign=\"-\" unitref=\"Unit_Divide_USD_shares_XQ6l2V5Jr0eTGoyrzu2FbA\">33.63</ix:nonfraction>",
+          "visible_peer_xml": "<ix:nonfraction contextref=\"Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Tc_yG4qqwmXaEOHxi2wi4VqZA_21_6\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"Unit_Divide_USD_shares_XQ6l2V5Jr0eTGoyrzu2FbA\">33.63</ix:nonfraction>",
+          "context_xml": "<xbrli:context id=\"Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg\"><xbrli:entity><xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001133818</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startdate>2023-01-01</xbrli:startdate><xbrli:enddate>2023-12-31</xbrli:enddate></xbrli:period></xbrli:context>",
+          "unit_xml": "<xbrli:unit id=\"Unit_Divide_USD_shares_XQ6l2V5Jr0eTGoyrzu2FbA\"><xbrli:divide><xbrli:unitnumerator><xbrli:measure>iso4217:USD</xbrli:measure></xbrli:unitnumerator><xbrli:unitdenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitdenominator></xbrli:divide></xbrli:unit>",
+          "visible_links": [
+            "<span style=\"-sec-ix-hidden:Hidden_CS9DPM1OkkWRR2xxEKNE9w;\"><span style=\"font-family:'Times New Roman','Times','serif';font-size:10pt;font-style:normal;font-weight:normal;\">$</span></span>"
+          ],
+          "mapping": "Explicit SEC hidden link in same statement row as visible basic EPS"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -4.12,
+            "accn": "0001558370-25-003837",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-03-27",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g\" decimals=\"2\" id=\"Hidden_H59tG1ArmEaUPHOGLI_LcA\" name=\"us-gaap:EarningsPerShareDiluted\" sign=\"-\" unitref=\"Unit_Divide_USD_shares_XQ6l2V5Jr0eTGoyrzu2FbA\">4.12</ix:nonfraction>",
+          "visible_peer_xml": "<ix:nonfraction contextref=\"Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"Tc_ftvo6CItHEKM7bE1NbEpdg_21_3\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"Unit_Divide_USD_shares_XQ6l2V5Jr0eTGoyrzu2FbA\">4.12</ix:nonfraction>",
+          "context_xml": "<xbrli:context id=\"Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g\"><xbrli:entity><xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001133818</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startdate>2024-01-01</xbrli:startdate><xbrli:enddate>2024-12-31</xbrli:enddate></xbrli:period></xbrli:context>",
+          "unit_xml": "<xbrli:unit id=\"Unit_Divide_USD_shares_XQ6l2V5Jr0eTGoyrzu2FbA\"><xbrli:divide><xbrli:unitnumerator><xbrli:measure>iso4217:USD</xbrli:measure></xbrli:unitnumerator><xbrli:unitdenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitdenominator></xbrli:divide></xbrli:unit>",
+          "visible_links": [
+            "<span style=\"-sec-ix-hidden:Hidden_H59tG1ArmEaUPHOGLI_LcA;\"><span style=\"font-family:'Times New Roman','Times','serif';font-size:10pt;font-style:normal;font-weight:normal;\">$</span></span>"
+          ],
+          "mapping": "Explicit SEC hidden link in same statement row as visible basic EPS"
+        },
+        {
+          "selected": {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 478000,
+            "accn": "0001558370-25-003837",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-03-27",
+            "frame": "CY2023",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg\" decimals=\"-3\" id=\"Hidden_BHNL_z50xkWqhujNC1_peA\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" unitref=\"Unit_Standard_shares_eMvg-8_CoUKwlacip5o7jQ\">478000</ix:nonfraction>",
+          "visible_peer_xml": "<ix:nonfraction contextref=\"Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"Tc_NgyZCCgickuY5W9HHN8o7g_23_6\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"Unit_Standard_shares_eMvg-8_CoUKwlacip5o7jQ\">478</ix:nonfraction>",
+          "context_xml": "<xbrli:context id=\"Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg\"><xbrli:entity><xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001133818</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startdate>2023-01-01</xbrli:startdate><xbrli:enddate>2023-12-31</xbrli:enddate></xbrli:period></xbrli:context>",
+          "unit_xml": "<xbrli:unit id=\"Unit_Standard_shares_eMvg-8_CoUKwlacip5o7jQ\"><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unit>",
+          "visible_links": [],
+          "mapping": "Hidden full-share value (scale zero) equals visible basic denominator scaled by 1000, with identical unit and period context, with filing disclosure that basic and diluted loss EPS are the same; no direct hidden DOM link"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 2401000,
+            "accn": "0001558370-25-003837",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-03-27",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g\" decimals=\"-3\" id=\"Hidden_CXTlqMgHBUeIKPcjR0BtVg\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" unitref=\"Unit_Standard_shares_eMvg-8_CoUKwlacip5o7jQ\">2401000</ix:nonfraction>",
+          "visible_peer_xml": "<ix:nonfraction contextref=\"Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"Tc_pKltfLwcF0CYXZ8Y63_d2Q_23_3\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"Unit_Standard_shares_eMvg-8_CoUKwlacip5o7jQ\">2,401</ix:nonfraction>",
+          "context_xml": "<xbrli:context id=\"Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g\"><xbrli:entity><xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001133818</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startdate>2024-01-01</xbrli:startdate><xbrli:enddate>2024-12-31</xbrli:enddate></xbrli:period></xbrli:context>",
+          "unit_xml": "<xbrli:unit id=\"Unit_Standard_shares_eMvg-8_CoUKwlacip5o7jQ\"><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unit>",
+          "visible_links": [],
+          "mapping": "Hidden full-share value (scale zero) equals visible basic denominator scaled by 1000, with identical unit and period context, with filing disclosure that basic and diluted loss EPS are the same; no direct hidden DOM link"
+        },
+        {
+          "selected": {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 478000,
+            "accn": "0001558370-25-003837",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-03-27",
+            "frame": "CY2023",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"Duration_1_1_2023_To_12_31_2023_yJMW6D_La0CU2d5s7EpQTg\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"Tc_NgyZCCgickuY5W9HHN8o7g_23_6\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"Unit_Standard_shares_eMvg-8_CoUKwlacip5o7jQ\">478</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 2401000,
+            "accn": "0001558370-25-003837",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-03-27",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"Duration_1_1_2024_To_12_31_2024_KCZ8dkLQwEKdGLRCaJOX0g\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"Tc_pKltfLwcF0CYXZ8Y63_d2Q_23_3\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"Unit_Standard_shares_eMvg-8_CoUKwlacip5o7jQ\">2,401</ix:nonfraction>"
+        }
+      ],
+      "table_index": 345,
+      "table_text": "\u200b \u200b \u200b \u200b \u200b \u200b \u200b \u200b \u200b Year Ended December 31, \u200b 2024 2023 \u200b \u200b \u200b Operating expenses \u200b \u200b \u200b \u200b \u200b Research and development \u200b $ 7,295 \u200b $ 11,608 General and administrative \u200b 4,697 \u200b 4,235 \u200b \u200b \u200b \u200b \u200b Total operating expenses \u200b 11,992 \u200b 15,843 \u200b \u200b \u200b \u200b \u200b Net operating loss \u200b $ ( 11,992 ) \u200b $ ( 15,843 ) \u200b \u200b \u200b Other income (expense) \u200b \u200b Change in fair value of warrant liability \u200b \u200b 2,084 \u200b \u200b ( 271 ) Interest income \u200b 14 \u200b 36 \u200b \u200b \u200b \u200b \u200b Total other income (expense) \u200b 2,098 \u200b ( 235 ) \u200b \u200b \u200b Net loss \u200b $ ( 9,894 ) \u200b $ ( 16,078 ) \u200b \u200b \u200b Net loss per share, basic and diluted \u200b $ ( 4.12 ) \u200b $ ( 33.63 ) \u200b \u200b \u200b \u200b \u200b \u200b \u200b Basic and diluted weighted average number of common shares outstanding \u200b 2,401 \u200b 478",
+      "supporting_tables": [],
+      "disclosures": [
+        "Net Loss Per Share \u2014 Basic net loss per common share is computed by dividing net loss attributable to common stockholders for the period by the weighted average number of common shares outstanding during the period. Although there were warrants and stock options outstanding during 2024 and 2023, they were not included in the computation of any diluted per-share amount when a loss exists, as it would be anti-dilutive. Consequently, diluted net loss per share as presented in the financial statements is equal to basic net",
+        "loss per share for the years 2024 and 2023. The calculation of diluted earnings per share for 2024 did not include 96,389 shares and 16,490,014 shares issuable pursuant to the exercise of outstanding common stock options and warrants, respectively, as of December 31, 2024, as the effect would be anti-dilutive. The calculation of diluted earnings per share for 2023 did not include 43,383 shares and 190,063 shares issuable pursuant to the exercise of outstanding common stock options and warrants, respectively, as of December 31, 2023, as the effect would be anti-dilutive.",
+        "On February 22, 2024, we effected a reverse stock split of our outstanding shares of common stock at a ratio of 1-for-20, and our common stock began trading on the spilt-adjusted basis on the Nasdaq Capital Market at the commencement of trading on February 23, 2024. All common stock share and per share amounts in this Annual Report on Form 10-K have been adjusted to give effect to the 1-for-20 reverse stock split.",
+        "(In thousands, except per share amounts)"
+      ],
+      "reader_note": "Bio-Path's 2023 and 2024 share and per-share values reflect the February 22, 2024 one-for-20 reverse split. Outstanding options and warrants are excluded as anti-dilutive during losses. The statement displays weighted-average shares in thousands and uses inline scale 3; full selected counts and reported USD EPS remain on the filing's adjusted basis.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ],
+  "scope": "Only exact observations specified by the human-readable reviewed requirements. Checks preserve the manual interpretation, not an independent accounting certification. No earlier-period, whole-history, corpus or publication approval."
+}

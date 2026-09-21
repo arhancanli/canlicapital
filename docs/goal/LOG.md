@@ -1602,3 +1602,36 @@ updated notes before release; earlier reports cover their pinned historical code
 Transfer44227polled live, latest2206of10,360objects/zero failures; uploader/plan
 unchanged. Next publish review, resolve Bio-Path mapping and continue hosted delivery.
 No production/indexing gain; full owner goal active.
+
+PR131 published atb3fd16665274f255c42fb1e39fec70d5a41f0fc5; CI pending.
+Unpublished rebase preserved tree98a5066b441a60687e201017c76a595e94f684c9; push
+terminal0. Same live44227handle, latest receipt2224objects/zero failures.
+Owner attribution file and untracked Bio-Path fixture retained.
+
+
+## 2026-09-21 — Bio-Path hidden and displayed share representations
+
+Previous turn progressed24reviews/PR131. Re-read continuity and polled44227live.
+
+Worktree branch `evidence/biopath-hidden-context-20260921`.
+PR131 merged asfff60584988c4f4fee8805491dd02414e0664d54 after four
+CI35546956894checks passed atb3fd1666; exact tested/merged tree
+98a5066b441a60687e201017c76a595e94f684c9 matches.
+Batch2 now176reviewed/624pending/0withdrawn,8presentation-only unchanged. Latest
+ledger company-basic-diluted-batch2-scope-v9-20260921.json.gz. Bio-Path2023/24eight
+observations reviewed by source-pinned specialized runner. EPS explicit hidden
+links share visible basic-EPS rows. Hidden full-share values use scale0; visible
+basic shares use scale3, yielding identical unit/context/numeric values. No direct
+hidden-share DOM link claimed. Explicit loss/exclusion and retrospective February22,
+2024one-for-20split paragraphs retained. Original fact XML preserves decimals=-3
+precision for share counts; no recomputed EPS or increased precision asserted.
+Generic v6and Plug runner unchanged. Replay byte-identical. Only8ledger states/
+evidence links change; all800numerical rows and prior168decisions preserved.
+Three Python mapping tests cover period/unit/scale/value/link/duplicate mismatches,
+missing visible scaling, wrong displayed count and double scaling; added to CI.
+79renderer/ledger tests passed. Reader note bound to exact source and observations.
+Community numerator and Theriva conflicts remain pending. Fresh HTTP/browser
+validation required for changed notes before deployment; old reports historical.
+Transfer44227polled live, latest2337of10,360objects/zero failures. Uploader/plan and
+runtime objects unchanged. Next publish Bio-Path review, continue pending context
+coverage and finish hosted delivery. No production/indexing gain; all goals active.

@@ -133,3 +133,9 @@ Sixth batch2 report adds24GHST/Pulmonx/Galectin observations:168reviewed/632pend
 Rounded losses and explicit absence of instruments, repurchase-share deductions
 and preferred-dividend adjustments remain issuer-specific. Bio-Path hidden diluted
 tags need separate visible-statement mapping; strict v6gate unchanged.
+
+Bio-Path review adds8rows:176reviewed/624pending. Explicit hidden-EPS links plus
+hidden scale0full shares matched to scale3visible basic shares under the filing's
+loss-denominator disclosure. XML retains decimals=-3precision; no EPS recomputation.
+Reverse split remains retrospective as disclosed. Specialized pinned runner leaves
+generic v6/Plug runner unchanged; corruption and double-scaling tests included.
