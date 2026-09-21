@@ -2056,3 +2056,40 @@ Next publish MaxCyte review and continue pending/legacy contexts and hosted deli
 Transfer44227 polled live this turn; latest5,146/10,360objects/zero failures;
 uploader/plan unchanged. No production activation or new indexing gain. All owner
 SEO/indexing, developer-adoption and governed-engine goals active; owner file untouched.
+
+PR144 published atd39c753fdcc82eccd730086ebb7a9e827c4229a9; CI pending.
+Push terminal0; unpublished rebase preserved full tree
+f1b05947e1bffdf6a2eb7eb4f5c511605dc3a212. Owner attribution file untouched.
+
+## 2026-09-21 — Stereotaxis EPS-note units and preferred dividends
+
+Branch: `evidence/stereotaxis-unit-context-20260921`.
+Previous turn made progress by reviewing MaxCyte and publishing PR144.
+PR144 merged as 27699eb95e993d91f66df8ac6f67f79e6453a482 after all four
+CI35550528222 checks passed at d39c753f. Tested and merged tree:
+f1b05947e1bffdf6a2eb7eb4f5c511605dc3a212.
+
+Stereotaxis 2024/25 discrepancy is preserved in
+company-stereotaxis-unit-discrepancy-20260921.json, with a source-pinned replay
+script and actual company source fixture. All eight selected numbers match.
+Main statement table156 excludes shares and per-share amounts from thousands;
+EPS-note introduction instead says only 'in thousands', while table226 repeats
+full scale-zero share counts and EPS. Both tables distinguish net loss from loss
+attributable to common stockholders after cumulative preferred dividends:
+2025: 21,643 + 1,271 = 22,914; 2024: 24,045 + 1,308 = 25,353 (thousand dollars).
+The two-class/loss-participation and anti-dilution disclosures are retained with
+exact statement rows, fact/context/unit XML, source and capture hashes.
+
+Report replays byte-for-byte. Seven ledger tests pass, including rejection of
+all five pending discrepancy reports (Theriva, Community, Morgan, Wright,
+Stereotaxis) as approved reviews. No registration, public note, policy hold,
+source correction or runtime-object change. Ledger remains scope-v16:
+320 reviewed / 480 pending / 0 withdrawn, including 16 presentation-only.
+Older Stereotaxis legacy filing remains pending separately.
+
+Next continue pending/legacy filing contexts and hosted delivery. Reader notes
+added after the last full HTTP/browser audit still need updated release checks
+and later archive coverage. All original indexing, SEO, developer-adoption and
+governed-engine goals remain active. No production or new indexing gain.
+Transfer44227 was polled live this turn; latest receipt: 5,363 of 10,360 objects,
+zero failures. Uploader and plan unchanged. Owner attribution file untouched.
