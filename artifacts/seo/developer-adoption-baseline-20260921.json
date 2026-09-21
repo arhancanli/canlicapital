@@ -1,0 +1,49 @@
+{
+  "schema": "canli.developer-adoption-baseline.v1",
+  "observed_at": "2026-09-21T02:04:10.838519+00:00",
+  "sources": [
+    {
+      "endpoint": "https://api.github.com/repos/arhancanli/alphac",
+      "status": "observed",
+      "data": {
+        "full_name": "arhancanli/alphac",
+        "private": false,
+        "html_url": "https://github.com/arhancanli/alphac",
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "subscribers_count": 0,
+        "archived": false,
+        "default_branch": "main"
+      }
+    },
+    {
+      "endpoint": "https://api.github.com/repos/arhancanli/canlicapital",
+      "status": "observed",
+      "data": {
+        "full_name": "arhancanli/canlicapital",
+        "private": false,
+        "html_url": "https://github.com/arhancanli/canlicapital",
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "subscribers_count": 0,
+        "archived": false,
+        "default_branch": "main"
+      }
+    },
+    {
+      "endpoint": "https://api.npmjs.org/downloads/point/last-week/canli-validation-mcp",
+      "status": "observed",
+      "data": {
+        "downloads": 33,
+        "start": "2026-09-13",
+        "end": "2026-09-19",
+        "package": "canli-validation-mcp"
+      }
+    }
+  ],
+  "limitations": [
+    "GitHub stars, forks, subscribers and npm downloads are aggregate activity signals, not verified external developers or active users.",
+    "Downloads can include bots, CI, repeated installs and owner verification.",
+    "No API-key usage, MCP client sessions or attributable user conversions measured in this baseline."
+  ]
+}
