@@ -87,3 +87,48 @@ test("missing or invalid prior receipt fails toward notification", () => {
     "RECEIPT_TIME_INVALID",
   );
 });
+
+test("persistent state selects only new or updated URLs and survives outside the snapshot", async () => {
+  const { selectChangedUrls, readState, writeState, statePath, STATE_SCHEMA } = await import("./submit-indexnow.mjs");
+  const { mkdtempSync, rmSync, writeFileSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const { resolve } = await import("node:path");
+  const dir = mkdtempSync(resolve(tmpdir(), "indexnow-state-"));
+  try {
+    const path = resolve(dir, "nested", "state.json");
+    assert.equal(statePath({ INDEXNOW_STATE_PATH: path }), path);
+    assert.equal(statePath({}, "/home/x"), "/home/x/.cache/canlicapital/indexnow-state.json");
+    const u = (p) => `https://canlicapital.com${p}`;
+    const entries = [{ loc: u("/a"), lastmod: "2026-09-20" }, { loc: u("/b"), lastmod: "2026-09-19" }, { loc: u("/c"), lastmod: "" }];
+    assert.equal(selectChangedUrls({ entries, state: null }), null);
+    assert.equal(readState(path), null);
+    writeState(path, { entries, recordedAt: "2026-09-21T15:33:19Z", source: "fixture" });
+    const state = readState(path);
+    assert.equal(state.schema, STATE_SCHEMA); assert.equal(state.url_count, 3);
+    assert.deepEqual(selectChangedUrls({ entries, state }), []);
+    const next = [{ loc: u("/a"), lastmod: "2026-09-21" }, { loc: u("/b"), lastmod: "2026-09-19" }, { loc: u("/c"), lastmod: "" }, { loc: u("/d"), lastmod: "2026-09-21" }];
+    assert.deepEqual(selectChangedUrls({ entries: next, state }), [u("/a"), u("/d")]);
+    writeFileSync(path, "{not json");
+    assert.equal(readState(path), null);
+    writeFileSync(path, JSON.stringify({ schema: STATE_SCHEMA, origin: "https://elsewhere.example", lastmods: {} }));
+    assert.equal(readState(path), null);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("sitemap entries keep lastmod across a sitemap index", async () => {
+  const { fetchSitemapEntries } = await import("./lib/sitemaps.mjs");
+  const index = '<?xml version="1.0"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://canlicapital.com/s1.xml</loc></sitemap><sitemap><loc>https://canlicapital.com/s2.xml</loc></sitemap></sitemapindex>';
+  const leaves = {
+    "https://canlicapital.com/s1.xml": '<urlset><url><loc>https://canlicapital.com/a</loc><lastmod>2026-09-20</lastmod></url><url><loc>https://canlicapital.com/b&amp;c</loc></url></urlset>',
+    "https://canlicapital.com/s2.xml": '<urlset><url>\n  <loc>https://canlicapital.com/d</loc>\n  <lastmod>2026-09-19</lastmod>\n</url></urlset>',
+  };
+  const entries = await fetchSitemapEntries("https://canlicapital.com/sitemap.xml", { rootXml: index, fetchImpl: async (loc) => ({ ok: true, text: async () => leaves[loc] }) });
+  assert.deepEqual(entries, [
+    { loc: "https://canlicapital.com/a", lastmod: "2026-09-20" },
+    { loc: "https://canlicapital.com/b&c", lastmod: "" },
+    { loc: "https://canlicapital.com/d", lastmod: "2026-09-19" },
+  ]);
+  await assert.rejects(fetchSitemapEntries("https://canlicapital.com/sitemap.xml", { rootXml: '<sitemapindex><sitemap><loc>https://evil.example/x.xml</loc></sitemap></sitemapindex>' }), /Invalid sitemap URL/);
+});
