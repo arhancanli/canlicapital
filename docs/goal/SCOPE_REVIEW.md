@@ -172,3 +172,7 @@ Batch2 through scope-v13 is preserved in company-batch2-evidence-scope-v13-20260
 package_batch2_evidence.py restores620files and replays19outputs offline, including
 three explicitly pending reports. Later review registrations require a new archive;
 this snapshot must not be overwritten or described as offsite backup/certification.
+
+Tenth batch2review adds16Exagen/Immunic observations: loss exclusions and already-
+included pre-funded warrants with full-share scale0. scope-v14:280reviewed/520pending.
+Wright table54unit-heading conflict remains pending; no automatic scale correction.

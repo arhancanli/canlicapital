@@ -554,7 +554,8 @@ test('filing context requires the reviewed issuer, snapshot and all reviewed obs
     assert.equal(companyFilingNotes(record, 'Assets').length, 0);
     for (const key of ['start', 'end', 'unit', 'val', 'accn']) {
       const changed = structuredClone(record);
-      changed.concepts[0].observations[0][key] = key === 'val' ? -1 : 'changed';
+      changed.concepts[0].observations[0][key] = key === 'val' ? record.concepts[0].observations[0].val + 1 : 'changed';
+      assert.notEqual(changed.concepts[0].observations[0][key], record.concepts[0].observations[0][key]);
       assert.equal(companyFilingNotes(changed, note.tags[0]).length, 0);
     }
   }
@@ -1474,4 +1475,28 @@ test('older Idaho keeps December fiscal dates, historical identity and rounded l
   const changed = structuredClone(record), row = note.observations[0];
   changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
   assert(!companyFilingNotes(changed, row.tag).includes(note));
+});
+
+test('Exagen and Immunic keep pre-funded warrants inside reported denominators', () => {
+  for (const [cik, accession, phrases] of [
+    ['0001274737', '0001274737-26-000009', [/already include shares issuable under nominal-price pre-funded warrants/, /excluded as anti-dilutive during losses/]],
+    ['0001280776', '0001280776-26-000005', [/January 2024 financing/, /May 2025 offering/, /not a new weighted-average denominator calculation/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+      assert.match(html, /per-share amounts are unscaled/);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic').filter(n => n.observations.some(r => r.accn === accession));
+    assert.equal(notes.length, 1);
+    const changed = structuredClone(record), row = notes[0].observations[0];
+    changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+    assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+  }
 });
