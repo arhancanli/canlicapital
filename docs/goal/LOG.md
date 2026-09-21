@@ -2593,3 +2593,50 @@ new indexed-page evidence. Owner attribution file untouched. Next publish these
 reviews, continue pending contexts and monitor hosted readiness. All original
 indexing, quality/SEO/search-intent, developer-adoption and governed-engine goals
 remain active.
+
+PR153 published at7266708451ac405ac938a9fd09f818e96dfadbc3:
+https://github.com/arhancanli/canlicapital/pull/153. Push10585 and PR-create83868
+completed with exit0. Rebase preserved treeb2b2b40ffc47f41a4fb4f523a3a00d687637b385.
+CI35554516876 is pending. Current-note browser audit86426 is running with output
+company-v22-scope-v20-browser-20260921.json. Scope-v20 archive build/replay20482
+is running; the new profile binds all seven pending reports and retains the initial
+Digital Ally runner failure. No archive success claim before terminal verification.
+Previous status-only goal turn verified the active uploader; this turn publishes
+completed code and starts concrete release verification. Owner attribution file untouched.
+
+## 2026-09-21 — Scope-v20 isolated archive restored
+
+PR153 merged asabf27713f359ed072f6cd57a54a1a7f1cb4e9523 after all four
+CI35554516876 checks passed at7266708451ac405ac938a9fd09f818e96dfadbc3.
+Tested and merged treeb2b2b40ffc47f41a4fb4f523a3a00d687637b385 verified.
+Current branch: evidence/scope-v20-archive-20260921.
+
+Scope-v20 archive20482 completed with exit0. New archive has674 files,
+274,247,680 bytes; SHA8b1b53902d326a49ba9698b422995186e50b7bbacfee3c950171ebca66944878.
+Thirty reports reproduce byte-for-byte in an isolated temporary restore using
+hash-locked offline parser dependencies. Includes all100 primary captures,
+seven legacy instances, current AudioEye/Larimar reviews, all seven pending
+reports and the preserved initial Digital Ally runner failure. Archive hash and
+profile/registry/packager/failure bytes compared with current files successfully.
+Receipt: company-batch2-evidence-archive-scope-v20-20260921.json. Earlier archives
+remain immutable. Local reproduction, not independent certification or remote backup.
+
+Batch2 remains408 reviewed /392 pending /0 withdrawn, including64 presentation-only.
+Myomo remains unapproved pending resolution of differing warrant offering-date
+lists. No selector/source/runtime-object change. All90 relevant tests passed.
+Current-note browser86426 is running (275 cases last observed), report
+company-v22-scope-v20-browser-20260921.json. Do not claim a final pass yet.
+Earlier scope-v19 HTTP check covers90,732 pages/6,646 downloads with zero failures;
+its browser report is historical and does not cover the new notes.
+
+Recovery79720 confirmed live this turn. Receipt currently records6041
+reverified objects, 0 failures, complete=False. Same uploader/plan/bounded
+policy. Original44227 remains terminal after6,023 verified objects and HTTP520.
+Counts are not additive uploads. No production activation or new indexing evidence.
+The90,732 candidate URLs remain unpublished; last confirmed indexing baseline262.
+
+Next finish the current browser audit, verify transfer completion and hosted
+routing/storage/load/cost/failure behavior before production activation. Continue
+pending editorial admission. Developer adoption and governed engine outcomes remain
+open alongside indexing, quality/SEO and relevant intent coverage. Goal active;
+owner attribution file untouched.
