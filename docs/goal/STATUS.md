@@ -43,11 +43,18 @@ No shared validator weakened. New report/fixture need later archive coverage;
 scope-v20's674-file/30-report archive remains immutable with seven historical
 pending reports. Batch2 still408 reviewed /392 pending, including64 presentation-only.
 
-Browser86426 remains running,800 cases last observed. Current report:
-company-v22-scope-v20-browser-20260921.json. No current-note final pass claim yet.
+
+Browser86426 completed with exit0:940 cases,zero failures across Chromium/WebKit
+at390/1440px. All51 registered filing reviews cover225 note-bearing paths and
+1020 exact note/source checks. Every27 recorded input hashes and the runner hash
+match current files. Canonical/developer links, withheld-history404s, keyboard
+controls and overflow checks pass. This is local browser evidence, not hosted load,
+full accessibility certification, production or indexing. Report:
+company-v22-scope-v20-browser-20260921.json.
+
 Recovery79720 confirmed live; receipt6202 verified objects, zero failures,
 incomplete. Prior failed520 object now verified. Same plan/uploader/bounded policy.
 No production activation or new indexing evidence;90,732 candidates remain
 unpublished and last confirmed indexed baseline262. Owner attribution file untouched.
-Next finish browser verification, continue source review and hosted readiness.
+Next complete hosted readiness and continue pending source review.
 All indexing, quality/SEO/intent, developer-adoption and governed-engine goals active.

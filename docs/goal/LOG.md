@@ -2690,3 +2690,13 @@ No production activation or new indexing evidence;90,732 candidates remain
 unpublished and last confirmed indexed baseline262. Owner attribution file untouched.
 Next finish browser verification, continue source review and hosted readiness.
 All indexing, quality/SEO/intent, developer-adoption and governed-engine goals active.
+
+Browser86426 completed with exit0:940 cases,zero failures across Chromium/WebKit
+at390/1440px. All51 registered filing reviews cover225 note-bearing paths and
+1020 exact note/source checks. Every27 recorded input hashes and the runner hash
+match current files. Canonical/developer links, withheld-history404s, keyboard
+controls and overflow checks pass. This is local browser evidence, not hosted load,
+full accessibility certification, production or indexing. Report:
+company-v22-scope-v20-browser-20260921.json.
+
+PR155 opened with the Myomo pending report; adding the completed browser evidence before final CI verification.
