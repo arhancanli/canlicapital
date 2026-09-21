@@ -1,0 +1,154 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001296774",
+      "accession": "0001410578-23-000860",
+      "source_sha256": "dc0f56af83ba55023a6c8902fc85568ebabaf9c74a74298574940eeccf760664",
+      "primary_sha256": "2b0fb483537adf1407767e99e1de4a1d9924066c5ef0b504c58a9b1ae8dcadb5",
+      "receipt_sha256": "609ff4f751ee83c6a227e3cceb9056afc6ee853c8f985b487230857b8498322a",
+      "fixture": "scripts/fixtures/editorial/batch2-0001296774-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": 2.42,
+          "accn": "0001410578-23-000860",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2023-05-01",
+          "frame": "CY2020",
+          "unit": "CNY/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.83,
+          "accn": "0001410578-23-000860",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2023-05-01",
+          "frame": "CY2021",
+          "unit": "CNY/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": -0.2,
+          "accn": "0001410578-23-000860",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2023-05-01",
+          "frame": "CY2022",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": 2.42,
+          "accn": "0001410578-23-000860",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2023-05-01",
+          "frame": "CY2020",
+          "unit": "CNY/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.83,
+          "accn": "0001410578-23-000860",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2023-05-01",
+          "frame": "CY2021",
+          "unit": "CNY/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": -0.2,
+          "accn": "0001410578-23-000860",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2023-05-01",
+          "frame": "CY2022",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": 163599920,
+          "accn": "0001410578-23-000860",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2023-05-01",
+          "frame": "CY2020",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2020-01-01",
+          "end": "2020-12-31",
+          "val": 163599920,
+          "accn": "0001410578-23-000860",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2023-05-01",
+          "frame": "CY2020",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2020-12-31",
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "table_index": 299,
+      "supporting_table_indexes": [
+        240
+      ],
+      "share_scale": "0",
+      "table_requires": [
+        "396,693,266",
+        "397,883,388",
+        "1,190,122",
+        "411,234,755",
+        "141,341,275",
+        "163,599,920",
+        "2.42",
+        "0.83",
+        "0.20"
+      ],
+      "paragraph_requires": [
+        "Basic (loss) income per share is computed by dividing net (loss) income attributable to the holders of ordinary shares by the weighted average number of ordinary shares outstanding during the year. Diluted (loss) income per share is calculated by dividing net (loss) income attributable to the holders of ordinary shares as adjusted for the effect of dilutive ordinary share equivalents, if any, by the weighted average number of ordinary shares and dilutive ordinary share equivalents outstanding during the period. Ordinary share equivalents of stock options and warrants are calculated using the treasury stock method and are not included in the denominator of the diluted earnings per share calculation when inclusion of such shares would be anti-dilutive, such as in a period in which a net (loss) income is recorded.",
+        "The Company had 4,200,645 , 366,148,968 and 271,620,613 stock options, warrants and non-vested shares outstanding as of December 31, 2020, 2021 and 2022, respectively, which were excluded in the computation of diluted loss per share in the periods presented, as their effect would have been anti-dilutive due to the net loss reported in such periods.",
+        "Our reporting currency is RMB. This annual report contains translations of RMB amounts into U.S. dollars solely for the convenience of the readers. Unless otherwise stated, all translations from RMB to U.S. dollars were made at a rate of RMB6.8972 to US$1.00, which was the exchange rate in effect as of December 30, 2022 as set forth in the H.10 statistical release of The Board of Governors of the Federal Reserve System. We make no representation that any RMB or U.S. dollar amounts could have been, or could be, converted into U.S. dollars or RMB, as the case may be, at any particular rate, or at all. See \u201cItem 3. Key Information\u2014D. Risk Factors\u2014Risks Related to Doing Business in China\u2014Future movements in exchange rates between the U.S. dollar and the RMB may adversely affect the value of our ADSs.\u201d",
+        "On December 15, 2004, our ADSs commenced trading on the Nasdaq Global Market under the symbol \u201cNCTY.\u201d In October 2018, we transferred our listing venue to the Nasdaq Capital Market. On May 6, 2019, we adjusted our authorized share capital and adopted dual-class share structure, consisting of Class A ordinary shares and Class B ordinary shares. Effective October 19, 2020, we effected a change of the ratio of the ADS to our Class A ordinary shares from one ADS representing three Class A ordinary shares to one ADS representing thirty Class A ordinary shares. Currently, each ADS represents thirty Class A ordinary shares. Unless otherwise indicated, ADSs and per ADS amount in this annual report have been retroactively adjusted to reflect the changes in ratio for all periods presented."
+      ],
+      "reader_note": "PENDING: The9's EPS reconciliation reports positive 2020 income attributable to ordinary shareholders after the redeemable-noncontrolling-interest adjustment and positive RMB2.42 EPS. Its exclusion disclosure nevertheless attributes excluded securities to net losses in all presented periods, including 2020. Reconcile that profitable-year explanation before approving this context; numeric matches do not resolve it. The selected EPS uses CNY for 2020/21 and the USD convenience translation for 2022, and is per ordinary share rather than per ADS. No source correction, equal-EPS cause, whole-filing approval or published reader note is established.",
+      "disposition": "ACCOUNTING_SCOPE_REVIEW_PENDING"
+    }
+  ]
+}

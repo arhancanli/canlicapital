@@ -20,7 +20,7 @@ transitions, not continuous telemetry or proof that background work is running.
 
 Working locations:
 
-- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/batch2-fate-range-marvion-biodesix-20260921`. PR167 merged with exact tested tree verified. Scope-v29 HTTP/browser/archive passed. Scope-v30 adds40 reviews (16 limited);100 targeted tests pass. Recovery79720 running; expansion unpublished. STATUS.md records exact evidence.
+- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/batch2-remaining-legacy-20260921`. PR168 merged with tested tree verified. Scope-v31:672 reviewed/128 pending;101 targeted tests pass. Latest full release checks/archive cover scope-v29. Recovery79720 running; expansion unpublished. STATUS.md records exact evidence.
 - Production checkout: `/Users/arhancanli/canlicapital-production-20260920`; last verified application revision9608542c. Inspect actual deployment/alias state before claiming new production behavior.
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.

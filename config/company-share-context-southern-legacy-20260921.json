@@ -1,0 +1,153 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001001838",
+      "accession": "0001104659-11-011083",
+      "source_sha256": "bf9ab0f125f067fed8780461c2fcc2364e03d08ca32b598c380969308a378be0",
+      "primary_sha256": "eaa33f247e7837220c701a7ed525167dfd6c31fdcb9724c9e8be4caf9e2477f6",
+      "receipt_sha256": "d5fd9b915a0ad2409bbad1959b7d6244123557d9b441c5c3652eacc68b5c8b05",
+      "fixture": "scripts/fixtures/editorial/batch2-0001001838-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2008-01-01",
+          "end": "2008-12-31",
+          "val": 1.6,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2008",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2009-01-01",
+          "end": "2009-12-31",
+          "val": 1.09,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2009",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2010-01-01",
+          "end": "2010-12-31",
+          "val": 1.83,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2010",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2008-01-01",
+          "end": "2008-12-31",
+          "val": 1.6,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2008",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2009-01-01",
+          "end": "2009-12-31",
+          "val": 1.09,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2009",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2010-01-01",
+          "end": "2010-12-31",
+          "val": 1.83,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2010",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2008-01-01",
+          "end": "2008-12-31",
+          "val": 878713000,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2008",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2008-01-01",
+          "end": "2008-12-31",
+          "val": 878713000,
+          "accn": "0001104659-11-011083",
+          "fy": 2010,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2011-03-01",
+          "frame": "CY2008",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2008-12-31",
+        "2009-12-31",
+        "2010-12-31"
+      ],
+      "table_index": 91,
+      "supporting_table_indexes": [],
+      "share_scale": "3",
+      "table_requires": [
+        "1,554,051",
+        "929,381",
+        "1,406,593",
+        "1.83",
+        "1.09",
+        "1.60",
+        "878,713"
+      ],
+      "paragraph_requires": [],
+      "reader_note": "Southern Copper's selected 2008\u20132010 EPS uses earnings attributable to SCC after noncontrolling interests, rather than consolidated net income. The statement reports dollars and shares in thousands, except per-share amounts: the selected 2008 weighted-average count of 878,713 represents 878,713,000 shares. It presents basic and diluted EPS and shares together. This review verifies that presentation and the selected values but does not establish the reason the basic and diluted measures are equal. The selected share observations cover 2008 only; the EPS observations cover all three years.",
+      "disposition": "REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED",
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1001838/000110465911011083/scco-20101231.xml",
+        "status": 200,
+        "bytes": 2596407,
+        "sha256": "535d5f6a86fa522d6816df71b8b46d6fd48f7f0671559ec402247c3716440972",
+        "captured_at": "2026-09-20T23:22:13.503924+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001001838-0001104659-11-011083-instance.response"
+      }
+    }
+  ]
+}
