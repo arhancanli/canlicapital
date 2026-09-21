@@ -12,37 +12,42 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-PR153 merged asabf27713f359ed072f6cd57a54a1a7f1cb4e9523 after all four
-CI35554516876 checks passed at7266708451ac405ac938a9fd09f818e96dfadbc3.
-Tested and merged treeb2b2b40ffc47f41a4fb4f523a3a00d687637b385 verified.
-Current branch: evidence/scope-v20-archive-20260921.
+PR154 merged as5649b2de60097daa105a2b345f0b502c61067530 after all four
+CI35554722128 checks passed at30ff62f4da6dab17fa79f0539f551e16930a6fe1.
+Tested and merged treee35e50afbbc396826923f6be05a31ed84873f40e verified.
+Current branch: evidence/myomo-warrant-context-20260921. Previous goal turn made
+progress by merging PR153, restoring30 reports and publishing PR154.
 
-Scope-v20 archive20482 completed with exit0. New archive has674 files,
-274,247,680 bytes; SHA8b1b53902d326a49ba9698b422995186e50b7bbacfee3c950171ebca66944878.
-Thirty reports reproduce byte-for-byte in an isolated temporary restore using
-hash-locked offline parser dependencies. Includes all100 primary captures,
-seven legacy instances, current AudioEye/Larimar reviews, all seven pending
-reports and the preserved initial Digital Ally runner failure. Archive hash and
-profile/registry/packager/failure bytes compared with current files successfully.
-Receipt: company-batch2-evidence-archive-scope-v20-20260921.json. Earlier archives
-remain immutable. Local reproduction, not independent certification or remote backup.
+Myomo report company-myomo-warrant-date-discrepancy-20260921.json preserves both
+prefunded-warrant inclusion-date descriptions: January2023/August2023 versus
+January2024/August2023/January2023. Both state the same year-end2025/2024 balances
+3,763,258/7,061,519; the financing paragraph confirms224,730 warrants issued
+January19,2024. The broader list may supply an omission, but no dated denominator
+rollforward establishes exact weighting. Do not claim erroneous EPS or treat
+outstanding year-end warrants as weighted shares. The full loss-period dilution
+paragraph is retained separately.
 
-Batch2 remains408 reviewed /392 pending /0 withdrawn, including64 presentation-only.
-Myomo remains unapproved pending resolution of differing warrant offering-date
-lists. No selector/source/runtime-object change. All90 relevant tests passed.
-Current-note browser86426 is running (275 cases last observed), report
-company-v22-scope-v20-browser-20260921.json. Do not claim a final pass yet.
-Earlier scope-v19 HTTP check covers90,732 pages/6,646 downloads with zero failures;
-its browser report is historical and does not cover the new notes.
+Eight selected observations and eight scale0 inline facts match the primary
+statement, with exact entity/context/unit/table checks; four full disclosures
+preserved. Source SHA9ced30eaa1580175e989ecc2f5d6b3002c3a0519be795c23e9998fc21bee7552;
+primary SHA802b335619ea10beb6e0bfb253a8b7f9888330b7fe35744977299f15ff83af97.
+Report replays byte-for-byte. Three ledger tests pass, including rejection of all
+eight pending discrepancy reports as approved evidence. Both Myomo years stay
+pending; no public note, source correction, selector/policy or runtime-object change.
 
-Recovery79720 confirmed live this turn. Receipt currently records6041
-reverified objects, 0 failures, complete=False. Same uploader/plan/bounded
-policy. Original44227 remains terminal after6,023 verified objects and HTTP520.
-Counts are not additive uploads. No production activation or new indexing evidence.
-The90,732 candidate URLs remain unpublished; last confirmed indexing baseline262.
+Initial preparation builder rejected duplicate full/fragment paragraph matches.
+Preserved in corpus-local/company-myomo-initial-builder-20260921.py.gz, raw SHA
+63316999973523898bd26ef0b38c448244408581e8c48b8b67f01cb8511cbbde. Corrected builder
+selects the complete financing paragraph; replay runner asserts its full exact text.
+No shared validator weakened. New report/fixture need later archive coverage;
+scope-v20's674-file/30-report archive remains immutable with seven historical
+pending reports. Batch2 still408 reviewed /392 pending, including64 presentation-only.
 
-Next finish the current browser audit, verify transfer completion and hosted
-routing/storage/load/cost/failure behavior before production activation. Continue
-pending editorial admission. Developer adoption and governed engine outcomes remain
-open alongside indexing, quality/SEO and relevant intent coverage. Goal active;
-owner attribution file untouched.
+Browser86426 remains running,800 cases last observed. Current report:
+company-v22-scope-v20-browser-20260921.json. No current-note final pass claim yet.
+Recovery79720 confirmed live; receipt6202 verified objects, zero failures,
+incomplete. Prior failed520 object now verified. Same plan/uploader/bounded policy.
+No production activation or new indexing evidence;90,732 candidates remain
+unpublished and last confirmed indexed baseline262. Owner attribution file untouched.
+Next finish browser verification, continue source review and hosted readiness.
+All indexing, quality/SEO/intent, developer-adoption and governed-engine goals active.
