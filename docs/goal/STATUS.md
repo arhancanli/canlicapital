@@ -12,46 +12,51 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-PR157 merged as8d8f6097f350806cd3f7c67600b24554c8b49ed0 after all four
-CI35555812943 checks passed atf1c850f2268dee44cf3563bf94a92a14b2c0b664.
-Tested and merged treec6afde04abe5ae3cd0771726793d5180ba8b8f51 verified.
-Current branch: evidence/scope-v22-release-checkpoint-20260921. Previous turn made
-progress by reviewing16 Sutro observations and preserving Fuwei as pending.
+PR158 merged asb1069ab6b50db233b1e4be5ecc91515b10d53cde after all four
+CI35556099271 checks passed atf11d69fb4c78f74128b4311a45a4c11709752d66.
+Tested and merged treed6c3431126a41e9bb677a7111e4f1a30775228ef verified.
+Current branch: evidence/batch2-fourteenth-contexts-20260921. Previous turn made
+progress by restoring34 reports and verifying the six-return engine baseline.
 
-Batch2 scope-v22 archive12864 completed with exit0:693 files/275,179,520 bytes,
+Browser39143 completed with exit0 before new notes were installed. Scope-v22
+report company-v22-scope-v22-browser-20260921.json:1,020 cases,56 registered filings,
+245 note-bearing paths,1,120 exact note/source checks,zero failures. Chromium/WebKit
+390/1440px; all29 input hashes plus runner matched at completion. It covers the
+Sutro and preceding three-company additions, not the later scope-v23 notes below.
+No renderer/registry/runtime edits occurred during the audit.
+
+Three more2024/25 captured contexts validated and now registered:
+- SELLAS: dollar thousands/full shares; prefunded warrants and abeyance shares
+  already enter basic shares for nominal consideration. Other potential shares
+  excluded during losses; excluded-securities table uses thousands.
+- Gevo: statement and EPS note distinguish32.629m consolidated loss from33.836m
+  loss attributable to Gevo after1.207m noncontrolling income allocation. Separate
+ 79k redemption-value adjustment appears in equity. Full conditional EPS adjustment
+  policy retained: only to extent redemption exceeds fair value cumulatively.
+  Reader note preserves reported numerator without constructing another adjustment.
+- Aquestive: explicit full-share and dollars-per-share row labels distinguish units
+  from dollar thousands. Loss-period instruments excluded;2022 prefunded warrants
+  were fully exercised in2022 and are not a new2024/25 outstanding balance.
+
+Report company-share-context-batch2-fourteenth-20260921.json (unchanged v7) checks
+24 selected observations against40 inline facts and14 disclosures. Report5355 and
+independent replay67946 terminal0, byte-identical. Scope-v23 now472 reviewed /
+328 pending /0 withdrawn,64 presentation-only. Exactly24 state/evidence changes;
+all800 observation metadata and prior448 decisions preserved.93 renderer/numerics/
+scope tests pass, including15 affected paths, unchanged data and removal after a
+bound fact changes. Nine pending discrepancy/hidden-mapping reports stay pending.
+No source values, selector policy or runtime objects changed.
+
+Latest sealed scope-v22 archive:693 files/34 reports, all nine pending reports;
 SHAef1d3056112af0834125ef7531d94e040808759b2f373e697dd123c25192c8e5.
-All34 reports reproduce byte-for-byte in an isolated temporary restore, including
-448-reviewed/352-pending ledger (64 presentation-only) and all nine pending reports.
-All100 primary captures/seven legacy instances, current registered notes, Myomo and
-Fuwei pending evidence and retained failed drafts are covered. Profile/registry/
-packager/failure bytes and archive hash rechecked against current files.
-New receipt company-batch2-evidence-archive-scope-v22-20260921.json; profile pinned.
-Offline hash-locked parser installation verified. Local restore only; earlier
-archives immutable, no offsite backup or independent-certification claim.
+All34 restored report hashes rechecked before new registration. New scope-v23
+notes/ledger need later archive coverage and relevant release checks. Earlier
+full HTTP checks cover90,732 pages/6,646 downloads. No audits remain running.
+Engine checkpoint remains six current-epoch returns/four sleeves, immature; no
+new strategy outcome, runtime activation or broker action. All goals retained.
 
-Browser39143 is running on the current notes,250 cases last observed, output
-company-v22-scope-v22-browser-20260921.json. No final pass claim before terminal
-verification and end-of-run hashes. Scope-v20 browser940-case result is historical.
-Prior full HTTP checks cover90,732 pages/6,646 downloads. No renderer, registry,
-runtime or selector edits during this audit. Batch2 ledger-v22 is separate from
-runtime release-v22, which remains unchanged.
-
-Read-only engine checkpoint verifies the current local maturity report generated
-2026-09-21T02:27:42.168281+00:00, its canonical content hash and all12 source file
-bindings. The current evidence epoch now has6 returns (Sep15–21),4 sleeves, no
-Sharpe estimate;252 returns required for an estimate and756 plus statistical gate
-for establishment. These are existing engine outputs, not a new strategy result
-from this turn. Engine cost report still lists latency slippage, financing/margin
-interest and idle-cash yield as uncharged categories. No broker calls, runtime
-activation, evaluator rerun or admission decision. Receipt:
-engine-goal-readonly-checkpoint-20260921.json. Full research/strategy goals open.
-
-Recovery79720 polled live; latest receipt6825 verified objects,0 failures,
-incomplete. Same bounded policy/plan/uploader. Representative hosted probe closure
-has17/29 objects verified;12 missing, including the download-index root. No extra
-uploader or hosted success claim. Previous520 failure preserved. No production
-activation or new indexing evidence;90,732 candidates remain unpublished and
-last confirmed indexing baseline262. Owner attribution file untouched.
-Next finish current browser checks, transfer and hosted readiness; continue
-pending accounting review and every indexing/quality/SEO/intent/developer-adoption/
-governed-engine objective. Goal remains active.
+Recovery79720 active; receipt7065 verified objects,0 failures,incomplete.
+Same bounded uploader/plan, original520 evidence retained, no additive count.
+No production deployment or indexing gains verified;90,732 candidates remain
+unpublished and last confirmed indexed baseline262. Owner attribution file untouched.
+Next publish current notes, continue remaining source review and hosted readiness.
