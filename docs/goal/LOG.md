@@ -2178,3 +2178,65 @@ Next publish this checkpoint, finish storage transfer and verify hosted delivery
 continue pending source/accounting/usefulness review. LENSAR/Femasys inspections
 remain preliminary (see preceding log). Ledger unchanged; all original indexing,
 SEO/search-intent, developer-adoption and governed-engine goals remain active.
+
+PR146 published at18f2a4a119f243461d097646467ede9d3fbac0ea; CI pending.
+Push32361 and PR-create18284 completed with exit0. Unpublished rebase preserved
+full treeaebc9ae5f1ad6f8abbeba9b365ca4622b9dc4ce8. Uploader44227 polled live
+after publication, still running. Owner attribution file untouched.
+
+## 2026-09-21 — LENSAR context and verified storage recovery
+
+Previous turn completed scope-v16 release checks/archive restoration. PR146 merged
+as4c68d7232d9a34d414c2400909c098859f9a2127 after all four CI35551486607 checks
+passed at18f2a4a119f243461d097646467ede9d3fbac0ea. Full tested/merged tree:
+aebc9ae5f1ad6f8abbeba9b365ca4622b9dc4ce8. Branch:evidence/lensar-share-context-20260921.
+
+Reviewed captured LENSAR2024/25 statement19, reconciliation61 and excluded-security
+tables62/63 with full two-class/loss disclosures. All eight selected observations
+match exact namespace/entity/context/unit facts. Shares use scale3 and EPS scale0.
+Participating preferred stock and SeriesA/B warrants do not contractually share
+losses; losses are attributed to common stockholders. Excluded instrument balances
+and excluded weighted-average shares are separate tables, neither added to the
+loss-period denominator. Source SHAd69e560c039f84cdc5c8981beedf4e090952b7543a4ddc3a533c6c84c6dbba59.
+Generic v7 validator unchanged; report replays byte-for-byte. Reader note binds
+to exact source/eight observations.87renderer/ledger tests pass, including all
+five rendered paths, unchanged data and removal after an observation changes.
+scope-v17now328reviewed/472pending/0withdrawn,16presentation-only. Exactly eight
+state/evidence transitions; all800row metadata and prior320decisions preserved.
+Five discrepancy reports remain pending; Femasys remains preliminary/unregistered.
+
+Prepared local v22hosted probe:29objects/1,273,288bytes,
+SHAcd5d22b3fd371fc20db86fd47d406d0e9891f018facc9bd4527354f9f922af26.
+Summary company-five-cohort-hosted-probe-summary-v22-20260921.json. At6,023objects,
+16probe dependencies including release root were not yet verified in receipt.
+No hosted readiness claim or production activation.
+
+Uploader44227 is now TERMINAL1 at6,023/10,360 verified objects: create returned
+HTTP520 with Retry-After60seconds for delivery object634c9780d8c9da8cfbc47864b0902821709ce712601e7b43303b8758a8009283.json.gz.
+Failed receipt preserved as company-v22-storage-transfer-520-20260921.json.gz,
+raw SHAefca5a80dc4c141157dc029eecd0474a9b4345675125b73d7d2d07fc750d55e6.
+Original log /tmp/canli-v22-transfer.log retained. After254seconds, a single public
+GET60558 TERMINAL0 verified that exact object ABSENT, report
+company-v22-storage-520-public-read-20260921.json. No write during diagnosis.
+
+Recovery79720 RUNNING after original process confirmed terminal, wait respected,
+absence verified and existing owner credential revalidated correct project/service
+role/bucket in memory. Same uploader/plan hashes and policy:one worker,500msminimum
+spacing,3read/2write attempts,200/50shared budgets, create-only and hard stop on
+permission/throttling/corruption. No code relaxation or parallel uploader. Receipt:
+artifacts/seo/corpus-local/company-five-cohort-storage-transfer-v22-recovery-20260921.json;
+log:/tmp/canli-v22-transfer-recovery.log. Preflight retained separately. Initially
+21objects reverified, zero failures; this is a new verification pass over the same
+plan, not21new objects or loss of the6,023previous successful writes. Poll79720;
+never restart44227. No token stored in files or logs.
+
+An attempted status update asserted the old zero-failure condition and stopped
+before writing documents; the subsequent local commit completed. This checkpoint
+corrects continuity before publication; no false running/success claim is retained
+as current state. Owner attribution file untouched.
+
+Next publish this review, monitor recovery and continue pending context review.
+The new LENSAR note needs updated relevant release checks and archive coverage;
+scope-v16 evidence remains tied to historical inputs. All original indexing,
+SEO/search-intent, developer-adoption and governed-engine goals remain active.
+No new indexed pages or production deployment established.

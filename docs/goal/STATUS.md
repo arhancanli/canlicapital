@@ -8,48 +8,60 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Previous turn made progress by merging PR145 and starting audits; this turn
-completed those checks and extended isolated evidence restoration.
-Branch: evidence/batch2-scope-v16-release-checks-20260921. PR145 merged as
-6670f7a7d9457ec22c13b209088e851193776a35; full tested/merged tree verified identical.
+Previous turn completed scope-v16 release checks/archive restoration. PR146 merged
+as4c68d7232d9a34d414c2400909c098859f9a2127 after all four CI35551486607 checks
+passed at18f2a4a119f243461d097646467ede9d3fbac0ea. Full tested/merged tree:
+aebc9ae5f1ad6f8abbeba9b365ca4622b9dc4ce8. Branch:evidence/lensar-share-context-20260921.
 
-HTTP75012 TERMINAL0: company-v22-scope-v16-http-20260921.json verifies all
-90,732reference pages,6,646downloads and90,732HTTP sitemap URLs, zero failures,
-maximum four clicks from the company directory and36,223HTML bytes. Code pins
-checked against current files. Local sequential HTTP, not hosted load/indexing.
-Browser73212 TERMINAL0: company-v22-scope-v16-browser-20260921.json records720
-Chromium/WebKit cases at390/1440px,40registered filings across34companies,
-170note-bearing paths and800exact reader-note/source checks; zero failures.
-Current input hashes verified. Withheld rows/keyboard controls, developer links,
-canonical/structured-data paths and omitted-history404s checked. Mobile Chromium
-and WebKit Idaho screenshots inspected. Not full accessibility certification.
+Reviewed captured LENSAR2024/25 statement19, reconciliation61 and excluded-security
+tables62/63 with full two-class/loss disclosures. All eight selected observations
+match exact namespace/entity/context/unit facts. Shares use scale3 and EPS scale0.
+Participating preferred stock and SeriesA/B warrants do not contractually share
+losses; losses are attributed to common stockholders. Excluded instrument balances
+and excluded weighted-average shares are separate tables, neither added to the
+loss-period denominator. Source SHAd69e560c039f84cdc5c8981beedf4e090952b7543a4ddc3a533c6c84c6dbba59.
+Generic v7 validator unchanged; report replays byte-for-byte. Reader note binds
+to exact source/eight observations.87renderer/ledger tests pass, including all
+five rendered paths, unchanged data and removal after an observation changes.
+scope-v17now328reviewed/472pending/0withdrawn,16presentation-only. Exactly eight
+state/evidence transitions; all800row metadata and prior320decisions preserved.
+Five discrepancy reports remain pending; Femasys remains preliminary/unregistered.
 
-Archive51992 TERMINAL0: company-batch2-evidence-scope-v16-20260921.tar contains
-644files/272,465,920bytes; SHA7d758bc596cfc184fbf0baf25a1fa3a40d21deb759be701d31ee5246597b31e3.
-All24reports replay byte-identically in an isolated temporary environment with
-hash-locked parser dependencies installed offline. Includes all100primary captures,
-seven legacy instances, registered reviews through scope-v16, five pending reports
-and the320reviewed/480pending ledger (16presentation-only). Receipt:
-company-batch2-evidence-archive-scope-v16-20260921.json. Earlier archive unchanged.
-This is local reproduction, not independent certification or hosted backup.
-Saved base revision25d8c465; modified packager and profile are saved/hash-bound
-inside archive and were checked against current files after replay.
+Prepared local v22hosted probe:29objects/1,273,288bytes,
+SHAcd5d22b3fd371fc20db86fd47d406d0e9891f018facc9bd4527354f9f922af26.
+Summary company-five-cohort-hosted-probe-summary-v22-20260921.json. At6,023objects,
+16probe dependencies including release root were not yet verified in receipt.
+No hosted readiness claim or production activation.
 
-Packager now accepts an explicit hash-pinned build profile binding registry,
-ledger, pending reports and fixtures; restored receipt uses sealed archive scope.
-Six archive safety tests pass and are now in CI. Initial profile mutation test
-fixture used macOS /var symlink path and failed the existing canonical-path guard;
-resolved only the temporary fixture root, preserving the guard. Tests now prove
-changed registry/ledger/pending/fixture bytes fail before creating an archive.
+Uploader44227 is now TERMINAL1 at6,023/10,360 verified objects: create returned
+HTTP520 with Retry-After60seconds for delivery object634c9780d8c9da8cfbc47864b0902821709ce712601e7b43303b8758a8009283.json.gz.
+Failed receipt preserved as company-v22-storage-transfer-520-20260921.json.gz,
+raw SHAefca5a80dc4c141157dc029eecd0474a9b4345675125b73d7d2d07fc750d55e6.
+Original log /tmp/canli-v22-transfer.log retained. After254seconds, a single public
+GET60558 TERMINAL0 verified that exact object ABSENT, report
+company-v22-storage-520-public-read-20260921.json. No write during diagnosis.
 
-Uploader44227 polled live this turn; latest observed5964/10,360objects, zero
-failures, incomplete. Uploader, plan and runtime objects unchanged. No production
-activation or new indexed-page evidence. Owner attribution file untouched.
+Recovery79720 RUNNING after original process confirmed terminal, wait respected,
+absence verified and existing owner credential revalidated correct project/service
+role/bucket in memory. Same uploader/plan hashes and policy:one worker,500msminimum
+spacing,3read/2write attempts,200/50shared budgets, create-only and hard stop on
+permission/throttling/corruption. No code relaxation or parallel uploader. Receipt:
+artifacts/seo/corpus-local/company-five-cohort-storage-transfer-v22-recovery-20260921.json;
+log:/tmp/canli-v22-transfer-recovery.log. Preflight retained separately. Initially
+21objects reverified, zero failures; this is a new verification pass over the same
+plan, not21new objects or loss of the6,023previous successful writes. Poll79720;
+never restart44227. No token stored in files or logs.
 
-Next publish this checkpoint, finish storage transfer and verify hosted delivery;
-continue pending source/accounting/usefulness review. LENSAR/Femasys inspections
-remain preliminary (see preceding log). Ledger unchanged; all original indexing,
+An attempted status update asserted the old zero-failure condition and stopped
+before writing documents; the subsequent local commit completed. This checkpoint
+corrects continuity before publication; no false running/success claim is retained
+as current state. Owner attribution file untouched.
+
+Next publish this review, monitor recovery and continue pending context review.
+The new LENSAR note needs updated relevant release checks and archive coverage;
+scope-v16 evidence remains tied to historical inputs. All original indexing,
 SEO/search-intent, developer-adoption and governed-engine goals remain active.
+No new indexed pages or production deployment established.
 
 ## Earlier verified checkpoints (historical)
 
