@@ -1,8 +1,8 @@
-import { existsSync, lstatSync, readFileSync, realpathSync, rmSync } from 'node:fs';
+import { existsSync, lstatSync, readFileSync, realpathSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { loadCompanyActivation } from '../api/_lib/company-activation.js';
-import { parseSitemap, writeSitemaps } from './lib/sitemaps.mjs';
+import { MAX_BYTES, MAX_URLS, escapeXml, parseSitemap } from './lib/sitemaps.mjs';
 
 const ORIGIN = 'https://canlicapital.com';
 
@@ -11,9 +11,11 @@ const ORIGIN = 'https://canlicapital.com';
 // 1. Remove the generated pilot copies (companies/, companies.html, company-data/).
 //    Vercel serves filesystem output before rewrites, so they would otherwise shadow
 //    the activated release on the same URLs.
-// 2. Rebuild dist/sitemap.xml as the site's page list minus every /companies URL,
-//    followed by exactly the admitted company URLs. More than 50,000 URLs become a
-//    sitemap index with content-addressed shards (scripts/lib/sitemaps.mjs).
+// 2. Rebuild dist/sitemap.xml as a sitemap index with STABLE child names:
+//    sitemap-site.xml (the site's pages minus every /companies URL) and
+//    sitemap-companies-N.xml (exactly the admitted company URLs, 50,000 per file).
+//    Content-addressed names changed whenever a site page's lastmod changed, so an
+//    hourly deploy could remove a child that a crawler had just read in the index.
 //
 // Local and CI builds (no VERCEL_ENV) keep the static pilot output, so the existing
 // static-site audits still cover what they were written for. Preview builds run the
@@ -45,8 +47,37 @@ export function prepareCompanyProductionOutput(root, { environment = process.env
   const expected = admission.counts.urls_admitted;
   if (companies.length !== expected) throw new Error(`Admission yields ${companies.length} company URLs; expected ${expected}`);
 
-  const result = writeSitemaps([...site, ...companies], { directory: dist, origin: ORIGIN });
+  const result = writeStableSitemaps(dist, [['sitemap-site.xml', site], ...chunk(companies, MAX_URLS).map((part, i) => [`sitemap-companies-${i + 1}.xml`, part])]);
   return { removed: paths, siteUrls: site.length, removedSiteCompanyUrls: entries.length - site.length, companyUrls: companies.length, ...result };
+}
+
+const chunk = (items, size) => Array.from({ length: Math.ceil(items.length / size) }, (_, i) => items.slice(i * size, (i + 1) * size));
+
+function writeStableSitemaps(dist, files) {
+  const header = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  const seen = new Set();
+  let urls = 0, bytes = 0;
+  for (const [name, entries] of files) {
+    if (!entries.length) throw new Error(`Refusing to write empty ${name}`);
+    const body = entries.map(({ loc, lastmod }) => {
+      const url = new URL(loc);
+      if (url.origin !== ORIGIN || url.hash || url.username) throw new Error(`Invalid sitemap URL: ${loc}`);
+      if (seen.has(url.href)) throw new Error(`Duplicate sitemap URL: ${loc}`);
+      seen.add(url.href);
+      if (lastmod && (!/^\d{4}-\d{2}-\d{2}(?:T[\d:.]+Z)?$/.test(lastmod) || !Number.isFinite(Date.parse(lastmod)))) throw new Error(`Invalid lastmod: ${lastmod}`);
+      return `  <url>\n    <loc>${escapeXml(loc)}</loc>\n${lastmod ? `    <lastmod>${escapeXml(lastmod)}</lastmod>\n` : ''}  </url>\n`;
+    }).join('');
+    const xml = `${header}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}</urlset>\n`;
+    if (entries.length > MAX_URLS || Buffer.byteLength(xml) > MAX_BYTES) throw new Error(`${name} exceeds sitemap limits`);
+    writeFileSync(resolve(dist, name), xml);
+    urls += entries.length; bytes += Buffer.byteLength(xml);
+  }
+  const index = `${header}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    files.map(([name]) => `  <sitemap><loc>${ORIGIN}/${name}</loc></sitemap>\n`).join('') + '</sitemapindex>\n';
+  // Commit the index last so it never points at a child that has not been written.
+  writeFileSync(resolve(dist, 'sitemap.xml.pending'), index);
+  renameSync(resolve(dist, 'sitemap.xml.pending'), resolve(dist, 'sitemap.xml'));
+  return { urls, shards: files.length, files: files.map(([name]) => name), bytes };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
