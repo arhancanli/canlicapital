@@ -1,12 +1,15 @@
 import { CatalogError } from './company-catalog.js';
 
-// One bounded retry for transient storage failures (network error, 429 or 5xx).
-// Other statuses, including 404, return immediately. A fresh timeout per attempt
-// keeps the worst case at two storage timeouts, inside the function's duration.
+// One bounded retry for transient storage failures (network error, timeout, 429 or
+// 5xx). Other statuses, including 404, return immediately. Hosted checks from the
+// function region saw occasional reads stall with no response while the same objects
+// answered in about a second elsewhere, so the first attempt gives up after 3 s and
+// the retry keeps the full 10 s: at most 13 s per object instead of a stall to 10 s.
+export const STORAGE_ATTEMPT_TIMEOUTS_MS = [3_000, 10_000];
 export async function fetchStorage(fetcher, url, init) {
   for (let attempt = 1; ; attempt++) {
     try {
-      const response = await fetcher(url, { ...init, signal: AbortSignal.timeout(10_000) });
+      const response = await fetcher(url, { ...init, signal: AbortSignal.timeout(STORAGE_ATTEMPT_TIMEOUTS_MS[attempt - 1]) });
       if (attempt === 1 && (response.status === 429 || response.status >= 500)) { await response.body?.cancel(); continue; }
       return response;
     } catch (error) {
