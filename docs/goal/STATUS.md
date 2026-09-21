@@ -12,54 +12,56 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-PR160 merged as1a3ae0560c332309a75b7e62ce456ffd985e4154 after all four
-CI35556893267 checks passed at32ec87d60ff2558a2d787fe504b6dca43c1e2108.
-Tested and merged tree198d4a3ca85684ecfc1f51eac52722440fef4595 verified.
-Current branch: evidence/batch2-sixteenth-contexts-20260921. Previous turn advanced32
-observations with distinct historical filing contexts.
+PR161 merged as92a49997079258b7c9fc303491990d6fae120da9 after all four
+CI35557375106 checks passed at8b9a6a05bd2eac9866be0595795b3b9ebdcc8c81.
+Tested and merged tree373f894c126ce08d3631b0fa8dc6cb50185db84b verified.
+Current branch: evidence/scope-v25-release-checkpoint-20260921. Previous turn
+verified terminal HTTP/archive results and reported the owner-facing comparison.
 
-Four additional contexts retained across two reproducible reports:
-- Sonendo2023/24: net loss combines continuing losses and discontinued income;
-  dollar thousands/full shares. One-for200 split effectiveOctober18,2024 with
-  trading adjustedNovember8 and fractional interests paid in cash. Full EPS
-  paragraph spans a page break and includes prefunded warrants in basic shares.
-- Bespoke2023/24: full dollars/shares, January13,2023 effective45-to1 split. Specific
-  2024 out-of-money warrant/option exclusion is not extended to2023. All eight
-  observations receive the explicitly limited presentation-only disposition.
-- Bespoke2018/19: August31 fiscal years;2018 loss and2019 profit. Source says
-  options/warrants/convertible debt excluded as anti-dilutive in both periods;
-  no false claim both periods are losses. Separate legacy instance checked.
-- Cannabis Bioscience: May31 fiscal years2024/25, full dollars/shares and EPS
-  -0.00006/-0.00005, not zero income. Source says no dilutive securities at year-end;
-  no inference that potentially convertible instruments never existed.
+Current scope-v25 HTTP39340 completed exit0:90,732 pages,6,646 downloads,
+90,732 sitemap URLs,zero failures,max4 directory clicks. Every recorded code hash
+matches current files. Browser36742 completed exit0:1,200 cases,67 filing reviews
+across58 issuers,290 note-bearing paths and1,340 exact note/source checks,zero
+failures. Chromium/WebKit390/1440; all33 input hashes plus runner match.
+No audited renderer/registry/report/runtime input changed during either check.
 
-company-share-context-batch2-sixteenth-20260921.json uses unchanged v7 for24 inline
-observations. company-share-context-bespoke-legacy-20260921.json uses new strictly
-source-pinned review-bespoke-legacy-context.py with unchanged legacy-v2 comparator:
-eight exact issuer/period/compound-unit facts and signed visible cells in table14,
-with explicit fiscal-year header/column mapping, basic/diluted row labels and
-retained instance fact/context/unit XML. Primary SHA
-852363337928e2cd4b7369581361653e6c5ce232f31cd3a12b9349316de019d8;
-instance SHA0e98b831f263b95f8700212a691cf79b8741a22f0140d6ba1360a62c9e95ac8b.
-Both reports replay byte-for-byte. No generic validator weakened.
+Archive57809 completed exit0:714 files/276,674,560 bytes; all38 reports restored
+byte-identically with offline hash-locked dependencies. SHA
+5cf3ba525a1952be551f13d7f57511330c4b21034f231b41f64bb9ecd02aad84.
+Archive hash and embedded profile/registry/packager bytes verified. Includes all100
+primary captures/seven legacy instances, all nine pending reports and retained
+failed drafts. Local restore only, not offsite backup or independent certification.
+Scope-v25 remains536 reviewed/264 pending/0 withdrawn,72 presentation-only.
+Batch1 remains1,148 reviewed/28 withheld/0 pending. No new accounting admissions,
+source-value changes or runtime object edits this turn.
 
-Scope-v25 now536 reviewed /264 pending /0 withdrawn,72 presentation-only. Exactly
-32 state/evidence transitions (eight limited); all800 metadata and prior504 decisions
-preserved.95 renderer/numerics/scope tests pass, including fiscal periods, precision,
-prefunded inclusion, limited wording, unchanged data and independent note removal.
-Nine unresolved reports remain pending. No source values, selector policy or runtime
-objects changed. Report83376 and replay/ledger/tests50226 terminal0.
+Current tested code deployed as preview from clean detached checkout
+/Users/arhancanli/canlicapital-v22-preview-20260921. Existing linked Vercel project
+and authenticated owner team reused. Deployment-local environment pins the frozen
+v22 release and correct catalog/delivery paths; no production settings changed.
+Preview https://meridian-bc71v1ix4-arhans-projects-ac470eaa.vercel.app
+ID dpl_8Z7WSohJa2y9TrtrKmRovDEDa3T3; Vercel inspect confirmed READY.
+Normal upload90088 failed terminal1 (fetch failed/upload aborted); archive retry
+22491 succeeded terminal0. Receipt company-v22-preview-deployment-20260921.json.
+Explicit staging endpoint only; clean company routes are not activated.
 
-Latest browser remains scope-v22:1,020 cases/1,120 exact note-source checks,zero
-failures. Current scope-v23–25 additions need later relevant release checks/archive
-coverage. Frozen scope-v22 archive:693 files/34 reports/all nine pending reports;
-new legacy instance was already captured, but new review/spec/runner need coverage.
-Prior full HTTP covers90,732 pages/6,646 downloads. No audits running now.
+Hosted failure-mode71983 completed terminal1:2/4 checks failed because directory
+GET/HEAD returned200/noindex rather than assumed503. Retained report
+company-v22-hosted-unavailable-20260921.json. Code inspection explains lazy download
+index loading: directory availability does not establish download storage readiness.
+Ready-mode54869 then completed terminal1:7/20 checks failed, all sampled selected/
+source downloads plus unknown download returned503. Retained report
+company-v22-hosted-readiness-20260921.json. This is a failed readiness gate, not a
+successful release. Initial audit command had a mistyped manifest digest and failed
+before network/report creation; corrected invocation reads digest from frozen plan.
+No validator or expected result was weakened to claim a pass.
 
-Recovery79720 active; receipt7499 verified objects,0 failures,incomplete.
-Same bounded uploader/plan, prior520 evidence retained, counts not additive. No
-production deployment or new indexing evidence;90,732 candidates unpublished,
-last confirmed indexed baseline262. Engine six-return/four-sleeve evidence remains
-immature; no runtime/broker action. All indexing/quality/SEO/intent/developer-adoption/
-governed-engine goals active. Next publish, continue source review and hosted
-readiness. Owner attribution file untouched.
+Recovery79720 polled live; latest receipt7935/10,360 verified objects,
+0 failures,incomplete. Same immutable plan/uploader and bounded retry policy;
+prior520 retained. Counts are reverified objects, not additive uploads. No extra
+uploader, production activation or new indexing evidence.90,732 candidates remain
+unpublished; last confirmed indexed baseline262. Engine six-return/four-sleeve
+baseline remains immature; no broker/runtime action. All indexing/quality/SEO/
+intent/developer-adoption/governed-engine goals remain active.
+Next finish storage, recheck hosted readiness against the same preview, prepare
+clean-route preview and continue pending source review. Owner attribution file untouched.
