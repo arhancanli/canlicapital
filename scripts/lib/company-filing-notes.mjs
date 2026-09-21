@@ -1,6 +1,480 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001328598",
+  "include_on_overview": true,
+  "source_sha256": "6fa073ef5f073bc8e41184229ab57fb3f7aad5572bfb3bfe2e249351e5d9d084",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Invesco CurrencyShares Euro Trust reports combined basic and diluted EPS for 2024 and 2025, with identical tagged weighted-average share counts. The shares are full counts, without thousand-share scaling. Its functional currency is the euro, but its financial statements report in USD; income and cash-flow statements use the period's average Closing Spot Rate. This is a presentation-only review: the reason for the equal basic and diluted figures has not been established.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1328598/000119312526083564/fxe-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 2.15,
+      "accn": "0001193125-26-083564",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.88,
+      "accn": "0001193125-26-083564",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 2.15,
+      "accn": "0001193125-26-083564",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.88,
+      "accn": "0001193125-26-083564",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1859836,
+      "accn": "0001193125-26-083564",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 3913973,
+      "accn": "0001193125-26-083564",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1859836,
+      "accn": "0001193125-26-083564",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 3913973,
+      "accn": "0001193125-26-083564",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001353611",
+  "include_on_overview": true,
+  "source_sha256": "f253b2e209a7b5b78dbb06603255acb7fcb63512b3dc27d89e123a3c932aac77",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Invesco CurrencyShares British Pound Sterling Trust reports combined basic and diluted EPS for 2024 and 2025, with identical tagged weighted-average share counts. The shares are full counts, without thousand-share scaling. Its functional currency is the British Pound Sterling, but its financial statements report in USD; income and cash-flow statements use the period's average Closing Spot Rate. This is a presentation-only review: the reason for the equal basic and diluted figures has not been established.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1353611/000119312526083570/fxb-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3.9,
+      "accn": "0001193125-26-083570",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 3.08,
+      "accn": "0001193125-26-083570",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3.9,
+      "accn": "0001193125-26-083570",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 3.08,
+      "accn": "0001193125-26-083570",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 522131,
+      "accn": "0001193125-26-083570",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 603699,
+      "accn": "0001193125-26-083570",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 522131,
+      "accn": "0001193125-26-083570",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 603699,
+      "accn": "0001193125-26-083570",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001353612",
+  "include_on_overview": true,
+  "source_sha256": "5a839b3ba82146c5a406aae7a707a35758160f5037390b8a443d1f7d9b6cc901",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Invesco CurrencyShares Canadian Dollar Trust reports combined basic and diluted EPS for 2024 and 2025, with identical tagged weighted-average share counts. The shares are full counts, without thousand-share scaling. Its functional currency is the Canadian Dollar, but its financial statements report in USD; income and cash-flow statements use the period's average Closing Spot Rate. This is a presentation-only review: the reason for the equal basic and diluted figures has not been established.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1353612/000119312526083543/fxc-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1.43,
+      "accn": "0001193125-26-083543",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.33,
+      "accn": "0001193125-26-083543",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1.43,
+      "accn": "0001193125-26-083543",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.33,
+      "accn": "0001193125-26-083543",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 869262,
+      "accn": "0001193125-26-083543",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1165205,
+      "accn": "0001193125-26-083543",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 869262,
+      "accn": "0001193125-26-083543",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1165205,
+      "accn": "0001193125-26-083543",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001353613",
+  "include_on_overview": true,
+  "source_sha256": "7321cf61c1ad077cf4d5a60478e266506c078542dfa80bbc18812be50f40036e",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Invesco CurrencyShares Japanese Yen Trust reports combined basic and diluted EPS for 2024 and 2025, with identical tagged weighted-average share counts. The shares are full counts, without thousand-share scaling. Its functional currency is the Japanese Yen, but its financial statements report in USD; income and cash-flow statements use the period's average Closing Spot Rate. This is a presentation-only review: the reason for the equal basic and diluted figures has not been established.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1353613/000119312526083566/fxy-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.27,
+      "accn": "0001193125-26-083566",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.25,
+      "accn": "0001193125-26-083566",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.27,
+      "accn": "0001193125-26-083566",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.25,
+      "accn": "0001193125-26-083566",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 6044399,
+      "accn": "0001193125-26-083566",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 9663699,
+      "accn": "0001193125-26-083566",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 6044399,
+      "accn": "0001193125-26-083566",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 9663699,
+      "accn": "0001193125-26-083566",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001353614",
+  "include_on_overview": true,
+  "source_sha256": "b91261300e889a1bf7abd34f71c595ba822e8f5d973192486d3631dd4afaf6a6",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Invesco CurrencyShares Australian Dollar Trust reports combined basic and diluted EPS for 2024 and 2025, with identical tagged weighted-average share counts. The shares are full counts, without thousand-share scaling. Its functional currency is the Australian Dollar, but its financial statements report in USD; income and cash-flow statements use the period's average Closing Spot Rate. This is a presentation-only review: the reason for the equal basic and diluted figures has not been established.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1353614/000119312526083544/fxa-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1.02,
+      "accn": "0001193125-26-083544",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.74,
+      "accn": "0001193125-26-083544",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1.02,
+      "accn": "0001193125-26-083544",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0.74,
+      "accn": "0001193125-26-083544",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1061612,
+      "accn": "0001193125-26-083544",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1193699,
+      "accn": "0001193125-26-083544",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1061612,
+      "accn": "0001193125-26-083544",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1193699,
+      "accn": "0001193125-26-083544",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001353615",
+  "include_on_overview": true,
+  "source_sha256": "b945d2075dedeef6d397ae7dd84b1609268da0fb4dc2b53a68571e458d2a4152",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Invesco CurrencyShares Swiss Franc Trust reports combined basic and diluted EPS for 2024 and 2025, with identical tagged weighted-average share counts. The shares are full counts, without thousand-share scaling. Its functional currency is the Swiss Franc, but its financial statements report in USD; income and cash-flow statements use the period's average Closing Spot Rate. This is a presentation-only review: the reason for the equal basic and diluted figures has not been established.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1353615/000119312526083569/fxf-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.1,
+      "accn": "0001193125-26-083569",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.53,
+      "accn": "0001193125-26-083569",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.1,
+      "accn": "0001193125-26-083569",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.53,
+      "accn": "0001193125-26-083569",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1521858,
+      "accn": "0001193125-26-083569",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 3193288,
+      "accn": "0001193125-26-083569",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1521858,
+      "accn": "0001193125-26-083569",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 3193288,
+      "accn": "0001193125-26-083569",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001320350",
   "include_on_overview": true,
   "source_sha256": "d69e560c039f84cdc5c8981beedf4e090952b7543a4ddc3a533c6c84c6dbba59",
