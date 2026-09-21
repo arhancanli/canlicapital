@@ -1,0 +1,294 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001429260",
+      "accession": "0001104659-26-037874",
+      "source_sha256": "78daf3b5c8c8b3d82976f96053549696f5b6bfa1fb1158d29e0dd97a741a012d",
+      "primary_sha256": "4ac27b22c57e181d168b5e98c4adda4c70af90eaa2d7706f114383cbeccee955",
+      "receipt_sha256": "955fe874c1fd6e839d2c0829b2f50ec25d6725aa4f658baac30a8ababfffc665",
+      "fixture": "scripts/fixtures/editorial/batch2-0001429260-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -2.69,
+          "accn": "0001104659-26-037874",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.07,
+          "accn": "0001104659-26-037874",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -2.69,
+          "accn": "0001104659-26-037874",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.07,
+          "accn": "0001104659-26-037874",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 20784334,
+          "accn": "0001104659-26-037874",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 27901889,
+          "accn": "0001104659-26-037874",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 20784334,
+          "accn": "0001104659-26-037874",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 27901889,
+          "accn": "0001104659-26-037874",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 316,
+      "supporting_table_indexes": [
+        345
+      ],
+      "share_scale": "0",
+      "table_requires": [
+        "32,915",
+        "120,855",
+        "39,730",
+        "74,858",
+        "6,815",
+        "45,997",
+        "8,697",
+        "9,893",
+        "1,882",
+        "55,890",
+        "0.07",
+        "2.69",
+        "27,901,889",
+        "20,784,334"
+      ],
+      "paragraph_requires": [
+        "($ in thousands except for share and per share amounts)",
+        "Basic net loss per share attributed to common stockholders is calculated by dividing the net loss attributed to Fortress, less the Series A Preferred Dividend declared and paid and/or cumulated, and Fortress\u2019 share of subsidiary deemed dividends, by the weighted-average number of shares of Common Stock outstanding during the period, not including unvested restricted stock and other potentially dilutive securities, such as warrants, stock options, restricted stock units, and restricted stock. For diluted net loss per share attributed to common stockholders, restricted stock and other potentially dilutive securities are included in the denominator using the treasury stock method, if dilutive. The impact of these items is anti-dilutive during periods of net loss.",
+        "Basic net income or loss per share attributed to common stockholders is calculated by dividing the net income or loss attributed to Fortress, less the Series A Preferred dividends and subsidiary deemed dividends, by the weighted-average number of shares of Common Stock outstanding during the period, not including unvested restricted stock and other potentially dilutive securities. Diluted net income (loss) per share of common stock includes the effect, if any, from the potential exercise or conversion of securities, such as warrants, stock options, restricted stock units, and restricted stock using the treasury stock method, if dilutive. The impact of these items is anti-dilutive during periods of net loss."
+      ],
+      "reader_note": "Fortress Biotech's 2024 and 2025 common-share EPS uses dollar thousands and full shares. The 2025 consolidated loss becomes $6.815 million of income attributable to Fortress after noncontrolling interests; $8.697 million of preferred and subsidiary deemed dividends then produces a $1.882 million common-stockholder loss. The 2024 common loss similarly includes the dividend adjustment. EPS is not calculated from consolidated loss or Fortress-attributable income alone. The filing excludes potential shares when anti-dilutive during net-loss periods.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001430306",
+      "accession": "0001999371-26-005730",
+      "source_sha256": "c58b9668b329c3fe1faf138366f8781d658cf50824bc6e133ce4aa43029ca9ed",
+      "primary_sha256": "e7adb01677d6d63377aa269e30157a3520273f8ee0f2ad89e705e30d048803c4",
+      "receipt_sha256": "3e854796a6ca9f82a3d7b9836b7650fe9d140e404469913ef6995909650753bb",
+      "fixture": "scripts/fixtures/editorial/batch2-0001430306-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -176.6,
+          "accn": "0001999371-26-005730",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -14.57,
+          "accn": "0001999371-26-005730",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -176.6,
+          "accn": "0001999371-26-005730",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -14.57,
+          "accn": "0001999371-26-005730",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 736339,
+          "accn": "0001999371-26-005730",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 8511318,
+          "accn": "0001999371-26-005730",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 736339,
+          "accn": "0001999371-26-005730",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 8511318,
+          "accn": "0001999371-26-005730",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-12",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 291,
+      "supporting_table_indexes": [],
+      "share_scale": "0",
+      "table_requires": [
+        "124,021",
+        "130,036",
+        "14.57",
+        "176.60",
+        "8,511,318",
+        "736,339"
+      ],
+      "paragraph_requires": [
+        "(In Thousands, Except Share and Per Share Amounts)",
+        "The computation of basic and diluted loss per share for the year ended December 31, 2025 and 2024 excludes potentially dilutive securities when their inclusion would be anti-dilutive, or if their exercise prices were greater than the average market price of the common stock during the period. Prefunded warrants are assumed exercised on date of issuance and are included in the basic earnings per share (\u201cEPS\u201d) calculation.",
+        "On February 5, 2025, the Company effected a 1-for-100 reverse stock split of its issued and outstanding shares of common stock, whereby 559,044,486 outstanding shares of the Company\u2019s common stock were exchanged for 5,590,667 shares of the Company\u2019s common stock. All per share amounts and number of shares in the consolidated financial statements and related notes have been retroactively restated to reflect the reverse stock split. As a result of the reverse-stock-split, on February 20, 2025, the Company\u2019s stock regained compliance with the minimum bid price requirement of $ 1.00 per share for continued listing on the NASDAQ Capital Market, as set forth in NASDAQ Listing Rule 5550(a)(2)."
+      ],
+      "reader_note": "Tonix Pharmaceuticals' 2024 and 2025 statements report dollar thousands and full shares. Share and per-share amounts are retrospectively restated for the one-for-100 reverse split effective February 5, 2025. Prefunded warrants are assumed exercised from issuance and already enter basic EPS. The filing excludes potential securities when anti-dilutive or when their exercise prices exceed the period's average market price; it does not make their year-end balances additional weighted-average shares.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
