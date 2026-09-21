@@ -1,0 +1,290 @@
+{
+  "schema": "canli.hosted-company-staging-audit.v1",
+  "origin": "https://meridian-gb8qguqpt-arhans-projects-ac470eaa.vercel.app",
+  "manifest_sha256": "16a18cdc8d0bb19e6363599a0b491a8bb9e06aeebadb9c33b5e34f69e9110271",
+  "mode": "ready",
+  "routing": "clean",
+  "publication_approved": false,
+  "complete": true,
+  "checks": [
+    {
+      "path": "/companies/not-a-company-route",
+      "method": "GET",
+      "status": 404,
+      "bytes": 27,
+      "elapsed_ms": 964,
+      "sha256": "c204a013f0244a547bc7ab8034faafebbc3537a3dc33da99fbcce6e17d358bba",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/companies",
+      "method": "POST",
+      "status": 405,
+      "bytes": 18,
+      "elapsed_ms": 641,
+      "sha256": "371b26886bee5e559d5016b17b1479cb7a9154865da5a0f11563580ea99ff033",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/companies",
+      "method": "GET",
+      "status": 200,
+      "bytes": 19770,
+      "elapsed_ms": 1084,
+      "sha256": "f3c6f31624b3a4aaf6021242a086c4a522c6ce1679105f6c8f280dad2f0f1eee",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"f3c6f31624b3a4aaf6021242a086c4a522c6ce1679105f6c8f280dad2f0f1eee\""
+    },
+    {
+      "path": "/companies/9999999999",
+      "method": "GET",
+      "status": 404,
+      "bytes": 170,
+      "elapsed_ms": 294,
+      "sha256": "4d50e4daa24912f59929ebc89619fa012d6d37347f13d2e800d755448dc7dd38",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/company-data/9999999999.json",
+      "method": "GET",
+      "status": 503,
+      "bytes": 38,
+      "elapsed_ms": 502,
+      "sha256": "0edab075b08ceb2ca4efb144cd902a4a8604e0efc85743e99538fd4c09711fa1",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/company-data/0000001750.json",
+      "method": "GET",
+      "status": 503,
+      "bytes": 38,
+      "elapsed_ms": 437,
+      "sha256": "0edab075b08ceb2ca4efb144cd902a4a8604e0efc85743e99538fd4c09711fa1",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/company-data/sources/7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba.json.gz",
+      "method": "GET",
+      "status": 503,
+      "bytes": 38,
+      "elapsed_ms": 425,
+      "sha256": "0edab075b08ceb2ca4efb144cd902a4a8604e0efc85743e99538fd4c09711fa1",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/companies/0000001750",
+      "method": "GET",
+      "status": 200,
+      "bytes": 22325,
+      "elapsed_ms": 709,
+      "sha256": "1b8929e406ffa019035241e768c234b0252bc1d1965f0cdc6abda33fffc852b8",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"1b8929e406ffa019035241e768c234b0252bc1d1965f0cdc6abda33fffc852b8\""
+    },
+    {
+      "path": "/companies/0000001750",
+      "method": "HEAD",
+      "status": 200,
+      "bytes": 0,
+      "elapsed_ms": 450,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"1b8929e406ffa019035241e768c234b0252bc1d1965f0cdc6abda33fffc852b8\""
+    },
+    {
+      "path": "/companies/0000001750",
+      "method": "GET",
+      "status": 304,
+      "bytes": 0,
+      "elapsed_ms": 650,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": null,
+      "cache_control": "no-store",
+      "etag": "\"1b8929e406ffa019035241e768c234b0252bc1d1965f0cdc6abda33fffc852b8\"",
+      "validation_of": {
+        "path": "/companies/0000001750",
+        "etag": "W/\"1b8929e406ffa019035241e768c234b0252bc1d1965f0cdc6abda33fffc852b8\"",
+        "sha256": "1b8929e406ffa019035241e768c234b0252bc1d1965f0cdc6abda33fffc852b8",
+        "robots": "noindex"
+      }
+    },
+    {
+      "path": "/company-data/0001090872.json",
+      "method": "GET",
+      "status": 503,
+      "bytes": 38,
+      "elapsed_ms": 642,
+      "sha256": "0edab075b08ceb2ca4efb144cd902a4a8604e0efc85743e99538fd4c09711fa1",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/company-data/sources/c1dc449b186de4294c8dbdbb9e3b0f74eee3628c3fc5836652ff7ab8c2040ac9.json.gz",
+      "method": "GET",
+      "status": 503,
+      "bytes": 38,
+      "elapsed_ms": 600,
+      "sha256": "0edab075b08ceb2ca4efb144cd902a4a8604e0efc85743e99538fd4c09711fa1",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/companies/0001090872",
+      "method": "GET",
+      "status": 200,
+      "bytes": 23573,
+      "elapsed_ms": 696,
+      "sha256": "e3518bb4c81fd6234a76facd83d1c89006e71c7b36e9d12886c13617ba2909e9",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"e3518bb4c81fd6234a76facd83d1c89006e71c7b36e9d12886c13617ba2909e9\""
+    },
+    {
+      "path": "/companies/0001090872",
+      "method": "HEAD",
+      "status": 200,
+      "bytes": 0,
+      "elapsed_ms": 428,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"e3518bb4c81fd6234a76facd83d1c89006e71c7b36e9d12886c13617ba2909e9\""
+    },
+    {
+      "path": "/companies/0001090872",
+      "method": "GET",
+      "status": 304,
+      "bytes": 0,
+      "elapsed_ms": 422,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": null,
+      "cache_control": "no-store",
+      "etag": "\"e3518bb4c81fd6234a76facd83d1c89006e71c7b36e9d12886c13617ba2909e9\"",
+      "validation_of": {
+        "path": "/companies/0001090872",
+        "etag": "W/\"e3518bb4c81fd6234a76facd83d1c89006e71c7b36e9d12886c13617ba2909e9\"",
+        "sha256": "e3518bb4c81fd6234a76facd83d1c89006e71c7b36e9d12886c13617ba2909e9",
+        "robots": "noindex"
+      }
+    },
+    {
+      "path": "/company-data/0001873213.json",
+      "method": "GET",
+      "status": 503,
+      "bytes": 38,
+      "elapsed_ms": 545,
+      "sha256": "0edab075b08ceb2ca4efb144cd902a4a8604e0efc85743e99538fd4c09711fa1",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/company-data/sources/5a80b98f6647292689a44fc77d6710d0cf6e139024389a056329f01c52b81c34.json.gz",
+      "method": "GET",
+      "status": 503,
+      "bytes": 38,
+      "elapsed_ms": 661,
+      "sha256": "0edab075b08ceb2ca4efb144cd902a4a8604e0efc85743e99538fd4c09711fa1",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/companies/0001873213",
+      "method": "GET",
+      "status": 200,
+      "bytes": 21320,
+      "elapsed_ms": 715,
+      "sha256": "cd83c5e74a252b862b7bce87a198ec30f1bba4c12eefcb63f8527eae1d37ff51",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"cd83c5e74a252b862b7bce87a198ec30f1bba4c12eefcb63f8527eae1d37ff51\""
+    },
+    {
+      "path": "/companies/0001873213",
+      "method": "HEAD",
+      "status": 200,
+      "bytes": 0,
+      "elapsed_ms": 699,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"cd83c5e74a252b862b7bce87a198ec30f1bba4c12eefcb63f8527eae1d37ff51\""
+    },
+    {
+      "path": "/companies/0001873213",
+      "method": "GET",
+      "status": 304,
+      "bytes": 0,
+      "elapsed_ms": 423,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": null,
+      "cache_control": "no-store",
+      "etag": "\"cd83c5e74a252b862b7bce87a198ec30f1bba4c12eefcb63f8527eae1d37ff51\"",
+      "validation_of": {
+        "path": "/companies/0001873213",
+        "etag": "W/\"cd83c5e74a252b862b7bce87a198ec30f1bba4c12eefcb63f8527eae1d37ff51\"",
+        "sha256": "cd83c5e74a252b862b7bce87a198ec30f1bba4c12eefcb63f8527eae1d37ff51",
+        "robots": "noindex"
+      }
+    }
+  ],
+  "failures": [
+    {
+      "path": "/company-data/9999999999.json",
+      "method": "GET",
+      "error": "GET /company-data/9999999999.json\n\n503 !== 404\n"
+    },
+    {
+      "path": "/company-data/0000001750.json",
+      "method": "GET",
+      "error": "GET /company-data/0000001750.json\n\n503 !== 200\n"
+    },
+    {
+      "path": "/company-data/sources/7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba.json.gz",
+      "method": "GET",
+      "error": "GET /company-data/sources/7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba.json.gz\n\n503 !== 200\n"
+    },
+    {
+      "path": "/company-data/0001090872.json",
+      "method": "GET",
+      "error": "GET /company-data/0001090872.json\n\n503 !== 200\n"
+    },
+    {
+      "path": "/company-data/sources/c1dc449b186de4294c8dbdbb9e3b0f74eee3628c3fc5836652ff7ab8c2040ac9.json.gz",
+      "method": "GET",
+      "error": "GET /company-data/sources/c1dc449b186de4294c8dbdbb9e3b0f74eee3628c3fc5836652ff7ab8c2040ac9.json.gz\n\n503 !== 200\n"
+    },
+    {
+      "path": "/company-data/0001873213.json",
+      "method": "GET",
+      "error": "GET /company-data/0001873213.json\n\n503 !== 200\n"
+    },
+    {
+      "path": "/company-data/sources/5a80b98f6647292689a44fc77d6710d0cf6e139024389a056329f01c52b81c34.json.gz",
+      "method": "GET",
+      "error": "GET /company-data/sources/5a80b98f6647292689a44fc77d6710d0cf6e139024389a056329f01c52b81c34.json.gz\n\n503 !== 200\n"
+    }
+  ],
+  "code_sha256": "46c6fc6b6fc58af1f2488b668ddbe7a429f45524535ec01c427e747a3984bbf4",
+  "http_contract_sha256": "a5bd7defd6362643a49e935fb83ec61eead771bc2bd428d576291d280b9c6724",
+  "scope": "Representative noindex staging sample in the recorded routing mode. Not production activation, complete corpus HTTP verification, indexing evidence or a cloud-load benchmark.",
+  "passed": false
+}
