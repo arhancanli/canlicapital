@@ -10,6 +10,8 @@ import { verifyCompanyReference } from './lib/company-reference.mjs';
 import { referenceCrawlGraph } from './lib/reference-crawl-graph.mjs';
 const [catalogDir, deliveryDir, distDir, output, discoveryDir] = process.argv.slice(2);
 if (!output) throw new Error('Usage: node scripts/measure-company-delivery.mjs CATALOG DELIVERY DIST REPORT [DISCOVERY]');
+const codeHashes = () => Object.fromEntries(['scripts/measure-company-delivery.mjs', 'scripts/lib/reference-crawl-graph.mjs', 'scripts/lib/company-preview-server.mjs', 'scripts/lib/company-page-renderer.mjs', 'scripts/lib/company-filing-notes.mjs', 'api/_lib/company-release.js', 'scripts/lib/company-reference.mjs', 'api/_lib/company-html.js', 'api/_lib/company-download-index.js', 'api/_lib/company-download.js', 'scripts/lib/build-company-download-index.mjs', 'api/_lib/company-directory-html.js', 'scripts/lib/company-directory.mjs', 'api/_lib/company-catalog.js'].map(path => [path, catalogHash(readFileSync(path))]));
+const initialCode = codeHashes();
 const app = await companyPreviewServer({ catalogDir, deliveryDir, distDir, discoveryDir });
 app.server.listen(0, '127.0.0.1'); await once(app.server, 'listening');
 const base = `http://127.0.0.1:${app.server.address().port}`;
@@ -90,5 +92,6 @@ try {
   durations.sort((a, b) => a - b); report.localHtmlMedianMs = durations[Math.floor(durations.length / 2)]; report.localHtmlP95Ms = durations[Math.floor(durations.length * .95)];
 } catch (error) { report.failures.push(error.stack); process.exitCode = 1; }
 finally { app.server.closeAllConnections(); await new Promise(resolve => app.server.close(resolve)); }
-report.code = Object.fromEntries(['scripts/measure-company-delivery.mjs', 'scripts/lib/reference-crawl-graph.mjs', 'scripts/lib/company-preview-server.mjs', 'scripts/lib/company-page-renderer.mjs', 'api/_lib/company-html.js', 'api/_lib/company-download-index.js', 'api/_lib/company-download.js', 'scripts/lib/build-company-download-index.mjs', 'api/_lib/company-directory-html.js', 'scripts/lib/company-directory.mjs', 'api/_lib/company-catalog.js'].map(path => [path, catalogHash(readFileSync(path))]));
+report.code = initialCode;
+if (JSON.stringify(codeHashes()) !== JSON.stringify(initialCode)) { report.failures.push('Code changed during measurement'); process.exitCode = 1; }
 writeFileSync(resolve(output), JSON.stringify(report, null, 2) + '\n'); console.log(JSON.stringify(report, null, 2));
