@@ -1754,6 +1754,31 @@ test('Dare Eledon and Neurogene preserve split exception class allocation and hi
   }
 });
 
+test('Bionano rounding and REMSleep zero loss EPS keep their reported meaning and bindings', () => {
+  for (const [cik, phrases] of [
+    ['0001411690', [/rounded to the nearest thousand/, /not shown in thousand-share units/, /not exact unrounded counts/, /one-for-60 reverse split/, /due|net losses/]],
+    ['0001412126', [/net losses of \$1,077,997 and \$3,020,300/, /loss EPS is displayed as \(\$0\.00\)/, /does not mean the company broke even/, /No unrounded EPS replaces/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic');
+    assert.equal(notes.length, 1);
+    const changed = structuredClone(record), row = notes[0].observations[0];
+    changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+    assert.equal(companyFilingNotes(changed, row.tag).length, 0);
+    const wrongSource = { ...record, source_sha256: '0'.repeat(64) };
+    assert.equal(companyFilingNotes(wrongSource, 'EarningsPerShareBasic').length, 0);
+  }
+});
+
 test('Sonendo Bespoke and Cannabis Bioscience preserve operations fiscal years and small EPS', () => {
   for (const [cik, phrases] of [
     ['0001407973', [/continuing operations with income from discontinued operations/, /one-for-200 split effective October 18, 2024/, /trading adjusted November 8/, /fractional interests were paid in cash/, /Prefunded warrants are already included/]],

@@ -1,6 +1,164 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001411690",
+  "include_on_overview": true,
+  "source_sha256": "de1f7683e64ca05fd1e6239a8009bb07a28d93e0115f74423aec0ba56b765b33",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Bionano Genomics' 2024 and 2025 statements display full dollar amounts and share counts rounded to the nearest thousand; the shares are not shown in thousand-share units and are not exact unrounded counts. The filing retrospectively reflects the one-for-60 reverse split filed January 24, 2025. It attributes equal basic and diluted shares to net losses and excludes potentially dilutive debentures, warrants, RSUs, PSUs and options. Excluded securities are not added to the reported weighted-average denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1411690/000141169026000007/bngo-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -88.13,
+      "accn": "0001411690-26-000007",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -4.85,
+      "accn": "0001411690-26-000007",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -88.13,
+      "accn": "0001411690-26-000007",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -4.85,
+      "accn": "0001411690-26-000007",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1271000,
+      "accn": "0001411690-26-000007",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 5445000,
+      "accn": "0001411690-26-000007",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1271000,
+      "accn": "0001411690-26-000007",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 5445000,
+      "accn": "0001411690-26-000007",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001412126",
+  "include_on_overview": true,
+  "source_sha256": "c56ff9f81211903e47c8b5d13b27b4fad3645cac74f8bf23a1b25bab4d24df08",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "REMSleep Holdings reports 2024 and 2025 net losses of $1,077,997 and $3,020,300 using full dollar amounts and share counts. Its loss EPS is displayed as ($0.00) for both years and the source data carries zero; this rounded presentation does not mean the company broke even. The filing explicitly excludes potential shares when their effect is anti-dilutive because of losses, explaining the equal basic and diluted figures. No unrounded EPS replaces the reported values.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1412126/000121390026044165/ea0285823-10k_remsleep.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0,
+      "accn": "0001213900-26-044165",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0,
+      "accn": "0001213900-26-044165",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0,
+      "accn": "0001213900-26-044165",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0,
+      "accn": "0001213900-26-044165",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1476557436,
+      "accn": "0001213900-26-044165",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1567793755,
+      "accn": "0001213900-26-044165",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 1476557436,
+      "accn": "0001213900-26-044165",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 1567793755,
+      "accn": "0001213900-26-044165",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001407973",
   "include_on_overview": true,
   "source_sha256": "4ff82f1f2bc0263053c9c9eb9fcbe37502835e45c9ba577ddf753429aaa66ede",
