@@ -1,0 +1,715 @@
+{
+  "schema": "canli.morgan-unit-discrepancy.v1",
+  "publication_approved": false,
+  "cik": "0001162283",
+  "source_sha256": "1fb33f5447a67decb08b16ac3f5225a8f8d7897a29b88db8cb03e6a9900c07fe",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1162283/000114036123015466/brhc10050563_10k.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T23:15:22.240911+00:00",
+    "bytes": 764039,
+    "sha256": "762daf6282980ab686913c960f47338e1e643a8b6ce76dd1bd89cac240389892",
+    "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001162283-0001140361-23-015466-primary.response"
+  },
+  "receipt_sha256": "6875e50d8ef47b6a5269433d40956ec69ce5a2691757e5fd0af4bc4b688c5824",
+  "code_sha256": "d5bb6d9f1cafe73572193455d63e359415122de6e045d2fb04983ab43915e78a",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "selected_observations": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -2.62,
+      "accn": "0001140361-23-015466",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-31",
+      "frame": "CY2021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -1.58,
+      "accn": "0001140361-23-015466",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-31",
+      "frame": "CY2022",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -2.62,
+      "accn": "0001140361-23-015466",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-31",
+      "frame": "CY2021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -1.58,
+      "accn": "0001140361-23-015466",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-31",
+      "frame": "CY2022",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 600090,
+      "accn": "0001140361-23-015466",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-31",
+      "frame": "CY2021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 600090,
+      "accn": "0001140361-23-015466",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-31",
+      "frame": "CY2022",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 600090,
+      "accn": "0001140361-23-015466",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-31",
+      "frame": "CY2021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 600090,
+      "accn": "0001140361-23-015466",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-31",
+      "frame": "CY2022",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ],
+  "comparison": {
+    "checks": [
+      {
+        "selected": {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -2.62,
+          "accn": "0001140361-23-015466",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-31",
+          "frame": "CY2021",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "USD/shares",
+            "value": "-2.62",
+            "fact_id": "Fact_2cde4293a7be425995024996ac59b0b4",
+            "context_id": "c20210101to20211231",
+            "table_row": "Basic $ ( 1.58 ) $ ( 2.62 )",
+            "preceding_rows": [
+              "",
+              "Net loss per share"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2022 2021",
+              "Revenues",
+              "Commissions $ 1,943,019 $ 2,250,662",
+              "Principal transactions 7,780 ( 25,888 )"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "USD/shares",
+            "value": "-2.62",
+            "fact_id": "Fact_a78bf2f7073744718906f95ad557e3f5",
+            "context_id": "c20210101to20211231",
+            "table_row": "Basic net loss attributable per share $ ( 1.58 ) $ ( 2.62 )",
+            "preceding_rows": [
+              "Weighted average shares outstanding 600,090 600,090",
+              ""
+            ],
+            "table_header_rows": [
+              "For the Years Ending December 31,",
+              "2022 2021",
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )",
+              "Weighted average shares outstanding 600,090 600,090"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": -1.58,
+          "accn": "0001140361-23-015466",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-31",
+          "frame": "CY2022",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "USD/shares",
+            "value": "-1.58",
+            "fact_id": "Fact_f7a197daf03d484ca8718bfc6655da82",
+            "context_id": "c20220101to20221231",
+            "table_row": "Basic $ ( 1.58 ) $ ( 2.62 )",
+            "preceding_rows": [
+              "",
+              "Net loss per share"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2022 2021",
+              "Revenues",
+              "Commissions $ 1,943,019 $ 2,250,662",
+              "Principal transactions 7,780 ( 25,888 )"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareBasic",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "USD/shares",
+            "value": "-1.58",
+            "fact_id": "Fact_c687395e830a43d3b45e16ab1f6f6342",
+            "context_id": "c20220101to20221231",
+            "table_row": "Basic net loss attributable per share $ ( 1.58 ) $ ( 2.62 )",
+            "preceding_rows": [
+              "Weighted average shares outstanding 600,090 600,090",
+              ""
+            ],
+            "table_header_rows": [
+              "For the Years Ending December 31,",
+              "2022 2021",
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )",
+              "Weighted average shares outstanding 600,090 600,090"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -2.62,
+          "accn": "0001140361-23-015466",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-31",
+          "frame": "CY2021",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "USD/shares",
+            "value": "-2.62",
+            "fact_id": "Fact_d62e195e4f4040bcb85c379291265cd0",
+            "context_id": "c20210101to20211231",
+            "table_row": "Diluted $ ( 1.58 ) $ ( 2.62 )",
+            "preceding_rows": [
+              "Net loss per share",
+              "Basic $ ( 1.58 ) $ ( 2.62 )"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2022 2021",
+              "Revenues",
+              "Commissions $ 1,943,019 $ 2,250,662",
+              "Principal transactions 7,780 ( 25,888 )"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "USD/shares",
+            "value": "-2.62",
+            "fact_id": "Fact_f1463ee8731a47f586b758cb537ce2a6",
+            "context_id": "c20210101to20211231",
+            "table_row": "Diluted net loss per share $ ( 1.58 ) $ ( 2.62 )",
+            "preceding_rows": [
+              "Weighted average share outstanding 600,090 600,090",
+              ""
+            ],
+            "table_header_rows": [
+              "For the Years Ending December 31,",
+              "2022 2021",
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )",
+              "Weighted average shares outstanding 600,090 600,090"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": -1.58,
+          "accn": "0001140361-23-015466",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-31",
+          "frame": "CY2022",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "USD/shares",
+            "value": "-1.58",
+            "fact_id": "Fact_480a4bff8b634d0c87d696df09086002",
+            "context_id": "c20220101to20221231",
+            "table_row": "Diluted $ ( 1.58 ) $ ( 2.62 )",
+            "preceding_rows": [
+              "Net loss per share",
+              "Basic $ ( 1.58 ) $ ( 2.62 )"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2022 2021",
+              "Revenues",
+              "Commissions $ 1,943,019 $ 2,250,662",
+              "Principal transactions 7,780 ( 25,888 )"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "EarningsPerShareDiluted",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "USD/shares",
+            "value": "-1.58",
+            "fact_id": "Fact_ce8f87f6be5d4510b7e998af957540f4",
+            "context_id": "c20220101to20221231",
+            "table_row": "Diluted net loss per share $ ( 1.58 ) $ ( 2.62 )",
+            "preceding_rows": [
+              "Weighted average share outstanding 600,090 600,090",
+              ""
+            ],
+            "table_header_rows": [
+              "For the Years Ending December 31,",
+              "2022 2021",
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )",
+              "Weighted average shares outstanding 600,090 600,090"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": 600090,
+          "accn": "0001140361-23-015466",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-31",
+          "frame": "CY2021",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "shares",
+            "value": "600090",
+            "fact_id": "Fact_ce5ec706e2ae46f7a492a3cacaa5c502",
+            "context_id": "c20210101to20211231",
+            "table_row": "Diluted 600,090 600,090",
+            "preceding_rows": [
+              "Weighted average shares outstanding:",
+              "Basic 600,090 600,090"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2022 2021",
+              "Revenues",
+              "Commissions $ 1,943,019 $ 2,250,662",
+              "Principal transactions 7,780 ( 25,888 )"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "shares",
+            "value": "600090",
+            "fact_id": "Fact_7161afd2074d4894adbec56ab6c7f222",
+            "context_id": "c20210101to20211231",
+            "table_row": "Weighted average share outstanding 600,090 600,090",
+            "preceding_rows": [
+              "Diluted:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )"
+            ],
+            "table_header_rows": [
+              "For the Years Ending December 31,",
+              "2022 2021",
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )",
+              "Weighted average shares outstanding 600,090 600,090"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 600090,
+          "accn": "0001140361-23-015466",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-31",
+          "frame": "CY2022",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "shares",
+            "value": "600090",
+            "fact_id": "Fact_e7e20e9aff7b4d27a84852cebb4a8347",
+            "context_id": "c20220101to20221231",
+            "table_row": "Diluted 600,090 600,090",
+            "preceding_rows": [
+              "Weighted average shares outstanding:",
+              "Basic 600,090 600,090"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2022 2021",
+              "Revenues",
+              "Commissions $ 1,943,019 $ 2,250,662",
+              "Principal transactions 7,780 ( 25,888 )"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "shares",
+            "value": "600090",
+            "fact_id": "Fact_5403dc6fc73d4653a06bfd71e6a31fb8",
+            "context_id": "c20220101to20221231",
+            "table_row": "Weighted average share outstanding 600,090 600,090",
+            "preceding_rows": [
+              "Diluted:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )"
+            ],
+            "table_header_rows": [
+              "For the Years Ending December 31,",
+              "2022 2021",
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )",
+              "Weighted average shares outstanding 600,090 600,090"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": 600090,
+          "accn": "0001140361-23-015466",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-31",
+          "frame": "CY2021",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "shares",
+            "value": "600090",
+            "fact_id": "Fact_a27e2c6e2af9499a94e250198485757a",
+            "context_id": "c20210101to20211231",
+            "table_row": "Basic 600,090 600,090",
+            "preceding_rows": [
+              "",
+              "Weighted average shares outstanding:"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2022 2021",
+              "Revenues",
+              "Commissions $ 1,943,019 $ 2,250,662",
+              "Principal transactions 7,780 ( 25,888 )"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "unit": "shares",
+            "value": "600090",
+            "fact_id": "Fact_b7e6a882c5ec40a8831f2b5256be74ed",
+            "context_id": "c20210101to20211231",
+            "table_row": "Weighted average shares outstanding 600,090 600,090",
+            "preceding_rows": [
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )"
+            ],
+            "table_header_rows": [
+              "For the Years Ending December 31,",
+              "2022 2021",
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )",
+              "Weighted average shares outstanding 600,090 600,090"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      },
+      {
+        "selected": {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 600090,
+          "accn": "0001140361-23-015466",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-31",
+          "frame": "CY2022",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        "matched": true,
+        "matches": [
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "shares",
+            "value": "600090",
+            "fact_id": "Fact_2c45c7294bdf4b239eab628ca5fb0e69",
+            "context_id": "c20220101to20221231",
+            "table_row": "Basic 600,090 600,090",
+            "preceding_rows": [
+              "",
+              "Weighted average shares outstanding:"
+            ],
+            "table_header_rows": [
+              "Year Ended December 31,",
+              "2022 2021",
+              "Revenues",
+              "Commissions $ 1,943,019 $ 2,250,662",
+              "Principal transactions 7,780 ( 25,888 )"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          },
+          {
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "unit": "shares",
+            "value": "600090",
+            "fact_id": "Fact_cc569361cca94e038342eaa3a6b128d9",
+            "context_id": "c20220101to20221231",
+            "table_row": "Weighted average shares outstanding 600,090 600,090",
+            "preceding_rows": [
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )"
+            ],
+            "table_header_rows": [
+              "For the Years Ending December 31,",
+              "2022 2021",
+              "Basic:",
+              "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )",
+              "Weighted average shares outstanding 600,090 600,090"
+            ],
+            "paragraph": null,
+            "preceding_heading": null
+          }
+        ],
+        "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+      }
+    ],
+    "rejected_facts": {}
+  },
+  "tables": [
+    {
+      "table_index": 22,
+      "text": "Year Ended December 31, 2022 2021 Revenues Commissions $ 1,943,019 $ 2,250,662 Principal transactions 7,780 ( 25,888 ) Dividends and interest 55,198 20,322 Underwriting fees - 702,035 Other revenues 5,425 26,889 Total revenues 2,011,422 2,974,020 Expenses Compensation and related costs 1,137,009 2,141,754 Clearing charges 786,670 803,588 General and administrative 813,356 1,208,046 Occupancy and equipment 214,212 390,969 Total expenses 2,951,247 4,544,357 Loss before provision for income tax ( 939,825 ) ( 1,570,337 ) Provision for income tax 9,366 723 Net loss $ ( 949,191 ) $ ( 1,571,060 ) Net loss per share Basic $ ( 1.58 ) $ ( 2.62 ) Diluted $ ( 1.58 ) $ ( 2.62 ) Weighted average shares outstanding: Basic 600,090 600,090 Diluted 600,090 600,090 Actual shares outstanding 600,090 600,090",
+      "verified_rows": {
+        "1": "2022 2021",
+        "17": "Net loss $ ( 949,191 ) $ ( 1,571,060 )",
+        "24": "Basic 600,090 600,090",
+        "25": "Diluted 600,090 600,090",
+        "27": "Actual shares outstanding 600,090 600,090"
+      }
+    },
+    {
+      "table_index": 35,
+      "text": "For the Years Ending December 31, 2022 2021 Basic: Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 ) Weighted average shares outstanding 600,090 600,090 Basic net loss attributable per share $ ( 1.58 ) $ ( 2.62 ) Diluted: Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 ) Weighted average share outstanding 600,090 600,090 Diluted net loss per share $ ( 1.58 ) $ ( 2.62 )",
+      "verified_rows": {
+        "1": "2022 2021",
+        "3": "Net loss attributable to shareholders $ ( 949,191 ) $ ( 1,571,060 )",
+        "4": "Weighted average shares outstanding 600,090 600,090",
+        "6": "Basic net loss attributable per share $ ( 1.58 ) $ ( 2.62 )",
+        "10": "Weighted average share outstanding 600,090 600,090",
+        "12": "Diluted net loss per share $ ( 1.58 ) $ ( 2.62 )"
+      }
+    }
+  ],
+  "disclosures": [
+    "The computations of basic and diluted net loss per share are as follows (in thousands, except per share data):",
+    "Basic earnings per share is computed by dividing net income/(loss) attributable to shareholders by the weighted average number of shares outstanding during the year. There were no dilutive shares outstanding during the years.",
+    "On June 10, 2020, the Company completed a 1 -for-100 reverse stock split of the Company\u2019s outstanding common stock (the \u201cReverse Stock Split\u201d). As a result of the Reverse Stock Split, the Company\u2019s issued and outstanding common stock decreased from 60,009,005 shares to 600,090 . The par value of the common stock was not adjusted as a result of the Reverse Stock Split. Accordingly, unless otherwise noted, all historical share and per share information as well as common stock and additional paid in capital balances contained in the consolidated financial statements and related footnotes have been restated to retroactively show the effect of the Reverse Stock Split."
+  ],
+  "share_tag_evidence": [
+    {
+      "table_index": 22,
+      "fact_xml": "<ix:nonfraction contextref=\"c20220101to20221231\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"Fact_2c45c7294bdf4b239eab628ca5fb0e69\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"U002\">600,090</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"c20220101to20221231\"><xbrli:entity><xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001162283</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startdate>2022-01-01</xbrli:startdate><xbrli:enddate>2022-12-31</xbrli:enddate></xbrli:period></xbrli:context>"
+    },
+    {
+      "table_index": 22,
+      "fact_xml": "<ix:nonfraction contextref=\"c20210101to20211231\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"Fact_a27e2c6e2af9499a94e250198485757a\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"U002\">600,090</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"c20210101to20211231\"><xbrli:entity><xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001162283</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startdate>2021-01-01</xbrli:startdate><xbrli:enddate>2021-12-31</xbrli:enddate></xbrli:period></xbrli:context>"
+    },
+    {
+      "table_index": 35,
+      "fact_xml": "<ix:nonfraction contextref=\"c20220101to20221231\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"Fact_cc569361cca94e038342eaa3a6b128d9\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"U002\">600,090</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"c20220101to20221231\"><xbrli:entity><xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001162283</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startdate>2022-01-01</xbrli:startdate><xbrli:enddate>2022-12-31</xbrli:enddate></xbrli:period></xbrli:context>"
+    },
+    {
+      "table_index": 35,
+      "fact_xml": "<ix:nonfraction contextref=\"c20210101to20211231\" decimals=\"0\" format=\"ixt:num-dot-decimal\" id=\"Fact_b7e6a882c5ec40a8831f2b5256be74ed\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"U002\">600,090</ix:nonfraction>",
+      "context_xml": "<xbrli:context id=\"c20210101to20211231\"><xbrli:entity><xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001162283</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startdate>2021-01-01</xbrli:startdate><xbrli:enddate>2021-12-31</xbrli:enddate></xbrli:period></xbrli:context>"
+    }
+  ],
+  "arithmetic": {
+    "full_dollars_full_shares_eps": [
+      "-1.58",
+      "-2.62"
+    ],
+    "both_scaled_by_1000_eps": [
+      "-1.58",
+      "-2.62"
+    ],
+    "limitation": "Equal EPS ratios do not resolve a common numerator/denominator unit multiplier."
+  },
+  "disposition": "ACCOUNTING_SCOPE_REVIEW_PENDING",
+  "finding": "The EPS-note introduction says in thousands except per-share data, while its full displayed losses and scale-zero share counts repeat the main statement. The capital note reports 600,090 shares after the retrospective one-for-100 split. Preserve the contradictory heading; do not multiply or silently repair values.",
+  "scope": "Eight observations remain pending. Ratio arithmetic cannot settle unit scaling. No registration, policy hold, source replacement or publication approval."
+}
