@@ -3426,3 +3426,61 @@ last confirmed indexed baseline262. Engine six-return/four-sleeve evidence immat
 no runtime/broker action. All indexing/quality/SEO/intent/developer-adoption/governed-
 engine goals remain active. Next publish reviews, continue remaining contexts and
 hosted readiness when storage completes. Owner attribution file untouched.
+
+
+PR166 published ata8955ee538ea18596bdf921b8a79d80421e711bc:
+https://github.com/arhancanli/canlicapital/pull/166. Push72156/PR-create77864 completed exit0. Rebase preserved
+treed94e038e2ac86fb397286004f9059ebd0f8fabc4. CI pending. Browser96813, report21378/replays33228
+and tests60025 terminal0. Recovery79720 polled live;9001 verified objects,
+0 failures,incomplete. No live audit remains; no uploader restart or production
+claim. Owner attribution file untouched; all goals active.
+
+
+## 2026-09-21 — Owner comparison with previous progress check
+
+Verified comparison against the prior owner progress checkpoint (scope-v25):
+batch2 reviewed536 ->616 (+80), pending264 ->184; limited presentation-only
+reviews72 ->80 (included in reviewed). Batch1 remains closed at1,148 reviewed/
+28 withheld/0 pending. Recovery receipt7,716 ->9,217 of10,360 verified objects
+(+1,501;89.0%), zero recorded failures, incomplete; receipt alone does not prove
+process liveness. PR166 remains OPEN at a8955ee538ea18596bdf921b8a79d80421e711bc;
+all four CI checks SUCCESS in run35560089547. Latest completed local browser
+scope-v28:1,336 cases/zero failures, compared with unfinished browser at prior
+owner checkpoint. Clean hosted preview:32 browser cases/zero failures; last hosted
+HTTP readiness still failed7/20 download checks. Latest notes scope-v29 require
+updated release/archive coverage. Candidate pages remain90,732, unpublished;
+no new indexing evidence, last confirmed262. Full owner goal remains active.
+
+
+## 2026-09-21 — PR166 merged; scope-v29 offline reproduction complete
+
+PR166 merged as41bce3e0592edd3c62159ec80893ace667f4845b after all four
+CI35560089547 checks passed ata8955ee538ea18596bdf921b8a79d80421e711bc.
+Merged tree d94e038e2ac86fb397286004f9059ebd0f8fabc4 matches the tested tree.
+Current branch: evidence/scope-v29-release-checkpoint-20260921.
+
+Scope-v29 archive54731 completed exit0. New immutable archive contains745 files/
+278,743,040 bytes;45 reports reproduce byte-identically in isolated offline restore.
+SHA256 c7a06a92a3d0186162411a06a7be243215c2395dd5a9ee642f7d1804d661f4f3
+verified against archive bytes. All45 reported output hashes match current files;
+embedded profile, registry and packager match. Receipt:
+artifacts/seo/company-batch2-evidence-archive-scope-v29-20260921.json.
+Includes all eleven pending reports and scope-v29 reviews; no promotion of pending
+cases. Local reproducibility, not independent certification or verified remote backup.
+Batch2 remains616 reviewed/184 pending, including80 presentation-only reviews.
+
+Scope-v29 browser37320 and full HTTP95414 started and polled live; no pass claimed.
+Logs /tmp/canli-v22-scope-v29-browser.log and /tmp/canli-v22-scope-v29-http.log.
+Keep pinned renderer, registry, notes, reports and runtime inputs unchanged while
+these audits run. Uploader79720 specifically polled live; latest receipt9,277/
+10,360 verified objects, zero failures, incomplete. Probe closure28/29; remaining
+object is the download index, not yet verified by the receipt. No uploader restart,
+plan mutation, new deployment or hosted readiness pass. Preserve prior503 failures.
+
+Fate0001434316/0000950170-23-005067 source reading begun (tables12/16 and net-loss
+per-common-share policy). No new decision, report or note registered yet. Continue
+remaining source reviews after pinned audits finish or prepare unregistered inputs.
+90,732 candidates remain unpublished; last confirmed indexed262. API/MCP/repository
+adoption and governed engine outcomes remain active; no new evidence changes their
+baselines. Owner attribution file untouched. Next collect audits, continue reviews,
+and recheck hosted readiness once its storage dependencies are verified.
