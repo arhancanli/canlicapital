@@ -1,4 +1,4 @@
-import { fetchSitemapUrls } from "./lib/sitemaps.mjs";
+import { fetchSitemapEntries } from "./lib/sitemaps.mjs";
 // =============================================================================
 // CANLI CAPITAL / scripts/submit-indexnow.mjs
 // -----------------------------------------------------------------------------
@@ -15,7 +15,8 @@ import { fetchSitemapUrls } from "./lib/sitemaps.mjs";
 // =============================================================================
 
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from "node:fs";
+import { homedir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -91,6 +92,40 @@ export function submissionPolicy({
   };
 }
 
+// The hourly deploy runs this script inside a temporary snapshot that excludes
+// artifacts/, so the receipt above never survives to the next run and the cooldown
+// never engaged: every deploy resubmitted the whole sitemap. Persistent state lives
+// outside the snapshot and records the lastmod each URL had when IndexNow accepted it.
+export const STATE_SCHEMA = "canli.indexnow-state.v1";
+export function statePath(env = process.env, home = homedir()) {
+  return env.INDEXNOW_STATE_PATH || resolve(home, ".cache", "canlicapital", "indexnow-state.json");
+}
+
+export function readState(path) {
+  if (!existsSync(path)) return null;
+  try {
+    const state = JSON.parse(readFileSync(path, "utf8"));
+    if (state?.schema !== STATE_SCHEMA || state.origin !== ORIGIN || typeof state.lastmods !== "object" || !state.lastmods) return null;
+    return state;
+  } catch {
+    return null;
+  }
+}
+
+export function writeState(path, { entries, recordedAt, source }) {
+  const state = { schema: STATE_SCHEMA, origin: ORIGIN, recorded_at: recordedAt, source, url_count: entries.length, lastmods: Object.fromEntries(entries.map(({ loc, lastmod }) => [loc, lastmod])) };
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(`${path}.pending`, `${JSON.stringify(state)}\n`);
+  renameSync(`${path}.pending`, path);
+  return state;
+}
+
+/** IndexNow wants new or changed URLs only: select entries whose lastmod differs from the accepted state. */
+export function selectChangedUrls({ entries, state }) {
+  if (!state) return null;
+  return entries.filter(({ loc, lastmod }) => state.lastmods[loc] !== lastmod).map(({ loc }) => loc);
+}
+
 function readAcceptedReceipt() {
   const submissionReceipt = resolve(ROOT, "artifacts", "seo", "indexnow_submission.json");
   if (!existsSync(submissionReceipt)) return null;
@@ -143,7 +178,9 @@ async function main() {
     throw new Error(`could not read the live sitemap (${sitemapResponse.status})`);
   }
   const sitemapText = await sitemapResponse.text();
-  const urls = [...new Set(await fetchSitemapUrls(`${ORIGIN}/sitemap.xml`, { rootXml: sitemapText, requestOptions: { cache: "no-store", headers: { "user-agent": UA } } }))];
+  const entries = await fetchSitemapEntries(`${ORIGIN}/sitemap.xml`, { rootXml: sitemapText, requestOptions: { cache: "no-store", headers: { "user-agent": UA } } });
+  const urls = [...new Set(entries.map((entry) => entry.loc))];
+  if (urls.length !== entries.length) throw new Error("the live sitemap repeats a URL");
   if (urls.length === 0) {
     throw new Error("the live sitemap lists no URLs; refusing to submit an empty set");
   }
@@ -180,7 +217,13 @@ async function main() {
   if (!Number.isFinite(MIN_INTERVAL_HOURS) || MIN_INTERVAL_HOURS < 1) {
     throw new Error("INDEXNOW_MIN_INTERVAL_HOURS must be a finite number of at least 1");
   }
-  const policy = submissionPolicy({
+  const stateFile = statePath();
+  const changed = FORCE ? null : selectChangedUrls({ entries, state: readState(stateFile) });
+  if (changed && changed.length === 0) {
+    console.log(`IndexNow skipped: none of ${urls.length} canonical URLs is new or updated since the last accepted submission.`);
+    return;
+  }
+  const policy = changed ? { submit: true, reason: "NEW_OR_UPDATED_URLS" } : submissionPolicy({
     previous: readAcceptedReceipt(),
     urlListHash: receipt.canonical_url_list_sha256,
     force: FORCE,
@@ -195,9 +238,12 @@ async function main() {
     return;
   }
 
+  const submitted = changed ?? urls;
+  receipt.submission_reason = policy.reason;
+  receipt.submitted_url_count = submitted.length;
   receipt.batches = [];
   await postIndexNowBatches({
-    urls, key, keyUrl,
+    urls: submitted, key, keyUrl,
     onBatch: (batch) => {
       receipt.batches.push(batch);
       receipt.http_status = batch.http_status;
@@ -207,7 +253,8 @@ async function main() {
   });
   receipt.accepted = true;
   writeReceipt(receipt);
-  console.log(`IndexNow accepted ${urls.length} canonical URLs (HTTP ${receipt.http_status}).`);
+  writeState(stateFile, { entries, recordedAt: receipt.recorded_at, source: `accepted ${submitted.length} of ${urls.length} URLs (${policy.reason})` });
+  console.log(`IndexNow accepted ${submitted.length} canonical URLs (HTTP ${receipt.http_status}); ${policy.reason}, ${urls.length} in sitemap.`);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

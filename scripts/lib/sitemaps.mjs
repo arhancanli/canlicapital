@@ -128,3 +128,31 @@ export async function fetchSitemapUrls(rootUrl, { fetchImpl = fetch, rootXml, re
   }
   return visit(rootUrl, rootXml);
 }
+
+/** Like fetchSitemapUrls, but returns every leaf entry with its lastmod ('' when absent). */
+export async function fetchSitemapEntries(rootUrl, { fetchImpl = fetch, rootXml, requestOptions = {} } = {}) {
+  const origin = new URL(rootUrl).origin;
+  const visited = new Set();
+  async function visit(loc, xml, depth = 0) {
+    sameOrigin(loc, origin);
+    if (depth > 1 || visited.has(loc)) throw new Error('Nested or repeated sitemap index');
+    visited.add(loc);
+    if (xml === undefined) {
+      const response = await fetchImpl(loc, { ...requestOptions, redirect: 'error' });
+      if (!response.ok) throw new Error(`Sitemap fetch failed (${response.status}): ${loc}`);
+      xml = await response.text();
+    }
+    const parsed = parseSitemap(xml);
+    parsed.locations.forEach((value) => sameOrigin(value, origin));
+    if (parsed.index) {
+      const entries = [];
+      for (const child of parsed.locations) entries.push(...await visit(child, undefined, depth + 1));
+      return entries;
+    }
+    const entries = [...xml.matchAll(/<url>\s*<loc>\s*([^<]+?)\s*<\/loc>(?:\s*<lastmod>\s*([^<]+?)\s*<\/lastmod>)?[\s\S]*?<\/url>/g)]
+      .map(([, loc, lastmod]) => ({ loc: unescapeXml(loc), lastmod: lastmod ?? '' }));
+    if (entries.length !== parsed.locations.length) throw new Error(`Could not read every sitemap entry: ${loc}`);
+    return entries;
+  }
+  return visit(rootUrl, rootXml);
+}
