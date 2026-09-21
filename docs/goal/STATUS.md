@@ -8,31 +8,35 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/batch2-context-eleventh-20260921`.
-Previous turn made progress: Wright discrepancy evidence and pending-report gate.
-PR142 merged as2f404826fefb1f394c4612259460b906dba60421 after all four
-CI35550010235 checks passed at9e62eb4b; tested/merged full tree
-64ad2712b9bd3cab48cb7a6a8f033e8c0fb957e2 matches.
-Eleventh report adds24Rocket/Dror/ClearPoint observations. Rocket2023/24EPS note
-includes nominal-consideration equity warrants in basic shares and separately
-excludes period-end potential shares during losses; review does not cover third
-2022column merely because it is displayed. Dror2024/25reports full dollars/shares,
-rounded2025zeroEPS despite2,544,887loss, and Series A preferred as-converted100common
-shares in excluded potential-share table. ClearPoint2024/25excludes options/RSUs;
-approximately3million is an approximate instrument amount, not a new denominator.
-Exact tables, full EPS disclosures, source snapshots and scales pinned by v7.
-Replay byte-identical. Ledger scope-v15 now304reviewed/496pending/0withdrawn,
-16presentation-only unchanged. Exactly24states/evidence links changed; all800rows
-and prior280decisions preserved.85renderer/ledger tests pass. Reader notes render
-on overview/all four concepts and disappear on changed bound observations.
-Four discrepancy reports remain pending; no policy/source/runtime-object changes.
-Latest full HTTP/browser and scope-v13archive are historical snapshots; subsequent
-note changes require updated relevant release verification and archive coverage.
-Next publish this review and continue remaining pending/legacy filing context.
-Transfer44227 polled live this turn; latest4,873/10,360objects/zero failures;
-uploader/plan unchanged. No production activation/new indexing gain. All SEO,
-indexed-page, developer-adoption and governed-engine objectives remain active.
-Owner attribution file untouched.
+Worktree branch `evidence/maxcyte-filing-context-20260921`.
+Previous turn made progress:24Rocket/Dror/ClearPoint observations reviewed and PR143.
+PR143 merged as6a4a5683700f6a5d1ce121d7c595b8c24ff2719f after four
+CI35550242180 checks passed at71d35a17; full tested/merged tree
+7975ab717e24ea36e1f9d0b654dfd3fc7387a4bd matches.
+Twelfth report adds16MaxCyte2020/21and2024/25observations. Newer filing displays
+thousands of dollars/full shares and excludes options/RSUs during losses; older
+filing uses full dollars/full shares and excludes options/stock purchase warrants.
+Excluded counts in millions are rounded, not additions to weighted-average shares.
+Only two selected older years reviewed; displayed2019column does not gain approval.
+Initial generic v7replay29346 TERMINAL1 at statement-membership check because older
+diluted facts are hidden. Generic runner unchanged. New source-pinned
+review-maxcyte-share-context.py requires exact two accessions/primary/source hashes.
+Older diluted EPS has explicit SEC links in the visible basic row. Older diluted
+shares have no DOM link: mapped to unique same-context/unit/full-value visible basic
+shares with combined row and explicit loss-period exclusion disclosure. Report
+retains that distinction and hidden/peer/context/unit/link XML. Unexpected mappings
+fail closed. Newer filing must retain direct statement membership.
+Report replay byte-identical.3mapping tests cover successful EPS/disclosed shares,
+eight EPS mutations and six share-pair mutations; added to CI.86renderer/ledger tests
+pass. scope-v16now320reviewed/480pending/0withdrawn,16presentation-only unchanged.
+Only16states/evidence links changed; all800rows and prior304decisions preserved.
+Four discrepancy reports remain pending. No source/policy/runtime-object changes.
+New reader notes need fresh relevant release checks and later archive coverage;
+previous HTTP/browser/archive evidence remains tied to its historical inputs.
+Next publish MaxCyte review and continue pending/legacy contexts and hosted delivery.
+Transfer44227 polled live this turn; latest5,146/10,360objects/zero failures;
+uploader/plan unchanged. No production activation or new indexing gain. All owner
+SEO/indexing, developer-adoption and governed-engine goals active; owner file untouched.
 
 ## Earlier verified checkpoints (historical)
 
