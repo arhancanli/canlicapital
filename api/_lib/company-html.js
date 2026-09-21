@@ -2,8 +2,9 @@ import { renderCompanyPages } from '../../scripts/lib/company-page-renderer.mjs'
 import { applyCompanyAssets } from '../../scripts/lib/company-assets.mjs';
 import { catalogHash } from './company-catalog.js';
 
-// The deployment wrapper will provide a reviewed catalog, bundled asset manifest
-// and explicit activation. Staged/local HTML stays noindex by response header.
+// The deployment wrapper provides a reviewed catalog, bundled asset manifest and an
+// optional admission predicate from the explicit activation. Anything the predicate
+// does not admit (and all staged/local HTML) stays noindex by response header.
 export function createCompanyHtmlHandler({ catalog, assets, indexable = false }) {
   return async (req, res) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -24,8 +25,9 @@ export function createCompanyHtmlHandler({ catalog, assets, indexable = false })
       const html = applyCompanyAssets(pages[0].html, assets);
       if (Buffer.byteLength(html) > 256 * 1024) return fail(503, 'Company reference temporarily unavailable');
       const etag = `"${catalogHash(html)}"`;
-      res.setHeader('ETag', etag); res.setHeader('Cache-Control', indexable ? 'public, max-age=0, s-maxage=300, stale-while-revalidate=60' : 'no-store');
-      if (!indexable) res.setHeader('X-Robots-Tag', 'noindex');
+      const admitted = typeof indexable === 'function' ? indexable(cik, concept) === true : indexable === true;
+      res.setHeader('ETag', etag); res.setHeader('Cache-Control', admitted ? 'public, max-age=0, s-maxage=300, stale-while-revalidate=60' : 'no-store');
+      if (!admitted) res.setHeader('X-Robots-Tag', 'noindex');
       if (String(req.headers?.['if-none-match'] ?? '').split(',').map(value => value.trim().replace(/^W\//, '')).some(value => value === etag || value === '*')) { res.statusCode = 304; return res.end(); }
       res.statusCode = 200; res.end(req.method === 'HEAD' ? undefined : html);
     } catch { return fail(503, 'Company reference temporarily unavailable'); }
