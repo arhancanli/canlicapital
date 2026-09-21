@@ -1,6 +1,322 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001175151",
+  "include_on_overview": true,
+  "source_sha256": "8bb195ec858f16302b2a8454a5ffe3eff6c1e6cd0312136a64a7a2f621b86836",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For CytoSorbents in 2024 and 2025, the filing excludes potentially dilutive securities because their effect is anti-dilutive during losses. The EPS note reconciles reported net loss to the common-share denominator. Dollar losses are displayed in thousands; shares and per-share amounts are unscaled. Full selected share counts and reported USD EPS are preserved.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1175151/000110465926036451/ctso-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.38,
+      "accn": "0001104659-26-036451",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.13,
+      "accn": "0001104659-26-036451",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.38,
+      "accn": "0001104659-26-036451",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.13,
+      "accn": "0001104659-26-036451",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 54434609,
+      "accn": "0001104659-26-036451",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 62231771,
+      "accn": "0001104659-26-036451",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 54434609,
+      "accn": "0001104659-26-036451",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 62231771,
+      "accn": "0001104659-26-036451",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001175151",
+  "include_on_overview": true,
+  "source_sha256": "8bb195ec858f16302b2a8454a5ffe3eff6c1e6cd0312136a64a7a2f621b86836",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For CytoSorbents in 2021 and 2022, outstanding warrants, options and restricted-stock awards are excluded as anti-dilutive. EPS uses net loss attributable to common shareholders, excluding the separate foreign-currency translation component of comprehensive loss. This historical filing displays full dollar losses and full share counts. Its reported USD EPS and share counts are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1175151/000141057824000201/ctso-20231231x10k.htm",
+  "observations": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -0.57,
+      "accn": "0001410578-24-000201",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -0.75,
+      "accn": "0001410578-24-000201",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -0.57,
+      "accn": "0001410578-24-000201",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -0.75,
+      "accn": "0001410578-24-000201",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 43359186,
+      "accn": "0001410578-24-000201",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 43573215,
+      "accn": "0001410578-24-000201",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 43359186,
+      "accn": "0001410578-24-000201",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 43573215,
+      "accn": "0001410578-24-000201",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001205922",
+  "include_on_overview": true,
+  "source_sha256": "7972b50a3421e4dd4d1c4c3f4654af8f4df16f17dec50ed24ec25491e6d46a58",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Vaccinex's 2023 and 2024 basic denominator already includes issued but unexercised pre-funded warrants; they must not be added again as dilution. Other common-stock equivalents are excluded during losses. Share and per-share amounts retrospectively reflect the September 2023 one-for-15 and February 2024 one-for-14 reverse splits. Dollar losses are displayed in thousands; shares and per-share amounts are unscaled. Selected values remain on that reported basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1205922/000095017025054318/vcnx-20241231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -43.68,
+      "accn": "0000950170-25-054318",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -8.88,
+      "accn": "0000950170-25-054318",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -43.68,
+      "accn": "0000950170-25-054318",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -8.88,
+      "accn": "0000950170-25-054318",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 463653,
+      "accn": "0000950170-25-054318",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 2098947,
+      "accn": "0000950170-25-054318",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 463653,
+      "accn": "0000950170-25-054318",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 2098947,
+      "accn": "0000950170-25-054318",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001226616",
+  "include_on_overview": true,
+  "source_sha256": "2ee4e761c5c78942e5c8408ca3fc8acae481ff5fcfadf88ffba53700bd842714",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For MediciNova in 2024 and 2025, potentially dilutive stock options are excluded because their effect would be anti-dilutive. EPS uses net loss rather than the separate total comprehensive-loss measure, which also includes currency translation. The statement reports full dollar losses and full weighted-average share counts; reported USD EPS and selected counts are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1226616/000119312526100432/mnov-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.23,
+      "accn": "0001193125-26-100432",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.24,
+      "accn": "0001193125-26-100432",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.23,
+      "accn": "0001193125-26-100432",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.24,
+      "accn": "0001193125-26-100432",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 49046246,
+      "accn": "0001193125-26-100432",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 49063438,
+      "accn": "0001193125-26-100432",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 49046246,
+      "accn": "0001193125-26-100432",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 49063438,
+      "accn": "0001193125-26-100432",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001137883",
   "include_on_overview": true,
   "source_sha256": "b561bffde9fa8cd090312b586c1e178da88cf75b6371222d4a4b037f4566fdbc",
