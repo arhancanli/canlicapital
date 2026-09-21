@@ -1454,3 +1454,24 @@ test('CVRx, Idaho and Vivani retain denominator limits, fiscal dates and rounded
     assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
   }
 });
+
+test('older Idaho keeps December fiscal dates, historical identity and rounded loss', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/batch2-0001263364-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0001263364', fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record.concepts);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const html = renderCompanyPages(record, { target })[0].html;
+    assert.match(html, /formerly Joway Health Industries Group/);
+    assert.match(html, /no dilutive instruments outstanding for the years ended December 31, 2021 and 2022/);
+    assert.match(html, /zero EPS is a rounded \$74,708 loss, not break-even/);
+    assert.match(html, /not silently converted to the later January-year-end or reverse-split basis/);
+  }
+  assert.deepEqual(record.concepts, original);
+  const note = companyFilingNotes(record, 'EarningsPerShareBasic').find(n => n.observations.some(o => o.accn === '0001213900-23-019266'));
+  assert(note);
+  const changed = structuredClone(record), row = note.observations[0];
+  changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+  assert(!companyFilingNotes(changed, row.tag).includes(note));
+});

@@ -1,0 +1,602 @@
+{
+  "schema": "canli.reviewed-share-context.v1",
+  "publication_approved": false,
+  "spec_sha256": "f2ece94e39a731a27e82df0c67b4756f9ad01e04087d2914aaf944e5d9fe503f",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "code_sha256": "c4efac4938bca5dfd8846406351e45c4e10f8c8280deacb6daefd4e7707a2176",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "decisions": [
+    {
+      "cik": "0001263364",
+      "source_sha256": "2de27c4f05e4d98021c18c085398a7143da700b0712edb52011d6faf68a986cd",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1263364/000121390023019266/f10k2022_idahocopper.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T23:15:43.324243+00:00",
+        "bytes": 624813,
+        "sha256": "3ca907655bc47814bdfad9391a027850dae41d1f0855698a39865a7cc3d25576",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001263364-0001213900-23-019266-primary.response"
+      },
+      "receipt_sha256": "8c05b9613f8640ff9b543c330aab770c9971a9ea5720eed376046b04fe5b1a77",
+      "selected_observations": [
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.01,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2021",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 0,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2022",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.01,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2021",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 0,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2022",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": 20054000,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2021",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 20054000,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2022",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": 20054000,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2021",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 20054000,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2022",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "comparison": {
+        "checks": [
+          {
+            "selected": {
+              "start": "2021-01-01",
+              "end": "2021-12-31",
+              "val": -0.01,
+              "accn": "0001213900-23-019266",
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-03-10",
+              "frame": "CY2021",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2021-01-01",
+                "end": "2021-12-31",
+                "unit": "USD/shares",
+                "value": "-0.01",
+                "fact_id": null,
+                "context_id": "c5",
+                "table_row": "NET LOSS PER COMMON SHARE, BASIC AND DILUTED $ ( 0.00 ) $ ( 0.01 )",
+                "preceding_rows": [
+                  "COMPREHENSIVE LOSS $ ( 74,708 ) $ ( 121,788 )",
+                  ""
+                ],
+                "table_header_rows": [
+                  "For the Year ended December\u00a031,",
+                  "2022 2021",
+                  "",
+                  "REVENUES $ - $ -",
+                  ""
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "val": 0,
+              "accn": "0001213900-23-019266",
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-03-10",
+              "frame": "CY2022",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2022-01-01",
+                "end": "2022-12-31",
+                "unit": "USD/shares",
+                "value": "0.00",
+                "fact_id": null,
+                "context_id": "c0",
+                "table_row": "NET LOSS PER COMMON SHARE, BASIC AND DILUTED $ ( 0.00 ) $ ( 0.01 )",
+                "preceding_rows": [
+                  "COMPREHENSIVE LOSS $ ( 74,708 ) $ ( 121,788 )",
+                  ""
+                ],
+                "table_header_rows": [
+                  "For the Year ended December\u00a031,",
+                  "2022 2021",
+                  "",
+                  "REVENUES $ - $ -",
+                  ""
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2021-01-01",
+              "end": "2021-12-31",
+              "val": -0.01,
+              "accn": "0001213900-23-019266",
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-03-10",
+              "frame": "CY2021",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2021-01-01",
+                "end": "2021-12-31",
+                "unit": "USD/shares",
+                "value": "-0.01",
+                "fact_id": "hidden-fact-34",
+                "context_id": "c5",
+                "table_row": null,
+                "preceding_rows": [],
+                "table_header_rows": [],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "val": 0,
+              "accn": "0001213900-23-019266",
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-03-10",
+              "frame": "CY2022",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2022-01-01",
+                "end": "2022-12-31",
+                "unit": "USD/shares",
+                "value": "0.00",
+                "fact_id": "hidden-fact-33",
+                "context_id": "c0",
+                "table_row": null,
+                "preceding_rows": [],
+                "table_header_rows": [],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2021-01-01",
+              "end": "2021-12-31",
+              "val": 20054000,
+              "accn": "0001213900-23-019266",
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-03-10",
+              "frame": "CY2021",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2021-01-01",
+                "end": "2021-12-31",
+                "unit": "shares",
+                "value": "20054000",
+                "fact_id": "hidden-fact-36",
+                "context_id": "c5",
+                "table_row": null,
+                "preceding_rows": [],
+                "table_header_rows": [],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "val": 20054000,
+              "accn": "0001213900-23-019266",
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-03-10",
+              "frame": "CY2022",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2022-01-01",
+                "end": "2022-12-31",
+                "unit": "shares",
+                "value": "20054000",
+                "fact_id": "hidden-fact-35",
+                "context_id": "c0",
+                "table_row": null,
+                "preceding_rows": [],
+                "table_header_rows": [],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2021-01-01",
+              "end": "2021-12-31",
+              "val": 20054000,
+              "accn": "0001213900-23-019266",
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-03-10",
+              "frame": "CY2021",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2021-01-01",
+                "end": "2021-12-31",
+                "unit": "shares",
+                "value": "20054000",
+                "fact_id": null,
+                "context_id": "c5",
+                "table_row": "WEIGHTED AVERAGE NUMBER OF SHARES OUTSTANDING, BASIC AND DILUTED 20,054,000 20,054,000",
+                "preceding_rows": [
+                  "NET LOSS PER COMMON SHARE, BASIC AND DILUTED $ ( 0.00 ) $ ( 0.01 )",
+                  ""
+                ],
+                "table_header_rows": [
+                  "For the Year ended December\u00a031,",
+                  "2022 2021",
+                  "",
+                  "REVENUES $ - $ -",
+                  ""
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "val": 20054000,
+              "accn": "0001213900-23-019266",
+              "fy": 2022,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2023-03-10",
+              "frame": "CY2022",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2022-01-01",
+                "end": "2022-12-31",
+                "unit": "shares",
+                "value": "20054000",
+                "fact_id": null,
+                "context_id": "c0",
+                "table_row": "WEIGHTED AVERAGE NUMBER OF SHARES OUTSTANDING, BASIC AND DILUTED 20,054,000 20,054,000",
+                "preceding_rows": [
+                  "NET LOSS PER COMMON SHARE, BASIC AND DILUTED $ ( 0.00 ) $ ( 0.01 )",
+                  ""
+                ],
+                "table_header_rows": [
+                  "For the Year ended December\u00a031,",
+                  "2022 2021",
+                  "",
+                  "REVENUES $ - $ -",
+                  ""
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          }
+        ],
+        "rejected_facts": {}
+      },
+      "inline_evidence": [
+        {
+          "selected": {
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "val": -0.01,
+            "accn": "0001213900-23-019266",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-10",
+            "frame": "CY2021",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"c5\" decimals=\"2\" format=\"ixt:num-dot-decimal\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"usdPershares\">0.01</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "val": 0,
+            "accn": "0001213900-23-019266",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-10",
+            "frame": "CY2022",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"c0\" decimals=\"2\" format=\"ixt:num-dot-decimal\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" unitref=\"usdPershares\">0.00</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "val": -0.01,
+            "accn": "0001213900-23-019266",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-10",
+            "frame": "CY2021",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"c5\" decimals=\"2\" id=\"hidden-fact-34\" name=\"us-gaap:EarningsPerShareDiluted\" sign=\"-\" unitref=\"usdPershares\">0.01</ix:nonfraction>",
+          "visible_peer_xml": "<ix:nonfraction contextref=\"c5\" decimals=\"2\" format=\"ixt:num-dot-decimal\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"usdPershares\">0.01</ix:nonfraction>",
+          "visible_links": [
+            "<div style=\"-sec-ix-hidden: hidden-fact-34; -sec-ix-hidden: hidden-fact-33\">NET LOSS PER COMMON SHARE, BASIC AND DILUTED</div>"
+          ],
+          "context_xml": "<xbrli:context id=\"c5\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001263364</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2021-01-01</xbrli:startdate>\n<xbrli:enddate>2021-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+          "unit_xml": "<xbrli:unit id=\"usdPershares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>",
+          "mapping": "Exact SEC hidden declaration on the combined basic/diluted statement row, with same-context/unit/value visible basic peer; full filing absence-of-dilutive-instruments disclosure retained"
+        },
+        {
+          "selected": {
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "val": 0,
+            "accn": "0001213900-23-019266",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-10",
+            "frame": "CY2022",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"c0\" decimals=\"2\" id=\"hidden-fact-33\" name=\"us-gaap:EarningsPerShareDiluted\" unitref=\"usdPershares\">0.00</ix:nonfraction>",
+          "visible_peer_xml": "<ix:nonfraction contextref=\"c0\" decimals=\"2\" format=\"ixt:num-dot-decimal\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" unitref=\"usdPershares\">0.00</ix:nonfraction>",
+          "visible_links": [
+            "<div style=\"-sec-ix-hidden: hidden-fact-34; -sec-ix-hidden: hidden-fact-33\">NET LOSS PER COMMON SHARE, BASIC AND DILUTED</div>"
+          ],
+          "context_xml": "<xbrli:context id=\"c0\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001263364</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2022-01-01</xbrli:startdate>\n<xbrli:enddate>2022-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+          "unit_xml": "<xbrli:unit id=\"usdPershares\">\n<xbrli:divide>\n<xbrli:unitnumerator>\n<xbrli:measure>iso4217:USD</xbrli:measure>\n</xbrli:unitnumerator>\n<xbrli:unitdenominator>\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unitdenominator>\n</xbrli:divide>\n</xbrli:unit>",
+          "mapping": "Exact SEC hidden declaration on the combined basic/diluted statement row, with same-context/unit/value visible basic peer; full filing absence-of-dilutive-instruments disclosure retained"
+        },
+        {
+          "selected": {
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "val": 20054000,
+            "accn": "0001213900-23-019266",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-10",
+            "frame": "CY2021",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"c5\" decimals=\"INF\" id=\"hidden-fact-36\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" unitref=\"shares\">20054000</ix:nonfraction>",
+          "visible_peer_xml": "<ix:nonfraction contextref=\"c5\" decimals=\"INF\" format=\"ixt:num-dot-decimal\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"shares\">20,054,000</ix:nonfraction>",
+          "visible_links": [
+            "<div style=\"-sec-ix-hidden: hidden-fact-36; -sec-ix-hidden: hidden-fact-35\">WEIGHTED AVERAGE NUMBER OF SHARES OUTSTANDING, BASIC AND DILUTED</div>"
+          ],
+          "context_xml": "<xbrli:context id=\"c5\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001263364</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2021-01-01</xbrli:startdate>\n<xbrli:enddate>2021-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+          "unit_xml": "<xbrli:unit id=\"shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>",
+          "mapping": "Exact SEC hidden declaration on the combined basic/diluted statement row, with same-context/unit/value visible basic peer; full filing absence-of-dilutive-instruments disclosure retained"
+        },
+        {
+          "selected": {
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "val": 20054000,
+            "accn": "0001213900-23-019266",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-10",
+            "frame": "CY2022",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"c0\" decimals=\"INF\" id=\"hidden-fact-35\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" unitref=\"shares\">20054000</ix:nonfraction>",
+          "visible_peer_xml": "<ix:nonfraction contextref=\"c0\" decimals=\"INF\" format=\"ixt:num-dot-decimal\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"shares\">20,054,000</ix:nonfraction>",
+          "visible_links": [
+            "<div style=\"-sec-ix-hidden: hidden-fact-36; -sec-ix-hidden: hidden-fact-35\">WEIGHTED AVERAGE NUMBER OF SHARES OUTSTANDING, BASIC AND DILUTED</div>"
+          ],
+          "context_xml": "<xbrli:context id=\"c0\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001263364</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:startdate>2022-01-01</xbrli:startdate>\n<xbrli:enddate>2022-12-31</xbrli:enddate>\n</xbrli:period>\n</xbrli:context>",
+          "unit_xml": "<xbrli:unit id=\"shares\">\n<xbrli:measure>xbrli:shares</xbrli:measure>\n</xbrli:unit>",
+          "mapping": "Exact SEC hidden declaration on the combined basic/diluted statement row, with same-context/unit/value visible basic peer; full filing absence-of-dilutive-instruments disclosure retained"
+        },
+        {
+          "selected": {
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "val": 20054000,
+            "accn": "0001213900-23-019266",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-10",
+            "frame": "CY2021",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"c5\" decimals=\"INF\" format=\"ixt:num-dot-decimal\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"shares\">20,054,000</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "val": 20054000,
+            "accn": "0001213900-23-019266",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-03-10",
+            "frame": "CY2022",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"c0\" decimals=\"INF\" format=\"ixt:num-dot-decimal\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"0\" unitref=\"shares\">20,054,000</ix:nonfraction>"
+        }
+      ],
+      "table_index": 31,
+      "table_text": "For the Year ended December 31, 2022 2021 REVENUES $ - $ - COST OF REVENUES - - GROSS PROFIT - - General and administrative expenses 74,708 121,788 OPERATING EXPENSES 74,708 121,788 LOSS FROM OPERATIONS ( 74,708 ) ( 121,788 ) Other expenses - - OTHER LOSS, NET - - LOSS BEFORE INCOME TAXES ( 74,708 ) ( 121,788 ) INCOME TAXES - - NET LOSS ( 74,708 ) ( 121,788 ) OTHER COMPREHENSIVE LOSS - - COMPREHENSIVE LOSS $ ( 74,708 ) $ ( 121,788 ) NET LOSS PER COMMON SHARE, BASIC AND DILUTED $ ( 0.00 ) $ ( 0.01 ) WEIGHTED AVERAGE NUMBER OF SHARES OUTSTANDING, BASIC AND DILUTED 20,054,000 20,054,000",
+      "supporting_tables": [],
+      "disclosures": [
+        "The Company reports earnings per share in accordance with FASB ASC 260 \u201cEarnings per share\u201d. The Company\u2019s basic earnings per share are computed using the weighted average number of shares outstanding for the periods presented. Diluted earnings per share are computed based on the assumption that any dilutive options or warrants were converted or exercised. Dilution is computed by applying the treasury stock method. Under this method, the Company\u2019s outstanding stock warrants are assumed to be exercised, and funds thus obtained were assumed to be used to purchase common stock at the average market price during the period. There were no dilutive instruments outstanding during the years ended December 31, 2022 and 2021.",
+        "(FORMERLY KNOWN AS JOWAY HEALTH INDUSTRIES GROUP INC.)"
+      ],
+      "reader_note": "Idaho Copper's historical filing, labeled formerly Joway Health Industries Group, reports no dilutive instruments outstanding for the years ended December 31, 2021 and 2022. The 2022 zero EPS is a rounded $74,708 loss, not break-even. Full share counts, the December fiscal dates and this older filing's share basis are retained; they are not silently converted to the later January-year-end or reverse-split basis.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ],
+  "scope": "Only exact observations specified by the human-readable reviewed requirements. Checks preserve the manual interpretation, not an independent accounting certification. No earlier-period, whole-history, corpus or publication approval."
+}

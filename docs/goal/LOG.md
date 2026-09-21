@@ -1790,3 +1790,31 @@ links or source-supported diluted mapping. Ledger remains256reviewed/544pending,
 Fresh HTTP/browser checks still required before deploying updated notes.
 No production/indexing gain; full SEO, adoption and governed engine goals active.
 Merged commit 39a46d1fc4bae6e712c4462ddb237027b7e4fb0c; latest transfer receipt 3241/10,360, 0 failures. Transfer44227 polled live this turn; uploader/plan unchanged.
+
+PR137 published at a28baa4b448a0af8cf3e1b73c28b8beb0aa6df8c; CI pending.
+Push terminal0; unpublished rebase preserved full tree
+face9fff4ad49f3ebc2c11a5b96b5b38bcf607fb. Owner attribution file untouched.
+
+## 2026-09-21 — Idaho combined statement hidden links
+
+Worktree branch `evidence/idaho-hidden-context-20260921`.
+Previous turn made progress with v7 exact locator and PR137. PR137 merged as
+06e434b9539d2c54ee6324196c08646b4c089605 after all four CI35548497243 checks passed
+at a28baa4b; full tested/merged tree face9fff4ad49f3ebc2c11a5b96b5b38bcf607fb matches.
+Older Idaho eight2021/22observations now source-context reviewed. Source-pinned
+runner uses exact semantic locator for ID-less basic facts and explicit SEC hidden
+links for BOTH diluted EPS and diluted shares in combined statement table31rows.
+CSS declarations parsed separately, including the final declaration without a
+semicolon; exact token/row required. Filing explicitly says no dilutive instruments
+outstanding. December fiscal dates, former Joway name and historical full shares
+retained; zero2022EPS explained as rounded74,708loss, not break-even. No later split
+rescaling. Report replay byte-identical. Two mapping tests pass, with eight corruption
+cases;83renderer/ledger tests pass. Mapping tests added to CI.
+Ledger scope-v13 now264reviewed/536pending/0withdrawn,16presentation-only unchanged.
+Only eight intended states/evidence links changed; all800row metadata and prior256
+review decisions preserved. Source-bound reader note tested on all five page types
+and removed if bound facts change. No policy or runtime object changes.
+Morgan, Community and Theriva discrepancies remain pending. Next continue batch2
+context reviews while transfer runs; latest reader notes need fresh HTTP/browser
+validation before release. No production/indexing gain; all owner goals active.
+Transfer44227 polled live this turn; latest receipt 3450/10,360 objects, zero failures; uploader/plan unchanged.

@@ -8,23 +8,27 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `fix/idless-inline-fact-locator-20260921`.
-Previous turn made progress by publishing PR136. PR136 now merged after all four
-CI35548297649 checks passed; tested and merged full trees match.
-New v7 runner locates inline facts using exact namespace/concept/context/entity/
-period/unit/value and optional ID, rejecting ambiguous nodes. Historical v6 and
-numeric helper unchanged; reviewed table and scale gates preserved.
-Four tests pass, including corrupted semantics, duplicate nodes/context IDs and
-hidden-node identity not implying statement membership. Added to CI.
-Existing ninth24-fact report reproduces unchanged except runner hash. Actual older
-Idaho eight nodes resolve: four ID-less basic facts in table31, four hidden diluted
-facts outside statements. Diagnostic company-idaho-idless-locator-20260921.json
-preserves XML and source/code hashes; no scope approval. Next review explicit hidden
-links or source-supported diluted mapping. Ledger remains256reviewed/544pending,
-16presentation-only. Morgan/Community/Theriva discrepancies remain pending.
-Fresh HTTP/browser checks still required before deploying updated notes.
-No production/indexing gain; full SEO, adoption and governed engine goals active.
-Merged commit 39a46d1fc4bae6e712c4462ddb237027b7e4fb0c; latest transfer receipt 3241/10,360, 0 failures. Transfer44227 polled live this turn; uploader/plan unchanged.
+Worktree branch `evidence/idaho-hidden-context-20260921`.
+Previous turn made progress with v7 exact locator and PR137. PR137 merged as
+06e434b9539d2c54ee6324196c08646b4c089605 after all four CI35548497243 checks passed
+at a28baa4b; full tested/merged tree face9fff4ad49f3ebc2c11a5b96b5b38bcf607fb matches.
+Older Idaho eight2021/22observations now source-context reviewed. Source-pinned
+runner uses exact semantic locator for ID-less basic facts and explicit SEC hidden
+links for BOTH diluted EPS and diluted shares in combined statement table31rows.
+CSS declarations parsed separately, including the final declaration without a
+semicolon; exact token/row required. Filing explicitly says no dilutive instruments
+outstanding. December fiscal dates, former Joway name and historical full shares
+retained; zero2022EPS explained as rounded74,708loss, not break-even. No later split
+rescaling. Report replay byte-identical. Two mapping tests pass, with eight corruption
+cases;83renderer/ledger tests pass. Mapping tests added to CI.
+Ledger scope-v13 now264reviewed/536pending/0withdrawn,16presentation-only unchanged.
+Only eight intended states/evidence links changed; all800row metadata and prior256
+review decisions preserved. Source-bound reader note tested on all five page types
+and removed if bound facts change. No policy or runtime object changes.
+Morgan, Community and Theriva discrepancies remain pending. Next continue batch2
+context reviews while transfer runs; latest reader notes need fresh HTTP/browser
+validation before release. No production/indexing gain; all owner goals active.
+Transfer44227 polled live this turn; latest receipt 3450/10,360 objects, zero failures; uploader/plan unchanged.
 
 ## Earlier verified checkpoints (historical)
 

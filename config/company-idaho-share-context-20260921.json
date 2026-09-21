@@ -1,0 +1,144 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001263364",
+      "accession": "0001213900-23-019266",
+      "source_sha256": "2de27c4f05e4d98021c18c085398a7143da700b0712edb52011d6faf68a986cd",
+      "primary_sha256": "3ca907655bc47814bdfad9391a027850dae41d1f0855698a39865a7cc3d25576",
+      "receipt_sha256": "8c05b9613f8640ff9b543c330aab770c9971a9ea5720eed376046b04fe5b1a77",
+      "fixture": "scripts/fixtures/editorial/batch2-0001263364-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.01,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2021",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 0,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2022",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.01,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2021",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 0,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2022",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": 20054000,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2021",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 20054000,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2022",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": 20054000,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2021",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2022-01-01",
+          "end": "2022-12-31",
+          "val": 20054000,
+          "accn": "0001213900-23-019266",
+          "fy": 2022,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2023-03-10",
+          "frame": "CY2022",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "table_index": 31,
+      "share_scale": "0",
+      "table_requires": [
+        "74,708",
+        "121,788",
+        "20,054,000",
+        "0.00",
+        "0.01"
+      ],
+      "paragraph_requires": [
+        "The Company reports earnings per share in accordance with FASB ASC 260 \u201cEarnings per share\u201d. The Company\u2019s basic earnings per share are computed using the weighted average number of shares outstanding for the periods presented. Diluted earnings per share are computed based on the assumption that any dilutive options or warrants were converted or exercised. Dilution is computed by applying the treasury stock method. Under this method, the Company\u2019s outstanding stock warrants are assumed to be exercised, and funds thus obtained were assumed to be used to purchase common stock at the average market price during the period. There were no dilutive instruments outstanding during the years ended December 31, 2022 and 2021.",
+        "(FORMERLY KNOWN AS JOWAY HEALTH INDUSTRIES GROUP INC.)"
+      ],
+      "reader_note": "Idaho Copper's historical filing, labeled formerly Joway Health Industries Group, reports no dilutive instruments outstanding for the years ended December 31, 2021 and 2022. The 2022 zero EPS is a rounded $74,708 loss, not break-even. Full share counts, the December fiscal dates and this older filing's share basis are retained; they are not silently converted to the later January-year-end or reverse-split basis.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
