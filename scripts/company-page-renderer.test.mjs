@@ -1754,6 +1754,34 @@ test('Dare Eledon and Neurogene preserve split exception class allocation and hi
   }
 });
 
+test('Fortress common loss, Tonix split basis and distinct Plastec periods retain source context', () => {
+  for (const [cik, phrases] of [
+    ['0001429260', [/\$6\.815 million of income attributable to Fortress/, /\$1\.882 million common-stockholder loss/, /not calculated from consolidated loss/]],
+    ['0001430306', [/one-for-100 reverse split effective February 5, 2025/, /assumed exercised from issuance/, /exercise prices exceed the period/]],
+    ['0001433309', [/two different twelve-month periods/, /unaudited comparative year ended December 31/, /not the audited eight-month transition period/, /does not establish the exclusion cause/, /presentation-only review/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic');
+    assert.equal(notes.length, cik === '0001433309' ? 2 : 1);
+    for (const note of notes) {
+      const changed = structuredClone(record), row = note.observations[0];
+      changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+      const remaining = companyFilingNotes(changed, row.tag);
+      assert(!remaining.includes(note));
+      assert.equal(remaining.length, notes.length - 1);
+    }
+  }
+});
+
 test('Whitehawk and Assembly prefunded inclusion does not double count warrants', () => {
   for (const [cik, phrases] of [
     ['0001422142', [/2024 PIPE closed March 4, 2025/, /does not establish a 2024 issuance/, /not separate weighted-average additions/]],

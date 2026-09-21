@@ -1,6 +1,243 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001429260",
+  "include_on_overview": true,
+  "source_sha256": "78daf3b5c8c8b3d82976f96053549696f5b6bfa1fb1158d29e0dd97a741a012d",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Fortress Biotech's 2024 and 2025 common-share EPS uses dollar thousands and full shares. The 2025 consolidated loss becomes $6.815 million of income attributable to Fortress after noncontrolling interests; $8.697 million of preferred and subsidiary deemed dividends then produces a $1.882 million common-stockholder loss. The 2024 common loss similarly includes the dividend adjustment. EPS is not calculated from consolidated loss or Fortress-attributable income alone. The filing excludes potential shares when anti-dilutive during net-loss periods.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1429260/000110465926037874/fbio-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.69,
+      "accn": "0001104659-26-037874",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.07,
+      "accn": "0001104659-26-037874",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.69,
+      "accn": "0001104659-26-037874",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.07,
+      "accn": "0001104659-26-037874",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 20784334,
+      "accn": "0001104659-26-037874",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 27901889,
+      "accn": "0001104659-26-037874",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 20784334,
+      "accn": "0001104659-26-037874",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 27901889,
+      "accn": "0001104659-26-037874",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001430306",
+  "include_on_overview": true,
+  "source_sha256": "c58b9668b329c3fe1faf138366f8781d658cf50824bc6e133ce4aa43029ca9ed",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Tonix Pharmaceuticals' 2024 and 2025 statements report dollar thousands and full shares. Share and per-share amounts are retrospectively restated for the one-for-100 reverse split effective February 5, 2025. Prefunded warrants are assumed exercised from issuance and already enter basic EPS. The filing excludes potential securities when anti-dilutive or when their exercise prices exceed the period's average market price; it does not make their year-end balances additional weighted-average shares.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1430306/000199937126005730/tnxp-10k_123125.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -176.6,
+      "accn": "0001999371-26-005730",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -14.57,
+      "accn": "0001999371-26-005730",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -176.6,
+      "accn": "0001999371-26-005730",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -14.57,
+      "accn": "0001999371-26-005730",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 736339,
+      "accn": "0001999371-26-005730",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 8511318,
+      "accn": "0001999371-26-005730",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 736339,
+      "accn": "0001999371-26-005730",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 8511318,
+      "accn": "0001999371-26-005730",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001433309",
+  "include_on_overview": true,
+  "source_sha256": "cf4b5a43bd4fd766c3e43344162a2a5fabd8aa1327866bec066af37167006276",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Plastec Technologies' selected 2012 figures cover two different twelve-month periods: the fiscal year ended April 30 and an unaudited comparative year ended December 31. The latter is not the audited eight-month transition period also ending December 31, 2012. Income statements use HKD thousands, while EPS is HKD per ordinary share and share counts are full shares. The filing explains warrant/UPO exclusion for the April fiscal year and the eight-month transition period, but this review does not establish the exclusion cause for the separate unaudited twelve-month comparative period. This is a presentation-only review of the selected values and period labels.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1433309/000114420415024210/v406836_20f.htm",
+  "observations": [
+    {
+      "start": "2011-05-01",
+      "end": "2012-04-30",
+      "val": 3.2,
+      "accn": "0001144204-15-024210",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2012-01-01",
+      "end": "2012-12-31",
+      "val": 4.9,
+      "accn": "0001144204-15-024210",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2011-05-01",
+      "end": "2012-04-30",
+      "val": 3.2,
+      "accn": "0001144204-15-024210",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2012-01-01",
+      "end": "2012-12-31",
+      "val": 4.9,
+      "accn": "0001144204-15-024210",
+      "unit": "HKD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2011-05-01",
+      "end": "2012-04-30",
+      "val": 15944233,
+      "accn": "0001144204-15-024210",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2012-01-01",
+      "end": "2012-12-31",
+      "val": 14446515,
+      "accn": "0001144204-15-024210",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2011-05-01",
+      "end": "2012-04-30",
+      "val": 15944233,
+      "accn": "0001144204-15-024210",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2012-01-01",
+      "end": "2012-12-31",
+      "val": 14446515,
+      "accn": "0001144204-15-024210",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001422142",
   "include_on_overview": true,
   "source_sha256": "0bc3518b433577b57088b38c087953d494e28bdd319b1da3b435ea8e7e18b0c1",

@@ -1,0 +1,695 @@
+{
+  "schema": "canli.reviewed-share-context.v1",
+  "publication_approved": false,
+  "spec_sha256": "3cfa695f00213017f36f39f0807319b36b2b6f6cf789947d79285b58b5877e6b",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "code_sha256": "2b3d26f1abcb495b611e996dc16a3b417252c4dda7d7f8d23763c6f518447e5b",
+  "helper_sha256": "fc27ceee7bdb441eb4b8c84b86f3d9761f9eb04e423458143c2ddbc66ce21475",
+  "decisions": [
+    {
+      "cik": "0001433309",
+      "source_sha256": "cf4b5a43bd4fd766c3e43344162a2a5fabd8aa1327866bec066af37167006276",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1433309/000114420415024210/v406836_20f.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T23:19:08.298475+00:00",
+        "bytes": 1390845,
+        "sha256": "a34753a56b5f749239a98af10d69b014ac3634e20e6a09e816038f9dc8fb4619",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001433309-0001144204-15-024210-primary.response"
+      },
+      "receipt_sha256": "8fbabee2aa6ca25aed42bca9bebf602f69d6b3806a691ee58f40d257a77238cc",
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1433309/000114420415024210/pltyf-20141231.xml",
+        "status": 200,
+        "bytes": 2286816,
+        "sha256": "2b15157b6bc5c4071783f80a0d5647228c5ddfdfc31c6eee06d0f75772a06b6c",
+        "captured_at": "2026-09-20T23:22:24.132217+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001433309-0001144204-15-024210-instance.response"
+      },
+      "selected_observations": [
+        {
+          "start": "2011-05-01",
+          "end": "2012-04-30",
+          "val": 3.2,
+          "accn": "0001144204-15-024210",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2015-04-22",
+          "frame": "CY2011",
+          "unit": "HKD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2012-01-01",
+          "end": "2012-12-31",
+          "val": 4.9,
+          "accn": "0001144204-15-024210",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2015-04-22",
+          "frame": "CY2012",
+          "unit": "HKD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2011-05-01",
+          "end": "2012-04-30",
+          "val": 3.2,
+          "accn": "0001144204-15-024210",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2015-04-22",
+          "frame": "CY2011",
+          "unit": "HKD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2012-01-01",
+          "end": "2012-12-31",
+          "val": 4.9,
+          "accn": "0001144204-15-024210",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2015-04-22",
+          "frame": "CY2012",
+          "unit": "HKD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2011-05-01",
+          "end": "2012-04-30",
+          "val": 15944233,
+          "accn": "0001144204-15-024210",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2015-04-22",
+          "frame": "CY2011",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2012-01-01",
+          "end": "2012-12-31",
+          "val": 14446515,
+          "accn": "0001144204-15-024210",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2015-04-22",
+          "frame": "CY2012",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2011-05-01",
+          "end": "2012-04-30",
+          "val": 15944233,
+          "accn": "0001144204-15-024210",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2015-04-22",
+          "frame": "CY2011",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2012-01-01",
+          "end": "2012-12-31",
+          "val": 14446515,
+          "accn": "0001144204-15-024210",
+          "fy": 2014,
+          "fp": "FY",
+          "form": "20-F",
+          "filed": "2015-04-22",
+          "frame": "CY2012",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "comparison": {
+        "checks": [
+          {
+            "selected": {
+              "start": "2011-05-01",
+              "end": "2012-04-30",
+              "val": 3.2,
+              "accn": "0001144204-15-024210",
+              "fy": 2014,
+              "fp": "FY",
+              "form": "20-F",
+              "filed": "2015-04-22",
+              "frame": "CY2011",
+              "unit": "HKD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "P05_01_2011To04_30_2012",
+                "unit_id": "HKD_per_Share",
+                "value": "3.2"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2012-01-01",
+              "end": "2012-12-31",
+              "val": 4.9,
+              "accn": "0001144204-15-024210",
+              "fy": 2014,
+              "fp": "FY",
+              "form": "20-F",
+              "filed": "2015-04-22",
+              "frame": "CY2012",
+              "unit": "HKD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "P01_01_2012To12_31_2012",
+                "unit_id": "HKD_per_Share",
+                "value": "4.9"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2011-05-01",
+              "end": "2012-04-30",
+              "val": 3.2,
+              "accn": "0001144204-15-024210",
+              "fy": 2014,
+              "fp": "FY",
+              "form": "20-F",
+              "filed": "2015-04-22",
+              "frame": "CY2011",
+              "unit": "HKD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "P05_01_2011To04_30_2012",
+                "unit_id": "HKD_per_Share",
+                "value": "3.2"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2012-01-01",
+              "end": "2012-12-31",
+              "val": 4.9,
+              "accn": "0001144204-15-024210",
+              "fy": 2014,
+              "fp": "FY",
+              "form": "20-F",
+              "filed": "2015-04-22",
+              "frame": "CY2012",
+              "unit": "HKD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "P01_01_2012To12_31_2012",
+                "unit_id": "HKD_per_Share",
+                "value": "4.9"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2011-05-01",
+              "end": "2012-04-30",
+              "val": 15944233,
+              "accn": "0001144204-15-024210",
+              "fy": 2014,
+              "fp": "FY",
+              "form": "20-F",
+              "filed": "2015-04-22",
+              "frame": "CY2011",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "P05_01_2011To04_30_2012",
+                "unit_id": "shares",
+                "value": "15944233"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2012-01-01",
+              "end": "2012-12-31",
+              "val": 14446515,
+              "accn": "0001144204-15-024210",
+              "fy": 2014,
+              "fp": "FY",
+              "form": "20-F",
+              "filed": "2015-04-22",
+              "frame": "CY2012",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "P01_01_2012To12_31_2012",
+                "unit_id": "shares",
+                "value": "14446515"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2011-05-01",
+              "end": "2012-04-30",
+              "val": 15944233,
+              "accn": "0001144204-15-024210",
+              "fy": 2014,
+              "fp": "FY",
+              "form": "20-F",
+              "filed": "2015-04-22",
+              "frame": "CY2011",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "P05_01_2011To04_30_2012",
+                "unit_id": "shares",
+                "value": "15944233"
+              }
+            ]
+          },
+          {
+            "selected": {
+              "start": "2012-01-01",
+              "end": "2012-12-31",
+              "val": 14446515,
+              "accn": "0001144204-15-024210",
+              "fy": 2014,
+              "fp": "FY",
+              "form": "20-F",
+              "filed": "2015-04-22",
+              "frame": "CY2012",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "context_id": "P01_01_2012To12_31_2012",
+                "unit_id": "shares",
+                "value": "14446515"
+              }
+            ]
+          }
+        ]
+      },
+      "legacy_evidence": [
+        {
+          "selected": {
+            "start": "2011-05-01",
+            "end": "2012-04-30",
+            "val": 3.2,
+            "accn": "0001144204-15-024210",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2015-04-22",
+            "frame": "CY2011",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "table_index": 310,
+          "row_index": 35,
+          "cells": [
+            "Basic income per share attributable to Plastec Technologies, Ltd.",
+            "",
+            "HK$",
+            "3.2",
+            "",
+            "",
+            "HK$",
+            "4.2",
+            "",
+            "",
+            "HK$",
+            "6.0",
+            "",
+            "",
+            "HK$",
+            "13.0",
+            ""
+          ],
+          "visible_value": "3.2",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareBasic xmlns:ns0=\"http://fasb.org/us-gaap/2014-01-31\" contextRef=\"P05_01_2011To04_30_2012\" id=\"Factid_263\" unitRef=\"HKD_per_Share\" decimals=\"1\">3.2</ns0:EarningsPerShareBasic>\n\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"P05_01_2011To04_30_2012\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001433309</ns0:identifier>\n    </ns0:entity>\n\n    <ns0:period>\n      <ns0:startDate>2011-05-01</ns0:startDate>\n\n      <ns0:endDate>2012-04-30</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"HKD_per_Share\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:HKD</ns0:measure>\n      </ns0:unitNumerator>\n\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 4.9,
+            "accn": "0001144204-15-024210",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2015-04-22",
+            "frame": "CY2012",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "table_index": 410,
+          "row_index": 35,
+          "cells": [
+            "Basic income per share attributable to Plastec Technologies, Ltd.",
+            "",
+            "HK$",
+            "2.4",
+            "",
+            "",
+            "HK$",
+            "4.2",
+            "",
+            "",
+            "HK$",
+            "4.9",
+            "",
+            "",
+            "HK$",
+            "6.0",
+            ""
+          ],
+          "visible_value": "4.9",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareBasic xmlns:ns0=\"http://fasb.org/us-gaap/2014-01-31\" contextRef=\"P01_01_2012To12_31_2012\" id=\"Factid_1095\" unitRef=\"HKD_per_Share\" decimals=\"1\">4.9</ns0:EarningsPerShareBasic>\n\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"P01_01_2012To12_31_2012\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001433309</ns0:identifier>\n    </ns0:entity>\n\n    <ns0:period>\n      <ns0:startDate>2012-01-01</ns0:startDate>\n\n      <ns0:endDate>2012-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"HKD_per_Share\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:HKD</ns0:measure>\n      </ns0:unitNumerator>\n\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2011-05-01",
+            "end": "2012-04-30",
+            "val": 3.2,
+            "accn": "0001144204-15-024210",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2015-04-22",
+            "frame": "CY2011",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "table_index": 310,
+          "row_index": 37,
+          "cells": [
+            "Diluted income per share attributable to Plastec Technologies, Ltd.",
+            "",
+            "HK$",
+            "3.2",
+            "",
+            "",
+            "HK$",
+            "4.2",
+            "",
+            "",
+            "HK$",
+            "6.0",
+            "",
+            "",
+            "HK$",
+            "13.0",
+            ""
+          ],
+          "visible_value": "3.2",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareDiluted xmlns:ns0=\"http://fasb.org/us-gaap/2014-01-31\" contextRef=\"P05_01_2011To04_30_2012\" id=\"Factid_267\" unitRef=\"HKD_per_Share\" decimals=\"1\">3.2</ns0:EarningsPerShareDiluted>\n\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"P05_01_2011To04_30_2012\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001433309</ns0:identifier>\n    </ns0:entity>\n\n    <ns0:period>\n      <ns0:startDate>2011-05-01</ns0:startDate>\n\n      <ns0:endDate>2012-04-30</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"HKD_per_Share\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:HKD</ns0:measure>\n      </ns0:unitNumerator>\n\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 4.9,
+            "accn": "0001144204-15-024210",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2015-04-22",
+            "frame": "CY2012",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "table_index": 410,
+          "row_index": 37,
+          "cells": [
+            "Diluted income per share attributable to Plastec Technologies, Ltd.",
+            "",
+            "HK$",
+            "2.4",
+            "",
+            "",
+            "HK$",
+            "4.2",
+            "",
+            "",
+            "HK$",
+            "4.9",
+            "",
+            "",
+            "HK$",
+            "6.0",
+            ""
+          ],
+          "visible_value": "4.9",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:EarningsPerShareDiluted xmlns:ns0=\"http://fasb.org/us-gaap/2014-01-31\" contextRef=\"P01_01_2012To12_31_2012\" id=\"Factid_1097\" unitRef=\"HKD_per_Share\" decimals=\"1\">4.9</ns0:EarningsPerShareDiluted>\n\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"P01_01_2012To12_31_2012\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001433309</ns0:identifier>\n    </ns0:entity>\n\n    <ns0:period>\n      <ns0:startDate>2012-01-01</ns0:startDate>\n\n      <ns0:endDate>2012-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"HKD_per_Share\">\n    <ns0:divide>\n      <ns0:unitNumerator>\n        <ns0:measure>iso4217:HKD</ns0:measure>\n      </ns0:unitNumerator>\n\n      <ns0:unitDenominator>\n        <ns0:measure>xbrli:shares</ns0:measure>\n      </ns0:unitDenominator>\n    </ns0:divide>\n  </ns0:unit>\n\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2011-05-01",
+            "end": "2012-04-30",
+            "val": 15944233,
+            "accn": "0001144204-15-024210",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2015-04-22",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "table_index": 310,
+          "row_index": 33,
+          "cells": [
+            "Weighted average number of diluted ordinary shares",
+            "",
+            "",
+            "15,944,233",
+            "",
+            "",
+            "",
+            "14,303,544",
+            "",
+            "",
+            "",
+            "13,503,623",
+            "",
+            "",
+            "",
+            "12,938,128",
+            ""
+          ],
+          "visible_value": "15944233",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfDilutedSharesOutstanding xmlns:ns0=\"http://fasb.org/us-gaap/2014-01-31\" contextRef=\"P05_01_2011To04_30_2012\" id=\"Factid_259\" unitRef=\"shares\" decimals=\"INF\">15944233</ns0:WeightedAverageNumberOfDilutedSharesOutstanding>\n\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"P05_01_2011To04_30_2012\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001433309</ns0:identifier>\n    </ns0:entity>\n\n    <ns0:period>\n      <ns0:startDate>2011-05-01</ns0:startDate>\n\n      <ns0:endDate>2012-04-30</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n    <ns0:measure>xbrli:shares</ns0:measure>\n  </ns0:unit>\n\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 14446515,
+            "accn": "0001144204-15-024210",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2015-04-22",
+            "frame": "CY2012",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "table_index": 410,
+          "row_index": 33,
+          "cells": [
+            "Weighted average number of diluted ordinary shares",
+            "",
+            "",
+            "16,540,951",
+            "",
+            "",
+            "",
+            "14,303,544",
+            "",
+            "",
+            "",
+            "14,446,515",
+            "",
+            "",
+            "",
+            "13,503,623",
+            ""
+          ],
+          "visible_value": "14446515",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfDilutedSharesOutstanding xmlns:ns0=\"http://fasb.org/us-gaap/2014-01-31\" contextRef=\"P01_01_2012To12_31_2012\" id=\"Factid_1094\" unitRef=\"shares\" decimals=\"INF\">14446515</ns0:WeightedAverageNumberOfDilutedSharesOutstanding>\n\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"P01_01_2012To12_31_2012\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001433309</ns0:identifier>\n    </ns0:entity>\n\n    <ns0:period>\n      <ns0:startDate>2012-01-01</ns0:startDate>\n\n      <ns0:endDate>2012-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n    <ns0:measure>xbrli:shares</ns0:measure>\n  </ns0:unit>\n\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2011-05-01",
+            "end": "2012-04-30",
+            "val": 15944233,
+            "accn": "0001144204-15-024210",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2015-04-22",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "table_index": 310,
+          "row_index": 31,
+          "cells": [
+            "Weighted average number of ordinary shares",
+            "",
+            "",
+            "15,944,233",
+            "",
+            "",
+            "",
+            "14,303,544",
+            "",
+            "",
+            "",
+            "13,503,623",
+            "",
+            "",
+            "",
+            "12,938,128",
+            ""
+          ],
+          "visible_value": "15944233",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfSharesOutstandingBasic xmlns:ns0=\"http://fasb.org/us-gaap/2014-01-31\" contextRef=\"P05_01_2011To04_30_2012\" id=\"Factid_255\" unitRef=\"shares\" decimals=\"INF\">15944233</ns0:WeightedAverageNumberOfSharesOutstandingBasic>\n\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"P05_01_2011To04_30_2012\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001433309</ns0:identifier>\n    </ns0:entity>\n\n    <ns0:period>\n      <ns0:startDate>2011-05-01</ns0:startDate>\n\n      <ns0:endDate>2012-04-30</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n    <ns0:measure>xbrli:shares</ns0:measure>\n  </ns0:unit>\n\n  "
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 14446515,
+            "accn": "0001144204-15-024210",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2015-04-22",
+            "frame": "CY2012",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "table_index": 410,
+          "row_index": 31,
+          "cells": [
+            "Weighted average number of ordinary shares",
+            "",
+            "",
+            "16,540,951",
+            "",
+            "",
+            "",
+            "14,303,544",
+            "",
+            "",
+            "",
+            "14,446,515",
+            "",
+            "",
+            "",
+            "13,503,623",
+            ""
+          ],
+          "visible_value": "14446515",
+          "legacy_facts": [
+            {
+              "fact_xml": "<ns0:WeightedAverageNumberOfSharesOutstandingBasic xmlns:ns0=\"http://fasb.org/us-gaap/2014-01-31\" contextRef=\"P01_01_2012To12_31_2012\" id=\"Factid_1093\" unitRef=\"shares\" decimals=\"INF\">14446515</ns0:WeightedAverageNumberOfSharesOutstandingBasic>\n\n  ",
+              "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"P01_01_2012To12_31_2012\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001433309</ns0:identifier>\n    </ns0:entity>\n\n    <ns0:period>\n      <ns0:startDate>2012-01-01</ns0:startDate>\n\n      <ns0:endDate>2012-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n\n  ",
+              "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"shares\">\n    <ns0:measure>xbrli:shares</ns0:measure>\n  </ns0:unit>\n\n  "
+            }
+          ]
+        }
+      ],
+      "table_index": 310,
+      "table_text": "Year ended April 30, 8-month Period ended December 31, Year ended December 31, Year ended December 31, 2012 2012 2013 2014 HK$ HK$ HK$ HK$ Revenues 1,291,223 933,888 1,167,115 1,207,811 Cost of revenues (1,142,653 ) (807,104 ) (899,400 ) (905,280 ) Gross profit 148,570 126,784 267,715 302,531 Operating expenses, net Selling, general and administrative expenses (81,557 ) (66,330 ) (166,969 ) (152,912 ) Other income 2,431 6,266 2,508 7,737 Write-off of property, plant and equipment (690 ) (4,058 ) (14,920 ) (442 ) Gain / (Loss) on disposal of property, plant and equipment 938 1,898 (2,836 ) 5,420 Gain on disposal of subsidiary - - - 29,125 Total operating expenses, net (78,878 ) (62,224 ) (182,217 ) (111,072 ) Income from operations 69,692 64,560 85,498 191,459 Interest income 218 166 276 1,530 Interest expense (2,695 ) (1,559 ) (1,160 ) (1,688 ) Income before income tax expense 67,215 63,167 84,614 191,301 Income tax expense (note 10) (16,811 ) (3,344 ) (3,734 ) (23,480 ) Net income 50,404 59,823 80,880 167,821 Other comprehensive income Foreign currency translation adjustment 7,408 (990 ) 3,377 (7,764 ) Comprehensive income attributable to Plastec Technologies, Ltd. 57,812 58,833 84,257 160,057 Net income per share (note 11): Weighted average number of ordinary shares 15,944,233 14,303,544 13,503,623 12,938,128 Weighted average number of diluted ordinary shares 15,944,233 14,303,544 13,503,623 12,938,128 Basic income per share attributable to Plastec Technologies, Ltd. HK$ 3.2 HK$ 4.2 HK$ 6.0 HK$ 13.0 Diluted income per share attributable to Plastec Technologies, Ltd. HK$ 3.2 HK$ 4.2 HK$ 6.0 HK$ 13.0",
+      "supporting_tables": [
+        {
+          "table_index": 410,
+          "text": "8-month Period ended December 31, Year ended December 31, 2011 2012 2012 2013 HK$ HK$ HK$ HK$ (Unaudited) (Audited) (Unaudited) (Audited) Revenues 911,294 933,888 1,313,818 1,167,115 Cost of revenues (801,413 ) (807,104 ) (1,144,971 ) (899,400 ) Gross profit 109,881 126,784 168,847 267,715 Operating expenses, net Selling, general and administrative expenses (56,498 ) (66,330 ) (94,743 ) (166,969 ) Other income 1,600 6,266 7,098 2,508 Write-off of property, plant and equipment (690 ) (4,058 ) (4,058 ) (14,920 ) Gain/(loss) on disposal of property, plant and equipment 829 1,898 2,007 (2,836 ) Total operating expenses, net (54,759 ) (62,224 ) (89,696 ) (182,217 ) Income from operations 55,122 64,560 79,151 85,498 Interest income 172 166 212 276 Interest expense (1,880 ) (1,559 ) (2,374 ) (1,160 ) Income before income tax expense 53,414 63,167 76,989 84,614 Income tax expense (13,379 ) (3,344 ) (6,777 ) (3,734 ) Net income 40,035 59,823 70,212 80,880 Other comprehensive income Foreign currency translation adjustment 7,157 (990 ) (911 ) 3,377 Comprehensive income attributable to Plastec Technologies, Ltd. 47,192 58,833 69,301 84,257 Net income per share Weighted average number of ordinary shares 16,540,951 14,303,544 14,446,515 13,503,623 Weighted average number of diluted ordinary shares 16,540,951 14,303,544 14,446,515 13,503,623 Basic income per share attributable to Plastec Technologies, Ltd. HK$ 2.4 HK$ 4.2 HK$ 4.9 HK$ 6.0 Diluted income per share attributable to Plastec Technologies, Ltd. HK$ 2.4 HK$ 4.2 HK$ 4.9 HK$ 6.0"
+        }
+      ],
+      "disclosures": [
+        "(Hong Kong dollars in thousands, except number of shares, per share data and unless otherwise stated)",
+        "On September 11, 2012, the Company determined to change its fiscal year end from April 30 to December 31. The change in fiscal year end was made so that the Company\u2019s fiscal year end would coincide with all the Company\u2019s operating subsidiaries in the People\u2019s Republic of China. The figures below for the 8-month period ended December 31, 2011 and year ended December 31, 2012 have not been audited and are presented for comparative purposes only.",
+        "For the year ended April 30, 2012, the 8-month period ended December 31, 2012 and the years ended December 31, 2013 and 2014, potential ordinary shares of 4,781,122, 4,781,122, 4,696,122 and nil shares related to warrants and 579,250, 579,250, 579,250 and nil shares related to UPOs, retroactively and respectively are excluded from the computation of diluted net income per share as their exercise prices were higher than the average market price."
+      ],
+      "reader_note": "Plastec Technologies' selected 2012 figures cover two different twelve-month periods: the fiscal year ended April 30 and an unaudited comparative year ended December 31. The latter is not the audited eight-month transition period also ending December 31, 2012. Income statements use HKD thousands, while EPS is HKD per ordinary share and share counts are full shares. The filing explains warrant/UPO exclusion for the April fiscal year and the eight-month transition period, but this review does not establish the exclusion cause for the separate unaudited twelve-month comparative period. This is a presentation-only review of the selected values and period labels.",
+      "disposition": "REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED"
+    }
+  ],
+  "scope": "Eight source-pinned observations across the April fiscal year and separate unaudited December comparative year in 2012. Exact legacy issuer/period/HKD compound-unit/value and visible column checks. Presentation-only; exclusion cause for the unaudited comparative period is not established. No eight-month/annual conflation, full-history or publication approval."
+}
