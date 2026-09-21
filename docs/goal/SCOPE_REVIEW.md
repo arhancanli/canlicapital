@@ -139,3 +139,8 @@ hidden scale0full shares matched to scale3visible basic shares under the filing'
 loss-denominator disclosure. XML retains decimals=-3precision; no EPS recomputation.
 Reverse split remains retrospective as disclosed. Specialized pinned runner leaves
 generic v6/Plug runner unchanged; corruption and double-scaling tests included.
+
+Seventh batch2 report adds24Brainstorm/Savara/Fluidigm observations:200reviewed/
+600pending. Reverse-split basis, prefunded shares already in basic denominator and
+historical issuer/unit conventions retained. Morgan EPS-note thousands heading
+conflicts with full-count presentation; remains pending with exact source in STATUS.

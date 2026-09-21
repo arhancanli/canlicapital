@@ -8,28 +8,28 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/biopath-hidden-context-20260921`.
-PR131 merged asfff60584988c4f4fee8805491dd02414e0664d54 after four
-CI35546956894checks passed atb3fd1666; exact tested/merged tree
-98a5066b441a60687e201017c76a595e94f684c9 matches.
-Batch2 now176reviewed/624pending/0withdrawn,8presentation-only unchanged. Latest
-ledger company-basic-diluted-batch2-scope-v9-20260921.json.gz. Bio-Path2023/24eight
-observations reviewed by source-pinned specialized runner. EPS explicit hidden
-links share visible basic-EPS rows. Hidden full-share values use scale0; visible
-basic shares use scale3, yielding identical unit/context/numeric values. No direct
-hidden-share DOM link claimed. Explicit loss/exclusion and retrospective February22,
-2024one-for-20split paragraphs retained. Original fact XML preserves decimals=-3
-precision for share counts; no recomputed EPS or increased precision asserted.
-Generic v6and Plug runner unchanged. Replay byte-identical. Only8ledger states/
-evidence links change; all800numerical rows and prior168decisions preserved.
-Three Python mapping tests cover period/unit/scale/value/link/duplicate mismatches,
-missing visible scaling, wrong displayed count and double scaling; added to CI.
-79renderer/ledger tests passed. Reader note bound to exact source and observations.
-Community numerator and Theriva conflicts remain pending. Fresh HTTP/browser
-validation required for changed notes before deployment; old reports historical.
-Transfer44227polled live, latest2337of10,360objects/zero failures. Uploader/plan and
-runtime objects unchanged. Next publish Bio-Path review, continue pending context
-coverage and finish hosted delivery. No production/indexing gain; all goals active.
+Worktree branch `evidence/batch2-context-seventh-20260921`.
+PR132 merged asfd0229619b5bfa16e5987261cbf6e6278fd371f9 after four
+CI35547174270checks passed ate5139e20; exact tested/merged tree
+c3b79b192b2a32031f6b3d917d2bc76171ea649f matches.
+Batch2 now200reviewed/600pending/0withdrawn,8presentation-only unchanged. Latest
+ledger company-basic-diluted-batch2-scope-v10-20260921.json.gz. Seventh report adds24
+observations: Brainstorm2024/25retrospective1-for-15split and loss exclusions;
+Savara2024/25already-included prefunded warrants; historical Fluidigm2019/20share
+scale3and loss exclusions, displayed under current Standard BioTools issuer record.
+Captured tables/disclosures and exact source snapshots pinned. Replay byte-identical;
+only24states/evidence links change; all800rows/prior176decisions preserved.
+80renderer/ledger tests pass. No source/policy/runtime-object changes.
+Morgan0001162283/0001140361-23-015466 remains pending: table35EPS note is introduced
+as 'in thousands, except per share data' but repeats table22full dollar losses
+949,191/1,571,060and600,090shares with scale0. Note also says no dilutive shares;
+June10,2020one-for-100split is retrospective. Primary SHA762daf6282980ab686913c960f47338e1e643a8b6ce76dd1bd89cac240389892.
+Do not silently multiply or approve; next inspect this heading conflict explicitly.
+Community numerator and Theriva conflicts still pending. Updated reader notes need
+fresh HTTP/browser verification before release; older reports cover historical code.
+Transfer44227polled live, latest2443of10,360objects/zero failures; uploader/plan
+unchanged. Next publish seventh review, resolve pending discrepancies and continue
+hosted delivery. No production/indexing gain; full owner goal active.
 
 ## Earlier verified checkpoints (historical)
 
@@ -350,3 +350,8 @@ PR131 published atb3fd16665274f255c42fb1e39fec70d5a41f0fc5; CI pending.
 Unpublished rebase preserved tree98a5066b441a60687e201017c76a595e94f684c9; push
 terminal0. Same live44227handle, latest receipt2224objects/zero failures.
 Owner attribution file and untracked Bio-Path fixture retained.
+
+PR132 published ate5139e20dd42fb6e7520b7bdfca9b27e3ee61c6a; CI pending.
+Unpublished rebase preserved treec3b79b192b2a32031f6b3d917d2bc76171ea649f; push
+terminal0. Same live44227handle, latest receipt2356objects/zero failures.
+Owner attribution file untouched.
