@@ -1,0 +1,47 @@
+{
+  "schema": "canli.company-preview-deployment.v1",
+  "recorded_at": "2026-09-21T03:35:14.432381+00:00",
+  "source_revision": "92a49997079258b7c9fc303491990d6fae120da9",
+  "source_tree": "373f894c126ce08d3631b0fa8dc6cb50185db84b",
+  "reviewed_pull_request": 161,
+  "deployment_id": "dpl_8Z7WSohJa2y9TrtrKmRovDEDa3T3",
+  "url": "https://meridian-bc71v1ix4-arhans-projects-ac470eaa.vercel.app",
+  "target": "preview",
+  "initial_state": "INITIALIZING",
+  "storage_plan_sha256": "7518e20430da19af1ddbd1217c5e5b447fb5f41ad757156cf15c4a3060353aab",
+  "release_hash": "7573eb42d7966d70a45d12513f7a5b2ef75195ffa25d5b30f39ba9a5c3f4c5fc",
+  "routing": "explicit /api/v1/company-reference?path=...",
+  "indexing_enabled": false,
+  "storage_complete": false,
+  "hosted_behavior_verified": false,
+  "production_activated": false,
+  "attempts": [
+    {
+      "method": "normal file upload",
+      "exit_code": 1,
+      "failure": "fetch failed; Upload aborted",
+      "session": 90088
+    },
+    {
+      "method": "tgz archive upload",
+      "exit_code": 0,
+      "session": 22491
+    }
+  ],
+  "scope": "Current tested code with deployment-local runtime storage configuration; pending build and representative hosted checks. Does not activate canonical company paths or prove indexing. Directory/HTML dependencies respond, but sampled downloads return503; full readiness fails.",
+  "observed_build_state": "READY",
+  "hosted_audits": [
+    {
+      "report": "company-v22-hosted-unavailable-20260921.json",
+      "passed": false,
+      "checks": 4,
+      "failures": 2
+    },
+    {
+      "report": "company-v22-hosted-readiness-20260921.json",
+      "passed": false,
+      "checks": 20,
+      "failures": 7
+    }
+  ]
+}
