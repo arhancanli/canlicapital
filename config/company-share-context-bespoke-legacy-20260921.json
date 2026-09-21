@@ -1,0 +1,140 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001409197",
+      "accession": "0001213900-19-026230",
+      "source_sha256": "80f06be680b2f10f5dbaf4e5eb9848ce2df8d50a6ba7797e9082455a4276410d",
+      "primary_sha256": "852363337928e2cd4b7369581361653e6c5ce232f31cd3a12b9349316de019d8",
+      "receipt_sha256": "57f63e99c9e05c97690391e88afb9fe5715949cf5d337037b41a5055186ed730",
+      "fixture": "scripts/fixtures/editorial/batch2-0001409197-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2017-09-01",
+          "end": "2018-08-31",
+          "val": -0.21,
+          "accn": "0001213900-19-026230",
+          "fy": 2019,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-12-16",
+          "frame": "CY2018",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2018-09-01",
+          "end": "2019-08-31",
+          "val": 0.04,
+          "accn": "0001213900-19-026230",
+          "fy": 2019,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-12-16",
+          "frame": "CY2019",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2017-09-01",
+          "end": "2018-08-31",
+          "val": -0.21,
+          "accn": "0001213900-19-026230",
+          "fy": 2019,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-12-16",
+          "frame": "CY2018",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2018-09-01",
+          "end": "2019-08-31",
+          "val": 0.04,
+          "accn": "0001213900-19-026230",
+          "fy": 2019,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-12-16",
+          "frame": "CY2019",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2017-09-01",
+          "end": "2018-08-31",
+          "val": 35408438,
+          "accn": "0001213900-19-026230",
+          "fy": 2019,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-12-16",
+          "frame": "CY2018",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2018-09-01",
+          "end": "2019-08-31",
+          "val": 60588674,
+          "accn": "0001213900-19-026230",
+          "fy": 2019,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-12-16",
+          "frame": "CY2019",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2017-09-01",
+          "end": "2018-08-31",
+          "val": 35408438,
+          "accn": "0001213900-19-026230",
+          "fy": 2019,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-12-16",
+          "frame": "CY2018",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2018-09-01",
+          "end": "2019-08-31",
+          "val": 60588674,
+          "accn": "0001213900-19-026230",
+          "fy": 2019,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2019-12-16",
+          "frame": "CY2019",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2018-08-31",
+        "2019-08-31"
+      ],
+      "table_index": 14,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1409197/000121390019026230/bspk-20190831.xml",
+        "status": 200,
+        "bytes": 550684,
+        "sha256": "0e98b831f263b95f8700212a691cf79b8741a22f0140d6ba1360a62c9e95ac8b",
+        "captured_at": "2026-09-20T23:22:22.402180+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001409197-0001213900-19-026230-instance.response"
+      },
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+      "reader_note": "Bespoke Extracts' historical 2018 and 2019 fiscal years ended August 31. The filing reports a 2018 net loss and a 2019 net profit, using full dollar amounts and shares. It says options, warrants and convertible debt were excluded as anti-dilutive in both years; equality of basic and diluted EPS is not being attributed to losses in both periods. These values preserve the older filing's presentation, separate from the later December year-end history."
+    }
+  ]
+}

@@ -20,7 +20,7 @@ transitions, not continuous telemetry or proof that background work is running.
 
 Working locations:
 
-- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/batch2-fifteenth-contexts-20260921`. PR159 passed CI and merged. Scope-v22 archive12864 restored34 reports; scope-v22 browser39143 passed1,020 cases; later scope-v23/24 notes await relevant checks. Recovery uploader79720 remains active. The expansion is unpublished. STATUS.md has exact current evidence; EXECUTION_LEDGER.md covers every goal area.
+- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/batch2-sixteenth-contexts-20260921`. PR160 passed CI and merged. Scope-v22 archive12864 restored34 reports; scope-v22 browser39143 passed1,020 cases; later scope-v23–25 notes await relevant checks. Recovery uploader79720 remains active. The expansion is unpublished. STATUS.md has exact current evidence; EXECUTION_LEDGER.md covers every goal area.
 - Production checkout: `/Users/arhancanli/canlicapital-production-20260920`; last verified application revision9608542c. Inspect actual deployment/alias state before claiming new production behavior.
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.

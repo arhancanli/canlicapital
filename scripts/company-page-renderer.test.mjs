@@ -1753,3 +1753,32 @@ test('Dare Eledon and Neurogene preserve split exception class allocation and hi
 
   }
 });
+
+test('Sonendo Bespoke and Cannabis Bioscience preserve operations fiscal years and small EPS', () => {
+  for (const [cik, phrases] of [
+    ['0001407973', [/continuing operations with income from discontinued operations/, /one-for-200 split effective October 18, 2024/, /trading adjusted November 8/, /fractional interests were paid in cash/, /Prefunded warrants are already included/]],
+    ['0001409197', [/2018 and 2019 fiscal years ended August 31/, /2018 net loss and a 2019 net profit/, /does not establish the exclusion reason for 2023/, /45-to-1 reverse split effective January 13, 2023/, /separate from the later December year-end history/]],
+    ['0001411057', [/fiscal years end May 31/, /EPS of -\$0\.00006 and -\$0\.00005/, /not zero income/, /does not establish that no potentially convertible instruments existed/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic');
+    assert.equal(notes.length, cik === '0001409197' ? 2 : 1);
+    for (const note of notes) {
+      const changed = structuredClone(record), row = note.observations[0];
+      changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+      const remaining = companyFilingNotes(changed, row.tag);
+      assert(!remaining.includes(note));
+      assert.equal(remaining.length, notes.length - 1);
+    }
+
+  }
+});

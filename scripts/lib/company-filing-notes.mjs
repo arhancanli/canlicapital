@@ -1,6 +1,322 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001407973",
+  "include_on_overview": true,
+  "source_sha256": "4ff82f1f2bc0263053c9c9eb9fcbe37502835e45c9ba577ddf753429aaa66ede",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Sonendo's 2023 and 2024 total loss EPS combines losses from continuing operations with income from discontinued operations; it is not the separate continuing-operations EPS. Statements use dollar thousands and full shares. The filing retrospectively reflects a one-for-200 split effective October 18, 2024, with trading adjusted November 8; fractional interests were paid in cash. Prefunded warrants are already included in basic and diluted shares. Other common-share equivalents are excluded as anti-dilutive during losses.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1407973/000095017025045214/sonx-20241231.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -129.63,
+      "accn": "0000950170-25-045214",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -59.03,
+      "accn": "0000950170-25-045214",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -129.63,
+      "accn": "0000950170-25-045214",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -59.03,
+      "accn": "0000950170-25-045214",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 469943,
+      "accn": "0000950170-25-045214",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 474856,
+      "accn": "0000950170-25-045214",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 469943,
+      "accn": "0000950170-25-045214",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 474856,
+      "accn": "0000950170-25-045214",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001409197",
+  "include_on_overview": true,
+  "source_sha256": "80f06be680b2f10f5dbaf4e5eb9848ce2df8d50a6ba7797e9082455a4276410d",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Bespoke Extracts' 2023 and 2024 filing presents equal basic and diluted loss EPS using full dollar amounts and shares. It specifically attributes the 2024 exclusion of 1,094,876 warrants and 1,565,342 options to their being out of the money; this review does not establish the exclusion reason for 2023. The filing reflects a 45-to-1 reverse split effective January 13, 2023. Older observations from the 2019 filing retain that earlier filing's basis rather than being silently rescaled.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1409197/000121390025033608/ea0233625-10k_bespoke.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.15,
+      "accn": "0001213900-25-033608",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.1,
+      "accn": "0001213900-25-033608",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -0.15,
+      "accn": "0001213900-25-033608",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.1,
+      "accn": "0001213900-25-033608",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 10168552,
+      "accn": "0001213900-25-033608",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 10528083,
+      "accn": "0001213900-25-033608",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 10168552,
+      "accn": "0001213900-25-033608",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 10528083,
+      "accn": "0001213900-25-033608",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001411057",
+  "include_on_overview": true,
+  "source_sha256": "65039acad959501dea2ae2bfec13b3503da3ac05045712ff74cd71cfd51e2523",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Cannabis Bioscience International Holdings' fiscal years end May 31. Its 2024 and 2025 filing reports full dollar losses and share counts, with EPS of -$0.00006 and -$0.00005, respectively; these small per-share losses are not zero income. The filing states that there were no dilutive securities at the two year-end dates. That statement does not establish that no potentially convertible instruments existed or approve earlier years.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1411057/000168316825007174/cannabisbio_i10k-053125.htm",
+  "observations": [
+    {
+      "start": "2023-06-01",
+      "end": "2024-05-31",
+      "val": -6e-05,
+      "accn": "0001683168-25-007174",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-06-01",
+      "end": "2025-05-31",
+      "val": -5e-05,
+      "accn": "0001683168-25-007174",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-06-01",
+      "end": "2024-05-31",
+      "val": -6e-05,
+      "accn": "0001683168-25-007174",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-06-01",
+      "end": "2025-05-31",
+      "val": -5e-05,
+      "accn": "0001683168-25-007174",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-06-01",
+      "end": "2024-05-31",
+      "val": 10317612225,
+      "accn": "0001683168-25-007174",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-06-01",
+      "end": "2025-05-31",
+      "val": 10716352087,
+      "accn": "0001683168-25-007174",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-06-01",
+      "end": "2024-05-31",
+      "val": 10317612225,
+      "accn": "0001683168-25-007174",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-06-01",
+      "end": "2025-05-31",
+      "val": 10716352087,
+      "accn": "0001683168-25-007174",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001409197",
+  "include_on_overview": true,
+  "source_sha256": "80f06be680b2f10f5dbaf4e5eb9848ce2df8d50a6ba7797e9082455a4276410d",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Bespoke Extracts' historical 2018 and 2019 fiscal years ended August 31. The filing reports a 2018 net loss and a 2019 net profit, using full dollar amounts and shares. It says options, warrants and convertible debt were excluded as anti-dilutive in both years; equality of basic and diluted EPS is not being attributed to losses in both periods. These values preserve the older filing's presentation, separate from the later December year-end history.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1409197/000121390019026230/f10k2019_bespokeextracts.htm",
+  "observations": [
+    {
+      "start": "2017-09-01",
+      "end": "2018-08-31",
+      "val": -0.21,
+      "accn": "0001213900-19-026230",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2018-09-01",
+      "end": "2019-08-31",
+      "val": 0.04,
+      "accn": "0001213900-19-026230",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2017-09-01",
+      "end": "2018-08-31",
+      "val": -0.21,
+      "accn": "0001213900-19-026230",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2018-09-01",
+      "end": "2019-08-31",
+      "val": 0.04,
+      "accn": "0001213900-19-026230",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2017-09-01",
+      "end": "2018-08-31",
+      "val": 35408438,
+      "accn": "0001213900-19-026230",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2018-09-01",
+      "end": "2019-08-31",
+      "val": 60588674,
+      "accn": "0001213900-19-026230",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2017-09-01",
+      "end": "2018-08-31",
+      "val": 35408438,
+      "accn": "0001213900-19-026230",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2018-09-01",
+      "end": "2019-08-31",
+      "val": 60588674,
+      "accn": "0001213900-19-026230",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001401914",
   "include_on_overview": true,
   "source_sha256": "1a9e5d436251c8650231f065c4c293fc1bb2b6e8877619128801af21ceea9ac3",
