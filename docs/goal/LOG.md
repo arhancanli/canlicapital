@@ -3634,3 +3634,31 @@ Verified now:
 
 No production, indexing, editorial or engine change. Previous STATUS preserved at
 history/STATUS-20260921-before-continuation.md. Owner attribution file untouched.
+
+## 2026-09-21 — v22 clean set released to production
+
+PR169 merged as 28f6e944 and PR170 as f6d37926; all four CI checks passed on
+both. The merged PR170 tree 73da6f09 matches the preview-tested tree. The owner
+chose the "clean set": 77,359 indexable company URLs, with 13,373 withheld noindex
+(12,959 flagged histories, and all 414 pages of the 15 companies with pending
+scope review).
+
+Hosted noindex previews of the branch: meridian-mqaktdfhh, then meridian-e6nthorvl.
+Both served all routes from the bundled activation, the sitemap index (77,622
+URLs) and all 64 live company URLs. An apparent 30 s latency was TCP connect time
+on the test machine (time_connect 30–45 s; the same delay appeared against the
+older preview). Server time was at most 1.01 s. The first-attempt timeout change
+made on the wrong reading was reverted in the branch (5d9f3847) before merge.
+
+Production checkout moved from 9608542c to f6d37926. The scheduled hourly deploy
+published it at 15:33Z (landing meridian-8c5ag8pvq). Live checks:
+
+- Admitted pages: 200, no X-Robots-Tag, meta index/follow, self-canonical.
+- Withheld pages and downloads: noindex. Unknown company: 404.
+- Sitemap index: two shards, 50,000 + 27,622.
+- The 64 previously live company URLs: 58 indexable, 6 noindex (historical-only).
+- Maximum server time 1.73 s.
+- IndexNow accepted 77,622 URLs.
+
+Google indexing is not yet measured; the baseline remains 262 (September 14).
+Search Console resubmission is an owner action. Owner attribution file untouched.

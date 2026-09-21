@@ -1,84 +1,74 @@
 # Current state
 
 Updated September 21, 2026. Goal ACTIVE, NOT ACHIEVED. All objectives and
-publication authorization remain in REQUIREMENTS.md.
+publication authorization remain in REQUIREMENTS.md. Codex is usage-limited
+until September 27; work continues from these records. Hermes remains stopped.
 
-Codex reached its usage limit at 04:46Z on September 21 (reset stated as
-September 27). Work continues on the same goal from these records in the
-meantime, under the same evidence rules. Hermes remains stopped.
+The previous STATUS is preserved at
+[history/STATUS-20260921-before-production-activation.md](history/STATUS-20260921-before-production-activation.md).
+Recorded states are not live telemetry.
 
-The previous STATUS, with every hash and process handle through PR169, is
-preserved at
-[history/STATUS-20260921-before-continuation.md](history/STATUS-20260921-before-continuation.md).
-Earlier checkpoints are in `history/`. Recorded states are not live telemetry.
+## Latest verified transition: v22 clean set live in production
 
-## Latest verified transition
+PR169 merged as 28f6e944 and PR170 as f6d37926 (all four CI checks passed on
+both; the merged PR170 tree 73da6f09 equals the tested preview tree). The
+production checkout (the hourly deploy's design source) moved to f6d37926. The
+scheduled hourly deploy published it at 15:33Z: landing deployment
+meridian-8c5ag8pvq aliased to production.
 
-**Storage transfer complete.** Recovery79720 finished after the last Codex poll.
-Receipt `artifacts/seo/corpus-local/company-five-cohort-storage-transfer-v22-recovery-20260921.json`:
-`complete=true`, 10,360/10,360 files, 0 failures, 15 read retries, one write
-recovery, plan SHA `7518e204…3aab`, release `7573eb42…c5fc`, destination
-`company-reference-staging`. The process is no longer running (checked by PID).
-Transfer only: not a capture backup, editorial admission or production activation.
+Owner release decision (2026-09-21, "clean set"), in `config/company-admission-v22.json`:
 
-**Clean hosted readiness passed.** Codex's final action reran
-`scripts/audit-hosted-company-staging.mjs` (SHA `46c6fc6b…bbf4`, matches the
-file) against the clean-route noindex preview
-https://meridian-gb8qguqpt-arhans-projects-ac470eaa.vercel.app. Report
-`artifacts/seo/company-v22-clean-hosted-readiness-probe-complete-20260921.json`:
-23 checks, 0 failures, `passed=true` (16×200, 3×304, 3×404, 1×405). This supersedes
-the earlier 7/20 download failures (that failed report stays retained). A manual
-spot-check of the directory, a company page, a company download and an unknown
-company: 200/200/200/404, all `X-Robots-Tag: noindex`. Representative sample
-only: not full-corpus hosted HTTP, cloud load/cost or production.
+- Indexable: 77,359 company URLs, made up of 3,308 overviews, 73,984 histories
+  without a selected-quality flag, and 67 directory pages.
+- Served noindex but reachable: 12,959 flagged histories, plus all 414 pages of
+  the 15 companies with a pending accounting-scope review.
+- Downloads stay noindex.
 
-**PR169** (Southern Copper/AdCare legacy context, The9 conflict retained): all
-four CI checks passed at `076faca1`. Open; merge needs the owner (see below).
+Verified live on canlicapital.com (September 21):
 
-## Editorial scope (unchanged since PR169)
-
-Batch1: 1,148 reviewed (130 presentation-only), 28 withdrawn, none pending.
-Batch2 scope-v31: 672 reviewed (104 presentation-only), 128 pending, 0 withdrawn.
-Remaining 128: 96 in 12 documented unresolved reports; 32 across Regional Health
-2025, Inhibitor 2013, MacroGenics 2014 and Stereotaxis 2014 not yet reviewed.
-The wider deferred basic/diluted queue (10,206 observations, 2,696 filings,
-464 companies at the original baseline) is larger than batches 1–2.
-
-## Release evidence
-
-Latest full release checks: scope-v29 (HTTP 90,732 pages/6,646 downloads;
-browser 1,392 cases/1,540 note-source checks). Latest sealed archive scope-v29
-(45 reports/745 files, SHA `c7a06a92…f4f3`). Scope-v30/31 notes still need
-release-check and archive coverage.
+- Admitted directory, overview and history pages return 200 with no
+  X-Robots-Tag, meta `index, follow` and a self-canonical.
+- Flagged histories, pending-review companies and downloads return 200 with
+  `X-Robots-Tag: noindex`. An unknown company returns 404.
+- `/sitemap.xml` is a sitemap index with two shards, 50,000 + 27,622 =
+  77,622 URLs (263 site pages plus the 77,359 admitted company URLs).
+- All 64 previously live company URLs return 200. 58 stay indexable; six are now
+  noindex because v22 flags them historical-only (for example Apple Revenues
+  ends in 2018 and Microsoft Revenues in 2010).
+- Server time, from connect to first byte, was at most 1.73 s across those 64
+  at six parallel requests.
+- IndexNow accepted 77,622 canonical URLs at 15:33Z.
 
 ## Counts (keep separate)
 
-Candidate URLs 90,732 (3,323 overviews, 87,342 histories, 67 directories), none
-live. Live sitemap 327 URLs (fetched September 21). Last confirmed indexed 262
-(September 14). Goal 800,000 indexed, target 1,000,000.
+- Built candidate URLs: 90,732.
+- Live indexable company URLs: 77,359.
+- Live sitemap URLs: 77,622.
+- Submitted to IndexNow: 77,622.
+- Submitted to Google: sitemap resubmission pending (owner action in Search Console).
+- Confirmed indexed: 262 as of September 14; no new measurement yet.
+- Goal: 800,000 indexed, target 1,000,000.
 
-## Remaining gates before production activation
+## Editorial scope
 
-1. Merge PR169.
-2. Release scope: resolve or explicitly withhold the values in the 12 unresolved
-   reports; review or withhold the 32 unreviewed observations.
-3. Release checks and archive for the final scope.
-4. Production activation code. Company handlers support `indexable`, but nothing
-   sets it; production `vercel.json` has no company rewrites; the 327 live static
-   URLs must keep working.
-5. Sitemaps for the admitted scope, preview verification, production deploy,
-   then Search Console submission and measurement.
+Batch1: 1,148 reviewed, 28 withdrawn, none pending. Batch2 scope-v31: 672
+reviewed, 128 pending. The 15 companies holding those pending observations are
+withheld from indexing until resolved. The 12,959 flagged histories are
+withheld until reviewed under COMPANY_EDITORIAL_POLICY.md.
 
 ## Other objectives
 
-Developer adoption: 0 stars on both repos; MCP 0.1.2 got 33 npm downloads
-(September 13–19). Engine: live forward-evidence report
-`IMMATURE_RECORD_TOO_SHORT` (paper only). The ALPHAC nightly health check has been
-red since September 16 on one test
-(`tests/unit/test_wave1_data_rights.py::test_wave1_raw_vendor_rows_are_excluded_and_sources_are_mapped`).
+- Developer adoption: 0 stars on both repos; MCP 0.1.2 had 33 npm downloads
+  (September 13–19).
+- Engine: live forward-evidence report `IMMATURE_RECORD_TOO_SHORT` (paper only).
+- ALPHAC nightly health check: red since September 16 on the Wave 1 data-rights
+  test. PR #56 moved the policy review date to 2026-09-15, which invalidated the
+  five sources reviewed on 2026-08-26. Current terms re-review is in progress.
 
-## Next action
+## Next actions
 
-Owner merges PR169. Then release-scope gate 2 and the production-activation
-build (gate 4) proceed in an isolated branch, with preview verification before
-any production change.
+1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
+   measure crawl, index and exclusion counts by page family.
+2. Re-review the five Wave 1 data-source terms and restore the engine health check.
+3. Growth plan beyond v22 toward 800,000 indexed: more issuers, more supportable
+   concepts, review of flagged histories, and new source-backed page families.
