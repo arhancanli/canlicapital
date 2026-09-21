@@ -128,3 +128,8 @@ runner distinguishes explicitly linked hidden EPS from diluted-share tags paired
 by identical unit/context/value and the explicit shared-loss-denominator disclosure.
 No direct DOM share link is claimed. Generic v6 remains unchanged. Corrupted
 period/unit/scale/value/missingEPSlink/duplicatepair fail tests.
+
+Sixth batch2 report adds24GHST/Pulmonx/Galectin observations:168reviewed/632pending.
+Rounded losses and explicit absence of instruments, repurchase-share deductions
+and preferred-dividend adjustments remain issuer-specific. Bio-Path hidden diluted
+tags need separate visible-statement mapping; strict v6gate unchanged.

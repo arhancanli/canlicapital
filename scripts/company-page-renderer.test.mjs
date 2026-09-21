@@ -1337,3 +1337,27 @@ test('Plug historical restatement and common-stockholder numerator retain source
   changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
   assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
 });
+
+test('GHST, Pulmonx and Galectin preserve loss rounding, repurchase shares and preferred dividends', () => {
+  for (const [cik, accession, phrases] of [
+    ['0001121795', '0001079973-25-001605', [/no potentially dilutive securities outstanding/, /511,284 and \$182,848/, /June fiscal dates/]],
+    ['0001127537', '0001127537-26-000015', [/subtracts 33 weighted-average shares/, /39,111,073/, /repurchase adjustment is zero/]],
+    ['0001133416', '0001140361-26-012155', [/preferred dividends of \$153,000 and \$138,000/, /inline scale 3/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic').filter(n => n.observations.some(r => r.accn === accession));
+    assert.equal(notes.length, 1);
+    const changed = structuredClone(record), row = notes[0].observations[0];
+    changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+    assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+  }
+});
