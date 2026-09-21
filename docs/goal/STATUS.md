@@ -8,34 +8,31 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/batch2-prefunded-context-20260921`.
-Previous turn made progress: batch2archive620files/19outputs reproduced and PR140.
-PR140 merged asc9102857444a1c6710cbf02bcd9cb741250c279e after four
-CI35549482110 checks passed at6e61c930. Tested/merged full tree
-9c018cb5efafcbe4749777c5c46cfda55851ebfa matches.
-Tenth batch2 report adds16Exagen/Immunic2024/25observations. Exact main statements,
-full EPS paragraphs and thousands-except-share/per-share headings retained; share
-scale0. Both include nominal-price pre-funded warrants already; other potential
-shares excluded during losses. Immunic year-end unexercised counts are not a new
-weighted-average denominator calculation. Full original observations preserved.
-V7 replay byte-identical. Ledger scope-v14 now280reviewed/520pending/0withdrawn,
-16presentation-only unchanged. Exactly16states/evidence links changed; all800rows
-and prior264decisions unchanged.84renderer/ledger tests pass. Initial test run failed
-because generic mutation assigned-1to an already-1EPS; now adds1and explicitly
-asserts the value changed. Initial failure/retry logs retained in /tmp/canli-batch2-
-tenth-tests.log and tenth-tests-retry.log. No production logic change for that fix.
-Wright0001279715/0001214659-26-003984 remains pending: table54statement heading
-says 'in thousands, except per share amounts' yet20,620,711shares are tagged scale0.
-Losses1,024/920and EPS-.05/-.04; investigate unit-heading discrepancy rather than
-silently scale or approve. Primary SHA8b04695d419eb76223cc8b124e4b17ab25ccce9f2bf6730943c11e1c18f7a56e.
-Existing Theriva/Community/Morgan conflicts remain pending. Next preserve Wright
-source discrepancy explicitly and continue remaining contexts while transfer runs.
-Latest HTTP47680/browser1234reports and620-file scope-v13archive remain historical
-snapshots: this new note/registry change needs fresh relevant release validation
-and later archive coverage. No source/policy/runtime-object changes or indexing gain.
-Transfer44227 polled live this turn; latest4,445/10,360objects/zero failures;
-uploader/plan unchanged. All SEO/indexing, developer adoption and governed engine
-goals remain active. Owner attribution file untouched.
+Worktree branch `evidence/wright-unit-discrepancy-20260921`.
+Previous turn made progress:16Exagen/Immunic observations reviewed and PR141.
+PR141 merged asae0142d1efb7bc0c8d0019afc3afb92a00ae6804 after all four
+CI35549780477 checks passed at5203097e; exact tested/merged tree
+f5f4a590cbd3da24be48c3a0eed7a9124cf3c813 matches.
+Wright discrepancy retained in company-wright-unit-discrepancy-20260921.json,
+replay runner scripts/review-wright-unit-discrepancy.py and actual source fixture.
+All8numbers match, but table54heading 'in thousands, except per share amounts'
+conflicts with full20,620,711share tags at scale0. Table51balance sheet separately
+states21,628,680issued minus1,007,969treasury equals20,620,711outstanding. Exact
+statement rows, heading XML, share/EPS fact XML/context/unit, balance-sheet text and
+scale3USD net-loss tags retained. Diagnostic ratios distinguish full shares versus
+hypothetical thousand-share interpretation without treating ratios or period-end
+shares as accounting approval. Source/receipt/primary/code hashes pinned.
+Final report replays byte-identically. Initial draft retained corpus-local; final
+adds explicit loss-tag assertions/evidence. Disposition ACCOUNTING_SCOPE_REVIEW_PENDING;
+no public note, policy hold, corrected data or review registration. Ledger tests now
+reject all four unresolved reports (Theriva, Community, Morgan, Wright).7tests pass.
+Batch2 scope-v14 remains280reviewed/520pending/0withdrawn,16presentation-only.
+No renderer/source/runtime-object change this turn. Latest HTTP/browser and archive
+snapshots predate Exagen/Immunic; new notes still need relevant release verification
+and later archive coverage. Next continue pending filing contexts and hosted delivery.
+Transfer44227 polled live this turn; latest4,662/10,360objects/zero failures;
+uploader/plan unchanged. No production activation/new indexing gain. All original
+SEO/indexing, developer-adoption and governed-engine goals active; owner file untouched.
 
 ## Earlier verified checkpoints (historical)
 
