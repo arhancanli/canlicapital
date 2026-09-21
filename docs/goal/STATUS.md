@@ -8,36 +8,48 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Branch: `evidence/stereotaxis-unit-context-20260921`.
-Previous turn made progress by reviewing MaxCyte and publishing PR144.
-PR144 merged as 27699eb95e993d91f66df8ac6f67f79e6453a482 after all four
-CI35550528222 checks passed at d39c753f. Tested and merged tree:
-f1b05947e1bffdf6a2eb7eb4f5c511605dc3a212.
+Previous turn made progress by merging PR145 and starting audits; this turn
+completed those checks and extended isolated evidence restoration.
+Branch: evidence/batch2-scope-v16-release-checks-20260921. PR145 merged as
+6670f7a7d9457ec22c13b209088e851193776a35; full tested/merged tree verified identical.
 
-Stereotaxis 2024/25 discrepancy is preserved in
-company-stereotaxis-unit-discrepancy-20260921.json, with a source-pinned replay
-script and actual company source fixture. All eight selected numbers match.
-Main statement table156 excludes shares and per-share amounts from thousands;
-EPS-note introduction instead says only 'in thousands', while table226 repeats
-full scale-zero share counts and EPS. Both tables distinguish net loss from loss
-attributable to common stockholders after cumulative preferred dividends:
-2025: 21,643 + 1,271 = 22,914; 2024: 24,045 + 1,308 = 25,353 (thousand dollars).
-The two-class/loss-participation and anti-dilution disclosures are retained with
-exact statement rows, fact/context/unit XML, source and capture hashes.
+HTTP75012 TERMINAL0: company-v22-scope-v16-http-20260921.json verifies all
+90,732reference pages,6,646downloads and90,732HTTP sitemap URLs, zero failures,
+maximum four clicks from the company directory and36,223HTML bytes. Code pins
+checked against current files. Local sequential HTTP, not hosted load/indexing.
+Browser73212 TERMINAL0: company-v22-scope-v16-browser-20260921.json records720
+Chromium/WebKit cases at390/1440px,40registered filings across34companies,
+170note-bearing paths and800exact reader-note/source checks; zero failures.
+Current input hashes verified. Withheld rows/keyboard controls, developer links,
+canonical/structured-data paths and omitted-history404s checked. Mobile Chromium
+and WebKit Idaho screenshots inspected. Not full accessibility certification.
 
-Report replays byte-for-byte. Seven ledger tests pass, including rejection of
-all five pending discrepancy reports (Theriva, Community, Morgan, Wright,
-Stereotaxis) as approved reviews. No registration, public note, policy hold,
-source correction or runtime-object change. Ledger remains scope-v16:
-320 reviewed / 480 pending / 0 withdrawn, including 16 presentation-only.
-Older Stereotaxis legacy filing remains pending separately.
+Archive51992 TERMINAL0: company-batch2-evidence-scope-v16-20260921.tar contains
+644files/272,465,920bytes; SHA7d758bc596cfc184fbf0baf25a1fa3a40d21deb759be701d31ee5246597b31e3.
+All24reports replay byte-identically in an isolated temporary environment with
+hash-locked parser dependencies installed offline. Includes all100primary captures,
+seven legacy instances, registered reviews through scope-v16, five pending reports
+and the320reviewed/480pending ledger (16presentation-only). Receipt:
+company-batch2-evidence-archive-scope-v16-20260921.json. Earlier archive unchanged.
+This is local reproduction, not independent certification or hosted backup.
+Saved base revision25d8c465; modified packager and profile are saved/hash-bound
+inside archive and were checked against current files after replay.
 
-Next continue pending/legacy filing contexts and hosted delivery. Reader notes
-added after the last full HTTP/browser audit still need updated release checks
-and later archive coverage. All original indexing, SEO, developer-adoption and
-governed-engine goals remain active. No production or new indexing gain.
-Transfer44227 was polled live this turn; latest receipt: 5,363 of 10,360 objects,
-zero failures. Uploader and plan unchanged. Owner attribution file untouched.
+Packager now accepts an explicit hash-pinned build profile binding registry,
+ledger, pending reports and fixtures; restored receipt uses sealed archive scope.
+Six archive safety tests pass and are now in CI. Initial profile mutation test
+fixture used macOS /var symlink path and failed the existing canonical-path guard;
+resolved only the temporary fixture root, preserving the guard. Tests now prove
+changed registry/ledger/pending/fixture bytes fail before creating an archive.
+
+Uploader44227 polled live this turn; latest observed5964/10,360objects, zero
+failures, incomplete. Uploader, plan and runtime objects unchanged. No production
+activation or new indexed-page evidence. Owner attribution file untouched.
+
+Next publish this checkpoint, finish storage transfer and verify hosted delivery;
+continue pending source/accounting/usefulness review. LENSAR/Femasys inspections
+remain preliminary (see preceding log). Ledger unchanged; all original indexing,
+SEO/search-intent, developer-adoption and governed-engine goals remain active.
 
 ## Earlier verified checkpoints (historical)
 

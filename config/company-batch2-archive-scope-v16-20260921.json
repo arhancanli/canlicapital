@@ -1,0 +1,56 @@
+{
+  "schema": "canli.batch2-archive-profile.v1",
+  "registry": {
+    "path": "config/company-basic-diluted-batch2-reviews.json",
+    "sha256": "7ec9668a3bb8adf4e4bd61828d260528de6fb00b9c1d792bc14fed62249a637b"
+  },
+  "ledger": {
+    "path": "artifacts/seo/company-basic-diluted-batch2-scope-v16-20260921.json.gz",
+    "sha256": "f00c519a86e57ce8a8597ed6ee97e6857cb10b195f049a55a848e8bc71216666"
+  },
+  "pending": [
+    {
+      "path": "artifacts/seo/company-theriva-filing-discrepancies-20260921.json",
+      "sha256": "92c14becc6d3bdf61b3be99bcfe33953385d492b62b2c61f015c14f7ffd32a91"
+    },
+    {
+      "path": "artifacts/seo/company-community-numerator-discrepancy-20260921.json",
+      "sha256": "86f37d5c8a0325112b4d686d81d2e6840770fc46f49a857b2117863d364f5086"
+    },
+    {
+      "path": "artifacts/seo/company-morgan-unit-discrepancy-20260921.json",
+      "sha256": "60c013aedaac07158b9c6dc77f3b6a89868ed3ab846f30b32618f84c10ef9387"
+    },
+    {
+      "path": "artifacts/seo/company-wright-unit-discrepancy-20260921.json",
+      "sha256": "6fff74f5e3103485c08ee3a90b564136dbe9e506af790461a7a9e171d3d3904f"
+    },
+    {
+      "path": "artifacts/seo/company-stereotaxis-unit-discrepancy-20260921.json",
+      "sha256": "c8a6413b3cfed26e2a10dd2c0f10f68faa410d94c7eb067b755a6916aec7e023"
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "scripts/fixtures/editorial/theriva-batch2-source.json.gz",
+      "sha256": "9e515f9d0126189ba54de7568617223691ee5f1995a7032fcf92f9a5f09a82b7"
+    },
+    {
+      "path": "scripts/fixtures/editorial/batch2-0001084551-source.json.gz",
+      "sha256": "8fcb699f2cc9a006c4a66c85a74e9c58ec958525a6a93454e42199991041eb96"
+    },
+    {
+      "path": "scripts/fixtures/editorial/batch2-0001162283-source.json.gz",
+      "sha256": "7d915599516552f1e4b9b3f37f85565453c6daa606036733cbd4fe30945d67c4"
+    },
+    {
+      "path": "scripts/fixtures/editorial/batch2-0001279715-source.json.gz",
+      "sha256": "a9f84b73315e8f472645dfcb0fe620863d0b2caba049be009adb2c443156c1e9"
+    },
+    {
+      "path": "scripts/fixtures/editorial/batch2-0001289340-source.json.gz",
+      "sha256": "ddc115d2615f48e7592fc794ad32c969f206b9e8f85be0d27e497bc892b5d754"
+    }
+  ],
+  "scope": "All 100 batch2 primary captures and seven legacy instances; exact numerical comparison and registered/pending accounting-context reports through scope-v16. Restores 320 reviewed and 480 pending observations, including 16 presentation-only reviews, without promoting the five pending discrepancy reports. Replays saved code with hash-locked offline parser dependencies. Local reproducibility of interpretations, not independent certification, full corpus/runtime regeneration, hosted backup, production activation or indexing."
+}

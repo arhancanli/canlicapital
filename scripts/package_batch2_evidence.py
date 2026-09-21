@@ -26,7 +26,7 @@ SCOPE = ('All 100 batch2 primary captures and seven legacy instances; exact nume
 
 
 
-def build(archive):
+def build(archive, profile_path=None):
     files = {}
 
     def add(name):
@@ -36,10 +36,30 @@ def build(archive):
             raise ValueError('Invalid archive dependency: ' + name)
         files[name] = path
 
+    ledger, pending, scope = LEDGER, PENDING, SCOPE
+    if profile_path is not None:
+        add(profile_path)
+        profile = json.loads(files[profile_path].read_bytes())
+        if profile['schema'] != 'canli.batch2-archive-profile.v1':
+            raise ValueError('Invalid archive profile')
+        if profile['registry']['path'] != REGISTRY:
+            raise ValueError('Unexpected review registry')
+        for descriptor in [profile['registry'], profile['ledger'], *profile['pending'], *profile['fixtures']]:
+            add(descriptor['path'])
+            if file_hash(files[descriptor['path']]) != descriptor['sha256']:
+                raise ValueError('Archive profile dependency changed: ' + descriptor['path'])
+        ledger = profile['ledger']['path']
+        pending = []
+        for descriptor in profile['pending']:
+            name = descriptor['path']
+            if not name.startswith(A) or '/' in name[len(A):]:
+                raise ValueError('Pending report must be in artifacts/seo')
+            pending.append(name[len(A):])
+        scope = profile['scope']
     registry = json.loads((ROOT / REGISTRY).read_bytes())
     scripts = {file_hash(p): str(p.relative_to(ROOT)) for p in (ROOT / 'scripts').glob('*.py')}
     specs = {file_hash(p): str(p.relative_to(ROOT)) for p in (ROOT / 'config').glob('*.json')}
-    reports = list(dict.fromkeys([r['report'] for r in registry['reviews']] + PENDING))
+    reports = list(dict.fromkeys([r['report'] for r in registry['reviews']] + pending))
     jobs = []
     for name in reports:
         add(A + name)
@@ -65,7 +85,7 @@ def build(archive):
     import gzip
     if gzip.decompress((ROOT / registry['inputs']['primary']['path']).read_bytes()) != files[primary].read_bytes():
         raise ValueError('Primary report compression differs')
-    for name in [REGISTRY, LEDGER, 'scripts/package_batch2_evidence.py',
+    for name in [REGISTRY, ledger, 'scripts/package_batch2_evidence.py',
                  'scripts/package_company_evidence.py', 'scripts/requirements-editorial.txt',
                  'scripts/prepare-captured-basic-diluted-review.py',
                  'scripts/reconcile-basic-diluted-batch.mjs',
@@ -96,10 +116,10 @@ def build(archive):
     assert len(wheels) == 3
     for path in wheels:
         add(str(path.relative_to(ROOT)))
-    jobs.append(dict(report=LEDGER, args=['scripts/reconcile-basic-diluted-batch.mjs', REGISTRY], runtime='node'))
+    jobs.append(dict(report=ledger, args=['scripts/reconcile-basic-diluted-batch.mjs', REGISTRY], runtime='node'))
     return pack(files, archive, dict(
         repository_revision=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
-        jobs=jobs, scope=SCOPE))
+        jobs=jobs, scope=scope))
 
 
 def replay(archive, expected_hash):
@@ -138,7 +158,8 @@ def replay(archive, expected_hash):
                     archive_sha256=expected_hash, archive_bytes=archive.stat().st_size,
                     files=len(manifest['files']), repository_revision=manifest['metadata']['repository_revision'],
                     reproduced_reports=outputs, offline_dependency_install=True,
-                    temporary_restore_removed=True, remote_backup_verified=False, scope=SCOPE)
+                    temporary_restore_removed=True, remote_backup_verified=False,
+                    scope=manifest['metadata']['scope'])
 
 
 if __name__ == '__main__':
@@ -147,13 +168,16 @@ if __name__ == '__main__':
     parser.add_argument('archive', type=Path)
     parser.add_argument('receipt', type=Path)
     parser.add_argument('--sha256')
+    parser.add_argument('--profile', help='Repository-relative, hash-pinned archive input profile (build only)')
     args = parser.parse_args()
     if args.receipt.exists():
         raise ValueError('Preserve existing receipt')
     if args.mode == 'build':
-        build(args.archive)
+        build(args.archive, args.profile)
         expected_hash = file_hash(args.archive)
     else:
+        if args.profile:
+            raise ValueError('Replay uses the scope and inputs sealed inside the archive')
         if not args.sha256:
             raise ValueError('Replay requires independently retained hash')
         expected_hash = args.sha256
