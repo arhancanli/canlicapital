@@ -1,0 +1,148 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001439264",
+      "accession": "0001683168-26-002484",
+      "source_sha256": "98867e5911d2a69be3a2705c4e7132c67ed48b0fe85417ba86c6966684fe115a",
+      "primary_sha256": "dd6ca64df1e83604b763ab1998e5bf079a233f5ecf6b74d9011a74ba0fed1442",
+      "receipt_sha256": "1edf04e3068c06e52b1708cfdea0dd2112fdc6f6425bf92711dbc66807e8673d",
+      "fixture": "scripts/fixtures/editorial/batch2-0001439264-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001683168-26-002484",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0,
+          "accn": "0001683168-26-002484",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 0,
+          "accn": "0001683168-26-002484",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 0,
+          "accn": "0001683168-26-002484",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 194189333,
+          "accn": "0001683168-26-002484",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 335593680,
+          "accn": "0001683168-26-002484",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 194189333,
+          "accn": "0001683168-26-002484",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 335593680,
+          "accn": "0001683168-26-002484",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 93,
+      "supporting_table_indexes": [
+        142
+      ],
+      "share_scale": "0",
+      "table_requires": [
+        "345,083",
+        "733,663",
+        "0.00",
+        "335,593,680",
+        "194,189,333"
+      ],
+      "paragraph_requires": [
+        "The Company calculates net income (loss) per share in accordance with ASC Topic 260, \u201c Earnings per Share .\u201d Basic income (loss) per share is computed by dividing the net income (loss) by the weighted-average number of common shares outstanding during the year. Diluted income (loss) per share is computed similar to basic income (loss) per share except that the denominator is increased to include the number of additional common shares that would have been outstanding if the potential common stock equivalents had been issued and if the additional common shares were dilutive.",
+        "The calculation of the basic and diluted net income (loss) per share attributable to common stockholders of the Company is based on the following data (in dollars, except share data):",
+        "For net income per share during the year ended December 31, 2025, basic and diluted net income per share was less than $0.01. For net loss per share during the year ended December 31, 2024, common stock equivalents were not included in the computation of diluted net loss per share since such inclusion would have been anti-dilutive."
+      ],
+      "reader_note": "Marvion's 2024 and 2025 statements report full dollars and full shares. The displayed $0.00 EPS is rounded: 2024 has a $733,663 net loss and parenthesized EPS, while 2025 has $345,083 of net income. The selected numeric zero does not mean break-even. The filing explicitly excludes common-stock equivalents as anti-dilutive for the 2024 loss and says 2025 EPS is below $0.01. This review preserves the equal reported denominators but does not establish why potential shares produce no denominator difference in the profitable 2025 period.",
+      "disposition": "REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED"
+    }
+  ]
+}

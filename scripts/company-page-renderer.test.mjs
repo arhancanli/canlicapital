@@ -1886,3 +1886,33 @@ test('Sonendo Bespoke and Cannabis Bioscience preserve operations fiscal years a
 
   }
 });
+
+test('Fate, Range, Marvion and Biodesix preserve filing-specific EPS context', () => {
+  for (const [cik, count, phrases] of [
+    ['0001434316', 2, [/selected 2020 and 2021/, /118,789,974 denominator/, /113,685,177/, /nominal-exercise-price prefunded warrants/]],
+    ['0001438943', 1, [/net income in 2025/, /does not independently establish the exclusion calculation/, /not additional weighted-average shares/]],
+    ['0001439264', 1, [/numeric zero does not mean break-even/, /parenthesized EPS/, /does not establish why potential shares/]],
+    ['0001439725', 1, [/6,470,000 and 7,551,000/, /one-for-20 reverse stock split/, /September 15, 2025/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic');
+    assert.equal(notes.length, count);
+    for (const note of notes) {
+      const changed = structuredClone(record), row = note.observations[0];
+      changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+      const remaining = companyFilingNotes(changed, row.tag);
+      assert(!remaining.includes(note));
+      assert.equal(remaining.length, notes.length - 1);
+    }
+    assert.equal(companyFilingNotes({ ...record, source_sha256: '0'.repeat(64) }, 'EarningsPerShareBasic').length, 0);
+  }
+});

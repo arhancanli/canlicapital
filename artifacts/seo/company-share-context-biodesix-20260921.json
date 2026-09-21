@@ -1,0 +1,928 @@
+{
+  "schema": "canli.reviewed-share-context.v1",
+  "publication_approved": false,
+  "spec_sha256": "5567caef15692f4972c3620b00bf2c1d2a5e0e21fa990a3067378b16c860bd69",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "code_sha256": "296e8aa98f702bd88efcf5072f7f7b4d4f0d9f2173b4eb1e7c61136799c5c540",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "decisions": [
+    {
+      "cik": "0001439725",
+      "source_sha256": "45389712f526849caafc6e3b4a3c7ecabe8e0b3a11ea891aac8dd0ac4e135af6",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1439725/000119312526076547/bdsx-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T23:19:26.460267+00:00",
+        "bytes": 3369755,
+        "sha256": "f629b18015b8bc5e0c494db4668329ba15a5aa6d8159ca37089072b20afbad5f",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001439725-0001193125-26-076547-primary.response"
+      },
+      "receipt_sha256": "39b26513108cf93602e3d130673d7e49c94141df0a85d5dbdc4b52928742f9dc",
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -6.64,
+          "accn": "0001193125-26-076547",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -4.67,
+          "accn": "0001193125-26-076547",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -6.64,
+          "accn": "0001193125-26-076547",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -4.67,
+          "accn": "0001193125-26-076547",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 6470000,
+          "accn": "0001193125-26-076547",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 7551000,
+          "accn": "0001193125-26-076547",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 6470000,
+          "accn": "0001193125-26-076547",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 7551000,
+          "accn": "0001193125-26-076547",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-02-26",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "comparison": {
+        "checks": [
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": -6.64,
+              "accn": "0001193125-26-076547",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-26",
+              "frame": "CY2024",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-6.64",
+                "fact_id": "F_2b035746-ee21-427b-bba4-d63082a23425",
+                "context_id": "C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c",
+                "table_row": "Net loss per share, basic and diluted (a) $ ( 4.67 ) $ ( 6.64 )",
+                "preceding_rows": [
+                  "",
+                  "Net loss $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenues $ 88,499 $ 71,323",
+                  "Operating expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              },
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-6.64",
+                "fact_id": "F_a7808f97-4aec-4303-84d2-c3c0230b4f68",
+                "context_id": "C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c",
+                "table_row": "Net loss per share, basic and diluted $ ( 4.67 ) $ ( 6.64 )",
+                "preceding_rows": [
+                  "Denominator",
+                  "Weighted-average shares outstanding used in computing net loss per share, basic and diluted 7,551 6,470"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Numerator",
+                  "Net loss attributable to common stockholders $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": -4.67,
+              "accn": "0001193125-26-076547",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-26",
+              "frame": "CY2025",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD/shares",
+                "value": "-4.67",
+                "fact_id": "F_f3e56a6f-795b-4655-b1b0-f13e928a7ce9",
+                "context_id": "C_54d5e74e-f5fe-4dde-88c7-206aa762546f",
+                "table_row": "Net loss per share, basic and diluted (a) $ ( 4.67 ) $ ( 6.64 )",
+                "preceding_rows": [
+                  "",
+                  "Net loss $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenues $ 88,499 $ 71,323",
+                  "Operating expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              },
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD/shares",
+                "value": "-4.67",
+                "fact_id": "F_fce7997b-9173-4a3a-afc1-b7f378adf499",
+                "context_id": "C_54d5e74e-f5fe-4dde-88c7-206aa762546f",
+                "table_row": "Net loss per share, basic and diluted $ ( 4.67 ) $ ( 6.64 )",
+                "preceding_rows": [
+                  "Denominator",
+                  "Weighted-average shares outstanding used in computing net loss per share, basic and diluted 7,551 6,470"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Numerator",
+                  "Net loss attributable to common stockholders $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": -6.64,
+              "accn": "0001193125-26-076547",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-26",
+              "frame": "CY2024",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-6.64",
+                "fact_id": "F_e1610da2-d0ba-4eaa-b982-1cf2ba2af7a8",
+                "context_id": "C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c",
+                "table_row": "Net loss per share, basic and diluted (a) $ ( 4.67 ) $ ( 6.64 )",
+                "preceding_rows": [
+                  "",
+                  "Net loss $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenues $ 88,499 $ 71,323",
+                  "Operating expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              },
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-6.64",
+                "fact_id": "F_b18f9088-2ed6-4e7f-b0d5-0c2f33f6521c",
+                "context_id": "C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c",
+                "table_row": "Net loss per share, basic and diluted $ ( 4.67 ) $ ( 6.64 )",
+                "preceding_rows": [
+                  "Denominator",
+                  "Weighted-average shares outstanding used in computing net loss per share, basic and diluted 7,551 6,470"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Numerator",
+                  "Net loss attributable to common stockholders $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": -4.67,
+              "accn": "0001193125-26-076547",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-26",
+              "frame": "CY2025",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD/shares",
+                "value": "-4.67",
+                "fact_id": "F_afaa1285-29ab-4a37-ad4c-b6d921a36d5e",
+                "context_id": "C_54d5e74e-f5fe-4dde-88c7-206aa762546f",
+                "table_row": "Net loss per share, basic and diluted (a) $ ( 4.67 ) $ ( 6.64 )",
+                "preceding_rows": [
+                  "",
+                  "Net loss $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenues $ 88,499 $ 71,323",
+                  "Operating expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              },
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD/shares",
+                "value": "-4.67",
+                "fact_id": "F_e6448291-bd43-4a4f-8db0-50dac4581f3a",
+                "context_id": "C_54d5e74e-f5fe-4dde-88c7-206aa762546f",
+                "table_row": "Net loss per share, basic and diluted $ ( 4.67 ) $ ( 6.64 )",
+                "preceding_rows": [
+                  "Denominator",
+                  "Weighted-average shares outstanding used in computing net loss per share, basic and diluted 7,551 6,470"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Numerator",
+                  "Net loss attributable to common stockholders $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": 6470000,
+              "accn": "0001193125-26-076547",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-26",
+              "frame": "CY2024",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "6470000",
+                "fact_id": "F_c7ae1d04-501b-43d4-96af-7576ca708a0c",
+                "context_id": "C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c",
+                "table_row": "Weighted-average shares outstanding, basic and diluted (a) 7,551 6,470",
+                "preceding_rows": [
+                  "Net loss $ ( 35,265 ) $ ( 42,931 )",
+                  "Net loss per share, basic and diluted (a) $ ( 4.67 ) $ ( 6.64 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenues $ 88,499 $ 71,323",
+                  "Operating expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              },
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "6470000",
+                "fact_id": "F_5d6f2207-20be-43c9-9199-b03f3118e1b4",
+                "context_id": "C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c",
+                "table_row": "Weighted-average shares outstanding used in computing net loss per share, basic and diluted 7,551 6,470",
+                "preceding_rows": [
+                  "",
+                  "Denominator"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Numerator",
+                  "Net loss attributable to common stockholders $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": 7551000,
+              "accn": "0001193125-26-076547",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-26",
+              "frame": "CY2025",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "shares",
+                "value": "7551000",
+                "fact_id": "F_dd2b0373-bc10-45fa-8537-2d8735a2f94c",
+                "context_id": "C_54d5e74e-f5fe-4dde-88c7-206aa762546f",
+                "table_row": "Weighted-average shares outstanding, basic and diluted (a) 7,551 6,470",
+                "preceding_rows": [
+                  "Net loss $ ( 35,265 ) $ ( 42,931 )",
+                  "Net loss per share, basic and diluted (a) $ ( 4.67 ) $ ( 6.64 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenues $ 88,499 $ 71,323",
+                  "Operating expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              },
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "shares",
+                "value": "7551000",
+                "fact_id": "F_fd660d60-07f9-4d42-9153-52df8b4b924b",
+                "context_id": "C_54d5e74e-f5fe-4dde-88c7-206aa762546f",
+                "table_row": "Weighted-average shares outstanding used in computing net loss per share, basic and diluted 7,551 6,470",
+                "preceding_rows": [
+                  "",
+                  "Denominator"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Numerator",
+                  "Net loss attributable to common stockholders $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": 6470000,
+              "accn": "0001193125-26-076547",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-26",
+              "frame": "CY2024",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "6470000",
+                "fact_id": "F_ecd8b490-0810-4087-a069-592571c369d8",
+                "context_id": "C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c",
+                "table_row": "Weighted-average shares outstanding, basic and diluted (a) 7,551 6,470",
+                "preceding_rows": [
+                  "Net loss $ ( 35,265 ) $ ( 42,931 )",
+                  "Net loss per share, basic and diluted (a) $ ( 4.67 ) $ ( 6.64 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenues $ 88,499 $ 71,323",
+                  "Operating expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              },
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "6470000",
+                "fact_id": "F_660cd8f1-7c0e-4867-bb7a-24e5ea54ff6d",
+                "context_id": "C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c",
+                "table_row": "Weighted-average shares outstanding used in computing net loss per share, basic and diluted 7,551 6,470",
+                "preceding_rows": [
+                  "",
+                  "Denominator"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Numerator",
+                  "Net loss attributable to common stockholders $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": 7551000,
+              "accn": "0001193125-26-076547",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-26",
+              "frame": "CY2025",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "shares",
+                "value": "7551000",
+                "fact_id": "F_bc2946ee-14a0-4607-b42c-531cedaaff79",
+                "context_id": "C_54d5e74e-f5fe-4dde-88c7-206aa762546f",
+                "table_row": "Weighted-average shares outstanding, basic and diluted (a) 7,551 6,470",
+                "preceding_rows": [
+                  "Net loss $ ( 35,265 ) $ ( 42,931 )",
+                  "Net loss per share, basic and diluted (a) $ ( 4.67 ) $ ( 6.64 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenues $ 88,499 $ 71,323",
+                  "Operating expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              },
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "shares",
+                "value": "7551000",
+                "fact_id": "F_05b65f8a-6858-4b2c-8578-65e83f031f25",
+                "context_id": "C_54d5e74e-f5fe-4dde-88c7-206aa762546f",
+                "table_row": "Weighted-average shares outstanding used in computing net loss per share, basic and diluted 7,551 6,470",
+                "preceding_rows": [
+                  "",
+                  "Denominator"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Numerator",
+                  "Net loss attributable to common stockholders $ ( 35,265 ) $ ( 42,931 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Performance issues, service interruptions or price increases by our shipping carriers and warehousing providers could adversely affect our business and harm our reputation and ability to provide our services on a timely basis."
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          }
+        ],
+        "rejected_facts": {}
+      },
+      "inline_evidence": [
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -6.64,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_2b035746-ee21-427b-bba4-d63082a23425\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\"><ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_e1610da2-d0ba-4eaa-b982-1cf2ba2af7a8\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">6.64</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -6.64,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_a7808f97-4aec-4303-84d2-c3c0230b4f68\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\"><ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_b18f9088-2ed6-4e7f-b0d5-0c2f33f6521c\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">6.64</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -4.67,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2025",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_f3e56a6f-795b-4655-b1b0-f13e928a7ce9\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\"><ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_afaa1285-29ab-4a37-ad4c-b6d921a36d5e\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">4.67</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -4.67,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2025",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_fce7997b-9173-4a3a-afc1-b7f378adf499\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\"><ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_e6448291-bd43-4a4f-8db0-50dac4581f3a\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">4.67</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -6.64,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_e1610da2-d0ba-4eaa-b982-1cf2ba2af7a8\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">6.64</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -6.64,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_b18f9088-2ed6-4e7f-b0d5-0c2f33f6521c\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">6.64</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -4.67,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2025",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_afaa1285-29ab-4a37-ad4c-b6d921a36d5e\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">4.67</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -4.67,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2025",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_e6448291-bd43-4a4f-8db0-50dac4581f3a\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">4.67</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 6470000,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_c7ae1d04-501b-43d4-96af-7576ca708a0c\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\"><ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_ecd8b490-0810-4087-a069-592571c369d8\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"U_shares\">6,470</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 6470000,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_5d6f2207-20be-43c9-9199-b03f3118e1b4\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">6,470</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 7551000,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2025",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_dd2b0373-bc10-45fa-8537-2d8735a2f94c\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">7,551</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 7551000,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2025",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_fd660d60-07f9-4d42-9153-52df8b4b924b\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">7,551</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 6470000,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_ecd8b490-0810-4087-a069-592571c369d8\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"U_shares\">6,470</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 6470000,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_660cd8f1-7c0e-4867-bb7a-24e5ea54ff6d\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"U_shares\"><ix:nonfraction contextref=\"C_edae1bb4-68f0-4e2f-87ff-cd64d45b884c\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_5d6f2207-20be-43c9-9199-b03f3118e1b4\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">6,470</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 7551000,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2025",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_bc2946ee-14a0-4607-b42c-531cedaaff79\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"U_shares\"><ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_dd2b0373-bc10-45fa-8537-2d8735a2f94c\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">7,551</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 7551000,
+            "accn": "0001193125-26-076547",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2025",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_05b65f8a-6858-4b2c-8578-65e83f031f25\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"U_shares\"><ix:nonfraction contextref=\"C_54d5e74e-f5fe-4dde-88c7-206aa762546f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_fd660d60-07f9-4d42-9153-52df8b4b924b\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">7,551</ix:nonfraction></ix:nonfraction>"
+        }
+      ],
+      "table_index": 20,
+      "table_text": "Year Ended December 31, 2025 2024 Revenues $ 88,499 $ 71,323 Operating expenses: Direct costs and expenses 16,719 15,573 Research and development 12,001 9,559 Sales, marketing, general and administrative 87,545 80,451 Impairment loss on intangible assets 107 238 Total operating expenses 116,372 105,821 Loss from operations ( 27,873 ) ( 34,498 ) Other (expense) income: Interest expense ( 7,716 ) ( 8,258 ) Loss on extinguishment of liabilities \u2014 ( 248 ) Change in fair value of warrant liability, net ( 280 ) \u2014 Other income, net 604 73 Total other expense ( 7,392 ) ( 8,433 ) Net loss $ ( 35,265 ) $ ( 42,931 ) Net loss per share, basic and diluted (a) $ ( 4.67 ) $ ( 6.64 ) Weighted-average shares outstanding, basic and diluted (a) 7,551 6,470",
+      "supporting_tables": [
+        {
+          "table_index": 44,
+          "text": "Year Ended December 31, 2025 2024 Numerator Net loss attributable to common stockholders $ ( 35,265 ) $ ( 42,931 ) Denominator Weighted-average shares outstanding used in computing net loss per share, basic and diluted 7,551 6,470 Net loss per share, basic and diluted $ ( 4.67 ) $ ( 6.64 )"
+        }
+      ],
+      "disclosures": [
+        "Basic net loss per common share is calculated by dividing net loss by the weighted-average number of common shares outstanding during the period, without consideration of common stock equivalents. Diluted net loss per common share is computed by dividing net loss by the weighted-average number of common share equivalents outstanding for the period, if dilutive, using the treasury stock method. Potentially dilutive securities consisting of options to purchase common stock, warrants to purchase common stock, RSUs and shares subject to purchase under our employee stock purchase plan were excluded from the calculation of diluted net loss per common share because their effect would be anti-dilutive for all periods presented.",
+        "All common stock share data share-based calculations and exercise prices set forth in this report have been adjusted to reflect our 1-for-20 reverse stock split, which was effective September 15, 2025, on a retroactive basis for the periods presented.",
+        "Basic and diluted loss per share as of the dates indicated were (in thousands, except per share amounts):"
+      ],
+      "reader_note": "Biodesix's 2024 and 2025 EPS reconciliation reports dollar losses and share counts in thousands, except per-share amounts. The displayed 6,470 and 7,551 therefore represent 6,470,000 and 7,551,000 weighted-average shares. Share data, share-based calculations and exercise prices are adjusted retrospectively for the one-for-20 reverse stock split effective September 15, 2025. Potential shares from options, warrants, restricted stock units and the employee stock purchase plan are excluded as anti-dilutive for the loss periods presented.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ],
+  "scope": "Only exact observations specified by the human-readable reviewed requirements. Checks preserve the manual interpretation, not an independent accounting certification. No earlier-period, whole-history, corpus or publication approval."
+}
