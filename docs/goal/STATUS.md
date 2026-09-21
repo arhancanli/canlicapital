@@ -8,27 +8,35 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/idaho-hidden-context-20260921`.
-Previous turn made progress with v7 exact locator and PR137. PR137 merged as
-06e434b9539d2c54ee6324196c08646b4c089605 after all four CI35548497243 checks passed
-at a28baa4b; full tested/merged tree face9fff4ad49f3ebc2c11a5b96b5b38bcf607fb matches.
-Older Idaho eight2021/22observations now source-context reviewed. Source-pinned
-runner uses exact semantic locator for ID-less basic facts and explicit SEC hidden
-links for BOTH diluted EPS and diluted shares in combined statement table31rows.
-CSS declarations parsed separately, including the final declaration without a
-semicolon; exact token/row required. Filing explicitly says no dilutive instruments
-outstanding. December fiscal dates, former Joway name and historical full shares
-retained; zero2022EPS explained as rounded74,708loss, not break-even. No later split
-rescaling. Report replay byte-identical. Two mapping tests pass, with eight corruption
-cases;83renderer/ledger tests pass. Mapping tests added to CI.
-Ledger scope-v13 now264reviewed/536pending/0withdrawn,16presentation-only unchanged.
-Only eight intended states/evidence links changed; all800row metadata and prior256
-review decisions preserved. Source-bound reader note tested on all five page types
-and removed if bound facts change. No policy or runtime object changes.
-Morgan, Community and Theriva discrepancies remain pending. Next continue batch2
-context reviews while transfer runs; latest reader notes need fresh HTTP/browser
-validation before release. No production/indexing gain; all owner goals active.
-Transfer44227 polled live this turn; latest receipt 3450/10,360 objects, zero failures; uploader/plan unchanged.
+Worktree branch `evidence/batch2-release-validation-20260921`.
+Previous turn made progress by launching updated full HTTP/browser audits; both
+were re-polled live, and now both completed. PR138 remains merged as
+163d7755156c76c8632df28d5779aeab62575cb6 after CI35548763211 at038ea27f;
+full tested/merged tree bfb8016a3b9067bd27ce2d58c7e147f065a359f5 matches.
+Full HTTP47680 TERMINAL0:90,732pages/6,646downloads/exact90,732sitemapURLs,
+zero failures, maximum4directory clicks. Updated report
+company-five-cohort-v22-batch2-notes-http-20260921.json pins filing-note module,
+release handler and source verifier as well as existing code, and verifies code
+unchanged during measurement. All report code hashes match actual files.
+Browser1234 TERMINAL0:600cases,150perChromium/WebKit390/1440combination;
+33registered filing reviews across28companies,140note-bearing pages,660exact note
+text/source-link checks. Also canonical/structured-data/developer links, no overflow,
+grouped withheld-row keyboard interaction/exact14rows and omitted-history404s.
+Report company-v22-batch2-notes-browser-retry-20260921.json; all input/code hashes
+verified. Chromium mobile/desktop and WebKit mobile Idaho screenshots inspected:
+notes/source links fit without overlap or horizontal overflow. Browser scope covers
+all currently registered batch2 notes plus representative previous notices, not all
+90,732pages or accessibility certification. Local sequential HTTP is not hosted load.
+Initial browser90571 TERMINAL1 after6checks: variable collision in audit code only.
+Failure report retained; exact initial runner gzip now retained under artifacts/seo/
+company-v22-batch2-notes-browser-initial-runner-20260921.py.gz and hash verified
+against failure report. Retry changed that variable only; site code unchanged.
+Batch2 ledger264reviewed/536pending,16presentation-only unchanged. No data/policy/
+runtime-object changes. Next publish validation, continue source-scope review and
+prepare batch2 evidence archive; finish hosted transfer/admission before deployment.
+All SEO/indexing, developer adoption and governed engine goals remain active.
+No production activation or newly confirmed indexing. Owner attribution untouched.
+Transfer44227 confirmed live this turn; latest receipt 3934/10,360objects/zero failures. Uploader/plan unchanged.
 
 ## Earlier verified checkpoints (historical)
 

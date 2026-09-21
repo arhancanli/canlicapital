@@ -1818,3 +1818,72 @@ Morgan, Community and Theriva discrepancies remain pending. Next continue batch2
 context reviews while transfer runs; latest reader notes need fresh HTTP/browser
 validation before release. No production/indexing gain; all owner goals active.
 Transfer44227 polled live this turn; latest receipt 3450/10,360 objects, zero failures; uploader/plan unchanged.
+
+PR138 published at038ea27f49ba17cab27eab79961281061e59c816; CI pending.
+Push terminal0; unpublished rebase preserved full tree
+bfb8016a3b9067bd27ce2d58c7e147f065a359f5. Owner attribution file untouched.
+
+## 2026-09-21 — refreshed full HTTP and all registered batch2 browser checks
+
+Worktree branch `evidence/batch2-release-validation-20260921`.
+Previous turn made progress: eight Idaho observations reviewed and PR138 published.
+PR138 merged as163d7755156c76c8632df28d5779aeab62575cb6 after all four
+CI35548763211 checks passed at038ea27f. Full tested/merged tree
+bfb8016a3b9067bd27ce2d58c7e147f065a359f5 matches.
+Phase overlaps serving/release validation while storage transfer continues. Batch2
+ledger unchanged:264reviewed/536pending,16presentation-only.33registered filing
+reviews across28companies; all owner SEO/indexing/adoption/engine goals remain open.
+Fresh full HTTP audit47680 RUNNING, log /tmp/canli-v22-batch2-http.log, output
+artifacts/seo/company-five-cohort-v22-batch2-notes-http-20260921.json.
+Measurement now pins filing-note module, release handler and source verifier plus
+existing code at start, and rejects code changes during measurement. Earlier reports
+remain historical. Latest progress1,400companies/37,517histories; not a completed pass.
+New browser runner scripts/audit-company-batch2-notes-browser.py derives every
+registered note and source URL from hash-checked review reports. Covers overview
+and all reviewed concepts in Chromium/WebKit at390/1440px, exact text/source links,
+canonical/structured-data/developer links, no overflow, grouped withheld-row keyboard
+interaction, and omitted histories404. Input code/review hashes checked for changes.
+Initial browser90571 TERMINAL1 after6checks due local variable collision between
+expected note map and withheld-row list. Failure report retained as
+company-v22-batch2-notes-browser-20260921.json; initial runner saved corpus-local/
+audit-company-batch2-notes-browser-initial-20260921.py. Fixed variable name only.
+Retry1234 RUNNING, log /tmp/canli-v22-batch2-browser-retry.log; output
+company-v22-batch2-notes-browser-retry-20260921.json. Latest75cases passed so far.
+Both audit handles explicitly polled live. Keep renderer, notes and runtime inputs
+stable until they terminate. Never restart on polling timeout. Next inspect reports,
+input hashes and screenshots, preserve failures, then publish validation checkpoint.
+Transfer44227 explicitly polled live; latest receipt3,680/10,360objects/zero failures.
+Uploader/plan unchanged; no production activation or newly confirmed indexing.
+Owner attribution file untouched. No new PR for this in-progress validation yet.
+
+## 2026-09-21 — full HTTP and registered batch2 browser checks passed
+
+Worktree branch `evidence/batch2-release-validation-20260921`.
+Previous turn made progress by launching updated full HTTP/browser audits; both
+were re-polled live, and now both completed. PR138 remains merged as
+163d7755156c76c8632df28d5779aeab62575cb6 after CI35548763211 at038ea27f;
+full tested/merged tree bfb8016a3b9067bd27ce2d58c7e147f065a359f5 matches.
+Full HTTP47680 TERMINAL0:90,732pages/6,646downloads/exact90,732sitemapURLs,
+zero failures, maximum4directory clicks. Updated report
+company-five-cohort-v22-batch2-notes-http-20260921.json pins filing-note module,
+release handler and source verifier as well as existing code, and verifies code
+unchanged during measurement. All report code hashes match actual files.
+Browser1234 TERMINAL0:600cases,150perChromium/WebKit390/1440combination;
+33registered filing reviews across28companies,140note-bearing pages,660exact note
+text/source-link checks. Also canonical/structured-data/developer links, no overflow,
+grouped withheld-row keyboard interaction/exact14rows and omitted-history404s.
+Report company-v22-batch2-notes-browser-retry-20260921.json; all input/code hashes
+verified. Chromium mobile/desktop and WebKit mobile Idaho screenshots inspected:
+notes/source links fit without overlap or horizontal overflow. Browser scope covers
+all currently registered batch2 notes plus representative previous notices, not all
+90,732pages or accessibility certification. Local sequential HTTP is not hosted load.
+Initial browser90571 TERMINAL1 after6checks: variable collision in audit code only.
+Failure report retained; exact initial runner gzip now retained under artifacts/seo/
+company-v22-batch2-notes-browser-initial-runner-20260921.py.gz and hash verified
+against failure report. Retry changed that variable only; site code unchanged.
+Batch2 ledger264reviewed/536pending,16presentation-only unchanged. No data/policy/
+runtime-object changes. Next publish validation, continue source-scope review and
+prepare batch2 evidence archive; finish hosted transfer/admission before deployment.
+All SEO/indexing, developer adoption and governed engine goals remain active.
+No production activation or newly confirmed indexing. Owner attribution untouched.
+Transfer44227 confirmed live this turn; latest receipt 3934/10,360objects/zero failures. Uploader/plan unchanged.
