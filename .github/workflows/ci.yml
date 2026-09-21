@@ -45,6 +45,7 @@ jobs:
           . "$RUNNER_TEMP/canli-editorial-tests/bin/activate"
           python3 scripts/review-share-context-spec-v5.test.py
           python3 scripts/review-share-context-spec-v6.test.py
+          python3 scripts/review-plug-share-context.test.py
           npm run test:corpus
       - name: Verify change-notification batching
         run: npm run test:indexnow

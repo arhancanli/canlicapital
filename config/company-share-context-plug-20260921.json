@@ -1,0 +1,151 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001093691",
+      "accession": "0001558370-22-003577",
+      "source_sha256": "693a4f1fb6d5474c0cef2ae383a813e4f7c21076e76c0ef2cd96c185c2696a0b",
+      "primary_sha256": "9edcc4d2d66d9cf0c299e5019879db0125262f4b42690bb2d114a6f79d07a874",
+      "receipt_sha256": "c028b5418fc3734418b36a479cda23b897d8711d7d259118a32c971cacdcec0b",
+      "fixture": "scripts/fixtures/editorial/batch2-0001093691-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2018-01-01",
+          "end": "2018-12-31",
+          "val": -0.39,
+          "accn": "0001558370-22-003577",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2022-03-14",
+          "frame": "CY2018",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": -0.36,
+          "accn": "0001558370-22-003577",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2022-03-14",
+          "frame": "CY2019",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2018-01-01",
+          "end": "2018-12-31",
+          "val": -0.39,
+          "accn": "0001558370-22-003577",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2022-03-14",
+          "frame": "CY2018",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": -0.36,
+          "accn": "0001558370-22-003577",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2022-03-14",
+          "frame": "CY2019",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2018-01-01",
+          "end": "2018-12-31",
+          "val": 218882337,
+          "accn": "0001558370-22-003577",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2022-03-14",
+          "frame": "CY2018",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": 237152780,
+          "accn": "0001558370-22-003577",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2022-03-14",
+          "frame": "CY2019",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2018-01-01",
+          "end": "2018-12-31",
+          "val": 218882337,
+          "accn": "0001558370-22-003577",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2022-03-14",
+          "frame": "CY2018",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2019-01-01",
+          "end": "2019-12-31",
+          "val": 237152780,
+          "accn": "0001558370-22-003577",
+          "fy": 2020,
+          "fp": "FY",
+          "form": "10-K/A",
+          "filed": "2022-03-14",
+          "frame": "CY2019",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2018-12-31",
+        "2019-12-31"
+      ],
+      "table_index": 445,
+      "share_scale": "0",
+      "table_requires": [
+        "as restated",
+        "85,555",
+        "85,660",
+        "1,812",
+        "52",
+        "237,152,780",
+        "218,882,337",
+        "0.36",
+        "0.39"
+      ],
+      "paragraph_requires": [
+        "Basic earnings per common stock are computed by dividing net loss attributable to common stockholders by the weighted average number of common stock outstanding during the reporting period. Diluted earnings per share reflects the potential dilution that could occur if securities or other contracts to issue common stock (such as stock options, unvested restricted stock, common stock warrants, and preferred stock) were exercised or converted into common stock or resulted in the issuance of common stock (net of any assumed repurchases) that then shared in the earnings of the Company, if any. This is computed by dividing net earnings by the combination of dilutive common stock equivalents, which is comprised of shares issuable under outstanding warrants, the conversion of preferred stock, and the Company\u2019s share-based compensation plans, and the weighted average number of common stock outstanding during the reporting period. Since the Company is in a net loss position, all common stock equivalents would be considered to be anti-dilutive and are, therefore, not included in the determination of diluted earnings per share. Accordingly, basic and diluted loss per share are the same.",
+        "(In thousands, except share and per share amounts)"
+      ],
+      "reader_note": "Plug Power's selected 2018 and 2019 figures are explicitly presented as restated in this filing. The EPS numerator is loss attributable to common stockholders after preferred dividends, deemed dividends and discount accretion, not company net loss alone. The note excludes common-stock equivalents because the company is in a net-loss position. Dollar amounts are displayed in thousands; shares and per-share amounts are unscaled. Restated USD EPS and full historical share counts are retained.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+      "supporting_table_indexes": [
+        735
+      ]
+    }
+  ]
+}

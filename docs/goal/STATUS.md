@@ -8,29 +8,28 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/batch2-context-fifth-20260921`.
-PR128 merged asc0f526c864993186c9722dd1a842c27fab170300 after four
-CI35546146958checks passed atdb9761e1; exact tested/merged tree
-ef3563d5583aac3811709fe0931ea9ea2b9fbf57 matches.
-Batch2 now136reviewed/664pending/0withdrawn, including8presentation-only.
-Latest ledger company-basic-diluted-batch2-scope-v6-20260921.json.gz. Fifth report
-approves16Curis observations for2019/20and2024/25; losses, full-share units and
-already-included2025prefunded warrants documented. Byte-identical replay; only16
-ledger states/evidence links change, all800rows/prior120decisions preserved.
-Community Redevelopment2021EPS numerator conflict recorded separately in
-company-community-numerator-discrepancy-20260921.json. Main net loss10,593,864plus
-other comprehensive loss37,778,761equals EPS-note numerator48,372,625 labeled net
-loss. Report matches all8facts but remains pending; diagnostic-.41EPS is not a
-replacement for reported-1.87. Script/report replay byte-identically. No public note.
-Initial four-filing v6run failed strict table mapping: Community all matching facts
-and Plug diluted facts outside accepted tables. Draft retained locally; no output
-or approval from failure. Curis-only spec passes. Plug remains pending hidden-tag
-mapping; do not weaken table checks. Theriva remains pending too.
-76renderer/ledger tests pass. Fresh HTTP/browser validation still needed before
-release; old reports cover pinned historical renderer. No data/policy/object changes.
-Transfer44227polled live, latest1872of10,360objects/zero failures, uploader/plan
-unchanged. Next publish Curis/discrepancy change, inspect Plug hidden-tag mapping,
-continue source reviews and finish hosted transfer. No production/indexing gain.
+Worktree branch `evidence/plug-hidden-context-20260921`.
+PR129 merged asa2233a9403a6c93bd2dae598d1846ad248309b1a after four
+CI35546429858checks passed at49a1c90c; tested/merged tree
+9b42bc1c1fcfcab0b97972334b5c9912d58c9268 matches.
+Batch2 now144reviewed/656pending/0withdrawn,8presentation-only unchanged. Latest
+ledger company-basic-diluted-batch2-scope-v7-20260921.json.gz. Plug2018/19eight
+observations reviewed with issuer-specific source-pinned replay. Diluted EPS has
+explicit SEC hidden links to the same visible basic-EPS row. Diluted share tags
+have no direct DOM links: exact unit/context/value matches visible basic shares,
+and filing explicitly explains equal loss EPS and excluded equivalents. Report
+preserves that distinction, hidden facts/visible peers/context/unit XML and source
+restatement/common-stockholder numerator. Generic v6 table gate unchanged.
+Replay byte-identical; only8ledger states/evidence links changed, all800rows/prior
+136decisions unchanged. Two Python mapping tests cover six corrupted mappings;
+77renderer/ledger tests pass. Initial decimal-vs-float comparison failed closed;
+fixed with Decimal(str(value)). Initial renderer test assumed no prior Plug note;
+corrected to check this accession while retaining older notes. Failure logs retained.
+Community numerator and Theriva discrepancies still pending. New renderer still
+needs fresh HTTP/browser checks before release; historical reports not reused.
+Transfer44227polled live, latest2052of10,360objects/zero failures; uploader/plan
+unchanged. Next publish this change, continue pending reviews and hosted delivery.
+No production/indexing gain; full owner goals active.
 
 ## Earlier verified checkpoints (historical)
 
@@ -336,3 +335,8 @@ PR128 published atdb9761e127affa125adaa4fba79d615e487d6db2; CI pending.
 Unpublished rebase preserved treeef3563d5583aac3811709fe0931ea9ea2b9fbf57; push
 terminal0. Same live44227handle, latest receipt1677objects/zero failures.
 Owner attribution file untouched.
+
+PR129 published at49a1c90c34a202a2e14ecf272f63b0212c143ae2; CI pending.
+Unpublished rebase preserved tree9b42bc1c1fcfcab0b97972334b5c9912d58c9268; push
+terminal0. Same live44227handle, latest receipt1894objects/zero failures.
+Owner attribution file and untracked Plug fixture retained.

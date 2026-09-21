@@ -122,3 +122,9 @@ Fifth batch2 report adds16Curis observations;136reviewed/664pending overall,
 between main net-loss subtotal and EPS note; dedicated reproducible report stays
 pending and provides diagnostic arithmetic only. Plug diluted tags need explicit
 visible-statement mapping. The strict v6table gate remains unchanged.
+
+Plug2018/19review adds8rows:144reviewed/656pending. Dedicated source-pinned
+runner distinguishes explicitly linked hidden EPS from diluted-share tags paired
+by identical unit/context/value and the explicit shared-loss-denominator disclosure.
+No direct DOM share link is claimed. Generic v6 remains unchanged. Corrupted
+period/unit/scale/value/missingEPSlink/duplicatepair fail tests.

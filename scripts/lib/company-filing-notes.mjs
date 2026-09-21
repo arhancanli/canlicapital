@@ -1,6 +1,85 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001093691",
+  "include_on_overview": true,
+  "source_sha256": "693a4f1fb6d5474c0cef2ae383a813e4f7c21076e76c0ef2cd96c185c2696a0b",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Plug Power's selected 2018 and 2019 figures are explicitly presented as restated in this filing. The EPS numerator is loss attributable to common stockholders after preferred dividends, deemed dividends and discount accretion, not company net loss alone. The note excludes common-stock equivalents because the company is in a net-loss position. Dollar amounts are displayed in thousands; shares and per-share amounts are unscaled. Restated USD EPS and full historical share counts are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1093691/000155837022003577/plug-20201231x10ka.htm",
+  "observations": [
+    {
+      "start": "2018-01-01",
+      "end": "2018-12-31",
+      "val": -0.39,
+      "accn": "0001558370-22-003577",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.36,
+      "accn": "0001558370-22-003577",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2018-01-01",
+      "end": "2018-12-31",
+      "val": -0.39,
+      "accn": "0001558370-22-003577",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.36,
+      "accn": "0001558370-22-003577",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2018-01-01",
+      "end": "2018-12-31",
+      "val": 218882337,
+      "accn": "0001558370-22-003577",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": 237152780,
+      "accn": "0001558370-22-003577",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2018-01-01",
+      "end": "2018-12-31",
+      "val": 218882337,
+      "accn": "0001558370-22-003577",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": 237152780,
+      "accn": "0001558370-22-003577",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001108205",
   "include_on_overview": true,
   "source_sha256": "844a153fc06343c14854b58f38ad345e7ab34cf867e744e88827927acddd844e",
