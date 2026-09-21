@@ -8,31 +8,31 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/wright-unit-discrepancy-20260921`.
-Previous turn made progress:16Exagen/Immunic observations reviewed and PR141.
-PR141 merged asae0142d1efb7bc0c8d0019afc3afb92a00ae6804 after all four
-CI35549780477 checks passed at5203097e; exact tested/merged tree
-f5f4a590cbd3da24be48c3a0eed7a9124cf3c813 matches.
-Wright discrepancy retained in company-wright-unit-discrepancy-20260921.json,
-replay runner scripts/review-wright-unit-discrepancy.py and actual source fixture.
-All8numbers match, but table54heading 'in thousands, except per share amounts'
-conflicts with full20,620,711share tags at scale0. Table51balance sheet separately
-states21,628,680issued minus1,007,969treasury equals20,620,711outstanding. Exact
-statement rows, heading XML, share/EPS fact XML/context/unit, balance-sheet text and
-scale3USD net-loss tags retained. Diagnostic ratios distinguish full shares versus
-hypothetical thousand-share interpretation without treating ratios or period-end
-shares as accounting approval. Source/receipt/primary/code hashes pinned.
-Final report replays byte-identically. Initial draft retained corpus-local; final
-adds explicit loss-tag assertions/evidence. Disposition ACCOUNTING_SCOPE_REVIEW_PENDING;
-no public note, policy hold, corrected data or review registration. Ledger tests now
-reject all four unresolved reports (Theriva, Community, Morgan, Wright).7tests pass.
-Batch2 scope-v14 remains280reviewed/520pending/0withdrawn,16presentation-only.
-No renderer/source/runtime-object change this turn. Latest HTTP/browser and archive
-snapshots predate Exagen/Immunic; new notes still need relevant release verification
-and later archive coverage. Next continue pending filing contexts and hosted delivery.
-Transfer44227 polled live this turn; latest4,662/10,360objects/zero failures;
-uploader/plan unchanged. No production activation/new indexing gain. All original
-SEO/indexing, developer-adoption and governed-engine goals active; owner file untouched.
+Worktree branch `evidence/batch2-context-eleventh-20260921`.
+Previous turn made progress: Wright discrepancy evidence and pending-report gate.
+PR142 merged as2f404826fefb1f394c4612259460b906dba60421 after all four
+CI35550010235 checks passed at9e62eb4b; tested/merged full tree
+64ad2712b9bd3cab48cb7a6a8f033e8c0fb957e2 matches.
+Eleventh report adds24Rocket/Dror/ClearPoint observations. Rocket2023/24EPS note
+includes nominal-consideration equity warrants in basic shares and separately
+excludes period-end potential shares during losses; review does not cover third
+2022column merely because it is displayed. Dror2024/25reports full dollars/shares,
+rounded2025zeroEPS despite2,544,887loss, and Series A preferred as-converted100common
+shares in excluded potential-share table. ClearPoint2024/25excludes options/RSUs;
+approximately3million is an approximate instrument amount, not a new denominator.
+Exact tables, full EPS disclosures, source snapshots and scales pinned by v7.
+Replay byte-identical. Ledger scope-v15 now304reviewed/496pending/0withdrawn,
+16presentation-only unchanged. Exactly24states/evidence links changed; all800rows
+and prior280decisions preserved.85renderer/ledger tests pass. Reader notes render
+on overview/all four concepts and disappear on changed bound observations.
+Four discrepancy reports remain pending; no policy/source/runtime-object changes.
+Latest full HTTP/browser and scope-v13archive are historical snapshots; subsequent
+note changes require updated relevant release verification and archive coverage.
+Next publish this review and continue remaining pending/legacy filing context.
+Transfer44227 polled live this turn; latest4,873/10,360objects/zero failures;
+uploader/plan unchanged. No production activation/new indexing gain. All SEO,
+indexed-page, developer-adoption and governed-engine objectives remain active.
+Owner attribution file untouched.
 
 ## Earlier verified checkpoints (historical)
 

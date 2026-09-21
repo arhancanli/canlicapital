@@ -1,6 +1,243 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001281895",
+  "include_on_overview": true,
+  "source_sha256": "0bcbe84a05b7de7c12edb430923484b522633d995abac19aad70bdfd9e60b3ef",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Rocket Pharmaceuticals' 2023 and 2024 EPS note treats equity-classified warrants exercisable for little or no consideration as already outstanding for basic EPS. Other potential common shares are excluded from diluted loss EPS as anti-dilutive; its exclusion table uses period-end amounts, not additions to the weighted-average denominator. Dollar losses are in thousands, while shares and per-share amounts are unscaled. This review covers the two selected years, not every year displayed in the filing.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1281895/000095017025029002/rckt-20241231.htm",
+  "observations": [
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -3.26,
+      "accn": "0000950170-25-029002",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -2.92,
+      "accn": "0000950170-25-029002",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -3.26,
+      "accn": "0000950170-25-029002",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -2.92,
+      "accn": "0000950170-25-029002",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 68148925,
+      "accn": "0000950170-25-029002",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 84009004,
+      "accn": "0000950170-25-029002",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 68148925,
+      "accn": "0000950170-25-029002",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 84009004,
+      "accn": "0000950170-25-029002",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001282980",
+  "include_on_overview": true,
+  "source_sha256": "e22ca0b52fc8c0972ce62c3ec89fd40e03f20440d52dd2b2fd31433e301bdedb",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Dror Ortho-Design reports equal basic and diluted loss EPS for 2024 and 2025 because potential common shares are anti-dilutive during losses. Its potential-share table presents each Series A preferred share as convertible into 100 common shares; those amounts are excluded potential shares, not additions to the reported basic denominator. The 2025 zero EPS is a rounded $2,544,887 net loss, not break-even. Original full dollar losses, share counts and reported per-share amounts are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1282980/000121390026021201/ea0278430-10k_drorortho.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.01,
+      "accn": "0001213900-26-021201",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0,
+      "accn": "0001213900-26-021201",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.01,
+      "accn": "0001213900-26-021201",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 0,
+      "accn": "0001213900-26-021201",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 672511484,
+      "accn": "0001213900-26-021201",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 956997116,
+      "accn": "0001213900-26-021201",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 672511484,
+      "accn": "0001213900-26-021201",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 956997116,
+      "accn": "0001213900-26-021201",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001285550",
+  "include_on_overview": true,
+  "source_sha256": "42cce1b4fae43ade1c2eab56e81afab6eae0d04e4ec290dc982d64b677ec31fb",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "ClearPoint Neuro reports equal basic and diluted loss EPS for 2024 and 2025 because stock options and unvested restricted stock units would be anti-dilutive during losses. The filing describes approximately 3 million excluded common-stock equivalents in each year; this is an approximate excluded-instrument amount, not a change to the reported weighted-average share count. Dollar losses are in thousands; shares and per-share amounts are unscaled.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1285550/000119312526111231/clpt-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.7,
+      "accn": "0001193125-26-111231",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.9,
+      "accn": "0001193125-26-111231",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.7,
+      "accn": "0001193125-26-111231",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.9,
+      "accn": "0001193125-26-111231",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 27027692,
+      "accn": "0001193125-26-111231",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 28315254,
+      "accn": "0001193125-26-111231",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 27027692,
+      "accn": "0001193125-26-111231",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 28315254,
+      "accn": "0001193125-26-111231",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001274737",
   "include_on_overview": true,
   "source_sha256": "e5dec18c6ce30b9c5996c9552c3038c60c5a4f2ddd0b66db38cf430134585544",
