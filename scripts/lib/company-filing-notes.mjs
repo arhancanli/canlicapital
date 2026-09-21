@@ -1,6 +1,85 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001320350",
+  "include_on_overview": true,
+  "source_sha256": "d69e560c039f84cdc5c8981beedf4e090952b7543a4ddc3a533c6c84c6dbba59",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "LENSAR's 2024 and 2025 basic and diluted loss EPS are equal because potentially dilutive securities are excluded during losses. The two-class method treats Series A preferred stock and Series A and B warrants as participating securities, but their holders have no contractual obligation to share losses, so losses are attributed entirely to common stockholders. The statements display dollars and weighted-average shares in thousands, except per-share amounts. The note separately lists excluded instrument balances and excluded weighted-average shares; neither table adds shares to the reported loss-period denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1320350/000119312526134587/lnsr-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.73,
+      "accn": "0001193125-26-134587",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -2.87,
+      "accn": "0001193125-26-134587",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.73,
+      "accn": "0001193125-26-134587",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -2.87,
+      "accn": "0001193125-26-134587",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 11518000,
+      "accn": "0001193125-26-134587",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 11958000,
+      "accn": "0001193125-26-134587",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 11518000,
+      "accn": "0001193125-26-134587",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 11958000,
+      "accn": "0001193125-26-134587",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001287098",
   "include_on_overview": true,
   "source_sha256": "bf885643e4ac829812a590e85ffccacb74e5a1dbcbb30dc2694b3cf04e7ecdf9",

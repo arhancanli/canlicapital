@@ -1,0 +1,152 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001320350",
+      "accession": "0001193125-26-134587",
+      "source_sha256": "d69e560c039f84cdc5c8981beedf4e090952b7543a4ddc3a533c6c84c6dbba59",
+      "primary_sha256": "eb64124626365c10247f105418c3b062b023ffb83f3809df0960e56d8a691210",
+      "receipt_sha256": "29989492630f524f439f61c39b8cea61dec3b6e45dfb3a4bc5cf3d15b4313d55",
+      "fixture": "scripts/fixtures/editorial/batch2-0001320350-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -2.73,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -2.87,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -2.73,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -2.87,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 11518000,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 11958000,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 11518000,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 11958000,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 19,
+      "supporting_table_indexes": [
+        61,
+        62,
+        63
+      ],
+      "share_scale": "3",
+      "table_requires": [
+        "34,280",
+        "31,404",
+        "11,958",
+        "11,518",
+        "2.87",
+        "2.73"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except per share amounts)",
+        "Basic earnings (loss) per common share is calculated by dividing the earnings (loss) attributable to common stockholders by the weighted-average number of shares of common stock outstanding during the period, without consideration of potentially dilutive securities. Diluted earnings (loss) per share is computed by dividing the earnings (loss) attributable to common stockholders by the weighted-average number of shares of common stock and potentially dilutive securities outstanding for the period. For purposes of the diluted earnings (loss) per share calculation, Series A Redeemable Convertible Preferred Stock, Series A Warrants, and Series B Warrants, stock options, restricted stock awards, and restricted stock units are considered to be potentially dilutive securities. Basic and diluted earnings (loss) attributable to common stockholders per share is presented in conformity with the two-class method required for participating securities. The Company considers Series A Redeemable Convertible Preferred Stock, Series A Warrants, and Series B Warrants to be participating securities, because holders of such instruments participate in the event a dividend is paid on common stock. The holder of the Series A Redeemable Convertible Preferred Stock, Series A Warrants and Series B Warrants does not have a contractual obligation to share in the Company\u2019s losses. As such, losses are attributed entirely to common stockholders and for periods in which the Company has reported a net loss, diluted loss per common share is the same as basic loss per common share.",
+        "As the Company has reported a net loss for all periods presented, basic and diluted net loss per share attributable to common stockholders are the same for those periods. The Company excluded the following amounts of equity securities from its diluted loss per share calculations for the periods presented because their effect was anti-dilutive:",
+        "The anti-dilutive weighted-average shares excluded from the diluted loss per share calculations were:"
+      ],
+      "reader_note": "LENSAR's 2024 and 2025 basic and diluted loss EPS are equal because potentially dilutive securities are excluded during losses. The two-class method treats Series A preferred stock and Series A and B warrants as participating securities, but their holders have no contractual obligation to share losses, so losses are attributed entirely to common stockholders. The statements display dollars and weighted-average shares in thousands, except per-share amounts. The note separately lists excluded instrument balances and excluded weighted-average shares; neither table adds shares to the reported loss-period denominator.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

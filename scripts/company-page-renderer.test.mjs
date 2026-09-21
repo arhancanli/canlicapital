@@ -1549,3 +1549,28 @@ test('MaxCyte retains different historical dollar displays and excluded-instrume
     assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
   }
 });
+
+test('LENSAR preserves thousand-share display and two-class loss exclusions', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/batch2-0001320350-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0001320350', fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record.concepts);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const html = renderCompanyPages(record, { target })[0].html;
+    assert.match(html, /2024 and 2025/);
+    assert.match(html, /two-class method/);
+    assert.match(html, /no contractual obligation to share losses/);
+    assert.match(html, /weighted-average shares in thousands, except per-share/);
+    assert.match(html, /separately lists excluded instrument balances/);
+    assert.match(html, /neither table adds shares/);
+  }
+  assert.deepEqual(record.concepts, original);
+  for (const accession of ['0001193125-26-134587']) {
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic').filter(n => n.observations.some(r => r.accn === accession));
+    assert.equal(notes.length, 1);
+    const changed = structuredClone(record), row = notes[0].observations[0];
+    changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+    assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+  }
+});

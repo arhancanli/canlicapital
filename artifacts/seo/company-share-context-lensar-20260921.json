@@ -1,0 +1,937 @@
+{
+  "schema": "canli.reviewed-share-context.v1",
+  "publication_approved": false,
+  "spec_sha256": "e3d2bfce79966883cc1d12f24f9428d9cb09c56e1a796d72609ab0c52f877fb9",
+  "target_sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8",
+  "code_sha256": "296e8aa98f702bd88efcf5072f7f7b4d4f0d9f2173b4eb1e7c61136799c5c540",
+  "helper_sha256": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7",
+  "decisions": [
+    {
+      "cik": "0001320350",
+      "source_sha256": "d69e560c039f84cdc5c8981beedf4e090952b7543a4ddc3a533c6c84c6dbba59",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1320350/000119312526134587/lnsr-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T23:16:36.242623+00:00",
+        "bytes": 4020772,
+        "sha256": "eb64124626365c10247f105418c3b062b023ffb83f3809df0960e56d8a691210",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch2-filings/0001320350-0001193125-26-134587-primary.response"
+      },
+      "receipt_sha256": "29989492630f524f439f61c39b8cea61dec3b6e45dfb3a4bc5cf3d15b4313d55",
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -2.73,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -2.87,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -2.73,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -2.87,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 11518000,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 11958000,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 11518000,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 11958000,
+          "accn": "0001193125-26-134587",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "comparison": {
+        "checks": [
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": -2.73,
+              "accn": "0001193125-26-134587",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2024",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-2.73",
+                "fact_id": "F_34a47674-f0ce-4eda-9f7a-012fd195e236",
+                "context_id": "C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85",
+                "table_row": "Basic and diluted $ ( 2.87 ) $ ( 2.73 )",
+                "preceding_rows": [
+                  "Net loss and comprehensive loss $ ( 34,282 ) $ ( 31,402 )",
+                  "Net loss per common share:"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenue",
+                  "Product $ 45,928 $ 41,065"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              },
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-2.73",
+                "fact_id": "F_7e234dc5-4d51-4be3-ad02-d4b74576f073",
+                "context_id": "C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85",
+                "table_row": "Basic and diluted net loss per share $ ( 2.87 ) $ ( 2.73 )",
+                "preceding_rows": [
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": -2.87,
+              "accn": "0001193125-26-134587",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2025",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD/shares",
+                "value": "-2.87",
+                "fact_id": "F_48b8ddbd-2bc0-449b-9331-5af3060889c9",
+                "context_id": "C_c09d15c4-5b1e-450d-9818-555d3c32649f",
+                "table_row": "Basic and diluted $ ( 2.87 ) $ ( 2.73 )",
+                "preceding_rows": [
+                  "Net loss and comprehensive loss $ ( 34,282 ) $ ( 31,402 )",
+                  "Net loss per common share:"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenue",
+                  "Product $ 45,928 $ 41,065"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              },
+              {
+                "tag": "EarningsPerShareBasic",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD/shares",
+                "value": "-2.87",
+                "fact_id": "F_d4726792-11dd-4f45-a5ad-59f79cf21d74",
+                "context_id": "C_c09d15c4-5b1e-450d-9818-555d3c32649f",
+                "table_row": "Basic and diluted net loss per share $ ( 2.87 ) $ ( 2.73 )",
+                "preceding_rows": [
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": -2.73,
+              "accn": "0001193125-26-134587",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2024",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-2.73",
+                "fact_id": "F_47c3534c-719f-437c-acd7-64c4f7f80be2",
+                "context_id": "C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85",
+                "table_row": "Basic and diluted $ ( 2.87 ) $ ( 2.73 )",
+                "preceding_rows": [
+                  "Net loss and comprehensive loss $ ( 34,282 ) $ ( 31,402 )",
+                  "Net loss per common share:"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenue",
+                  "Product $ 45,928 $ 41,065"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              },
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "USD/shares",
+                "value": "-2.73",
+                "fact_id": "F_fd016b3d-7e0b-4696-b24e-82025f25fed2",
+                "context_id": "C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85",
+                "table_row": "Basic and diluted net loss per share $ ( 2.87 ) $ ( 2.73 )",
+                "preceding_rows": [
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": -2.87,
+              "accn": "0001193125-26-134587",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2025",
+              "unit": "USD/shares",
+              "tag": "EarningsPerShareDiluted"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD/shares",
+                "value": "-2.87",
+                "fact_id": "F_7ab5affe-a987-42da-b54a-bdd92303fecd",
+                "context_id": "C_c09d15c4-5b1e-450d-9818-555d3c32649f",
+                "table_row": "Basic and diluted $ ( 2.87 ) $ ( 2.73 )",
+                "preceding_rows": [
+                  "Net loss and comprehensive loss $ ( 34,282 ) $ ( 31,402 )",
+                  "Net loss per common share:"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenue",
+                  "Product $ 45,928 $ 41,065"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              },
+              {
+                "tag": "EarningsPerShareDiluted",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD/shares",
+                "value": "-2.87",
+                "fact_id": "F_55851869-83c9-405d-be15-f84c2e48712d",
+                "context_id": "C_c09d15c4-5b1e-450d-9818-555d3c32649f",
+                "table_row": "Basic and diluted net loss per share $ ( 2.87 ) $ ( 2.73 )",
+                "preceding_rows": [
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": 11518000,
+              "accn": "0001193125-26-134587",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2024",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "11518000",
+                "fact_id": "F_e4dbf7b6-ad05-45ae-8dcc-97d3d5d05bca",
+                "context_id": "C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85",
+                "table_row": "Basic and diluted 11,958 11,518",
+                "preceding_rows": [
+                  "Basic and diluted $ ( 2.87 ) $ ( 2.73 )",
+                  "Weighted-average number of shares used in calculation of net loss per common share:"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenue",
+                  "Product $ 45,928 $ 41,065"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              },
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "11518000",
+                "fact_id": "F_dbab55cd-c081-45f6-9413-d3c6391656b9",
+                "context_id": "C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85",
+                "table_row": "Weighted average number of shares of common stock 11,958 11,518",
+                "preceding_rows": [
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": 11958000,
+              "accn": "0001193125-26-134587",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2025",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "shares",
+                "value": "11958000",
+                "fact_id": "F_8de83822-4be5-44c5-9ad0-0c595b3a7fd5",
+                "context_id": "C_c09d15c4-5b1e-450d-9818-555d3c32649f",
+                "table_row": "Basic and diluted 11,958 11,518",
+                "preceding_rows": [
+                  "Basic and diluted $ ( 2.87 ) $ ( 2.73 )",
+                  "Weighted-average number of shares used in calculation of net loss per common share:"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenue",
+                  "Product $ 45,928 $ 41,065"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              },
+              {
+                "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "shares",
+                "value": "11958000",
+                "fact_id": "F_b79e0a4c-fe4c-493d-a0b1-893dd953ff5e",
+                "context_id": "C_c09d15c4-5b1e-450d-9818-555d3c32649f",
+                "table_row": "Weighted average number of shares of common stock 11,958 11,518",
+                "preceding_rows": [
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "val": 11518000,
+              "accn": "0001193125-26-134587",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2024",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "11518000",
+                "fact_id": "F_8bbec315-150a-4066-b40e-05bac2c27e53",
+                "context_id": "C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85",
+                "table_row": "Basic and diluted 11,958 11,518",
+                "preceding_rows": [
+                  "Basic and diluted $ ( 2.87 ) $ ( 2.73 )",
+                  "Weighted-average number of shares used in calculation of net loss per common share:"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenue",
+                  "Product $ 45,928 $ 41,065"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              },
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2024-01-01",
+                "end": "2024-12-31",
+                "unit": "shares",
+                "value": "11518000",
+                "fact_id": "F_33447c2d-6e25-4e0f-89cf-821287bffb13",
+                "context_id": "C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85",
+                "table_row": "Weighted average number of shares of common stock 11,958 11,518",
+                "preceding_rows": [
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          },
+          {
+            "selected": {
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": 11958000,
+              "accn": "0001193125-26-134587",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2025",
+              "unit": "shares",
+              "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "shares",
+                "value": "11958000",
+                "fact_id": "F_ff23e176-9de0-4783-8a6d-c85c42548ab1",
+                "context_id": "C_c09d15c4-5b1e-450d-9818-555d3c32649f",
+                "table_row": "Basic and diluted 11,958 11,518",
+                "preceding_rows": [
+                  "Basic and diluted $ ( 2.87 ) $ ( 2.73 )",
+                  "Weighted-average number of shares used in calculation of net loss per common share:"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Revenue",
+                  "Product $ 45,928 $ 41,065"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              },
+              {
+                "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "shares",
+                "value": "11958000",
+                "fact_id": "F_48572175-8b32-49e2-aa0f-7bbbf23c935b",
+                "context_id": "C_c09d15c4-5b1e-450d-9818-555d3c32649f",
+                "table_row": "Weighted average number of shares of common stock 11,958 11,518",
+                "preceding_rows": [
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Year Ended December 31,",
+                  "2025 2024",
+                  "Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 )",
+                  "Weighted average number of shares of common stock 11,958 11,518"
+                ],
+                "paragraph": null,
+                "preceding_heading": "Changes in Internal Control over Financial Reporting"
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING"
+          }
+        ],
+        "rejected_facts": {}
+      },
+      "inline_evidence": [
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -2.73,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_34a47674-f0ce-4eda-9f7a-012fd195e236\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\"><ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_47c3534c-719f-437c-acd7-64c4f7f80be2\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">2.73</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -2.73,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_7e234dc5-4d51-4be3-ad02-d4b74576f073\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\"><ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_fd016b3d-7e0b-4696-b24e-82025f25fed2\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">2.73</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -2.87,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"2\" id=\"F_48b8ddbd-2bc0-449b-9331-5af3060889c9\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">2.87</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -2.87,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_d4726792-11dd-4f45-a5ad-59f79cf21d74\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">2.87</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -2.73,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_47c3534c-719f-437c-acd7-64c4f7f80be2\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">2.73</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -2.73,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_fd016b3d-7e0b-4696-b24e-82025f25fed2\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">2.73</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -2.87,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"2\" id=\"F_7ab5affe-a987-42da-b54a-bdd92303fecd\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\"><ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"2\" id=\"F_48b8ddbd-2bc0-449b-9331-5af3060889c9\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">2.87</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -2.87,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_55851869-83c9-405d-be15-f84c2e48712d\" name=\"us-gaap:EarningsPerShareDiluted\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\"><ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"2\" format=\"ixt:num-dot-decimal\" id=\"F_d4726792-11dd-4f45-a5ad-59f79cf21d74\" name=\"us-gaap:EarningsPerShareBasic\" scale=\"0\" sign=\"-\" unitref=\"U_UnitedStatesOfAmericaDollarsShare\">2.87</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 11518000,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_e4dbf7b6-ad05-45ae-8dcc-97d3d5d05bca\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">11,518</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 11518000,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_dbab55cd-c081-45f6-9413-d3c6391656b9\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">11,518</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 11958000,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_8de83822-4be5-44c5-9ad0-0c595b3a7fd5\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">11,958</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 11958000,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_b79e0a4c-fe4c-493d-a0b1-893dd953ff5e\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">11,958</ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 11518000,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_8bbec315-150a-4066-b40e-05bac2c27e53\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"U_shares\"><ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_e4dbf7b6-ad05-45ae-8dcc-97d3d5d05bca\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">11,518</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 11518000,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_33447c2d-6e25-4e0f-89cf-821287bffb13\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"U_shares\"><ix:nonfraction contextref=\"C_ec71c4ab-a502-4cfd-8bd2-beaea0ab2b85\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_dbab55cd-c081-45f6-9413-d3c6391656b9\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">11,518</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 11958000,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_ff23e176-9de0-4783-8a6d-c85c42548ab1\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"U_shares\"><ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_8de83822-4be5-44c5-9ad0-0c595b3a7fd5\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">11,958</ix:nonfraction></ix:nonfraction>"
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 11958000,
+            "accn": "0001193125-26-134587",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "fact_xml": "<ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_48572175-8b32-49e2-aa0f-7bbbf23c935b\" name=\"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic\" scale=\"3\" unitref=\"U_shares\"><ix:nonfraction contextref=\"C_c09d15c4-5b1e-450d-9818-555d3c32649f\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"F_b79e0a4c-fe4c-493d-a0b1-893dd953ff5e\" name=\"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding\" scale=\"3\" unitref=\"U_shares\">11,958</ix:nonfraction></ix:nonfraction>"
+        }
+      ],
+      "table_index": 19,
+      "table_text": "Year Ended December 31, 2025 2024 Revenue Product $ 45,928 $ 41,065 Lease 6,779 7,532 Service 5,728 4,897 Total revenue 58,435 53,494 Cost of revenue (exclusive of amortization) Product 20,561 18,254 Lease 3,515 2,930 Service 7,237 6,459 Total cost of revenue 31,313 27,643 Operating expenses Selling, general and administrative expenses 45,157 26,488 Research and development expenses 5,622 5,329 Amortization of intangible assets 921 970 Impairment of intangible assets \u2014 3,729 Total operating expenses 51,700 36,516 Operating loss ( 24,578 ) ( 10,665 ) Other (expense) income Change in fair value of warrant liabilities ( 10,338 ) ( 21,399 ) Other income, net 636 660 Net loss ( 34,280 ) ( 31,404 ) Other comprehensive (loss) gain Change in unrealized gain on investments ( 2 ) 2 Net loss and comprehensive loss $ ( 34,282 ) $ ( 31,402 ) Net loss per common share: Basic and diluted $ ( 2.87 ) $ ( 2.73 ) Weighted-average number of shares used in calculation of net loss per common share: Basic and diluted 11,958 11,518",
+      "supporting_tables": [
+        {
+          "table_index": 61,
+          "text": "Year Ended December 31, 2025 2024 Net loss attributable to common stockholders $ ( 34,280 ) $ ( 31,404 ) Weighted average number of shares of common stock 11,958 11,518 Basic and diluted net loss per share $ ( 2.87 ) $ ( 2.73 )"
+        },
+        {
+          "table_index": 62,
+          "text": "Year Ended December 31, 2025 2024 Series A Redeemable Convertible Preferred Stock 7,940 7,940 Series A Warrants and Series B Warrants 4,367 4,367 Restricted stock units 949 797 Outstanding stock options 1,809 1,845"
+        },
+        {
+          "table_index": 63,
+          "text": "Year Ended December 31, 2025 2024 Series A Redeemable Convertible Preferred Stock 7,940 7,940 Series A Warrants 1,748 1,073 Series B Warrants 1,639 795 Restricted stock units 500 394 Outstanding stock options 1,000 1,260 Total 12,827 11,462"
+        }
+      ],
+      "disclosures": [
+        "(In thousands, except per share amounts)",
+        "Basic earnings (loss) per common share is calculated by dividing the earnings (loss) attributable to common stockholders by the weighted-average number of shares of common stock outstanding during the period, without consideration of potentially dilutive securities. Diluted earnings (loss) per share is computed by dividing the earnings (loss) attributable to common stockholders by the weighted-average number of shares of common stock and potentially dilutive securities outstanding for the period. For purposes of the diluted earnings (loss) per share calculation, Series A Redeemable Convertible Preferred Stock, Series A Warrants, and Series B Warrants, stock options, restricted stock awards, and restricted stock units are considered to be potentially dilutive securities. Basic and diluted earnings (loss) attributable to common stockholders per share is presented in conformity with the two-class method required for participating securities. The Company considers Series A Redeemable Convertible Preferred Stock, Series A Warrants, and Series B Warrants to be participating securities, because holders of such instruments participate in the event a dividend is paid on common stock. The holder of the Series A Redeemable Convertible Preferred Stock, Series A Warrants and Series B Warrants does not have a contractual obligation to share in the Company\u2019s losses. As such, losses are attributed entirely to common stockholders and for periods in which the Company has reported a net loss, diluted loss per common share is the same as basic loss per common share.",
+        "As the Company has reported a net loss for all periods presented, basic and diluted net loss per share attributable to common stockholders are the same for those periods. The Company excluded the following amounts of equity securities from its diluted loss per share calculations for the periods presented because their effect was anti-dilutive:",
+        "The anti-dilutive weighted-average shares excluded from the diluted loss per share calculations were:"
+      ],
+      "reader_note": "LENSAR's 2024 and 2025 basic and diluted loss EPS are equal because potentially dilutive securities are excluded during losses. The two-class method treats Series A preferred stock and Series A and B warrants as participating securities, but their holders have no contractual obligation to share losses, so losses are attributed entirely to common stockholders. The statements display dollars and weighted-average shares in thousands, except per-share amounts. The note separately lists excluded instrument balances and excluded weighted-average shares; neither table adds shares to the reported loss-period denominator.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ],
+  "scope": "Only exact observations specified by the human-readable reviewed requirements. Checks preserve the manual interpretation, not an independent accounting certification. No earlier-period, whole-history, corpus or publication approval."
+}
