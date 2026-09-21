@@ -1525,6 +1525,35 @@ test('Rocket, Dror and ClearPoint retain excluded-share scope and rounded-loss c
   }
 });
 
+test('currency trust notes distinguish USD reporting from functional currency and limit dilution claims', () => {
+  for (const [cik, currency] of [
+    ['0001328598', 'euro'], ['0001353611', 'British Pound Sterling'],
+    ['0001353612', 'Canadian Dollar'], ['0001353613', 'Japanese Yen'],
+    ['0001353614', 'Australian Dollar'], ['0001353615', 'Swiss Franc'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      assert(html.includes(`functional currency is the ${currency}`));
+      assert.match(html, /financial statements report in USD/);
+      assert.match(html, /without thousand-share scaling/);
+      assert.match(html, /average Closing Spot Rate/);
+      assert.match(html, /presentation-only review/);
+      assert.match(html, /reason for the equal basic and diluted figures has not been established/);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic');
+    assert.equal(notes.length, 1);
+    const changed = structuredClone(record), row = notes[0].observations[0];
+    changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+    assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+  }
+});
+
 test('MaxCyte retains different historical dollar displays and excluded-instrument types', () => {
   const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/batch2-0001287098-source.json.gz', import.meta.url)));
   const record = companyReference(raw, { expectedCik: '0001287098', fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });

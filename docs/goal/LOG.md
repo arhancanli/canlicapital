@@ -2290,3 +2290,52 @@ Next publish this pending evidence, continue pending filing contexts and monitor
 recovery for hosted readiness. No deployment or new indexed-page evidence. All
 original indexing, SEO/search-intent, developer/API/MCP/repository adoption and
 governed engine outcome goals remain active. Owner attribution file untouched.
+
+PR148 published at27c17075fe22a38a55dc94d699f611ca6d3c0f0c; CI pending.
+Push34927 and PR-create80077 completed with exit0. Unpublished rebase preserved
+full treeb0c6475cb8781df1f03fe7674698d944424cf806. Recovery79720 polled live
+after publication; latest 778 reverified objects, 0 failures. Owner file untouched.
+
+## 2026-09-21 — Six currency trusts: presentation and reporting currency
+
+The previous turn preserved Femasys as pending and published PR148. PR148 is now
+merged as5e62180a5905b533a619155eb3e6715ed0619c10 after all four CI35552189654
+checks passed at27c17075fe22a38a55dc94d699f611ca6d3c0f0c. Tested and merged tree:
+b0c6475cb8781df1f03fe7674698d944424cf806. Current branch:
+evidence/currency-trust-presentation-20260921.
+
+Reviewed six captured Invesco CurrencyShares filings for 2024/25: Euro,
+British Pound Sterling, Canadian Dollar, Japanese Yen, Australian Dollar and
+Swiss Franc trusts. Each reports combined basic/diluted EPS and identical tagged
+weighted-average shares in full units. Each identifies its functional currency
+and USD reporting currency. Exact translation disclosures, including continuation
+paragraphs for GBP and CHF, preserve average Closing Spot Rate use for income and
+cash-flow statements. Full text was checked for dilution discussion; this review
+does not establish a reason for equal basic/diluted figures.
+
+All 48 selected numerical observations match exact statement/entity/context/unit
+facts using the unchanged v7 validator. New report:
+company-share-context-currency-trusts-20260921.json. Source fixtures and explicit
+six-decision specification retained; report replays byte-for-byte. These decisions
+use REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED, never an inferred
+anti-dilution or no-potential-securities explanation. Reader notes state the limit.
+
+Scope-v18 has 376 reviewed / 424 pending / 0 withdrawn, including 64 presentation-only
+reviews (previously16). Exactly48 state/evidence transitions across six filings;
+all800 observation metadata and prior328 decisions preserved. Six discrepancy
+reports remain pending.88 renderer/ledger tests pass, covering all30 affected
+pages, distinct currencies, USD reporting, unscaled shares, limited-cause wording,
+unchanged numerical data and note removal after a selected observation changes.
+No source correction, selector policy or runtime-object change.
+
+Recovery79720 polled live at the start of this turn; latest receipt shows 1386
+reverified objects / zero failures, incomplete. Same plan and uploader; original
+44227 remains terminal after6,023 verified objects and HTTP520. Reverification
+counts are not additive new uploads. No production deployment or new indexing gain.
+
+Next publish these limited reviews and continue pending contexts and hosted
+readiness. LENSAR and these six notes need fresh relevant release checks; recent
+reports also need later archive coverage. Historical scope-v16 checks/archive
+remain tied to their pinned inputs. All original indexing, SEO/search-intent,
+developer/API/MCP/repository adoption and governed-engine goals remain active.
+Owner attribution file untouched.

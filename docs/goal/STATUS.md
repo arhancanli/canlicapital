@@ -8,48 +8,47 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-The previous turn made progress by reviewing LENSAR and starting a verified,
-paced recovery transfer. PR147 is now merged as
-5a6f0763ab439c35fa15030ca451d9c35324ac51 after all four CI35551954851 checks
-passed at82ac9160d083ba441249cc5a2181f271fd862c6e. The tested and merged trees
-match: f4b00fb1276908822ef5f10f4f1c4a84316f10f4.
-Current branch: evidence/femasys-warrant-date-20260921.
+The previous turn preserved Femasys as pending and published PR148. PR148 is now
+merged as5e62180a5905b533a619155eb3e6715ed0619c10 after all four CI35552189654
+checks passed at27c17075fe22a38a55dc94d699f611ca6d3c0f0c. Tested and merged tree:
+b0c6475cb8781df1f03fe7674698d944424cf806. Current branch:
+evidence/currency-trust-presentation-20260921.
 
-Femasys filing0001140361-26-012375 reports the same eight selected 2024/25
-numbers in statements and EPS note. The note includes pre-funded warrants in
-the denominator from issuance and calls them November2025 warrants at $0.0001.
-The financing note describes August25 issuance at that exercise price, with
-6,750,000 remaining at year-end; its November financing instead describes
-convertible notes and warrant series at $0.81/$0.92/$1.10. The reviewed filing
-alone does not resolve the date/instrument attribution or denominator timing.
-Do not silently replace November with August or approve a reconstructed denominator.
+Reviewed six captured Invesco CurrencyShares filings for 2024/25: Euro,
+British Pound Sterling, Canadian Dollar, Japanese Yen, Australian Dollar and
+Swiss Franc trusts. Each reports combined basic/diluted EPS and identical tagged
+weighted-average shares in full units. Each identifies its functional currency
+and USD reporting currency. Exact translation disclosures, including continuation
+paragraphs for GBP and CHF, preserve average Closing Spot Rate use for income and
+cash-flow statements. Full text was checked for dilution discussion; this review
+does not establish a reason for equal basic/diluted figures.
 
-Preserved company-femasys-warrant-date-discrepancy-20260921.json with a source-pinned
-replay script, actual source fixture, exact statement rows, seven full disclosures,
-and sixteen inline facts with context/unit XML. The unchanged v7 semantic locator
-handles ID-less facts and is hash-bound in the report. Primary SHA:
-843bae9080c2511675efce3fca1ff1bef352c09d941f0ab3dfbf5fe5c4a8b837.
-Source SHA:0a977ccfe663d6aad6cf08dbc6fa26d0ec381f134bae0515d39173985a9d6dcf.
-Replay56384 completed with exit0 and byte-identical output. Seven ledger tests pass,
-including rejection of all six pending discrepancy reports as approved reviews.
-No public note, registration, policy hold, source correction or numerical change.
+All 48 selected numerical observations match exact statement/entity/context/unit
+facts using the unchanged v7 validator. New report:
+company-share-context-currency-trusts-20260921.json. Source fixtures and explicit
+six-decision specification retained; report replays byte-for-byte. These decisions
+use REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED, never an inferred
+anti-dilution or no-potential-securities explanation. Reader notes state the limit.
 
-The scope-v17 ledger remains 328 reviewed / 472 pending / 0 withdrawn, including
-16 presentation-only reviews. Older scope-v16 archive and HTTP/browser reports
-retain their historical coverage; LENSAR and this new pending report need later
-archive coverage, and LENSAR needs updated relevant release checks.
+Scope-v18 has 376 reviewed / 424 pending / 0 withdrawn, including 64 presentation-only
+reviews (previously16). Exactly48 state/evidence transitions across six filings;
+all800 observation metadata and prior328 decisions preserved. Six discrepancy
+reports remain pending.88 renderer/ledger tests pass, covering all30 affected
+pages, distinct currencies, USD reporting, unscaled shares, limited-cause wording,
+unchanged numerical data and note removal after a selected observation changes.
+No source correction, selector policy or runtime-object change.
 
-Recovery79720 was polled live; latest receipt shows 676 reverified objects and
-zero failures. Receipt: artifacts/seo/corpus-local/company-five-cohort-storage-transfer-v22-recovery-20260921.json.
-Log: /tmp/canli-v22-transfer-recovery.log. Original44227 remains TERMINAL1 after
-6,023 verified objects and HTTP520; its receipt and the post-wait absent-object
-read are preserved. Recovery is a fresh verification pass, not 676 additional
-objects. Uploader, plan and runtime objects unchanged. Never restart44227.
+Recovery79720 polled live at the start of this turn; latest receipt shows 1386
+reverified objects / zero failures, incomplete. Same plan and uploader; original
+44227 remains terminal after6,023 verified objects and HTTP520. Reverification
+counts are not additive new uploads. No production deployment or new indexing gain.
 
-Next publish this pending evidence, continue pending filing contexts and monitor
-recovery for hosted readiness. No deployment or new indexed-page evidence. All
-original indexing, SEO/search-intent, developer/API/MCP/repository adoption and
-governed engine outcome goals remain active. Owner attribution file untouched.
+Next publish these limited reviews and continue pending contexts and hosted
+readiness. LENSAR and these six notes need fresh relevant release checks; recent
+reports also need later archive coverage. Historical scope-v16 checks/archive
+remain tied to their pinned inputs. All original indexing, SEO/search-intent,
+developer/API/MCP/repository adoption and governed-engine goals remain active.
+Owner attribution file untouched.
 
 ## Earlier verified checkpoints (historical)
 
