@@ -1,6 +1,164 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001343009",
+  "include_on_overview": true,
+  "source_sha256": "915b78bb9f3d1ecdaff39577a9e5db4b6d0b32a87b795bd1dd92ab6d7b14ac19",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "CNBX Pharmaceuticals' review covers fiscal years ended August 31, 2024 and 2025, not calendar years. Potentially dilutive shares are excluded as anti-dilutive in both periods. The 2025 statement displays loss EPS as (0.00), alongside a $313,976 net loss and 90,649,474 weighted-average shares; that rounded per-share display does not mean the company had no loss. Dollar amounts and share counts are unscaled.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1343009/000168316825008736/cnbx_i10k-083125.htm",
+  "observations": [
+    {
+      "start": "2023-09-01",
+      "end": "2024-08-31",
+      "val": -0.02,
+      "accn": "0001683168-25-008736",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-09-01",
+      "end": "2025-08-31",
+      "val": 0,
+      "accn": "0001683168-25-008736",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-09-01",
+      "end": "2024-08-31",
+      "val": -0.02,
+      "accn": "0001683168-25-008736",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-09-01",
+      "end": "2025-08-31",
+      "val": 0,
+      "accn": "0001683168-25-008736",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-09-01",
+      "end": "2024-08-31",
+      "val": 30247691,
+      "accn": "0001683168-25-008736",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-09-01",
+      "end": "2025-08-31",
+      "val": 90649474,
+      "accn": "0001683168-25-008736",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-09-01",
+      "end": "2024-08-31",
+      "val": 30247691,
+      "accn": "0001683168-25-008736",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-09-01",
+      "end": "2025-08-31",
+      "val": 90649474,
+      "accn": "0001683168-25-008736",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001349706",
+  "include_on_overview": true,
+  "source_sha256": "03be09166e96095a36589f73a31e9f1ec1779f2b67cfa6491bff5b3dc3128ca7",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "TurnOnGreen's 2024 and 2025 basic and diluted loss EPS are equal because potential common shares are excluded as anti-dilutive during losses. The excluded-security table lists warrants, convertible notes and convertible preferred stock; these period-end potential shares are not additions to the reported weighted-average denominator. The filing also records an August 9, 2024 amendment waiving accrued and future preferred dividends in exchange for a 125% liquidation preference, with $2,667,000 moved from accrued dividends to additional paid-in capital. The statement displays full dollar amounts and share counts.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1349706/000121465926004113/tog32026010k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.02,
+      "accn": "0001214659-26-004113",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.01,
+      "accn": "0001214659-26-004113",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.02,
+      "accn": "0001214659-26-004113",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.01,
+      "accn": "0001214659-26-004113",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 183944607,
+      "accn": "0001214659-26-004113",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 183982485,
+      "accn": "0001214659-26-004113",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 183944607,
+      "accn": "0001214659-26-004113",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 183982485,
+      "accn": "0001214659-26-004113",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001328598",
   "include_on_overview": true,
   "source_sha256": "6fa073ef5f073bc8e41184229ab57fb3f7aad5572bfb3bfe2e249351e5d9d084",
