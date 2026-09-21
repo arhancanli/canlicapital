@@ -1,0 +1,53 @@
+{
+  "schema": "canli.company-delivery-measurement.v1",
+  "publication_approved": false,
+  "environment": "local Node HTTP, sequential; no cloud-load or indexing claim",
+  "companies": 6391,
+  "histories": 157113,
+  "directories": 128,
+  "downloads": 12782,
+  "maxHtmlBytes": 36223,
+  "failures": [],
+  "sitemapHttpUrls": 163632,
+  "maxClicksFromCompanyDirectory": 4,
+  "crawlGraph": {
+    "distinctPaths": 163632,
+    "renderedPages": 163632,
+    "edgeBytes": 17663488
+  },
+  "referencePages": 163632,
+  "assets": 5,
+  "catalog": {
+    "objectReads": 6492,
+    "bytesRead": 341161814,
+    "cacheHits": 484340,
+    "cachedBytes": 4192601,
+    "cachedObjects": 229
+  },
+  "downloadIndex": {
+    "objectReads": 15889,
+    "bytesRead": 165897391,
+    "maxReadBytes": 18959,
+    "cachedBytes": 258882
+  },
+  "downloadRoot": "bc3cb3f9f7b735eaf710de63e9f286fbcf533a0184cc824617ce05b231da86f2",
+  "catalogRoot": "b6f3b3eaa89fbcfadc127d612f5e23733197039045313edbf32ec38d540f3115",
+  "localHtmlMedianMs": 2.4703329999756534,
+  "localHtmlP95Ms": 3.6445829999865964,
+  "code": {
+    "scripts/measure-company-delivery.mjs": "c5100955321310148e42afd38e22bc6f1a044541a7311da75ee85ede3f7dc8f9",
+    "scripts/lib/reference-crawl-graph.mjs": "70192f1822de841be57f810da93c9fbed7d7be927bb0471615d0e96092962828",
+    "scripts/lib/company-preview-server.mjs": "7f50ffde90ba9b28287994bcc36baa9ee9726c5ec9866822a65cafed0806bb97",
+    "scripts/lib/company-page-renderer.mjs": "31e63589c87b4648e541e05fc3c64589888bd36d2db34df01b7ff1c319e1e309",
+    "scripts/lib/company-filing-notes.mjs": "b45bbc75bf0a6bb154fcb2a479a90c819e0ef4bde61a598b6b5a3ff7d6e8a25a",
+    "api/_lib/company-release.js": "2eb2487f5bfa0c215786b589b497fb186b52dadda42e8091c2f27469fa82c5b3",
+    "scripts/lib/company-reference.mjs": "036eb23a30ed7b6555ab758a58815936d40c049aaa2aeac92d13c84d02294f34",
+    "api/_lib/company-html.js": "77333cbc37378e4ac795128e1ef564a719787a33872fc7899d9470951de118ab",
+    "api/_lib/company-download-index.js": "fb993f1d0ea2d681c5c51e1d0b1f81f7da7b34e809aac4ce692568f225bf66fe",
+    "api/_lib/company-download.js": "9039a560478922444253eb5eb32373d06a4b3342c8ab75b2b9e05af05f38eccd",
+    "scripts/lib/build-company-download-index.mjs": "858385691d2607ea763bcff48a0492b54163ed197a82a5f7038bcec88377d4d1",
+    "api/_lib/company-directory-html.js": "2c3a9769f1d65397dbe4721dc951357d2fda1e3a9147acfab71131d630bf2a90",
+    "scripts/lib/company-directory.mjs": "f31e48e21c39661dd1c5a1c5b85d40176376477a280d7841a5c58483ce48ea39",
+    "api/_lib/company-catalog.js": "96cca98a63d7109d859c59bc08482ae0933ec010ccf2a6f85ac22ff78e7918b4"
+  }
+}

@@ -3712,6 +3712,9 @@ Staged with policy extended-v22 (selector 036eb23a): 968 / 919 / 781 / 312 / 88.
 Combined with the five v22 deliveries: 6,391 companies, 157,113 histories, release
 4a5d9160…, catalog b6f3b3ea…, 163,632 URLs, 19,790 objects. verify-v23-runtime
 passed. Selected-quality v23: 30,520 flagged pages. Admission v23: 132,876
-indexable URLs, 30,342 + 399 withheld. Full local HTTP audit started 18:11Z.
-No upload, production or indexing change. Owner attribution file untouched.
+indexable URLs, 30,342 + 399 withheld. Full local HTTP audit (measure-company-delivery,
+sequential local Node HTTP): 163,632 pages, 12,782 downloads, 0 failures, at most
+four clicks from the directory, median 2.5 ms; report bound to selector 036eb23a
+(company-ten-cohort-v23-http-measurement-20260921.json). No upload, production or
+indexing change. Owner attribution file untouched.
 
