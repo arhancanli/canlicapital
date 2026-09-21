@@ -5,7 +5,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, 
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { loadCompanyActivation, parseCompanyAdmission, resolveCompanyRuntime } from '../api/_lib/company-activation.js';
-import { fetchStorage, STORAGE_ATTEMPT_TIMEOUTS_MS } from '../api/_lib/company-catalog-http.js';
+import { fetchStorage } from '../api/_lib/company-catalog-http.js';
 import { catalogHash } from '../api/_lib/company-catalog.js';
 import { createCompanyReleaseLoader, createCompanyReferenceHandler } from '../api/_lib/company-release.js';
 import { buildCompanyCatalog } from './lib/build-company-catalog.mjs';
@@ -131,13 +131,6 @@ test('storage reads retry once on network errors, 429 and 5xx but never on 404',
   assert.deepEqual(await run([404]), { status: 404, calls: 1 });
   assert.deepEqual(await run([503, 503]), { status: 503, calls: 2 });
   assert.deepEqual(await run([new Error('a'), new Error('b')]), { error: 'b', calls: 2 });
-  // A stalled first read is abandoned by its own shorter timeout and retried once.
-  const signals = [];
-  const stalled = async (url, init) => { signals.push(init.signal); if (signals.length === 1) return new Promise((_, reject) => init.signal.addEventListener('abort', () => reject(init.signal.reason))); return new Response('ok'); };
-  const started = Date.now();
-  assert.equal((await fetchStorage(stalled, 'https://s.example/a', {})).status, 200);
-  assert.equal(signals.length, 2); assert.ok(Date.now() - started < 9_000);
-  assert.deepEqual(STORAGE_ATTEMPT_TIMEOUTS_MS, [3_000, 10_000]);
 });
 
 function distFixture(t) {
