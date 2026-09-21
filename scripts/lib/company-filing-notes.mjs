@@ -1,6 +1,243 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001137883",
+  "include_on_overview": true,
+  "source_sha256": "b561bffde9fa8cd090312b586c1e178da88cf75b6371222d4a4b037f4566fdbc",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Brainstorm Cell Therapeutics' 2024 and 2025 share and per-share amounts reflect the September 30, 2024 one-for-fifteen reverse split for all presented periods. Outstanding options and warrants are excluded because they are anti-dilutive. Dollar losses are displayed in thousands, while shares use full counts. Reported USD EPS and selected share counts are retained on the filing's split-adjusted basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1137883/000110465926037927/bcli-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.31,
+      "accn": "0001104659-26-037927",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.11,
+      "accn": "0001104659-26-037927",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.31,
+      "accn": "0001104659-26-037927",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.11,
+      "accn": "0001104659-26-037927",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 5021798,
+      "accn": "0001104659-26-037927",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 9268976,
+      "accn": "0001104659-26-037927",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 5021798,
+      "accn": "0001104659-26-037927",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 9268976,
+      "accn": "0001104659-26-037927",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001160308",
+  "include_on_overview": true,
+  "source_sha256": "e6b7a6f53c8eaba6c78a875225555cc6ffac5d6e1310e1e4319eb57204be3e4e",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Savara's 2024 and 2025 basic denominator already includes outstanding pre-funded warrants as well as common stock. Those warrants must not be added again as dilution. The filing excludes other potentially dilutive securities during losses. Dollar losses are displayed in thousands; shares and per-share amounts are unscaled. Reported USD EPS and full selected share counts are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1160308/000119312526105076/svra-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.48,
+      "accn": "0001193125-26-105076",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.53,
+      "accn": "0001193125-26-105076",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.48,
+      "accn": "0001193125-26-105076",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.53,
+      "accn": "0001193125-26-105076",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 198191936,
+      "accn": "0001193125-26-105076",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 222387531,
+      "accn": "0001193125-26-105076",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 198191936,
+      "accn": "0001193125-26-105076",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 222387531,
+      "accn": "0001193125-26-105076",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001162194",
+  "include_on_overview": true,
+  "source_sha256": "a456503a84818adf93963f66898da8214b4c8773c8d6098feaf8922448cbaa0f",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Standard BioTools' selected 2019 and 2020 figures come from the historical Fluidigm Corporation filing. It excludes restricted stock units, performance share units and options because their effect is anti-dilutive during losses. The statement displays share counts in thousands with inline scale 3. Full selected counts and reported USD EPS remain on that historical filing basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1162194/000116219422000021/fldm-20211231.htm",
+  "observations": [
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.97,
+      "accn": "0001162194-22-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -0.74,
+      "accn": "0001162194-22-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.97,
+      "accn": "0001162194-22-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -0.74,
+      "accn": "0001162194-22-000021",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": 66779000,
+      "accn": "0001162194-22-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": 72044000,
+      "accn": "0001162194-22-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": 66779000,
+      "accn": "0001162194-22-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": 72044000,
+      "accn": "0001162194-22-000021",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001133818",
   "include_on_overview": true,
   "source_sha256": "ba1a5b94a703d7df40927e88576df9dbcb07b38680ce9a942065f8bd6fea9eee",
