@@ -12,33 +12,58 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-PR166 merged as41bce3e0592edd3c62159ec80893ace667f4845b after all four
-CI35560089547 checks passed ata8955ee538ea18596bdf921b8a79d80421e711bc.
-Merged tree d94e038e2ac86fb397286004f9059ebd0f8fabc4 matches the tested tree.
-Current branch: evidence/scope-v29-release-checkpoint-20260921.
+PR167 merged asd337057435d58c79f5839c2ba257f3112d919ef4 after all four
+CI35560759388 checks passed at88b36f3465c94e26e61ff676594091dd9942efe3.
+Tested/merged tree3fb3e48603d5c3acf17610282bff1a9cb3890fca verified identical.
+Current branch: evidence/batch2-fate-range-marvion-biodesix-20260921.
 
-Scope-v29 archive54731 completed exit0. New immutable archive contains745 files/
-278,743,040 bytes;45 reports reproduce byte-identically in isolated offline restore.
-SHA256 c7a06a92a3d0186162411a06a7be243215c2395dd5a9ee642f7d1804d661f4f3
-verified against archive bytes. All45 reported output hashes match current files;
-embedded profile, registry and packager match. Receipt:
-artifacts/seo/company-batch2-evidence-archive-scope-v29-20260921.json.
-Includes all eleven pending reports and scope-v29 reviews; no promotion of pending
-cases. Local reproducibility, not independent certification or verified remote backup.
-Batch2 remains616 reviewed/184 pending, including80 presentation-only reviews.
+Scope-v29 HTTP95414 completed exit0:90,732 pages/6,646 downloads/exact90,732 sitemap
+URLs, zero failures and maximum four directory clicks. All recorded code hashes
+matched at completion. Browser37320 completed exit0 BEFORE registry/notes edits:
+1,392 cases,77 filing reviews,340 note-bearing paths,1,540 exact note/source checks,
+zero failures. All38 inputs and runner hashes verified. Chromium/WebKit390/1440.
+No HTTP/browser/archive audit remains live. Reports are immutable scope-v29 evidence;
+the later scope-v30 notes below need relevant future release/archive coverage.
 
-Scope-v29 browser37320 and full HTTP95414 started and polled live; no pass claimed.
-Logs /tmp/canli-v22-scope-v29-browser.log and /tmp/canli-v22-scope-v29-http.log.
-Keep pinned renderer, registry, notes, reports and runtime inputs unchanged while
-these audits run. Uploader79720 specifically polled live; latest receipt9,277/
-10,360 verified objects, zero failures, incomplete. Probe closure28/29; remaining
-object is the download index, not yet verified by the receipt. No uploader restart,
-plan mutation, new deployment or hosted readiness pass. Preserve prior503 failures.
+Four new replayable source-pinned reports cover five filings/40 observations:
+- Fate2020/21 from the2022 filing: dollar thousands/full shares, loss anti-dilution;
+  January2021 nominal-price prefunded warrants already included in basic EPS.
+- Fate2024/25: weighted common+prefunded denominators reconcile exactly to113,685,177
+  and118,789,974. Other potential shares excluded during losses. Separate old/new
+  filing notes remain bound independently.
+- Range2024/25: full dollars/shares, continuing/discontinued operations reconcile.
+  Source labels options/warrants anti-dilutive but profitable2025 exclusion calculation
+  not independently established; all eight observations explicitly presentation-only.
+- Marvion2024/25: displayed zero is rounded loss/profit, not break-even.2024 exclusion
+  explained by loss;2025 equal-denominator cause not established. Eight presentation-only.
+- Biodesix2024/25: dollar and share thousands,7,551=7,551,000 shares; retrospective
+  one-for20 split September15,2025; loss exclusions cover options/warrants/RSUs/ESPP.
+Generic v7 unchanged. Reports/replays all byte-identical:64 inline facts/14 disclosures.
+First Fate attempt82856 failed a table requirement because denominator components
+were assigned to statement10 rather than reconciliation14. Original spec retained
+in artifacts/seo/company-fate-initial-spec-20260921.json; corrected table14 plus
+support10/15 passed63702 and replay59183. No validator weakening or source edits.
 
-Fate0001434316/0000950170-23-005067 source reading begun (tables12/16 and net-loss
-per-common-share policy). No new decision, report or note registered yet. Continue
-remaining source reviews after pinned audits finish or prepare unregistered inputs.
-90,732 candidates remain unpublished; last confirmed indexed262. API/MCP/repository
-adoption and governed engine outcomes remain active; no new evidence changes their
-baselines. Owner attribution file untouched. Next collect audits, continue reviews,
-and recheck hosted readiness once its storage dependencies are verified.
+Scope-v30:656 reviewed/144 pending/0 withdrawn;96 presentation-only included.
+Exactly40 state/evidence transitions,16limited; all800values/metadata and all prior616
+review decisions preserved. All eleven previously unresolved reports remain pending.
+100 renderer/numerics/scope tests passed,5372 terminal0. New notes cover20 paths,
+preserve source numbers and disappear only when their exact source/facts no longer
+match. Fate's other accession remains independently bound. No uploader/runtime edits.
+
+Latest sealed archive remains scope-v29:45 reports/745 files, SHA
+c7a06a92a3d0186162411a06a7be243215c2395dd5a9ee642f7d1804d661f4f3.
+Next archive must include scope-v30 and the retained initial Fate spec as a fixture.
+Remaining review queue:88observations in11 documented pending cases, plus56 across
+Southern Copper2010, Regional Health2016 and2025, Inhibitor2013, MacroGenics2014,
+Stereotaxis2014 and The92022 filings. Southern Copper/Regional Health source reading
+begun only; no extra dispositions or notes registered.
+
+Recovery79720 specifically polled live; latest receipt9,628/10,360 verified objects,
+zero failures,incomplete. Same bounded policy/plan; do not restart or mutate inputs.
+Hosted clean preview still scope-v28; last readiness7/20 failures on downloads remains
+unresolved. Expansion90,732 candidates unpublished, confirmed indexed baseline262.
+All SEO/indexing/intent/developer/API/MCP/repository/engine goals remain active;
+engine evidence six current-epoch returns/four sleeves, immature, no new runtime action.
+Owner attribution file untouched. Next publish reviews, continue remaining source
+contexts and verify hosted downloads when the dependency transfer is complete.
