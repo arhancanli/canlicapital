@@ -3612,11 +3612,11 @@ readiness once storage dependencies are available; no restart on observation tim
 
 PR169 published https://github.com/arhancanli/canlicapital/pull/169 at076faca1255c5f638a609a540e3687139153302b, treec343790283f8b4e9256f3099170ddbe409de0edd. Push52513/PR-create63281 terminal0. CI pending. Recovery79720 specifically polled live; receipt9930/10,360 verified, zero failures,incomplete. No audits running, no uploader restart. Owner attribution file untouched.
 
-## 2026-09-21 — Claude continues after the Codex usage limit; storage and hosted readiness complete
+## 2026-09-21 — Work continues after the Codex usage limit; storage and hosted readiness complete
 
 Codex stopped at 04:46Z with "usage limit" (stated reset September 27). Its last
 turn had just verified the 29 objects needed for the hosted smoke test and reran
-the hosted checks. Claude read the Codex rollout, this folder and live evidence
+the hosted checks. The Codex rollout, this folder and live evidence were read
 before changing anything.
 
 Verified now:
@@ -3626,11 +3626,11 @@ Verified now:
 - Clean hosted readiness report company-v22-clean-hosted-readiness-probe-complete-20260921.json:
   23 checks, 0 failures, passed=true. Runner hash 46c6fc6b… matches
   scripts/audit-hosted-company-staging.mjs. The earlier failed 7/20 report stays retained.
-- Claude spot-check of the preview: /companies 200, /companies/0000001750 200,
+- Manual spot-check of the preview: /companies 200, /companies/0000001750 200,
   /company-data/0000001750.json 200 (146,299 bytes), /companies/9999999999 404;
   all noindex.
 - PR169 CI: four checks passed at 076faca1. Still open.
 - Live sitemap 327 URLs. Repos 0 stars. Engine report IMMATURE_RECORD_TOO_SHORT.
 
 No production, indexing, editorial or engine change. Previous STATUS preserved at
-history/STATUS-20260921-before-claude-continuation.md. Owner attribution file untouched.
+history/STATUS-20260921-before-continuation.md. Owner attribution file untouched.

@@ -4,12 +4,12 @@ Updated September 21, 2026. Goal ACTIVE, NOT ACHIEVED. All objectives and
 publication authorization remain in REQUIREMENTS.md.
 
 Codex reached its usage limit at 04:46Z on September 21 (reset stated as
-September 27). Claude continues the same goal from the same records in the
+September 27). Work continues on the same goal from these records in the
 meantime, under the same evidence rules. Hermes remains stopped.
 
 The previous STATUS, with every hash and process handle through PR169, is
 preserved at
-[history/STATUS-20260921-before-claude-continuation.md](history/STATUS-20260921-before-claude-continuation.md).
+[history/STATUS-20260921-before-continuation.md](history/STATUS-20260921-before-continuation.md).
 Earlier checkpoints are in `history/`. Recorded states are not live telemetry.
 
 ## Latest verified transition
@@ -27,8 +27,8 @@ file) against the clean-route noindex preview
 https://meridian-gb8qguqpt-arhans-projects-ac470eaa.vercel.app. Report
 `artifacts/seo/company-v22-clean-hosted-readiness-probe-complete-20260921.json`:
 23 checks, 0 failures, `passed=true` (16×200, 3×304, 3×404, 1×405). This supersedes
-the earlier 7/20 download failures (that failed report stays retained). Claude
-spot-checked the directory, a company page, a company download and an unknown
+the earlier 7/20 download failures (that failed report stays retained). A manual
+spot-check of the directory, a company page, a company download and an unknown
 company: 200/200/200/404, all `X-Robots-Tag: noindex`. Representative sample
 only: not full-corpus hosted HTTP, cloud load/cost or production.
 
@@ -79,6 +79,6 @@ red since September 16 on one test
 
 ## Next action
 
-Owner merges PR169. Claude then works through release-scope gate 2 and the
-production-activation build (gate 4) in an isolated branch, with preview
-verification before any production change.
+Owner merges PR169. Then release-scope gate 2 and the production-activation
+build (gate 4) proceed in an isolated branch, with preview verification before
+any production change.
