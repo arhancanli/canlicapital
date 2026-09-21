@@ -1887,3 +1887,37 @@ prepare batch2 evidence archive; finish hosted transfer/admission before deploym
 All SEO/indexing, developer adoption and governed engine goals remain active.
 No production activation or newly confirmed indexing. Owner attribution untouched.
 Transfer44227 confirmed live this turn; latest receipt 3934/10,360objects/zero failures. Uploader/plan unchanged.
+
+PR139 published atd0d67c1862ac1d378953d012f37f230d8b63dae3; CI pending.
+Push terminal0; unpublished rebase preserved full tree
+a41c1daa1f53bfb0bd89db7b99653d55e72db2a3. No local HTTP/browser jobs remain active.
+
+## 2026-09-21 — batch2 portable evidence and isolated replay
+
+Worktree branch `evidence/batch2-portable-archive-20260921`.
+Previous turn made progress: fresh90,732page HTTP/600browser validation and PR139.
+PR139 merged ascf8a93a852891438afec4ae72501a39d99e6ef46 after all four
+CI35549257337 checks passed atd0d67c18. Full tested/merged tree
+a41c1daa1f53bfb0bd89db7b99653d55e72db2a3 matches.
+Batch2 archive/isolated replay86874 TERMINAL0:620files/271,206,400bytes,
+SHA4495493c8951dfc8efc870d6d93121762f5a71f22dd5347e3dfcc87ccc187015.
+Local archive corpus-local/company-batch2-evidence-scope-v13-20260921.tar;
+receipt company-batch2-evidence-archive-scope-v13-20260921.json. Independently
+rechecked archive hash and actual inventory100primary/seven legacy response files.
+New scripts/package_batch2_evidence.py reuses safe shared pack/verify machinery;
+five archive safety tests pass. Captures/receipts, source fixtures, pinned registry,
+review specifications, scripts, previous ledgers and incomplete drafts preserved.
+All19outputs replay byte-identically from isolated restored workspace and locked
+parser wheels installed with --no-index/--require-hashes: capture binder, primary
+numeric comparison, legacy exact-partition comparison,12registered review reports,
+three pending discrepancy reports and scope-v13 ledger. Saved code base d0d67c18;
+new packager itself is also saved/hash-bound in the archive. Temporary restore removed.
+Ledger remains264reviewed/536pending/0withdrawn,16presentation-only; replay does not
+promote unresolved Theriva, Community or Morgan findings. This is local reproducibility
+of recorded interpretations, not independent certification or an offsite backup.
+No renderer/source/policy/runtime-object changes: latest full HTTP/browser evidence
+still applies to its exact pinned inputs. Storage transfer/admission and pending
+accounting review remain next; continue source-backed useful coverage and retain all
+SEO/indexing, developer adoption and governed engine objectives. No production or
+new indexing gain. Owner attribution file untouched.
+Transfer44227 polled live this turn; latest receipt 4168/10,360objects/zero failures. Uploader/plan unchanged.

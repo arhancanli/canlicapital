@@ -166,3 +166,9 @@ SEC declaration in the same combined statement row as the unique visible basic
 peer. Final CSS declarations need not have trailing semicolons. Missing, wrong-row,
 ambiguous or prefix-only links fail closed. Filing absence-of-instruments paragraph
 and fiscal/share basis are required. scope-v13 adds8only;264reviewed/536pending.
+
+Batch2 through scope-v13 is preserved in company-batch2-evidence-scope-v13-20260921.tar
+(SHA4495493c8951dfc8efc870d6d93121762f5a71f22dd5347e3dfcc87ccc187015).
+package_batch2_evidence.py restores620files and replays19outputs offline, including
+three explicitly pending reports. Later review registrations require a new archive;
+this snapshot must not be overwritten or described as offsite backup/certification.

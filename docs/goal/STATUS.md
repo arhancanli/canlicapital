@@ -8,35 +8,33 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/batch2-release-validation-20260921`.
-Previous turn made progress by launching updated full HTTP/browser audits; both
-were re-polled live, and now both completed. PR138 remains merged as
-163d7755156c76c8632df28d5779aeab62575cb6 after CI35548763211 at038ea27f;
-full tested/merged tree bfb8016a3b9067bd27ce2d58c7e147f065a359f5 matches.
-Full HTTP47680 TERMINAL0:90,732pages/6,646downloads/exact90,732sitemapURLs,
-zero failures, maximum4directory clicks. Updated report
-company-five-cohort-v22-batch2-notes-http-20260921.json pins filing-note module,
-release handler and source verifier as well as existing code, and verifies code
-unchanged during measurement. All report code hashes match actual files.
-Browser1234 TERMINAL0:600cases,150perChromium/WebKit390/1440combination;
-33registered filing reviews across28companies,140note-bearing pages,660exact note
-text/source-link checks. Also canonical/structured-data/developer links, no overflow,
-grouped withheld-row keyboard interaction/exact14rows and omitted-history404s.
-Report company-v22-batch2-notes-browser-retry-20260921.json; all input/code hashes
-verified. Chromium mobile/desktop and WebKit mobile Idaho screenshots inspected:
-notes/source links fit without overlap or horizontal overflow. Browser scope covers
-all currently registered batch2 notes plus representative previous notices, not all
-90,732pages or accessibility certification. Local sequential HTTP is not hosted load.
-Initial browser90571 TERMINAL1 after6checks: variable collision in audit code only.
-Failure report retained; exact initial runner gzip now retained under artifacts/seo/
-company-v22-batch2-notes-browser-initial-runner-20260921.py.gz and hash verified
-against failure report. Retry changed that variable only; site code unchanged.
-Batch2 ledger264reviewed/536pending,16presentation-only unchanged. No data/policy/
-runtime-object changes. Next publish validation, continue source-scope review and
-prepare batch2 evidence archive; finish hosted transfer/admission before deployment.
-All SEO/indexing, developer adoption and governed engine goals remain active.
-No production activation or newly confirmed indexing. Owner attribution untouched.
-Transfer44227 confirmed live this turn; latest receipt 3934/10,360objects/zero failures. Uploader/plan unchanged.
+Worktree branch `evidence/batch2-portable-archive-20260921`.
+Previous turn made progress: fresh90,732page HTTP/600browser validation and PR139.
+PR139 merged ascf8a93a852891438afec4ae72501a39d99e6ef46 after all four
+CI35549257337 checks passed atd0d67c18. Full tested/merged tree
+a41c1daa1f53bfb0bd89db7b99653d55e72db2a3 matches.
+Batch2 archive/isolated replay86874 TERMINAL0:620files/271,206,400bytes,
+SHA4495493c8951dfc8efc870d6d93121762f5a71f22dd5347e3dfcc87ccc187015.
+Local archive corpus-local/company-batch2-evidence-scope-v13-20260921.tar;
+receipt company-batch2-evidence-archive-scope-v13-20260921.json. Independently
+rechecked archive hash and actual inventory100primary/seven legacy response files.
+New scripts/package_batch2_evidence.py reuses safe shared pack/verify machinery;
+five archive safety tests pass. Captures/receipts, source fixtures, pinned registry,
+review specifications, scripts, previous ledgers and incomplete drafts preserved.
+All19outputs replay byte-identically from isolated restored workspace and locked
+parser wheels installed with --no-index/--require-hashes: capture binder, primary
+numeric comparison, legacy exact-partition comparison,12registered review reports,
+three pending discrepancy reports and scope-v13 ledger. Saved code base d0d67c18;
+new packager itself is also saved/hash-bound in the archive. Temporary restore removed.
+Ledger remains264reviewed/536pending/0withdrawn,16presentation-only; replay does not
+promote unresolved Theriva, Community or Morgan findings. This is local reproducibility
+of recorded interpretations, not independent certification or an offsite backup.
+No renderer/source/policy/runtime-object changes: latest full HTTP/browser evidence
+still applies to its exact pinned inputs. Storage transfer/admission and pending
+accounting review remain next; continue source-backed useful coverage and retain all
+SEO/indexing, developer adoption and governed engine objectives. No production or
+new indexing gain. Owner attribution file untouched.
+Transfer44227 polled live this turn; latest receipt 4168/10,360objects/zero failures. Uploader/plan unchanged.
 
 ## Earlier verified checkpoints (historical)
 
