@@ -1430,3 +1430,27 @@ test('CytoSorbents, Vaccinex and MediciNova preserve loss measures and share con
     }
   }
 });
+
+test('CVRx, Idaho and Vivani retain denominator limits, fiscal dates and rounded EPS', () => {
+  for (const [cik, accession, phrases] of [
+    ['0001235912', '0001104659-26-014708', [/period-end amounts, which are not additions/, /shares and per-share amounts are unscaled/]],
+    ['0001263364', '0001493152-26-010471', [/January 31, 2025 and 2026/, /one-for-20 reverse split effective December 15, 2025/, /does not establish a specific dilution cause/]],
+    ['0001266806', '0001753926-26-000548', [/same -\$0\.43 in both years despite different losses and denominators/, /inline scale 3/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic').filter(n => n.observations.some(r => r.accn === accession));
+    assert.equal(notes.length, 1);
+    const changed = structuredClone(record), row = notes[0].observations[0];
+    changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+    assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+  }
+});

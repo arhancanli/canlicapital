@@ -1,6 +1,243 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001235912",
+  "include_on_overview": true,
+  "source_sha256": "9fe302007222f93e8b8392ed90320fea549fa40104758f07882615f91d312170",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "CVRx excludes options, restricted stock units and warrants during 2024 and 2025 because including them would reduce the reported loss per share. The excluded-security disclosure lists period-end amounts, which are not additions to the weighted-average denominator. Dollar losses are displayed in thousands; shares and per-share amounts are unscaled. Full selected share counts and reported USD EPS are preserved.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1235912/000110465926014708/cvrx-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.65,
+      "accn": "0001104659-26-014708",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -2.04,
+      "accn": "0001104659-26-014708",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.65,
+      "accn": "0001104659-26-014708",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -2.04,
+      "accn": "0001104659-26-014708",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 22596229,
+      "accn": "0001104659-26-014708",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 26084709,
+      "accn": "0001104659-26-014708",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 22596229,
+      "accn": "0001104659-26-014708",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 26084709,
+      "accn": "0001104659-26-014708",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001263364",
+  "include_on_overview": true,
+  "source_sha256": "2de27c4f05e4d98021c18c085398a7143da700b0712edb52011d6faf68a986cd",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Idaho Copper's years ended January 31, 2025 and 2026, share and per-share amounts retrospectively reflect the one-for-20 reverse split effective December 15, 2025. The statement reports equal basic and diluted EPS and share counts, but this review does not establish a specific dilution cause. Full counts, reported USD EPS and January fiscal dates are retained as a presentation-only review.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1263364/000149315226010471/form10-k.htm",
+  "observations": [
+    {
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "val": -0.42,
+      "accn": "0001493152-26-010471",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "val": -0.23,
+      "accn": "0001493152-26-010471",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "val": -0.42,
+      "accn": "0001493152-26-010471",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "val": -0.23,
+      "accn": "0001493152-26-010471",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "val": 12351678,
+      "accn": "0001493152-26-010471",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "val": 13432656,
+      "accn": "0001493152-26-010471",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "val": 12351678,
+      "accn": "0001493152-26-010471",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "val": 13432656,
+      "accn": "0001493152-26-010471",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001266806",
+  "include_on_overview": true,
+  "source_sha256": "15463ebc11bbf3e9f4496bfc06a4c02394ee50679da394698e4aa269147e217a",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Vivani Medical in 2024 and 2025, warrants, options and restricted stock units are excluded because potential shares would be anti-dilutive during losses. The statement displays share counts in thousands with inline scale 3. The reported EPS rounds to the same -$0.43 in both years despite different losses and denominators. Full selected share counts and reported USD EPS are preserved.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1266806/000175392626000548/vani-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.43,
+      "accn": "0001753926-26-000548",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.43,
+      "accn": "0001753926-26-000548",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.43,
+      "accn": "0001753926-26-000548",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.43,
+      "accn": "0001753926-26-000548",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 54981000,
+      "accn": "0001753926-26-000548",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 62389000,
+      "accn": "0001753926-26-000548",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 54981000,
+      "accn": "0001753926-26-000548",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 62389000,
+      "accn": "0001753926-26-000548",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001175151",
   "include_on_overview": true,
   "source_sha256": "8bb195ec858f16302b2a8454a5ffe3eff6c1e6cd0312136a64a7a2f621b86836",
