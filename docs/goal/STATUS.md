@@ -12,64 +12,33 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-PR165 merged as31518e0f70a7290e385599a8225c18e7a6fd7fae after all four
-CI35559631857 checks passed atca7c3fd38c7c9e0538428af018f86032c06a64e8.
-Tested and merged treea3cae449db9f3c445bcaea29b533d7307d01d5d4 verified.
-Current branch: evidence/batch2-twentieth-contexts-20260921. Previous turn completed
-scope-v28 HTTP/archive and32 hosted browser cases on the clean preview.
+PR166 merged as41bce3e0592edd3c62159ec80893ace667f4845b after all four
+CI35560089547 checks passed ata8955ee538ea18596bdf921b8a79d80421e711bc.
+Merged tree d94e038e2ac86fb397286004f9059ebd0f8fabc4 matches the tested tree.
+Current branch: evidence/scope-v29-release-checkpoint-20260921.
 
-Local browser96813 completed exit0 before new notes were installed:1,336 cases,
-74 registered filing reviews,325 note-bearing paths,1,480 exact note/source checks,
-zero failures. All36 input hashes and runner matched at completion. Chromium/WebKit
-390/1440px. Covers scope-v28; new scope-v29 below needs later relevant release checks.
+Scope-v29 archive54731 completed exit0. New immutable archive contains745 files/
+278,743,040 bytes;45 reports reproduce byte-identically in isolated offline restore.
+SHA256 c7a06a92a3d0186162411a06a7be243215c2395dd5a9ee642f7d1804d661f4f3
+verified against archive bytes. All45 reported output hashes match current files;
+embedded profile, registry and packager match. Receipt:
+artifacts/seo/company-batch2-evidence-archive-scope-v29-20260921.json.
+Includes all eleven pending reports and scope-v29 reviews; no promotion of pending
+cases. Local reproducibility, not independent certification or verified remote backup.
+Batch2 remains616 reviewed/184 pending, including80 presentation-only reviews.
 
-Three additional filing contexts retained across two replayable reports:
-- Fortress2024/25: dollar thousands/full shares.2025 consolidated loss32.915m becomes
-  parent-attributable income6.815m after NCI allocation39.730m; preferred/subsidiary
-  deemed dividends8.697m produce common loss1.882m.2024 common loss55.890m includes
-  dividends. EPS is not consolidated loss or parent-attributable income alone.
-- Tonix2024/25: dollar thousands/full shares, one-for100 split effectiveFebruary5,
-  2025 reflected retrospectively. Prefunded warrants assumed exercised from issuance;
-  exclusions apply when anti-dilutive or exercise prices exceed average market price.
-- Plastec2012: eight legacy observations across fiscal yearMay2011–April2012 and
-  the separate unaudited calendar2012 comparative year. Do not confuse the latter
-  with the audited eight-month transition period endingDecember2012. HKD per-share
-  data and full shares; dollar statement values are HKD thousands. Exclusion cause
-  for the unaudited comparative year is not established; all eight are explicitly
-  presentation-only. Older2013–15 note retained independently.
+Scope-v29 browser37320 and full HTTP95414 started and polled live; no pass claimed.
+Logs /tmp/canli-v22-scope-v29-browser.log and /tmp/canli-v22-scope-v29-http.log.
+Keep pinned renderer, registry, notes, reports and runtime inputs unchanged while
+these audits run. Uploader79720 specifically polled live; latest receipt9,277/
+10,360 verified objects, zero failures, incomplete. Probe closure28/29; remaining
+object is the download index, not yet verified by the receipt. No uploader restart,
+plan mutation, new deployment or hosted readiness pass. Preserve prior503 failures.
 
-company-share-context-batch2-twentieth-20260921.json (unchanged v7):16 observations,
-16 inline facts/6 disclosures. Report21378 and replay33228 terminal0, byte-identical.
-company-share-context-plastec-legacy-20260921.json uses source-specific
-review-plastec-legacy-context.py and unchanged legacy-v2 comparator. Exact primary/
-source/instance hashes, issuer/period/compound-unit/value matches, table310/410
-headers, audit-status labels, full-share/HKD EPS columns and eight visible cells
-checked; matched fact/context/unit XML retained. Primary
- a34753a56b5f749239a98af10d69b014ac3634e20e6a09e816038f9dc8fb4619;
-source cf4b5a43bd4fd766c3e43344162a2a5fabd8aa1327866bec066af37167006276;
-instance2b15157b6bc5c4071783f80a0d5647228c5ddfdfc31c6eee06d0f75772a06b6c.
-Report/replay33228 byte-identical. No generic validator weakened.
-
-Scope-v29 now616 reviewed/184 pending/0 withdrawn,80 presentation-only. Exactly24
-state/evidence transitions (eight limited); all800metadata and prior592 decisions
-preserved.99 renderer/numerics/scope tests pass,60025 terminal0. Notes cover15 paths,
-retain numerical data and exact fact/source bindings; changing one Plastec accession
-removes only its own note. All eleven unresolved reports remain pending. No source
-values, selector policy, runtime objects or uploader changed.
-
-Latest sealed scope-v28 archive70654:43 reports/736 files, all eleven pending reports;
-SHA19f2677635413b93002ab116e5170c7cc0c46c2e89a971bbdf144b48196d3157.
-Current scope-v29 additions need later archive coverage/release checks. Full scope-v28
-HTTP90,732 pages/6,646 downloads passed. No browser/HTTP/archive audit running now.
-Clean noindex preview https://meridian-gb8qguqpt-arhans-projects-ac470eaa.vercel.app
-still at tested PR164 tree; representative hosted32 browser cases/four navigation
-flows passed, but last full hosted readiness failed7/20 download checks503.
-New notes are not deployed. Full storage/load/cost/admission gates remain open.
-
-Recovery79720 polled live; latest receipt8970/10,360 verified objects,0 failures,
-incomplete. Same bounded policy/plan/uploader; earlier520 retained, counts not additive.
-No new production activation or indexing evidence;90,732 candidates unpublished,
-last confirmed indexed baseline262. Engine six-return/four-sleeve evidence immature;
-no runtime/broker action. All indexing/quality/SEO/intent/developer-adoption/governed-
-engine goals remain active. Next publish reviews, continue remaining contexts and
-hosted readiness when storage completes. Owner attribution file untouched.
+Fate0001434316/0000950170-23-005067 source reading begun (tables12/16 and net-loss
+per-common-share policy). No new decision, report or note registered yet. Continue
+remaining source reviews after pinned audits finish or prepare unregistered inputs.
+90,732 candidates remain unpublished; last confirmed indexed262. API/MCP/repository
+adoption and governed engine outcomes remain active; no new evidence changes their
+baselines. Owner attribution file untouched. Next collect audits, continue reviews,
+and recheck hosted readiness once its storage dependencies are verified.
