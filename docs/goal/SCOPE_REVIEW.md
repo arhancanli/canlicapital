@@ -116,3 +116,9 @@ Fourth batch2 report adds32observations,120reviewed/680pending overall, includin
 the dilution cause. Precipio/AppTech dollar-only headings preserve full share counts;
 Modular prefunded warrants already included in basic shares. Scope-v5 preserves
 all800rows and prior88decisions, changing only32states/evidence links.
+
+Fifth batch2 report adds16Curis observations;136reviewed/664pending overall,
+8presentation-only unchanged. Community Redevelopment2021numerator differs
+between main net-loss subtotal and EPS note; dedicated reproducible report stays
+pending and provides diagnostic arithmetic only. Plug diluted tags need explicit
+visible-statement mapping. The strict v6table gate remains unchanged.

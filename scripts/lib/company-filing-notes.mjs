@@ -1,6 +1,164 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001108205",
+  "include_on_overview": true,
+  "source_sha256": "844a153fc06343c14854b58f38ad345e7ab34cf867e744e88827927acddd844e",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Curis in 2019 and 2020, the filing excludes potential common-stock equivalents because their effect would be anti-dilutive in the reported loss periods. Dollar losses are displayed in thousands; share counts and per-share data are unscaled. The historical filing's full weighted-average shares and reported USD EPS are retained without converting them to a later share basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1108205/000110820522000002/cris-20211231.htm",
+  "observations": [
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.97,
+      "accn": "0001108205-22-000002",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -0.61,
+      "accn": "0001108205-22-000002",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": -0.97,
+      "accn": "0001108205-22-000002",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -0.61,
+      "accn": "0001108205-22-000002",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": 33180516,
+      "accn": "0001108205-22-000002",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": 48670381,
+      "accn": "0001108205-22-000002",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "val": 33180516,
+      "accn": "0001108205-22-000002",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": 48670381,
+      "accn": "0001108205-22-000002",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001108205",
+  "include_on_overview": true,
+  "source_sha256": "844a153fc06343c14854b58f38ad345e7ab34cf867e744e88827927acddd844e",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Curis in 2024 and 2025, potential dilutive common-stock equivalents are excluded during losses. The March and July 2025 pre-funded warrants are already included in weighted-average basic and diluted shares because they are fully vested, immediately exercisable and issuable for little or no consideration. They must not be added again as dilution. Dollar losses are displayed in thousands; full share counts and reported USD EPS are preserved.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1108205/000110820526000043/cris-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -6.88,
+      "accn": "0001108205-26-000043",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.58,
+      "accn": "0001108205-26-000043",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -6.88,
+      "accn": "0001108205-26-000043",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.58,
+      "accn": "0001108205-26-000043",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 6306284,
+      "accn": "0001108205-26-000043",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 13164032,
+      "accn": "0001108205-26-000043",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 6306284,
+      "accn": "0001108205-26-000043",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 13164032,
+      "accn": "0001108205-26-000043",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001042418",
   "include_on_overview": true,
   "source_sha256": "4142a89736990e49cb86be8cc08735b878648c52aa079c470055b2d7cd387cb7",
