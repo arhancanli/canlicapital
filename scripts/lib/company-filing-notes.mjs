@@ -1,6 +1,243 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001380106",
+  "include_on_overview": true,
+  "source_sha256": "8c4362d2b05e0f4a0adf4f8af9763ce28a8aa93bae8a254f07b04a87d0491d12",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Rapid Micro Biosystems' 2024 and 2025 statements use dollar amounts in thousands but full share counts and unscaled EPS. The weighted-average denominator combines Class A and Class B common shares; both classes have equal rights to earnings and neither has senior dividend rights. Potential common shares are excluded as anti-dilutive during losses, so basic and diluted loss EPS are equal. The excluded options, restricted stock units, warrants and employee stock purchase plan shares are period-end amounts, not additions to the reported weighted-average denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1380106/000138010626000034/rmb-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.08,
+      "accn": "0001380106-26-000034",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.05,
+      "accn": "0001380106-26-000034",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.08,
+      "accn": "0001380106-26-000034",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.05,
+      "accn": "0001380106-26-000034",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 43575705,
+      "accn": "0001380106-26-000034",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 44679341,
+      "accn": "0001380106-26-000034",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 43575705,
+      "accn": "0001380106-26-000034",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 44679341,
+      "accn": "0001380106-26-000034",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001388295",
+  "include_on_overview": true,
+  "source_sha256": "8d592e058cd02a239f1be0cefae4e0f54b7d9a925c7306905fbed32e00e25ecf",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "OneMeta's 2024 loss available to common shareholders includes a $1,011,803 deemed dividend for additional shares issued to prior subscribers: $4,595,555 net loss plus that dividend gives $5,607,358. No such dividend appears in the 2025 column. Dollar amounts and shares are unscaled. Potential common shares are excluded as anti-dilutive during losses, so basic and diluted loss EPS are equal. The disclosed year-end warrants, options, preferred-stock conversions, convertible notes and common-stock liability are not additions to the weighted-average denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1388295/000149315226020948/form10-ka.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.17,
+      "accn": "0001493152-26-020948",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.1,
+      "accn": "0001493152-26-020948",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.17,
+      "accn": "0001493152-26-020948",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.1,
+      "accn": "0001493152-26-020948",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 33883019,
+      "accn": "0001493152-26-020948",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 38612313,
+      "accn": "0001493152-26-020948",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 33883019,
+      "accn": "0001493152-26-020948",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 38612313,
+      "accn": "0001493152-26-020948",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001388320",
+  "include_on_overview": true,
+  "source_sha256": "8b2cf9a9df391f2441e59da237c67a180665686e2082a76d5298eb6715d76292",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Actinium Pharmaceuticals' 2024 and 2025 statements display dollar amounts in thousands but full weighted-average common-share counts and unscaled EPS. Potential shares from outstanding options, restricted stock units and warrants are excluded as anti-dilutive during losses. Basic and diluted loss EPS therefore use the same reported denominator; excluded instruments are not additional weighted-average shares.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1388320/000121390026036504/ea0279291-10k_actinium.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.27,
+      "accn": "0001213900-26-036504",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.09,
+      "accn": "0001213900-26-036504",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.27,
+      "accn": "0001213900-26-036504",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.09,
+      "accn": "0001213900-26-036504",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 30070028,
+      "accn": "0001213900-26-036504",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 31195891,
+      "accn": "0001213900-26-036504",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 30070028,
+      "accn": "0001213900-26-036504",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 31195891,
+      "accn": "0001213900-26-036504",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001362190",
   "include_on_overview": true,
   "source_sha256": "ff98d56fcf789f6a2b9b81e6ac2cc37d42092c28bddca9bce294d53b1d2e77bc",

@@ -12,49 +12,45 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-PR154 merged as5649b2de60097daa105a2b345f0b502c61067530 after all four
-CI35554722128 checks passed at30ff62f4da6dab17fa79f0539f551e16930a6fe1.
-Tested and merged treee35e50afbbc396826923f6be05a31ed84873f40e verified.
-Current branch: evidence/myomo-warrant-context-20260921. Previous goal turn made
-progress by merging PR153, restoring30 reports and publishing PR154.
+PR155 merged as2920e9bd444c7d19ad312847bf388f3e25c0d882 after all four
+CI35555034281 checks passed atd4899aa7e2de332d6a53e8faed5da034d019b9bf.
+Tested and merged treed96ac3f0419ffeee30aad4ef132bf4a07cdedc74 verified.
+Current branch: evidence/batch2-next-contexts-20260921. Previous turn made progress
+by preserving Myomo uncertainty and completing940 browser cases.
 
-Myomo report company-myomo-warrant-date-discrepancy-20260921.json preserves both
-prefunded-warrant inclusion-date descriptions: January2023/August2023 versus
-January2024/August2023/January2023. Both state the same year-end2025/2024 balances
-3,763,258/7,061,519; the financing paragraph confirms224,730 warrants issued
-January19,2024. The broader list may supply an omission, but no dated denominator
-rollforward establishes exact weighting. Do not claim erroneous EPS or treat
-outstanding year-end warrants as weighted shares. The full loss-period dilution
-paragraph is retained separately.
+Three more captured2024/25 filings reviewed using unchanged v7 validator:
+- Rapid Micro Biosystems: dollar thousands/full shares; Class A and B have equal
+  earnings/dividend rights. Their weighted shares sum to43,575,705/44,679,341.
+  Loss-period excluded securities are year-end amounts, not extra weighted shares.
+- OneMeta: full dollars/shares. The2024 loss available to common shareholders is
+  4,595,555 net loss plus1,011,803 deemed dividend =5,607,358. The dividend arises
+  from additional shares issued to prior subscribers;2025 has none in that row.
+  Loss-period exclusions include warrants/options/conversions/stock liability.
+- Actinium: dollar thousands/full shares; potential options, restricted units and
+  warrants excluded as anti-dilutive during losses; reported basic/diluted equal.
 
-Eight selected observations and eight scale0 inline facts match the primary
-statement, with exact entity/context/unit/table checks; four full disclosures
-preserved. Source SHA9ced30eaa1580175e989ecc2f5d6b3002c3a0519be795c23e9998fc21bee7552;
-primary SHA802b335619ea10beb6e0bfb253a8b7f9888330b7fe35744977299f15ff83af97.
-Report replays byte-for-byte. Three ledger tests pass, including rejection of all
-eight pending discrepancy reports as approved evidence. Both Myomo years stay
-pending; no public note, source correction, selector/policy or runtime-object change.
+Report company-share-context-batch2-thirteenth-20260921.json verifies24 selected
+observations with28 inline statement/note facts and11 full disclosures. Replay
+is byte-identical. Source-bound notes cover15 overview/concept paths and disappear
+if a bound observation changes.91 relevant tests pass (87 renderer/numerics +4 scope).
+Scope-v21:432 reviewed /368 pending /0 withdrawn, including64 presentation-only.
+Exactly24 state/evidence changes; all800 metadata and prior408 decisions preserved.
+No source correction, selection-policy or runtime-object change.
 
-Initial preparation builder rejected duplicate full/fragment paragraph matches.
-Preserved in corpus-local/company-myomo-initial-builder-20260921.py.gz, raw SHA
-63316999973523898bd26ef0b38c448244408581e8c48b8b67f01cb8511cbbde. Corrected builder
-selects the complete financing paragraph; replay runner asserts its full exact text.
-No shared validator weakened. New report/fixture need later archive coverage;
-scope-v20's674-file/30-report archive remains immutable with seven historical
-pending reports. Batch2 still408 reviewed /392 pending, including64 presentation-only.
+CIKs0001381074 and0001382101 require separate historical/accession review; they
+were not approved from preliminary table inspection. Eight discrepancy reports,
+including Myomo, remain pending. No inference that matching numbers resolve scope.
 
+Latest completed browser86426 covers the preceding scope-v20:940 cases,225 note
+paths,1,020 exact note/source checks,zero failures. It does not cover these three
+new notes. Earlier scope-v19 full HTTP covers90,732 pages/6,646 downloads. New notes
+need later relevant release checks and archive coverage. Frozen scope-v20 archive
+has674 files/30 reproduced reports,seven historical pending reports; Myomo is later.
 
-Browser86426 completed with exit0:940 cases,zero failures across Chromium/WebKit
-at390/1440px. All51 registered filing reviews cover225 note-bearing paths and
-1020 exact note/source checks. Every27 recorded input hashes and the runner hash
-match current files. Canonical/developer links, withheld-history404s, keyboard
-controls and overflow checks pass. This is local browser evidence, not hosted load,
-full accessibility certification, production or indexing. Report:
-company-v22-scope-v20-browser-20260921.json.
-
-Recovery79720 confirmed live; receipt6202 verified objects, zero failures,
-incomplete. Prior failed520 object now verified. Same plan/uploader/bounded policy.
-No production activation or new indexing evidence;90,732 candidates remain
-unpublished and last confirmed indexed baseline262. Owner attribution file untouched.
-Next complete hosted readiness and continue pending source review.
-All indexing, quality/SEO/intent, developer-adoption and governed-engine goals active.
+Recovery79720 remains active; latest receipt6411 verified objects,0 failures,
+incomplete. Prior failed520 object now verified. Original44227 remains terminal;
+same uploader/plan/bounded policy, counts not additive. No production deployment
+or new indexed-page evidence;90,732 candidates remain unpublished, baseline262.
+Next publish these reviews, continue pending contexts and hosted readiness.
+Every indexing/quality/SEO/intent/developer-adoption/governed-engine goal remains
+active. Owner attribution file untouched.
