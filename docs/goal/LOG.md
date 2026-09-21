@@ -2240,3 +2240,53 @@ The new LENSAR note needs updated relevant release checks and archive coverage;
 scope-v16 evidence remains tied to historical inputs. All original indexing,
 SEO/search-intent, developer-adoption and governed-engine goals remain active.
 No new indexed pages or production deployment established.
+
+PR147 published at82ac9160d083ba441249cc5a2181f271fd862c6e; CI pending.
+Push85343/PR-create83664 TERMINAL0. Unpublished rebase preserved full tree
+f4b00fb1276908822ef5f10f4f1c4a84316f10f4. Recovery79720 polled live after
+publication; latest237objects reverified/0failures. Owner attribution file untouched.
+
+## 2026-09-21 — Femasys warrant timing remains unresolved
+
+The previous turn made progress by reviewing LENSAR and starting a verified,
+paced recovery transfer. PR147 is now merged as
+5a6f0763ab439c35fa15030ca451d9c35324ac51 after all four CI35551954851 checks
+passed at82ac9160d083ba441249cc5a2181f271fd862c6e. The tested and merged trees
+match: f4b00fb1276908822ef5f10f4f1c4a84316f10f4.
+Current branch: evidence/femasys-warrant-date-20260921.
+
+Femasys filing0001140361-26-012375 reports the same eight selected 2024/25
+numbers in statements and EPS note. The note includes pre-funded warrants in
+the denominator from issuance and calls them November2025 warrants at $0.0001.
+The financing note describes August25 issuance at that exercise price, with
+6,750,000 remaining at year-end; its November financing instead describes
+convertible notes and warrant series at $0.81/$0.92/$1.10. The reviewed filing
+alone does not resolve the date/instrument attribution or denominator timing.
+Do not silently replace November with August or approve a reconstructed denominator.
+
+Preserved company-femasys-warrant-date-discrepancy-20260921.json with a source-pinned
+replay script, actual source fixture, exact statement rows, seven full disclosures,
+and sixteen inline facts with context/unit XML. The unchanged v7 semantic locator
+handles ID-less facts and is hash-bound in the report. Primary SHA:
+843bae9080c2511675efce3fca1ff1bef352c09d941f0ab3dfbf5fe5c4a8b837.
+Source SHA:0a977ccfe663d6aad6cf08dbc6fa26d0ec381f134bae0515d39173985a9d6dcf.
+Replay56384 completed with exit0 and byte-identical output. Seven ledger tests pass,
+including rejection of all six pending discrepancy reports as approved reviews.
+No public note, registration, policy hold, source correction or numerical change.
+
+The scope-v17 ledger remains 328 reviewed / 472 pending / 0 withdrawn, including
+16 presentation-only reviews. Older scope-v16 archive and HTTP/browser reports
+retain their historical coverage; LENSAR and this new pending report need later
+archive coverage, and LENSAR needs updated relevant release checks.
+
+Recovery79720 was polled live; latest receipt shows 676 reverified objects and
+zero failures. Receipt: artifacts/seo/corpus-local/company-five-cohort-storage-transfer-v22-recovery-20260921.json.
+Log: /tmp/canli-v22-transfer-recovery.log. Original44227 remains TERMINAL1 after
+6,023 verified objects and HTTP520; its receipt and the post-wait absent-object
+read are preserved. Recovery is a fresh verification pass, not 676 additional
+objects. Uploader, plan and runtime objects unchanged. Never restart44227.
+
+Next publish this pending evidence, continue pending filing contexts and monitor
+recovery for hosted readiness. No deployment or new indexed-page evidence. All
+original indexing, SEO/search-intent, developer/API/MCP/repository adoption and
+governed engine outcome goals remain active. Owner attribution file untouched.
