@@ -1700,3 +1700,27 @@ test('Sutro keeps historical and split-adjusted filing bases explicit', () => {
     assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
   }
 });
+
+test('SELLAS Gevo and Aquestive preserve basic inclusion attribution and warrant timing', () => {
+  for (const [cik, phrases] of [
+    ['0001390478', [/Basic weighted-average shares already include prefunded warrants/, /shares held in abeyance/, /only nominal consideration/, /excluded-securities table uses thousands/]],
+    ['0001392380', [/33.836 million loss attributable to Gevo/, /1.207 million income attributable/, /79,000 redemption-value adjustment is recorded in equity/, /only to the extent redemption value exceeds fair value cumulatively/, /without constructing an additional adjustment/]],
+    ['0001398733', [/rows explicitly use dollars per share and full shares/, /prefunded warrants were fully exercised in 2022/, /not an outstanding prefunded-warrant balance/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic');
+    assert.equal(notes.length, 1);
+    const changed = structuredClone(record), row = notes[0].observations[0];
+    changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+    assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+  }
+});

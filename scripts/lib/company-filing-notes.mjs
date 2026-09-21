@@ -1,6 +1,243 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001390478",
+  "include_on_overview": true,
+  "source_sha256": "818666353c7435e791daaef96b770961681bfce07618c1566e0bf1f54ce09cc0",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "SELLAS Life Sciences' 2024 and 2025 statements display dollars in thousands but full share counts and unscaled EPS. Basic weighted-average shares already include prefunded warrants and shares held in abeyance because delivery requires only nominal consideration. Other potential shares from warrants, options and unvested restricted stock are excluded as anti-dilutive during losses, so basic and diluted loss EPS are equal. The excluded-securities table uses thousands; its amounts are not additions to the reported weighted-average denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1390478/000139047826000003/sls-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.5,
+      "accn": "0001390478-26-000003",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.25,
+      "accn": "0001390478-26-000003",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.5,
+      "accn": "0001390478-26-000003",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.25,
+      "accn": "0001390478-26-000003",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 61202412,
+      "accn": "0001390478-26-000003",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 109051215,
+      "accn": "0001390478-26-000003",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 61202412,
+      "accn": "0001390478-26-000003",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 109051215,
+      "accn": "0001390478-26-000003",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001392380",
+  "include_on_overview": true,
+  "source_sha256": "9731e837d2cf072312993e985f58f424316bd572665fe6438c2097b43e31326c",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Gevo's 2025 EPS table uses the $33.836 million loss attributable to Gevo: $32.629 million consolidated loss less $1.207 million income attributable to the redeemable noncontrolling interest. Its separate $79,000 redemption-value adjustment is recorded in equity; the policy calls for an EPS adjustment only to the extent redemption value exceeds fair value cumulatively. This note preserves the reported EPS numerator without constructing an additional adjustment. Statements use dollar thousands but full shares. Potential warrants, options and unvested stock awards are excluded as anti-dilutive during 2024 and 2025 losses.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1392380/000139238026000006/gevo-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.34,
+      "accn": "0001392380-26-000006",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.14,
+      "accn": "0001392380-26-000006",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.34,
+      "accn": "0001392380-26-000006",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.14,
+      "accn": "0001392380-26-000006",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 231674716,
+      "accn": "0001392380-26-000006",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 234008574,
+      "accn": "0001392380-26-000006",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 231674716,
+      "accn": "0001392380-26-000006",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 234008574,
+      "accn": "0001392380-26-000006",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001398733",
+  "include_on_overview": true,
+  "source_sha256": "3bdc66938934696ecad7ea83dddb8c52ff6f8163caff400dc82a94f7e5e2ce7c",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Aquestive Therapeutics' 2024 and 2025 statements display dollar losses in thousands, while the EPS and denominator rows explicitly use dollars per share and full shares. Options, restricted stock units, warrants and employee stock purchase plan shares are excluded as anti-dilutive during losses, so basic and diluted loss EPS are equal. The filing separately states that its 2022 prefunded warrants were fully exercised in 2022; they are not an outstanding prefunded-warrant balance to add to the 2024 or 2025 denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1398733/000139873326000018/aqst-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.51,
+      "accn": "0001398733-26-000018",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.78,
+      "accn": "0001398733-26-000018",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.51,
+      "accn": "0001398733-26-000018",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.78,
+      "accn": "0001398733-26-000018",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 86726211,
+      "accn": "0001398733-26-000018",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 106926528,
+      "accn": "0001398733-26-000018",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 86726211,
+      "accn": "0001398733-26-000018",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 106926528,
+      "accn": "0001398733-26-000018",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001382101",
   "include_on_overview": true,
   "source_sha256": "edbbe5f19eb32d9e9b30b5efb21d584273fd4e0e4ee6ba6b9ca96185a3d014ff",
