@@ -154,3 +154,8 @@ Eighth batch2 report adds32CytoSorbents/Vaccinex/MediciNova observations,232revi
 568pending. Keep net loss separate from comprehensive loss, historical display
 units, prefunded shares already in denominator and Vaccinex split basis. Exact
 ledger comparison preserves all800rows and prior200decisions; discrepancies pending.
+
+Ninth batch2 report adds24CVRx/newerIdaho/Vivani observations:256reviewed/544pending,
+16presentation-only. Older Idaho ID-less inline facts need an exact semantic node
+locator before table linkage; no approval from numeric matches alone. Retain
+period-end instrument exclusions separately from weighted-average denominators.

@@ -1730,3 +1730,39 @@ fresh HTTP/browser validation before release; old reports cover historical code.
 Transfer44227polled live, latest2721of10,360objects/zero failures; uploader/plan
 unchanged. Next publish eighth review and continue pending/legacy filing contexts
 while hosted transfer runs. No production/indexing gain; full owner goal active.
+
+PR135 published atbf0370d3ed39e7fd706145abb4b53dbb244a4253; CI pending.
+Unpublished rebase preserved tree41c3788b8a56d268922af4f23c95d4c8819e14e5; push
+terminal0. Same live44227handle, latest receipt2743objects/zero failures.
+Owner attribution file untouched.
+
+
+## 2026-09-21 — limited dilution presentation and ID-less filing boundary
+
+Previous turn progressed32reviews/PR135. Re-read continuity and polled44227live.
+
+Worktree branch `evidence/batch2-context-ninth-20260921`.
+PR135 merged as85e115455ff094d65fcdad051878ce38e7b93cc8 after four
+CI35547762298checks passed atbf0370d3; exact tested/merged tree
+41c3788b8a56d268922af4f23c95d4c8819e14e5 matches.
+Batch2 now256reviewed/544pending/0withdrawn,16presentation-only. Latest ledger
+company-basic-diluted-batch2-scope-v12-20260921.json.gz. Ninth report adds24facts:
+CVRx loss exclusions/period-end potential shares not weighted-average additions;
+Idaho2025/26January fiscal/split presentation only, dilution cause unestablished;
+Vivani scale3and equal rounded EPS despite different losses/denominators.
+Report replay byte-identical; only24states/evidence links changed, all800rows and
+prior232decisions preserved.82renderer/ledger tests passed. No policy/object changes.
+Older Idaho0001263364/0001213900-23-019266 remains pending because inline facts lack
+id attributes: numeric helper returns fact_id=null, v6soup.find(id=None) cannot link
+to statement nodes. Table31visible basic EPS/shares have contextref c0/c5, scale0,
+noIDs; need exact namespace/concept/context/unit/value node locator without editing
+captured bytes, then explicit diluted mapping if hidden. Do not relax scope checks.
+Draft spec retained corpus-local/company-batch2-ninth-initial-spec-20260921.json.
+Older filing states no dilutive instruments2021/22, December fiscal dates, former
+Joway identity, rounded2022loss; these are not yet registered. Same source fixture
+also supports registered newer Idaho filing, so now tracked.
+Morgan, Community and Theriva discrepancies remain pending. New reader notes still
+need fresh HTTP/browser validation before release; prior reports are historical.
+Transfer44227polled live, latest2920of10,360objects/zero failures; uploader/plan
+unchanged. Next publish ninth review and resolve exact locator for ID-less facts.
+No production/indexing gain; all original owner goals active.
