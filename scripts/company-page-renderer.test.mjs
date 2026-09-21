@@ -1318,3 +1318,22 @@ test('Curis retains historical periods and already included prefunded warrants',
   }
   assert(!FILING_NOTES.some(n => n.cik === '0001084551' && n.source_sha256 === '5fab08c580085db2f86339da631fa29af4e060f5c5ed620fbf63f167b42874e0'));
 });
+
+test('Plug historical restatement and common-stockholder numerator retain source facts', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/batch2-0001093691-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0001093691', fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record.concepts);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const html = renderCompanyPages(record, { target })[0].html;
+    assert.match(html, /2018 and 2019 figures are explicitly presented as restated/);
+    assert.match(html, /after preferred dividends, deemed dividends and discount accretion/);
+    assert.match(html, /shares and per-share amounts are unscaled/);
+  }
+  assert.deepEqual(record.concepts, original);
+  const notes = companyFilingNotes(record, 'EarningsPerShareBasic').filter(n => n.observations.some(r => r.accn === '0001558370-22-003577')); assert.equal(notes.length, 1);
+  const changed = structuredClone(record), row = notes[0].observations[0];
+  changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+  assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+});
