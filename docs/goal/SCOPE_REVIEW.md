@@ -149,3 +149,8 @@ Morgan discrepancy report preserves exact note/main tables, unit tags and split
 paragraphs. Both numerator and denominator scaled together reproduce the same EPS;
 this does not settle the units. Pending-report rejection tests now include Morgan,
 Community and Theriva. No registration or public note;200reviewed/600pending unchanged.
+
+Eighth batch2 report adds32CytoSorbents/Vaccinex/MediciNova observations,232reviewed/
+568pending. Keep net loss separate from comprehensive loss, historical display
+units, prefunded shares already in denominator and Vaccinex split basis. Exact
+ledger comparison preserves all800rows and prior200decisions; discrepancies pending.

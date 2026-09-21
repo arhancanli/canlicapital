@@ -8,27 +8,24 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/morgan-unit-discrepancy-20260921`.
-PR133 merged as02e2bec46995fa0ea9d4524d6990a076d4a6af2f after four
-CI35547376107checks passed ated51bc5f; exact tested/merged tree
-2d50a38ab215134b1f701f9d1b67fa12d20c4d2e matches.
-Morgan unit discrepancy now preserved in company-morgan-unit-discrepancy-20260921.json
-with scripts/review-morgan-unit-discrepancy.py and actual source fixture. Hash-bound
-primary, main table22and note35rows, scale0share tags, context XML, thousands
-heading, absence-of-dilutive-shares statement and retrospective split disclosure
-retained. All8selected numbers match, but report remains ACCOUNTING_SCOPE_REVIEW_PENDING.
-Exact diagnostic calculation proves scaling numerator and denominator together by
-1000leaves EPS unchanged; ratio agreement cannot resolve unit conflict. No changed
-values, public note, policy hold or review registration. Replay byte-identical.
-Ledger tests now explicitly reject attempted promotion of all three pending reports:
-Theriva, Community Redevelopment and Morgan. Seven tests pass, including batch1
-unchanged and deterministic baseline. Batch2 still200reviewed/600pending/0withdrawn,
-8presentation-only; latest registered ledger remains scope-v10. No renderer changes.
-Updated reader-note code from earlier PRs still needs fresh HTTP/browser validation
-before release; historical reports cover their pinned versions only.
-Transfer44227polled live, latest2575of10,360objects/zero failures; uploader/plan
-unchanged. Next publish discrepancy evidence and continue pending filing reviews,
-including legacy captures and other issuers; full goal active, no production/index gain.
+Worktree branch `evidence/batch2-context-eighth-20260921`.
+PR134 merged as31b8c9b7bc5ce57c6e4f24372b9fcb201139c2ff after four
+CI35547563798checks passed atab188c6d; exact tested/merged tree
+ae9edd8393ab81d4f46983d9bdd8e6eca9c4c061 matches.
+Batch2 now232reviewed/568pending/0withdrawn,8presentation-only unchanged. Latest
+ledger company-basic-diluted-batch2-scope-v11-20260921.json.gz. Eighth report adds32
+observations: CytoSorbents2021/22and2024/25loss exclusions and distinct historical
+dollar display; Vaccinex2023/24prefunded warrants already included and two reverse
+splits; MediciNova2024/25net loss distinct from comprehensive loss. Tables, exact
+fact scales, full disclosures and source snapshots pinned. Replay byte-identical;
+only32states/evidence links change, all800rows and prior200decisions preserved.
+81renderer/ledger tests pass. Source-bound notes disappear on changed observations.
+No policy/source/runtime-object changes. Morgan, Community and Theriva remain
+pending; rejection tests continue passing. Updated reader notes still require
+fresh HTTP/browser validation before release; old reports cover historical code.
+Transfer44227polled live, latest2721of10,360objects/zero failures; uploader/plan
+unchanged. Next publish eighth review and continue pending/legacy filing contexts
+while hosted transfer runs. No production/indexing gain; full owner goal active.
 
 ## Earlier verified checkpoints (historical)
 
@@ -358,4 +355,9 @@ Owner attribution file untouched.
 PR133 published ated51bc5fc37dff138b05bedccac588bc3b59d616; CI pending.
 Unpublished rebase preserved tree2d50a38ab215134b1f701f9d1b67fa12d20c4d2e; push
 terminal0. Same live44227handle, latest receipt2463objects/zero failures.
+Owner attribution file untouched.
+
+PR134 published atab188c6d0499cfadf3a828751b1c3f8feaa1cef2; CI pending.
+Unpublished rebase preserved treeae9edd8393ab81d4f46983d9bdd8e6eca9c4c061; push
+terminal0. Same live44227handle, latest receipt2597objects/zero failures.
 Owner attribution file untouched.
