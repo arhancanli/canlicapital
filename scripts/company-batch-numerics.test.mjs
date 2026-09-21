@@ -52,12 +52,18 @@ test('ledger is deterministic and pending evidence cannot be registered as revie
     assert.equal(ledger.active_reviewed_observations, 0);
     assert.equal(ledger.active_observations_needing_scope_review, 800);
     const registry = { ...structuredClone(config), reviews: [] };
-    const report = 'company-theriva-filing-discrepancies-20260921.json';
-    registry.reviews.push({ report, sha256: createHash('sha256').update(readFileSync('artifacts/seo/' + report)).digest('hex'),
-      cik: '0000894158', decision_index: null, observations: 8,
-      disposition: 'ACCOUNTING_SCOPE_REVIEW_PENDING', state: 'SCOPE_REVIEWED_WITH_SOURCE_CONTEXT' });
-    const invalid = join(directory, 'invalid.json'); writeFileSync(invalid, JSON.stringify(registry));
-    assert.throws(() => run(invalid, join(directory, 'invalid.gz')), error => /Unresolved report cannot approve/.test(error.stderr.toString()));
+    const invalid = join(directory, 'invalid.json');
+    for (const [report, cik] of [
+      ['company-theriva-filing-discrepancies-20260921.json', '0000894158'],
+      ['company-community-numerator-discrepancy-20260921.json', '0001084551'],
+      ['company-morgan-unit-discrepancy-20260921.json', '0001162283'],
+    ]) {
+      registry.reviews = [{ report, sha256: createHash('sha256').update(readFileSync('artifacts/seo/' + report)).digest('hex'),
+        cik, decision_index: null, observations: 8,
+        disposition: 'ACCOUNTING_SCOPE_REVIEW_PENDING', state: 'SCOPE_REVIEWED_WITH_SOURCE_CONTEXT' }];
+      writeFileSync(invalid, JSON.stringify(registry));
+      assert.throws(() => run(invalid, join(directory, 'invalid.gz')), error => /Unresolved report cannot approve/.test(error.stderr.toString()), report);
+    }
     registry.reviews = []; registry.inputs.primary.sha256 = '0'.repeat(64);
     writeFileSync(invalid, JSON.stringify(registry));
     assert.throws(() => run(invalid, join(directory, 'invalid.gz')), error => /Pinned input changed/.test(error.stderr.toString()));

@@ -1668,3 +1668,35 @@ fresh HTTP/browser verification before release; older reports cover historical c
 Transfer44227polled live, latest2443of10,360objects/zero failures; uploader/plan
 unchanged. Next publish seventh review, resolve pending discrepancies and continue
 hosted delivery. No production/indexing gain; full owner goal active.
+
+PR133 published ated51bc5fc37dff138b05bedccac588bc3b59d616; CI pending.
+Unpublished rebase preserved tree2d50a38ab215134b1f701f9d1b67fa12d20c4d2e; push
+terminal0. Same live44227handle, latest receipt2463objects/zero failures.
+Owner attribution file untouched.
+
+
+## 2026-09-21 — Morgan contradictory heading evidence and pending-report gates
+
+Previous turn progressed24reviews/PR133. Re-read continuity;44227polled live.
+
+Worktree branch `evidence/morgan-unit-discrepancy-20260921`.
+PR133 merged as02e2bec46995fa0ea9d4524d6990a076d4a6af2f after four
+CI35547376107checks passed ated51bc5f; exact tested/merged tree
+2d50a38ab215134b1f701f9d1b67fa12d20c4d2e matches.
+Morgan unit discrepancy now preserved in company-morgan-unit-discrepancy-20260921.json
+with scripts/review-morgan-unit-discrepancy.py and actual source fixture. Hash-bound
+primary, main table22and note35rows, scale0share tags, context XML, thousands
+heading, absence-of-dilutive-shares statement and retrospective split disclosure
+retained. All8selected numbers match, but report remains ACCOUNTING_SCOPE_REVIEW_PENDING.
+Exact diagnostic calculation proves scaling numerator and denominator together by
+1000leaves EPS unchanged; ratio agreement cannot resolve unit conflict. No changed
+values, public note, policy hold or review registration. Replay byte-identical.
+Ledger tests now explicitly reject attempted promotion of all three pending reports:
+Theriva, Community Redevelopment and Morgan. Seven tests pass, including batch1
+unchanged and deterministic baseline. Batch2 still200reviewed/600pending/0withdrawn,
+8presentation-only; latest registered ledger remains scope-v10. No renderer changes.
+Updated reader-note code from earlier PRs still needs fresh HTTP/browser validation
+before release; historical reports cover their pinned versions only.
+Transfer44227polled live, latest2575of10,360objects/zero failures; uploader/plan
+unchanged. Next publish discrepancy evidence and continue pending filing reviews,
+including legacy captures and other issuers; full goal active, no production/index gain.

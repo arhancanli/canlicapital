@@ -144,3 +144,8 @@ Seventh batch2 report adds24Brainstorm/Savara/Fluidigm observations:200reviewed/
 600pending. Reverse-split basis, prefunded shares already in basic denominator and
 historical issuer/unit conventions retained. Morgan EPS-note thousands heading
 conflicts with full-count presentation; remains pending with exact source in STATUS.
+
+Morgan discrepancy report preserves exact note/main tables, unit tags and split
+paragraphs. Both numerator and denominator scaled together reproduce the same EPS;
+this does not settle the units. Pending-report rejection tests now include Morgan,
+Community and Theriva. No registration or public note;200reviewed/600pending unchanged.

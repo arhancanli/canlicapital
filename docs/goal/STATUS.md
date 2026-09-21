@@ -8,28 +8,27 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/batch2-context-seventh-20260921`.
-PR132 merged asfd0229619b5bfa16e5987261cbf6e6278fd371f9 after four
-CI35547174270checks passed ate5139e20; exact tested/merged tree
-c3b79b192b2a32031f6b3d917d2bc76171ea649f matches.
-Batch2 now200reviewed/600pending/0withdrawn,8presentation-only unchanged. Latest
-ledger company-basic-diluted-batch2-scope-v10-20260921.json.gz. Seventh report adds24
-observations: Brainstorm2024/25retrospective1-for-15split and loss exclusions;
-Savara2024/25already-included prefunded warrants; historical Fluidigm2019/20share
-scale3and loss exclusions, displayed under current Standard BioTools issuer record.
-Captured tables/disclosures and exact source snapshots pinned. Replay byte-identical;
-only24states/evidence links change; all800rows/prior176decisions preserved.
-80renderer/ledger tests pass. No source/policy/runtime-object changes.
-Morgan0001162283/0001140361-23-015466 remains pending: table35EPS note is introduced
-as 'in thousands, except per share data' but repeats table22full dollar losses
-949,191/1,571,060and600,090shares with scale0. Note also says no dilutive shares;
-June10,2020one-for-100split is retrospective. Primary SHA762daf6282980ab686913c960f47338e1e643a8b6ce76dd1bd89cac240389892.
-Do not silently multiply or approve; next inspect this heading conflict explicitly.
-Community numerator and Theriva conflicts still pending. Updated reader notes need
-fresh HTTP/browser verification before release; older reports cover historical code.
-Transfer44227polled live, latest2443of10,360objects/zero failures; uploader/plan
-unchanged. Next publish seventh review, resolve pending discrepancies and continue
-hosted delivery. No production/indexing gain; full owner goal active.
+Worktree branch `evidence/morgan-unit-discrepancy-20260921`.
+PR133 merged as02e2bec46995fa0ea9d4524d6990a076d4a6af2f after four
+CI35547376107checks passed ated51bc5f; exact tested/merged tree
+2d50a38ab215134b1f701f9d1b67fa12d20c4d2e matches.
+Morgan unit discrepancy now preserved in company-morgan-unit-discrepancy-20260921.json
+with scripts/review-morgan-unit-discrepancy.py and actual source fixture. Hash-bound
+primary, main table22and note35rows, scale0share tags, context XML, thousands
+heading, absence-of-dilutive-shares statement and retrospective split disclosure
+retained. All8selected numbers match, but report remains ACCOUNTING_SCOPE_REVIEW_PENDING.
+Exact diagnostic calculation proves scaling numerator and denominator together by
+1000leaves EPS unchanged; ratio agreement cannot resolve unit conflict. No changed
+values, public note, policy hold or review registration. Replay byte-identical.
+Ledger tests now explicitly reject attempted promotion of all three pending reports:
+Theriva, Community Redevelopment and Morgan. Seven tests pass, including batch1
+unchanged and deterministic baseline. Batch2 still200reviewed/600pending/0withdrawn,
+8presentation-only; latest registered ledger remains scope-v10. No renderer changes.
+Updated reader-note code from earlier PRs still needs fresh HTTP/browser validation
+before release; historical reports cover their pinned versions only.
+Transfer44227polled live, latest2575of10,360objects/zero failures; uploader/plan
+unchanged. Next publish discrepancy evidence and continue pending filing reviews,
+including legacy captures and other issuers; full goal active, no production/index gain.
 
 ## Earlier verified checkpoints (historical)
 
@@ -354,4 +353,9 @@ Owner attribution file and untracked Bio-Path fixture retained.
 PR132 published ate5139e20dd42fb6e7520b7bdfca9b27e3ee61c6a; CI pending.
 Unpublished rebase preserved treec3b79b192b2a32031f6b3d917d2bc76171ea649f; push
 terminal0. Same live44227handle, latest receipt2356objects/zero failures.
+Owner attribution file untouched.
+
+PR133 published ated51bc5fc37dff138b05bedccac588bc3b59d616; CI pending.
+Unpublished rebase preserved tree2d50a38ab215134b1f701f9d1b67fa12d20c4d2e; push
+terminal0. Same live44227handle, latest receipt2463objects/zero failures.
 Owner attribution file untouched.
