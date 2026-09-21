@@ -12,6 +12,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   breadthInput,
+  companyHistoryInput,
   deflatedSharpeInput,
   deflatedSharpeToolShape,
   emptyInput,
@@ -132,6 +133,77 @@ export async function toolServiceStatus(session) {
   return asText(response.envelope, response.failed);
 }
 
+// The company reference is a public data file, not an API envelope. The result keeps every
+// field that says where a value came from (accession, form, filed date, unit, source hash) and
+// the record's own claim_boundary and policy sentences, so an agent cannot quote a number
+// without its provenance or boundary.
+export async function toolCompanyFinancialHistory(session, args) {
+  const { cik, concept, limit = 40 } = parseOrThrow(companyHistoryInput, args, "company_financial_history");
+  const id = cik.padStart(10, "0");
+  const path = `/company-data/${id}.json`;
+  const signal = AbortSignal.timeout(session.timeoutMs);
+  let res, text;
+  try {
+    res = await session.fetchImpl(`${session.base}${path}`, { headers: { Accept: "application/json" }, signal, redirect: "error" });
+    text = await res.text();
+  } catch {
+    throw new Error(signal.aborted
+      ? `${path} exceeded the request deadline; no automatic retry was sent.`
+      : `${path} could not be reached or read. Check the API base and service status; no automatic retry was sent.`);
+  }
+  if (res.status === 404) return asText({ error: { code: "not_found", message: `No company record for CIK ${id} in the current company reference release.` }, page: `${session.base}/companies` }, true);
+  if (res.status >= 400) return asText({ error: { code: "unavailable", message: `${path} returned status ${res.status}.` } }, true);
+  let record;
+  try {
+    record = JSON.parse(text);
+  } catch {
+    throw new Error(`${path} returned a non-JSON body (status ${res.status}). Response body omitted.`);
+  }
+  if (record?.schema !== "canli.company-reference.v1" || record.cik !== id || !Array.isArray(record.concepts) || typeof record.claim_boundary !== "string") {
+    return asText({ error: { code: "unexpected_record", message: `${path} did not return a canli.company-reference.v1 record for CIK ${id}.` } }, true);
+  }
+  const base = {
+    schema: "canli.mcp.company-history.v1",
+    company: { cik: record.cik, name: record.name },
+    claim_boundary: record.claim_boundary,
+    policy: record.policy,
+    source: {
+      sec_response_url: record.source_url,
+      sec_response_sha256: record.source_sha256,
+      snapshot: record.source_snapshot ? `${session.base}${record.source_snapshot}` : null,
+      fetched_at: record.fetched_at,
+      record: `${session.base}${path}`,
+    },
+  };
+  if (concept === undefined) {
+    return asText({
+      ...base,
+      page: `${session.base}/companies/${id}`,
+      histories: record.concepts.map((c) => ({ concept: c.tag, label: c.label, kind: c.kind, observations: c.observations?.length ?? 0, page: `${session.base}/companies/${id}/${c.tag}` })),
+    });
+  }
+  const history = record.concepts.find((c) => c.tag === concept);
+  if (!history) {
+    return asText({ ...base, error: { code: "concept_not_found", message: `${record.name} has no ${concept} history in this release.`, available: record.concepts.map((c) => c.tag) } }, true);
+  }
+  const observations = [...(history.observations ?? [])].sort((a, b) => String(b.end).localeCompare(String(a.end))).slice(0, limit);
+  return asText({
+    ...base,
+    page: `${session.base}/companies/${id}/${history.tag}`,
+    history: {
+      concept: history.tag,
+      taxonomy: history.taxonomy,
+      label: history.label,
+      kind: history.kind,
+      meaning: history.meaning,
+      units: [...new Set((history.observations ?? []).map((o) => o.unit))],
+      total_observations: history.observations?.length ?? 0,
+      returned: observations.length,
+      observations,
+    },
+  });
+}
+
 export function registerTools(server, session) {
   server.registerTool(
     "get_key",
@@ -167,6 +239,11 @@ export function registerTools(server, session) {
     "service_status",
     { title: "Service status", description: TOOL_DESCRIPTIONS.service_status, inputSchema: emptyInput },
     () => toolServiceStatus(session),
+  );
+  server.registerTool(
+    "company_financial_history",
+    { title: "Company financial history (SEC)", description: TOOL_DESCRIPTIONS.company_financial_history, inputSchema: companyHistoryInput },
+    (args) => toolCompanyFinancialHistory(session, args),
   );
 }
 

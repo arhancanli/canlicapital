@@ -17,6 +17,8 @@ import {
   deflatedSharpeInput,
   getKeyInput,
   getReceiptInput,
+  COMPANY_REFERENCE_BOUNDARY,
+  companyHistoryInput,
   LIMITS_SENTENCES,
   REGISTRY_LIMITS_CLAUSE,
   overfittingInput,
@@ -102,8 +104,26 @@ test("get_receipt: accepts a 24-hex id and rejects a malformed one", () => {
 test("every tool description states, verbatim, one sentence of the boundary language", () => {
   const sentences = Object.values(LIMITS_SENTENCES);
   for (const [tool, description] of Object.entries(TOOL_DESCRIPTIONS)) {
+    // The company reference is not the validation API; it carries its records' own boundary.
+    if (tool === "company_financial_history") {
+      assert.ok(description.includes(COMPANY_REFERENCE_BOUNDARY), `${tool} description does not carry the company reference boundary: ${description}`);
+      continue;
+    }
     const carriesOne = sentences.some((sentence) => description.includes(sentence));
     assert.ok(carriesOne, `${tool} description does not carry a limits sentence: ${description}`);
+  }
+});
+
+test("the company reference boundary has not drifted from the records the site writes", () => {
+  const source = readFileSync(path.join(repoRoot, "scripts/lib/company-reference.mjs"), "utf8");
+  assert.ok(source.includes(`claim_boundary: '${COMPANY_REFERENCE_BOUNDARY}'`), "COMPANY_REFERENCE_BOUNDARY is not the claim_boundary written by scripts/lib/company-reference.mjs");
+});
+
+test("company history input accepts a CIK and optional concept and limit, nothing else", () => {
+  assert.equal(companyHistoryInput.safeParse({ cik: "320193" }).success, true);
+  assert.equal(companyHistoryInput.safeParse({ cik: "0000320193", concept: "Revenues", limit: 5 }).success, true);
+  for (const bad of [{}, { cik: "AAPL" }, { cik: "12345678901" }, { cik: "1", concept: "us-gaap:Revenues" }, { cik: "1", limit: 0 }, { cik: "1", limit: 201 }, { cik: "1", extra: true }]) {
+    assert.equal(companyHistoryInput.safeParse(bad).success, false, JSON.stringify(bad));
   }
 });
 
