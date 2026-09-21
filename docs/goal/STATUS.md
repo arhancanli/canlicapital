@@ -12,45 +12,37 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-The previous turn preserved Digital Ally's unresolved denominator and published
-PR152. PR152 merged as1968be0c46468d4f8c1e8c9eb2f3d5c8ceea383e after all four
-CI35553887300 checks passed atd144e388680dc0d1b750fa25c7792962e10cf3bb.
-Tested and merged tree76f1c84b5c7a6a1f51bf3c7729e443a5a03b2bf4 matches.
-Current branch: evidence/audioeye-larimar-context-20260921.
+PR153 merged asabf27713f359ed072f6cd57a54a1a7f1cb4e9523 after all four
+CI35554516876 checks passed at7266708451ac405ac938a9fd09f818e96dfadbc3.
+Tested and merged treeb2b2b40ffc47f41a4fb4f523a3a00d687637b385 verified.
+Current branch: evidence/scope-v20-archive-20260921.
 
-AudioEye's2024/25 statements display dollars and weighted-average shares in
-thousands, with unscaled EPS. Selected share facts use scale3 and represent
-11,888,000/12,416,000 shares. Full treasury-stock/loss-exclusion disclosure is
-retained across its paragraph break. Potential common shares are excluded during
-losses; no dilution cause inferred solely from matching numbers.
+Scope-v20 archive20482 completed with exit0. New archive has674 files,
+274,247,680 bytes; SHA8b1b53902d326a49ba9698b422995186e50b7bbacfee3c950171ebca66944878.
+Thirty reports reproduce byte-for-byte in an isolated temporary restore using
+hash-locked offline parser dependencies. Includes all100 primary captures,
+seven legacy instances, current AudioEye/Larimar reviews, all seven pending
+reports and the preserved initial Digital Ally runner failure. Archive hash and
+profile/registry/packager/failure bytes compared with current files successfully.
+Receipt: company-batch2-evidence-archive-scope-v20-20260921.json. Earlier archives
+remain immutable. Local reproduction, not independent certification or remote backup.
 
-Larimar's2023/24 statements use dollar thousands but full shares. Prefunded
-warrants were included in basic weighted-average shares before August11,2023
-exercise, which issued628,403 common shares. Year-end options4,888,502/7,135,390
-are excluded as anti-dilutive during losses, not added to the weighted denominator.
-The basic-share paragraph and split diluted-loss paragraph are preserved in full.
+Batch2 remains408 reviewed /392 pending /0 withdrawn, including64 presentation-only.
+Myomo remains unapproved pending resolution of differing warrant offering-date
+lists. No selector/source/runtime-object change. All90 relevant tests passed.
+Current-note browser86426 is running (275 cases last observed), report
+company-v22-scope-v20-browser-20260921.json. Do not claim a final pass yet.
+Earlier scope-v19 HTTP check covers90,732 pages/6,646 downloads with zero failures;
+its browser report is historical and does not cover the new notes.
 
-Report company-share-context-audioeye-larimar-20260921.json uses the unchanged
-v7 validator and replays byte-for-byte. Sixteen selected observations match exact
-statement/entity/context/unit/scale facts. Scope-v20 now has408 reviewed /392 pending /
-0 withdrawn, including64 presentation-only. Exactly16 state/evidence transitions;
-all800 observation metadata and prior392 decisions preserved.90 renderer/ledger
-tests pass: all10 affected paths, share scales, prefunded basic inclusion, loss
-exclusions, unchanged data and removal after a selected observation changes.
-No source correction, selector policy or runtime-object change.
+Recovery79720 confirmed live this turn. Receipt currently records6041
+reverified objects, 0 failures, complete=False. Same uploader/plan/bounded
+policy. Original44227 remains terminal after6,023 verified objects and HTTP520.
+Counts are not additive uploads. No production activation or new indexing evidence.
+The90,732 candidate URLs remain unpublished; last confirmed indexing baseline262.
 
-Myomo inspected but not registered: one prefunded-warrant inclusion description
-lists January2023/August2023 offering closings; another also lists January2024.
-Both give3,763,258/7,061,519 outstanding at year-end2025/24 and a $0.0001 exercise
-price. Issuance-date weighting remains to be resolved; no new approval or correction.
-Seven discrepancy reports remain pending. New AudioEye/Larimar reader notes need
-updated relevant release checks and later archive coverage; earlier scope-v19
-checks/archive retain their pinned historical coverage. Runtime remains v22.
-
-Recovery79720 polled live; latest 5027 reverified objects, zero failures, incomplete.
-Same uploader/plan/bounded policy; original44227 remains terminal after6,023 verified
-objects and HTTP520. Counts are not additive uploads. No production deployment or
-new indexed-page evidence. Owner attribution file untouched. Next publish these
-reviews, continue pending contexts and monitor hosted readiness. All original
-indexing, quality/SEO/search-intent, developer-adoption and governed-engine goals
-remain active.
+Next finish the current browser audit, verify transfer completion and hosted
+routing/storage/load/cost/failure behavior before production activation. Continue
+pending editorial admission. Developer adoption and governed engine outcomes remain
+open alongside indexing, quality/SEO and relevant intent coverage. Goal active;
+owner attribution file untouched.
