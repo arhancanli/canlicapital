@@ -2339,3 +2339,54 @@ reports also need later archive coverage. Historical scope-v16 checks/archive
 remain tied to their pinned inputs. All original indexing, SEO/search-intent,
 developer/API/MCP/repository adoption and governed-engine goals remain active.
 Owner attribution file untouched.
+
+PR149 published atc65280e2e7d18ba10b6c7592e7d164d90103f718; CI pending.
+Push34084 and PR-create54825 completed with exit0. Unpublished rebase preserved
+full tree15cfc3e8c7a73b4abe88e44dbc9a596754b85fad. Recovery79720 polled live
+after publication; latest 1475 reverified objects, 0 failures. Owner file untouched.
+
+## 2026-09-21 — CNBX rounded loss and TurnOnGreen preferred dividends
+
+The previous turn reviewed six currency trusts and published PR149. PR149 is now
+merged as 7a8f8e730f6d1e9a023b1251354bac3364292956 after all four CI35552497715
+checks passed at c65280e2e7d18ba10b6c7592e7d164d90103f718. Tested and merged tree:
+15cfc3e8c7a73b4abe88e44dbc9a596754b85fad. Current branch:
+evidence/cnbx-turnongreen-context-20260921.
+
+CNBX Pharmaceuticals: fiscal years end August 31, not December 31. The 2025
+statement displays loss EPS (0.00) alongside a $313,976 loss and 90,649,474
+weighted-average shares; zero displayed EPS does not mean zero loss. The filing
+excludes potentially dilutive shares in both years and reports no other
+comprehensive-income elements. Full dollar/share units retained.
+
+TurnOnGreen: loss-period potential shares are excluded as anti-dilutive. The
+period-end excluded-security table includes warrants, convertible notes and
+convertible preferred stock, not extra weighted-average shares. The filing
+records an August 9, 2024 preferred-dividend waiver in exchange for a 125%
+liquidation preference, with $2,667,000 reclassified from accrued dividends to
+additional paid-in capital. Full dollar/share units retained; no source correction.
+
+Both source-pinned reviews use the unchanged v7 validator and replay byte-for-byte.
+Report: company-share-context-cnbx-turnongreen-20260921.json. All 16 observations
+match statement/entity/context/unit evidence. Scope-v19: 392 reviewed / 408 pending /
+0 withdrawn, including 64 presentation-only. Exactly 16 state/evidence transitions;
+all 800 observation metadata and prior 376 decisions preserved. Six discrepancy
+reports remain pending. 89 renderer/ledger tests pass, covering both overview and
+four concept pages, fiscal dates, rounded-loss meaning, excluded shares, preferred
+waiver context, unchanged data and removal of notes after a selected value changes.
+
+Digital Ally was inspected but not registered: continuing/discontinued losses,
+noncontrolling-interest labels, reverse splits and the 2024 rounded denominator
+need further review. No causal explanation, source adjustment or approval inferred
+from matching eight numbers alone.
+
+Recovery79720 polled live this turn; latest receipt: 1981 reverified objects, zero
+failures, incomplete. Same uploader/plan/runtime objects. These counts are not
+additional uploads on top of the original 6,023 verified objects. Original44227
+remains terminal; its HTTP520 and post-wait absent-object read are preserved.
+No production deployment or new indexing evidence. Owner attribution file untouched.
+
+Next publish this review, continue pending contexts and monitor recovery for hosted
+readiness. Notes added since scope-v16 need updated relevant release checks and
+later archive coverage. All original indexing, quality/SEO/search-intent,
+developer/API/MCP/repository adoption and governed-engine goals remain active.

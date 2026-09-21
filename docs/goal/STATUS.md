@@ -8,47 +8,49 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-The previous turn preserved Femasys as pending and published PR148. PR148 is now
-merged as5e62180a5905b533a619155eb3e6715ed0619c10 after all four CI35552189654
-checks passed at27c17075fe22a38a55dc94d699f611ca6d3c0f0c. Tested and merged tree:
-b0c6475cb8781df1f03fe7674698d944424cf806. Current branch:
-evidence/currency-trust-presentation-20260921.
+The previous turn reviewed six currency trusts and published PR149. PR149 is now
+merged as 7a8f8e730f6d1e9a023b1251354bac3364292956 after all four CI35552497715
+checks passed at c65280e2e7d18ba10b6c7592e7d164d90103f718. Tested and merged tree:
+15cfc3e8c7a73b4abe88e44dbc9a596754b85fad. Current branch:
+evidence/cnbx-turnongreen-context-20260921.
 
-Reviewed six captured Invesco CurrencyShares filings for 2024/25: Euro,
-British Pound Sterling, Canadian Dollar, Japanese Yen, Australian Dollar and
-Swiss Franc trusts. Each reports combined basic/diluted EPS and identical tagged
-weighted-average shares in full units. Each identifies its functional currency
-and USD reporting currency. Exact translation disclosures, including continuation
-paragraphs for GBP and CHF, preserve average Closing Spot Rate use for income and
-cash-flow statements. Full text was checked for dilution discussion; this review
-does not establish a reason for equal basic/diluted figures.
+CNBX Pharmaceuticals: fiscal years end August 31, not December 31. The 2025
+statement displays loss EPS (0.00) alongside a $313,976 loss and 90,649,474
+weighted-average shares; zero displayed EPS does not mean zero loss. The filing
+excludes potentially dilutive shares in both years and reports no other
+comprehensive-income elements. Full dollar/share units retained.
 
-All 48 selected numerical observations match exact statement/entity/context/unit
-facts using the unchanged v7 validator. New report:
-company-share-context-currency-trusts-20260921.json. Source fixtures and explicit
-six-decision specification retained; report replays byte-for-byte. These decisions
-use REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED, never an inferred
-anti-dilution or no-potential-securities explanation. Reader notes state the limit.
+TurnOnGreen: loss-period potential shares are excluded as anti-dilutive. The
+period-end excluded-security table includes warrants, convertible notes and
+convertible preferred stock, not extra weighted-average shares. The filing
+records an August 9, 2024 preferred-dividend waiver in exchange for a 125%
+liquidation preference, with $2,667,000 reclassified from accrued dividends to
+additional paid-in capital. Full dollar/share units retained; no source correction.
 
-Scope-v18 has 376 reviewed / 424 pending / 0 withdrawn, including 64 presentation-only
-reviews (previously16). Exactly48 state/evidence transitions across six filings;
-all800 observation metadata and prior328 decisions preserved. Six discrepancy
-reports remain pending.88 renderer/ledger tests pass, covering all30 affected
-pages, distinct currencies, USD reporting, unscaled shares, limited-cause wording,
-unchanged numerical data and note removal after a selected observation changes.
-No source correction, selector policy or runtime-object change.
+Both source-pinned reviews use the unchanged v7 validator and replay byte-for-byte.
+Report: company-share-context-cnbx-turnongreen-20260921.json. All 16 observations
+match statement/entity/context/unit evidence. Scope-v19: 392 reviewed / 408 pending /
+0 withdrawn, including 64 presentation-only. Exactly 16 state/evidence transitions;
+all 800 observation metadata and prior 376 decisions preserved. Six discrepancy
+reports remain pending. 89 renderer/ledger tests pass, covering both overview and
+four concept pages, fiscal dates, rounded-loss meaning, excluded shares, preferred
+waiver context, unchanged data and removal of notes after a selected value changes.
 
-Recovery79720 polled live at the start of this turn; latest receipt shows 1386
-reverified objects / zero failures, incomplete. Same plan and uploader; original
-44227 remains terminal after6,023 verified objects and HTTP520. Reverification
-counts are not additive new uploads. No production deployment or new indexing gain.
+Digital Ally was inspected but not registered: continuing/discontinued losses,
+noncontrolling-interest labels, reverse splits and the 2024 rounded denominator
+need further review. No causal explanation, source adjustment or approval inferred
+from matching eight numbers alone.
 
-Next publish these limited reviews and continue pending contexts and hosted
-readiness. LENSAR and these six notes need fresh relevant release checks; recent
-reports also need later archive coverage. Historical scope-v16 checks/archive
-remain tied to their pinned inputs. All original indexing, SEO/search-intent,
+Recovery79720 polled live this turn; latest receipt: 1981 reverified objects, zero
+failures, incomplete. Same uploader/plan/runtime objects. These counts are not
+additional uploads on top of the original 6,023 verified objects. Original44227
+remains terminal; its HTTP520 and post-wait absent-object read are preserved.
+No production deployment or new indexing evidence. Owner attribution file untouched.
+
+Next publish this review, continue pending contexts and monitor recovery for hosted
+readiness. Notes added since scope-v16 need updated relevant release checks and
+later archive coverage. All original indexing, quality/SEO/search-intent,
 developer/API/MCP/repository adoption and governed-engine goals remain active.
-Owner attribution file untouched.
 
 ## Earlier verified checkpoints (historical)
 
