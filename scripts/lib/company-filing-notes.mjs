@@ -1,6 +1,243 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001121795",
+  "include_on_overview": true,
+  "source_sha256": "d0880d260b2cbd749eb3ddd3ec3e13e9b8c031ee499cd66405d7ad6a4a75b503",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "GHST World explicitly reports no potentially dilutive securities outstanding for the years ended June 30, 2024 and 2025. Its reported zero EPS values are rounded losses, not break-even results: net losses were $511,284 and $182,848, respectively. Full share counts, June fiscal dates and reported USD EPS are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1121795/000107997325001605/ghst_10k-063025.htm",
+  "observations": [
+    {
+      "start": "2023-07-01",
+      "end": "2024-06-30",
+      "val": 0,
+      "accn": "0001079973-25-001605",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "val": 0,
+      "accn": "0001079973-25-001605",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-07-01",
+      "end": "2024-06-30",
+      "val": 0,
+      "accn": "0001079973-25-001605",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "val": 0,
+      "accn": "0001079973-25-001605",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-07-01",
+      "end": "2024-06-30",
+      "val": 129051560,
+      "accn": "0001079973-25-001605",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "val": 130201179,
+      "accn": "0001079973-25-001605",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-07-01",
+      "end": "2024-06-30",
+      "val": 129051560,
+      "accn": "0001079973-25-001605",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "val": 130201179,
+      "accn": "0001079973-25-001605",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001127537",
+  "include_on_overview": true,
+  "source_sha256": "96e51f9fc551fee743147286f90fb409fd8d90a37672ed916a566a541422b3ad",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Pulmonx's 2024 basic denominator subtracts 33 weighted-average shares subject to repurchase from 39,111,106 weighted-average shares, leaving 39,111,073. The corresponding 2025 repurchase adjustment is zero. Potentially dilutive securities are excluded during losses. Dollar losses are displayed in thousands; shares and per-share data are unscaled. Full selected denominators and reported USD EPS are preserved.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1127537/000112753726000015/lung-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.44,
+      "accn": "0001127537-26-000015",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.33,
+      "accn": "0001127537-26-000015",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1.44,
+      "accn": "0001127537-26-000015",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.33,
+      "accn": "0001127537-26-000015",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 39111073,
+      "accn": "0001127537-26-000015",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 40685934,
+      "accn": "0001127537-26-000015",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 39111073,
+      "accn": "0001127537-26-000015",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 40685934,
+      "accn": "0001127537-26-000015",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001133416",
+  "include_on_overview": true,
+  "source_sha256": "263db289113a9f2a421527d670b3e4f0516c4bb57f4530eb6ae195087a2885de",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Galectin Therapeutics' 2024 and 2025 EPS uses common-stockholder loss after preferred dividends of $153,000 and $138,000, respectively. The filing excludes potential warrant, option, convertible-note and preferred-stock conversions as anti-dilutive during losses. Statement share counts are displayed in thousands with inline scale 3. Full selected share counts and reported USD EPS are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1133416/000114036126012155/ef20060823_10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.76,
+      "accn": "0001140361-26-012155",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.48,
+      "accn": "0001140361-26-012155",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.76,
+      "accn": "0001140361-26-012155",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.48,
+      "accn": "0001140361-26-012155",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 62309000,
+      "accn": "0001140361-26-012155",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 63903000,
+      "accn": "0001140361-26-012155",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 62309000,
+      "accn": "0001140361-26-012155",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 63903000,
+      "accn": "0001140361-26-012155",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001093691",
   "include_on_overview": true,
   "source_sha256": "693a4f1fb6d5474c0cef2ae383a813e4f7c21076e76c0ef2cd96c185c2696a0b",

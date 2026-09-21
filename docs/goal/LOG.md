@@ -1567,3 +1567,38 @@ needs fresh HTTP/browser checks before release; historical reports not reused.
 Transfer44227polled live, latest2052of10,360objects/zero failures; uploader/plan
 unchanged. Next publish this change, continue pending reviews and hosted delivery.
 No production/indexing gain; full owner goals active.
+
+PR130 published atc34f8c775296a4c3517fcb4f1233d217a08b4335; CI pending.
+Unpublished rebase preserved treebab82ff4060f0626d16b3b72828fe78ee0342eae; push
+terminal0. Same live44227handle, latest receipt2073objects/zero failures.
+Owner attribution file untouched.
+
+
+## 2026-09-21 — instrument absence, repurchase shares and preferred dividends
+
+Previous turn resolved Plug mapping and published PR130. Re-read continuity;
+44227polled live.
+
+Worktree branch `evidence/batch2-context-sixth-20260921`.
+PR130 merged as4abcb2edba0d32f2b101df97ddfbc39bcdd950bd after four
+CI35546697561checks passed atc34f8c77; exact tested/merged tree
+bab82ff4060f0626d16b3b72828fe78ee0342eae matches.
+Batch2 now168reviewed/632pending/0withdrawn,8presentation-only unchanged. Latest
+ledger company-basic-diluted-batch2-scope-v8-20260921.json.gz. Sixth report adds24
+observations: GHST explicit absence of instruments/rounded losses/June fiscal dates,
+Pulmonx33repurchase-share deduction2024, Galectin preferred dividends/share scale3.
+Exact captured statements and full disclosures pinned; replay byte-identical.
+Only24states/evidence links change; all800rows and prior144decisions unchanged.
+78renderer/ledger tests pass. No source/policy/runtime-object changes.
+Initial spec preparation required Galectin heading as paragraph, but actual heading
+is in the statement table; moved requirement to table checks. Four-filing replay
+then failed strict table mapping for Bio-Path diluted facts. Draft retained at
+corpus-local/company-batch2-sixth-initial-spec-20260921.json; Bio-Path source fixture
+untracked for further review. Final spec only includes the three passing issuers.
+Bio-Path pending: inspect hidden EPS/share mappings next; known February22,2024
+one-for-20split and share scale3 need preserving. Generic runner not weakened.
+Community and Theriva remain unresolved. Fresh HTTP/browser checks required for
+updated notes before release; earlier reports cover their pinned historical code.
+Transfer44227polled live, latest2206of10,360objects/zero failures; uploader/plan
+unchanged. Next publish review, resolve Bio-Path mapping and continue hosted delivery.
+No production/indexing gain; full owner goal active.
