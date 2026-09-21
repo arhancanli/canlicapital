@@ -176,3 +176,7 @@ this snapshot must not be overwritten or described as offsite backup/certificati
 Tenth batch2review adds16Exagen/Immunic observations: loss exclusions and already-
 included pre-funded warrants with full-share scale0. scope-v14:280reviewed/520pending.
 Wright table54unit-heading conflict remains pending; no automatic scale correction.
+
+Eleventh batch2review adds24Rocket/Dror/ClearPoint observations. Preserve period-end
+excluded-instrument scope, as-converted preferred exclusion counts, approximate
+amounts and rounded losses. scope-v15:304reviewed/496pending;16presentation-only.

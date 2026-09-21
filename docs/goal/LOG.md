@@ -1988,3 +1988,35 @@ and later archive coverage. Next continue pending filing contexts and hosted del
 Transfer44227 polled live this turn; latest4,662/10,360objects/zero failures;
 uploader/plan unchanged. No production activation/new indexing gain. All original
 SEO/indexing, developer-adoption and governed-engine goals active; owner file untouched.
+
+PR142 published at9e62eb4b092b54090faa3705f5bcf64e3af29aac; CI pending.
+Push terminal0; unpublished rebase preserved full tree
+64ad2712b9bd3cab48cb7a6a8f033e8c0fb957e2. Owner attribution file untouched.
+
+## 2026-09-21 — excluded-share scope and rounded losses
+
+Worktree branch `evidence/batch2-context-eleventh-20260921`.
+Previous turn made progress: Wright discrepancy evidence and pending-report gate.
+PR142 merged as2f404826fefb1f394c4612259460b906dba60421 after all four
+CI35550010235 checks passed at9e62eb4b; tested/merged full tree
+64ad2712b9bd3cab48cb7a6a8f033e8c0fb957e2 matches.
+Eleventh report adds24Rocket/Dror/ClearPoint observations. Rocket2023/24EPS note
+includes nominal-consideration equity warrants in basic shares and separately
+excludes period-end potential shares during losses; review does not cover third
+2022column merely because it is displayed. Dror2024/25reports full dollars/shares,
+rounded2025zeroEPS despite2,544,887loss, and Series A preferred as-converted100common
+shares in excluded potential-share table. ClearPoint2024/25excludes options/RSUs;
+approximately3million is an approximate instrument amount, not a new denominator.
+Exact tables, full EPS disclosures, source snapshots and scales pinned by v7.
+Replay byte-identical. Ledger scope-v15 now304reviewed/496pending/0withdrawn,
+16presentation-only unchanged. Exactly24states/evidence links changed; all800rows
+and prior280decisions preserved.85renderer/ledger tests pass. Reader notes render
+on overview/all four concepts and disappear on changed bound observations.
+Four discrepancy reports remain pending; no policy/source/runtime-object changes.
+Latest full HTTP/browser and scope-v13archive are historical snapshots; subsequent
+note changes require updated relevant release verification and archive coverage.
+Next publish this review and continue remaining pending/legacy filing context.
+Transfer44227 polled live this turn; latest4,873/10,360objects/zero failures;
+uploader/plan unchanged. No production activation/new indexing gain. All SEO,
+indexed-page, developer-adoption and governed-engine objectives remain active.
+Owner attribution file untouched.
