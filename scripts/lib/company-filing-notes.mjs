@@ -1,6 +1,164 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001274737",
+  "include_on_overview": true,
+  "source_sha256": "e5dec18c6ce30b9c5996c9552c3038c60c5a4f2ddd0b66db38cf430134585544",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Exagen's 2024 and 2025 basic and diluted denominators already include shares issuable under nominal-price pre-funded warrants. Other potentially dilutive warrants, options, restricted stock units and employee stock-purchase shares are excluded as anti-dilutive during losses; they must not be added to the reported denominator. Dollar losses are displayed in thousands, while shares and per-share amounts are unscaled.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1274737/000127473726000009/exdx-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.83,
+      "accn": "0001274737-26-000009",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.93,
+      "accn": "0001274737-26-000009",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.83,
+      "accn": "0001274737-26-000009",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.93,
+      "accn": "0001274737-26-000009",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 18203044,
+      "accn": "0001274737-26-000009",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 21558245,
+      "accn": "0001274737-26-000009",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 18203044,
+      "accn": "0001274737-26-000009",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 21558245,
+      "accn": "0001274737-26-000009",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001280776",
+  "include_on_overview": true,
+  "source_sha256": "42bd0540222755e6a5b59fb720001467c6d0b0c5e4a134ccad344a613c1b8818",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Immunic reports equal basic and diluted denominators for 2024 and 2025 because of its net losses. Its EPS note says the denominator includes pre-funded warrants from the January 2024 financing and, for 2025, the May 2025 offering; these are not extra dilution to add again. The note separately lists warrants still unexercised at each year-end, which are not a new weighted-average denominator calculation. Dollar losses are displayed in thousands, while reported share counts and per-share amounts are unscaled.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1280776/000128077626000005/imux-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1,
+      "accn": "0001280776-26-000005",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.62,
+      "accn": "0001280776-26-000005",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -1,
+      "accn": "0001280776-26-000005",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.62,
+      "accn": "0001280776-26-000005",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 100174766,
+      "accn": "0001280776-26-000005",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 155688030,
+      "accn": "0001280776-26-000005",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 100174766,
+      "accn": "0001280776-26-000005",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 155688030,
+      "accn": "0001280776-26-000005",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001263364",
   "include_on_overview": true,
   "source_sha256": "2de27c4f05e4d98021c18c085398a7143da700b0712edb52011d6faf68a986cd",
