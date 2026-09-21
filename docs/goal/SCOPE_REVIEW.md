@@ -110,3 +110,9 @@ retrospective split basis and deemed dividends, Silver Bull rounded-zero loss,
 Eloxx split basis and Rockwell preferred accretion receive exact source-bound notes.
 Scope-v4 changes only32pending states/evidence links; all800numerical rows and
 prior56decisions unchanged. Original reports/ledgers retained.
+
+Fourth batch2 report adds32observations,120reviewed/680pending overall, including
+8Inhibitor presentation-only rows: equal reported denominators do not establish
+the dilution cause. Precipio/AppTech dollar-only headings preserve full share counts;
+Modular prefunded warrants already included in basic shares. Scope-v5 preserves
+all800rows and prior88decisions, changing only32states/evidence links.

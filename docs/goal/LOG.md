@@ -1458,3 +1458,41 @@ tested/merged tree2102ddf0d44541367c361d8ab7e47253510cf596 identical.
 Transfer latest1494objects/zero failures, same live44227handle, no uploader/plan
 changes. Fresh HTTP/browser validation still required for updated notes. No
 production/indexing gain; all original owner goals remain active.
+
+PR127 published at693d8dec1c52510b82c283b1ca0031b0c2c82d03; CI pending.
+Unpublished rebase preserved tree108f603fc92bd1eefcaaf55fbaf24d85cfc23d2e; push
+terminal0. Same live44227handle, latest receipt1517objects/zero failures.
+Owner attribution file untouched.
+
+
+## 2026-09-21 — limited presentation, dollar scale and prefunded shares
+
+Previous goal turn progressed32reviews/PR127. Re-read continuity and polled
+44227live. Inspected original statements and dilution notes for Inhibitor, Precipio,
+AppTech and Modular Medical. Inhibitor statement matches but no specific dilution
+cause established in review:8presentation-only, explicit limited note. Precipio
+and AppTech headings apply thousands to dollars, scale0shares retained; AppTech
+2024common loss includes15kdeemed dividend. Modular basic shares already include
+prefunded warrants, scale3thousands, March fiscal dates and retrospective1-for-30
+split retained. New v6spec/report replay byte-identically.
+
+Worktree branch `evidence/batch2-context-fourth-20260921`.
+PR127 merged as556b2d36e1def66f2f2d36b52b53a1de6fe83d2c after four
+CI35545961378checks passed at693d8dec; exact tested/merged tree
+108f603fc92bd1eefcaaf55fbaf24d85cfc23d2e matches.
+Batch2 now120reviewed/680pending/0withdrawn, including8presentation-only reviews
+where dilution cause is not established. Latest ledger company-basic-diluted-batch2-
+scope-v5-20260921.json.gz. Fourth report adds32observations: Inhibitor limited
+presentation, Precipio dollar-versus-share scale, AppTech warrant-reset deemed
+dividend, Modular Medical already-included prefunded warrants and1-for-30split.
+Captured statement tables, exact tag scales and full applicable disclosures pinned.
+Byte-identical replay; only32states/evidence links changed, all800numerical rows
+and prior88decisions preserved. Theriva remains pending.
+75renderer/ledger tests passed. Updated reader notes require exact source and
+reviewed observations. Fresh HTTP/browser validation still required before release;
+old v22HTTP reports cover their pinned historical renderer only.
+Transfer44227polled live, latest receipt1653of10,360objects/zero failures. Uploader,
+plan and runtime objects unchanged. Next publish fourth review change, continue
+context coverage and finish hosted transfer. No production/indexing gain.
+
+Full owner goal active; source approval remains limited to explicit decisions.
