@@ -65,39 +65,10 @@ withheld until reviewed under COMPANY_EDITORIAL_POLICY.md.
   test. PR #56 moved the policy review date to 2026-09-15, which invalidated the
   five sources reviewed on 2026-08-26. Current terms re-review is in progress.
 
-## Progress log, September 21 (evening)
-
-Everything below is verified against live files, PRs or logs, not planned.
-
-| Area | Done | Evidence |
-| --- | --- | --- |
-| Release | v22 clean set live: 77,359 indexable company URLs, 13,373 withheld noindex | PR170 f6d37926; live header/canonical checks |
-| Sitemaps | Index now lists stable children: sitemap-site.xml (263), sitemap-companies-1.xml (50,000), sitemap-companies-2.xml (27,359) | PR174 6820607a; deployed 16:23Z; all four files 200 as Googlebot; 563 sampled pages 200, indexable, self-canonical |
-| IndexNow | Only new or updated URLs are submitted; state kept outside the deploy snapshot | PR172 51bd9d70; 16:29Z deploy logged "skipped: none of 77622 URLs is new or updated" |
-| Records | Goal folder brought current | PR171 6437c062 |
-| Capacity | SEC bulk companyfacts inventoried: 7,281 active filers, 375,915 current-concept histories, 413,535 filings | PR173 061c49a3; SOURCE_CAPACITY.md |
-| Repository | GitHub release v0.2.0 with notes; 8 topics added (mcp, mcp-server, sec-edgar, xbrl, financial-data, backtesting, api, model-context-protocol) | github.com/arhancanli/canlicapital/releases/tag/v0.2.0 |
-| MCP | 0.2.0 candidate adds company_financial_history over the company reference; 53 tests, package smoke, live check pass | PR175 (open); npm publish still needs the owner |
-| Engine | Wave 1 data-rights terms re-reviewed (6/6); running checkout fast-forwarded to 025dd27; live config fingerprint unchanged (553aff51); stale test counts fixed | alphac PR72 merged 025dd27e; PR73 open |
-
-Not done, in the owner's hands: Search Console resubmission of sitemap.xml
-(a "Couldn't fetch" on sitemap-companies-1.xml predates the 16:23Z deploy);
-npm publish of canli-validation-mcp 0.2.0; alphac PR73 merge after CI.
-
-Not yet measured: Google indexed count (baseline 262 as of September 14);
-npm downloads of 0.1.2 were 174 for September 14 to 20; both repositories
-still have 0 stars.
-
 ## Next actions
 
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
    measure crawl, index and exclusion counts by page family.
-2. Growth beyond v22 toward 800,000 indexed: sixth cohort of active SEC filers
-   from the bulk companyfacts archive (runbook being prepared from the five-cohort
-   scripts), curated additional concepts, review of the 12,959 flagged histories,
-   and a filing-level page family only after its own reader task and editorial rules.
-3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars
-   and npm downloads weekly.
-4. Engine: merge PR73; the nightly publish regenerates the audits and the health
-   check should turn green on the next run. Sharpe, sleeve and drawdown goals
-   remain immature (six current-epoch returns, four sleeves).
+2. Re-review the five Wave 1 data-source terms and restore the engine health check.
+3. Growth plan beyond v22 toward 800,000 indexed: more issuers, more supportable
+   concepts, review of flagged histories, and new source-backed page families.

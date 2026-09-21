@@ -3662,3 +3662,29 @@ published it at 15:33Z (landing meridian-8c5ag8pvq). Live checks:
 
 Google indexing is not yet measured; the baseline remains 262 (September 14).
 Search Console resubmission is an owner action. Owner attribution file untouched.
+
+## 2026-09-21 — Evening: sitemap names stabilised, IndexNow delta, capacity, release, MCP, engine
+
+Search Console reported "Couldn't fetch" for a child sitemap. Cause: the first
+child was named after a content hash and site-page lastmods change hourly, so a
+deploy could rename it between Google reading the index and fetching the child.
+PR174 (6820607a) gives the children stable names; deployed by a manual run of the
+hourly script at 16:20Z (16:23Z OK). Verified as Googlebot: index plus three
+children all 200 application/xml, 77,622 URLs, no duplicates, well-formed; 263
+site pages and 300 sampled company pages 200, indexable, self-canonical.
+
+PR172 (51bd9d70): IndexNow now submits only new or updated URLs from a state file
+outside the deploy snapshot. The 16:29Z hourly deploy skipped resubmission.
+
+PR173 (061c49a3): SEC bulk companyfacts capacity inventory (see SOURCE_CAPACITY.md).
+
+GitHub release v0.2.0 published with release notes; eight repository topics added.
+
+PR175 opened: MCP 0.2.0 candidate with company_financial_history (unpublished
+until the owner runs npm publish).
+
+Engine: alphac PR72 merged (025dd27e); the running checkout ~/alphaforge was
+fast-forwarded 30a7703 to 025dd27 with the owner's permission; a locally edited
+deploy script was byte-identical to main; the live-change gate reports the same
+fingerprint 553aff51. PR73 fixes two tests that still expected 10 policy source
+classes (14 since PR56). No production, indexing or strategy outcome is claimed.
