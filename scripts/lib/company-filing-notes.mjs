@@ -1,6 +1,322 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001401914",
+  "include_on_overview": true,
+  "source_sha256": "1a9e5d436251c8650231f065c4c293fc1bb2b6e8877619128801af21ceea9ac3",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Dar\u00e9 Bioscience's 2024 and 2025 statements use full dollars and shares. Potential options and warrants are excluded as anti-dilutive during losses, so basic and diluted loss EPS are equal. The filing retrospectively reflects the July 1, 2024 one-for-twelve reverse split, but says that restatement does not give effect to whole shares issued instead of fractional shares. The separate transaction disclosure says fractional interests were rounded up. Neither excluded period-end securities nor hypothetical fractional-share adjustments are added to the reported denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1401914/000140191426000004/dare-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.48,
+      "accn": "0001401914-26-000004",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.2,
+      "accn": "0001401914-26-000004",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.48,
+      "accn": "0001401914-26-000004",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -1.2,
+      "accn": "0001401914-26-000004",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 8497459,
+      "accn": "0001401914-26-000004",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 11178752,
+      "accn": "0001401914-26-000004",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 8497459,
+      "accn": "0001401914-26-000004",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 11178752,
+      "accn": "0001401914-26-000004",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001404281",
+  "include_on_overview": true,
+  "source_sha256": "4f5cc5be1669d2394918add4693809b2004c1033ce5e8c4625a2a4da5c2f19a1",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Eledon Pharmaceuticals uses the two-class method to allocate losses between common stock and Series X/Series X1 preferred stock. Its 2024 and 2025 common EPS use reported common-stock losses of $31.992 million and $42.328 million, rather than the total losses. Dollar amounts are in thousands, but shares and EPS are unscaled. Basic weighted-average shares already include 12,443,755 and 36,629,572 prefunded-warrant shares, respectively, because their exercise price is nominal. Other potential instruments are excluded during losses. This note preserves the reported class allocations without reconstructing a conversion or weighting formula.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1404281/000119312526116164/eldn-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.66,
+      "accn": "0001193125-26-116164",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.52,
+      "accn": "0001193125-26-116164",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.66,
+      "accn": "0001193125-26-116164",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.52,
+      "accn": "0001193125-26-116164",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 48543787,
+      "accn": "0001193125-26-116164",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 81836246,
+      "accn": "0001193125-26-116164",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 48543787,
+      "accn": "0001193125-26-116164",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 81836246,
+      "accn": "0001193125-26-116164",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001404644",
+  "include_on_overview": true,
+  "source_sha256": "87b159cd5ceebdf479b494be364ba33f1e8263d79fdedbf945f7fab03349e1a8",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Neurogene's 2024 and 2025 filing reports dollar losses in thousands with full shares and unscaled EPS. Prefunded warrants are included from issuance because they are fully vested and exercisable for nominal cash; the year-end balances of 6,124,996 and 6,792,559 are not extra shares to add to the weighted-average denominator. Other potential shares are excluded during losses. These periods follow the December 18, 2023 reverse merger; older Neoleukin filing observations retain their own historical context.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1404644/000140464426000019/ngne-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -4.28,
+      "accn": "0001404644-26-000019",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -4.24,
+      "accn": "0001404644-26-000019",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -4.28,
+      "accn": "0001404644-26-000019",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -4.24,
+      "accn": "0001404644-26-000019",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 17567082,
+      "accn": "0001404644-26-000019",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 21326283,
+      "accn": "0001404644-26-000019",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 17567082,
+      "accn": "0001404644-26-000019",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 21326283,
+      "accn": "0001404644-26-000019",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001404644",
+  "include_on_overview": true,
+  "source_sha256": "87b159cd5ceebdf479b494be364ba33f1e8263d79fdedbf945f7fab03349e1a8",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "The selected 2021 and 2022 observations come from Neoleukin Therapeutics' historical filing. It reports dollar losses in thousands and full shares. Its 12,663,010 prefunded warrants outstanding at each year-end were already included from issuance for nominal consideration; other potential common shares were excluded during losses. These reported values are preserved as filed, rather than treated as a restatement onto the later Neurogene basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1404644/000162828023008602/nltx-20221231.htm",
+  "observations": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -1.1,
+      "accn": "0001628280-23-008602",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -1.04,
+      "accn": "0001628280-23-008602",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -1.1,
+      "accn": "0001628280-23-008602",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -1.04,
+      "accn": "0001628280-23-008602",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 55041662,
+      "accn": "0001628280-23-008602",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 55221161,
+      "accn": "0001628280-23-008602",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 55041662,
+      "accn": "0001628280-23-008602",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 55221161,
+      "accn": "0001628280-23-008602",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001390478",
   "include_on_overview": true,
   "source_sha256": "818666353c7435e791daaef96b770961681bfce07618c1566e0bf1f54ce09cc0",
