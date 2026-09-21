@@ -1673,3 +1673,30 @@ test('Rapid Micro, OneMeta and Actinium retain classes, dividend numerator and u
     assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
   }
 });
+
+test('Sutro keeps historical and split-adjusted filing bases explicit', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/batch2-0001382101-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0001382101', fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record.concepts);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const html = renderCompanyPages(record, { target })[0].html;
+    assert.match(html, /selected 2022 and 2023 observations/);
+    assert.match(html, /does not apply the later reverse split/);
+    assert.match(html, /does not apply the later reverse split to them or approve the separate 2024 column/);
+    assert.match(html, /one-for-ten reverse split/);
+    assert.match(html, /December 3, 2025/);
+    assert.match(html, /fractional shares were rounded up/);
+    assert.match(html, /Earlier observations from a different filing are not automatically rescaled/);
+
+  }
+  assert.deepEqual(record.concepts, original);
+  for (const accession of ['0001193125-26-119873', '0000950170-25-038884']) {
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic').filter(n => n.observations.some(r => r.accn === accession));
+    assert.equal(notes.length, 1);
+    const changed = structuredClone(record), row = notes[0].observations[0];
+    changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+    assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+  }
+});
