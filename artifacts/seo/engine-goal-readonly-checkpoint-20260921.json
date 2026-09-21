@@ -1,0 +1,112 @@
+{
+  "schema": "canli.engine-goal-readonly-checkpoint.v1",
+  "checked_at": "2026-09-21T03:00:11.709690+00:00",
+  "report_generated_at": "2026-09-21T02:27:42.168281+00:00",
+  "report_path": "/Users/arhancanli/alphaforge/artifacts/engineering/forward_evidence_maturity.json",
+  "report_sha256": "77da1bacb91004442a387406450aefa2f1af5696c0bcee94443c87c9ad6561a2",
+  "report_content_hash": "sha256:ad5cbde9ca1112aa852df5e375319907071f46469e1aeb9c5551152b8ae01db8",
+  "content_hash_verified": true,
+  "source_bindings": [
+    {
+      "name": "contract",
+      "path": "config/forward_evidence_contract.json",
+      "expected_sha256": "51396b2a1f4360520101c53ed7d128213f24fdc92bc45eb8955fa21bf8a70c6e",
+      "actual_sha256": "51396b2a1f4360520101c53ed7d128213f24fdc92bc45eb8955fa21bf8a70c6e",
+      "matches": true
+    },
+    {
+      "name": "paper_state",
+      "path": "data/paper/state.json",
+      "expected_sha256": "3b1f461c1572d87ae75d722ef2078ea706875a32621ff9402484ca64d294d5d2",
+      "actual_sha256": "3b1f461c1572d87ae75d722ef2078ea706875a32621ff9402484ca64d294d5d2",
+      "matches": true
+    },
+    {
+      "name": "record_continuity",
+      "path": "artifacts/engineering/record_continuity.json",
+      "expected_sha256": "2ee60ea111b3fc6e210f8dfbaae3560c1bf8feeb1a637abf2b690355af865707",
+      "actual_sha256": "2ee60ea111b3fc6e210f8dfbaae3560c1bf8feeb1a637abf2b690355af865707",
+      "matches": true
+    },
+    {
+      "name": "broker_reconciliation",
+      "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
+      "expected_sha256": "af234e1be9f4c9c8b3937a4f43e4154cb8691481df279679ded65a34186c766e",
+      "actual_sha256": "af234e1be9f4c9c8b3937a4f43e4154cb8691481df279679ded65a34186c766e",
+      "matches": true
+    },
+    {
+      "name": "drawdown_model",
+      "path": "artifacts/analysis/drawdown_live_estimator/result.json",
+      "expected_sha256": "9671ed7551aab242dc3529510cf9105201835096f36bb971153c132081754324",
+      "actual_sha256": "9671ed7551aab242dc3529510cf9105201835096f36bb971153c132081754324",
+      "matches": true
+    },
+    {
+      "name": "current_book_drawdown",
+      "path": "artifacts/analysis/current_book_drawdown/result.json",
+      "expected_sha256": "94a4f534b6844e0df7eb1b8302e8c995255eb028cb0d4f3b006376f0bd6ec591",
+      "actual_sha256": "94a4f534b6844e0df7eb1b8302e8c995255eb028cb0d4f3b006376f0bd6ec591",
+      "matches": true
+    },
+    {
+      "name": "current_book_diversification",
+      "path": "artifacts/analysis/current_book_diversification/result.json",
+      "expected_sha256": "037d70da5708932be21b4a5a9f4b85d8fc7bad2188971dd1b139bed0dc077b66",
+      "actual_sha256": "037d70da5708932be21b4a5a9f4b85d8fc7bad2188971dd1b139bed0dc077b66",
+      "matches": true
+    },
+    {
+      "name": "drawdown_evidence",
+      "path": "artifacts/engineering/forward_drawdown_evidence.json",
+      "expected_sha256": "21d17b3cbe4b2d7654c6a6595cfb07d9cc96fc0fc31178142a0164d2d8342af6",
+      "actual_sha256": "21d17b3cbe4b2d7654c6a6595cfb07d9cc96fc0fc31178142a0164d2d8342af6",
+      "matches": true
+    },
+    {
+      "name": "methodology_paper",
+      "path": "docs/research/FORWARD_SHARPE_EVIDENCE_STANDARD.md",
+      "expected_sha256": "f16bff68f829309319c3671de4187f6a6ba8f83b4eaa65f3ffb705b4f4fa9325",
+      "actual_sha256": "f16bff68f829309319c3671de4187f6a6ba8f83b4eaa65f3ffb705b4f4fa9325",
+      "matches": true
+    },
+    {
+      "name": "transparency_chain",
+      "path": "meridian/public/glassbox/transparency_log.json",
+      "expected_sha256": "542e4657b72bfbaee5002d007d308299fed273b5d0808fc337a0db5848464314",
+      "actual_sha256": "542e4657b72bfbaee5002d007d308299fed273b5d0808fc337a0db5848464314",
+      "matches": true
+    },
+    {
+      "name": "crypto_position_attribution",
+      "path": "artifacts/engineering/crypto_position_attribution.json",
+      "expected_sha256": "69a9293b0c3221e41346a60d623f4ebcbfa9a9936e9c0fb3c88ee9a57696114a",
+      "actual_sha256": "69a9293b0c3221e41346a60d623f4ebcbfa9a9936e9c0fb3c88ee9a57696114a",
+      "matches": true
+    },
+    {
+      "name": "crypto_position_attribution_rollout",
+      "path": "artifacts/engineering/crypto_position_attribution_rollout_verification.json",
+      "expected_sha256": "eadab7ba40dd86c2880ac913667a3fd32b69317a33b1338cd1475aeafd4e4863",
+      "actual_sha256": "eadab7ba40dd86c2880ac913667a3fd32b69317a33b1338cd1475aeafd4e4863",
+      "matches": true
+    }
+  ],
+  "all_source_bindings_match": true,
+  "capital_kind": "PAPER_ONLY",
+  "status": "IMMATURE_RECORD_TOO_SHORT",
+  "first_mark": "2026-09-15",
+  "last_mark": "2026-09-21",
+  "daily_return_observations": 6,
+  "current_sleeves": 4,
+  "target_sleeves": 14,
+  "sharpe_point_estimate": null,
+  "sharpe_estimate_minimum": 252,
+  "sharpe_establishment_minimum": 756,
+  "uncharged_model_cost_categories": [
+    "cash_yield_on_idle_capital",
+    "financing_margin_interest",
+    "latency_slippage"
+  ],
+  "scope": "Read-only hash verification of the existing local engine maturity report and its current source bindings. No evaluator rerun, broker call, trading action, runtime activation, independent source authentication, Sharpe estimate or achievement claim."
+}
