@@ -75,8 +75,13 @@ export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}
   if (typeof fetchedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$/.test(fetchedAt) || !Number.isFinite(Date.parse(fetchedAt))) throw new Error('A verified UTC capture timestamp is required before publication');
   if (selectionPolicy !== undefined && ![EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3, EDITORIAL_POLICY_V4, EDITORIAL_POLICY_V5, EDITORIAL_POLICY_V6, EDITORIAL_POLICY_V7, EDITORIAL_POLICY_V8, EDITORIAL_POLICY_V9, EDITORIAL_POLICY_V10, EDITORIAL_POLICY_V11, EDITORIAL_POLICY_V12, EDITORIAL_POLICY_V13, EDITORIAL_POLICY_V14, EDITORIAL_POLICY_V15, EDITORIAL_POLICY_V16, EDITORIAL_POLICY_V17, EDITORIAL_POLICY_V18, EDITORIAL_POLICY_V19, EDITORIAL_POLICY_V20, EDITORIAL_POLICY_V21, EDITORIAL_POLICY_V22].includes(selectionPolicy)) throw new Error('Unknown company selection policy');
   const source = JSON.parse(raw);
-  if (!source || !Number.isSafeInteger(source.cik) || source.cik < 1 || source.cik > 9999999999 || source.cik !== Number(expectedCik) || typeof source.entityName !== 'string' || !source.entityName.trim()) throw new CompanyReferenceError('INVALID_ENTITY', 'SEC entity identity mismatch');
-  const cik = String(source.cik).padStart(10, '0');
+  // SEC serves cik as an integer for most entities and as a digit string (sometimes
+  // zero-padded) for others. Both encode the same identity; a string is accepted only
+  // when it is digits alone and equals the requested CIK numerically. Anything else,
+  // including a non-digit string, still fails identity.
+  const sourceCik = typeof source?.cik === 'string' && /^\d{1,10}$/.test(source.cik) ? Number(source.cik) : source?.cik;
+  if (!source || !Number.isSafeInteger(sourceCik) || sourceCik < 1 || sourceCik > 9999999999 || sourceCik !== Number(expectedCik) || typeof source.entityName !== 'string' || !source.entityName.trim()) throw new CompanyReferenceError('INVALID_ENTITY', 'SEC entity identity mismatch');
+  const cik = String(sourceCik).padStart(10, '0');
   const asOf = fetchedAt.slice(0, 10);
   if (!date(asOf)) throw new Error('Invalid capture date');
   const concepts = [];

@@ -1,0 +1,98 @@
+{
+ "schema": "canli.sec-bulk-discovery.v1",
+ "archive": {
+  "path": "/Users/arhancanli/canlicapital-expansion-20260919/artifacts/seo/corpus-local/sec-bulk/companyfacts-20260919.zip",
+  "sha256": "ee099c7394a357f1996c728b7362f25158613b34f2ab1ad270cffc1befb917b6",
+  "snapshot": "2026-09-19"
+ },
+ "admission_concepts": {
+  "path": "/Users/arhancanli/canlicapital-activation-20260921/config/company-admission-v22.json",
+  "count": 34
+ },
+ "rules": {
+  "forms": [
+   "10-K",
+   "10-K/A",
+   "10-Q",
+   "10-Q/A",
+   "20-F",
+   "40-F"
+  ],
+  "filed_on_or_after": "2024-09-19",
+  "minimum_current_concepts": 4,
+  "ranking": "concept coverage descending, latest filing date descending, CIK ascending"
+ },
+ "exclusions": [
+  {
+   "kind": "delivery",
+   "path": "/Users/arhancanli/canlicapital-expansion-20260919/artifacts/seo/corpus-local/company-five-cohort-delivery-v22/delivery.json",
+   "sha256": "16a18cdc8d0bb19e6363599a0b491a8bb9e06aeebadb9c33b5e34f69e9110271",
+   "ciks": 3323
+  },
+  {
+   "kind": "prior-queues",
+   "path": "artifacts/seo/company-sixth-prior-capture-queues.json",
+   "sha256": "a326b1a186f2b43d225107f2bf06aca028dd41b902093b94918bec00e01497dd",
+   "ciks": 4569
+  }
+ ],
+ "eligible_entities_excluded_as_known": 3461,
+ "eligible_entities": 3793,
+ "skipped_identity_mismatch": 0,
+ "slice_size": 1000,
+ "slices": [
+  {
+   "file": "discovery-slice-01.json",
+   "sha256": "a1560c43fba436b94785712cf471c426285414320d3e9f90f188c80d9627d5ed",
+   "entities": 1000,
+   "concept_coverage_range": [
+    34,
+    29
+   ],
+   "latest_filed_range": [
+    "2024-09-26",
+    "2026-09-18"
+   ]
+  },
+  {
+   "file": "discovery-slice-02.json",
+   "sha256": "40fcc6e6f2e89654f68ac5a453e20ef93e36efe0e831816aae67712f2be9290a",
+   "entities": 1000,
+   "concept_coverage_range": [
+    29,
+    25
+   ],
+   "latest_filed_range": [
+    "2024-10-03",
+    "2026-09-18"
+   ]
+  },
+  {
+   "file": "discovery-slice-03.json",
+   "sha256": "3d1b81a629fa49746516f5e6e658f3ebb705643657b2c13d7907b05bbaf3299d",
+   "entities": 1000,
+   "concept_coverage_range": [
+    25,
+    17
+   ],
+   "latest_filed_range": [
+    "2024-09-24",
+    "2026-09-18"
+   ]
+  },
+  {
+   "file": "discovery-slice-04.json",
+   "sha256": "b2f763142dce1e57ce9956311b8beddc05fb1309c694bba330aa1ad15a1a85d0",
+   "entities": 793,
+   "concept_coverage_range": [
+    17,
+    4
+   ],
+   "latest_filed_range": [
+    "2024-09-24",
+    "2026-09-18"
+   ]
+  }
+ ],
+ "scope": "Candidate discovery only. Not capture, review, admission, release or indexing."
+}

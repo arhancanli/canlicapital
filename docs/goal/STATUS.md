@@ -88,14 +88,39 @@ Not yet measured: Google indexed count (baseline 262 as of September 14);
 npm downloads of 0.1.2 were 174 for September 14 to 20; both repositories
 still have 0 stars.
 
+## v23 staged release (built September 21, 18:10Z; not uploaded, not live)
+
+Ten cohorts: the five v22 cohorts carried over byte for byte, four new cohorts
+captured from SEC on September 21 (queues from the bulk companyfacts archive,
+ranked by concept coverage, disjoint from every attempted CIK), and a tenth cohort
+of 89 v22-era companies re-derived from retained bytes after the selector began
+accepting digit-string CIKs (COMPANY_EDITORIAL_POLICY.md). Capture: 3,793 CIKs,
+0 HTTP errors, 0 not-found. Eligible after review: 968 + 919 + 781 + 312 + 88 =
+3,068; every remaining exclusion is INSUFFICIENT_COVERAGE except two identity
+failures.
+
+Release 4a5d9160…, catalog b6f3b3ea…: 6,391 companies, 157,113 histories,
+163,632 candidate URLs, 128 directory pages, 19,790 objects (1.83 GB; 9,731 new
+against the v22 plan, 557 MB). `scripts/verify-v23-runtime.mjs` passed: 3,323
+carried, 3,068 added from pinned queues, every object hashed, sitemap leaves exact.
+
+Admission v23 (same clean-set rules): 132,876 indexable URLs (6,376 overviews,
+126,372 unflagged histories, 128 directories); 30,342 flagged histories and the
+same 15 pending-review companies withheld noindex.
+
+Open before activation: storage upload of the 9,731 new objects (owner-run with
+the Supabase service key), hosted readiness on a clean preview, the full local
+HTTP audit (running), a browser audit, and an activation PR that pins release
+4a5d9160… and admission v23.
+
 ## Next actions
 
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
    measure crawl, index and exclusion counts by page family.
-2. Growth beyond v22 toward 800,000 indexed: sixth cohort of active SEC filers
-   from the bulk companyfacts archive (runbook being prepared from the five-cohort
-   scripts), curated additional concepts, review of the 12,959 flagged histories,
-   and a filing-level page family only after its own reader task and editorial rules.
+2. Growth beyond v22 toward 800,000 indexed: upload, verify and activate v23
+   (132,876 indexable); then curated additional concepts, review of the flagged
+   histories, historical filers with explicit historical framing, and a filing-level
+   page family only after its own reader task and editorial rules.
 3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars
    and npm downloads weekly.
 4. Engine: merge PR73; the nightly publish regenerates the audits and the health

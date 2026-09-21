@@ -219,3 +219,26 @@ company-nika-revenue-scope-20260920.json. Exact source changes require renewed
 review. Earlier policies remain reproducible; the fourth cohort v9transition
 changes only this concept across all683companies. Remaining histories still
 require their outstanding editorial/usefulness checks.
+
+## Digit-string CIK identity (2026-09-21)
+
+SEC's companyfacts responses carry `cik` as an integer for most entities and as a
+digit string, sometimes zero-padded, for others (for example Regency Centers,
+CubeSmart, Basin Electric). The selector required an integer, so every such
+company was excluded as INVALID_ENTITY: 337 across the five v22 cohorts and 1,808
+of the 3,793 candidates captured on 2026-09-21.
+
+Decision: a `cik` that is digits only and equals the requested CIK numerically is
+the same identity and is accepted; a non-digit string, a different number, or a
+missing name still fails identity. The source bytes are unchanged and remain
+hash-bound; only the identity check reads the string.
+
+Transition proof: the five v22 cohorts reviewed under the new selector produce
+byte-identical candidate lists and identical non-identity exclusions. The only
+difference is that former INVALID_ENTITY rows no longer reproduce as such: under
+the new selector 89 are eligible, 156 fail coverage and 92 still fail identity.
+Retained review reports that pin selector `849cd5a0…` reproduce under the
+selector at commit 061c49a3. The 89 companies are re-derived from their retained
+bytes and original capture receipts as cohort `tenth-89` (no new acquisition).
+The four new cohorts are re-derived the same way (`*-r2` directories); the
+original capture directories keep the first selector's outcomes as evidence.
