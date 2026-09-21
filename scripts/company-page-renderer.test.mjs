@@ -1361,3 +1361,23 @@ test('GHST, Pulmonx and Galectin preserve loss rounding, repurchase shares and p
     assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
   }
 });
+
+test('Bio-Path preserves split basis and scaled visible share counts', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/batch2-0001133818-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0001133818', fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record.concepts);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const html = renderCompanyPages(record, { target })[0].html;
+    assert.match(html, /February 22, 2024 one-for-20 reverse split/);
+    assert.match(html, /inline scale 3/);
+    assert.match(html, /excluded as anti-dilutive during losses/);
+  }
+  assert.deepEqual(record.concepts, original);
+  const notes = companyFilingNotes(record, 'EarningsPerShareBasic').filter(n => n.observations.some(r => r.accn === '0001558370-25-003837'));
+  assert.equal(notes.length, 1);
+  const changed = structuredClone(record), row = notes[0].observations[0];
+  changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+  assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+});

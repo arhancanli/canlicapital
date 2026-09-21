@@ -1,6 +1,85 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001133818",
+  "include_on_overview": true,
+  "source_sha256": "ba1a5b94a703d7df40927e88576df9dbcb07b38680ce9a942065f8bd6fea9eee",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Bio-Path's 2023 and 2024 share and per-share values reflect the February 22, 2024 one-for-20 reverse split. Outstanding options and warrants are excluded as anti-dilutive during losses. The statement displays weighted-average shares in thousands and uses inline scale 3; full selected counts and reported USD EPS remain on the filing's adjusted basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1133818/000155837025003837/bpth-20241231x10k.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -33.63,
+      "accn": "0001558370-25-003837",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -4.12,
+      "accn": "0001558370-25-003837",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -33.63,
+      "accn": "0001558370-25-003837",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -4.12,
+      "accn": "0001558370-25-003837",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 478000,
+      "accn": "0001558370-25-003837",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 2401000,
+      "accn": "0001558370-25-003837",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 478000,
+      "accn": "0001558370-25-003837",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 2401000,
+      "accn": "0001558370-25-003837",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001121795",
   "include_on_overview": true,
   "source_sha256": "d0880d260b2cbd749eb3ddd3ec3e13e9b8c031ee499cd66405d7ad6a4a75b503",

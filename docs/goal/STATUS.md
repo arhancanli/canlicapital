@@ -8,29 +8,28 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/batch2-context-sixth-20260921`.
-PR130 merged as4abcb2edba0d32f2b101df97ddfbc39bcdd950bd after four
-CI35546697561checks passed atc34f8c77; exact tested/merged tree
-bab82ff4060f0626d16b3b72828fe78ee0342eae matches.
-Batch2 now168reviewed/632pending/0withdrawn,8presentation-only unchanged. Latest
-ledger company-basic-diluted-batch2-scope-v8-20260921.json.gz. Sixth report adds24
-observations: GHST explicit absence of instruments/rounded losses/June fiscal dates,
-Pulmonx33repurchase-share deduction2024, Galectin preferred dividends/share scale3.
-Exact captured statements and full disclosures pinned; replay byte-identical.
-Only24states/evidence links change; all800rows and prior144decisions unchanged.
-78renderer/ledger tests pass. No source/policy/runtime-object changes.
-Initial spec preparation required Galectin heading as paragraph, but actual heading
-is in the statement table; moved requirement to table checks. Four-filing replay
-then failed strict table mapping for Bio-Path diluted facts. Draft retained at
-corpus-local/company-batch2-sixth-initial-spec-20260921.json; Bio-Path source fixture
-untracked for further review. Final spec only includes the three passing issuers.
-Bio-Path pending: inspect hidden EPS/share mappings next; known February22,2024
-one-for-20split and share scale3 need preserving. Generic runner not weakened.
-Community and Theriva remain unresolved. Fresh HTTP/browser checks required for
-updated notes before release; earlier reports cover their pinned historical code.
-Transfer44227polled live, latest2206of10,360objects/zero failures; uploader/plan
-unchanged. Next publish review, resolve Bio-Path mapping and continue hosted delivery.
-No production/indexing gain; full owner goal active.
+Worktree branch `evidence/biopath-hidden-context-20260921`.
+PR131 merged asfff60584988c4f4fee8805491dd02414e0664d54 after four
+CI35546956894checks passed atb3fd1666; exact tested/merged tree
+98a5066b441a60687e201017c76a595e94f684c9 matches.
+Batch2 now176reviewed/624pending/0withdrawn,8presentation-only unchanged. Latest
+ledger company-basic-diluted-batch2-scope-v9-20260921.json.gz. Bio-Path2023/24eight
+observations reviewed by source-pinned specialized runner. EPS explicit hidden
+links share visible basic-EPS rows. Hidden full-share values use scale0; visible
+basic shares use scale3, yielding identical unit/context/numeric values. No direct
+hidden-share DOM link claimed. Explicit loss/exclusion and retrospective February22,
+2024one-for-20split paragraphs retained. Original fact XML preserves decimals=-3
+precision for share counts; no recomputed EPS or increased precision asserted.
+Generic v6and Plug runner unchanged. Replay byte-identical. Only8ledger states/
+evidence links change; all800numerical rows and prior168decisions preserved.
+Three Python mapping tests cover period/unit/scale/value/link/duplicate mismatches,
+missing visible scaling, wrong displayed count and double scaling; added to CI.
+79renderer/ledger tests passed. Reader note bound to exact source and observations.
+Community numerator and Theriva conflicts remain pending. Fresh HTTP/browser
+validation required for changed notes before deployment; old reports historical.
+Transfer44227polled live, latest2337of10,360objects/zero failures. Uploader/plan and
+runtime objects unchanged. Next publish Bio-Path review, continue pending context
+coverage and finish hosted delivery. No production/indexing gain; all goals active.
 
 ## Earlier verified checkpoints (historical)
 
@@ -346,3 +345,8 @@ PR130 published atc34f8c775296a4c3517fcb4f1233d217a08b4335; CI pending.
 Unpublished rebase preserved treebab82ff4060f0626d16b3b72828fe78ee0342eae; push
 terminal0. Same live44227handle, latest receipt2073objects/zero failures.
 Owner attribution file untouched.
+
+PR131 published atb3fd16665274f255c42fb1e39fec70d5a41f0fc5; CI pending.
+Unpublished rebase preserved tree98a5066b441a60687e201017c76a595e94f684c9; push
+terminal0. Same live44227handle, latest receipt2224objects/zero failures.
+Owner attribution file and untracked Bio-Path fixture retained.
