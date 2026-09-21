@@ -1,21 +1,26 @@
 # Direct execution ledger
 
-Updated September21,2026. Codex leads; Hermes stopped. Goal active and unachieved.
-Exact pins, handles and next action are in STATUS.md. Historical ledger preserved
-in history/EXECUTION_LEDGER-20260920-through-five-cohort-archive-start.md.
+Updated September 21, 2026. Codex implements directly; Hermes delegation is stopped.
+The full goal remains active and unachieved. Read STATUS.md for exact hashes,
+process handles and the latest checkpoint. Earlier ledger preserved in
+[history/EXECUTION_LEDGER-20260921-before-scope-v19-refresh.md](history/EXECUTION_LEDGER-20260921-before-scope-v19-refresh.md).
 
-| Work | Current state | Remaining outcome |
+| Work | Verified state | Next required outcome |
 | --- | --- | --- |
-| Inherited repair/source integrity | Source-bound replay and exclusion safeguards implemented | Continue independent review; preserve failed evidence |
-| Five-cohort expansion | Built v22:90,732 candidate URLs;3,323 companies/87,342 histories; exact inventory verified; initial HTTP audit31666 exhausted heap; corrected retry13997 running;40 representative browser cases pass | Editorial admission, hosted verification and production release |
-| Retention | V14combined23,160file archive restored:5queues,10,360runtime objects,6reports; separate priority archive replays14reports/ledger | Currency supplement40files/four reports and batch1supplement446files/six reports restored; offsite backup and maintenance |
-| Hosted delivery | Five-cohort upload26312terminal on429at5625objects; paced recovery77617superseded at2412objects; v10replacement plan verified; v10transfer82504superseded; v11pipeline90963completed0 with90,737URLs independently verified; clean preview passes23HTTP checks; 32representative cases covered across runs, final desktop flow verified independently in CI | Complete bulk transfer, browser/full-corpus and production gates |
-| Editorial quality | Versioned exclusions; priority equality numerical closure610/610; primary capture and isolated archival replay complete | Priority scope600reviewed/0pending/10withdrawn; 712deferred groups mapped;150/150baseline retained numerical matches; six Varonis unit observations held; Monolithic/51Talk exact v15holds implemented and fixture-tested, SoFi predecessor date resolved, original USN retained with explicit caveat; batch1captured100filings/1,176observations;1,098inline+78legacy matches (1,176total);eight Valhi scale holds implemented asv16;two residual constant histories omitted; v17two exact Siebert diluted-denominator holds; v20six exact Lifeward EPS currency holds; v21two INVO denominator conflicts; v22eight older Iovance scale conflicts; whole-corpus replay passed; current batch1 scope1148reviewed (130Plastec/ValhiEPS/Cedar2025/Reliability/NLI/Weis/Southern Copper/CompX/Kronos/Apple Hospitality/China Bilingual/Gladstone Land presentation-only, dilution cause unestablished)/0pending/28withdrawn, with source-bound 111 ordinary-share and Celldex loss-period/scale context; all100batch primaries indexed for context navigation (83candidate dilution disclosures,78legacy observations need statement mapping); broader capture gaps and scope/usefulness open |
-| Indexing/SEO | 327live sitemap URLs;262indexed baseline fromSep14;104intent owners | URL-level exclusions, relevant coverage and800kactual indexing |
-| Developer platform | MCP0.1.2published; key-revocation migration/API verified live | Measure and earn real API/MCP/repository adoption |
-| Engine integration | PR71merged with six passing CIchecks; original runtime preserved | Governed research/activation; no broker actions |
-| Strategy outcomes | Five returns/four sleeves, immature evidence | NET FORWARD Sharpe>2,14qualified distinct sleeves,maxDD<=10% |
-| Source capacity | Current8,031issuer discovery insufficient for800k | Validate additional useful source/content families |
-| Continuity | Reusable source-bound scope registry reproduces1176rows; review workflow documented; current STATUS/ledger consolidated; historical records retained | Update at material transitions |
+| Expansion | v22 contains 90,732 candidate URLs: 3,323 company overviews, 87,342 histories and 67 directories. They are not live. | Complete editorial admission, hosted verification and release. |
+| Release checks | Current scope-v19 HTTP17917 passed for all 90,732 pages and 6,646 downloads. Browser26941 passed 900 cases, including 980 exact note/source checks. | Complete hosted routing, storage, load/cost and failure-behavior gates. |
+| Storage transfer | Original44227 stopped on HTTP520 after 6,023 verified objects. After the provider wait, a public read confirmed the failed object absent. Recovery79720 is running under the unchanged plan and bounded policy. | Finish all 10,360 objects; verify receipt and hosted delivery. Recovery counts are reverified objects, not additive uploads. |
+| Evidence retention | Full v22 runtime and batch1/scope supplements restored locally. Current batch2 scope-v19 archive24637 restored all 28 reports from 665 files, including six pending discrepancies. | Offsite backup, ongoing maintenance and coverage for subsequent changes. Local restore is not independent certification. |
+| Editorial review | Batch1: 1,148 reviewed (130 presentation-only), 28 withdrawn, none pending. Batch2: 392 reviewed (64 presentation-only), 408 pending, none withdrawn. Six discrepancy reports remain pending; Digital Ally needs further review. | Resolve or retain unresolved scope honestly; continue broader source/usefulness review. |
+| Indexing and SEO | Last verified live sitemap: 327 URLs. Last confirmed indexing: 262 pages as of September 14, exported September 20. Main sitemap already submitted. | Verified release, crawl/index exclusion measurements and at least 800,000 actually indexed canonical pages, targeting one million. |
+| Relevant content coverage | Last recorded inventory: 8,031 discovered issuers and 104 intent owners. Existing coverage cannot support the indexing goal alone. | Expand useful, distinct, supportable source/content families and relevant search intents. |
+| Developer platform | MCP 0.1.2 published; API issue/validate/revoke behavior verified in earlier production checkpoint. September 21 baseline: both public repositories have zero stars/forks/subscribers; npm reports 33 package downloads for September 13–19 across versions. | Earn and measure real external developer adoption. Aggregate downloads do not prove users, version-0.1.2 adoption or API/MCP usage. |
+| Engine implementation | Last verified integration: PR71 merged with all six CI checks passing; running-engine activation was not performed. | Governed research and reviewed runtime activation; no broker orders or bypass of owner-reserved decisions. |
+| Strategy outcomes | Last recorded forward evidence: five returns/four sleeves, immature and insufficient. | Combined net forward Sharpe above 2, at least 14 economically distinct qualified sleeves, and realized maximum drawdown at most 10%. |
+| Continuity | REQUIREMENTS.md preserves every owner objective; STATUS.md records the current checkpoint; LOG.md retains transitions and failures. | Keep these records consistent with files, PRs and live process evidence. |
 
-V22 scope-review archive checkpoint:835files/373,032,960bytes,61outputs restored byte-identically; receipt company-scope-review-evidence-archive-v22-20260921.json. Local restore only; runtime rebuild/quality refresh and broader scope remain pending.
+Evidence references: current batch2 archive receipt is
+`artifacts/seo/company-batch2-evidence-archive-scope-v19-20260921.json`;
+developer baseline is `artifacts/seo/developer-adoption-baseline-20260921.json`.
+No repository activity, archive, local test, staged URL or submitted sitemap is
+counted as a newly indexed page or achieved strategy outcome.
