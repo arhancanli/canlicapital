@@ -1,6 +1,401 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001422142",
+  "include_on_overview": true,
+  "source_sha256": "0bc3518b433577b57088b38c087953d494e28bdd319b1da3b435ea8e7e18b0c1",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Whitehawk Therapeutics' 2024 and 2025 statements use dollar thousands and full shares. Basic and diluted shares already include the weighted effect of nominal-price prefunded warrants issued in September 2022 and March 2025. The financing called the 2024 PIPE closed March 4, 2025; its name does not establish a 2024 issuance. Outstanding warrant counts are not separate weighted-average additions. Other potential shares are excluded as anti-dilutive during losses.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1422142/000119312526104158/whwk-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.36,
+      "accn": "0001193125-26-104158",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.33,
+      "accn": "0001193125-26-104158",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.36,
+      "accn": "0001193125-26-104158",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.33,
+      "accn": "0001193125-26-104158",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 27029942,
+      "accn": "0001193125-26-104158",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 61886765,
+      "accn": "0001193125-26-104158",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 27029942,
+      "accn": "0001193125-26-104158",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 61886765,
+      "accn": "0001193125-26-104158",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001426800",
+  "include_on_overview": true,
+  "source_sha256": "f87ee3d44f43bd73d30c280e8d97b2de4bcc4d8a35b03fbebb0e715c83069335",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Assembly Biosciences' 2024 and 2025 statements use dollar thousands and full shares. Shares underlying the August 2025 prefunded warrants are treated as outstanding for EPS because they are fully vested and exercisable for $0.001 each; the issuance size is not an additional weighted-average denominator. Other potential shares are excluded as anti-dilutive during losses. The filing describes a one-for-12 reverse split effective in February 2024; this review retains the reported filing basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1426800/000119312526115992/asmb-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -6.69,
+      "accn": "0001193125-26-115992",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.55,
+      "accn": "0001193125-26-115992",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -6.69,
+      "accn": "0001193125-26-115992",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.55,
+      "accn": "0001193125-26-115992",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 6004560,
+      "accn": "0001193125-26-115992",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 11210934,
+      "accn": "0001193125-26-115992",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 6004560,
+      "accn": "0001193125-26-115992",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 11210934,
+      "accn": "0001193125-26-115992",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001417926",
+  "include_on_overview": true,
+  "source_sha256": "685ad9dc506bdfe829560566a030c772be69de24616cba6e2a255a48eadc071b",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "INVO Fertility's 2024 and 2025 total loss EPS uses losses attributable to common shareholders, including preferred dividends and deemed dividends, rather than the separate continuing-operations EPS. The filing displays full dollar amounts and shares and retrospectively reflects one-for-12, one-for-3 and one-for-8 splits effective March 18, July 21 and November 28, 2025, and a one-for-5 split effective March 27, 2026. Potential shares are excluded as anti-dilutive during losses. Earlier INVO Bioscience observations retain their historical filing basis; both disputed 2014 share counts remain withheld.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1417926/000149315226026775/form10-k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -3782.65,
+      "accn": "0001493152-26-026775",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -214.64,
+      "accn": "0001493152-26-026775",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -3782.65,
+      "accn": "0001493152-26-026775",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -214.64,
+      "accn": "0001493152-26-026775",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 2514,
+      "accn": "0001493152-26-026775",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 117083,
+      "accn": "0001493152-26-026775",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 2514,
+      "accn": "0001493152-26-026775",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 117083,
+      "accn": "0001493152-26-026775",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001420520",
+  "include_on_overview": true,
+  "source_sha256": "e41e299020df183b8382c73b4feeee7e2d319a4c0db39f004c95833d7307a20e",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Atomera's 2024 and 2025 statements report dollar amounts and weighted-average shares in thousands, except per-share data. Displayed share counts of 27,217 and 30,844 therefore represent 27,217,000 and 30,844,000 shares. The filing explicitly excludes potential common shares as anti-dilutive during losses, explaining equal basic and diluted EPS. Its separate excluded-securities table also uses thousands; those year-end counts are not additions to the weighted-average denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1420520/000168316826001291/atomera_i10k-123125.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.68,
+      "accn": "0001683168-26-001291",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.65,
+      "accn": "0001683168-26-001291",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.68,
+      "accn": "0001683168-26-001291",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.65,
+      "accn": "0001683168-26-001291",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 27217000,
+      "accn": "0001683168-26-001291",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 30844000,
+      "accn": "0001683168-26-001291",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 27217000,
+      "accn": "0001683168-26-001291",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 30844000,
+      "accn": "0001683168-26-001291",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001420720",
+  "include_on_overview": true,
+  "source_sha256": "ed8eec0b2ab0d4e5c84dcb8e57c61bb56180bc681af62437a18e2f0337aa84d0",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "iBio's fiscal years end June 30. Its 2025 and 2026 statements use dollar thousands and thousand-share counts, except per-share data. The 2026 total of 104,060,000 weighted-average shares already combines 25,907,000 common shares and 78,153,000 weighted prefunded warrants treated as exercised for little or no consideration. The 2025 total is 10,499,000, with no weighted prefunded-warrant component shown. The filing excludes other potential shares because losses cannot be diluted. Do not add prefunded warrants or year-end excluded securities again.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1420720/000142072026000020/ibio-20260731x10k.htm",
+  "observations": [
+    {
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "val": -1.75,
+      "accn": "0001420720-26-000020",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-07-01",
+      "end": "2026-06-30",
+      "val": -0.32,
+      "accn": "0001420720-26-000020",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "val": -1.75,
+      "accn": "0001420720-26-000020",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-07-01",
+      "end": "2026-06-30",
+      "val": -0.32,
+      "accn": "0001420720-26-000020",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "val": 10499000,
+      "accn": "0001420720-26-000020",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-07-01",
+      "end": "2026-06-30",
+      "val": 104060000,
+      "accn": "0001420720-26-000020",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-07-01",
+      "end": "2025-06-30",
+      "val": 10499000,
+      "accn": "0001420720-26-000020",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-07-01",
+      "end": "2026-06-30",
+      "val": 104060000,
+      "accn": "0001420720-26-000020",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001411690",
   "include_on_overview": true,
   "source_sha256": "de1f7683e64ca05fd1e6239a8009bb07a28d93e0115f74423aec0ba56b765b33",

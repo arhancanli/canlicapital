@@ -12,58 +12,71 @@ process handles before relying on any recorded state.
 
 ## Latest verified transition
 
-PR162 merged asc5028c895be743967811a11e9c1136a800384ce2 after all four
-CI35558210416 checks passed at6b3cda174f6764182d9cbe5ff6905284a4cfa16e.
-Tested and merged treee3c0ed00a5f1dedc03c2d28314661a94c8795501 verified.
-Current branch: evidence/batch2-seventeenth-contexts-20260921. Previous turn
-completed full local release checks and deployed a preview that exposed incomplete
-download readiness; both failed hosted audits remain preserved.
+PR163 merged ase31f209cb4c1be14d424f72b87c89e713e1ffb24 after all four
+CI35558635643 checks passed at89909433323e93ae30254c4670ff8f9f317905a0.
+Tested and merged treef234ac1bb3cc9111f448654991ba6be729016a6c verified.
+Current branch: evidence/batch2-eighteenth-contexts-20260921. Previous turn advanced
+16 observations and preserved Raphael's positive-tag/visible-loss inconsistency.
 
-Two further source contexts reviewed with unchanged v7 validator:
-- Bionano2024/25: statements display full dollar amounts and full share counts,
-  rounded to the nearest thousand. This is not thousand-share scale or exact
-  unrounded counts. January24,2025 one-for60 reverse split reflected retrospectively.
-  Filing attributes equal basic/diluted shares to losses and excludes convertible
-  debentures, warrants, RSUs, PSUs and options; excluded securities not added to EPS.
-- REMSleep2024/25: full-dollar losses1,077,997/3,020,300 and full shares. Parenthesized
-  0.00 EPS is rounded loss presentation, not break-even income. Explicit loss-related
-  anti-dilution explains equal figures. No reconstructed EPS replaces source zeros.
-Report company-share-context-batch2-seventeenth-20260921.json checks16 observations,
-16 inline facts and5 disclosures. Report1612/replay78171 terminal0; byte-identical.
-Scope-v26 now552 reviewed/248 pending/0 withdrawn,72 presentation-only. Exactly16
-state/evidence changes; all800 metadata and prior536 decisions preserved.
-96 renderer/numerics/scope tests pass (91687 terminal0), including10 affected paths,
-unchanged data, exact fact/source bindings and rejection of all ten pending reports.
+Five additional2024/25 or fiscal2025/26 filing contexts reviewed in two reports:
+- INVO Fertility: full dollars/shares; total common-share loss includes preferred
+  and deemed dividends, distinct from continuing-operations EPS. Retrospective
+  splits1-for12/March18,2025;1-for3/July21,2025;1-for8/November28,2025;1-for5/
+  March27,2026. Older INVO Bioscience basis retained; two2014 shares still withheld.
+- Atomera: dollar and share thousands, except per-share data.27,217/30,844 displayed
+  shares mean27,217,000/30,844,000. Loss-related exclusion explicitly disclosed;
+  excluded year-end securities are not weighted-denominator additions.
+- iBio: June30 fiscal years2025/26; dollars/shares in thousands.2026 denominator
+  104,060,000 already combines25,907,000 common shares and78,153,000 weighted
+  prefunded warrants.2025 has10,499,000 and no weighted prefunded component shown.
+  Other potential shares excluded because losses cannot be diluted.
+- Whitehawk: dollar thousands/full shares. Weighted effect of nominal-price
+  prefunded warrants already included. Financing called2024 PIPE closedMarch4,2025;
+  name does not imply issuance in2024. Older issuanceSeptember2022 retained.
+- Assembly: dollar thousands/full shares; August2025 prefunded shares treated as
+  outstanding because fully vested and exercisable for0.001 dollars. Other
+  potential shares excluded during losses; February2024 one-for12 split disclosed.
 
-New pending Raphael report company-raphael-eps-sign-discrepancy-20260921.json:
-CIK0001415397/accession0001213900-26-037402,2024/25. Eight selected observations
-match tagged values in statement119 and EPS-note139. Both tables tag basic/diluted
-EPS as positive0.08/0.07 with no sign attribute, but note139 visibly surrounds
-those facts with parentheses and presents negative loss numerators. Statement119
-labels net loss without parentheses. Full shares agree. Source-pinned runner retains
-both tables' exact headers/rows,16 matched fact/context/unit XML records and visible
-cells. Source ac840aeb9423825264c2d0bfa5ea14b0fe200a23d558f14ed69c66b04a3f4317;
-primary369194a4ba71bae5db1737234575a74dc2da9f486144a40ec918401f21e09a6c.
-Report and replay78171 byte-identical. All eight remain pending; no note/approval,
-source rewrite or policy hold. Resolve sign or explicitly withhold affected values
-before production admission. Ten pending discrepancy/hidden-mapping reports now.
-No shared validator weakened. No runtime objects or selector policy changed.
+company-share-context-batch2-eighteenth-20260921.json:24 observations/40 inline
+facts/12 disclosures. company-share-context-batch2-nineteenth-20260921.json:
+16 observations/24 inline facts/9 disclosures. Unchanged v7 validator; both reports
+replay byte-identically (11681/48478 and73420/4225 terminal0). An initial local
+arithmetic assertion mistyped INVO's23,323,054 loss as23,233,054; corrected the
+scratch assertion. The spec already contained the correct source value; preserved
+report was not overwritten. No source correction or generic validator change.
 
-Latest completed scope-v25 HTTP covers90,732 pages/6,646 downloads,zero failures;
-browser covers1,200 cases/1,340 exact note-source checks; archive restored38 reports
-from714 files, SHA5cf3ba525a1952be551f13d7f57511330c4b21034f231b41f64bb9ecd02aad84.
-Those checks remain historical for the later scope-v26 notes/ledger/Raphael report,
-which need later release checks/archive coverage. No audit currently running.
-Current preview remains https://meridian-bc71v1ix4-arhans-projects-ac470eaa.vercel.app
-at tested PR161 tree, READY build with noindex explicit endpoint; not updated with
-new notes. Last hosted readiness failed7/20 download checks with503. Clean canonical
-company routing and production activation remain pending.
+New company-vyome-two-class-pending-20260921.json retains8 numerical matches and
+6 full disclosures for0001427570/0001213900-26-029500. Uses unchanged v7 with
+explicit ACCOUNTING_SCOPE_REVIEW_PENDING in decision0. Preserves two-class common
+numerator policy, preferred accretion, separate deemed-dividend transactions,
+noncontrolling allocation and VTI reverse recapitalization. This review has not
+reconciled common numerator and recapitalized denominator; no invented EPS
+correction or claim that reported EPS is wrong. No registration or public note.
+Report88979/replay4225 terminal0, byte-identical. All eight remain pending.
+Admission tests reject pending evidence both at report root and decision0.
+Eleven unresolved discrepancy/hidden-mapping/reconciliation reports now retained.
 
-Recovery79720 polled live; receipt8150/10,360 verified objects,0 failures,incomplete.
-Same bounded policy/immutable plan and uploader; original520 evidence retained.
-No extra uploader, additive count, production deployment or new indexing evidence.
-90,732 candidates unpublished; last confirmed indexed baseline262. Engine six-return/
-four-sleeve evidence remains immature; no runtime activation or broker action.
-All original indexing/quality/SEO/intent/developer-adoption/governed-engine objectives
-active. Next publish reviews, continue remaining contexts and complete hosted storage/
-readiness. Owner attribution file untouched.
+Scope-v27 intermediate576 reviewed/224 pending; scope-v28 now592 reviewed/208
+pending/0 withdrawn,72 presentation-only. Exactly40 state/evidence changes this
+turn; all800 observation metadata and prior552 decisions preserved.98 renderer/
+numerics/scope tests pass (22073 terminal0; earlier9930 passed97). Notes cover25
+paths, unchanged data and exact fact bindings. Mutating one INVO accession removes
+only its own note and preserves the other historical note. No selector/runtime
+object changes or uploader edits.
+
+Latest completed scope-v25 HTTP90,732 pages/6,646 downloads, browser1,200 cases/
+1,340 note-source checks and38-report/714-file archive remain historical; later
+scope-v26–28 notes, ledgers and Raphael/Vyome pending reports need relevant release
+checks/archive coverage. No audits currently running. Current preview remains
+https://meridian-bc71v1ix4-arhans-projects-ac470eaa.vercel.app at tested PR161 tree,
+noindex explicit endpoint. Last hosted readiness failed7/20 download checks503.
+No clean canonical company route or production activation.
+
+Recovery79720 polled live this turn; latest receipt8470/10,360 verified objects,
+0 failures,incomplete. Same bounded policy/immutable plan/uploader; original520
+retained. No additive upload count, extra worker or new indexing evidence.
+90,732 candidates remain unpublished; last confirmed indexed baseline262.
+Engine six-return/four-sleeve evidence immature; no broker/runtime action.
+All indexing/quality/SEO/intent/developer-adoption/governed-engine objectives active.
+Next publish reviews, update archive/release checks, continue pending contexts and
+hosted readiness as storage completes. Owner attribution file untouched.

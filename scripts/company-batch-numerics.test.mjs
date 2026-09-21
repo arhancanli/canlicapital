@@ -53,7 +53,7 @@ test('ledger is deterministic and pending evidence cannot be registered as revie
     assert.equal(ledger.active_observations_needing_scope_review, 800);
     const registry = { ...structuredClone(config), reviews: [] };
     const invalid = join(directory, 'invalid.json');
-    for (const [report, cik] of [
+    for (const [report, cik, decision_index = null] of [
       ['company-theriva-filing-discrepancies-20260921.json', '0000894158'],
       ['company-community-numerator-discrepancy-20260921.json', '0001084551'],
       ['company-morgan-unit-discrepancy-20260921.json', '0001162283'],
@@ -64,9 +64,10 @@ test('ledger is deterministic and pending evidence cannot be registered as revie
       ['company-myomo-warrant-date-discrepancy-20260921.json', '0001369290'],
       ['company-fuwei-hidden-eps-pending-20260921.json', '0001381074'],
       ['company-raphael-eps-sign-discrepancy-20260921.json', '0001415397'],
+      ['company-vyome-two-class-pending-20260921.json', '0001427570', 0],
     ]) {
       registry.reviews = [{ report, sha256: createHash('sha256').update(readFileSync('artifacts/seo/' + report)).digest('hex'),
-        cik, decision_index: null, observations: 8,
+        cik, decision_index, observations: 8,
         disposition: 'ACCOUNTING_SCOPE_REVIEW_PENDING', state: 'SCOPE_REVIEWED_WITH_SOURCE_CONTEXT' }];
       writeFileSync(invalid, JSON.stringify(registry));
       assert.throws(() => run(invalid, join(directory, 'invalid.gz')), error => /Unresolved report cannot approve/.test(error.stderr.toString()), report);

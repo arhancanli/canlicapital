@@ -20,7 +20,7 @@ transitions, not continuous telemetry or proof that background work is running.
 
 Working locations:
 
-- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/batch2-seventeenth-contexts-20260921`. PR162 passed CI and merged. Scope-v26 adds16 reviewed observations; Raphael sign discrepancy stays pending. Latest complete release checks/archive cover scope-v25. Recovery79720 remains active; current hosted preview has incomplete download readiness. Expansion is unpublished; STATUS.md records exact evidence.
+- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/batch2-eighteenth-contexts-20260921`. PR163 passed CI and merged. Scope-v28 adds40 reviewed observations across five filings; Vyome reconciliation stays pending. Latest complete release checks/archive cover scope-v25. Recovery79720 remains active; hosted preview has incomplete download readiness. Expansion is unpublished; STATUS.md records exact evidence.
 - Production checkout: `/Users/arhancanli/canlicapital-production-20260920`; last verified application revision9608542c. Inspect actual deployment/alias state before claiming new production behavior.
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.
