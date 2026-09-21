@@ -3688,3 +3688,30 @@ fast-forwarded 30a7703 to 025dd27 with the owner's permission; a locally edited
 deploy script was byte-identical to main; the live-change gate reports the same
 fingerprint 553aff51. PR73 fixes two tests that still expected 10 policy source
 classes (14 since PR56). No production, indexing or strategy outcome is claimed.
+
+## 2026-09-21 — v23 staged: cohorts six to ten captured, reviewed, combined and verified
+
+Discovery: SEC bulk companyfacts (2026-09-19 archive, SHA ee099c73…) filtered to
+active filers with at least four of the 34 concepts, excluding every v22 company
+and every attempted CIK: 3,793 new candidates in four coverage-ranked slices
+(`scripts/build-sec-bulk-discovery.py`, summary sec-bulk-discovery-v23-summary).
+Queues written with prepare-company-batch.mjs against chained prior-queue ledgers
+(sixth to tenth); union 3,793, no overlap with v22 or attempted CIKs.
+
+Capture: four parallel refresh-company-candidates runs, 17:16Z to 17:44Z, 1 s
+pacing each, 0 HTTP errors, 0 not-found. First pass under the integer-only
+selector excluded 1,808 as INVALID_ENTITY: SEC serves `cik` as a digit string for
+those entities. Decision recorded in COMPANY_EDITORIAL_POLICY.md: a digit-only
+string equal to the requested CIK is the same identity. Transition proof over the
+five v22 cohorts: candidate lists byte-identical, non-identity exclusions identical;
+89 former INVALID_ENTITY rows become eligible, 156 fail coverage, 92 still fail
+identity. New cohorts re-derived from retained bytes in `*-r2` directories (original
+fetch times preserved); the 89 become cohort tenth-89 (origin file tracked).
+
+Staged with policy extended-v22 (selector 036eb23a): 968 / 919 / 781 / 312 / 88.
+Combined with the five v22 deliveries: 6,391 companies, 157,113 histories, release
+4a5d9160…, catalog b6f3b3ea…, 163,632 URLs, 19,790 objects. verify-v23-runtime
+passed. Selected-quality v23: 30,520 flagged pages. Admission v23: 132,876
+indexable URLs, 30,342 + 399 withheld. Full local HTTP audit started 18:11Z.
+No upload, production or indexing change. Owner attribution file untouched.
+

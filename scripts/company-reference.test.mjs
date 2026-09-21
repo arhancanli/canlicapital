@@ -83,6 +83,13 @@ test('malformed fact collections and invalid entity identities fail closed', () 
   for (const units of [null, [], { USD: {} }]) {
     assert.throws(() => selectObservations({ units }, 'instant', '2026-09-19'), /units|array/);
   }
+  // A digit-string cik that equals the requested CIK is the same identity; anything else is not.
+  for (const cik of ['1300485', '0001300485']) {
+    assert.throws(() => companyReference(JSON.stringify({ cik, entityName: 'CubeSmart', facts: {} }), { fetchedAt: '2026-09-19T00:00:00Z', expectedCik: '0001300485' }), /Insufficient/);
+  }
+  for (const cik of ['1300486', '00013004850', 'CIK1300485', '1300485 ', '', ' ']) {
+    assert.throws(() => companyReference(JSON.stringify({ cik, entityName: 'CubeSmart', facts: {} }), { fetchedAt: '2026-09-19T00:00:00Z', expectedCik: '0001300485' }), /identity/);
+  }
   for (const cik of [0, -1, 10000000000]) {
     assert.throws(() => companyReference(JSON.stringify({ cik, entityName: 'Invalid' }), { fetchedAt: '2026-09-19T00:00:00Z', expectedCik: cik }), /identity/);
   }
