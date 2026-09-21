@@ -153,11 +153,16 @@ test('production output removes shadowing pilot copies and lists exactly the adm
   const result = prepareCompanyProductionOutput(root, { environment: { VERCEL_ENV: 'production' }, activation });
   for (const name of ['companies', 'companies.html', 'company-data']) assert.ok(!existsSync(resolve(root, 'dist', name)), name);
   for (const name of ['index.html', 'developers.html', 'company-page-assets.json']) assert.ok(existsSync(resolve(root, 'dist', name)), name);
-  const { index, locations } = parseSitemap(readFileSync(resolve(root, 'dist/sitemap.xml'), 'utf8'));
-  assert.equal(index, false);
-  assert.deepEqual(locations, ['/', '/developers', '/companies', '/companies/0000000001', '/companies/0000000001/Assets'].map(path => `https://canlicapital.com${path}`));
+  const index = parseSitemap(readFileSync(resolve(root, 'dist/sitemap.xml'), 'utf8'));
+  assert.equal(index.index, true);
+  assert.deepEqual(index.locations, ['https://canlicapital.com/sitemap-site.xml', 'https://canlicapital.com/sitemap-companies-1.xml']);
+  const read = name => parseSitemap(readFileSync(resolve(root, 'dist', name), 'utf8')).locations;
+  assert.deepEqual(read('sitemap-site.xml'), ['/', '/developers'].map(path => `https://canlicapital.com${path}`));
+  assert.deepEqual(read('sitemap-companies-1.xml'), ['/companies', '/companies/0000000001', '/companies/0000000001/Assets'].map(path => `https://canlicapital.com${path}`));
   assert.equal(result.removedSiteCompanyUrls, 2); assert.equal(result.companyUrls, 3);
-  assert.throws(() => prepareCompanyProductionOutput(root, { environment: { VERCEL_ENV: 'preview' }, activation: { ...activation, admission: { ...activation.admission, counts: { ...activation.admission.counts, urls_admitted: 4 } } } }), /expected 4/);
+  assert.throws(() => prepareCompanyProductionOutput(root, { environment: { VERCEL_ENV: 'preview' }, activation }), /already an index/);
+  const fresh = distFixture(t);
+  assert.throws(() => prepareCompanyProductionOutput(fresh.root, { environment: { VERCEL_ENV: 'preview' }, activation: { ...fresh.activation, admission: { ...fresh.activation.admission, counts: { ...fresh.activation.admission.counts, urls_admitted: 4 } } } }), /expected 4/);
 });
 
 test('the real admission becomes a sitemap index whose shards list every admitted URL once', t => {
@@ -170,7 +175,23 @@ test('the real admission becomes a sitemap index whose shards list every admitte
   assert.equal(urls.length, 2 + 77359); assert.equal(new Set(urls).size, urls.length);
   assert.ok(!urls.includes('https://canlicapital.com/companies/0000000002/Assets'));
   assert.ok(!urls.some(url => url.includes('/companies/0001296774')));
-  assert.equal(readdirSync(resolve(root, 'dist')).filter(name => /^sitemap-pages-[a-f0-9]{24}\.xml$/.test(name)).length, result.shards);
+  assert.deepEqual(index.locations, ['sitemap-site.xml', 'sitemap-companies-1.xml', 'sitemap-companies-2.xml'].map(name => `https://canlicapital.com/${name}`));
+  assert.deepEqual(readdirSync(resolve(root, 'dist')).filter(name => name.startsWith('sitemap')).sort(), ['sitemap-companies-1.xml', 'sitemap-companies-2.xml', 'sitemap-site.xml', 'sitemap.xml']);
+});
+
+test('sitemap child names and company files stay identical when site lastmods change between deploys', t => {
+  const activation = loadCompanyActivation();
+  const build = lastmod => {
+    const { root } = distFixture(t);
+    writeFileSync(resolve(root, 'dist/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://canlicapital.com/performance</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>\n</urlset>\n`);
+    prepareCompanyProductionOutput(root, { environment: { VERCEL_ENV: 'production' }, activation });
+    const read = name => readFileSync(resolve(root, 'dist', name), 'utf8');
+    return { index: read('sitemap.xml'), site: read('sitemap-site.xml'), c1: read('sitemap-companies-1.xml'), c2: read('sitemap-companies-2.xml') };
+  };
+  const first = build('2026-09-20'), second = build('2026-09-21');
+  assert.equal(first.index, second.index);
+  assert.equal(first.c1, second.c1); assert.equal(first.c2, second.c2);
+  assert.notEqual(first.site, second.site);
 });
 
 test('production config routes company paths to the function first and bundles the activation files', () => {
