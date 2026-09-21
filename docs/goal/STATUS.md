@@ -8,31 +8,23 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/batch2-context-ninth-20260921`.
-PR135 merged as85e115455ff094d65fcdad051878ce38e7b93cc8 after four
-CI35547762298checks passed atbf0370d3; exact tested/merged tree
-41c3788b8a56d268922af4f23c95d4c8819e14e5 matches.
-Batch2 now256reviewed/544pending/0withdrawn,16presentation-only. Latest ledger
-company-basic-diluted-batch2-scope-v12-20260921.json.gz. Ninth report adds24facts:
-CVRx loss exclusions/period-end potential shares not weighted-average additions;
-Idaho2025/26January fiscal/split presentation only, dilution cause unestablished;
-Vivani scale3and equal rounded EPS despite different losses/denominators.
-Report replay byte-identical; only24states/evidence links changed, all800rows and
-prior232decisions preserved.82renderer/ledger tests passed. No policy/object changes.
-Older Idaho0001263364/0001213900-23-019266 remains pending because inline facts lack
-id attributes: numeric helper returns fact_id=null, v6soup.find(id=None) cannot link
-to statement nodes. Table31visible basic EPS/shares have contextref c0/c5, scale0,
-noIDs; need exact namespace/concept/context/unit/value node locator without editing
-captured bytes, then explicit diluted mapping if hidden. Do not relax scope checks.
-Draft spec retained corpus-local/company-batch2-ninth-initial-spec-20260921.json.
-Older filing states no dilutive instruments2021/22, December fiscal dates, former
-Joway identity, rounded2022loss; these are not yet registered. Same source fixture
-also supports registered newer Idaho filing, so now tracked.
-Morgan, Community and Theriva discrepancies remain pending. New reader notes still
-need fresh HTTP/browser validation before release; prior reports are historical.
-Transfer44227polled live, latest2920of10,360objects/zero failures; uploader/plan
-unchanged. Next publish ninth review and resolve exact locator for ID-less facts.
-No production/indexing gain; all original owner goals active.
+Worktree branch `fix/idless-inline-fact-locator-20260921`.
+Previous turn made progress by publishing PR136. PR136 now merged after all four
+CI35548297649 checks passed; tested and merged full trees match.
+New v7 runner locates inline facts using exact namespace/concept/context/entity/
+period/unit/value and optional ID, rejecting ambiguous nodes. Historical v6 and
+numeric helper unchanged; reviewed table and scale gates preserved.
+Four tests pass, including corrupted semantics, duplicate nodes/context IDs and
+hidden-node identity not implying statement membership. Added to CI.
+Existing ninth24-fact report reproduces unchanged except runner hash. Actual older
+Idaho eight nodes resolve: four ID-less basic facts in table31, four hidden diluted
+facts outside statements. Diagnostic company-idaho-idless-locator-20260921.json
+preserves XML and source/code hashes; no scope approval. Next review explicit hidden
+links or source-supported diluted mapping. Ledger remains256reviewed/544pending,
+16presentation-only. Morgan/Community/Theriva discrepancies remain pending.
+Fresh HTTP/browser checks still required before deploying updated notes.
+No production/indexing gain; full SEO, adoption and governed engine goals active.
+Merged commit 39a46d1fc4bae6e712c4462ddb237027b7e4fb0c; latest transfer receipt 3241/10,360, 0 failures. Transfer44227 polled live this turn; uploader/plan unchanged.
 
 ## Earlier verified checkpoints (historical)
 

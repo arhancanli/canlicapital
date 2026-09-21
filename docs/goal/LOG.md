@@ -1766,3 +1766,27 @@ need fresh HTTP/browser validation before release; prior reports are historical.
 Transfer44227polled live, latest2920of10,360objects/zero failures; uploader/plan
 unchanged. Next publish ninth review and resolve exact locator for ID-less facts.
 No production/indexing gain; all original owner goals active.
+
+PR136 published at6296207a; CI pending. Push confirmed terminal0. Transfer44227
+polled live; latest verified receipt3,088of10,360objects, zero failures.
+No production/indexing gain. Owner attribution file untouched.
+
+## 2026-09-21 — exact ID-less inline fact locator
+
+Worktree branch `fix/idless-inline-fact-locator-20260921`.
+Previous turn made progress by publishing PR136. PR136 now merged after all four
+CI35548297649 checks passed; tested and merged full trees match.
+New v7 runner locates inline facts using exact namespace/concept/context/entity/
+period/unit/value and optional ID, rejecting ambiguous nodes. Historical v6 and
+numeric helper unchanged; reviewed table and scale gates preserved.
+Four tests pass, including corrupted semantics, duplicate nodes/context IDs and
+hidden-node identity not implying statement membership. Added to CI.
+Existing ninth24-fact report reproduces unchanged except runner hash. Actual older
+Idaho eight nodes resolve: four ID-less basic facts in table31, four hidden diluted
+facts outside statements. Diagnostic company-idaho-idless-locator-20260921.json
+preserves XML and source/code hashes; no scope approval. Next review explicit hidden
+links or source-supported diluted mapping. Ledger remains256reviewed/544pending,
+16presentation-only. Morgan/Community/Theriva discrepancies remain pending.
+Fresh HTTP/browser checks still required before deploying updated notes.
+No production/indexing gain; full SEO, adoption and governed engine goals active.
+Merged commit 39a46d1fc4bae6e712c4462ddb237027b7e4fb0c; latest transfer receipt 3241/10,360, 0 failures. Transfer44227 polled live this turn; uploader/plan unchanged.
