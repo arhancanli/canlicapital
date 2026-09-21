@@ -1,6 +1,85 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001263364",
+  "include_on_overview": true,
+  "source_sha256": "2de27c4f05e4d98021c18c085398a7143da700b0712edb52011d6faf68a986cd",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Idaho Copper's historical filing, labeled formerly Joway Health Industries Group, reports no dilutive instruments outstanding for the years ended December 31, 2021 and 2022. The 2022 zero EPS is a rounded $74,708 loss, not break-even. Full share counts, the December fiscal dates and this older filing's share basis are retained; they are not silently converted to the later January-year-end or reverse-split basis.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1263364/000121390023019266/f10k2022_idahocopper.htm",
+  "observations": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -0.01,
+      "accn": "0001213900-23-019266",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 0,
+      "accn": "0001213900-23-019266",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -0.01,
+      "accn": "0001213900-23-019266",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 0,
+      "accn": "0001213900-23-019266",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 20054000,
+      "accn": "0001213900-23-019266",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 20054000,
+      "accn": "0001213900-23-019266",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 20054000,
+      "accn": "0001213900-23-019266",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 20054000,
+      "accn": "0001213900-23-019266",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001235912",
   "include_on_overview": true,
   "source_sha256": "9fe302007222f93e8b8392ed90320fea549fa40104758f07882615f91d312170",

@@ -159,3 +159,10 @@ Ninth batch2 report adds24CVRx/newerIdaho/Vivani observations:256reviewed/544pen
 16presentation-only. Older Idaho ID-less inline facts need an exact semantic node
 locator before table linkage; no approval from numeric matches alone. Retain
 period-end instrument exclusions separately from weighted-average denominators.
+
+Idaho older2021/22review uses review-idaho-share-context.py with exact source/primary
+pins and v7semantic node lookup. Both hidden diluted concepts require an explicit
+SEC declaration in the same combined statement row as the unique visible basic
+peer. Final CSS declarations need not have trailing semicolons. Missing, wrong-row,
+ambiguous or prefix-only links fail closed. Filing absence-of-instruments paragraph
+and fiscal/share basis are required. scope-v13 adds8only;264reviewed/536pending.
