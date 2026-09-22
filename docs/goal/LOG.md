@@ -3796,6 +3796,21 @@ after two runs each failed one download on a local 'fetch failed' transport erro
 PR178 re-pinned to the option-C admission v23 (156,714 admitted URLs) and marked
 ready.
 
+## 2026-09-22 — v23 released to production
+
+PR178 merged as 7f8a451e with all checks passing. The production checkout moved to
+7f8a451e; the manual production deploy was run by the owner (meridian-ke0g00zxq,
+aliased to canlicapital.com at about 17:36Z) because the assistant's own deploy
+command was declined by its permission policy; the hourly deploy would otherwise
+have published it at the next :25 run. Live checks passed (7 checks, slowest 1,589
+ms): admitted and noticed histories indexable with self-canonicals, withheld
+histories, pending-review companies and downloads noindex, unknown company 404;
+sitemap index 263 site + 156,714 company URLs in 5 files. IndexNow accepted 79,444
+new or updated URLs (156,977 in the sitemap). Google indexing is not yet measured;
+the owner resubmits the sitemap in Search Console. v25 upload run 1 stopped on an
+HTTP 429 read at 570 objects and was restarted at concurrency 2 and 500 ms (run
+2); a bounded rate-limit wait for the uploader is in work.
+
 ## 2026-09-22 — Uploader: rate-limit holds
 
 Two transfers stopped on HTTP 429 today (v23 run 2 at 16,020 of 19,790 objects;
