@@ -1,0 +1,58 @@
+{
+  "schema": "canli.flagged-history-admission-projection.v1",
+  "release_hash": "292f9b8e1e3566216037960e933d1b2c7fe686d30d39d085d14f7ac685b5768b",
+  "quality_delivery_manifest_sha256": "c1471479c58572ab1193e1aba80ee4e4716de5c70c4a122dc3fc983eba5c9d3b",
+  "flagged_pages": 57835,
+  "flag_sets": {
+    "historical_only": 40614,
+    "equal_numerical_vector": 7960,
+    "multiple_units+partially_historical_units": 1134,
+    "constant_per_unit+historical_only+zero_only": 76,
+    "historical_only+multiple_units": 765,
+    "equal_numerical_vector+historical_only": 688,
+    "constant_per_unit+historical_only": 3,
+    "constant_per_unit+zero_only": 70,
+    "constant_per_unit+equal_numerical_vector+zero_only": 6,
+    "multiple_units": 6243,
+    "equal_numerical_vector+multiple_units": 266,
+    "equal_numerical_vector+multiple_units+partially_historical_units": 4,
+    "equal_numerical_vector+historical_only+multiple_units": 6
+  },
+  "base_urls_admitted": 508158,
+  "base_withheld_flagged": 57533,
+  "projection": {
+    "A": {
+      "sets": [
+        "historical_only"
+      ],
+      "urls_admitted": 548633,
+      "added": 40475,
+      "admitted_with_notices": 40475,
+      "withheld_flagged": 17058
+    },
+    "B": {
+      "sets": [
+        "historical_only",
+        "multiple_units",
+        "multiple_units+partially_historical_units"
+      ],
+      "urls_admitted": 555928,
+      "added": 47770,
+      "admitted_with_notices": 47770,
+      "withheld_flagged": 9763
+    },
+    "C": {
+      "sets": [
+        "historical_only",
+        "historical_only+multiple_units",
+        "multiple_units",
+        "multiple_units+partially_historical_units"
+      ],
+      "urls_admitted": 556677,
+      "added": 48519,
+      "admitted_with_notices": 48519,
+      "withheld_flagged": 9014
+    }
+  },
+  "scope": "Projection over the v25 discovery and the v24 selected-quality report; not an admission, upload or indexing change."
+}

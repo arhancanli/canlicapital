@@ -177,8 +177,9 @@ checks (filing sample) → browser audit → activate v25.
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
    measure crawl, index and exclusion counts by page family.
 2. Growth beyond v22 toward 800,000 indexed: upload, verify and activate v23
-   (132,876 indexable); then curated additional concepts, review of the flagged
-   histories, historical filers with explicit historical framing; the filing page
+   (132,876 indexable); then curated additional concepts, the flagged-history
+   decision (FLAGGED_HISTORY_REVIEW_PROPOSAL.md: option C adds 48,519 URLs to v25),
+   historical filers with explicit historical framing; the filing page
    family is built and staged as v25 (508,158 admissible URLs) behind the
    v23 activation and its own upload, hosted and browser checks.
 3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars

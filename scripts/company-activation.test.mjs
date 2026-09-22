@@ -219,6 +219,23 @@ test('admission builder withholds pending-review companies and flagged histories
   assert.equal(filingAdmission, null); assert.equal(admission.filings, undefined);
   assert.deepEqual(admission.counts, { overviews_admitted: 1, histories_admitted: 1, histories_withheld_flagged: 1, histories_withheld_company: 2, overviews_withheld_company: 1, directory_pages: 1, urls_admitted: 3 });
   assert.throws(() => buildCompanyAdmission({ release, discovery, shards: [shard], quality, scopes, filingsPath: 'config/company-filing-admission-x.json.gz' }), /binds no filings/);
+  // An owner-admitted flag set admits exactly the histories whose flag set matches it; every other flagged history stays withheld.
+  const noticed = buildCompanyAdmission({ release, discovery, shards: [shard], quality, scopes, admittedFlagSets: ['historical_only'] }).admission;
+  assert.deepEqual(noticed.counts, { overviews_admitted: 1, histories_admitted: 2, histories_withheld_flagged: 0, histories_withheld_company: 2, overviews_withheld_company: 1, directory_pages: 1, histories_admitted_with_notices: 1, urls_admitted: 4 });
+  assert.deepEqual(noticed.admitted_flag_sets, ['historical_only']); assert.equal(noticed.flagged_pages_with_admitted_flag_sets, 1);
+  assert.ok(noticed.decision.rules.some(rule => rule.includes('historical_only')));
+  const noticedBytes = Buffer.from(JSON.stringify(noticed));
+  assert.deepEqual([...parseCompanyAdmission(noticedBytes, { releaseHash: RELEASE, sha256: sha256(noticedBytes) }).admittedPaths()].map(entry => entry.path), ['/companies/0000000001', '/companies/0000000001/Assets', '/companies/0000000001/Revenues']);
+  const twoFlags = { ...quality, flagged_pages: [{ ...quality.flagged_pages[0], flags: ['multiple_units', 'historical_only'] }] };
+  assert.equal(buildCompanyAdmission({ release, discovery, shards: [shard], quality: twoFlags, scopes, admittedFlagSets: ['historical_only'] }).admission.counts.histories_admitted, 1);
+  assert.equal(buildCompanyAdmission({ release, discovery, shards: [shard], quality: twoFlags, scopes, admittedFlagSets: ['historical_only+multiple_units'] }).admission.counts.histories_admitted, 2);
+  // A withheld company's noticed histories stay withheld with the company.
+  const flaggedWithheld = { ...quality, flagged_pages: [{ path: '/companies/0000000002/Assets', cik: '0000000002', tag: 'Assets', flags: ['historical_only'] }] };
+  const withheldAdmission = buildCompanyAdmission({ release, discovery, shards: [shard], quality: flaggedWithheld, scopes, admittedFlagSets: ['historical_only'] }).admission;
+  assert.equal(withheldAdmission.counts.histories_admitted, 2); assert.equal(withheldAdmission.counts.histories_admitted_with_notices, 0);
+  const withheldBytes = Buffer.from(JSON.stringify(withheldAdmission));
+  assert.ok([...parseCompanyAdmission(withheldBytes, { releaseHash: RELEASE, sha256: sha256(withheldBytes) }).admittedPaths()].every(entry => !entry.path.startsWith('/companies/0000000002')));
+  for (const bad of [['multiple_units+historical_only'], ['historical_only', 'historical_only'], ['Historical'], ['historical_only+historical_only']]) assert.throws(() => buildCompanyAdmission({ release, discovery, shards: [shard], quality, scopes, admittedFlagSets: bad }), /sorted, plus-joined/, bad.join());
   assert.throws(() => buildCompanyAdmission({ release, discovery, shards: [shard + '<url><loc>https://canlicapital.com/companies/0000000001/filings</loc><lastmod>2026-09-20</lastmod></url>'], quality, scopes }), /binds no filings/);
   assert.deepEqual(Object.keys(admission.excluded_companies), ['0000000002']);
   const bytes = Buffer.from(JSON.stringify(admission));
