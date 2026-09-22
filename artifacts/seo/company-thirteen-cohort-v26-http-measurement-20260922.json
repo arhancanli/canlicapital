@@ -1,0 +1,67 @@
+{
+  "schema": "canli.company-delivery-measurement.v1",
+  "publication_approved": false,
+  "environment": "local Node HTTP, sequential; no cloud-load or indexing claim",
+  "companies": 10201,
+  "histories": 457906,
+  "filingIndexes": 10197,
+  "filings": 349054,
+  "directories": 205,
+  "downloads": 20402,
+  "maxHtmlBytes": 111611,
+  "failures": [],
+  "sitemapHttpUrls": 827563,
+  "maxClicksFromCompanyDirectory": 5,
+  "crawlGraph": {
+    "distinctPaths": 888135,
+    "renderedPages": 827563,
+    "edgeBytes": 148865344
+  },
+  "filingsRoot": "bec10741f3c15a2a72f71f23a58af23bc645661b07de9a3a02f0e88dd2d03941",
+  "filingsCatalog": {
+    "objectReads": 10279,
+    "bytesRead": 316512526,
+    "cacheHits": 1118489,
+    "cachedBytes": 4188026,
+    "cachedObjects": 454
+  },
+  "referencePages": 827563,
+  "assets": 5,
+  "catalog": {
+    "objectReads": 10363,
+    "bytesRead": 840375068,
+    "cacheHits": 1394460,
+    "cachedBytes": 4189854,
+    "cachedObjects": 155
+  },
+  "downloadIndex": {
+    "objectReads": 29308,
+    "bytesRead": 428600111,
+    "maxReadBytes": 29349,
+    "cachedBytes": 244730
+  },
+  "downloadRoot": "4b08089fef402b3135f6da329b9c0a79d4afd9ddb892ef400ad1aab44125b184",
+  "catalogRoot": "5dd5a8fca7b4d27adfc3813aec7b6812c790d29eaa0849e77f57186a3051ebb2",
+  "localHtmlMedianMs": 3.0994579999824055,
+  "localHtmlP95Ms": 5.657041000005847,
+  "code": {
+    "scripts/measure-company-delivery.mjs": "f2690cfb9c2682c8aa12c0195ab93ea00369617bf2ebeda0cc4088f1fc5d8836",
+    "scripts/lib/reference-crawl-graph.mjs": "70192f1822de841be57f810da93c9fbed7d7be927bb0471615d0e96092962828",
+    "scripts/lib/company-preview-server.mjs": "0478ef38c1e43d52bc4269e01901ca83f1878804faec079716c2669912b3425c",
+    "scripts/lib/company-page-renderer.mjs": "e6d0a0d884668bbc100803d56788fcaec12fd02c6fbcf390e057de5055377aed",
+    "scripts/lib/company-filing-notes.mjs": "b45bbc75bf0a6bb154fcb2a479a90c819e0ef4bde61a598b6b5a3ff7d6e8a25a",
+    "api/_lib/company-release.js": "214d0bd593341f0a9e1e1bd258c3c6aa61ed3e35a69ad65a751b5e6ea6384712",
+    "scripts/lib/company-reference.mjs": "401e5bf2af5ff8793796d21d466030262bbf1a965a76eaf43f86af666c153e6b",
+    "api/_lib/company-html.js": "e26083cc395212268e8d867f8dd230d09a4b7cab7fb1c21482a5001af0be8698",
+    "api/_lib/company-download-index.js": "fb993f1d0ea2d681c5c51e1d0b1f81f7da7b34e809aac4ce692568f225bf66fe",
+    "api/_lib/company-download.js": "9039a560478922444253eb5eb32373d06a4b3342c8ab75b2b9e05af05f38eccd",
+    "scripts/lib/build-company-download-index.mjs": "858385691d2607ea763bcff48a0492b54163ed197a82a5f7038bcec88377d4d1",
+    "api/_lib/company-directory-html.js": "2c3a9769f1d65397dbe4721dc951357d2fda1e3a9147acfab71131d630bf2a90",
+    "scripts/lib/company-directory.mjs": "0ed56a4069721de346b6d63a72a357ccefdc4eaf07797a852794560d36f25e2b",
+    "api/_lib/company-catalog.js": "bdb08161358f1eef05440a7bb92427f05ccb85c3e57d00426a2a0406349fc4ee",
+    "api/_lib/company-filings-catalog.js": "c3d3ef726a0a450be38c6c6fe29e31900cb41cd0ff848ff4cee62ac71989c9d2",
+    "api/_lib/company-filings-html.js": "ee740cbf754c6ee79c182cd3159298974938703079f00b5ad17e5abf2aad748f",
+    "scripts/lib/company-filings.mjs": "3b4de4fcaacc5ab5e34d9b5289b43f6d2b75d6b49bba290690ec2038086fc557",
+    "scripts/lib/company-filing-page-renderer.mjs": "3288a576414ae4d60575aed103e56cf7745b58c298856d10832aa6b8fa309ea1"
+  }
+}

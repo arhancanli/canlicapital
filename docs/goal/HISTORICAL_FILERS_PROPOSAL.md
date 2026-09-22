@@ -1,7 +1,7 @@
 # Historical filers proposal (drafted September 22, 2026)
 
-Status: proposal for an owner decision. Nothing here captures, stages or admits a
-page. Counts come from the SEC bulk companyfacts archive of 2026-09-19
+Status: owner go on September 22, 2026; step 1 merged (PR #198); v26 staged from
+slices 01–04 (3,810 companies admitted to the release, 813,892 admissible URLs). Counts come from the SEC bulk companyfacts archive of 2026-09-19
 (`sec-bulk/capacity-20260919.json`) and a discovery run over it without the
 two-year filing floor (`artifacts/seo/sec-bulk-discovery-historical-summary-20260922.json`,
 slices retained under `corpus-local/discovery-historical/`). Estimates are marked
