@@ -188,7 +188,9 @@ checks (filing sample) → browser audit → activate v25.
    measure crawl, index and exclusion counts by page family.
 2. Growth beyond v22 toward 800,000 indexed: upload, verify and activate v23
    (156,714 indexable); then v25 (556,677 indexable with the filing family and
-   the September 22 flag decision), curated additional concepts, historical filers with explicit historical framing; the filing page
+   the September 22 flag decision), then the historical filers family
+   (HISTORICAL_FILERS_PROPOSAL.md: 8,800 eligible entities, an estimated 431,000
+   admissible URLs, owner decision pending), curated additional concepts, historical filers with explicit historical framing; the filing page
    family is built and staged as v25 (508,158 admissible URLs) behind the
    v23 activation and its own upload, hosted and browser checks.
 3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars
