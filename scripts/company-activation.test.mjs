@@ -16,7 +16,7 @@ import { parseSitemap } from './lib/sitemaps.mjs';
 import { prepareCompanyProductionOutput } from './prepare-company-production-output.mjs';
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
-const RELEASE = '7573eb42d7966d70a45d12513f7a5b2ef75195ffa25d5b30f39ba9a5c3f4c5fc';
+const RELEASE = '4a5d9160bfa85ba10cea83467c64402629321e5445fe0dd9990571bf43b36ce2';
 
 test('committed activation pins the v22 release, public storage and the owner-approved clean-set admission', () => {
   const raw = JSON.parse(readFileSync('config/company-production-activation.json'));
@@ -27,7 +27,7 @@ test('committed activation pins the v22 release, public storage and the owner-ap
   assert.match(activation.catalogBase, /^https:\/\/[a-z0-9]+\.supabase\.co\/storage\/v1\/object\/public\/company-reference-staging\/catalog\/$/);
   assert.match(activation.deliveryBase, /^https:\/\/[a-z0-9]+\.supabase\.co\/storage\/v1\/object\/public\/company-reference-staging\/delivery\/$/);
   const { counts, excluded_companies: excluded } = activation.admission;
-  assert.deepEqual(counts, { overviews_admitted: 3308, histories_admitted: 73984, histories_withheld_flagged: 12959, histories_withheld_company: 399, overviews_withheld_company: 15, directory_pages: 67, urls_admitted: 77359 });
+  assert.deepEqual(counts, {overviews_admitted:  6376,  histories_admitted:  150210,  histories_withheld_flagged:  6504,  histories_withheld_company:  399,  overviews_withheld_company:  15,  directory_pages:  128,  histories_admitted_with_notices:  23838,  urls_admitted:  156714});
   assert.equal(counts.histories_admitted + counts.histories_withheld_flagged + counts.histories_withheld_company, activation.admission.histories_in_release);
   assert.equal(Object.keys(excluded).length, 15);
   const paths = [...activation.admittedPaths()];
@@ -36,8 +36,9 @@ test('committed activation pins the v22 release, public storage and the owner-ap
   // A pending-review company is withheld whole; a flagged history is withheld; its company overview is not.
   assert.equal(activation.isAdmitted('0001296774'), false);
   assert.equal(activation.isAdmitted('0001296774', 'Revenues'), false);
-  assert.equal(activation.isAdmitted('0000001750', 'InterestExpense'), false);
-  assert.equal(activation.isAdmitted('0000001750'), true);
+  assert.equal(activation.isAdmitted('0000007623', 'EarningsPerShareBasic'), false);
+  assert.equal(activation.isAdmitted('0000007623'), true);
+  assert.equal(activation.admission.counts.histories_admitted_with_notices, 23838);
   assert.equal(activation.isAdmitted('9999999999'), false);
   assert.equal(activation.isAdmitted('0000001750', 'NotAConcept'), false);
   for (const { path } of paths.slice(0, 500)) {
@@ -172,11 +173,11 @@ test('the real admission becomes a sitemap index whose shards list every admitte
   const index = parseSitemap(readFileSync(resolve(root, 'dist/sitemap.xml'), 'utf8'));
   assert.equal(index.index, true); assert.equal(index.locations.length, result.shards); assert.ok(result.shards >= 2);
   const urls = index.locations.flatMap(loc => parseSitemap(readFileSync(resolve(root, 'dist', new URL(loc).pathname.slice(1)), 'utf8')).locations);
-  assert.equal(urls.length, 2 + 77359); assert.equal(new Set(urls).size, urls.length);
+  assert.equal(urls.length, 2 + 156714); assert.equal(new Set(urls).size, urls.length);
   assert.ok(!urls.includes('https://canlicapital.com/companies/0000000002/Assets'));
   assert.ok(!urls.some(url => url.includes('/companies/0001296774')));
-  assert.deepEqual(index.locations, ['sitemap-site.xml', 'sitemap-companies-1.xml', 'sitemap-companies-2.xml'].map(name => `https://canlicapital.com/${name}`));
-  assert.deepEqual(readdirSync(resolve(root, 'dist')).filter(name => name.startsWith('sitemap')).sort(), ['sitemap-companies-1.xml', 'sitemap-companies-2.xml', 'sitemap-site.xml', 'sitemap.xml']);
+  assert.deepEqual(index.locations, ['sitemap-site.xml', 'sitemap-companies-1.xml', 'sitemap-companies-2.xml', 'sitemap-companies-3.xml', 'sitemap-companies-4.xml'].map(name => `https://canlicapital.com/${name}`));
+  assert.deepEqual(readdirSync(resolve(root, 'dist')).filter(name => name.startsWith('sitemap')).sort(), ['sitemap-companies-1.xml', 'sitemap-companies-2.xml', 'sitemap-companies-3.xml', 'sitemap-companies-4.xml', 'sitemap-site.xml', 'sitemap.xml']);
 });
 
 test('sitemap child names and company files stay identical when site lastmods change between deploys', t => {
@@ -186,11 +187,11 @@ test('sitemap child names and company files stay identical when site lastmods ch
     writeFileSync(resolve(root, 'dist/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://canlicapital.com/performance</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>\n</urlset>\n`);
     prepareCompanyProductionOutput(root, { environment: { VERCEL_ENV: 'production' }, activation });
     const read = name => readFileSync(resolve(root, 'dist', name), 'utf8');
-    return { index: read('sitemap.xml'), site: read('sitemap-site.xml'), c1: read('sitemap-companies-1.xml'), c2: read('sitemap-companies-2.xml') };
+    return { index: read('sitemap.xml'), site: read('sitemap-site.xml'), c1: read('sitemap-companies-1.xml'), c2: read('sitemap-companies-2.xml'), c3: read('sitemap-companies-3.xml'), c4: read('sitemap-companies-4.xml') };
   };
   const first = build('2026-09-20'), second = build('2026-09-21');
   assert.equal(first.index, second.index);
-  assert.equal(first.c1, second.c1); assert.equal(first.c2, second.c2);
+  assert.equal(first.c1, second.c1); assert.equal(first.c2, second.c2); assert.equal(first.c3, second.c3); assert.equal(first.c4, second.c4);
   assert.notEqual(first.site, second.site);
 });
 

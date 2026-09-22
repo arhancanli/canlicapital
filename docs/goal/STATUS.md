@@ -111,10 +111,12 @@ directories); 6,504 histories with other flags and the same 15 pending-review
 companies withheld noindex. File `config/company-admission-v23.json`, SHA-256
 c8bda817….
 
-Open before activation: storage upload of the 9,731 new objects (owner-run with
-the Supabase service key), hosted readiness on a clean preview, the full local
-HTTP audit (running), a browser audit, and an activation PR that pins release
-4a5d9160… and admission v23.
+Upload and hosted checks complete (September 22): storage transfer 19,790/19,790
+verified in run 3 (17,922 existing, 1,868 created, 0 verified after a create
+error, 0 failures; run 2 stopped on an HTTP 429 at 16,020 and is retained), clean
+hosted readiness 23/23 on the noindex preview of the activation branch (deployment
+dpl_2najQCutTLYwK3WZTkv6xqWuR23Y), browser flow passed. PR178 pins release
+4a5d9160… and admission v23 (156,714 admitted URLs); merging it activates v23.
 
 ## v24 staged release (built September 22, 14:10Z; not uploaded, not live)
 

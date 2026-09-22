@@ -3782,3 +3782,16 @@ c8bda817…. Admission v25 rebuilt: 556,677 indexable (48,519 with a notice; 9,0
 still withheld), SHA-256 56ae90eb…; the filing sidecar is unchanged. PR178 must
 pin the new v23 admission before it merges. No upload, production or indexing
 change.
+
+## 2026-09-22 — v23 uploaded and verified on the hosted preview
+
+Storage transfer run 3 completed 19,790/19,790 with 0 failures at concurrency 3
+and 300 ms pacing (17,922 verified existing, 1,868 created and verified, 0
+verified after a create error; 3 read retries, 1 write recoveries). Run 2 had
+stopped at 16,020 on an HTTP 429 verification read and is retained. Preview
+deployed from the activation branch at edbb7003
+(dpl_2najQCutTLYwK3WZTkv6xqWuR23Y); clean hosted readiness 23/23 on the third run
+after two runs each failed one download on a local 'fetch failed' transport error
+(both paths served directly; reports retained); browser flow passed on 0000001750.
+PR178 re-pinned to the option-C admission v23 (156,714 admitted URLs) and marked
+ready.
