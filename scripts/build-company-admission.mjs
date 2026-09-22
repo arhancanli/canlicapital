@@ -21,7 +21,13 @@
 //     --release <company-release.json> --discovery <discovery dir> \
 //     --quality <selected-quality report> --scope <ledger.json.gz> [--scope ...] \
 //     --out config/company-admission-v22.json [--root <repository whose relative input paths to record>] \
-//     [--filings-out config/company-filing-admission-v25.json.gz]   (required when the release binds filings)
+//     [--filings-out config/company-filing-admission-v25.json.gz]   (required when the release binds filings) \
+//     [--admit-flags historical_only] [--admit-flags multiple_units+partially_historical_units] [--decided 2026-09-22]
+//
+// --admit-flags names one exact selected-quality flag set (sorted, joined by +)
+// whose histories are admitted although flagged, because the rendered page
+// carries an explicit notice for that condition (owner decision recorded in the
+// admission). Any other flag set stays withheld.
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync, renameSync } from 'node:fs';
 import { relative, resolve } from 'node:path';
@@ -35,7 +41,9 @@ function args(argv) {
   for (let i = 0; i < argv.length; i += 2) {
     const key = argv[i]?.replace(/^--/, ''), value = argv[i + 1];
     if (!value) throw new Error(`Missing value for ${argv[i]}`);
-    if (key === 'scope') out.scope.push(value); else out[key] = value;
+    if (key === 'scope') out.scope.push(value);
+    else if (key === 'admit-flags') (out['admit-flags'] ??= []).push(value);
+    else out[key] = value;
   }
   for (const key of ['release', 'discovery', 'quality', 'out']) if (!out[key]) throw new Error(`--${key} is required`);
   if (out['filings-out'] !== undefined && !/\.json\.gz$/.test(out['filings-out'])) throw new Error('--filings-out must name a .json.gz file');
@@ -48,8 +56,12 @@ function input(role, path) {
   return { role, path, bytes, sha256: sha256(bytes) };
 }
 
-export function buildCompanyAdmission({ release, discovery, shards, quality, scopes, decided = '2026-09-21', filingsPath }) {
+const FLAG_SET = /^[a-z_]+(?:\+[a-z_]+)*$/;
+export function buildCompanyAdmission({ release, discovery, shards, quality, scopes, decided = '2026-09-21', filingsPath, admittedFlagSets = [] }) {
   if (release.schema !== 'canli.company-release.v1') throw new Error('Unexpected release schema');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(decided)) throw new Error('Decision date must be YYYY-MM-DD');
+  if (!Array.isArray(admittedFlagSets) || admittedFlagSets.some(set => typeof set !== 'string' || !FLAG_SET.test(set) || set.split('+').join('+') !== [...set.split('+')].sort().join('+') || new Set(set.split('+')).size !== set.split('+').length) || new Set(admittedFlagSets).size !== admittedFlagSets.length) throw new Error('Admitted flag sets must be distinct, sorted, plus-joined flag names');
+  const admittedFlags = new Set(admittedFlagSets);
   const bindsFilings = release.filings_root !== undefined;
   if (bindsFilings && (!/^[a-f0-9]{64}$/.test(release.filings_root) || !Number.isSafeInteger(release.filings) || release.filings < 1 || !Number.isSafeInteger(release.filing_companies) || release.filing_companies < 1)) throw new Error('Invalid release filings binding');
   if (bindsFilings !== (typeof filingsPath === 'string')) throw new Error(bindsFilings ? 'The release binds filings; a filing admission path is required' : 'The release binds no filings');
@@ -119,29 +131,32 @@ export function buildCompanyAdmission({ release, discovery, shards, quality, sco
     }
   }
 
-  // Rule 2: a history with any selected-quality flag stays noindex.
-  const flagged = new Map();
+  // Rule 2: a history with any selected-quality flag stays noindex, unless its
+  // exact flag set is one the owner admitted because the page states the condition.
+  const flagged = new Map(), noticed = new Map();
+  let noticedCount = 0;
   for (const page of quality.flagged_pages) {
     const match = page.path?.match(/^\/companies\/(\d{10})\/([A-Za-z][A-Za-z0-9]{0,99})$/);
-    if (!match || match[1] !== page.cik || match[2] !== page.tag || !Array.isArray(page.flags) || !page.flags.length) throw new Error(`Invalid flagged page ${page.path}`);
+    if (!match || match[1] !== page.cik || match[2] !== page.tag || !Array.isArray(page.flags) || !page.flags.length || page.flags.some(flag => typeof flag !== 'string' || !/^[a-z_]+$/.test(flag))) throw new Error(`Invalid flagged page ${page.path}`);
     if (!companies.get(page.cik)?.tags.has(page.tag)) throw new Error(`Flagged page is not in the release: ${page.path}`);
     const set = flagged.get(page.cik) ?? new Set();
     if (set.has(page.tag)) throw new Error(`Duplicate flagged page ${page.path}`);
     set.add(page.tag); flagged.set(page.cik, set);
+    if (admittedFlags.has([...page.flags].sort().join('+'))) { (noticed.get(page.cik) ?? noticed.set(page.cik, new Set()).get(page.cik)).add(page.tag); noticedCount++; }
   }
   const flaggedCount = [...flagged.values()].reduce((sum, set) => sum + set.size, 0);
   if (flaggedCount !== quality.totals.flagged_pages) throw new Error('Flagged page list does not match its total');
 
   const mask = tags => tags.reduce((value, tag) => value | (1n << BigInt(concepts.indexOf(tag))), 0n).toString(16);
   const out = {};
-  const counts = { overviews_admitted: 0, histories_admitted: 0, histories_withheld_flagged: 0, histories_withheld_company: 0, overviews_withheld_company: 0, directory_pages: directoryPages };
+  const counts = { overviews_admitted: 0, histories_admitted: 0, histories_withheld_flagged: 0, histories_withheld_company: 0, overviews_withheld_company: 0, directory_pages: directoryPages, ...(admittedFlags.size ? { histories_admitted_with_notices: 0 } : {}) };
   const filingCounts = { filing_indexes_admitted: 0, filings_admitted: 0, filing_indexes_withheld_company: 0, filings_withheld_company: 0 };
   const filingCompanies = {};
   for (const cik of [...companies.keys()].sort()) {
     const entry = companies.get(cik), tags = [...entry.tags];
-    const admitted = excluded.has(cik) ? [] : tags.filter(tag => !flagged.get(cik)?.has(tag));
+    const admitted = excluded.has(cik) ? [] : tags.filter(tag => !flagged.get(cik)?.has(tag) || noticed.get(cik)?.has(tag));
     if (excluded.has(cik)) { counts.overviews_withheld_company++; counts.histories_withheld_company += tags.length; }
-    else { counts.overviews_admitted++; counts.histories_admitted += admitted.length; counts.histories_withheld_flagged += tags.length - admitted.length; }
+    else { counts.overviews_admitted++; counts.histories_admitted += admitted.length; counts.histories_withheld_flagged += tags.length - admitted.length; if (admittedFlags.size) counts.histories_admitted_with_notices += admitted.filter(tag => noticed.get(cik)?.has(tag)).length; }
     out[cik] = { lastmod: entry.lastmod, available: mask(tags), admitted: mask(admitted), overview: !excluded.has(cik) };
     if (entry.filingIndex) {
       // Rule 3: filing pages follow their company. A withheld company keeps every filing page noindex.
@@ -171,12 +186,13 @@ export function buildCompanyAdmission({ release, discovery, shards, quality, sco
       rules: [
         'Every directory page is admitted.',
         'A company with any ACCOUNTING_SCOPE_REVIEW_PENDING observation in a supplied ledger is withheld entirely (overview and histories).',
-        'A history listed in the v22 selected-quality flagged_pages is withheld.',
+        ...(admittedFlags.size ? [`A history whose selected-quality flag set is exactly one of ${admittedFlagSets.join(', ')} is admitted: its page states that condition in a notice.`, 'A history with any other selected-quality flag set is withheld.'] : ['A history listed in the v22 selected-quality flagged_pages is withheld.']),
         'Every other overview and history in the release is admitted.',
         'Withheld pages remain reachable and are served noindex; admission never edits page content.',
         ...(bindsFilings ? ['A filing index and every filing page of an admitted company are admitted; those of a withheld company are withheld.'] : []),
       ],
     },
+    ...(admittedFlags.size ? { admitted_flag_sets: admittedFlagSets, flagged_pages_with_admitted_flag_sets: noticedCount } : {}),
     concepts,
     directory_lastmod: [...companies.values()].map(entry => entry.lastmod).sort().at(-1),
     excluded_companies: Object.fromEntries([...excluded].sort()),
@@ -227,6 +243,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     quality: JSON.parse(qualityInput.bytes),
     scopes: scopeInputs.map(scope => ({ label: scope.path.split('/').at(-1), ledger: JSON.parse(scope.path.endsWith('.gz') ? gunzipSync(scope.bytes) : scope.bytes) })),
     filingsPath: options['filings-out'] === undefined ? undefined : tracked(options['filings-out']),
+    admittedFlagSets: options['admit-flags'] ?? [],
+    ...(options.decided ? { decided: options.decided } : {}),
   });
   admission.inputs = [releaseInput, discoveryInput, ...shardInputs, qualityInput, ...scopeInputs]
     .map(({ role, path, sha256: digest }) => ({ role, path: tracked(path), sha256: digest }));

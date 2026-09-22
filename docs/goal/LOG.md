@@ -3769,3 +3769,16 @@ served and every page reachable within 5 clicks of the directory; largest page
 
 v24 superseded before upload. The v23 upload (run 3, after run 2 stopped on an
 HTTP 429) continues; no upload, production or indexing change from this work.
+
+## 2026-09-22 — Owner decision: flagged histories with a stated condition are admitted
+
+PR #190 merged (31442060): the admission builder takes owner-named flag sets
+(--admit-flags) and records them in the admission;
+FLAGGED_HISTORY_REVIEW_PROPOSAL.md set out three options. The owner chose option
+C: historical_only, historical_only+multiple_units, multiple_units,
+multiple_units+partially_historical_units. Admission v23 rebuilt: 156,714
+indexable (23,838 histories admitted with a notice; 6,504 still withheld), SHA-256
+c8bda817…. Admission v25 rebuilt: 556,677 indexable (48,519 with a notice; 9,014
+still withheld), SHA-256 56ae90eb…; the filing sidecar is unchanged. PR178 must
+pin the new v23 admission before it merges. No upload, production or indexing
+change.
