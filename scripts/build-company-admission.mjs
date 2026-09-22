@@ -22,7 +22,7 @@
 //     --quality <selected-quality report> --scope <ledger.json.gz> [--scope ...] \
 //     --out config/company-admission-v22.json [--root <repository whose relative input paths to record>] \
 //     [--filings-out config/company-filing-admission-v25.json.gz]   (required when the release binds filings) \
-//     [--admit-flags historical_only] [--admit-flags multiple_units+partially_historical_units]
+//     [--admit-flags historical_only] [--admit-flags multiple_units+partially_historical_units] [--decided 2026-09-22]
 //
 // --admit-flags names one exact selected-quality flag set (sorted, joined by +)
 // whose histories are admitted although flagged, because the rendered page
@@ -59,6 +59,7 @@ function input(role, path) {
 const FLAG_SET = /^[a-z_]+(?:\+[a-z_]+)*$/;
 export function buildCompanyAdmission({ release, discovery, shards, quality, scopes, decided = '2026-09-21', filingsPath, admittedFlagSets = [] }) {
   if (release.schema !== 'canli.company-release.v1') throw new Error('Unexpected release schema');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(decided)) throw new Error('Decision date must be YYYY-MM-DD');
   if (!Array.isArray(admittedFlagSets) || admittedFlagSets.some(set => typeof set !== 'string' || !FLAG_SET.test(set) || set.split('+').join('+') !== [...set.split('+')].sort().join('+') || new Set(set.split('+')).size !== set.split('+').length) || new Set(admittedFlagSets).size !== admittedFlagSets.length) throw new Error('Admitted flag sets must be distinct, sorted, plus-joined flag names');
   const admittedFlags = new Set(admittedFlagSets);
   const bindsFilings = release.filings_root !== undefined;
@@ -243,6 +244,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     scopes: scopeInputs.map(scope => ({ label: scope.path.split('/').at(-1), ledger: JSON.parse(scope.path.endsWith('.gz') ? gunzipSync(scope.bytes) : scope.bytes) })),
     filingsPath: options['filings-out'] === undefined ? undefined : tracked(options['filings-out']),
     admittedFlagSets: options['admit-flags'] ?? [],
+    ...(options.decided ? { decided: options.decided } : {}),
   });
   admission.inputs = [releaseInput, discoveryInput, ...shardInputs, qualityInput, ...scopeInputs]
     .map(({ role, path, sha256: digest }) => ({ role, path: tracked(path), sha256: digest }));
