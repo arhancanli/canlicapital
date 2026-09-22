@@ -46,14 +46,28 @@ export function validateStoragePlan(raw, expectedHash) {
   return plan;
 }
 
+// A 429 is the service asking for a pause, not a verdict on the object. With
+// rateLimitWaits > 0 the adapter holds every worker for the Retry-After period
+// (or an escalating fallback), then repeats the same request; the number of
+// holds per run is bounded and each is recorded. 401 and 403 are never retried.
+const RATE_LIMIT_MAX_DELAY_MS = 300_000;
+export function rateLimitDelay(error, wait, now = Date.now()) {
+  const seconds = error?.retryAfter?.seconds;
+  if (Number.isInteger(seconds)) return Math.min(Math.max(seconds, 1) * 1000, RATE_LIMIT_MAX_DELAY_MS);
+  const at = error?.retryAfter?.at ? Date.parse(error.retryAfter.at) - now : NaN;
+  if (Number.isFinite(at)) return Math.min(Math.max(at, 1000), RATE_LIMIT_MAX_DELAY_MS);
+  return Math.min(15_000 * wait, 120_000);
+}
+
 export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher = fetch,
-  readAttempts = 1, retryBudget = 10, minIntervalMs = 0, now = () => Date.now(),
+  readAttempts = 1, retryBudget = 10, minIntervalMs = 0, rateLimitWaits = 0, now = () => Date.now(),
   pause = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
   if (!Number.isInteger(readAttempts) || readAttempts < 1 || readAttempts > 3 ||
       !Number.isInteger(retryBudget) || retryBudget < 0 || retryBudget > 200) throw new Error('Invalid bounded read retry policy');
   if (!Number.isInteger(minIntervalMs) || minIntervalMs < 0 || minIntervalMs > 10000) throw new Error('Invalid request pacing');
-  let retries = 0;
-  let gate = Promise.resolve(), lastStarted = -Infinity;
+  if (!Number.isInteger(rateLimitWaits) || rateLimitWaits < 0 || rateLimitWaits > 100) throw new Error('Invalid bounded rate-limit wait policy');
+  let retries = 0, waits = 0;
+  let gate = Promise.resolve(), lastStarted = -Infinity, holdUntil = -Infinity;
   const base = new URL(projectUrl);
   if (base.protocol !== 'https:' || base.username || base.password || base.search || base.hash ||
       base.pathname !== '/' || !/^[a-z0-9][a-z0-9-]{0,62}$/.test(bucket) || !serviceKey) throw new Error('Invalid storage destination');
@@ -73,7 +87,8 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
     // Serialize permission to start, not the response body. Spacing is based on
     // actual starts so delayed timers cannot release a burst of reserved slots.
     const start = gate.then(async () => {
-      const wait = Math.max(0, lastStarted + minIntervalMs - now());
+      // A rate-limit hold delays every worker's next start, not only the one that saw the 429.
+      const wait = Math.max(0, lastStarted + minIntervalMs - now(), holdUntil - now());
       if (wait) await pause(wait);
       lastStarted = now();
     });
@@ -82,17 +97,30 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
     try { return await fetcher(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(60_000) }); }
     catch (error) { throw transportFailure(error); }
   }
+  // Returns true after holding for a rate-limited request that may be repeated; false when
+  // the run's wait budget is spent (the caller then fails with the original error).
+  async function waitForRateLimit(error, onWait = () => {}) {
+    if (!error?.rateLimited || waits >= rateLimitWaits) return false;
+    waits++;
+    const delay = rateLimitDelay(error, waits, now());
+    holdUntil = Math.max(holdUntil, now() + delay);
+    onWait({ delay_ms: delay, ...(error.retryAfter ? { retry_after: error.retryAfter } : {}), global_wait_number: waits });
+    await pause(delay);
+    return true;
+  }
   const adapter = {
     destination: publicBase,
     readRetryPolicy: { attempts: readAttempts, budget: retryBudget },
     requestPacingPolicy: { minimum_interval_ms: minIntervalMs },
+    rateLimitPolicy: { waits: rateLimitWaits, max_delay_ms: RATE_LIMIT_MAX_DELAY_MS },
+    waitForRateLimit,
     async readOnce(file) {
       if (!KEY.test(file.key)) throw new Error('Invalid object key');
       const response = await request(publicBase + file.key, { headers: { 'Accept-Encoding': 'identity' } });
       if (!response.ok) {
         if ([401, 403, 429].includes(response.status)) {
           await response.body?.cancel().catch(() => {});
-          throw Object.assign(new Error(`Storage read rejected (${response.status})`), responseFailureMetadata(response));
+          throw Object.assign(new Error(`Storage read rejected (${response.status})`), responseFailureMetadata(response), response.status === 429 ? { rateLimited: true } : {});
         }
         // Supabase returns HTTP400 with an embedded404 for absent objects. Never
         // treat authorization, throttling or arbitrary HTTP400 as absence.
@@ -146,19 +174,24 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
         const error = new Error(`Storage create rejected (${response.status}); no overwrite`);
         Object.assign(error, responseFailureMetadata(response));
         error.ambiguousWrite = [409, 502, 503, 504].includes(response.status);
+        error.rateLimited = response.status === 429; // nothing was written; the same create may be repeated after the hold
         throw error;
       }
     },
   };
-  return { ...adapter, async read(file, { onRetry = () => {} } = {}) {
-    for (let attempt = 1; ; attempt++) {
+  return { ...adapter, async read(file, { onRetry = () => {}, onRateLimit = () => {} } = {}) {
+    let attempt = 1;
+    while (true) {
       try { return await adapter.readOnce(file); }
       catch (error) {
         if (error.retryableRead === undefined && (error?.cause?.code || ['TimeoutError', 'AbortError'].includes(error?.name))) error = transportFailure(error);
+        // A rate-limit hold repeats the same attempt; it does not spend the transport retry budget.
+        if (error.rateLimited && await waitForRateLimit(error, event => onRateLimit({ attempt, ...event }))) continue;
         if (!error.retryableRead || attempt >= readAttempts || retries >= retryBudget) throw error;
         retries++;
         onRetry({ attempt, error: error.message, delay_ms: attempt * 1000, global_retry_number: retries });
         await pause(attempt * 1000);
+        attempt++;
       }
     }
   } };
@@ -174,17 +207,21 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
     code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
     release_hash: plan.release_hash, destination: storage.destination, publication_approved: false,
     retry_policy: { read: storage.readRetryPolicy, write: { attempts: writeAttempts, budget: writeRetryBudget }, concurrency,
-      request_pacing: storage.requestPacingPolicy },
-    complete: false, files: [], failures: [], read_retries: [], write_recovery: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
+      request_pacing: storage.requestPacingPolicy, ...(storage.rateLimitPolicy ? { rate_limit: storage.rateLimitPolicy } : {}) },
+    complete: false, files: [], failures: [], read_retries: [], write_recovery: [], rate_limit_waits: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
   record(receipt);
-  const read = file => storage.read(file, { onRetry: event => {
-    receipt.read_retries.push({ key: file.key, ...event }); record(receipt);
-  } });
+  const read = file => storage.read(file, {
+    onRetry: event => { receipt.read_retries.push({ key: file.key, ...event }); record(receipt); },
+    onRateLimit: event => { receipt.rate_limit_waits.push({ key: file.key, method: 'GET', ...event }); record(receipt); },
+  });
   let cursor = 0, failure, writeRetries = 0;
   async function createVerified(file, raw) {
-    for (let attempt = 1; ; attempt++) {
+    let attempt = 1;
+    while (true) {
       try { await storage.create(file, raw); }
       catch (error) {
+        // A rate-limited create wrote nothing: hold, then repeat the same attempt without a reconciliation read.
+        if (error.rateLimited && storage.waitForRateLimit && await storage.waitForRateLimit(error, event => { receipt.rate_limit_waits.push({ key: file.key, method: 'POST', attempt, ...event }); record(receipt); })) continue;
         if (!error.ambiguousWrite) throw error;
         const event = { key: file.key, attempt, error: error.message, reconciliation: 'pending' };
         receipt.write_recovery.push(event); record(receipt);
@@ -194,6 +231,7 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
         if (attempt >= writeAttempts || writeRetries >= writeRetryBudget) throw error;
         event.retry_number = ++writeRetries; record(receipt);
         await pause(1000);
+        attempt++;
         continue; // Explicitly enabled, bounded create-only attempt after verified absence.
       }
       if (await read(file) === null) throw new Error('Created object is not publicly retrievable');
@@ -228,10 +266,10 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1', writeAttempts = '1', readRetryBudget = '10', writeRetryBudget = '10', minIntervalMs = '0'] = process.argv.slice(2);
-  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3] [WRITE_ATTEMPTS_1_TO_2] [READ_RETRY_BUDGET_0_TO_200] [WRITE_RETRY_BUDGET_0_TO_50] [MIN_REQUEST_INTERVAL_MS_0_TO_10000]');
+  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1', writeAttempts = '1', readRetryBudget = '10', writeRetryBudget = '10', minIntervalMs = '0', rateLimitWaits = '0'] = process.argv.slice(2);
+  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3] [WRITE_ATTEMPTS_1_TO_2] [READ_RETRY_BUDGET_0_TO_200] [WRITE_RETRY_BUDGET_0_TO_50] [MIN_REQUEST_INTERVAL_MS_0_TO_10000] [RATE_LIMIT_WAITS_0_TO_100]');
   if (existsSync(output) || existsSync(output + '.pending')) throw new Error('Receipt already exists; preserve it and use a new path');
-  const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY, readAttempts: Number(readAttempts), retryBudget: Number(readRetryBudget), minIntervalMs: Number(minIntervalMs) });
+  const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY, readAttempts: Number(readAttempts), retryBudget: Number(readRetryBudget), minIntervalMs: Number(minIntervalMs), rateLimitWaits: Number(rateLimitWaits) });
   await uploadCompanyStorage({ planBytes: readFileSync(planPath), planHash, storage, concurrency: Number(concurrency), writeAttempts: Number(writeAttempts), writeRetryBudget: Number(writeRetryBudget), record: receipt => {
     writeFileSync(output + '.pending', JSON.stringify(receipt, null, 2) + '\n', { mode: 0o600 });
     renameSync(output + '.pending', output);

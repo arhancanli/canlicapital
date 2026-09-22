@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { gzipSync } from 'node:zlib';
 import { catalogHash } from '../api/_lib/company-catalog.js';
-import { createSupabaseStorage, uploadCompanyStorage } from './upload-company-storage.mjs';
+import { createSupabaseStorage, rateLimitDelay, uploadCompanyStorage } from './upload-company-storage.mjs';
 
 function fixture(t, count = 2) {
   const dir = mkdtempSync(join(tmpdir(), 'canli-upload-'));
@@ -318,4 +318,86 @@ test('request pacing spaces concurrent reads and creates by actual starts', asyn
 
 test('invalid pacing fails before requests', () => {
   for (const minIntervalMs of [-1, 0.5, 10001, NaN]) assert.throws(() => createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', minIntervalMs }), /pacing/);
+});
+
+// Rate-limit holds (rateLimitWaits > 0): a 429 pauses every worker, then the same request repeats.
+function rateLimitedServer(f, { clock, readsBefore429 = 0, postsBefore429 = -1, retryAfter, waits }) {
+  const objects = new Map(), starts = []; let reads = 0, posts = 0;
+  const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', rateLimitWaits: waits,
+    now: () => clock.t, pause: async ms => { clock.t += ms; },
+    fetcher: async (url, init) => {
+      const key = url.split('/company-runtime/')[1]; starts.push({ t: clock.t, method: init.method ?? 'GET' });
+      if (init.method === 'POST') {
+        if (posts++ === postsBefore429) return new Response('sensitive upstream body', { status: 429, headers: retryAfter ? { 'Retry-After': retryAfter } : {} });
+        objects.set(key, Buffer.from(init.body)); return new Response('{}');
+      }
+      if (reads++ === readsBefore429) return new Response('sensitive upstream body', { status: 429, headers: retryAfter ? { 'Retry-After': retryAfter } : {} });
+      if (!objects.has(key)) return Response.json({ statusCode: '404', error: 'not_found' }, { status: 400 });
+      return new Response(objects.get(key), { headers: { 'content-type': f.files.find(x => x.key === key).content_type, 'cache-control': 'public, max-age=31536000, immutable' } });
+    } });
+  return { storage, starts, objects, counts: () => ({ reads, posts }) };
+}
+
+test('a rate-limited read is repeated after the Retry-After hold, recorded, and holds every worker', async t => {
+  // Virtual time: pauses resolve only when the test advances the clock, so a worker that
+  // should be held cannot start a request before the hold ends.
+  const f = fixture(t, 3), clock = { t: 0 }, timers = [];
+  const pause = ms => new Promise(resolve => timers.push({ at: clock.t + ms, resolve }));
+  const advance = async to => { clock.t = to; for (const timer of timers.splice(0)) { if (timer.at <= to) timer.resolve(); else timers.push(timer); } for (let i = 0; i < 20; i++) await new Promise(r => setImmediate(r)); };
+  const objects = new Map(), starts = []; let reads = 0, last;
+  const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', rateLimitWaits: 2, now: () => clock.t, pause,
+    fetcher: async (url, init) => {
+      const key = url.split('/company-runtime/')[1]; starts.push({ t: clock.t, method: init.method ?? 'GET' });
+      if (init.method === 'POST') { objects.set(key, Buffer.from(init.body)); return new Response('{}'); }
+      if (reads++ === 0) return new Response('sensitive upstream body', { status: 429, headers: { 'Retry-After': '30' } });
+      if (!objects.has(key)) return Response.json({ statusCode: '404', error: 'not_found' }, { status: 400 });
+      return new Response(objects.get(key), { headers: { 'content-type': f.files.find(x => x.key === key).content_type, 'cache-control': 'public, max-age=31536000, immutable' } });
+    } });
+  const run = uploadCompanyStorage({ ...f, storage, concurrency: 3, record: r => { last = structuredClone(r); } });
+  await advance(0);
+  // The 429 arrived at t=0: only requests already in flight have started, and a 30 s hold is pending.
+  const before = starts.length;
+  assert.ok(before <= 3, JSON.stringify(starts)); assert.ok(timers.some(timer => timer.at === 30_000), 'hold timer');
+  await advance(29_999);
+  assert.equal(starts.length, before, 'no request may start during the hold');
+  await advance(30_000);
+  const receipt = await run;
+  assert.ok(starts.slice(before).every(start => start.t >= 30_000), JSON.stringify(starts));
+  assert.equal(receipt.complete, true); assert.equal(receipt.files.length, 3);
+  assert.ok(receipt.files.every(file => file.action === 'created_and_verified'));
+  assert.deepEqual(receipt.rate_limit_waits, [{ key: f.files[0].key, method: 'GET', attempt: 1, delay_ms: 30_000, retry_after: { seconds: 30 }, global_wait_number: 1 }]);
+  assert.deepEqual(receipt.retry_policy.rate_limit, { waits: 2, max_delay_ms: 300_000 });
+  assert.equal(receipt.read_retries.length, 0); assert.equal(receipt.failures.length, 0);
+  assert.ok(!JSON.stringify(last).includes('sensitive'));
+});
+
+test('rate-limit holds stop at their budget and the run fails with the 429', async t => {
+  const f = fixture(t, 1), clock = { t: 0 };
+  const objects = new Map(); let reads = 0, last;
+  const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', rateLimitWaits: 1, now: () => clock.t, pause: async ms => { clock.t += ms; },
+    fetcher: async () => { reads++; return new Response('', { status: 429 }); } });
+  await assert.rejects(uploadCompanyStorage({ ...f, storage, record: r => { last = structuredClone(r); } }), /read rejected \(429\)/);
+  assert.equal(reads, 2); assert.equal(objects.size, 0);
+  assert.equal(last.rate_limit_waits.length, 1); assert.equal(last.rate_limit_waits[0].delay_ms, 15_000);
+  assert.equal(last.failures[0].http_status, 429); assert.equal(last.complete, false);
+});
+
+test('a rate-limited create is repeated after the hold without a reconciliation read or a second write attempt', async t => {
+  const f = fixture(t, 1), clock = { t: 0 };
+  const s = rateLimitedServer(f, { clock, readsBefore429: -1, postsBefore429: 0, waits: 3 });
+  const receipt = await uploadCompanyStorage({ ...f, storage: s.storage, writeAttempts: 1 });
+  assert.equal(receipt.complete, true); assert.equal(receipt.files[0].action, 'created_and_verified');
+  assert.deepEqual(s.counts(), { reads: 2, posts: 2 });
+  assert.deepEqual(receipt.write_recovery, []);
+  assert.deepEqual(receipt.rate_limit_waits, [{ key: f.files[0].key, method: 'POST', attempt: 1, delay_ms: 15_000, global_wait_number: 1 }]);
+});
+
+test('rate-limit delays honour Retry-After within a ceiling and escalate without one; the policy is bounded', () => {
+  assert.equal(rateLimitDelay({ retryAfter: { seconds: 30 } }, 1), 30_000);
+  assert.equal(rateLimitDelay({ retryAfter: { seconds: 0 } }, 1), 1_000);
+  assert.equal(rateLimitDelay({ retryAfter: { seconds: 900 } }, 1), 300_000);
+  assert.equal(rateLimitDelay({ retryAfter: { at: new Date(1_000_000 + 45_000).toISOString() } }, 1, 1_000_000), 45_000);
+  assert.equal(rateLimitDelay({ retryAfter: { at: new Date(1_000_000 - 45_000).toISOString() } }, 1, 1_000_000), 1_000);
+  assert.deepEqual([1, 2, 8, 9].map(wait => rateLimitDelay({}, wait)), [15_000, 30_000, 120_000, 120_000]);
+  for (const rateLimitWaits of [-1, 101, 1.5]) assert.throws(() => createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', rateLimitWaits }), /rate-limit wait policy/);
 });
