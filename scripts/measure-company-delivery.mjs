@@ -8,14 +8,15 @@ import { companyPreviewServer } from './lib/company-preview-server.mjs';
 import { catalogHash } from '../api/_lib/company-catalog.js';
 import { verifyCompanyReference } from './lib/company-reference.mjs';
 import { referenceCrawlGraph } from './lib/reference-crawl-graph.mjs';
-const [catalogDir, deliveryDir, distDir, output, discoveryDir] = process.argv.slice(2);
-if (!output) throw new Error('Usage: node scripts/measure-company-delivery.mjs CATALOG DELIVERY DIST REPORT [DISCOVERY]');
-const codeHashes = () => Object.fromEntries(['scripts/measure-company-delivery.mjs', 'scripts/lib/reference-crawl-graph.mjs', 'scripts/lib/company-preview-server.mjs', 'scripts/lib/company-page-renderer.mjs', 'scripts/lib/company-filing-notes.mjs', 'api/_lib/company-release.js', 'scripts/lib/company-reference.mjs', 'api/_lib/company-html.js', 'api/_lib/company-download-index.js', 'api/_lib/company-download.js', 'scripts/lib/build-company-download-index.mjs', 'api/_lib/company-directory-html.js', 'scripts/lib/company-directory.mjs', 'api/_lib/company-catalog.js'].map(path => [path, catalogHash(readFileSync(path))]));
+import { filingPath, filingsIndexPath } from './lib/company-filings.mjs';
+const [catalogDir, deliveryDir, distDir, output, discoveryDir, filingsDir] = process.argv.slice(2);
+if (!output) throw new Error('Usage: node scripts/measure-company-delivery.mjs CATALOG DELIVERY DIST REPORT [DISCOVERY] [FILINGS]');
+const codeHashes = () => Object.fromEntries(['scripts/measure-company-delivery.mjs', 'scripts/lib/reference-crawl-graph.mjs', 'scripts/lib/company-preview-server.mjs', 'scripts/lib/company-page-renderer.mjs', 'scripts/lib/company-filing-notes.mjs', 'api/_lib/company-release.js', 'scripts/lib/company-reference.mjs', 'api/_lib/company-html.js', 'api/_lib/company-download-index.js', 'api/_lib/company-download.js', 'scripts/lib/build-company-download-index.mjs', 'api/_lib/company-directory-html.js', 'scripts/lib/company-directory.mjs', 'api/_lib/company-catalog.js', 'api/_lib/company-filings-catalog.js', 'api/_lib/company-filings-html.js', 'scripts/lib/company-filings.mjs', 'scripts/lib/company-filing-page-renderer.mjs'].map(path => [path, catalogHash(readFileSync(path))]));
 const initialCode = codeHashes();
-const app = await companyPreviewServer({ catalogDir, deliveryDir, distDir, discoveryDir });
+const app = await companyPreviewServer({ catalogDir, deliveryDir, distDir, discoveryDir, filingsDir: filingsDir || undefined });
 app.server.listen(0, '127.0.0.1'); await once(app.server, 'listening');
 const base = `http://127.0.0.1:${app.server.address().port}`;
-const report = { schema: 'canli.company-delivery-measurement.v1', publication_approved: false, environment: 'local Node HTTP, sequential; no cloud-load or indexing claim', companies: 0, histories: 0, directories: 0, downloads: 0, maxHtmlBytes: 0, failures: [] };
+const report = { schema: 'canli.company-delivery-measurement.v1', publication_approved: false, environment: 'local Node HTTP, sequential; no cloud-load or indexing claim', companies: 0, histories: 0, filingIndexes: 0, filings: 0, directories: 0, downloads: 0, maxHtmlBytes: 0, failures: [] };
 const durations = [];
 const assets = new Set();
 const served = new Set();
@@ -43,14 +44,29 @@ try {
     const compressed = Buffer.from(await source.arrayBuffer()); assert.equal(catalogHash(compressed), item.source.sha256);
     const original = gunzipSync(compressed); assert.equal(catalogHash(original), item.source_sha256);
     verifyCompanyReference(record, original); report.downloads += 2;
+    let overview;
     for (const tag of [null, ...record.concepts.map(concept => concept.tag)]) {
       const path = `/companies/${item.cik}${tag ? '/' + tag : ''}`, html = await page(path);
       assert.ok(html.includes(item.source.path)); assert.ok(html.includes(item.selected.path));
       assert.ok(html.includes('/developers#quickstart')); assert.ok(html.includes('/developers#ai-assistant')); assert.ok(html.includes('github.com/arhancanli/alphac'));
       const structured = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
       assert.equal(structured[0]['@type'], 'Dataset'); assert.equal(structured[0].creator.name, record.name);
-      if (tag) report.histories++; else report.companies++;
+      if (tag) report.histories++; else { report.companies++; overview = html; }
     }
+    // Filing pages: every page of the company's filings document, reached from the overview.
+    const document = app.filingsCatalog ? await app.filingsCatalog.getFilings(item.cik) : null;
+    assert.equal(overview.includes(`href="${filingsIndexPath(item.cik)}"`), Boolean(document), `overview filing link ${item.cik}`);
+    if (document) {
+      assert.equal(document.source_sha256, item.source_sha256);
+      const index = await page(filingsIndexPath(item.cik));
+      for (const filing of document.filings) {
+        assert.ok(index.includes(`href="${filingPath(item.cik, filing.accession)}"`));
+        const html = await page(filingPath(item.cik, filing.accession));
+        assert.ok(html.includes(filing.sec_index_url)); assert.ok(html.includes(`href="/companies/${item.cik}/${filing.concepts[0].tag}"`));
+        report.filings++;
+      }
+      report.filingIndexes++;
+    } else assert.equal((await fetch(base + filingsIndexPath(item.cik))).status, 404);
     if (report.companies % 100 === 0) console.log(JSON.stringify({ companies: report.companies, histories: report.histories, heapUsed: process.memoryUsage().heapUsed, crawlGraph: graph.stats() }));
   }
   const found = new Set();
@@ -84,7 +100,11 @@ try {
   assert.equal(reachability.pages, served.size, 'Orphan reference page');
   report.maxClicksFromCompanyDirectory = reachability.maxDepth;
   report.crawlGraph = graph.stats();
-  report.referencePages = report.companies + report.histories + report.directories;
+  if (app.filingsCatalog) {
+    assert.equal(report.filings, app.release.filings); assert.equal(report.filingIndexes, app.release.filing_companies);
+    report.filingsRoot = app.release.filings_root; report.filingsCatalog = app.filingsCatalog.stats();
+  }
+  report.referencePages = report.companies + report.histories + report.filingIndexes + report.filings + report.directories;
   report.assets = assets.size; report.catalog = app.catalog.stats();
   report.downloadIndex = app.downloadIndex.stats();
   report.downloadRoot = app.delivery.download_index.root_hash;

@@ -5,7 +5,7 @@ import { catalogHash } from './company-catalog.js';
 // The deployment wrapper provides a reviewed catalog, bundled asset manifest and an
 // optional admission predicate from the explicit activation. Anything the predicate
 // does not admit (and all staged/local HTML) stays noindex by response header.
-export function createCompanyHtmlHandler({ catalog, assets, indexable = false }) {
+export function createCompanyHtmlHandler({ catalog, assets, indexable = false, filings = null }) {
   return async (req, res) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     const fail = (status, message) => {
@@ -20,7 +20,9 @@ export function createCompanyHtmlHandler({ catalog, assets, indexable = false })
       const record = await catalog.getCompany(cik);
       if (!record) return fail(404, 'Company page not found');
       if (concept !== undefined && !record.concepts.some(item => item.tag === concept)) return fail(404, 'Financial history not found');
-      const pages = renderCompanyPages({ ...record, source_snapshot: `/company-data/sources/${record.source_sha256}.json.gz` }, { target: concept ?? 'overview' });
+      // The overview links to the filing index when this release holds filings for the company.
+      const summary = concept === undefined && filings ? await filings.filingSummary(cik) : null;
+      const pages = renderCompanyPages({ ...record, source_snapshot: `/company-data/sources/${record.source_sha256}.json.gz` }, { target: concept ?? 'overview', filings: summary });
       if (!pages.length) return fail(404, 'Financial history not found');
       const html = applyCompanyAssets(pages[0].html, assets);
       if (Buffer.byteLength(html) > 256 * 1024) return fail(503, 'Company reference temporarily unavailable');

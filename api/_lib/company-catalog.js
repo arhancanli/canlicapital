@@ -101,21 +101,27 @@ export function createCompanyCatalog({ rootHash, readObject, cacheBytes = CATALO
       return { revision: rootHash, companies: found.slice(0, limit), next: found.length > limit ? found[limit - 1].cik : null };
     },
     stats: () => ({ ...stats, cachedBytes, cachedObjects: cache.size }),
+    // The leaf entry for one company (its name, object reference and any counts
+    // the builder recorded) without reading the leaf object.
+    entry: leafEntry,
     async getCompany(cik) {
-      check(typeof cik === 'string' && cikPattern.test(cik) && Number(cik) > 0, 'Invalid company CIK');
-      let hash = rootHash, parent, expectedLevel;
-      for (let depth = 0; depth < CATALOG_LIMITS.depth; depth++) {
-        const node = await readNode(hash, parent, expectedLevel);
-        const entry = node.entries.find(item => item.first <= cik && item.last >= cik);
-        if (!entry) return null;
-        if (!node.level) {
-          const record = leaf.decode(await object(entry.hash, leaf.limit, entry.bytes, 'leaf'));
-          check(record?.schema === leaf.schema && record.cik === cik, 'Catalog record identity mismatch');
-          return record;
-        }
-        parent = entry; expectedLevel = node.level - 1; hash = entry.hash;
-      }
-      throw new CatalogError('Catalog depth exceeds limit');
+      const entry = await leafEntry(cik);
+      if (!entry) return null;
+      const record = leaf.decode(await object(entry.hash, leaf.limit, entry.bytes, 'leaf'));
+      check(record?.schema === leaf.schema && record.cik === cik, 'Catalog record identity mismatch');
+      return record;
     },
   };
+  async function leafEntry(cik) {
+    check(typeof cik === 'string' && cikPattern.test(cik) && Number(cik) > 0, 'Invalid company CIK');
+    let hash = rootHash, parent, expectedLevel;
+    for (let depth = 0; depth < CATALOG_LIMITS.depth; depth++) {
+      const node = await readNode(hash, parent, expectedLevel);
+      const entry = node.entries.find(item => item.first <= cik && item.last >= cik);
+      if (!entry) return null;
+      if (!node.level) return entry;
+      parent = entry; expectedLevel = node.level - 1; hash = entry.hash;
+    }
+    throw new CatalogError('Catalog depth exceeds limit');
+  }
 }

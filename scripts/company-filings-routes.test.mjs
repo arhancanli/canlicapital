@@ -44,9 +44,12 @@ test('filing index and accession pages are served from the release, noindex by d
   assert.equal((await get(handler, filingPath(document.cik, '0000000000-00-000000'))).statusCode, 404);
   assert.equal((await get(handler, filingsIndexPath('9999999999'))).statusCode, 404);
   assert.equal((await get(handler, `/companies/${document.cik}/filings/not-an-accession`)).statusCode, 404);
-  // History pages keep working beside filing pages.
-  assert.equal((await get(handler, `/companies/${document.cik}`)).statusCode, 200);
+  // History pages keep working beside filing pages; the overview links to the filing index with its count.
+  const overview = await get(handler, `/companies/${document.cik}`);
+  assert.equal(overview.statusCode, 200);
+  assert.ok(overview.body.includes(`href="${filingsIndexPath(document.cik)}">${document.filings.length} `), 'overview links to the filing index');
   assert.equal((await get(handler, `/companies/${document.cik}/Assets`)).statusCode, 200);
+  assert.ok(!(await get(handler, `/companies/${document.cik}/Assets`)).body.includes(`href="${filingsIndexPath(document.cik)}"`));
 });
 
 test('filing pages become indexable only through the company-level admission predicate', async t => {
@@ -68,7 +71,9 @@ test('a release without filings answers 404 on filing paths and a corrupt filing
   const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
   const res = await get(handler, filingsIndexPath(documents[0].cik));
   assert.equal(res.statusCode, 404); assert.equal(res.headers['X-Robots-Tag'], 'noindex');
-  assert.equal((await get(handler, `/companies/${documents[0].cik}`)).statusCode, 200);
+  const overview = await get(handler, `/companies/${documents[0].cik}`);
+  assert.equal(overview.statusCode, 200);
+  assert.ok(!overview.body.includes(`href="${filingsIndexPath(documents[0].cik)}"`), 'no filing link without filings');
   const broken = fixture(t);
   const corrupt = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...broken.options, readFilingsObject: async (hash, limit, kind) => kind === 'leaf' ? Buffer.from('garbage') : broken.options.readFilingsObject(hash, limit, kind) }) });
   const bad = await get(corrupt, filingsIndexPath(broken.documents[0].cik));

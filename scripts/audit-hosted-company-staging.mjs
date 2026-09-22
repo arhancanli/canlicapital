@@ -1,11 +1,17 @@
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { catalogHash } from '../api/_lib/company-catalog.js';
+import { createCompanyFilingsCatalog } from '../api/_lib/company-filings-catalog.js';
 import { verifyStagedResponse } from './lib/hosted-company-http.mjs';
+import { filingPath, filingsIndexPath } from './lib/company-filings.mjs';
+import { localFilingsReader } from './build-company-release.mjs';
 
 // Audits the explicit staging wrapper. Clean canonical routing is a separate gate.
-const [originText, manifestPath, manifestHash, output, mode = 'ready', routing = 'explicit'] = process.argv.slice(2);
-if (!output || !['ready', 'unavailable'].includes(mode) || !['explicit', 'clean'].includes(routing)) throw new Error('Usage: node scripts/audit-hosted-company-staging.mjs HTTPS_ORIGIN DELIVERY_MANIFEST SHA256 NEW_REPORT [ready|unavailable] [explicit|clean]');
+// With a local FILINGS catalog directory, the sampled companies' filing index and
+// first filing page are checked too (the hosted release must bind that catalog).
+const [originText, manifestPath, manifestHash, output, mode = 'ready', routing = 'explicit', filingsDir] = process.argv.slice(2);
+if (!output || !['ready', 'unavailable'].includes(mode) || !['explicit', 'clean'].includes(routing)) throw new Error('Usage: node scripts/audit-hosted-company-staging.mjs HTTPS_ORIGIN DELIVERY_MANIFEST SHA256 NEW_REPORT [ready|unavailable] [explicit|clean] [FILINGS]');
+const filingsCatalog = filingsDir ? createCompanyFilingsCatalog({ rootHash: JSON.parse(readFileSync(filingsDir + '/filings-catalog.json')).root_hash, readObject: localFilingsReader(filingsDir) }) : null;
 const origin = new URL(originText);
 assert.equal(origin.protocol, 'https:'); assert.equal(origin.pathname, '/');
 assert.ok(!origin.username && !origin.password && !origin.search && !origin.hash);
@@ -16,7 +22,7 @@ const manifest = JSON.parse(rawManifest);
 assert.equal(manifest.schema, 'canli.company-delivery.v1');
 assert.ok(manifest.files.length > 0);
 const report = { schema: 'canli.hosted-company-staging-audit.v1', origin: origin.origin,
-  manifest_sha256: manifestHash, mode, routing, publication_approved: false, complete: false,
+  manifest_sha256: manifestHash, mode, routing, ...(filingsCatalog ? { filings_root: filingsCatalog.revision } : {}), publication_approved: false, complete: false,
   checks: [], failures: [], code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
   http_contract_sha256: catalogHash(readFileSync(new URL('./lib/hosted-company-http.mjs', import.meta.url))),
   scope: 'Representative noindex staging sample in the recorded routing mode. Not production activation, complete corpus HTTP verification, indexing evidence or a cloud-load benchmark.' };
@@ -99,6 +105,22 @@ if (mode === 'unavailable') {
     if (record?.concepts.length) {
       const history = path + '/' + record.concepts[0].tag;
       await check(history, 'GET', 200, htmlCheck(history));
+    }
+    if (filingsCatalog) {
+      const document = await filingsCatalog.getFilings(item.cik);
+      const filingCheck = (canonical, needle) => async (response, bytes) => {
+        const html = bytes.toString();
+        assert.ok(html.includes(`rel="canonical" href="https://canlicapital.com${canonical}"`));
+        assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
+        assert.ok(html.includes(needle));
+      };
+      if (!document) { await check(filingsIndexPath(item.cik), 'GET', 404); continue; }
+      assert.equal(document.source_sha256, item.source_sha256);
+      const first = filingPath(item.cik, document.filings[0].accession);
+      await check(filingsIndexPath(item.cik), 'GET', 200, filingCheck(filingsIndexPath(item.cik), `href="${first}"`));
+      const filing = await check(first, 'GET', 200, filingCheck(first, document.filings[0].sec_index_url));
+      if (filing?.headers.get('etag')) await check(first, 'GET', 304, () => {}, { 'If-None-Match': filing.headers.get('etag') });
+      await check(filingPath(item.cik, '0000000000-00-000000'), 'GET', 404);
     }
   }
 }

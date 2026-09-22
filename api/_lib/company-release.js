@@ -22,14 +22,15 @@ export async function loadCompanyRelease({ releaseHash, readReleaseObject, readC
   // (see company-activation.js). The release object's publication_approved field
   // is never consulted, so storage contents cannot enable indexing remotely.
   if (indexable !== false && typeof indexable !== 'function') throw new Error('Company indexing must be false or an admission predicate');
-  const company = createCompanyHtmlHandler({ catalog, assets, indexable });
-  const directory = createCompanyDirectoryHandler({ catalog, assets, indexable: directoryIndexable === true });
-  const download = createCompanyDownloadHandler({ index: downloads, readDownload });
   // Filings are optional per release: a release without filings_root serves 404s
-  // on filing paths. Objects live beside the catalog under the same base.
+  // on filing paths and its overviews link to no filing index. Objects live
+  // beside the catalog under the same base.
   if (filingsIndexable !== false && typeof filingsIndexable !== 'function') throw new Error('Filings indexing must be false or an admission predicate');
   const filingsCatalog = release.filings_root && readFilingsObject ? createCompanyFilingsCatalog({ rootHash: release.filings_root, readObject: readFilingsObject }) : null;
   const filings = createCompanyFilingsHandler({ filings: filingsCatalog, assets, indexable: filingsCatalog ? filingsIndexable : false });
+  const company = createCompanyHtmlHandler({ catalog, assets, indexable, filings: filingsCatalog });
+  const directory = createCompanyDirectoryHandler({ catalog, assets, indexable: directoryIndexable === true });
+  const download = createCompanyDownloadHandler({ index: downloads, readDownload });
   return { releaseHash, release, catalog, downloads, company, directory, download, filings, filingsCatalog };
 }
 

@@ -3741,3 +3741,24 @@ storage plan (19,772 objects, 2.55 GB), selected quality (57,835 flagged),
 verify-v24-runtime passed. Admission v24: 245,060 indexable, 58,263 withheld.
 Local HTTP audit started 14:12Z. No upload, production or indexing change.
 
+## 2026-09-22 — filing page family built and staged as v25
+
+Steps 1–4 merged earlier today (#184 derivation, #186 renderer, #187 filings
+catalog, #188 routes). Step 5, this change: `build-company-filings.mjs` derives
+one gzip filings document per delivered company and refuses a document that does
+not match its selected record; `build-company-release.mjs`,
+`build-company-discovery.mjs`, `prepare-company-storage.mjs` and the preview
+server take an optional filings directory and bind, list and plan the family; the
+admission builder accepts filing URLs, counts them with their company and writes a
+gzip accession sidecar pinned by SHA-256 in the admission; the production sitemap
+step lists filing pages of admitted companies from that sidecar; company overviews
+link to the filing index through a node-only catalog lookup; the local HTTP audit
+and the hosted readiness audit cover filing pages; `verify-v25-runtime.mjs`
+re-derives every document. Suite 283/283; eight mutation checks caught.
+
+v25 = v24 delivery + filings: release 292f9b8e…, filings root 664a9b19…, 257,357
+filings across 6,387 companies (4 without), 567,082 candidate URLs, 12 shards,
+26,210 objects (2.78 GB; 6,438 net new: the filings objects, with the release object replaced; 230 MB). verify-v25-runtime passed. Admission
+v25: 508,158 indexable (256,726 filing pages + 6,372 indexes), 58,909 withheld.
+v24 superseded before upload. The v23 upload (run 3, after run 2 stopped on an
+HTTP 429) continues; no upload, production or indexing change from this work.

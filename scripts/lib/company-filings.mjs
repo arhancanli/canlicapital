@@ -7,6 +7,7 @@
 // module never admits a company the selector rejects and never shows a value
 // the selector's holds exclude. Design: docs/goal/FILING_PAGE_FAMILY_PROPOSAL.md.
 import { createHash } from 'node:crypto';
+import { isDeepStrictEqual } from 'node:util';
 import { CONCEPTS, CompanyReferenceError, companyReference } from './company-reference.mjs';
 import { EXTENDED_CONCEPTS, compatibleUnit } from './company-extended-concepts.mjs';
 import { EXPANDED_CONCEPTS_V23 } from './company-expanded-concepts-v23.mjs';
@@ -101,4 +102,16 @@ export function companyFilings(raw, { fetchedAt, expectedCik, selectionPolicy = 
 
 export function filingsHash(document) {
   return createHash('sha256').update(JSON.stringify(document)).digest('hex');
+}
+
+// A filings document is a view over one captured record's bytes. The release,
+// discovery and storage builders refuse a document that names a different
+// capture, policy or set of editorial holds than the record they serve.
+export function verifyFilingsBinding(document, record) {
+  if (document?.schema !== 'canli.company-filings.v1' || document.filings_policy !== FILINGS_POLICY) throw new Error('Not a filings document');
+  for (const key of ['cik', 'name', 'source_url', 'source_sha256', 'fetched_at', 'selection_policy', 'claim_boundary']) {
+    if (!isDeepStrictEqual(document[key], record?.[key])) throw new Error(`Filings document ${key} does not match the company record`);
+  }
+  if (!isDeepStrictEqual(document.editorial_exclusions ?? null, record.editorial_exclusions ?? null)) throw new Error('Filings document editorial holds do not match the company record');
+  if (!Array.isArray(document.filings) || !document.filings.length) throw new Error('Filings document holds no filing');
 }
