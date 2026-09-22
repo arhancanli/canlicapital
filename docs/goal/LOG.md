@@ -3718,3 +3718,26 @@ four clicks from the directory, median 2.5 ms; report bound to selector 036eb23a
 (company-ten-cohort-v23-http-measurement-20260921.json). No upload, production or
 indexing change. Owner attribution file untouched.
 
+## 2026-09-22 — v24 staged: policy extended-v23 over all cohorts
+
+PR #180 merged (9f5800ec): policy extended-v23 with the expanded concept map,
+inheriting every v22 hold; taxonomy review v23; admission mask 128. A first build
+failed in discovery because one concept name has 113 characters and the page,
+API, MCP and sitemap contracts bound slugs at 100; that concept was removed (38
+remain), the review regenerated, and the proposal doc updated. The failed attempt
+is retained under corpus-local/retained/v24-attempt1.
+
+Re-derivation: fresh-review, next-1000, third-1000, fourth-1000 and fifth-1000
+were re-derived from retained bytes into *-r2 directories under the current
+selector; their 420 prior 404 rows were re-fetched (fresh 404s) and confirmed with
+not-found receipts. Candidates: 342 / 858 / 771 / 718 / 715 (up from 342 / 853 /
+766 / 683 / 672: the string-CIK companies that formed tenth-89 in v23). Tracked
+selector2 reviews for all five complete with zero errors.
+
+Transition proof (38 concepts): 6,391 companies, 157,113 unchanged histories,
+139,706 added across 6,386 companies. Nine cohorts staged under extended-v23,
+combined (release 19fd560e…), catalog, discovery (303,338 URLs, 7 shards),
+storage plan (19,772 objects, 2.55 GB), selected quality (57,835 flagged),
+verify-v24-runtime passed. Admission v24: 245,060 indexable, 58,263 withheld.
+Local HTTP audit started 14:12Z. No upload, production or indexing change.
+

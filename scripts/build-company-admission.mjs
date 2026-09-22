@@ -44,7 +44,8 @@ function input(role, path) {
 export function buildCompanyAdmission({ release, discovery, shards, quality, scopes, decided = '2026-09-21' }) {
   if (release.schema !== 'canli.company-release.v1') throw new Error('Unexpected release schema');
   if (discovery.schema !== 'canli.company-discovery.v1' || discovery.release_hash !== release.release_hash || discovery.catalog_root !== release.catalog_root) throw new Error('Discovery does not bind the release');
-  if (quality.schema !== 'canli.company-selected-quality.v1' || quality.selection_policy !== 'extended-v22') throw new Error('Quality report is not the v22 selected-quality report');
+  const ADMISSIBLE_POLICIES = ['extended-v22', 'extended-v23'];
+  if (quality.schema !== 'canli.company-selected-quality.v1' || !ADMISSIBLE_POLICIES.includes(quality.selection_policy)) throw new Error('Quality report is not a selected-quality report for an admissible policy');
   if (quality.totals.companies !== release.companies || quality.totals.histories !== release.histories) throw new Error('Quality totals do not match the release');
 
   // Every company URL in the release, from the discovery shards Codex built and audited.
@@ -123,6 +124,7 @@ export function buildCompanyAdmission({ release, discovery, shards, quality, sco
   return {
     schema: 'canli.company-admission.v1',
     release_hash: release.release_hash,
+    selection_policy: quality.selection_policy,
     catalog_root: release.catalog_root,
     download_root: release.download_root,
     companies_in_release: release.companies,
