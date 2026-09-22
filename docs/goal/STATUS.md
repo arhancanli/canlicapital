@@ -104,9 +104,12 @@ Release 4a5d9160…, catalog b6f3b3ea…: 6,391 companies, 157,113 histories,
 against the v22 plan, 557 MB). `scripts/verify-v23-runtime.mjs` passed: 3,323
 carried, 3,068 added from pinned queues, every object hashed, sitemap leaves exact.
 
-Admission v23 (same clean-set rules): 132,876 indexable URLs (6,376 overviews,
-126,372 unflagged histories, 128 directories); 30,342 flagged histories and the
-same 15 pending-review companies withheld noindex.
+Admission v23 (clean-set rules plus the owner's flag decision of September 22,
+option C of FLAGGED_HISTORY_REVIEW_PROPOSAL.md): 156,714 indexable URLs (6,376
+overviews, 150,210 histories of which 23,838 carry a stated-condition notice, 128
+directories); 6,504 histories with other flags and the same 15 pending-review
+companies withheld noindex. File `config/company-admission-v23.json`, SHA-256
+c8bda817….
 
 Open before activation: storage upload of the 9,731 new objects (owner-run with
 the Supabase service key), hosted readiness on a clean preview, the full local
@@ -153,14 +156,18 @@ fresh derivation from the delivered bytes, the discovery set is the v24 set plus
 exactly the filing family, the plan is the v24 plan plus exactly the filings
 objects.
 
-Admission v25 (clean-set rules; filing pages follow their company): 508,158
-indexable URLs (6,376 overviews, 238,556 unflagged histories, 128 directories,
-6,372 filing indexes, 256,726 filing pages); withheld: 57,533 flagged histories,
-and the same 15 pending-review companies with 730 histories and 631 filing pages.
-The accession list lives in the pinned sidecar
+Admission v25 (clean-set rules, filing pages follow their company, plus the
+owner's flag decision of September 22, option C): 556,677 indexable URLs (6,376
+overviews, 287,075 histories of which 48,519 carry a stated-condition notice, 128
+directories, 6,372 filing indexes, 256,726 filing pages); withheld: 9,014
+histories with other flags, and the same 15 pending-review companies with 730
+histories and 631 filing pages. File `config/company-admission-v25.json`, SHA-256
+56ae90eb…; the accession list lives in the pinned sidecar
 `config/company-filing-admission-v25.json.gz` (1,112,677 bytes), read only by the
 production sitemap step; the serving function decides filing indexability per
-company. Local HTTP audit (`measure-company-delivery.mjs`, sequential local Node HTTP):
+company.
+
+Local HTTP audit (`measure-company-delivery.mjs`, sequential local Node HTTP):
 567,082 pages (6,391 overviews, 296,819 histories, 6,387 filing indexes, 257,357
 filing pages, 128 directories), 12,782 downloads, 0 failures; every sitemap URL
 served and every page reachable within 5 clicks of the directory; largest page
@@ -177,9 +184,8 @@ checks (filing sample) → browser audit → activate v25.
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
    measure crawl, index and exclusion counts by page family.
 2. Growth beyond v22 toward 800,000 indexed: upload, verify and activate v23
-   (132,876 indexable); then curated additional concepts, the flagged-history
-   decision (FLAGGED_HISTORY_REVIEW_PROPOSAL.md: option C adds 48,519 URLs to v25),
-   historical filers with explicit historical framing; the filing page
+   (156,714 indexable); then v25 (556,677 indexable with the filing family and
+   the September 22 flag decision), curated additional concepts, historical filers with explicit historical framing; the filing page
    family is built and staged as v25 (508,158 admissible URLs) behind the
    v23 activation and its own upload, hosted and browser checks.
 3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars

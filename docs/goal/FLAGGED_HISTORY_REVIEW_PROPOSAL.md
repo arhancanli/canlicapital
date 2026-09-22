@@ -1,7 +1,9 @@
 # Flagged history review proposal (drafted September 22, 2026)
 
-Status: proposal for an owner decision. Nothing here changes an admission, an
-upload or production. Counts come from the v24 selected-quality report
+Status: decided. The owner chose option C on September 22, 2026; admissions v23
+(156,714 indexable, 23,838 with notices) and v25 (556,677 indexable,
+48,519 with notices) are rebuilt with the four named sets. No upload or production
+change until each release activates. Counts come from the v24 selected-quality report
 (`company-nine-cohort-selected-quality-v24-20260922.json`, delivery manifest
 c1471479…) and a projection over the v25 discovery
 (`artifacts/seo/company-v25-flagged-history-projection-20260922.json`).
