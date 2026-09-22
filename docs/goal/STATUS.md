@@ -8,43 +8,43 @@ The previous STATUS is preserved at
 [history/STATUS-20260921-before-production-activation.md](history/STATUS-20260921-before-production-activation.md).
 Recorded states are not live telemetry.
 
-## Latest verified transition: v22 clean set live in production
+## Latest verified transition: v23 live in production (September 22)
 
-PR169 merged as 28f6e944 and PR170 as f6d37926 (all four CI checks passed on
-both; the merged PR170 tree 73da6f09 equals the tested preview tree). The
-production checkout (the hourly deploy's design source) moved to f6d37926. The
-scheduled hourly deploy published it at 15:33Z: landing deployment
-meridian-8c5ag8pvq aliased to production.
+PR178 merged as 7f8a451e after PR189 (filing family build), PR190 (flag-set
+admission rule) and PR191 (owner flag decision, option C). The production
+checkout moved to 7f8a451e and the owner ran the production deploy
+(meridian-ke0g00zxq aliased to canlicapital.com at about 17:36Z; build output
+"263 site + 156,714 admitted company URLs in 5 sitemap file(s)").
 
-Owner release decision (2026-09-21, "clean set"), in `config/company-admission-v22.json`:
+Admission v23 (`config/company-admission-v23.json`, decision 2026-09-22):
 
-- Indexable: 77,359 company URLs, made up of 3,308 overviews, 73,984 histories
-  without a selected-quality flag, and 67 directory pages.
-- Served noindex but reachable: 12,959 flagged histories, plus all 414 pages of
-  the 15 companies with a pending accounting-scope review.
+- Indexable: 156,714 company URLs: 6,376 overviews, 150,210 histories
+  (23,838 of them admitted with a stated-condition notice under option C of
+  FLAGGED_HISTORY_REVIEW_PROPOSAL.md) and 128 directory pages.
+- Served noindex but reachable: 6,504 histories with other flag sets, plus all
+  pages of the 15 companies with a pending accounting-scope review (399 histories).
 - Downloads stay noindex.
 
-Verified live on canlicapital.com (September 21):
+Verified live on canlicapital.com (September 22, `corpus-local/v23-live-checks.log`):
 
-- Admitted directory, overview and history pages return 200 with no
-  X-Robots-Tag, meta `index, follow` and a self-canonical.
-- Flagged histories, pending-review companies and downloads return 200 with
-  `X-Robots-Tag: noindex`. An unknown company returns 404.
-- `/sitemap.xml` is a sitemap index with two shards, 50,000 + 27,622 =
-  77,622 URLs (263 site pages plus the 77,359 admitted company URLs).
-- All 64 previously live company URLs return 200. 58 stay indexable; six are now
-  noindex because v22 flags them historical-only (for example Apple Revenues
-  ends in 2018 and Microsoft Revenues in 2010).
-- Server time, from connect to first byte, was at most 1.73 s across those 64
-  at six parallel requests.
-- IndexNow accepted 77,622 canonical URLs at 15:33Z.
+- An admitted history and a history admitted with a notice return 200 with no
+  X-Robots-Tag, meta `index, follow` and a self-canonical; the directory too.
+- A history withheld for another flag, a pending-review company and a download
+  return 200 with `X-Robots-Tag: noindex`. An unknown company returns 404 noindex.
+- `/sitemap.xml` is a sitemap index: `sitemap-site.xml` (263) and
+  sitemap-companies-1.xml (50,000), sitemap-companies-2.xml (50,000), sitemap-companies-3.xml (50,000), sitemap-companies-4.xml (6,714) = 156,977 URLs.
+- Slowest of the seven checks 1,589 ms end to end from the test machine.
+- IndexNow accepted 79,444 new or updated canonical URLs (delta against the
+  77,622-URL state); 156,977 in the sitemap.
+
+The v22 transition record is preserved in LOG.md (2026-09-21).
 
 ## Counts (keep separate)
 
-- Built candidate URLs: 90,732.
-- Live indexable company URLs: 77,359.
-- Live sitemap URLs: 77,622.
-- Submitted to IndexNow: 77,622.
+- Built candidate URLs: 567,082 (v25, staged).
+- Live indexable company URLs: 156,714.
+- Live sitemap URLs: 156,977.
+- Submitted to IndexNow: 156,977 cumulative (77,622 on September 21, 79,444 new or updated on September 22).
 - Submitted to Google: sitemap resubmission pending (owner action in Search Console).
 - Confirmed indexed: 262 as of September 14; no new measurement yet.
 - Goal: 800,000 indexed, target 1,000,000.
@@ -53,8 +53,9 @@ Verified live on canlicapital.com (September 21):
 
 Batch1: 1,148 reviewed, 28 withdrawn, none pending. Batch2 scope-v31: 672
 reviewed, 128 pending. The 15 companies holding those pending observations are
-withheld from indexing until resolved. The 12,959 flagged histories are
-withheld until reviewed under COMPANY_EDITORIAL_POLICY.md.
+withheld from indexing until resolved. Flagged histories: 23,838 admitted with a
+notice under the September 22 decision (option C); 6,504 with other flag sets stay
+withheld under COMPANY_EDITORIAL_POLICY.md.
 
 ## Other objectives
 
