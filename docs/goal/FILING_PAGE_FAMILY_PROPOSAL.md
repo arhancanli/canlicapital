@@ -92,3 +92,24 @@ are already stored).
 Full-text of filings, MD&A or footnote extraction (a different source and a
 different rights review), per-segment or per-member breakdowns, and any page
 built from fewer than 8 concepts.
+
+## Storage layout decision (September 22, 2026)
+
+Measured over the v24 delivery with `scripts/lib/company-filings.mjs` (policy
+filings-v1): 257,357 filing pages across 6,391 companies, none withheld, 1,366
+thin (`artifacts/seo/company-filings-size-measurement-v24-20260922.json`).
+
+| Measure | Value |
+| --- | ---: |
+| Per-company filings document, JSON: median / p90 / max | 674 KB / 1.34 MB / 1.83 MB |
+| Companies whose document exceeds the 1 MiB record limit | 1,708 |
+| Per-filing document: median / max | 17.7 KB / 58.5 KB |
+| Whole family, uncompressed | 4.50 GB |
+
+Decision: one gzip object per company (`canli.company-filings.v1`, served as
+`application/gzip`), read by a dedicated reader that inflates under a 4 MiB
+cap, referenced from its own filings catalog tree (same node schema, separate
+root bound in the release). One object per filing would mean 257,357 uploads at
+the observed two seconds each, which is days; per-company objects are 6,391
+uploads and roughly 0.5 GB compressed. A filing page reads one object.
+
