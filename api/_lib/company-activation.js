@@ -75,9 +75,9 @@ export function loadCompanyActivation({ root = process.cwd(), readFile = path =>
 // production, only for the activated release and only where admission allows.
 export function resolveCompanyRuntime(env, activation) {
   if (env.COMPANY_RELEASE_HASH || env.COMPANY_CATALOG_BASE_URL || env.COMPANY_DELIVERY_BASE_URL) {
-    return { releaseHash: env.COMPANY_RELEASE_HASH, catalogBase: env.COMPANY_CATALOG_BASE_URL, deliveryBase: env.COMPANY_DELIVERY_BASE_URL, indexable: false, directoryIndexable: false };
+    return { releaseHash: env.COMPANY_RELEASE_HASH, catalogBase: env.COMPANY_CATALOG_BASE_URL, deliveryBase: env.COMPANY_DELIVERY_BASE_URL, indexable: false, directoryIndexable: false, filingsIndexable: false };
   }
-  if (!activation?.enabled) return { indexable: false, directoryIndexable: false };
+  if (!activation?.enabled) return { indexable: false, directoryIndexable: false, filingsIndexable: false };
   const production = env.VERCEL_ENV === 'production';
   return {
     releaseHash: activation.releaseHash,
@@ -85,5 +85,8 @@ export function resolveCompanyRuntime(env, activation) {
     deliveryBase: activation.deliveryBase,
     indexable: production ? (cik, concept) => activation.isAdmitted(cik, concept) : false,
     directoryIndexable: production,
+    // Filing pages follow their company: indexable when the company overview is
+    // admitted (filings-v1 admits by company; see FILING_PAGE_FAMILY_PROPOSAL.md).
+    filingsIndexable: production ? cik => activation.isAdmitted(cik) : false,
   };
 }
