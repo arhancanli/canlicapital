@@ -42,7 +42,7 @@ ${renderProductShellFooter()}</body></html>\n`;
   return { path, html, lastmod, loc: origin + path };
 }
 
-function provenance(company) {
+export function provenance(company) {
   return `<section aria-labelledby="provenance"><h2 id="provenance">Inspect the source</h2><dl><dt>Entity</dt><dd>${esc(company.name)} / CIK ${company.cik}</dd><dt>Captured</dt><dd>${esc(company.fetched_at)}</dd><dt>SEC response SHA-256</dt><dd><code class="company-reference__hash">${esc(company.source_sha256)}</code></dd></dl>
 <p><a href="${company.source_url}">Current SEC company facts</a> · <a href="${esc(company.source_snapshot)}" download>Download the original response snapshot (gzip)</a> · <a href="${dataFor(company)}" download>Download the selected JSON</a></p>
 <p>${esc(company.policy)}</p><p>${esc(company.claim_boundary)}</p></section>

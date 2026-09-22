@@ -15,13 +15,17 @@ export async function fetchStorage(fetcher, url, init) {
   }
 }
 
-export function createHttpCatalogReader({ baseUrl, fetcher = fetch }) {
+// extension selects the object name: '.json' for catalog nodes and records,
+// '.json.gz' for compressed filings documents stored beside them.
+export function createHttpCatalogReader({ baseUrl, fetcher = fetch, extension = '.json', leafExtension = extension }) {
+  for (const value of [extension, leafExtension]) if (!['.json', '.json.gz'].includes(value)) throw new CatalogError('Unsupported catalog object extension');
   const base = new URL(baseUrl);
   if (base.protocol !== 'https:' || base.username || base.password || base.search || base.hash) throw new CatalogError('Catalog storage requires a fixed HTTPS origin/path');
   base.pathname = base.pathname.replace(/\/?$/, '/');
-  return async (hash, limit) => {
+  return async (hash, limit, kind = 'node') => {
     if (!/^[a-f0-9]{64}$/.test(hash)) throw new CatalogError('Invalid storage object hash');
-    const response = await fetchStorage(fetcher, new URL(`objects/${hash}.json`, base), { redirect: 'error', headers: { Accept: 'application/json' } });
+    const name = kind === 'leaf' ? leafExtension : extension;
+    const response = await fetchStorage(fetcher, new URL(`objects/${hash}${name}`, base), { redirect: 'error', headers: { Accept: name === '.json' ? 'application/json' : 'application/gzip' } });
     if (!response.ok) throw new CatalogError('Catalog storage unavailable');
     const declared = response.headers.get('content-length');
     if (declared && Number(declared) > limit) { await response.body?.cancel(); throw new CatalogError('Storage object exceeds byte limit'); }

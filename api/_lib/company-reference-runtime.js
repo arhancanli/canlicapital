@@ -10,7 +10,7 @@ export function createConfiguredCompanyReference({ environment = () => process.e
   async function loadRelease() {
     const env = environment();
     if (activation === undefined) activation = loadActivation();
-    const { releaseHash, catalogBase, deliveryBase, indexable, directoryIndexable } = resolveCompanyRuntime(env, activation);
+    const { releaseHash, catalogBase, deliveryBase, indexable, directoryIndexable, filingsIndexable } = resolveCompanyRuntime(env, activation);
     if (!releaseHash || !catalogBase || !deliveryBase) throw new Error('Company release storage is not configured');
     const key = JSON.stringify([releaseHash, catalogBase, deliveryBase, env.VERCEL_ENV === 'production']);
     if (key !== configured) {
@@ -19,7 +19,8 @@ export function createConfiguredCompanyReference({ environment = () => process.e
       const assets = JSON.parse(bytes);
       const catalogReader = createHttpCatalogReader({ baseUrl: catalogBase, fetcher });
       const deliveryReader = createHttpCatalogReader({ baseUrl: deliveryBase, fetcher });
-      const next = createCompanyReleaseLoader({ releaseHash, assets, indexable, directoryIndexable, readReleaseObject: deliveryReader, readCatalogObject: catalogReader, readDownloadIndexObject: deliveryReader, readDownload: createHttpDownloadReader({ baseUrl: deliveryBase, fetcher }) });
+      const filingsReader = createHttpCatalogReader({ baseUrl: catalogBase, fetcher, leafExtension: '.json.gz' });
+      const next = createCompanyReleaseLoader({ releaseHash, assets, indexable, directoryIndexable, filingsIndexable, readReleaseObject: deliveryReader, readCatalogObject: catalogReader, readDownloadIndexObject: deliveryReader, readDownload: createHttpDownloadReader({ baseUrl: deliveryBase, fetcher }), readFilingsObject: filingsReader });
       configured = key; load = next;
     }
     return load();
