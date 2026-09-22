@@ -420,3 +420,15 @@ test('fallback hold delays escalate only across consecutive holds and reset once
   assert.equal(receipt.complete, true);
   assert.deepEqual(receipt.rate_limit_waits.map(w => [w.consecutive, w.delay_ms, w.global_wait_number]), [[1, 15_000], [2, 30_000], [1, 15_000]].map((row, i) => [...row, i + 1]));
 });
+
+test('a 500 on a read is repeated within the read policy and a 500 on a create is reconciled like a gateway failure', async t => {
+  const f = fixture(t, 1);
+  const s = server(f, { readAttempts: 3, readStatuses: [500] });
+  const receipt = await uploadCompanyStorage({ ...f, storage: s.storage });
+  assert.equal(receipt.complete, true); assert.equal(receipt.files[0].action, 'created_and_verified');
+  assert.equal(receipt.read_retries.length, 1); assert.match(receipt.read_retries[0].error, /500/);
+  const g = server(f, { failFirstPerKey: true, createStatus: 500 });
+  g.storage.create = (create => async (file, raw) => { try { return await create(file, raw); } catch (error) { if (error.httpStatus === undefined) error.httpStatus = 500; throw error; } })(g.storage.create);
+  const second = await uploadCompanyStorage({ ...f, storage: g.storage, writeAttempts: 2 });
+  assert.equal(second.complete, true); assert.equal(second.write_recovery.length, 1); assert.equal(second.write_recovery[0].reconciliation, 'absent');
+});

@@ -136,16 +136,17 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
         } } catch (error) {
           if (!error?.cause?.code && !['AbortError', 'TimeoutError'].includes(error?.name)) throw error;
           const failure = transportFailure(error);
-          failure.retryableRead = [502, 503, 504].includes(response.status);
+          failure.retryableRead = [500, 502, 503, 504].includes(response.status);
           throw failure;
         }
         const body = Buffer.concat(parts).toString('utf8');
         let error; try { error = JSON.parse(body); } catch { /* fail closed */ }
         if ((response.status === 400 || response.status === 404) &&
             String(error?.statusCode) === '404' && error?.error === 'not_found') return null;
+        // A server error on a read (500 or a gateway status) says nothing about the object; it may be repeated within the bounded read policy.
         const failure = new Error(`Storage read rejected (${response.status})`);
         Object.assign(failure, responseFailureMetadata(response));
-        failure.retryableRead = [502, 503, 504].includes(response.status);
+        failure.retryableRead = [500, 502, 503, 504].includes(response.status);
         throw failure;
       }
       const encoding = response.headers.get('content-encoding');
@@ -177,7 +178,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
       if (!response.ok) {
         const error = new Error(`Storage create rejected (${response.status}); no overwrite`);
         Object.assign(error, responseFailureMetadata(response));
-        error.ambiguousWrite = [409, 502, 503, 504].includes(response.status);
+        error.ambiguousWrite = [409, 500, 502, 503, 504].includes(response.status); // a server error may or may not have stored the object
         error.rateLimited = response.status === 429; // nothing was written; the same create may be repeated after the hold
         throw error;
       }
