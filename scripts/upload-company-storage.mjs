@@ -48,8 +48,9 @@ export function validateStoragePlan(raw, expectedHash) {
 
 // A 429 is the service asking for a pause, not a verdict on the object. With
 // rateLimitWaits > 0 the adapter holds every worker for the Retry-After period
-// (or an escalating fallback), then repeats the same request; the number of
-// holds per run is bounded and each is recorded. 401 and 403 are never retried.
+// (or a fallback that escalates with consecutive holds and resets once a request
+// succeeds), then repeats the same request; the number of holds per run is
+// bounded and each is recorded. 401 and 403 are never retried.
 const RATE_LIMIT_MAX_DELAY_MS = 300_000;
 export function rateLimitDelay(error, wait, now = Date.now()) {
   const seconds = error?.retryAfter?.seconds;
@@ -65,8 +66,8 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
   if (!Number.isInteger(readAttempts) || readAttempts < 1 || readAttempts > 3 ||
       !Number.isInteger(retryBudget) || retryBudget < 0 || retryBudget > 200) throw new Error('Invalid bounded read retry policy');
   if (!Number.isInteger(minIntervalMs) || minIntervalMs < 0 || minIntervalMs > 10000) throw new Error('Invalid request pacing');
-  if (!Number.isInteger(rateLimitWaits) || rateLimitWaits < 0 || rateLimitWaits > 100) throw new Error('Invalid bounded rate-limit wait policy');
-  let retries = 0, waits = 0;
+  if (!Number.isInteger(rateLimitWaits) || rateLimitWaits < 0 || rateLimitWaits > 500) throw new Error('Invalid bounded rate-limit wait policy');
+  let retries = 0, waits = 0, consecutiveHolds = 0;
   let gate = Promise.resolve(), lastStarted = -Infinity, holdUntil = -Infinity;
   const base = new URL(projectUrl);
   if (base.protocol !== 'https:' || base.username || base.password || base.search || base.hash ||
@@ -94,17 +95,20 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
     });
     gate = start.catch(() => {});
     await start;
-    try { return await fetcher(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(60_000) }); }
+    let response;
+    try { response = await fetcher(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(60_000) }); }
     catch (error) { throw transportFailure(error); }
+    if (response.status !== 429) consecutiveHolds = 0; // the service answered: the next hold starts short again
+    return response;
   }
   // Returns true after holding for a rate-limited request that may be repeated; false when
   // the run's wait budget is spent (the caller then fails with the original error).
   async function waitForRateLimit(error, onWait = () => {}) {
     if (!error?.rateLimited || waits >= rateLimitWaits) return false;
-    waits++;
-    const delay = rateLimitDelay(error, waits, now());
+    waits++; consecutiveHolds++;
+    const delay = rateLimitDelay(error, consecutiveHolds, now());
     holdUntil = Math.max(holdUntil, now() + delay);
-    onWait({ delay_ms: delay, ...(error.retryAfter ? { retry_after: error.retryAfter } : {}), global_wait_number: waits });
+    onWait({ delay_ms: delay, ...(error.retryAfter ? { retry_after: error.retryAfter } : {}), consecutive: consecutiveHolds, global_wait_number: waits });
     await pause(delay);
     return true;
   }
@@ -267,7 +271,7 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1', writeAttempts = '1', readRetryBudget = '10', writeRetryBudget = '10', minIntervalMs = '0', rateLimitWaits = '0'] = process.argv.slice(2);
-  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3] [WRITE_ATTEMPTS_1_TO_2] [READ_RETRY_BUDGET_0_TO_200] [WRITE_RETRY_BUDGET_0_TO_50] [MIN_REQUEST_INTERVAL_MS_0_TO_10000] [RATE_LIMIT_WAITS_0_TO_100]');
+  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3] [WRITE_ATTEMPTS_1_TO_2] [READ_RETRY_BUDGET_0_TO_200] [WRITE_RETRY_BUDGET_0_TO_50] [MIN_REQUEST_INTERVAL_MS_0_TO_10000] [RATE_LIMIT_WAITS_0_TO_500]');
   if (existsSync(output) || existsSync(output + '.pending')) throw new Error('Receipt already exists; preserve it and use a new path');
   const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY, readAttempts: Number(readAttempts), retryBudget: Number(readRetryBudget), minIntervalMs: Number(minIntervalMs), rateLimitWaits: Number(rateLimitWaits) });
   await uploadCompanyStorage({ planBytes: readFileSync(planPath), planHash, storage, concurrency: Number(concurrency), writeAttempts: Number(writeAttempts), writeRetryBudget: Number(writeRetryBudget), record: receipt => {
