@@ -182,17 +182,58 @@ the filings objects, so one upload serves both. Order of operations: v23 upload
 (running) → v23 hosted checks → activate v23 (#178) → v25 upload → v25 hosted
 checks (filing sample) → browser audit → activate v25.
 
+## v26 staged release (built September 22, 21:06Z; not uploaded, not live)
+
+The historical filers family (HISTORICAL_FILERS_PROPOSAL.md; owner go of September
+22). Discovery over the retained bulk archive in the explicit historical mode
+(historical, filings on or after 2009-01-01): 8,800 eligible entities in 9
+coverage-ranked slices. The first four slices (4,000 entities with at least 40
+published concepts) were captured 19:27–19:58Z in four parallel runs at one
+request per second: 0 HTTP errors, 0 not-found. Review: eleventh-1000 991
+candidates / 9 excluded, twelfth-1000 981 candidates / 19 excluded,
+thirteenth-1000 956 candidates / 44 excluded, fourteenth-1000 882 candidates / 118
+excluded; every exclusion is a coverage failure. Staged under extended-v23 and
+combined with the nine v24 cohorts.
+
+Release 5141e69b…: 10,201 companies (6,391 carried from v24 byte for byte, 3,810
+added; 4,120 historical filers whose overview, filing index and directory entry
+state the last filing date), 457,906 histories, 349,054 filing pages across 10,197
+companies, 827,563 candidate URLs in 17 sitemap shards, 205 directory pages.
+Storage plan 41,806 objects (3.80 GB; 15,972 new against the v25 plan).
+`scripts/verify-v26-runtime.mjs` passed: every v24 company carried unchanged,
+every new company from a historical capture queue, every filings document
+re-derived from the delivered bytes, discovery equal to the derived set, plan
+bound to the release.
+
+Admission v26 (clean-set rules, filing pages follow their company, option C):
+813,892 indexable URLs (10,186 overviews, 444,896 histories of which 206,340 carry
+a stated-condition notice, 205 directories, 10,182 filing indexes, 348,423 filing
+pages); withheld: 12,280 histories with other flag sets and the same 15
+pending-review companies. File `config/company-admission-v26.json`, SHA-256
+5af3b2d2…; sidecar `config/company-filing-admission-v26.json.gz`. This is the
+first release whose admissible set exceeds 800,000 URLs; it is not an indexed
+count.
+
+Local HTTP audit: 827,563 pages (10,201 overviews, 457,906 histories, 10,197
+filing indexes, 349,054 filing pages, 205 directories), 20,402 downloads, 0
+failures; every sitemap URL served and every page within 5 clicks of the
+directory; largest page 111,611 bytes; median 3.1 ms
+(`company-thirteen-cohort-v26-http-measurement-20260922.json`).
+
+Order of operations: v25 upload (running) → v25 hosted checks → activate v25 (#195)
+→ v26 upload (15,972 new objects) → v26 hosted checks → activate v26.
+Slices 05–09 (4,800 entities, 4–40 concepts) remain for v27.
+
 ## Next actions
 
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
    measure crawl, index and exclusion counts by page family.
-2. Growth beyond v22 toward 800,000 indexed: upload, verify and activate v23
-   (156,714 indexable); then v25 (556,677 indexable with the filing family and
-   the September 22 flag decision), then the historical filers family
-   (HISTORICAL_FILERS_PROPOSAL.md: 8,800 eligible entities, an estimated 431,000
-   admissible URLs, owner decision pending), curated additional concepts, historical filers with explicit historical framing; the filing page
-   family is built and staged as v25 (508,158 admissible URLs) behind the
-   v23 activation and its own upload, hosted and browser checks.
+2. Growth toward 800,000 indexed: v23 is live (156,714 indexable); v25 (556,677
+   indexable: expanded concepts, filing family, September 22 flag decision) is
+   uploading, then hosted checks and activation; v26 (historical filers, 813,892
+   indexable) is staged behind it; v27 takes the remaining 4,800 historical
+   entities; then the last flagged histories and further families. Indexed counts
+   are measured in Search Console after each activation.
 3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars
    and npm downloads weekly.
 4. Engine: merge PR73; the nightly publish regenerates the audits and the health

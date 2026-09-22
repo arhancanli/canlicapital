@@ -3820,3 +3820,18 @@ the old behaviour): on a 429 read or create every worker's next start waits for
 the Retry-After period (at most 300 s) or an escalating fallback, then the same
 request is repeated; each hold is recorded in the receipt. 401 and 403 are still
 never retried. Tests 25/25, four mutation checks caught.
+
+## 2026-09-22 — v26 staged: the historical filers family
+
+Owner go on HISTORICAL_FILERS_PROPOSAL.md. PR #198 (company-level notice,
+directory label, --historical discovery mode) merged. Discovery in historical
+mode: 8,800 eligible entities; slices 01–04 captured 19:27–19:58Z (4 × 1,000, 0
+HTTP errors, 0 not-found), reviewed (3,810 candidates, 190 coverage exclusions),
+staged under extended-v23 and combined with the nine v24 cohorts. Release
+5141e69b…: 10,201 companies, 457,906 histories, 349,054 filing pages, 827,563
+candidate URLs, 41,806 objects (15,972 new). verify-v26-runtime passed. Admission
+v26: 813,892 indexable (206,340 histories with notices), 13,656 withheld. Local
+HTTP audit 827,563 pages, 0 failures. The proposal's estimate (438,816 candidate
+URLs for all 8,800 entities) compares with 260,481 added by the first 4,000:
+historical records carried more published concepts than the discount assumed. No
+upload, production or indexing change.
