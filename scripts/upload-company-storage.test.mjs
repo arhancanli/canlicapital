@@ -365,7 +365,7 @@ test('a rate-limited read is repeated after the Retry-After hold, recorded, and 
   assert.ok(starts.slice(before).every(start => start.t >= 30_000), JSON.stringify(starts));
   assert.equal(receipt.complete, true); assert.equal(receipt.files.length, 3);
   assert.ok(receipt.files.every(file => file.action === 'created_and_verified'));
-  assert.deepEqual(receipt.rate_limit_waits, [{ key: f.files[0].key, method: 'GET', attempt: 1, delay_ms: 30_000, retry_after: { seconds: 30 }, global_wait_number: 1 }]);
+  assert.deepEqual(receipt.rate_limit_waits, [{ key: f.files[0].key, method: 'GET', attempt: 1, delay_ms: 30_000, retry_after: { seconds: 30 }, consecutive: 1, global_wait_number: 1 }]);
   assert.deepEqual(receipt.retry_policy.rate_limit, { waits: 2, max_delay_ms: 300_000 });
   assert.equal(receipt.read_retries.length, 0); assert.equal(receipt.failures.length, 0);
   assert.ok(!JSON.stringify(last).includes('sensitive'));
@@ -389,7 +389,7 @@ test('a rate-limited create is repeated after the hold without a reconciliation 
   assert.equal(receipt.complete, true); assert.equal(receipt.files[0].action, 'created_and_verified');
   assert.deepEqual(s.counts(), { reads: 2, posts: 2 });
   assert.deepEqual(receipt.write_recovery, []);
-  assert.deepEqual(receipt.rate_limit_waits, [{ key: f.files[0].key, method: 'POST', attempt: 1, delay_ms: 15_000, global_wait_number: 1 }]);
+  assert.deepEqual(receipt.rate_limit_waits, [{ key: f.files[0].key, method: 'POST', attempt: 1, delay_ms: 15_000, consecutive: 1, global_wait_number: 1 }]);
 });
 
 test('rate-limit delays honour Retry-After within a ceiling and escalate without one; the policy is bounded', () => {
@@ -399,5 +399,24 @@ test('rate-limit delays honour Retry-After within a ceiling and escalate without
   assert.equal(rateLimitDelay({ retryAfter: { at: new Date(1_000_000 + 45_000).toISOString() } }, 1, 1_000_000), 45_000);
   assert.equal(rateLimitDelay({ retryAfter: { at: new Date(1_000_000 - 45_000).toISOString() } }, 1, 1_000_000), 1_000);
   assert.deepEqual([1, 2, 8, 9].map(wait => rateLimitDelay({}, wait)), [15_000, 30_000, 120_000, 120_000]);
-  for (const rateLimitWaits of [-1, 101, 1.5]) assert.throws(() => createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', rateLimitWaits }), /rate-limit wait policy/);
+  for (const rateLimitWaits of [-1, 501, 1.5]) assert.throws(() => createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', rateLimitWaits }), /rate-limit wait policy/);
+});
+
+test('fallback hold delays escalate only across consecutive holds and reset once the service answers', async t => {
+  const f = fixture(t, 2), clock = { t: 0 };
+  const objects = new Map(); let calls = 0;
+  // Reads: 429, 429, (404 → create), then for the second file 429 again: the reset makes it a 15 s hold, not 45 s.
+  const plan = [429, 429, 'absent', 429, 'absent'];
+  const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', rateLimitWaits: 10, now: () => clock.t, pause: async ms => { clock.t += ms; },
+    fetcher: async (url, init) => {
+      const key = url.split('/company-runtime/')[1];
+      if (init.method === 'POST') { objects.set(key, Buffer.from(init.body)); return new Response('{}'); }
+      if (objects.has(key)) return new Response(objects.get(key), { headers: { 'content-type': f.files.find(x => x.key === key).content_type, 'cache-control': 'public, max-age=31536000, immutable' } });
+      const step = plan[calls++];
+      if (step === 429) return new Response('', { status: 429 });
+      return Response.json({ statusCode: '404', error: 'not_found' }, { status: 400 });
+    } });
+  const receipt = await uploadCompanyStorage({ ...f, storage, concurrency: 1 });
+  assert.equal(receipt.complete, true);
+  assert.deepEqual(receipt.rate_limit_waits.map(w => [w.consecutive, w.delay_ms, w.global_wait_number]), [[1, 15_000], [2, 30_000], [1, 15_000]].map((row, i) => [...row, i + 1]));
 });
