@@ -16,7 +16,11 @@ admission decide what is published.
 Usage:
   python3 scripts/build-sec-bulk-discovery.py companyfacts.zip \
     config/company-admission-v22.json OUTPUT_DIR [--snapshot 2026-09-19] [--slice 1000] \
-    [--exclude-delivery delivery.json] [--exclude-ledger prior-queues.json]
+    [--historical] [--exclude-delivery delivery.json] [--exclude-ledger prior-queues.json]
+
+--historical replaces the two-year floor with the start of the XBRL companyfacts
+record (2009-01-01): entities that stopped filing become candidates, ranked the
+same way. The mode is recorded in the summary.
 
 Exclusions mirror scripts/prepare-company-batch.mjs (companies already in a
 delivery, CIKs in any pinned prior queue) so that every slice holds exactly
@@ -32,6 +36,7 @@ from datetime import date, timedelta
 from pathlib import Path
 
 FORMS = {"10-K", "10-Q", "10-K/A", "10-Q/A", "20-F", "40-F"}
+HISTORICAL_FLOOR = "2009-01-01"  # first XBRL companyfacts filings
 
 
 def sha256_path(path):
@@ -46,7 +51,8 @@ def main(argv):
     zip_path, admission_path, out_dir = argv[0], argv[1], Path(argv[2])
     snapshot = argv[argv.index("--snapshot") + 1] if "--snapshot" in argv else "2026-09-19"
     slice_size = int(argv[argv.index("--slice") + 1]) if "--slice" in argv else 1000
-    recent_from = (date.fromisoformat(snapshot) - timedelta(days=730)).isoformat()
+    historical = "--historical" in argv
+    recent_from = HISTORICAL_FLOOR if historical else (date.fromisoformat(snapshot) - timedelta(days=730)).isoformat()
     concepts = set(json.load(open(admission_path))["concepts"])
     out_dir.mkdir(parents=True, exist_ok=True)
     excluded, exclusions = set(), []
@@ -124,7 +130,7 @@ def main(argv):
         "schema": "canli.sec-bulk-discovery.v1",
         "archive": {"path": str(zip_path), "sha256": sha256_path(zip_path), "snapshot": snapshot},
         "admission_concepts": {"path": admission_path, "count": len(concepts)},
-        "rules": {"forms": sorted(FORMS), "filed_on_or_after": recent_from, "minimum_current_concepts": 4,
+        "rules": {"mode": "historical" if historical else "active", "forms": sorted(FORMS), "filed_on_or_after": recent_from, "minimum_current_concepts": 4,
                   "ranking": "concept coverage descending, latest filing date descending, CIK ascending"},
         "exclusions": exclusions,
         "eligible_entities_excluded_as_known": excluded_seen,
