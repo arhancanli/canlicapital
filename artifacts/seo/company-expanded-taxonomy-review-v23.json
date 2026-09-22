@@ -1,0 +1,246 @@
+{
+  "schema": "canli.company-concept-taxonomy-review.v1",
+  "source": {
+    "url": "https://xbrl.fasb.org/us-gaap/2026/elts/us-gaap-2026.xsd",
+    "sha256": "5df2d5054b8a37ef1a00bbbad621317833e7c2cb65a421a283128efbd707da7e"
+  },
+  "definitions_sha256": "a79e86b2bf77a8a82c1e1fcad83d684b78e23a30c2ae8e7b599b2cfbb560541d",
+  "concepts": [
+    {
+      "tag": "CommonStockSharesOutstanding",
+      "period_type": "instant",
+      "type": "xbrli:sharesItemType",
+      "label": "Common shares outstanding"
+    },
+    {
+      "tag": "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Cash including restricted cash"
+    },
+    {
+      "tag": "AdditionalPaidInCapital",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Additional paid-in capital"
+    },
+    {
+      "tag": "AccumulatedOtherComprehensiveIncomeLossNetOfTax",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Accumulated other comprehensive income or loss"
+    },
+    {
+      "tag": "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Total equity including noncontrolling interests"
+    },
+    {
+      "tag": "OperatingLeaseRightOfUseAsset",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Operating lease right-of-use asset"
+    },
+    {
+      "tag": "OperatingLeaseLiability",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Operating lease liability"
+    },
+    {
+      "tag": "LongTermDebt",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Long-term debt"
+    },
+    {
+      "tag": "PropertyPlantAndEquipmentGross",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Gross property, plant and equipment"
+    },
+    {
+      "tag": "AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Accumulated depreciation on property, plant and equipment"
+    },
+    {
+      "tag": "IntangibleAssetsNetExcludingGoodwill",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Net intangible assets excluding goodwill"
+    },
+    {
+      "tag": "OtherAssetsNoncurrent",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Other noncurrent assets"
+    },
+    {
+      "tag": "OtherLiabilitiesNoncurrent",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Other noncurrent liabilities"
+    },
+    {
+      "tag": "AccruedLiabilitiesCurrent",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Accrued current liabilities"
+    },
+    {
+      "tag": "PrepaidExpenseAndOtherAssetsCurrent",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Prepaid expenses and other current assets"
+    },
+    {
+      "tag": "ContractWithCustomerLiabilityCurrent",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Current contract liabilities"
+    },
+    {
+      "tag": "DeferredTaxAssetsNet",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Net deferred tax assets"
+    },
+    {
+      "tag": "DeferredIncomeTaxLiabilitiesNet",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Net deferred tax liabilities"
+    },
+    {
+      "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Pre-tax income or loss from continuing operations"
+    },
+    {
+      "tag": "ProfitLoss",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Profit or loss including noncontrolling interests"
+    },
+    {
+      "tag": "ComprehensiveIncomeNetOfTax",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Comprehensive income or loss"
+    },
+    {
+      "tag": "NetIncomeLossAvailableToCommonStockholdersBasic",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Net income available to common stockholders"
+    },
+    {
+      "tag": "GeneralAndAdministrativeExpense",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "General and administrative expense"
+    },
+    {
+      "tag": "Depreciation",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Depreciation expense"
+    },
+    {
+      "tag": "DepreciationDepletionAndAmortization",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Depreciation, depletion and amortization"
+    },
+    {
+      "tag": "AmortizationOfIntangibleAssets",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Amortization of intangible assets"
+    },
+    {
+      "tag": "InterestExpenseNonoperating",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Nonoperating interest expense"
+    },
+    {
+      "tag": "OtherNonoperatingIncomeExpense",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Other nonoperating income or expense"
+    },
+    {
+      "tag": "NonoperatingIncomeExpense",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Nonoperating income or expense"
+    },
+    {
+      "tag": "CurrentIncomeTaxExpenseBenefit",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Current income tax expense or benefit"
+    },
+    {
+      "tag": "DeferredIncomeTaxExpenseBenefit",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Deferred income tax expense or benefit"
+    },
+    {
+      "tag": "InterestPaidNet",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Interest paid, net"
+    },
+    {
+      "tag": "IncomeTaxesPaidNet",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Income taxes paid, net"
+    },
+    {
+      "tag": "ProceedsFromIssuanceOfCommonStock",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Proceeds from issuing common stock"
+    },
+    {
+      "tag": "OperatingLeasePayments",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Operating lease payments"
+    },
+    {
+      "tag": "IncreaseDecreaseInAccountsReceivable",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Change in accounts receivable"
+    },
+    {
+      "tag": "IncreaseDecreaseInInventories",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Change in inventories"
+    },
+    {
+      "tag": "IncreaseDecreaseInAccountsPayable",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Change in accounts payable"
+    },
+    {
+      "tag": "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Net change in cash including restricted cash"
+    }
+  ],
+  "publication_approved": false,
+  "scope": "2026 period/type declarations; does not establish historical taxonomy equivalence or editorial publication approval"
+}

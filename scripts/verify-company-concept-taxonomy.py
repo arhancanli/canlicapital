@@ -6,7 +6,14 @@ import subprocess
 import sys
 import xml.etree.ElementTree as ET
 source, output = map(Path, sys.argv[1:3])
-config = json.loads(subprocess.check_output(['node', '--input-type=module', '-e', 'import {EXTENDED_CONCEPTS,TAXONOMY_BINDING} from "./scripts/lib/company-extended-concepts.mjs"; import {createHash} from "node:crypto"; console.log(JSON.stringify({concepts:EXTENDED_CONCEPTS,binding:TAXONOMY_BINDING,definitionHash:createHash("sha256").update(JSON.stringify(EXTENDED_CONCEPTS)).digest("hex")}));'], text=True))
+# Third argument selects the definition map: 'extended' (default, company-extended-concepts.mjs)
+# or 'expanded-v23' (company-expanded-concepts-v23.mjs). Each map gets its own review file.
+MAPS = {
+    'extended': ('./scripts/lib/company-extended-concepts.mjs', 'EXTENDED_CONCEPTS'),
+    'expanded-v23': ('./scripts/lib/company-expanded-concepts-v23.mjs', 'EXPANDED_CONCEPTS_V23'),
+}
+module, export = MAPS[sys.argv[3] if len(sys.argv) > 3 else 'extended']
+config = json.loads(subprocess.check_output(['node', '--input-type=module', '-e', f'import {{{export}}} from "{module}"; import {{TAXONOMY_BINDING}} from "./scripts/lib/company-extended-concepts.mjs"; import {{createHash}} from "node:crypto"; console.log(JSON.stringify({{concepts:{export},binding:TAXONOMY_BINDING,definitionHash:createHash("sha256").update(JSON.stringify({export})).digest("hex")}}));'], text=True))
 raw = source.read_bytes()
 assert hashlib.sha256(raw).hexdigest() == config['binding']['sha256'], 'Taxonomy bytes changed'
 root = ET.fromstring(raw)

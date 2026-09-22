@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
-import { companyReference, selectObservations, verifyCompanyReference } from './lib/company-reference.mjs';
+import { CONCEPTS, companyReference, selectObservations, verifyCompanyReference } from './lib/company-reference.mjs';
 
 const row = { start: '2023-01-01', end: '2023-12-31', filed: '2024-02-01', val: 25, accn: '0000000001-24-000001', form: '10-K' };
 test('latest-filed selection separates units and periods, excludes future information and quarter flows', () => {
@@ -135,6 +135,26 @@ test('versioned extended definitions retain their reviewed byte binding', async 
   const { EXTENDED_CONCEPTS } = await import('./lib/company-extended-concepts.mjs');
   const review = JSON.parse(readFileSync(new URL('../artifacts/seo/company-extended-taxonomy-review.json', import.meta.url)));
   assert.equal(createHash('sha256').update(JSON.stringify(EXTENDED_CONCEPTS)).digest('hex'), review.definitions_sha256, 'Create a new policy version for definition changes and retain the prior policy');
+});
+
+test('expanded v23 definitions retain their reviewed byte binding and never leak into earlier policies', async () => {
+  const { EXPANDED_CONCEPTS_V23 } = await import('./lib/company-expanded-concepts-v23.mjs');
+  const { EXTENDED_CONCEPTS } = await import('./lib/company-extended-concepts.mjs');
+  const review = JSON.parse(readFileSync(new URL('../artifacts/seo/company-expanded-taxonomy-review-v23.json', import.meta.url)));
+  assert.equal(createHash('sha256').update(JSON.stringify(EXPANDED_CONCEPTS_V23)).digest('hex'), review.definitions_sha256, 'Create a new policy version for definition changes and retain the prior policy');
+  assert.equal(Object.keys(EXPANDED_CONCEPTS_V23).length, 39);
+  for (const tag of Object.keys(EXPANDED_CONCEPTS_V23)) assert.ok(!Object.hasOwn(EXTENDED_CONCEPTS, tag) && !Object.hasOwn(CONCEPTS, tag), `${tag} is already a published concept`);
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const raw = gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))).toString();
+  const options = { fetchedAt: record.fetched_at, expectedCik: record.cik };
+  const v22 = companyReference(raw, { ...options, selectionPolicy: 'extended-v22' });
+  const v23 = companyReference(raw, { ...options, selectionPolicy: 'extended-v23' });
+  assert.ok(!v22.concepts.some(concept => Object.hasOwn(EXPANDED_CONCEPTS_V23, concept.tag)), 'extended-v22 must not select expanded concepts');
+  const v23ByTag = new Map(v23.concepts.map(concept => [concept.tag, concept]));
+  for (const concept of v22.concepts) assert.deepEqual(v23ByTag.get(concept.tag), concept, `${concept.tag} changed under extended-v23`);
+  assert.ok(v23.concepts.length > v22.concepts.length);
+  assert.equal(v23.selection_policy, 'extended-v23');
+  verifyCompanyReference(v23, raw);
 });
 
 test('editorial policy preserves legitimate zero series and rejects changed evidence for known scope errors', () => {
