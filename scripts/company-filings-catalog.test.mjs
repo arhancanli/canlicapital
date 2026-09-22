@@ -43,10 +43,7 @@ test('a filings catalog stores one compressed document per company and reads it 
   const objects = readdirSync(resolve(dir, 'objects'));
   assert.equal(objects.filter(name => name.endsWith('.json.gz')).length, documents.length);
   assert.ok(objects.some(name => name.endsWith('.json') && !name.endsWith('.json.gz')), 'index nodes are plain JSON');
-  const catalog = createCompanyFilingsCatalog({ rootHash: manifest.root_hash, readObject: async (hash, limit) => {
-    // Nodes live at .json, leaf documents at .json.gz; a reader picks by what exists.
-    try { return await localReader(dir, '.json.gz')(hash, limit); } catch { return localReader(dir, '.json')(hash, limit); }
-  } });
+  const catalog = createCompanyFilingsCatalog({ rootHash: manifest.root_hash, readObject: (hash, limit, kind) => localReader(dir, kind === 'leaf' ? '.json.gz' : '.json')(hash, limit) });
   for (const document of documents) {
     const read = await catalog.getFilings(document.cik);
     assert.deepEqual(read, document);
@@ -82,15 +79,16 @@ test('a corrupt compressed object fails the hash check before it is decoded', as
   const manifest = buildCompanyFilingsCatalog([document], dir);
   const leafName = readdirSync(resolve(dir, 'objects')).find(name => name.endsWith('.json.gz'));
   writeFileSync(resolve(dir, 'objects', leafName), gzipSync(Buffer.from(JSON.stringify({ ...document, name: 'tampered' }))));
-  const catalog = createCompanyFilingsCatalog({ rootHash: manifest.root_hash, readObject: async (hash, limit) => { try { return await localReader(dir, '.json.gz')(hash, limit); } catch { return localReader(dir, '.json')(hash, limit); } } });
+  const catalog = createCompanyFilingsCatalog({ rootHash: manifest.root_hash, readObject: (hash, limit, kind) => localReader(dir, kind === 'leaf' ? '.json.gz' : '.json')(hash, limit) });
   await assert.rejects(catalog.getFilings(document.cik), /hash mismatch|size mismatch/);
 });
 
 test('the HTTP reader names compressed objects with the gzip extension and refuses others', async () => {
   const seen = [];
   const fetcher = async url => { seen.push(String(url)); return new Response(Buffer.from('{}'), { status: 200, headers: { 'content-length': '2' } }); };
-  await createHttpCatalogReader({ baseUrl: 'https://s.example/catalog/', fetcher, extension: '.json.gz' })('a'.repeat(64), 1024);
-  await createHttpCatalogReader({ baseUrl: 'https://s.example/catalog/', fetcher })('b'.repeat(64), 1024);
-  assert.deepEqual(seen, [`https://s.example/catalog/objects/${'a'.repeat(64)}.json.gz`, `https://s.example/catalog/objects/${'b'.repeat(64)}.json`]);
+  const filings = createHttpCatalogReader({ baseUrl: 'https://s.example/catalog/', fetcher, leafExtension: '.json.gz' });
+  await filings('a'.repeat(64), 1024, 'leaf'); await filings('c'.repeat(64), 1024, 'node'); await filings('d'.repeat(64), 1024);
+  await createHttpCatalogReader({ baseUrl: 'https://s.example/catalog/', fetcher })('b'.repeat(64), 1024, 'leaf');
+  assert.deepEqual(seen, [`https://s.example/catalog/objects/${'a'.repeat(64)}.json.gz`, `https://s.example/catalog/objects/${'c'.repeat(64)}.json`, `https://s.example/catalog/objects/${'d'.repeat(64)}.json`, `https://s.example/catalog/objects/${'b'.repeat(64)}.json`]);
   assert.throws(() => createHttpCatalogReader({ baseUrl: 'https://s.example/catalog/', fetcher, extension: '.txt' }), /Unsupported/);
 });

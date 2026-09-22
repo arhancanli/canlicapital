@@ -36,11 +36,13 @@ export function createCompanyCatalog({ rootHash, readObject, cacheBytes = CATALO
   check(Number.isInteger(cacheBytes) && cacheBytes >= 0 && cacheBytes <= CATALOG_LIMITS.cacheBytes, 'Invalid cache budget');
   const cache = new Map(); let cachedBytes = 0;
   const stats = { objectReads: 0, bytesRead: 0, cacheHits: 0 };
-  async function object(hash, limit, expectedBytes) {
+  // kind tells a reader which object name to fetch: 'node' for index nodes, 'leaf'
+  // for records or compressed filings documents. Readers may ignore it.
+  async function object(hash, limit, expectedBytes, kind = 'node') {
     let bytes = cache.get(hash);
     if (bytes) { cache.delete(hash); cache.set(hash, bytes); stats.cacheHits++; }
     else {
-      bytes = Buffer.from(await readObject(hash, limit));
+      bytes = Buffer.from(await readObject(hash, limit, kind));
       stats.objectReads++; stats.bytesRead += bytes.length;
       check(bytes.length <= limit, 'Catalog object exceeds byte limit');
       check(catalogHash(bytes) === hash, 'Catalog object hash mismatch');
@@ -107,7 +109,7 @@ export function createCompanyCatalog({ rootHash, readObject, cacheBytes = CATALO
         const entry = node.entries.find(item => item.first <= cik && item.last >= cik);
         if (!entry) return null;
         if (!node.level) {
-          const record = leaf.decode(await object(entry.hash, leaf.limit, entry.bytes));
+          const record = leaf.decode(await object(entry.hash, leaf.limit, entry.bytes, 'leaf'));
           check(record?.schema === leaf.schema && record.cik === cik, 'Catalog record identity mismatch');
           return record;
         }
