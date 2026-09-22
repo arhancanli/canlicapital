@@ -80,7 +80,7 @@ export function buildCompanyAdmission({ release, discovery, shards, quality, sco
   if (directoryLocs !== 0 && directoryLocs !== directoryPages) throw new Error('Directory URLs disagree with discovery count');
 
   const concepts = [...new Set([...companies.values()].flatMap(entry => [...entry.tags]))].sort();
-  if (concepts.length > 52) throw new Error('Concept count exceeds the admission mask width');
+  if (concepts.length > 128) throw new Error('Concept count exceeds the admission mask width');
 
   // Rule 1: a company with any pending accounting-scope observation stays entirely noindex.
   const excluded = new Map();

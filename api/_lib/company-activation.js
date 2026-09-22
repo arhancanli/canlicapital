@@ -22,7 +22,7 @@ export function parseCompanyAdmission(bytes, { releaseHash, sha256: expected }) 
   const admission = JSON.parse(bytes);
   if (admission?.schema !== 'canli.company-admission.v1' || admission.release_hash !== releaseHash) throw new Error('Company admission does not bind the activated release');
   const concepts = admission.concepts;
-  if (!Array.isArray(concepts) || !concepts.length || concepts.length > 52 || new Set(concepts).size !== concepts.length || concepts.some(tag => !/^[A-Za-z][A-Za-z0-9]{0,99}$/.test(tag))) throw new Error('Invalid admission concepts');
+  if (!Array.isArray(concepts) || !concepts.length || concepts.length > 128 || new Set(concepts).size !== concepts.length || concepts.some(tag => !/^[A-Za-z][A-Za-z0-9]{0,99}$/.test(tag))) throw new Error('Invalid admission concepts');
   const position = new Map(concepts.map((tag, index) => [tag, BigInt(index)]));
   const companies = new Map();
   for (const [cik, entry] of Object.entries(admission.companies ?? {})) {
