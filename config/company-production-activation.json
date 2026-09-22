@@ -6,12 +6,12 @@
   "delivery_base_url": "https://bpnensyowfmdwhqmfdrg.supabase.co/storage/v1/object/public/company-reference-staging/delivery/",
   "admission": {
     "path": "config/company-admission-v23.json",
-    "sha256": "93d4a9709ecd66097fdff2843e2671e3c248525aefdda1f37bfc239af2ddc4f2"
+    "sha256": "c8bda8179bff4a5c0b2242a21cdf7bf0a192228c9fc1b2643926fa5f2ac54b5a"
   },
   "approval": {
-    "date": "2026-09-21",
+    "date": "2026-09-22",
     "by": "owner",
-    "scope": "clean set v23: 132,876 admitted URLs (6,376 overviews, 126,372 unflagged histories, 128 directory pages); 30,342 flagged histories and 15 companies with pending accounting-scope review stay noindex",
-    "basis": "Owner's standing full permission of 2026-09-21 under the clean-set rule chosen for v22; v23 verified by scripts/verify-v23-runtime.mjs and the local HTTP audit; storage transfer and hosted readiness receipts required before merge."
+    "scope": "clean set v23 with the flag decision of 2026-09-22 (option C): 156,714 admitted URLs (6,376 overviews, 150,210 histories of which 23,838 carry a stated-condition notice, 128 directory pages); 6,504 histories with other flags and 15 companies with pending accounting-scope review stay noindex",
+    "basis": "Owner's standing full permission of 2026-09-21 under the clean-set rule chosen for v22 and the owner's flag decision of 2026-09-22 (FLAGGED_HISTORY_REVIEW_PROPOSAL.md, option C); v23 verified by scripts/verify-v23-runtime.mjs and the local HTTP audit; storage transfer and hosted readiness receipts required before merge."
   }
 }
