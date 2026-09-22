@@ -167,6 +167,13 @@ histories and 631 filing pages. File `config/company-admission-v25.json`, SHA-25
 production sitemap step; the serving function decides filing indexability per
 company.
 
+Local HTTP audit (`measure-company-delivery.mjs`, sequential local Node HTTP):
+567,082 pages (6,391 overviews, 296,819 histories, 6,387 filing indexes, 257,357
+filing pages, 128 directories), 12,782 downloads, 0 failures; every sitemap URL
+served and every page reachable within 5 clicks of the directory; largest page
+105,551 bytes; median 3.3 ms
+(`company-nine-cohort-v25-http-measurement-20260922.json`).
+
 v24 is superseded by v25 before upload: v25 carries the v24 objects unchanged plus
 the filings objects, so one upload serves both. Order of operations: v23 upload
 (running) → v23 hosted checks → activate v23 (#178) → v25 upload → v25 hosted
