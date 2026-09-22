@@ -215,8 +215,11 @@ test('admission builder withholds pending-review companies and flagged histories
   const discovery = { schema: 'canli.company-discovery.v1', release_hash: RELEASE, catalog_root: 'c'.repeat(64), directory_pages: 1 };
   const quality = { schema: 'canli.company-selected-quality.v1', selection_policy: 'extended-v22', totals: { companies: 2, histories: 4, flagged_pages: 1 }, flagged_pages: [{ path: '/companies/0000000001/Revenues', cik: '0000000001', tag: 'Revenues', flags: ['historical_only'] }] };
   const scopes = [{ label: 'ledger', ledger: { rows: [{ cik: '0000000002', state: 'ACCOUNTING_SCOPE_REVIEW_PENDING' }, { cik: '0000000001', state: 'SCOPE_REVIEWED_WITH_SOURCE_CONTEXT' }, { cik: '0000000009', state: 'ACCOUNTING_SCOPE_REVIEW_PENDING' }] } }];
-  const admission = buildCompanyAdmission({ release, discovery, shards: [shard], quality, scopes });
+  const { admission, filingAdmission } = buildCompanyAdmission({ release, discovery, shards: [shard], quality, scopes });
+  assert.equal(filingAdmission, null); assert.equal(admission.filings, undefined);
   assert.deepEqual(admission.counts, { overviews_admitted: 1, histories_admitted: 1, histories_withheld_flagged: 1, histories_withheld_company: 2, overviews_withheld_company: 1, directory_pages: 1, urls_admitted: 3 });
+  assert.throws(() => buildCompanyAdmission({ release, discovery, shards: [shard], quality, scopes, filingsPath: 'config/company-filing-admission-x.json.gz' }), /binds no filings/);
+  assert.throws(() => buildCompanyAdmission({ release, discovery, shards: [shard + '<url><loc>https://canlicapital.com/companies/0000000001/filings</loc><lastmod>2026-09-20</lastmod></url>'], quality, scopes }), /binds no filings/);
   assert.deepEqual(Object.keys(admission.excluded_companies), ['0000000002']);
   const bytes = Buffer.from(JSON.stringify(admission));
   const parsed = parseCompanyAdmission(bytes, { releaseHash: RELEASE, sha256: sha256(bytes) });

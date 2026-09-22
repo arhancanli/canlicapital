@@ -1,7 +1,7 @@
 import { existsSync, lstatSync, readFileSync, realpathSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { loadCompanyActivation } from '../api/_lib/company-activation.js';
+import { loadCompanyActivation, loadCompanyFilingAdmission } from '../api/_lib/company-activation.js';
 import { MAX_BYTES, MAX_URLS, escapeXml, parseSitemap } from './lib/sitemaps.mjs';
 
 const ORIGIN = 'https://canlicapital.com';
@@ -44,6 +44,18 @@ export function prepareCompanyProductionOutput(root, { environment = process.env
   const companies = [];
   for (let page = 1; page <= admission.counts.directory_pages; page++) companies.push({ loc: `${ORIGIN}${page === 1 ? '/companies' : `/companies/page/${page}`}`, lastmod: admission.directory_lastmod });
   for (const { path, lastmod } of activation.admittedPaths()) companies.push({ loc: `${ORIGIN}${path}`, lastmod });
+  // Filing pages of admitted companies, from the pinned sidecar; withheld companies contribute none.
+  const filingAdmission = loadCompanyFilingAdmission(activation, { root });
+  if (filingAdmission) {
+    let indexes = 0, filings = 0;
+    for (const [cik, accessions] of filingAdmission.companies) {
+      if (!activation.isAdmitted(cik)) continue;
+      const { lastmod } = admission.companies[cik];
+      companies.push({ loc: `${ORIGIN}/companies/${cik}/filings`, lastmod }); indexes++;
+      for (const accession of accessions) { companies.push({ loc: `${ORIGIN}/companies/${cik}/filings/${accession}`, lastmod }); filings++; }
+    }
+    if (indexes !== admission.filings.filing_indexes_admitted || filings !== admission.filings.filings_admitted) throw new Error(`Filing admission yields ${indexes} indexes/${filings} filings; admission counts ${admission.filings.filing_indexes_admitted}/${admission.filings.filings_admitted}`);
+  }
   const expected = admission.counts.urls_admitted;
   if (companies.length !== expected) throw new Error(`Admission yields ${companies.length} company URLs; expected ${expected}`);
 

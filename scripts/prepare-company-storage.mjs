@@ -5,19 +5,25 @@ import { gunzipSync } from 'node:zlib';
 import { isDeepStrictEqual } from 'node:util';
 import { createCompanyCatalog, catalogHash } from '../api/_lib/company-catalog.js';
 import { createCompanyDownloadIndex, validateDownloadDescriptor } from '../api/_lib/company-download-index.js';
+import { FILINGS_LEAF } from '../api/_lib/company-filings-catalog.js';
 import { verifyCompanyReference } from './lib/company-reference.mjs';
+import { verifyFilingsBinding } from './lib/company-filings.mjs';
 
 // Collect only reachable immutable objects. The plan performs no network writes
 // and is not a substitute for editorial approval or capture-evidence backup.
-export async function prepareCompanyStorage(catalogDir, deliveryDir) {
+export async function prepareCompanyStorage(catalogDir, deliveryDir, filingsDir) {
   const entries = new Map();
-  function collect(namespace, path, hash, expectedBytes) {
+  // Filings objects are staged in their own directory but served beside the
+  // company catalog: the runtime reads both under the catalog base.
+  const directories = { catalog: catalogDir, delivery: deliveryDir, filings: filingsDir };
+  function collect(origin, path, hash, expectedBytes) {
     if (!/^objects\/[a-f0-9]{64}\.json(?:\.gz)?$/.test(path)) throw new Error('Invalid storage object path');
-    const source = resolve(namespace === 'catalog' ? catalogDir : deliveryDir, path);
+    if (!directories[origin]) throw new Error(`No ${origin} directory supplied`);
+    const source = resolve(directories[origin], path);
     if (statSync(source).size > 16 * 1024 * 1024) throw new Error('Storage object exceeds byte bound');
     const bytes = readFileSync(source);
     if (catalogHash(bytes) !== hash || (expectedBytes !== undefined && bytes.length !== expectedBytes)) throw new Error('Storage object binding mismatch');
-    const key = `${namespace}/${path}`;
+    const key = `${origin === 'filings' ? 'catalog' : origin}/${path}`;
     const entry = { key, local_path: source, sha256: hash, bytes: bytes.length,
       content_type: path.endsWith('.gz') ? 'application/gzip' : 'application/json',
       cache_control: 'public, max-age=31536000, immutable' };
@@ -58,6 +64,19 @@ export async function prepareCompanyStorage(catalogDir, deliveryDir) {
   }
   const first = await catalog.directoryPage(1);
   if (seen.size !== release.companies || histories !== release.histories || first.total !== release.companies) throw new Error('Storage release counts mismatch');
+  let filings = 0, filingCompanies = 0;
+  if (release.filings_root) {
+    if (!filingsDir) throw new Error('Release binds filings; a filings directory is required');
+    const filingsCatalog = createCompanyCatalog({ rootHash: release.filings_root, leaf: FILINGS_LEAF,
+      readObject: (hash, limit, kind) => collect('filings', `objects/${hash}${kind === 'leaf' ? '.json.gz' : '.json'}`, hash) });
+    for (const item of manifest.files) {
+      const document = await filingsCatalog.getCompany(item.cik);
+      if (!document) continue;
+      verifyFilingsBinding(document, await catalog.getCompany(item.cik));
+      filingCompanies++; filings += document.filings.length;
+    }
+    if ((await filingsCatalog.directoryPage(1)).total !== filingCompanies || filings !== release.filings || filingCompanies !== release.filing_companies) throw new Error('Storage filing counts mismatch');
+  } else if (filingsDir) throw new Error('Release binds no filings');
   for (const source of manifest.source_deliveries ?? []) {
     if (source.storage_path !== `objects/${source.manifest_sha256}.json`) throw new Error('Invalid archived manifest path');
     const archived = JSON.parse(collect('delivery', source.storage_path, source.manifest_sha256, source.bytes));
@@ -78,8 +97,9 @@ export async function prepareCompanyStorage(catalogDir, deliveryDir) {
   return { schema: 'canli.company-storage-plan.v1', publication_approved: false, release_hash,
     catalog_root: release.catalog_root, download_root: release.download_root,
     delivery_manifest_sha256: catalogHash(manifestBytes), companies: seen.size, histories,
+    ...(release.filings_root ? { filings_root: release.filings_root, filings, filing_companies: filingCompanies } : {}),
     objects: files.length, bytes: files.reduce((sum, file) => sum + file.bytes, 0), files,
-    scope: 'Verified runtime objects plus archived cohort manifests/indexes. Excludes original capture queues/HTTP-exclusion bodies, which require separate evidence backup; no upload, deployment or editorial approval.',
+    scope: 'Verified runtime objects (company catalog, filings catalog when bound, download index, downloads) plus archived cohort manifests/indexes. Excludes original capture queues/HTTP-exclusion bodies, which require separate evidence backup; no upload, deployment or editorial approval.',
     requirements: ['Use fixed HTTPS catalog/ and delivery/ bases under a dedicated object prefix.',
       'Upload immutable keys without overwrite; verify existing and uploaded object bytes against SHA-256.',
       'Serve gzip snapshots as application/gzip without Content-Encoding transformation.',
@@ -87,9 +107,9 @@ export async function prepareCompanyStorage(catalogDir, deliveryDir) {
     code_sha256: catalogHash(readFileSync(new URL(import.meta.url))) };
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const [catalog, delivery, output] = process.argv.slice(2);
-  if (!output) throw new Error('Usage: node scripts/prepare-company-storage.mjs CATALOG DELIVERY REPORT');
-  const plan = await prepareCompanyStorage(catalog, delivery);
+  const [catalog, delivery, output, filings] = process.argv.slice(2);
+  if (!output) throw new Error('Usage: node scripts/prepare-company-storage.mjs CATALOG DELIVERY REPORT [FILINGS]');
+  const plan = await prepareCompanyStorage(catalog, delivery, filings);
   writeFileSync(output + '.pending', JSON.stringify(plan, null, 2) + '\n'); renameSync(output + '.pending', output);
-  console.log(JSON.stringify({ objects: plan.objects, bytes: plan.bytes, companies: plan.companies, histories: plan.histories, release_hash: plan.release_hash, uploaded: false }));
+  console.log(JSON.stringify({ objects: plan.objects, bytes: plan.bytes, companies: plan.companies, histories: plan.histories, filings: plan.filings ?? 0, release_hash: plan.release_hash, uploaded: false }));
 }

@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { gunzipSync } from 'node:zlib';
 
 // Production activation of the company reference is a reviewed file shipped with the
 // deployment (config/company-production-activation.json), never a remote object. It pins
@@ -33,6 +34,11 @@ export function parseCompanyAdmission(bytes, { releaseHash, sha256: expected }) 
     companies.set(cik, { overview: entry.overview, admitted, lastmod: entry.lastmod });
   }
   if (companies.size !== admission.companies_in_release) throw new Error('Admission company count does not match its release');
+  // Filing pages inherit the company decision; the admission only pins the
+  // sidecar that lists their accessions for the sitemap build.
+  const filings = admission.filings;
+  if (filings !== undefined && (typeof filings?.path !== 'string' || !/^config\/[a-z0-9-]+\.json\.gz$/.test(filings.path) || !hashPattern.test(filings.sha256) || !hashPattern.test(filings.filings_root) ||
+      ['bytes', 'filing_indexes_admitted', 'filings_admitted', 'filing_indexes_withheld_company', 'filings_withheld_company'].some(key => !Number.isSafeInteger(filings[key]) || filings[key] < 0))) throw new Error('Invalid admission filings pin');
   return {
     admission,
     isAdmitted(cik, concept) {
@@ -50,6 +56,26 @@ export function parseCompanyAdmission(bytes, { releaseHash, sha256: expected }) 
       }
     },
   };
+}
+
+// The filing admission sidecar (build-time only): which accessions each company
+// with filing pages holds, bound to the admission by SHA-256 and to the release
+// by hash and filings root. The serving function never reads it.
+export function loadCompanyFilingAdmission(activation, { root = process.cwd(), readFile = path => readFileSync(resolve(root, path)) } = {}) {
+  const pin = activation?.admission?.filings;
+  if (!pin) return null;
+  const bytes = readFile(pin.path);
+  if (bytes.length !== pin.bytes || sha256(bytes) !== pin.sha256) throw new Error('Filing admission does not match its pin');
+  const document = JSON.parse(gunzipSync(bytes, { maxOutputLength: 64 * 1024 * 1024 }).toString('utf8'));
+  if (document?.schema !== 'canli.company-filing-admission.v1' || document.release_hash !== activation.admission.release_hash || document.filings_root !== pin.filings_root) throw new Error('Filing admission does not bind the activated release');
+  const companies = new Map();
+  let filings = 0;
+  for (const [cik, accessions] of Object.entries(document.companies ?? {})) {
+    if (!/^\d{10}$/.test(cik) || !Array.isArray(accessions) || !accessions.length || accessions.some(value => !/^\d{10}-\d{2}-\d{6}$/.test(value)) || new Set(accessions).size !== accessions.length) throw new Error(`Invalid filing admission entry ${cik}`);
+    companies.set(cik, accessions); filings += accessions.length;
+  }
+  if (companies.size !== document.filing_companies || filings !== document.filings || companies.size !== pin.filing_indexes_admitted + pin.filing_indexes_withheld_company || filings !== pin.filings_admitted + pin.filings_withheld_company) throw new Error('Filing admission counts do not match its pin');
+  return { document, companies };
 }
 
 export function loadCompanyActivation({ root = process.cwd(), readFile = path => readFileSync(resolve(root, path)) } = {}) {

@@ -6,7 +6,7 @@ import { loadCompanyRelease, createCompanyReferenceHandler } from '../../api/_li
 
 // Local QA host. Directory and download requests use bounded catalog/index
 // lookups. The full delivery manifest is retained only for the measurement caller.
-export async function companyPreviewServer({ catalogDir, deliveryDir, distDir, discoveryDir }) {
+export async function companyPreviewServer({ catalogDir, deliveryDir, distDir, discoveryDir, filingsDir }) {
   const readJson = file => JSON.parse(readFileSync(file));
   const revision = readJson(resolve(catalogDir, 'catalog.json'));
   const delivery = readJson(resolve(deliveryDir, 'delivery.json'));
@@ -18,8 +18,10 @@ export async function companyPreviewServer({ catalogDir, deliveryDir, distDir, d
     readReleaseObject: hash => readFileSync(resolve(deliveryDir, `objects/${hash}.json`)),
     readCatalogObject: hash => readFileSync(resolve(catalogDir, `objects/${hash}.json`)),
     readDownloadIndexObject: hash => readFileSync(resolve(deliveryDir, `objects/${hash}.json`)),
-    readDownload: item => readFileSync(resolve(deliveryDir, item.storage_path)), assets });
+    readDownload: item => readFileSync(resolve(deliveryDir, item.storage_path)),
+    readFilingsObject: filingsDir ? (hash, limit, kind) => readFileSync(resolve(filingsDir, `objects/${hash}${kind === 'leaf' ? '.json.gz' : '.json'}`)) : undefined, assets });
   if (active.release.catalog_root !== revision.root_hash || active.release.download_root !== delivery.download_index.root_hash || (discovery && discovery.release_hash !== active.releaseHash)) throw new Error('Mixed company release inputs');
+  if (Boolean(active.release.filings_root) !== Boolean(filingsDir)) throw new Error(filingsDir ? 'Release binds no filings' : 'Release binds filings; a filings directory is required');
   const catalog = active.catalog, downloadIndex = active.downloads;
   const pages = Math.ceil(active.release.companies / 50);
   const referenceHandler = createCompanyReferenceHandler({ loadRelease: async () => active });
@@ -52,5 +54,5 @@ export async function companyPreviewServer({ catalogDir, deliveryDir, distDir, d
       return reply(404, 'Page not found');
     } catch { return reply(503, 'Company reference temporarily unavailable'); }
   });
-  return { server, catalog, delivery, downloadIndex, directoryPages: pages };
+  return { server, catalog, delivery, downloadIndex, directoryPages: pages, filingsCatalog: active.filingsCatalog, release: active.release };
 }

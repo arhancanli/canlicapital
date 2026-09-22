@@ -11,15 +11,21 @@
 // companies that still have an accounting-scope review pending in any
 // registered basic/diluted ledger. Flagged histories stay noindex until reviewed.
 //
+// Filing pages (a release that binds a filings catalog) inherit their company's
+// admission. The admission file records only their counts and pins a gzip
+// sidecar that lists the admitted accessions per company; the sidecar is read
+// by the production sitemap step, never by the serving function.
+//
 // Usage:
 //   node scripts/build-company-admission.mjs \
 //     --release <company-release.json> --discovery <discovery dir> \
 //     --quality <selected-quality report> --scope <ledger.json.gz> [--scope ...] \
-//     --out config/company-admission-v22.json [--root <repository whose relative input paths to record>]
+//     --out config/company-admission-v22.json [--root <repository whose relative input paths to record>] \
+//     [--filings-out config/company-filing-admission-v25.json.gz]   (required when the release binds filings)
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync, renameSync } from 'node:fs';
 import { relative, resolve } from 'node:path';
-import { gunzipSync } from 'node:zlib';
+import { gunzipSync, gzipSync } from 'node:zlib';
 
 const ORIGIN = 'https://canlicapital.com';
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -32,6 +38,7 @@ function args(argv) {
     if (key === 'scope') out.scope.push(value); else out[key] = value;
   }
   for (const key of ['release', 'discovery', 'quality', 'out']) if (!out[key]) throw new Error(`--${key} is required`);
+  if (out['filings-out'] !== undefined && !/\.json\.gz$/.test(out['filings-out'])) throw new Error('--filings-out must name a .json.gz file');
   if (!out.scope.length) throw new Error('At least one --scope ledger is required');
   return out;
 }
@@ -41,8 +48,12 @@ function input(role, path) {
   return { role, path, bytes, sha256: sha256(bytes) };
 }
 
-export function buildCompanyAdmission({ release, discovery, shards, quality, scopes, decided = '2026-09-21' }) {
+export function buildCompanyAdmission({ release, discovery, shards, quality, scopes, decided = '2026-09-21', filingsPath }) {
   if (release.schema !== 'canli.company-release.v1') throw new Error('Unexpected release schema');
+  const bindsFilings = release.filings_root !== undefined;
+  if (bindsFilings && (!/^[a-f0-9]{64}$/.test(release.filings_root) || !Number.isSafeInteger(release.filings) || release.filings < 1 || !Number.isSafeInteger(release.filing_companies) || release.filing_companies < 1)) throw new Error('Invalid release filings binding');
+  if (bindsFilings !== (typeof filingsPath === 'string')) throw new Error(bindsFilings ? 'The release binds filings; a filing admission path is required' : 'The release binds no filings');
+  if (bindsFilings && !/^config\/[a-z0-9-]+\.json\.gz$/.test(filingsPath)) throw new Error('Filing admission path must be a tracked config/*.json.gz file');
   if (discovery.schema !== 'canli.company-discovery.v1' || discovery.release_hash !== release.release_hash || discovery.catalog_root !== release.catalog_root) throw new Error('Discovery does not bind the release');
   const ADMISSIBLE_POLICIES = ['extended-v22', 'extended-v23'];
   if (quality.schema !== 'canli.company-selected-quality.v1' || !ADMISSIBLE_POLICIES.includes(quality.selection_policy)) throw new Error('Quality report is not a selected-quality report for an admissible policy');
@@ -57,13 +68,19 @@ export function buildCompanyAdmission({ release, discovery, shards, quality, sco
       if (!loc.startsWith(`${ORIGIN}/`)) throw new Error(`Foreign sitemap URL: ${loc}`);
       const path = loc.slice(ORIGIN.length);
       if (/^\/companies(?:\/page\/[1-9]\d*)?$/.test(path)) { directoryLocs++; continue; }
-      const match = path.match(/^\/companies\/(\d{10})(?:\/([A-Za-z][A-Za-z0-9]{0,99}))?$/);
-      if (!match) throw new Error(`Unexpected discovery URL: ${loc}`);
+      // Filing paths are matched first: "filings" would otherwise read as a concept tag.
+      const filing = path.match(/^\/companies\/(\d{10})\/filings(?:\/(\d{10}-\d{2}-\d{6}))?$/);
+      const match = filing ? null : path.match(/^\/companies\/(\d{10})(?:\/([A-Za-z][A-Za-z0-9]{0,99}))?$/);
+      if (!filing && !match) throw new Error(`Unexpected discovery URL: ${loc}`);
       if (!lastmod || !/^\d{4}-\d{2}-\d{2}$/.test(lastmod)) throw new Error(`Missing or invalid lastmod: ${loc}`);
-      const [, cik, tag] = match;
-      const entry = companies.get(cik) ?? { overview: false, tags: new Set(), lastmod };
+      const [, cik, tag] = filing ?? match;
+      const entry = companies.get(cik) ?? { overview: false, tags: new Set(), filingIndex: false, filings: new Set(), lastmod };
       if (entry.lastmod !== lastmod) throw new Error(`Company ${cik} has more than one lastmod`);
-      if (tag) {
+      if (filing) {
+        if (!bindsFilings) throw new Error(`Discovery lists a filing page but the release binds no filings: ${loc}`);
+        if (tag) { if (entry.filings.has(tag)) throw new Error(`Duplicate filing ${path}`); entry.filings.add(tag); }
+        else { if (entry.filingIndex) throw new Error(`Duplicate filing index ${path}`); entry.filingIndex = true; }
+      } else if (tag) {
         if (entry.tags.has(tag)) throw new Error(`Duplicate history ${path}`);
         entry.tags.add(tag);
       } else {
@@ -75,7 +92,14 @@ export function buildCompanyAdmission({ release, discovery, shards, quality, sco
   }
   const histories = [...companies.values()].reduce((sum, entry) => sum + entry.tags.size, 0);
   if (companies.size !== release.companies || histories !== release.histories) throw new Error(`Discovery lists ${companies.size} companies/${histories} histories; release has ${release.companies}/${release.histories}`);
-  for (const [cik, entry] of companies) if (!entry.overview) throw new Error(`Company ${cik} has no overview URL`);
+  for (const [cik, entry] of companies) {
+    if (!entry.overview) throw new Error(`Company ${cik} has no overview URL`);
+    if (entry.filingIndex !== entry.filings.size > 0) throw new Error(`Company ${cik} lists a filing index without filings or filings without an index`);
+  }
+  if (bindsFilings) {
+    const filings = [...companies.values()].reduce((sum, entry) => sum + entry.filings.size, 0), indexes = [...companies.values()].filter(entry => entry.filingIndex).length;
+    if (filings !== release.filings || indexes !== release.filing_companies) throw new Error(`Discovery lists ${indexes} filing indexes/${filings} filings; release has ${release.filing_companies}/${release.filings}`);
+  }
   const directoryPages = discovery.directory_pages;
   if (!Number.isSafeInteger(directoryPages) || directoryPages < 1) throw new Error('Discovery has no directory page count');
   if (directoryLocs !== 0 && directoryLocs !== directoryPages) throw new Error('Directory URLs disagree with discovery count');
@@ -111,17 +135,28 @@ export function buildCompanyAdmission({ release, discovery, shards, quality, sco
   const mask = tags => tags.reduce((value, tag) => value | (1n << BigInt(concepts.indexOf(tag))), 0n).toString(16);
   const out = {};
   const counts = { overviews_admitted: 0, histories_admitted: 0, histories_withheld_flagged: 0, histories_withheld_company: 0, overviews_withheld_company: 0, directory_pages: directoryPages };
+  const filingCounts = { filing_indexes_admitted: 0, filings_admitted: 0, filing_indexes_withheld_company: 0, filings_withheld_company: 0 };
+  const filingCompanies = {};
   for (const cik of [...companies.keys()].sort()) {
     const entry = companies.get(cik), tags = [...entry.tags];
     const admitted = excluded.has(cik) ? [] : tags.filter(tag => !flagged.get(cik)?.has(tag));
     if (excluded.has(cik)) { counts.overviews_withheld_company++; counts.histories_withheld_company += tags.length; }
     else { counts.overviews_admitted++; counts.histories_admitted += admitted.length; counts.histories_withheld_flagged += tags.length - admitted.length; }
     out[cik] = { lastmod: entry.lastmod, available: mask(tags), admitted: mask(admitted), overview: !excluded.has(cik) };
+    if (entry.filingIndex) {
+      // Rule 3: filing pages follow their company. A withheld company keeps every filing page noindex.
+      filingCompanies[cik] = [...entry.filings].sort();
+      if (excluded.has(cik)) { filingCounts.filing_indexes_withheld_company++; filingCounts.filings_withheld_company += entry.filings.size; }
+      else { filingCounts.filing_indexes_admitted++; filingCounts.filings_admitted += entry.filings.size; }
+    }
   }
-  counts.urls_admitted = counts.overviews_admitted + counts.histories_admitted + counts.directory_pages;
+  if (bindsFilings) Object.assign(counts, filingCounts);
+  counts.urls_admitted = counts.overviews_admitted + counts.histories_admitted + counts.directory_pages + (bindsFilings ? filingCounts.filing_indexes_admitted + filingCounts.filings_admitted : 0);
   if (counts.histories_admitted + counts.histories_withheld_flagged + counts.histories_withheld_company !== release.histories) throw new Error('History partition does not close');
+  if (bindsFilings && filingCounts.filings_admitted + filingCounts.filings_withheld_company !== release.filings) throw new Error('Filing partition does not close');
 
-  return {
+  const filingAdmission = bindsFilings ? buildFilingAdmission({ release, filingCompanies, filingCounts }) : null;
+  const admission = {
     schema: 'canli.company-admission.v1',
     release_hash: release.release_hash,
     selection_policy: quality.selection_policy,
@@ -139,14 +174,30 @@ export function buildCompanyAdmission({ release, discovery, shards, quality, sco
         'A history listed in the v22 selected-quality flagged_pages is withheld.',
         'Every other overview and history in the release is admitted.',
         'Withheld pages remain reachable and are served noindex; admission never edits page content.',
+        ...(bindsFilings ? ['A filing index and every filing page of an admitted company are admitted; those of a withheld company are withheld.'] : []),
       ],
     },
     concepts,
     directory_lastmod: [...companies.values()].map(entry => entry.lastmod).sort().at(-1),
     excluded_companies: Object.fromEntries([...excluded].sort()),
     counts,
+    ...(bindsFilings ? { filings: { path: filingsPath, sha256: sha256(filingAdmission.bytes), bytes: filingAdmission.bytes.length, filings_root: release.filings_root, ...filingCounts } } : {}),
     companies: out,
   };
+  return { admission, filingAdmission };
+}
+
+// The sidecar: every company with filing pages and its accessions, in release
+// order. It is pinned by SHA-256 from the admission and carries the release
+// hash and filings root, so a sitemap can never list filings of another release.
+function buildFilingAdmission({ release, filingCompanies, filingCounts }) {
+  const document = {
+    schema: 'canli.company-filing-admission.v1', release_hash: release.release_hash, filings_root: release.filings_root,
+    filing_companies: Object.keys(filingCompanies).length, filings: Object.values(filingCompanies).reduce((sum, list) => sum + list.length, 0),
+    counts: filingCounts, companies: filingCompanies,
+  };
+  if (document.filings !== release.filings || document.filing_companies !== release.filing_companies) throw new Error('Filing admission does not cover the release');
+  return { document, bytes: gzipSync(Buffer.from(JSON.stringify(document) + '\n'), { level: 9 }) };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -164,21 +215,27 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (shardInputs.length !== discovery.shards || readdirSync(shardDir).filter(name => name !== 'sitemap.xml').length !== discovery.shards) throw new Error('Unexpected discovery shard set');
   const qualityInput = input('selected-quality', options.quality);
   const scopeInputs = options.scope.map(path => input('scope-ledger', path));
-  const admission = buildCompanyAdmission({
+  const tracked = path => {
+    const recorded = relative(root, resolve(path));
+    if (recorded.startsWith('..')) throw new Error(`Path outside --root: ${path}`);
+    return recorded;
+  };
+  const { admission, filingAdmission } = buildCompanyAdmission({
     release: JSON.parse(releaseInput.bytes),
     discovery,
     shards: shardInputs.map(shard => shard.bytes.toString('utf8')),
     quality: JSON.parse(qualityInput.bytes),
     scopes: scopeInputs.map(scope => ({ label: scope.path.split('/').at(-1), ledger: JSON.parse(scope.path.endsWith('.gz') ? gunzipSync(scope.bytes) : scope.bytes) })),
+    filingsPath: options['filings-out'] === undefined ? undefined : tracked(options['filings-out']),
   });
   admission.inputs = [releaseInput, discoveryInput, ...shardInputs, qualityInput, ...scopeInputs]
-    .map(({ role, path, sha256: digest }) => {
-      const recorded = relative(root, resolve(path));
-      if (recorded.startsWith('..')) throw new Error(`Input outside --root: ${path}`);
-      return { role, path: recorded, sha256: digest };
-    });
+    .map(({ role, path, sha256: digest }) => ({ role, path: tracked(path), sha256: digest }));
+  if (filingAdmission) {
+    writeFileSync(options['filings-out'] + '.pending', filingAdmission.bytes);
+    renameSync(options['filings-out'] + '.pending', options['filings-out']);
+  }
   const bytes = JSON.stringify(admission) + '\n';
   writeFileSync(options.out + '.pending', bytes);
   renameSync(options.out + '.pending', options.out);
-  console.log(JSON.stringify({ out: options.out, sha256: sha256(bytes), bytes: Buffer.byteLength(bytes), ...admission.counts, excluded_companies: Object.keys(admission.excluded_companies).length }));
+  console.log(JSON.stringify({ out: options.out, sha256: sha256(bytes), bytes: Buffer.byteLength(bytes), ...admission.counts, excluded_companies: Object.keys(admission.excluded_companies).length, ...(filingAdmission ? { filings_out: options['filings-out'], filings_sha256: admission.filings.sha256 } : {}) }));
 }

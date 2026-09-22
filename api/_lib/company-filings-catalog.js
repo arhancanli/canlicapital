@@ -25,5 +25,13 @@ export function createCompanyFilingsCatalog({ rootHash, readObject, cacheBytes }
     revision: rootHash,
     stats: catalog.stats,
     getFilings: cik => catalog.getCompany(cik),
+    // Whether the company has filing pages and how many, from the index entry
+    // alone: the overview links to the filing index without reading the document.
+    async filingSummary(cik) {
+      const entry = await catalog.entry(cik);
+      if (!entry) return null;
+      if (!Number.isSafeInteger(entry.filings) || entry.filings < 1) throw new CatalogError('Filings entry without a filing count');
+      return { filings: entry.filings };
+    },
   };
 }
