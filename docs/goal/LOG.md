@@ -3795,3 +3795,13 @@ after two runs each failed one download on a local 'fetch failed' transport erro
 (both paths served directly; reports retained); browser flow passed on 0000001750.
 PR178 re-pinned to the option-C admission v23 (156,714 admitted URLs) and marked
 ready.
+
+## 2026-09-22 — Uploader: rate-limit holds
+
+Two transfers stopped on HTTP 429 today (v23 run 2 at 16,020 of 19,790 objects;
+v25 run 1 at 570 of 26,210), each losing a full re-verification pass. The uploader
+now takes a bounded number of rate-limit holds (RATE_LIMIT_WAITS, default 0 keeps
+the old behaviour): on a 429 read or create every worker's next start waits for
+the Retry-After period (at most 300 s) or an escalating fallback, then the same
+request is repeated; each hold is recorded in the receipt. 401 and 403 are still
+never retried. Tests 25/25, four mutation checks caught.
