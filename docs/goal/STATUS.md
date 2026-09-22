@@ -134,14 +134,53 @@ Order of operations: v23 upload (running) → v23 hosted checks → activate v23
 (#178) → v24 upload → v24 hosted checks → activate v24. Local HTTP audit of v24
 started 14:12Z.
 
+## v25 staged release (built September 22, 15:50Z; not uploaded, not live)
+
+The v24 delivery (same manifest bytes, policy extended-v23, 6,391 companies,
+296,819 histories) plus the filing page family: policy filings-v1 derived from the
+delivered source bytes into one gzip document per company
+(`scripts/build-company-filings.mjs`), bound into the release as `filings_root`
+664a9b19…. 257,357 filing pages across 6,387 companies; 4 companies hold no
+qualifying filing (every filing thin under the 8-concept rule); 1,366 thin filings
+unbuilt; 0 withheld for conflicts. Filings catalog: 6,387 leaves + 51 index nodes,
+230 MB compressed (4.50 GB inflated).
+
+Release 292f9b8e…: 567,082 candidate URLs (303,338 v24 URLs + 6,387 filing indexes
++ 257,357 filing pages), 12 sitemap shards, 26,210 objects (2.78 GB; 6,438 net new
+against the v24 plan, 230 MB: the filings objects, with the release object replaced).
+`scripts/verify-v25-runtime.mjs` passed: every staged filings document equals a
+fresh derivation from the delivered bytes, the discovery set is the v24 set plus
+exactly the filing family, the plan is the v24 plan plus exactly the filings
+objects.
+
+Admission v25 (clean-set rules; filing pages follow their company): 508,158
+indexable URLs (6,376 overviews, 238,556 unflagged histories, 128 directories,
+6,372 filing indexes, 256,726 filing pages); withheld: 57,533 flagged histories,
+and the same 15 pending-review companies with 730 histories and 631 filing pages.
+The accession list lives in the pinned sidecar
+`config/company-filing-admission-v25.json.gz` (1,112,677 bytes), read only by the
+production sitemap step; the serving function decides filing indexability per
+company. Local HTTP audit (`measure-company-delivery.mjs`, sequential local Node HTTP):
+567,082 pages (6,391 overviews, 296,819 histories, 6,387 filing indexes, 257,357
+filing pages, 128 directories), 12,782 downloads, 0 failures; every sitemap URL
+served and every page reachable within 5 clicks of the directory; largest page
+105,551 bytes; median 3.3 ms
+(`company-nine-cohort-v25-http-measurement-20260922.json`).
+
+v24 is superseded by v25 before upload: v25 carries the v24 objects unchanged plus
+the filings objects, so one upload serves both. Order of operations: v23 upload
+(running) → v23 hosted checks → activate v23 (#178) → v25 upload → v25 hosted
+checks (filing sample) → browser audit → activate v25.
+
 ## Next actions
 
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
    measure crawl, index and exclusion counts by page family.
 2. Growth beyond v22 toward 800,000 indexed: upload, verify and activate v23
    (132,876 indexable); then curated additional concepts, review of the flagged
-   histories, historical filers with explicit historical framing, and a filing-level
-   page family only after its own reader task and editorial rules.
+   histories, historical filers with explicit historical framing; the filing page
+   family is built and staged as v25 (508,158 admissible URLs) behind the
+   v23 activation and its own upload, hosted and browser checks.
 3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars
    and npm downloads weekly.
 4. Engine: merge PR73; the nightly publish regenerates the audits and the health

@@ -78,8 +78,12 @@ function withholdingNotices(exclusions) {
 
 // Input must already reproduce from its source (static build) or belong to a
 // verified immutable catalog (runtime). No network, disk writes or global state.
-export function renderCompanyPages(company, { target = 'all' } = {}) {
+// filings: { filings: n } when the serving release holds filing pages for this
+// company; the overview then links to the filing index. Static builds pass none.
+export function renderCompanyPages(company, { target = 'all', filings = null } = {}) {
   if (company.schema !== 'canli.company-reference.v1' || !/^\d{10}$/.test(company.cik) || company.concepts.length < 4 || !/^[a-f0-9]{64}$/.test(company.source_sha256)) throw new Error('Invalid company reference');
+  if (filings !== null && (!Number.isSafeInteger(filings?.filings) || filings.filings < 1)) throw new Error('Invalid filings summary');
+  const filingsSection = filings ? `<section aria-labelledby="filings"><h2 id="filings">Filings</h2><p><a href="${pathFor(company)}/filings">${filings.filings} ${esc(label(company))} filings with published measures</a>: what each annual or quarterly report tagged, with the periods it covered, as reported in that filing. The histories above show the latest-filed value per period.</p></section>` : '';
   if (company.source_url !== `https://data.sec.gov/api/xbrl/companyfacts/CIK${company.cik}.json` || company.source_snapshot !== `/company-data/sources/${company.source_sha256}.json.gz`) throw new Error('Invalid company source URL');
   if (!['all', 'overview', ...company.concepts.map(concept => concept.tag)].includes(target)) return [];
   const matches = matchingHistoryConcepts(company.concepts);
@@ -94,7 +98,7 @@ export function renderCompanyPages(company, { target = 'all' } = {}) {
     return `<tr><th scope="row"><a href="${metricPath(company, concept)}">${esc(concept.label)}</a></th><td>${esc(latest.start ?? 'At date')}</td><td>${esc(latest.end)}</td><td>${number(latest.val)}</td><td>${esc(latest.unit)}</td><td>${esc(latest.filed)}</td></tr>`;
   })).join('');
   if (target === 'all' || target === 'overview') page({ path: pathFor(company), title: `${label(company)}: filing data`, description: `Explore ${company.name} financial histories from SEC filings, with original units, reporting periods, filing dates and downloadable source data.`, heading: `${company.name}: financial reference`, sources, lastmod, dataset: company,
-    body: `${editorialNote}${overviewContext}<section><h2>Reported financial histories</h2><p>Choose a measure to inspect its definition, complete selected history and filing provenance. Each row shows the latest period available for that selected concept and original unit. Separate currencies and reporting intervals remain separate rows. Coverage dates can differ between concepts. A recent capture does not imply recent accounting coverage; these amounts are not prices.</p><div class="company-reference__table" role="region" aria-label="Latest financial observations" tabindex="0"><table><caption>Latest periods by selected concept and original unit</caption><thead><tr><th scope="col">Measure</th><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col">Value</th><th scope="col">Unit</th><th scope="col">Filed</th></tr></thead><tbody>${rows}</tbody></table></div></section>${provenance(company)}` });
+    body: `${editorialNote}${overviewContext}<section><h2>Reported financial histories</h2><p>Choose a measure to inspect its definition, complete selected history and filing provenance. Each row shows the latest period available for that selected concept and original unit. Separate currencies and reporting intervals remain separate rows. Coverage dates can differ between concepts. A recent capture does not imply recent accounting coverage; these amounts are not prices.</p><div class="company-reference__table" role="region" aria-label="Latest financial observations" tabindex="0"><table><caption>Latest periods by selected concept and original unit</caption><thead><tr><th scope="col">Measure</th><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col">Value</th><th scope="col">Unit</th><th scope="col">Filed</th></tr></thead><tbody>${rows}</tbody></table></div></section>${filingsSection}${provenance(company)}` });
   for (const concept of company.concepts) {
     if (target !== 'all' && target !== concept.tag) continue;
     const coverage = companyCoverage(concept.observations, company.fetched_at);

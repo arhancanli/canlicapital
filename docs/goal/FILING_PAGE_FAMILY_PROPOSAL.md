@@ -1,6 +1,6 @@
 # Filing page family proposal (drafted September 22, 2026)
 
-Status: proposal, not implemented. Counts come from the retained SEC source
+Status: implemented through the build (steps 1–5); staged as release v25 on September 22, 2026, not uploaded, not live. Counts come from the retained SEC source
 bytes of the v24 delivery (6,391 companies, policy extended-v23, 72 published
 concepts). They are capacity, not admitted pages or indexing.
 
@@ -80,8 +80,11 @@ requiring the flagged-page reviews and further families.
 4. Function routes `/companies/{cik}/filings` (index page, noindex until admitted)
    and `/companies/{cik}/filings/{accession}`; discovery sitemaps gain a filing
    family; the admission file gains a filing section keyed by accession.
-5. Selected-quality audit for filings; admission builder rule; local HTTP audit;
-   storage upload of the new objects; hosted readiness; browser audit; activation.
+5. Admission builder rule (filing pages follow their company; accession sidecar);
+   local HTTP audit; hosted readiness and browser audit coverage; storage upload
+   of the new objects; activation. A filing-specific quality audit (amendments and
+   very old filings flagged) is not built; the first release admits every filing
+   page of an admitted company.
 
 Rough scale: about 230,000 new indexable pages, one release cycle plus renderer
 work (two to three days), and roughly 0.5 GB of new catalog objects (the sources
@@ -113,3 +116,11 @@ root bound in the release). One object per filing would mean 257,357 uploads at
 the observed two seconds each, which is days; per-company objects are 6,391
 uploads and roughly 0.5 GB compressed. A filing page reads one object.
 
+## Build result (September 22, 2026)
+
+`scripts/build-company-filings.mjs` over the v24 delivery: 257,357 filing pages
+across 6,387 of 6,391 companies (4 without a qualifying filing), 1,366 thin
+filings unbuilt, 0 withheld; 258,723 accessions seen. Catalog: 6,387 gzip
+documents and 51 index nodes, 230 MB compressed against 4.50 GB inflated. Bound
+into release 292f9b8e… as `filings_root` 664a9b19…; admission v25 admits 256,726
+filing pages and 6,372 indexes (508,158 URLs in total).
