@@ -27,8 +27,12 @@ export function validateCatalogNode(node) {
 
 // Storage is injected: local files in QA, immutable object reads in deployment.
 // An unavailable or corrupt object throws; it must never be reported as a 404.
-export function createCompanyCatalog({ rootHash, readObject, cacheBytes = CATALOG_LIMITS.cacheBytes }) {
+// leaf: how a leaf object is read. The default is the company record. A filings
+// catalog passes the compressed filings document instead (see company-filings-catalog.js).
+export const DEFAULT_LEAF = Object.freeze({ schema: 'canli.company-reference.v1', limit: CATALOG_LIMITS.recordBytes, decode: bytes => JSON.parse(bytes.toString('utf8')) });
+export function createCompanyCatalog({ rootHash, readObject, cacheBytes = CATALOG_LIMITS.cacheBytes, leaf = DEFAULT_LEAF }) {
   check(hashPattern.test(rootHash), 'Invalid catalog root');
+  check(typeof leaf?.schema === 'string' && Number.isInteger(leaf.limit) && leaf.limit > 0 && typeof leaf.decode === 'function', 'Invalid leaf contract');
   check(Number.isInteger(cacheBytes) && cacheBytes >= 0 && cacheBytes <= CATALOG_LIMITS.cacheBytes, 'Invalid cache budget');
   const cache = new Map(); let cachedBytes = 0;
   const stats = { objectReads: 0, bytesRead: 0, cacheHits: 0 };
@@ -46,10 +50,11 @@ export function createCompanyCatalog({ rootHash, readObject, cacheBytes = CATALO
       }
     }
     check(bytes.length <= limit && (expectedBytes === undefined || bytes.length === expectedBytes), 'Catalog object size mismatch');
-    return JSON.parse(bytes.toString('utf8'));
+    return bytes;
   }
+  const node_ = async (hash, limit, expectedBytes) => JSON.parse((await object(hash, limit, expectedBytes)).toString('utf8'));
   async function readNode(hash, parent, expectedLevel) {
-    const node = validateCatalogNode(await object(hash, CATALOG_LIMITS.nodeBytes, parent?.bytes));
+    const node = validateCatalogNode(await node_(hash, CATALOG_LIMITS.nodeBytes, parent?.bytes));
     if (parent) check(node.level === expectedLevel && node.entries[0].first === parent.first && node.entries.at(-1).last === parent.last && node.entries.reduce((n, entry) => n + entry.count, 0) === parent.count, 'Catalog child does not match parent range');
     return node;
   }
@@ -102,8 +107,8 @@ export function createCompanyCatalog({ rootHash, readObject, cacheBytes = CATALO
         const entry = node.entries.find(item => item.first <= cik && item.last >= cik);
         if (!entry) return null;
         if (!node.level) {
-          const record = await object(entry.hash, CATALOG_LIMITS.recordBytes, entry.bytes);
-          check(record?.schema === 'canli.company-reference.v1' && record.cik === cik, 'Catalog record identity mismatch');
+          const record = leaf.decode(await object(entry.hash, leaf.limit, entry.bytes));
+          check(record?.schema === leaf.schema && record.cik === cik, 'Catalog record identity mismatch');
           return record;
         }
         parent = entry; expectedLevel = node.level - 1; hash = entry.hash;
