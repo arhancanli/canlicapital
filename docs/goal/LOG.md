@@ -3760,5 +3760,12 @@ v25 = v24 delivery + filings: release 292f9b8e…, filings root 664a9b19…, 257
 filings across 6,387 companies (4 without), 567,082 candidate URLs, 12 shards,
 26,210 objects (2.78 GB; 6,438 net new: the filings objects, with the release object replaced; 230 MB). verify-v25-runtime passed. Admission
 v25: 508,158 indexable (256,726 filing pages + 6,372 indexes), 58,909 withheld.
+Local HTTP audit (`measure-company-delivery.mjs`, sequential local Node HTTP):
+567,082 pages (6,391 overviews, 296,819 histories, 6,387 filing indexes, 257,357
+filing pages, 128 directories), 12,782 downloads, 0 failures; every sitemap URL
+served and every page reachable within 5 clicks of the directory; largest page
+105,551 bytes; median 3.3 ms
+(`company-nine-cohort-v25-http-measurement-20260922.json`).
+
 v24 superseded before upload. The v23 upload (run 3, after run 2 stopped on an
 HTTP 429) continues; no upload, production or indexing change from this work.
