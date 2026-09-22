@@ -142,7 +142,8 @@ test('expanded v23 definitions retain their reviewed byte binding and never leak
   const { EXTENDED_CONCEPTS } = await import('./lib/company-extended-concepts.mjs');
   const review = JSON.parse(readFileSync(new URL('../artifacts/seo/company-expanded-taxonomy-review-v23.json', import.meta.url)));
   assert.equal(createHash('sha256').update(JSON.stringify(EXPANDED_CONCEPTS_V23)).digest('hex'), review.definitions_sha256, 'Create a new policy version for definition changes and retain the prior policy');
-  assert.equal(Object.keys(EXPANDED_CONCEPTS_V23).length, 39);
+  assert.equal(Object.keys(EXPANDED_CONCEPTS_V23).length, 38);
+  for (const tag of Object.keys(EXPANDED_CONCEPTS_V23)) assert.match(tag, /^[A-Za-z][A-Za-z0-9]{0,99}$/, `${tag} exceeds the concept slug bound`);
   for (const tag of Object.keys(EXPANDED_CONCEPTS_V23)) assert.ok(!Object.hasOwn(EXTENDED_CONCEPTS, tag) && !Object.hasOwn(CONCEPTS, tag), `${tag} is already a published concept`);
   const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
   const raw = gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))).toString();

@@ -113,6 +113,27 @@ the Supabase service key), hosted readiness on a clean preview, the full local
 HTTP audit (running), a browser audit, and an activation PR that pins release
 4a5d9160… and admission v23.
 
+## v24 staged release (built September 22, 14:10Z; not uploaded, not live)
+
+Policy extended-v23 (PR #180, 38 expanded concepts after the 100-character slug
+bound removed one) applied to the same 6,391 companies as v23. The five original
+cohorts were re-derived from retained bytes under the current selector
+(`*-r2` directories, fresh 404 receipts), which absorbs the tenth-89 companies;
+nine cohorts combined. Transition proof: every extended-v22 record reproduces byte
+for byte and is an unchanged subset of its extended-v23 selection; 139,706
+histories added, none changed or removed.
+
+Release 19fd560e…: 6,391 companies, 296,819 histories (157,113 carried + 139,706
+added), 303,338 candidate URLs, 7 sitemap shards, 19,772 objects (2.55 GB; 13,379
+new against the v23 plan, 1.65 GB). `scripts/verify-v24-runtime.mjs` passed.
+Admission v24 (clean-set rules): 245,060 indexable URLs (6,376 overviews, 238,556
+unflagged histories, 128 directories); 57,533 flagged histories and the same 15
+pending-review companies withheld.
+
+Order of operations: v23 upload (running) → v23 hosted checks → activate v23
+(#178) → v24 upload → v24 hosted checks → activate v24. Local HTTP audit of v24
+started 14:12Z.
+
 ## Next actions
 
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then

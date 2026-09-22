@@ -1,6 +1,8 @@
 # Concept expansion proposal (drafted September 22, 2026)
 
-Status: proposal, not implemented. Numbers come from the SEC bulk companyfacts
+Status: implemented as policy extended-v23 (PR #180) with 38 of the 39 concepts;
+the net-change-in-cash concept's 113-character name exceeds the 100-character slug
+bound shared by the page, API, MCP and sitemap contracts and was excluded. Numbers come from the SEC bulk companyfacts
 inventory of September 19 (`artifacts/seo/sec-companyfacts-capacity-20260919.json`)
 and count active filers that report each concept in a 10-K, 10-Q, 20-F or 40-F.
 They are capacity, not admitted pages or indexing.

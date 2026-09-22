@@ -2,7 +2,10 @@
 // Period/type declarations are checked against the same SHA-bound 2026 FASB
 // taxonomy as company-extended-concepts.mjs (scripts/verify-company-concept-taxonomy.py).
 // Earlier policies never read this map, so their records stay byte-reproducible.
-// Selection rule and sizing: docs/goal/CONCEPT_EXPANSION_PROPOSAL.md.
+// Selection rule and sizing: docs/goal/CONCEPT_EXPANSION_PROPOSAL.md. Concept names
+// are bounded at 100 characters by the page, API, MCP and sitemap contracts, which
+// excludes CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncrease
+// DecreaseIncludingExchangeRateEffect (113 characters) from the proposal's 39.
 const entries = [
  // Balance sheet
  ['CommonStockSharesOutstanding','Common shares outstanding','instant','shares','Common shares outstanding at the reporting date. This point-in-time count differs from the weighted-average shares used for earnings per share and can exclude other share classes.'],
@@ -45,6 +48,5 @@ const entries = [
  ['IncreaseDecreaseInAccountsReceivable','Change in accounts receivable','duration','money','The cash flow adjustment for the change in receivables during the period. A positive value under this concept means receivables grew and reduced operating cash flow.'],
  ['IncreaseDecreaseInInventories','Change in inventories','duration','money','The cash flow adjustment for the change in inventories during the period. A positive value under this concept means inventory grew and reduced operating cash flow.'],
  ['IncreaseDecreaseInAccountsPayable','Change in accounts payable','duration','money','The cash flow adjustment for the change in payables during the period. A positive value under this concept means payables grew and added to operating cash flow.'],
- ['CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect','Net change in cash including restricted cash','duration','money','Net increase or decrease in cash, cash equivalents and restricted cash for the period, including exchange-rate effects. It is the sum of operating, investing and financing flows, not any one of them.'],
 ];
 export const EXPANDED_CONCEPTS_V23 = Object.freeze(Object.fromEntries(entries.map(([tag,label,kind,unitKind,meaning]) => [tag, Object.freeze({ label, kind, unitKind, meaning })])));
