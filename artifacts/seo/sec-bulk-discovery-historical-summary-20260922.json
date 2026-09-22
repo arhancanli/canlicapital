@@ -1,0 +1,163 @@
+{
+ "schema": "canli.sec-bulk-discovery.v1",
+ "archive": {
+  "path": "/Users/arhancanli/canlicapital-expansion-20260919/artifacts/seo/corpus-local/sec-bulk/companyfacts-20260919.zip",
+  "sha256": "ee099c7394a357f1996c728b7362f25158613b34f2ab1ad270cffc1befb917b6",
+  "snapshot": "2011-01-01"
+ },
+ "admission_concepts": {
+  "path": "/Users/arhancanli/canlicapital-activation-20260921/config/company-admission-v25.json",
+  "count": 72
+ },
+ "rules": {
+  "forms": [
+   "10-K",
+   "10-K/A",
+   "10-Q",
+   "10-Q/A",
+   "20-F",
+   "40-F"
+  ],
+  "filed_on_or_after": "2009-01-01",
+  "minimum_current_concepts": 4,
+  "ranking": "concept coverage descending, latest filing date descending, CIK ascending"
+ },
+ "exclusions": [
+  {
+   "kind": "delivery",
+   "path": "/Users/arhancanli/canlicapital-expansion-20260919/artifacts/seo/corpus-local/company-nine-cohort-delivery-v24/delivery.json",
+   "sha256": "c1471479c58572ab1193e1aba80ee4e4716de5c70c4a122dc3fc983eba5c9d3b",
+   "ciks": 6391
+  },
+  {
+   "kind": "prior-queues",
+   "path": "/Users/arhancanli/canlicapital-activation-20260921/artifacts/seo/company-tenth-prior-capture-queues.json",
+   "sha256": "e1ab6d00358f8f422a0b274410df510359b8e9c98ab39a3cf9a7fb6a4b46bfd1",
+   "ciks": 8362
+  }
+ ],
+ "eligible_entities_excluded_as_known": 7363,
+ "eligible_entities": 8800,
+ "skipped_identity_mismatch": 0,
+ "slice_size": 1000,
+ "slices": [
+  {
+   "file": "discovery-slice-01.json",
+   "sha256": "7f219681fc6bb9d801dc2d161674d849a879924146dbbefa0ed89758f4872ce7",
+   "entities": 1000,
+   "concept_coverage_range": [
+    69,
+    54
+   ],
+   "latest_filed_range": [
+    "2013-02-21",
+    "2024-08-23"
+   ]
+  },
+  {
+   "file": "discovery-slice-02.json",
+   "sha256": "8729d6ff9224a9fc3b880e7443772a994ea8659c9979fa2b14205e4f226beeb2",
+   "entities": 1000,
+   "concept_coverage_range": [
+    54,
+    49
+   ],
+   "latest_filed_range": [
+    "2011-02-28",
+    "2024-09-17"
+   ]
+  },
+  {
+   "file": "discovery-slice-03.json",
+   "sha256": "b67d945b4bac9f3d2aca5b1c2b10a034187d2d79e82d3aaef716ef407dfd77b4",
+   "entities": 1000,
+   "concept_coverage_range": [
+    49,
+    44
+   ],
+   "latest_filed_range": [
+    "2010-11-05",
+    "2024-08-30"
+   ]
+  },
+  {
+   "file": "discovery-slice-04.json",
+   "sha256": "e2295c40fd580560e4e1eb16fca7e57dcfa5277f7d92ed74f4a02fd2d3f1b73e",
+   "entities": 1000,
+   "concept_coverage_range": [
+    44,
+    40
+   ],
+   "latest_filed_range": [
+    "2010-07-28",
+    "2024-08-29"
+   ]
+  },
+  {
+   "file": "discovery-slice-05.json",
+   "sha256": "a1c74d2cc7f48ed3c8afda7165e5cccce37465d5caf9aa12befb1cb4b5967592",
+   "entities": 1000,
+   "concept_coverage_range": [
+    40,
+    35
+   ],
+   "latest_filed_range": [
+    "2009-08-07",
+    "2024-08-19"
+   ]
+  },
+  {
+   "file": "discovery-slice-06.json",
+   "sha256": "2fa76670f3dd6ddd7b2256bcbd1cee11e0255522ac74d61b686039349520d335",
+   "entities": 1000,
+   "concept_coverage_range": [
+    35,
+    30
+   ],
+   "latest_filed_range": [
+    "2009-11-06",
+    "2024-09-13"
+   ]
+  },
+  {
+   "file": "discovery-slice-07.json",
+   "sha256": "eecd493155ef3d26feabfa810f1a85a0718c22116313a3f6a694f3be04c6f7fb",
+   "entities": 1000,
+   "concept_coverage_range": [
+    30,
+    24
+   ],
+   "latest_filed_range": [
+    "2009-08-06",
+    "2024-08-19"
+   ]
+  },
+  {
+   "file": "discovery-slice-08.json",
+   "sha256": "1c9a1a3f0ac927f4b65f595595aba744454b208d06fce51840ad2a2369812c87",
+   "entities": 1000,
+   "concept_coverage_range": [
+    24,
+    18
+   ],
+   "latest_filed_range": [
+    "2010-08-04",
+    "2024-09-05"
+   ]
+  },
+  {
+   "file": "discovery-slice-09.json",
+   "sha256": "050136bb2289960f5e1509b3b538f3bb6db8dbc1e557e7d6686b510d9522302e",
+   "entities": 800,
+   "concept_coverage_range": [
+    18,
+    4
+   ],
+   "latest_filed_range": [
+    "2011-05-12",
+    "2026-09-03"
+   ]
+  }
+ ],
+ "scope": "Candidate discovery only. Not capture, review, admission, release or indexing."
+}

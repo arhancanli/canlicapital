@@ -75,7 +75,7 @@ export function createCompanyCatalog({ rootHash, readObject, cacheBytes = CATALO
         for (const entry of node.entries) {
           if (skip >= entry.count) { skip -= entry.count; continue; }
           if (node.level) await visit(await readNode(entry.hash, entry, node.level - 1));
-          else companies.push({ cik: entry.first, name: entry.name });
+          else companies.push({ cik: entry.first, name: entry.name, ...(entry.historical === true && typeof entry.last_filed === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(entry.last_filed) ? { historical: true, last_filed: entry.last_filed } : {}) });
           if (companies.length === 50) break;
         }
       }

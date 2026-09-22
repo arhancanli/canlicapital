@@ -1,6 +1,7 @@
 import { mkdirSync, writeFileSync, renameSync, readFileSync, existsSync, openSync, closeSync, unlinkSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { CATALOG_LIMITS, catalogHash, validateCatalogNode } from '../../api/_lib/company-catalog.js';
+import { historicalFiler, latestFiling } from './company-coverage.mjs';
 
 // Only compact references accumulate; each full company record is processed alone.
 // The activation pointer is written last, after all immutable objects are present.
@@ -29,7 +30,9 @@ function build(records, directory, { fanout = CATALOG_LIMITS.fanout } = {}) {
     if (record?.schema !== 'canli.company-reference.v1' || !/^\d{10}$/.test(record.cik) || Number(record.cik) < 1 || seen.has(record.cik)) throw new Error('Invalid or duplicate catalog company');
     seen.add(record.cik);
     if (typeof record.name !== 'string' || !record.name.trim() || Buffer.byteLength(record.name) > 4096) throw new Error('Invalid company directory label');
-    entries.push({ first: record.cik, last: record.cik, name: record.name, count: 1, ...save(record, CATALOG_LIMITS.recordBytes) });
+    // A historical filer's directory entry carries its last filing date; active filers carry nothing extra.
+    const historical = historicalFiler(record) ? { historical: true, last_filed: latestFiling(record).filed } : {};
+    entries.push({ first: record.cik, last: record.cik, name: record.name, count: 1, ...historical, ...save(record, CATALOG_LIMITS.recordBytes) });
   }
   if (!entries.length) throw new Error('Cannot build an empty catalog');
   entries.sort((a, b) => a.first.localeCompare(b.first));

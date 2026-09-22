@@ -1,6 +1,6 @@
 import { matchingHistoryConcepts, constantHistoryUnits } from './company-history-context.mjs';
 import { companyFilingNotes } from './company-filing-notes.mjs';
-import { companyCoverage, coverageByUnit, latestObservationsByUnit } from './company-coverage.mjs';
+import { companyCoverage, coverageByUnit, historicalFiler, latestFiling, latestObservationsByUnit } from './company-coverage.mjs';
 import { renderProductShellHeader, renderProductShellFooter, renderProductShellStylesheet } from '../product-shell.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
 const origin = 'https://canlicapital.com';
@@ -40,6 +40,12 @@ ${renderProductShellHeader({ active: 'companies' })}
 <h1>${esc(heading)}</h1><p class="company-reference__intro">${esc(description)}</p>${body}</main>
 ${renderProductShellFooter()}</body></html>\n`;
   return { path, html, lastmod, loc: origin + path };
+}
+
+// Company-level notice for a filer whose record ended more than two years before
+// capture. Shared by the overview and the filing index.
+export function historicalFilerNotice(name, latest, fetchedAt) {
+  return `<section class="company-reference__notice" aria-labelledby="historical-filer"><h2 id="historical-filer">Filing record ends ${esc(latest.filed)}</h2><p>The latest filing in this captured record is ${latest.form ? `a ${esc(latest.form)}` : 'a filing'} filed ${esc(latest.filed)}. No later filing is in the SEC companyfacts record captured on ${esc(fetchedAt.slice(0, 10))}. ${esc(name)} may have stopped filing, merged, or changed its reporting entity; nothing on this page describes its current status. Values are as reported at the time.</p></section>`;
 }
 
 export function provenance(company) {
@@ -91,6 +97,7 @@ export function renderCompanyPages(company, { target = 'all', filings = null } =
   const page = options => pages.push(renderReferenceDocument(options));
   const lastmod = (company.content_updated_at ?? company.fetched_at).slice(0, 10);
   const sources = [`company-data/${company.cik}.json`];
+  const historicalNote = historicalFiler(company) ? historicalFilerNotice(company.name, latestFiling(company), company.fetched_at) : '';
   const editorialNote = company.editorial_exclusions?.length ? `<section aria-labelledby="editorial-scope"><h2 id="editorial-scope">Limits of the selected measures</h2>${withholdingNotices(company.editorial_exclusions)}</section>` : '';
   const overviewNotes = [...new Set(company.concepts.flatMap(concept => companyFilingNotes(company, concept.tag)).filter(note => note.include_on_overview))];
   const overviewContext = overviewNotes.length ? `<section aria-labelledby="filing-context"><h2 id="filing-context">Context from the filing</h2>${overviewNotes.map(note => `<p>${esc(note.text)} <a href="${esc(note.filing_url)}">Read the source filing</a>.</p>`).join('')}</section>` : '';
@@ -98,7 +105,7 @@ export function renderCompanyPages(company, { target = 'all', filings = null } =
     return `<tr><th scope="row"><a href="${metricPath(company, concept)}">${esc(concept.label)}</a></th><td>${esc(latest.start ?? 'At date')}</td><td>${esc(latest.end)}</td><td>${number(latest.val)}</td><td>${esc(latest.unit)}</td><td>${esc(latest.filed)}</td></tr>`;
   })).join('');
   if (target === 'all' || target === 'overview') page({ path: pathFor(company), title: `${label(company)}: filing data`, description: `Explore ${company.name} financial histories from SEC filings, with original units, reporting periods, filing dates and downloadable source data.`, heading: `${company.name}: financial reference`, sources, lastmod, dataset: company,
-    body: `${editorialNote}${overviewContext}<section><h2>Reported financial histories</h2><p>Choose a measure to inspect its definition, complete selected history and filing provenance. Each row shows the latest period available for that selected concept and original unit. Separate currencies and reporting intervals remain separate rows. Coverage dates can differ between concepts. A recent capture does not imply recent accounting coverage; these amounts are not prices.</p><div class="company-reference__table" role="region" aria-label="Latest financial observations" tabindex="0"><table><caption>Latest periods by selected concept and original unit</caption><thead><tr><th scope="col">Measure</th><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col">Value</th><th scope="col">Unit</th><th scope="col">Filed</th></tr></thead><tbody>${rows}</tbody></table></div></section>${filingsSection}${provenance(company)}` });
+    body: `${historicalNote}${editorialNote}${overviewContext}<section><h2>Reported financial histories</h2><p>Choose a measure to inspect its definition, complete selected history and filing provenance. Each row shows the latest period available for that selected concept and original unit. Separate currencies and reporting intervals remain separate rows. Coverage dates can differ between concepts. A recent capture does not imply recent accounting coverage; these amounts are not prices.</p><div class="company-reference__table" role="region" aria-label="Latest financial observations" tabindex="0"><table><caption>Latest periods by selected concept and original unit</caption><thead><tr><th scope="col">Measure</th><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col">Value</th><th scope="col">Unit</th><th scope="col">Filed</th></tr></thead><tbody>${rows}</tbody></table></div></section>${filingsSection}${provenance(company)}` });
   for (const concept of company.concepts) {
     if (target !== 'all' && target !== concept.tag) continue;
     const coverage = companyCoverage(concept.observations, company.fetched_at);

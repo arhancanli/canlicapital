@@ -3,7 +3,8 @@
 // Input is a canli.company-filings.v1 document (scripts/lib/company-filings.mjs)
 // derived from the same captured bytes as the company record. No network, disk
 // writes or global state. Runtime responses stay noindex until admitted.
-import { renderReferenceDocument, provenance } from './company-page-renderer.mjs';
+import { renderReferenceDocument, provenance, historicalFilerNotice } from './company-page-renderer.mjs';
+import { historicalCutoff } from './company-coverage.mjs';
 import { filingPath, filingsIndexPath } from './company-filings.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
 
@@ -28,11 +29,14 @@ export function renderFilingsIndexPage(document) {
   const rows = document.filings.map(filing => `<tr><th scope="row"><a href="${filingPath(document.cik, filing.accession)}">${esc(filing.form)}</a></th><td>${esc(filing.filed)}</td><td>${esc(fiscal(filing))}</td><td>${filing.concept_count}</td><td>${filing.fact_count}</td><td><a href="${esc(filing.sec_index_url)}" rel="noreferrer">${esc(filing.accession)}</a></td></tr>`).join('');
   const withheld = document.withheld.length ? `<section aria-labelledby="withheld"><h2 id="withheld">Filings without a page</h2><p>These filings tagged published concepts but are not shown because their facts conflict within a period or their form, date or fiscal tags disagree between facts. They remain in the source snapshot.</p><ul>${document.withheld.map(w => `<li>${esc(w.form)} filed ${esc(w.filed)}, accession ${esc(w.accession)}: ${esc(w.reason)}</li>`).join('')}</ul></section>` : '';
   const thin = document.summary.thin_filings ? `<p>${document.summary.thin_filings} further ${document.summary.thin_filings === 1 ? 'filing tags' : 'filings tag'} fewer than eight published concepts and ${document.summary.thin_filings === 1 ? 'has' : 'have'} no page.</p>` : '';
+  // The latest filing with published measures; the same two-year rule as the overview.
+  const latest = document.filings[0];
+  const historicalNote = latest && latest.filed < historicalCutoff(document.fetched_at) ? historicalFilerNotice(document.name, { filed: latest.filed, form: latest.form }, document.fetched_at) : '';
   return renderReferenceDocument({
     path: filingsIndexPath(document.cik), lastmod: document.fetched_at.slice(0, 10), dataset, sources: [`company-data/${document.cik}.json`],
     title: `${label(dataset)}: SEC filings`, heading: `${dataset.name}: filings`,
     description: `Every ${dataset.name} annual and quarterly report in the SEC record with the published financial measures it tagged, ${document.filings.length} filings, each linked to its SEC index.`,
-    body: `<section><h2>Filings with published measures</h2><p>Each page shows what one filing reported, as tagged in that filing, with the periods it covered. Later filings can restate a value; the <a href="/companies/${document.cik}">company overview</a> shows the latest-filed value per period.</p><div class="company-reference__table"><table><thead><tr><th scope="col">Form</th><th scope="col">Filed</th><th scope="col">Fiscal period</th><th scope="col">Measures</th><th scope="col">Facts</th><th scope="col">SEC accession</th></tr></thead><tbody>${rows}</tbody></table></div>${thin}</section>${withheld}${provenance(dataset)}`,
+    body: `${historicalNote}<section><h2>Filings with published measures</h2><p>Each page shows what one filing reported, as tagged in that filing, with the periods it covered. Later filings can restate a value; the <a href="/companies/${document.cik}">company overview</a> shows the latest-filed value per period.</p><div class="company-reference__table"><table><thead><tr><th scope="col">Form</th><th scope="col">Filed</th><th scope="col">Fiscal period</th><th scope="col">Measures</th><th scope="col">Facts</th><th scope="col">SEC accession</th></tr></thead><tbody>${rows}</tbody></table></div>${thin}</section>${withheld}${provenance(dataset)}`,
   });
 }
 
