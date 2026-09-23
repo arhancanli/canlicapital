@@ -9,7 +9,7 @@ const dataFor = (company) => `/company-data/${company.cik}.json`;
 const metricPath = (company, concept) => `${pathFor(company)}/${concept.tag}`;
 const number = (value) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 12 }).format(value);
 const numberCell = (value) => `<td class="company-reference__num">${number(value)}</td>`;
-const periodStartCell = (row) => row.start ? `<td>${esc(row.start)}</td>` : '<td class="company-reference__na">—</td>';
+const periodStartCell = (row) => row.start ? `<td>${esc(row.start)}</td>` : '<td class="company-reference__na">-</td>';
 const label = (company) => company.name.replace(/\s+(CORPORATION|CORP|Inc\.)$/i, '');
 const headingHtml = (heading) => esc(heading).replace(/\d{4}-\d{2}-\d{2}|\b\d{1,2}-[KQF](?:\/A)?(?=\s|$)/g, token => `<span class="company-reference__nobreak">${token}</span>`);
 const accessionLink = (company, observation) => `https://www.sec.gov/Archives/edgar/data/${Number(company.cik)}/${observation.accn.replaceAll('-', '')}/${observation.accn}-index.html`;

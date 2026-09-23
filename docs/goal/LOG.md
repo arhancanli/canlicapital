@@ -3917,7 +3917,7 @@ value columns with no affordance, a stalled scroll-drawn section rule doubled by
 static border, the decorative grid bleeding through table cells, and a 163 px dead
 band above the content. The template now uses the reading-surface tokens shared
 with the research pages, sticky first columns with an overflow fade at phone
-width, right-aligned numbers, an em dash for instants, a compact historical-filer
+width, right-aligned numbers, a muted hyphen for instants, a compact historical-filer
 note, and dates that never break at their hyphens; the shared motion script draws
 rules at once for chapters already in view. Record: DESIGN_REVIEW_2026-09-23.md.
 Company tests 204/204 after regenerating the static pilot pages; verified on the

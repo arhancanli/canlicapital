@@ -43,7 +43,8 @@ Medium
    Fixed: one grid for every row.
 7. Numeric columns were left-aligned. Fixed: value, count and day cells and their
    headers carry a numeric class and align right.
-8. "At date" printed as a period-start value on instant rows. Fixed: an em dash.
+8. "At date" printed as a period-start value on instant rows. Fixed: a muted
+   hyphen (the site's writing contract keeps em dashes out of product pages).
 9. H1 formula and title/h1 disagreement. Not changed: titles are indexed and the
    heading text is the page's keyword carrier; the h1 is smaller, balanced, and
    dates and form names inside it no longer break at their hyphens.
