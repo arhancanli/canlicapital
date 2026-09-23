@@ -3923,3 +3923,13 @@ rules at once for chapters already in view. Record: DESIGN_REVIEW_2026-09-23.md.
 Company tests 204/204 after regenerating the static pilot pages; verified on the
 local preview server against the v27 inputs. No admission, upload or indexing
 change; the change goes live with the next deploy of main.
+
+## 2026-09-23 — footer link to the company reference
+
+Finding 15 of the design review: no footer route led to the company reference, so
+the only path from the rest of the site was the expanded menu. The shared shell's
+Evidence column now carries "Company reference" (/companies); the six
+hand-authored pages were rewritten from the shell source by
+scripts/sync-product-shell.mjs and every generated page picks it up at build.
+Shell tests 7/7; writing audit clear. Every page of the site now links to the
+directory that reaches all admitted company pages.
