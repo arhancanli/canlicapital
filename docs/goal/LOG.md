@@ -3896,3 +3896,14 @@ sitemap) at 13:35:11Z; the manual run then found nothing further to submit. This
 is the first live release above 800,000 admitted URLs; Google indexing is not yet
 measured and the owner resubmits the sitemap in Search Console. The v27 upload
 started 12:35Z behind it.
+
+## 2026-09-23 — next families quantified (proposal)
+
+While the v27 upload runs: the 14,629 flagged histories outside the admitted sets
+after option C are 14,208 equal-vector pages in 7,039 groups plus constant/zero
+series; a representative rule would admit 6,990 with 7,115 canonical members. An
+annual reporting-period family quantified from the v27 delivery: 118,784 pages at
+an eight-concept floor (121,452 at four), no quarterly observations in the
+selected data, no new capture needed. Candidate set with both: 1,041,982.
+NEXT_FAMILIES_PROPOSAL.md written for the owner decision. No admission, upload or
+indexing change.
