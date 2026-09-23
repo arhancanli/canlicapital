@@ -8,43 +8,44 @@ The previous STATUS is preserved at
 [history/STATUS-20260921-before-production-activation.md](history/STATUS-20260921-before-production-activation.md).
 Recorded states are not live telemetry.
 
-## Latest verified transition: v23 live in production (September 22)
+## Latest verified transition: v25 live in production (September 23)
 
-PR178 merged as 7f8a451e after PR189 (filing family build), PR190 (flag-set
-admission rule) and PR191 (owner flag decision, option C). The production
-checkout moved to 7f8a451e and the owner ran the production deploy
-(meridian-ke0g00zxq aliased to canlicapital.com at about 17:36Z; build output
-"263 site + 156,714 admitted company URLs in 5 sitemap file(s)").
+PR195 merged as 8995e8f0 after the storage transfer (26,210/26,210, run 5), the
+clean hosted readiness with the filing sample (35/35) and the browser flow. The
+production checkout moved to 8995e8f0 and the scheduled hourly deploy published
+it at about 02:30:35Z on September 23 (12 company sitemap shards observed).
 
-Admission v23 (`config/company-admission-v23.json`, decision 2026-09-22):
+Admission v25 (`config/company-admission-v25.json`, decision 2026-09-22):
 
-- Indexable: 156,714 company URLs: 6,376 overviews, 150,210 histories
-  (23,838 of them admitted with a stated-condition notice under option C of
-  FLAGGED_HISTORY_REVIEW_PROPOSAL.md) and 128 directory pages.
-- Served noindex but reachable: 6,504 histories with other flag sets, plus all
-  pages of the 15 companies with a pending accounting-scope review (399 histories).
+- Indexable: 556,677 company URLs: 6,376 overviews, 287,075 histories
+  (48,519 admitted with a stated-condition notice under option C), 128
+  directory pages, 6,372 filing indexes and 256,726 filing pages.
+- Served noindex but reachable: 9,014 histories with other flag sets, plus all
+  pages of the 15 companies with a pending accounting-scope review (730
+  histories, 631 filing pages).
 - Downloads stay noindex.
 
-Verified live on canlicapital.com (September 22, `corpus-local/v23-live-checks.log`):
+Verified live on canlicapital.com (September 23, `corpus-local/v25-live-checks.log`):
 
-- An admitted history and a history admitted with a notice return 200 with no
-  X-Robots-Tag, meta `index, follow` and a self-canonical; the directory too.
-- A history withheld for another flag, a pending-review company and a download
-  return 200 with `X-Robots-Tag: noindex`. An unknown company returns 404 noindex.
-- `/sitemap.xml` is a sitemap index: `sitemap-site.xml` (263) and
-  sitemap-companies-1.xml (50,000), sitemap-companies-2.xml (50,000), sitemap-companies-3.xml (50,000), sitemap-companies-4.xml (6,714) = 156,977 URLs.
-- Slowest of the seven checks 1,589 ms end to end from the test machine.
-- IndexNow accepted 79,444 new or updated canonical URLs (delta against the
-  77,622-URL state); 156,977 in the sitemap.
+- An admitted history, a history admitted with a notice, a filing index and a
+  filing page return 200 with no X-Robots-Tag, meta `index, follow` and a
+  self-canonical; the directory too.
+- A history withheld for another flag, a pending-review company, its filing page
+  and a download return 200 with `X-Robots-Tag: noindex`. An unknown company
+  returns 404 noindex.
+- `/sitemap.xml` is a sitemap index: `sitemap-site.xml` (263) and 12 company
+  shards = 556,940 URLs (556,677 company URLs).
+- Slowest of the ten checks 3,846 ms end to end from the test machine.
+- IndexNow accepted 401,034 new or updated canonical URLs; 556,940 in the sitemap.
 
-The v22 transition record is preserved in LOG.md (2026-09-21).
+The v23 transition record is preserved in LOG.md (2026-09-22).
 
 ## Counts (keep separate)
 
-- Built candidate URLs: 567,082 (v25, staged).
-- Live indexable company URLs: 156,714.
-- Live sitemap URLs: 156,977.
-- Submitted to IndexNow: 156,977 cumulative (77,622 on September 21, 79,444 new or updated on September 22).
+- Built candidate URLs: 827,563 (v26, staged).
+- Live indexable company URLs: 556,677.
+- Live sitemap URLs: 556,940.
+- Submitted to IndexNow: 556,940 cumulative (77,622 on September 21, 79,444 on September 22, 401,034 new or updated on September 23).
 - Submitted to Google: sitemap resubmission pending (owner action in Search Console).
 - Confirmed indexed: 262 as of September 14; no new measurement yet.
 - Goal: 800,000 indexed, target 1,000,000.
