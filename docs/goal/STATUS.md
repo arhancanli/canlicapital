@@ -284,11 +284,12 @@ merging it activates v27.
 
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
    measure crawl, index and exclusion counts by page family.
-2. Growth toward 800,000 indexed: v25 is live (556,677 indexable); v26 (historical
-   filers, 813,892 indexable) is uploading, then hosted checks and activation; v27
-   (the remaining historical filers, 916,208 indexable) is staged behind it;
-   then the last flagged histories and further families. Indexed counts are
-   measured in Search Console after each activation.
+2. Growth toward 800,000 indexed: v27 is live (916,208 indexable); every archive
+   entity that meets the discovery rules is captured, reviewed and released.
+   Next growth is NEXT_FAMILIES_PROPOSAL.md: equal-vector representatives
+   (+6,990) and annual reporting-period pages (+118,784), owner decision
+   pending; then v28. Indexed counts are measured in Search Console after each
+   activation.
 3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars
    and npm downloads weekly.
 4. Engine: merge PR73; the nightly publish regenerates the audits and the health
