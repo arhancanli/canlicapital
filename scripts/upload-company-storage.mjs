@@ -136,17 +136,17 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
         } } catch (error) {
           if (!error?.cause?.code && !['AbortError', 'TimeoutError'].includes(error?.name)) throw error;
           const failure = transportFailure(error);
-          failure.retryableRead = [500, 502, 503, 504].includes(response.status);
+          failure.retryableRead = response.status >= 500;
           throw failure;
         }
         const body = Buffer.concat(parts).toString('utf8');
         let error; try { error = JSON.parse(body); } catch { /* fail closed */ }
         if ((response.status === 400 || response.status === 404) &&
             String(error?.statusCode) === '404' && error?.error === 'not_found') return null;
-        // A server error on a read (500 or a gateway status) says nothing about the object; it may be repeated within the bounded read policy.
+        // Any server-side status (500 and above, including the CDN's 52x) says nothing about the object; the read may be repeated within the bounded policy.
         const failure = new Error(`Storage read rejected (${response.status})`);
         Object.assign(failure, responseFailureMetadata(response));
-        failure.retryableRead = [500, 502, 503, 504].includes(response.status);
+        failure.retryableRead = response.status >= 500;
         throw failure;
       }
       const encoding = response.headers.get('content-encoding');
@@ -178,7 +178,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
       if (!response.ok) {
         const error = new Error(`Storage create rejected (${response.status}); no overwrite`);
         Object.assign(error, responseFailureMetadata(response));
-        error.ambiguousWrite = [409, 500, 502, 503, 504].includes(response.status); // a server error may or may not have stored the object
+        error.ambiguousWrite = response.status === 409 || response.status >= 500; // a server-side or CDN failure may or may not have stored the object
         error.rateLimited = response.status === 429; // nothing was written; the same create may be repeated after the hold
         throw error;
       }

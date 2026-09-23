@@ -432,3 +432,14 @@ test('a 500 on a read is repeated within the read policy and a 500 on a create i
   const second = await uploadCompanyStorage({ ...f, storage: g.storage, writeAttempts: 2 });
   assert.equal(second.complete, true); assert.equal(second.write_recovery.length, 1); assert.equal(second.write_recovery[0].reconciliation, 'absent');
 });
+
+test('CDN 52x statuses are handled like server errors: reads repeat within the policy, creates are reconciled', async t => {
+  const f = fixture(t, 1);
+  const s = server(f, { readAttempts: 3, readStatuses: [520] });
+  const receipt = await uploadCompanyStorage({ ...f, storage: s.storage });
+  assert.equal(receipt.complete, true); assert.equal(receipt.read_retries.length, 1); assert.match(receipt.read_retries[0].error, /520/);
+  const g = server(f, { failFirstPerKey: true, createStatus: 520 });
+  g.storage.create = (create => async (file, raw) => { try { return await create(file, raw); } catch (error) { if (error.httpStatus === undefined) error.httpStatus = 520; throw error; } })(g.storage.create);
+  const second = await uploadCompanyStorage({ ...f, storage: g.storage, writeAttempts: 2 });
+  assert.equal(second.complete, true); assert.equal(second.write_recovery.length, 1); assert.equal(second.write_recovery[0].reconciliation, 'absent');
+});
