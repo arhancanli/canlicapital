@@ -471,6 +471,18 @@ function renderAlphaForge(state) {
   const root = $("#bookAlphaforge");
   if (!root) return;
   const af = (state.holdings && state.holdings.alphaforge) || null;
+  // SUSPENDED (2026-09-23): the sleeve is out of the book and off the record while it is
+  // repaired. Say so; never let the authored default ("Holding cash") describe a sleeve whose
+  // state is not published at all.
+  const suspension = (state.suspended_sleeves || []).find(s => s.key === "alphaforge");
+  if (suspension) {
+    const hook = $("[data-book='state']", root);
+    if (hook) hook.textContent = `Suspended from the book since ${suspension.since}`;
+    const note = $(".book-flat__note", root);
+    if (note) note.textContent = `Out of the book and off this record while it is repaired: ${suspension.why}. It returns ${suspension.returns_when}.`;
+    root.classList.add("book-block--suspended");
+    return;
+  }
   // State-DRIVEN, both ways: assert "holding cash" ONLY when genuinely flat;
   // otherwise state the real live carry book (counts + as-of). Never let the
   // authored markup's default assert a book state the data contradicts.
