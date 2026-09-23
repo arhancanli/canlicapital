@@ -1,0 +1,438 @@
+{
+  "schema": "canli.hosted-company-staging-audit.v1",
+  "origin": "https://meridian-kdpdlm754-arhans-projects-ac470eaa.vercel.app",
+  "manifest_sha256": "e82eb7ca0f1a45e59a4750ba3e8d16d3a8892356040dc9d8601a7e0fc247dd56",
+  "mode": "ready",
+  "routing": "clean",
+  "filings_root": "045e6e4f256f864e971acacde1a8edaec572d093a04261db8b4fd201f912a1ee",
+  "publication_approved": false,
+  "complete": true,
+  "checks": [
+    {
+      "path": "/companies/not-a-company-route",
+      "method": "GET",
+      "status": 404,
+      "bytes": 27,
+      "elapsed_ms": 1080,
+      "sha256": "c204a013f0244a547bc7ab8034faafebbc3537a3dc33da99fbcce6e17d358bba",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/companies",
+      "method": "POST",
+      "status": 405,
+      "bytes": 18,
+      "elapsed_ms": 669,
+      "sha256": "371b26886bee5e559d5016b17b1479cb7a9154865da5a0f11563580ea99ff033",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/companies",
+      "method": "GET",
+      "status": 200,
+      "bytes": 20971,
+      "elapsed_ms": 3037,
+      "sha256": "d8425456bb91ffa739495d46ae4a5c72ba763fdace6f749d28adc694e6e484f4",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"d8425456bb91ffa739495d46ae4a5c72ba763fdace6f749d28adc694e6e484f4\""
+    },
+    {
+      "path": "/companies/9999999999",
+      "method": "GET",
+      "status": 404,
+      "bytes": 170,
+      "elapsed_ms": 322,
+      "sha256": "4d50e4daa24912f59929ebc89619fa012d6d37347f13d2e800d755448dc7dd38",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/company-data/9999999999.json",
+      "method": "GET",
+      "status": 404,
+      "bytes": 24,
+      "elapsed_ms": 2702,
+      "sha256": "521affe3b9029f0971e4f454bb03429b69c09c7803c6624eba0b2865e7f34094",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/company-data/0000001750.json",
+      "method": "GET",
+      "status": 200,
+      "bytes": 269680,
+      "elapsed_ms": 2447,
+      "sha256": "6dd62c9ae77880fd695b18bce58bb5f7577e99899f8e6b6dc10984226ac3c495",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"6dd62c9ae77880fd695b18bce58bb5f7577e99899f8e6b6dc10984226ac3c495\""
+    },
+    {
+      "path": "/company-data/sources/7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba.json.gz",
+      "method": "GET",
+      "status": 200,
+      "bytes": 216900,
+      "elapsed_ms": 2401,
+      "sha256": "04cdf76337e50fd62eec23569de0ae0bfc00d8c06aac9d69f845f41b44ca196f",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "\"04cdf76337e50fd62eec23569de0ae0bfc00d8c06aac9d69f845f41b44ca196f\""
+    },
+    {
+      "path": "/companies/0000001750",
+      "method": "GET",
+      "status": 200,
+      "bytes": 31851,
+      "elapsed_ms": 2474,
+      "sha256": "ee9dc253806cf0b0f81f884eed37c41901992b32ff4ca03190f10c114e520b49",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"ee9dc253806cf0b0f81f884eed37c41901992b32ff4ca03190f10c114e520b49\""
+    },
+    {
+      "path": "/companies/0000001750",
+      "method": "HEAD",
+      "status": 200,
+      "bytes": 0,
+      "elapsed_ms": 486,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"ee9dc253806cf0b0f81f884eed37c41901992b32ff4ca03190f10c114e520b49\""
+    },
+    {
+      "path": "/companies/0000001750",
+      "method": "GET",
+      "status": 304,
+      "bytes": 0,
+      "elapsed_ms": 462,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": null,
+      "cache_control": "no-store",
+      "etag": "\"ee9dc253806cf0b0f81f884eed37c41901992b32ff4ca03190f10c114e520b49\"",
+      "validation_of": {
+        "path": "/companies/0000001750",
+        "etag": "W/\"ee9dc253806cf0b0f81f884eed37c41901992b32ff4ca03190f10c114e520b49\"",
+        "sha256": "ee9dc253806cf0b0f81f884eed37c41901992b32ff4ca03190f10c114e520b49",
+        "robots": "noindex"
+      }
+    },
+    {
+      "path": "/companies/0000001750/Assets",
+      "method": "GET",
+      "status": 200,
+      "bytes": 28742,
+      "elapsed_ms": 619,
+      "sha256": "99e93b41a3cf2416cc5e777a32c65344b909ad2f7b6d1d79eb708ca54b1237cd",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"99e93b41a3cf2416cc5e777a32c65344b909ad2f7b6d1d79eb708ca54b1237cd\""
+    },
+    {
+      "path": "/companies/0000001750/filings",
+      "method": "GET",
+      "status": 200,
+      "bytes": 39146,
+      "elapsed_ms": 1228,
+      "sha256": "761eec90753ad6b87370255208f44d28d88eed6bdc4d7b5801e69545424e4ea0",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"761eec90753ad6b87370255208f44d28d88eed6bdc4d7b5801e69545424e4ea0\""
+    },
+    {
+      "path": "/companies/0000001750/filings/0001104659-26-085459",
+      "method": "GET",
+      "status": 200,
+      "bytes": 74307,
+      "elapsed_ms": 499,
+      "sha256": "64e421dd55af305c5ae8d47880a42ccc558dde26b8d9bec3a93d7659fb870ed2",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"64e421dd55af305c5ae8d47880a42ccc558dde26b8d9bec3a93d7659fb870ed2\""
+    },
+    {
+      "path": "/companies/0000001750/filings/0001104659-26-085459",
+      "method": "GET",
+      "status": 304,
+      "bytes": 0,
+      "elapsed_ms": 338,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": null,
+      "cache_control": "no-store",
+      "etag": "\"64e421dd55af305c5ae8d47880a42ccc558dde26b8d9bec3a93d7659fb870ed2\"",
+      "validation_of": {
+        "path": "/companies/0000001750/filings/0001104659-26-085459",
+        "etag": "W/\"64e421dd55af305c5ae8d47880a42ccc558dde26b8d9bec3a93d7659fb870ed2\"",
+        "sha256": "64e421dd55af305c5ae8d47880a42ccc558dde26b8d9bec3a93d7659fb870ed2",
+        "robots": "noindex"
+      }
+    },
+    {
+      "path": "/companies/0000001750/filings/0000000000-00-000000",
+      "method": "GET",
+      "status": 404,
+      "bytes": 168,
+      "elapsed_ms": 733,
+      "sha256": "2b4851c92a342a8f9ee2bb4f1fc461610120fdbe6517a558137cdb7850076f2e",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/company-data/0001396446.json",
+      "method": "GET",
+      "status": 200,
+      "bytes": 63297,
+      "elapsed_ms": 2598,
+      "sha256": "af3118f23664aa1946e593a4aa6bca400436fa054d811d49fdf92fb308edb729",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"af3118f23664aa1946e593a4aa6bca400436fa054d811d49fdf92fb308edb729\""
+    },
+    {
+      "path": "/company-data/sources/67f2a3848f6ede7e92e2faeb5128d099a97b477082c3fc9bbb0a13a2b4da9a8a.json.gz",
+      "method": "GET",
+      "status": 200,
+      "bytes": 99085,
+      "elapsed_ms": 2712,
+      "sha256": "39c48848bb74512c4aa257170a1d701fe52bfb04dc39aa0625a48575a00f5549",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "\"39c48848bb74512c4aa257170a1d701fe52bfb04dc39aa0625a48575a00f5549\""
+    },
+    {
+      "path": "/companies/0001396446",
+      "method": "GET",
+      "status": 200,
+      "bytes": 23078,
+      "elapsed_ms": 3324,
+      "sha256": "e42081783b3759b7d656f662e965ce898d4bb6c6fd2e2d2637226d24ba2a9e5a",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"e42081783b3759b7d656f662e965ce898d4bb6c6fd2e2d2637226d24ba2a9e5a\""
+    },
+    {
+      "path": "/companies/0001396446",
+      "method": "HEAD",
+      "status": 200,
+      "bytes": 0,
+      "elapsed_ms": 494,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"e42081783b3759b7d656f662e965ce898d4bb6c6fd2e2d2637226d24ba2a9e5a\""
+    },
+    {
+      "path": "/companies/0001396446",
+      "method": "GET",
+      "status": 304,
+      "bytes": 0,
+      "elapsed_ms": 430,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": null,
+      "cache_control": "no-store",
+      "etag": "\"e42081783b3759b7d656f662e965ce898d4bb6c6fd2e2d2637226d24ba2a9e5a\"",
+      "validation_of": {
+        "path": "/companies/0001396446",
+        "etag": "W/\"e42081783b3759b7d656f662e965ce898d4bb6c6fd2e2d2637226d24ba2a9e5a\"",
+        "sha256": "e42081783b3759b7d656f662e965ce898d4bb6c6fd2e2d2637226d24ba2a9e5a",
+        "robots": "noindex"
+      }
+    },
+    {
+      "path": "/companies/0001396446/Assets",
+      "method": "GET",
+      "status": 200,
+      "bytes": 22481,
+      "elapsed_ms": 458,
+      "sha256": "5bf85ca1fde31c7e1671a2cdbc60b101694110ed72a74c1286078bdc61df84f8",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"5bf85ca1fde31c7e1671a2cdbc60b101694110ed72a74c1286078bdc61df84f8\""
+    },
+    {
+      "path": "/companies/0001396446/filings",
+      "method": "GET",
+      "status": 200,
+      "bytes": 27199,
+      "elapsed_ms": 1157,
+      "sha256": "88aa23728ddfae2b1339ceb31a1bd76f3e41d9b8cfe30ed6219c51cf5d9f467e",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"88aa23728ddfae2b1339ceb31a1bd76f3e41d9b8cfe30ed6219c51cf5d9f467e\""
+    },
+    {
+      "path": "/companies/0001396446/filings/0001396446-18-000050",
+      "method": "GET",
+      "status": 200,
+      "bytes": 37282,
+      "elapsed_ms": 458,
+      "sha256": "93da0905b055952033574fbe3c7030f9642ff2d9fefd597c4526462fb2bedada",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"93da0905b055952033574fbe3c7030f9642ff2d9fefd597c4526462fb2bedada\""
+    },
+    {
+      "path": "/companies/0001396446/filings/0001396446-18-000050",
+      "method": "GET",
+      "status": 304,
+      "bytes": 0,
+      "elapsed_ms": 301,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": null,
+      "cache_control": "no-store",
+      "etag": "\"93da0905b055952033574fbe3c7030f9642ff2d9fefd597c4526462fb2bedada\"",
+      "validation_of": {
+        "path": "/companies/0001396446/filings/0001396446-18-000050",
+        "etag": "W/\"93da0905b055952033574fbe3c7030f9642ff2d9fefd597c4526462fb2bedada\"",
+        "sha256": "93da0905b055952033574fbe3c7030f9642ff2d9fefd597c4526462fb2bedada",
+        "robots": "noindex"
+      }
+    },
+    {
+      "path": "/companies/0001396446/filings/0000000000-00-000000",
+      "method": "GET",
+      "status": 404,
+      "bytes": 168,
+      "elapsed_ms": 430,
+      "sha256": "2b4851c92a342a8f9ee2bb4f1fc461610120fdbe6517a558137cdb7850076f2e",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    },
+    {
+      "path": "/company-data/0002099039.json",
+      "method": "GET",
+      "status": 200,
+      "bytes": 42613,
+      "elapsed_ms": 2280,
+      "sha256": "e67a51f0b7055790477f132e48351ed577d596fdc62e25a2a400f5692bc8dcaa",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"e67a51f0b7055790477f132e48351ed577d596fdc62e25a2a400f5692bc8dcaa\""
+    },
+    {
+      "path": "/company-data/sources/197aeadccfc1cfdb95af421649d4b04a14589a00afb05695030ca40d480f051f.json.gz",
+      "method": "GET",
+      "status": 200,
+      "bytes": 15981,
+      "elapsed_ms": 1398,
+      "sha256": "12cf06c63ed6e72362c3d45cd39e32c230a2ab0bb3b442b26a859d9a66f1dab7",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "\"12cf06c63ed6e72362c3d45cd39e32c230a2ab0bb3b442b26a859d9a66f1dab7\""
+    },
+    {
+      "path": "/companies/0002099039",
+      "method": "GET",
+      "status": 200,
+      "bytes": 24997,
+      "elapsed_ms": 1750,
+      "sha256": "4225ed42040edbf06ba7120b8d5824f25ab67155fe7ca64b36782f043e217962",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"4225ed42040edbf06ba7120b8d5824f25ab67155fe7ca64b36782f043e217962\""
+    },
+    {
+      "path": "/companies/0002099039",
+      "method": "HEAD",
+      "status": 200,
+      "bytes": 0,
+      "elapsed_ms": 460,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"4225ed42040edbf06ba7120b8d5824f25ab67155fe7ca64b36782f043e217962\""
+    },
+    {
+      "path": "/companies/0002099039",
+      "method": "GET",
+      "status": 304,
+      "bytes": 0,
+      "elapsed_ms": 473,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": null,
+      "cache_control": "no-store",
+      "etag": "\"4225ed42040edbf06ba7120b8d5824f25ab67155fe7ca64b36782f043e217962\"",
+      "validation_of": {
+        "path": "/companies/0002099039",
+        "etag": "W/\"4225ed42040edbf06ba7120b8d5824f25ab67155fe7ca64b36782f043e217962\"",
+        "sha256": "4225ed42040edbf06ba7120b8d5824f25ab67155fe7ca64b36782f043e217962",
+        "robots": "noindex"
+      }
+    },
+    {
+      "path": "/companies/0002099039/StockholdersEquity",
+      "method": "GET",
+      "status": 200,
+      "bytes": 22146,
+      "elapsed_ms": 425,
+      "sha256": "25da31ebfb51bff0ac1f39709656f2afa480f706aabaa32a90e087115ddffa11",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"25da31ebfb51bff0ac1f39709656f2afa480f706aabaa32a90e087115ddffa11\""
+    },
+    {
+      "path": "/companies/0002099039/filings",
+      "method": "GET",
+      "status": 200,
+      "bytes": 17113,
+      "elapsed_ms": 650,
+      "sha256": "5204bb0cd237e3d7c2c9a4ed4cd85588b21f73ced3a1aae9cc23a4a860679ad2",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"5204bb0cd237e3d7c2c9a4ed4cd85588b21f73ced3a1aae9cc23a4a860679ad2\""
+    },
+    {
+      "path": "/companies/0002099039/filings/0001193125-26-282911",
+      "method": "GET",
+      "status": 200,
+      "bytes": 68944,
+      "elapsed_ms": 434,
+      "sha256": "e668bfce134e618c597e87060e69539b61ef27d3d788bedb00c732c77c85f0d8",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": "W/\"e668bfce134e618c597e87060e69539b61ef27d3d788bedb00c732c77c85f0d8\""
+    },
+    {
+      "path": "/companies/0002099039/filings/0001193125-26-282911",
+      "method": "GET",
+      "status": 304,
+      "bytes": 0,
+      "elapsed_ms": 291,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "robots": null,
+      "cache_control": "no-store",
+      "etag": "\"e668bfce134e618c597e87060e69539b61ef27d3d788bedb00c732c77c85f0d8\"",
+      "validation_of": {
+        "path": "/companies/0002099039/filings/0001193125-26-282911",
+        "etag": "W/\"e668bfce134e618c597e87060e69539b61ef27d3d788bedb00c732c77c85f0d8\"",
+        "sha256": "e668bfce134e618c597e87060e69539b61ef27d3d788bedb00c732c77c85f0d8",
+        "robots": "noindex"
+      }
+    },
+    {
+      "path": "/companies/0002099039/filings/0000000000-00-000000",
+      "method": "GET",
+      "status": 404,
+      "bytes": 168,
+      "elapsed_ms": 534,
+      "sha256": "2b4851c92a342a8f9ee2bb4f1fc461610120fdbe6517a558137cdb7850076f2e",
+      "robots": "noindex",
+      "cache_control": "no-store",
+      "etag": null
+    }
+  ],
+  "failures": [],
+  "code_sha256": "29f8b16299e63bfe567157b7cd6f0e735c77c41f54c3007b19be0d0dc5a2d509",
+  "http_contract_sha256": "a5bd7defd6362643a49e935fb83ec61eead771bc2bd428d576291d280b9c6724",
+  "scope": "Representative noindex staging sample in the recorded routing mode. Not production activation, complete corpus HTTP verification, indexing evidence or a cloud-load benchmark.",
+  "passed": true
+}

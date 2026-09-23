@@ -273,8 +273,13 @@ failures; every sitemap URL served and every page within 5 clicks of the
 directory; largest page 111,611 bytes; median 3.9 ms
 (`company-eighteen-cohort-v27-http-measurement-20260923.json`).
 
-Order of operations: v26 upload (running) → v26 hosted checks → activate v26 (#201)
-→ v27 upload (10,771 new objects) → v27 hosted checks → activate v27.
+Upload and hosted checks complete (September 23): storage transfer 52,141/52,141
+verified in run 1 (41,370 existing, 10,770 created, 1 verified after a create
+error, 0 failures, 12 rate-limit holds absorbed; first run with the hardened
+uploader), clean hosted readiness 35/35 with the filing sample on the noindex
+preview of the activation branch (dpl_5AJRjTq47Y4QpPNALJunt4ifc7fV), browser flow
+passed. PR205 pins release 389ae2ca… and admission v27 (916,208 admitted URLs);
+merging it activates v27.
 
 ## Next actions
 
