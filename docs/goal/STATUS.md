@@ -228,16 +228,54 @@ Order of operations: v25 upload (running) → v25 hosted checks → activate v25
 → v26 upload (15,972 new objects) → v26 hosted checks → activate v26.
 Slices 05–09 (4,800 entities, 4–40 concepts) remain for v27.
 
+## v27 staged release (built September 23, 03:25Z; not uploaded, not live)
+
+The remaining historical filers (slices 05–09 of the same historical discovery:
+4,800 entities with 4–40 published concepts) were captured 02:38–03:04Z on
+September 23 in five parallel runs at one request per second: 0 HTTP errors, 0
+not-found. Review: fifteenth-1000 799 candidates / 201 excluded, sixteenth-1000
+689 candidates / 311 excluded, seventeenth-1000 511 candidates / 489 excluded,
+eighteenth-1000 321 candidates / 679 excluded, nineteenth-800 232 candidates / 568
+excluded; every exclusion is a coverage failure. Staged under extended-v23 and
+combined with the thirteen v26 cohorts.
+
+Release 389ae2ca…: 12,753 companies (10,201 carried from v26 byte for byte, 2,552
+added; 6,672 historical filers whose overview, filing index and directory entry
+state the last filing date), 513,902 histories, 392,522 filing pages across 12,730
+companies, 932,163 candidate URLs in 19 sitemap shards, 256 directory pages.
+Storage plan 52,141 objects (4.13 GB; 10,771 new against the v26 plan).
+`scripts/verify-v27-runtime.mjs` passed: every v26 company carried unchanged,
+every new company from a historical capture queue, every filings document
+re-derived from the delivered bytes, discovery equal to the derived set, plan
+bound to the release.
+
+Admission v26 (clean-set rules, filing pages follow their company, option C):
+916,208 indexable URLs (12,738 overviews, 498,608 histories of which 260,052 carry
+a stated-condition notice, 256 directories, 12,715 filing indexes, 391,891 filing
+pages); withheld: 14,564 histories with other flag sets and the same 15
+pending-review companies. File `config/company-admission-v27.json`, SHA-256
+873430b8…; sidecar `config/company-filing-admission-v27.json.gz`. This completes
+the historical filers family from the September 19 archive; it is not an indexed
+count.
+
+Local HTTP audit: 932,163 pages (12,753 overviews, 513,902 histories, 12,730
+filing indexes, 392,522 filing pages, 256 directories), 25,506 downloads, 0
+failures; every sitemap URL served and every page within 5 clicks of the
+directory; largest page 111,611 bytes; median 3.9 ms
+(`company-eighteen-cohort-v27-http-measurement-20260923.json`).
+
+Order of operations: v26 upload (running) → v26 hosted checks → activate v26 (#201)
+→ v27 upload (10,771 new objects) → v27 hosted checks → activate v27.
+
 ## Next actions
 
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
    measure crawl, index and exclusion counts by page family.
-2. Growth toward 800,000 indexed: v23 is live (156,714 indexable); v25 (556,677
-   indexable: expanded concepts, filing family, September 22 flag decision) is
-   uploading, then hosted checks and activation; v26 (historical filers, 813,892
-   indexable) is staged behind it; v27 takes the remaining 4,800 historical
-   entities; then the last flagged histories and further families. Indexed counts
-   are measured in Search Console after each activation.
+2. Growth toward 800,000 indexed: v25 is live (556,677 indexable); v26 (historical
+   filers, 813,892 indexable) is uploading, then hosted checks and activation; v27
+   (the remaining historical filers, 916,208 indexable) is staged behind it;
+   then the last flagged histories and further families. Indexed counts are
+   measured in Search Console after each activation.
 3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars
    and npm downloads weekly.
 4. Engine: merge PR73; the nightly publish regenerates the audits and the health
