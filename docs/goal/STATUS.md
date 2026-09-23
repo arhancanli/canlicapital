@@ -8,26 +8,26 @@ The previous STATUS is preserved at
 [history/STATUS-20260921-before-production-activation.md](history/STATUS-20260921-before-production-activation.md).
 Recorded states are not live telemetry.
 
-## Latest verified transition: v26 live in production (September 23)
+## Latest verified transition: v27 live in production (September 23)
 
-PR201 merged as 042696fc after the storage transfer (41,806/41,806, run 3), the
-clean hosted readiness with the filing sample (35/35) and the browser flow. The
-production checkout moved to 042696fc and the scheduled hourly deploy published
-it at about 13:33:42Z (17 company sitemap shards observed).
+PR205 merged as 3915e039 after the storage transfer (52,141/52,141), the clean
+hosted readiness with the filing sample (35/35) and the browser flow. The
+production checkout moved to 3915e039 and the scheduled hourly deploy published it
+at about 20:33:23Z (19 company sitemap shards observed).
 
-Admission v26 (`config/company-admission-v26.json`, decision 2026-09-22):
+Admission v27 (`config/company-admission-v27.json`, decision 2026-09-22):
 
-- Indexable: 813,892 company URLs: 10,186 overviews, 444,896 histories
-  (206,340 admitted with a stated-condition notice under option C), 205
-  directory pages, 10,182 filing indexes and 348,423 filing pages. The
-  4,120 historical filers carry the company-level notice on their overview and
-  filing index and the last filing date in the directory.
-- Served noindex but reachable: 12,280 histories with other flag sets, plus all
-  pages of the 15 companies with a pending accounting-scope review (730
-  histories, 631 filing pages).
+- Indexable: 916,208 company URLs: 12,738 overviews, 498,608 histories (260,052
+admitted with a stated-condition notice under option C), 256 directory pages,
+12,715 filing indexes and 391,891 filing pages. The 6,672 historical filers carry
+the company-level notice on their overview and filing index and the last filing
+date in the directory.
+- Served noindex but reachable: 14,564 histories with other flag sets, plus all
+pages of the 15 companies with a pending accounting-scope review (730 histories,
+631 filing pages).
 - Downloads stay noindex.
 
-Verified live on canlicapital.com (September 23, `corpus-local/v26-live-checks.log`):
+Verified live on canlicapital.com (September 23, `corpus-local/v27-live-checks.log`):
 
 - An admitted history, a history admitted with a notice, a filing index, a filing
   page, and a historical filer's overview and filing index (notice present) return
@@ -36,15 +36,14 @@ Verified live on canlicapital.com (September 23, `corpus-local/v26-live-checks.l
 - A history withheld for another flag, a pending-review company, its filing page
   and a download return 200 with `X-Robots-Tag: noindex`. An unknown company
   returns 404 noindex.
-- `/sitemap.xml` is a sitemap index: `sitemap-site.xml` (263) and 17 company
-  shards = 814,155 URLs (813,892 company URLs).
-- Slowest of the 14 checks 36,558 ms end to end from the test machine.
-- IndexNow: the hourly deploy's own submission at 13:35:11Z accepted 257,343 new or
-  updated canonical URLs (814,155 in the sitemap); the manual run found nothing
-  further to submit.
+- `/sitemap.xml` is a sitemap index: `sitemap-site.xml` (263) and 19 company
+shards = 916,471 URLs (916,208 company URLs).
+- Slowest of the 14 checks 36,125 ms end to end from the test machine.
+- IndexNow: the hourly deploy's own submission at 20:33:49Z accepted 102,521 new
+or updated canonical URLs (916,471 in the sitemap); the manual run found nothing
+further to submit.
 
-The v25 transition record is preserved in LOG.md (2026-09-23).
-
+The v26 transition record is preserved in LOG.md (2026-09-23).
 ## Counts (keep separate)
 
 - Built candidate URLs: 932,163 (v27, staged).

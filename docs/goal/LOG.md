@@ -3959,3 +3959,17 @@ Inter and Chakra Petch faces, right-aligned numeric cells, a hyphen for instants
 and the capture instant as a time element; the home footer's Evidence column links
 the company reference. IndexNow accepted 7 updated URLs (the re-dated
 hand-authored pages) and nothing else, as intended.
+
+## 2026-09-23 — v27 released to production
+
+PR205 merged as 3915e039 with all checks passing; the production checkout moved to
+3915e039 and the hourly deploy published it at about 20:33:23Z. Live checks passed
+(14 checks, slowest 36,125 ms): admitted and noticed histories, filing indexes and
+filing pages, and a historical filer's overview and filing index with the
+company-level notice indexable with self-canonicals; withheld histories,
+pending-review companies, their filing pages and downloads noindex; unknown
+company 404; sitemap index 263 site + 916,208 company URLs in 20 files. The hourly
+deploy's IndexNow step accepted 102,521 new or updated URLs (916,471 in the
+sitemap) at 20:33:49Z; the manual run then found nothing further to submit. Every
+entity that meets the discovery rules is now in the live release; Google indexing
+is not yet measured and the owner resubmits the sitemap in Search Console.
