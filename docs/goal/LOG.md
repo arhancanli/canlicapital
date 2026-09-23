@@ -3835,3 +3835,15 @@ HTTP audit 827,563 pages, 0 failures. The proposal's estimate (438,816 candidate
 URLs for all 8,800 entities) compares with 260,481 added by the first 4,000:
 historical records carried more published concepts than the discount assumed. No
 upload, production or indexing change.
+
+## 2026-09-23 — v25 uploaded and verified on the hosted preview
+
+Storage transfer run 5 completed 26,210/26,210 with 0 failures and 0 rate-limit
+holds at concurrency 3 and 350 ms pacing (16,033 verified existing, 10,173 created
+and verified, 4 verified after a create error; 35 read retries, 9 write
+recoveries). Runs 1–4 stopped on HTTP 429 verification reads, a hold-escalation
+exhaustion and two HTTP 500 reads; each led to an uploader change (PRs #193, #196,
+#199) and all receipts are retained. Preview deployed from the activation branch
+at ff60d3b3 (dpl_5hjjqLtg8z4QjgDQu2brbD1uUuPZ); clean hosted readiness 35/35
+including the filing index and a filing page for each sampled company; browser
+flow passed on 0000001750. PR195 marked ready.
