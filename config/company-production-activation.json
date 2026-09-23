@@ -1,17 +1,17 @@
 {
   "schema": "canli.company-production-activation.v1",
   "enabled": true,
-  "release_hash": "292f9b8e1e3566216037960e933d1b2c7fe686d30d39d085d14f7ac685b5768b",
+  "release_hash": "5141e69b93f9ca2160458adcd7e8a08e3fba226278ee4f1cdd06e6920edc389a",
   "catalog_base_url": "https://bpnensyowfmdwhqmfdrg.supabase.co/storage/v1/object/public/company-reference-staging/catalog/",
   "delivery_base_url": "https://bpnensyowfmdwhqmfdrg.supabase.co/storage/v1/object/public/company-reference-staging/delivery/",
   "admission": {
-    "path": "config/company-admission-v25.json",
-    "sha256": "56ae90ebf35e000d104aaff098e9544f38aeb1949f5bbf29326c80055bce3274"
+    "path": "config/company-admission-v26.json",
+    "sha256": "5af3b2d2da338b8050cae29a9740ff2b44bfdade3f8ad44b2bffbacb3e04c851"
   },
   "approval": {
     "date": "2026-09-23",
     "by": "owner",
-    "scope": "v25 = expanded concepts (policy extended-v23) and the filing page family, clean-set rules with the flag decision of 2026-09-22 (option C): 556,677 admitted URLs (6,376 overviews, 287,075 histories of which 48,519 carry a stated-condition notice, 128 directory pages, 6,372 filing indexes, 256,726 filing pages); 9,014 histories with other flags and 15 companies with pending accounting-scope review (with their 631 filing pages) stay noindex",
-    "basis": "Owner's standing full permission of 2026-09-21, the clean-set rule chosen for v22, the concept expansion (PR #180), the filing family (PRs #184\u2013#189) and the flag decision of 2026-09-22; v25 verified by scripts/verify-v25-runtime.mjs and the local HTTP audit of every page; storage transfer 26,210/26,210 verified in run 5 with the rate-limit and server-error handling of PRs #193, #196 and #199 (company-nine-cohort-storage-transfer-v25-20260923.json.gz); clean hosted readiness 35/35 with the filing sample on deployment dpl_5hjjqLtg8z4QjgDQu2brbD1uUuPZ (company-v25-clean-hosted-readiness-run1-20260922.json); browser flow passed (company-v25-clean-hosted-browser-20260922.json)."
+    "scope": "v26 = v25 plus the historical filers family (slices 01\u201304 of the historical bulk discovery, 4,120 historical filers with the company-level notice), clean-set rules with the flag decision of 2026-09-22 (option C): 813,892 admitted URLs (10,186 overviews, 444,896 histories of which 206,340 carry a stated-condition notice, 205 directory pages, 10,182 filing indexes, 348,423 filing pages); 12,280 histories with other flags and 15 companies with pending accounting-scope review (with their 631 filing pages) stay noindex",
+    "basis": "Owner's go of 2026-09-22 on HISTORICAL_FILERS_PROPOSAL.md under the clean-set rule, the flag decision of 2026-09-22 and the filing family; v26 verified by scripts/verify-v26-runtime.mjs and the local HTTP audit of every page; storage transfer, hosted readiness with the filing sample and browser receipts required before merge."
   }
 }
