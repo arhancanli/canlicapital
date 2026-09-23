@@ -3847,3 +3847,15 @@ exhaustion and two HTTP 500 reads; each led to an uploader change (PRs #193, #19
 at ff60d3b3 (dpl_5hjjqLtg8z4QjgDQu2brbD1uUuPZ); clean hosted readiness 35/35
 including the filing index and a filing page for each sampled company; browser
 flow passed on 0000001750. PR195 marked ready.
+
+## 2026-09-23 — v25 released to production
+
+PR195 merged as 8995e8f0 with all checks passing; the production checkout moved to
+8995e8f0 and the hourly deploy published it at about 02:30:35Z. Live checks passed
+(10 checks, slowest 3,846 ms): admitted and noticed histories, filing indexes and
+filing pages indexable with self-canonicals; withheld histories, pending-review
+companies, their filing pages and downloads noindex; unknown company 404; sitemap
+index 263 site + 556,677 company URLs in 13 files. IndexNow accepted 401,034 new
+or updated URLs (556,940 in the sitemap). Google indexing is not yet measured; the
+owner resubmits the sitemap in Search Console. The v26 upload started 02:10Z
+behind it.
