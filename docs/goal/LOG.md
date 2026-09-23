@@ -3907,3 +3907,19 @@ an eight-concept floor (121,452 at four), no quarterly observations in the
 selected data, no new capture needed. Candidate set with both: 1,041,982.
 NEXT_FAMILIES_PROPOSAL.md written for the owner decision. No admission, upload or
 indexing change.
+
+## 2026-09-23 — company template polish after a design review
+
+A structured design review of the live company pages (eight pages, two viewports,
+computed-style measurements) ranked 21 defects; the five high ones were a separate
+type and colour system from the rest of the site, phone tables clipping their
+value columns with no affordance, a stalled scroll-drawn section rule doubled by a
+static border, the decorative grid bleeding through table cells, and a 163 px dead
+band above the content. The template now uses the reading-surface tokens shared
+with the research pages, sticky first columns with an overflow fade at phone
+width, right-aligned numbers, a muted hyphen for instants, a compact historical-filer
+note, and dates that never break at their hyphens; the shared motion script draws
+rules at once for chapters already in view. Record: DESIGN_REVIEW_2026-09-23.md.
+Company tests 204/204 after regenerating the static pilot pages; verified on the
+local preview server against the v27 inputs. No admission, upload or indexing
+change; the change goes live with the next deploy of main.

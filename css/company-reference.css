@@ -1,27 +1,95 @@
-.company-reference { max-width: 1120px; margin: 0 auto; padding: 150px 28px 80px; color: var(--ink); font-family: var(--body); }
-.company-reference h1 { max-width: 22ch; font-family: var(--display); font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: 1.08; letter-spacing: -.04em; margin: 22px 0; overflow-wrap: anywhere; }
-.company-reference__intro { font-size: 1.2rem; max-width: 65ch; color: var(--paper-tone); }
-.company-reference section { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
-.company-reference p { max-width: 78ch; line-height: 1.75; }
-.company-reference p code { overflow-wrap: anywhere; }
-.company-reference a { color: var(--oxide); text-underline-offset: .2em; }
-.company-reference :focus-visible { outline: 3px solid var(--signal-blue); outline-offset: 5px; }
-.company-reference__table { overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); }
-.company-reference table { width: 100%; border-collapse: collapse; font-size: .86rem; }
-.company-reference th, .company-reference td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.company-reference td { font-variant-numeric: tabular-nums; white-space: nowrap; }
-.company-reference tbody th { min-width: 150px; font-weight: 500; }
-.company-reference thead { background: var(--void-raised); }
-.company-reference caption { text-align: left; padding: 16px; color: var(--paper-tone); }
-.company-reference dt { margin-top: 16px; font-size: .8rem; text-transform: uppercase; color: var(--muted); }
-.company-reference dd { margin: 6px 0; }
-.company-reference__hash { overflow-wrap: anywhere; font-size: .8rem; }
-.company-reference pre { overflow-x: auto; padding: 20px; background: var(--void-raised); border: 1px solid var(--line); font-size: .85rem; line-height: 1.7; }
-.company-reference summary { cursor: pointer; padding: 14px 0; }
-.company-reference__directory { list-style: none; padding: 0; }
-.company-reference__directory li { padding: 22px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; }
-.company-reference__directory span { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
-@media(max-width: 650px) { .company-reference { padding: 112px 20px 56px; } .company-reference__directory li { flex-direction: column; } }
+/* Company reference pages read on the same surface as the research papers and
+   hub pages (reader-experience.css): neutral paper, one ink, one link blue,
+   Inter for text and Chakra Petch for headings. paper.css supplies the document
+   shell; this file puts the company template on the shared tokens. */
+@font-face { font-family: "Inter"; src: url("/fonts/inter/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Chakra Petch"; src: url("/fonts/chakra-petch/ChakraPetch-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+html[data-page="companies"] body.paper { background: #f4f4f4; background-image: none; color: #111; --void: #f4f4f4; --void-raised: #fff; --ink: #111; --paper-tone: #343b46; --muted: #58616b; --faint: #58616b; --line: #c3c8d2; --line-strong: #87909e; --oxide: #0016cb; --signal-blue: #0016cb; --body: "Inter", "Inter Fallback", system-ui, -apple-system, sans-serif; --display: "Chakra Petch", sans-serif; --mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace; font-size: 16px; line-height: 1.6; }
 
-.company-reference__breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; font-size: .8rem; color: var(--muted); }
-.company-reference__breadcrumbs li + li::before { content: "/"; margin-right: 8px; }
+.company-reference { max-width: 1120px; margin: 0 auto; padding: 56px 28px 80px; color: var(--ink); font-family: var(--body); }
+.company-reference a { color: var(--oxide); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.company-reference__breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; font: 500 12px/1.6 var(--mono); letter-spacing: .02em; color: var(--muted); }
+.company-reference__breadcrumbs li + li::before { content: "/"; margin-right: 8px; color: var(--faint); }
+.company-reference__breadcrumbs a { color: var(--muted); text-decoration: none; }
+.company-reference__breadcrumbs a:hover, .company-reference__breadcrumbs a:focus-visible { color: var(--oxide); text-decoration: underline; }
+.company-reference__breadcrumbs [aria-current] { display: inline-block; color: var(--ink); }
+.company-reference__breadcrumbs [aria-current]::first-letter { text-transform: uppercase; }
+html[data-page="companies"] .company-reference h1 { max-width: 24ch; margin: 18px 0 20px; font: 500 clamp(2rem, 3.8vw, 3.5rem)/1.1 var(--display); letter-spacing: -.03em; text-wrap: balance; overflow-wrap: anywhere; }
+.company-reference__intro { max-width: 62ch; margin: 0 0 8px; font-size: 1.125rem; line-height: 1.65; color: var(--paper-tone); }
+html[data-page="companies"] .company-reference h2 { margin: 0 0 14px; font: 500 clamp(1.4rem, 2.2vw, 1.9rem)/1.25 var(--display); letter-spacing: -.02em; text-wrap: balance; }
+html[data-page="companies"] .company-reference h3 { margin: 28px 0 10px; font: 500 1.15rem/1.3 var(--display); letter-spacing: -.01em; }
+.company-reference section { margin-top: 44px; padding-top: 26px; border-top: 1px solid var(--line); }
+.company-reference section section { margin-top: 28px; padding-top: 0; border-top: 0; }
+/* The shared motion script draws its own rule on each top-level chapter; the static border would double it. */
+.company-reference section[data-optical-chapter] { border-top-color: transparent; }
+.company-reference p, .company-reference li { max-width: 70ch; line-height: 1.7; }
+.company-reference p { margin: 0 0 16px; }
+.company-reference code, .company-reference pre { font-family: var(--mono); }
+.company-reference p code { font-size: .92em; overflow-wrap: anywhere; }
+.company-reference time, .company-reference__nobreak { white-space: nowrap; }
+.company-reference :focus-visible { outline: 2px solid #5972ff; outline-offset: 4px; }
+
+/* Tables: a white surface, quiet headers, numbers on the right, links without underlines until pointed at. */
+.company-reference__table { position: relative; margin: 20px 0 8px; border: 1px solid var(--line); background: var(--void-raised); overflow-x: auto; }
+.company-reference__table:has(> .cc-table-scroll) { overflow: visible; }
+.company-reference__table:has(> .cc-table-scroll[role="region"])::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 32px; background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 85%); pointer-events: none; }
+.company-reference table { width: 100%; border-collapse: collapse; font-size: .875rem; line-height: 1.45; }
+.company-reference caption { padding: 14px 16px; text-align: left; font-size: .8125rem; color: var(--muted); border-bottom: 1px solid var(--line); }
+.company-reference th, .company-reference td { padding: 11px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.company-reference thead th { font-size: .75rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); background: var(--void-raised); }
+.company-reference tbody tr:last-child :is(th, td) { border-bottom: 0; }
+.company-reference tbody th { min-width: 150px; max-width: 34ch; font-weight: 500; }
+.company-reference td { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.company-reference .company-reference__num { text-align: right; }
+.company-reference__na { color: var(--faint); }
+.company-reference table a { text-decoration: none; }
+.company-reference table a:hover, .company-reference table a:focus-visible { text-decoration: underline; }
+.company-reference__table--filing table { table-layout: fixed; }
+.company-reference__table--filing th:nth-child(1) { width: 40%; }
+.company-reference__table--filing th:nth-child(2) { width: 28%; }
+.company-reference__table--filing th:nth-child(3) { width: 16%; }
+.company-reference__table--filing th:nth-child(4) { width: 16%; }
+
+/* Provenance, notes, code. */
+.company-reference dl { margin: 0 0 16px; }
+.company-reference dt { margin-top: 14px; font: 500 11px/1.6 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.company-reference dd { margin: 4px 0 0; }
+.company-reference__hash { font-size: .8rem; overflow-wrap: anywhere; }
+.company-reference pre { overflow-x: auto; margin: 0; padding: 18px 20px; border: 1px solid var(--line); background: var(--void-raised); font-size: .85rem; line-height: 1.65; }
+.company-reference details { margin: 12px 0; }
+.company-reference summary { cursor: pointer; padding: 12px 0; list-style: none; font-weight: 500; }
+.company-reference summary::-webkit-details-marker { display: none; }
+.company-reference summary::before { content: "+"; display: inline-block; width: 1.2em; font-family: var(--mono); color: var(--oxide); }
+.company-reference details[open] > summary::before { content: "−"; }
+.company-reference__notice { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); }
+html[data-page="companies"] .company-reference__notice h2 { margin-bottom: 6px; font: 500 1.05rem/1.4 var(--display); }
+.company-reference__notice p { font-size: .95rem; color: var(--paper-tone); }
+.company-reference__related { columns: 3 16em; column-gap: 32px; padding-left: 1.1em; }
+.company-reference__related li { margin: 0 0 6px; break-inside: avoid; }
+.company-reference__unit-coverage li { margin-bottom: 6px; }
+
+/* Directory: one grid for every row so the CIK and last-filing columns line up. */
+.company-reference__directory { list-style: none; margin: 8px 0 24px; padding: 0; }
+.company-reference__directory li { display: grid; grid-template-columns: minmax(0, 1fr) 15ch 20ch; gap: 16px; align-items: baseline; padding: 16px 0; border-top: 1px solid var(--line); }
+.company-reference__directory li:last-child { border-bottom: 1px solid var(--line); }
+.company-reference__directory a { font-weight: 500; text-decoration: none; }
+.company-reference__directory a:hover, .company-reference__directory a:focus-visible { text-decoration: underline; }
+.company-reference__directory span { font: 12px/1.6 var(--mono); color: var(--muted); white-space: nowrap; }
+.company-reference section nav { margin: 20px 0 0; font: 500 13px/1.9 var(--mono); color: var(--muted); }
+.company-reference section nav p { margin: 0 0 2px; font: 500 11px/1.6 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.company-reference section nav a { text-decoration: none; }
+.company-reference section nav a:hover, .company-reference section nav a:focus-visible { text-decoration: underline; }
+.company-reference section nav [aria-current] { color: var(--ink); }
+
+@media (max-width: 650px) {
+  .company-reference { padding: 32px 16px 56px; }
+  html[data-page="companies"] .company-reference h1 { font-size: clamp(1.7rem, 8vw, 2.2rem); }
+  .company-reference__intro { font-size: 1.0625rem; }
+  .company-reference table { font-size: .8125rem; }
+  .company-reference th, .company-reference td { padding: 10px; }
+  .company-reference tbody th { position: sticky; left: 0; z-index: 1; min-width: 0; max-width: 42vw; background: var(--void-raised); box-shadow: 1px 0 0 var(--line); }
+  .company-reference thead th:first-child { position: sticky; left: 0; z-index: 2; box-shadow: 1px 0 0 var(--line); }
+  .company-reference__table--filing table { table-layout: auto; }
+  .company-reference__related { columns: 1; }
+  .company-reference__directory li { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
+}
