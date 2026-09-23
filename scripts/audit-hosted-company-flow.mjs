@@ -37,7 +37,9 @@ try {
     assert(await page.locator('h1').isVisible());
     assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://canlicapital.com' + path);
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
-    assert(await page.locator('main.company-reference').evaluate(e => parseFloat(getComputedStyle(e).paddingTop) >= 100));
+    // The company stylesheet applied: the template's own measure and top padding, which no
+    // browser default supplies. A design magnitude (the old 100 px floor) is not a contract.
+    assert(await page.locator('main.company-reference').evaluate(e => { const style = getComputedStyle(e); return style.maxWidth === '1120px' && parseFloat(style.paddingTop) >= 32; }));
     for (const href of ['/developers#quickstart', '/developers#ai-assistant', 'https://github.com/arhancanli/alphac']) {
       assert(await page.locator(`a[href="${href}"]`).count());
     }
