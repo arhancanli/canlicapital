@@ -1,0 +1,23 @@
+{
+  "schema": "canli.hosted-company-flow.v1",
+  "config": {
+    "origin": "https://meridian-kdpdlm754-arhans-projects-ac470eaa.vercel.app",
+    "deployment_id": "dpl_5AJRjTq47Y4QpPNALJunt4ifc7fV",
+    "source_commit": "074e1230b6bceee1ab6da2bd500847828708be0f",
+    "manifest_sha256": "e82eb7ca0f1a45e59a4750ba3e8d16d3a8892356040dc9d8601a7e0fc247dd56",
+    "cik": "0000001750",
+    "selected_path": "/company-data/0000001750.json"
+  },
+  "config_sha256": "318b966a0569e292e9d4029d80d8361f18a59980b1737f5d28e36812a3e65c72",
+  "code_sha256": "174201b7c57d21d751a743dfe991e60874d1dd48bb1982c7e623b9e94d4dfd2d",
+  "runner": "local",
+  "commit": null,
+  "complete": true,
+  "steps": [],
+  "request_failures": [],
+  "page_errors": [],
+  "scope": "One Chromium desktop navigation flow on the pinned noindex preview. No full-corpus, production or indexing claim.",
+  "browser_version": "151.0.7922.34",
+  "passed": false,
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(await page.locator('main.company-reference').evaluate(e => parseFloat(getComputedStyle(e).paddingTop) >= 100))\n"
+}
