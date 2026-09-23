@@ -177,10 +177,13 @@ served and every page reachable within 5 clicks of the directory; largest page
 105,551 bytes; median 3.3 ms
 (`company-nine-cohort-v25-http-measurement-20260922.json`).
 
-v24 is superseded by v25 before upload: v25 carries the v24 objects unchanged plus
-the filings objects, so one upload serves both. Order of operations: v23 upload
-(running) → v23 hosted checks → activate v23 (#178) → v25 upload → v25 hosted
-checks (filing sample) → browser audit → activate v25.
+Upload and hosted checks complete (September 23): storage transfer 26,210/26,210
+verified in run 5 (16,033 existing, 10,173 created, 4 verified after a create
+error, 0 failures, 0 rate-limit holds; runs 1–4 stopped on HTTP 429 and 500
+responses that the uploader now handles, all retained), clean hosted readiness
+35/35 with the filing sample on the noindex preview of the activation branch
+(dpl_5hjjqLtg8z4QjgDQu2brbD1uUuPZ), browser flow passed. PR195 pins release
+292f9b8e… and admission v25 (556,677 admitted URLs); merging it activates v25.
 
 ## v26 staged release (built September 22, 21:06Z; not uploaded, not live)
 
