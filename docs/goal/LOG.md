@@ -3881,3 +3881,18 @@ recoveries). Preview deployed from the activation branch at 2bc080fb
 (dpl_Duawhq2xUriVrA5m2CVq97uYTTfL); clean hosted readiness 35/35 including the
 filing index and a filing page for each sampled company; browser flow passed on
 0000001750. PR201 marked ready.
+
+## 2026-09-23 — v26 released to production
+
+PR201 merged as 042696fc with all checks passing; the production checkout moved to
+042696fc and the hourly deploy published it at about 13:33:42Z. Live checks passed
+(14 checks, slowest 36,558 ms): admitted and noticed histories, filing indexes and
+filing pages, and a historical filer's overview and filing index with the
+company-level notice indexable with self-canonicals; withheld histories,
+pending-review companies, their filing pages and downloads noindex; unknown
+company 404; sitemap index 263 site + 813,892 company URLs in 18 files. The hourly
+deploy's IndexNow step accepted 257,343 new or updated URLs (814,155 in the
+sitemap) at 13:35:11Z; the manual run then found nothing further to submit. This
+is the first live release above 800,000 admitted URLs; Google indexing is not yet
+measured and the owner resubmits the sitemap in Search Console. The v27 upload
+started 12:35Z behind it.
