@@ -3847,3 +3847,27 @@ exhaustion and two HTTP 500 reads; each led to an uploader change (PRs #193, #19
 at ff60d3b3 (dpl_5hjjqLtg8z4QjgDQu2brbD1uUuPZ); clean hosted readiness 35/35
 including the filing index and a filing page for each sampled company; browser
 flow passed on 0000001750. PR195 marked ready.
+
+## 2026-09-23 — v25 released to production
+
+PR195 merged as 8995e8f0 with all checks passing; the production checkout moved to
+8995e8f0 and the hourly deploy published it at about 02:30:35Z. Live checks passed
+(10 checks, slowest 3,846 ms): admitted and noticed histories, filing indexes and
+filing pages indexable with self-canonicals; withheld histories, pending-review
+companies, their filing pages and downloads noindex; unknown company 404; sitemap
+index 263 site + 556,677 company URLs in 13 files. IndexNow accepted 401,034 new
+or updated URLs (556,940 in the sitemap). Google indexing is not yet measured; the
+owner resubmits the sitemap in Search Console. The v26 upload started 02:10Z
+behind it.
+
+## 2026-09-23 — v27 staged: the remaining historical filers
+
+Slices 05–09 of the historical discovery (4,800 entities with 4–40 published
+concepts) captured 02:38–03:04Z (five parallel runs, 0 HTTP errors, 0 not-found),
+reviewed (2,552 candidates, 2248 coverage exclusions), staged under extended-v23
+and combined with the thirteen v26 cohorts. Release 389ae2ca…: 12,753 companies,
+513,902 histories, 392,522 filing pages, 932,163 candidate URLs, 52,141 objects
+(10,771 new). verify-v27-runtime passed. Admission v27: 916,208 indexable (260,052
+histories with notices), 15,940 withheld. Local HTTP audit 932,163 pages, 0
+failures. The whole family (8,800 entities) added 365,081 candidate URLs against
+the proposal's estimate of 438,816. No upload, production or indexing change.

@@ -8,43 +8,44 @@ The previous STATUS is preserved at
 [history/STATUS-20260921-before-production-activation.md](history/STATUS-20260921-before-production-activation.md).
 Recorded states are not live telemetry.
 
-## Latest verified transition: v23 live in production (September 22)
+## Latest verified transition: v25 live in production (September 23)
 
-PR178 merged as 7f8a451e after PR189 (filing family build), PR190 (flag-set
-admission rule) and PR191 (owner flag decision, option C). The production
-checkout moved to 7f8a451e and the owner ran the production deploy
-(meridian-ke0g00zxq aliased to canlicapital.com at about 17:36Z; build output
-"263 site + 156,714 admitted company URLs in 5 sitemap file(s)").
+PR195 merged as 8995e8f0 after the storage transfer (26,210/26,210, run 5), the
+clean hosted readiness with the filing sample (35/35) and the browser flow. The
+production checkout moved to 8995e8f0 and the scheduled hourly deploy published
+it at about 02:30:35Z on September 23 (12 company sitemap shards observed).
 
-Admission v23 (`config/company-admission-v23.json`, decision 2026-09-22):
+Admission v25 (`config/company-admission-v25.json`, decision 2026-09-22):
 
-- Indexable: 156,714 company URLs: 6,376 overviews, 150,210 histories
-  (23,838 of them admitted with a stated-condition notice under option C of
-  FLAGGED_HISTORY_REVIEW_PROPOSAL.md) and 128 directory pages.
-- Served noindex but reachable: 6,504 histories with other flag sets, plus all
-  pages of the 15 companies with a pending accounting-scope review (399 histories).
+- Indexable: 556,677 company URLs: 6,376 overviews, 287,075 histories
+  (48,519 admitted with a stated-condition notice under option C), 128
+  directory pages, 6,372 filing indexes and 256,726 filing pages.
+- Served noindex but reachable: 9,014 histories with other flag sets, plus all
+  pages of the 15 companies with a pending accounting-scope review (730
+  histories, 631 filing pages).
 - Downloads stay noindex.
 
-Verified live on canlicapital.com (September 22, `corpus-local/v23-live-checks.log`):
+Verified live on canlicapital.com (September 23, `corpus-local/v25-live-checks.log`):
 
-- An admitted history and a history admitted with a notice return 200 with no
-  X-Robots-Tag, meta `index, follow` and a self-canonical; the directory too.
-- A history withheld for another flag, a pending-review company and a download
-  return 200 with `X-Robots-Tag: noindex`. An unknown company returns 404 noindex.
-- `/sitemap.xml` is a sitemap index: `sitemap-site.xml` (263) and
-  sitemap-companies-1.xml (50,000), sitemap-companies-2.xml (50,000), sitemap-companies-3.xml (50,000), sitemap-companies-4.xml (6,714) = 156,977 URLs.
-- Slowest of the seven checks 1,589 ms end to end from the test machine.
-- IndexNow accepted 79,444 new or updated canonical URLs (delta against the
-  77,622-URL state); 156,977 in the sitemap.
+- An admitted history, a history admitted with a notice, a filing index and a
+  filing page return 200 with no X-Robots-Tag, meta `index, follow` and a
+  self-canonical; the directory too.
+- A history withheld for another flag, a pending-review company, its filing page
+  and a download return 200 with `X-Robots-Tag: noindex`. An unknown company
+  returns 404 noindex.
+- `/sitemap.xml` is a sitemap index: `sitemap-site.xml` (263) and 12 company
+  shards = 556,940 URLs (556,677 company URLs).
+- Slowest of the ten checks 3,846 ms end to end from the test machine.
+- IndexNow accepted 401,034 new or updated canonical URLs; 556,940 in the sitemap.
 
-The v22 transition record is preserved in LOG.md (2026-09-21).
+The v23 transition record is preserved in LOG.md (2026-09-22).
 
 ## Counts (keep separate)
 
-- Built candidate URLs: 567,082 (v25, staged).
-- Live indexable company URLs: 156,714.
-- Live sitemap URLs: 156,977.
-- Submitted to IndexNow: 156,977 cumulative (77,622 on September 21, 79,444 new or updated on September 22).
+- Built candidate URLs: 827,563 (v26, staged).
+- Live indexable company URLs: 556,677.
+- Live sitemap URLs: 556,940.
+- Submitted to IndexNow: 556,940 cumulative (77,622 on September 21, 79,444 on September 22, 401,034 new or updated on September 23).
 - Submitted to Google: sitemap resubmission pending (owner action in Search Console).
 - Confirmed indexed: 262 as of September 14; no new measurement yet.
 - Goal: 800,000 indexed, target 1,000,000.
@@ -227,16 +228,54 @@ Order of operations: v25 upload (running) → v25 hosted checks → activate v25
 → v26 upload (15,972 new objects) → v26 hosted checks → activate v26.
 Slices 05–09 (4,800 entities, 4–40 concepts) remain for v27.
 
+## v27 staged release (built September 23, 03:25Z; not uploaded, not live)
+
+The remaining historical filers (slices 05–09 of the same historical discovery:
+4,800 entities with 4–40 published concepts) were captured 02:38–03:04Z on
+September 23 in five parallel runs at one request per second: 0 HTTP errors, 0
+not-found. Review: fifteenth-1000 799 candidates / 201 excluded, sixteenth-1000
+689 candidates / 311 excluded, seventeenth-1000 511 candidates / 489 excluded,
+eighteenth-1000 321 candidates / 679 excluded, nineteenth-800 232 candidates / 568
+excluded; every exclusion is a coverage failure. Staged under extended-v23 and
+combined with the thirteen v26 cohorts.
+
+Release 389ae2ca…: 12,753 companies (10,201 carried from v26 byte for byte, 2,552
+added; 6,672 historical filers whose overview, filing index and directory entry
+state the last filing date), 513,902 histories, 392,522 filing pages across 12,730
+companies, 932,163 candidate URLs in 19 sitemap shards, 256 directory pages.
+Storage plan 52,141 objects (4.13 GB; 10,771 new against the v26 plan).
+`scripts/verify-v27-runtime.mjs` passed: every v26 company carried unchanged,
+every new company from a historical capture queue, every filings document
+re-derived from the delivered bytes, discovery equal to the derived set, plan
+bound to the release.
+
+Admission v26 (clean-set rules, filing pages follow their company, option C):
+916,208 indexable URLs (12,738 overviews, 498,608 histories of which 260,052 carry
+a stated-condition notice, 256 directories, 12,715 filing indexes, 391,891 filing
+pages); withheld: 14,564 histories with other flag sets and the same 15
+pending-review companies. File `config/company-admission-v27.json`, SHA-256
+873430b8…; sidecar `config/company-filing-admission-v27.json.gz`. This completes
+the historical filers family from the September 19 archive; it is not an indexed
+count.
+
+Local HTTP audit: 932,163 pages (12,753 overviews, 513,902 histories, 12,730
+filing indexes, 392,522 filing pages, 256 directories), 25,506 downloads, 0
+failures; every sitemap URL served and every page within 5 clicks of the
+directory; largest page 111,611 bytes; median 3.9 ms
+(`company-eighteen-cohort-v27-http-measurement-20260923.json`).
+
+Order of operations: v26 upload (running) → v26 hosted checks → activate v26 (#201)
+→ v27 upload (10,771 new objects) → v27 hosted checks → activate v27.
+
 ## Next actions
 
 1. Owner resubmits https://canlicapital.com/sitemap.xml in Search Console. Then
    measure crawl, index and exclusion counts by page family.
-2. Growth toward 800,000 indexed: v23 is live (156,714 indexable); v25 (556,677
-   indexable: expanded concepts, filing family, September 22 flag decision) is
-   uploading, then hosted checks and activation; v26 (historical filers, 813,892
-   indexable) is staged behind it; v27 takes the remaining 4,800 historical
-   entities; then the last flagged histories and further families. Indexed counts
-   are measured in Search Console after each activation.
+2. Growth toward 800,000 indexed: v25 is live (556,677 indexable); v26 (historical
+   filers, 813,892 indexable) is uploading, then hosted checks and activation; v27
+   (the remaining historical filers, 916,208 indexable) is staged behind it;
+   then the last flagged histories and further families. Indexed counts are
+   measured in Search Console after each activation.
 3. Developer adoption: publish MCP 0.2.0, keep releases substantive, measure stars
    and npm downloads weekly.
 4. Engine: merge PR73; the nightly publish regenerates the audits and the health
