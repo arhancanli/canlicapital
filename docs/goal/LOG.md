@@ -3871,3 +3871,13 @@ and combined with the thirteen v26 cohorts. Release 389ae2ca…: 12,753 companie
 histories with notices), 15,940 withheld. Local HTTP audit 932,163 pages, 0
 failures. The whole family (8,800 entities) added 365,081 candidate URLs against
 the proposal's estimate of 438,816. No upload, production or indexing change.
+
+## 2026-09-23 — v26 uploaded and verified on the hosted preview
+
+Storage transfer run 1 completed 41,806/41,806 with 0 failures and 0 rate-limit
+holds at concurrency 3 and 350 ms pacing (35,154 verified existing, 6,649 created
+and verified, 3 verified after a create error; 29 read retries, 6 write
+recoveries). Preview deployed from the activation branch at 2bc080fb
+(dpl_Duawhq2xUriVrA5m2CVq97uYTTfL); clean hosted readiness 35/35 including the
+filing index and a filing page for each sampled company; browser flow passed on
+0000001750. PR201 marked ready.
