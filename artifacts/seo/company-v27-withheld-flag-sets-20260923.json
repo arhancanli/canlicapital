@@ -1,0 +1,149 @@
+{
+  "schema": "canli.company-withheld-flag-sets.v1",
+  "release_hash": "389ae2ca9d8a7bd0b08a2ce8946f96accf8d06223ab100de6a65ee9765f7d5f7",
+  "quality_summary": "company-eighteen-cohort-selected-quality-v27-20260923.json",
+  "admission": "config/company-admission-v27.json",
+  "admitted_flag_sets": [
+    "historical_only",
+    "historical_only+multiple_units",
+    "multiple_units",
+    "multiple_units+partially_historical_units"
+  ],
+  "flag_sets": {
+    "historical_only": 248716,
+    "equal_numerical_vector": 7960,
+    "multiple_units": 6243,
+    "equal_numerical_vector+historical_only": 5877,
+    "historical_only+multiple_units": 4196,
+    "multiple_units+partially_historical_units": 1134,
+    "constant_per_unit+historical_only+zero_only": 328,
+    "equal_numerical_vector+multiple_units": 266,
+    "constant_per_unit+zero_only": 70,
+    "equal_numerical_vector+historical_only+multiple_units": 62,
+    "constant_per_unit+equal_numerical_vector+historical_only+zero_only": 27,
+    "constant_per_unit+historical_only": 22,
+    "constant_per_unit+equal_numerical_vector+zero_only": 6,
+    "constant_per_unit+equal_numerical_vector+historical_only": 6,
+    "equal_numerical_vector+multiple_units+partially_historical_units": 4,
+    "constant_per_unit+historical_only+multiple_units+zero_only": 1
+  },
+  "withheld_flag_sets": {
+    "equal_numerical_vector": 7960,
+    "equal_numerical_vector+historical_only": 5877,
+    "constant_per_unit+historical_only+zero_only": 328,
+    "equal_numerical_vector+multiple_units": 266,
+    "constant_per_unit+zero_only": 70,
+    "equal_numerical_vector+historical_only+multiple_units": 62,
+    "constant_per_unit+equal_numerical_vector+historical_only+zero_only": 27,
+    "constant_per_unit+historical_only": 22,
+    "constant_per_unit+equal_numerical_vector+zero_only": 6,
+    "constant_per_unit+equal_numerical_vector+historical_only": 6,
+    "equal_numerical_vector+multiple_units+partially_historical_units": 4,
+    "constant_per_unit+historical_only+multiple_units+zero_only": 1
+  },
+  "withheld_pages": 14629,
+  "withheld_pages_in_withheld_companies": 65,
+  "admission_histories_withheld_flagged": 14564,
+  "equal_vector": {
+    "groups": 7039,
+    "pages": 14208,
+    "group_sizes": {
+      "2": 6921,
+      "3": 106,
+      "4": 12
+    },
+    "rule": "same company; all selected kind/unit/start/end/value tuples equal (quality summary rule equal_vector)",
+    "representative_rule": "the member concept with the most histories across the release, ties by tag order",
+    "representatives_admissible": 6990,
+    "representatives_thin_withheld": 17,
+    "groups_in_withheld_companies": 32,
+    "members_pointing_canonical": 7115,
+    "top_pairs": [
+      {
+        "tags": [
+          "EarningsPerShareBasic",
+          "EarningsPerShareDiluted"
+        ],
+        "groups": 2552
+      },
+      {
+        "tags": [
+          "WeightedAverageNumberOfDilutedSharesOutstanding",
+          "WeightedAverageNumberOfSharesOutstandingBasic"
+        ],
+        "groups": 1780
+      },
+      {
+        "tags": [
+          "NetIncomeLoss",
+          "ProfitLoss"
+        ],
+        "groups": 550
+      },
+      {
+        "tags": [
+          "FiniteLivedIntangibleAssetsNet",
+          "IntangibleAssetsNetExcludingGoodwill"
+        ],
+        "groups": 436
+      },
+      {
+        "tags": [
+          "Liabilities",
+          "LiabilitiesCurrent"
+        ],
+        "groups": 275
+      },
+      {
+        "tags": [
+          "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+          "NetIncomeLoss"
+        ],
+        "groups": 179
+      },
+      {
+        "tags": [
+          "Assets",
+          "AssetsCurrent"
+        ],
+        "groups": 156
+      },
+      {
+        "tags": [
+          "NetIncomeLoss",
+          "NetIncomeLossAvailableToCommonStockholdersBasic"
+        ],
+        "groups": 124
+      },
+      {
+        "tags": [
+          "CurrentIncomeTaxExpenseBenefit",
+          "IncomeTaxExpenseBenefit"
+        ],
+        "groups": 124
+      },
+      {
+        "tags": [
+          "GeneralAndAdministrativeExpense",
+          "OperatingExpenses"
+        ],
+        "groups": 101
+      },
+      {
+        "tags": [
+          "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "Revenues"
+        ],
+        "groups": 75
+      },
+      {
+        "tags": [
+          "CashAndCashEquivalentsAtCarryingValue",
+          "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+        ],
+        "groups": 72
+      }
+    ]
+  },
+  "scope": "Counts over the v27 quality summary; not an admission, release or indexing change."
+}

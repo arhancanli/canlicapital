@@ -40,7 +40,10 @@ if (main && shell && !document.documentElement.dataset.opticalMotion) {
 
     for (const section of chapters) {
       const rule = section.querySelector(':scope > .cc-chapter-rule');
-      gsap.fromTo(rule, { scaleX: .08 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: section, start: 'top 90%', end: 'top 30%', scrub: .45 } });
+      // A chapter already in view when the page opens shows its full rule at
+      // once; a scrubbed draw there would stop part-way until the reader scrolls.
+      if (section.getBoundingClientRect().top < innerHeight * .9) gsap.set(rule, { scaleX: 1 });
+      else gsap.fromTo(rule, { scaleX: .08 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: section, start: 'top 90%', end: 'top 30%', scrub: .45 } });
       // Legacy hubs already own their heading/diagram timelines. Never double-
       // animate those targets. Documents and generated tools get a gentle lift.
       if (!home && !legacy) {

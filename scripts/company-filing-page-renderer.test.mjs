@@ -35,7 +35,7 @@ test('every filing page carries its facts, provenance, canonical and links, with
       assert.ok(page.html.includes(`href="/companies/${record.cik}/${concept.tag}"`), `${filing.accession} lacks history link for ${concept.tag}`);
       for (const fact of concept.facts) {
         const rendered = new Intl.NumberFormat('en-US', { maximumFractionDigits: 12 }).format(fact.val);
-        assert.ok(page.html.includes(`<td>${rendered}</td><td>${fact.unit}</td>`), `${filing.accession} ${concept.tag} ${fact.end} missing`);
+        assert.ok(page.html.includes(`<td class="company-reference__num">${rendered}</td><td>${fact.unit}</td>`), `${filing.accession} ${concept.tag} ${fact.end} missing`);
       }
     }
     assert.equal(page.html.includes('This is an amendment'), filing.amendment);
