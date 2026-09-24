@@ -73,10 +73,29 @@ async function callApi(session, { path, method = "GET", body }) {
   return { envelope, failed: res.status >= 400 || Boolean(envelope?.error) };
 }
 
+// Compact context (0.3.0): minified JSON. Indentation is whitespace an agent pays for in tokens and
+// never reads; every field, boundary sentence and provenance value is kept. Measured on the live
+// Apple StockholdersEquity record (README, "Compact context"): 2,214 -> 1,560 tokens minified,
+// 1,056 with the columnar history below.
 const asText = (envelope, failed = false) => ({
-  content: [{ type: "text", text: JSON.stringify(envelope, null, 2) }],
+  content: [{ type: "text", text: JSON.stringify(envelope) }],
   ...(failed ? { isError: true } : {}),
 });
+
+// A history's observations as one header and one row each, instead of every field name repeated
+// on every observation. The column order is fixed so a row can be read without its keys; a unit
+// shared by every row is stated once.
+export const OBSERVATION_COLUMNS = ["end", "val", "accn", "fy", "fp", "form", "filed", "unit"];
+
+export function columnarObservations(observations) {
+  const units = [...new Set(observations.map((o) => o.unit))];
+  const columns = units.length === 1 ? OBSERVATION_COLUMNS.filter((c) => c !== "unit") : OBSERVATION_COLUMNS;
+  return {
+    ...(units.length === 1 ? { unit: units[0] } : {}),
+    columns,
+    rows: observations.map((o) => columns.map((c) => o[c] ?? null)),
+  };
+}
 
 export async function toolGetKey(session, args) {
   const { label } = parseOrThrow(getKeyInput, args, "get_key");
@@ -199,7 +218,7 @@ export async function toolCompanyFinancialHistory(session, args) {
       units: [...new Set((history.observations ?? []).map((o) => o.unit))],
       total_observations: history.observations?.length ?? 0,
       returned: observations.length,
-      observations,
+      observations: columnarObservations(observations),
     },
   });
 }
