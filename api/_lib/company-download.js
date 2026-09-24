@@ -37,6 +37,10 @@ export function createCompanyDownloadHandler({ index, readDownload }) {
       res.setHeader('Content-Type', descriptor.path.endsWith('.gz') ? 'application/gzip' : 'application/json');
       res.setHeader('Content-Disposition', `attachment; filename="${descriptor.path.split('/').at(-1)}"`);
       res.setHeader('Content-Length', bytes.length); res.setHeader('ETag', `"${descriptor.sha256}"`);
+      // A verified object is fixed for its release, like an admitted company page: cache it at the edge
+      // for five minutes (measured 2026-09-24: 345 ms median server time uncached from iad1 vs 82 ms for an
+      // edge-cached glass-box file). Errors above stay no-store.
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=60');
       res.statusCode = 200; res.end(req.method === 'HEAD' ? undefined : bytes);
     } catch { return fail(503, 'Company source temporarily unavailable'); }
   };
