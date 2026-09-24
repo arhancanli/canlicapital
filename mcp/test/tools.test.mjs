@@ -17,6 +17,7 @@ import {
   toolValidateOverfitting,
   toolValidatePaperEvidence,
   toolCompanyFinancialHistory,
+  columnarObservations,
 } from "../src/server.mjs";
 import { COMPANY_REFERENCE_BOUNDARY } from "../src/schemas.mjs";
 
@@ -427,11 +428,14 @@ test("company_financial_history: overview lists histories with provenance and th
 test("company_financial_history: a concept returns observations newest first, limited, with units", async () => {
   const session = createSession({ base: "https://example.test", fetchImpl: companyFetch(200, COMPANY_RECORD) });
   const body = JSON.parse((await toolCompanyFinancialHistory(session, { cik: "0000320193", concept: "Assets", limit: 2 })).content[0].text);
-  assert.deepEqual(body.history.observations.map((o) => o.end), ["2025-09-27", "2024-09-28"]);
+  const { unit, columns, rows } = body.history.observations;
+  assert.equal(unit, "USD");
+  assert.deepEqual(columns, ["end", "val", "accn", "fy", "fp", "form", "filed"]);
+  assert.deepEqual(rows.map((r) => r[0]), ["2025-09-27", "2024-09-28"]);
   assert.equal(body.history.total_observations, 3);
   assert.equal(body.history.returned, 2);
   assert.deepEqual(body.history.units, ["USD"]);
-  assert.equal(body.history.observations[0].accn, "0000320193-25-000079");
+  assert.equal(rows[0][columns.indexOf("accn")], "0000320193-25-000079");
   assert.equal(body.page, "https://example.test/companies/0000320193/Assets");
 });
 
@@ -448,4 +452,24 @@ test("company_financial_history: unknown concept, missing company and foreign re
   const down = await toolCompanyFinancialHistory(createSession({ base: "https://example.test", fetchImpl: companyFetch(503, "unavailable") }), { cik: "320193" });
   assert.equal(down.isError, true);
   await assert.rejects(toolCompanyFinancialHistory(createSession({ base: "https://example.test", fetchImpl: companyFetch(200, COMPANY_RECORD) }), { cik: "AAPL" }), /CIK is 1 to 10 digits/);
+});
+
+test("compact context: results are minified JSON that keep every field", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: companyFetch(200, COMPANY_RECORD) });
+  const text = (await toolCompanyFinancialHistory(session, { cik: "320193", concept: "Assets" })).content[0].text;
+  assert.equal(text, JSON.stringify(JSON.parse(text)), "no indentation or spacing");
+  const body = JSON.parse(text);
+  assert.equal(body.claim_boundary, COMPANY_REFERENCE_BOUNDARY);
+  assert.equal(body.source.sec_response_sha256, "a".repeat(64));
+});
+
+test("compact context: rows rebuild every observation exactly, and mixed units keep a unit column", () => {
+  const observations = COMPANY_RECORD.concepts[0].observations;
+  const { unit, columns, rows } = columnarObservations(observations);
+  const rebuilt = rows.map((row) => ({ ...Object.fromEntries(columns.map((c, i) => [c, row[i]])), unit }));
+  assert.deepEqual(rebuilt, observations);
+  const mixed = columnarObservations([{ ...observations[0] }, { ...observations[1], unit: "shares" }]);
+  assert.equal(mixed.unit, undefined);
+  assert.equal(mixed.columns.at(-1), "unit");
+  assert.deepEqual(mixed.rows.map((r) => r.at(-1)), ["USD", "shares"]);
 });

@@ -21,6 +21,11 @@ via mcp-publisher 1.8.1 (release checksum verified) after the owner's GitHub dev
 (`artifacts/platform/mcp-registry-publication-20260922.json`). Do not repeat the publication
 commands for this version.
 
+Next release, not yet published: `canli-validation-mcp@0.3.0` (compact context: minified results
+and columnar company histories; a breaking change to `history.observations`). Publication needs
+the owner's npm second factor and GitHub device login, as for 0.2.0; until then 0.2.0 stays the
+latest published version.
+
 ## Official registry (registry.modelcontextprotocol.io)
 
 The manifest is `mcp/server.json`. Its top-level and npm package versions must match

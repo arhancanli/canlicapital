@@ -58,6 +58,29 @@ original SEC response and the record's own boundary sentence: these are accounti
 reported to the SEC, not market prices, returns or a recommendation. Companies and concepts
 outside the current release return an error with the available concepts listed.
 
+## Compact context (0.3.0)
+
+An agent pays for every token a tool returns, including whitespace it never reads. Since 0.3.0
+every result is minified JSON, and a company history returns its observations as one `columns`
+header and one row per observation, with a unit shared by every row stated once. No field is
+dropped: every boundary sentence, accession number, form, filed date and source hash is still in
+the result, and `columns` + `rows` rebuild each observation exactly.
+
+Measured with `bench/token_cost.py` on live records (tokenizer: tiktoken `o200k_base`; other
+tokenizers give different absolute counts), 20 observations each:
+
+| Record | 0.2.0 (indented) | minified | 0.3.0 (minified, columnar) |
+| --- | ---: | ---: | ---: |
+| Apple, StockholdersEquity | 2,214 | 1,560 (−29.5%) | 1,060 (−52.1%) |
+| Microsoft, CashAndCashEquivalentsAtCarryingValue | 2,231 | 1,574 (−29.4%) | 1,065 (−52.3%) |
+
+The validation tools gain the minification only: the live `service_status` envelope measured 593
+tokens indented and 475 minified (−19.9%); their boundary sentences are kept word for word. These
+are measurements of these results, not a claim about any other server.
+
+**Breaking change from 0.2.0:** `history.observations` is now `{unit?, columns, rows}` instead of
+an array of objects.
+
 ## Configuration
 
 | Variable | Default | Meaning |
