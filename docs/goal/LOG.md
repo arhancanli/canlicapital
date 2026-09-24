@@ -3933,3 +3933,43 @@ hand-authored pages were rewritten from the shell source by
 scripts/sync-product-shell.mjs and every generated page picks it up at build.
 Shell tests 7/7; writing audit clear. Every page of the site now links to the
 directory that reaches all admitted company pages.
+
+## 2026-09-23 — v27 uploaded and verified on the hosted preview
+
+Storage transfer run 1 completed 52,141/52,141 with 0 failures and 12 rate-limit
+holds absorbed at concurrency 3 and 350 ms pacing (41,370 verified existing,
+10,770 created and verified, 1 verified after a create error; 38 read retries, 6
+write recoveries). Preview deployed from the activation branch at 074e1230
+(dpl_5AJRjTq47Y4QpPNALJunt4ifc7fV); clean hosted readiness 35/35 including the
+filing index and a filing page for each sampled company; browser flow passed on
+0000001750 in run 2; run 1 had failed on the audit's own stylesheet guard, a 100
+px top-padding magnitude of the old template that the polish of PR #208 no longer
+meets, fixed in PR #213 to test the template's measure instead (run 1 report
+retained). PR205 marked ready.
+
+## 2026-09-23 — company template polish live
+
+The 17:25Z hourly deploy published main at e3c8d855 (deployment
+meridian-po6z9kx2x, ready about 17:29Z): the polished company template (PR208),
+the footer link to the company reference (PR209), the regenerated pilot pages
+(PR210) and the rebound source dates (PR211). The two 16:25Z attempts had errored
+on the missing date bindings and left the previous deployment serving; no outage.
+Verified live: the company overview serves the new stylesheet with the self-hosted
+Inter and Chakra Petch faces, right-aligned numeric cells, a hyphen for instants
+and the capture instant as a time element; the home footer's Evidence column links
+the company reference. IndexNow accepted 7 updated URLs (the re-dated
+hand-authored pages) and nothing else, as intended.
+
+## 2026-09-23 — v27 released to production
+
+PR205 merged as 3915e039 with all checks passing; the production checkout moved to
+3915e039 and the hourly deploy published it at about 20:33:23Z. Live checks passed
+(14 checks, slowest 36,125 ms): admitted and noticed histories, filing indexes and
+filing pages, and a historical filer's overview and filing index with the
+company-level notice indexable with self-canonicals; withheld histories,
+pending-review companies, their filing pages and downloads noindex; unknown
+company 404; sitemap index 263 site + 916,208 company URLs in 20 files. The hourly
+deploy's IndexNow step accepted 102,521 new or updated URLs (916,471 in the
+sitemap) at 20:33:49Z; the manual run then found nothing further to submit. Every
+entity that meets the discovery rules is now in the live release; Google indexing
+is not yet measured and the owner resubmits the sitemap in Search Console.
