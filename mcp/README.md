@@ -8,7 +8,8 @@ returns the full API envelope as its result text, success or error, so the agent
 number without the sentences beside it that say what the number does not establish.
 
 This package is published to npm as [`canli-validation-mcp`](https://www.npmjs.com/package/canli-validation-mcp).
-Run it with `npx`, no install step, as shown below. A local checkout is only needed to develop or
+Also listed on the official MCP Registry (`io.github.arhancanli/canli-validation-mcp`) and
+[cursor.directory](https://cursor.directory/plugins/canli-validation-mcp-1). Run it with `npx`, no install step, as shown below. A local checkout is only needed to develop or
 test this package itself; see "Local checkout" near the bottom.
 
 This README describes the version in `package.json`. Unversioned `npx` runs npm's latest
