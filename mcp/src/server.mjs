@@ -127,6 +127,15 @@ export function columnarObservations(observations) {
 
 export async function toolGetKey(session, args) {
   const { label } = parseOrThrow(getKeyInput, args, "get_key");
+  if (session.local) {
+    // Local mode computes the validators on this machine; issuing a key would be a network call
+    // the user turned local mode on to avoid, and would spend the per-client issuance quota.
+    return asText({
+      note: "Local mode is on: the validators run on this machine and need no key. No key was issued and no request was sent.",
+      key_source: "local",
+      key_present: false,
+    });
+  }
   if (session.hosted) {
     // The hosted endpoint is stateless: a key issued here would be gone by the next request, and
     // every hosted caller shares the platform's egress address and so its per-client issuance quota.

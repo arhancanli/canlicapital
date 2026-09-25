@@ -176,7 +176,7 @@ export const REGISTRY_DESCRIPTION_MAX = 100;
 // above) what the tool's result cannot be used to claim, so an agent sees this before it ever
 // calls the tool, not only inside the returned envelope.
 export const TOOL_DESCRIPTIONS = Object.freeze({
-  get_key: `Issue a free canlicapital.com validation key (POST /api/v1/keys) and hold it in memory for this session; skipped when CANLI_KEY is already set. ${LIMITS_SENTENCES.quotas}`,
+  get_key: `Issue a free canlicapital.com validation key (POST /api/v1/keys) and hold it in memory for this session. Only needed before a validation when neither CANLI_KEY nor local mode is set; the read tools (get_receipt, service_status, company_financial_history) never need a key. ${LIMITS_SENTENCES.quotas}`,
   validate_deflated_sharpe: `Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials and dispersion behind it, never both. ${LIMITS_SENTENCES.notAdmission}`,
   validate_overfitting: `Probability of backtest overfitting by CSCV over the returns of every variant tried. ${LIMITS_SENTENCES.notAdmission}`,
   validate_paper_evidence: `Conformance of a performance record against the canli.paper-evidence.v0 standard. ${LIMITS_SENTENCES.scope}`,
