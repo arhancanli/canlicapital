@@ -37,12 +37,21 @@ function parseOrThrow(schema, value, label) {
   throw new Error(`${label}: ${issues}`);
 }
 
+// An empty CANLI_KEY, or an unsubstituted template such as "${user_config.api_key}" (what a
+// desktop extension host passes for an optional field the user left unset), is no key at all, not
+// a key to send.
+export function configuredKey(value) {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  return trimmed === "" || /^\$\{[^}]*\}$/.test(trimmed) ? undefined : trimmed;
+}
+
 export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted } = {}) {
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs <= 0) throw new Error("Request timeout must be a positive integer");
   return {
     base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE,
     fetchImpl: fetchImpl ?? fetch,
-    envKey: envKey ?? process.env.CANLI_KEY ?? undefined,
+    envKey: envKey ?? configuredKey(process.env.CANLI_KEY),
     key: undefined,
     timeoutMs,
     // Set by the hosted endpoint (api/mcp.js): which key a request runs under, so get_key can say

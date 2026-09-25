@@ -473,3 +473,12 @@ test("compact context: rows rebuild every observation exactly, and mixed units k
   assert.equal(mixed.columns.at(-1), "unit");
   assert.deepEqual(mixed.rows.map((r) => r.at(-1)), ["USD", "shares"]);
 });
+
+test("an empty or unsubstituted CANLI_KEY is no key", async () => {
+  const { configuredKey } = await import("../src/server.mjs");
+  assert.equal(configuredKey(undefined), undefined);
+  assert.equal(configuredKey(""), undefined);
+  assert.equal(configuredKey("  "), undefined);
+  assert.equal(configuredKey("${user_config.api_key}"), undefined);
+  assert.equal(configuredKey("canli_realkey123"), "canli_realkey123");
+});

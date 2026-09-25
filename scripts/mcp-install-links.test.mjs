@@ -17,3 +17,10 @@ test("the VS Code command registers the hosted endpoint over HTTP", () => {
   const json = vscodeAddCommand().match(/^code --add-mcp '(.*)'$/)[1];
   assert.deepEqual(JSON.parse(json), { name: "canli-validation", type: "http", url: HOSTED_MCP_URL });
 });
+
+test("the Claude Desktop link serves the latest release's stable bundle name", async () => {
+  const { CLAUDE_DESKTOP_BUNDLE_URL } = await import("./lib/mcp-install-links.mjs");
+  const url = new URL(CLAUDE_DESKTOP_BUNDLE_URL);
+  assert.equal(url.host, "github.com");
+  assert.equal(url.pathname, "/arhancanli/canli-validation-mcp/releases/latest/download/canli-validation.mcpb");
+});
