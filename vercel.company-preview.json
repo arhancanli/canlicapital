@@ -278,6 +278,10 @@
       "destination": "/api/v1/company-reference?path=/company-data/:path*"
     },
     {
+      "source": "/mcp",
+      "destination": "/api/mcp"
+    },
+    {
       "source": "/api/v1/status",
       "destination": "/api/v1/status.json"
     },
@@ -314,6 +318,10 @@
     "api/v1/company-reference.js": {
       "includeFiles": "{dist/company-page-assets.json,config/company-production-activation.json,config/company-admission-v27.json}",
       "maxDuration": 60
+    },
+    "api/mcp.js": {
+      "includeFiles": "mcp/{package.json,src/**}",
+      "maxDuration": 30
     }
   }
 }
