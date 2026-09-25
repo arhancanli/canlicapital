@@ -61,7 +61,7 @@
     "url": "https://canlicapital.com/",
     "logo": "https://canlicapital.com/icon-512.png",
     "image": "https://canlicapital.com/og.png",
-    "description": "A quantitative research platform building ALPHAC: a paper-traded, cross-asset book of four sleeves spanning equity momentum, managed-futures trend, funding carry and point-in-time macro surprise. Methods, failures and corrections are published in the open. The published strategy record includes no funded performance.",
+    "description": "A quantitative research platform building ALPHAC: a paper-traded, cross-asset book of three sleeves spanning equity momentum, managed-futures trend and point-in-time macro surprise; the crypto funding-carry sleeve is suspended from the book since 2026-09-24. Methods, failures and corrections are published in the open. The published strategy record includes no funded performance.",
     "foundingDate": "2024-07",
     "founder": { "@type": "Person", "name": "Arhan Canli" },
     "slogan": "Institutional discipline, made legible.",
@@ -589,7 +589,7 @@
       </p>
 
       <p class="standing__body body reveal-fade">
-        The paper book combines four sleeves at equal quarters plus a separately
+        The paper book combines three sleeves at equal thirds plus a separately
         disclosed strategic overlay. Their measured diversification is useful but
         smaller than we first claimed. Only a long, continuous, broker-reconciled
         forward record can turn that construction into evidence.
@@ -625,14 +625,14 @@
           <span class="mask" data-chars><span class="mask__inner">are holding, right now.</span></span>
         </h2>
         <p class="perf-chapter__lead body reveal-fade">
-          The house runs four sleeves: AlphaForge (crypto funding carry), AlphaMax
-          (US-equity 12-1 momentum), AlphaTrend (managed-futures trend) and
-          AlphaVintage (point-in-time macro surprise), combined into ALPHAC at equal
-          quarters. None clears multiple-testing deflation at the current 228-identity
-          research count. The 0.3 to 0.9 forward Sharpe band is a governing expectation,
-          not a measured achievement; the forward record is too short to estimate it.
-          Below are the current paper positions read from each dedicated Alpaca account,
-          plus AlphaForge's separately labelled local PaperBroker book.
+          The book runs three sleeves: AlphaMax (US-equity 12-1 momentum), AlphaTrend
+          (managed-futures trend) and AlphaVintage (point-in-time macro surprise),
+          combined into ALPHAC at equal thirds. AlphaForge (crypto funding carry) is
+          suspended from the book since 2026-09-24 and is not shown until it is repaired
+          and re-admitted. None clears multiple-testing deflation at the current research
+          identity count, and the forward record is too short to estimate a forward
+          Sharpe. Below are the current paper positions read from each dedicated Alpaca
+          account.
         </p>
         <p class="book__forward mono-label reveal-fade">
           Honest forward Sharpe <span class="signal-word" data-book="forward-sharpe">not loaded</span>
@@ -687,7 +687,7 @@
         </p>
       </div>
 
-      <!-- ALPHAC: the flagship is FOUR sleeves at equal quarters, plus a disclosed
+      <!-- ALPHAC: the flagship is THREE sleeves at equal thirds (v4, AlphaForge suspended), plus a disclosed
            +10% strategic net-long overlay. The composition + tilt are read live
            from state.book by js/holdings.js (renderAlphac).
            Corrected 2026-08-12: this block said "THREE sleeves at fixed 40/40/20"
@@ -699,7 +699,7 @@
       <div class="book-block book-block--flagship" id="bookAlphac">
         <div class="book-block__head">
           <span class="book-block__name">ALPHAC <span class="book-block__badge mono-label">Flagship</span></span>
-          <span class="book-block__asset mono-label">Cross-asset book, four sleeves at equal quarters plus a disclosed strategic overlay</span>
+          <span class="book-block__asset mono-label">Cross-asset book, three sleeves at equal thirds plus a disclosed strategic overlay</span>
         </div>
         <p class="book-carry body">
           The book combines <span class="book-carry__fig mono-data" data-book="carry"></span>.
