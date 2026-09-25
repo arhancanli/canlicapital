@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- `validate_track_record`: the minimum track record length for an observed Sharpe to clear a
+  benchmark at a confidence level, and the probabilistic Sharpe of a record of a given length
+  (`POST /api/v1/validate/track-record`), from Bailey and López de Prado (2012) and checked against
+  that paper's worked examples.
+
 ## 0.3.1 (2026-09-25)
 
 - Tool annotations on every tool: a title, `readOnlyHint` (true for `get_receipt`,

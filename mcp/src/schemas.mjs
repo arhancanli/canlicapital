@@ -93,6 +93,22 @@ export const breadthInput = z
   .strict();
 
 // ---------------------------------------------------------------------------------------------
+// validate_track_record
+// ---------------------------------------------------------------------------------------------
+
+export const trackRecordInput = z
+  .object({
+    observed_sharpe_annualized: z.number().min(-10).max(10),
+    periods_per_year: z.number().min(1).max(10000),
+    skew: z.number().min(-20).max(20),
+    non_excess_kurtosis: z.number().min(1).max(100),
+    benchmark_sharpe_annualized: z.number().min(-10).max(10).optional(),
+    confidence: z.number().gt(0).lt(1).optional(),
+    observations: z.number().int().min(2).max(1000000).optional(),
+  })
+  .strict();
+
+// ---------------------------------------------------------------------------------------------
 // get_key / get_receipt
 // ---------------------------------------------------------------------------------------------
 
@@ -151,6 +167,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   validate_deflated_sharpe: `Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials and dispersion behind it, never both. ${LIMITS_SENTENCES.notAdmission}`,
   validate_overfitting: `Probability of backtest overfitting by CSCV over the returns of every variant tried. ${LIMITS_SENTENCES.notAdmission}`,
   validate_paper_evidence: `Conformance of a performance record against the canli.paper-evidence.v0 standard. ${LIMITS_SENTENCES.scope}`,
+  validate_track_record: `Minimum track record length for an observed Sharpe to clear a benchmark Sharpe (default 0) at a confidence level (default 0.95), and, when observations is sent, the probabilistic Sharpe of that record against the benchmark. ${LIMITS_SENTENCES.notAdmission}`,
   validate_breadth: `Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,
   get_receipt: `Fetch a stored verdict by its content-hash id (GET /api/v1/receipts/{id}), immutable and cacheable. ${LIMITS_SENTENCES.unsigned}`,
   service_status: `Service, store and quota constants for the validation API (GET /api/v1/validate/status); no key required. ${LIMITS_SENTENCES.scope}`,

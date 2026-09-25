@@ -13,6 +13,7 @@ import {
   toolGetReceipt,
   toolServiceStatus,
   toolValidateBreadth,
+  toolValidateTrackRecord,
   toolValidateDeflatedSharpe,
   toolValidateOverfitting,
   toolValidatePaperEvidence,
@@ -284,6 +285,38 @@ test("validate_paper_evidence: quota 429 passthrough", async () => {
   const result = await toolValidatePaperEvidence(session, PAPER_EVIDENCE_INPUT);
 
   assert.deepEqual(parsedText(result), body);
+});
+
+// ---------------------------------------------------------------------------------------------
+// validate_track_record
+// ---------------------------------------------------------------------------------------------
+
+const TRACK_RECORD_INPUT = { observed_sharpe_annualized: 2, benchmark_sharpe_annualized: 1, periods_per_year: 252, skew: 0, non_excess_kurtosis: 3, observations: 504 };
+
+test("validate_track_record: success envelope passthrough to the track-record route", async () => {
+  const body = envelope({ endpoint: "validate/track-record", data: { result: { minimum_observations: 689 } } });
+  const calls = [];
+  const fetchImpl = async (url, init) => { calls.push({ url: String(url), body: init?.body }); return new Response(JSON.stringify(body), { status: 200 }); };
+  const session = createSession({ base: "https://example.test", fetchImpl, envKey: "ck_live_env" });
+  const result = await toolValidateTrackRecord(session, TRACK_RECORD_INPUT);
+  assert.deepEqual(parsedText(result), body);
+  assert.equal(calls[0].url, "https://example.test/api/v1/validate/track-record");
+  assert.deepEqual(JSON.parse(calls[0].body), TRACK_RECORD_INPUT);
+});
+
+test("validate_track_record: error envelope passthrough", async () => {
+  const body = envelope({ endpoint: "validate/track-record", error: { code: "invalid_input", message: "The observed Sharpe must exceed the benchmark" } });
+  const fetchImpl = fakeFetch([{ status: 422, body }]);
+  const session = createSession({ base: "https://example.test", fetchImpl, envKey: "ck_live_env" });
+  const result = await toolValidateTrackRecord(session, TRACK_RECORD_INPUT);
+  assert.deepEqual(parsedText(result), body);
+});
+
+test("validate_track_record: rejects an unknown field before any request", async () => {
+  let called = false;
+  const session = createSession({ base: "https://example.test", fetchImpl: async () => { called = true; }, envKey: "ck_live_env" });
+  await assert.rejects(toolValidateTrackRecord(session, { ...TRACK_RECORD_INPUT, surprise: 1 }), /validate_track_record/);
+  assert.equal(called, false);
 });
 
 // ---------------------------------------------------------------------------------------------

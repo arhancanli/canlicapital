@@ -21,6 +21,7 @@ const SHORT_LABEL = Object.freeze({
   "validate/overfitting": "PBO",
   "validate/paper-evidence": "Paper Evidence",
   "validate/breadth": "Breadth",
+  "validate/track-record": "Track Record",
 });
 
 function shortLabel(endpoint) {
@@ -42,6 +43,10 @@ function limitsFact(endpoint, output) {
   if (endpoint === "validate/breadth") {
     const n = output?.book?.sleeves;
     return Number.isFinite(n) ? `sleeve count ${n}` : "no sleeve count in this receipt";
+  }
+  if (endpoint === "validate/track-record") {
+    const n = output?.result?.record?.observations;
+    return Number.isFinite(n) ? `sample size ${n} observations` : "no record length in this receipt";
   }
   if (endpoint === "validate/paper-evidence") {
     const n = (output?.structural?.length ?? 0) + (output?.semantic?.length ?? 0);

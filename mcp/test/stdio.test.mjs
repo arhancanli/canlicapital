@@ -75,6 +75,7 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
     "validate_deflated_sharpe",
     "validate_overfitting",
     "validate_paper_evidence",
+    "validate_track_record",
   ]);
   for (const tool of tools) {
     assert.ok(tool.description && tool.description.length > 0, `${tool.name} has no description`);
