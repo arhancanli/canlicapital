@@ -6,6 +6,7 @@ import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { LOCAL_FILES } from "../scripts/sync-local.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const temporary = mkdtempSync(join(tmpdir(), 'canli-mcp-package-'));
@@ -14,7 +15,8 @@ try {
   const [packed] = JSON.parse(execFileSync('npm', ['pack', '--ignore-scripts', '--json', '--pack-destination', temporary], { cwd: root, encoding: 'utf8' }));
   assert.equal(packed.name, pkg.name);
   assert.equal(packed.version, pkg.version);
-  assert.deepEqual(packed.files.map(file => file.path).sort(), ['LICENSE', 'README.md', 'package.json', 'src/schemas.mjs', 'src/server.mjs']);
+  const expected = ['LICENSE', 'README.md', 'package.json', 'src/schemas.mjs', 'src/server.mjs', 'src/local.mjs', ...LOCAL_FILES.map((f) => `src/local/${f}`)].sort();
+  assert.deepEqual(packed.files.map(file => file.path).sort(), expected);
   assert.ok(packed.files.find(file => file.path === 'src/server.mjs').mode & 0o111, 'server entry must be executable');
   const install = join(temporary, 'consumer with spaces');
   execFileSync('npm', ['install', '--prefix', install, '--ignore-scripts', '--no-audit', '--no-fund', join(temporary, packed.filename)], { stdio: 'pipe' });

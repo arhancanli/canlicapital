@@ -22,6 +22,13 @@ The published package contains `LICENSE`, `README.md`, `package.json` and `src/`
 `test/package-smoke.mjs` fails if anything else is packed. Dependencies are pinned to exact
 versions with a lockfile.
 
+## Private local mode
+
+With `CANLI_LOCAL=1` the validators compute on your machine from `src/local`, a byte-for-byte copy of
+the API's computation. The series you submit is not sent anywhere and no receipt is stored. The read
+tools (`get_receipt`, `service_status`, `company_financial_history`) still call canlicapital.com and
+send no series.
+
 ## The hosted endpoint
 
 `https://canlicapital.com/mcp` runs the same tools and is stateless. When you send

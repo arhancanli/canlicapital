@@ -26,5 +26,6 @@ export const MCP_LISTINGS = Object.freeze([
   { label: "npm", href: "https://www.npmjs.com/package/canli-validation-mcp" },
   { label: "MCP Registry", href: "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" },
   { label: "cursor.directory", href: "https://cursor.directory/plugins/canli-validation-mcp-1" },
+  { label: "Glama", href: "https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp" },
   { label: "Source", href: "https://github.com/arhancanli/canli-validation-mcp" },
 ]);

@@ -12,8 +12,10 @@ import { MANIFEST } from "../api/_lib/manifest.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const BOUND = [
-  "js/dsr-core.js", "js/moments-core.js", "js/pbo-core.js", "js/breadth-core.js",
-  "js/paper-evidence-core.js", "standards/paper-evidence/schema.json",
+  "js/dsr-core.js", "js/moments-core.js", "js/pbo-core.js", "js/selection-risk-core.js", "js/breadth-core.js",
+  "js/paper-evidence-core.js", "standards/paper-evidence/schema.json", "api/_lib/limits.js",
+  "js/validate/deflated-sharpe.js", "js/validate/overfitting.js", "js/validate/paper-evidence.js",
+  "js/validate/breadth.js", "js/validate/track-record.js",
   "public/glassbox/deflated_sharpe_calculator_contract.json", "standards/validation-api/vectors.json",
 ];
 const sha = (p) => `sha256:${createHash("sha256").update(readFileSync(resolve(ROOT, p))).digest("hex")}`;

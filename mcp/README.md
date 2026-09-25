@@ -88,8 +88,9 @@ an array of objects.
 |---|---|---|
 | `CANLI_API_BASE` | `https://canlicapital.com` | Where the API lives. Point it at a preview deployment for testing. |
 | `CANLI_KEY` | unset | A key already issued from `POST /api/v1/keys`. When set, `get_key` sends no request and reports the key is already configured; every other tool sends it as `Authorization: Bearer <key>`. |
+| `CANLI_LOCAL` | unset | `1` or `true` runs the five validators on this machine (private local mode, below): no key, no network, no receipt. |
 
-If `CANLI_KEY` is not set, call `get_key` once per session before the four validators. The key it
+If `CANLI_KEY` is not set and local mode is off, call `get_key` once per session before the validators. The key it
 returns lives only in this process's memory for the life of the session; it is not written to
 disk.
 
@@ -153,6 +154,20 @@ claude mcp add canli -- npx -y canli-validation-mcp
 ```
 
 Run `claude mcp list` to confirm it is registered, and `claude mcp remove canli` to remove it.
+
+## Private local mode
+
+Set `CANLI_LOCAL=1` and the five validators run on your machine: nothing about the series you
+submit is sent to canlicapital.com, no key is needed, and no receipt is stored. The computation is
+the API's own, shipped byte for byte in `src/local` (a test fails if it drifts), so a local result
+equals the hosted one; it names no receipt id because none was made.
+
+```bash
+claude mcp add canli-local --env CANLI_LOCAL=1 -- npx -y canli-validation-mcp
+```
+
+`get_receipt`, `service_status` and `company_financial_history` still read from canlicapital.com;
+they send no series. In the Claude Desktop extension this is the "Private local mode" setting.
 
 ## Generic stdio client
 
