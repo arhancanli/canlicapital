@@ -103,6 +103,28 @@ No install step. `npx` fetches the published package on first run, so every clie
 just spawns `npx -y canli-validation-mcp`. See "Local checkout" near the bottom to develop or test
 this package itself instead of running the published one.
 
+## Hosted endpoint (no install)
+
+The same tools are served at `https://canlicapital.com/mcp` over MCP Streamable HTTP, for clients
+that connect to a URL instead of spawning a process (Claude.ai connectors, ChatGPT, Cursor's remote
+servers). Nothing to install, and no Node.js on your machine.
+
+```bash
+claude mcp add --transport http canli https://canlicapital.com/mcp
+```
+
+Without a key, requests run under a shared anonymous key, so the daily validation quota is shared
+by every hosted caller. For your own quota, issue a free key (see
+[/developers](https://canlicapital.com/developers#quickstart)) and send it as a header:
+
+```bash
+claude mcp add --transport http canli https://canlicapital.com/mcp --header "Authorization: Bearer $CANLI_KEY"
+```
+
+The endpoint is stateless. On it, `get_key` issues nothing and says which key is in use, because a
+key issued there would not reach the next request. A malformed Authorization header is refused
+rather than replaced with the shared key.
+
 ## Claude Desktop
 
 Add to `claude_desktop_config.json` (Settings, Developer, Edit Config):

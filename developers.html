@@ -331,6 +331,8 @@ console.log(await response.json());</code></pre></div>
       sees what a number cannot be used to claim, not only the number. It also reads the
       <a href="/companies">company reference</a>: one tool returns a company's SEC-reported
       financial history with each value's filing, unit and source hash.</p>
+    <div class="dev-snippet"><p class="dev-snippet-label">Hosted, no install: https://canlicapital.com/mcp</p><pre class="dev-code" tabindex="0" aria-label="Hosted MCP endpoint"><code>claude mcp add --transport http canli https://canlicapital.com/mcp</code></pre></div>
+    <p class="dev-note">Clients that take a server URL (Claude.ai connectors, ChatGPT, Cursor) can use the hosted endpoint directly. Without a key it runs on a shared anonymous quota; send your own key as <code>Authorization: Bearer</code> for yours.</p>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Claude Code configuration"><code>claude mcp add canli -- npx -y canli-validation-mcp</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code" tabindex="0" aria-label="Claude Desktop configuration"><code>{
   &quot;mcpServers&quot;: {
