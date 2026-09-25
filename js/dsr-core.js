@@ -3,24 +3,53 @@
 // public/glassbox/deflated_sharpe_calculator_contract.json by checkGoldenVectors.
 const EULER_MASCHERONI = 0.5772156649;
 
-function erf(value) {
-  const sign = value < 0 ? -1 : 1;
-  const x = Math.abs(value);
-  const t = 1 / (1 + 0.3275911 * x);
-  const polynomial =
-    (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t +
-      0.254829592) *
-    t;
-  return sign * (1 - polynomial * Math.exp(-x * x));
+// Complementary error function to full double precision (relative error at most 1.5e-14 for
+// x >= -20 and 6e-14 to -38, measured against the C library erfc). For |x| < 1.5 it uses the series
+// erf(x) = 2/sqrt(pi) exp(-x^2) sum 2^n x^(2n+1) / (1*3*...*(2n+1)), which has no cancellation;
+// beyond that, the continued fraction erfc(x) = exp(-x^2)/sqrt(pi) / (x + 1/2 / (x + 1 / (x + ...)))
+// evaluated by the modified Lentz method. It replaced the Abramowitz and Stegun 7.1.26
+// approximation (absolute error up to 1.5e-7, no relative accuracy in the tails) on 2026-09-25.
+function erfc(value) {
+  if (Number.isNaN(value)) return Number.NaN;
+  if (value < 0) return 2 - erfc(-value);
+  const x = value;
+  if (x < 1.5) {
+    let term = x;
+    let sum = x;
+    for (let n = 1; n < 200; n++) {
+      term *= (2 * x * x) / (2 * n + 1);
+      sum += term;
+      if (term < sum * 1e-17) break;
+    }
+    return 1 - (2 / Math.sqrt(Math.PI)) * Math.exp(-x * x) * sum;
+  }
+  if (x > 27.3) return 0;
+  // Lentz: f = b0 + a1/(b1 + a2/(b2 + ...)) with b_k = x, a_k = k/2.
+  const tiny = 1e-300;
+  let f = x;
+  let c = x;
+  let d = 0;
+  for (let k = 1; k < 500; k++) {
+    const a = k / 2;
+    d = x + a * d;
+    d = d === 0 ? tiny : d;
+    c = x + a / c;
+    c = c === 0 ? tiny : c;
+    d = 1 / d;
+    const delta = c * d;
+    f *= delta;
+    if (Math.abs(delta - 1) < 1e-16) break;
+  }
+  return Math.exp(-x * x) / (Math.sqrt(Math.PI) * f);
 }
 
 export function normalCdf(value) {
   if (value === Infinity) return 1;
   if (value === -Infinity) return 0;
-  return 0.5 * (1 + erf(value / Math.SQRT2));
+  return 0.5 * erfc(-value / Math.SQRT2);
 }
 
-export function normalPpf(probability) {
+function acklamPpf(probability) {
   if (!(probability > 0 && probability < 1)) {
     throw new RangeError("Normal quantile probability must be between zero and one");
   }
@@ -77,6 +106,19 @@ export function normalPpf(probability) {
     (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
     ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1)
   );
+}
+
+// Inverse normal CDF: Acklam's rational approximation (relative error near 1.15e-9) refined by two
+// Halley steps against the full-precision normalCdf, which brings it to the precision of the CDF.
+export function normalPpf(probability) {
+  let x = acklamPpf(probability);
+  for (let step = 0; step < 2; step++) {
+    const error = normalCdf(x) - probability;
+    const u = error * Math.sqrt(2 * Math.PI) * Math.exp((x * x) / 2);
+    if (!Number.isFinite(u)) break;
+    x -= u / (1 + (x * u) / 2);
+  }
+  return x;
 }
 
 function requireFinite(name, value) {
@@ -205,5 +247,8 @@ export function minimumTrackRecordLength(input) {
     throw new RangeError("The observed Sharpe must exceed the benchmark; no track record length is enough otherwise");
   }
   const observations = 1 + term * (normalPpf(confidence) / (sr - benchmark)) ** 2;
+  if (!Number.isFinite(observations)) {
+    throw new RangeError("The observed Sharpe is too close to the benchmark; no finite track record length reaches this confidence");
+  }
   return { observations, years: observations / values.periods_per_year, confidence };
 }
