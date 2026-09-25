@@ -250,45 +250,51 @@ export async function toolCompanyFinancialHistory(session, args) {
   });
 }
 
+// MCP tool annotations: every tool reaches the canlicapital.com API (openWorldHint). Reads are
+// marked read-only; a validation stores a receipt and get_key creates a key, so neither is
+// read-only, and nothing any tool does modifies or deletes a caller's data.
+const READ_ONLY = { readOnlyHint: true, destructiveHint: false, openWorldHint: true };
+const WRITES_RECEIPT = { readOnlyHint: false, destructiveHint: false, openWorldHint: true };
+
 export function registerTools(server, session) {
   server.registerTool(
     "get_key",
-    { title: "Get a free validation key", description: TOOL_DESCRIPTIONS.get_key, inputSchema: getKeyInput },
+    { title: "Get a free validation key", annotations: { title: "Get a free validation key", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true }, description: TOOL_DESCRIPTIONS.get_key, inputSchema: getKeyInput },
     (args) => toolGetKey(session, args),
   );
   server.registerTool(
     "validate_deflated_sharpe",
-    { title: "Validate deflated Sharpe", description: TOOL_DESCRIPTIONS.validate_deflated_sharpe, inputSchema: deflatedSharpeToolShape },
+    { title: "Validate deflated Sharpe", annotations: { title: "Validate deflated Sharpe", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_deflated_sharpe, inputSchema: deflatedSharpeToolShape },
     (args) => toolValidateDeflatedSharpe(session, args),
   );
   server.registerTool(
     "validate_overfitting",
-    { title: "Validate overfitting (CSCV)", description: TOOL_DESCRIPTIONS.validate_overfitting, inputSchema: overfittingInput },
+    { title: "Validate overfitting (CSCV)", annotations: { title: "Validate overfitting (CSCV)", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_overfitting, inputSchema: overfittingInput },
     (args) => toolValidateOverfitting(session, args),
   );
   server.registerTool(
     "validate_paper_evidence",
-    { title: "Validate paper evidence", description: TOOL_DESCRIPTIONS.validate_paper_evidence, inputSchema: paperEvidenceInput },
+    { title: "Validate paper evidence", annotations: { title: "Validate paper evidence", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_paper_evidence, inputSchema: paperEvidenceInput },
     (args) => toolValidatePaperEvidence(session, args),
   );
   server.registerTool(
     "validate_breadth",
-    { title: "Validate breadth ceiling", description: TOOL_DESCRIPTIONS.validate_breadth, inputSchema: breadthInput },
+    { title: "Validate breadth ceiling", annotations: { title: "Validate breadth ceiling", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_breadth, inputSchema: breadthInput },
     (args) => toolValidateBreadth(session, args),
   );
   server.registerTool(
     "get_receipt",
-    { title: "Get a receipt", description: TOOL_DESCRIPTIONS.get_receipt, inputSchema: getReceiptInput },
+    { title: "Get a receipt", annotations: { title: "Get a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.get_receipt, inputSchema: getReceiptInput },
     (args) => toolGetReceipt(session, args),
   );
   server.registerTool(
     "service_status",
-    { title: "Service status", description: TOOL_DESCRIPTIONS.service_status, inputSchema: emptyInput },
+    { title: "Service status", annotations: { title: "Service status", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.service_status, inputSchema: emptyInput },
     () => toolServiceStatus(session),
   );
   server.registerTool(
     "company_financial_history",
-    { title: "Company financial history (SEC)", description: TOOL_DESCRIPTIONS.company_financial_history, inputSchema: companyHistoryInput },
+    { title: "Company financial history (SEC)", annotations: { title: "Company financial history (SEC)", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.company_financial_history, inputSchema: companyHistoryInput },
     (args) => toolCompanyFinancialHistory(session, args),
   );
 }

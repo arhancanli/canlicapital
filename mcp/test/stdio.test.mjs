@@ -79,6 +79,16 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   for (const tool of tools) {
     assert.ok(tool.description && tool.description.length > 0, `${tool.name} has no description`);
   }
+  // Tool annotations as a client receives them: every tool has a title and reaches the API; reads
+  // are read-only; validations store a receipt and get_key creates a key; nothing is destructive.
+  const readOnly = new Set(["get_receipt", "service_status", "company_financial_history"]);
+  for (const tool of tools) {
+    const a = tool.annotations ?? {};
+    assert.ok(a.title, `${tool.name} has no annotation title`);
+    assert.equal(a.readOnlyHint, readOnly.has(tool.name), `${tool.name} readOnlyHint`);
+    assert.equal(a.destructiveHint, false, `${tool.name} destructiveHint`);
+    assert.equal(a.openWorldHint, true, `${tool.name} openWorldHint`);
+  }
 
   const result = await client.callTool({ name: "service_status", arguments: {} });
   const envelope = JSON.parse(result.content[0].text);
