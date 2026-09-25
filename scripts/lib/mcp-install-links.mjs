@@ -7,6 +7,10 @@
 // endpoint, so neither needs Node.js on the user's machine.
 export const HOSTED_MCP_URL = "https://canlicapital.com/mcp";
 export const MCP_INSTALL_NAME = "canli-validation";
+// The Claude Desktop extension, attached to every release of the standalone repository under a
+// stable file name, so this link always serves the latest bundle (built by mcp/mcpb/build.sh).
+export const CLAUDE_DESKTOP_BUNDLE_URL =
+  "https://github.com/arhancanli/canli-validation-mcp/releases/latest/download/canli-validation.mcpb";
 
 export function cursorInstallLink(name = MCP_INSTALL_NAME, url = HOSTED_MCP_URL) {
   const config = Buffer.from(JSON.stringify({ url })).toString("base64");
