@@ -103,7 +103,10 @@ async function initialize() {
       const response = await fetch("/paper-state.json");
       if (!response.ok) throw new Error("Paper snapshot unavailable");
       const state = await response.json();
-      const rows = keys.map(key => state.algorithms.find(a => a.key === key));
+      // A suspended sleeve (state.suspended_sleeves) is out of the book and publishes no curve:
+      // draw the sleeves that are live, never fail the whole view for the one that is not.
+      const suspended = new Set((state.suspended_sleeves || []).map(s => s.key));
+      const rows = keys.filter(key => !suspended.has(key)).map(key => state.algorithms.find(a => a.key === key));
       if (rows.some(row => !row?.live_curve || row.live_curve.length < 2 || row.live_curve.some(p => !Number.isFinite(p.equity) || p.equity <= 0 || !Number.isFinite(Date.parse(p.date))))) throw new Error("Incomplete paper curves");
       const normalized = rows.map(row => ({ name: row.name, points: row.live_curve.map(p => ({ time: Date.parse(p.date), value: p.equity / row.live_curve[0].equity - 1 })) }));
       const all = normalized.flatMap(row => row.points);
