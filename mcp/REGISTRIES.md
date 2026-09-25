@@ -38,6 +38,11 @@ mcp-publisher 1.8.1 after the owner's GitHub device login, and the listing shows
 waits for npm before the registry step. The Claude Desktop bundle for 0.3.1 is attached to
 [the v0.3.1 release](https://github.com/arhancanli/canli-validation-mcp/releases/tag/v0.3.1).
 
+Next release, not yet published: `canli-validation-mcp@0.4.0` (adds `validate_track_record`, the
+minimum track record length). It publishes from `mcp-publish.yml` on the tag `mcp-v0.4.0`, which
+now waits for npm before the registry step. Until that run succeeds and the listings are checked,
+0.3.1 stays the latest published version.
+
 ## Official registry (registry.modelcontextprotocol.io)
 
 The manifest is `mcp/server.json`. Its top-level and npm package versions must match
