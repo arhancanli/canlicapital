@@ -1,0 +1,56 @@
+{
+  "schema": "canli.mcp-agent-benchmark.v1",
+  "tasks": 24,
+  "method": "mcp/bench/agent/README.md",
+  "scope": "Tasks written by us, run against the server in private local mode. The per-run records also hold tokens and time, which depend on each provider's tokenizer and serving, so they compare runs of one model only.",
+  "models": [
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "label": "Claude Haiku 4.5",
+      "results_file": "mcp/bench/agent/results/2026-09-25-claude-haiku-4-5-20251001.json",
+      "generated_at": "2026-09-25T14:59:49Z",
+      "repeats": 3,
+      "runs": 72,
+      "answer_accuracy_pct": 97.2,
+      "right_tool_pct": 98.6,
+      "first_tool_right_pct": 98.6,
+      "errors": 0,
+      "median_total_tokens": 6156,
+      "mean_total_tokens": 6265,
+      "median_ms": 4284,
+      "total_tokens": 451101
+    },
+    {
+      "model": "claude-sonnet-5",
+      "label": "Claude Sonnet 5",
+      "results_file": "mcp/bench/agent/results/2026-09-25-claude-sonnet-5.json",
+      "generated_at": "2026-09-25T15:08:21Z",
+      "repeats": 3,
+      "runs": 72,
+      "answer_accuracy_pct": 100,
+      "right_tool_pct": 100,
+      "first_tool_right_pct": 100,
+      "errors": 0,
+      "median_total_tokens": 7362,
+      "mean_total_tokens": 7826,
+      "median_ms": 5672,
+      "total_tokens": 563436
+    },
+    {
+      "model": "gpt-5.4-mini",
+      "label": "GPT-5.4 mini",
+      "results_file": "mcp/bench/agent/results/2026-09-25-gpt-5.4-mini.json",
+      "generated_at": "2026-09-25T14:37:28Z",
+      "repeats": 3,
+      "runs": 72,
+      "answer_accuracy_pct": 98.6,
+      "right_tool_pct": 100,
+      "first_tool_right_pct": 100,
+      "errors": 0,
+      "median_total_tokens": 3699,
+      "mean_total_tokens": 4046,
+      "median_ms": 1966,
+      "total_tokens": 291317
+    }
+  ]
+}
