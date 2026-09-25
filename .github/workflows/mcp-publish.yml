@@ -1,0 +1,60 @@
+# Publish canli-validation-mcp from CI, so every release is built from this repository and npm
+# shows a provenance attestation for it.
+#
+# Trigger: push a tag mcp-v<version>, where <version> equals mcp/package.json "version".
+# No npm token is stored: npm trusted publishing exchanges this job's GitHub OIDC token, which
+# requires a one-time setting on npmjs.com (package settings, Trusted Publisher, GitHub Actions:
+# owner arhancanli, repository canlicapital, workflow mcp-publish.yml). The MCP Registry entry is
+# published with the same OIDC token (mcp-publisher login github-oidc).
+name: Publish MCP package
+
+on:
+  push:
+    tags: ["mcp-v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: npm (with provenance) and MCP Registry
+    runs-on: ubuntu-latest
+    environment: mcp-release
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          # npm trusted publishing needs npm 11.5.1 or later; Node 24 ships npm 11.
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: mcp/package-lock.json
+      - name: The tag names the version being published
+        run: |
+          tag="${GITHUB_REF_NAME#mcp-v}"
+          version="$(node -p "require('./mcp/package.json').version")"
+          registry="$(node -p "require('./mcp/server.json').version")"
+          test "$tag" = "$version" || { echo "tag $tag != package.json $version"; exit 1; }
+          test "$tag" = "$registry" || { echo "tag $tag != server.json $registry"; exit 1; }
+      - run: npm ci --prefix mcp
+      - run: npm audit --prefix mcp --audit-level=high
+      - run: npm test --prefix mcp
+      - run: npm run test:package --prefix mcp
+      - name: Publish to npm with provenance
+        working-directory: mcp
+        run: npm publish --provenance --access public
+      - name: Publish to the MCP Registry
+        working-directory: mcp
+        env:
+          # Pinned release and checksum (registry_1.8.1_checksums.txt); never "latest" in a publish job.
+          PUBLISHER_URL: https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz
+          PUBLISHER_SHA256: a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc
+        run: |
+          curl -fsSL -o mcp-publisher.tar.gz "$PUBLISHER_URL"
+          echo "$PUBLISHER_SHA256  mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf mcp-publisher.tar.gz mcp-publisher
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish
