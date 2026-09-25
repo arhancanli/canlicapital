@@ -46,6 +46,11 @@ function assertPositiveFacts(facts) {
   }
 }
 
+// The evidence map records the record's own maturity (underlying_status) and reports the
+// provenance gate separately, so a fail-closed provenance gate is not a contradiction.
+// Comparing against the gated status made every provenance failure block the site build.
+const recordStatus = (evidence) => evidence?.underlying_status ?? evidence?.status;
+
 export function forwardSnapshot(evidenceMap, bytes) {
   const binding = evidenceMap.source_bindings?.forward;
   if (binding?.path !== "artifacts/engineering/forward_evidence_maturity.json" ||
@@ -57,7 +62,7 @@ export function forwardSnapshot(evidenceMap, bytes) {
   const record = report.record;
   if (!Number.isSafeInteger(record?.daily_return_observations) || record.daily_return_observations < 0 ||
       facts?.daily_return_observations !== record.daily_return_observations ||
-      facts?.sharpe_status !== report.sharpe_evidence?.status) {
+      facts?.sharpe_status !== recordStatus(report.sharpe_evidence)) {
     throw new Error("founder page: forward snapshot facts mismatch");
   }
   if (typeof report.generated_at !== "string" || !Number.isFinite(Date.parse(report.generated_at)) ||

@@ -24,7 +24,7 @@ test('a newer report cannot silently replace the evidence-map binding', () => {
 test('bound bytes still require agreement with narrative facts and valid dates', () => {
   for (const mutate of [
     r => { r.record.daily_return_observations += 1; },
-    r => { r.sharpe_evidence.status = 'ESTABLISHED'; },
+    r => { r.sharpe_evidence[r.sharpe_evidence.underlying_status ? 'underlying_status' : 'status'] = 'ESTABLISHED'; },
     r => { delete r.generated_at; },
     r => { r.record.first_mark = '2099-01-01'; },
   ]) {
@@ -35,4 +35,15 @@ test('bound bytes still require agreement with narrative facts and valid dates',
     map.source_bindings.forward.sha256 = createHash('sha256').update(changed).digest('hex');
     assert.throws(() => forwardSnapshot(map, changed), /snapshot (facts mismatch|dates missing or invalid)/);
   }
+});
+
+test('a fail-closed provenance gate does not contradict the record status the map narrates', () => {
+  const report = JSON.parse(bytes);
+  const underlying = evidence.evidence.forward_truth.facts.sharpe_status;
+  report.sharpe_evidence.status = 'FAIL_CLOSED_PROVENANCE';
+  report.sharpe_evidence.underlying_status = underlying;
+  const changed = Buffer.from(JSON.stringify(report));
+  const map = structuredClone(evidence);
+  map.source_bindings.forward.sha256 = createHash('sha256').update(changed).digest('hex');
+  assert.equal(forwardSnapshot(map, changed).lastMark, report.record.last_mark);
 });
