@@ -16,3 +16,11 @@ export function cursorInstallLink(name = MCP_INSTALL_NAME, url = HOSTED_MCP_URL)
 export function vscodeAddCommand(name = MCP_INSTALL_NAME, url = HOSTED_MCP_URL) {
   return `code --add-mcp '${JSON.stringify({ name, type: "http", url })}'`;
 }
+
+// Where the server is listed, shown on /developers. Only listings that are live and checked.
+export const MCP_LISTINGS = Object.freeze([
+  { label: "npm", href: "https://www.npmjs.com/package/canli-validation-mcp" },
+  { label: "MCP Registry", href: "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" },
+  { label: "cursor.directory", href: "https://cursor.directory/plugins/canli-validation-mcp-1" },
+  { label: "Source", href: "https://github.com/arhancanli/canli-validation-mcp" },
+]);
