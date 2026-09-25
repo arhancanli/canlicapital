@@ -12,6 +12,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   breadthInput,
+  trackRecordInput,
   companyHistoryInput,
   deflatedSharpeInput,
   deflatedSharpeToolShape,
@@ -168,6 +169,12 @@ export async function toolValidateBreadth(session, args) {
   return asText(response.envelope, response.failed);
 }
 
+export async function toolValidateTrackRecord(session, args) {
+  const body = parseOrThrow(trackRecordInput, args, "validate_track_record");
+  const response = await callApi(session, { path: "/api/v1/validate/track-record", method: "POST", body });
+  return asText(response.envelope, response.failed);
+}
+
 export async function toolGetReceipt(session, args) {
   const { id } = parseOrThrow(getReceiptInput, args, "get_receipt");
   const response = await callApi(session, { path: `/api/v1/receipts/${id}` });
@@ -281,6 +288,11 @@ export function registerTools(server, session) {
     "validate_breadth",
     { title: "Validate breadth ceiling", annotations: { title: "Validate breadth ceiling", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_breadth, inputSchema: breadthInput },
     (args) => toolValidateBreadth(session, args),
+  );
+  server.registerTool(
+    "validate_track_record",
+    { title: "Minimum track record length", annotations: { title: "Minimum track record length", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_track_record, inputSchema: trackRecordInput },
+    (args) => toolValidateTrackRecord(session, args),
   );
   server.registerTool(
     "get_receipt",

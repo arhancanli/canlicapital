@@ -60,5 +60,6 @@ test("every file an api/ function imports at runtime is uploaded", () => {
 });
 
 test("the check itself can fail: an excluded path is reported", () => {
-  assert.deepEqual(ignoredByVercel(["node_modules/x.js"]), ["node_modules/x.js"]);
+  // dist/ is excluded and, unlike node_modules in some checkouts, never a symbolic link.
+  assert.deepEqual(ignoredByVercel(["dist/example.js"]), ["dist/example.js"]);
 });

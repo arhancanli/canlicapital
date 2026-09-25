@@ -9,6 +9,7 @@ import { compute as dsr } from "./validate/deflated-sharpe.js";
 import { compute as pbo } from "./validate/overfitting.js";
 import { compute as evidence } from "./validate/paper-evidence.js";
 import { compute as breadth } from "./validate/breadth.js";
+import { compute as trackRecord } from "./validate/track-record.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const VECTORS = JSON.parse(readFileSync(resolve(ROOT, "standards/validation-api/vectors.json"), "utf8"));
@@ -18,7 +19,7 @@ test("the manifest names every route file and every route has a summary and an e
   assert.deepEqual(paths, [
     "GET /api/v1/receipts/{id}", "GET /api/v1/receipts/{id}/badge.svg", "GET /api/v1/validate/status",
     "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe",
-    "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence",
+    "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence", "POST /api/v1/validate/track-record",
   ]);
   for (const m of MANIFEST) { assert.ok(m.summary.length > 20, m.path); if (m.method === "POST") assert.ok(m.requestExample, m.path); }
 });
@@ -111,4 +112,20 @@ test("missing database configuration preserves API unavailable and badge contrac
     }
   }
   assert.equal(computeCalls, 0);
+});
+
+test("track-record reproduces the paper's daily example and judges a record's length", () => {
+  const base = { observed_sharpe_annualized: 2, benchmark_sharpe_annualized: 1, periods_per_year: 252, skew: 0, non_excess_kurtosis: 3 };
+  const out = trackRecord(base);
+  assert.ok(Math.abs(out.result.minimum_years - 2.73) <= 0.005, String(out.result.minimum_years));
+  assert.equal(out.result.record, undefined);
+  const short = trackRecord({ ...base, observations: 504 });
+  assert.equal(short.result.record.long_enough, false);
+  assert.ok(short.result.record.psr_against_benchmark < 0.95);
+  const enough = trackRecord({ ...base, observations: out.result.minimum_observations });
+  assert.equal(enough.result.record.long_enough, true);
+  assert.ok(enough.result.record.psr_against_benchmark >= 0.95);
+  assert.match(out.plain_reading, /not a forecast/);
+  assert.throws(() => trackRecord({ ...base, observed_sharpe_annualized: 1 }), /must exceed the benchmark/);
+  assert.throws(() => trackRecord({ periods_per_year: 252 }), /Missing required fields/);
 });

@@ -1,11 +1,12 @@
 # canli-validation-mcp
 
 An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
-gives a coding agent eight tools: issue a free key, run the four validators (deflated Sharpe,
-CSCV overfitting, paper-evidence conformance, breadth ceiling), fetch a stored receipt, read
-service status, and read a company's reported financial history from SEC filings. Every tool
-returns the full API envelope as its result text, success or error, so the agent cannot see a
-number without the sentences beside it that say what the number does not establish.
+gives a coding agent nine tools: issue a free key, run the five validators (deflated Sharpe,
+CSCV overfitting, paper-evidence conformance, breadth ceiling, minimum track record length),
+fetch a stored receipt, read service status, and read a company's reported financial history
+from SEC filings. Every tool returns the full API envelope as its result text, success or error,
+so the agent cannot see a number without the sentences beside it that say what the number does
+not establish.
 
 This package is published to npm as [`canli-validation-mcp`](https://www.npmjs.com/package/canli-validation-mcp).
 Also listed on the official MCP Registry (`io.github.arhancanli/canli-validation-mcp`) and
@@ -33,6 +34,7 @@ repository for the full design.
 | `validate_overfitting` | `POST /api/v1/validate/overfitting` | yes |
 | `validate_paper_evidence` | `POST /api/v1/validate/paper-evidence` | yes |
 | `validate_breadth` | `POST /api/v1/validate/breadth` | yes |
+| `validate_track_record` | `POST /api/v1/validate/track-record` | yes |
 | `get_receipt` | `GET /api/v1/receipts/{id}` | no |
 | `service_status` | `GET /api/v1/validate/status` | no |
 | `company_financial_history` | `GET /company-data/{cik}.json` | no |

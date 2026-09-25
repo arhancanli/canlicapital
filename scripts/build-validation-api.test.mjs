@@ -20,6 +20,7 @@ const BODY_VALIDATORS = {
   "/api/v1/validate/overfitting": async () => (await import("../api/v1/validate/overfitting.js")).compute,
   "/api/v1/validate/paper-evidence": async () => (await import("../api/v1/validate/paper-evidence.js")).compute,
   "/api/v1/validate/breadth": async () => (await import("../api/v1/validate/breadth.js")).compute,
+  "/api/v1/validate/track-record": async () => (await import("../api/v1/validate/track-record.js")).compute,
 };
 
 test("the quota constants are the documented values and every one has a sentence", () => {

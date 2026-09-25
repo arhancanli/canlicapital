@@ -70,6 +70,17 @@ export const MANIFEST = Object.freeze([
     requestExample: { sleeve_sharpe: 0.5, average_pairwise_correlation: 0.05, sleeves: 4, target: 1.5 },
     requestOptional: ["sleeves", "target"],
   },
+  {
+    path: "/api/v1/validate/track-record", method: "POST", keyed: true,
+    summary: "Minimum track record length for a Sharpe to clear a benchmark at a confidence level, and the probabilistic Sharpe of a record of a given length.",
+    // The worked example of Bailey and López de Prado (2012): an annualized Sharpe of 2 against 1
+    // on daily Normal returns needs 2.73 years; a two-year record is not long enough.
+    requestExample: { observed_sharpe_annualized: 2, benchmark_sharpe_annualized: 1, periods_per_year: 252, skew: 0, non_excess_kurtosis: 3, observations: 504 },
+    requestOptional: ["benchmark_sharpe_annualized", "observations"],
+    requestExtraProperties: {
+      confidence: { type: "number", description: "Defaults to 0.95. Strictly between 0 and 1." },
+    },
+  },
   { path: "/api/v1/validate/status", method: "GET", keyed: false, summary: "Service and store status with the quota constants in force." },
   { path: "/api/v1/receipts/{id}", method: "GET", keyed: false, summary: "A stored verdict by content-hash id. Immutable." },
   {
