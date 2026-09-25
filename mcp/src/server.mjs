@@ -37,7 +37,7 @@ function parseOrThrow(schema, value, label) {
   throw new Error(`${label}: ${issues}`);
 }
 
-export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS } = {}) {
+export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted } = {}) {
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs <= 0) throw new Error("Request timeout must be a positive integer");
   return {
     base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE,
@@ -45,6 +45,9 @@ export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIM
     envKey: envKey ?? process.env.CANLI_KEY ?? undefined,
     key: undefined,
     timeoutMs,
+    // Set by the hosted endpoint (api/mcp.js): which key a request runs under, so get_key can say
+    // so instead of issuing a key the next stateless request would never see.
+    hosted: hosted ?? undefined,
   };
 }
 
@@ -99,6 +102,21 @@ export function columnarObservations(observations) {
 
 export async function toolGetKey(session, args) {
   const { label } = parseOrThrow(getKeyInput, args, "get_key");
+  if (session.hosted) {
+    // The hosted endpoint is stateless: a key issued here would be gone by the next request, and
+    // every hosted caller shares the platform's egress address and so its per-client issuance quota.
+    const ownKey = "get a free key at https://canlicapital.com/developers#quickstart and send it as 'Authorization: Bearer <key>' to this endpoint";
+    const notes = {
+      caller: "This hosted session runs under the key in your Authorization header; no new key was issued.",
+      shared: `This hosted session runs under a shared anonymous key with a shared daily quota; no new key was issued. For your own quota, ${ownKey}.`,
+      none: `This hosted endpoint has no shared key configured, so validations need your own key: ${ownKey}.`,
+    };
+    return asText({
+      note: notes[session.hosted.keySource] ?? notes.none,
+      key_source: session.hosted.keySource,
+      key_present: session.hosted.keySource !== "none",
+    });
+  }
   if (session.envKey) {
     return asText({
       note: "CANLI_KEY is set in the environment; no new key was issued and no request was sent. Using the configured key for this session.",
