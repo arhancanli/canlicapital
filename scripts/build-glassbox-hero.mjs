@@ -8,7 +8,10 @@ const styles = [
   ["alphavintage", "#c6d5ec"], ["alphaforge", "#82d2c5"],
 ];
 const escape = (value) => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
-const algorithms = styles.map(([key, color]) => {
+// A suspended sleeve has no public curve by design (state.suspended_sleeves, v4 2026-09-24): it is
+// left out of the illustration. Every sleeve still in the book must have a valid curve.
+const suspended = new Set((state.suspended_sleeves ?? []).map((item) => item.key));
+const algorithms = styles.filter(([key]) => !suspended.has(key)).map(([key, color]) => {
   const algorithm = state.algorithms.find((item) => item.key === key);
   const curve = algorithm?.live_curve;
   if (!curve || curve.length < 2 || curve.some((p) => !Number.isFinite(p.equity) || p.equity <= 0 || !Number.isFinite(Date.parse(p.date)))) {
