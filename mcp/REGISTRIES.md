@@ -21,10 +21,19 @@ via mcp-publisher 1.8.1 (release checksum verified) after the owner's GitHub dev
 (`artifacts/platform/mcp-registry-publication-20260922.json`). Do not repeat the publication
 commands for this version.
 
-Next release, not yet published: `canli-validation-mcp@0.3.0` (compact context: minified results
-and columnar company histories; a breaking change to `history.observations`). Publication needs
-the owner's npm second factor and GitHub device login, as for 0.2.0; until then 0.2.0 stays the
-latest published version.
+Release checkpoint, September 25, 2026: `canli-validation-mcp@0.3.0` (compact context: minified
+results and columnar company histories; a breaking change to `history.observations`) is published
+on npm by the owner with the npm second factor, and listed on the official MCP registry as 0.3.0
+via mcp-publisher 1.8.1 (verified the same day against
+`registry.modelcontextprotocol.io/v0/servers`). It is also on cursor.directory and served at
+https://canlicapital.com/mcp.
+
+Next release, not yet published: `canli-validation-mcp@0.3.1` (tool annotations; an empty or
+unsubstituted `CANLI_KEY` is no key). It is the first release published from CI: pushing the tag
+`mcp-v0.3.1` runs `.github/workflows/mcp-publish.yml`, which publishes to npm with provenance
+through npm trusted publishing (configured by the owner on 2026-09-25 for this repository,
+workflow and the `mcp-release` environment) and to the official registry through GitHub OIDC.
+Until that run succeeds and the listings are checked, 0.3.0 stays the latest published version.
 
 ## Official registry (registry.modelcontextprotocol.io)
 
