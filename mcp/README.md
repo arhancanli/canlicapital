@@ -1,20 +1,18 @@
 # canli-validation-mcp
 
 An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
-gives a coding agent seven tools: issue a free key, run the four validators (deflated Sharpe,
-CSCV overfitting, paper-evidence conformance, breadth ceiling), fetch a stored receipt, and read
-service status. Every tool returns the full API envelope as its result text, success or error,
-so the agent cannot see a number without the sentences beside it that say what the number does
-not establish.
+gives a coding agent eight tools: issue a free key, run the four validators (deflated Sharpe,
+CSCV overfitting, paper-evidence conformance, breadth ceiling), fetch a stored receipt, read
+service status, and read a company's reported financial history from SEC filings. Every tool
+returns the full API envelope as its result text, success or error, so the agent cannot see a
+number without the sentences beside it that say what the number does not establish.
 
 This package is published to npm as [`canli-validation-mcp`](https://www.npmjs.com/package/canli-validation-mcp).
 Run it with `npx`, no install step, as shown below. A local checkout is only needed to develop or
 test this package itself; see "Local checkout" near the bottom.
 
-Release checkpoint, September 20, 2026: npm's latest version is 0.1.1. This checkout
-prepares 0.1.2; its HTTP error flags, request deadlines and redirect handling described
-below are candidate changes until that version is published. Running unversioned
-`npx` uses npm's latest release, not this checkout.
+This README describes the version in `package.json`. Unversioned `npx` runs npm's latest
+release; `npx -y canli-validation-mcp@<version>` pins one.
 
 ## What the API is (and is not)
 
