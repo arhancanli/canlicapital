@@ -127,13 +127,26 @@ export const getReceiptInput = z
 export const emptyInput = z.object({}).strict();
 
 // company_financial_history reads the public company reference, not the validation API.
-export const companyHistoryInput = z
+// Advertised to clients as a flat object (a refinement has no useful JSON Schema); the handler
+// enforces the exactly-one-of rule with companyHistoryInput.
+export const companyHistoryToolShape = z
   .object({
-    cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits"),
+    cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits").optional(),
+    ticker: z.string().regex(/^[A-Za-z0-9.\-]{1,10}$/, "A ticker is 1 to 10 letters, digits, dots or hyphens").optional(),
     concept: z.string().regex(/^[A-Za-z][A-Za-z0-9]{0,99}$/, "A concept is a us-gaap tag such as Revenues or Assets").optional(),
     limit: z.number().int().min(1).max(200).optional(),
   })
   .strict();
+
+export const companyHistoryInput = z
+  .object({
+    cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits").optional(),
+    ticker: z.string().regex(/^[A-Za-z0-9.\-]{1,10}$/, "A ticker is 1 to 10 letters, digits, dots or hyphens").optional(),
+    concept: z.string().regex(/^[A-Za-z][A-Za-z0-9]{0,99}$/, "A concept is a us-gaap tag such as Revenues or Assets").optional(),
+    limit: z.number().int().min(1).max(200).optional(),
+  })
+  .strict()
+  .refine((v) => (v.cik === undefined) !== (v.ticker === undefined), "Send exactly one of cik or ticker");
 
 // The company reference carries its own boundary sentence in every record (claim_boundary),
 // written by scripts/lib/company-reference.mjs. A test pins this copy to that source verbatim.
@@ -171,5 +184,5 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   validate_breadth: `Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,
   get_receipt: `Fetch a stored verdict by its content-hash id (GET /api/v1/receipts/{id}), immutable and cacheable. ${LIMITS_SENTENCES.unsigned}`,
   service_status: `Service, store and quota constants for the validation API (GET /api/v1/validate/status); no key required. ${LIMITS_SENTENCES.scope}`,
-  company_financial_history: `SEC-reported financial history for one company from the canlicapital.com company reference (GET /company-data/{cik}.json). Without a concept it lists the available histories; with one it returns observations, newest first, each with its filing accession, form, filed date and unit, plus the SHA-256 of the original SEC response. No key required. ${COMPANY_REFERENCE_BOUNDARY}`,
+  company_financial_history: `SEC-reported financial history for one company from the canlicapital.com company reference (GET /company-data/{cik}.json), by cik or by ticker (resolved through GET /api/v1/company-tickers.json, companies in the release only). Without a concept it lists the available histories; with one it returns observations, newest first, each with its filing accession, form, filed date and unit, plus the SHA-256 of the original SEC response. No key required. ${COMPANY_REFERENCE_BOUNDARY}`,
 });

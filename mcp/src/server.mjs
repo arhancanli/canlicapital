@@ -15,6 +15,7 @@ import {
   breadthInput,
   trackRecordInput,
   companyHistoryInput,
+  companyHistoryToolShape,
   deflatedSharpeInput,
   deflatedSharpeToolShape,
   emptyInput,
@@ -204,9 +205,37 @@ export async function toolServiceStatus(session) {
 // field that says where a value came from (accession, form, filed date, unit, source hash) and
 // the record's own claim_boundary and policy sentences, so an agent cannot quote a number
 // without its provenance or boundary.
+// Ticker -> CIK through the published index of companies in the release, fetched once per session.
+async function resolveTicker(session, ticker) {
+  if (!session.tickerIndex) {
+    const signal = AbortSignal.timeout(session.timeoutMs);
+    let res;
+    try {
+      res = await session.fetchImpl(`${session.base}/api/v1/company-tickers.json`, { headers: { Accept: "application/json" }, signal, redirect: "error" });
+    } catch {
+      throw new Error(signal.aborted ? "company_financial_history: the ticker index request timed out" : "company_financial_history: could not reach the ticker index");
+    }
+    if (!res.ok) throw new Error(`company_financial_history: the ticker index returned HTTP ${res.status}`);
+    session.tickerIndex = await res.json();
+  }
+  const key = ticker.toUpperCase();
+  const cik = session.tickerIndex.tickers?.[key];
+  if (!cik) {
+    return { error: { error: { code: "unknown_ticker", message: `No company in the current company reference release trades as ${key}. Search by name at the page below, or pass the SEC CIK.` }, page: `${session.base}/companies` } };
+  }
+  return { cik };
+}
+
 export async function toolCompanyFinancialHistory(session, args) {
-  const { cik, concept, limit = 40 } = parseOrThrow(companyHistoryInput, args, "company_financial_history");
-  const id = cik.padStart(10, "0");
+  const { cik, ticker, concept, limit = 40 } = parseOrThrow(companyHistoryInput, args, "company_financial_history");
+  let id;
+  if (ticker !== undefined) {
+    const resolved = await resolveTicker(session, ticker);
+    if (resolved.error) return asText(resolved.error, true);
+    id = resolved.cik;
+  } else {
+    id = cik.padStart(10, "0");
+  }
   const path = `/company-data/${id}.json`;
   const signal = AbortSignal.timeout(session.timeoutMs);
   let res, text;
@@ -320,7 +349,7 @@ export function registerTools(server, session) {
   );
   server.registerTool(
     "company_financial_history",
-    { title: "Company financial history (SEC)", annotations: { title: "Company financial history (SEC)", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.company_financial_history, inputSchema: companyHistoryInput },
+    { title: "Company financial history (SEC)", annotations: { title: "Company financial history (SEC)", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.company_financial_history, inputSchema: companyHistoryToolShape },
     (args) => toolCompanyFinancialHistory(session, args),
   );
 }

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- `company_financial_history` accepts `ticker` (for example `AAPL`) as well as `cik`, resolved through
+  `GET /api/v1/company-tickers.json`, an index of the tickers of companies in the release.
 - Private local mode (`CANLI_LOCAL=1`, or the Claude Desktop setting): the five validators run on this
   machine from `src/local`, a byte-for-byte mirror of the API's computation, so nothing about the
   submitted series leaves it and no receipt is stored. Requires Node 20.10 or later.

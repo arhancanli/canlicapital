@@ -515,3 +515,41 @@ test("an empty or unsubstituted CANLI_KEY is no key", async () => {
   assert.equal(configuredKey("${user_config.api_key}"), undefined);
   assert.equal(configuredKey("canli_realkey123"), "canli_realkey123");
 });
+
+// company_financial_history by ticker: resolved through /api/v1/company-tickers.json once per session.
+function tickerAwareFetch(record, seen) {
+  const index = { schema: "canli.company-tickers.v1", tickers: { AAPL: "0000320193" } };
+  return async (url) => {
+    seen.push(String(url));
+    const body = String(url).endsWith("/api/v1/company-tickers.json") ? index : record;
+    return new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+}
+
+test("company_financial_history: a ticker resolves to its CIK through the published index, fetched once", async () => {
+  const seen = [];
+  const session = createSession({ base: "https://example.test", fetchImpl: tickerAwareFetch(COMPANY_RECORD, seen) });
+  const first = await toolCompanyFinancialHistory(session, { ticker: "aapl" });
+  assert.ok(!first.isError);
+  await toolCompanyFinancialHistory(session, { ticker: "AAPL", concept: "Assets" });
+  assert.deepEqual(seen, [
+    "https://example.test/api/v1/company-tickers.json",
+    "https://example.test/company-data/0000320193.json",
+    "https://example.test/company-data/0000320193.json",
+  ]);
+});
+
+test("company_financial_history: an unknown ticker is an error naming the ticker", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: tickerAwareFetch(COMPANY_RECORD, []) });
+  const result = await toolCompanyFinancialHistory(session, { ticker: "ZZZZ" });
+  assert.equal(result.isError, true);
+  const body = JSON.parse(result.content[0].text);
+  assert.equal(body.error.code, "unknown_ticker");
+  assert.match(body.error.message, /ZZZZ/);
+});
+
+test("company_financial_history: exactly one of cik or ticker", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: tickerAwareFetch(COMPANY_RECORD, []) });
+  await assert.rejects(toolCompanyFinancialHistory(session, { cik: "320193", ticker: "AAPL" }), /exactly one of cik or ticker/);
+  await assert.rejects(toolCompanyFinancialHistory(session, {}), /exactly one of cik or ticker/);
+});

@@ -37,7 +37,7 @@ repository for the full design.
 | `validate_track_record` | `POST /api/v1/validate/track-record` | yes |
 | `get_receipt` | `GET /api/v1/receipts/{id}` | no |
 | `service_status` | `GET /api/v1/validate/status` | no |
-| `company_financial_history` | `GET /company-data/{cik}.json` | no |
+| `company_financial_history` | `GET /company-data/{cik}.json` (a ticker resolves through `GET /api/v1/company-tickers.json`) | no |
 
 `validate_deflated_sharpe` accepts exactly one of two input shapes, never a mix of both:
 
