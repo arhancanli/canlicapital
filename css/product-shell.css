@@ -281,6 +281,24 @@
 }
 .cc-footer a { color: inherit; text-decoration: none; }
 .cc-footer__lead { align-self: start; }
+.cc-footer__dev {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(150px, 0.5fr) repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  padding-bottom: clamp(50px, 6vw, 80px);
+  border-bottom: 1px solid var(--cc-line);
+}
+.cc-footer__dev h2 { margin: 0; color: var(--cc-chalk); font: 600 clamp(1.3rem, 2vw, 1.9rem)/1.1 var(--cc-shell-display); letter-spacing: -0.04em; }
+.cc-footer__dev-item { min-width: 0; display: grid; align-content: start; gap: 12px; }
+.cc-footer__dev-item > span { color: #638092; font: 500 0.58rem/1.2 var(--cc-shell-data); letter-spacing: 0.09em; text-transform: uppercase; }
+.cc-footer__dev-item p { margin: 0; color: #b6c8d2; font-size: 0.84rem; line-height: 1.55; }
+.cc-footer__dev-item code { justify-self: start; max-width: 100%; padding: 7px 10px; overflow-wrap: anywhere; color: var(--cc-mint); background: var(--cc-carbon); border: 1px solid var(--cc-line); font: 500 0.74rem/1.4 var(--cc-shell-data); }
+.cc-footer__dev-item nav { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.cc-footer__dev-item nav a { min-height: 32px; display: inline-flex; align-items: center; color: var(--cc-cyan); font-size: 0.77rem; text-decoration: underline; text-underline-offset: 3px; }
+.cc-footer__dev-item nav a:hover { color: var(--cc-chalk); }
+.cc-footer__dev-item nav a.cc-footer__dev-cta { padding: 0 14px; color: var(--cc-night); background: var(--cc-chalk); font-weight: 700; text-decoration: none; }
+.cc-footer__dev-item nav a.cc-footer__dev-cta:hover { background: var(--cc-cyan); }
 .cc-footer__brand {
   color: var(--cc-chalk) !important;
   font-family: var(--cc-shell-display);
@@ -332,6 +350,8 @@
   .cc-shell__panel { position: fixed; top: 70px; right: 12px; left: 12px; width: auto; max-height: calc(100svh - 82px); overflow-y: auto; }
   .cc-shell__cta { min-height: 40px; padding: 0 13px; }
   .cc-footer { grid-template-columns: 1fr; gap: 52px; }
+  .cc-footer__dev { grid-template-columns: 1fr 1fr; }
+  .cc-footer__dev h2 { grid-column: 1 / -1; }
 }
 
 @media (max-width: 640px) {
@@ -348,6 +368,7 @@
   .cc-shell__panel > p { grid-column: 1; }
   .cc-footer { padding-top: 70px; }
   .cc-footer__routes { grid-template-columns: 1fr 1fr; gap: 34px 24px; }
+  .cc-footer__dev { grid-template-columns: 1fr; gap: 30px; }
   .cc-footer__boundary { grid-template-columns: 1fr; align-items: start; }
 }
 

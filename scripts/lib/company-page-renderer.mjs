@@ -41,7 +41,7 @@ ${renderProductShellStylesheet()}
 ${renderProductShellHeader({ active: 'companies' })}
 <main class="company-reference" id="content" tabindex="-1"><nav class="company-reference__breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav>
 <h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(description)}</p>${body}</main>
-${renderProductShellFooter()}</body></html>\n`;
+${renderProductShellFooter({ developerStrip: false })}</body></html>\n`;
   return { path, html, lastmod, loc: origin + path };
 }
 

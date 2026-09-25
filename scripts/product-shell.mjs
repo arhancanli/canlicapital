@@ -129,9 +129,33 @@ ${renderLinks(["systems", "research", "developers", "verify"].map(key => PRIMARY
 </header>`;
 }
 
-export function renderProductShellFooter() {
+// The MCP server, the public repositories and the API key, on every page that
+// renders this footer. Company pages opt out: they ship as a released, hashed
+// delivery, and changing their bytes means re-releasing that delivery.
+const DEVELOPER_STRIP = `  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
+`;
+
+export function renderProductShellFooter({ developerStrip = true } = {}) {
   return `<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
-  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary>${renderOpticalHandoff()}</details>
+${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary>${renderOpticalHandoff()}</details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>

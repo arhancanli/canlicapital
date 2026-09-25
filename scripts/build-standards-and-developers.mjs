@@ -69,6 +69,14 @@ function publishArtifacts() {
   return names.length;
 }
 
+// The public repositories, as schema.org SoftwareSourceCode on /developers.
+const SOURCE_REPOSITORIES = [
+  ["alphac", "Python", "Auditable multi-asset quantitative research engine with point-in-time data, walk-forward validation, trial accounting and execution simulation."],
+  ["canli-pit-lake", "Python", "A point-in-time market data lake where every read takes an explicit as-of."],
+  ["canli-backtest", "Python", "A backtester that enforces fill-time causality and counts every hypothesis ever run."],
+  ["canlicapital", "HTML", "The source of canlicapital.com: methodology, paper record, kill log, retractions and reproducible artifacts."],
+];
+
 function head({ title, description, route, jsonLd, sources }) {
   return `<!doctype html>
 <html lang="en" data-page="${route.slice(1).replace(/\//g, "-")}">
@@ -441,16 +449,42 @@ function buildDevelopers() {
     description,
     route: "/developers",
     sources: "validation_api_limits.json validation_api_manifest.json",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "WebAPI",
-      name: "Canli Capital public read API",
-      description,
-      documentation: `${ORIGIN}/developers`,
-      url: `${ORIGIN}/api/v1`,
-      provider: { "@id": `${ORIGIN}/#organization` },
-      termsOfService: `${ORIGIN}/methodology`,
-    },
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebAPI",
+        name: "Canli Capital public read API",
+        description,
+        documentation: `${ORIGIN}/developers`,
+        url: `${ORIGIN}/api/v1`,
+        provider: { "@id": `${ORIGIN}/#organization` },
+        termsOfService: `${ORIGIN}/methodology`,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "canli-validation-mcp",
+        description: "MCP server that validates a backtest against the Canli Capital Validation API from Claude, Cursor or any MCP client.",
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: "Node.js",
+        url: `${ORIGIN}/developers#ai-assistant`,
+        downloadUrl: "https://www.npmjs.com/package/canli-validation-mcp",
+        codeRepository: "https://github.com/arhancanli/canlicapital/tree/main/mcp",
+        license: "https://opensource.org/licenses/MIT",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        author: { "@id": `${ORIGIN}/#arhan-canli` },
+      },
+      ...SOURCE_REPOSITORIES.map(([name, language, description]) => ({
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        name,
+        description,
+        codeRepository: `https://github.com/arhancanli/${name}`,
+        programmingLanguage: language,
+        license: "https://opensource.org/licenses/MIT",
+        author: { "@id": `${ORIGIN}/#arhan-canli` },
+      })),
+    ],
   })}
 <body class="dev-page">
 <a class="dev-skip" href="#content">Skip to content</a>
