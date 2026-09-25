@@ -287,6 +287,7 @@ function mcpAssistantSection() {
       <a href="/companies">company reference</a>: one tool returns a company's SEC-reported
       financial history with each value's filing, unit and source hash.</p>
     <div class="dev-downloads"><a class="dev-button dev-button--primary" href="${esc(cursorInstallLink())}">Add to Cursor</a></div>
+    <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/blob/main/mcp/SECURITY.md" rel="noreferrer">Security and privacy</a>: what the server does on your machine, what the hosted endpoint does with your key, and what the API stores (a hash of your input, never the input).</p>
     <p class="dev-note">Listed on ${MCP_LISTINGS.map((l) => `<a href="${esc(l.href)}" rel="noreferrer">${esc(l.label)}</a>`).join(", ")}.</p>
     <div class="dev-snippet"><p class="dev-snippet-label">VS Code</p><pre class="dev-code" tabindex="0" aria-label="VS Code command"><code>${esc(vscodeAddCommand())}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Hosted, no install: https://canlicapital.com/mcp</p><pre class="dev-code" tabindex="0" aria-label="Hosted MCP endpoint"><code>${esc(hostedInstall)}</code></pre></div>
