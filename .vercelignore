@@ -37,6 +37,8 @@ integrations
 mcp/*
 !mcp/README.md
 !mcp/package.json
+# The hosted endpoint (api/mcp.js) imports the package's tools from mcp/src at runtime.
+!mcp/src
 deposits
 action
 # canli-design-system (the Claude Design React wrapper package) and its converter staging
