@@ -94,6 +94,22 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   const result = await client.callTool({ name: "service_status", arguments: {} });
   const envelope = JSON.parse(result.content[0].text);
   assert.deepEqual(envelope, STUB_ENVELOPE);
+  // The same envelope as structured content, for clients that read fields rather than text.
+  assert.deepEqual(result.structuredContent, envelope);
+
+  // Guided prompts and reference resources, as a client lists and reads them.
+  const { prompts } = await client.listPrompts();
+  assert.deepEqual(prompts.map((p) => p.name).sort(), ["track_record_needed", "validate_backtest"]);
+  const guided = await client.getPrompt({ name: "validate_backtest", arguments: { strategy: "12-1 momentum on US equities", variants_tried: "40" } });
+  const guidance = guided.messages[0].content.text;
+  for (const tool of ["validate_deflated_sharpe", "validate_overfitting", "validate_track_record"]) assert.match(guidance, new RegExp(tool));
+  assert.match(guidance, /40/);
+  const { resources } = await client.listResources();
+  assert.deepEqual(resources.map((r) => r.uri).sort(), ["canli://limits", "canli://sources"]);
+  const limits = await client.readResource({ uri: "canli://limits" });
+  assert.match(limits.contents[0].text, /not a forecast/);
+  const sources = await client.readResource({ uri: "canli://sources" });
+  assert.match(sources.contents[0].text, /pbo/);
   assert.ok(!result.isError);
   const failed = await client.callTool({ name: "get_receipt", arguments: { id: 'a'.repeat(24) } });
   assert.equal(failed.isError, true);

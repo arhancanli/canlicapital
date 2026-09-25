@@ -132,3 +132,12 @@ test("GET is refused: the endpoint is stateless and has no server stream", async
     assert.match(res.headers.get("allow"), /POST/);
   });
 });
+
+test("the hosted endpoint serves the same prompts and resources as the package", async () => {
+  await withServer({ CANLI_REMOTE_MCP_KEY: SHARED_KEY }, async (url) => {
+    const prompts = await rpc(url, "prompts/list", {});
+    assert.deepEqual(prompts.json.result.prompts.map((p) => p.name).sort(), ["track_record_needed", "validate_backtest"]);
+    const resources = await rpc(url, "resources/list", {});
+    assert.deepEqual(resources.json.result.resources.map((r) => r.uri).sort(), ["canli://limits", "canli://sources"]);
+  });
+});

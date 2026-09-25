@@ -9,6 +9,7 @@
 import { readFileSync, realpathSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { z } from "zod";
 import { computeLocally } from "./local.mjs";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
@@ -22,6 +23,7 @@ import {
   getKeyInput,
   getReceiptInput,
   overfittingInput,
+  LIMITS_SENTENCES,
   paperEvidenceInput,
   TOOL_DESCRIPTIONS,
 } from "./schemas.mjs";
@@ -100,8 +102,11 @@ async function callApi(session, { path, method = "GET", body }) {
 // never reads; every field, boundary sentence and provenance value is kept. Measured on the live
 // Apple StockholdersEquity record (README, "Compact context"): 2,214 -> 1,560 tokens minified,
 // 1,056 with the columnar history below.
+// Every result carries the envelope twice: as text, which every client shows, and as structured
+// content, which a client can read field by field. The two are the same object.
 const asText = (envelope, failed = false) => ({
   content: [{ type: "text", text: JSON.stringify(envelope) }],
+  ...(envelope && typeof envelope === "object" && !Array.isArray(envelope) ? { structuredContent: envelope } : {}),
   ...(failed ? { isError: true } : {}),
 });
 
@@ -354,9 +359,108 @@ export function registerTools(server, session) {
   );
 }
 
+// Guided workflows a user can pick in a client that shows MCP prompts. Arguments are strings, as
+// the protocol defines them; the prompt only writes the instructions, the tools do the work.
+export function registerPrompts(server) {
+  server.registerPrompt(
+    "validate_backtest",
+    {
+      title: "Validate a backtest before trusting it",
+      description: "Walk through the deflated Sharpe, overfitting and track-record checks for one strategy, and report what the numbers do not establish.",
+      argsSchema: {
+        strategy: z.string().describe("What the strategy is and what data it was backtested on"),
+        variants_tried: z.string().optional().describe("How many variants, parameter sets or ideas were tried before this one"),
+      },
+    },
+    ({ strategy, variants_tried }) => ({
+      messages: [{
+        role: "user",
+        content: {
+          type: "text",
+          text: [
+            `Validate this backtest before I trust it: ${strategy}.`,
+            variants_tried ? `Variants tried before settling on it: ${variants_tried}.` : "Ask me how many variants were tried before settling on it; do not assume one.",
+            "1. validate_deflated_sharpe with the return series (or the seven contract inputs), counting every variant tried as a trial.",
+            "2. If I can share the returns of every variant, validate_overfitting on that matrix.",
+            "3. validate_track_record for how long a live record must run before this Sharpe clears a benchmark I care about.",
+            "Report each number with the limits sentences its result carries, say plainly what they do not establish, and give me each receipt id.",
+          ].join("\n"),
+        },
+      }],
+    }),
+  );
+  server.registerPrompt(
+    "track_record_needed",
+    {
+      title: "How long a track record do I need?",
+      description: "The minimum track record length for a Sharpe to clear a benchmark, with the record's own probabilistic Sharpe if its length is known.",
+      argsSchema: {
+        sharpe: z.string().describe("The observed annualized Sharpe ratio"),
+        frequency: z.string().describe("How often returns are measured: daily, weekly or monthly"),
+        benchmark: z.string().optional().describe("The annualized Sharpe it must beat; 0 if not given"),
+        record_length: z.string().optional().describe("How long the record already is, if known"),
+      },
+    },
+    ({ sharpe, frequency, benchmark, record_length }) => ({
+      messages: [{
+        role: "user",
+        content: {
+          type: "text",
+          text: [
+            `How long a track record does an annualized Sharpe of ${sharpe} on ${frequency} returns need to be believably above ${benchmark ?? "0"}?`,
+            "Call validate_track_record with periods_per_year for that frequency (252 daily, 52 weekly, 12 monthly). Ask me for the skewness and kurtosis of the returns; if I do not know them, run it for Normal returns (skew 0, kurtosis 3) and say that fat tails lengthen the answer.",
+            record_length ? `The record already runs ${record_length}; convert it to observations and include it, and tell me whether it is long enough.` : "",
+            "State that the answer is about sample uncertainty and the shape of the returns, not a forecast.",
+          ].filter(Boolean).join("\n"),
+        },
+      }],
+    }),
+  );
+}
+
+// Reference documents a client can read: the boundary language every result carries, and the
+// sources and independent checks behind each validator.
+export const RESOURCE_TEXT = Object.freeze({
+  limits: [
+    "# What a canlicapital.com validation result does not establish",
+    "",
+    ...Object.values(LIMITS_SENTENCES).map((s) => `- ${s}`),
+  ].join("\n"),
+  sources: [
+    "# Sources and independent checks",
+    "",
+    "- Deflated Sharpe ratio: Bailey and López de Prado, \"The Deflated Sharpe Ratio\", Journal of Portfolio Management, 2014. Reproduces the paper's worked example (pages 9 and 10) to its four printed decimals, checked in CI.",
+    "- Minimum track record length and probabilistic Sharpe against a benchmark: Bailey and López de Prado, \"The Sharpe Ratio Efficient Frontier\", Journal of Risk, 2012. Reproduces the paper's worked examples (page 11), checked in CI.",
+    "- Probability of backtest overfitting by CSCV: Bailey, Borwein, López de Prado and Zhu, \"The Probability of Backtest Overfitting\", Journal of Computational Finance, 2017. Agrees with the CRAN package pbo on PBO and on every logit, after its documented rank convention, checked in CI.",
+    "- Source code: https://github.com/arhancanli/canli-validation-mcp and https://github.com/arhancanli/canlicapital",
+  ].join("\n"),
+});
+
+export function registerResources(server) {
+  server.registerResource(
+    "limits",
+    "canli://limits",
+    { title: "What a result does not establish", description: "The boundary sentences every validation result carries.", mimeType: "text/markdown" },
+    (uri) => ({ contents: [{ uri: uri.href, mimeType: "text/markdown", text: RESOURCE_TEXT.limits }] }),
+  );
+  server.registerResource(
+    "sources",
+    "canli://sources",
+    { title: "Sources and independent checks", description: "The papers behind each validator and how each is checked against them.", mimeType: "text/markdown" },
+    (uri) => ({ contents: [{ uri: uri.href, mimeType: "text/markdown", text: RESOURCE_TEXT.sources }] }),
+  );
+}
+
+// Everything the server exposes: the npm package and the hosted endpoint both call this.
+export function registerAll(server, session) {
+  registerTools(server, session);
+  registerPrompts(server);
+  registerResources(server);
+}
+
 export function createServer(session = createSession()) {
   const server = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
-  registerTools(server, session);
+  registerAll(server, session);
   return server;
 }
 

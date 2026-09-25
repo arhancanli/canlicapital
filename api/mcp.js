@@ -2,7 +2,7 @@
 //
 // The hosted MCP endpoint (canlicapital.com/mcp): the same tools as the npm package
 // canli-validation-mcp, over MCP Streamable HTTP, so a client can connect with a URL and no install.
-// It registers the package's own tools (mcp/src/server.mjs, registerTools) rather than a copy, so
+// It registers the package's own tools, prompts and resources (mcp/src/server.mjs, registerAll) rather than a copy, so
 // the hosted and local servers cannot drift apart.
 //
 // Stateless: every POST builds a fresh server and transport, which is what a serverless function
@@ -11,7 +11,7 @@
 // daily quota. The caller's key is forwarded to the validation API and never echoed or logged.
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { createSession, registerTools, SERVER_NAME, SERVER_VERSION } from "../mcp/src/server.mjs";
+import { createSession, registerAll, SERVER_NAME, SERVER_VERSION } from "../mcp/src/server.mjs";
 import { BodyError, readJsonBody } from "./_lib/body.js";
 
 // The largest validation request (1 MiB, see api/_lib/limits.js) plus room for the JSON-RPC wrapper.
@@ -69,7 +69,7 @@ export function createHostedHandler({ env = () => process.env, fetchImpl } = {})
       hosted: { keySource: resolved.keySource },
     });
     const server = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
-    registerTools(server, session);
+    registerAll(server, session);
     const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
     res.on("close", () => { transport.close(); server.close(); });
     try {

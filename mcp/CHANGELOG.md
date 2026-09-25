@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Prompts `validate_backtest` and `track_record_needed`; resources `canli://limits` and
+  `canli://sources`; every tool result also carries its envelope as `structuredContent`. The hosted
+  endpoint serves the same, through one `registerAll`.
 - `company_financial_history` accepts `ticker` (for example `AAPL`) as well as `cik`, resolved through
   `GET /api/v1/company-tickers.json`, an index of the tickers of companies in the release.
 - Private local mode (`CANLI_LOCAL=1`, or the Claude Desktop setting): the five validators run on this

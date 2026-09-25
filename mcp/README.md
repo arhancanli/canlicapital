@@ -59,6 +59,14 @@ original SEC response and the record's own boundary sentence: these are accounti
 reported to the SEC, not market prices, returns or a recommendation. Companies and concepts
 outside the current release return an error with the available concepts listed.
 
+## Prompts, resources and structured results
+
+Clients that show MCP prompts offer two guided workflows: `validate_backtest` (deflated Sharpe, then
+overfitting, then the track record needed, reported with what each number does not establish) and
+`track_record_needed`. Two resources can be read: `canli://limits`, the boundary sentences every
+result carries, and `canli://sources`, the papers behind each validator and how each is checked
+against them. Every tool result carries its envelope both as text and as `structuredContent`.
+
 ## Compact context (0.3.0)
 
 An agent pays for every token a tool returns, including whitespace it never reads. Since 0.3.0
