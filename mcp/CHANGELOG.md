@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 (2026-09-25)
 
 - `validate_track_record`: the minimum track record length for an observed Sharpe to clear a
   benchmark at a confidence level, and the probabilistic Sharpe of a record of a given length
