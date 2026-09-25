@@ -41,5 +41,30 @@ The one miss after the fix (dsr-4, third pass) was a unit slip: the tool returne
 model answered 44.43, a percentage, where the task asks for a plain number. The other two passes of
 that task were exact.
 
-Scope: one model, tasks written by us, local mode. These are measurements of this server on these
+Scope: tasks written by us, local mode. These are measurements of this server on these
 tasks, not a claim about other servers or other models. Full per-run records are in `results/`.
+
+## Results, 2026-09-25, three models
+
+All 24 tasks, three passes each: the twenty above plus four company-data tasks (total assets,
+liabilities or stockholders' equity asked by ticker), run once `GET /api/v1/company-tickers.json`
+was live on canlicapital.com. Each file in `results/` records when each part ran and the server
+version.
+
+| | gpt-5.4-mini | Claude Haiku 4.5 | Claude Sonnet 5 |
+|---|---|---|---|
+| runs | 72 | 72 | 72 |
+| answer accuracy | 98.6% | 97.2% | 100% |
+| right tool called | 100% | 98.6% | 100% |
+| right tool first | 100% | 98.6% | 100% |
+| mean tokens per task | 4046 | 6265 | 7826 |
+| median tokens per task | 3699 | 6156 | 7362 |
+| median time per task | 1966 ms | 4284 ms | 5672 ms |
+
+The misses: gpt-5.4-mini gave dsr-4 as a percentage once (above). Claude Haiku 4.5 gave pbo-2 as
+70 where the tool returned 0.7, the same percentage slip, and on one pass of trl-5 called no tool
+and gave no answer the scorer could read.
+Every company task was answered by ticker, exactly, by all three models.
+
+Tokens and time differ by provider and tokenizer, so they compare runs of one model, not models
+with each other. Scope as above: tasks written by us, local mode.
