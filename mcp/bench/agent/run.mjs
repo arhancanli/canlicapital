@@ -5,8 +5,9 @@
 //
 //   node mcp/bench/agent/run.mjs --model gpt-5.4-mini --repeats 3 [--only dsr,trl] [--max-tokens 1500000]
 //
-// The OpenAI key is read from ~/.config/canli/openai_benchmark_key and never printed. Results go
-// to mcp/bench/agent/results/<date>-<model>.json with a summary.
+// Models named claude-* go to the Anthropic Messages API, everything else to OpenAI Chat Completions.
+// Keys are read from ~/.config/canli/openai_benchmark_key and ~/.config/canli/anthropic_benchmark_key
+// and never printed. Results go to mcp/bench/agent/results/<date>-<model>.json with a summary.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, resolve } from "node:path";
@@ -32,9 +33,10 @@ const SYSTEM = [
   "End your reply with one final line of the form 'ANSWER: <value>', where value is a plain number without commas or units, or yes or no.",
 ].join(" ");
 
-function openaiKey() {
-  return readFileSync(resolve(homedir(), ".config/canli/openai_benchmark_key"), "utf8").trim();
-}
+const ANTHROPIC = MODEL.startsWith("claude-");
+const keyFile = (name) => readFileSync(resolve(homedir(), ".config/canli", name), "utf8").trim();
+const openaiKey = () => keyFile("openai_benchmark_key");
+const anthropicKey = () => keyFile("anthropic_benchmark_key");
 
 async function chat(messages, tools) {
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -45,6 +47,51 @@ async function chat(messages, tools) {
   const body = await res.json();
   if (!res.ok) throw new Error(`OpenAI HTTP ${res.status}: ${body?.error?.message ?? "error"}`);
   return body;
+}
+
+// One Anthropic Messages call, returned in the Chat Completions shape runTask reads, so the loop
+// and the scoring are identical for every provider. `messages` stays in the OpenAI shape.
+async function claude(messages, tools) {
+  const system = messages.filter((m) => m.role === "system").map((m) => m.content).join("\n");
+  const converted = [];
+  for (const m of messages) {
+    if (m.role === "user") converted.push({ role: "user", content: m.content });
+    else if (m.role === "assistant") {
+      const content = [];
+      if (m.content) content.push({ type: "text", text: m.content });
+      for (const c of m.tool_calls ?? []) content.push({ type: "tool_use", id: c.id, name: c.function.name, input: JSON.parse(c.function.arguments || "{}") });
+      converted.push({ role: "assistant", content });
+    } else if (m.role === "tool") {
+      const block = { type: "tool_result", tool_use_id: m.tool_call_id, content: m.content };
+      const last = converted[converted.length - 1];
+      if (last?.role === "user" && Array.isArray(last.content)) last.content.push(block);
+      else converted.push({ role: "user", content: [block] });
+    }
+  }
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "x-api-key": anthropicKey(), "anthropic-version": "2023-06-01", "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: MODEL,
+      max_tokens: 4000,
+      system,
+      messages: converted,
+      tools: tools.map((t) => ({ name: t.function.name, description: t.function.description, input_schema: t.function.parameters })),
+    }),
+  });
+  const body = await res.json();
+  if (!res.ok) throw new Error(`Anthropic HTTP ${res.status}: ${body?.error?.message ?? "error"}`);
+  const text = body.content.filter((b) => b.type === "text").map((b) => b.text).join("");
+  const calls = body.content.filter((b) => b.type === "tool_use").map((b) => ({ id: b.id, type: "function", function: { name: b.name, arguments: JSON.stringify(b.input) } }));
+  const u = body.usage ?? {};
+  return {
+    usage: {
+      prompt_tokens: (u.input_tokens ?? 0) + (u.cache_read_input_tokens ?? 0) + (u.cache_creation_input_tokens ?? 0),
+      completion_tokens: u.output_tokens ?? 0,
+      prompt_tokens_details: { cached_tokens: u.cache_read_input_tokens ?? 0 },
+    },
+    choices: [{ message: { role: "assistant", content: text || null, ...(calls.length ? { tool_calls: calls } : {}) } }],
+  };
 }
 
 function toOpenAiTools(mcpTools) {
@@ -65,7 +112,7 @@ async function runTask(client, tools, task) {
   try {
     while (turns < MAX_TURNS) {
       turns += 1;
-      const out = await chat(messages, tools);
+      const out = await (ANTHROPIC ? claude : chat)(messages, tools);
       usage.prompt_tokens += out.usage?.prompt_tokens ?? 0;
       usage.completion_tokens += out.usage?.completion_tokens ?? 0;
       usage.cached_tokens += out.usage?.prompt_tokens_details?.cached_tokens ?? 0;
