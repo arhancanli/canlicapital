@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 0.5.0 (2026-09-25)
+
+- Full-precision normal CDF behind every probability (PSR, deflated Sharpe, minimum track record
+  length): relative error at most 1.5e-14 for x >= -20 against the C library's erfc, replacing an
+  approximation with absolute error up to 7e-8 and no relative accuracy in the tails. Results move in
+  the seventh decimal place or beyond.
+- `validate_track_record` refuses a Sharpe so close to its benchmark that no finite record reaches the
+  confidence, instead of returning an infinite length as `null` years.
+- Property-based tests (fast-check) of every validator: totality on arbitrary input, the monotonicities
+  the formulas imply, inverse consistency and invariances.
 - Prompts `validate_backtest` and `track_record_needed`; resources `canli://limits` and
   `canli://sources`; every tool result also carries its envelope as `structuredContent`. The hosted
   endpoint serves the same, through one `registerAll`.
@@ -10,6 +20,9 @@
 - Private local mode (`CANLI_LOCAL=1`, or the Claude Desktop setting): the five validators run on this
   machine from `src/local`, a byte-for-byte mirror of the API's computation, so nothing about the
   submitted series leaves it and no receipt is stored. Requires Node 20.10 or later.
+- In local mode `get_key` sends nothing and reports that no key is needed, instead of issuing a key
+  the local validators never use. Found by the agent benchmark (`bench/agent`: fixed tasks, scored
+  on the right tool and the right answer, run on OpenAI and Anthropic models).
 
 ## 0.4.0 (2026-09-25)
 
