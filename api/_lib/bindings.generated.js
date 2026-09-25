@@ -11,7 +11,7 @@ export const BINDINGS = Object.freeze({
     "standards/validation-api/vectors.json"
   ],
   "files": {
-    "js/dsr-core.js": "sha256:c17786cd89b08638e774a561c27db1c638d3f164a8ef02fce1d7975824ec683d",
+    "js/dsr-core.js": "sha256:5a3cbcec0fd94190a7206022b634ca8b19d3e53088107c70d69695b5838068fa",
     "js/moments-core.js": "sha256:f14b6f85fde4c21cdb16ae7c5648f2a20a8c93ef53f46019d25dd2cc59134ed1",
     "js/pbo-core.js": "sha256:56d66a9065256fac879da7a1c9d13e45e739d548332b1feaaca315f26051979f",
     "js/breadth-core.js": "sha256:de8dd82b5e10b5d1ca6c65e3d91da9e1b584e77a1ad7f9d9b54c843070fb308e",
