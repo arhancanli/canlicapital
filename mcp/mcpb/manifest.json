@@ -26,7 +26,8 @@
         "${__dirname}/src/server.mjs"
       ],
       "env": {
-        "CANLI_KEY": "${user_config.api_key}"
+        "CANLI_KEY": "${user_config.api_key}",
+        "CANLI_LOCAL": "${user_config.local_only}"
       }
     }
   },
@@ -76,6 +77,13 @@
       "sensitive": true,
       "required": false,
       "default": ""
+    },
+    "local_only": {
+      "type": "boolean",
+      "title": "Private local mode",
+      "description": "Run the validators on this computer. Nothing about your series is sent to canlicapital.com and no receipt is stored.",
+      "default": false,
+      "required": false
     }
   },
   "compatibility": {
@@ -85,7 +93,7 @@
       "linux"
     ],
     "runtimes": {
-      "node": ">=20.0.0"
+      "node": ">=20.10.0"
     }
   },
   "keywords": [

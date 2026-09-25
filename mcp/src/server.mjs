@@ -9,6 +9,7 @@
 import { readFileSync, realpathSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { computeLocally } from "./local.mjs";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   breadthInput,
@@ -47,7 +48,14 @@ export function configuredKey(value) {
   return trimmed === "" || /^\$\{[^}]*\}$/.test(trimmed) ? undefined : trimmed;
 }
 
-export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted } = {}) {
+// CANLI_LOCAL=1 (or "true") turns on private local mode: the validators run on this machine and
+// nothing about the submitted series leaves it. An empty or unsubstituted value is off.
+export function configuredLocal(value) {
+  const v = configuredKey(value);
+  return v === "1" || v?.toLowerCase() === "true";
+}
+
+export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted, local } = {}) {
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs <= 0) throw new Error("Request timeout must be a positive integer");
   return {
     base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE,
@@ -58,6 +66,7 @@ export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIM
     // Set by the hosted endpoint (api/mcp.js): which key a request runs under, so get_key can say
     // so instead of issuing a key the next stateless request would never see.
     hosted: hosted ?? undefined,
+    local: local ?? configuredLocal(process.env.CANLI_LOCAL),
   };
 }
 
@@ -147,30 +156,35 @@ export async function toolValidateDeflatedSharpe(session, args) {
         "or a return series (returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized), never a mix of both and never neither.",
     );
   }
+  if (session.local) { const local = computeLocally("validate_deflated_sharpe", parsed.data); return asText(local.envelope, local.failed); }
   const response = await callApi(session, { path: "/api/v1/validate/deflated-sharpe", method: "POST", body: parsed.data });
   return asText(response.envelope, response.failed);
 }
 
 export async function toolValidateOverfitting(session, args) {
   const body = parseOrThrow(overfittingInput, args, "validate_overfitting");
+  if (session.local) { const local = computeLocally("validate_overfitting", body); return asText(local.envelope, local.failed); }
   const response = await callApi(session, { path: "/api/v1/validate/overfitting", method: "POST", body });
   return asText(response.envelope, response.failed);
 }
 
 export async function toolValidatePaperEvidence(session, args) {
   const body = parseOrThrow(paperEvidenceInput, args, "validate_paper_evidence");
+  if (session.local) { const local = computeLocally("validate_paper_evidence", body); return asText(local.envelope, local.failed); }
   const response = await callApi(session, { path: "/api/v1/validate/paper-evidence", method: "POST", body });
   return asText(response.envelope, response.failed);
 }
 
 export async function toolValidateBreadth(session, args) {
   const body = parseOrThrow(breadthInput, args, "validate_breadth");
+  if (session.local) { const local = computeLocally("validate_breadth", body); return asText(local.envelope, local.failed); }
   const response = await callApi(session, { path: "/api/v1/validate/breadth", method: "POST", body });
   return asText(response.envelope, response.failed);
 }
 
 export async function toolValidateTrackRecord(session, args) {
   const body = parseOrThrow(trackRecordInput, args, "validate_track_record");
+  if (session.local) { const local = computeLocally("validate_track_record", body); return asText(local.envelope, local.failed); }
   const response = await callApi(session, { path: "/api/v1/validate/track-record", method: "POST", body });
   return asText(response.envelope, response.failed);
 }

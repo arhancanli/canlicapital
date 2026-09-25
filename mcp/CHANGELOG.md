@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Private local mode (`CANLI_LOCAL=1`, or the Claude Desktop setting): the five validators run on this
+  machine from `src/local`, a byte-for-byte mirror of the API's computation, so nothing about the
+  submitted series leaves it and no receipt is stored. Requires Node 20.10 or later.
+
 ## 0.4.0 (2026-09-25)
 
 - `validate_track_record`: the minimum track record length for an observed Sharpe to clear a

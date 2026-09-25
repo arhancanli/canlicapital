@@ -277,6 +277,7 @@ function mcpAssistantSection() {
   const claudeCodeInstall = extractReadmeFence(readme, "Claude Code", "bash");
   const claudeDesktopJson = extractReadmeFence(readme, "Claude Desktop", "json");
   const hostedInstall = extractReadmeFence(readme, "Hosted endpoint (no install)", "bash");
+  const localInstall = extractReadmeFence(readme, "Private local mode", "bash");
   const npmUrl = `https://www.npmjs.com/package/${mcpPkg.name}`;
   return `<section class="dev-section" id="ai-assistant">
     <h2>Connect the MCP server</h2>
@@ -293,6 +294,7 @@ function mcpAssistantSection() {
     <div class="dev-snippet"><p class="dev-snippet-label">VS Code</p><pre class="dev-code" tabindex="0" aria-label="VS Code command"><code>${esc(vscodeAddCommand())}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Hosted, no install: https://canlicapital.com/mcp</p><pre class="dev-code" tabindex="0" aria-label="Hosted MCP endpoint"><code>${esc(hostedInstall)}</code></pre></div>
     <p class="dev-note">Clients that take a server URL (Claude.ai connectors, ChatGPT, Cursor) can use the hosted endpoint directly. Without a key it runs on a shared anonymous quota; send your own key as <code>Authorization: Bearer</code> for yours.</p>
+    <div class="dev-snippet"><p class="dev-snippet-label">Private local mode: your series never leaves your machine</p><pre class="dev-code" tabindex="0" aria-label="Private local mode"><code>${esc(localInstall)}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Claude Code configuration"><code>${esc(claudeCodeInstall)}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code" tabindex="0" aria-label="Claude Desktop configuration"><code>${esc(claudeDesktopJson)}</code></pre></div>
     <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp" rel="noreferrer">Inspect the MCP implementation and contribute an integration</a>. If the tools help your research, star the repository to help others discover it.</p>
