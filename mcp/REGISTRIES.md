@@ -28,12 +28,15 @@ via mcp-publisher 1.8.1 (verified the same day against
 `registry.modelcontextprotocol.io/v0/servers`). It is also on cursor.directory and served at
 https://canlicapital.com/mcp.
 
-Next release, not yet published: `canli-validation-mcp@0.3.1` (tool annotations; an empty or
-unsubstituted `CANLI_KEY` is no key). It is the first release published from CI: pushing the tag
-`mcp-v0.3.1` runs `.github/workflows/mcp-publish.yml`, which publishes to npm with provenance
-through npm trusted publishing (configured by the owner on 2026-09-25 for this repository,
-workflow and the `mcp-release` environment) and to the official registry through GitHub OIDC.
-Until that run succeeds and the listings are checked, 0.3.0 stays the latest published version.
+Release checkpoint, September 25, 2026: `canli-validation-mcp@0.3.1` (tool annotations; an empty or
+unsubstituted `CANLI_KEY` is no key) is the first release published from CI. Pushing the signed tag
+`mcp-v0.3.1` ran `.github/workflows/mcp-publish.yml` (run 36135804565), which published to npm with a
+provenance attestation (SLSA v1, `registry.npmjs.org/-/npm/v1/attestations/canli-validation-mcp@0.3.1`)
+through npm trusted publishing. Its MCP Registry step failed because the registry looked the version up
+on npm before npm served it; the registry entry was then published from the tagged checkout with
+mcp-publisher 1.8.1 after the owner's GitHub device login, and the listing shows 0.3.1. The workflow now
+waits for npm before the registry step. The Claude Desktop bundle for 0.3.1 is attached to
+[the v0.3.1 release](https://github.com/arhancanli/canli-validation-mcp/releases/tag/v0.3.1).
 
 ## Official registry (registry.modelcontextprotocol.io)
 

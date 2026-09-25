@@ -155,3 +155,55 @@ export function checkGoldenVectors(vectors, tolerance = 8e-7) {
   return failures;
 }
 
+
+// Probabilistic Sharpe ratio against a benchmark Sharpe, and the minimum track record length for
+// it to clear that benchmark at a confidence level: Bailey and López de Prado, "The Sharpe Ratio
+// Efficient Frontier", Journal of Risk 15(2), 2012, Eqs. (11) and (13). Inputs are annualized; the
+// estimator works per period, like calculateDsr above.
+function perPeriodInputs(values) {
+  for (const [key, value] of Object.entries(values)) requireFinite(key, value);
+  if (!(values.periods_per_year > 0)) throw new RangeError("Periods per year must be greater than zero");
+  const scale = Math.sqrt(values.periods_per_year);
+  const sr = values.observed_sharpe_annualized / scale;
+  const benchmark = values.benchmark_sharpe_annualized / scale;
+  const term = 1 - values.skew * sr + ((values.non_excess_kurtosis - 1) / 4) * sr ** 2;
+  if (!(term > 0)) {
+    throw new RangeError("These skew, kurtosis and Sharpe inputs produce a non-positive estimator variance term");
+  }
+  return { sr, benchmark, term };
+}
+
+export function probabilisticSharpe(input) {
+  const values = {
+    observed_sharpe_annualized: Number(input.observed_sharpe_annualized),
+    benchmark_sharpe_annualized: Number(input.benchmark_sharpe_annualized ?? 0),
+    observations: Number(input.observations),
+    periods_per_year: Number(input.periods_per_year),
+    skew: Number(input.skew),
+    non_excess_kurtosis: Number(input.non_excess_kurtosis),
+  };
+  if (!Number.isInteger(values.observations) || values.observations < 2) {
+    throw new RangeError("Return observations must be an integer of at least 2");
+  }
+  const { sr, benchmark, term } = perPeriodInputs(values);
+  const z = ((sr - benchmark) * Math.sqrt(values.observations - 1)) / Math.sqrt(term);
+  return { probabilistic_sharpe_ratio: normalCdf(z), z_score: z };
+}
+
+export function minimumTrackRecordLength(input) {
+  const confidence = Number(input.confidence ?? 0.95);
+  if (!(confidence > 0 && confidence < 1)) throw new RangeError("Confidence must be strictly between 0 and 1");
+  const values = {
+    observed_sharpe_annualized: Number(input.observed_sharpe_annualized),
+    benchmark_sharpe_annualized: Number(input.benchmark_sharpe_annualized ?? 0),
+    periods_per_year: Number(input.periods_per_year),
+    skew: Number(input.skew),
+    non_excess_kurtosis: Number(input.non_excess_kurtosis),
+  };
+  const { sr, benchmark, term } = perPeriodInputs(values);
+  if (!(sr > benchmark)) {
+    throw new RangeError("The observed Sharpe must exceed the benchmark; no track record length is enough otherwise");
+  }
+  const observations = 1 + term * (normalPpf(confidence) / (sr - benchmark)) ** 2;
+  return { observations, years: observations / values.periods_per_year, confidence };
+}
