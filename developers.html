@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/developers.css" />
 <link rel="stylesheet" href="/css/developer-workbench.css" /><link rel="stylesheet" href="/css/developer-experience.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"Canli Capital public read API","description":"A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits.","documentation":"https://canlicapital.com/developers","url":"https://canlicapital.com/api/v1","provider":{"@id":"https://canlicapital.com/#organization"},"termsOfService":"https://canlicapital.com/methodology"}</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebAPI","name":"Canli Capital public read API","description":"A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits.","documentation":"https://canlicapital.com/developers","url":"https://canlicapital.com/api/v1","provider":{"@id":"https://canlicapital.com/#organization"},"termsOfService":"https://canlicapital.com/methodology"},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-validation-mcp","description":"MCP server that validates a backtest against the Canli Capital Validation API from Claude, Cursor or any MCP client.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#ai-assistant","downloadUrl":"https://www.npmjs.com/package/canli-validation-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"alphac","description":"Auditable multi-asset quantitative research engine with point-in-time data, walk-forward validation, trial accounting and execution simulation.","codeRepository":"https://github.com/arhancanli/alphac","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canli-pit-lake","description":"A point-in-time market data lake where every read takes an explicit as-of.","codeRepository":"https://github.com/arhancanli/canli-pit-lake","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canli-backtest","description":"A backtester that enforces fill-time causality and counts every hypothesis ever run.","codeRepository":"https://github.com/arhancanli/canli-backtest","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canlicapital","description":"The source of canlicapital.com: methodology, paper record, kill log, retractions and reproducible artifacts.","codeRepository":"https://github.com/arhancanli/canlicapital","programmingLanguage":"HTML","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}}]</script>
 
 <!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
 <body class="dev-page">
@@ -614,6 +614,25 @@ console.log(await response.json());</code></pre></div>
   </section>
 </main>
 <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -653,6 +672,7 @@ console.log(await response.json());</code></pre></div>
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>

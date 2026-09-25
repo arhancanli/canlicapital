@@ -64,3 +64,21 @@ test("repeated footer workflow is optional, native and preserves its evidence ro
   for(const href of ['/research','/developers#validation','/verify'])assert.ok(html.includes(`href="${href}"`));
   assert.match(html,/A receipt is not proof of future returns/);
 });
+
+test("the footer promotes the MCP server, every public repository and the API key", () => {
+  const strip = renderProductShellFooter().match(/<section class="cc-footer__dev"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(strip, "the developer strip is missing from the footer");
+  for (const href of [
+    "https://www.npmjs.com/package/canli-validation-mcp",
+    "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp",
+    "https://github.com/arhancanli/alphac",
+    "https://github.com/arhancanli/canli-pit-lake",
+    "https://github.com/arhancanli/canli-backtest",
+    "/developers#quickstart",
+  ]) assert.ok(strip.includes(`href="${href}"`), `the developer strip does not link ${href}`);
+  assert.match(strip, /<code>npx -y canli-validation-mcp<\/code>/);
+});
+
+test("company pages keep their released footer bytes", () => {
+  assert.doesNotMatch(renderProductShellFooter({ developerStrip: false }), /cc-footer__dev/);
+});
