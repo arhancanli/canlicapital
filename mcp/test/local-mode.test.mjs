@@ -74,3 +74,12 @@ test("CANLI_LOCAL turns local mode on only for 1 or true", () => {
   assert.equal(configuredLocal("${user_config.local_only}"), false);
   assert.equal(configuredLocal(undefined), false);
 });
+
+test("get_key in local mode issues nothing and sends nothing", async () => {
+  const { toolGetKey } = await import("../src/server.mjs");
+  const { session, calls } = noNetwork();
+  const out = parsed(await toolGetKey(session, {}));
+  assert.equal(out.key_source, "local");
+  assert.equal(out.key_present, false);
+  assert.equal(calls(), 0);
+});
