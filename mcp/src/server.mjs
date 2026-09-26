@@ -18,6 +18,7 @@ import {
   trackRecordInput,
   auditBacktestInput,
   backtestLengthInput,
+  haircutSharpeInput,
   auditBacktestToolShape,
   companyHistoryInput,
   companyHistoryToolShape,
@@ -237,6 +238,13 @@ export async function toolValidateBacktestLength(session, args) {
   const body = parseOrThrow(backtestLengthInput, args, "validate_backtest_length");
   if (session.local) { const local = computeLocally("validate_backtest_length", body); return validationText(session, local); }
   const response = await callApi(session, { path: "/api/v1/validate/backtest-length", method: "POST", body });
+  return validationText(session, response);
+}
+
+export async function toolValidateHaircutSharpe(session, args) {
+  const body = parseOrThrow(haircutSharpeInput, args, "validate_haircut_sharpe");
+  if (session.local) { const local = computeLocally("validate_haircut_sharpe", body); return validationText(session, local); }
+  const response = await callApi(session, { path: "/api/v1/validate/haircut-sharpe", method: "POST", body });
   return validationText(session, response);
 }
 
@@ -464,6 +472,11 @@ export function registerTools(server, session) {
     (args) => toolValidateBacktestLength(session, args),
   );
   server.registerTool(
+    "validate_haircut_sharpe",
+    { title: "Haircut Sharpe ratio", annotations: { title: "Haircut Sharpe ratio", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_haircut_sharpe, inputSchema: haircutSharpeInput },
+    (args) => toolValidateHaircutSharpe(session, args),
+  );
+  server.registerTool(
     "audit_backtest",
     { title: "Audit a backtest", annotations: { title: "Audit a backtest", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.audit_backtest, inputSchema: auditBacktestToolShape },
     (args) => toolAuditBacktest(session, args),
@@ -558,6 +571,7 @@ export const RESOURCE_TEXT = Object.freeze({
     "- Deflated Sharpe ratio: Bailey and López de Prado, \"The Deflated Sharpe Ratio\", Journal of Portfolio Management, 2014. Reproduces the paper's worked example (pages 9 and 10) to its four printed decimals, checked in CI.",
     "- Minimum track record length and probabilistic Sharpe against a benchmark: Bailey and López de Prado, \"The Sharpe Ratio Efficient Frontier\", Journal of Risk, 2012. Reproduces the paper's worked examples (page 11), checked in CI.",
     "- Minimum backtest length: Bailey, Borwein, López de Prado and Zhu, \"Pseudo-Mathematics and Financial Charlatanism\", Notices of the American Mathematical Society, 2014. Reproduces the paper's statements exactly (the best of 10 trials at 1.57; 5 years allow at most 45 trials, 2 years at most 7), checked in CI.",
+    "- Haircut Sharpe ratio: Harvey and Liu, \"Backtesting\", Journal of Portfolio Management, 2015. Agrees with the authors' own Haircut_SR.m on every deterministic (Bonferroni) output to 1e-9; Holm and BHY agree with R's p.adjust; the Student t with R's pt and qt. Checked in CI.",
     "- Probability of backtest overfitting by CSCV: Bailey, Borwein, López de Prado and Zhu, \"The Probability of Backtest Overfitting\", Journal of Computational Finance, 2017. Agrees with the CRAN package pbo on PBO and on every logit, after its documented rank convention, checked in CI.",
     "- Source code: https://github.com/arhancanli/canli-validation-mcp and https://github.com/arhancanli/canlicapital",
   ].join("\n"),

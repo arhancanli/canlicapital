@@ -8,7 +8,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { LOCAL_FILES } from "../scripts/sync-local.mjs";
-import { configuredLocal, createSession, toolValidateBacktestLength, toolValidateBreadth, toolValidateDeflatedSharpe, toolValidateOverfitting, toolValidateTrackRecord } from "../src/server.mjs";
+import { configuredLocal, createSession, toolValidateBacktestLength, toolValidateBreadth, toolValidateHaircutSharpe, toolValidateDeflatedSharpe, toolValidateOverfitting, toolValidateTrackRecord } from "../src/server.mjs";
 
 const MCP = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(MCP, "..");
@@ -91,5 +91,13 @@ test("the minimum backtest length computed locally is the paper's: 5 years allow
   assert.equal(envelope.data.result.maximum_independent_trials, 45);
   assert.equal(envelope.data.result.minimum_backtest_years.toFixed(0), "5");
   assert.equal(envelope.receipt, null);
+  assert.equal(calls(), 0);
+});
+
+test("the haircut computed locally is the authors': Exhibit 5's inputs give a 74.6 percent Bonferroni haircut", async () => {
+  const { session, calls } = noNetwork();
+  const out = JSON.parse((await toolValidateHaircutSharpe(session, { observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, tests: 100, autocorrelation: 0.1 })).content[0].text);
+  assert.equal((out.data.result.bonferroni.haircut * 100).toFixed(1), "74.6");
+  assert.equal(out.receipt, null);
   assert.equal(calls(), 0);
 });

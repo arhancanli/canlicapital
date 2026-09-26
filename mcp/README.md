@@ -5,9 +5,9 @@
 [![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
 
 An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
-gives a coding agent eleven tools: issue a free key, run the six validators (deflated Sharpe,
+gives a coding agent twelve tools: issue a free key, run the seven validators (deflated Sharpe,
 CSCV overfitting, paper-evidence conformance, breadth ceiling, minimum track record length,
-minimum backtest length),
+minimum backtest length, haircut Sharpe ratio),
 audit one backtest with three of them in a single call, fetch a stored receipt, read service status, and read a company's reported financial history
 from SEC filings. Every validation result carries, beside the number, the sentences that say what
 it does not establish and the receipt that records it, success or error, so the agent cannot see a
@@ -48,6 +48,7 @@ repository for the full design.
 | `validate_breadth` | `POST /api/v1/validate/breadth` | yes |
 | `validate_track_record` | `POST /api/v1/validate/track-record` | yes |
 | `validate_backtest_length` | `POST /api/v1/validate/backtest-length` | yes |
+| `validate_haircut_sharpe` | `POST /api/v1/validate/haircut-sharpe` | yes |
 | `audit_backtest` | the deflated Sharpe, track record and, with `variants`, overfitting routes, one validation each | yes |
 | `get_receipt` | `GET /api/v1/receipts/{id}` | no |
 | `service_status` | `GET /api/v1/validate/status` | no |
@@ -129,7 +130,7 @@ an array of objects.
 | `CANLI_API_BASE` | `https://canlicapital.com` | Where the API lives. Point it at a preview deployment for testing. |
 | `CANLI_KEY` | unset | A key already issued from `POST /api/v1/keys`. When set, `get_key` sends no request and reports the key is already configured; every other tool sends it as `Authorization: Bearer <key>`. |
 | `CANLI_FULL_ENVELOPE` | unset | `1` or `true` returns each validation's full API envelope instead of the compact result (below). |
-| `CANLI_LOCAL` | unset | `1` or `true` runs the six validators on this machine (private local mode, below): no key, no network, no receipt. |
+| `CANLI_LOCAL` | unset | `1` or `true` runs the seven validators on this machine (private local mode, below): no key, no network, no receipt. |
 
 If `CANLI_KEY` is not set and local mode is off, call `get_key` once per session before the validators. The key it
 returns lives only in this process's memory for the life of the session; it is not written to
@@ -198,7 +199,7 @@ Run `claude mcp list` to confirm it is registered, and `claude mcp remove canli`
 
 ## Private local mode
 
-Set `CANLI_LOCAL=1` and the six validators run on your machine: nothing about the series you
+Set `CANLI_LOCAL=1` and the seven validators run on your machine: nothing about the series you
 submit is sent to canlicapital.com, no key is needed, and no receipt is stored. The computation is
 the API's own, shipped byte for byte in `src/local` (a test fails if it drifts), so a local result
 equals the hosted one; it names no receipt id because none was made.

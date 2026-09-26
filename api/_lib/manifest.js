@@ -89,6 +89,17 @@ export const MANIFEST = Object.freeze([
     requestExample: { effective_independent_trials: 45, backtest_years: 5, target_sharpe_annualized: 1 },
     requestOptional: ["effective_independent_trials", "backtest_years", "target_sharpe_annualized"],
   },
+  {
+    path: "/api/v1/validate/haircut-sharpe", method: "POST", keyed: true,
+    summary: "Haircut Sharpe ratio for multiple testing: the p-value of a Sharpe found among several tests, adjusted by Bonferroni, for independent tests, and with the other tests' Sharpe ratios by Holm and BHY.",
+    // Exhibit 5 of Harvey and Liu (2015): 120 months, an annualized Sharpe of 1, autocorrelation 0.1
+    // and 100 tests; the authors' Haircut_SR.m gives a Bonferroni haircut of 74.6 percent.
+    requestExample: { observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, tests: 100, autocorrelation: 0.1 },
+    requestOptional: ["tests", "autocorrelation", "other_sharpe_ratios_annualized"],
+    requestExtraProperties: {
+      other_sharpe_ratios_annualized: { type: "array", items: { type: "number" }, description: "Annualized Sharpe ratios of the other tests, over the same observations; adds Holm and BHY." },
+    },
+  },
   { path: "/api/v1/validate/status", method: "GET", keyed: false, summary: "Service and store status with the quota constants in force." },
   { path: "/api/v1/receipts/{id}", method: "GET", keyed: false, summary: "A stored verdict by content-hash id. Immutable." },
   {

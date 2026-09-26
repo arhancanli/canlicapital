@@ -15,6 +15,7 @@ import {
   toolValidateBreadth,
   toolValidateTrackRecord,
   toolValidateBacktestLength,
+  toolValidateHaircutSharpe,
   toolValidateDeflatedSharpe,
   toolValidateOverfitting,
   toolValidatePaperEvidence,
@@ -353,6 +354,35 @@ test("validate_backtest_length: rejects an unknown field or one trial before any
   const session = createSession({ base: "https://example.test", fetchImpl: async () => { called = true; }, envKey: "ck_live_env" });
   await assert.rejects(toolValidateBacktestLength(session, { ...BACKTEST_LENGTH_INPUT, surprise: 1 }), /validate_backtest_length/);
   await assert.rejects(toolValidateBacktestLength(session, { effective_independent_trials: 1 }), /validate_backtest_length/);
+  assert.equal(called, false);
+});
+
+// ---------------------------------------------------------------------------------------------
+// validate_haircut_sharpe
+// ---------------------------------------------------------------------------------------------
+
+const HAIRCUT_INPUT = { observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, tests: 100, autocorrelation: 0.1 };
+
+test("validate_haircut_sharpe: success passthrough to the haircut-sharpe route", async () => {
+  const body = envelope({ endpoint: "validate/haircut-sharpe", data: { result: { bonferroni: { haircut: 0.746 } } } });
+  const calls = [];
+  const fetchImpl = async (url, init) => { calls.push({ url: String(url), body: init?.body }); return new Response(JSON.stringify(body), { status: 200 }); };
+  const session = createSession({ base: "https://example.test", fetchImpl, envKey: "ck_live_env" });
+  const result = await toolValidateHaircutSharpe(session, HAIRCUT_INPUT);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
+  assert.equal(calls[0].url, "https://example.test/api/v1/validate/haircut-sharpe");
+  assert.deepEqual(JSON.parse(calls[0].body), HAIRCUT_INPUT);
+});
+
+test("validate_haircut_sharpe: errors pass through; a non-positive Sharpe or unknown field never leaves", async () => {
+  const body = envelope({ endpoint: "validate/haircut-sharpe", error: { code: "invalid_input", message: "Send tests, other_sharpe_ratios_annualized, or both" } });
+  const session = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status: 422, body }]), envKey: "ck_live_env" });
+  const result = await toolValidateHaircutSharpe(session, HAIRCUT_INPUT);
+  assert.equal(result.isError, true);
+  let called = false;
+  const quiet = createSession({ base: "https://example.test", fetchImpl: async () => { called = true; }, envKey: "ck_live_env" });
+  await assert.rejects(toolValidateHaircutSharpe(quiet, { ...HAIRCUT_INPUT, observed_sharpe_annualized: -1 }), /validate_haircut_sharpe/);
+  await assert.rejects(toolValidateHaircutSharpe(quiet, { ...HAIRCUT_INPUT, surprise: 1 }), /validate_haircut_sharpe/);
   assert.equal(called, false);
 });
 

@@ -21,6 +21,9 @@ export const LOCAL_FILES = [
   "js/validate/breadth.js",
   "js/validate/track-record.js",
   "js/validate/backtest-length.js",
+  "js/student-t.js",
+  "js/haircut-core.js",
+  "js/validate/haircut-sharpe.js",
   "api/_lib/limits.js",
   "standards/paper-evidence/schema.json",
 ];

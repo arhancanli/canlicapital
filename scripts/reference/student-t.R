@@ -1,0 +1,6 @@
+dfs <- c(1, 2, 3, 5, 10, 29, 59, 119, 239, 593, 999, 1e5)
+ts <- c(0, 0.1, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 7.29, 10, 13.69, 20, 40)
+sf <- do.call(rbind, lapply(dfs, function(d) data.frame(df = d, t = ts, upper = pt(ts, d, lower.tail = FALSE))))
+ps <- c(0.5, 0.25, 0.1, 0.05, 0.025, 0.01, 1e-3, 1e-5, 1e-8, 1e-12, 1e-20, 1e-40)
+qs <- do.call(rbind, lapply(dfs, function(d) data.frame(df = d, upper = ps, t = qt(ps, d, lower.tail = FALSE))))
+writeLines(jsonlite::toJSON(list(source = paste("R", R.version.string, "pt/qt with lower.tail = FALSE"), survival = sf, quantile = qs), digits = I(17), auto_unbox = TRUE), "js/fixtures/student-t-reference.json")

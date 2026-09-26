@@ -1,0 +1,100 @@
+{
+ "source": "Harvey and Liu, Haircut_SR.m (people.duke.edu/~charvey/backtesting/, sha256 ce647111b8f7...), run unmodified except output precision (12 decimals) in GNU Octave 10 with the statistics package; only the deterministic Bonferroni path is used",
+ "cases": [
+  {
+   "inputs": {
+    "frequency": "monthly",
+    "observations": 120,
+    "sharpe_annualized": 1.0,
+    "autocorrelation": 0.1,
+    "tests": 100
+   },
+   "sr_annual_ac_corrected": 0.912245460839,
+   "bonferroni": {
+    "adjusted_p": 0.465123000159,
+    "haircut_sharpe_annualized": 0.23173088627,
+    "haircut_percent": 74.5977484989
+   }
+  },
+  {
+   "inputs": {
+    "frequency": "monthly",
+    "observations": 240,
+    "sharpe_annualized": 0.8,
+    "autocorrelation": 0,
+    "tests": 10
+   },
+   "sr_annual_ac_corrected": 0.8,
+   "bonferroni": {
+    "adjusted_p": 0.004195478163,
+    "haircut_sharpe_annualized": 0.646417961095,
+    "haircut_percent": 19.1977548631
+   }
+  },
+  {
+   "inputs": {
+    "frequency": "monthly",
+    "observations": 594,
+    "sharpe_annualized": 0.43,
+    "autocorrelation": 0,
+    "tests": 10
+   },
+   "sr_annual_ac_corrected": 0.43,
+   "bonferroni": {
+    "adjusted_p": 0.025912876996,
+    "haircut_sharpe_annualized": 0.317402881691,
+    "haircut_percent": 26.1853763508
+   }
+  },
+  {
+   "inputs": {
+    "frequency": "monthly",
+    "observations": 60,
+    "sharpe_annualized": 2.0,
+    "autocorrelation": 0.2,
+    "tests": 50
+   },
+   "sr_annual_ac_corrected": 1.662104066432,
+   "bonferroni": {
+    "adjusted_p": 0.022549360642,
+    "haircut_sharpe_annualized": 1.047588386124,
+    "haircut_percent": 36.9721543145
+   }
+  },
+  {
+   "inputs": {
+    "frequency": "monthly",
+    "observations": 360,
+    "sharpe_annualized": 0.5,
+    "autocorrelation": 0,
+    "tests": 1
+   },
+   "sr_annual_ac_corrected": 0.5,
+   "bonferroni": {
+    "adjusted_p": 0.00647751841,
+    "haircut_sharpe_annualized": 0.5,
+    "haircut_percent": -0.0
+   }
+  }
+ ],
+ "excluded": {
+  "reason": "Haircut_SR computes the p-value as 2*(1 - tcdf(t, N-1)), which rounds to 0 for large t, so the haircut Sharpe inverts to Inf; the validator computes the upper tail directly",
+  "cases": [
+   {
+    "inputs": {
+     "frequency": "monthly",
+     "observations": 1000,
+     "sharpe_annualized": 1.5,
+     "autocorrelation": 0,
+     "tests": 315
+    },
+    "sr_annual_ac_corrected": 1.5,
+    "bonferroni": {
+     "adjusted_p": 0.0,
+     "haircut_sharpe_annualized": "Inf",
+     "haircut_percent": "-Inf"
+    }
+   }
+  ]
+ }
+}
