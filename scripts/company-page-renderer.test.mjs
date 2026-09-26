@@ -1944,3 +1944,9 @@ test('Southern Copper and historical AdCare bind legacy years, share scale and i
     assert.equal(companyFilingNotes({ ...record, source_sha256: '0'.repeat(64) }, 'EarningsPerShareBasic').length, 0);
   }
 });
+
+test('each history page opens with its own computed summary and a matching description', () => {
+  const [page] = renderCompanyPages(JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url))), { target: 'Assets' });
+  assert.match(page.html, /<h2 id="at-a-glance">At a glance<\/h2><p>Apple reported total assets of \$359\.2 billion at 2025-09-27, down 1\.6% from \$365\.0 billion a year earlier\./);
+  assert.match(page.html, /<meta name="description" content="Apple total assets: \$359\.2 billion at 2025-09-27, down 1\.6% on the year\. 18 values since 2008/);
+});
