@@ -7,22 +7,37 @@
 // Only numbers leave this module. Error messages name rows and columns by position, never by a
 // cell's content or a header's text, so a path pointed at the wrong file cannot echo that file back
 // into the conversation. The hosted endpoint never reads files (see toolAuditBacktest).
-import { readFileSync, statSync } from "node:fs";
+import { closeSync, fstatSync, openSync, readSync } from "node:fs";
 import { resolve } from "node:path";
 
 export const MAX_SERIES_FILE_BYTES = 5 * 1024 * 1024;
 
+// One open file descriptor for the check and the read, so the file checked is the file read: a
+// path swapped between a separate stat and read could otherwise pass the size and type checks as
+// one file and be read as another. The read stops one byte past the cap, whatever the file grows to.
 function readText(path) {
-  const full = resolve(path);
-  let stat;
+  let fd;
   try {
-    stat = statSync(full);
+    fd = openSync(resolve(path), "r");
   } catch {
     throw new Error(`${path}: no such file`);
   }
-  if (!stat.isFile()) throw new Error(`${path}: not a regular file`);
-  if (stat.size > MAX_SERIES_FILE_BYTES) throw new Error(`${path}: larger than ${MAX_SERIES_FILE_BYTES} bytes`);
-  return readFileSync(full, "utf8");
+  try {
+    const stat = fstatSync(fd);
+    if (!stat.isFile()) throw new Error(`${path}: not a regular file`);
+    if (stat.size > MAX_SERIES_FILE_BYTES) throw new Error(`${path}: larger than ${MAX_SERIES_FILE_BYTES} bytes`);
+    const buffer = Buffer.alloc(MAX_SERIES_FILE_BYTES + 1);
+    let length = 0;
+    for (;;) {
+      const read = readSync(fd, buffer, length, buffer.length - length, null);
+      if (read === 0) break;
+      length += read;
+      if (length > MAX_SERIES_FILE_BYTES) throw new Error(`${path}: larger than ${MAX_SERIES_FILE_BYTES} bytes`);
+    }
+    return buffer.toString("utf8", 0, length);
+  } finally {
+    closeSync(fd);
+  }
 }
 
 const isNumber = (cell) => cell.trim() !== "" && Number.isFinite(Number(cell.trim()));
