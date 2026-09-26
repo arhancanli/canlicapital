@@ -4,8 +4,18 @@ export const companyDirectoryPath = page => page === 1 ? '/companies' : `/compan
 
 // Each actual directory page doubles as the entry point for its containing
 // ranges. Twenty links per level keep navigation bounded without thin hub pages.
+// Up to FLAT_DIRECTORY_PAGES pages, every page links every page instead: with 256 pages the
+// hierarchy left the last directory pages three links below /companies and their companies five
+// to six clicks from the homepage, where a crawler with little demand for the site rarely goes.
+// One flat list puts every directory page one link from any other.
+export const FLAT_DIRECTORY_PAGES = 400;
 export function directoryNavigation(page, pages) {
   if (!Number.isSafeInteger(pages) || pages < 1 || pages > 200_000_000 || !Number.isSafeInteger(page) || page < 1 || page > pages) throw new Error('Invalid directory navigation range');
+  if (pages <= FLAT_DIRECTORY_PAGES) {
+    const links = [];
+    for (let first = 1; first <= pages; first += 1) links.push({ first, last: first, path: companyDirectoryPath(first) });
+    return [{ start: 1, end: pages, links }];
+  }
   const groups = [];
   let span = 1;
   while (span * 20 < pages) span *= 20;

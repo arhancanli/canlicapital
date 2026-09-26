@@ -26,7 +26,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/notes.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes","description":"Engineering notes from Canli Capital: post-mortems on real incidents, the arithmetic behind the validation gates, and design arguments from the research engine.","url":"https://canlicapital.com/notes","author":{"@id":"https://canlicapital.com/#arhan-canli"},"blogPost":[{"@type":"TechArticle","headline":"The one symbol that explained the whole gap","description":"I could not reproduce my own result. The replay came out materially worse over the same window, on the same code path, from what I believed were the same inputs. The cause was a single delisted token that had quietly left the universe between the two runs.","url":"https://canlicapital.com/notes/one-symbol","datePublished":"2026-08-28","wordCount":1116,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"The arithmetic of not fooling yourself","description":"A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.","url":"https://canlicapital.com/notes/deflating-a-sharpe-ratio","datePublished":"2026-08-27","wordCount":1309,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"Seventy files that were never meant to be public","description":"I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally incapable of failing.","url":"https://canlicapital.com/notes/seventy-files","datePublished":"2026-08-27","wordCount":916,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"The trade that lost 99 percent, and the guard I did not add","description":"A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.","url":"https://canlicapital.com/notes/the-trade-that-lost-99-percent","datePublished":"2026-08-27","wordCount":1068,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"What competitive programming actually bought me, and what it did not","description":"There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.","url":"https://canlicapital.com/notes/what-competitive-programming-bought","datePublished":"2026-08-27","wordCount":1308,"author":{"@id":"https://canlicapital.com/#arhan-canli"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes","description":"Engineering notes from Canli Capital: post-mortems on real incidents, the arithmetic behind the validation gates, and design arguments from the research engine.","url":"https://canlicapital.com/notes","author":{"@id":"https://canlicapital.com/#arhan-canli"},"blogPost":[{"@type":"TechArticle","headline":"The split that ran backwards","description":"From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed. The data was right by its schema, the code was right by its tests, and the two disagreed about what one number meant.","url":"https://canlicapital.com/notes/the-split-that-ran-backwards","datePublished":"2026-09-25","wordCount":879,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"The one symbol that explained the whole gap","description":"I could not reproduce my own result. The replay came out materially worse over the same window, on the same code path, from what I believed were the same inputs. The cause was a single delisted token that had quietly left the universe between the two runs.","url":"https://canlicapital.com/notes/one-symbol","datePublished":"2026-08-28","wordCount":1116,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"The arithmetic of not fooling yourself","description":"A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.","url":"https://canlicapital.com/notes/deflating-a-sharpe-ratio","datePublished":"2026-08-27","wordCount":1309,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"Seventy files that were never meant to be public","description":"I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally incapable of failing.","url":"https://canlicapital.com/notes/seventy-files","datePublished":"2026-08-27","wordCount":916,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"The trade that lost 99 percent, and the guard I did not add","description":"A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.","url":"https://canlicapital.com/notes/the-trade-that-lost-99-percent","datePublished":"2026-08-27","wordCount":1068,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"What competitive programming actually bought me, and what it did not","description":"There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.","url":"https://canlicapital.com/notes/what-competitive-programming-bought","datePublished":"2026-08-27","wordCount":1308,"author":{"@id":"https://canlicapital.com/#arhan-canli"}}]}</script>
 
 <link rel="stylesheet" href="/css/reader-experience.css" />
 <!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
@@ -100,6 +100,16 @@
   </section>
   <ol class="note-list">
     <li>
+      <a class="note-card" href="/notes/the-split-that-ran-backwards">
+        <span class="note-card__n">06</span>
+        <span class="note-card__body">
+          <span class="note-card__title">The split that ran backwards</span>
+          <span class="note-card__dek">From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed. The data was right by its schema, the code was right by its tests, and the two disagreed about what one number meant.</span>
+          <span class="note-card__meta"><time datetime="2026-09-25">2026-09-25</time> &middot; 4 min</span>
+        </span>
+      </a>
+    </li>
+    <li>
       <a class="note-card" href="/notes/one-symbol">
         <span class="note-card__n">05</span>
         <span class="note-card__body">
@@ -157,6 +167,25 @@
   </section>
 </main>
 <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -196,6 +225,7 @@
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
