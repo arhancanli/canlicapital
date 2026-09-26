@@ -1,0 +1,733 @@
+{
+ "schema": "canli.filing-facts-gold-packet.v0",
+ "guidelines": "scripts/datasets/filing-facts/ANNOTATION_GUIDELINES.md",
+ "judgements": {
+  "question_clear": [
+   "yes",
+   "no"
+  ],
+  "answer_matches_filing": [
+   "yes",
+   "no",
+   "cannot_find"
+  ],
+  "citation_correct": [
+   "yes",
+   "no"
+  ]
+ },
+ "annotator": "",
+ "labels": [
+  {
+   "id": "e37027a149058b40",
+   "template": "change",
+   "company": "W. P. Carey Inc.",
+   "question": "Using W. P. Carey Inc.'s annual XBRL data, by what percentage did total assets change from its balance as of 2021-12-31 to its balance as of 2022-12-31? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "16.93 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1025378/000102537823000035/",
+    "https://www.sec.gov/Archives/edgar/data/1025378/000102537824000037/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "adf1acbe8fcfc510",
+   "template": "change",
+   "company": "Ventas, Inc.",
+   "question": "Using Ventas, Inc.'s annual XBRL data, by what percentage did comprehensive income or loss change from the fiscal year ended 2021-12-31 to the fiscal year ended 2022-12-31? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "-150.78 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/740260/000074026024000067/",
+    "https://www.sec.gov/Archives/edgar/data/740260/000074026025000052/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "7773be5cd27e11e8",
+   "template": "change",
+   "company": "HEALTHCARE SERVICES GROUP, INC.",
+   "question": "Using HEALTHCARE SERVICES GROUP, INC.'s annual XBRL data, by what percentage did other noncurrent liabilities change from its balance as of 2023-12-31 to its balance as of 2024-12-31? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "-87.12 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/731012/000073101225000032/",
+    "https://www.sec.gov/Archives/edgar/data/731012/000073101226000009/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "f0bdd74e39841e26",
+   "template": "change",
+   "company": "INTEL CORP",
+   "question": "Using INTEL CORP's annual XBRL data, by what percentage did net inventory change from its balance as of 2024-12-28 to its balance as of 2025-12-27? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "-4.75 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/50863/000005086326000011/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "fa531f1a2e8caa74",
+   "template": "change",
+   "company": "Gen Digital Inc.",
+   "question": "Using Gen Digital Inc.'s annual XBRL data, by what percentage did basic earnings per share change from the fiscal year ended 2023-03-31 to the fiscal year ended 2024-03-29? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "-56.22 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/849399/000084939925000033/",
+    "https://www.sec.gov/Archives/edgar/data/849399/000084939926000017/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "91dc2b1ff73dcccc",
+   "template": "change",
+   "company": "FIRST ADVANTAGE CORP",
+   "question": "Using FIRST ADVANTAGE CORP's annual XBRL data, by what percentage did revenues change from the fiscal year ended 2023-12-31 to the fiscal year ended 2024-12-31? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "12.63 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1210677/000119312526076740/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "5c69fdd9c73ef6ab",
+   "template": "change",
+   "company": "BIG 5 SPORTING GOODS CORPORATION",
+   "question": "Using BIG 5 SPORTING GOODS CORPORATION's annual XBRL data, by what percentage did cash including restricted cash change from its balance as of 2022-01-02 to its balance as of 2023-01-01? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "-73.76 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1156388/000095017024021829/",
+    "https://www.sec.gov/Archives/edgar/data/1156388/000095017025027520/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "e6960e8bd81504ac",
+   "template": "change",
+   "company": "VERA BRADLEY, INC.",
+   "question": "Using VERA BRADLEY, INC.'s annual XBRL data, by what percentage did net finite-lived intangible assets change from its balance as of 2023-01-28 to its balance as of 2024-02-03? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "-68.58 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1495320/000149532024000026/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "aeaf1038b4672a2a",
+   "template": "change",
+   "company": "Ernexa Therapeutics Inc.",
+   "question": "Using Ernexa Therapeutics Inc.'s annual XBRL data, by what percentage did net income available to common stockholders change from the fiscal year ended 2021-12-31 to the fiscal year ended 2022-12-31? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "79.93 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/748592/000114036123012418/",
+    "https://www.sec.gov/Archives/edgar/data/748592/000114036124013254/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "133d60dfc040dff0",
+   "template": "change",
+   "company": "UNITED STATES ANTIMONY CORPORATION",
+   "question": "Using UNITED STATES ANTIMONY CORPORATION's annual XBRL data, by what percentage did total liabilities change from its balance as of 2023-12-31 to its balance as of 2024-12-31? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+   "answer": "134.73 percent",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/101538/000165495425004433/",
+    "https://www.sec.gov/Archives/edgar/data/101538/000110465926032049/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "9b48fcd5cac43503",
+   "template": "lookup",
+   "company": "RLI Corp",
+   "question": "According to RLI Corp's XBRL data in its 10-K filed 2023-02-24 (accession 0001558370-23-002011), what was retained earnings (accumulated deficit) as of 2021-12-31, in USD?",
+   "answer": "1228110000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/84246/000155837023002011/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "7677d1a75721cc48",
+   "template": "lookup",
+   "company": "CARLISLE COMPANIES INCORPORATED",
+   "question": "According to CARLISLE COMPANIES INCORPORATED's XBRL data in its 10-K filed 2026-02-13 (accession 0000790051-26-000012), what was selling, general and administrative expense for the fiscal year ended 2025-12-31, in USD?",
+   "answer": "745400000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/790051/000079005126000012/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "748e929f03c5526d",
+   "template": "lookup",
+   "company": "VALHI, INC.",
+   "question": "According to VALHI, INC.'s XBRL data in its 10-K filed 2026-03-10 (accession 0001104659-26-025847), what was total equity including noncontrolling interests as of 2025-12-31, in USD?",
+   "answer": "1363700000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/59255/000110465926025847/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "7ddc4caa8b13967e",
+   "template": "lookup",
+   "company": "Agile Therapeutics, Inc.",
+   "question": "According to Agile Therapeutics, Inc.'s XBRL data in its 10-K filed 2023-03-23 (accession 0001558370-23-004386), what was accrued current liabilities as of 2021-12-31, in USD?",
+   "answer": "3563000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1261249/000155837023004386/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "eadee70ab479b112",
+   "template": "lookup",
+   "company": "KLA CORP",
+   "question": "According to KLA CORP's XBRL data in its 10-K filed 2026-08-06 (accession 0000319201-26-000027), what was proceeds from issuing common stock for the fiscal year ended 2025-06-30, in USD?",
+   "answer": "151514000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "dd8c4edf26adc080",
+   "template": "lookup",
+   "company": "Sensient Technologies Corp",
+   "question": "According to Sensient Technologies Corp's XBRL data in its 10-K filed 2023-02-17 (accession 0001140361-23-007579), what was operating income or loss for the fiscal year ended 2020-12-31, in USD?",
+   "answer": "152656000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/310142/000114036123007579/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "4168a6eb4bf51c79",
+   "template": "lookup",
+   "company": "TELOS CORPORATION",
+   "question": "According to TELOS CORPORATION's XBRL data in its 10-K filed 2025-03-10 (accession 0000320121-25-000011), what was change in inventories for the fiscal year ended 2024-12-31, in USD?",
+   "answer": "471000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/320121/000032012125000011/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "a68d9b2c24a9346c",
+   "template": "lookup",
+   "company": "CME GROUP INC.",
+   "question": "According to CME GROUP INC.'s XBRL data in its 10-K filed 2026-02-26 (accession 0001156375-26-000009), what was profit or loss including noncontrolling interests for the fiscal year ended 2023-12-31, in USD?",
+   "answer": "3226200000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1156375/000115637526000009/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "3bc209d818e8b232",
+   "template": "lookup",
+   "company": "Northwest Pipeline LLC",
+   "question": "According to Northwest Pipeline LLC's XBRL data in its 10-K filed 2024-02-21 (accession 0000110019-24-000003), what was operating lease right-of-use asset as of 2023-12-31, in USD?",
+   "answer": "8725000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/110019/000011001924000003/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "4cba579048a6e0bb",
+   "template": "lookup",
+   "company": "FIRST ADVANTAGE CORP",
+   "question": "According to FIRST ADVANTAGE CORP's XBRL data in its 10-K filed 2025-02-27 (accession 0000950170-25-029067), what was operating income or loss for the fiscal year ended 2022-12-31, in USD?",
+   "answer": "94278000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1210677/000095017025029067/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "b071cbe4ce0f4f09",
+   "template": "net_assets",
+   "company": "FIRST CITIZENS BANCSHARES INC /DE/",
+   "question": "Using FIRST CITIZENS BANCSHARES INC /DE/'s XBRL balance sheet data as of 2023-12-31, what is total assets minus total liabilities, in USD?",
+   "answer": "21255000000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/798941/000079894125000010/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "ead03024d8520223",
+   "template": "net_assets",
+   "company": "NATURE’S SUNSHINE PRODUCTS, INC.",
+   "question": "Using NATURE’S SUNSHINE PRODUCTS, INC.'s XBRL balance sheet data as of 2023-12-31, what is total assets minus total liabilities, in USD?",
+   "answer": "159540000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/275053/000162828025012082/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "98c3cfcf1a5b1e4c",
+   "template": "net_assets",
+   "company": "CRANE NXT, CO.",
+   "question": "Using CRANE NXT, CO.'s XBRL balance sheet data as of 2024-12-31, what is total assets minus total liabilities, in USD?",
+   "answer": "1064900000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/25445/000002544526000009/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "22b70af21814536e",
+   "template": "net_assets",
+   "company": "CARPENTER TECHNOLOGY CORPORATION",
+   "question": "Using CARPENTER TECHNOLOGY CORPORATION's XBRL balance sheet data as of 2024-06-30, what is total assets minus total liabilities, in USD?",
+   "answer": "1628800000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/17843/000001784325000021/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "8939b41c043801fc",
+   "template": "net_assets",
+   "company": "ROLLINS, INC.",
+   "question": "Using ROLLINS, INC.'s XBRL balance sheet data as of 2024-12-31, what is total assets minus total liabilities, in USD?",
+   "answer": "1330593000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/84839/000008483926000008/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "e758ce24326d6840",
+   "template": "net_assets",
+   "company": "EVERCORE INC.",
+   "question": "Using EVERCORE INC.'s XBRL balance sheet data as of 2021-12-31, what is total assets minus total liabilities, in USD?",
+   "answer": "1635281000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1360901/000136090124000007/",
+    "https://www.sec.gov/Archives/edgar/data/1360901/000136090123000005/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "f8c5a6d3e06aa0e9",
+   "template": "net_assets",
+   "company": "ClearPoint Neuro, Inc.",
+   "question": "Using ClearPoint Neuro, Inc.'s XBRL balance sheet data as of 2025-12-31, what is total assets minus total liabilities, in USD?",
+   "answer": "28020000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1285550/000119312526111231/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "0f0673632b746258",
+   "template": "net_assets",
+   "company": "CKX Lands, Inc.",
+   "question": "Using CKX Lands, Inc.'s XBRL balance sheet data as of 2025-12-31, what is total assets minus total liabilities, in USD?",
+   "answer": "21445412 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/352955/000143774926010434/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "5fb5d85e733e3f40",
+   "template": "net_assets",
+   "company": "Capital Southwest Corporation",
+   "question": "Using Capital Southwest Corporation's XBRL balance sheet data as of 2023-03-31, what is total assets minus total liabilities, in USD?",
+   "answer": "590408000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/17313/000001731324000022/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "57fc2d25048e4c34",
+   "template": "net_assets",
+   "company": "Invesco Mortgage Capital Inc.",
+   "question": "Using Invesco Mortgage Capital Inc.'s XBRL balance sheet data as of 2023-12-31, what is total assets minus total liabilities, in USD?",
+   "answer": "782665000 USD",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1437071/000143707125000007/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "25a01ae66598e27a",
+   "template": "ratio",
+   "company": "PTC Inc.",
+   "question": "From PTC Inc.'s annual XBRL data, what was its net income divided by total assets at the fiscal year end for the period ending 2021-09-30? Give a decimal ratio to four places.",
+   "answer": "0.1058 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/857005/000095012323011049/",
+    "https://www.sec.gov/Archives/edgar/data/857005/000095017022025211/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "1393d26eee9152d3",
+   "template": "ratio",
+   "company": "Ellington Financial Inc.",
+   "question": "From Ellington Financial Inc.'s annual XBRL data, what was its ratio of total liabilities to total assets for the period ending 2024-12-31? Give a decimal ratio to four places.",
+   "answer": "0.9025 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1411342/000162828026013279/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "3699c7adb3ca2268",
+   "template": "ratio",
+   "company": "Park-Ohio Holdings Corp",
+   "question": "From Park-Ohio Holdings Corp's annual XBRL data, what was its net income divided by total assets at the fiscal year end for the period ending 2022-12-31? Give a decimal ratio to four places.",
+   "answer": "-0.0099 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/76282/000007628225000013/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "b4a1026d1b0f898e",
+   "template": "ratio",
+   "company": "HORIZON BANCORP, INC.",
+   "question": "From HORIZON BANCORP, INC.'s annual XBRL data, what was its share of total assets held as cash and cash equivalents for the period ending 2023-12-31? Give a decimal ratio to four places.",
+   "answer": "0.0663 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/706129/000070612925000036/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "26b713f29d229e69",
+   "template": "ratio",
+   "company": "SOUTHWESTERN PUBLIC SERVICE CO",
+   "question": "From SOUTHWESTERN PUBLIC SERVICE CO's annual XBRL data, what was its net profit margin (net income divided by revenues) for the period ending 2016-12-31? Give a decimal ratio to four places.",
+   "answer": "0.0822 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/92521/000009252119000004/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "9fef7282cc5eb52f",
+   "template": "ratio",
+   "company": "UMB FINANCIAL CORP",
+   "question": "From UMB FINANCIAL CORP's annual XBRL data, what was its share of total assets held as cash and cash equivalents for the period ending 2025-12-31? Give a decimal ratio to four places.",
+   "answer": "0.1063 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/101382/000119312526076496/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "a8b6cd06174c79f4",
+   "template": "ratio",
+   "company": "Chase Packaging Corporation",
+   "question": "From Chase Packaging Corporation's annual XBRL data, what was its net income divided by total assets at the fiscal year end for the period ending 2021-12-31? Give a decimal ratio to four places.",
+   "answer": "-3.0624 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1025771/000147793223002067/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "6c03edc1e3a16a80",
+   "template": "ratio",
+   "company": "EQUITY BANCSHARES, INC.",
+   "question": "From EQUITY BANCSHARES, INC.'s annual XBRL data, what was its net income divided by total assets at the fiscal year end for the period ending 2021-12-31? Give a decimal ratio to four places.",
+   "answer": "0.0102 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1227500/000095017024028081/",
+    "https://www.sec.gov/Archives/edgar/data/1227500/000095017023007069/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "95a073a7bcd8ef10",
+   "template": "ratio",
+   "company": "ALBEMARLE CORPORATION",
+   "question": "From ALBEMARLE CORPORATION's annual XBRL data, what was its share of total assets held as cash and cash equivalents for the period ending 2018-12-31? Give a decimal ratio to four places.",
+   "answer": "0.0732 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/915913/000091591320000040/",
+    "https://www.sec.gov/Archives/edgar/data/915913/000091591321000018/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "d20689e2b2958315",
+   "template": "ratio",
+   "company": "IDEX CORP",
+   "question": "From IDEX CORP's annual XBRL data, what was its net profit margin (net income divided by revenues) for the period ending 2025-12-31? Give a decimal ratio to four places.",
+   "answer": "0.1398 ratio",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/832101/000083210126000003/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "05d66f5f85c56eb0",
+   "template": "unanswerable",
+   "company": "EQUITY BANCSHARES, INC.",
+   "question": "According to EQUITY BANCSHARES, INC.'s XBRL-tagged SEC filings, what was long-term debt as of 2018-12-31? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1227500/000156459021011800/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "fa1ab5ffab29e3ec",
+   "template": "unanswerable",
+   "company": "Ventas, Inc.",
+   "question": "According to Ventas, Inc.'s XBRL-tagged SEC filings, what was income tax expense (benefit) for the fiscal year ended 2005-12-31? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/740260/000119312510035246/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "0c6916c4bc4313d7",
+   "template": "unanswerable",
+   "company": "Ionis Pharmaceuticals, Inc.",
+   "question": "According to Ionis Pharmaceuticals, Inc.'s XBRL-tagged SEC filings, what was operating lease payments for the fiscal year ended 2013-12-31? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/874015/000087401521000056/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "4b7249eaa47244e4",
+   "template": "unanswerable",
+   "company": "CENTERSPACE",
+   "question": "According to CENTERSPACE's XBRL-tagged SEC filings, what was depreciation, depletion and amortization for the fiscal year ended 2006-04-30? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/798359/000079835912000073/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "45359e72d204e7ca",
+   "template": "unanswerable",
+   "company": "LINCOLN ELECTRIC HOLDINGS INC",
+   "question": "According to LINCOLN ELECTRIC HOLDINGS INC's XBRL-tagged SEC filings, what was change in inventories for the fiscal year ended 2005-12-31? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/59527/000104746911001516/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "3930a3e5ed4e4824",
+   "template": "unanswerable",
+   "company": "FEDERAL NATIONAL MORTGAGE ASSOCIATION FANNIE MAE",
+   "question": "According to FEDERAL NATIONAL MORTGAGE ASSOCIATION FANNIE MAE's XBRL-tagged SEC filings, what was net income available to common stockholders for the fiscal year ended 2002-12-31? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/310522/000095012310018235/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "31354e29f03bd8d2",
+   "template": "unanswerable",
+   "company": "AVNET INC",
+   "question": "According to AVNET INC's XBRL-tagged SEC filings, what was cash and cash equivalents as of 2005-06-30? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/8858/000095012310077359/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "32e2a87e653c7f02",
+   "template": "unanswerable",
+   "company": "Eagle Bancorp Montana, Inc.",
+   "question": "According to Eagle Bancorp Montana, Inc.'s XBRL-tagged SEC filings, what was common shares outstanding as of 2009-06-30? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1478454/000115752312004886/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "37bf912d18bb0eeb",
+   "template": "unanswerable",
+   "company": "FEDERAL SIGNAL CORPORATION",
+   "question": "According to FEDERAL SIGNAL CORPORATION's XBRL-tagged SEC filings, what was operating income or loss for the fiscal year ended 2007-12-31? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/277509/000119312512115045/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  },
+  {
+   "id": "51cef9e7060cdff1",
+   "template": "unanswerable",
+   "company": "Vaccinex, Inc.",
+   "question": "According to Vaccinex, Inc.'s XBRL-tagged SEC filings, what was cost of revenue for the fiscal year ended 2012-12-31? If those filings' XBRL data do not report it, say so.",
+   "answer": "not reported in the company's XBRL filings",
+   "filings": [
+    "https://www.sec.gov/Archives/edgar/data/1205922/000156459019007458/"
+   ],
+   "question_clear": "",
+   "answer_matches_filing": "",
+   "citation_correct": "",
+   "notes": ""
+  }
+ ]
+}
