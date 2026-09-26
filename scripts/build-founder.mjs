@@ -163,7 +163,7 @@ function main() {
       url: `${ORIGIN}/founder`,
       mainEntityOfPage: `${ORIGIN}/founder`,
       worksFor: { "@id": `${ORIGIN}/#organization` },
-      sameAs: [GITHUB],
+      sameAs: [GITHUB, "https://orcid.org/0009-0004-4138-7907"],
       knowsAbout: [
         "Systematic trading",
         "Quantitative research",
