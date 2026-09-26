@@ -463,7 +463,10 @@ currently satisfy every required section; the remaining debt is shown rather tha
       "@context": "https://schema.org", "@type": "CollectionPage",
       name: "Quantitative research trial register", description, url: `${ORIGIN}/trials`,
       creator: { "@type": "Person", "@id": `${ORIGIN}/#arhan-canli`, name: AUTHOR, url: `${ORIGIN}/founder` },
-      hasPart: packets.map((packet) => ({ "@type": "Dataset", name: packet.label, url: `${ORIGIN}/trials/${packet.hypothesis_key}` })),
+      // Each packet page carries its own complete Dataset markup; here they are listed as the web
+      // pages they are. A name-and-URL Dataset in this list is an invalid Dataset to Google
+      // (missing "description"), one per packet, in Search Console on 2026-09-26.
+      hasPart: packets.map((packet) => ({ "@type": "WebPage", name: packet.label, url: `${ORIGIN}/trials/${packet.hypothesis_key}` })),
     },
   }));
   console.log(`rendered ${packets.length} legacy trial evidence pages (${complete} complete, ${packets.length - complete} incomplete)`

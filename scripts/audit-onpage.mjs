@@ -17,6 +17,8 @@ import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { dirname, resolve, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { jsonLdProblems } from "./lib/jsonld-rules.mjs";
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
 const ORIGIN = "https://canlicapital.com";
@@ -151,6 +153,7 @@ function audit(file) {
   for (const img of html.matchAll(/<img\b([^>]*)>/gi)) {
     if (!/\balt=/i.test(img[1])) note(page, "error", "an <img> has no alt attribute");
   }
+  for (const message of jsonLdProblems(html)) note(page, "error", message);
   return { page, title, desc, canonical };
 }
 
