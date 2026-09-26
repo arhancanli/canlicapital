@@ -68,3 +68,10 @@ Every company task was answered by ticker, exactly, by all three models.
 
 Tokens and time differ by provider and tokenizer, so they compare runs of one model, not models
 with each other. Scope as above: tasks written by us, local mode.
+
+## Against a plain agent, 2026-09-26
+
+`--arm plain` runs the same tasks with no Canli Capital tools: only a web fetch (canlicapital.com
+blocked) and a calculator. The comparison, with tokens per correct answer by kind of task and every
+URL the plain agent fetched, is in `experiments/2026-09-26-plain-control/README.md`, generated from
+its run records by `summarize.mjs`.
