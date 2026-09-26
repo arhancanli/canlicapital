@@ -41,15 +41,27 @@ test("one unit per summary: the most observed, ties to the most recent", () => {
   assert.equal(s.latest.val, 2);
 });
 
-test("amounts read naturally and the description stays near search-snippet length", () => {
+test("amounts read naturally and the description fits the 150 to 160 character snippet window", () => {
   assert.equal(compactAmount(359241000000, "USD"), "$359.2 billion");
   assert.equal(compactAmount(3500000000, "USD"), "$3.50 billion");
   assert.equal(compactAmount(6.08, "USD/shares"), "$6.08 per share");
   assert.equal(compactAmount(15943425000, "shares"), "15.9 billion shares");
   const s = historySummary({ observations: ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"].map((y, i) => row(`${y}-09-30`, 1e9 * (1 + i))) });
   const description = summaryDescription(s, { company: "Example Holdings", label: "Total assets", kind: "instant" });
-  assert.ok(description.length <= 170, description);
+  assert.ok(description.length >= 150 && description.length <= 160, `${description.length}: ${description}`);
   assert.match(description, /^Example Holdings total assets: \$10\.0 billion at 2025-09-30, up 11\.1% on the year\. 10 values since 2016/);
+});
+
+test("the description is whole sentences at any lead length, never clipped", () => {
+  for (const name of ["A", "Apple", "Example Holdings Incorporated", "A Company With A Much Longer Registered Name Than Most"]) {
+    for (const years of [4, 18]) {
+      const s = historySummary({ observations: Array.from({ length: years }, (_, i) => row(`${2025 - years + 1 + i}-12-31`, 1e9 * (1 + i))) });
+      const description = summaryDescription(s, { company: name, label: "Total assets", kind: "instant" });
+      assert.ok(description.length <= 160, description);
+      assert.match(description, /\.$/, description);
+      assert.doesNotMatch(description, /…/, description);
+    }
+  }
 });
 
 test("an empty history has no summary and no sentences", () => {

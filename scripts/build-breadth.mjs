@@ -120,8 +120,7 @@ const preset = (key) => {
 const queryTitle = "Portfolio breadth calculator";
 const houseLabel = "Breadth Lab";
 const description =
-  "A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation " +
-  "ceiling that no amount of breadth can pass.";
+  "A free portfolio breadth calculator: how much a book of N strategies is worth, how correlation erodes it, and the ceiling no amount of breadth can pass.";
 
 const jsonLd = {
   "@context": "https://schema.org",

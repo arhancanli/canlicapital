@@ -86,8 +86,7 @@ const STEPS = [
 ];
 
 const description =
-  "A step-by-step walk-through of this site's own instruments for checking a backtest, from " +
-  "counting trials to keeping a receipt.";
+  "A step-by-step walk-through for checking a backtest with this site's own free instruments, from counting trials and deflating the Sharpe to keeping a receipt.";
 
 const jsonLd = {
   "@context": "https://schema.org",

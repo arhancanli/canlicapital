@@ -113,8 +113,7 @@ function main() {
   }
 
   const description =
-    "Inspect five ALPHAC flagship manuscripts, their unassigned review roles, evidence bindings " +
-    "and the governed path for public technical criticism.";
+    "Inspect five ALPHAC flagship manuscripts, their unassigned review roles, evidence bindings and the governed path for public technical criticism and replication.";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

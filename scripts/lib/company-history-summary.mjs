@@ -10,6 +10,8 @@
 // - a compound annual rate only over at least three years and only when every value in the span
 //   is positive (a rate through a sign change means nothing).
 
+import { DESCRIPTION_MAX, DESCRIPTION_MIN } from './descriptions.mjs';
+
 const DAY = 86_400_000;
 const days = (a, b) => (Date.parse(`${b}T00:00:00Z`) - Date.parse(`${a}T00:00:00Z`)) / DAY;
 
@@ -99,5 +101,24 @@ export function summaryDescription(summary, { company, label, kind }) {
   if (!summary) return null;
   const { latest, change, count, first, unit } = summary;
   const move = change ? (change.abs === 0 ? ', unchanged on the year' : `, ${change.abs > 0 ? 'up' : 'down'} ${percent(change.pct)} on the year`) : '';
-  return `${company} ${label.toLowerCase()}: ${compactAmount(latest.val, unit)} ${periodPhrase(kind, latest.end)}${move}. ${count} values since ${first.end.slice(0, 4)} from SEC filings, each linked to its filing.`;
+  const lead = `${company} ${label.toLowerCase()}: ${compactAmount(latest.val, unit)} ${periodPhrase(kind, latest.end)}${move}.`;
+  const since = first.end.slice(0, 4);
+  // Whole sentences only, never a clipped one: the most informative account of the history, then
+  // page facts as needed, landing in the snippet window when any combination can; otherwise the
+  // longest combination that stays under the ceiling.
+  const tails = [
+    `${count} values since ${since} from SEC filings, each linked to its filing.`,
+    `${count} values since ${since}, each linked to its SEC filing.`,
+    `${count} values since ${since} from SEC filings.`,
+    `${count} values since ${since}.`,
+  ];
+  const extras = ['Original units, no currency conversion.', 'Download the selected JSON.', 'In original units.'];
+  const candidates = tails.flatMap((tail, rank) => extras
+    .reduce((sets, extra) => sets.concat(sets.map((set) => [...set, extra])), [[]])
+    .map((set) => ({ rank, text: [lead, tail, ...set].join(' ') })))
+    .filter((candidate) => candidate.text.length <= DESCRIPTION_MAX);
+  const inWindow = candidates.filter((candidate) => candidate.text.length >= DESCRIPTION_MIN);
+  const pick = (list, better) => list.reduce((best, candidate) => (best && !better(candidate, best) ? best : candidate), null);
+  return (pick(inWindow, (a, b) => a.rank < b.rank || (a.rank === b.rank && a.text.length < b.text.length))
+    ?? pick(candidates, (a, b) => a.text.length > b.text.length))?.text ?? `${lead} ${tails.at(-1)}`;
 }

@@ -218,8 +218,7 @@ function main() {
 
   // Kept under 165 characters: past that a search result truncates mid-sentence.
   const description =
-    "The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester " +
-    "that raises on look-ahead, and honest trial accounting.";
+    "The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, honest trial accounting and signed records.";
 
   const jsonLd = {
     "@context": "https://schema.org",
