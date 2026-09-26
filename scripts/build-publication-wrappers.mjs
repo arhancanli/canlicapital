@@ -1,6 +1,7 @@
 // Build current presentation routes around checksum-bound archival publications.
 // The source paper.html files are read and hashed, never edited.
 
+import { fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, relative, resolve } from "node:path";
@@ -143,9 +144,10 @@ function wrapperHtml({ title, archiveLabel, wrapperRoute, originalRoute, baseRou
     "This archived working paper is public research. It does not establish future performance, independent validation or investment suitability.",
   );
   const browserTitle = `${archiveLabel} publication archive / Canli Capital`;
-  const description = `Current navigation and provenance for the byte-preserved ${archiveLabel} working paper and its reproducibility bundle.`;
-  const jsonLd = structuredData({ title, wrapperRoute, originalRoute, baseRoute, description, paper, bundle });
   const abstract = presentationCopy(paper.abstract || "");
+  // The fixed navigation sentence continues into the paper's own abstract, to 150 to 160 characters.
+  const description = fitDescriptionFrom(`Navigation and provenance for the byte-preserved ${archiveLabel} working paper and its reproducibility bundle.`, [abstract.replace(/\*\*|__|`/g, "")]);
+  const jsonLd = structuredData({ title, wrapperRoute, originalRoute, baseRoute, description, paper, bundle });
   return `<!doctype html>
 <html lang="en">
 <head>

@@ -4,6 +4,7 @@ import { companyCoverage, coverageByUnit, historicalFiler, latestFiling, latestO
 import { renderProductShellHeader, renderProductShellFooter, renderProductShellStylesheet } from '../product-shell.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
 import { companyLabel, titleLabel } from './company-label.mjs';
+import { fitDescription } from './descriptions.mjs';
 const origin = 'https://canlicapital.com';
 const pathFor = (company) => `/companies/${company.cik}`;
 const dataFor = (company) => `/company-data/${company.cik}.json`;
@@ -117,7 +118,7 @@ export function renderCompanyPages(company, { target = 'all', filings = null, li
   const rows = company.concepts.flatMap((concept) => latestObservationsByUnit(concept.observations).map((latest) => {
     return `<tr><th scope="row">${conceptRef(concept)}</th>${periodStartCell(latest)}<td>${esc(latest.end)}</td>${numberCell(latest.val)}<td>${esc(latest.unit)}</td><td>${esc(latest.filed)}</td></tr>`;
   })).join('');
-  if (target === 'all' || target === 'overview') page({ path: pathFor(company), title: `${titleLabel(company)}: filing data`, description: `Explore ${company.name} financial histories from SEC filings, with original units, reporting periods, filing dates and downloadable source data.`, heading: `${company.name}: financial reference`, sources, lastmod, dataset: company,
+  if (target === 'all' || target === 'overview') page({ path: pathFor(company), title: `${titleLabel(company)}: filing data`, description: fitDescription(`Explore ${company.name} financial histories from SEC filings, with original units, reporting periods, filing dates and downloadable source data.`, [`${company.concepts.length} measures, each value linked to the filing it came from.`]), heading: `${company.name}: financial reference`, sources, lastmod, dataset: company,
     body: `${historicalNote}${editorialNote}${overviewContext}<section><h2>Reported financial histories</h2><p>Choose a measure to inspect its definition, complete selected history and filing provenance. Each row shows the latest period available for that selected concept and original unit. Separate currencies and reporting intervals remain separate rows. Coverage dates can differ between concepts. A recent capture does not imply recent accounting coverage; these amounts are not prices.</p><div class="company-reference__table" role="region" aria-label="Latest financial observations" tabindex="0"><table><caption>Latest periods by selected concept and original unit</caption><thead><tr><th scope="col">Measure</th><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col" class="company-reference__num">Value</th><th scope="col">Unit</th><th scope="col">Filed</th></tr></thead><tbody>${rows}</tbody></table></div></section>${filingsSection}${provenance(company)}` });
   for (const concept of company.concepts) {
     if (target !== 'all' && target !== concept.tag) continue;

@@ -38,6 +38,7 @@ import {
 } from "./product-shell.mjs";
 import { discover as discoverMeasurementArtifacts, rawArtifactUrl } from "./build-measurements.mjs";
 import { gitCommitDate, artifactDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
+import { fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
 import { describeProvenanceUrl } from "./describe-provenance-url.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -360,7 +361,7 @@ const KINDS = [
   { slug: "killed-candidates", label: "Killed candidates", match: (s) => s.startsWith("kill-"),
     blurb: "Published rejected candidates, with their test conditions, recorded outcomes and evidence limits. Read the individual papers to understand what each rejection establishes." },
   { slug: "literature-reviews", label: "Literature reviews", match: (s) => s.startsWith("literature-"),
-    blurb: "What the published evidence actually supports for each mechanism, with citations, and where our reading of it stops." },
+    blurb: "What the published evidence actually supports for each mechanism, with citations, and where our reading of it stops, before any test of our own." },
   { slug: "feasibility-protocols", label: "Feasibility protocols", match: (s) => s.endsWith("-feasibility"),
     blurb: "Whether a mechanism can be tested at all, based on point-in-time data lineage, execution realism and document coverage, is decided before any return data is opened." },
   { slug: "pre-registrations", label: "Pre-registrations", match: (s) => s.startsWith("prereg-"),
@@ -566,6 +567,7 @@ function extractMeta(markdown, slug) {
 
   let description = null;
   const afterHeading = headingIndex >= 0 ? lines.slice(headingIndex + 1).join("\n") : markdown;
+  const prose = [];
   for (const block of afterHeading.split(/\n\s*\n/)) {
     const text = block.trim();
     if (!text) continue;
@@ -575,13 +577,16 @@ function extractMeta(markdown, slug) {
     const plain = toPlainText(text);
     if (plain.length < 60) continue;
     if (plain.endsWith(":")) continue;
-    description = fitDescription(plain);
-    break;
+    prose.push(plain);
+    if (prose.length === 3) break;
   }
+  // The first real paragraph leads; a short one is extended with the next paragraphs' sentences
+  // (scripts/lib/descriptions.mjs), so the description says what the page says, at 150 to 160.
+  if (prose.length) description = fitDescriptionFrom(prose[0], prose.slice(1));
   return { title, shortTitle, description, slug, sources: IMMUTABLE_PAPER_SOURCES[slug] ?? [] };
 }
 
-const DESCRIPTION_MAX = 158;
+const DESCRIPTION_MAX = 160;
 
 /** Trim to something that survives a search result: whole sentences first, whole words second. */
 function fitDescription(text) {
@@ -878,9 +883,9 @@ function relatedSection(paper, papers) {
 
 function hubHtml(hub, members) {
   const url = `${ORIGIN}/research/topics/${hub.slug}`;
-  const description = `${hub.blurb} ${members.length} published document${
-    members.length === 1 ? "" : "s"
-  }.`;
+  const description = fitDescriptionFrom(hub.blurb, [
+    `${members.length} published document${members.length === 1 ? "" : "s"}.`,
+  ]);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

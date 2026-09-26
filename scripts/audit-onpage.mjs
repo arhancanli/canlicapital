@@ -27,7 +27,9 @@ const ORIGIN = "https://canlicapital.com";
 // Character counts are the portable proxy: ~60 and ~155 are the conventional equivalents.
 const TITLE_MAX_CHARS = 65;
 const TITLE_MIN_CHARS = 20;
-const DESC_MIN_CHARS = 70;
+// Bing Webmaster Tools flags descriptions as too short and recommends 150 to 160 characters; every
+// generator now aims there through scripts/lib/descriptions.mjs. An indexable page below 120 fails.
+const DESC_MIN_CHARS = 120;
 const DESC_MAX_CHARS = 165;
 
 // Measure what a search engine sees, not what the file contains. An apostrophe stored as &#39;
@@ -98,7 +100,7 @@ function audit(file) {
   );
   if (!desc) note(page, "error", "no meta description");
   else if (desc.length < DESC_MIN_CHARS)
-    note(page, "warning", `description is only ${desc.length} chars (<${DESC_MIN_CHARS})`);
+    note(page, /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html) ? "warning" : "error", `description is only ${desc.length} chars (<${DESC_MIN_CHARS})`);
   else if (desc.length > DESC_MAX_CHARS)
     note(page, "warning", `description is ${desc.length} chars, likely truncated (>${DESC_MAX_CHARS})`);
 
