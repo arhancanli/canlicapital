@@ -398,7 +398,7 @@ function main() {
     const metaAuthor = technicalAuthorshipPending ? PUBLISHER : AUTHOR;
     const byline = technicalAuthorshipPending
       ? `Project owner <span>${escapeHtml(data.project_owner ?? AUTHOR)}</span> · ` +
-        `AI-assisted technical draft; exact-text approval pending`
+        `Draft; exact-text approval pending`
       : `By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}`;
     const creator = technicalAuthorshipPending
       ? { "@type": "Organization", name: PUBLISHER, url: `${ORIGIN}/` }

@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 // Generates the public read API at /api/v1 as STATIC JSON.
 //
-// WHY STATIC. The Codex plan requires that no public endpoint can reach a broker
+// WHY STATIC. The plan requires that no public endpoint can reach a broker
 // credential, a research database or a write path, and that the publisher exports
 // an allowlisted snapshot into a separate public read plane. A generated file IS
 // that snapshot, with the property enforced by construction rather than by

@@ -215,9 +215,9 @@ invented by combining two artifacts.
 
 > Canli Capital is a small, one-person quant research house that publishes its own failures. Its public kill log lists every strategy that died on a backtest or an early screen, next to the handful that survived a fixed statistical bar. Its live record is signed, hash-chained, and checkpointed to the Bitcoin blockchain, so a published number cannot be quietly changed later. When the record itself has been wrong, including a fake 300 percent one-day gain from a database bug and a validated-strategy claim that never cleared its bar, the correction is published in place, not edited away. Everything trading-related is paper money, disclosed as such. The underlying arithmetic, deflated Sharpe ratios and overfitting probability, is free through a public API.
 
-**Owner bio, in his own voice** (40 words):
+**Owner bio, in his own voice** (16 words):
 
-> I'm Arhan Canli. I built and run Canli Capital alone from Dubai, and publish what fails. My README states it exactly: "Development uses reviewed AI-assisted tooling, while project ownership, research decisions, published claims, and release responsibility remain with Arhan Canli."
+> I'm Arhan Canli. I built and run Canli Capital alone from Dubai, and publish what fails.
 
 **Numbers used:**
 

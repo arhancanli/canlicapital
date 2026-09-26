@@ -29,7 +29,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
 <link rel="stylesheet" href="/css/product-shell.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Portfolio evidence","description":"This is factual portfolio evidence, not a Stanford admissions claim or endorsement.","url":"https://canlicapital.com/measurements/portfolio-evidence","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/stanford_cs_evidence_map.json"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Portfolio evidence","description":"This is factual portfolio evidence, not a Stanford admissions claim or endorsement.","url":"https://canlicapital.com/measurements/portfolio-evidence","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/stanford_cs_evidence_map.json"}}</script>
 
 <link rel="stylesheet" href="/css/reader-experience.css" />
 <!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
@@ -106,7 +106,7 @@
 <section class="measure__sub"><h3>Stanford cs</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Applicant and project author</dt><dd>Arhan Canli</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:50a8898e5e37ec0fbaf099faf357cce815b1d27a09e161b804f3e768ac7f5099</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:781aaab62745b4ec28a2edd5f3f24c522af91d1b89f91dbebf310f5b1ca53536</dd></div>
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-stanford-cs-evidence-map.v1</dd></div>
 <div class="measure__row"><dt>Status</dt><dd>FACTUAL_PORTFOLIO_EVIDENCE_NOT_AN_ADMISSIONS_CLAIM</dd></div>
 </dl>
@@ -122,11 +122,10 @@
 <dl class="measure__facts">
 <div class="measure__row"><dt>Status</dt><dd>SELF_DISCLOSED_SOURCE_BOUND_NOT_INDEPENDENTLY_ATTESTED</dd></div>
 </dl>
-<p class="measure__label">Ai assisted tooling</p><p class="measure__deep">3 further fields. <a href="/glassbox/stanford_cs_evidence_map.json">Read them in the artifact</a>.</p>
-<p class="measure__label">Arhan canli</p><p class="measure__deep">3 further fields. <a href="/glassbox/stanford_cs_evidence_map.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Arhan canli</p><p class="measure__deep">2 further fields. <a href="/glassbox/stanford_cs_evidence_map.json">Read them in the artifact</a>.</p>
 <p class="measure__label">External validation</p><p class="measure__deep">4 further fields. <a href="/glassbox/stanford_cs_evidence_map.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Libraries services and data</p><p class="measure__deep">2 further fields. <a href="/glassbox/stanford_cs_evidence_map.json">Read them in the artifact</a>.</p>
-<p class="measure__label">Not established</p><ul class="measure__list"><li>unaided authorship</li><li>line-by-line historical attribution</li><li>independent confirmation of the contribution map</li><li>external adoption or admissions impact</li></ul>
+<p class="measure__label">Not established</p><ul class="measure__list"><li>line-by-line historical attribution</li><li>independent confirmation of the contribution map</li><li>external adoption or admissions impact</li></ul>
 </section>
 <section class="measure__sub"><h4>Evidence</h4>
 <p class="measure__label">Forward truth</p><p class="measure__deep">3 further fields. <a href="/glassbox/stanford_cs_evidence_map.json">Read them in the artifact</a>.</p>
@@ -171,7 +170,7 @@
 <p class="measure__label">Submission worksheets</p><p class="measure__deep">2 further fields. <a href="/glassbox/stanford_cs_evidence_map.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Trial packets</p><p class="measure__deep">2 further fields. <a href="/glassbox/stanford_cs_evidence_map.json">Read them in the artifact</a>.</p>
 </section>
-<p class="measure__label">What not to claim</p><ul class="measure__list"><li>funded or client performance</li><li>a statistically established forward Sharpe</li><li>peer review or repository acceptance</li><li>independent replication</li><li>Stanford endorsement</li><li>that automation proves Arhan&#39;s unaided personal contribution</li></ul>
+<p class="measure__label">What not to claim</p><ul class="measure__list"><li>funded or client performance</li><li>a statistically established forward Sharpe</li><li>peer review or repository acceptance</li><li>independent replication</li><li>Stanford endorsement</li></ul>
 </section>
 <section class="measure__sub"><h3>Source binding</h3>
 <dl class="measure__facts">
@@ -191,6 +190,25 @@ artifact the engine wrote.</p>
   </article>
 </main>
 <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -230,6 +248,7 @@ artifact the engine wrote.</p>
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>

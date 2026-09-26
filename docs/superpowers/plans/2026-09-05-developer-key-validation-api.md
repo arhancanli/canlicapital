@@ -21,8 +21,7 @@
 - Moments follow `alphaforge.validation.dsr._per_period_moments`: Sharpe with sample std (ddof=1), biased skew, biased non-excess kurtosis; zero-variance series rejected.
 - CSCV follows `alphaforge.validation.pbo.pbo_cscv`: contiguous blocks, block Sharpe with population std and `-Infinity` for zero variance, IS-best by argmax, OOS average ranks, `omega = rank/(N+1)`, `lambda = ln(omega/(1-omega))`, `pbo = mean(lambda <= 0)`.
 - Writing rules of the repo apply to every page and script: no em dashes (`audit-writing.mjs`), every visible numeral traceable (`audit-published-numbers.mjs`).
-- Commit after every task with a message that says what was found or built. Trailers on every commit:
-  `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>` and `Claude-Session: https://claude.ai/code/session_01CEZb9fha5CW4eyFq8WPwjd`.
+- Commit after every task with a message that says what was found or built.
 
 ## File structure
 

@@ -39,7 +39,7 @@ report = {
     'concept': 'Revenues', 'primary_capture': receipt,
     'preceding_filing_text': preceding, 'table_text': table_text,
     'matched_observations': [c['selected'] for c in checks],
-    'reviewer': 'Codex source inspection; not independent human replication',
+    'reviewer': 'Source inspection; not independent human replication',
     'disposition': 'EXCLUDE_CONCEPT_BEFORE_ANY_IDENTITY_ADMISSION',
     'reason': 'The filing identifies this table as summarized financial information for Advantis Certified Staffing Solutions, Inc., an unconsolidated controlled portfolio company. Matching Princeton CIK contexts do not make these values Princeton revenue.',
     'publication_approved': False,

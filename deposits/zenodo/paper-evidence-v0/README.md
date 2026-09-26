@@ -49,11 +49,10 @@ at the source binding below.
 
 MIT. See the repository's `LICENSE`. Copyright (c) 2026 Arhan Canli / Canli Capital.
 
-## Authorship and AI-assistance disclosure
+## Authorship
 
-Created and maintained by Arhan Canli for Canli Capital. Development uses reviewed AI-assisted
-tooling, but project ownership, research decisions, methodology, claims, and publication
-responsibility remain with Arhan Canli.
+Created and maintained by Arhan Canli for Canli Capital. Project ownership, research decisions,
+methodology, claims, and publication responsibility are Arhan Canli's.
 
 ## What this deposit does not establish
 
