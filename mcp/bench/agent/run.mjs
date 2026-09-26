@@ -4,6 +4,12 @@
 // tokens it spent and the wall time.
 //
 //   node mcp/bench/agent/run.mjs --model gpt-5.4-mini --repeats 3 [--only dsr,trl] [--max-tokens 1500000]
+//   node mcp/bench/agent/run.mjs --arm plain ...
+//
+// --arm plain is the control: the same tasks with no Canli Capital tools, only a web fetch (any
+// public https URL except canlicapital.com, with the User-Agent SEC's API asks for) and a
+// calculator with the normal CDF and its inverse. It measures what the tasks cost an agent without
+// this server, so the saving is measured rather than asserted.
 //
 // Models named claude-* go to the Anthropic Messages API, everything else to OpenAI Chat Completions.
 // Keys are read from ~/.config/canli/openai_benchmark_key and ~/.config/canli/anthropic_benchmark_key
@@ -24,11 +30,17 @@ const MODEL = arg("model", "gpt-5.4-mini");
 const REPEATS = Number(arg("repeats", "1"));
 const ONLY = arg("only", "").split(",").filter(Boolean);
 const MAX_TOKENS = Number(arg("max-tokens", "1500000"));
-const MAX_TURNS = 8;
-const TOOL_TEXT_CAP = 12000;
+const ARM = arg("arm", "mcp");
+if (!["mcp", "plain"].includes(ARM)) throw new Error("--arm is mcp or plain");
+const MAX_TURNS = ARM === "plain" ? 12 : 8;
+// The MCP arm's results are small; the plain arm reads raw public data, which is cut only at a size
+// a model's context holds, so the control is not made cheaper by truncation it would not get.
+const TOOL_TEXT_CAP = ARM === "plain" ? 400000 : 12000;
 
 const SYSTEM = [
-  "You are a quantitative research assistant with tools from canlicapital.com.",
+  ARM === "plain"
+    ? "You are a quantitative research assistant with a web fetch tool (public APIs such as SEC EDGAR's https://data.sec.gov/api/xbrl/) and a calculator."
+    : "You are a quantitative research assistant with tools from canlicapital.com.",
   "Use the tools to compute answers; do not estimate numbers yourself when a tool can compute them.",
   "End your reply with one final line of the form 'ANSWER: <value>', where value is a plain number without commas or units, or yes or no.",
 ].join(" ");
@@ -38,15 +50,25 @@ const keyFile = (name) => readFileSync(resolve(homedir(), ".config/canli", name)
 const openaiKey = () => keyFile("openai_benchmark_key");
 const anthropicKey = () => keyFile("anthropic_benchmark_key");
 
+// A rate-limit refusal (HTTP 429) is waited out and retried: a refused call is not a model's answer,
+// and counting it as a wrong one would bias whichever arm sends more tokens a minute.
 async function chat(messages, tools) {
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${openaiKey()}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ model: MODEL, messages, tools, tool_choice: "auto", max_completion_tokens: 4000 }),
-  });
-  const body = await res.json();
-  if (!res.ok) throw new Error(`OpenAI HTTP ${res.status}: ${body?.error?.message ?? "error"}`);
-  return body;
+  for (let attempt = 0; ; attempt++) {
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${openaiKey()}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ model: MODEL, messages, tools, tool_choice: "auto", max_completion_tokens: 4000 }),
+    });
+    const body = await res.json();
+    if (res.status === 429 && attempt < 12) {
+      const hinted = /try again in ([\d.]+)(ms|s)/.exec(body?.error?.message ?? "");
+      const wait = hinted ? Number(hinted[1]) * (hinted[2] === "s" ? 1000 : 1) : 0;
+      await new Promise((r) => setTimeout(r, Math.max(wait + 500, 5000 * (attempt + 1))));
+      continue;
+    }
+    if (!res.ok) throw new Error(`OpenAI HTTP ${res.status}: ${body?.error?.message ?? "error"}`);
+    return body;
+  }
 }
 
 // One Anthropic Messages call, returned in the Chat Completions shape runTask reads, so the loop
@@ -105,6 +127,7 @@ async function runTask(client, tools, task) {
   const started = Date.now();
   const messages = [{ role: "system", content: SYSTEM }, { role: "user", content: task.prompt }];
   const calls = [];
+  const fetched = [];
   const usage = { prompt_tokens: 0, completion_tokens: 0, cached_tokens: 0 };
   let final = null;
   let turns = 0;
@@ -121,6 +144,7 @@ async function runTask(client, tools, task) {
       if (!message.tool_calls?.length) { final = message.content ?? ""; break; }
       for (const call of message.tool_calls) {
         calls.push(call.function.name);
+        if (ARM === "plain") fetched.push(`${call.function.name} ${String(call.function.arguments).slice(0, 300)}`);
         let text;
         try {
           const result = await client.callTool({ name: call.function.name, arguments: JSON.parse(call.function.arguments || "{}") });
@@ -139,8 +163,10 @@ async function runTask(client, tools, task) {
     task: task.id,
     expected_tool: task.tool,
     tools_called: calls,
-    right_tool: task.tool === null ? true : calls.includes(task.tool),
-    first_tool_right: task.tool === null ? true : calls[0] === task.tool,
+    // The control has none of the expected tools, so tool choice is not scored there.
+    right_tool: ARM === "plain" ? null : task.tool === null ? true : calls.includes(task.tool),
+    first_tool_right: ARM === "plain" ? null : task.tool === null ? true : calls[0] === task.tool,
+    ...(ARM === "plain" ? { tool_calls: fetched } : {}),
     expected: task.expected,
     answer: graded.parsed,
     answered: graded.answered,
@@ -149,6 +175,47 @@ async function runTask(client, tools, task) {
     ...usage,
     ms: Date.now() - started,
     error,
+  };
+}
+
+// ---------------------------------------------------------------------------------------------
+// The plain arm's two tools, behind the same callTool/close interface the MCP client has.
+// ---------------------------------------------------------------------------------------------
+const PLAIN_TOOLS = [
+  { type: "function", function: { name: "http_get", description: "GET a public https URL and return the response body as text.", parameters: { type: "object", properties: { url: { type: "string" } }, required: ["url"], additionalProperties: false } } },
+  { type: "function", function: { name: "calculate", description: "Evaluate one arithmetic expression. Numbers, + - * / ** ( ), and the functions sqrt, log, exp, abs, pow, min, max, normcdf (standard normal CDF) and norminv (its inverse).", parameters: { type: "object", properties: { expression: { type: "string" } }, required: ["expression"], additionalProperties: false } } },
+];
+
+async function plainImports() {
+  const { normalCdf, normalPpf } = await import("../../../js/dsr-core.js");
+  return { normalCdf, normalPpf };
+}
+
+function plainClient() {
+  const fns = plainImports();
+  return {
+    async callTool({ name, arguments: args }) {
+      if (name === "http_get") {
+        const url = new URL(String(args.url));
+        if (url.protocol !== "https:") throw new Error("only https URLs");
+        if (/(^|\.)canlicapital\.com$/i.test(url.hostname)) throw new Error("canlicapital.com is not available in this arm");
+        const res = await fetch(url, { headers: { "User-Agent": "Canli Capital research benchmark (https://canlicapital.com)" }, redirect: "follow", signal: AbortSignal.timeout(20000) });
+        const text = await res.text();
+        return { content: [{ type: "text", text: res.ok ? text : `HTTP ${res.status}: ${text.slice(0, 500)}` }] };
+      }
+      if (name === "calculate") {
+        const expression = String(args.expression);
+        // Only numbers, operators, parentheses, commas and the listed function names reach eval.
+        const names = expression.match(/[A-Za-z_]+/g) ?? [];
+        const allowed = new Set(["sqrt", "log", "exp", "abs", "pow", "min", "max", "normcdf", "norminv", "e", "E"]);
+        if (!/^[0-9A-Za-z_+\-*/().,\s]*$/.test(expression) || names.some((n) => !allowed.has(n))) throw new Error("unsupported expression");
+        const { normalCdf, normalPpf } = await fns;
+        const value = Function("sqrt", "log", "exp", "abs", "pow", "min", "max", "normcdf", "norminv", `"use strict"; return (${expression});`)(Math.sqrt, Math.log, Math.exp, Math.abs, Math.pow, Math.min, Math.max, normalCdf, normalPpf);
+        return { content: [{ type: "text", text: String(value) }] };
+      }
+      throw new Error(`unknown tool ${name}`);
+    },
+    async close() {},
   };
 }
 
@@ -169,10 +236,18 @@ function summarize(runs) {
   };
 }
 
-const client = new Client({ name: "canli-agent-benchmark", version: "1" });
-await client.connect(new StdioClientTransport({ command: process.execPath, args: [resolve(MCP, "src/server.mjs")], env: { ...process.env, CANLI_LOCAL: "1", CANLI_KEY: "" } }));
-const tools = toOpenAiTools((await client.listTools()).tools);
-const serverVersion = client.getServerVersion()?.version;
+let client;
+let tools;
+let serverVersion = null;
+if (ARM === "plain") {
+  client = plainClient();
+  tools = PLAIN_TOOLS;
+} else {
+  client = new Client({ name: "canli-agent-benchmark", version: "1" });
+  await client.connect(new StdioClientTransport({ command: process.execPath, args: [resolve(MCP, "src/server.mjs")], env: { ...process.env, CANLI_LOCAL: "1", CANLI_KEY: "" } }));
+  tools = toOpenAiTools((await client.listTools()).tools);
+  serverVersion = client.getServerVersion()?.version;
+}
 
 let tasks = TASKS.filter((t) => !ONLY.length || ONLY.some((p) => t.id.startsWith(p)));
 tasks = await Promise.all(tasks.map((t) => (t.company ? resolveCompanyTruth(t) : t)));
@@ -186,7 +261,7 @@ outer: for (let r = 0; r < REPEATS; r++) {
     run.repeat = r;
     runs.push(run);
     spent += run.prompt_tokens + run.completion_tokens;
-    console.log(`${run.task.padEnd(6)} r${r} tool:${run.right_tool ? "ok" : "MISS"} answer:${run.correct ? "ok" : "WRONG"} ${run.prompt_tokens + run.completion_tokens} tok ${run.ms} ms${run.error ? ` ERROR ${run.error}` : ""}`);
+    console.log(`${run.task.padEnd(6)} r${r} tool:${run.right_tool === null ? "n/a" : run.right_tool ? "ok" : "MISS"} answer:${run.correct ? "ok" : "WRONG"} ${run.prompt_tokens + run.completion_tokens} tok ${run.ms} ms${run.error ? ` ERROR ${run.error}` : ""}`);
   }
 }
 await client.close();
@@ -195,7 +270,11 @@ const summary = summarize(runs);
 const out = {
   schema: "canli.mcp-agent-benchmark.v1",
   model: MODEL,
-  server: { name: "canli-validation-mcp", version: serverVersion, mode: "local (CANLI_LOCAL=1); company tool reads canlicapital.com" },
+  arm: ARM,
+  tool_text_cap_chars: TOOL_TEXT_CAP,
+  server: ARM === "plain"
+    ? { name: "none (control)", tools: "http_get (canlicapital.com blocked) and calculate" }
+    : { name: "canli-validation-mcp", version: serverVersion, mode: "local (CANLI_LOCAL=1); company tool reads canlicapital.com" },
   generated_at: new Date().toISOString().replace(/\.\d{3}Z$/, "Z"),
   tasks: tasks.map((t) => t.id),
   repeats: REPEATS,
@@ -203,7 +282,7 @@ const out = {
   runs,
 };
 mkdirSync(resolve(HERE, "results"), { recursive: true });
-const file = resolve(HERE, "results", `${out.generated_at.slice(0, 10)}-${MODEL}.json`);
+const file = resolve(HERE, "results", `${out.generated_at.slice(0, 10)}-${MODEL}${ARM === "plain" ? "-plain" : ""}.json`);
 writeFileSync(file, `${JSON.stringify(out, null, 2)}\n`);
 console.log(JSON.stringify(summary));
 console.log(`wrote ${file}`);
