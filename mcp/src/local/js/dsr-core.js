@@ -125,6 +125,57 @@ function requireFinite(name, value) {
   if (!Number.isFinite(value)) throw new RangeError(`${name} must be a finite number`);
 }
 
+// Expected maximum of N independent standard Normal draws (Bailey, Borwein, López de Prado and Zhu
+// 2014, Proposition 2.1; Bailey and López de Prado 2014, the deflated Sharpe ratio): the Sharpe
+// ratio, in units of its standard deviation, that the best of N skill-less trials is expected to show.
+export function expectedMaxStandardNormal(trials) {
+  const n = Number(trials);
+  if (!Number.isInteger(n) || n < 2) throw new RangeError("Effective independent trials must be an integer of at least 2");
+  return (1 - EULER_MASCHERONI) * normalPpf(1 - 1 / n) + EULER_MASCHERONI * normalPpf(1 - 1 / (n * Math.E));
+}
+
+// Minimum Backtest Length (Bailey, Borwein, López de Prado and Zhu 2014, Theorem 3.1): the years of
+// backtest needed so that the best of N skill-less trials is not expected to show an annualized
+// Sharpe of targetSharpe in sample: ((1-g) Z^-1[1-1/N] + g Z^-1[1-1/(Ne)])^2 / targetSharpe^2,
+// bounded above by 2 ln N / targetSharpe^2. Necessary, not sufficient, to avoid overfitting.
+export function minimumBacktestLength({ trials, targetSharpe }) {
+  const target = Number(targetSharpe);
+  if (!(target > 0 && Number.isFinite(target))) throw new RangeError("The target Sharpe must be a positive number");
+  const expectedMax = expectedMaxStandardNormal(trials);
+  return {
+    years: (expectedMax / target) ** 2,
+    upper_bound_years: (2 * Math.log(Number(trials))) / target ** 2,
+    expected_max_sharpe_one_year: expectedMax,
+  };
+}
+
+// The largest number of independent trials whose best is still expected to stay below targetSharpe
+// in sample over `years` of backtest (Eq. 3.1 solved for N). The expected maximum grows with N, so
+// a doubling search then a bisection finds it exactly. Returns 1 when even two trials are too many.
+export function maximumIndependentTrials({ years, targetSharpe }) {
+  const y = Number(years);
+  const target = Number(targetSharpe);
+  if (!(y > 0 && Number.isFinite(y))) throw new RangeError("Backtest years must be a positive number");
+  if (!(target > 0 && Number.isFinite(target))) throw new RangeError("The target Sharpe must be a positive number");
+  const ceiling = target * Math.sqrt(y);
+  const fits = (n) => expectedMaxStandardNormal(n) <= ceiling;
+  if (!fits(2)) return 1;
+  let lo = 2;
+  let hi = 4;
+  const LIMIT = 1e15;
+  while (fits(hi)) {
+    lo = hi;
+    if (hi >= LIMIT) return LIMIT;
+    hi = Math.min(hi * 2, LIMIT);
+  }
+  while (hi - lo > 1) {
+    const mid = Math.floor((lo + hi) / 2);
+    if (fits(mid)) lo = mid;
+    else hi = mid;
+  }
+  return lo;
+}
+
 export function calculateDsr(input) {
   const values = Object.fromEntries(
     Object.entries(input).map(([key, value]) => [key, Number(value)]),
@@ -150,10 +201,7 @@ export function calculateDsr(input) {
   const observedSharpePerPeriod = values.observed_sharpe_annualized / annualizationScale;
   const trialSdPerPeriod = values.cross_trial_sharpe_sd_annualized / annualizationScale;
   const trialVariancePerPeriod = trialSdPerPeriod ** 2;
-  const nTrials = values.effective_independent_trials;
-  const quantile =
-    (1 - EULER_MASCHERONI) * normalPpf(1 - 1 / nTrials) +
-    EULER_MASCHERONI * normalPpf(1 - 1 / (nTrials * Math.E));
+  const quantile = expectedMaxStandardNormal(values.effective_independent_trials);
   const expectedMaxSharpePerPeriod = trialSdPerPeriod * quantile;
   const nonNormalityVarianceTerm =
     1 -

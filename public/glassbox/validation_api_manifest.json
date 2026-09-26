@@ -192,6 +192,22 @@
       }
     },
     {
+      "path": "/api/v1/validate/backtest-length",
+      "method": "POST",
+      "keyed": true,
+      "summary": "Minimum backtest length for the best of N independent trials not to reach a target Sharpe by luck, and the trials a backtest's years allow.",
+      "requestExample": {
+        "effective_independent_trials": 45,
+        "backtest_years": 5,
+        "target_sharpe_annualized": 1
+      },
+      "requestOptional": [
+        "effective_independent_trials",
+        "backtest_years",
+        "target_sharpe_annualized"
+      ]
+    },
+    {
       "path": "/api/v1/validate/status",
       "method": "GET",
       "keyed": false,

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- `validate_backtest_length`: the minimum backtest length (Bailey, Borwein, López de Prado and Zhu,
+  2014) before the best of N independent trials is not expected to reach a target Sharpe by luck,
+  and the most independent trials a backtest's years allow (`POST /api/v1/validate/backtest-length`).
+  Reproduces the paper's statements exactly: the best of 10 trials at 1.57, at most 45 trials in 5
+  years and 7 in 2.
 - `audit_backtest`: deflated Sharpe, minimum track record length and, with every variant's returns,
   CSCV overfitting on one return series in one call. Each check is its validator's own result and
   receipt; the audit adds no grade. On a local server, `returns_file` and `variants_file` read the

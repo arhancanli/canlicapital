@@ -20,6 +20,7 @@ export const LOCAL_FILES = [
   "js/validate/paper-evidence.js",
   "js/validate/breadth.js",
   "js/validate/track-record.js",
+  "js/validate/backtest-length.js",
   "api/_lib/limits.js",
   "standards/paper-evidence/schema.json",
 ];

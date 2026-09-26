@@ -14,11 +14,12 @@ export const BINDINGS = Object.freeze({
     "js/validate/paper-evidence.js",
     "js/validate/breadth.js",
     "js/validate/track-record.js",
+    "js/validate/backtest-length.js",
     "public/glassbox/deflated_sharpe_calculator_contract.json",
     "standards/validation-api/vectors.json"
   ],
   "files": {
-    "js/dsr-core.js": "sha256:45703f6eb415e6b4139b2ac79275dd0975deed2cfb67910d6920d98ace9bf94b",
+    "js/dsr-core.js": "sha256:79ec18cc7c15e0b2ad004dd5296e83020187912aab161b68aad4784d959816d1",
     "js/moments-core.js": "sha256:f14b6f85fde4c21cdb16ae7c5648f2a20a8c93ef53f46019d25dd2cc59134ed1",
     "js/pbo-core.js": "sha256:56d66a9065256fac879da7a1c9d13e45e739d548332b1feaaca315f26051979f",
     "js/selection-risk-core.js": "sha256:b2730eb3e29348530265c72196f39cca58774000da64ebeaf5bbddb3053f8f75",
@@ -31,6 +32,7 @@ export const BINDINGS = Object.freeze({
     "js/validate/paper-evidence.js": "sha256:4aad8d762db032f5d032d3d1568ad90d2c1c603ff9092b022605dceff0fceb24",
     "js/validate/breadth.js": "sha256:d9b49bc2bacd4169b4a0b3dc83ee187c06109b144e99aaeb097fee35a532160f",
     "js/validate/track-record.js": "sha256:7b9aa472e88741c42e4fddca9301925391cb741e56c0aff36b3a8545f0283118",
+    "js/validate/backtest-length.js": "sha256:f195c011e64d7159b2ce36adf487cb4ab245cbf0cce4a67c08206ca866578532",
     "public/glassbox/deflated_sharpe_calculator_contract.json": "sha256:2ba8fcb339a5fdb9304da074fcbdf9e229f9b6f5ec2f8a787c542f5f31db7e8f",
     "standards/validation-api/vectors.json": "sha256:e575dc7b72d5d4e80334a2d64e4454fa333f1ed2fa02860a6894d6c2ee21fb15"
   }
