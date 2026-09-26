@@ -193,6 +193,7 @@ export const luckTrialsInput = z
     observations: z.number().int().min(3).max(1000000).describe(d.hc_observations),
     effective_independent_trials: z.number().int().min(1).max(1000000000).optional().describe(d.lt_trials),
     skew: z.number().min(-100).max(100).optional().describe(d.skew),
+    autocorrelation: z.number().gt(-1).lt(1).optional().describe(d.autocorrelation),
   })
   .strict();
 

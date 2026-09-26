@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- `validate_luck_trials` takes the returns' `autocorrelation` and corrects the Sharpe as Lo (2002)
+  first. Measured on the Null Zoo: with autocorrelation 0.2 and none sent, a nominal 5 percent
+  test rejected 20.0 percent of skill-less searches; with it corrected, 5.9 percent.
 - `validate_luck_trials`: luck-equivalent trials, a new statistic. How many skill-less strategies a
   search would have had to try for its best to reach the observed Sharpe by luck (at even odds and at
   5 percent), and, with a trial count, the chance that it did. Built from the Student t null of the

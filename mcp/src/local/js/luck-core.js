@@ -17,6 +17,7 @@
 // skewed returns: with 252 observations a nominal 5% test rejected 10.8% of skill-less searches at
 // skew -1.3 and 20.8% at skew -3.7.
 import { expectedMaxStandardNormal } from "./dsr-core.js";
+import { autocorrelationFactor } from "./haircut-core.js";
 import { studentTUpper } from "./student-t.js";
 
 export const TRIAL_CAP = 1e15;
@@ -77,9 +78,14 @@ export function expectedMaximumTrials(tStatistic) {
   return lo;
 }
 
-export function luckEquivalentTrials({ sharpe, observations, periodsPerYear, trials }) {
-  const single = singleTrialProbability({ sharpe, observations, periodsPerYear });
+// With the returns' lag-1 autocorrelation, the Sharpe is first corrected as Lo (2002), the form
+// js/haircut-core.js applies; the Null Zoo measured that without it, positively autocorrelated
+// returns (0.2) make every best-of-N test reject about four times as often as its level.
+export function luckEquivalentTrials({ sharpe, observations, periodsPerYear, trials, autocorrelation = 0 }) {
+  const factor = autocorrelationFactor(autocorrelation, periodsPerYear);
+  const single = singleTrialProbability({ sharpe: Number(sharpe) * factor, observations, periodsPerYear });
   const result = {
+    autocorrelation_factor: factor,
     t_statistic: single.t_statistic,
     single_trial_probability: single.probability,
     trials_for_even_odds: trialsAtProbability(single.probability, 0.5),

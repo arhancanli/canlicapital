@@ -116,3 +116,14 @@ test("the size figures quoted in the source are the committed study's own", asyn
   const at = (d) => (study.rows.find((r) => r.distribution === d && r.t === 252).size.student_t_null.at_5_percent * 100).toFixed(1);
   assert.ok(source.includes(`rejected ${at("skew_minus_1_3")}% of skill-less searches at skew -1.3 and ${at("skew_minus_3_7")}% at skew -3.7`));
 });
+
+test("autocorrelation corrects the Sharpe as Lo (2002) before anything else; none changes nothing", () => {
+  const base = { sharpe: 1.5, observations: 756, periodsPerYear: 252, trials: 50 };
+  const plain = luckEquivalentTrials(base);
+  assert.deepEqual(luckEquivalentTrials({ ...base, autocorrelation: 0 }), plain);
+  assert.equal(plain.autocorrelation_factor, 1);
+  const smoothed = luckEquivalentTrials({ ...base, autocorrelation: 0.2 });
+  assert.ok(smoothed.autocorrelation_factor < 0.85 && smoothed.autocorrelation_factor > 0.8, `${smoothed.autocorrelation_factor}`);
+  assert.ok(smoothed.trials_for_even_odds < plain.trials_for_even_odds);
+  assert.ok(smoothed.best_of_trials_probability > plain.best_of_trials_probability);
+});

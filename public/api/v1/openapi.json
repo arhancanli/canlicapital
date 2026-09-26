@@ -1397,6 +1397,9 @@
                   },
                   "skew": {
                     "type": "number"
+                  },
+                  "autocorrelation": {
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -1410,7 +1413,8 @@
                 "periods_per_year": 252,
                 "observations": 756,
                 "effective_independent_trials": 200,
-                "skew": -0.4
+                "skew": -0.4,
+                "autocorrelation": 0.05
               }
             }
           }
