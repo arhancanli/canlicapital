@@ -153,8 +153,7 @@ const row = (c) => `<tr data-status="${c.status}">
       </tr>`;
 
 const description =
-  "Every cost that can reach a return, whether this engine charges it, and which way the answer " +
-  "is wrong when it does not.";
+  "Every cost that can reach a trading return, whether this engine charges it, and which way the result is wrong when it does not: fees, spread, impact, borrow.";
 
 const html = `<!doctype html>
 <html lang="en" data-page="costs">

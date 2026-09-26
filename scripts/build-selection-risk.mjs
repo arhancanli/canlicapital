@@ -137,8 +137,7 @@ function main() {
   const queryTitle = "Backtest selection risk simulator";
   const houseLabel = "Selection Risk Lab";
   const description =
-    "A backtest selection risk simulator: search a series with provably no edge and watch your " +
-    "best result deflated once the search is counted against it.";
+    "A free backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it.";
 
   const jsonLd = {
     "@context": "https://schema.org",

@@ -28,6 +28,7 @@
 // second design system for the same kind of document.
 // =============================================================================
 
+import { fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -44,7 +45,7 @@ const ORIGIN = "https://canlicapital.com";
 const AUTHOR = "Arhan Canli";
 const PUBLISHER = "Canli Capital";
 const TITLE_SUFFIX = " / Canli Capital";
-const DESCRIPTION_MAX = 165;
+const DESCRIPTION_MAX = 160;
 import { editableDashForms, emDashCharacter, normalizeEditableCopy } from "./editable-copy.mjs";
 import { describeProvenanceUrl } from "./describe-provenance-url.mjs";
 
@@ -389,11 +390,14 @@ function main() {
     const url = `${ORIGIN}/measurements/${slug}`;
     const rawUrl = rawArtifactUrl(path, research);
     const boundary = boundaryOf(data);
-    const description = fitDescription(
-      boundary ??
-        `${name}: a read-only artifact regenerated from the engine run that produced it, ` +
-          `published so the figure and its limits can be checked together.`,
-    );
+    // A short boundary is extended with the one sentence every measurement page makes true: what
+    // the page is and why it is published (scripts/lib/descriptions.mjs keeps 150 to 160).
+    const artifactSentences = [
+      `${name}: a read-only artifact regenerated from the engine run that produced it.`,
+      "The figure and its limits are published together.",
+      "The raw JSON is one click away.",
+    ];
+    const description = fitDescriptionFrom(boundary ?? artifactSentences[0], boundary ? artifactSentences : artifactSentences.slice(1));
     const technicalAuthorshipPending = data.technical_authorship_approved === false;
     const metaAuthor = technicalAuthorshipPending ? PUBLISHER : AUTHOR;
     const byline = technicalAuthorshipPending

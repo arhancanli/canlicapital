@@ -145,8 +145,7 @@ function main() {
   const totalKilled = facts.killed + facts.screenKilled;
 
   const description =
-    "Arhan Canli explains the decisions, corrections, contribution boundary and open evidence " +
-    "burden behind Canli Capital and ALPHAC.";
+    "Arhan Canli, founder of Canli Capital, explains the decisions, corrections, contribution boundary and open evidence burden behind Canli Capital and ALPHAC.";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
