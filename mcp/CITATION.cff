@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use canli-validation-mcp, please cite the software and its author."
+title: "canli-validation-mcp: an MCP server that validates backtests"
+type: software
+authors:
+  - family-names: "Canli"
+    given-names: "Arhan"
+    orcid: "https://orcid.org/0009-0004-4138-7907"
+repository-code: "https://github.com/arhancanli/canli-validation-mcp"
+url: "https://canlicapital.com/developers"
+license: MIT
+keywords:
+  - model context protocol
+  - backtest overfitting
+  - deflated Sharpe ratio
+  - quantitative finance
+abstract: >-
+  A Model Context Protocol server that validates a trading backtest for an AI coding assistant:
+  deflated Sharpe ratio, CSCV probability of backtest overfitting, minimum track record and backtest
+  length, haircut Sharpe ratio and luck-equivalent trials, each checked against its source paper,
+  with Ed25519-signed receipts and a statement of what each result does not establish.
