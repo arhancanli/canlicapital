@@ -1,0 +1,970 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Canli Capital: research and notes</title>
+  <subtitle>Open quantitative-finance research and engineering notes; every figure links to the file it came from.</subtitle>
+  <link rel="self" type="application/atom+xml" href="https://canlicapital.com/feed.xml"/>
+  <link rel="alternate" type="text/html" href="https://canlicapital.com/research"/>
+  <id>https://canlicapital.com/feed.xml</id>
+  <updated>2026-09-26T00:00:00Z</updated>
+  <author><name>Arhan Canli</name><uri>https://canlicapital.com/founder</uri></author>
+  <entry>
+    <title>FilingFacts v0: financial reasoning items verified from SEC XBRL data</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/filing-facts-v0"/>
+    <id>https://canlicapital.com/research/filing-facts-v0</id>
+    <updated>2026-09-26T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>FilingFacts is a set of 1,882 questions about the annual SEC filings of 402 companies. Every answer is computed from the company's XBRL facts, re-derived by…</summary>
+  </entry>
+  <entry>
+    <title>Luck-equivalent trials: how many skill-less strategies it takes to reach a Sharpe by luck</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/luck-equivalent-trials"/>
+    <id>https://canlicapital.com/research/luck-equivalent-trials</id>
+    <updated>2026-09-26T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>A backtest's Sharpe ratio means little until you know how many strategies were tried to find it. Luck-equivalent trials answers the reviewer's question in the…</summary>
+  </entry>
+  <entry>
+    <title>Null Zoo v0: backtest-overfitting corrections scored on ground truth</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/null-zoo-v0"/>
+    <id>https://canlicapital.com/research/null-zoo-v0</id>
+    <updated>2026-09-26T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Every correction for backtest overfitting makes a promise: that a skill-less strategy will pass it no more often than its stated level. The level is 5.0%.</summary>
+  </entry>
+  <entry>
+    <title>Point-in-Time Inflation Surprise and the Equity Size Spread</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/alphavintage-macro-surprise-lineage"/>
+    <id>https://canlicapital.com/research/alphavintage-macro-surprise-lineage</id>
+    <updated>2026-09-26T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This paper reports a point-in-time inflation-surprise strategy applied to the dollar-neutral IWM-minus-SPY equity size spread. The fixed specification…</summary>
+  </entry>
+  <entry>
+    <title>The split that ran backwards</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/notes/the-split-that-ran-backwards"/>
+    <id>https://canlicapital.com/notes/the-split-that-ran-backwards</id>
+    <updated>2026-09-26T00:00:00Z</updated>
+    <category term="note"/>
+    <summary>From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed. The data was right by its…</summary>
+  </entry>
+  <entry>
+    <title>Current-book diversification: the confidence-bound result</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/current-book-diversification-model"/>
+    <id>https://canlicapital.com/research/current-book-diversification-model</id>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The long-run portfolio objective is approximately −0.03 average correlation. The current measured point is 0.0548 above it. Calling +0.0248 “near zero” may be…</summary>
+  </entry>
+  <entry>
+    <title>When a Forward Sharpe Ratio Becomes Evidence</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/forward-sharpe-evidence-standard"/>
+    <id>https://canlicapital.com/research/forward-sharpe-evidence-standard</id>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>A forward Sharpe ratio should not become a headline merely because a short paper-trading curve can produce one. This paper defines the precommitted evidence…</summary>
+  </entry>
+  <entry>
+    <title>52-Week-High Momentum (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-eq-52whigh"/>
+    <id>https://canlicapital.com/research/kill-eq-52whigh</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The one AlphaMax construction variant whose cheap screen cleared the bar (t 2.01 vs plain momentum's 1.73), so we honored the pre-registration and ran the…</summary>
+  </entry>
+  <entry>
+    <title>A hash-bound prospective test of cross-sectional perpetual-futures carry</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/crypto-carry-portable-v1"/>
+    <id>https://canlicapital.com/research/crypto-carry-portable-v1</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This paper reports the first ALPHAC crypto-carry identity whose data decision, code, environment, trial parameters, and private execution inputs were frozen…</summary>
+  </entry>
+  <entry>
+    <title>Active ownership escalation — Schedule 13D Item 4 source-schema v3</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/active-ownership-item4-v3-feasibility"/>
+    <id>https://canlicapital.com/research/active-ownership-item4-v3-feasibility</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>No heading phrase, minimum length, active-intent classifier, ownership regex, sample row, threshold, or label is changed. Any machine failure is DATA_GATED.</summary>
+  </entry>
+  <entry>
+    <title>ALPHAC literature frontier — 2026-08-16</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-frontier-2026-08-16"/>
+    <id>https://canlicapital.com/research/literature-frontier-2026-08-16</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Status: literature and data-feasibility screen only. No return series was opened and no return identity was spent. That target was withdrawn on 2026-08-21.</summary>
+  </entry>
+  <entry>
+    <title>AlphaMax equity momentum: signal, trial lineage, and evidence boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/alphamax-equity-momentum-lineage"/>
+    <id>https://canlicapital.com/research/alphamax-equity-momentum-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaMax is ALPHAC's US-equity long/short momentum program. Its canonical signal is 12-minus-1 cross-sectional momentum: rank securities by split-adjusted…</summary>
+  </entry>
+  <entry>
+    <title>AlphaMax Short-Leg Margin Floor (disclosure, not a strategy): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-alphamax-short-margin-floor"/>
+    <id>https://canlicapital.com/research/kill-alphamax-short-margin-floor</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>A disclosure against our own published number rather than a tested idea. The equity sleeve's backtest has never modelled the broker's $5.00-per-share short…</summary>
+  </entry>
+  <entry>
+    <title>AlphaTrend managed-futures trend: complete trial lineage and evidence boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/alphatrend-managed-futures-lineage"/>
+    <id>https://canlicapital.com/research/alphatrend-managed-futures-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaTrend is ALPHAC's managed-futures trend program. It takes volatility-normalized directional positions from medium- and long-horizon price trends across…</summary>
+  </entry>
+  <entry>
+    <title>Annual risk-factor narrative stability: a preregistered null</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/equity-narrative-change-lineage"/>
+    <id>https://canlicapital.com/research/equity-narrative-change-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>ALPHAC preregistered one test of annual 10-K Item 1A narrative stability before opening the 2016–2025 return window. The locked strategy bought issuers with…</summary>
+  </entry>
+  <entry>
+    <title>Author review for approval-gated research protocols</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/author-protocol-approval-protocol"/>
+    <id>https://canlicapital.com/research/author-protocol-approval-protocol</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The merger-announcement and Treasury-auction redesigns have passed their no-return structural tests, but software cannot decide that Arhan understands or…</summary>
+  </entry>
+  <entry>
+    <title>Beta-Neutral Momentum Construction (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-alphamax-betaneutral"/>
+    <id>https://canlicapital.com/research/kill-alphamax-betaneutral</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The premise was that a dollar-neutral momentum book carries hidden NEGATIVE market beta, so a junk rally hurts both legs at once. Measuring the premise first…</summary>
+  </entry>
+  <entry>
+    <title>Bond-ETF NAV dislocation — locked no-return source feasibility protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/bond-etf-nav-dislocation-feasibility"/>
+    <id>https://canlicapital.com/research/bond-etf-nav-dislocation-feasibility</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Failure of any gate is DATA_GATED. Passing does not authorize returns. Thresholds and routes are not modified after collection. iNAV is not accepted as…</summary>
+  </entry>
+  <entry>
+    <title>CFTC hedging pressure — no-return feasibility protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/cftc-hedging-pressure-feasibility"/>
+    <id>https://canlicapital.com/research/cftc-hedging-pressure-feasibility</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This stage audits only identifiers, dates, market labels and commodity classifications from the CFTC Disaggregated Futures Only dataset (72hh-3qpy). It…</summary>
+  </entry>
+  <entry>
+    <title>Closed-End-Fund Deep-Discount + Activist Catalyst (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-cef-discount"/>
+    <id>https://canlicapital.com/research/kill-cef-discount</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The five-decade anomaly is REAL in free data and we could see it: entry-cohort funds genuinely narrow their discount versus the universe (+1.17pts at 4w…</summary>
+  </entry>
+  <entry>
+    <title>Clustered Insider Open-Market Purchases: a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-insider-purchase-clusters"/>
+    <id>https://canlicapital.com/research/kill-insider-purchase-clusters</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>One pre-registered configuration on official SEC Form 4 purchases, 2016-2026: at least two officers/directors and $100k purchased inside 30 calendar days…</summary>
+  </entry>
+  <entry>
+    <title>Clustered insider purchases: a corrected preregistered null</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/equity-insider-activity-lineage"/>
+    <id>https://canlicapital.com/research/equity-insider-activity-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This record examines whether clustered open-market purchases by corporate insiders predict issuer returns after a realistic filing delay. Two immutable…</summary>
+  </entry>
+  <entry>
+    <title>Commodity / Cross-Asset Futures Carry (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-futcarry-xs"/>
+    <id>https://canlicapital.com/research/kill-futcarry-xs</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Cross-sectional carry on 38 real futures (long backwardation / short contango, front-vs-next slope), 2010-2016 — the only window the term-structure marks…</summary>
+  </entry>
+  <entry>
+    <title>Corporate Equity Supply (Net Issuance): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-eq-net-issuance"/>
+    <id>https://canlicapital.com/research/kill-eq-net-issuance</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The broad corporate-equity-supply identity was run through the deployed-path walk-forward on a point-in-time Sharadar research lake: long firms shrinking…</summary>
+  </entry>
+  <entry>
+    <title>COT Positioning Overlay (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-cot-positioning"/>
+    <id>https://canlicapital.com/research/kill-cot-positioning</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Indistinguishable from zero (t~0.42 over 25 years); dies at 2x cost; the entire 'edge' is two equity-index legs. Genuine decorrelation, no edge to attach it to.</summary>
+  </entry>
+  <entry>
+    <title>Cross-Asset Carry (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-xasset-carry"/>
+    <id>https://canlicapital.com/research/kill-xasset-carry</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>5 constructions. The COMBINED cross-asset book is net-NEGATIVE (3 of 4 legs lose); the one positive leg (oil backwardation, +0.37) is a single-instrument bet…</summary>
+  </entry>
+  <entry>
+    <title>Cross-Asset Value (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-xasset-value"/>
+    <id>https://canlicapital.com/research/kill-xasset-value</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>6 constructions, ALL net-negative. The decisive tell: flipping the value sign is positive in every asset class — the only premium present is anti-value =…</summary>
+  </entry>
+  <entry>
+    <title>Cross-Sectional Same-Calendar-Month Seasonality (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-xs-seasonality"/>
+    <id>https://canlicapital.com/research/kill-xs-seasonality</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The one equity-side signal genuinely DECORRELATED from our momentum sleeve — and that is exactly why it is worth publishing. Same-calendar-month ranking…</summary>
+  </entry>
+  <entry>
+    <title>Crypto Dated-Futures Basis (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-crypto-dated-basis"/>
+    <id>https://canlicapital.com/research/kill-crypto-dated-basis</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Screened at an apparent 1.47 but refuted 3x and reproduced from scratch: the 8.2%/yr 'carry' is a roll-accounting fiction — the kept days (+0.55) and the…</summary>
+  </entry>
+  <entry>
+    <title>Crypto defensive factors: positive summaries without admission evidence</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/crypto-defensive-lineage"/>
+    <id>https://canlicapital.com/research/crypto-defensive-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This record reconciles two cross-sectional defensive-factor identities in crypto perpetual futures: 720-hour low beta and 720-hour low realized volatility.</summary>
+  </entry>
+  <entry>
+    <title>Crypto Low-Volatility: a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-crypto-lowvol-720"/>
+    <id>https://canlicapital.com/research/kill-crypto-lowvol-720</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The STRONGEST in-sample signal the 200+-factor campaign found anywhere (Rank-IC t = 6.66). Full purged walk-forward: net Sharpe 0.69 — respectable. But the…</summary>
+  </entry>
+  <entry>
+    <title>Crypto momentum: complete trial lineage and failed sleeve-admission evidence</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/crypto-momentum-lineage"/>
+    <id>https://canlicapital.com/research/crypto-momentum-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge tested cross-sectional and time-series momentum in perpetual-futures prices. Diversification without standalone edge does not earn a sleeve slot.</summary>
+  </entry>
+  <entry>
+    <title>Crypto multi-factor engine: seven trials, capacity decay, and no-deploy verdict</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/crypto-multifactor-engine-lineage"/>
+    <id>https://canlicapital.com/research/crypto-multifactor-engine-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge ran a historical robustness matrix over crypto perpetual futures from 2021-01-01 through 2026-06-01. Seven charged identities belong to the broad…</summary>
+  </entry>
+  <entry>
+    <title>Crypto Multi-Venue Funding Aggregation (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-multivenue-funding"/>
+    <id>https://canlicapital.com/research/kill-multivenue-funding</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Would aggregating funding across exchanges beat our Binance-only carry signal? This died at the screen stage, before a full walk-forward was ever run.</summary>
+  </entry>
+  <entry>
+    <title>Crypto perpetual carry: trial lineage, capacity failure, and live evidence boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/crypto-carry-lineage"/>
+    <id>https://canlicapital.com/research/crypto-carry-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge studies cross-sectional carry in USDT-margined perpetual futures, ranking contracts by the negative trailing mean of observed funding: expensive…</summary>
+  </entry>
+  <entry>
+    <title>Crypto short-horizon reversal: two decisive negative trials</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/crypto-reversal-lineage"/>
+    <id>https://canlicapital.com/research/crypto-reversal-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Two historical identities test whether crypto perpetual-futures returns reverse after common movement is removed. One uses a 24-hour residual signal; the…</summary>
+  </entry>
+  <entry>
+    <title>Crypto Short-Horizon Trend (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-crypto-short-tsmom"/>
+    <id>https://canlicapital.com/research/kill-crypto-short-tsmom</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The strong 0.60 screen lives entirely in the untradeable 2016-18 illiquid era; modern crypto is flat-to-dead with a catastrophic -4.88 skew (crash-day…</summary>
+  </entry>
+  <entry>
+    <title>Crypto Variance-Risk-Premium (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-crypto-vrp"/>
+    <id>https://canlicapital.com/research/kill-crypto-vrp</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Pitched at 2.15 Sharpe — the headline was a 252-vs-365 vol-annualization error inventing a phantom 15-vol-point premium. Honest measurement: net Sharpe -0.07…</summary>
+  </entry>
+  <entry>
+    <title>Crypto volatility risk premium: one proxy trial and a published null</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/crypto-vrp-lineage"/>
+    <id>https://canlicapital.com/research/crypto-vrp-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge tested one preregistered BTC/ETH volatility-risk-premium timing rule from 2021-03-24 through 2026-06-01. It compared Deribit DVOL closes with a…</summary>
+  </entry>
+  <entry>
+    <title>Current-composition maximum-drawdown model</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/current-book-drawdown-model"/>
+    <id>https://canlicapital.com/research/current-book-drawdown-model</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This study estimates the two-year maximum-drawdown distribution of the current ALPHAC composition: four constituent sleeves at equal-quarter weights plus a…</summary>
+  </entry>
+  <entry>
+    <title>Customer–supplier propagation — locked no-return relationship-source protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/customer-supplier-propagation-feasibility"/>
+    <id>https://canlicapital.com/research/customer-supplier-propagation-feasibility</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Use the existing hash-addressed SEC 10-K manifest and local primary-document cache. Restrict filing dates to 2016-01-01 through 2025-12-31. Every manifest…</summary>
+  </entry>
+  <entry>
+    <title>Deep-History Quality (Top 800): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-deephist-quality-top800"/>
+    <id>https://canlicapital.com/research/kill-deephist-quality-top800</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Quality premium does not survive net of cost on the 21-year survivorship-free universe. Net Sharpe far below the 0.30 minimum gate. KILLED, never re-tuned.</summary>
+  </entry>
+  <entry>
+    <title>Economic-Trend Sleeve, macro-fundamental trend (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-econtrend"/>
+    <id>https://canlicapital.com/research/kill-econtrend</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Trend on first-release macro vintages (payrolls, CPI, IP, credit spreads, yields, dollar) driving the 17-ETF basket by a pre-committed economic sign matrix.</summary>
+  </entry>
+  <entry>
+    <title>EIA Petroleum Inventory Scarcity: a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-commodity-inventory-seasonal"/>
+    <id>https://canlicapital.com/research/kill-commodity-inventory-seasonal</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>One pre-registered configuration on 782 accepted official EIA WPSR first-release Table 4 vintages, 2016-2026 OOS: commercial crude excluding SPR mapped to USO…</summary>
+  </entry>
+  <entry>
+    <title>Electricity load/weather dislocation: literature and implementation boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-electricity-load-weather"/>
+    <id>https://canlicapital.com/research/literature-electricity-load-weather</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Power must balance continuously, while demand and renewable output depend on weather. It supports the forecasting problem, not a specific profitable rule.</summary>
+  </entry>
+  <entry>
+    <title>Engineering quality boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/engineering-quality"/>
+    <id>https://canlicapital.com/research/engineering-quality</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This page reports the current static-quality boundary honestly. Twelve credentialed network tests remain deliberately deselected from the offline suite.</summary>
+  </entry>
+  <entry>
+    <title>Equity fundamental quality: 11 identities and no validated sleeve</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/equity-quality-lineage"/>
+    <id>https://canlicapital.com/research/equity-quality-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Novy-Marx's gross-profitability evidence provides an important prior (Journal of Financial Economics). One family can contribute at most one independent sleeve.</summary>
+  </entry>
+  <entry>
+    <title>Equity low beta: two negative identities and no defensive sleeve</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/equity-low-beta-lineage"/>
+    <id>https://canlicapital.com/research/equity-low-beta-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Two historical identities test a 252-session equity beta rank. The implemented portfolio seeks a long-low-beta, short-high-beta spread under rank allocation.</summary>
+  </entry>
+  <entry>
+    <title>Equity Momentum (with Margin Costs): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-eq-mom-margin"/>
+    <id>https://canlicapital.com/research/kill-eq-mom-margin</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Margin financing costs erode the momentum edge below the frozen k30dn63 baseline. This tested one specific construction choice inside the momentum family.</summary>
+  </entry>
+  <entry>
+    <title>Equity Quality (Gross Profitability): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-eq-quality-gp"/>
+    <id>https://canlicapital.com/research/kill-eq-quality-gp</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Quality via GP/A + ROE fails on the narrow top-200 / 5-year slice. Net Sharpe below the 0.30 gate; needs the wide Sharadar fundamentals universe (20yr / 3000…</summary>
+  </entry>
+  <entry>
+    <title>Equity Value (Book-to-Price): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-eq-value-btp"/>
+    <id>https://canlicapital.com/research/kill-eq-value-btp</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Value premium inverted across the 2022-2026 window. Net Sharpe below the 0.30 gate; the narrow top-200 universe is too small for the small/mid-cap value signal.</summary>
+  </entry>
+  <entry>
+    <title>Equity value, issuance, and investment: 13 identities and unstable evidence</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/equity-value-investment-lineage"/>
+    <id>https://canlicapital.com/research/equity-value-investment-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Value ratios ask whether prices are low relative to accounting fundamentals. Cooper, Gulen, and Schill document the asset-growth effect (Journal of Finance).</summary>
+  </entry>
+  <entry>
+    <title>Equity-Index VRP / short-vol (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-equity-vrp"/>
+    <id>https://canlicapital.com/research/kill-equity-vrp</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The premium is REAL (VIX minus realized = +4 vol pts, t=57) but UNHARVESTABLE: negative in every crisis, skew -1.8 to -2.2, corr +0.45 to +0.66 to SPY —…</summary>
+  </entry>
+  <entry>
+    <title>Funding Term-Structure / Slope (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-funding-termstructure"/>
+    <id>https://canlicapital.com/research/kill-funding-termstructure</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The decorrelated residual is noise (worked pre-2023, inverted after: +1.11 then -1.43); the only version that makes money is leaked carry-LEVEL — a…</summary>
+  </entry>
+  <entry>
+    <title>FX Carry (rate differential): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-fx-carry-ratediff"/>
+    <id>https://canlicapital.com/research/kill-fx-carry-ratediff</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Long high-rate / short low-rate currencies. Net Sharpe 0.18 but skew -2.74: the carry premium does not pay for its crash risk (carry 'picks up pennies in…</summary>
+  </entry>
+  <entry>
+    <title>FX Carry + Trend Overlay (the real construction): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-fx-carry-trend-overlay"/>
+    <id>https://canlicapital.com/research/kill-fx-carry-trend-overlay</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The professional FX book: trend hedges carry's crashes. It screened at 0.32 — but the robustness stress-test killed it. The Sharpe SPIKED only at the exact…</summary>
+  </entry>
+  <entry>
+    <title>FX Trend (cross-sectional 12-1): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-fx-trend-cs"/>
+    <id>https://canlicapital.com/research/kill-fx-trend-cs</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Cross-sectional currency trend, net of cost, 2016-2026. Flat (net Sharpe -0.035) — a weak-trend decade for FX. Below the 0.30 screen bar. KILLED at screen.</summary>
+  </entry>
+  <entry>
+    <title>Identity redesign notes: three families that mis-specified their population</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/identity-redesign-notes"/>
+    <id>https://canlicapital.com/research/identity-redesign-notes</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Status: DRAFT. Nothing here is registered. No hypothesis identity, no threshold, no universe is fixed by this document. Registering any of it spends a trial…</summary>
+  </entry>
+  <entry>
+    <title>Inflation breakeven relative value — literature and claim boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-inflation-breakeven-relative-value"/>
+    <id>https://canlicapital.com/research/literature-inflation-breakeven-relative-value</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Breakeven inflation is the spread between comparable nominal Treasury and inflation-indexed Treasury yields. The literature forbids three flattering shortcuts.</summary>
+  </entry>
+  <entry>
+    <title>Inflation breakeven relative value — no-return source-feasibility audit</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/inflation-breakeven-relative-value-feasibility"/>
+    <id>https://canlicapital.com/research/inflation-breakeven-relative-value-feasibility</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The 5Y and 10Y files are aligned, long, unique, and internally complete. Vintage CPI is also held. That establishes signal-source depth only. The 2Y leg is…</summary>
+  </entry>
+  <entry>
+    <title>Intraday Flow-Momentum, first-30m predicts last-30m (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-intraday-mom"/>
+    <id>https://canlicapital.com/research/kill-intraday-mom</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The twice-JFE-documented effect (Gao-Han-Li-Zhou) is fully DECAYED post-publication on SPY/QQQ/IWM: dead-zero in 2023-2026, and significantly INVERTED in…</summary>
+  </entry>
+  <entry>
+    <title>Legacy DSR restatement</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/legacy-dsr-restatement"/>
+    <id>https://canlicapital.com/research/legacy-dsr-restatement</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This is a correction ledger, not a performance upgrade. Original artifacts remain intact. Current selection context: N=228, identity-aligned V[SR]=0.0008957471.</summary>
+  </entry>
+  <entry>
+    <title>Leveraged-ETF End-of-Day Forced-Rebalance Flow (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-letf-eod-flow"/>
+    <id>https://canlicapital.com/research/kill-letf-eod-flow</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Leveraged ETFs MUST trade into the close (~$277B QQQ-family rebalance multiplier, ~$4B/day estimated flow) — a real, large, mechanical flow. But it is NOT…</summary>
+  </entry>
+  <entry>
+    <title>Long-Vol Tail Overlay (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-tail-overlay"/>
+    <id>https://canlicapital.com/research/kill-tail-overlay</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>An honest positive-skew (+2.06) anti-equity hedge — but its ONLY thesis, improving the combined book, fails at every hedge weight. AlphaTrend already provides…</summary>
+  </entry>
+  <entry>
+    <title>Managed-Futures fast-trend / real-futures breadth (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-mf-realfutures-fasttrend"/>
+    <id>https://canlicapital.com/research/kill-mf-realfutures-fasttrend</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Splits into robust-but-not-new (the slow book IS our existing AlphaTrend) and new-but-dead (the fast-trend leg is net-negative at every verifiable cost).</summary>
+  </entry>
+  <entry>
+    <title>Merger arbitrage v2: point-in-time announcement identity</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/merger-announcement-identity-v2"/>
+    <id>https://canlicapital.com/research/merger-announcement-identity-v2</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least 80% of all target-side deal anchors. It failed at 67.02%.</summary>
+  </entry>
+  <entry>
+    <title>Natural-gas storage/weather residual — literature and claim boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-natural-gas-storage-weather"/>
+    <id>https://canlicapital.com/research/literature-natural-gas-storage-weather</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Weekly working-gas inventory changes combine weather-driven demand, production, imports/exports, and operational flows. The forecast vintage is load-bearing.</summary>
+  </entry>
+  <entry>
+    <title>Natural-gas storage/weather residual — no-return source-feasibility protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/natural-gas-storage-weather-feasibility"/>
+    <id>https://canlicapital.com/research/natural-gas-storage-weather-feasibility</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Failure is DATA_GATED; thresholds, archive windows, weather initialization, and file endpoints are not revised after aggregate coverage is observed. A source…</summary>
+  </entry>
+  <entry>
+    <title>On-Chain Carry-Quality Filter (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-onchain-carry-filter"/>
+    <id>https://canlicapital.com/research/kill-onchain-carry-filter</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Placebo-indistinguishable: a random risk-off coin-flip of equal intensity matches it, and it does NOT repair carry's 2022 tail (skew got worse). No paid-data…</summary>
+  </entry>
+  <entry>
+    <title>Options dispersion: locked no-return data and execution-feasibility protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/options-dispersion-feasibility"/>
+    <id>https://canlicapital.com/research/options-dispersion-feasibility</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Can one point-in-time S&amp;P 500 index-versus-constituent option book be reconstructed with enough quote, membership, corporate-action, settlement, and…</summary>
+  </entry>
+  <entry>
+    <title>Petroleum inventory scarcity: a preregistered negative result</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/energy-inventory-lineage"/>
+    <id>https://canlicapital.com/research/energy-inventory-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This study tests one preregistered implementation of petroleum-inventory scarcity using EIA first-release data and liquid exchange-traded energy proxies.</summary>
+  </entry>
+  <entry>
+    <title>Point-in-time macroeconomic trend: seven identities without a validated sleeve</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/macro-economic-trend-lineage"/>
+    <id>https://canlicapital.com/research/macro-economic-trend-lineage</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>ALPHAC evaluates seven immutable identities spanning an economic-trend engine, CPI-surprise sizing, and point-in-time macro-vintage variants. Persisted…</summary>
+  </entry>
+  <entry>
+    <title>Post-Earnings-Announcement Drift (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-equity-pead"/>
+    <id>https://canlicapital.com/research/kill-equity-pead</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Clean null on a tradable top-1000 universe: the drift is the WRONG sign net of cost; the published PEAD edge lives only in untradeable micro-caps. Corr 0.47…</summary>
+  </entry>
+  <entry>
+    <title>Pre-Registered Betting-Against-Beta: a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-prereg-bab"/>
+    <id>https://canlicapital.com/research/kill-prereg-bab</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Pre-registered BAB on 21 years. Net Sharpe ~ -0.07, failed the DSR &gt;= 0.95 gate. Low-risk anomaly does not survive net of cost here. KILLED. The…</summary>
+  </entry>
+  <entry>
+    <title>Pre-Registered Momentum (deep history): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-prereg-momentum"/>
+    <id>https://canlicapital.com/research/kill-prereg-momentum</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Pre-registered momentum on 21 years of deep history. Net Sharpe ~ -0.05, failed the DSR &gt;= 0.95 gate. The deployed momentum sleeve is the frozen 2023+ k30dn63…</summary>
+  </entry>
+  <entry>
+    <title>Pre-Registered Quality (GP/A + ROE): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-prereg-quality"/>
+    <id>https://canlicapital.com/research/kill-prereg-quality</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Pre-registered quality on 21 years. Net Sharpe -0.83, the worst sleeve. KILLED; the wide-universe quality thesis fails to replicate on the available data.</summary>
+  </entry>
+  <entry>
+    <title>Pre-Registered Value (composite): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-prereg-value"/>
+    <id>https://canlicapital.com/research/kill-prereg-value</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Pre-registered composite value on 21 years. Net Sharpe -0.60, failed every gate. Confirms the value thesis does not replicate without small/mid-cap breadth.</summary>
+  </entry>
+  <entry>
+    <title>PRE-REGISTRATION — post-publication pre-FOMC announcement drift</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/prereg-pre-fomc-announcement-drift"/>
+    <id>https://canlicapital.com/research/prereg-pre-fomc-announcement-drift</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Declared 2026-08-16 after official schedule-lineage PASS and before opening any market return associated with this identity. A negative result is not inverted.</summary>
+  </entry>
+  <entry>
+    <title>Prediction-Market Odds as Macro Signal (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-pm-odds-signal"/>
+    <id>https://canlicapital.com/research/kill-pm-odds-signal</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Do Polymarket-implied probabilities lead tradable markets? No — they lag them. This died at the screen stage, before a full walk-forward was ever run.</summary>
+  </entry>
+  <entry>
+    <title>Rates-Curve Carry (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-rates-curve-carry"/>
+    <id>https://canlicapital.com/research/kill-rates-curve-carry</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Robustly NEGATIVE, not fragile-positive: the signal points the wrong way — steepest curves preceded the worst duration drawdowns (2022). Real decorrelation…</summary>
+  </entry>
+  <entry>
+    <title>Real-Futures Breadth for the Trend Sleeve (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-mf-realfutures-breadth"/>
+    <id>https://canlicapital.com/research/kill-mf-realfutures-breadth</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>We had been treating 'buy real futures data for genuine breadth' as the roadmap for the trend sleeve, on the theory that Sharpe scales with the square root of…</summary>
+  </entry>
+  <entry>
+    <title>Reconstructing corporate-action basis without opening strategy returns</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/corporate-action-basis-reconstruction"/>
+    <id>https://canlicapital.com/research/corporate-action-basis-reconstruction</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>An immutable operating-margin replay exposed a corporate-action data defect: dividend values from the frozen Sharadar ACTIONS archive were being treated as…</summary>
+  </entry>
+  <entry>
+    <title>Repurchase and issuance flow: no-return SEC feasibility protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/repurchase-issuance-flow-feasibility"/>
+    <id>https://canlicapital.com/research/repurchase-issuance-flow-feasibility</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This audit measures data feasibility only. It may inspect filing metadata, XBRL facts, Item 703 tables, taxonomies, contexts, amendments, and extraction errors.</summary>
+  </entry>
+  <entry>
+    <title>Residual (beta-neutral) Momentum (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-residual-momentum"/>
+    <id>https://canlicapital.com/research/kill-residual-momentum</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Corr 0.87 to raw 12-1 momentum on the broad survivorship-free universe — it is the SAME bet as AlphaMax, net-negative. The claimed 'separation' is false here.</summary>
+  </entry>
+  <entry>
+    <title>Seventy files that were never meant to be public</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/notes/seventy-files"/>
+    <id>https://canlicapital.com/notes/seventy-files</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="note"/>
+    <summary>I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally…</summary>
+  </entry>
+  <entry>
+    <title>Sharadar HDB zero-dividend quarantine</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine"/>
+    <id>https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The frozen Sharadar ACTIONS archive contains 11 dividends whose values are not positive. This is a vendor-originated source defect, not a backtest result.</summary>
+  </entry>
+  <entry>
+    <title>Short Interest / Days-to-Cover Deciles (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-equity-short-interest-dtc"/>
+    <id>https://canlicapital.com/research/kill-equity-short-interest-dtc</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The first genuinely NEW INPUT in months rather than another transformation of price and volume: bi-monthly FINRA short interest for the whole US tape…</summary>
+  </entry>
+  <entry>
+    <title>Short-Leg Tail Controls (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-alphamax-shorttail"/>
+    <id>https://canlicapital.com/research/kill-alphamax-shorttail</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Nine construction-side short-leg controls (per-name stop-outs at 30/50/100%, gross caps at 1.25x/1.5x/2.0x, short-leg vol targeting, with and without…</summary>
+  </entry>
+  <entry>
+    <title>Stablecoin par dislocations: literature and implementation boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-stablecoin-dislocation"/>
+    <id>https://canlicapital.com/research/literature-stablecoin-dislocation</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Fiat-backed stablecoins have a two-tier market. A limited set of eligible institutions can transact with the issuer near par, while everyone else trades in…</summary>
+  </entry>
+  <entry>
+    <title>Stablecoin par dislocations: locked no-return feasibility protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/stablecoin-dislocation-feasibility"/>
+    <id>https://canlicapital.com/research/stablecoin-dislocation-feasibility</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Can an eligible institution reconstruct and execute USDC secondary-to-primary redemption with point-in-time legal, operational, venue, chain, and banking…</summary>
+  </entry>
+  <entry>
+    <title>The arithmetic of not fooling yourself</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/notes/deflating-a-sharpe-ratio"/>
+    <id>https://canlicapital.com/notes/deflating-a-sharpe-ratio</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="note"/>
+    <summary>A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in…</summary>
+  </entry>
+  <entry>
+    <title>The one symbol that explained the whole gap</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/notes/one-symbol"/>
+    <id>https://canlicapital.com/notes/one-symbol</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="note"/>
+    <summary>I could not reproduce my own result. The replay came out materially worse over the same window, on the same code path, from what I believed were the same…</summary>
+  </entry>
+  <entry>
+    <title>The trade that lost 99 percent, and the guard I did not add</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/notes/the-trade-that-lost-99-percent"/>
+    <id>https://canlicapital.com/notes/the-trade-that-lost-99-percent</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="note"/>
+    <summary>A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change…</summary>
+  </entry>
+  <entry>
+    <title>Treasury auction concession: point-in-time schedule state machine</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/treasury-auction-state-machine"/>
+    <id>https://canlicapital.com/research/treasury-auction-state-machine</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The original literature identity enters a relative-value position ten XNYS sessions before each fixed-rate 2-year Treasury auction, reverses after the…</summary>
+  </entry>
+  <entry>
+    <title>Turn-of-Month / Rebalancing Flow (probe): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-mechflow-tom"/>
+    <id>https://canlicapital.com/research/kill-mechflow-tom</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized…</summary>
+  </entry>
+  <entry>
+    <title>Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-alphamax-volscale"/>
+    <id>https://canlicapital.com/research/kill-alphamax-volscale</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve. On the canonical window it HURTS (net…</summary>
+  </entry>
+  <entry>
+    <title>Weighting x Breadth Construction Grid (campaign): a killed candidate</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/kill-alphamax-weightgrid"/>
+    <id>https://canlicapital.com/research/kill-alphamax-weightgrid</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Four weightings (inverse-vol, equal, signal-proportional, vol-capped) crossed with four breadths (K=30/50/100/200), 2005-2026, live cell inverse-vol K=100.</summary>
+  </entry>
+  <entry>
+    <title>What competitive programming actually bought me, and what it did not</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/notes/what-competitive-programming-bought"/>
+    <id>https://canlicapital.com/notes/what-competitive-programming-bought</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="note"/>
+    <summary>There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the…</summary>
+  </entry>
+  <entry>
+    <title>When Crypto Carry Became Crash Exposure: The LABUSDT Incident</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/crypto-lab-carry-crash-incident"/>
+    <id>https://canlicapital.com/research/crypto-lab-carry-crash-incident</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge bought LABUSDT at a paper fill of 16.150421 USDT on 5 July 2026 while its point-in-time funding signal was negative. This distinction matters.</summary>
+  </entry>
+  <entry>
+    <title>AlphaVintage missing-release correction protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/alphavintage-missing-release-correction"/>
+    <id>https://canlicapital.com/research/alphavintage-missing-release-correction</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The point-in-time RTDSM lake has no October 2025 headline or core CPI level. Do not tune AR lags, sign, clip, costs, entry timing, instruments, scale, or gates.</summary>
+  </entry>
+  <entry>
+    <title>Bond-ETF NAV dislocation — literature and mechanism review</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-bond-etf-nav-dislocation"/>
+    <id>https://canlicapital.com/research/literature-bond-etf-nav-dislocation</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>That observation does not establish a secondary-market alpha. Daily premium/discount data alone cannot identify which side of the gap contains the information.</summary>
+  </entry>
+  <entry>
+    <title>Corporate-action and delisting lifecycle replay</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/corporate-action-lifecycle"/>
+    <id>https://canlicapital.com/research/corporate-action-lifecycle</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge now replays point-in-time splits, cash dividends, and metadata-confirmed delistings inside the event-driven backtester. This is engineering…</summary>
+  </entry>
+  <entry>
+    <title>Customer–supplier propagation — source and identity review</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-customer-supplier-propagation"/>
+    <id>https://canlicapital.com/research/literature-customer-supplier-propagation</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Cohen and Frazzini document delayed incorporation of economically linked firms' news: customer returns predict subsequent supplier returns when links are…</summary>
+  </entry>
+  <entry>
+    <title>Dated-futures execution foundation</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/futures-execution-foundation"/>
+    <id>https://canlicapital.com/research/futures-execution-foundation</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge can now represent a dated futures contract as a first-class FUTURE instrument and make deterministic lifecycle decisions without using information…</summary>
+  </entry>
+  <entry>
+    <title>Electricity load/weather spread — key-free feasibility decision</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/electricity-load-weather-feasibility"/>
+    <id>https://canlicapital.com/research/electricity-load-weather-feasibility</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Unexpected weather-driven electricity demand can change the marginal generation stack and the value of regional power relative to its marginal fuel. The…</summary>
+  </entry>
+  <entry>
+    <title>Execution realism and model boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/execution-realism"/>
+    <id>https://canlicapital.com/research/execution-realism</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This page describes what AlphaForge actually models as of 2026-08-18. It is an engineering capability statement, not evidence of investment performance.</summary>
+  </entry>
+  <entry>
+    <title>Options dispersion: literature and implementation boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-options-dispersion"/>
+    <id>https://canlicapital.com/research/literature-options-dispersion</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The defensible mechanism is a priced difference between index correlation/variance insurance and the corresponding single-stock option basket. It is not a…</summary>
+  </entry>
+  <entry>
+    <title>Point-in-time cash and collateral financing replay</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/financing-replay"/>
+    <id>https://canlicapital.com/research/financing-replay</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge can now accrue explicit cash-credit, margin-debit, and short-collateral rates inside the event-driven backtester. This is engineering evidence, not…</summary>
+  </entry>
+  <entry>
+    <title>Point-in-time crowding and stressed capacity</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/crowding-risk-foundation"/>
+    <id>https://canlicapital.com/research/crowding-risk-foundation</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge now has a coverage-aware crowding gate in the shared pre-trade path. It keeps institutional ownership, short interest, borrow utilization, fund…</summary>
+  </entry>
+  <entry>
+    <title>Point-in-time market-status and outage replay</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/market-status-replay"/>
+    <id>https://canlicapital.com/research/market-status-replay</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge can now replay explicit venue and instrument market-status intervals inside the event-driven backtester. This is engineering evidence, not…</summary>
+  </entry>
+  <entry>
+    <title>Point-in-time options execution foundation</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/options-execution-foundation"/>
+    <id>https://canlicapital.com/research/options-execution-foundation</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin…</summary>
+  </entry>
+  <entry>
+    <title>Point-in-time securities-borrow foundation</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/borrow-execution-foundation"/>
+    <id>https://canlicapital.com/research/borrow-execution-foundation</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>AlphaForge now has tested primitives for security-level borrow availability, locates, fees, recalls, and forced-buy-in deadlines, plus optional event-driven…</summary>
+  </entry>
+  <entry>
+    <title>Pre-FOMC announcement drift — no-return feasibility protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility"/>
+    <id>https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Can the scheduled FOMC decision calendar and exact statement-release clock be reconstructed from official Federal Reserve sources without using market prices…</summary>
+  </entry>
+  <entry>
+    <title>PRE-REGISTRATION — annual risk-factor narrative stability</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/prereg-earnings-narrative-change"/>
+    <id>https://canlicapital.com/research/prereg-earnings-narrative-change</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Declared 2026-08-15 after the filing-only feasibility pass and before loading any security return associated with this signal. One hypothesis identity.</summary>
+  </entry>
+  <entry>
+    <title>Repurchase and issuance flow: literature dossier</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-repurchase-issuance-flow"/>
+    <id>https://canlicapital.com/research/literature-repurchase-issuance-flow</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The literature supports a real economic family around corporate equity supply. Net share issuance has predicted lower subsequent cross-sectional returns…</summary>
+  </entry>
+  <entry>
+    <title>Spin-off dislocation — initial Form 10 document-schema protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/spin-off-document-schema"/>
+    <id>https://canlicapital.com/research/spin-off-document-schema</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>No company names, filings, or years may be removed because they are not genuine spin-offs. Form 10 is deliberately being tested as a noisy discovery source.</summary>
+  </entry>
+  <entry>
+    <title>Spin-off dislocation — literature and claim boundary</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/literature-spin-off-dislocation"/>
+    <id>https://canlicapital.com/research/literature-spin-off-dislocation</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>A completed corporate separation can create temporary price pressure and information frictions. These studies do not establish a modern executable sleeve.</summary>
+  </entry>
+  <entry>
+    <title>Spin-off dislocation — SEC Form 10 lineage protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/spin-off-dislocation-lineage"/>
+    <id>https://canlicapital.com/research/spin-off-dislocation-lineage</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>Can the complete 2016–2025 exchange-registration candidate universe be reconstructed from official quarterly EDGAR full indexes without starting from a modern…</summary>
+  </entry>
+  <entry>
+    <title>Treasury auction concession — no-return feasibility protocol</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/treasury-auction-concession-feasibility"/>
+    <id>https://canlicapital.com/research/treasury-auction-concession-feasibility</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>This stage reads only official US Treasury auction metadata. It does not load prices, calculate returns, select an entry window, or spend a return identity.</summary>
+  </entry>
+  <entry>
+    <title>Treasury auction concession — published-identity timing audit</title>
+    <link rel="alternate" type="text/html" href="https://canlicapital.com/research/treasury-auction-identity-timing"/>
+    <id>https://canlicapital.com/research/treasury-auction-identity-timing</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <category term="research"/>
+    <summary>The official event manifest passed its metadata gates, but the primary paper's tradable identity starts ten trading days before a 2-year note auction.</summary>
+  </entry>
+</feed>
