@@ -45,11 +45,19 @@ export function createCompanyReleaseLoader(options) {
 }
 
 // Server-Timing on every release-backed response: how long the release took to load (0 on a warm
-// instance), how long the page took, and how many catalog objects this instance read from storage
-// and served from its cache while the page was built. Counts come from the instance's shared
-// catalog, so concurrent requests on one instance can blur them; they are diagnostics, not billing.
-function timingHeader({ loadMs, pageMs, before, after }) {
+// instance), how long the page took, on a company page how much of that was storage reads and how
+// much rendering, and how many catalog objects this instance read from storage and served from its
+// cache while the page was built, across the company and filings catalogs. Counts come from the
+// instance's shared catalogs, so concurrent requests on one instance can blur them; they are
+// diagnostics, not billing.
+function catalogStats(release) {
+  const all = [release.catalog?.stats?.(), release.filingsCatalog?.stats?.()].filter(Boolean);
+  return all.length ? all.reduce((a, s) => ({ objectReads: a.objectReads + s.objectReads, cacheHits: a.cacheHits + s.cacheHits }), { objectReads: 0, cacheHits: 0 }) : undefined;
+}
+
+function timingHeader({ loadMs, pageMs, split, before, after }) {
   const parts = [`release;dur=${loadMs.toFixed(1)}`, `page;dur=${pageMs.toFixed(1)}`];
+  if (split) parts.push(`storage;dur=${split.storageMs.toFixed(1)}`, `render;dur=${split.renderMs.toFixed(1)}`);
   if (before && after) parts.push(`reads;desc="${after.objectReads - before.objectReads}"`, `hits;desc="${after.cacheHits - before.cacheHits}"`);
   return parts.join(", ");
 }
@@ -70,10 +78,10 @@ export function createCompanyReferenceHandler({ loadRelease, now = () => perform
       const started = now();
       const release = await loadRelease();
       const loaded = now();
-      const before = release.catalog?.stats?.();
+      const before = catalogStats(release);
       const end = res.end.bind(res);
       res.end = (...args) => {
-        if (!res.headersSent) res.setHeader('Server-Timing', timingHeader({ loadMs: loaded - started, pageMs: now() - loaded, before, after: release.catalog?.stats?.() }));
+        if (!res.headersSent) res.setHeader('Server-Timing', timingHeader({ loadMs: loaded - started, pageMs: now() - loaded, split: res.canliTiming, before, after: catalogStats(release) }));
         return end(...args);
       };
       if (filing) return await release.filings({ method: req.method, headers: req.headers, query: { cik: filing[1], ...(filing[2] ? { accession: filing[2] } : {}) } }, res);
