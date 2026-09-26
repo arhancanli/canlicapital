@@ -326,9 +326,9 @@ console.log(await response.json());</code></pre></div>
   <section class="dev-section" id="ai-assistant">
     <h2>Connect the MCP server</h2>
     <p class="dev-note">This API is also an MCP server, so a coding assistant can call the
-      routes on this page as tools instead of writing requests by hand. Every tool it exposes
-      returns the full envelope, the same way every route on this page does, so the assistant
-      sees what a number cannot be used to claim, not only the number. It also reads the
+      routes on this page as tools instead of writing requests by hand. Every result it returns
+      keeps, beside the number, the sentences that say what it cannot be used to claim and the
+      receipt that records it, so the assistant never sees a number alone. It also reads the
       <a href="/companies">company reference</a>: one tool returns a company's SEC-reported
       financial history with each value's filing, unit and source hash.</p>
     <div class="dev-downloads"><a class="dev-button dev-button--primary" href="cursor://anysphere.cursor-deeplink/mcp/install?name=canli-validation&amp;config=eyJ1cmwiOiJodHRwczovL2NhbmxpY2FwaXRhbC5jb20vbWNwIn0%3D">Add to Cursor</a><a class="dev-button" href="https://github.com/arhancanli/canli-validation-mcp/releases/latest/download/canli-validation.mcpb">Add to Claude Desktop</a></div>
