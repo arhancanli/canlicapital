@@ -36,6 +36,8 @@ import { readSitemapXml } from "./lib/sitemaps.mjs";
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { dirname, resolve, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { companyLabel } from "./lib/company-label.mjs";
+import { historySummary, summaryDescription, summarySentences } from "./lib/company-history-summary.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -259,7 +261,7 @@ const structure = new Set(
 // ---------------------------------------------------------------------------
 // Classify every numeral on every page.
 // ---------------------------------------------------------------------------
-const reasons = { EXACT: 0, ROUNDED: 0, PERCENT: 0, COMPACT: 0, DATE: 0, STRUCTURE: 0, IDENTIFIER: 0 };
+const reasons = { EXACT: 0, ROUNDED: 0, PERCENT: 0, COMPACT: 0, RECOMPUTED: 0, DATE: 0, STRUCTURE: 0, IDENTIFIER: 0 };
 const untraceable = new Map();
 let seen = 0;
 
@@ -317,14 +319,35 @@ for (const file of htmlFiles) {
   // The suffix is part of the numeral's meaning, so it is read here and the token is
   // traced against value * scale. A rule, not an exemption: it works for any future
   // compact figure without anybody adding it to a list.
-  const COMPACT_SCALE = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 };
+  const COMPACT_SCALE = { K: 1e3, M: 1e6, B: 1e9, T: 1e12, thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
   const compactScaleOf = new Map();
   // A trailing "+" marks the figure as a floor (see floorsScaled); read with the suffix, as a
   // rule, so any future "N+" compact figure is judged the same way without a list.
   const compactFloor = new Set();
-  for (const match of text.matchAll(/(?<![\w.])(-?\d[\d,]*(?:\.\d+)?)\s?([KMBT])(\+?)(?!\w)/g)) {
-    compactScaleOf.set(match[1], COMPACT_SCALE[match[2]]);
-    if (match[3] === "+") compactFloor.add(match[1]);
+  // The suffix is a letter ("24.7M") or a word ("$359.2 billion", as company history summaries write it).
+  for (const match of text.matchAll(/(?<![\w.])(-?\d[\d,]*(?:\.\d+)?)(?:\s?([KMBT])|\s(thousand|million|billion|trillion))(\+?)(?!\w)/g)) {
+    compactScaleOf.set(match[1], COMPACT_SCALE[match[2] ?? match[3]]);
+    if (match[4] === "+") compactFloor.add(match[1]);
+  }
+
+  // RECOMPUTED. A company history page opens with a summary derived from its own table (the change
+  // on the prior year, the compound annual rate). Such a figure is in no artifact; it traces when the
+  // shared summary function, rerun on the page's declared source (company-data/<cik>.json), prints
+  // exactly that token. A rule, not an exemption: a renderer that printed any other number fails.
+  const recomputed = new Set();
+  const historyPage = rel(file).match(/^companies\/(\d{10})\/([A-Za-z0-9_]+)\.html$/);
+  if (historyPage && sources.has(`company-data/${historyPage[1]}.json`)) {
+    const dataPath = resolve(DIST, "company-data", `${historyPage[1]}.json`);
+    if (existsSync(dataPath)) {
+      const company = JSON.parse(readFileSync(dataPath, "utf8"));
+      const concept = (company.concepts ?? []).find((item) => item.tag === historyPage[2]);
+      if (concept) {
+        const summary = historySummary(concept);
+        const context = { company: companyLabel(company.name), label: concept.label, kind: concept.kind };
+        const computed = [...summarySentences(summary, context), summaryDescription(summary, context) ?? ""].join(" ");
+        for (const token of computed.match(NUMERAL) || []) recomputed.add(token);
+      }
+    }
   }
 
   for (const token of new Set(text.match(NUMERAL) || [])) {
@@ -363,6 +386,7 @@ for (const file of htmlFiles) {
         continue;
       }
     }
+    if (recomputed.has(token)) { reasons.RECOMPUTED += 1; continue; }
     if (/^(19|20)\d\d$/.test(bare) || dateParts.has(bare)) { reasons.DATE += 1; continue; }
     if (structure.has(bare)) { reasons.STRUCTURE += 1; continue; }
 
