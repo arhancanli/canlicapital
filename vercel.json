@@ -259,6 +259,10 @@
     {
       "source": "/api/v1/receipts/:id/badge.svg",
       "destination": "/api/v1/receipts/:id/badge"
+    },
+    {
+      "source": "/audit/:id",
+      "destination": "/api/v1/receipts/:id/certificate"
     }
   ],
   "functions": {
