@@ -30,7 +30,7 @@ export const BINDINGS = Object.freeze({
     "js/validate/overfitting.js": "sha256:9158553b5e53c00c4032b750185c4dd0c86574a112770b84bbdb5cca054623a9",
     "js/validate/paper-evidence.js": "sha256:4aad8d762db032f5d032d3d1568ad90d2c1c603ff9092b022605dceff0fceb24",
     "js/validate/breadth.js": "sha256:d9b49bc2bacd4169b4a0b3dc83ee187c06109b144e99aaeb097fee35a532160f",
-    "js/validate/track-record.js": "sha256:606937a1dc4f3a4f174eabcbf3c8a6c558d251e1b6ec80b6c012ae66e7b3c5f9",
+    "js/validate/track-record.js": "sha256:7b9aa472e88741c42e4fddca9301925391cb741e56c0aff36b3a8545f0283118",
     "public/glassbox/deflated_sharpe_calculator_contract.json": "sha256:2ba8fcb339a5fdb9304da074fcbdf9e229f9b6f5ec2f8a787c542f5f31db7e8f",
     "standards/validation-api/vectors.json": "sha256:e575dc7b72d5d4e80334a2d64e4454fa333f1ed2fa02860a6894d6c2ee21fb15"
   }
