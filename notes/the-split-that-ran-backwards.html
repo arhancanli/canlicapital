@@ -1,22 +1,23 @@
 <!doctype html>
-<html data-reader="notes" lang="en" data-page="notes">
+<html lang="en" data-page="notes">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Seventy files that were never meant to be public | Canli Capital</title>
-<meta name="description" content="I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it." />
-<link rel="canonical" href="https://canlicapital.com/notes/seventy-files" />
+<title>The split that ran backwards | Canli Capital</title>
+<meta name="description" content="From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed." />
+<link rel="canonical" href="https://canlicapital.com/notes/the-split-that-ran-backwards" />
 <meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="split_direction_before_after.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Seventy files that were never meant to be public" />
-<meta property="og:description" content="I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it." />
-<meta property="og:url" content="https://canlicapital.com/notes/seventy-files" />
+<meta property="og:title" content="The split that ran backwards" />
+<meta property="og:description" content="From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed." />
+<meta property="og:url" content="https://canlicapital.com/notes/the-split-that-ran-backwards" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Seventy files that were never meant to be public" />
-<meta name="twitter:description" content="I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it." />
+<meta name="twitter:title" content="The split that ran backwards" />
+<meta name="twitter:description" content="From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,10 +27,8 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/notes.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Seventy files that were never meant to be public","description":"I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally incapable of failing.","url":"https://canlicapital.com/notes/seventy-files","datePublished":"2026-08-27","dateModified":"2026-08-27","wordCount":916,"inLanguage":"en","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/seventy-files","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"The split that ran backwards","description":"From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed. The data was right by its schema, the code was right by its tests, and the two disagreed about what one number meant.","url":"https://canlicapital.com/notes/the-split-that-ran-backwards","datePublished":"2026-09-25","dateModified":"2026-09-25","wordCount":879,"inLanguage":"en","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/the-split-that-ran-backwards","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
+</head>
 <body class="note-page">
 <a class="note-skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -89,103 +88,92 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main id="content" tabindex="-1"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/notes">Explore notes</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">The setup</a><a href="#reader-section-2">The bug</a><a href="#reader-section-3">Why the check could not catch it</a><a href="#reader-section-4">The fix</a><a href="#reader-section-5">The general shape</a><a href="#reader-section-6">More notes</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main id="content" tabindex="-1">
   <article class="note">
     <nav class="note-trail" aria-label="Breadcrumb">
       <a href="/notes">Engineering notes</a>
     </nav>
     <header class="note-head">
-      <h1>Seventy files that were never meant to be public</h1>
-      <p class="note-dek">I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally incapable of failing.</p>
+      <h1>The split that ran backwards</h1>
+      <p class="note-dek">From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed. The data was right by its schema, the code was right by its tests, and the two disagreed about what one number meant.</p>
       <p class="note-meta">
         <span>Arhan Canli</span>
-        <time datetime="2026-08-27">2026-08-27</time>
+        <time datetime="2026-09-25">2026-09-25</time>
         <span>4 min read</span>
       </p>
     </header>
     <div class="note-body">
-<p><strong>Published 2026-08-27. Reproducible: the fix is in <code>canli-pit-lake</code> and <code>canli-backtest</code>,
-and the incident is described in both READMEs rather than only here.</strong></p>
-<h2 id="reader-section-1" data-reader-anchor="true">The setup</h2>
-<p>The research engine is a single repository of about 1,700 tracked files. Two parts of it are
-worth reading on their own: the point-in-time data layer, and the backtester with its
-multiple-testing machinery. So I extracted each into its own repository.</p>
-<p>An extraction has an obvious failure mode. It drifts. Six months later the &quot;published&quot; copy is
-a fork with different behaviour, and every claim made about it is stale. The usual answer is
-discipline, which is not an answer.</p>
-<p>So I wrote a mechanical one. Every extracted file&#39;s SHA-256 is recorded at extraction time in
-<code>extraction_manifest.json</code>. A tool, <code>check_parity.py</code>, re-reads each file from the engine and
-fails if a single byte differs. It runs in CI on every push.</p>
-<p>I mutation-tested it three ways before trusting it:</p>
+<p><strong>Published 2026-09-25. Every figure below is read from
+<a href="/glassbox/split_direction_before_after.json"><code>split_direction_before_after.json</code></a>, which runs
+the same audit over the same stored splits twice: once through the price-adjustment code exactly
+as it was before the fix, loaded from git and hashed, and once through the code as it is now.</strong></p>
+<h2>What a split does to a price series</h2>
+<p>On 2020-08-31 Apple split four-for-one. The closing price went from 499.23 to 129.04 overnight.
+Nothing happened to the company. Each old share simply became four new ones.</p>
+<p>A backtest that reads raw prices sees a crash on that day. So every research engine adjusts: the
+prices before the split are divided by the split factor, which puts the whole history in today&#39;s
+share terms, and the ex-date becomes an ordinary day. Apple&#39;s adjusted close the day before the
+split should be 124.81, a normal step down to 129.04.</p>
+<h2>What mine did instead</h2>
+<p>My data lakes store a split the way the data vendors publish it: new shares per old share. Apple&#39;s
+split is stored as 4.</p>
+<p>The adjustment code multiplied the pre-split prices by that number instead of dividing by it.
+Apple&#39;s adjusted close the day before the split came out at 1,996.92. To anything reading the
+adjusted series, Apple fell by more than nine tenths in one day.</p>
+<p>It was not one bad row. The audit classifies a split as DOUBLED when the adjusted jump on the
+ex-date is twice the raw jump, which is the signature of a factor applied upside down. Through the
+old code, 4,272 of the 4,802 splits the audit can classify in the Polygon lake came out doubled.
+In the Sharadar lake it was 4,000 of 4,440.</p>
+<p>The momentum signal that picks the equity sleeve&#39;s stocks reads those adjusted prices. A stock
+that had split inside its lookback window looked to the signal like it had collapsed.</p>
+<h2>Why every test passed</h2>
+<p>There were two conventions, and each was consistent with itself.</p>
 <ul>
-<li>corrupt a source file, expect red;</li>
-<li>tamper with a hash in the manifest, expect red;</li>
-<li>delete a shipped file, expect red.</li>
+<li>The data layer stored the vendor&#39;s factor, new shares per old. Its schema documents that.</li>
+<li>The adjustment code&#39;s tests encoded a two-for-one split as one half: old shares per new share.
+Against those fixtures, multiplying is exactly right.</li>
 </ul>
-<p>All three turned it red. All three passed the restore. I considered the check earned.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">The bug</h2>
-<p>The extractor read the engine&#39;s <strong>working directory</strong>.</p>
-<p>A working directory is a superset of what a repository publishes. It holds build output,
-scratch files, local caches, and in this case 312 megabytes of research artifacts under
-<code>artifacts/</code>, a path the engine&#39;s <code>.gitignore</code> excludes wholesale. About ten files under that
-path are force-added as deliberate exceptions. The rest are private by design.</p>
-<p>Some tests in the extracted suite read those artifacts. So the extractor copied them in, to
-make the tests pass. Seventy files that the engine had specifically chosen not to publish were
-pushed to a public repository, and the suite went green.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">Why the check could not catch it</h2>
-<p>Here is the part worth the note.</p>
-<p>Running the parity tool locally looks like this:</p>
-<pre tabindex="0" data-reader-focus="true"><code>ALPHAC_PATH=~/alphaforge python tools/check_parity.py
-</code></pre>
-<p>It compares each shipped file against the engine on disk. The leaked files came <strong>from</strong> the
-engine on disk. So the tool compared them against their own source and found them identical,
-which they were. It reported <code>OK: all 187 files are byte-identical to the engine</code> and it was
-telling the truth. It was answering a question I had not asked.</p>
-<p>The question I thought I was asking was &quot;is this the same code the world can see?&quot; The question
-I was actually asking was &quot;is this the same code as the folder I copied it from?&quot; Those differ
-by exactly the set of files the engine does not publish, which is exactly the set that leaked.</p>
-<p>The tool has a second mode that fetches from GitHub at a pinned commit. First run:</p>
-<pre tabindex="0" data-reader-focus="true"><code>MISSING IN ENGINE   artifacts/probe/tom_diversifier/result.json
-</code></pre>
-<p>Seventy of them.</p>
-<p>My three mutation tests were all mutations of the <strong>local copy</strong>. Every one of them was
-detectable by comparing a file to itself after changing it. Not one of them perturbed the
-<em>source of truth</em>, so not one of them could have discovered that the source of truth was the
-wrong document.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">The fix</h2>
-<p>Two changes, and only one of them is the obvious one.</p>
-<p>The obvious one: the extractor now builds its allowed set from <code>git ls-files</code> in the engine.
-Support files that are not tracked are skipped and the count is reported. Source modules that
-are not tracked raise, because a module the engine does not publish has no business being in a
-published extraction, and silently dropping it would produce a repository that imports
-something nobody can read.</p>
-<p>The one that matters more: the parity check in CI runs against <strong>GitHub</strong>, not against a local
-checkout. The local mode still exists because it is fast and useful while working, but it is no
-longer the thing that certifies the claim. A check and the thing it validates must not share a
-source.</p>
-<p>The seventy files were removed by rebuilding the repository&#39;s history, so they were public for
-about twenty minutes and are not in any commit. I verified the removal by fetching the paths
-from <code>raw.githubusercontent.com</code> and confirming 404 against a control file returning 200,
-rather than by looking at my own working copy, which is the mistake that started this.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">The general shape</h2>
-<p>I have hit this three times now in different clothes, and it always looks like competence:</p>
+<p>Both sides had tests. Every test passed. No test put a real split from the lake through the real
+adjustment code, so nothing ever compared the two conventions with each other.</p>
+<p>It had also been worse before. Earlier, splits were not being applied at all, because of a
+timing condition no stored split could satisfy. The August repair made them apply, in the wrong
+direction, and the code&#39;s existing tests agreed with it. In September a research script noticed the inverted prices and worked around them locally, inside the script, without
+touching the shared code. That workaround made one result correct and left the defect in place
+for everything else.</p>
+<h2>The fix</h2>
 <ul>
-<li>a coverage gate that reads the artifact its own job produced;</li>
-<li>a staleness check whose freshness timestamp is written by the process being checked;</li>
-<li>a parity check pointed at the folder it copied from.</li>
+<li>The adjustment code now divides by the stored factor, and it refuses a factor that is zero or
+negative instead of producing a number.</li>
+<li>The code&#39;s own test fixtures now use the vendor convention.</li>
+<li>A new guard takes Apple&#39;s real 2020 split out of both production lakes, runs it through the real
+adjustment code, and checks that the day before comes out at a quarter of the raw price. That
+is the test that was missing: it checks the two sides against each other rather than each
+against itself.</li>
+<li>The research script&#39;s local workaround was removed, so there is one place where this is decided.</li>
 </ul>
-<p>The tell is that the check and its subject have the same parent. When a gate passes on the
-first try and keeps passing, the useful question is not &quot;is the code correct&quot; but <strong>&quot;what
-would have to be true for this check to fail, and can that state actually occur?&quot;</strong> If you
-cannot name a reachable failing state, you do not have a check. You have a screenshot.</p>
-<p>The corollary for mutation testing, which I had thought I was doing properly: perturbing the
-artifact under test is necessary and not sufficient. You have to perturb the <strong>oracle</strong> too. If
-your test suite cannot tell the difference between a correct oracle and a convenient one, its
-green is worth nothing.</p>
-<p><em>The extraction rule and the remote parity check are live in
-<a href="https://github.com/arhancanli/canli-pit-lake">canli-pit-lake</a> and
-<a href="https://github.com/arhancanli/canli-backtest">canli-backtest</a>. Both READMEs describe this
-incident, because a repository that only documents its successes is a brochure.</em></p>
+<p>Through the current code, the same audit neutralizes 3,948 splits in the Polygon lake and 3,746
+in the Sharadar lake.</p>
+<h2>What is still not clean</h2>
+<p>Not every stored split follows the vendor convention. The audit finds 90 rows in the Polygon lake
+and 93 in the Sharadar lake stored the other way up, most of them depositary-receipt ratio
+changes. Under the fixed code those rows are now the wrong ones. I did not fix them by
+re-inverting inside a consumer, which is how the September workaround hid the original defect.
+Since 2026-09-23 a correction layer at the data reader applies corrections to them, each one
+checked through the adjustment code, and the stored rows are left as the vendor sent them.</p>
+<p>Nine days later I found that corporate actions had not been ingested at all for seven weeks,
+because the weekly job that loads them had only ever been run by hand. Taken together, that was
+enough to stop trusting the forward record built on those prices. I withdrew it in public on
+2026-09-23 and restarted it on 2026-09-24 on data the engine can vouch for. The withdrawal and
+what it covered are on the <a href="/progress">progress page</a>.</p>
+<h2>What I took from it</h2>
+<p>A test proves that code does what its author believed. It does not prove that the author and the
+data agree. The failures that survive a full test suite are the ones where two parts of a system
+are each correct by their own definition. The only test that catches those is one that runs real
+data from one side through the real code of the other.</p>
+<p>The code is open, including the guard:
+<a href="https://github.com/arhancanli/canli-backtest">canli-backtest</a> for the backtester and
+<a href="https://github.com/arhancanli/canli-pit-lake">canli-pit-lake</a> for the data layer, both extracted
+from <a href="https://github.com/arhancanli/alphac">the engine</a>.</p>
 
     </div>
     <footer class="note-foot">
@@ -194,8 +182,8 @@ incident, because a repository that only documents its successes is a brochure.<
       <a href="/performance">status</a>, the withdrawn figures on <a href="/progress">corrections</a>,
       and the code on <a href="/engineering">engineering</a>.</p>
       <div class="note-more">
-        <h2 id="reader-section-6" data-reader-anchor="true">More notes</h2>
-        <ul><li><a href="/notes/the-split-that-ran-backwards">The split that ran backwards</a></li><li><a href="/notes/one-symbol">The one symbol that explained the whole gap</a></li><li><a href="/notes/deflating-a-sharpe-ratio">The arithmetic of not fooling yourself</a></li></ul>
+        <h2>More notes</h2>
+        <ul><li><a href="/notes/one-symbol">The one symbol that explained the whole gap</a></li><li><a href="/notes/deflating-a-sharpe-ratio">The arithmetic of not fooling yourself</a></li><li><a href="/notes/seventy-files">Seventy files that were never meant to be public</a></li></ul>
       </div>
     </footer>
   </article>
@@ -300,6 +288,5 @@ incident, because a repository that only documents its successes is a brochure.<
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>
