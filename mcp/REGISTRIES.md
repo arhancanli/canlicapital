@@ -44,11 +44,16 @@ published to npm with a provenance attestation
 (`registry.npmjs.org/-/npm/v1/attestations/canli-validation-mcp@0.4.0`) and then to the official MCP
 Registry, where 0.4.0 is listed as latest.
 
-Next release, not yet published: `canli-validation-mcp@0.5.0` (prompts, resources, structured results,
-ticker lookup, private local mode, full-precision normal CDF). It publishes from `mcp-publish.yml` on the
-tag `mcp-v0.5.0`. Until that run succeeds and the listings are checked, 0.4.0 stays the latest published
-version. The standalone repository's release workflow builds, signs and attaches the Claude Desktop
-bundle when its `v0.5.0` release is published.
+Release checkpoint, September 25, 2026: `canli-validation-mcp@0.5.0` (prompts, resources, structured
+results, ticker lookup, private local mode, full-precision normal CDF) published entirely from CI: the
+signed tag `mcp-v0.5.0` ran `mcp-publish.yml` (run 36171586114), to npm with a provenance attestation and
+then to the official MCP Registry, where 0.5.0 is listed as latest.
+
+Next release, not yet published: `canli-validation-mcp@0.6.0` (audit_backtest with file input, minimum
+backtest length, haircut Sharpe, luck-equivalent trials, signed receipts and verify_receipt, compact
+results). It publishes from `mcp-publish.yml` on the tag `mcp-v0.6.0`. Until that run succeeds and the
+listings are checked, 0.5.0 stays the latest published version. The standalone repository's release
+workflow builds, signs and attaches the Claude Desktop bundle when its `v0.6.0` release is published.
 
 ## Official registry (registry.modelcontextprotocol.io)
 
