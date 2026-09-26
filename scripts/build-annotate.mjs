@@ -64,7 +64,7 @@ export function render() {
 ${renderProductShellStylesheet()}
 <style>
 .annotate__item{border:1px solid rgba(0,0,0,.14);border-radius:8px;padding:1.25rem 1.5rem;margin:1rem 0}
-.annotate__item h2{font-size:1.15rem;line-height:1.45;margin:.4rem 0 1rem}
+.annotate__question{font-size:1.1rem;font-weight:600;line-height:1.5;margin:.4rem 0 1rem}
 .annotate__meta,.annotate__progress{font-family:"IBM Plex Mono",monospace;font-size:.8rem;letter-spacing:.02em;opacity:.75}
 .annotate__judgement{border:0;padding:0;margin:1rem 0}
 .annotate__judgement legend{font-weight:600;margin-bottom:.35rem}

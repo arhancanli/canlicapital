@@ -70,7 +70,7 @@ async function start() {
       el("p", { class: "annotate__progress", text: `Item ${state.index + 1} of ${counts.total} · ${counts.complete} complete${counts.needsNote ? ` · ${counts.needsNote} need a note` : ""}` }),
       el("article", { class: "annotate__item" }, [
         el("p", { class: "annotate__meta", text: `${label.company} · ${label.template.replace("_", " ")}` }),
-        el("h2", { text: label.question }),
+        el("p", { class: "annotate__question", text: label.question }),
         el("p", {}, [el("strong", { text: "Stated answer: " }), label.answer]),
         el("p", {}, ["Cited filings: ", ...label.filings.flatMap((url, i) => [i ? " · " : "", el("a", { href: url, target: "_blank", rel: "noreferrer", text: `SEC folder ${i + 1}` })])]),
         ...JUDGEMENTS.map(fieldset),
