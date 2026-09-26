@@ -14,6 +14,7 @@ import {
   toolServiceStatus,
   toolValidateBreadth,
   toolValidateTrackRecord,
+  toolValidateBacktestLength,
   toolValidateDeflatedSharpe,
   toolValidateOverfitting,
   toolValidatePaperEvidence,
@@ -316,6 +317,41 @@ test("validate_track_record: rejects an unknown field before any request", async
   let called = false;
   const session = createSession({ base: "https://example.test", fetchImpl: async () => { called = true; }, envKey: "ck_live_env" });
   await assert.rejects(toolValidateTrackRecord(session, { ...TRACK_RECORD_INPUT, surprise: 1 }), /validate_track_record/);
+  assert.equal(called, false);
+});
+
+// ---------------------------------------------------------------------------------------------
+// validate_backtest_length
+// ---------------------------------------------------------------------------------------------
+
+const BACKTEST_LENGTH_INPUT = { effective_independent_trials: 45, backtest_years: 5, target_sharpe_annualized: 1 };
+
+test("validate_backtest_length: success envelope passthrough to the backtest-length route", async () => {
+  const body = envelope({ endpoint: "validate/backtest-length", data: { result: { maximum_independent_trials: 45 } } });
+  const calls = [];
+  const fetchImpl = async (url, init) => { calls.push({ url: String(url), body: init?.body }); return new Response(JSON.stringify(body), { status: 200 }); };
+  const session = createSession({ base: "https://example.test", fetchImpl, envKey: "ck_live_env" });
+  const result = await toolValidateBacktestLength(session, BACKTEST_LENGTH_INPUT);
+  assert.deepEqual(parsedText(result), body);
+  assert.equal(calls[0].url, "https://example.test/api/v1/validate/backtest-length");
+  assert.deepEqual(JSON.parse(calls[0].body), BACKTEST_LENGTH_INPUT);
+});
+
+test("validate_backtest_length: error envelope and quota passthrough", async () => {
+  for (const [status, error] of [[422, { code: "invalid_input", message: "Send effective_independent_trials, backtest_years, or both" }], [429, { code: "quota_exceeded", message: "quota" }]]) {
+    const body = envelope({ endpoint: "validate/backtest-length", error });
+    const session = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status, body }]), envKey: "ck_live_env" });
+    const result = await toolValidateBacktestLength(session, BACKTEST_LENGTH_INPUT);
+    assert.equal(result.isError, true);
+    assert.deepEqual(parsedText(result), body);
+  }
+});
+
+test("validate_backtest_length: rejects an unknown field or one trial before any request", async () => {
+  let called = false;
+  const session = createSession({ base: "https://example.test", fetchImpl: async () => { called = true; }, envKey: "ck_live_env" });
+  await assert.rejects(toolValidateBacktestLength(session, { ...BACKTEST_LENGTH_INPUT, surprise: 1 }), /validate_backtest_length/);
+  await assert.rejects(toolValidateBacktestLength(session, { effective_independent_trials: 1 }), /validate_backtest_length/);
   assert.equal(called, false);
 });
 

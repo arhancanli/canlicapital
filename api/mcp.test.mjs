@@ -72,6 +72,7 @@ test("tools/list exposes exactly the npm package's tools", async () => {
       "get_key",
       "get_receipt",
       "service_status",
+      "validate_backtest_length",
       "validate_breadth",
       "validate_deflated_sharpe",
       "validate_overfitting",

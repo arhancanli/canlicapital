@@ -8,7 +8,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { LOCAL_FILES } from "../scripts/sync-local.mjs";
-import { configuredLocal, createSession, toolValidateBreadth, toolValidateDeflatedSharpe, toolValidateOverfitting, toolValidateTrackRecord } from "../src/server.mjs";
+import { configuredLocal, createSession, toolValidateBacktestLength, toolValidateBreadth, toolValidateDeflatedSharpe, toolValidateOverfitting, toolValidateTrackRecord } from "../src/server.mjs";
 
 const MCP = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(MCP, "..");
@@ -81,5 +81,15 @@ test("get_key in local mode issues nothing and sends nothing", async () => {
   const out = parsed(await toolGetKey(session, {}));
   assert.equal(out.key_source, "local");
   assert.equal(out.key_present, false);
+  assert.equal(calls(), 0);
+});
+
+test("the minimum backtest length computed locally is the paper's: 5 years allow at most 45 trials", async () => {
+  const { session, calls } = noNetwork();
+  const result = await toolValidateBacktestLength(session, { effective_independent_trials: 45, backtest_years: 5 });
+  const envelope = JSON.parse(result.content[0].text);
+  assert.equal(envelope.data.result.maximum_independent_trials, 45);
+  assert.equal(envelope.data.result.minimum_backtest_years.toFixed(0), "5");
+  assert.equal(envelope.receipt, null);
   assert.equal(calls(), 0);
 });

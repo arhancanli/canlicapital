@@ -38,6 +38,9 @@ export const FIELD_DESCRIPTIONS = Object.freeze({
   ticker: "Ticker such as AAPL; send ticker or cik.",
   concept: "us-gaap concept such as Assets; omit to list them.",
   limit: "Most observations, newest first; default 40.",
+  target_sharpe_annualized: "In-sample annualized Sharpe you would take as a discovery; default 1.",
+  backtest_years: "Length of the backtest in years, to get the most independent trials it allows.",
+  bt_trials: "Independent trials (backtests, parameter sets, ideas) tried; gives the minimum backtest length.",
   variants: "Optional returns of every variant tried, this one included, as fractions: one row per period, one column per variant. Adds the overfitting check.",
   returns_file: "Path to a CSV or JSON file of the returns on the machine running this server, instead of returns. Not available on the hosted endpoint.",
   returns_column: "Header name or 1-based position of the returns column when returns_file has several numeric columns.",
@@ -146,6 +149,18 @@ export const trackRecordInput = z
   .strict();
 
 // ---------------------------------------------------------------------------------------------
+// validate_backtest_length
+// ---------------------------------------------------------------------------------------------
+
+export const backtestLengthInput = z
+  .object({
+    effective_independent_trials: z.number().int().min(2).max(1000000000).optional().describe(d.bt_trials),
+    backtest_years: z.number().gt(0).max(1000).optional().describe(d.backtest_years),
+    target_sharpe_annualized: z.number().gt(0).max(10).optional().describe(d.target_sharpe_annualized),
+  })
+  .strict();
+
+// ---------------------------------------------------------------------------------------------
 // audit_backtest: the deflated Sharpe, track record and (with variants) overfitting checks on one
 // return series in one call. Each check runs through its own validator, unchanged.
 // ---------------------------------------------------------------------------------------------
@@ -246,6 +261,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   audit_backtest: `Audit one strategy's return series in one call: deflated Sharpe, the minimum track record length for its Sharpe to beat the benchmark, and, with every variant's returns, the probability of backtest overfitting. Point returns_file at the backtest's CSV or JSON rather than copying long series into the call. Each check is the matching validate_ tool's result with its own receipt, side by side; the audit does not grade the strategy. Uses one validation per check. ${LIMITS_SENTENCES.notAdmission}`,
   validate_overfitting: `Probability (0 to 1) that picking the best of several backtested variants was overfitting, by CSCV over every variant's returns. ${LIMITS_SENTENCES.notAdmission}`,
   validate_paper_evidence: `Whether a paper or simulated performance record meets canli.paper-evidence.v0, with each failure's JSON pointer. ${LIMITS_SENTENCES.scope}`,
+  validate_backtest_length: `Minimum backtest length, in years, before the best of N independent trials is not expected to reach a target Sharpe by luck, and with backtest_years, the most independent trials those years allow. Send effective_independent_trials, backtest_years, or both. ${LIMITS_SENTENCES.notAdmission}`,
   validate_track_record: `Minimum track record length, in observations and years, for an observed Sharpe to beat a benchmark at a confidence level, and with observations, the record's probabilistic Sharpe so far. ${LIMITS_SENTENCES.notAdmission}`,
   validate_breadth: `Highest book Sharpe reachable by adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,
   get_receipt: `Fetch a stored verdict by receipt id (GET /api/v1/receipts/{id}) to re-check an earlier result. No key. ${LIMITS_SENTENCES.unsigned}`,
