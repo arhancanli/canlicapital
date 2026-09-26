@@ -74,12 +74,12 @@ item's exact cited facts.
 - \`gold-packet.mjs\` writes a stratified gold packet (${gold.labels.length} items in v0); two annotators fill copies independently.
 - \`agreement.mjs\` reports raw agreement and Cohen's kappa per judgement and lists disagreements for adjudication. No item is called human-verified until a human has verified it; none has yet.
 
-## Not in this repository yet
+## Release
 
-The item set and run records are held back until the owner chooses a data license and approves an
-external release. Anyone can regenerate items from the public company data with \`generate.mjs\`.
-Restatement items (first-reported versus later-reported values) need the raw SEC snapshots each
-record points to, and are planned for v1.
+The v0 items and run records are published under CC BY 4.0 in \`public/datasets/filing-facts/v0/\`,
+with the dataset card at https://canlicapital.com/research/filing-facts-v0. Anyone can regenerate
+items from the public company data with \`generate.mjs\`. Restatement items (first-reported versus
+later-reported values) need the raw SEC snapshots each record points to, and are planned for v1.
 `;
 
 writeFileSync(new URL("./README.md", import.meta.url), md);
