@@ -27,7 +27,8 @@
       ],
       "env": {
         "CANLI_KEY": "${user_config.api_key}",
-        "CANLI_LOCAL": "${user_config.local_only}"
+        "CANLI_LOCAL": "${user_config.local_only}",
+        "CANLI_TOOLSETS": "${user_config.toolsets}"
       }
     }
   },
@@ -103,6 +104,13 @@
       "title": "Private local mode",
       "description": "Run the validators on this computer. Nothing about your series is sent to canlicapital.com and no receipt is stored.",
       "default": false,
+      "required": false
+    },
+    "toolsets": {
+      "type": "string",
+      "title": "Toolsets",
+      "description": "Which tools to list: validate, receipts, company, status (comma-separated), or all. Fewer tools send fewer tokens to the model on every turn.",
+      "default": "all",
       "required": false
     }
   },

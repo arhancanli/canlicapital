@@ -66,7 +66,29 @@ export function configuredLocal(value) {
   return v === "1" || v?.toLowerCase() === "true";
 }
 
-export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted, local, fullEnvelope, receiptKeys } = {}) {
+// Toolsets: which tools the server lists. The tool list is re-sent to the model on every turn and
+// is most of each turn's prompt (README, "Toolsets"; bench/tool_list_tokens.py measures it), so a
+// client that needs one kind of tool can load only that kind. Default: all.
+export const TOOLSETS = Object.freeze({
+  validate: Object.freeze(["get_key", "validate_deflated_sharpe", "validate_overfitting", "validate_paper_evidence", "validate_breadth", "validate_track_record", "validate_backtest_length", "validate_haircut_sharpe", "validate_luck_trials", "audit_backtest"]),
+  receipts: Object.freeze(["get_receipt", "verify_receipt"]),
+  company: Object.freeze(["company_financial_history"]),
+  status: Object.freeze(["service_status"]),
+});
+
+// CANLI_TOOLSETS=validate,company (or ?toolsets= on the hosted endpoint): a comma-separated list of
+// TOOLSETS names, or "all". Empty or unsubstituted means all; an unknown name is refused, so a typo
+// never silently leaves a client without the tools it asked for.
+export function configuredToolsets(value) {
+  const v = configuredKey(value);
+  if (!v || v.trim().toLowerCase() === "all") return Object.keys(TOOLSETS);
+  const names = [...new Set(v.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean))];
+  const unknown = names.filter((n) => !Object.hasOwn(TOOLSETS, n));
+  if (unknown.length || !names.length) throw new Error(`Unknown toolset ${unknown.join(", ") || "(none)"}; choose from ${Object.keys(TOOLSETS).join(", ")} or all`);
+  return names;
+}
+
+export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted, local, fullEnvelope, receiptKeys, toolsets } = {}) {
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs <= 0) throw new Error("Request timeout must be a positive integer");
   return {
     base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE,
@@ -81,6 +103,7 @@ export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIM
     fullEnvelope: fullEnvelope ?? configuredFullEnvelope(process.env.CANLI_FULL_ENVELOPE),
     // Tests pass their own keys; everyone else verifies against the bundled published keys.
     receiptKeys: receiptKeys ?? undefined,
+    toolsets: toolsets ?? configuredToolsets(process.env.CANLI_TOOLSETS),
   };
 }
 
@@ -476,72 +499,74 @@ const READ_ONLY = { readOnlyHint: true, destructiveHint: false, openWorldHint: t
 const WRITES_RECEIPT = { readOnlyHint: false, destructiveHint: false, openWorldHint: true };
 
 export function registerTools(server, session) {
-  server.registerTool(
+  const enabled = new Set((session.toolsets ?? Object.keys(TOOLSETS)).flatMap((name) => TOOLSETS[name]));
+  const register = (name, ...rest) => { if (enabled.has(name)) server.registerTool(name, ...rest); };
+  register(
     "get_key",
     { title: "Get a free validation key", annotations: { title: "Get a free validation key", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true }, description: TOOL_DESCRIPTIONS.get_key, inputSchema: getKeyInput },
     (args) => toolGetKey(session, args),
   );
-  server.registerTool(
+  register(
     "validate_deflated_sharpe",
     { title: "Validate deflated Sharpe", annotations: { title: "Validate deflated Sharpe", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_deflated_sharpe, inputSchema: deflatedSharpeToolShape },
     (args) => toolValidateDeflatedSharpe(session, args),
   );
-  server.registerTool(
+  register(
     "validate_overfitting",
     { title: "Validate overfitting (CSCV)", annotations: { title: "Validate overfitting (CSCV)", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_overfitting, inputSchema: overfittingInput },
     (args) => toolValidateOverfitting(session, args),
   );
-  server.registerTool(
+  register(
     "validate_paper_evidence",
     { title: "Validate paper evidence", annotations: { title: "Validate paper evidence", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_paper_evidence, inputSchema: paperEvidenceInput },
     (args) => toolValidatePaperEvidence(session, args),
   );
-  server.registerTool(
+  register(
     "validate_breadth",
     { title: "Validate breadth ceiling", annotations: { title: "Validate breadth ceiling", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_breadth, inputSchema: breadthInput },
     (args) => toolValidateBreadth(session, args),
   );
-  server.registerTool(
+  register(
     "validate_track_record",
     { title: "Minimum track record length", annotations: { title: "Minimum track record length", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_track_record, inputSchema: trackRecordInput },
     (args) => toolValidateTrackRecord(session, args),
   );
-  server.registerTool(
+  register(
     "validate_backtest_length",
     { title: "Minimum backtest length", annotations: { title: "Minimum backtest length", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_backtest_length, inputSchema: backtestLengthInput },
     (args) => toolValidateBacktestLength(session, args),
   );
-  server.registerTool(
+  register(
     "validate_haircut_sharpe",
     { title: "Haircut Sharpe ratio", annotations: { title: "Haircut Sharpe ratio", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_haircut_sharpe, inputSchema: haircutSharpeInput },
     (args) => toolValidateHaircutSharpe(session, args),
   );
-  server.registerTool(
+  register(
     "validate_luck_trials",
     { title: "Luck-equivalent trials", annotations: { title: "Luck-equivalent trials", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_luck_trials, inputSchema: luckTrialsInput },
     (args) => toolValidateLuckTrials(session, args),
   );
-  server.registerTool(
+  register(
     "audit_backtest",
     { title: "Audit a backtest", annotations: { title: "Audit a backtest", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.audit_backtest, inputSchema: auditBacktestToolShape },
     (args) => toolAuditBacktest(session, args),
   );
-  server.registerTool(
+  register(
     "get_receipt",
     { title: "Get a receipt", annotations: { title: "Get a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.get_receipt, inputSchema: getReceiptInput },
     (args) => toolGetReceipt(session, args),
   );
-  server.registerTool(
+  register(
     "verify_receipt",
     { title: "Verify a receipt", annotations: { title: "Verify a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.verify_receipt, inputSchema: verifyReceiptToolShape },
     (args) => toolVerifyReceipt(session, args),
   );
-  server.registerTool(
+  register(
     "service_status",
     { title: "Service status", annotations: { title: "Service status", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.service_status, inputSchema: emptyInput },
     () => toolServiceStatus(session),
   );
-  server.registerTool(
+  register(
     "company_financial_history",
     { title: "Company financial history (SEC)", annotations: { title: "Company financial history (SEC)", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.company_financial_history, inputSchema: companyHistoryToolShape },
     (args) => toolCompanyFinancialHistory(session, args),

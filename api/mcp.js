@@ -11,7 +11,7 @@
 // daily quota. The caller's key is forwarded to the validation API and never echoed or logged.
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { createSession, registerAll, SERVER_NAME, SERVER_VERSION } from "../mcp/src/server.mjs";
+import { configuredToolsets, createSession, registerAll, SERVER_NAME, SERVER_VERSION } from "../mcp/src/server.mjs";
 import { BodyError, readJsonBody } from "./_lib/body.js";
 import { inProcessFetch } from "./_lib/in-process-fetch.js";
 
@@ -48,6 +48,13 @@ export function resolveKey(req, env = process.env) {
   return shared ? { key: shared, keySource: "shared" } : { key: undefined, keySource: "none" };
 }
 
+export function toolsetsParam(req) {
+  const fromQuery = req.query?.toolsets;
+  if (fromQuery !== undefined) return Array.isArray(fromQuery) ? fromQuery.join(",") : String(fromQuery);
+  const url = typeof req.url === "string" ? new URL(req.url, "https://canlicapital.com") : null;
+  return url?.searchParams.has("toolsets") ? url.searchParams.getAll("toolsets").join(",") : undefined;
+}
+
 // Validations are answered by this deployment's own API handlers in process (see
 // _lib/in-process-fetch.js); tests pass their own fetchImpl.
 export function createHostedHandler({ env = () => process.env, fetchImpl = inProcessFetch() } = {}) {
@@ -65,7 +72,11 @@ export function createHostedHandler({ env = () => process.env, fetchImpl = inPro
       if (e instanceof BodyError) return rpcError(res, e.status, -32700, e.message);
       return rpcError(res, 400, -32700, "Could not read the request body");
     }
+    // ?toolsets=company lists only those tools; this deployment's own environment never chooses.
+    let toolsets;
+    try { toolsets = configuredToolsets(toolsetsParam(req) ?? "all"); } catch (e) { return rpcError(res, 400, -32602, e.message); }
     const session = createSession({
+      toolsets,
       envKey: resolved.key,
       fetchImpl,
       base: env().CANLI_API_BASE,
