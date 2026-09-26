@@ -11,7 +11,10 @@ report. The current `main` branch and the latest npm release are supported.
 
 `npx -y canli-validation-mcp` runs `src/server.mjs` over stdio. It:
 
-- reads one file, its own `package.json`, to report its version;
+- reads its own `package.json`, to report its version, and a file only when a call to
+  `audit_backtest` names one (`returns_file`, `variants_file`): it parses numbers from that file,
+  up to 5 MB, and never returns the file's text; error messages name rows and columns by position,
+  never by content. The hosted endpoint refuses file paths;
 - sends requests only to `CANLI_API_BASE` (default `https://canlicapital.com`), and only when a
   tool is called;
 - writes no files, keeps no local cache, sends no telemetry, and logs only a fatal startup error

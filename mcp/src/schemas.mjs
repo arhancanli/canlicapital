@@ -38,6 +38,10 @@ export const FIELD_DESCRIPTIONS = Object.freeze({
   ticker: "Ticker such as AAPL; send ticker or cik.",
   concept: "us-gaap concept such as Assets; omit to list them.",
   limit: "Most observations, newest first; default 40.",
+  variants: "Optional returns of every variant tried, this one included, as fractions: one row per period, one column per variant. Adds the overfitting check.",
+  returns_file: "Path to a CSV or JSON file of the returns on the machine running this server, instead of returns. Not available on the hosted endpoint.",
+  returns_column: "Header name or 1-based position of the returns column when returns_file has several numeric columns.",
+  variants_file: "Path to a CSV or JSON file of every variant's returns (one numeric column per variant), instead of variants.",
 });
 const d = FIELD_DESCRIPTIONS;
 
@@ -142,6 +146,34 @@ export const trackRecordInput = z
   .strict();
 
 // ---------------------------------------------------------------------------------------------
+// audit_backtest: the deflated Sharpe, track record and (with variants) overfitting checks on one
+// return series in one call. Each check runs through its own validator, unchanged.
+// ---------------------------------------------------------------------------------------------
+
+export const auditBacktestToolShape = z
+  .object({
+    returns: z.array(z.number()).min(2).max(20000).optional().describe(d.returns),
+    returns_file: z.string().min(1).max(4096).optional().describe(d.returns_file),
+    returns_column: z.union([z.string().min(1).max(200), z.number().int().min(1)]).optional().describe(d.returns_column),
+    periods_per_year: z.number().min(1).max(10000).describe(d.periods_per_year),
+    effective_independent_trials: z.number().int().min(2).max(10000000).describe(d.effective_independent_trials),
+    cross_trial_sharpe_sd_annualized: z.number().min(0).max(10).describe(d.cross_trial_sharpe_sd_annualized),
+    benchmark_sharpe_annualized: z.number().min(-10).max(10).optional().describe(d.benchmark_sharpe_annualized),
+    confidence: z.number().gt(0).lt(1).optional().describe(d.confidence),
+    variants: z.array(z.array(z.number())).min(2).max(20000).optional().describe(d.variants),
+    variants_file: z.string().min(1).max(4096).optional().describe(d.variants_file),
+    n_splits: z.number().int().positive().optional().describe(d.n_splits),
+  })
+  .strict();
+
+// The handler's rule on top of the advertised shape: the returns come from exactly one place, the
+// variants from at most one, and a column is named only for a file.
+export const auditBacktestInput = auditBacktestToolShape
+  .refine((v) => (v.returns === undefined) !== (v.returns_file === undefined), "Send exactly one of returns or returns_file")
+  .refine((v) => v.variants === undefined || v.variants_file === undefined, "Send variants or variants_file, not both")
+  .refine((v) => v.returns_column === undefined || v.returns_file !== undefined, "returns_column applies only to returns_file");
+
+// ---------------------------------------------------------------------------------------------
 // get_key / get_receipt
 // ---------------------------------------------------------------------------------------------
 
@@ -211,6 +243,7 @@ export const REGISTRY_DESCRIPTION_MAX = 100;
 export const TOOL_DESCRIPTIONS = Object.freeze({
   get_key: `Issue a free canlicapital.com validation key (POST /api/v1/keys) and hold it in memory for this session. Only needed before a validation when neither CANLI_KEY nor local mode is set; the read tools (get_receipt, service_status, company_financial_history) never need a key. ${LIMITS_SENTENCES.quotas}`,
   validate_deflated_sharpe: `Whether a Sharpe survives the number of variants tried: probabilistic and deflated Sharpe (0 to 1) and the Sharpe luck alone would reach. Send the seven statistics or a return series, not both. ${LIMITS_SENTENCES.notAdmission}`,
+  audit_backtest: `Audit one strategy's return series in one call: deflated Sharpe, the minimum track record length for its Sharpe to beat the benchmark, and, with every variant's returns, the probability of backtest overfitting. Point returns_file at the backtest's CSV or JSON rather than copying long series into the call. Each check is the matching validate_ tool's result with its own receipt, side by side; the audit does not grade the strategy. Uses one validation per check. ${LIMITS_SENTENCES.notAdmission}`,
   validate_overfitting: `Probability (0 to 1) that picking the best of several backtested variants was overfitting, by CSCV over every variant's returns. ${LIMITS_SENTENCES.notAdmission}`,
   validate_paper_evidence: `Whether a paper or simulated performance record meets canli.paper-evidence.v0, with each failure's JSON pointer. ${LIMITS_SENTENCES.scope}`,
   validate_track_record: `Minimum track record length, in observations and years, for an observed Sharpe to beat a benchmark at a confidence level, and with observations, the record's probabilistic Sharpe so far. ${LIMITS_SENTENCES.notAdmission}`,

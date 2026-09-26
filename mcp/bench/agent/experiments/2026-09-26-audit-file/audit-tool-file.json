@@ -1,0 +1,210 @@
+{
+  "schema": "canli.mcp-agent-benchmark.v1",
+  "model": "gpt-5.4-mini",
+  "server": {
+    "name": "canli-validation-mcp",
+    "version": "0.5.0",
+    "mode": "local (CANLI_LOCAL=1); company tool reads canlicapital.com"
+  },
+  "generated_at": "2026-09-26T04:15:22Z",
+  "tasks": [
+    "aud-1",
+    "aud-2",
+    "aud-3"
+  ],
+  "repeats": 3,
+  "summary": {
+    "runs": 9,
+    "answer_accuracy_pct": 88.9,
+    "right_tool_pct": 100,
+    "first_tool_right_pct": 100,
+    "errors": 0,
+    "median_total_tokens": 6524,
+    "mean_total_tokens": 6597,
+    "median_ms": 2374,
+    "total_tokens": 59376
+  },
+  "runs": [
+    {
+      "task": "aud-1",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "audit_backtest"
+      ],
+      "right_tool": true,
+      "first_tool_right": true,
+      "expected": 1.5358170932493782,
+      "answer": 1.5358170932493782,
+      "answered": true,
+      "correct": true,
+      "turns": 2,
+      "prompt_tokens": 6402,
+      "completion_tokens": 136,
+      "cached_tokens": 2176,
+      "ms": 4576,
+      "error": null,
+      "repeat": 0
+    },
+    {
+      "task": "aud-2",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "audit_backtest"
+      ],
+      "right_tool": true,
+      "first_tool_right": true,
+      "expected": 0.14519214917212134,
+      "answer": 0.14519214917212134,
+      "answered": true,
+      "correct": true,
+      "turns": 2,
+      "prompt_tokens": 6376,
+      "completion_tokens": 131,
+      "cached_tokens": 4352,
+      "ms": 5056,
+      "error": null,
+      "repeat": 0
+    },
+    {
+      "task": "aud-3",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "audit_backtest"
+      ],
+      "right_tool": true,
+      "first_tool_right": true,
+      "expected": 0.5756915284678064,
+      "answer": 0.5756915284678064,
+      "answered": true,
+      "correct": true,
+      "turns": 2,
+      "prompt_tokens": 6391,
+      "completion_tokens": 133,
+      "cached_tokens": 4352,
+      "ms": 2114,
+      "error": null,
+      "repeat": 0
+    },
+    {
+      "task": "aud-1",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "audit_backtest"
+      ],
+      "right_tool": true,
+      "first_tool_right": true,
+      "expected": 1.5358170932493782,
+      "answer": 1.5358170932493782,
+      "answered": true,
+      "correct": true,
+      "turns": 2,
+      "prompt_tokens": 6396,
+      "completion_tokens": 129,
+      "cached_tokens": 4352,
+      "ms": 2374,
+      "error": null,
+      "repeat": 1
+    },
+    {
+      "task": "aud-2",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "audit_backtest"
+      ],
+      "right_tool": true,
+      "first_tool_right": true,
+      "expected": 0.14519214917212134,
+      "answer": 0.14519214917212134,
+      "answered": true,
+      "correct": true,
+      "turns": 2,
+      "prompt_tokens": 6376,
+      "completion_tokens": 126,
+      "cached_tokens": 4864,
+      "ms": 2304,
+      "error": null,
+      "repeat": 1
+    },
+    {
+      "task": "aud-3",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "audit_backtest",
+        "service_status"
+      ],
+      "right_tool": true,
+      "first_tool_right": true,
+      "expected": 0.5756915284678064,
+      "answer": 0.58,
+      "answered": true,
+      "correct": true,
+      "turns": 2,
+      "prompt_tokens": 7073,
+      "completion_tokens": 171,
+      "cached_tokens": 4864,
+      "ms": 4281,
+      "error": null,
+      "repeat": 1
+    },
+    {
+      "task": "aud-1",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "audit_backtest"
+      ],
+      "right_tool": true,
+      "first_tool_right": true,
+      "expected": 1.5358170932493782,
+      "answer": 388,
+      "answered": true,
+      "correct": false,
+      "turns": 2,
+      "prompt_tokens": 6402,
+      "completion_tokens": 100,
+      "cached_tokens": 4864,
+      "ms": 2245,
+      "error": null,
+      "repeat": 2
+    },
+    {
+      "task": "aud-2",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "audit_backtest"
+      ],
+      "right_tool": true,
+      "first_tool_right": true,
+      "expected": 0.14519214917212134,
+      "answer": 0.14519214917212134,
+      "answered": true,
+      "correct": true,
+      "turns": 2,
+      "prompt_tokens": 6382,
+      "completion_tokens": 127,
+      "cached_tokens": 4352,
+      "ms": 2433,
+      "error": null,
+      "repeat": 2
+    },
+    {
+      "task": "aud-3",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "audit_backtest"
+      ],
+      "right_tool": true,
+      "first_tool_right": true,
+      "expected": 0.5756915284678064,
+      "answer": 0.5756915284678064,
+      "answered": true,
+      "correct": true,
+      "turns": 2,
+      "prompt_tokens": 6391,
+      "completion_tokens": 134,
+      "cached_tokens": 4864,
+      "ms": 2199,
+      "error": null,
+      "repeat": 2
+    }
+  ]
+}
