@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Signed receipts: canlicapital.com signs every validation receipt with Ed25519 over the canonical
+  JSON of its id, endpoint, input and output hashes and source-file hashes; the public key is at
+  https://canlicapital.com/.well-known/canli-receipt-keys.json and bundled in this package.
+  `verify_receipt` checks a receipt offline: its output against its output hash, its content
+  against its id, and its signature against the bundled key.
 - `validate_haircut_sharpe`: the haircut Sharpe ratio of Harvey and Liu (2015) for the number of
   tests run, by Bonferroni and for independent tests, and with the other tests' Sharpe ratios by Holm
   and BHY (`POST /api/v1/validate/haircut-sharpe`). Agrees with the authors' own `Haircut_SR.m` on

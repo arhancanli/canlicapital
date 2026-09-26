@@ -34,6 +34,7 @@ export const FIELD_DESCRIPTIONS = Object.freeze({
   record_observations: "Record length so far, to get its probabilistic Sharpe.",
   label: "Name for the key.",
   receipt_id: "Receipt id from a validation result.",
+  receipt_object: "A receipt as get_receipt returns it (its data), to verify without fetching it.",
   cik: "SEC CIK; send cik or ticker.",
   ticker: "Ticker such as AAPL; send ticker or cik.",
   concept: "us-gaap concept such as Assets; omit to list them.",
@@ -225,6 +226,15 @@ export const getReceiptInput = z
 
 export const emptyInput = z.object({}).strict();
 
+// verify_receipt: a receipt id to fetch, or a receipt already fetched (get_receipt's data), to check
+// offline. Advertised flat; the handler enforces exactly one.
+export const verifyReceiptToolShape = z
+  .object({
+    id: z.string().regex(/^[0-9a-f]{24}$/, "A receipt id is 24 hex characters").optional().describe(d.receipt_id),
+    receipt: z.record(z.string(), z.unknown()).optional().describe(d.receipt_object),
+  })
+  .strict();
+
 // company_financial_history reads the public company reference, not the validation API.
 // Advertised to clients as a flat object (a refinement has no useful JSON Schema); the handler
 // enforces the exactly-one-of rule with companyHistoryInput.
@@ -260,7 +270,7 @@ export const COMPANY_REFERENCE_BOUNDARY = "Public company accounting reference, 
 export const LIMITS_SENTENCES = Object.freeze({
   scope: "This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.",
   notAdmission: "A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast.",
-  unsigned: "The receipt is content-hashed and reproducible from the open-source core it names. It is not signed.",
+  unsigned: "The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json.",
   quotas: "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per validation request, 1024 bytes per key revocation request, 20000 observations per series, 200 variants per matrix.",
 });
 
@@ -284,6 +294,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   validate_haircut_sharpe: `Haircut Sharpe ratio for multiple testing (Harvey and Liu, 2015): the Sharpe a single test would have needed once the number of tests is counted, by Bonferroni and for independent tests, and with the other tests' Sharpe ratios by Holm and BHY. ${LIMITS_SENTENCES.notAdmission}`,
   validate_track_record: `Minimum track record length, in observations and years, for an observed Sharpe to beat a benchmark at a confidence level, and with observations, the record's probabilistic Sharpe so far. ${LIMITS_SENTENCES.notAdmission}`,
   validate_breadth: `Highest book Sharpe reachable by adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,
+  verify_receipt: `Check a validation receipt's Ed25519 signature offline against the canlicapital.com public key bundled in this package, that its output hashes to its output_sha256, and that its content hashes to its id. Send an id to fetch the receipt first, or a receipt already fetched. ${LIMITS_SENTENCES.unsigned}`,
   get_receipt: `Fetch a stored verdict by receipt id (GET /api/v1/receipts/{id}) to re-check an earlier result. No key. ${LIMITS_SENTENCES.unsigned}`,
   service_status: `Whether the validation API is up, with quota constants (GET /api/v1/validate/status); check after a timeout before resubmitting. No key. ${LIMITS_SENTENCES.scope}`,
   company_financial_history: `SEC-reported financial history for one company from the canlicapital.com company reference (GET /company-data/{cik}.json), by cik or by ticker (resolved through GET /api/v1/company-tickers.json, companies in the release only). Without a concept it lists the available histories; with one it returns observations, newest first, each with its filing accession, form, filed date and unit, plus the SHA-256 of the original SEC response. No key required. ${COMPANY_REFERENCE_BOUNDARY}`,

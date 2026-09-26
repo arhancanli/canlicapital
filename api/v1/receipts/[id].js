@@ -3,6 +3,8 @@ import { envelope, errorEnvelope, send } from "../../_lib/envelope.js";
 import { defaultStore } from "../../_lib/handler.js";
 import { LIMITS_TEXT } from "../../_lib/limits.js";
 import { receiptOrigin } from "../../_lib/receipt-origin.js";
+import { signReceipt } from "../../_lib/receipt-signature.js";
+import { KEYS_URL, outputSha256 } from "../../../js/receipt-statement.js";
 
 // A factory, like createStatusHandler in ../validate/status.js: the default export below is this
 // factory called with no arguments, so the deployed route's behaviour is unchanged, and a test can
@@ -23,6 +25,8 @@ export function createReceiptHandler({ store } = {}) {
     const badge_url = `${origin}/api/v1/receipts/${id}/badge.svg`;
     const receipt_url = `${origin}/api/v1/receipts/${id}`;
     const embed_markdown = `[![Canli receipt](${badge_url})](${receipt_url})`;
+    const output_sha256 = outputSha256(row.output);
+    const signature = signReceipt({ id: row.id, endpoint: row.endpoint, input_sha256: row.input_sha256, output_sha256, bindings: row.bindings });
     return send(res, 200, envelope({
       endpoint: `receipts/${id}`,
       limits: LIMITS_TEXT,
@@ -32,11 +36,14 @@ export function createReceiptHandler({ store } = {}) {
         endpoint: `/api/v1/${row.endpoint}`,
         input_sha256: row.input_sha256,
         output: row.output,
+        output_sha256,
         bindings: row.bindings,
         created_at: row.created_at,
+        signature,
         badge_url,
         embed_markdown,
         how_to_reproduce: "Fetch each source at the sha256 listed, run its compute over the input that hashes to input_sha256, and canonical-hash the output. The id is the first 24 hex characters of sha256 over the canonical JSON of {endpoint, input_sha256, output, bindings}.",
+        how_to_verify: `The signature is Ed25519 over the canonical JSON of {schema, id, endpoint, input_sha256, output_sha256, bindings}, by the key with this key_id at ${KEYS_URL}. The MCP tool verify_receipt checks it offline.`,
       },
     }), { cacheControl: "public, max-age=31536000, immutable" });
   };

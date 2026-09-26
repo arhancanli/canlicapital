@@ -15,7 +15,7 @@ try {
   const [packed] = JSON.parse(execFileSync('npm', ['pack', '--ignore-scripts', '--json', '--pack-destination', temporary], { cwd: root, encoding: 'utf8' }));
   assert.equal(packed.name, pkg.name);
   assert.equal(packed.version, pkg.version);
-  const expected = ['LICENSE', 'README.md', 'package.json', 'src/schemas.mjs', 'src/server.mjs', 'src/local.mjs', 'src/series-file.mjs', ...LOCAL_FILES.map((f) => `src/local/${f}`)].sort();
+  const expected = ['LICENSE', 'README.md', 'package.json', 'src/schemas.mjs', 'src/server.mjs', 'src/local.mjs', 'src/series-file.mjs', 'src/receipt-keys.json', ...LOCAL_FILES.map((f) => `src/local/${f}`)].sort();
   assert.deepEqual(packed.files.map(file => file.path).sort(), expected);
   assert.ok(packed.files.find(file => file.path === 'src/server.mjs').mode & 0o111, 'server entry must be executable');
   const install = join(temporary, 'consumer with spaces');

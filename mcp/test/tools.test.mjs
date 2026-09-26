@@ -28,7 +28,7 @@ import { COMPANY_REFERENCE_BOUNDARY } from "../src/schemas.mjs";
 const LIMITS_TEXT = [
   "This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.",
   "A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast.",
-  "The receipt is content-hashed and reproducible from the open-source core it names. It is not signed.",
+  "The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json.",
   "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per validation request, 1024 bytes per key revocation request, 20000 observations per series, 200 variants per matrix.",
 ];
 
@@ -660,4 +660,66 @@ test("get_receipt and service_status are never compacted: they are where the ful
   const status = envelope({ endpoint: "validate/status", data: { ok: true } });
   const s2 = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status: 200, body: status }]) });
   assert.deepEqual(parsedText(await toolServiceStatus(s2)), status);
+});
+
+// ---------------------------------------------------------------------------------------------
+// verify_receipt
+// ---------------------------------------------------------------------------------------------
+
+import { generateKeyPairSync, sign as signBytes } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { keyIdFor, outputSha256, receiptId, receiptStatement, SIGNATURE_SCHEMA } from "../src/local/js/receipt-statement.js";
+import { toolVerifyReceipt } from "../src/server.mjs";
+
+function signedReceipt() {
+  const { publicKey, privateKey } = generateKeyPairSync("ed25519");
+  const x = publicKey.export({ format: "jwk" }).x;
+  const key = { key_id: keyIdFor(Buffer.from(x, "base64url")), alg: "Ed25519", x, status: "active" };
+  const output = { ceiling: 2.236 };
+  const bindings = { "js/validate/breadth.js": "sha256:bb" };
+  const input_sha256 = "sha256:in";
+  const id = receiptId({ endpoint: "validate/breadth", input_sha256, output, bindings });
+  const statement = receiptStatement({ id, endpoint: "validate/breadth", input_sha256, output_sha256: outputSha256(output), bindings });
+  const value = signBytes(null, Buffer.from(statement), privateKey).toString("base64url");
+  const data = { id, endpoint: "/api/v1/validate/breadth", input_sha256, output, output_sha256: outputSha256(output), bindings, signature: { alg: "Ed25519", schema: SIGNATURE_SCHEMA, key_id: key.key_id, value } };
+  return { key, data };
+}
+
+test("verify_receipt: a receipt fetched by id verifies against the trusted key; only the fetch touches the network", async () => {
+  const { key, data } = signedReceipt();
+  const fetchImpl = fakeFetch([{ status: 200, body: envelope({ endpoint: `receipts/${data.id}`, data }) }]);
+  const session = createSession({ base: "https://example.test", fetchImpl, receiptKeys: [key] });
+  const out = parsedText(await toolVerifyReceipt(session, { id: data.id }));
+  assert.equal(out.valid, true);
+  assert.deepEqual(out.checks, { id_matches_content: true, signature_valid: true, key_published: true });
+  assert.equal(fetchImpl.calls.length, 1);
+  assert.match(fetchImpl.calls[0].url, /\/api\/v1\/receipts\/[0-9a-f]{24}$/);
+});
+
+test("verify_receipt: a receipt passed in verifies offline, and a changed number or an unknown key fails", async () => {
+  const { key, data } = signedReceipt();
+  const session = createSession({ base: "https://example.test", fetchImpl: neverFetch, receiptKeys: [key] });
+  assert.equal(parsedText(await toolVerifyReceipt(session, { receipt: data })).valid, true);
+  const changed = parsedText(await toolVerifyReceipt(session, { receipt: { ...data, output: { ceiling: 3 } } }));
+  assert.equal(changed.valid, false);
+  assert.equal(changed.checks.id_matches_content, false);
+  const stranger = createSession({ base: "https://example.test", fetchImpl: neverFetch, receiptKeys: [signedReceipt().key] });
+  const unknown = parsedText(await toolVerifyReceipt(stranger, { receipt: data }));
+  assert.equal(unknown.valid, false);
+  assert.equal(unknown.checks.key_published, false);
+});
+
+test("verify_receipt: exactly one of id or receipt, and a missing receipt's error passes through", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status: 404, body: envelope({ endpoint: "receipts/x", error: { code: "not_found", message: "No receipt with that id" } }) }]) });
+  await assert.rejects(toolVerifyReceipt(session, {}), /exactly one of id or receipt/);
+  await assert.rejects(toolVerifyReceipt(session, { id: "a".repeat(24), receipt: {} }), /exactly one of id or receipt/);
+  const missing = await toolVerifyReceipt(session, { id: "a".repeat(24) });
+  assert.equal(missing.isError, true);
+  assert.equal(parsedText(missing).error.code, "not_found");
+});
+
+test("the bundled receipt keys are the published ones", () => {
+  const bundled = JSON.parse(readFileSync(new URL("../src/receipt-keys.json", import.meta.url), "utf8"));
+  assert.equal(bundled.schema, "canli.receipt-keys.v1");
+  for (const k of bundled.keys) assert.equal(keyIdFor(Buffer.from(k.x, "base64url")), k.key_id);
 });
