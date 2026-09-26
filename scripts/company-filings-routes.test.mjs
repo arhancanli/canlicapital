@@ -97,3 +97,36 @@ test('the configured wrapper names filings leaves with the gzip extension under 
   assert.equal(res.statusCode, 200); assert.equal(res.headers['X-Robots-Tag'], 'noindex');
   assert.ok(urls.some(url => url.startsWith('https://store.example/catalog/objects/') && url.endsWith('.json.gz')), 'filings leaf fetched as .json.gz under the catalog base');
 });
+
+test('an overview reads the company record and the filing summary together, not one after the other', async t => {
+  const { records, options } = fixture(t);
+  const events = [];
+  const slowLeaf = async (hash, limit, kind) => {
+    if (kind === 'leaf') { events.push('record:start'); await new Promise(r => setTimeout(r, 40)); events.push('record:end'); }
+    return options.readCatalogObject(hash, limit, kind);
+  };
+  const filingsRead = async (hash, limit, kind) => { events.push('filings:start'); return options.readFilingsObject(hash, limit, kind); };
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, readCatalogObject: slowLeaf, readFilingsObject: filingsRead }) });
+  const page = await get(handler, `/companies/${records[0].cik}`);
+  assert.equal(page.statusCode, 200);
+  assert.ok(events.includes('filings:start'), 'the overview consulted the filings catalog');
+  assert.ok(events.indexOf('filings:start') < events.indexOf('record:end'), `filings read began before the record read finished: ${events.join(', ')}`);
+  // The timing header counts the filings catalog's reads and splits storage from rendering.
+  assert.match(page.headers['Server-Timing'], /storage;dur=\d+(\.\d)?, render;dur=\d+(\.\d)?, reads;desc="(\d+)"/);
+  const reads = Number(/reads;desc="(\d+)"/.exec(page.headers['Server-Timing'])[1]);
+  assert.ok(reads >= 2, `the record and at least one filings object were read from storage, header says ${reads}`);
+});
+
+test('a company missing from the catalog is a 404 even when the filings catalog fails', async t => {
+  const { options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, readFilingsObject: async () => { throw new Error('filings storage down'); } }) });
+  assert.equal((await get(handler, '/companies/9999999999')).statusCode, 404);
+});
+
+test('a present company whose filings read fails is a 503, never a page without its filing link', async t => {
+  const { records, options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, readFilingsObject: async () => { throw new Error('filings storage down'); } }) });
+  const page = await get(handler, `/companies/${records[0].cik}`);
+  assert.equal(page.statusCode, 503);
+  assert.equal((await get(handler, `/companies/${records[0].cik}/Assets`)).statusCode, 200, 'a history page needs no filings read');
+});
