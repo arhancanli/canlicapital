@@ -210,7 +210,7 @@ function plainClient() {
         const allowed = new Set(["sqrt", "log", "exp", "abs", "pow", "min", "max", "normcdf", "norminv", "e", "E"]);
         if (!/^[0-9A-Za-z_+\-*/().,\s]*$/.test(expression) || names.some((n) => !allowed.has(n))) throw new Error("unsupported expression");
         const { normalCdf, normalPpf } = await fns;
-        const value = Function("sqrt", "log", "exp", "abs", "pow", "min", "max", "normcdf", "norminv", `"use strict"; return (${expression.replace(/\*\*/g, "**")});`)(Math.sqrt, Math.log, Math.exp, Math.abs, Math.pow, Math.min, Math.max, normalCdf, normalPpf);
+        const value = Function("sqrt", "log", "exp", "abs", "pow", "min", "max", "normcdf", "norminv", `"use strict"; return (${expression});`)(Math.sqrt, Math.log, Math.exp, Math.abs, Math.pow, Math.min, Math.max, normalCdf, normalPpf);
         return { content: [{ type: "text", text: String(value) }] };
       }
       throw new Error(`unknown tool ${name}`);
