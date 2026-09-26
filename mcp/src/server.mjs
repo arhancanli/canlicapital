@@ -12,11 +12,13 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { computeLocally } from "./local.mjs";
 import { readMatrixFile, readSeriesFile } from "./series-file.mjs";
+import { verifyReceipt } from "./local/js/receipt-statement.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   breadthInput,
   trackRecordInput,
   auditBacktestInput,
+  verifyReceiptToolShape,
   backtestLengthInput,
   haircutSharpeInput,
   auditBacktestToolShape,
@@ -63,7 +65,7 @@ export function configuredLocal(value) {
   return v === "1" || v?.toLowerCase() === "true";
 }
 
-export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted, local, fullEnvelope } = {}) {
+export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted, local, fullEnvelope, receiptKeys } = {}) {
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs <= 0) throw new Error("Request timeout must be a positive integer");
   return {
     base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE,
@@ -76,6 +78,8 @@ export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIM
     hosted: hosted ?? undefined,
     local: local ?? configuredLocal(process.env.CANLI_LOCAL),
     fullEnvelope: fullEnvelope ?? configuredFullEnvelope(process.env.CANLI_FULL_ENVELOPE),
+    // Tests pass their own keys; everyone else verifies against the bundled published keys.
+    receiptKeys: receiptKeys ?? undefined,
   };
 }
 
@@ -319,6 +323,34 @@ export async function toolAuditBacktest(session, args) {
   });
 }
 
+// The public keys canlicapital.com signs receipts with, as published at
+// /.well-known/canli-receipt-keys.json when this package was built; a test keeps the two identical.
+const RECEIPT_KEYS = JSON.parse(readFileSync(new URL("./receipt-keys.json", import.meta.url), "utf8"));
+
+// verify_receipt: every check is local; only fetching a receipt by id touches the network.
+export async function toolVerifyReceipt(session, args) {
+  const input = parseOrThrow(verifyReceiptToolShape, args, "verify_receipt");
+  if ((input.id === undefined) === (input.receipt === undefined)) throw new Error("verify_receipt: send exactly one of id or receipt");
+  let data = input.receipt;
+  if (input.id !== undefined) {
+    const response = await callApi(session, { path: `/api/v1/receipts/${input.id}` });
+    if (response.failed) return asText(response.envelope, true);
+    data = response.envelope?.data;
+  }
+  const endpoint = String(data?.endpoint ?? "").replace(/^\/api\/v1\//, "");
+  const result = verifyReceipt({ ...data, endpoint }, session.receiptKeys ?? RECEIPT_KEYS.keys);
+  return asText({
+    receipt_id: data?.id ?? null,
+    valid: result.valid,
+    checks: result.checks,
+    key_id: result.key_id,
+    keys: "bundled with this package; published at https://canlicapital.com/.well-known/canli-receipt-keys.json",
+    meaning: result.valid
+      ? "canlicapital.com signed this exact output for this exact input, computed by the source files whose hashes the receipt lists. It says nothing about how the input series was built."
+      : "At least one check failed: do not treat this receipt as issued by canlicapital.com for this content.",
+  });
+}
+
 export async function toolGetReceipt(session, args) {
   const { id } = parseOrThrow(getReceiptInput, args, "get_receipt");
   const response = await callApi(session, { path: `/api/v1/receipts/${id}` });
@@ -485,6 +517,11 @@ export function registerTools(server, session) {
     "get_receipt",
     { title: "Get a receipt", annotations: { title: "Get a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.get_receipt, inputSchema: getReceiptInput },
     (args) => toolGetReceipt(session, args),
+  );
+  server.registerTool(
+    "verify_receipt",
+    { title: "Verify a receipt", annotations: { title: "Verify a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.verify_receipt, inputSchema: verifyReceiptToolShape },
+    (args) => toolVerifyReceipt(session, args),
   );
   server.registerTool(
     "service_status",

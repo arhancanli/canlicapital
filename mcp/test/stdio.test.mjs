@@ -28,7 +28,7 @@ const STUB_ENVELOPE = {
   limits: [
     "This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.",
     "A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast.",
-    "The receipt is content-hashed and reproducible from the open-source core it names. It is not signed.",
+    "The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json.",
     "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per request, 20000 observations per series, 200 variants per matrix.",
   ],
   sources: [],
@@ -79,13 +79,14 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
     "validate_overfitting",
     "validate_paper_evidence",
     "validate_track_record",
+    "verify_receipt",
   ]);
   for (const tool of tools) {
     assert.ok(tool.description && tool.description.length > 0, `${tool.name} has no description`);
   }
   // Tool annotations as a client receives them: every tool has a title and reaches the API; reads
   // are read-only; validations store a receipt and get_key creates a key; nothing is destructive.
-  const readOnly = new Set(["get_receipt", "service_status", "company_financial_history"]);
+  const readOnly = new Set(["get_receipt", "service_status", "company_financial_history", "verify_receipt"]);
   for (const tool of tools) {
     const a = tool.annotations ?? {};
     assert.ok(a.title, `${tool.name} has no annotation title`);

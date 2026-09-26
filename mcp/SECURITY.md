@@ -55,6 +55,8 @@ server-side role. The company financial history tool reads a public release and 
 
 ## What a receipt is not
 
-A receipt is content-hashed and reproducible from the open-source core it names. It is not signed,
-and it says nothing about the data source, costs, survivorship or lookahead in how your series was
-built.
+A receipt is content-hashed, reproducible from the open-source core it names, and signed with
+Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json; the
+`verify_receipt` tool checks the signature offline against the copy of that key in this package. A
+valid signature proves canlicapital.com computed that output from that input with that code. It says
+nothing about the data source, costs, survivorship or lookahead in how your series was built.

@@ -5,10 +5,11 @@
 [![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
 
 An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
-gives a coding agent twelve tools: issue a free key, run the seven validators (deflated Sharpe,
+gives a coding agent thirteen tools: issue a free key, run the seven validators (deflated Sharpe,
 CSCV overfitting, paper-evidence conformance, breadth ceiling, minimum track record length,
 minimum backtest length, haircut Sharpe ratio),
-audit one backtest with three of them in a single call, fetch a stored receipt, read service status, and read a company's reported financial history
+audit one backtest with three of them in a single call, fetch a stored receipt, verify a
+receipt's signature offline, read service status, and read a company's reported financial history
 from SEC filings. Every validation result carries, beside the number, the sentences that say what
 it does not establish and the receipt that records it, success or error, so the agent cannot see a
 number without its limits.
@@ -32,7 +33,7 @@ models, with every run recorded, are in
 
 The engine is the product. The service runs your submitted numbers through the same honesty
 arithmetic canlicapital.com's own paper record runs on itself and hands back a verdict anyone can
-recompute from the receipt. It does not accept market data, does not sign receipts, does not
+recompute from the receipt. It signs every receipt, does not accept market data, does not
 grade a strategy, and never saw your data source, its costs, or any lookahead in how a series was
 built. See `docs/superpowers/specs/2026-09-05-developer-key-validation-api-design.md` in the main
 repository for the full design.
@@ -50,6 +51,7 @@ repository for the full design.
 | `validate_backtest_length` | `POST /api/v1/validate/backtest-length` | yes |
 | `validate_haircut_sharpe` | `POST /api/v1/validate/haircut-sharpe` | yes |
 | `audit_backtest` | the deflated Sharpe, track record and, with `variants`, overfitting routes, one validation each | yes |
+| `verify_receipt` | `GET /api/v1/receipts/{id}` when given an id; the checks run locally | no |
 | `get_receipt` | `GET /api/v1/receipts/{id}` | no |
 | `service_status` | `GET /api/v1/validate/status` | no |
 | `company_financial_history` | `GET /company-data/{cik}.json` (a ticker resolves through `GET /api/v1/company-tickers.json`) | no |
