@@ -146,3 +146,20 @@ test("the hosted endpoint serves the same prompts and resources as the package",
     assert.deepEqual(resources.json.result.resources.map((r) => r.uri).sort(), ["canli://limits", "canli://sources"]);
   });
 });
+
+test("?toolsets= lists only those tools; an unknown toolset is a 400, and the deployment's environment never chooses", async (t) => {
+  const saved = process.env.CANLI_TOOLSETS;
+  process.env.CANLI_TOOLSETS = "status";
+  t.after(() => { if (saved === undefined) delete process.env.CANLI_TOOLSETS; else process.env.CANLI_TOOLSETS = saved; });
+  await withServer({ CANLI_TOOLSETS: "status" }, async (url) => {
+    const all = await rpc(url, "tools/list", {});
+    assert.equal(all.json.result.tools.length, 14, "the server's own CANLI_TOOLSETS is ignored");
+    const company = await rpc(`${url}?toolsets=company`, "tools/list", {});
+    assert.deepEqual(company.json.result.tools.map((t) => t.name), ["company_financial_history"]);
+    const two = await rpc(`${url}?toolsets=receipts,company`, "tools/list", {});
+    assert.deepEqual(two.json.result.tools.map((t) => t.name).sort(), ["company_financial_history", "get_receipt", "verify_receipt"]);
+    const bad = await rpc(`${url}?toolsets=nope`, "tools/list", {});
+    assert.equal(bad.status, 400);
+    assert.match(bad.text, /Unknown toolset nope/);
+  });
+});

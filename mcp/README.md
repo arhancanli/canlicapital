@@ -133,6 +133,7 @@ an array of objects.
 | `CANLI_API_BASE` | `https://canlicapital.com` | Where the API lives. Point it at a preview deployment for testing. |
 | `CANLI_KEY` | unset | A key already issued from `POST /api/v1/keys`. When set, `get_key` sends no request and reports the key is already configured; every other tool sends it as `Authorization: Bearer <key>`. |
 | `CANLI_FULL_ENVELOPE` | unset | `1` or `true` returns each validation's full API envelope instead of the compact result (below). |
+| `CANLI_TOOLSETS` | all | Which tools to list: a comma-separated choice of `validate`, `receipts`, `company` and `status`, or `all`. An unknown name is refused at startup. See "Toolsets" below. |
 | `CANLI_LOCAL` | unset | `1` or `true` runs the eight validators on this machine (private local mode, below): no key, no network, no receipt. |
 
 If `CANLI_KEY` is not set and local mode is off, call `get_key` once per session before the validators. The key it
@@ -169,6 +170,9 @@ by every hosted caller. For your own quota, issue a free key (see
 ```bash
 claude mcp add --transport http canli https://canlicapital.com/mcp --header "Authorization: Bearer $CANLI_KEY"
 ```
+
+Add `?toolsets=` to the URL to list only some tools (see "Toolsets" below), for example
+`https://canlicapital.com/mcp?toolsets=company`.
 
 The endpoint is stateless. On it, `get_key` issues nothing and says which key is in use, because a
 key issued there would not reach the next request. A malformed Authorization header is refused
@@ -278,6 +282,35 @@ timestamps, claim and capital class, the human page, the source-file hashes and 
 describes the service rather than the answer, and an agent pays for every token of it on every
 call. It stays in the stored receipt, which `get_receipt` returns in full, and in `service_status`.
 On a breadth result this is about half the text. Set `CANLI_FULL_ENVELOPE=1` to receive every field.
+
+## Toolsets (tokens)
+
+A client sends the model the whole tool list on every turn, and it is most of each turn's prompt:
+a validation result is a few hundred tokens, the list of all fourteen tools several thousand. A
+client that needs one kind of tool can list only that kind, with `CANLI_TOOLSETS` (stdio) or
+`?toolsets=` (hosted endpoint). The default is every tool.
+
+| toolset | tools |
+|---|---|
+| `validate` | `get_key`, the eight validators, `audit_backtest` |
+| `receipts` | `get_receipt`, `verify_receipt` |
+| `company` | `company_financial_history` |
+| `status` | `service_status` |
+
+Measured with `bench/tool_list_tokens.py` (tokenizer: tiktoken `o200k_base`; other models'
+tokenizers give different absolute counts), in the shape an OpenAI-style client sends the list:
+
+| CANLI_TOOLSETS | tools | tokens per turn | of all |
+|---|---|---|---|
+| `all` | 14 | 3,888 | 100% |
+| `validate` | 10 | 3,154 | 81% |
+| `receipts` | 2 | 340 | 9% |
+| `company` | 1 | 302 | 8% |
+| `status` | 1 | 98 | 3% |
+
+Providers cache a tool list that is identical from turn to turn and bill the cached part at a
+fraction of the price (`test/tool-list-stable.test.mjs` keeps each list byte-stable); a smaller list
+costs less either way.
 
 ## Local checkout
 
