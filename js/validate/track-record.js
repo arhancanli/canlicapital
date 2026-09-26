@@ -41,7 +41,9 @@ export function compute(body) {
 
 function reading(inputs, r) {
   const pct = (x) => `${(x * 100).toFixed(1)} percent`;
-  const need = `To be ${pct(r.confidence)} confident that a Sharpe of ${inputs.observed_sharpe_annualized} is above ${inputs.benchmark_sharpe_annualized}, the track record needs at least ${r.minimum_observations} observations, about ${r.minimum_years.toFixed(2)} years.`;
+  // A Sharpe derived from a return series carries every digit of the float; three decimals read.
+  const sharpe = (x) => String(Number(Number(x).toFixed(3)));
+  const need = `To be ${pct(r.confidence)} confident that a Sharpe of ${sharpe(inputs.observed_sharpe_annualized)} is above ${sharpe(inputs.benchmark_sharpe_annualized)}, the track record needs at least ${r.minimum_observations} observations, about ${r.minimum_years.toFixed(2)} years.`;
   if (!r.record) return `${need} This counts sample uncertainty and the shape of the returns only; it is not a forecast.`;
   const verdict = r.record.long_enough ? "is long enough" : "is not long enough yet";
   return `${need} The record sent, ${r.record.observations} observations, ${verdict}: the probability its Sharpe is above the benchmark is ${pct(r.record.psr_against_benchmark)}. Neither number is a forecast.`;

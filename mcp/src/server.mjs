@@ -11,10 +11,13 @@ import { pathToFileURL } from "node:url";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { computeLocally } from "./local.mjs";
+import { readMatrixFile, readSeriesFile } from "./series-file.mjs";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   breadthInput,
   trackRecordInput,
+  auditBacktestInput,
+  auditBacktestToolShape,
   companyHistoryInput,
   companyHistoryToolShape,
   deflatedSharpeInput,
@@ -204,6 +207,76 @@ export async function toolValidateTrackRecord(session, args) {
   return asText(response.envelope, response.failed);
 }
 
+// One validator, run the same way its own tool runs it: on this machine in local mode, otherwise
+// through the API (one validation of quota, one receipt).
+async function runValidator(session, tool, path, body) {
+  if (session.local) return computeLocally(tool, body);
+  return callApi(session, { path, method: "POST", body });
+}
+
+const sameJson = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+// audit_backtest: deflated Sharpe from the series, then the minimum track record length from the
+// Sharpe, skew and kurtosis that check derived, then (with variants) CSCV overfitting. Each check
+// keeps its envelope and receipt; the limits every envelope repeats are stated once at the top.
+// A refused later check (for example a Sharpe that does not exceed the benchmark) is reported as
+// that check's error, not as a failed audit; the audit fails only when the first check does.
+export async function toolAuditBacktest(session, args) {
+  const input = parseOrThrow(auditBacktestInput, args, "audit_backtest");
+  if ((input.returns_file || input.variants_file) && session.hosted) {
+    throw new Error("audit_backtest: the hosted endpoint cannot read files on your machine; send returns (and variants) as numbers, or run the server locally with npx -y canli-validation-mcp.");
+  }
+  const returnsRead = input.returns_file ? readSeriesFile(input.returns_file, input.returns_column) : null;
+  const variantsRead = input.variants_file ? readMatrixFile(input.variants_file) : null;
+  const returns = input.returns ?? returnsRead.values;
+  const variants = input.variants ?? variantsRead?.matrix;
+  const { periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized } = input;
+  const dsr = await runValidator(session, "validate_deflated_sharpe", "/api/v1/validate/deflated-sharpe", {
+    returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized,
+  });
+  if (dsr.failed) return asText(dsr.envelope, true);
+  const derived = dsr.envelope?.data?.derived_inputs ?? {};
+  const trackBody = {
+    observed_sharpe_annualized: derived.observed_sharpe_annualized,
+    periods_per_year,
+    skew: derived.skew,
+    non_excess_kurtosis: derived.non_excess_kurtosis,
+    observations: derived.observations,
+    ...(input.benchmark_sharpe_annualized !== undefined ? { benchmark_sharpe_annualized: input.benchmark_sharpe_annualized } : {}),
+    ...(input.confidence !== undefined ? { confidence: input.confidence } : {}),
+  };
+  const track = await runValidator(session, "validate_track_record", "/api/v1/validate/track-record", trackBody);
+  const overfit = variants
+    ? await runValidator(session, "validate_overfitting", "/api/v1/validate/overfitting", {
+        matrix: variants,
+        ...(input.n_splits !== undefined ? { n_splits: input.n_splits } : {}),
+      })
+    : null;
+  const envelopes = { deflated_sharpe: dsr.envelope, track_record: track.envelope, ...(overfit ? { overfitting: overfit.envelope } : {}) };
+  const limits = dsr.envelope?.limits;
+  const shared = Object.values(envelopes).every((e) => sameJson(e?.limits, limits));
+  const checks = Object.fromEntries(
+    Object.entries(envelopes).map(([name, e]) => [name, shared ? Object.fromEntries(Object.entries(e).filter(([k]) => k !== "limits")) : e]),
+  );
+  const readings = Object.fromEntries(
+    Object.entries(envelopes).map(([name, e]) => [name, e?.data?.plain_reading ?? e?.error?.message ?? null]),
+  );
+  return asText({
+    schema: "canli.audit.v1",
+    note: "Each check is its validator's own result and receipt, side by side. The audit does not grade the strategy.",
+    ...(shared ? { limits } : {}),
+    readings,
+    checks,
+    ...(input.returns_file || input.variants_file
+      ? { source: {
+          ...(returnsRead ? { returns_file: input.returns_file, observations: returns.length, ...(returnsRead.skipped.length ? { skipped_row_counter_columns: returnsRead.skipped } : {}) } : {}),
+          ...(variantsRead ? { variants_file: input.variants_file, variants: variants[0].length, periods: variants.length, ...(variantsRead.skipped.length ? { skipped_variant_row_counter_columns: variantsRead.skipped } : {}) } : {}),
+        } }
+      : {}),
+    ...(variants ? {} : { not_run: { overfitting: "Send variants or variants_file (every variant's returns) to add the overfitting check." } }),
+  });
+}
+
 export async function toolGetReceipt(session, args) {
   const { id } = parseOrThrow(getReceiptInput, args, "get_receipt");
   const response = await callApi(session, { path: `/api/v1/receipts/${id}` });
@@ -350,6 +423,11 @@ export function registerTools(server, session) {
     "validate_track_record",
     { title: "Minimum track record length", annotations: { title: "Minimum track record length", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_track_record, inputSchema: trackRecordInput },
     (args) => toolValidateTrackRecord(session, args),
+  );
+  server.registerTool(
+    "audit_backtest",
+    { title: "Audit a backtest", annotations: { title: "Audit a backtest", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.audit_backtest, inputSchema: auditBacktestToolShape },
+    (args) => toolAuditBacktest(session, args),
   );
   server.registerTool(
     "get_receipt",

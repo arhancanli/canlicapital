@@ -67,6 +67,7 @@ test("tools/list exposes exactly the npm package's tools", async () => {
   await withServer({ CANLI_REMOTE_MCP_KEY: SHARED_KEY }, async (url) => {
     const { json } = await rpc(url, "tools/list", {});
     assert.deepEqual(json.result.tools.map((t) => t.name).sort(), [
+      "audit_backtest",
       "company_financial_history",
       "get_key",
       "get_receipt",

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- `audit_backtest`: deflated Sharpe, minimum track record length and, with every variant's returns,
+  CSCV overfitting on one return series in one call. Each check is its validator's own result and
+  receipt; the audit adds no grade. On a local server, `returns_file` and `variants_file` read the
+  backtest's CSV or JSON output instead of numbers copied into the call.
+- The minimum track record reading states the Sharpe to three decimals instead of every digit of a
+  derived float.
 - Every input parameter carries a description (units, defaults, allowed values, which fields
   exclude each other), and each tool description says what it returns. Measured with the agent
   benchmark before and after on gpt-5.4-mini and Claude Haiku 4.5: no loss of accuracy, for more
