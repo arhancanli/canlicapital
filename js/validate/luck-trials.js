@@ -19,6 +19,7 @@ export function compute(body) {
     observations: Number(body.observations),
     ...(body.effective_independent_trials !== undefined ? { effective_independent_trials: Number(body.effective_independent_trials) } : {}),
     ...(body.skew !== undefined ? { skew: Number(body.skew) } : {}),
+    ...(body.autocorrelation !== undefined ? { autocorrelation: Number(body.autocorrelation) } : {}),
   };
   if (!(Math.abs(inputs.observed_sharpe_annualized) <= 20)) throw new RangeError("observed_sharpe_annualized must be a number from -20 to 20");
   if (!(inputs.periods_per_year > 0 && inputs.periods_per_year <= 100000)) throw new RangeError("periods_per_year must be greater than 0 and at most 100000");
@@ -26,7 +27,8 @@ export function compute(body) {
   const trials = inputs.effective_independent_trials;
   if (trials !== undefined && (!Number.isInteger(trials) || trials < 1 || trials > 1e9)) throw new RangeError("effective_independent_trials must be an integer from 1 to 1000000000");
   if (inputs.skew !== undefined && !Number.isFinite(inputs.skew)) throw new RangeError("skew must be a finite number");
-  const result = luckEquivalentTrials({ sharpe: inputs.observed_sharpe_annualized, observations: inputs.observations, periodsPerYear: inputs.periods_per_year, trials });
+  if (inputs.autocorrelation !== undefined && !(inputs.autocorrelation > -1 && inputs.autocorrelation < 1)) throw new RangeError("autocorrelation must be strictly between -1 and 1");
+  const result = luckEquivalentTrials({ sharpe: inputs.observed_sharpe_annualized, observations: inputs.observations, periodsPerYear: inputs.periods_per_year, trials, autocorrelation: inputs.autocorrelation });
   return { derived_inputs: inputs, result, plain_reading: reading(inputs, result) };
 }
 
@@ -50,6 +52,11 @@ function reading(inputs, r) {
   }
   if (inputs.skew !== undefined && inputs.skew < NEGATIVE_SKEW) {
     parts.push(`With a return skew of ${inputs.skew}, these counts are too generous: negatively skewed returns reach high Sharpe ratios by luck more often than this assumes.`);
+  }
+  if (inputs.autocorrelation === undefined) {
+    parts.push("Without the returns' autocorrelation this assumes none; positively autocorrelated returns reach high Sharpe ratios by luck more often.");
+  } else if (inputs.autocorrelation !== 0) {
+    parts.push(`The Sharpe was first corrected for an autocorrelation of ${inputs.autocorrelation} (Lo, 2002), to ${String(Number((inputs.observed_sharpe_annualized * r.autocorrelation_factor).toFixed(3)))}.`);
   }
   parts.push("It counts independent trials; correlated trials count as fewer.");
   return parts.join(" ");
