@@ -1,5 +1,9 @@
 # canli-validation-mcp
 
+[![npm](https://img.shields.io/npm/v/canli-validation-mcp)](https://www.npmjs.com/package/canli-validation-mcp)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arhancanli/canli-validation-mcp/badge)](https://scorecard.dev/viewer/?uri=github.com/arhancanli/canli-validation-mcp)
+[![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
+
 An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
 gives a coding agent nine tools: issue a free key, run the five validators (deflated Sharpe,
 CSCV overfitting, paper-evidence conformance, breadth ceiling, minimum track record length),
@@ -15,6 +19,13 @@ test this package itself; see "Local checkout" near the bottom.
 
 This README describes the version in `package.json`. Unversioned `npx` runs npm's latest
 release; `npx -y canli-validation-mcp@<version>` pins one.
+
+## How well agents use it
+
+A fixed benchmark gives models these tools and scores whether they pick the right one and return
+the right answer, against ground truth computed from the same checked code. Results for three
+models, with every run recorded, are in
+[`bench/agent/README.md`](https://github.com/arhancanli/canlicapital/blob/main/mcp/bench/agent/README.md).
 
 ## What the API is (and is not)
 
