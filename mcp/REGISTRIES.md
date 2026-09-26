@@ -56,6 +56,11 @@ verify_receipt, compact results) published entirely from CI: the signed tag `mcp
 Registry, where 0.6.0 is listed as latest. The standalone repository's `v0.6.0` release carries the
 signed Claude Desktop bundle.
 
+Next release, not yet published: `canli-validation-mcp@0.7.0` (toolsets; citation metadata so each
+release of the standalone repository gets a DOI). It publishes from `mcp-publish.yml` on the tag
+`mcp-v0.7.0`. Until that run succeeds and the listings are checked, 0.6.0 stays the latest published
+version.
+
 `canli-research-mcp` (the `mcp-research/` directory) publishes from `mcp-research-publish.yml` on a tag
 `research-mcp-v<version>`, the same way. Its 0.1.0 was published to npm by hand on September 26, 2026,
 to create the package; npm trusted publishing for later versions needs the package's Trusted Publisher

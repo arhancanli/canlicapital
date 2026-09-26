@@ -1,11 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.7.0 (2026-09-26)
 
 - Toolsets: `CANLI_TOOLSETS` (stdio) or `?toolsets=` (hosted endpoint) lists only `validate`,
   `receipts`, `company` or `status` tools. The tool list is re-sent to the model every turn; listing
   only `company_financial_history` sends 8 percent of the full list's tokens (README, "Toolsets",
   reproduced by `bench/tool_list_tokens.py`). Default: every tool. An unknown name is refused.
+- Citation metadata: `CITATION.cff` and `.zenodo.json` name the author with his ORCID
+  (0009-0004-4138-7907), so each release of the standalone repository is archived with a DOI.
+
 ## 0.6.0 (2026-09-26)
 
 - `validate_luck_trials` takes the returns' `autocorrelation` and corrects the Sharpe as Lo (2002)
