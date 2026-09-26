@@ -25,6 +25,7 @@ test("the summary counts are recomputed from the items, and every published file
     const bytes = read(`${FILING_FACTS.dir}/${name}`);
     assert.equal(record.files[key].sha256, createHash("sha256").update(bytes).digest("hex"), `${name} checksum`);
     assert.equal(record.files[key].bytes, bytes.length, `${name} size`);
+    assert.equal(record.files[key].kilobytes, Math.round(bytes.length / 1024), `${name} printed size`);
   }
 });
 

@@ -34,7 +34,6 @@ export const FILING_FACTS = Object.freeze({
 
 const pct = (x) => (x === null || x === undefined ? "n/a" : `${(100 * x).toFixed(1)}%`);
 const int = (n) => n.toLocaleString("en-US");
-const kb = (bytes) => `${int(Math.round(bytes / 1024))} KB`;
 const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
 
 const TEMPLATE_TEXT = {
@@ -82,7 +81,7 @@ export function filingFactsSummary() {
     gold_packet_items: gold.labels.length,
     human_verified_items: 0,
     files: Object.fromEntries(
-      Object.entries(spec.files).map(([key, name]) => [key, { path: `/datasets/filing-facts/v${spec.version}/${name}`, bytes: statSync(path(name)).size, sha256: sha256(raw[key]) }]),
+      Object.entries(spec.files).map(([key, name]) => [key, { path: `/datasets/filing-facts/v${spec.version}/${name}`, bytes: statSync(path(name)).size, kilobytes: Math.round(statSync(path(name)).size / 1024), sha256: sha256(raw[key]) }]),
     ),
   };
   if (summary.baseline.closed_book.model !== summary.baseline.with_mcp.model) throw new Error("filing facts: the two baseline arms used different models");
@@ -128,7 +127,7 @@ export function filingFactsCard(summary) {
   const templateRows = templates.map((t) => `| ${t} | ${TEMPLATE_TEXT[t][0]} | ${TEMPLATE_TEXT[t][1]} | ${int(summary.by_template[t])} |`).join("\n");
   const behaviourRow = (label, key, withCount) =>
     `| ${label} | ${pct(c.behaviour[key])}${withCount ? ` (${c.behaviour.numbers_given} numbers)` : ""} | ${pct(m.behaviour[key])}${withCount ? ` (${m.behaviour.numbers_given} numbers)` : ""} |`;
-  const fileRow = (label, key) => `| [${summary.files[key].path.split("/").at(-1)}](${summary.files[key].path}) | ${label} | ${kb(summary.files[key].bytes)} |`;
+  const fileRow = (label, key) => `| [${summary.files[key].path.split("/").at(-1)}](${summary.files[key].path}) | ${label} | ${int(summary.files[key].kilobytes)} KB |`;
   return `# FilingFacts v${summary.version}: financial reasoning items verified from SEC XBRL data
 
 **Short title:** FilingFacts v${summary.version} dataset
