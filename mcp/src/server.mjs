@@ -62,7 +62,7 @@ export function configuredLocal(value) {
   return v === "1" || v?.toLowerCase() === "true";
 }
 
-export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted, local } = {}) {
+export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS, hosted, local, fullEnvelope } = {}) {
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs <= 0) throw new Error("Request timeout must be a positive integer");
   return {
     base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE,
@@ -74,6 +74,7 @@ export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIM
     // so instead of issuing a key the next stateless request would never see.
     hosted: hosted ?? undefined,
     local: local ?? configuredLocal(process.env.CANLI_LOCAL),
+    fullEnvelope: fullEnvelope ?? configuredFullEnvelope(process.env.CANLI_FULL_ENVELOPE),
   };
 }
 
@@ -113,6 +114,30 @@ const asText = (envelope, failed = false) => ({
   ...(envelope && typeof envelope === "object" && !Array.isArray(envelope) ? { structuredContent: envelope } : {}),
   ...(failed ? { isError: true } : {}),
 });
+
+// A validation result as the model reads it: the answer, the sentences saying what it does not
+// establish, and the receipt that holds the rest. Metadata (schema, endpoint, timestamps, claim and
+// capital class, human page), the source hashes and the quota sentence are about the service, not
+// the answer; they stay in the stored receipt (get_receipt) and service_status, and
+// CANLI_FULL_ENVELOPE=1 returns every field. On a result this cuts the text roughly in half.
+const QUOTA_SENTENCE = /^Quotas:/;
+
+export function compactEnvelope(envelope) {
+  if (!envelope || typeof envelope !== "object" || Array.isArray(envelope)) return envelope;
+  const out = {};
+  if (envelope.computed) { out.computed = envelope.computed; out.note = envelope.note; }
+  if ("data" in envelope) out.data = envelope.data;
+  if (envelope.error) out.error = envelope.error;
+  if (Array.isArray(envelope.limits)) out.limits = envelope.limits.filter((s) => !QUOTA_SENTENCE.test(s));
+  if ("receipt" in envelope) out.receipt = envelope.receipt ? { id: envelope.receipt.id, url: envelope.receipt.url } : null;
+  return out;
+}
+
+export function configuredFullEnvelope(value) {
+  return value === "1" || value === "true";
+}
+
+const validationText = (session, { envelope, failed }) => asText(session.fullEnvelope ? envelope : compactEnvelope(envelope), failed);
 
 // A history's observations as one header and one row each, instead of every field name repeated
 // on every observation. The column order is fixed so a row can be read without its keys; a unit
@@ -175,44 +200,44 @@ export async function toolValidateDeflatedSharpe(session, args) {
         "or a return series (returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized), never a mix of both and never neither.",
     );
   }
-  if (session.local) { const local = computeLocally("validate_deflated_sharpe", parsed.data); return asText(local.envelope, local.failed); }
+  if (session.local) { const local = computeLocally("validate_deflated_sharpe", parsed.data); return validationText(session, local); }
   const response = await callApi(session, { path: "/api/v1/validate/deflated-sharpe", method: "POST", body: parsed.data });
-  return asText(response.envelope, response.failed);
+  return validationText(session, response);
 }
 
 export async function toolValidateOverfitting(session, args) {
   const body = parseOrThrow(overfittingInput, args, "validate_overfitting");
-  if (session.local) { const local = computeLocally("validate_overfitting", body); return asText(local.envelope, local.failed); }
+  if (session.local) { const local = computeLocally("validate_overfitting", body); return validationText(session, local); }
   const response = await callApi(session, { path: "/api/v1/validate/overfitting", method: "POST", body });
-  return asText(response.envelope, response.failed);
+  return validationText(session, response);
 }
 
 export async function toolValidatePaperEvidence(session, args) {
   const body = parseOrThrow(paperEvidenceInput, args, "validate_paper_evidence");
-  if (session.local) { const local = computeLocally("validate_paper_evidence", body); return asText(local.envelope, local.failed); }
+  if (session.local) { const local = computeLocally("validate_paper_evidence", body); return validationText(session, local); }
   const response = await callApi(session, { path: "/api/v1/validate/paper-evidence", method: "POST", body });
-  return asText(response.envelope, response.failed);
+  return validationText(session, response);
 }
 
 export async function toolValidateBreadth(session, args) {
   const body = parseOrThrow(breadthInput, args, "validate_breadth");
-  if (session.local) { const local = computeLocally("validate_breadth", body); return asText(local.envelope, local.failed); }
+  if (session.local) { const local = computeLocally("validate_breadth", body); return validationText(session, local); }
   const response = await callApi(session, { path: "/api/v1/validate/breadth", method: "POST", body });
-  return asText(response.envelope, response.failed);
+  return validationText(session, response);
 }
 
 export async function toolValidateTrackRecord(session, args) {
   const body = parseOrThrow(trackRecordInput, args, "validate_track_record");
-  if (session.local) { const local = computeLocally("validate_track_record", body); return asText(local.envelope, local.failed); }
+  if (session.local) { const local = computeLocally("validate_track_record", body); return validationText(session, local); }
   const response = await callApi(session, { path: "/api/v1/validate/track-record", method: "POST", body });
-  return asText(response.envelope, response.failed);
+  return validationText(session, response);
 }
 
 export async function toolValidateBacktestLength(session, args) {
   const body = parseOrThrow(backtestLengthInput, args, "validate_backtest_length");
-  if (session.local) { const local = computeLocally("validate_backtest_length", body); return asText(local.envelope, local.failed); }
+  if (session.local) { const local = computeLocally("validate_backtest_length", body); return validationText(session, local); }
   const response = await callApi(session, { path: "/api/v1/validate/backtest-length", method: "POST", body });
-  return asText(response.envelope, response.failed);
+  return validationText(session, response);
 }
 
 // One validator, run the same way its own tool runs it: on this machine in local mode, otherwise
@@ -242,7 +267,7 @@ export async function toolAuditBacktest(session, args) {
   const dsr = await runValidator(session, "validate_deflated_sharpe", "/api/v1/validate/deflated-sharpe", {
     returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized,
   });
-  if (dsr.failed) return asText(dsr.envelope, true);
+  if (dsr.failed) return validationText(session, { envelope: dsr.envelope, failed: true });
   const derived = dsr.envelope?.data?.derived_inputs ?? {};
   const trackBody = {
     observed_sharpe_annualized: derived.observed_sharpe_annualized,
@@ -260,8 +285,9 @@ export async function toolAuditBacktest(session, args) {
         ...(input.n_splits !== undefined ? { n_splits: input.n_splits } : {}),
       })
     : null;
-  const envelopes = { deflated_sharpe: dsr.envelope, track_record: track.envelope, ...(overfit ? { overfitting: overfit.envelope } : {}) };
-  const limits = dsr.envelope?.limits;
+  const shape = (e) => (session.fullEnvelope ? e : compactEnvelope(e));
+  const envelopes = { deflated_sharpe: shape(dsr.envelope), track_record: shape(track.envelope), ...(overfit ? { overfitting: shape(overfit.envelope) } : {}) };
+  const limits = envelopes.deflated_sharpe?.limits;
   const shared = Object.values(envelopes).every((e) => sameJson(e?.limits, limits));
   const checks = Object.fromEntries(
     Object.entries(envelopes).map(([name, e]) => [name, shared ? Object.fromEntries(Object.entries(e).filter(([k]) => k !== "limits")) : e]),

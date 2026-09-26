@@ -13,6 +13,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { createSession, registerAll, SERVER_NAME, SERVER_VERSION } from "../mcp/src/server.mjs";
 import { BodyError, readJsonBody } from "./_lib/body.js";
+import { inProcessFetch } from "./_lib/in-process-fetch.js";
 
 // The largest validation request (1 MiB, see api/_lib/limits.js) plus room for the JSON-RPC wrapper.
 export const MAX_MCP_BODY_BYTES = 1_048_576 + 65_536;
@@ -47,7 +48,9 @@ export function resolveKey(req, env = process.env) {
   return shared ? { key: shared, keySource: "shared" } : { key: undefined, keySource: "none" };
 }
 
-export function createHostedHandler({ env = () => process.env, fetchImpl } = {}) {
+// Validations are answered by this deployment's own API handlers in process (see
+// _lib/in-process-fetch.js); tests pass their own fetchImpl.
+export function createHostedHandler({ env = () => process.env, fetchImpl = inProcessFetch() } = {}) {
   return async function handler(req, res) {
     corsHeaders(res);
     if (req.method === "OPTIONS") { res.statusCode = 204; return res.end(); }

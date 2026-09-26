@@ -9,9 +9,9 @@ gives a coding agent eleven tools: issue a free key, run the six validators (def
 CSCV overfitting, paper-evidence conformance, breadth ceiling, minimum track record length,
 minimum backtest length),
 audit one backtest with three of them in a single call, fetch a stored receipt, read service status, and read a company's reported financial history
-from SEC filings. Every tool returns the full API envelope as its result text, success or error,
-so the agent cannot see a number without the sentences beside it that say what the number does
-not establish.
+from SEC filings. Every validation result carries, beside the number, the sentences that say what
+it does not establish and the receipt that records it, success or error, so the agent cannot see a
+number without its limits.
 
 This package is published to npm as [`canli-validation-mcp`](https://www.npmjs.com/package/canli-validation-mcp).
 Also listed on the official MCP Registry (`io.github.arhancanli/canli-validation-mcp`) and
@@ -128,6 +128,7 @@ an array of objects.
 |---|---|---|
 | `CANLI_API_BASE` | `https://canlicapital.com` | Where the API lives. Point it at a preview deployment for testing. |
 | `CANLI_KEY` | unset | A key already issued from `POST /api/v1/keys`. When set, `get_key` sends no request and reports the key is already configured; every other tool sends it as `Authorization: Bearer <key>`. |
+| `CANLI_FULL_ENVELOPE` | unset | `1` or `true` returns each validation's full API envelope instead of the compact result (below). |
 | `CANLI_LOCAL` | unset | `1` or `true` runs the six validators on this machine (private local mode, below): no key, no network, no receipt. |
 
 If `CANLI_KEY` is not set and local mode is off, call `get_key` once per session before the validators. The key it
@@ -243,7 +244,7 @@ const result = await client.callTool({
     cross_trial_sharpe_sd_annualized: 0.5,
   },
 });
-console.log(result.content[0].text); // the full envelope, including limits and receipt.url
+console.log(result.content[0].text); // the answer, its limits and its receipt
 
 await client.close();
 ```
@@ -263,8 +264,16 @@ Every envelope this server returns carries these sentences, verbatim, from the A
   request, 20000 observations per series, 200 variants per matrix.
 
 Each tool's description also states one of these sentences, so an agent sees the boundary before
-it calls the tool, not only after. No tool in this server strips `limits` or `receipt.url` from
-a response; the full envelope is always the result text.
+it calls the tool, not only after.
+
+## Compact results (tokens)
+
+A validation result is the answer (`data`), the sentences above except the quota line, and the
+receipt's id and URL; an error keeps its error. The rest of the API envelope (schema, endpoint,
+timestamps, claim and capital class, the human page, the source-file hashes and the quota line)
+describes the service rather than the answer, and an agent pays for every token of it on every
+call. It stays in the stored receipt, which `get_receipt` returns in full, and in `service_status`.
+On a breadth result this is about half the text. Set `CANLI_FULL_ENVELOPE=1` to receive every field.
 
 ## Local checkout
 

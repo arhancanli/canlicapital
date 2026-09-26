@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Compact validation results: the answer, the boundary sentences (without the quota line) and the
+  receipt's id and URL. Metadata and source hashes stay in the stored receipt (`get_receipt`) and
+  `service_status`; `CANLI_FULL_ENVELOPE=1` restores every field.
+- The hosted endpoint answers validations with its own deployment's API handlers in process instead
+  of a second HTTPS request to canlicapital.com: one network round trip and one function invocation
+  fewer per validation, with the same keys, quotas and receipts.
 - `validate_backtest_length`: the minimum backtest length (Bailey, Borwein, López de Prado and Zhu,
   2014) before the best of N independent trials is not expected to reach a target Sharpe by luck,
   and the most independent trials a backtest's years allow (`POST /api/v1/validate/backtest-length`).

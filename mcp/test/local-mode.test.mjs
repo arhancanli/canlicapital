@@ -45,7 +45,7 @@ for (const [tool, fn, rel, input] of CASES) {
     assert.equal(calls(), 0);
     assert.equal(out.computed, "locally");
     assert.equal(out.receipt, null);
-    assert.equal(out.error, null);
+    assert.equal(out.error, undefined);
     const { compute } = await import(resolve(MCP, "src/local", rel));
     assert.deepEqual(out.data, compute(input));
   });
