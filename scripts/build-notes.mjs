@@ -18,6 +18,7 @@
 //     a post cannot ship pointing at a page that does not exist.
 // =============================================================================
 
+import { DESCRIPTION_MIN as DESCRIPTION_WINDOW_MIN, fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
 import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -63,7 +64,7 @@ const plain = (md) =>
 // Search results truncate past these. The papers already solve the title case with a
 // declared short title; notes use the same convention so there is one rule on this site.
 const TITLE_LIMIT = 65;        // including the " | Canli Capital" suffix
-const DESCRIPTION_LIMIT = 165;
+const DESCRIPTION_LIMIT = 160;
 const DESCRIPTION_MINIMUM = 70;  // below this a search snippet is mostly empty
 const SUFFIX = " | Canli Capital";
 
@@ -79,7 +80,14 @@ const SUFFIX = " | Canli Capital";
  * prefix of the standfirst, and asserts exactly that at the end: the invariant
  * catches the whole class rather than the one string that exposed it.
  */
-function metaDescription(slug, dek) {
+function metaDescription(slug, dek, body = "") {
+  // A short standfirst continues into the note's own opening text, to the 150 to 160 window
+  // (scripts/lib/descriptions.mjs); it still begins exactly where the standfirst begins.
+  if (dek.length < DESCRIPTION_WINDOW_MIN) {
+    const extended = fitDescriptionFrom(dek, [body]);
+    if (!extended.startsWith(dek)) throw new Error(`${slug}: extended description does not begin with the standfirst`);
+    return extended;
+  }
   if (dek.length <= DESCRIPTION_LIMIT) return dek;
 
   // Sentence ends: terminal punctuation followed by a space and a capital, so a
@@ -101,7 +109,7 @@ function metaDescription(slug, dek) {
   // A whole-sentence trim can be far too short when the second sentence is long,
   // and a 50-character description wastes the snippet. Fall back to a word
   // boundary, which never cuts mid-word.
-  if (out.length < DESCRIPTION_MINIMUM) {
+  if (out.length < DESCRIPTION_WINDOW_MIN) {
     let packed = "";
     for (const word of dek.split(" ")) {
       if (`${packed} ${word}`.trim().length > DESCRIPTION_LIMIT - 1) break;
@@ -214,7 +222,7 @@ function parseNote(slug, markdown) {
 
   return {
     slug, title, documentTitle, dek, sources,
-    description: metaDescription(slug, dek),
+    description: metaDescription(slug, dek, plain(body)),
     date: dateMatch[1], body, words,
     minutes: Math.max(1, Math.round(words / 220)),
   };
