@@ -7,7 +7,7 @@
 // =============================================================================
 
 export const BRAND = "Canli Capital"; // the platform / company
-export const FLAGSHIP = "ALPHAC"; // the flagship four-sleeve combined book
+export const FLAGSHIP = "ALPHAC"; // the flagship combined book (three sleeves since record v4)
 // The footer line states a fact, it does not sloganize. This is the firm's true
 // one-line description (the same line that lives in the JSON-LD `slogan` field on
 // every page), reused here so the footer never carries a marketing slogan. Bound
