@@ -28,7 +28,7 @@ export async function loadCompanyRelease({ releaseHash, readReleaseObject, readC
   if (filingsIndexable !== false && typeof filingsIndexable !== 'function') throw new Error('Filings indexing must be false or an admission predicate');
   const filingsCatalog = release.filings_root && readFilingsObject ? createCompanyFilingsCatalog({ rootHash: release.filings_root, readObject: readFilingsObject }) : null;
   const filings = createCompanyFilingsHandler({ filings: filingsCatalog, assets, indexable: filingsCatalog ? filingsIndexable : false, historyIndexable: indexable });
-  const company = createCompanyHtmlHandler({ catalog, assets, indexable, filings: filingsCatalog });
+  const company = createCompanyHtmlHandler({ catalog, assets, indexable, filings: filingsCatalog, filingsIndexable: filingsCatalog ? filingsIndexable : false });
   const directory = createCompanyDirectoryHandler({ catalog, assets, indexable: directoryIndexable === true });
   const download = createCompanyDownloadHandler({ index: downloads, readDownload });
   return { releaseHash, release, catalog, downloads, company, directory, download, filings, filingsCatalog };
