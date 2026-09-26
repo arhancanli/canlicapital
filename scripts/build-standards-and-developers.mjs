@@ -271,6 +271,26 @@ function extractReadmeFence(markdown, heading, lang) {
 // The short "From your AI assistant" block on /developers: the MCP server wraps the same seven
 // routes documented below it, read from mcp/package.json and mcp/README.md rather than typed
 // here, so this section cannot drift from what an agent running that package actually sees.
+// How well agents use the MCP tools, from the benchmark artifact (scripts/build-mcp-benchmark.mjs),
+// never from typed figures: /developers declares mcp_agent_benchmark.json as a source, so the
+// published-numbers audit traces every number in this table to it.
+function mcpBenchmarkBlock() {
+  const bench = JSON.parse(readFileSync(resolve(ROOT, "public/glassbox/mcp_agent_benchmark.json"), "utf8"));
+  const pct = (v) => `${v}%`;
+  const rows = bench.models
+    .map((m) => `<tr><td>${esc(m.label)}</td><td>${esc(pct(m.answer_accuracy_pct))}</td><td>${esc(pct(m.first_tool_right_pct))}</td><td>${esc(m.runs)}</td></tr>`)
+    .join("\n        ");
+  return `<h3 id="mcp-benchmark">How well agents use it</h3>
+    <p class="dev-note">Each model was given these tools and ${esc(bench.tasks)} fixed questions (deflated Sharpe, track record length, breadth, overfitting, company financials by ticker, and what a result does not establish), each asked ${esc(bench.models[0].repeats)} times. An answer counts when it matches ground truth computed from the same checked code.</p>
+    <table class="dev-table" tabindex="0" aria-label="MCP agent benchmark">
+      <thead><tr><th>Model</th><th>Correct answers</th><th>Right tool first</th><th>Runs</th></tr></thead>
+      <tbody>
+        ${rows}
+      </tbody>
+    </table>
+    <p class="dev-note">${esc(bench.scope)} <a href="/glassbox/mcp_agent_benchmark.json">The artifact</a>, <a href="https://github.com/arhancanli/canlicapital/blob/main/${esc(bench.method)}" rel="noreferrer">the method and every miss</a>.</p>`;
+}
+
 function mcpAssistantSection() {
   const mcpPkg = JSON.parse(readFileSync(resolve(ROOT, "mcp/package.json"), "utf8"));
   const readme = readFileSync(resolve(ROOT, "mcp/README.md"), "utf8");
@@ -297,6 +317,7 @@ function mcpAssistantSection() {
     <div class="dev-snippet"><p class="dev-snippet-label">Private local mode: your series never leaves your machine</p><pre class="dev-code" tabindex="0" aria-label="Private local mode"><code>${esc(localInstall)}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Claude Code configuration"><code>${esc(claudeCodeInstall)}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code" tabindex="0" aria-label="Claude Desktop configuration"><code>${esc(claudeDesktopJson)}</code></pre></div>
+    ${mcpBenchmarkBlock()}
     <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp" rel="noreferrer">Inspect the MCP implementation and contribute an integration</a>. If the tools help your research, star the repository to help others discover it.</p>
     <p class="dev-note"><a href="${esc(npmUrl)}" rel="noreferrer">${esc(mcpPkg.name)} on npm</a>, with the full tool list and what each one does not establish.</p>
   </section>`;
@@ -459,7 +480,7 @@ function buildDevelopers() {
     title: "Developers",
     description,
     route: "/developers",
-    sources: "validation_api_limits.json validation_api_manifest.json",
+    sources: "validation_api_limits.json validation_api_manifest.json mcp_agent_benchmark.json",
     jsonLd: [
       {
         "@context": "https://schema.org",
