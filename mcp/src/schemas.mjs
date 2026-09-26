@@ -8,6 +8,39 @@
 // validator semantics these shapes mirror.
 import { z } from "zod";
 
+// One description per input field, shared by every shape that uses the field, so a client reads
+// the same meaning, unit and example wherever the field appears. Agents choose arguments from
+// these; a bare "number" leaves units (fraction or percent, kurtosis or excess kurtosis) to guess.
+export const FIELD_DESCRIPTIONS = Object.freeze({
+  observed_sharpe_annualized: "Annualized Sharpe as observed.",
+  observations: "Number of return observations.",
+  periods_per_year: "Observations per year: 252 daily, 365 daily crypto, 52 weekly, 12 monthly.",
+  skew: "Skewness of returns; 0 if Normal.",
+  non_excess_kurtosis: "Kurtosis, not excess kurtosis; 3 if Normal.",
+  effective_independent_trials: "Independent variants tried before choosing this one.",
+  cross_trial_sharpe_sd_annualized: "Standard deviation of the annualized Sharpe across those trials.",
+  returns: "Periodic returns as fractions (0.01 is 1%), oldest first; replaces the Sharpe, observations, skew and kurtosis fields.",
+  matrix: "Returns as fractions: one row per period, one column per variant.",
+  n_splits: "Even number of blocks, at least 2; default 16.",
+  max_combinations: "Most splits evaluated, up to 2000 (default).",
+  seed: "Sampling seed; default 42.",
+  record: "A canli.paper-evidence.v0 record.",
+  sleeve_sharpe: "Annualized Sharpe of one sleeve.",
+  average_pairwise_correlation: "Average correlation between sleeves, -1 to 1.",
+  sleeves: "Sleeve count, to get that book's Sharpe.",
+  target: "Target book Sharpe, to get the sleeves it needs.",
+  benchmark_sharpe_annualized: "Annualized Sharpe to beat; default 0.",
+  confidence: "Between 0 and 1; default 0.95.",
+  record_observations: "Record length so far, to get its probabilistic Sharpe.",
+  label: "Name for the key.",
+  receipt_id: "Receipt id from a validation result.",
+  cik: "SEC CIK; send cik or ticker.",
+  ticker: "Ticker such as AAPL; send ticker or cik.",
+  concept: "us-gaap concept such as Assets; omit to list them.",
+  limit: "Most observations, newest first; default 40.",
+});
+const d = FIELD_DESCRIPTIONS;
+
 // ---------------------------------------------------------------------------------------------
 // validate_deflated_sharpe: the API accepts exactly one of two input modes, never a mix.
 // Input A is the seven fields of deflated_sharpe_calculator_contract.json.
@@ -16,22 +49,22 @@ import { z } from "zod";
 
 export const deflatedSharpeContractInputs = z
   .object({
-    observed_sharpe_annualized: z.number().min(-10).max(10),
-    observations: z.number().int().min(2).max(1000000),
-    periods_per_year: z.number().min(1).max(10000),
-    skew: z.number().min(-20).max(20),
-    non_excess_kurtosis: z.number().min(1).max(100),
-    effective_independent_trials: z.number().int().min(2).max(10000000),
-    cross_trial_sharpe_sd_annualized: z.number().min(0).max(10),
+    observed_sharpe_annualized: z.number().min(-10).max(10).describe(d.observed_sharpe_annualized),
+    observations: z.number().int().min(2).max(1000000).describe(d.observations),
+    periods_per_year: z.number().min(1).max(10000).describe(d.periods_per_year),
+    skew: z.number().min(-20).max(20).describe(d.skew),
+    non_excess_kurtosis: z.number().min(1).max(100).describe(d.non_excess_kurtosis),
+    effective_independent_trials: z.number().int().min(2).max(10000000).describe(d.effective_independent_trials),
+    cross_trial_sharpe_sd_annualized: z.number().min(0).max(10).describe(d.cross_trial_sharpe_sd_annualized),
   })
   .strict();
 
 export const deflatedSharpeReturnSeriesInputs = z
   .object({
-    returns: z.array(z.number()).min(2).max(20000),
-    periods_per_year: z.number().min(1).max(10000),
-    effective_independent_trials: z.number().int().min(2).max(10000000),
-    cross_trial_sharpe_sd_annualized: z.number().min(0).max(10),
+    returns: z.array(z.number()).min(2).max(20000).describe(d.returns),
+    periods_per_year: z.number().min(1).max(10000).describe(d.periods_per_year),
+    effective_independent_trials: z.number().int().min(2).max(10000000).describe(d.effective_independent_trials),
+    cross_trial_sharpe_sd_annualized: z.number().min(0).max(10).describe(d.cross_trial_sharpe_sd_annualized),
   })
   .strict();
 
@@ -44,14 +77,14 @@ export const deflatedSharpeInput = z.union([deflatedSharpeContractInputs, deflat
 // per-field type checking) while the strict oneOf rule above is enforced in the tool handler.
 export const deflatedSharpeToolShape = z
   .object({
-    observed_sharpe_annualized: z.number().min(-10).max(10).optional(),
-    observations: z.number().int().min(2).max(1000000).optional(),
-    periods_per_year: z.number().min(1).max(10000).optional(),
-    skew: z.number().min(-20).max(20).optional(),
-    non_excess_kurtosis: z.number().min(1).max(100).optional(),
-    effective_independent_trials: z.number().int().min(2).max(10000000).optional(),
-    cross_trial_sharpe_sd_annualized: z.number().min(0).max(10).optional(),
-    returns: z.array(z.number()).min(2).max(20000).optional(),
+    observed_sharpe_annualized: z.number().min(-10).max(10).optional().describe(d.observed_sharpe_annualized),
+    observations: z.number().int().min(2).max(1000000).optional().describe(d.observations),
+    periods_per_year: z.number().min(1).max(10000).optional().describe(d.periods_per_year),
+    skew: z.number().min(-20).max(20).optional().describe(d.skew),
+    non_excess_kurtosis: z.number().min(1).max(100).optional().describe(d.non_excess_kurtosis),
+    effective_independent_trials: z.number().int().min(2).max(10000000).optional().describe(d.effective_independent_trials),
+    cross_trial_sharpe_sd_annualized: z.number().min(0).max(10).optional().describe(d.cross_trial_sharpe_sd_annualized),
+    returns: z.array(z.number()).min(2).max(20000).optional().describe(d.returns),
   })
   .strict();
 
@@ -61,10 +94,10 @@ export const deflatedSharpeToolShape = z
 
 export const overfittingInput = z
   .object({
-    matrix: z.array(z.array(z.number())).min(2).max(20000),
-    n_splits: z.number().int().positive().optional(),
-    max_combinations: z.number().int().positive().max(2000).optional(),
-    seed: z.number().optional(),
+    matrix: z.array(z.array(z.number())).min(2).max(20000).describe(d.matrix),
+    n_splits: z.number().int().positive().optional().describe(d.n_splits),
+    max_combinations: z.number().int().positive().max(2000).optional().describe(d.max_combinations),
+    seed: z.number().optional().describe(d.seed),
   })
   .strict();
 
@@ -75,7 +108,7 @@ export const overfittingInput = z
 
 export const paperEvidenceInput = z
   .object({
-    record: z.record(z.string(), z.unknown()),
+    record: z.record(z.string(), z.unknown()).describe(d.record),
   })
   .strict();
 
@@ -85,10 +118,10 @@ export const paperEvidenceInput = z
 
 export const breadthInput = z
   .object({
-    sleeve_sharpe: z.number().positive(),
-    average_pairwise_correlation: z.number().min(-1).max(1),
-    sleeves: z.number().int().min(1).max(500).optional(),
-    target: z.number().positive().optional(),
+    sleeve_sharpe: z.number().positive().describe(d.sleeve_sharpe),
+    average_pairwise_correlation: z.number().min(-1).max(1).describe(d.average_pairwise_correlation),
+    sleeves: z.number().int().min(1).max(500).optional().describe(d.sleeves),
+    target: z.number().positive().optional().describe(d.target),
   })
   .strict();
 
@@ -98,13 +131,13 @@ export const breadthInput = z
 
 export const trackRecordInput = z
   .object({
-    observed_sharpe_annualized: z.number().min(-10).max(10),
-    periods_per_year: z.number().min(1).max(10000),
-    skew: z.number().min(-20).max(20),
-    non_excess_kurtosis: z.number().min(1).max(100),
-    benchmark_sharpe_annualized: z.number().min(-10).max(10).optional(),
-    confidence: z.number().gt(0).lt(1).optional(),
-    observations: z.number().int().min(2).max(1000000).optional(),
+    observed_sharpe_annualized: z.number().min(-10).max(10).describe(d.observed_sharpe_annualized),
+    periods_per_year: z.number().min(1).max(10000).describe(d.periods_per_year),
+    skew: z.number().min(-20).max(20).describe(d.skew),
+    non_excess_kurtosis: z.number().min(1).max(100).describe(d.non_excess_kurtosis),
+    benchmark_sharpe_annualized: z.number().min(-10).max(10).optional().describe(d.benchmark_sharpe_annualized),
+    confidence: z.number().gt(0).lt(1).optional().describe(d.confidence),
+    observations: z.number().int().min(2).max(1000000).optional().describe(d.record_observations),
   })
   .strict();
 
@@ -114,13 +147,13 @@ export const trackRecordInput = z
 
 export const getKeyInput = z
   .object({
-    label: z.string().max(64).optional(),
+    label: z.string().max(64).optional().describe(d.label),
   })
   .strict();
 
 export const getReceiptInput = z
   .object({
-    id: z.string().regex(/^[0-9a-f]{24}$/, "A receipt id is 24 hex characters"),
+    id: z.string().regex(/^[0-9a-f]{24}$/, "A receipt id is 24 hex characters").describe(d.receipt_id),
   })
   .strict();
 
@@ -131,19 +164,19 @@ export const emptyInput = z.object({}).strict();
 // enforces the exactly-one-of rule with companyHistoryInput.
 export const companyHistoryToolShape = z
   .object({
-    cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits").optional(),
-    ticker: z.string().regex(/^[A-Za-z0-9.\-]{1,10}$/, "A ticker is 1 to 10 letters, digits, dots or hyphens").optional(),
-    concept: z.string().regex(/^[A-Za-z][A-Za-z0-9]{0,99}$/, "A concept is a us-gaap tag such as Revenues or Assets").optional(),
-    limit: z.number().int().min(1).max(200).optional(),
+    cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits").optional().describe(d.cik),
+    ticker: z.string().regex(/^[A-Za-z0-9.\-]{1,10}$/, "A ticker is 1 to 10 letters, digits, dots or hyphens").optional().describe(d.ticker),
+    concept: z.string().regex(/^[A-Za-z][A-Za-z0-9]{0,99}$/, "A concept is a us-gaap tag such as Revenues or Assets").optional().describe(d.concept),
+    limit: z.number().int().min(1).max(200).optional().describe(d.limit),
   })
   .strict();
 
 export const companyHistoryInput = z
   .object({
-    cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits").optional(),
-    ticker: z.string().regex(/^[A-Za-z0-9.\-]{1,10}$/, "A ticker is 1 to 10 letters, digits, dots or hyphens").optional(),
-    concept: z.string().regex(/^[A-Za-z][A-Za-z0-9]{0,99}$/, "A concept is a us-gaap tag such as Revenues or Assets").optional(),
-    limit: z.number().int().min(1).max(200).optional(),
+    cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits").optional().describe(d.cik),
+    ticker: z.string().regex(/^[A-Za-z0-9.\-]{1,10}$/, "A ticker is 1 to 10 letters, digits, dots or hyphens").optional().describe(d.ticker),
+    concept: z.string().regex(/^[A-Za-z][A-Za-z0-9]{0,99}$/, "A concept is a us-gaap tag such as Revenues or Assets").optional().describe(d.concept),
+    limit: z.number().int().min(1).max(200).optional().describe(d.limit),
   })
   .strict()
   .refine((v) => (v.cik === undefined) !== (v.ticker === undefined), "Send exactly one of cik or ticker");
@@ -177,12 +210,12 @@ export const REGISTRY_DESCRIPTION_MAX = 100;
 // calls the tool, not only inside the returned envelope.
 export const TOOL_DESCRIPTIONS = Object.freeze({
   get_key: `Issue a free canlicapital.com validation key (POST /api/v1/keys) and hold it in memory for this session. Only needed before a validation when neither CANLI_KEY nor local mode is set; the read tools (get_receipt, service_status, company_financial_history) never need a key. ${LIMITS_SENTENCES.quotas}`,
-  validate_deflated_sharpe: `Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials and dispersion behind it, never both. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_overfitting: `Probability of backtest overfitting by CSCV over the returns of every variant tried. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_paper_evidence: `Conformance of a performance record against the canli.paper-evidence.v0 standard. ${LIMITS_SENTENCES.scope}`,
-  validate_track_record: `Minimum track record length for an observed Sharpe to clear a benchmark Sharpe (default 0) at a confidence level (default 0.95), and, when observations is sent, the probabilistic Sharpe of that record against the benchmark. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_breadth: `Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,
-  get_receipt: `Fetch a stored verdict by its content-hash id (GET /api/v1/receipts/{id}), immutable and cacheable. ${LIMITS_SENTENCES.unsigned}`,
-  service_status: `Service, store and quota constants for the validation API (GET /api/v1/validate/status); no key required. ${LIMITS_SENTENCES.scope}`,
+  validate_deflated_sharpe: `Whether a Sharpe survives the number of variants tried: probabilistic and deflated Sharpe (0 to 1) and the Sharpe luck alone would reach. Send the seven statistics or a return series, not both. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_overfitting: `Probability (0 to 1) that picking the best of several backtested variants was overfitting, by CSCV over every variant's returns. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_paper_evidence: `Whether a paper or simulated performance record meets canli.paper-evidence.v0, with each failure's JSON pointer. ${LIMITS_SENTENCES.scope}`,
+  validate_track_record: `Minimum track record length, in observations and years, for an observed Sharpe to beat a benchmark at a confidence level, and with observations, the record's probabilistic Sharpe so far. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_breadth: `Highest book Sharpe reachable by adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,
+  get_receipt: `Fetch a stored verdict by receipt id (GET /api/v1/receipts/{id}) to re-check an earlier result. No key. ${LIMITS_SENTENCES.unsigned}`,
+  service_status: `Whether the validation API is up, with quota constants (GET /api/v1/validate/status); check after a timeout before resubmitting. No key. ${LIMITS_SENTENCES.scope}`,
   company_financial_history: `SEC-reported financial history for one company from the canlicapital.com company reference (GET /company-data/{cik}.json), by cik or by ticker (resolved through GET /api/v1/company-tickers.json, companies in the release only). Without a concept it lists the available histories; with one it returns observations, newest first, each with its filing accession, form, filed date and unit, plus the SHA-256 of the original SEC response. No key required. ${COMPANY_REFERENCE_BOUNDARY}`,
 });

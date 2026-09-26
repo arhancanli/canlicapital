@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Every input parameter carries a description (units, defaults, allowed values, which fields
+  exclude each other), and each tool description says what it returns. Measured with the agent
+  benchmark before and after on gpt-5.4-mini and Claude Haiku 4.5: no loss of accuracy, for more
+  tokens per task because the tool list is longer.
+
 ## 0.5.0 (2026-09-25)
 
 - Full-precision normal CDF behind every probability (PSR, deflated Sharpe, minimum track record
