@@ -1061,6 +1061,116 @@
         ]
       }
     },
+    "/api/v1/validate/backtest-length": {
+      "post": {
+        "summary": "Minimum backtest length for the best of N independent trials not to reach a target Sharpe by luck, and the trials a backtest's years allow.",
+        "operationId": "validate_backtest_length",
+        "responses": {
+          "200": {
+            "description": "The envelope with data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, unknown or revoked key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body over 1048576 bytes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input the validator refuses, with the reason",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "effective_independent_trials": {
+                    "type": "number"
+                  },
+                  "backtest_years": {
+                    "type": "number"
+                  },
+                  "target_sharpe_annualized": {
+                    "type": "number"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "effective_independent_trials": 45,
+                "backtest_years": 5,
+                "target_sharpe_annualized": 1
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerKey": []
+          }
+        ]
+      }
+    },
     "/api/v1/validate/status": {
       "get": {
         "summary": "Service and store status with the quota constants in force.",

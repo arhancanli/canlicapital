@@ -7,7 +7,7 @@
 <meta name="description" content="A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits." />
 <link rel="canonical" href="https://canlicapital.com/developers" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="validation_api_limits.json validation_api_manifest.json" />
+<meta name="canli:sources" content="validation_api_limits.json validation_api_manifest.json mcp_agent_benchmark.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
@@ -348,6 +348,17 @@ console.log(await response.json());</code></pre></div>
     }
   }
 }</code></pre></div>
+    <h3 id="mcp-benchmark">How well agents use it</h3>
+    <p class="dev-note">Each model was given these tools and 24 fixed questions (deflated Sharpe, track record length, breadth, overfitting, company financials by ticker, and what a result does not establish), each asked 3 times. An answer counts when it matches ground truth computed from the same checked code.</p>
+    <table class="dev-table" tabindex="0" aria-label="MCP agent benchmark">
+      <thead><tr><th>Model</th><th>Correct answers</th><th>Right tool first</th><th>Runs</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Haiku 4.5</td><td>97.2%</td><td>98.6%</td><td>72</td></tr>
+        <tr><td>Claude Sonnet 5</td><td>100%</td><td>100%</td><td>72</td></tr>
+        <tr><td>GPT-5.4 mini</td><td>98.6%</td><td>100%</td><td>72</td></tr>
+      </tbody>
+    </table>
+    <p class="dev-note">Tasks written by us, run against the server in private local mode. The per-run records also hold tokens and time, which depend on each provider&#39;s tokenizer and serving, so they compare runs of one model only. <a href="/glassbox/mcp_agent_benchmark.json">The artifact</a>, <a href="https://github.com/arhancanli/canlicapital/blob/main/mcp/bench/agent/README.md" rel="noreferrer">the method and every miss</a>.</p>
     <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp" rel="noreferrer">Inspect the MCP implementation and contribute an integration</a>. If the tools help your research, star the repository to help others discover it.</p>
     <p class="dev-note"><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">canli-validation-mcp on npm</a>, with the full tool list and what each one does not establish.</p>
   </section>
@@ -381,6 +392,7 @@ console.log(await response.json());</code></pre></div>
         <tr><td><code>POST /api/v1/validate/paper-evidence</code></td><td>Conformance of a performance record against the canli.paper-evidence.v0 standard.</td></tr>
         <tr><td><code>POST /api/v1/validate/breadth</code></td><td>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs. (book: the set of sleeves run together)</td></tr>
         <tr><td><code>POST /api/v1/validate/track-record</code></td><td>Minimum track record length for a Sharpe to clear a benchmark at a confidence level, and the probabilistic Sharpe of a record of a given length.</td></tr>
+        <tr><td><code>POST /api/v1/validate/backtest-length</code></td><td>Minimum backtest length for the best of N independent trials not to reach a target Sharpe by luck, and the trials a backtest&#39;s years allow.</td></tr>
         <tr><td><code>GET /api/v1/validate/status</code></td><td>Service and store status with the quota constants in force.</td></tr>
         <tr><td><code>GET /api/v1/receipts/{id}</code></td><td>A stored verdict by content-hash id. Immutable.</td></tr>
         <tr><td><code>GET /api/v1/receipts/{id}/badge.svg</code></td><td>An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark.</td></tr>
@@ -541,6 +553,28 @@ with urllib.request.urlopen(req) as response:
     print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
       <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code" tabindex="0" aria-label="JavaScript code example"><code>const body = {&quot;observed_sharpe_annualized&quot;:2,&quot;benchmark_sharpe_annualized&quot;:1,&quot;periods_per_year&quot;:252,&quot;skew&quot;:0,&quot;non_excess_kurtosis&quot;:3,&quot;observations&quot;:504};
 const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/track-record&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+    </div></article>
+    <article class="dev-endpoint" id="api-backtest-length"><h4><code>POST /api/v1/validate/backtest-length</code></h4><p>Minimum backtest length for the best of N independent trials not to reach a target Sharpe by luck, and the trials a backtest&#39;s years allow.</p><div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code" tabindex="0" aria-label="curl code example"><code>curl -X POST https://canlicapital.com/api/v1/validate/backtest-length \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;effective_independent_trials&quot;:45,&quot;backtest_years&quot;:5,&quot;target_sharpe_annualized&quot;:1}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code" tabindex="0" aria-label="Python code example"><code>import json
+import urllib.request
+
+body = {&quot;effective_independent_trials&quot;:45,&quot;backtest_years&quot;:5,&quot;target_sharpe_annualized&quot;:1}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/validate/backtest-length&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code" tabindex="0" aria-label="JavaScript code example"><code>const body = {&quot;effective_independent_trials&quot;:45,&quot;backtest_years&quot;:5,&quot;target_sharpe_annualized&quot;:1};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/backtest-length&quot;, {
   method: &quot;POST&quot;,
   headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
   body: JSON.stringify(body),

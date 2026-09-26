@@ -10,6 +10,7 @@ import { compute as pbo } from "./validate/overfitting.js";
 import { compute as evidence } from "./validate/paper-evidence.js";
 import { compute as breadth } from "./validate/breadth.js";
 import { compute as trackRecord } from "./validate/track-record.js";
+import { compute as backtestLength } from "./validate/backtest-length.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const VECTORS = JSON.parse(readFileSync(resolve(ROOT, "standards/validation-api/vectors.json"), "utf8"));
@@ -18,7 +19,7 @@ test("the manifest names every route file and every route has a summary and an e
   const paths = MANIFEST.map((m) => `${m.method} ${m.path}`).sort();
   assert.deepEqual(paths, [
     "GET /api/v1/receipts/{id}", "GET /api/v1/receipts/{id}/badge.svg", "GET /api/v1/validate/status",
-    "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe",
+    "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/backtest-length", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe",
     "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence", "POST /api/v1/validate/track-record",
   ]);
   for (const m of MANIFEST) { assert.ok(m.summary.length > 20, m.path); if (m.method === "POST") assert.ok(m.requestExample, m.path); }
@@ -128,4 +129,16 @@ test("track-record reproduces the paper's daily example and judges a record's le
   assert.match(out.plain_reading, /not a forecast/);
   assert.throws(() => trackRecord({ ...base, observed_sharpe_annualized: 1 }), /must exceed the benchmark/);
   assert.throws(() => trackRecord({ periods_per_year: 252 }), /Missing required fields/);
+});
+
+test("backtest-length reproduces the paper's statements and refuses a request with neither input", () => {
+  const out = backtestLength({ effective_independent_trials: 45, backtest_years: 5, target_sharpe_annualized: 1 });
+  assert.equal(out.result.maximum_independent_trials, 45);
+  assert.equal(out.result.minimum_backtest_years.toFixed(0), "5");
+  assert.equal(out.result.long_enough, true);
+  assert.ok(out.result.minimum_backtest_years < out.result.upper_bound_years);
+  assert.equal(backtestLength({ backtest_years: 2 }).result.maximum_independent_trials, 7);
+  assert.match(out.plain_reading, /necessary, not sufficient/);
+  assert.throws(() => backtestLength({}), /Send effective_independent_trials, backtest_years, or both/);
+  assert.throws(() => backtestLength({ effective_independent_trials: 1 }), RangeError);
 });

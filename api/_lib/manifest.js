@@ -81,6 +81,14 @@ export const MANIFEST = Object.freeze([
       confidence: { type: "number", description: "Defaults to 0.95. Strictly between 0 and 1." },
     },
   },
+  {
+    path: "/api/v1/validate/backtest-length", method: "POST", keyed: true,
+    summary: "Minimum backtest length for the best of N independent trials not to reach a target Sharpe by luck, and the trials a backtest's years allow.",
+    // The paper's own statement (Bailey, Borwein, López de Prado and Zhu 2014, p. 11): with only 5
+    // years of data, no more than 45 independent configurations should be tried at a target of 1.
+    requestExample: { effective_independent_trials: 45, backtest_years: 5, target_sharpe_annualized: 1 },
+    requestOptional: ["effective_independent_trials", "backtest_years", "target_sharpe_annualized"],
+  },
   { path: "/api/v1/validate/status", method: "GET", keyed: false, summary: "Service and store status with the quota constants in force." },
   { path: "/api/v1/receipts/{id}", method: "GET", keyed: false, summary: "A stored verdict by content-hash id. Immutable." },
   {
