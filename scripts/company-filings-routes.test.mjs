@@ -198,3 +198,52 @@ test('a filing page links its company\'s previous and next filings by filing dat
   const first = await get(handler, filingPath(document.cik, byDate[0].accession));
   assert.ok(!first.body.includes('rel="prev"'), 'the earliest filing has no previous link');
 });
+
+const internalFilingHrefs = (html, cik) => [...html.matchAll(new RegExp(`href="/companies/${cik}/filings/(\\d{10}-\\d{2}-\\d{6})"`, 'g'))].map(m => m[1]);
+
+test('a history page cites this site\'s filing page for each accession that has one, with sec.gov as the second link', async t => {
+  const { records, documents, options } = fixture(t);
+  const record = records[0], document = documents.find(d => d.cik === records[0].cik);
+  const pages = new Set(document.filings.map(f => f.accession));
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
+  const concept = record.concepts.find(c => c.observations.some(o => pages.has(o.accn)));
+  const page = await get(handler, `/companies/${record.cik}/${concept.tag}`);
+  assert.equal(page.statusCode, 200);
+  const cited = new Set(internalFilingHrefs(page.body, record.cik));
+  const expected = new Set(concept.observations.map(o => o.accn).filter(a => pages.has(a)));
+  assert.ok(expected.size >= 1);
+  for (const a of expected) assert.ok(cited.has(a), `accession ${a} cites the internal filing page`);
+  for (const a of cited) assert.ok(pages.has(a), `an internal filing link points at an existing filing page: ${a}`);
+  assert.ok(page.body.includes('rel="noreferrer">SEC</a>'), 'the sec.gov source stays as a second link');
+  const missing = concept.observations.find(o => !pages.has(o.accn));
+  if (missing) assert.ok(!cited.has(missing.accn), 'an accession without a filing page cites sec.gov only');
+});
+
+test('an overview lists its five latest filings, newest first, as internal links', async t => {
+  const { records, documents, options } = fixture(t);
+  const document = documents.find(d => d.cik === records[0].cik);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
+  const page = await get(handler, `/companies/${records[0].cik}`);
+  const list = /<ul class="company-reference__latest-filings">([\s\S]*?)<\/ul>/.exec(page.body)?.[1] ?? '';
+  const listed = internalFilingHrefs(list, records[0].cik);
+  const newest = [...document.filings].sort((a, b) => (a.filed === b.filed ? b.accession.localeCompare(a.accession) : b.filed.localeCompare(a.filed))).slice(0, 5).map(f => f.accession);
+  assert.deepEqual(listed, newest);
+});
+
+test('in production, filing pages that are not admitted are neither cited nor listed', async t => {
+  const { records, options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, indexable: () => true, filingsIndexable: () => false }) });
+  const record = records[0];
+  for (const path of [`/companies/${record.cik}`, `/companies/${record.cik}/${record.concepts[0].tag}`]) {
+    const page = await get(handler, path);
+    assert.deepEqual(internalFilingHrefs(page.body, record.cik), [], path);
+  }
+});
+
+test('with filings storage down a history page still serves, citing sec.gov only', async t => {
+  const { records, options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, readFilingsObject: async () => { throw new Error('down'); } }) });
+  const page = await get(handler, `/companies/${records[0].cik}/${records[0].concepts[0].tag}`);
+  assert.equal(page.statusCode, 200);
+  assert.deepEqual(internalFilingHrefs(page.body, records[0].cik), []);
+});
