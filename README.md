@@ -1,20 +1,58 @@
-# canlicapital.com
+# Canli Capital
 
-The public site for **Canli Capital**, and the surface where **ALPHAC** — a four-sleeve
-cross-asset quant book — publishes its record while it is still small enough to be embarrassing.
+**Open quant research where every published number comes with the file that produced it, including
+the strategies that failed.** Live at **[canlicapital.com](https://canlicapital.com)**.
+
+[![npm](https://img.shields.io/npm/v/canli-validation-mcp?label=canli-validation-mcp)](https://www.npmjs.com/package/canli-validation-mcp)
+[![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arhancanli/canlicapital/badge)](https://scorecard.dev/viewer/?uri=github.com/arhancanli/canlicapital)
+[![Code: MIT](https://img.shields.io/badge/code-MIT-blue)](LICENSE)
+[![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-green)](LICENSE-DATA.md)
+
+![The canlicapital.com homepage](docs/readme/home.png)
+
+## Try it in a minute
+
+```bash
+# Ask your AI assistant whether a backtest is real (Claude Code shown; Cursor, VS Code and
+# Claude Desktop setups are in mcp/README.md)
+claude mcp add canli -- npx -y canli-validation-mcp
+
+# Or call the free API: get a key, then deflate a Sharpe ratio for the number of trials you ran
+curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '{"label":"readme"}'
+
+# Or check the published record yourself (Python 3)
+pip install cryptography
+curl -sO https://canlicapital.com/glassbox/reproduce.py
+for f in capacity_commitment founder_commitment; do curl -sO https://canlicapital.com/glassbox/$f.json; done
+python3 reproduce.py --dir .
+```
+
+## What is here
+
+- **Backtest validators** (deflated Sharpe, CSCV overfitting probability, minimum track record,
+  haircut Sharpe, luck-equivalent trials) as an [MCP server](mcp/README.md) and a
+  [free API](https://canlicapital.com/developers), each result with a signed receipt anyone can
+  recompute.
+- **Company reference pages** built from SEC XBRL filings: financial histories where every value
+  links to the filing it came from, with the year-on-year change and growth rate worked out.
+
+  ![A company reference page](docs/readme/company.png)
+- **Research**, including what failed: the [kill log](https://canlicapital.com/open), the
+  [Null Zoo](https://canlicapital.com/research/null-zoo-v0) (overfitting corrections scored where
+  the truth is known) and [luck-equivalent trials](https://canlicapital.com/research/luck-equivalent-trials).
+- **Open data**: [FilingFacts](https://canlicapital.com/research/filing-facts-v0), financial
+  questions with machine-checked answers from SEC filings (CC BY 4.0).
+- **ALPHAC**, the three-strategy paper-trading book whose record is published daily; its engine is
+  **[github.com/arhancanli/alphac](https://github.com/arhancanli/alphac)**.
+
+Help check it: [open review tasks](https://github.com/arhancanli/canlicapital/issues?q=is%3Aissue+is%3Aopen+label%3A%22review+task%22)
+take 15 to 60 minutes and are credited on [/review](https://canlicapital.com/review). To build
+with it, see [CONTRIBUTING.md](CONTRIBUTING.md). If the project is useful to you, a star helps
+other people find it.
 
 **Created and maintained by [Arhan Canli](https://github.com/arhancanli) for Canli Capital.**
 Machine-readable software citation metadata is provided in [`CITATION.cff`](CITATION.cff).
-
-The engine that produces every number here is open too:
-**[github.com/arhancanli/alphac](https://github.com/arhancanli/alphac)**.
-
-Live: **[canlicapital.com](https://canlicapital.com)**
-
-Build with it: [get an API key](https://canlicapital.com/developers#quickstart),
-[connect the MCP server](https://canlicapital.com/developers#ai-assistant), or
-[contribute a reproducible improvement](CONTRIBUTING.md). If the project is useful,
-star the repository to help other developers find it.
 
 Current work and verified limitations: [persistent goal status](docs/goal/STATUS.md).
 
@@ -45,7 +83,7 @@ shipping, but cannot place, cancel, or delay an order.
 | surface | what it is |
 |---|---|
 | `index.html` | the landing: thesis, systems teaser, live record |
-| `systems.html` | how the four sleeves work |
+| `systems.html` | how the strategies work |
 | `research.html` | the research programme, literature reviews, feasibility protocols |
 | `performance.html` | the methodology and the honest numbers |
 | `progress.html` | the build log |
