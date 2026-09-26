@@ -30,14 +30,17 @@ export function createCompanyHtmlHandler({ catalog, assets, indexable = false, f
       if (summaryRead.status === 'rejected') throw summaryRead.reason;
       const summary = summaryRead.value;
       const read = now();
-      const pages = renderCompanyPages({ ...record, source_snapshot: `/company-data/sources/${record.source_sha256}.json.gz` }, { target: concept ?? 'overview', filings: summary });
+      const admitted = typeof indexable === 'function' ? indexable(cik, concept) === true : indexable === true;
+      // In production a page links only histories the admission lets Google index; previews and
+      // local runs (no predicate) link every history the record holds, as before.
+      const linkConcept = typeof indexable === 'function' ? tag => indexable(cik, tag) === true : () => true;
+      const pages = renderCompanyPages({ ...record, source_snapshot: `/company-data/sources/${record.source_sha256}.json.gz` }, { target: concept ?? 'overview', filings: summary, linkConcept, robots: admitted ? 'index, follow' : 'noindex' });
       if (!pages.length) return fail(404, 'Financial history not found');
       const html = applyCompanyAssets(pages[0].html, assets);
       // Read by company-release.js into Server-Timing: storage reads and rendering, separately.
       res.canliTiming = { storageMs: read - started, renderMs: now() - read };
       if (Buffer.byteLength(html) > 256 * 1024) return fail(503, 'Company reference temporarily unavailable');
       const etag = `"${catalogHash(html)}"`;
-      const admitted = typeof indexable === 'function' ? indexable(cik, concept) === true : indexable === true;
       res.setHeader('ETag', etag); res.setHeader('Cache-Control', admitted ? 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' : 'no-store');
       if (!admitted) res.setHeader('X-Robots-Tag', 'noindex');
       if (String(req.headers?.['if-none-match'] ?? '').split(',').map(value => value.trim().replace(/^W\//, '')).some(value => value === etag || value === '*')) { res.statusCode = 304; return res.end(); }
