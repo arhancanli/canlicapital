@@ -5,9 +5,9 @@
 [![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
 
 An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
-gives a coding agent nine tools: issue a free key, run the five validators (deflated Sharpe,
+gives a coding agent ten tools: issue a free key, run the five validators (deflated Sharpe,
 CSCV overfitting, paper-evidence conformance, breadth ceiling, minimum track record length),
-fetch a stored receipt, read service status, and read a company's reported financial history
+audit one backtest with three of them in a single call, fetch a stored receipt, read service status, and read a company's reported financial history
 from SEC filings. Every tool returns the full API envelope as its result text, success or error,
 so the agent cannot see a number without the sentences beside it that say what the number does
 not establish.
@@ -46,6 +46,7 @@ repository for the full design.
 | `validate_paper_evidence` | `POST /api/v1/validate/paper-evidence` | yes |
 | `validate_breadth` | `POST /api/v1/validate/breadth` | yes |
 | `validate_track_record` | `POST /api/v1/validate/track-record` | yes |
+| `audit_backtest` | the deflated Sharpe, track record and, with `variants`, overfitting routes, one validation each | yes |
 | `get_receipt` | `GET /api/v1/receipts/{id}` | no |
 | `service_status` | `GET /api/v1/validate/status` | no |
 | `company_financial_history` | `GET /company-data/{cik}.json` (a ticker resolves through `GET /api/v1/company-tickers.json`) | no |
@@ -69,6 +70,24 @@ keeps its filing accession, form, filed date and unit, and the result carries th
 original SEC response and the record's own boundary sentence: these are accounting values as
 reported to the SEC, not market prices, returns or a recommendation. Companies and concepts
 outside the current release return an error with the available concepts listed.
+
+## Auditing a backtest in one call
+
+`audit_backtest` takes one strategy's return series, the number of variants tried and their Sharpe
+dispersion, and optionally every variant's returns. It runs `validate_deflated_sharpe` on the
+series, then `validate_track_record` on the Sharpe, skew and kurtosis that check derived, then,
+with `variants`, `validate_overfitting`. Each check is exactly what its own tool returns, with its
+own receipt; the boundary sentences they share are stated once. A check that refuses (a Sharpe
+that cannot beat the benchmark has no minimum track record) is reported as that check's error.
+The audit adds no grade of its own. Through the API it uses one validation per check.
+
+When the server runs on your machine, `returns_file` and `variants_file` take the path of the
+backtest's output instead of the numbers: a CSV (comma, semicolon or tab separated, with or without
+a header; date and label columns are ignored, an unnamed or counting index column is skipped and
+reported) or a JSON array. `returns_column` picks the column when there are several. Only the
+numbers are read; the hosted endpoint refuses file paths. An agent copying a long series into a
+call can drop values, and the copy costs tokens; in our agent benchmark, reading the file instead
+took three audit questions from 4 of 9 to 8 of 9 answered correctly on gpt-5.4-mini.
 
 ## Prompts, resources and structured results
 

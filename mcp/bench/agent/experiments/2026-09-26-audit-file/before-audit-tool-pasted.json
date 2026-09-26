@@ -1,0 +1,212 @@
+{
+  "schema": "canli.mcp-agent-benchmark.v1",
+  "model": "gpt-5.4-mini",
+  "server": {
+    "name": "canli-validation-mcp",
+    "version": "0.5.0",
+    "mode": "local (CANLI_LOCAL=1); company tool reads canlicapital.com"
+  },
+  "generated_at": "2026-09-26T04:08:51Z",
+  "tasks": [
+    "aud-1",
+    "aud-2",
+    "aud-3"
+  ],
+  "repeats": 3,
+  "summary": {
+    "runs": 9,
+    "answer_accuracy_pct": 0,
+    "right_tool_pct": 0,
+    "first_tool_right_pct": 0,
+    "errors": 0,
+    "median_total_tokens": 11180,
+    "mean_total_tokens": 10612,
+    "median_ms": 2434,
+    "total_tokens": 95511
+  },
+  "runs": [
+    {
+      "task": "aud-1",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "validate_track_record",
+        "validate_track_record"
+      ],
+      "right_tool": false,
+      "first_tool_right": false,
+      "expected": 1.5358170932493782,
+      "answer": 0,
+      "answered": true,
+      "correct": false,
+      "turns": 3,
+      "prompt_tokens": 12871,
+      "completion_tokens": 164,
+      "cached_tokens": 7936,
+      "ms": 6005,
+      "error": null,
+      "repeat": 0
+    },
+    {
+      "task": "aud-2",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "validate_track_record"
+      ],
+      "right_tool": false,
+      "first_tool_right": false,
+      "expected": 0.14519214917212134,
+      "answer": 0,
+      "answered": true,
+      "correct": false,
+      "turns": 2,
+      "prompt_tokens": 11071,
+      "completion_tokens": 108,
+      "cached_tokens": 5248,
+      "ms": 2434,
+      "error": null,
+      "repeat": 0
+    },
+    {
+      "task": "aud-3",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "validate_track_record"
+      ],
+      "right_tool": false,
+      "first_tool_right": false,
+      "expected": 0.5756915284678064,
+      "answer": 0,
+      "answered": true,
+      "correct": false,
+      "turns": 2,
+      "prompt_tokens": 7505,
+      "completion_tokens": 112,
+      "cached_tokens": 0,
+      "ms": 2509,
+      "error": null,
+      "repeat": 0
+    },
+    {
+      "task": "aud-1",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "validate_track_record",
+        "validate_track_record"
+      ],
+      "right_tool": false,
+      "first_tool_right": false,
+      "expected": 1.5358170932493782,
+      "answer": 0,
+      "answered": true,
+      "correct": false,
+      "turns": 3,
+      "prompt_tokens": 12877,
+      "completion_tokens": 178,
+      "cached_tokens": 11648,
+      "ms": 5266,
+      "error": null,
+      "repeat": 1
+    },
+    {
+      "task": "aud-2",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "validate_track_record"
+      ],
+      "right_tool": false,
+      "first_tool_right": false,
+      "expected": 0.14519214917212134,
+      "answer": 0,
+      "answered": true,
+      "correct": false,
+      "turns": 2,
+      "prompt_tokens": 11071,
+      "completion_tokens": 109,
+      "cached_tokens": 10496,
+      "ms": 2403,
+      "error": null,
+      "repeat": 1
+    },
+    {
+      "task": "aud-3",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "validate_track_record"
+      ],
+      "right_tool": false,
+      "first_tool_right": false,
+      "expected": 0.5756915284678064,
+      "answer": 0,
+      "answered": true,
+      "correct": false,
+      "turns": 2,
+      "prompt_tokens": 7500,
+      "completion_tokens": 104,
+      "cached_tokens": 6400,
+      "ms": 2291,
+      "error": null,
+      "repeat": 1
+    },
+    {
+      "task": "aud-1",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "validate_track_record",
+        "validate_track_record"
+      ],
+      "right_tool": false,
+      "first_tool_right": false,
+      "expected": 1.5358170932493782,
+      "answer": 0,
+      "answered": true,
+      "correct": false,
+      "turns": 3,
+      "prompt_tokens": 12871,
+      "completion_tokens": 176,
+      "cached_tokens": 11648,
+      "ms": 3704,
+      "error": null,
+      "repeat": 2
+    },
+    {
+      "task": "aud-2",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "validate_track_record"
+      ],
+      "right_tool": false,
+      "first_tool_right": false,
+      "expected": 0.14519214917212134,
+      "answer": 0,
+      "answered": true,
+      "correct": false,
+      "turns": 2,
+      "prompt_tokens": 11071,
+      "completion_tokens": 109,
+      "cached_tokens": 10496,
+      "ms": 2216,
+      "error": null,
+      "repeat": 2
+    },
+    {
+      "task": "aud-3",
+      "expected_tool": "audit_backtest",
+      "tools_called": [
+        "validate_track_record"
+      ],
+      "right_tool": false,
+      "first_tool_right": false,
+      "expected": 0.5756915284678064,
+      "answer": 0,
+      "answered": true,
+      "correct": false,
+      "turns": 2,
+      "prompt_tokens": 7505,
+      "completion_tokens": 109,
+      "cached_tokens": 5888,
+      "ms": 2400,
+      "error": null,
+      "repeat": 2
+    }
+  ]
+}
