@@ -1,0 +1,83 @@
+# Publish canli-research-mcp from CI, so every release is built from this repository and npm
+# shows a provenance attestation for it. The same shape as mcp-publish.yml.
+#
+# Trigger: push a tag research-mcp-v<version>, where <version> equals mcp-research/package.json
+# "version". No npm token is stored: npm trusted publishing exchanges this job's GitHub OIDC token,
+# which requires a one-time setting on npmjs.com (package canli-research-mcp, Settings, Trusted
+# Publisher, GitHub Actions: owner arhancanli, repository canlicapital, workflow
+# mcp-research-publish.yml, environment mcp-research-release). The MCP Registry entry is published
+# with the same OIDC token (mcp-publisher login github-oidc).
+#
+# 0.1.0 was published to npm by hand to create the package; its tag publishes only the registry
+# entry, because the npm step skips a version npm already serves.
+name: Publish research MCP package
+
+on:
+  push:
+    tags: ["research-mcp-v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: npm (with provenance) and MCP Registry
+    runs-on: ubuntu-latest
+    environment: mcp-research-release
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          # npm trusted publishing needs npm 11.5.1 or later; Node 24 ships npm 11.
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: mcp-research/package-lock.json
+      - name: The tag names the version being published
+        run: |
+          tag="${GITHUB_REF_NAME#research-mcp-v}"
+          version="$(node -p "require('./mcp-research/package.json').version")"
+          registry="$(node -p "require('./mcp-research/server.json').version")"
+          package="$(node -p "require('./mcp-research/server.json').packages[0].version")"
+          test "$tag" = "$version" || { echo "tag $tag != package.json $version"; exit 1; }
+          test "$tag" = "$registry" || { echo "tag $tag != server.json $registry"; exit 1; }
+          test "$tag" = "$package" || { echo "tag $tag != server.json package $package"; exit 1; }
+      - run: npm ci --prefix mcp-research
+      - run: npm audit --prefix mcp-research --audit-level=high
+      - run: npm test --prefix mcp-research
+      - name: Publish to npm with provenance
+        working-directory: mcp-research
+        # Idempotent, so a run that failed at the registry step can be re-run.
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if npm view "canli-research-mcp@$version" version >/dev/null 2>&1; then
+            echo "canli-research-mcp@$version is already on npm; not publishing again"
+          else
+            npm publish --provenance --access public
+          fi
+      - name: Wait until npm serves the new version
+        working-directory: mcp-research
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          for attempt in $(seq 1 30); do
+            if npm view "canli-research-mcp@$version" version >/dev/null 2>&1; then
+              echo "npm serves $version (attempt $attempt)"; exit 0
+            fi
+            sleep 10
+          done
+          echo "npm did not serve $version within 5 minutes" >&2; exit 1
+      - name: Publish to the MCP Registry
+        working-directory: mcp-research
+        env:
+          # Pinned release and checksum (registry_1.8.1_checksums.txt); never "latest" in a publish job.
+          PUBLISHER_URL: https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz
+          PUBLISHER_SHA256: a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc
+        run: |
+          curl -fsSL -o mcp-publisher.tar.gz "$PUBLISHER_URL"
+          echo "$PUBLISHER_SHA256  mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf mcp-publisher.tar.gz mcp-publisher
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

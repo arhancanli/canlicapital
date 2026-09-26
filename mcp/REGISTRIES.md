@@ -49,11 +49,17 @@ results, ticker lookup, private local mode, full-precision normal CDF) published
 signed tag `mcp-v0.5.0` ran `mcp-publish.yml` (run 36171586114), to npm with a provenance attestation and
 then to the official MCP Registry, where 0.5.0 is listed as latest.
 
-Next release, not yet published: `canli-validation-mcp@0.6.0` (audit_backtest with file input, minimum
-backtest length, haircut Sharpe, luck-equivalent trials, signed receipts and verify_receipt, compact
-results). It publishes from `mcp-publish.yml` on the tag `mcp-v0.6.0`. Until that run succeeds and the
-listings are checked, 0.5.0 stays the latest published version. The standalone repository's release
-workflow builds, signs and attaches the Claude Desktop bundle when its `v0.6.0` release is published.
+Release checkpoint, September 26, 2026: `canli-validation-mcp@0.6.0` (audit_backtest with file
+input, minimum backtest length, haircut Sharpe, luck-equivalent trials, signed receipts and
+verify_receipt, compact results) published entirely from CI: the signed tag `mcp-v0.6.0` ran
+`mcp-publish.yml` (run 36234498851), to npm with a provenance attestation and then to the official MCP
+Registry, where 0.6.0 is listed as latest. The standalone repository's `v0.6.0` release carries the
+signed Claude Desktop bundle.
+
+`canli-research-mcp` (the `mcp-research/` directory) publishes from `mcp-research-publish.yml` on a tag
+`research-mcp-v<version>`, the same way. Its 0.1.0 was published to npm by hand on September 26, 2026,
+to create the package; npm trusted publishing for later versions needs the package's Trusted Publisher
+setting on npmjs.com (workflow `mcp-research-publish.yml`, environment `mcp-research-release`).
 
 ## Official registry (registry.modelcontextprotocol.io)
 
