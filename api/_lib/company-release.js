@@ -44,7 +44,17 @@ export function createCompanyReleaseLoader(options) {
   };
 }
 
-export function createCompanyReferenceHandler({ loadRelease }) {
+// Server-Timing on every release-backed response: how long the release took to load (0 on a warm
+// instance), how long the page took, and how many catalog objects this instance read from storage
+// and served from its cache while the page was built. Counts come from the instance's shared
+// catalog, so concurrent requests on one instance can blur them; they are diagnostics, not billing.
+function timingHeader({ loadMs, pageMs, before, after }) {
+  const parts = [`release;dur=${loadMs.toFixed(1)}`, `page;dur=${pageMs.toFixed(1)}`];
+  if (before && after) parts.push(`reads;desc="${after.objectReads - before.objectReads}"`, `hits;desc="${after.cacheHits - before.cacheHits}"`);
+  return parts.join(", ");
+}
+
+export function createCompanyReferenceHandler({ loadRelease, now = () => performance.now() }) {
   return async (req, res) => {
     const fail = (status, message) => { res.statusCode = status; res.setHeader('Content-Type', 'text/plain; charset=utf-8'); res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Robots-Tag', 'noindex'); res.end(req.method === 'HEAD' ? undefined : message); };
     const path = req.query?.path;
@@ -57,7 +67,15 @@ export function createCompanyReferenceHandler({ loadRelease }) {
     if (!['GET', 'HEAD'].includes(req.method)) { res.setHeader('Allow', 'GET, HEAD'); return fail(405, 'Method not allowed'); }
     if (path === '/companies/page/1') { res.statusCode = 308; res.setHeader('Location', '/companies'); res.setHeader('Cache-Control', 'no-store'); return res.end(); }
     try {
+      const started = now();
       const release = await loadRelease();
+      const loaded = now();
+      const before = release.catalog?.stats?.();
+      const end = res.end.bind(res);
+      res.end = (...args) => {
+        if (!res.headersSent) res.setHeader('Server-Timing', timingHeader({ loadMs: loaded - started, pageMs: now() - loaded, before, after: release.catalog?.stats?.() }));
+        return end(...args);
+      };
       if (filing) return await release.filings({ method: req.method, headers: req.headers, query: { cik: filing[1], ...(filing[2] ? { accession: filing[2] } : {}) } }, res);
       if (entity) return await release.company({ method: req.method, headers: req.headers, query: { cik: entity[1], ...(entity[2] ? { concept: entity[2] } : {}) } }, res);
       if (page) return await release.directory({ method: req.method, headers: req.headers, query: { page } }, res);

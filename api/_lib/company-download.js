@@ -40,7 +40,7 @@ export function createCompanyDownloadHandler({ index, readDownload }) {
       // A verified object is fixed for its release, like an admitted company page: cache it at the edge
       // for five minutes (measured 2026-09-24: 345 ms median server time uncached from iad1 vs 82 ms for an
       // edge-cached glass-box file). Errors above stay no-store.
-      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=60');
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
       res.statusCode = 200; res.end(req.method === 'HEAD' ? undefined : bytes);
     } catch { return fail(503, 'Company source temporarily unavailable'); }
   };

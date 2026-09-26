@@ -15,7 +15,7 @@ export function createCompanyDirectoryHandler({ catalog, assets, indexable = fal
       const html = applyCompanyAssets(renderCompanyDirectory(listing).html, assets);
       if (Buffer.byteLength(html) > 256 * 1024) throw new Error('Directory exceeds HTML budget');
       const etag = `"${catalogHash(html)}"`;
-      res.setHeader('ETag', etag); res.setHeader('Cache-Control', indexable ? 'public, max-age=0, s-maxage=300' : 'no-store');
+      res.setHeader('ETag', etag); res.setHeader('Cache-Control', indexable ? 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' : 'no-store');
       if (!indexable) res.setHeader('X-Robots-Tag', 'noindex');
       if (String(req.headers?.['if-none-match'] ?? '').split(',').map(value => value.trim().replace(/^W\//, '')).some(value => value === etag || value === '*')) { res.statusCode = 304; return res.end(); }
       res.statusCode = 200; res.end(req.method === 'HEAD' ? undefined : html);

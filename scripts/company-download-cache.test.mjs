@@ -15,7 +15,7 @@ test('a verified company download is edge-cached like an admitted company page',
   const res = response();
   await handler({ method: 'GET', query: { path: descriptor.path } }, res);
   assert.equal(res.statusCode, 200);
-  assert.equal(res.headers['cache-control'], 'public, max-age=0, s-maxage=300, stale-while-revalidate=60');
+  assert.equal(res.headers['cache-control'], 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
   assert.equal(res.headers['x-robots-tag'], 'noindex');
 });
 

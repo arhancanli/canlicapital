@@ -57,7 +57,7 @@ test('filing pages become indexable only through the company-level admission pre
   const admitted = documents[0].cik;
   const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, filingsIndexable: cik => cik === admitted }) });
   const yes = await get(handler, filingPath(admitted, documents[0].filings[0].accession));
-  assert.equal(yes.statusCode, 200); assert.equal(yes.headers['X-Robots-Tag'], undefined); assert.match(yes.headers['Cache-Control'], /s-maxage=300/);
+  assert.equal(yes.statusCode, 200); assert.equal(yes.headers['X-Robots-Tag'], undefined); assert.match(yes.headers['Cache-Control'], /s-maxage=3600/);
   const no = await get(handler, filingsIndexPath(documents[1].cik));
   assert.equal(no.statusCode, 200); assert.equal(no.headers['X-Robots-Tag'], 'noindex');
   await assert.rejects(createCompanyReleaseLoader({ ...options, filingsIndexable: true })(), /admission predicate/);
