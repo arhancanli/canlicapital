@@ -343,7 +343,7 @@ function trialPage(packet, distribution, forwardRow = null) {
       : "noindex, follow, max-snippet:-1, max-image-preview:large",
     jsonLd: {
       "@context": "https://schema.org", "@type": "Dataset",
-      name: `Trial evidence packet ${key}`, description, url: `${ORIGIN}/trials/${key}`,
+      name: `Trial evidence packet ${key}`, description, url: `${ORIGIN}/trials/${key}`, license: "https://creativecommons.org/licenses/by/4.0/",
       identifier: key, ...(recorded ? { dateCreated: recorded } : {}),
       ...(packet.evidence_date ? { dateModified: packet.evidence_date } : {}),
       creator: { "@type": "Person", "@id": `${ORIGIN}/#arhan-canli`, name: AUTHOR, url: `${ORIGIN}/founder` },
