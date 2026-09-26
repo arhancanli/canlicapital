@@ -46,6 +46,8 @@ export const FIELD_DESCRIPTIONS = Object.freeze({
   hc_tests: "Total tests run, this one included; gives the Bonferroni and independent-test haircuts.",
   autocorrelation: "First-order autocorrelation of the returns, -1 to 1; default 0. Corrects the annualized Sharpe as Lo (2002).",
   other_sharpes: "Annualized Sharpe ratios of the other tests, over the same observations; adds the Holm and BHY haircuts.",
+  lt_trials: "Independent trials tried; adds the chance that the best of them reached this Sharpe by luck.",
+  skew: "Skewness of the returns; below -0.5 the reading warns that the counts are too generous.",
   variants: "Optional returns of every variant tried, this one included, as fractions: one row per period, one column per variant. Adds the overfitting check.",
   returns_file: "Path to a CSV or JSON file of the returns on the machine running this server, instead of returns. Not available on the hosted endpoint.",
   returns_column: "Header name or 1-based position of the returns column when returns_file has several numeric columns.",
@@ -181,6 +183,20 @@ export const haircutSharpeInput = z
   .strict();
 
 // ---------------------------------------------------------------------------------------------
+// validate_luck_trials
+// ---------------------------------------------------------------------------------------------
+
+export const luckTrialsInput = z
+  .object({
+    observed_sharpe_annualized: z.number().min(-20).max(20).describe(d.observed_sharpe_annualized),
+    periods_per_year: z.number().min(1).max(10000).describe(d.periods_per_year),
+    observations: z.number().int().min(3).max(1000000).describe(d.hc_observations),
+    effective_independent_trials: z.number().int().min(1).max(1000000000).optional().describe(d.lt_trials),
+    skew: z.number().min(-100).max(100).optional().describe(d.skew),
+  })
+  .strict();
+
+// ---------------------------------------------------------------------------------------------
 // audit_backtest: the deflated Sharpe, track record and (with variants) overfitting checks on one
 // return series in one call. Each check runs through its own validator, unchanged.
 // ---------------------------------------------------------------------------------------------
@@ -291,6 +307,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   validate_overfitting: `Probability (0 to 1) that picking the best of several backtested variants was overfitting, by CSCV over every variant's returns. ${LIMITS_SENTENCES.notAdmission}`,
   validate_paper_evidence: `Whether a paper or simulated performance record meets canli.paper-evidence.v0, with each failure's JSON pointer. ${LIMITS_SENTENCES.scope}`,
   validate_backtest_length: `Minimum backtest length, in years, before the best of N independent trials is not expected to reach a target Sharpe by luck, and with backtest_years, the most independent trials those years allow. Send effective_independent_trials, backtest_years, or both. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_luck_trials: `How many skill-less strategies a search would have had to try for its best to reach this Sharpe by luck, and, with a trial count, the chance that it did. Calibrated by Monte Carlo. ${LIMITS_SENTENCES.notAdmission}`,
   validate_haircut_sharpe: `Haircut Sharpe ratio for multiple testing (Harvey and Liu, 2015): the Sharpe a single test would have needed once the number of tests is counted, by Bonferroni and for independent tests, and with the other tests' Sharpe ratios by Holm and BHY. ${LIMITS_SENTENCES.notAdmission}`,
   validate_track_record: `Minimum track record length, in observations and years, for an observed Sharpe to beat a benchmark at a confidence level, and with observations, the record's probabilistic Sharpe so far. ${LIMITS_SENTENCES.notAdmission}`,
   validate_breadth: `Highest book Sharpe reachable by adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,

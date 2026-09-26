@@ -394,6 +394,7 @@ console.log(await response.json());</code></pre></div>
         <tr><td><code>POST /api/v1/validate/track-record</code></td><td>Minimum track record length for a Sharpe to clear a benchmark at a confidence level, and the probabilistic Sharpe of a record of a given length.</td></tr>
         <tr><td><code>POST /api/v1/validate/backtest-length</code></td><td>Minimum backtest length for the best of N independent trials not to reach a target Sharpe by luck, and the trials a backtest&#39;s years allow.</td></tr>
         <tr><td><code>POST /api/v1/validate/haircut-sharpe</code></td><td>Haircut Sharpe ratio for multiple testing: the p-value of a Sharpe found among several tests, adjusted by Bonferroni, for independent tests, and with the other tests&#39; Sharpe ratios by Holm and BHY.</td></tr>
+        <tr><td><code>POST /api/v1/validate/luck-trials</code></td><td>Luck-equivalent trials: how many skill-less strategies a search would have had to try for its best to reach the observed Sharpe by luck, and, with a trial count, the chance that it did.</td></tr>
         <tr><td><code>GET /api/v1/validate/status</code></td><td>Service and store status with the quota constants in force.</td></tr>
         <tr><td><code>GET /api/v1/receipts/{id}</code></td><td>A stored verdict by content-hash id. Immutable.</td></tr>
         <tr><td><code>GET /api/v1/receipts/{id}/badge.svg</code></td><td>An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark.</td></tr>
@@ -598,6 +599,28 @@ with urllib.request.urlopen(req) as response:
     print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
       <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code" tabindex="0" aria-label="JavaScript code example"><code>const body = {&quot;observed_sharpe_annualized&quot;:1,&quot;periods_per_year&quot;:12,&quot;observations&quot;:120,&quot;tests&quot;:100,&quot;autocorrelation&quot;:0.1};
 const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/haircut-sharpe&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+    </div></article>
+    <article class="dev-endpoint" id="api-luck-trials"><h4><code>POST /api/v1/validate/luck-trials</code></h4><p>Luck-equivalent trials: how many skill-less strategies a search would have had to try for its best to reach the observed Sharpe by luck, and, with a trial count, the chance that it did.</p><div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code" tabindex="0" aria-label="curl code example"><code>curl -X POST https://canlicapital.com/api/v1/validate/luck-trials \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;observed_sharpe_annualized&quot;:1.5,&quot;periods_per_year&quot;:252,&quot;observations&quot;:756,&quot;effective_independent_trials&quot;:200,&quot;skew&quot;:-0.4}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code" tabindex="0" aria-label="Python code example"><code>import json
+import urllib.request
+
+body = {&quot;observed_sharpe_annualized&quot;:1.5,&quot;periods_per_year&quot;:252,&quot;observations&quot;:756,&quot;effective_independent_trials&quot;:200,&quot;skew&quot;:-0.4}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/validate/luck-trials&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code" tabindex="0" aria-label="JavaScript code example"><code>const body = {&quot;observed_sharpe_annualized&quot;:1.5,&quot;periods_per_year&quot;:252,&quot;observations&quot;:756,&quot;effective_independent_trials&quot;:200,&quot;skew&quot;:-0.4};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/luck-trials&quot;, {
   method: &quot;POST&quot;,
   headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
   body: JSON.stringify(body),

@@ -235,6 +235,23 @@
       }
     },
     {
+      "path": "/api/v1/validate/luck-trials",
+      "method": "POST",
+      "keyed": true,
+      "summary": "Luck-equivalent trials: how many skill-less strategies a search would have had to try for its best to reach the observed Sharpe by luck, and, with a trial count, the chance that it did.",
+      "requestExample": {
+        "observed_sharpe_annualized": 1.5,
+        "periods_per_year": 252,
+        "observations": 756,
+        "effective_independent_trials": 200,
+        "skew": -0.4
+      },
+      "requestOptional": [
+        "effective_independent_trials",
+        "skew"
+      ]
+    },
+    {
       "path": "/api/v1/validate/status",
       "method": "GET",
       "keyed": false,

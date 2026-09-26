@@ -76,6 +76,7 @@ test("tools/list exposes exactly the npm package's tools", async () => {
       "validate_breadth",
       "validate_deflated_sharpe",
       "validate_haircut_sharpe",
+      "validate_luck_trials",
       "validate_overfitting",
       "validate_paper_evidence",
     "validate_track_record",
