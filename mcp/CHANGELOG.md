@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- `validate_luck_trials`: luck-equivalent trials, a new statistic. How many skill-less strategies a
+  search would have had to try for its best to reach the observed Sharpe by luck (at even odds and at
+  5 percent), and, with a trial count, the chance that it did. Built from the Student t null of the
+  Sharpe's t-statistic and the Sidak best-of-N probability, calibrated by Monte Carlo in CI; the size
+  study is published with its seeds. Too generous for negatively skewed returns, which the reading
+  says when the skew is sent.
 - Signed receipts: canlicapital.com signs every validation receipt with Ed25519 over the canonical
   JSON of its id, endpoint, input and output hashes and source-file hashes; the public key is at
   https://canlicapital.com/.well-known/canli-receipt-keys.json and bundled in this package.

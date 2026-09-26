@@ -9,6 +9,7 @@
 import backtestLength from "../v1/validate/backtest-length.js";
 import breadth from "../v1/validate/breadth.js";
 import haircutSharpe from "../v1/validate/haircut-sharpe.js";
+import luckTrials from "../v1/validate/luck-trials.js";
 import deflatedSharpe from "../v1/validate/deflated-sharpe.js";
 import overfitting from "../v1/validate/overfitting.js";
 import paperEvidence from "../v1/validate/paper-evidence.js";
@@ -19,6 +20,7 @@ export const IN_PROCESS_ROUTES = Object.freeze({
   "/api/v1/validate/breadth": breadth,
   "/api/v1/validate/deflated-sharpe": deflatedSharpe,
   "/api/v1/validate/haircut-sharpe": haircutSharpe,
+  "/api/v1/validate/luck-trials": luckTrials,
   "/api/v1/validate/overfitting": overfitting,
   "/api/v1/validate/paper-evidence": paperEvidence,
   "/api/v1/validate/track-record": trackRecord,

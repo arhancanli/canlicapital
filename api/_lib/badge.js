@@ -24,6 +24,7 @@ const SHORT_LABEL = Object.freeze({
   "validate/track-record": "Track Record",
   "validate/backtest-length": "Backtest Length",
   "validate/haircut-sharpe": "Haircut Sharpe",
+  "validate/luck-trials": "Luck Trials",
 });
 
 function shortLabel(endpoint) {
@@ -57,6 +58,10 @@ function limitsFact(endpoint, output) {
   if (endpoint === "validate/haircut-sharpe") {
     const n = output?.result?.tests;
     return Number.isFinite(n) ? `trial count ${n} tests` : "no test count in this receipt";
+  }
+  if (endpoint === "validate/luck-trials") {
+    const n = output?.derived_inputs?.observations;
+    return Number.isFinite(n) ? `sample size ${n} observations` : "no record length in this receipt";
   }
   if (endpoint === "validate/paper-evidence") {
     const n = (output?.structural?.length ?? 0) + (output?.semantic?.length ?? 0);

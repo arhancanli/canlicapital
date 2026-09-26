@@ -22,6 +22,7 @@ const VALIDATOR_NAMES = Object.freeze({
   "validate/track-record": "Minimum track record length",
   "validate/backtest-length": "Minimum backtest length",
   "validate/haircut-sharpe": "Haircut Sharpe ratio",
+  "validate/luck-trials": "Luck-equivalent trials",
 });
 
 function page({ title, body, status = 200 }) {

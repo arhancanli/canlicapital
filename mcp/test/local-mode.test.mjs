@@ -8,7 +8,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { LOCAL_FILES } from "../scripts/sync-local.mjs";
-import { configuredLocal, createSession, toolValidateBacktestLength, toolValidateBreadth, toolValidateHaircutSharpe, toolValidateDeflatedSharpe, toolValidateOverfitting, toolValidateTrackRecord } from "../src/server.mjs";
+import { configuredLocal, createSession, toolValidateBacktestLength, toolValidateBreadth, toolValidateHaircutSharpe, toolValidateLuckTrials, toolValidateDeflatedSharpe, toolValidateOverfitting, toolValidateTrackRecord } from "../src/server.mjs";
 
 const MCP = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(MCP, "..");
@@ -98,6 +98,14 @@ test("the haircut computed locally is the authors': Exhibit 5's inputs give a 74
   const { session, calls } = noNetwork();
   const out = JSON.parse((await toolValidateHaircutSharpe(session, { observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, tests: 100, autocorrelation: 0.1 })).content[0].text);
   assert.equal((out.data.result.bonferroni.haircut * 100).toFixed(1), "74.6");
+  assert.equal(out.receipt, null);
+  assert.equal(calls(), 0);
+});
+
+test("luck-equivalent trials compute locally, with no network and no receipt", async () => {
+  const { session, calls } = noNetwork();
+  const out = JSON.parse((await toolValidateLuckTrials(session, { observed_sharpe_annualized: 1.5, periods_per_year: 252, observations: 756, effective_independent_trials: 200 })).content[0].text);
+  assert.equal(Math.floor(out.data.result.trials_for_even_odds), 144);
   assert.equal(out.receipt, null);
   assert.equal(calls(), 0);
 });

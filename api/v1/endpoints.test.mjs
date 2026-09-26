@@ -12,6 +12,7 @@ import { compute as breadth } from "./validate/breadth.js";
 import { compute as trackRecord } from "./validate/track-record.js";
 import { compute as backtestLength } from "./validate/backtest-length.js";
 import { compute as haircut } from "./validate/haircut-sharpe.js";
+import { compute as luck } from "./validate/luck-trials.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const VECTORS = JSON.parse(readFileSync(resolve(ROOT, "standards/validation-api/vectors.json"), "utf8"));
@@ -21,7 +22,7 @@ test("the manifest names every route file and every route has a summary and an e
   assert.deepEqual(paths, [
     "GET /api/v1/receipts/{id}", "GET /api/v1/receipts/{id}/badge.svg", "GET /api/v1/validate/status",
     "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/backtest-length", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe", "POST /api/v1/validate/haircut-sharpe",
-    "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence", "POST /api/v1/validate/track-record",
+    "POST /api/v1/validate/luck-trials", "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence", "POST /api/v1/validate/track-record",
   ]);
   for (const m of MANIFEST) { assert.ok(m.summary.length > 20, m.path); if (m.method === "POST") assert.ok(m.requestExample, m.path); }
 });
@@ -155,4 +156,15 @@ test("haircut-sharpe reproduces the authors' Exhibit 5 Bonferroni haircut and re
   assert.ok(family.result.bhy.adjusted_p > 0);
   assert.throws(() => haircut({ observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120 }), /Send tests/);
   assert.throws(() => haircut({ periods_per_year: 12 }), /Missing required fields/);
+});
+
+test("luck-trials inverts the best-of-N probability, says when one trial explains it, and warns on negative skew", () => {
+  const out = luck({ observed_sharpe_annualized: 1.5, periods_per_year: 252, observations: 756, effective_independent_trials: 200, skew: -1.2 });
+  const p = out.result.single_trial_probability;
+  const atEven = -Math.expm1(out.result.trials_for_even_odds * Math.log1p(-p));
+  assert.ok(Math.abs(atEven - 0.5) < 1e-12);
+  assert.match(out.plain_reading, /too generous/);
+  assert.match(luck({ observed_sharpe_annualized: -1, periods_per_year: 252, observations: 300 }).plain_reading, /luck alone readily explains it/);
+  assert.throws(() => luck({ observed_sharpe_annualized: 1, periods_per_year: 252 }), /Missing required fields: observations/);
+  assert.throws(() => luck({ observed_sharpe_annualized: 1, periods_per_year: 252, observations: 300, effective_independent_trials: 0 }), /effective_independent_trials/);
 });

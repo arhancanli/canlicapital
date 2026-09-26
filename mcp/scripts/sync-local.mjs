@@ -26,6 +26,8 @@ export const LOCAL_FILES = [
   "js/student-t.js",
   "js/haircut-core.js",
   "js/validate/haircut-sharpe.js",
+  "js/luck-core.js",
+  "js/validate/luck-trials.js",
   "api/_lib/limits.js",
   "standards/paper-evidence/schema.json",
 ];

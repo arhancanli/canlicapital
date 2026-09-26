@@ -100,6 +100,13 @@ export const MANIFEST = Object.freeze([
       other_sharpe_ratios_annualized: { type: "array", items: { type: "number" }, description: "Annualized Sharpe ratios of the other tests, over the same observations; adds Holm and BHY." },
     },
   },
+  {
+    path: "/api/v1/validate/luck-trials", method: "POST", keyed: true,
+    summary: "Luck-equivalent trials: how many skill-less strategies a search would have had to try for its best to reach the observed Sharpe by luck, and, with a trial count, the chance that it did.",
+    // Three years of daily returns at an annualized Sharpe of 1.5, found among 200 trials.
+    requestExample: { observed_sharpe_annualized: 1.5, periods_per_year: 252, observations: 756, effective_independent_trials: 200, skew: -0.4 },
+    requestOptional: ["effective_independent_trials", "skew"],
+  },
   { path: "/api/v1/validate/status", method: "GET", keyed: false, summary: "Service and store status with the quota constants in force." },
   { path: "/api/v1/receipts/{id}", method: "GET", keyed: false, summary: "A stored verdict by content-hash id. Immutable." },
   {

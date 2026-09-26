@@ -1300,6 +1300,128 @@
         ]
       }
     },
+    "/api/v1/validate/luck-trials": {
+      "post": {
+        "summary": "Luck-equivalent trials: how many skill-less strategies a search would have had to try for its best to reach the observed Sharpe by luck, and, with a trial count, the chance that it did.",
+        "operationId": "validate_luck_trials",
+        "responses": {
+          "200": {
+            "description": "The envelope with data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, unknown or revoked key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body over 1048576 bytes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input the validator refuses, with the reason",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "observed_sharpe_annualized": {
+                    "type": "number"
+                  },
+                  "periods_per_year": {
+                    "type": "number"
+                  },
+                  "observations": {
+                    "type": "number"
+                  },
+                  "effective_independent_trials": {
+                    "type": "number"
+                  },
+                  "skew": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "observed_sharpe_annualized",
+                  "periods_per_year",
+                  "observations"
+                ]
+              },
+              "example": {
+                "observed_sharpe_annualized": 1.5,
+                "periods_per_year": 252,
+                "observations": 756,
+                "effective_independent_trials": 200,
+                "skew": -0.4
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerKey": []
+          }
+        ]
+      }
+    },
     "/api/v1/validate/status": {
       "get": {
         "summary": "Service and store status with the quota constants in force.",
