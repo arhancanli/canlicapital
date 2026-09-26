@@ -196,7 +196,8 @@ SEC XBRL data, Canli Capital, ${ORIGIN}/research/${FILING_FACTS.slug}.
 ## Help verify it
 
 No item has been verified by a person yet (${summary.human_verified_items} of ${int(summary.items)}). The gold packet holds
-${summary.gold_packet_items} items stratified by template; [the annotation guidelines](${REPO}/blob/main/scripts/datasets/filing-facts/ANNOTATION_GUIDELINES.md)
+${summary.gold_packet_items} items stratified by template, and [the annotation page](/annotate) walks you through them in
+your browser; [the annotation guidelines](${REPO}/blob/main/scripts/datasets/filing-facts/ANNOTATION_GUIDELINES.md)
 say how to check each one against the filing itself. Two annotators fill copies independently, and
 \`agreement.mjs\` reports raw agreement and Cohen's kappa for each judgement.
 

@@ -172,6 +172,7 @@ export default defineConfig({
         founder: resolve(root, "founder.html"),
         methodology: resolve(root, "methodology.html"),
         howToValidateABacktest: resolve(root, "how-to-validate-a-backtest.html"),
+        annotate: resolve(root, "annotate.html"),
         engineering: resolve(root, "engineering.html"),
         notes: resolve(root, "notes.html"),
         developers: resolve(root, "developers.html"),
