@@ -75,6 +75,7 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
     "validate_backtest_length",
     "validate_breadth",
     "validate_deflated_sharpe",
+    "validate_haircut_sharpe",
     "validate_overfitting",
     "validate_paper_evidence",
     "validate_track_record",

@@ -15,6 +15,9 @@ export const BINDINGS = Object.freeze({
     "js/validate/breadth.js",
     "js/validate/track-record.js",
     "js/validate/backtest-length.js",
+    "js/student-t.js",
+    "js/haircut-core.js",
+    "js/validate/haircut-sharpe.js",
     "public/glassbox/deflated_sharpe_calculator_contract.json",
     "standards/validation-api/vectors.json"
   ],
@@ -33,6 +36,9 @@ export const BINDINGS = Object.freeze({
     "js/validate/breadth.js": "sha256:d9b49bc2bacd4169b4a0b3dc83ee187c06109b144e99aaeb097fee35a532160f",
     "js/validate/track-record.js": "sha256:7b9aa472e88741c42e4fddca9301925391cb741e56c0aff36b3a8545f0283118",
     "js/validate/backtest-length.js": "sha256:f195c011e64d7159b2ce36adf487cb4ab245cbf0cce4a67c08206ca866578532",
+    "js/student-t.js": "sha256:de2f86655b54ee320b57ea52e5b15ddf1ecf184c2ea6c3f09c9adb756c57ec9e",
+    "js/haircut-core.js": "sha256:5f693500cb51f5f7812e64392bbb619ef67c0f3a12afcb33bb9f3c104ce88bbf",
+    "js/validate/haircut-sharpe.js": "sha256:177158344edadb9bffd9c732a3bc3a2c7e55c766c35d5199ebcc2a95977663d5",
     "public/glassbox/deflated_sharpe_calculator_contract.json": "sha256:2ba8fcb339a5fdb9304da074fcbdf9e229f9b6f5ec2f8a787c542f5f31db7e8f",
     "standards/validation-api/vectors.json": "sha256:e575dc7b72d5d4e80334a2d64e4454fa333f1ed2fa02860a6894d6c2ee21fb15"
   }

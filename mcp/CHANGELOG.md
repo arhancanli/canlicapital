@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- `validate_haircut_sharpe`: the haircut Sharpe ratio of Harvey and Liu (2015) for the number of
+  tests run, by Bonferroni and for independent tests, and with the other tests' Sharpe ratios by Holm
+  and BHY (`POST /api/v1/validate/haircut-sharpe`). Agrees with the authors' own `Haircut_SR.m` on
+  every deterministic output, keeps a finite answer for strong Sharpe ratios where that code returns
+  an infinite one, and uses a Student t checked against R.
 - Compact validation results: the answer, the boundary sentences (without the quota line) and the
   receipt's id and URL. Metadata and source hashes stay in the stored receipt (`get_receipt`) and
   `service_status`; `CANLI_FULL_ENVELOPE=1` restores every field.

@@ -208,6 +208,33 @@
       ]
     },
     {
+      "path": "/api/v1/validate/haircut-sharpe",
+      "method": "POST",
+      "keyed": true,
+      "summary": "Haircut Sharpe ratio for multiple testing: the p-value of a Sharpe found among several tests, adjusted by Bonferroni, for independent tests, and with the other tests' Sharpe ratios by Holm and BHY.",
+      "requestExample": {
+        "observed_sharpe_annualized": 1,
+        "periods_per_year": 12,
+        "observations": 120,
+        "tests": 100,
+        "autocorrelation": 0.1
+      },
+      "requestOptional": [
+        "tests",
+        "autocorrelation",
+        "other_sharpe_ratios_annualized"
+      ],
+      "requestExtraProperties": {
+        "other_sharpe_ratios_annualized": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Annualized Sharpe ratios of the other tests, over the same observations; adds Holm and BHY."
+        }
+      }
+    },
+    {
       "path": "/api/v1/validate/status",
       "method": "GET",
       "keyed": false,

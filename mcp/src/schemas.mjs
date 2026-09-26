@@ -41,6 +41,10 @@ export const FIELD_DESCRIPTIONS = Object.freeze({
   target_sharpe_annualized: "In-sample annualized Sharpe you would take as a discovery; default 1.",
   backtest_years: "Length of the backtest in years, to get the most independent trials it allows.",
   bt_trials: "Independent trials (backtests, parameter sets, ideas) tried; gives the minimum backtest length.",
+  hc_observations: "Number of return observations behind the Sharpe ratio.",
+  hc_tests: "Total tests run, this one included; gives the Bonferroni and independent-test haircuts.",
+  autocorrelation: "First-order autocorrelation of the returns, -1 to 1; default 0. Corrects the annualized Sharpe as Lo (2002).",
+  other_sharpes: "Annualized Sharpe ratios of the other tests, over the same observations; adds the Holm and BHY haircuts.",
   variants: "Optional returns of every variant tried, this one included, as fractions: one row per period, one column per variant. Adds the overfitting check.",
   returns_file: "Path to a CSV or JSON file of the returns on the machine running this server, instead of returns. Not available on the hosted endpoint.",
   returns_column: "Header name or 1-based position of the returns column when returns_file has several numeric columns.",
@@ -161,6 +165,21 @@ export const backtestLengthInput = z
   .strict();
 
 // ---------------------------------------------------------------------------------------------
+// validate_haircut_sharpe
+// ---------------------------------------------------------------------------------------------
+
+export const haircutSharpeInput = z
+  .object({
+    observed_sharpe_annualized: z.number().gt(0).max(10).describe(d.observed_sharpe_annualized),
+    periods_per_year: z.number().min(1).max(10000).describe(d.periods_per_year),
+    observations: z.number().int().min(3).max(1000000).describe(d.hc_observations),
+    tests: z.number().int().min(1).max(100000000).optional().describe(d.hc_tests),
+    autocorrelation: z.number().gt(-1).lt(1).optional().describe(d.autocorrelation),
+    other_sharpe_ratios_annualized: z.array(z.number().min(-10).max(10)).min(1).max(10000).optional().describe(d.other_sharpes),
+  })
+  .strict();
+
+// ---------------------------------------------------------------------------------------------
 // audit_backtest: the deflated Sharpe, track record and (with variants) overfitting checks on one
 // return series in one call. Each check runs through its own validator, unchanged.
 // ---------------------------------------------------------------------------------------------
@@ -262,6 +281,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   validate_overfitting: `Probability (0 to 1) that picking the best of several backtested variants was overfitting, by CSCV over every variant's returns. ${LIMITS_SENTENCES.notAdmission}`,
   validate_paper_evidence: `Whether a paper or simulated performance record meets canli.paper-evidence.v0, with each failure's JSON pointer. ${LIMITS_SENTENCES.scope}`,
   validate_backtest_length: `Minimum backtest length, in years, before the best of N independent trials is not expected to reach a target Sharpe by luck, and with backtest_years, the most independent trials those years allow. Send effective_independent_trials, backtest_years, or both. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_haircut_sharpe: `Haircut Sharpe ratio for multiple testing (Harvey and Liu, 2015): the Sharpe a single test would have needed once the number of tests is counted, by Bonferroni and for independent tests, and with the other tests' Sharpe ratios by Holm and BHY. ${LIMITS_SENTENCES.notAdmission}`,
   validate_track_record: `Minimum track record length, in observations and years, for an observed Sharpe to beat a benchmark at a confidence level, and with observations, the record's probabilistic Sharpe so far. ${LIMITS_SENTENCES.notAdmission}`,
   validate_breadth: `Highest book Sharpe reachable by adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,
   get_receipt: `Fetch a stored verdict by receipt id (GET /api/v1/receipts/{id}) to re-check an earlier result. No key. ${LIMITS_SENTENCES.unsigned}`,

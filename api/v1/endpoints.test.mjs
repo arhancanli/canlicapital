@@ -11,6 +11,7 @@ import { compute as evidence } from "./validate/paper-evidence.js";
 import { compute as breadth } from "./validate/breadth.js";
 import { compute as trackRecord } from "./validate/track-record.js";
 import { compute as backtestLength } from "./validate/backtest-length.js";
+import { compute as haircut } from "./validate/haircut-sharpe.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const VECTORS = JSON.parse(readFileSync(resolve(ROOT, "standards/validation-api/vectors.json"), "utf8"));
@@ -19,7 +20,7 @@ test("the manifest names every route file and every route has a summary and an e
   const paths = MANIFEST.map((m) => `${m.method} ${m.path}`).sort();
   assert.deepEqual(paths, [
     "GET /api/v1/receipts/{id}", "GET /api/v1/receipts/{id}/badge.svg", "GET /api/v1/validate/status",
-    "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/backtest-length", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe",
+    "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/backtest-length", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe", "POST /api/v1/validate/haircut-sharpe",
     "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence", "POST /api/v1/validate/track-record",
   ]);
   for (const m of MANIFEST) { assert.ok(m.summary.length > 20, m.path); if (m.method === "POST") assert.ok(m.requestExample, m.path); }
@@ -141,4 +142,17 @@ test("backtest-length reproduces the paper's statements and refuses a request wi
   assert.match(out.plain_reading, /necessary, not sufficient/);
   assert.throws(() => backtestLength({}), /Send effective_independent_trials, backtest_years, or both/);
   assert.throws(() => backtestLength({ effective_independent_trials: 1 }), RangeError);
+});
+
+test("haircut-sharpe reproduces the authors' Exhibit 5 Bonferroni haircut and refuses a request with no test count", () => {
+  const out = haircut({ observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, tests: 100, autocorrelation: 0.1 });
+  assert.equal(out.result.sharpe_annualized_corrected.toFixed(3), "0.912");
+  assert.equal((out.result.bonferroni.haircut * 100).toFixed(1), "74.6");
+  assert.equal(out.result.holm, undefined);
+  assert.match(out.plain_reading, /tests run and not counted are invisible/);
+  const family = haircut({ observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, other_sharpe_ratios_annualized: [0.2, 0.5, 0.9, -0.1] });
+  assert.equal(family.result.tests, 5);
+  assert.ok(family.result.bhy.adjusted_p > 0);
+  assert.throws(() => haircut({ observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120 }), /Send tests/);
+  assert.throws(() => haircut({ periods_per_year: 12 }), /Missing required fields/);
 });
