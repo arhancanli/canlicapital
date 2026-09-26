@@ -442,6 +442,7 @@ artifact the engine wrote.</p>
           name,
           description,
           url,
+          license: "https://creativecommons.org/licenses/by/4.0/",
           creator,
           ...(technicalAuthorshipPending
             ? {

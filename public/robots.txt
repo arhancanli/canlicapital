@@ -1,8 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /company-data/
 
 # Every page here is meant to be readable by people and by machines. Nothing is
 # gated, nothing is cloaked, and no crawler is singled out for different content.
+# /company-data/ holds the raw JSON and SEC snapshots behind each company page. They
+# stay public and linked for people, the API and the MCP servers; search crawlers
+# skip them because every one is served noindex and the pages that cite them are
+# what a search should find.
 
 Sitemap: https://canlicapital.com/sitemap.xml
 
@@ -12,5 +17,5 @@ Sitemap: https://canlicapital.com/sitemap.xml
 # https://canlicapital.com/llms.txt
 #
 # The same corpus in full, in one file, for models that would rather read than
-# crawl. 111 research documents, including every failed one.
+# crawl: every research document, including every failed one.
 # https://canlicapital.com/llms-full.txt
