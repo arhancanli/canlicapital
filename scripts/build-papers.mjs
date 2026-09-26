@@ -1,4 +1,5 @@
 import { writeSitemaps } from "./lib/sitemaps.mjs";
+import { renderAtomFeed } from "./lib/atom-feed.mjs";
 // =============================================================================
 // CANLI CAPITAL / scripts/build-papers.mjs
 // -----------------------------------------------------------------------------
@@ -1250,10 +1251,34 @@ function main() {
   writeSourceDates(ROOT);
   writeSitemaps(urls, { directory: resolve(ROOT, "public"), origin: ORIGIN });
 
+  // The feed lists the same papers and notes as the sitemap, with the same dates. A note's title
+  // and summary are read from the page build-notes.mjs wrote, as noteRoutes() reads its routes.
+  const unescapeHtml = (text) => text.replaceAll("&quot;", '"').replaceAll("&#39;", "'").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
+  const noteEntries = notes.map((route) => {
+    const html = readFileSync(resolve(ROOT, `notes/${route.loc.split("/").at(-1)}.html`), "utf8");
+    const title = html.match(/<meta property="og:title" content="([^"]*)"/)?.[1];
+    const summary = html.match(/<meta name="description" content="([^"]*)"/)?.[1];
+    if (!title || !summary) throw new Error(`${route.loc}: no og:title or description for the feed`);
+    return { url: route.loc, title: unescapeHtml(title), summary: unescapeHtml(summary), updated: noteLastmods.get(route.loc), category: "note" };
+  });
+  const feed = renderAtomFeed([
+    ...papers.map((paper) => ({ url: `${ORIGIN}/research/${paper.slug}`, title: paper.title, summary: paper.description, updated: paperLastmods.get(paper.slug), category: "research" })),
+    ...noteEntries,
+  ], {
+    origin: ORIGIN,
+    title: "Canli Capital: research and notes",
+    subtitle: "Open quantitative-finance research and engineering notes; every figure links to the file it came from.",
+    author: AUTHOR,
+    authorUri: `${ORIGIN}/founder`,
+    alternate: `${ORIGIN}/research`,
+  });
+  writeFileSync(resolve(ROOT, "public/feed.xml"), feed);
+
   console.log(`rendered ${papers.length} research pages -> research/*.html`);
   console.log(`rendered ${hubs.length} topic hubs -> research/topics/*.html`);
   for (const hub of hubs) console.log(`    ${hub.label.padEnd(32)} ${hub.count}`);
   console.log(`sitemap: ${urls.length} URLs`);
+  console.log(`feed: ${papers.length + noteEntries.length} entries -> public/feed.xml`);
   if (incomplete.length) {
     console.log("\nSkipped for missing metadata (NOT invented):");
     for (const item of incomplete) {

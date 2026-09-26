@@ -232,6 +232,7 @@ function pageHead({ title, socialTitle, description, route, extraJsonLd, sources
 <title>${esc(title)} | Canli Capital</title>
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${ORIGIN}${route}" />
+<link rel="alternate" type="application/atom+xml" title="Canli Capital: research and notes" href="/feed.xml" />
 <meta name="author" content="Arhan Canli" />${sources && sources.length ? `\n<meta name="canli:sources" content="${esc(sources.join(" "))}" />` : ""}
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
