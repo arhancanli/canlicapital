@@ -275,7 +275,12 @@ function extractReadmeFence(markdown, heading, lang) {
 // never from typed figures: /developers declares mcp_agent_benchmark.json as a source, so the
 // published-numbers audit traces every number in this table to it.
 function mcpBenchmarkBlock() {
-  const bench = JSON.parse(readFileSync(resolve(ROOT, "public/glassbox/mcp_agent_benchmark.json"), "utf8"));
+  // Read from config/ and published into glassbox/ here, at build time: the deploy replaces
+  // public/glassbox/ with the engine's export, so a copy committed there never reaches the build.
+  const text = readFileSync(resolve(ROOT, "config/mcp-agent-benchmark.json"), "utf8");
+  mkdirSync(resolve(ROOT, "public/glassbox"), { recursive: true });
+  writeFileSync(resolve(ROOT, "public/glassbox/mcp_agent_benchmark.json"), text);
+  const bench = JSON.parse(text);
   const pct = (v) => `${v}%`;
   const rows = bench.models
     .map((m) => `<tr><td>${esc(m.label)}</td><td>${esc(pct(m.answer_accuracy_pct))}</td><td>${esc(pct(m.first_tool_right_pct))}</td><td>${esc(m.runs)}</td></tr>`)
