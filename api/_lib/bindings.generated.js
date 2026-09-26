@@ -18,6 +18,8 @@ export const BINDINGS = Object.freeze({
     "js/student-t.js",
     "js/haircut-core.js",
     "js/validate/haircut-sharpe.js",
+    "js/luck-core.js",
+    "js/validate/luck-trials.js",
     "public/glassbox/deflated_sharpe_calculator_contract.json",
     "standards/validation-api/vectors.json"
   ],
@@ -39,6 +41,8 @@ export const BINDINGS = Object.freeze({
     "js/student-t.js": "sha256:de2f86655b54ee320b57ea52e5b15ddf1ecf184c2ea6c3f09c9adb756c57ec9e",
     "js/haircut-core.js": "sha256:5f693500cb51f5f7812e64392bbb619ef67c0f3a12afcb33bb9f3c104ce88bbf",
     "js/validate/haircut-sharpe.js": "sha256:177158344edadb9bffd9c732a3bc3a2c7e55c766c35d5199ebcc2a95977663d5",
+    "js/luck-core.js": "sha256:77f2419679cb94128ce82df22c4678b077a0af316046aa507bde5755656d58d3",
+    "js/validate/luck-trials.js": "sha256:c17fadc25a9798fbea434863318a09e450ad8882825a020e0e5190c1f7049ce9",
     "public/glassbox/deflated_sharpe_calculator_contract.json": "sha256:2ba8fcb339a5fdb9304da074fcbdf9e229f9b6f5ec2f8a787c542f5f31db7e8f",
     "standards/validation-api/vectors.json": "sha256:e575dc7b72d5d4e80334a2d64e4454fa333f1ed2fa02860a6894d6c2ee21fb15"
   }

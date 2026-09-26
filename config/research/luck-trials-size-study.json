@@ -1,0 +1,269 @@
+{
+ "schema": "canli.luck-trials-size-study.v1",
+ "rows": [
+  {
+   "distribution": "normal",
+   "trials": 20,
+   "t": 60,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 1,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.046,
+     "at_50_percent": 0.511
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.052,
+     "at_50_percent": 0.515
+    },
+    "bootstrap": {
+     "at_5_percent": 0.045,
+     "at_50_percent": 0.513
+    }
+   }
+  },
+  {
+   "distribution": "student_t4",
+   "trials": 20,
+   "t": 60,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 2,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.046,
+     "at_50_percent": 0.496
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.111,
+     "at_50_percent": 0.571
+    },
+    "bootstrap": {
+     "at_5_percent": 0.095,
+     "at_50_percent": 0.557
+    }
+   }
+  },
+  {
+   "distribution": "skew_plus_1_3",
+   "trials": 20,
+   "t": 60,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 3,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.012,
+     "at_50_percent": 0.329
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.052,
+     "at_50_percent": 0.501
+    },
+    "bootstrap": {
+     "at_5_percent": 0.029,
+     "at_50_percent": 0.451
+    }
+   }
+  },
+  {
+   "distribution": "skew_minus_1_3",
+   "trials": 20,
+   "t": 60,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 4,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.161,
+     "at_50_percent": 0.668
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.057,
+     "at_50_percent": 0.523
+    },
+    "bootstrap": {
+     "at_5_percent": 0.07,
+     "at_50_percent": 0.558
+    }
+   }
+  },
+  {
+   "distribution": "skew_plus_3_7",
+   "trials": 20,
+   "t": 60,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 5,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.001,
+     "at_50_percent": 0.205
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.083,
+     "at_50_percent": 0.537
+    },
+    "bootstrap": {
+     "at_5_percent": 0.022,
+     "at_50_percent": 0.432
+    }
+   }
+  },
+  {
+   "distribution": "skew_minus_3_7",
+   "trials": 20,
+   "t": 60,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 6,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.356,
+     "at_50_percent": 0.813
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.102,
+     "at_50_percent": 0.598
+    },
+    "bootstrap": {
+     "at_5_percent": 0.144,
+     "at_50_percent": 0.647
+    }
+   }
+  },
+  {
+   "distribution": "normal",
+   "trials": 20,
+   "t": 252,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 7,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.035,
+     "at_50_percent": 0.491
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.036,
+     "at_50_percent": 0.487
+    },
+    "bootstrap": {
+     "at_5_percent": 0.038,
+     "at_50_percent": 0.493
+    }
+   }
+  },
+  {
+   "distribution": "student_t4",
+   "trials": 20,
+   "t": 252,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 8,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.043,
+     "at_50_percent": 0.466
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.06,
+     "at_50_percent": 0.503
+    },
+    "bootstrap": {
+     "at_5_percent": 0.06,
+     "at_50_percent": 0.498
+    }
+   }
+  },
+  {
+   "distribution": "skew_plus_1_3",
+   "trials": 20,
+   "t": 252,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 9,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.018,
+     "at_50_percent": 0.399
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.057,
+     "at_50_percent": 0.482
+    },
+    "bootstrap": {
+     "at_5_percent": 0.041,
+     "at_50_percent": 0.468
+    }
+   }
+  },
+  {
+   "distribution": "skew_minus_1_3",
+   "trials": 20,
+   "t": 252,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 10,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.108,
+     "at_50_percent": 0.587
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.049,
+     "at_50_percent": 0.489
+    },
+    "bootstrap": {
+     "at_5_percent": 0.064,
+     "at_50_percent": 0.511
+    }
+   }
+  },
+  {
+   "distribution": "skew_plus_3_7",
+   "trials": 20,
+   "t": 252,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 11,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.004,
+     "at_50_percent": 0.297
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.088,
+     "at_50_percent": 0.545
+    },
+    "bootstrap": {
+     "at_5_percent": 0.046,
+     "at_50_percent": 0.488
+    }
+   }
+  },
+  {
+   "distribution": "skew_minus_3_7",
+   "trials": 20,
+   "t": 252,
+   "reps": 1000,
+   "bootstrap_draws": 2000,
+   "seed": 12,
+   "size": {
+    "student_t_null": {
+     "at_5_percent": 0.208,
+     "at_50_percent": 0.685
+    },
+    "dsr_standard_error": {
+     "at_5_percent": 0.068,
+     "at_50_percent": 0.518
+    },
+    "bootstrap": {
+     "at_5_percent": 0.091,
+     "at_50_percent": 0.56
+    }
+   }
+  }
+ ]
+}
