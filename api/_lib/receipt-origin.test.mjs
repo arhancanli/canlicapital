@@ -29,6 +29,8 @@ test('validator receipt and badge links stay isolated with mocked storage',async
   assert.equal(result.body.receipt.url,url);
   const read=res();await createReceiptHandler({store})({method:'GET',query:{id:saved.id},headers:{host:'evil.test'}},read);
   assert.equal(read.statusCode,200);assert.equal(read.body.data.badge_url,url+'/badge.svg');
-  assert.equal(read.body.data.embed_markdown,`[![Canli receipt](${url}/badge.svg)](${url})`);
+  const certificate=`https://canli-isolation-test.vercel.app/audit/${saved.id}`;
+  assert.equal(read.body.data.certificate_url,certificate);
+  assert.equal(read.body.data.embed_markdown,`[![Canli receipt](${url}/badge.svg)](${certificate})`);
  } finally {for(const [key,value] of Object.entries(previous))if(value===undefined)delete process.env[key];else process.env[key]=value;}
 });
