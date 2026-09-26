@@ -398,7 +398,7 @@ function main() {
     const metaAuthor = technicalAuthorshipPending ? PUBLISHER : AUTHOR;
     const byline = technicalAuthorshipPending
       ? `Project owner <span>${escapeHtml(data.project_owner ?? AUTHOR)}</span> · ` +
-        `AI-assisted technical draft; exact-text approval pending`
+        `Draft; exact-text approval pending`
       : `By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}`;
     const creator = technicalAuthorshipPending
       ? { "@type": "Organization", name: PUBLISHER, url: `${ORIGIN}/` }
@@ -442,6 +442,7 @@ artifact the engine wrote.</p>
           name,
           description,
           url,
+          license: "https://creativecommons.org/licenses/by/4.0/",
           creator,
           ...(technicalAuthorshipPending
             ? {
@@ -508,8 +509,10 @@ signature against the published bundle. The written-up versions live in
         description: indexDescription,
         url: `${ORIGIN}/measurements`,
         isPartOf: { "@type": "WebSite", name: PUBLISHER, url: `${ORIGIN}/` },
+        // Each measurement page carries its own complete Dataset markup; this list names the pages.
+        // A name-and-URL Dataset here is an invalid Dataset to Google (missing "description").
         hasPart: artifacts.map(({ path }) => ({
-          "@type": "Dataset",
+          "@type": "WebPage",
           name: humanise(path),
           url: `${ORIGIN}/measurements/${slugify(path)}`,
         })),

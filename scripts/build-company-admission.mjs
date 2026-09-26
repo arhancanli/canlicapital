@@ -71,7 +71,7 @@ export function buildCompanyAdmission({ release, discovery, shards, quality, sco
   if (quality.schema !== 'canli.company-selected-quality.v1' || !ADMISSIBLE_POLICIES.includes(quality.selection_policy)) throw new Error('Quality report is not a selected-quality report for an admissible policy');
   if (quality.totals.companies !== release.companies || quality.totals.histories !== release.histories) throw new Error('Quality totals do not match the release');
 
-  // Every company URL in the release, from the discovery shards Codex built and audited.
+  // Every company URL in the release, from the audited discovery shards.
   const companies = new Map();
   const locPattern = /<url>\s*<loc>([^<]+)<\/loc>(?:\s*<lastmod>([^<]+)<\/lastmod>)?\s*<\/url>/g;
   let directoryLocs = 0;

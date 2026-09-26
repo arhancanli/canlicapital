@@ -15,10 +15,6 @@ any is wrong; nothing here is final until you say so.
 - **Licence, prose** (the two notes in `notes-2026-09`): CC BY 4.0.
 - **Visibility:** public / open access on Zenodo (`access_right: open` in both `zenodo.json`
   files).
-- **AI-assistance disclosure:** "Development uses reviewed AI-assisted tooling, but project
-  ownership, research decisions, methodology, claims, and publication responsibility remain with
-  Arhan Canli." This sentence is quoted verbatim from `~/alphaforge/README.md` and appears in both
-  package descriptions and both package READMEs.
 
 If any of these should be different, edit the `creators`, `license`, `access_right` and
 description fields in the relevant `zenodo.json`, and the matching prose in the package's

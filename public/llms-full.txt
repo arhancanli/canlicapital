@@ -67,7 +67,7 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 
 ## Research
 
-The research corpus is 111 documents across 13 topics, including work that failed. Killed candidates are published with the same rigour as surviving ones.
+The research corpus is 114 documents across 13 topics, including work that failed. Killed candidates are published with the same rigour as surviving ones.
 
 - [killed-candidates](https://canlicapital.com/research/topics/killed-candidates): Research topic index.
 - [literature-reviews](https://canlicapital.com/research/topics/literature-reviews): Research topic index.
@@ -85,16 +85,16 @@ The research corpus is 111 documents across 13 topics, including work that faile
 
 ## Machine-readable
 
-- [Sitemap](https://canlicapital.com/sitemap.xml): all 327 indexable routes.
+- [Sitemap](https://canlicapital.com/sitemap.xml): all 330 indexable routes.
 - [Full text](https://canlicapital.com/llms-full.txt): every research document, engineering note and paper abstract concatenated into one file, so a model can read the whole corpus without sampling it.
 - [Paper state](https://canlicapital.com/paper-state.json): the live record as JSON, the source every page renders from.
-- [Research index](https://canlicapital.com/research-index.json): 111 documents with citation metadata.
+- [Research index](https://canlicapital.com/research-index.json): 114 documents with citation metadata.
 - [Engineering manifest](https://canlicapital.com/glassbox/engineering_open_source.json): repository counts, derived from what each repository publishes.
 - 89 measurement pages and 2 trial pages carry schema.org Dataset metadata.
 
 ## Authorship
 
-Arhan Canli is the founder, named author and accountable human for methodology, claims, corrections and publication decisions. Profile: https://canlicapital.com/founder. Code: https://github.com/arhancanli. Development uses reviewed AI-assisted tooling; ownership, research decisions and published claims are his.
+Arhan Canli is the founder, named author and accountable human for methodology, claims, corrections and publication decisions. Profile: https://canlicapital.com/founder. Code: https://github.com/arhancanli. Ownership, research decisions and published claims are his.
 
 
 ---
@@ -869,7 +869,7 @@ proves it on every push.*
 
 
 ==============================================================================
-RESEARCH CORPUS: 111 DOCUMENTS, INCLUDING EVERY FAILED CANDIDATE
+RESEARCH CORPUS: 114 DOCUMENTS, INCLUDING EVERY FAILED CANDIDATE
 ==============================================================================
 
 
@@ -1747,8 +1747,8 @@ seeing the answer.
 ## Authorship and contribution statement
 
 **Arhan Canli** directed the research, specified the strategy and governance, built the software
-and evidence system, investigated the corrections, and wrote the paper. AI assisted development
-and editing; he remains responsible for every claim, decision, and correction.
+and evidence system, investigated the corrections, and wrote the paper. He is responsible for
+every claim, decision, and correction.
 
 
 ------------------------------------------------------------------------------
@@ -5231,6 +5231,94 @@ staleness control. Candidates requiring one of these capabilities remain data- o
 
 
 ------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/research/filing-facts-v0
+------------------------------------------------------------------------------
+
+# FilingFacts v0: financial reasoning items verified from SEC XBRL data
+
+**Short title:** FilingFacts v0 dataset
+**Author:** Arhan Canli
+**Declared:** 2026-09-26, with its build and evaluation records published beside it.
+**License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+FilingFacts is a set of 1,882 questions about the annual SEC filings of 402 companies.
+Every answer is computed from the company's XBRL facts, re-derived by an independent checker, and
+cited to the accession number of each filing it depends on, so a model's answer can be scored
+against the filing rather than against another model.
+
+## What is in it
+
+| template | asks for | hops | items |
+|---|---|---|---|
+| change | the percent change of one concept between two fiscal years or balance dates | 2 | 402 |
+| lookup | one value as reported in a named annual filing | 1 | 402 |
+| net_assets | total assets minus total liabilities at one balance date | 2 | 338 |
+| ratio | a ratio of two concepts for the same period (margin, leverage, cash share) | 2 | 402 |
+| unanswerable | a period before the concept's earliest annual XBRL fact; the right answer is that the XBRL filings do not report it | 1 | 338 |
+
+The items cite 3,024 facts from filings made between 2009-11-20 and 2026-09-11,
+for periods ending between 1988-01-14 and 2026-06-30. Figures on this page are read from
+[`/glassbox/datasets/filing-facts-v0.json`](/glassbox/datasets/filing-facts-v0.json).
+
+Rules: only annual-report facts (fiscal period FY on 10-K, 20-F, 40-F and their amendments), so a
+question never mixes a quarter with a year; one value per concept, period end and unit; a period
+whose annual filings disagree on the value is dropped as ambiguous; an unanswerable item claims
+absence only from the company's XBRL filings.
+
+## Baseline: gpt-5.4-mini, 150 items, closed book and with a tool
+
+| | closed book | with canli-validation-mcp's company tool |
+|---|---|---|
+| accuracy, all items | 19.3% | 68.0% |
+| accuracy on answerable items | 0.8% | 65.8% |
+| numbers given on answerable items that were wrong | 98.7% (76 numbers) | 17.7% (96 numbers) |
+| answerable items the model called "not reported" | 36.7% | 14.2% |
+| unanswerable items answered "not reported" | 93.3% | 76.7% |
+| unanswerable items answered with an invented number | 0.0% | 0.0% |
+| mean tokens per item | 187 | 3,833 |
+
+By template (accuracy, closed book then with the tool): change 0.0% and 40.0%; lookup 0.0% and 80.0%; net_assets 0.0% and 73.3%; ratio 3.3% and 70.0%; unanswerable 93.3% and 76.7%.
+
+Accuracy on all items rewards a model that answers "not reported" to everything, because the
+unanswerable items then score. The behaviour rows separate knowing that data is absent from
+declining to answer.
+
+## Download
+
+| file | contents | size |
+|---|---|---|
+| [filing-facts-v0.jsonl](/datasets/filing-facts/v0/filing-facts-v0.jsonl) | the items, one JSON object per line | 1,624 KB |
+| [ff-eval-closed.json](/datasets/filing-facts/v0/ff-eval-closed.json) | closed-book baseline, every run | 32 KB |
+| [ff-eval-mcp.json](/datasets/filing-facts/v0/ff-eval-mcp.json) | baseline with the company tool, every run | 32 KB |
+| [gold-packet-v0.json](/datasets/filing-facts/v0/gold-packet-v0.json) | the gold packet annotators fill in | 28 KB |
+
+Checksums: [SHA256SUMS](/datasets/filing-facts/v0/SHA256SUMS). The generator, the independent checker and
+the evaluation harness are in [`scripts/datasets/filing-facts/`](https://github.com/arhancanli/canlicapital/tree/main/scripts/datasets/filing-facts), so
+anyone can rebuild the items from the public company data, including from filings made after a
+model's training cutoff.
+
+## License and citation
+
+The items are released under CC BY 4.0. The underlying SEC filings are US public domain.
+Cite as: Arhan Canli (2026), FilingFacts v0: financial reasoning items verified from
+SEC XBRL data, Canli Capital, https://canlicapital.com/research/filing-facts-v0.
+
+## Help verify it
+
+No item has been verified by a person yet (0 of 1,882). The gold packet holds
+50 items stratified by template; [the annotation guidelines](https://github.com/arhancanli/canlicapital/blob/main/scripts/datasets/filing-facts/ANNOTATION_GUIDELINES.md)
+say how to check each one against the filing itself. Two annotators fill copies independently, and
+`agreement.mjs` reports raw agreement and Cohen's kappa for each judgement.
+
+## Evidence boundary
+
+The answers are checked against XBRL facts, not against the filings' rendered text, so a filer's
+tagging error becomes the dataset's answer. The baseline covers one model on a fixed sample and
+says nothing about other models. Restatement items (first-reported versus later-reported values)
+are planned for a later version.
+
+
+------------------------------------------------------------------------------
 SOURCE: https://canlicapital.com/research/financing-replay
 ------------------------------------------------------------------------------
 
@@ -8404,6 +8492,76 @@ spends zero return hypotheses.
 
 
 ------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/research/luck-equivalent-trials
+------------------------------------------------------------------------------
+
+# Luck-equivalent trials: how many skill-less strategies it takes to reach a Sharpe by luck
+
+**Short title:** Luck-equivalent trials
+**Author:** Arhan Canli
+**Declared:** 2026-09-26, with its calibration study published beside it.
+
+A backtest's Sharpe ratio means little until you know how many strategies were tried to find it.
+Luck-equivalent trials answers the reviewer's question in the unit a research log records: how many
+independent, skill-less strategies would a search have had to try for its best to reach this Sharpe
+by luck alone?
+
+## The statistic
+
+Under the null of no skill and normal returns, a Sharpe ratio's t-statistic (the per-period Sharpe
+times the square root of the number of observations) follows a Student t distribution with one
+fewer degree of freedom than there are observations. One skill-less trial therefore reaches the
+observed Sharpe with a known probability p. The best of N independent skill-less trials reaches it
+with probability 1 - (1 - p)^N, so the N at which that probability equals a chosen level q is
+ln(1 - q) / ln(1 - p). The statistic reports that N at even odds and at the five percent level, the
+N whose expected best (the deflated Sharpe ratio's benchmark) matches the observation, and, given a
+trial count, the chance that the best of that many reached the Sharpe by luck.
+
+Each piece is a known result. What is new is the statistic, stated in trials, with its calibration
+measured and its failure cases published.
+
+## Calibration
+
+Rejection rate at the 5.0% level when every strategy is skill-less, from
+[`/glassbox/research/luck-trials-size-study.json`](/glassbox/research/luck-trials-size-study.json)
+(searches of 20 strategies over 252 periods, 1000 searches per
+cell, fixed seeds). A calibrated statistic rejects at the level.
+
+| Returns | Student t null (shipped) | Non-normal standard error (deflated Sharpe convention) | Bootstrap of the best trial's returns |
+|---|---|---|---|
+| normal | 0.035 | 0.036 | 0.038 |
+| Fat tails (Student t) | 0.043 | 0.060 | 0.060 |
+| skew plus 1 3 | 0.018 | 0.057 | 0.041 |
+| skew minus 1 3 | 0.108 | 0.049 | 0.064 |
+| skew plus 3 7 | 0.004 | 0.088 | 0.046 |
+| skew minus 3 7 | 0.208 | 0.068 | 0.091 |
+
+No method is calibrated for every return shape. The Student t null holds for normal and fat-tailed
+returns but is too generous to negatively skewed strategies; the non-normal standard error fixes
+negative skew and fails under fat tails; a bootstrap of the best trial's returns is closest overall
+but inherits the selection that made that trial the best.
+
+## Autocorrelation
+
+On the Null Zoo ([`/research/null-zoo-v0`](/research/null-zoo-v0)), autocorrelated returns
+make a skill-less search look skilled: at the same level the statistic rejected 0.200
+of searches. Correcting the Sharpe for the returns' own autocorrelation as Lo (2002) does brings it
+to 0.059, and costs nothing where there is no autocorrelation (0.059
+before, 0.061 after). The API and the MCP tool accept the autocorrelation.
+
+## Use it
+
+`POST /api/v1/validate/luck-trials` with a free key, or the `validate_luck_trials` tool in the
+`canli-validation-mcp` server on npm. Every result is stored as a signed receipt.
+
+## Evidence boundary
+
+The statistic counts independent trials; correlated trials count as fewer, and the caller must
+estimate how many. It assumes no skill under the null and says nothing about whether a strategy
+will make money. Its calibration is measured on the return shapes above and no others.
+
+
+------------------------------------------------------------------------------
 SOURCE: https://canlicapital.com/research/macro-economic-trend-lineage
 ------------------------------------------------------------------------------
 
@@ -8746,6 +8904,76 @@ The other infrastructure passed:
 **Decision:** `DATA_GATED`. A new source protocol may use EIA's official `original_data` sheet and
 must separately bind conservative historical availability/release timing before returns. The prior
 petroleum trial remains in the family count; no new return hypothesis was spent here.
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/research/null-zoo-v0
+------------------------------------------------------------------------------
+
+# Null Zoo v0: backtest-overfitting corrections scored on ground truth
+
+**Short title:** Null Zoo v0
+**Author:** Arhan Canli
+**Declared:** 2026-09-26, with every cell's seed in the published results.
+
+Every correction for backtest overfitting makes a promise: that a skill-less strategy will pass it
+no more often than its stated level. The Null Zoo tests the promise. It draws research searches in
+which the truth is known, from return families with different shapes, and counts how often each
+correction calls a skill-less search's best strategy skilled (its size) and how often it finds a
+strategy that does have skill (its power).
+
+## Design
+
+Each search tries 20 strategies over 504 daily
+observations; every strategy has a true Sharpe of zero, except in the power arm, where one has a
+true annualized Sharpe of 2. Each cell runs 2000 searches with its own
+fixed seed. The level is 5.0%. Results:
+[`/glassbox/research/null-zoo-v0.json`](/glassbox/research/null-zoo-v0.json); generators and
+checks: `scripts/research/null-zoo/` in the open repository.
+
+## Size: how often a skill-less search is called skilled
+
+| Returns | Luck-equivalent trials | Luck-equivalent trials, Lo-corrected | Luck trials, non-normal SE | Haircut Sharpe (Bonferroni) | Haircut Sharpe (Bonferroni, Lo-corrected) | Deflated Sharpe ratio at 0.95 | Bootstrap of the best trial |
+|---|---|---|---|---|---|---|---|
+| Independent normal returns | 0.059 | 0.061 | 0.059 | 0.028 | 0.036 | 0.000 | 0.048 |
+| Fat tails (Student t) | 0.053 | 0.054 | 0.072 | 0.028 | 0.028 | 0.001 | 0.060 |
+| Negative skew | 0.088 | 0.088 | 0.051 | 0.054 | 0.056 | 0.001 | 0.053 |
+| Positive skew | 0.036 | 0.037 | 0.070 | 0.014 | 0.017 | 0.001 | 0.058 |
+| Volatility clustering (GARCH) | 0.046 | 0.050 | 0.048 | 0.024 | 0.026 | 0.000 | 0.048 |
+| Autocorrelated returns (AR(1)) | 0.200 | 0.059 | 0.201 | 0.132 | 0.027 | 0.002 | 0.171 |
+| Two volatility regimes | 0.051 | 0.051 | 0.056 | 0.025 | 0.024 | 0.000 | 0.051 |
+| Correlated trials (one common factor) | 0.035 | 0.035 | 0.034 | 0.017 | 0.019 | 0.013 | 0.032 |
+
+## Power: how often a strategy with skill is found
+
+| Returns | Luck-equivalent trials | Luck-equivalent trials, Lo-corrected | Luck trials, non-normal SE | Haircut Sharpe (Bonferroni) | Haircut Sharpe (Bonferroni, Lo-corrected) | Deflated Sharpe ratio at 0.95 | Bootstrap of the best trial |
+|---|---|---|---|---|---|---|---|
+| Independent normal returns | 0.533 | 0.529 | 0.528 | 0.430 | 0.428 | 0.090 | 0.471 |
+| Fat tails (Student t) | 0.515 | 0.514 | 0.515 | 0.420 | 0.424 | 0.107 | 0.469 |
+| Negative skew | 0.556 | 0.564 | 0.451 | 0.461 | 0.466 | 0.079 | 0.423 |
+| Positive skew | 0.549 | 0.545 | 0.649 | 0.450 | 0.453 | 0.121 | 0.544 |
+| Volatility clustering (GARCH) | 0.544 | 0.546 | 0.544 | 0.444 | 0.445 | 0.104 | 0.476 |
+| Autocorrelated returns (AR(1)) | 0.603 | 0.358 | 0.604 | 0.508 | 0.268 | 0.071 | 0.544 |
+| Two volatility regimes | 0.539 | 0.537 | 0.540 | 0.451 | 0.450 | 0.121 | 0.488 |
+| Correlated trials (one common factor) | 0.501 | 0.502 | 0.498 | 0.403 | 0.405 | 0.225 | 0.442 |
+
+## What it shows
+
+- Autocorrelated returns break every best-of-N test that ignores them: luck-equivalent trials
+  rejected 0.200 and the Bonferroni haircut 0.132
+  of skill-less searches. Lo's correction brings luck-equivalent trials to 0.059.
+- The deflated Sharpe ratio read as a test at 0.95 almost never calls noise skilled
+  (0.000) but finds the skilled strategy in only 0.090
+  of searches, against 0.533 for luck-equivalent trials. It subtracts the
+  expected best of N and then asks for high confidence on top: an estimate, not a test at its level.
+- Haircut Sharpe p-values are two-sided, as the authors define them, so their size sits near half
+  the level by construction.
+
+## Evidence boundary
+
+These are synthetic searches. They measure how corrections behave on known return shapes; they do
+not say which shape a real strategy has, and a correction that passes here can still fail on a
+shape the zoo does not contain.
 
 
 ------------------------------------------------------------------------------

@@ -13,18 +13,22 @@ import {
   toolGetReceipt,
   toolServiceStatus,
   toolValidateBreadth,
+  toolValidateTrackRecord,
+  toolValidateBacktestLength,
+  toolValidateHaircutSharpe,
   toolValidateDeflatedSharpe,
   toolValidateOverfitting,
   toolValidatePaperEvidence,
   toolCompanyFinancialHistory,
   columnarObservations,
+  compactEnvelope,
 } from "../src/server.mjs";
 import { COMPANY_REFERENCE_BOUNDARY } from "../src/schemas.mjs";
 
 const LIMITS_TEXT = [
   "This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.",
   "A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast.",
-  "The receipt is content-hashed and reproducible from the open-source core it names. It is not signed.",
+  "The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json.",
   "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per validation request, 1024 bytes per key revocation request, 20000 observations per series, 200 variants per matrix.",
 ];
 
@@ -154,7 +158,7 @@ test("validate_deflated_sharpe: success envelope passthrough and the input is fo
 
   const result = await toolValidateDeflatedSharpe(session, RETURN_SERIES_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
   assert.deepEqual(JSON.parse(fetchImpl.calls[0].init.body), RETURN_SERIES_INPUT);
   assert.equal(fetchImpl.calls[0].init.headers.Authorization, "Bearer ck_live_env");
 });
@@ -169,7 +173,7 @@ test("validate_deflated_sharpe: error envelope passthrough (invalid input)", asy
 
   const result = await toolValidateDeflatedSharpe(session, RETURN_SERIES_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 test("validate_deflated_sharpe: quota 429 passthrough", async () => {
@@ -182,7 +186,7 @@ test("validate_deflated_sharpe: quota 429 passthrough", async () => {
 
   const result = await toolValidateDeflatedSharpe(session, RETURN_SERIES_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 test("validate_deflated_sharpe: a mixed input is rejected client-side, before any fetch", async () => {
@@ -202,7 +206,7 @@ test("validate_deflated_sharpe: without any key, the real 401 envelope is still 
 
   const result = await toolValidateDeflatedSharpe(session, RETURN_SERIES_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
   assert.equal(fetchImpl.calls[0].init.headers.Authorization, undefined);
 });
 
@@ -227,7 +231,7 @@ test("validate_overfitting: success envelope passthrough", async () => {
 
   const result = await toolValidateOverfitting(session, OVERFITTING_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 test("validate_overfitting: error envelope passthrough", async () => {
@@ -237,7 +241,7 @@ test("validate_overfitting: error envelope passthrough", async () => {
 
   const result = await toolValidateOverfitting(session, OVERFITTING_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 test("validate_overfitting: quota 429 passthrough", async () => {
@@ -247,7 +251,7 @@ test("validate_overfitting: quota 429 passthrough", async () => {
 
   const result = await toolValidateOverfitting(session, OVERFITTING_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 // ---------------------------------------------------------------------------------------------
@@ -263,7 +267,7 @@ test("validate_paper_evidence: success envelope passthrough", async () => {
 
   const result = await toolValidatePaperEvidence(session, PAPER_EVIDENCE_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 test("validate_paper_evidence: error envelope passthrough", async () => {
@@ -273,7 +277,7 @@ test("validate_paper_evidence: error envelope passthrough", async () => {
 
   const result = await toolValidatePaperEvidence(session, PAPER_EVIDENCE_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 test("validate_paper_evidence: quota 429 passthrough", async () => {
@@ -283,7 +287,103 @@ test("validate_paper_evidence: quota 429 passthrough", async () => {
 
   const result = await toolValidatePaperEvidence(session, PAPER_EVIDENCE_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
+});
+
+// ---------------------------------------------------------------------------------------------
+// validate_track_record
+// ---------------------------------------------------------------------------------------------
+
+const TRACK_RECORD_INPUT = { observed_sharpe_annualized: 2, benchmark_sharpe_annualized: 1, periods_per_year: 252, skew: 0, non_excess_kurtosis: 3, observations: 504 };
+
+test("validate_track_record: success envelope passthrough to the track-record route", async () => {
+  const body = envelope({ endpoint: "validate/track-record", data: { result: { minimum_observations: 689 } } });
+  const calls = [];
+  const fetchImpl = async (url, init) => { calls.push({ url: String(url), body: init?.body }); return new Response(JSON.stringify(body), { status: 200 }); };
+  const session = createSession({ base: "https://example.test", fetchImpl, envKey: "ck_live_env" });
+  const result = await toolValidateTrackRecord(session, TRACK_RECORD_INPUT);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
+  assert.equal(calls[0].url, "https://example.test/api/v1/validate/track-record");
+  assert.deepEqual(JSON.parse(calls[0].body), TRACK_RECORD_INPUT);
+});
+
+test("validate_track_record: error envelope passthrough", async () => {
+  const body = envelope({ endpoint: "validate/track-record", error: { code: "invalid_input", message: "The observed Sharpe must exceed the benchmark" } });
+  const fetchImpl = fakeFetch([{ status: 422, body }]);
+  const session = createSession({ base: "https://example.test", fetchImpl, envKey: "ck_live_env" });
+  const result = await toolValidateTrackRecord(session, TRACK_RECORD_INPUT);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
+});
+
+test("validate_track_record: rejects an unknown field before any request", async () => {
+  let called = false;
+  const session = createSession({ base: "https://example.test", fetchImpl: async () => { called = true; }, envKey: "ck_live_env" });
+  await assert.rejects(toolValidateTrackRecord(session, { ...TRACK_RECORD_INPUT, surprise: 1 }), /validate_track_record/);
+  assert.equal(called, false);
+});
+
+// ---------------------------------------------------------------------------------------------
+// validate_backtest_length
+// ---------------------------------------------------------------------------------------------
+
+const BACKTEST_LENGTH_INPUT = { effective_independent_trials: 45, backtest_years: 5, target_sharpe_annualized: 1 };
+
+test("validate_backtest_length: success envelope passthrough to the backtest-length route", async () => {
+  const body = envelope({ endpoint: "validate/backtest-length", data: { result: { maximum_independent_trials: 45 } } });
+  const calls = [];
+  const fetchImpl = async (url, init) => { calls.push({ url: String(url), body: init?.body }); return new Response(JSON.stringify(body), { status: 200 }); };
+  const session = createSession({ base: "https://example.test", fetchImpl, envKey: "ck_live_env" });
+  const result = await toolValidateBacktestLength(session, BACKTEST_LENGTH_INPUT);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
+  assert.equal(calls[0].url, "https://example.test/api/v1/validate/backtest-length");
+  assert.deepEqual(JSON.parse(calls[0].body), BACKTEST_LENGTH_INPUT);
+});
+
+test("validate_backtest_length: error envelope and quota passthrough", async () => {
+  for (const [status, error] of [[422, { code: "invalid_input", message: "Send effective_independent_trials, backtest_years, or both" }], [429, { code: "quota_exceeded", message: "quota" }]]) {
+    const body = envelope({ endpoint: "validate/backtest-length", error });
+    const session = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status, body }]), envKey: "ck_live_env" });
+    const result = await toolValidateBacktestLength(session, BACKTEST_LENGTH_INPUT);
+    assert.equal(result.isError, true);
+    assert.deepEqual(parsedText(result), compactEnvelope(body));
+  }
+});
+
+test("validate_backtest_length: rejects an unknown field or one trial before any request", async () => {
+  let called = false;
+  const session = createSession({ base: "https://example.test", fetchImpl: async () => { called = true; }, envKey: "ck_live_env" });
+  await assert.rejects(toolValidateBacktestLength(session, { ...BACKTEST_LENGTH_INPUT, surprise: 1 }), /validate_backtest_length/);
+  await assert.rejects(toolValidateBacktestLength(session, { effective_independent_trials: 1 }), /validate_backtest_length/);
+  assert.equal(called, false);
+});
+
+// ---------------------------------------------------------------------------------------------
+// validate_haircut_sharpe
+// ---------------------------------------------------------------------------------------------
+
+const HAIRCUT_INPUT = { observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, tests: 100, autocorrelation: 0.1 };
+
+test("validate_haircut_sharpe: success passthrough to the haircut-sharpe route", async () => {
+  const body = envelope({ endpoint: "validate/haircut-sharpe", data: { result: { bonferroni: { haircut: 0.746 } } } });
+  const calls = [];
+  const fetchImpl = async (url, init) => { calls.push({ url: String(url), body: init?.body }); return new Response(JSON.stringify(body), { status: 200 }); };
+  const session = createSession({ base: "https://example.test", fetchImpl, envKey: "ck_live_env" });
+  const result = await toolValidateHaircutSharpe(session, HAIRCUT_INPUT);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
+  assert.equal(calls[0].url, "https://example.test/api/v1/validate/haircut-sharpe");
+  assert.deepEqual(JSON.parse(calls[0].body), HAIRCUT_INPUT);
+});
+
+test("validate_haircut_sharpe: errors pass through; a non-positive Sharpe or unknown field never leaves", async () => {
+  const body = envelope({ endpoint: "validate/haircut-sharpe", error: { code: "invalid_input", message: "Send tests, other_sharpe_ratios_annualized, or both" } });
+  const session = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status: 422, body }]), envKey: "ck_live_env" });
+  const result = await toolValidateHaircutSharpe(session, HAIRCUT_INPUT);
+  assert.equal(result.isError, true);
+  let called = false;
+  const quiet = createSession({ base: "https://example.test", fetchImpl: async () => { called = true; }, envKey: "ck_live_env" });
+  await assert.rejects(toolValidateHaircutSharpe(quiet, { ...HAIRCUT_INPUT, observed_sharpe_annualized: -1 }), /validate_haircut_sharpe/);
+  await assert.rejects(toolValidateHaircutSharpe(quiet, { ...HAIRCUT_INPUT, surprise: 1 }), /validate_haircut_sharpe/);
+  assert.equal(called, false);
 });
 
 // ---------------------------------------------------------------------------------------------
@@ -299,7 +399,7 @@ test("validate_breadth: success envelope passthrough", async () => {
 
   const result = await toolValidateBreadth(session, BREADTH_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 test("validate_breadth: error envelope passthrough", async () => {
@@ -309,7 +409,7 @@ test("validate_breadth: error envelope passthrough", async () => {
 
   const result = await toolValidateBreadth(session, BREADTH_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 test("validate_breadth: quota 429 passthrough", async () => {
@@ -319,7 +419,7 @@ test("validate_breadth: quota 429 passthrough", async () => {
 
   const result = await toolValidateBreadth(session, BREADTH_INPUT);
 
-  assert.deepEqual(parsedText(result), body);
+  assert.deepEqual(parsedText(result), compactEnvelope(body));
 });
 
 // ---------------------------------------------------------------------------------------------
@@ -472,4 +572,154 @@ test("compact context: rows rebuild every observation exactly, and mixed units k
   assert.equal(mixed.unit, undefined);
   assert.equal(mixed.columns.at(-1), "unit");
   assert.deepEqual(mixed.rows.map((r) => r.at(-1)), ["USD", "shares"]);
+});
+
+test("an empty or unsubstituted CANLI_KEY is no key", async () => {
+  const { configuredKey } = await import("../src/server.mjs");
+  assert.equal(configuredKey(undefined), undefined);
+  assert.equal(configuredKey(""), undefined);
+  assert.equal(configuredKey("  "), undefined);
+  assert.equal(configuredKey("${user_config.api_key}"), undefined);
+  assert.equal(configuredKey("canli_realkey123"), "canli_realkey123");
+});
+
+// company_financial_history by ticker: resolved through /api/v1/company-tickers.json once per session.
+function tickerAwareFetch(record, seen) {
+  const index = { schema: "canli.company-tickers.v1", tickers: { AAPL: "0000320193" } };
+  return async (url) => {
+    seen.push(String(url));
+    const body = String(url).endsWith("/api/v1/company-tickers.json") ? index : record;
+    return new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+}
+
+test("company_financial_history: a ticker resolves to its CIK through the published index, fetched once", async () => {
+  const seen = [];
+  const session = createSession({ base: "https://example.test", fetchImpl: tickerAwareFetch(COMPANY_RECORD, seen) });
+  const first = await toolCompanyFinancialHistory(session, { ticker: "aapl" });
+  assert.ok(!first.isError);
+  await toolCompanyFinancialHistory(session, { ticker: "AAPL", concept: "Assets" });
+  assert.deepEqual(seen, [
+    "https://example.test/api/v1/company-tickers.json",
+    "https://example.test/company-data/0000320193.json",
+    "https://example.test/company-data/0000320193.json",
+  ]);
+});
+
+test("company_financial_history: an unknown ticker is an error naming the ticker", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: tickerAwareFetch(COMPANY_RECORD, []) });
+  const result = await toolCompanyFinancialHistory(session, { ticker: "ZZZZ" });
+  assert.equal(result.isError, true);
+  const body = JSON.parse(result.content[0].text);
+  assert.equal(body.error.code, "unknown_ticker");
+  assert.match(body.error.message, /ZZZZ/);
+});
+
+test("company_financial_history: exactly one of cik or ticker", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: tickerAwareFetch(COMPANY_RECORD, []) });
+  await assert.rejects(toolCompanyFinancialHistory(session, { cik: "320193", ticker: "AAPL" }), /exactly one of cik or ticker/);
+  await assert.rejects(toolCompanyFinancialHistory(session, {}), /exactly one of cik or ticker/);
+});
+
+// ---------------------------------------------------------------------------------------------
+// compact validation results
+// ---------------------------------------------------------------------------------------------
+
+const FULL_VALIDATION = envelope({
+  endpoint: "validate/breadth",
+  data: { ceiling: 2.236, plain_reading: "R" },
+  receipt: { id: "a".repeat(24), url: `https://canlicapital.com/api/v1/receipts/${"a".repeat(24)}`, input_sha256: "sha256:x", output_sha256: "sha256:y" },
+});
+
+test("compact results keep the answer, every boundary sentence but the quota line, and the receipt link", () => {
+  const compact = compactEnvelope(FULL_VALIDATION);
+  assert.deepEqual(Object.keys(compact).sort(), ["data", "limits", "receipt"]);
+  assert.deepEqual(compact.data, FULL_VALIDATION.data);
+  assert.deepEqual(compact.limits, LIMITS_TEXT.filter((s) => !s.startsWith("Quotas:")));
+  assert.equal(compact.limits.length, LIMITS_TEXT.length - 1);
+  assert.deepEqual(compact.receipt, { id: FULL_VALIDATION.receipt.id, url: FULL_VALIDATION.receipt.url });
+  assert.ok(JSON.stringify(compact).length < JSON.stringify(FULL_VALIDATION).length * 0.8);
+});
+
+test("an error result keeps its error, and a local result says it was computed locally", () => {
+  const failed = compactEnvelope(envelope({ endpoint: "validate/breadth", error: { code: "quota_exhausted", message: "q" } }));
+  assert.deepEqual(failed.error, { code: "quota_exhausted", message: "q" });
+  const local = compactEnvelope({ schema: "canli.local.v1", computed: "locally", note: "N", limits: LIMITS_TEXT, receipt: null, data: { x: 1 }, error: null });
+  assert.deepEqual(local, { computed: "locally", note: "N", data: { x: 1 }, limits: LIMITS_TEXT.slice(0, 3), receipt: null });
+});
+
+test("CANLI_FULL_ENVELOPE (fullEnvelope) returns the API's envelope unchanged", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status: 200, body: FULL_VALIDATION }]), envKey: "ck_live_env", fullEnvelope: true });
+  assert.deepEqual(parsedText(await toolValidateBreadth(session, BREADTH_INPUT)), FULL_VALIDATION);
+});
+
+test("get_receipt and service_status are never compacted: they are where the full record lives", async () => {
+  const receipt = envelope({ endpoint: "receipts/x", data: { bindings: { "js/dsr-core.js": "sha256:z" } } });
+  const s1 = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status: 200, body: receipt }]) });
+  assert.deepEqual(parsedText(await toolGetReceipt(s1, { id: "a".repeat(24) })), receipt);
+  const status = envelope({ endpoint: "validate/status", data: { ok: true } });
+  const s2 = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status: 200, body: status }]) });
+  assert.deepEqual(parsedText(await toolServiceStatus(s2)), status);
+});
+
+// ---------------------------------------------------------------------------------------------
+// verify_receipt
+// ---------------------------------------------------------------------------------------------
+
+import { generateKeyPairSync, sign as signBytes } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { keyIdFor, outputSha256, receiptId, receiptStatement, SIGNATURE_SCHEMA } from "../src/local/js/receipt-statement.js";
+import { toolVerifyReceipt } from "../src/server.mjs";
+
+function signedReceipt() {
+  const { publicKey, privateKey } = generateKeyPairSync("ed25519");
+  const x = publicKey.export({ format: "jwk" }).x;
+  const key = { key_id: keyIdFor(Buffer.from(x, "base64url")), alg: "Ed25519", x, status: "active" };
+  const output = { ceiling: 2.236 };
+  const bindings = { "js/validate/breadth.js": "sha256:bb" };
+  const input_sha256 = "sha256:in";
+  const id = receiptId({ endpoint: "validate/breadth", input_sha256, output, bindings });
+  const statement = receiptStatement({ id, endpoint: "validate/breadth", input_sha256, output_sha256: outputSha256(output), bindings });
+  const value = signBytes(null, Buffer.from(statement), privateKey).toString("base64url");
+  const data = { id, endpoint: "/api/v1/validate/breadth", input_sha256, output, output_sha256: outputSha256(output), bindings, signature: { alg: "Ed25519", schema: SIGNATURE_SCHEMA, key_id: key.key_id, value } };
+  return { key, data };
+}
+
+test("verify_receipt: a receipt fetched by id verifies against the trusted key; only the fetch touches the network", async () => {
+  const { key, data } = signedReceipt();
+  const fetchImpl = fakeFetch([{ status: 200, body: envelope({ endpoint: `receipts/${data.id}`, data }) }]);
+  const session = createSession({ base: "https://example.test", fetchImpl, receiptKeys: [key] });
+  const out = parsedText(await toolVerifyReceipt(session, { id: data.id }));
+  assert.equal(out.valid, true);
+  assert.deepEqual(out.checks, { id_matches_content: true, signature_valid: true, key_published: true });
+  assert.equal(fetchImpl.calls.length, 1);
+  assert.match(fetchImpl.calls[0].url, /\/api\/v1\/receipts\/[0-9a-f]{24}$/);
+});
+
+test("verify_receipt: a receipt passed in verifies offline, and a changed number or an unknown key fails", async () => {
+  const { key, data } = signedReceipt();
+  const session = createSession({ base: "https://example.test", fetchImpl: neverFetch, receiptKeys: [key] });
+  assert.equal(parsedText(await toolVerifyReceipt(session, { receipt: data })).valid, true);
+  const changed = parsedText(await toolVerifyReceipt(session, { receipt: { ...data, output: { ceiling: 3 } } }));
+  assert.equal(changed.valid, false);
+  assert.equal(changed.checks.id_matches_content, false);
+  const stranger = createSession({ base: "https://example.test", fetchImpl: neverFetch, receiptKeys: [signedReceipt().key] });
+  const unknown = parsedText(await toolVerifyReceipt(stranger, { receipt: data }));
+  assert.equal(unknown.valid, false);
+  assert.equal(unknown.checks.key_published, false);
+});
+
+test("verify_receipt: exactly one of id or receipt, and a missing receipt's error passes through", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status: 404, body: envelope({ endpoint: "receipts/x", error: { code: "not_found", message: "No receipt with that id" } }) }]) });
+  await assert.rejects(toolVerifyReceipt(session, {}), /exactly one of id or receipt/);
+  await assert.rejects(toolVerifyReceipt(session, { id: "a".repeat(24), receipt: {} }), /exactly one of id or receipt/);
+  const missing = await toolVerifyReceipt(session, { id: "a".repeat(24) });
+  assert.equal(missing.isError, true);
+  assert.equal(parsedText(missing).error.code, "not_found");
+});
+
+test("the bundled receipt keys are the published ones", () => {
+  const bundled = JSON.parse(readFileSync(new URL("../src/receipt-keys.json", import.meta.url), "utf8"));
+  assert.equal(bundled.schema, "canli.receipt-keys.v1");
+  for (const k of bundled.keys) assert.equal(keyIdFor(Buffer.from(k.x, "base64url")), k.key_id);
 });

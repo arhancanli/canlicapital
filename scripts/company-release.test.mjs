@@ -65,3 +65,22 @@ test('configured public wrapper uses bounded HTTP storage, compiled assets and a
   const down = response(); await missing({ method: 'GET', query: { path: '/companies' } }, down);
   assert.equal(down.statusCode, 503); assert.equal(down.headers['Cache-Control'], 'no-store');
 });
+
+test('every release-backed page reports Server-Timing, and a warm instance reads nothing from storage for a page it has built', async t => {
+  const { options, record } = fixture(t);
+  let storageReads = 0;
+  const counted = { ...options, readCatalogObject: async (hash, limit, kind) => { storageReads += 1; return options.readCatalogObject(hash, limit, kind); } };
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(counted) });
+  const request = async () => {
+    const res = { headers: {}, setHeader(k, v) { this.headers[k] = v; }, end(body) { this.body = body; } };
+    await handler({ method: 'GET', query: { path: `/companies/${record.cik}` }, headers: {} }, res);
+    return res;
+  };
+  const cold = await request();
+  assert.match(cold.headers['Server-Timing'], /^release;dur=\d+(\.\d)?, page;dur=\d+(\.\d)?, storage;dur=\d+(\.\d)?, render;dur=\d+(\.\d)?, reads;desc="\d+", hits;desc="\d+"$/);
+  const readsAfterCold = storageReads;
+  assert.ok(readsAfterCold > 0);
+  const warm = await request();
+  assert.equal(storageReads, readsAfterCold, 'the second build of the same page reads only from the instance cache');
+  assert.match(warm.headers['Server-Timing'], /reads;desc="0"/);
+});

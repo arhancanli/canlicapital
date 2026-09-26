@@ -2,7 +2,7 @@
 
 All remain active; later SEO requests do not replace the platform or algorithm goals.
 
-- Review Claude's changes and continue the CanliCapital vision.
+- Review earlier changes and continue the CanliCapital vision.
 - Grow both research/evidence and company/market reference.
 - Reach at least **800,000 actually indexed canonical pages**, targeting **1,000,000**.
 - Maintain exceptional content quality: useful, distinct, source-backed, reproducible, accessible and maintained. Quantity must not lower the standard.
@@ -24,8 +24,8 @@ Measurement rules:
 Authoritative configuration: `config/search-growth-goal.json`; engine
 `config/owner_goals.json` and associated cost, drawdown and forward-evidence contracts.
 
-Execution preference (2026-09-20): Codex directly leads and implements; stop Hermes
-delegation. Maintain clear current records, evidence and full objective coverage.
+Execution preference (2026-09-20): maintain clear current records, evidence and full
+objective coverage.
 
 Publication authorization (2026-09-20): the owner explicitly approved publishing
 everything, including MCP0.1.2. Proceed with tested website/API/MCP and repository

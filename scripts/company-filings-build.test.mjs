@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { once } from 'node:events';
@@ -181,7 +181,10 @@ test('admission counts filing pages with their company and the production sitema
   assert.equal(loadCompanyFilingAdmission(activation, { root }).companies.get(CIKS[1]).length, second.filings.length);
   const result = prepareCompanyProductionOutput(root, { environment: { VERCEL_ENV: 'production' }, activation });
   assert.equal(result.companyUrls, counts.urls_admitted);
-  const urls = new Set(parseSitemap(readFileSync(resolve(root, 'dist/sitemap-companies-1.xml'), 'utf8')).locations);
+  // Company URLs are split across per-family sitemaps (sitemap-companies-{family}-N.xml); read them all.
+  const familyMaps = readdirSync(resolve(root, 'dist')).filter(name => /^sitemap-companies-.+\.xml$/.test(name));
+  assert.ok(familyMaps.length > 0, 'no company sitemaps were written');
+  const urls = new Set(familyMaps.flatMap(name => parseSitemap(readFileSync(resolve(root, 'dist', name), 'utf8')).locations));
   assert.equal(urls.size, counts.urls_admitted);
   assert.ok(urls.has(ORIGIN + filingsIndexPath(CIKS[0])));
   for (const filing of first.filings) assert.ok(urls.has(ORIGIN + filingPath(CIKS[0], filing.accession)));

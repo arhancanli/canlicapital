@@ -9,6 +9,10 @@ import { compute as dsr } from "./validate/deflated-sharpe.js";
 import { compute as pbo } from "./validate/overfitting.js";
 import { compute as evidence } from "./validate/paper-evidence.js";
 import { compute as breadth } from "./validate/breadth.js";
+import { compute as trackRecord } from "./validate/track-record.js";
+import { compute as backtestLength } from "./validate/backtest-length.js";
+import { compute as haircut } from "./validate/haircut-sharpe.js";
+import { compute as luck } from "./validate/luck-trials.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const VECTORS = JSON.parse(readFileSync(resolve(ROOT, "standards/validation-api/vectors.json"), "utf8"));
@@ -17,8 +21,8 @@ test("the manifest names every route file and every route has a summary and an e
   const paths = MANIFEST.map((m) => `${m.method} ${m.path}`).sort();
   assert.deepEqual(paths, [
     "GET /api/v1/receipts/{id}", "GET /api/v1/receipts/{id}/badge.svg", "GET /api/v1/validate/status",
-    "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe",
-    "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence",
+    "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/backtest-length", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe", "POST /api/v1/validate/haircut-sharpe",
+    "POST /api/v1/validate/luck-trials", "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence", "POST /api/v1/validate/track-record",
   ]);
   for (const m of MANIFEST) { assert.ok(m.summary.length > 20, m.path); if (m.method === "POST") assert.ok(m.requestExample, m.path); }
 });
@@ -111,4 +115,56 @@ test("missing database configuration preserves API unavailable and badge contrac
     }
   }
   assert.equal(computeCalls, 0);
+});
+
+test("track-record reproduces the paper's daily example and judges a record's length", () => {
+  const base = { observed_sharpe_annualized: 2, benchmark_sharpe_annualized: 1, periods_per_year: 252, skew: 0, non_excess_kurtosis: 3 };
+  const out = trackRecord(base);
+  assert.ok(Math.abs(out.result.minimum_years - 2.73) <= 0.005, String(out.result.minimum_years));
+  assert.equal(out.result.record, undefined);
+  const short = trackRecord({ ...base, observations: 504 });
+  assert.equal(short.result.record.long_enough, false);
+  assert.ok(short.result.record.psr_against_benchmark < 0.95);
+  const enough = trackRecord({ ...base, observations: out.result.minimum_observations });
+  assert.equal(enough.result.record.long_enough, true);
+  assert.ok(enough.result.record.psr_against_benchmark >= 0.95);
+  assert.match(out.plain_reading, /not a forecast/);
+  assert.throws(() => trackRecord({ ...base, observed_sharpe_annualized: 1 }), /must exceed the benchmark/);
+  assert.throws(() => trackRecord({ periods_per_year: 252 }), /Missing required fields/);
+});
+
+test("backtest-length reproduces the paper's statements and refuses a request with neither input", () => {
+  const out = backtestLength({ effective_independent_trials: 45, backtest_years: 5, target_sharpe_annualized: 1 });
+  assert.equal(out.result.maximum_independent_trials, 45);
+  assert.equal(out.result.minimum_backtest_years.toFixed(0), "5");
+  assert.equal(out.result.long_enough, true);
+  assert.ok(out.result.minimum_backtest_years < out.result.upper_bound_years);
+  assert.equal(backtestLength({ backtest_years: 2 }).result.maximum_independent_trials, 7);
+  assert.match(out.plain_reading, /necessary, not sufficient/);
+  assert.throws(() => backtestLength({}), /Send effective_independent_trials, backtest_years, or both/);
+  assert.throws(() => backtestLength({ effective_independent_trials: 1 }), RangeError);
+});
+
+test("haircut-sharpe reproduces the authors' Exhibit 5 Bonferroni haircut and refuses a request with no test count", () => {
+  const out = haircut({ observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, tests: 100, autocorrelation: 0.1 });
+  assert.equal(out.result.sharpe_annualized_corrected.toFixed(3), "0.912");
+  assert.equal((out.result.bonferroni.haircut * 100).toFixed(1), "74.6");
+  assert.equal(out.result.holm, undefined);
+  assert.match(out.plain_reading, /tests run and not counted are invisible/);
+  const family = haircut({ observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, other_sharpe_ratios_annualized: [0.2, 0.5, 0.9, -0.1] });
+  assert.equal(family.result.tests, 5);
+  assert.ok(family.result.bhy.adjusted_p > 0);
+  assert.throws(() => haircut({ observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120 }), /Send tests/);
+  assert.throws(() => haircut({ periods_per_year: 12 }), /Missing required fields/);
+});
+
+test("luck-trials inverts the best-of-N probability, says when one trial explains it, and warns on negative skew", () => {
+  const out = luck({ observed_sharpe_annualized: 1.5, periods_per_year: 252, observations: 756, effective_independent_trials: 200, skew: -1.2 });
+  const p = out.result.single_trial_probability;
+  const atEven = -Math.expm1(out.result.trials_for_even_odds * Math.log1p(-p));
+  assert.ok(Math.abs(atEven - 0.5) < 1e-12);
+  assert.match(out.plain_reading, /too generous/);
+  assert.match(luck({ observed_sharpe_annualized: -1, periods_per_year: 252, observations: 300 }).plain_reading, /luck alone readily explains it/);
+  assert.throws(() => luck({ observed_sharpe_annualized: 1, periods_per_year: 252 }), /Missing required fields: observations/);
+  assert.throws(() => luck({ observed_sharpe_annualized: 1, periods_per_year: 252, observations: 300, effective_independent_trials: 0 }), /effective_independent_trials/);
 });

@@ -13,7 +13,7 @@ copy `action/` into your own.
 
 The service runs the return series you submit through the same probabilistic and deflated Sharpe
 arithmetic canlicapital.com's own paper record runs on itself, and hands back a verdict anyone can
-recompute from the receipt. It does not accept market data, does not sign receipts, does not grade
+recompute from the receipt. It signs every receipt, does not accept market data, does not grade
 a strategy, and never saw your data source, its costs, survivorship, or any lookahead in how the
 series was built. A deflated Sharpe above or below any threshold is not admission to anything and
 is not a forecast. This action never prints a bare number: the job summary always carries the

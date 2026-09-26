@@ -21,6 +21,10 @@ const SHORT_LABEL = Object.freeze({
   "validate/overfitting": "PBO",
   "validate/paper-evidence": "Paper Evidence",
   "validate/breadth": "Breadth",
+  "validate/track-record": "Track Record",
+  "validate/backtest-length": "Backtest Length",
+  "validate/haircut-sharpe": "Haircut Sharpe",
+  "validate/luck-trials": "Luck Trials",
 });
 
 function shortLabel(endpoint) {
@@ -42,6 +46,22 @@ function limitsFact(endpoint, output) {
   if (endpoint === "validate/breadth") {
     const n = output?.book?.sleeves;
     return Number.isFinite(n) ? `sleeve count ${n}` : "no sleeve count in this receipt";
+  }
+  if (endpoint === "validate/track-record") {
+    const n = output?.result?.record?.observations;
+    return Number.isFinite(n) ? `sample size ${n} observations` : "no record length in this receipt";
+  }
+  if (endpoint === "validate/backtest-length") {
+    const n = output?.derived_inputs?.effective_independent_trials;
+    return Number.isFinite(n) ? `trial count ${n} independent trials` : "no trial count in this receipt";
+  }
+  if (endpoint === "validate/haircut-sharpe") {
+    const n = output?.result?.tests;
+    return Number.isFinite(n) ? `trial count ${n} tests` : "no test count in this receipt";
+  }
+  if (endpoint === "validate/luck-trials") {
+    const n = output?.derived_inputs?.observations;
+    return Number.isFinite(n) ? `sample size ${n} observations` : "no record length in this receipt";
   }
   if (endpoint === "validate/paper-evidence") {
     const n = (output?.structural?.length ?? 0) + (output?.semantic?.length ?? 0);

@@ -4,8 +4,6 @@ The public site for **Canli Capital**, and the surface where **ALPHAC** — a fo
 cross-asset quant book — publishes its record while it is still small enough to be embarrassing.
 
 **Created and maintained by [Arhan Canli](https://github.com/arhancanli) for Canli Capital.**
-Development uses reviewed AI-assisted tooling, while project ownership, research decisions,
-published claims, and release responsibility remain with Arhan Canli.
 Machine-readable software citation metadata is provided in [`CITATION.cff`](CITATION.cff).
 
 The engine that produces every number here is open too:
@@ -57,7 +55,7 @@ shipping, but cannot place, cancel, or delay an order.
 | `foundry.html` | the fail-closed design and deployment-acceptance status for Foundry |
 | `founder.html` | the ProfilePage that resolves every Arhan Canli authorship claim |
 | `methodology.html` | evidence-linked answers to the research methodology questions |
-| `research/*.html` | 111 generated technical reports, each with Scholar metadata and BibTeX |
+| `research/*.html` | 114 generated technical reports, each with Scholar metadata and BibTeX |
 | `research/topics/*.html` | 13 substantive subject and research-stage indexes |
 | `measurements/*.html` | 89 generated Dataset pages with explicit claim boundaries |
 | `engineering.html` | the open-source hub: the three repositories, what is hard in them, and a reading path |
@@ -76,7 +74,7 @@ hand. They are the machine-readable form of every claim the pages make. Current 
 derived during the build from `public/research-index.json`,
 `public/glassbox/trial_packet_manifest.json`, and the generated measurement directory; the sitemap
 is generated from the same files rather than maintained separately. The present build contains
-328 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
+331 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
 trial and one archival HTML paper per registered sleeve. It publishes
 identity-level packets for all 228 recorded hypotheses, while
 honestly marking 226 of those packets incomplete.

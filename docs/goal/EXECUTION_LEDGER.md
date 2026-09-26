@@ -1,9 +1,8 @@
 # Direct execution ledger
 
-Updated September 21, 2026. Codex implements directly; Hermes delegation is stopped.
-The full goal remains active and unachieved. Read STATUS.md for exact hashes,
-process handles and the latest checkpoint. Earlier ledger preserved in
-[history/EXECUTION_LEDGER-20260921-before-scope-v19-refresh.md](history/EXECUTION_LEDGER-20260921-before-scope-v19-refresh.md).
+Updated September 21, 2026. The full goal remains active and unachieved. Read STATUS.md
+for exact hashes, process handles and the latest checkpoint. Earlier versions of this
+ledger are in the repository's git history.
 
 | Work | Verified state | Next required outcome |
 | --- | --- | --- |

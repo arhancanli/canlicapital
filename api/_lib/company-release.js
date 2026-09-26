@@ -27,8 +27,8 @@ export async function loadCompanyRelease({ releaseHash, readReleaseObject, readC
   // beside the catalog under the same base.
   if (filingsIndexable !== false && typeof filingsIndexable !== 'function') throw new Error('Filings indexing must be false or an admission predicate');
   const filingsCatalog = release.filings_root && readFilingsObject ? createCompanyFilingsCatalog({ rootHash: release.filings_root, readObject: readFilingsObject }) : null;
-  const filings = createCompanyFilingsHandler({ filings: filingsCatalog, assets, indexable: filingsCatalog ? filingsIndexable : false });
-  const company = createCompanyHtmlHandler({ catalog, assets, indexable, filings: filingsCatalog });
+  const filings = createCompanyFilingsHandler({ filings: filingsCatalog, assets, indexable: filingsCatalog ? filingsIndexable : false, historyIndexable: indexable });
+  const company = createCompanyHtmlHandler({ catalog, assets, indexable, filings: filingsCatalog, filingsIndexable: filingsCatalog ? filingsIndexable : false });
   const directory = createCompanyDirectoryHandler({ catalog, assets, indexable: directoryIndexable === true });
   const download = createCompanyDownloadHandler({ index: downloads, readDownload });
   return { releaseHash, release, catalog, downloads, company, directory, download, filings, filingsCatalog };
@@ -44,7 +44,25 @@ export function createCompanyReleaseLoader(options) {
   };
 }
 
-export function createCompanyReferenceHandler({ loadRelease }) {
+// Server-Timing on every release-backed response: how long the release took to load (0 on a warm
+// instance), how long the page took, on a company page how much of that was storage reads and how
+// much rendering, and how many catalog objects this instance read from storage and served from its
+// cache while the page was built, across the company and filings catalogs. Counts come from the
+// instance's shared catalogs, so concurrent requests on one instance can blur them; they are
+// diagnostics, not billing.
+function catalogStats(release) {
+  const all = [release.catalog?.stats?.(), release.filingsCatalog?.stats?.()].filter(Boolean);
+  return all.length ? all.reduce((a, s) => ({ objectReads: a.objectReads + s.objectReads, cacheHits: a.cacheHits + s.cacheHits }), { objectReads: 0, cacheHits: 0 }) : undefined;
+}
+
+function timingHeader({ loadMs, pageMs, split, before, after }) {
+  const parts = [`release;dur=${loadMs.toFixed(1)}`, `page;dur=${pageMs.toFixed(1)}`];
+  if (split) parts.push(`storage;dur=${split.storageMs.toFixed(1)}`, `render;dur=${split.renderMs.toFixed(1)}`);
+  if (before && after) parts.push(`reads;desc="${after.objectReads - before.objectReads}"`, `hits;desc="${after.cacheHits - before.cacheHits}"`);
+  return parts.join(", ");
+}
+
+export function createCompanyReferenceHandler({ loadRelease, now = () => performance.now() }) {
   return async (req, res) => {
     const fail = (status, message) => { res.statusCode = status; res.setHeader('Content-Type', 'text/plain; charset=utf-8'); res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Robots-Tag', 'noindex'); res.end(req.method === 'HEAD' ? undefined : message); };
     const path = req.query?.path;
@@ -57,7 +75,15 @@ export function createCompanyReferenceHandler({ loadRelease }) {
     if (!['GET', 'HEAD'].includes(req.method)) { res.setHeader('Allow', 'GET, HEAD'); return fail(405, 'Method not allowed'); }
     if (path === '/companies/page/1') { res.statusCode = 308; res.setHeader('Location', '/companies'); res.setHeader('Cache-Control', 'no-store'); return res.end(); }
     try {
+      const started = now();
       const release = await loadRelease();
+      const loaded = now();
+      const before = catalogStats(release);
+      const end = res.end.bind(res);
+      res.end = (...args) => {
+        if (!res.headersSent) res.setHeader('Server-Timing', timingHeader({ loadMs: loaded - started, pageMs: now() - loaded, split: res.canliTiming, before, after: catalogStats(release) }));
+        return end(...args);
+      };
       if (filing) return await release.filings({ method: req.method, headers: req.headers, query: { cik: filing[1], ...(filing[2] ? { accession: filing[2] } : {}) } }, res);
       if (entity) return await release.company({ method: req.method, headers: req.headers, query: { cik: entity[1], ...(entity[2] ? { concept: entity[2] } : {}) } }, res);
       if (page) return await release.directory({ method: req.method, headers: req.headers, query: { page } }, res);

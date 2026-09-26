@@ -2,6 +2,9 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "regions": [
+    "fra1"
+  ],
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
@@ -275,6 +278,10 @@
       "destination": "/api/v1/company-reference?path=/company-data/:path*"
     },
     {
+      "source": "/mcp",
+      "destination": "/api/mcp"
+    },
+    {
       "source": "/api/v1/status",
       "destination": "/api/v1/status.json"
     },
@@ -305,12 +312,20 @@
     {
       "source": "/api/v1/receipts/:id/badge.svg",
       "destination": "/api/v1/receipts/:id/badge"
+    },
+    {
+      "source": "/audit/:id",
+      "destination": "/api/v1/receipts/:id/certificate"
     }
   ],
   "functions": {
     "api/v1/company-reference.js": {
       "includeFiles": "{dist/company-page-assets.json,config/company-production-activation.json,config/company-admission-v27.json}",
       "maxDuration": 60
+    },
+    "api/mcp.js": {
+      "includeFiles": "mcp/{package.json,src/**}",
+      "maxDuration": 30
     }
   }
 }

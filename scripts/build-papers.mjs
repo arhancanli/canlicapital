@@ -684,6 +684,19 @@ function bibtex(paper) {
 }\n`;
 }
 
+// A research page that links a dataset record under /glassbox/datasets/ also carries that
+// record's schema.org Dataset node, so the dataset is found by dataset search. The node is written
+// by scripts/build-dataset-cards.mjs from the dataset's own files; nothing here types a figure.
+function datasetRecordJsonLd(markdown) {
+  const match = markdown.match(/\(\/glassbox\/datasets\/([a-z0-9-]+)\.json\)/);
+  if (!match) return null;
+  const path = resolve(ROOT, "public/glassbox/datasets", `${match[1]}.json`);
+  if (!existsSync(path)) throw new Error(`dataset record ${match[1]} is linked but missing: run node scripts/build-dataset-cards.mjs`);
+  const node = JSON.parse(readFileSync(path, "utf8")).jsonld;
+  if (node?.["@type"] !== "Dataset" || !node.name || !node.description) throw new Error(`dataset record ${match[1]} has no complete Dataset node`);
+  return node;
+}
+
 const breadcrumbs = (trail) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -695,7 +708,7 @@ const breadcrumbs = (trail) => ({
   })),
 });
 
-function pageHtml({ title, shortTitle, description, slug, body, sourceFile, sourceSha256, sources = [], related = "", citation }) {
+function pageHtml({ title, shortTitle, description, slug, body, sourceFile, sourceSha256, sources = [], related = "", citation, datasetJsonLd = null }) {
   const url = `${ORIGIN}/research/${slug}`;
   const trail = breadcrumbs([
     ["Canli Capital", ORIGIN],
@@ -780,7 +793,7 @@ ${sources.length > 0 ? `<meta name="canli:sources" content="${sources.map(escape
 <link rel="stylesheet" href="../css/paper.css" />
 ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
-<script type="application/ld+json">${JSON.stringify(trail)}</script>
+${datasetJsonLd ? `<script type="application/ld+json">${JSON.stringify(datasetJsonLd)}</script>\n` : ""}<script type="application/ld+json">${JSON.stringify(trail)}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -1011,6 +1024,7 @@ function main() {
         sourceSha256: sha256(paper.markdown),
         related: relatedSection(paper, papers),
         citation: bibtex(paper),
+        datasetJsonLd: datasetRecordJsonLd(paper.markdown),
       })),
     );
     writeFileSync(resolve(CITATION_DIR, `${paper.slug}.bib`), bibtex(paper));

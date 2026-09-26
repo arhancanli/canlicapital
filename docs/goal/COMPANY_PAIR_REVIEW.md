@@ -1,6 +1,6 @@
 # Review of six unusual matching-history pairs
 
-Reviewed by Codex on 2026-09-20. Decision: retain the separate accounting concepts
+Reviewed on 2026-09-20. Decision: retain the separate accounting concepts
 and their comparison links. Do not alias, redirect or canonicalize them together
 solely because their selected numerical vectors match. This resolves the equality
 question for these six pairs, not every quality flag or production approval.
@@ -46,7 +46,7 @@ unit, constant-series and standalone-usefulness decisions stay open.
 
 ## Third cohort: six additional pairs
 
-Reviewed by Codex on 2026-09-20. The same retain-separate-concepts decision applies
+Reviewed on 2026-09-20. The same retain-separate-concepts decision applies
 to the following pairs. All 24 selected observations in the inspected accessions
 match the original filing's undimensioned facts, including entity identifier,
 reporting date, unit, scale and sign. This is a latest-selected-accession review,

@@ -9,6 +9,7 @@
 // the artifacts; the artifacts are the deliverable.
 // =============================================================================
 
+import { CLAUDE_DESKTOP_BUNDLE_URL, cursorInstallLink, MCP_LISTINGS, vscodeAddCommand } from "./lib/mcp-install-links.mjs";
 import { copyFileSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -270,22 +271,58 @@ function extractReadmeFence(markdown, heading, lang) {
 // The short "From your AI assistant" block on /developers: the MCP server wraps the same seven
 // routes documented below it, read from mcp/package.json and mcp/README.md rather than typed
 // here, so this section cannot drift from what an agent running that package actually sees.
+// How well agents use the MCP tools, from the benchmark artifact (scripts/build-mcp-benchmark.mjs),
+// never from typed figures: /developers declares mcp_agent_benchmark.json as a source, so the
+// published-numbers audit traces every number in this table to it.
+function mcpBenchmarkBlock() {
+  // Read from config/ and published into glassbox/ here, at build time: the deploy replaces
+  // public/glassbox/ with the engine's export, so a copy committed there never reaches the build.
+  const text = readFileSync(resolve(ROOT, "config/mcp-agent-benchmark.json"), "utf8");
+  mkdirSync(resolve(ROOT, "public/glassbox"), { recursive: true });
+  writeFileSync(resolve(ROOT, "public/glassbox/mcp_agent_benchmark.json"), text);
+  const bench = JSON.parse(text);
+  const pct = (v) => `${v}%`;
+  const rows = bench.models
+    .map((m) => `<tr><td>${esc(m.label)}</td><td>${esc(pct(m.answer_accuracy_pct))}</td><td>${esc(pct(m.first_tool_right_pct))}</td><td>${esc(m.runs)}</td></tr>`)
+    .join("\n        ");
+  return `<h3 id="mcp-benchmark">How well agents use it</h3>
+    <p class="dev-note">Each model was given these tools and ${esc(bench.tasks)} fixed questions (deflated Sharpe, track record length, breadth, overfitting, company financials by ticker, and what a result does not establish), each asked ${esc(bench.models[0].repeats)} times. An answer counts when it matches ground truth computed from the same checked code.</p>
+    <table class="dev-table" tabindex="0" aria-label="MCP agent benchmark">
+      <thead><tr><th>Model</th><th>Correct answers</th><th>Right tool first</th><th>Runs</th></tr></thead>
+      <tbody>
+        ${rows}
+      </tbody>
+    </table>
+    <p class="dev-note">${esc(bench.scope)} <a href="/glassbox/mcp_agent_benchmark.json">The artifact</a>, <a href="https://github.com/arhancanli/canlicapital/blob/main/${esc(bench.method)}" rel="noreferrer">the method and every miss</a>.</p>`;
+}
+
 function mcpAssistantSection() {
   const mcpPkg = JSON.parse(readFileSync(resolve(ROOT, "mcp/package.json"), "utf8"));
   const readme = readFileSync(resolve(ROOT, "mcp/README.md"), "utf8");
   const claudeCodeInstall = extractReadmeFence(readme, "Claude Code", "bash");
   const claudeDesktopJson = extractReadmeFence(readme, "Claude Desktop", "json");
+  const hostedInstall = extractReadmeFence(readme, "Hosted endpoint (no install)", "bash");
+  const localInstall = extractReadmeFence(readme, "Private local mode", "bash");
   const npmUrl = `https://www.npmjs.com/package/${mcpPkg.name}`;
   return `<section class="dev-section" id="ai-assistant">
     <h2>Connect the MCP server</h2>
     <p class="dev-note">This API is also an MCP server, so a coding assistant can call the
-      routes on this page as tools instead of writing requests by hand. Every tool it exposes
-      returns the full envelope, the same way every route on this page does, so the assistant
-      sees what a number cannot be used to claim, not only the number. It also reads the
+      routes on this page as tools instead of writing requests by hand. Every result it returns
+      keeps, beside the number, the sentences that say what it cannot be used to claim and the
+      receipt that records it, so the assistant never sees a number alone. It also reads the
       <a href="/companies">company reference</a>: one tool returns a company's SEC-reported
       financial history with each value's filing, unit and source hash.</p>
+    <div class="dev-downloads"><a class="dev-button dev-button--primary" href="${esc(cursorInstallLink())}">Add to Cursor</a><a class="dev-button" href="${esc(CLAUDE_DESKTOP_BUNDLE_URL)}">Add to Claude Desktop</a></div>
+    <p class="dev-note">Claude Desktop: open the downloaded <code>.mcpb</code> file to install. The API key field is optional; leave it empty and the <code>get_key</code> tool issues one for the session.</p>
+    <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/blob/main/mcp/SECURITY.md" rel="noreferrer">Security and privacy</a>: what the server does on your machine, what the hosted endpoint does with your key, and what the API stores (a hash of your input, never the input).</p>
+    <p class="dev-note">Listed on ${MCP_LISTINGS.map((l) => `<a href="${esc(l.href)}" rel="noreferrer">${esc(l.label)}</a>`).join(", ")}.</p>
+    <div class="dev-snippet"><p class="dev-snippet-label">VS Code</p><pre class="dev-code" tabindex="0" aria-label="VS Code command"><code>${esc(vscodeAddCommand())}</code></pre></div>
+    <div class="dev-snippet"><p class="dev-snippet-label">Hosted, no install: https://canlicapital.com/mcp</p><pre class="dev-code" tabindex="0" aria-label="Hosted MCP endpoint"><code>${esc(hostedInstall)}</code></pre></div>
+    <p class="dev-note">Clients that take a server URL (Claude.ai connectors, ChatGPT, Cursor) can use the hosted endpoint directly. Without a key it runs on a shared anonymous quota; send your own key as <code>Authorization: Bearer</code> for yours.</p>
+    <div class="dev-snippet"><p class="dev-snippet-label">Private local mode: your series never leaves your machine</p><pre class="dev-code" tabindex="0" aria-label="Private local mode"><code>${esc(localInstall)}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Claude Code configuration"><code>${esc(claudeCodeInstall)}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code" tabindex="0" aria-label="Claude Desktop configuration"><code>${esc(claudeDesktopJson)}</code></pre></div>
+    ${mcpBenchmarkBlock()}
     <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp" rel="noreferrer">Inspect the MCP implementation and contribute an integration</a>. If the tools help your research, star the repository to help others discover it.</p>
     <p class="dev-note"><a href="${esc(npmUrl)}" rel="noreferrer">${esc(mcpPkg.name)} on npm</a>, with the full tool list and what each one does not establish.</p>
   </section>`;
@@ -448,7 +485,7 @@ function buildDevelopers() {
     title: "Developers",
     description,
     route: "/developers",
-    sources: "validation_api_limits.json validation_api_manifest.json",
+    sources: "validation_api_limits.json validation_api_manifest.json mcp_agent_benchmark.json",
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -540,10 +577,15 @@ ${renderProductShellHeader({ active: "developers" })}
         <p class="dev-note">Every verdict carries <code>receipt.url</code>. It is immutable and
           cacheable forever, so anyone, not only the caller, can fetch and recompute it.</p>
         <pre class="dev-code" tabindex="0" aria-label="Fetch a receipt with curl"><code>curl https://canlicapital.com/api/v1/receipts/{id}</code></pre>
-        <p class="dev-note">Its response carries <code>badge_url</code> and <code>embed_markdown</code>:
-          a badge showing only the formula version and the receipt id prefix, never a pass or fail
-          mark. Drop the embed straight into a README:</p>
-        <pre class="dev-code" tabindex="0" aria-label="Receipt badge Markdown"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/api/v1/receipts/{id})</code></pre>
+        <p class="dev-note">Every receipt is signed with Ed25519 by the key published at
+          <a href="/.well-known/canli-receipt-keys.json">/.well-known/canli-receipt-keys.json</a>, and
+          has a certificate page, <code>canlicapital.com/audit/{id}</code>: the result, what it does
+          not establish, the source files that computed it, and the signature, checked on every view.
+          Its response carries <code>badge_url</code>, <code>certificate_url</code> and
+          <code>embed_markdown</code>: a badge showing only the formula version and the receipt id
+          prefix, never a pass or fail mark, linking to the certificate. Drop the embed straight into
+          a README:</p>
+        <pre class="dev-code" tabindex="0" aria-label="Receipt badge Markdown"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/audit/{id})</code></pre>
       </li>
     </ol>
   </section>

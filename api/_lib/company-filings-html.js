@@ -7,7 +7,10 @@ import { catalogHash } from './company-catalog.js';
 // activation's admission predicate; everything else stays noindex and no-store,
 // exactly as company-html.js does for history pages.
 const ACCESSION = /^\d{10}-\d{2}-\d{6}$/;
-export function createCompanyFilingsHandler({ filings, assets, indexable = false }) {
+// historyIndexable(cik, tag): the history-page admission predicate. A filing page links a concept
+// to its history page only when that history is admitted; without a predicate (previews, local
+// runs) every concept is linked, as before.
+export function createCompanyFilingsHandler({ filings, assets, indexable = false, historyIndexable = false }) {
   if (indexable !== false && typeof indexable !== 'function') throw new Error('Filings indexing must be false or an admission predicate');
   return async (req, res) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -22,13 +25,14 @@ export function createCompanyFilingsHandler({ filings, assets, indexable = false
     try {
       const document = await filings.getFilings(cik);
       if (!document) return fail(404, 'Filing page not found');
-      const pages = renderFilingPages(document, { target: accession ?? 'index' });
+      const admitted = typeof indexable === 'function' ? indexable(cik) === true : false;
+      const linkConcept = typeof historyIndexable === 'function' ? tag => historyIndexable(cik, tag) === true : () => true;
+      const pages = renderFilingPages(document, { target: accession ?? 'index', linkConcept, robots: admitted ? 'index, follow' : 'noindex' });
       if (!pages.length) return fail(404, 'Filing page not found');
       const html = applyCompanyAssets(pages[0].html, assets);
       if (Buffer.byteLength(html) > 256 * 1024) return fail(503, 'Company filings temporarily unavailable');
       const etag = `"${catalogHash(html)}"`;
-      const admitted = typeof indexable === 'function' ? indexable(cik) === true : false;
-      res.setHeader('ETag', etag); res.setHeader('Cache-Control', admitted ? 'public, max-age=0, s-maxage=300, stale-while-revalidate=60' : 'no-store');
+      res.setHeader('ETag', etag); res.setHeader('Cache-Control', admitted ? 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' : 'no-store');
       if (!admitted) res.setHeader('X-Robots-Tag', 'noindex');
       if (String(req.headers?.['if-none-match'] ?? '').split(',').map(value => value.trim().replace(/^W\//, '')).some(value => value === etag || value === '*')) { res.statusCode = 304; return res.end(); }
       res.statusCode = 200; res.end(req.method === 'HEAD' ? undefined : html);

@@ -28,7 +28,7 @@ const STUB_ENVELOPE = {
   limits: [
     "This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.",
     "A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast.",
-    "The receipt is content-hashed and reproducible from the open-source core it names. It is not signed.",
+    "The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json.",
     "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per request, 20000 observations per series, 200 variants per matrix.",
   ],
   sources: [],
@@ -67,22 +67,54 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   const { tools } = await client.listTools();
   const names = tools.map((tool) => tool.name).sort();
   assert.deepEqual(names, [
+    "audit_backtest",
     "company_financial_history",
     "get_key",
     "get_receipt",
     "service_status",
+    "validate_backtest_length",
     "validate_breadth",
     "validate_deflated_sharpe",
+    "validate_haircut_sharpe",
+    "validate_luck_trials",
     "validate_overfitting",
     "validate_paper_evidence",
+    "validate_track_record",
+    "verify_receipt",
   ]);
   for (const tool of tools) {
     assert.ok(tool.description && tool.description.length > 0, `${tool.name} has no description`);
+  }
+  // Tool annotations as a client receives them: every tool has a title and reaches the API; reads
+  // are read-only; validations store a receipt and get_key creates a key; nothing is destructive.
+  const readOnly = new Set(["get_receipt", "service_status", "company_financial_history", "verify_receipt"]);
+  for (const tool of tools) {
+    const a = tool.annotations ?? {};
+    assert.ok(a.title, `${tool.name} has no annotation title`);
+    assert.equal(a.readOnlyHint, readOnly.has(tool.name), `${tool.name} readOnlyHint`);
+    assert.equal(a.destructiveHint, false, `${tool.name} destructiveHint`);
+    assert.equal(a.openWorldHint, true, `${tool.name} openWorldHint`);
   }
 
   const result = await client.callTool({ name: "service_status", arguments: {} });
   const envelope = JSON.parse(result.content[0].text);
   assert.deepEqual(envelope, STUB_ENVELOPE);
+  // The same envelope as structured content, for clients that read fields rather than text.
+  assert.deepEqual(result.structuredContent, envelope);
+
+  // Guided prompts and reference resources, as a client lists and reads them.
+  const { prompts } = await client.listPrompts();
+  assert.deepEqual(prompts.map((p) => p.name).sort(), ["track_record_needed", "validate_backtest"]);
+  const guided = await client.getPrompt({ name: "validate_backtest", arguments: { strategy: "12-1 momentum on US equities", variants_tried: "40" } });
+  const guidance = guided.messages[0].content.text;
+  for (const tool of ["validate_deflated_sharpe", "validate_overfitting", "validate_track_record"]) assert.match(guidance, new RegExp(tool));
+  assert.match(guidance, /40/);
+  const { resources } = await client.listResources();
+  assert.deepEqual(resources.map((r) => r.uri).sort(), ["canli://limits", "canli://sources"]);
+  const limits = await client.readResource({ uri: "canli://limits" });
+  assert.match(limits.contents[0].text, /not a forecast/);
+  const sources = await client.readResource({ uri: "canli://sources" });
+  assert.match(sources.contents[0].text, /pbo/);
   assert.ok(!result.isError);
   const failed = await client.callTool({ name: "get_receipt", arguments: { id: 'a'.repeat(24) } });
   assert.equal(failed.isError, true);

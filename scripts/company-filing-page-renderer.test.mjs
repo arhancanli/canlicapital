@@ -57,3 +57,16 @@ test('malformed documents and unsafe text are rejected or escaped', () => {
   assert.ok(!page.html.includes('<script>alert(1)</script>') && page.html.includes('&lt;script&gt;'));
   assert.ok(page.html.includes('L &lt;b&gt;x&lt;/b&gt;') && page.html.includes('M &amp; &quot;q&quot;'));
 });
+
+test('filing titles carry the ticker and the fiscal period searchers type', () => {
+  const { document } = pilotFilings('0000320193');
+  const title = html => html.match(/<title>([^<]*)<\/title>/)[1].replace(/ \| Canli Capital$/, '');
+  const annual = document.filings.find(filing => filing.form === '10-K' && filing.fiscal_year && filing.fiscal_period === 'FY');
+  const quarter = document.filings.find(filing => filing.form === '10-Q' && filing.fiscal_year && /^Q\d$/.test(filing.fiscal_period ?? ''));
+  assert.ok(annual && quarter, 'the Apple pilot has an annual and a quarterly filing');
+  assert.equal(title(renderFilingPage(document, annual.accession).html), `Apple (AAPL) ${annual.fiscal_year} 10-K filed ${annual.filed}`);
+  assert.equal(title(renderFilingPage(document, quarter.accession).html), `Apple (AAPL) ${quarter.fiscal_period} ${quarter.fiscal_year} 10-Q filed ${quarter.filed}`);
+  assert.match(title(renderFilingsIndexPage(document).html), /^Apple \(AAPL\): SEC filings/);
+  const untagged = { ...document, filings: document.filings.map(filing => (filing.accession === annual.accession ? { ...filing, fiscal_year: null, fiscal_period: null } : filing)) };
+  assert.equal(title(renderFilingPage(untagged, annual.accession).html), `Apple (AAPL) 10-K filed ${annual.filed}`);
+});

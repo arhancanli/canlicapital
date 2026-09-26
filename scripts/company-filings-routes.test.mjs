@@ -57,7 +57,7 @@ test('filing pages become indexable only through the company-level admission pre
   const admitted = documents[0].cik;
   const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, filingsIndexable: cik => cik === admitted }) });
   const yes = await get(handler, filingPath(admitted, documents[0].filings[0].accession));
-  assert.equal(yes.statusCode, 200); assert.equal(yes.headers['X-Robots-Tag'], undefined); assert.match(yes.headers['Cache-Control'], /s-maxage=300/);
+  assert.equal(yes.statusCode, 200); assert.equal(yes.headers['X-Robots-Tag'], undefined); assert.match(yes.headers['Cache-Control'], /s-maxage=3600/);
   const no = await get(handler, filingsIndexPath(documents[1].cik));
   assert.equal(no.statusCode, 200); assert.equal(no.headers['X-Robots-Tag'], 'noindex');
   await assert.rejects(createCompanyReleaseLoader({ ...options, filingsIndexable: true })(), /admission predicate/);
@@ -96,4 +96,154 @@ test('the configured wrapper names filings leaves with the gzip extension under 
   const res = await get(handler, filingsIndexPath(documents[0].cik));
   assert.equal(res.statusCode, 200); assert.equal(res.headers['X-Robots-Tag'], 'noindex');
   assert.ok(urls.some(url => url.startsWith('https://store.example/catalog/objects/') && url.endsWith('.json.gz')), 'filings leaf fetched as .json.gz under the catalog base');
+});
+
+test('an overview reads the company record and the filing summary together, not one after the other', async t => {
+  const { records, options } = fixture(t);
+  const events = [];
+  const slowLeaf = async (hash, limit, kind) => {
+    if (kind === 'leaf') { events.push('record:start'); await new Promise(r => setTimeout(r, 40)); events.push('record:end'); }
+    return options.readCatalogObject(hash, limit, kind);
+  };
+  const filingsRead = async (hash, limit, kind) => { events.push('filings:start'); return options.readFilingsObject(hash, limit, kind); };
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, readCatalogObject: slowLeaf, readFilingsObject: filingsRead }) });
+  const page = await get(handler, `/companies/${records[0].cik}`);
+  assert.equal(page.statusCode, 200);
+  assert.ok(events.includes('filings:start'), 'the overview consulted the filings catalog');
+  assert.ok(events.indexOf('filings:start') < events.indexOf('record:end'), `filings read began before the record read finished: ${events.join(', ')}`);
+  // The timing header counts the filings catalog's reads and splits storage from rendering.
+  assert.match(page.headers['Server-Timing'], /storage;dur=\d+(\.\d)?, render;dur=\d+(\.\d)?, reads;desc="(\d+)"/);
+  const reads = Number(/reads;desc="(\d+)"/.exec(page.headers['Server-Timing'])[1]);
+  assert.ok(reads >= 2, `the record and at least one filings object were read from storage, header says ${reads}`);
+});
+
+test('a company missing from the catalog is a 404 even when the filings catalog fails', async t => {
+  const { options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, readFilingsObject: async () => { throw new Error('filings storage down'); } }) });
+  assert.equal((await get(handler, '/companies/9999999999')).statusCode, 404);
+});
+
+test('a present company whose filings read fails is a 503, never a page without its filing link', async t => {
+  const { records, options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, readFilingsObject: async () => { throw new Error('filings storage down'); } }) });
+  const page = await get(handler, `/companies/${records[0].cik}`);
+  assert.equal(page.statusCode, 503);
+  assert.equal((await get(handler, `/companies/${records[0].cik}/Assets`)).statusCode, 200, 'a history page needs no filings read');
+});
+
+// Production passes admission predicates. A page may link only histories the admission lets Google
+// index, and its HTML robots directive must match its X-Robots-Tag.
+const historyHrefs = (html, cik) => [...html.matchAll(new RegExp(`href="/companies/${cik}/([A-Za-z][A-Za-z0-9]*)"`, 'g'))].map(m => m[1]).filter(tag => tag !== 'filings');
+const metaRobots = html => /<meta name="robots" content="([^"]+)"/.exec(html)?.[1];
+
+test('in production a filing page links only admitted histories and names the rest as text', async t => {
+  const { documents, options } = fixture(t);
+  const document = documents[0];
+  const filing = document.filings.find(f => f.concepts.length >= 3);
+  const allowed = new Set(filing.concepts.slice(0, 2).map(c => c.tag));
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, indexable: (cik, tag) => tag === undefined || allowed.has(tag), filingsIndexable: () => true }) });
+  const page = await get(handler, filingPath(document.cik, filing.accession));
+  assert.equal(page.statusCode, 200);
+  const linked = historyHrefs(page.body, document.cik);
+  assert.ok(linked.length >= 1);
+  assert.ok(linked.every(tag => allowed.has(tag)), `only admitted histories are linked: ${linked}`);
+  const excluded = filing.concepts.find(c => !allowed.has(c.tag));
+  assert.ok(page.body.includes(`<h3 id="c-${excluded.tag}">`) && !page.body.includes(`href="/companies/${document.cik}/${excluded.tag}"`), 'a withheld history is named as text');
+  assert.equal(metaRobots(page.body), 'index, follow');
+  assert.equal(page.headers['X-Robots-Tag'], undefined);
+});
+
+test('a page the server marks noindex says noindex in its HTML too', async t => {
+  const { records, documents, options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, indexable: () => false, filingsIndexable: () => false }) });
+  for (const path of [`/companies/${records[0].cik}`, filingPath(documents[0].cik, documents[0].filings[0].accession)]) {
+    const page = await get(handler, path);
+    assert.equal(page.headers['X-Robots-Tag'], 'noindex', path);
+    assert.equal(metaRobots(page.body), 'noindex', path);
+  }
+});
+
+test('in production an overview and a concept page link only admitted histories', async t => {
+  const { records, options } = fixture(t);
+  const record = records[0];
+  const allowed = new Set(record.concepts.slice(0, 3).map(c => c.tag));
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, indexable: (cik, tag) => tag === undefined || allowed.has(tag), filingsIndexable: () => true }) });
+  for (const path of [`/companies/${record.cik}`, `/companies/${record.cik}/${[...allowed][0]}`]) {
+    const page = await get(handler, path);
+    assert.equal(page.statusCode, 200, path);
+    const linked = historyHrefs(page.body, record.cik);
+    assert.ok(linked.length >= 1, path);
+    assert.ok(linked.every(tag => allowed.has(tag)), `${path} links only admitted histories: ${linked}`);
+  }
+});
+
+test('previews and local runs, which have no admission predicate, still link every history', async t => {
+  const { records, documents, options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
+  const overview = await get(handler, `/companies/${records[0].cik}`);
+  assert.deepEqual(new Set(historyHrefs(overview.body, records[0].cik)), new Set(records[0].concepts.map(c => c.tag)));
+  const filing = documents[0].filings[0];
+  const page = await get(handler, filingPath(documents[0].cik, filing.accession));
+  assert.deepEqual(new Set(historyHrefs(page.body, documents[0].cik)), new Set(filing.concepts.map(c => c.tag)));
+});
+
+test('a filing page links its company\'s previous and next filings by filing date', async t => {
+  const { documents, options } = fixture(t);
+  const document = documents.find(d => d.filings.length >= 3) ?? documents[0];
+  const byDate = [...document.filings].sort((a, b) => (a.filed === b.filed ? a.accession.localeCompare(b.accession) : a.filed.localeCompare(b.filed)));
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
+  const middle = await get(handler, filingPath(document.cik, byDate[1].accession));
+  assert.ok(middle.body.includes(`href="${filingPath(document.cik, byDate[0].accession)}" rel="prev"`), 'previous');
+  assert.ok(middle.body.includes(`href="${filingPath(document.cik, byDate[2].accession)}" rel="next"`), 'next');
+  const first = await get(handler, filingPath(document.cik, byDate[0].accession));
+  assert.ok(!first.body.includes('rel="prev"'), 'the earliest filing has no previous link');
+});
+
+const internalFilingHrefs = (html, cik) => [...html.matchAll(new RegExp(`href="/companies/${cik}/filings/(\\d{10}-\\d{2}-\\d{6})"`, 'g'))].map(m => m[1]);
+
+test('a history page cites this site\'s filing page for each accession that has one, with sec.gov as the second link', async t => {
+  const { records, documents, options } = fixture(t);
+  const record = records[0], document = documents.find(d => d.cik === records[0].cik);
+  const pages = new Set(document.filings.map(f => f.accession));
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
+  const concept = record.concepts.find(c => c.observations.some(o => pages.has(o.accn)));
+  const page = await get(handler, `/companies/${record.cik}/${concept.tag}`);
+  assert.equal(page.statusCode, 200);
+  const cited = new Set(internalFilingHrefs(page.body, record.cik));
+  const expected = new Set(concept.observations.map(o => o.accn).filter(a => pages.has(a)));
+  assert.ok(expected.size >= 1);
+  for (const a of expected) assert.ok(cited.has(a), `accession ${a} cites the internal filing page`);
+  for (const a of cited) assert.ok(pages.has(a), `an internal filing link points at an existing filing page: ${a}`);
+  assert.ok(page.body.includes('rel="noreferrer">SEC</a>'), 'the sec.gov source stays as a second link');
+  const missing = concept.observations.find(o => !pages.has(o.accn));
+  if (missing) assert.ok(!cited.has(missing.accn), 'an accession without a filing page cites sec.gov only');
+});
+
+test('an overview lists its five latest filings, newest first, as internal links', async t => {
+  const { records, documents, options } = fixture(t);
+  const document = documents.find(d => d.cik === records[0].cik);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
+  const page = await get(handler, `/companies/${records[0].cik}`);
+  const list = /<ul class="company-reference__latest-filings">([\s\S]*?)<\/ul>/.exec(page.body)?.[1] ?? '';
+  const listed = internalFilingHrefs(list, records[0].cik);
+  const newest = [...document.filings].sort((a, b) => (a.filed === b.filed ? b.accession.localeCompare(a.accession) : b.filed.localeCompare(a.filed))).slice(0, 5).map(f => f.accession);
+  assert.deepEqual(listed, newest);
+});
+
+test('in production, filing pages that are not admitted are neither cited nor listed', async t => {
+  const { records, options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, indexable: () => true, filingsIndexable: () => false }) });
+  const record = records[0];
+  for (const path of [`/companies/${record.cik}`, `/companies/${record.cik}/${record.concepts[0].tag}`]) {
+    const page = await get(handler, path);
+    assert.deepEqual(internalFilingHrefs(page.body, record.cik), [], path);
+  }
+});
+
+test('with filings storage down a history page still serves, citing sec.gov only', async t => {
+  const { records, options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, readFilingsObject: async () => { throw new Error('down'); } }) });
+  const page = await get(handler, `/companies/${records[0].cik}/${records[0].concepts[0].tag}`);
+  assert.equal(page.statusCode, 200);
+  assert.deepEqual(internalFilingHrefs(page.body, records[0].cik), []);
 });

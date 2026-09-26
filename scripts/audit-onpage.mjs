@@ -17,6 +17,8 @@ import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { dirname, resolve, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { jsonLdProblems } from "./lib/jsonld-rules.mjs";
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
 const ORIGIN = "https://canlicapital.com";
@@ -137,7 +139,7 @@ function audit(file) {
   if (!/name="viewport"/i.test(html)) note(page, "error", "no viewport meta");
   const authors = [...html.matchAll(/<meta\s+name="author"\s+content="([^"]*)"/gi)];
   const pendingTechnicalAuthorship = html.includes(
-    "AI-assisted technical draft; exact-text approval pending",
+    "Draft; exact-text approval pending",
   );
   if (authors.length !== 1)
     note(page, "error", `expected exactly one author meta tag, found ${authors.length}`);
@@ -151,6 +153,7 @@ function audit(file) {
   for (const img of html.matchAll(/<img\b([^>]*)>/gi)) {
     if (!/\balt=/i.test(img[1])) note(page, "error", "an <img> has no alt attribute");
   }
+  for (const message of jsonLdProblems(html)) note(page, "error", message);
   return { page, title, desc, canonical };
 }
 

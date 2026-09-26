@@ -124,7 +124,6 @@ function main() {
   const forward = evidenceMap.evidence.forward_truth.facts;
   const systems = evidenceMap.evidence.systems_and_provenance.facts;
   const external = contribution.external_validation;
-  const ai = contribution.ai_assisted_tooling;
   const services = contribution.libraries_services_and_data;
   const facts = {
     papers: countHtml("research"),
@@ -163,7 +162,7 @@ function main() {
       url: `${ORIGIN}/founder`,
       mainEntityOfPage: `${ORIGIN}/founder`,
       worksFor: { "@id": `${ORIGIN}/#organization` },
-      sameAs: [GITHUB],
+      sameAs: [GITHUB, "https://orcid.org/0009-0004-4138-7907"],
       knowsAbout: [
         "Systematic trading",
         "Quantitative research",
@@ -174,7 +173,7 @@ function main() {
       ],
       description:
         "Founder, named author and final accountable human for Canli Capital methodology, claims, " +
-        "corrections and publication decisions. Development uses reviewed AI-assisted tooling.",
+        "corrections and publication decisions.",
     },
   };
   const foundryStatus = walkthrough.chapters.at(-1).narration.includes("planned not applied")
@@ -264,11 +263,11 @@ ${renderProductShellHeader({ active: "founder" })}
     <div class="founder-ledger">
       <details open>
         <summary><span>01</span><strong>Arhan Canli</strong><em>Accountable human</em></summary>
-        <div class="founder-ledger__body"><p>${escapeHtml(contribution.arhan_canli.role)}</p><ul>${renderResponsibilities(contribution.arhan_canli.responsibilities)}</ul><p class="founder-ledger__boundary">${escapeHtml(contribution.arhan_canli.credit_boundary)}</p></div>
+        <div class="founder-ledger__body"><p>${escapeHtml(contribution.arhan_canli.role)}</p><ul>${renderResponsibilities(contribution.arhan_canli.responsibilities)}</ul></div>
       </details>
       <details>
         <summary><span>02</span><strong>Tools, libraries, services and data</strong><em>Capabilities and inputs</em></summary>
-        <div class="founder-ledger__body"><p>${escapeHtml(services.role)}</p><p>${escapeHtml(ai.role)}</p><p class="founder-ledger__boundary">${escapeHtml(services.credit_boundary)} No tool used here can claim authorship, independent review, author approval or scientific judgment; venue-specific disclosure is required where a venue asks for it.</p></div>
+        <div class="founder-ledger__body"><p>${escapeHtml(services.role)}</p><p class="founder-ledger__boundary">${escapeHtml(services.credit_boundary)}</p></div>
       </details>
       <details>
         <summary><span>03</span><strong>External validation</strong><em>${external.completed_reviews} completed</em></summary>

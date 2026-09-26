@@ -70,6 +70,43 @@ export const MANIFEST = Object.freeze([
     requestExample: { sleeve_sharpe: 0.5, average_pairwise_correlation: 0.05, sleeves: 4, target: 1.5 },
     requestOptional: ["sleeves", "target"],
   },
+  {
+    path: "/api/v1/validate/track-record", method: "POST", keyed: true,
+    summary: "Minimum track record length for a Sharpe to clear a benchmark at a confidence level, and the probabilistic Sharpe of a record of a given length.",
+    // The worked example of Bailey and López de Prado (2012): an annualized Sharpe of 2 against 1
+    // on daily Normal returns needs 2.73 years; a two-year record is not long enough.
+    requestExample: { observed_sharpe_annualized: 2, benchmark_sharpe_annualized: 1, periods_per_year: 252, skew: 0, non_excess_kurtosis: 3, observations: 504 },
+    requestOptional: ["benchmark_sharpe_annualized", "observations"],
+    requestExtraProperties: {
+      confidence: { type: "number", description: "Defaults to 0.95. Strictly between 0 and 1." },
+    },
+  },
+  {
+    path: "/api/v1/validate/backtest-length", method: "POST", keyed: true,
+    summary: "Minimum backtest length for the best of N independent trials not to reach a target Sharpe by luck, and the trials a backtest's years allow.",
+    // The paper's own statement (Bailey, Borwein, López de Prado and Zhu 2014, p. 11): with only 5
+    // years of data, no more than 45 independent configurations should be tried at a target of 1.
+    requestExample: { effective_independent_trials: 45, backtest_years: 5, target_sharpe_annualized: 1 },
+    requestOptional: ["effective_independent_trials", "backtest_years", "target_sharpe_annualized"],
+  },
+  {
+    path: "/api/v1/validate/haircut-sharpe", method: "POST", keyed: true,
+    summary: "Haircut Sharpe ratio for multiple testing: the p-value of a Sharpe found among several tests, adjusted by Bonferroni, for independent tests, and with the other tests' Sharpe ratios by Holm and BHY.",
+    // Exhibit 5 of Harvey and Liu (2015): 120 months, an annualized Sharpe of 1, autocorrelation 0.1
+    // and 100 tests; the authors' Haircut_SR.m gives a Bonferroni haircut of 74.6 percent.
+    requestExample: { observed_sharpe_annualized: 1, periods_per_year: 12, observations: 120, tests: 100, autocorrelation: 0.1 },
+    requestOptional: ["tests", "autocorrelation", "other_sharpe_ratios_annualized"],
+    requestExtraProperties: {
+      other_sharpe_ratios_annualized: { type: "array", items: { type: "number" }, description: "Annualized Sharpe ratios of the other tests, over the same observations; adds Holm and BHY." },
+    },
+  },
+  {
+    path: "/api/v1/validate/luck-trials", method: "POST", keyed: true,
+    summary: "Luck-equivalent trials: how many skill-less strategies a search would have had to try for its best to reach the observed Sharpe by luck, and, with a trial count, the chance that it did.",
+    // Three years of daily returns at an annualized Sharpe of 1.5, found among 200 trials.
+    requestExample: { observed_sharpe_annualized: 1.5, periods_per_year: 252, observations: 756, effective_independent_trials: 200, skew: -0.4, autocorrelation: 0.05 },
+    requestOptional: ["effective_independent_trials", "skew", "autocorrelation"],
+  },
   { path: "/api/v1/validate/status", method: "GET", keyed: false, summary: "Service and store status with the quota constants in force." },
   { path: "/api/v1/receipts/{id}", method: "GET", keyed: false, summary: "A stored verdict by content-hash id. Immutable." },
   {
