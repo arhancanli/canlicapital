@@ -1,13 +1,13 @@
 // The file arm: the same series as tasks-pasted.mjs, written to CSV files the prompt names.
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { compute as deflatedSharpe } from "../../../../src/local/js/validate/deflated-sharpe.js";
 import { compute as trackRecord } from "../../../../src/local/js/validate/track-record.js";
 export { score } from "../../tasks.mjs";
 
-const DIR = join(tmpdir(), "canli-audit-files");
-mkdirSync(DIR, { recursive: true });
+// A private directory with an unpredictable name, created with owner-only permissions.
+const DIR = mkdtempSync(join(tmpdir(), "canli-audit-files-"));
 
 function series(n, seedStart, drift) {
   let s = seedStart;
