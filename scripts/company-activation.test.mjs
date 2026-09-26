@@ -182,6 +182,13 @@ test('the real admission becomes a sitemap index whose shards list every admitte
   assert.ok(!urls.includes('https://canlicapital.com/companies/0000000002/Assets'));
   assert.ok(!urls.some(url => url.includes('/companies/0001296774')));
   assert.deepEqual(index.locations, ['sitemap-site.xml', 'sitemap-companies-1.xml', 'sitemap-companies-2.xml', 'sitemap-companies-3.xml', 'sitemap-companies-4.xml', 'sitemap-companies-5.xml', 'sitemap-companies-6.xml', 'sitemap-companies-7.xml', 'sitemap-companies-8.xml', 'sitemap-companies-9.xml', 'sitemap-companies-10.xml', 'sitemap-companies-11.xml', 'sitemap-companies-12.xml', 'sitemap-companies-13.xml', 'sitemap-companies-14.xml', 'sitemap-companies-15.xml', 'sitemap-companies-16.xml', 'sitemap-companies-17.xml', 'sitemap-companies-18.xml', 'sitemap-companies-19.xml'].map(name => `https://canlicapital.com/${name}`));
+  // Every index entry carries the newest lastmod of the child it points to.
+  const indexXml = readFileSync(resolve(root, 'dist/sitemap.xml'), 'utf8');
+  for (const [, loc, lastmod] of indexXml.matchAll(/<sitemap><loc>([^<]+)<\/loc>(?:<lastmod>([^<]+)<\/lastmod>)?<\/sitemap>/g)) {
+    const child = readFileSync(resolve(root, 'dist', new URL(loc).pathname.slice(1)), 'utf8');
+    const dates = [...child.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map(m => m[1]);
+    assert.equal(lastmod, dates.reduce((a, b) => (Date.parse(b) > Date.parse(a) ? b : a)), loc);
+  }
   assert.deepEqual(readdirSync(resolve(root, 'dist')).filter(name => name.startsWith('sitemap')).sort(), ['sitemap-companies-1.xml', 'sitemap-companies-10.xml', 'sitemap-companies-11.xml', 'sitemap-companies-12.xml', 'sitemap-companies-13.xml', 'sitemap-companies-14.xml', 'sitemap-companies-15.xml', 'sitemap-companies-16.xml', 'sitemap-companies-17.xml', 'sitemap-companies-18.xml', 'sitemap-companies-19.xml', 'sitemap-companies-2.xml', 'sitemap-companies-3.xml', 'sitemap-companies-4.xml', 'sitemap-companies-5.xml', 'sitemap-companies-6.xml', 'sitemap-companies-7.xml', 'sitemap-companies-8.xml', 'sitemap-companies-9.xml', 'sitemap-site.xml', 'sitemap.xml']);
 });
 
@@ -195,7 +202,11 @@ test('sitemap child names and company files stay identical when site lastmods ch
     return { index: read('sitemap.xml'), site: read('sitemap-site.xml'), c1: read('sitemap-companies-1.xml'), c2: read('sitemap-companies-2.xml'), c3: read('sitemap-companies-3.xml'), c4: read('sitemap-companies-4.xml'), c5: read('sitemap-companies-5.xml'), c6: read('sitemap-companies-6.xml'), c7: read('sitemap-companies-7.xml'), c8: read('sitemap-companies-8.xml'), c9: read('sitemap-companies-9.xml'), c10: read('sitemap-companies-10.xml'), c11: read('sitemap-companies-11.xml'), c12: read('sitemap-companies-12.xml'), c13: read('sitemap-companies-13.xml'), c14: read('sitemap-companies-14.xml'), c15: read('sitemap-companies-15.xml'), c16: read('sitemap-companies-16.xml'), c17: read('sitemap-companies-17.xml'), c18: read('sitemap-companies-18.xml'), c19: read('sitemap-companies-19.xml') };
   };
   const first = build('2026-09-20'), second = build('2026-09-21');
-  assert.equal(first.index, second.index);
+  // The index dates each child by its newest page, so only the site child's date moves.
+  const siteEntry = /<sitemap><loc>https:\/\/canlicapital\.com\/sitemap-site\.xml<\/loc><lastmod>([^<]+)<\/lastmod><\/sitemap>/;
+  assert.equal(siteEntry.exec(first.index)?.[1], '2026-09-20');
+  assert.equal(siteEntry.exec(second.index)?.[1], '2026-09-21');
+  assert.equal(first.index.replace(siteEntry, ''), second.index.replace(siteEntry, ''));
   assert.equal(first.c1, second.c1); assert.equal(first.c2, second.c2); assert.equal(first.c3, second.c3); assert.equal(first.c4, second.c4); assert.equal(first.c5, second.c5); assert.equal(first.c6, second.c6); assert.equal(first.c7, second.c7); assert.equal(first.c8, second.c8); assert.equal(first.c9, second.c9); assert.equal(first.c10, second.c10); assert.equal(first.c11, second.c11); assert.equal(first.c12, second.c12); assert.equal(first.c13, second.c13); assert.equal(first.c14, second.c14); assert.equal(first.c15, second.c15); assert.equal(first.c16, second.c16); assert.equal(first.c17, second.c17); assert.equal(first.c18, second.c18); assert.equal(first.c19, second.c19);
   assert.notEqual(first.site, second.site);
 });
