@@ -112,14 +112,14 @@ test('admitted pages are indexable and cacheable; withheld pages and downloads s
   const get = async path => { const res = response(); await handler({ method: 'GET', query: { path }, headers: {} }, res); return res; };
   for (const path of [`/companies/${record.cik}`, `/companies/${record.cik}/${admittedTag}`, '/companies']) {
     const res = await get(path);
-    assert.equal(res.statusCode, 200, path); assert.equal(res.headers['X-Robots-Tag'], undefined, path); assert.match(res.headers['Cache-Control'], /s-maxage=300/, path);
+    assert.equal(res.statusCode, 200, path); assert.equal(res.headers['X-Robots-Tag'], undefined, path); assert.match(res.headers['Cache-Control'], /s-maxage=3600/, path);
   }
   const withheld = await get(`/companies/${record.cik}/${withheldTag}`);
   assert.equal(withheld.statusCode, 200); assert.equal(withheld.headers['X-Robots-Tag'], 'noindex'); assert.equal(withheld.headers['Cache-Control'], 'no-store');
   // A download is never indexed, but a verified object is fixed for its release, so it is edge-cached
   // exactly like an admitted page (2026-09-24: 345 ms uncached from iad1, 82 ms from the edge).
   const download = await get(`/company-data/${record.cik}.json`);
-  assert.equal(download.statusCode, 200); assert.equal(download.headers['X-Robots-Tag'], 'noindex'); assert.match(download.headers['Cache-Control'], /s-maxage=300/);
+  assert.equal(download.statusCode, 200); assert.equal(download.headers['X-Robots-Tag'], 'noindex'); assert.match(download.headers['Cache-Control'], /s-maxage=3600/);
   // publication_approved in the release object alone never enables indexing.
   const plain = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
   const res = response(); await plain({ method: 'GET', query: { path: `/companies/${record.cik}` }, headers: {} }, res);
