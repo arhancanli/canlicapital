@@ -68,6 +68,7 @@ const chunk = (items, size) => Array.from({ length: Math.ceil(items.length / siz
 function writeStableSitemaps(dist, files) {
   const header = '<?xml version="1.0" encoding="UTF-8"?>\n';
   const seen = new Set();
+  const newest = new Map();
   let urls = 0, bytes = 0;
   for (const [name, entries] of files) {
     if (!entries.length) throw new Error(`Refusing to write empty ${name}`);
@@ -83,9 +84,13 @@ function writeStableSitemaps(dist, files) {
     if (entries.length > MAX_URLS || Buffer.byteLength(xml) > MAX_BYTES) throw new Error(`${name} exceeds sitemap limits`);
     writeFileSync(resolve(dist, name), xml);
     urls += entries.length; bytes += Buffer.byteLength(xml);
+    // The index dates each child by its newest page date, so Google can tell which child changed
+    // without re-reading all of them. Dates compare as ISO strings (validated above).
+    const dates = entries.map(({ lastmod }) => lastmod).filter(Boolean);
+    if (dates.length) newest.set(name, dates.reduce((a, b) => (Date.parse(b) > Date.parse(a) ? b : a)));
   }
   const index = `${header}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    files.map(([name]) => `  <sitemap><loc>${ORIGIN}/${name}</loc></sitemap>\n`).join('') + '</sitemapindex>\n';
+    files.map(([name]) => `  <sitemap><loc>${ORIGIN}/${name}</loc>${newest.has(name) ? `<lastmod>${escapeXml(newest.get(name))}</lastmod>` : ''}</sitemap>\n`).join('') + '</sitemapindex>\n';
   // Commit the index last so it never points at a child that has not been written.
   writeFileSync(resolve(dist, 'sitemap.xml.pending'), index);
   renameSync(resolve(dist, 'sitemap.xml.pending'), resolve(dist, 'sitemap.xml'));
