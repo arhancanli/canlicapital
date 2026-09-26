@@ -209,10 +209,15 @@ console.log(await response.json());</code></pre></div>
         <p class="dev-note">Every verdict carries <code>receipt.url</code>. It is immutable and
           cacheable forever, so anyone, not only the caller, can fetch and recompute it.</p>
         <pre class="dev-code" tabindex="0" aria-label="Fetch a receipt with curl"><code>curl https://canlicapital.com/api/v1/receipts/{id}</code></pre>
-        <p class="dev-note">Its response carries <code>badge_url</code> and <code>embed_markdown</code>:
-          a badge showing only the formula version and the receipt id prefix, never a pass or fail
-          mark. Drop the embed straight into a README:</p>
-        <pre class="dev-code" tabindex="0" aria-label="Receipt badge Markdown"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/api/v1/receipts/{id})</code></pre>
+        <p class="dev-note">Every receipt is signed with Ed25519 by the key published at
+          <a href="/.well-known/canli-receipt-keys.json">/.well-known/canli-receipt-keys.json</a>, and
+          has a certificate page, <code>canlicapital.com/audit/{id}</code>: the result, what it does
+          not establish, the source files that computed it, and the signature, checked on every view.
+          Its response carries <code>badge_url</code>, <code>certificate_url</code> and
+          <code>embed_markdown</code>: a badge showing only the formula version and the receipt id
+          prefix, never a pass or fail mark, linking to the certificate. Drop the embed straight into
+          a README:</p>
+        <pre class="dev-code" tabindex="0" aria-label="Receipt badge Markdown"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/audit/{id})</code></pre>
       </li>
     </ol>
   </section>

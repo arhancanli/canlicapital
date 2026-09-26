@@ -70,3 +70,9 @@ test("the published key file is well formed, its key ids match their bytes, and 
     assert.equal(Buffer.from(k.x, "base64url").length, 32);
   }
 });
+
+test("the functions' copy of the published keys equals the published file", async () => {
+  const { PUBLISHED_RECEIPT_KEYS } = await import("./published-receipt-keys.js");
+  const published = JSON.parse(readFileSync(new URL("../../public/.well-known/canli-receipt-keys.json", import.meta.url), "utf8"));
+  assert.deepEqual(PUBLISHED_RECEIPT_KEYS, published);
+});
