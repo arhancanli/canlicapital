@@ -23,8 +23,8 @@ export function createReceiptHandler({ store } = {}) {
     // the badge route itself (api/v1/receipts/[id]/badge.js).
     const origin = receiptOrigin();
     const badge_url = `${origin}/api/v1/receipts/${id}/badge.svg`;
-    const receipt_url = `${origin}/api/v1/receipts/${id}`;
-    const embed_markdown = `[![Canli receipt](${badge_url})](${receipt_url})`;
+    const certificate_url = `${origin}/audit/${id}`;
+    const embed_markdown = `[![Canli receipt](${badge_url})](${certificate_url})`;
     const output_sha256 = outputSha256(row.output);
     const signature = signReceipt({ id: row.id, endpoint: row.endpoint, input_sha256: row.input_sha256, output_sha256, bindings: row.bindings });
     return send(res, 200, envelope({
@@ -41,6 +41,7 @@ export function createReceiptHandler({ store } = {}) {
         created_at: row.created_at,
         signature,
         badge_url,
+        certificate_url,
         embed_markdown,
         how_to_reproduce: "Fetch each source at the sha256 listed, run its compute over the input that hashes to input_sha256, and canonical-hash the output. The id is the first 24 hex characters of sha256 over the canonical JSON of {endpoint, input_sha256, output, bindings}.",
         how_to_verify: `The signature is Ed25519 over the canonical JSON of {schema, id, endpoint, input_sha256, output_sha256, bindings}, by the key with this key_id at ${KEYS_URL}. The MCP tool verify_receipt checks it offline.`,

@@ -40,7 +40,7 @@ test("a stored receipt's response carries badge_url and embed_markdown matching 
   assert.equal(body.data.badge_url, `https://canlicapital.com/api/v1/receipts/${ID}/badge.svg`);
   assert.equal(
     body.data.embed_markdown,
-    `[![Canli receipt](https://canlicapital.com/api/v1/receipts/${ID}/badge.svg)](https://canlicapital.com/api/v1/receipts/${ID})`,
+    `[![Canli receipt](https://canlicapital.com/api/v1/receipts/${ID}/badge.svg)](https://canlicapital.com/audit/${ID})`,
   );
 });
 
@@ -49,7 +49,7 @@ test("embed_markdown round-trips the id: the id can be recovered from the markdo
   await createReceiptHandler({ store: fakeStore(ROW) })(makeReq(ID), res);
   const body = res.json();
   const fromBadge = /receipts\/([0-9a-f]{24})\/badge\.svg/.exec(body.data.embed_markdown)?.[1];
-  const fromLink = /\]\(https:\/\/canlicapital\.com\/api\/v1\/receipts\/([0-9a-f]{24})\)$/.exec(body.data.embed_markdown)?.[1];
+  const fromLink = /\]\(https:\/\/canlicapital\.com\/audit\/([0-9a-f]{24})\)$/.exec(body.data.embed_markdown)?.[1];
   assert.equal(fromBadge, ID);
   assert.equal(fromLink, ID);
   assert.equal(body.data.id, ID);
