@@ -4,6 +4,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
+import { PRIMARY_TICKERS } from "./lib/company-primary-tickers.mjs";
+import { titleLabel } from "./lib/company-label.mjs";
+
 const read = (p) => JSON.parse(readFileSync(new URL(`../${p}`, import.meta.url), "utf8"));
 const index = read("public/api/v1/company-tickers.json");
 const activation = read("config/company-production-activation.json");
@@ -28,4 +31,13 @@ test("every ticker resolves to an admitted, non-excluded company", () => {
     assert.ok(!excluded[cik], `${ticker} -> ${cik} is excluded`);
   }
   assert.equal(index.tickers.AAPL, "0000320193");
+});
+
+test("the title ticker module agrees with the published index", () => {
+  const indexed = new Set(Object.values(index.tickers));
+  assert.deepEqual(new Set(Object.keys(PRIMARY_TICKERS)), indexed, "rebuild both with node scripts/build-company-tickers.mjs");
+  for (const [cik, ticker] of Object.entries(PRIMARY_TICKERS)) assert.equal(index.tickers[ticker], cik, `${cik} title ticker ${ticker}`);
+  assert.equal(PRIMARY_TICKERS["0001652044"], "GOOGL", "a company's main share class comes first");
+  assert.equal(titleLabel({ name: "Lockheed Martin Corp", cik: "0000936468" }), "Lockheed Martin (LMT)");
+  assert.equal(titleLabel({ name: "No Ticker Holdings Inc", cik: "0000000001" }), "No Ticker Holdings");
 });

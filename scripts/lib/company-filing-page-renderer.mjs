@@ -7,12 +7,14 @@ import { renderReferenceDocument, provenance, historicalFilerNotice } from './co
 import { historicalCutoff } from './company-coverage.mjs';
 import { filingPath, filingsIndexPath } from './company-filings.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
-import { companyLabel } from './company-label.mjs';
+import { companyLabel, titleLabel } from './company-label.mjs';
 
 const number = value => new Intl.NumberFormat('en-US', { maximumFractionDigits: 12 }).format(value);
 const label = company => companyLabel(company.name);
 const period = fact => fact.start ? `${esc(fact.start)} to ${esc(fact.end)}` : `At ${esc(fact.end)}`;
 const formName = form => ({ '10-K': 'annual report', '10-K/A': 'annual report amendment', '10-Q': 'quarterly report', '10-Q/A': 'quarterly report amendment', '20-F': 'annual report (foreign private issuer)', '20-F/A': 'annual report amendment (foreign private issuer)', '40-F': 'annual report (Canadian issuer)', '40-F/A': 'annual report amendment (Canadian issuer)' })[form] ?? form;
+// "2019 " for an annual period, "Q2 2019 " for a quarter, nothing when the filing tags no fiscal year.
+const fiscalTitle = filing => (filing.fiscal_year ? `${filing.fiscal_period && filing.fiscal_period !== 'FY' ? `${filing.fiscal_period} ` : ''}${filing.fiscal_year} ` : '');
 const fiscal = filing => filing.fiscal_year ? `fiscal ${filing.fiscal_period ?? ''} ${filing.fiscal_year}`.replace(/\s+/g, ' ').trim() : 'fiscal period not tagged';
 
 function validate(document) {
@@ -36,7 +38,7 @@ export function renderFilingsIndexPage(document, { robots = 'index, follow' } = 
   return renderReferenceDocument({
     robots,
     path: filingsIndexPath(document.cik), lastmod: document.fetched_at.slice(0, 10), dataset, sources: [`company-data/${document.cik}.json`],
-    title: `${label(dataset)}: SEC filings`, heading: `${dataset.name}: filings`,
+    title: `${titleLabel(dataset)}: SEC filings`, heading: `${dataset.name}: filings`,
     description: `Every ${dataset.name} annual and quarterly report in the SEC record with the published financial measures it tagged, ${document.filings.length} filings, each linked to its SEC index.`,
     body: `${historicalNote}<section><h2>Filings with published measures</h2><p>Each page shows what one filing reported, as tagged in that filing, with the periods it covered. Later filings can restate a value; the <a href="/companies/${document.cik}">company overview</a> shows the latest-filed value per period.</p><div class="company-reference__table"><table><thead><tr><th scope="col">Form</th><th scope="col">Filed</th><th scope="col">Fiscal period</th><th scope="col" class="company-reference__num">Measures</th><th scope="col" class="company-reference__num">Facts</th><th scope="col">SEC accession</th></tr></thead><tbody>${rows}</tbody></table></div>${thin}</section>${withheld}${provenance(dataset)}`,
   });
@@ -60,7 +62,7 @@ export function renderFilingPage(document, accession, { linkConcept = () => true
   return renderReferenceDocument({
     robots,
     path: filingPath(document.cik, accession), lastmod: document.fetched_at.slice(0, 10), dataset, sources: [`company-data/${document.cik}.json`],
-    title: `${label(dataset)} ${filing.form} ${filing.filed}`, heading: `${dataset.name}: ${filing.form} filed ${filing.filed}`,
+    title: `${titleLabel(dataset)} ${fiscalTitle(filing)}${filing.form} filed ${filing.filed}`, heading: `${dataset.name}: ${filing.form} filed ${filing.filed}`,
     description: `What ${dataset.name} reported in its ${formName(filing.form)} filed ${filing.filed} (${fiscal(filing)}): ${filing.concept_count} published measures, ${filing.fact_count} facts as tagged in accession ${filing.accession}.`,
     body: `${amendment}<section><h2>This filing</h2><dl><dt>Form</dt><dd>${esc(filing.form)} (${esc(formName(filing.form))})</dd><dt>Filed</dt><dd>${esc(filing.filed)}</dd><dt>Fiscal period</dt><dd>${esc(fiscal(filing))}</dd><dt>Accession</dt><dd><a href="${esc(filing.sec_index_url)}" rel="noreferrer">${esc(filing.accession)}</a> on SEC EDGAR</dd></dl><p>Values are as tagged in this filing. A later filing can restate them; a measure with a published history links to it, and the history shows the latest-filed value per period. <a href="${filingsIndexPath(document.cik)}">All ${esc(dataset.name)} filings</a>.</p></section><section><h2>Reported measures</h2>${sections}</section>${adjacent}${provenance(dataset)}`,
   });
