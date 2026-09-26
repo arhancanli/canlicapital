@@ -13,7 +13,8 @@ const ORIGIN = 'https://canlicapital.com';
 //    the activated release on the same URLs.
 // 2. Rebuild dist/sitemap.xml as a sitemap index with STABLE child names:
 //    sitemap-site.xml (the site's pages minus every /companies URL) and
-//    sitemap-companies-N.xml (exactly the admitted company URLs, 50,000 per file).
+//    sitemap-companies-<family>-N.xml: the admitted company URLs, one family per file set
+//    (directory, overviews, histories, filing-indexes, filings; 50,000 per file).
 //    Content-addressed names changed whenever a site page's lastmod changed, so an
 //    hourly deploy could remove a child that a crawler had just read in the index.
 //
@@ -41,9 +42,12 @@ export function prepareCompanyProductionOutput(root, { environment = process.env
   for (const path of paths) rmSync(path, { force: true, recursive: true });
 
   const { admission } = activation;
-  const companies = [];
-  for (let page = 1; page <= admission.counts.directory_pages; page++) companies.push({ loc: `${ORIGIN}${page === 1 ? '/companies' : `/companies/page/${page}`}`, lastmod: admission.directory_lastmod });
-  for (const { path, lastmod } of activation.admittedPaths()) companies.push({ loc: `${ORIGIN}${path}`, lastmod });
+  // One child sitemap per page family, so Search Console reports indexing per family and a new
+  // family can be judged on its own. Names are stable: a family keeps its file names release to
+  // release; the large families are numbered in fixed 50,000-URL parts.
+  const family = { directory: [], overviews: [], histories: [], 'filing-indexes': [], filings: [] };
+  for (let page = 1; page <= admission.counts.directory_pages; page++) family.directory.push({ loc: `${ORIGIN}${page === 1 ? '/companies' : `/companies/page/${page}`}`, lastmod: admission.directory_lastmod });
+  for (const { path, lastmod } of activation.admittedPaths()) (/^\/companies\/\d{10}$/.test(path) ? family.overviews : family.histories).push({ loc: `${ORIGIN}${path}`, lastmod });
   // Filing pages of admitted companies, from the pinned sidecar; withheld companies contribute none.
   const filingAdmission = loadCompanyFilingAdmission(activation, { root });
   if (filingAdmission) {
@@ -51,16 +55,24 @@ export function prepareCompanyProductionOutput(root, { environment = process.env
     for (const [cik, accessions] of filingAdmission.companies) {
       if (!activation.isAdmitted(cik)) continue;
       const { lastmod } = admission.companies[cik];
-      companies.push({ loc: `${ORIGIN}/companies/${cik}/filings`, lastmod }); indexes++;
-      for (const accession of accessions) { companies.push({ loc: `${ORIGIN}/companies/${cik}/filings/${accession}`, lastmod }); filings++; }
+      family['filing-indexes'].push({ loc: `${ORIGIN}/companies/${cik}/filings`, lastmod }); indexes++;
+      for (const accession of accessions) { family.filings.push({ loc: `${ORIGIN}/companies/${cik}/filings/${accession}`, lastmod }); filings++; }
     }
     if (indexes !== admission.filings.filing_indexes_admitted || filings !== admission.filings.filings_admitted) throw new Error(`Filing admission yields ${indexes} indexes/${filings} filings; admission counts ${admission.filings.filing_indexes_admitted}/${admission.filings.filings_admitted}`);
   }
+  const companies = Object.values(family).flat();
   const expected = admission.counts.urls_admitted;
   if (companies.length !== expected) throw new Error(`Admission yields ${companies.length} company URLs; expected ${expected}`);
 
-  const result = writeStableSitemaps(dist, [['sitemap-site.xml', site], ...chunk(companies, MAX_URLS).map((part, i) => [`sitemap-companies-${i + 1}.xml`, part])]);
-  return { removed: paths, siteUrls: site.length, removedSiteCompanyUrls: entries.length - site.length, companyUrls: companies.length, ...result };
+  const files = [['sitemap-site.xml', site]];
+  for (const [name, urls] of Object.entries(family)) {
+    if (!urls.length) continue;
+    const parts = chunk(urls, MAX_URLS);
+    // Always numbered, so a family that outgrows one file never renames its first part.
+    parts.forEach((part, i) => files.push([`sitemap-companies-${name}-${i + 1}.xml`, part]));
+  }
+  const result = writeStableSitemaps(dist, files);
+  return { removed: paths, siteUrls: site.length, removedSiteCompanyUrls: entries.length - site.length, companyUrls: companies.length, families: Object.fromEntries(Object.entries(family).map(([k, v]) => [k, v.length])), ...result };
 }
 
 const chunk = (items, size) => Array.from({ length: Math.ceil(items.length / size) }, (_, i) => items.slice(i * size, (i + 1) * size));

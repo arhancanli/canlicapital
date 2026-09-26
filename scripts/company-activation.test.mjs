@@ -161,10 +161,12 @@ test('production output removes shadowing pilot copies and lists exactly the adm
   for (const name of ['index.html', 'developers.html', 'company-page-assets.json']) assert.ok(existsSync(resolve(root, 'dist', name)), name);
   const index = parseSitemap(readFileSync(resolve(root, 'dist/sitemap.xml'), 'utf8'));
   assert.equal(index.index, true);
-  assert.deepEqual(index.locations, ['https://canlicapital.com/sitemap-site.xml', 'https://canlicapital.com/sitemap-companies-1.xml']);
+  assert.deepEqual(index.locations, ['sitemap-site.xml', 'sitemap-companies-directory-1.xml', 'sitemap-companies-overviews-1.xml', 'sitemap-companies-histories-1.xml'].map(name => `https://canlicapital.com/${name}`));
   const read = name => parseSitemap(readFileSync(resolve(root, 'dist', name), 'utf8')).locations;
   assert.deepEqual(read('sitemap-site.xml'), ['/', '/developers'].map(path => `https://canlicapital.com${path}`));
-  assert.deepEqual(read('sitemap-companies-1.xml'), ['/companies', '/companies/0000000001', '/companies/0000000001/Assets'].map(path => `https://canlicapital.com${path}`));
+  assert.deepEqual(read('sitemap-companies-directory-1.xml'), ['https://canlicapital.com/companies']);
+  assert.deepEqual(read('sitemap-companies-overviews-1.xml'), ['https://canlicapital.com/companies/0000000001']);
+  assert.deepEqual(read('sitemap-companies-histories-1.xml'), ['https://canlicapital.com/companies/0000000001/Assets']);
   assert.equal(result.removedSiteCompanyUrls, 2); assert.equal(result.companyUrls, 3);
   assert.throws(() => prepareCompanyProductionOutput(root, { environment: { VERCEL_ENV: 'preview' }, activation }), /already an index/);
   const fresh = distFixture(t);
@@ -181,7 +183,15 @@ test('the real admission becomes a sitemap index whose shards list every admitte
   assert.equal(urls.length, 2 + 916208); assert.equal(new Set(urls).size, urls.length);
   assert.ok(!urls.includes('https://canlicapital.com/companies/0000000002/Assets'));
   assert.ok(!urls.some(url => url.includes('/companies/0001296774')));
-  assert.deepEqual(index.locations, ['sitemap-site.xml', 'sitemap-companies-1.xml', 'sitemap-companies-2.xml', 'sitemap-companies-3.xml', 'sitemap-companies-4.xml', 'sitemap-companies-5.xml', 'sitemap-companies-6.xml', 'sitemap-companies-7.xml', 'sitemap-companies-8.xml', 'sitemap-companies-9.xml', 'sitemap-companies-10.xml', 'sitemap-companies-11.xml', 'sitemap-companies-12.xml', 'sitemap-companies-13.xml', 'sitemap-companies-14.xml', 'sitemap-companies-15.xml', 'sitemap-companies-16.xml', 'sitemap-companies-17.xml', 'sitemap-companies-18.xml', 'sitemap-companies-19.xml'].map(name => `https://canlicapital.com/${name}`));
+  const FAMILY_FILES = ['sitemap-site.xml', 'sitemap-companies-directory-1.xml', 'sitemap-companies-overviews-1.xml', ...Array.from({ length: 10 }, (_, i) => `sitemap-companies-histories-${i + 1}.xml`), 'sitemap-companies-filing-indexes-1.xml', ...Array.from({ length: 8 }, (_, i) => `sitemap-companies-filings-${i + 1}.xml`)];
+  assert.deepEqual(index.locations, FAMILY_FILES.map(name => `https://canlicapital.com/${name}`));
+  // Each family file holds only its own kind of company URL.
+  const pattern = { directory: /^\/companies(\/page\/\d+)?$/, overviews: /^\/companies\/\d{10}$/, histories: /^\/companies\/\d{10}\/[A-Za-z][A-Za-z0-9]*$/, 'filing-indexes': /^\/companies\/\d{10}\/filings$/, filings: /^\/companies\/\d{10}\/filings\/\d{10}-\d{2}-\d{6}$/ };
+  for (const name of FAMILY_FILES.slice(1)) {
+    const kind = /^sitemap-companies-(.+)-\d+\.xml$/.exec(name)[1];
+    const paths = parseSitemap(readFileSync(resolve(root, 'dist', name), 'utf8')).locations.map(loc => new URL(loc).pathname);
+    assert.ok(paths.length && paths.every(path => pattern[kind].test(path)), `${name} holds only ${kind} URLs`);
+  }
   // Every index entry carries the newest lastmod of the child it points to.
   const indexXml = readFileSync(resolve(root, 'dist/sitemap.xml'), 'utf8');
   for (const [, loc, lastmod] of indexXml.matchAll(/<sitemap><loc>([^<]+)<\/loc>(?:<lastmod>([^<]+)<\/lastmod>)?<\/sitemap>/g)) {
@@ -189,7 +199,7 @@ test('the real admission becomes a sitemap index whose shards list every admitte
     const dates = [...child.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map(m => m[1]);
     assert.equal(lastmod, dates.reduce((a, b) => (Date.parse(b) > Date.parse(a) ? b : a)), loc);
   }
-  assert.deepEqual(readdirSync(resolve(root, 'dist')).filter(name => name.startsWith('sitemap')).sort(), ['sitemap-companies-1.xml', 'sitemap-companies-10.xml', 'sitemap-companies-11.xml', 'sitemap-companies-12.xml', 'sitemap-companies-13.xml', 'sitemap-companies-14.xml', 'sitemap-companies-15.xml', 'sitemap-companies-16.xml', 'sitemap-companies-17.xml', 'sitemap-companies-18.xml', 'sitemap-companies-19.xml', 'sitemap-companies-2.xml', 'sitemap-companies-3.xml', 'sitemap-companies-4.xml', 'sitemap-companies-5.xml', 'sitemap-companies-6.xml', 'sitemap-companies-7.xml', 'sitemap-companies-8.xml', 'sitemap-companies-9.xml', 'sitemap-site.xml', 'sitemap.xml']);
+  assert.deepEqual(readdirSync(resolve(root, 'dist')).filter(name => name.startsWith('sitemap')).sort(), [...FAMILY_FILES, 'sitemap.xml'].sort());
 });
 
 test('sitemap child names and company files stay identical when site lastmods change between deploys', t => {
@@ -199,7 +209,7 @@ test('sitemap child names and company files stay identical when site lastmods ch
     writeFileSync(resolve(root, 'dist/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://canlicapital.com/performance</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>\n</urlset>\n`);
     prepareCompanyProductionOutput(root, { environment: { VERCEL_ENV: 'production' }, activation });
     const read = name => readFileSync(resolve(root, 'dist', name), 'utf8');
-    return { index: read('sitemap.xml'), site: read('sitemap-site.xml'), c1: read('sitemap-companies-1.xml'), c2: read('sitemap-companies-2.xml'), c3: read('sitemap-companies-3.xml'), c4: read('sitemap-companies-4.xml'), c5: read('sitemap-companies-5.xml'), c6: read('sitemap-companies-6.xml'), c7: read('sitemap-companies-7.xml'), c8: read('sitemap-companies-8.xml'), c9: read('sitemap-companies-9.xml'), c10: read('sitemap-companies-10.xml'), c11: read('sitemap-companies-11.xml'), c12: read('sitemap-companies-12.xml'), c13: read('sitemap-companies-13.xml'), c14: read('sitemap-companies-14.xml'), c15: read('sitemap-companies-15.xml'), c16: read('sitemap-companies-16.xml'), c17: read('sitemap-companies-17.xml'), c18: read('sitemap-companies-18.xml'), c19: read('sitemap-companies-19.xml') };
+    return { index: read('sitemap.xml'), site: read('sitemap-site.xml'), children: Object.fromEntries(readdirSync(resolve(root, 'dist')).filter(name => name.startsWith('sitemap-companies-')).map(name => [name, read(name)])) };
   };
   const first = build('2026-09-20'), second = build('2026-09-21');
   // The index dates each child by its newest page, so only the site child's date moves.
@@ -207,7 +217,8 @@ test('sitemap child names and company files stay identical when site lastmods ch
   assert.equal(siteEntry.exec(first.index)?.[1], '2026-09-20');
   assert.equal(siteEntry.exec(second.index)?.[1], '2026-09-21');
   assert.equal(first.index.replace(siteEntry, ''), second.index.replace(siteEntry, ''));
-  assert.equal(first.c1, second.c1); assert.equal(first.c2, second.c2); assert.equal(first.c3, second.c3); assert.equal(first.c4, second.c4); assert.equal(first.c5, second.c5); assert.equal(first.c6, second.c6); assert.equal(first.c7, second.c7); assert.equal(first.c8, second.c8); assert.equal(first.c9, second.c9); assert.equal(first.c10, second.c10); assert.equal(first.c11, second.c11); assert.equal(first.c12, second.c12); assert.equal(first.c13, second.c13); assert.equal(first.c14, second.c14); assert.equal(first.c15, second.c15); assert.equal(first.c16, second.c16); assert.equal(first.c17, second.c17); assert.equal(first.c18, second.c18); assert.equal(first.c19, second.c19);
+  assert.ok(Object.keys(first.children).length >= 5);
+  assert.deepEqual(first.children, second.children);
   assert.notEqual(first.site, second.site);
 });
 
