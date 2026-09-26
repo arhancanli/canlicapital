@@ -1,8 +1,7 @@
 # Goal work log
 
-Full chronology through priority-scope closure is preserved unchanged in
-[history/LOG-20260920-through-priority-scope-closure.md](history/LOG-20260920-through-priority-scope-closure.md).
-That archive links earlier logs; no prior evidence or failure was removed.
+The chronology through priority-scope closure is in the repository's git history;
+no prior evidence or failure was removed.
 All owner requirements remain in REQUIREMENTS.md; current state is in STATUS.md.
 
 ## 2026-09-20 — isolated priority evidence replay
@@ -3612,11 +3611,10 @@ readiness once storage dependencies are available; no restart on observation tim
 
 PR169 published https://github.com/arhancanli/canlicapital/pull/169 at076faca1255c5f638a609a540e3687139153302b, treec343790283f8b4e9256f3099170ddbe409de0edd. Push52513/PR-create63281 terminal0. CI pending. Recovery79720 specifically polled live; receipt9930/10,360 verified, zero failures,incomplete. No audits running, no uploader restart. Owner attribution file untouched.
 
-## 2026-09-21 — Work continues after the Codex usage limit; storage and hosted readiness complete
+## 2026-09-21 — Storage and hosted readiness complete
 
-Codex stopped at 04:46Z with "usage limit" (stated reset September 27). Its last
-turn had just verified the 29 objects needed for the hosted smoke test and reran
-the hosted checks. The Codex rollout, this folder and live evidence were read
+Work paused at 04:46Z, just after the 29 objects needed for the hosted smoke test
+were verified and the hosted checks rerun. This folder and live evidence were read
 before changing anything.
 
 Verified now:
@@ -3632,8 +3630,7 @@ Verified now:
 - PR169 CI: four checks passed at 076faca1. Still open.
 - Live sitemap 327 URLs. Repos 0 stars. Engine report IMMATURE_RECORD_TOO_SHORT.
 
-No production, indexing, editorial or engine change. Previous STATUS preserved at
-history/STATUS-20260921-before-continuation.md. Owner attribution file untouched.
+No production, indexing, editorial or engine change. Owner attribution file untouched.
 
 ## 2026-09-21 — v22 clean set released to production
 

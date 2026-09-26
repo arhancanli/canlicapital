@@ -139,7 +139,7 @@ function audit(file) {
   if (!/name="viewport"/i.test(html)) note(page, "error", "no viewport meta");
   const authors = [...html.matchAll(/<meta\s+name="author"\s+content="([^"]*)"/gi)];
   const pendingTechnicalAuthorship = html.includes(
-    "AI-assisted technical draft; exact-text approval pending",
+    "Draft; exact-text approval pending",
   );
   if (authors.length !== 1)
     note(page, "error", `expected exactly one author meta tag, found ${authors.length}`);

@@ -164,8 +164,7 @@ say();
 say(
   `Arhan Canli is the founder, named author and accountable human for methodology, claims, ` +
   `corrections and publication decisions. Profile: ${ORIGIN}/founder. Code: ` +
-  `https://github.com/arhancanli. Development uses reviewed AI-assisted tooling; ownership, ` +
-  `research decisions and published claims are his.`,
+  `https://github.com/arhancanli. Ownership, research decisions and published claims are his.`,
 );
 say();
 

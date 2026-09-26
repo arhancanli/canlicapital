@@ -1,8 +1,7 @@
 # Persistent CanliCapital goal
 
 This folder is the continuity record requested by the owner on 19 September 2026.
-The session goal is active. On 20 September 2026 the owner assigned all implementation
-and review to Codex directly; Hermes delegation is stopped. Current task ledger:
+The session goal is active. Current task ledger:
 `EXECUTION_LEDGER.md`. This folder does not claim the goal has been achieved.
 
 Read in order before each phase and after every chat compaction:
@@ -26,5 +25,5 @@ Working locations:
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.
 - SEC collector quality: `/Users/arhancanli/alphac-source-quality-20260919`, branch `fix/sec-companyfacts-source-quality`; PR https://github.com/arhancanli/alphac/pull/70. Tests use the security worktree's existing Python environment; do not commit a .venv symlink.
-- Original website and engine worktrees contain existing work and runtime state. Keep changes isolated; do not overwrite other agents' or the owner's work.
+- Original website and engine worktrees contain existing work and runtime state. Keep changes isolated; do not overwrite the owner's work.
 - Engine integration verification: `/Users/arhancanli/alphac-integration-20260920`, branch `integration/owner-goals-20260920`. PR https://github.com/arhancanli/alphac/pull/71 merged as0aff241a on September20 after all six CIjobs passed. The merged tree matches the reviewed candidate; running-engine activation remains pending.

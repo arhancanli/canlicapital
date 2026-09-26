@@ -429,9 +429,9 @@ ${renderProductShellHeader({ active: "engineering" })}
       <h2 id="eng-author-title">Authorship</h2>
     </div>
     <p class="eng-author">Designed, written and maintained by
-      <a href="/founder">Arhan Canli</a>, in Dubai. Development uses reviewed AI-assisted tooling;
-      ownership, research decisions, published claims and release responsibility are mine. Every
-      repository is MIT licensed and carries machine-readable citation metadata.</p>
+      <a href="/founder">Arhan Canli</a>, in Dubai. Ownership, research decisions, published claims
+      and release responsibility are mine. Every repository is MIT licensed and carries
+      machine-readable citation metadata.</p>
     <p class="eng-source">This page is generated from
       <a href="/glassbox/${SOURCE_NAME}"><code>${SOURCE_NAME}</code></a>, whose counts are read out of
       what the repositories publish. The build asserts that artifact's content hash reproduces, so a

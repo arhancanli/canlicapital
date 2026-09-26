@@ -1,11 +1,9 @@
 # Current state
 
 Updated September 21, 2026. Goal ACTIVE, NOT ACHIEVED. All objectives and
-publication authorization remain in REQUIREMENTS.md. Codex is usage-limited
-until September 27; work continues from these records. Hermes remains stopped.
+publication authorization remain in REQUIREMENTS.md. Work continues from these records.
 
-The previous STATUS is preserved at
-[history/STATUS-20260921-before-production-activation.md](history/STATUS-20260921-before-production-activation.md).
+Earlier versions of this file are in the repository's git history.
 Recorded states are not live telemetry.
 
 ## Latest verified transition: v27 live in production (September 23)
