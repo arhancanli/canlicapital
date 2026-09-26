@@ -77,7 +77,7 @@ test('every release-backed page reports Server-Timing, and a warm instance reads
     return res;
   };
   const cold = await request();
-  assert.match(cold.headers['Server-Timing'], /^release;dur=\d+(\.\d)?, page;dur=\d+(\.\d)?, reads;desc="\d+", hits;desc="\d+"$/);
+  assert.match(cold.headers['Server-Timing'], /^release;dur=\d+(\.\d)?, page;dur=\d+(\.\d)?, storage;dur=\d+(\.\d)?, render;dur=\d+(\.\d)?, reads;desc="\d+", hits;desc="\d+"$/);
   const readsAfterCold = storageReads;
   assert.ok(readsAfterCold > 0);
   const warm = await request();
