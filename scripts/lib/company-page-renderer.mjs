@@ -3,6 +3,7 @@ import { companyFilingNotes } from './company-filing-notes.mjs';
 import { companyCoverage, coverageByUnit, historicalFiler, latestFiling, latestObservationsByUnit } from './company-coverage.mjs';
 import { renderProductShellHeader, renderProductShellFooter, renderProductShellStylesheet } from '../product-shell.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
+import { companyLabel } from './company-label.mjs';
 const origin = 'https://canlicapital.com';
 const pathFor = (company) => `/companies/${company.cik}`;
 const dataFor = (company) => `/company-data/${company.cik}.json`;
@@ -10,11 +11,14 @@ const metricPath = (company, concept) => `${pathFor(company)}/${concept.tag}`;
 const number = (value) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 12 }).format(value);
 const numberCell = (value) => `<td class="company-reference__num">${number(value)}</td>`;
 const periodStartCell = (row) => row.start ? `<td>${esc(row.start)}</td>` : '<td class="company-reference__na">-</td>';
-const label = (company) => company.name.replace(/\s+(CORPORATION|CORP|Inc\.)$/i, '');
+const label = (company) => companyLabel(company.name);
 const headingHtml = (heading) => esc(heading).replace(/\d{4}-\d{2}-\d{2}|\b\d{1,2}-[KQF](?:\/A)?(?=\s|$)/g, token => `<span class="company-reference__nobreak">${token}</span>`);
 const accessionLink = (company, observation) => `https://www.sec.gov/Archives/edgar/data/${Number(company.cik)}/${observation.accn.replaceAll('-', '')}/${observation.accn}-index.html`;
 
-export function renderReferenceDocument({ path, title, description, heading, body, sources, lastmod, dataset, coverage }) {
+// robots: the page's own robots directive. A runtime page the server marks noindex says so in the
+// HTML too, so the two signals never disagree.
+export function renderReferenceDocument({ path, title, description, heading, body, sources, lastmod, dataset, coverage, robots = 'index, follow' }) {
+  if (!['index, follow', 'noindex'].includes(robots)) throw new Error('Invalid robots directive');
   const titleText = title.length <= 49 ? `${title} | Canli Capital` : title;
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Company reference', path: '/companies' }];
   if (!dataset && /^\/companies\/page\/\d+$/.test(path)) crumbs.push({ name: `Page ${path.split('/').at(-1)}`, path });
@@ -29,7 +33,7 @@ export function renderReferenceDocument({ path, title, description, heading, bod
 <meta name="description" content="${esc(description)}" />
 <meta name="author" content="Arhan Canli" />
 <meta name="canli:sources" content="${esc(sources.join(' '))}" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="${robots}" />
 <link rel="canonical" href="${origin}${path}" />
 <meta property="og:title" content="${esc(heading)}" /><meta property="og:description" content="${esc(description)}" />
 <meta property="og:type" content="website" /><meta property="og:url" content="${origin}${path}" />
@@ -89,7 +93,11 @@ function withholdingNotices(exclusions) {
 // verified immutable catalog (runtime). No network, disk writes or global state.
 // filings: { filings: n } when the serving release holds filing pages for this
 // company; the overview then links to the filing index. Static builds pass none.
-export function renderCompanyPages(company, { target = 'all', filings = null } = {}) {
+// linkConcept(tag): whether a history page may be linked. Production passes the admission
+// predicate, so no page links a history that is withheld (noindex) or absent; a history that may
+// not be linked is named as text. robots: see renderReferenceDocument.
+export function renderCompanyPages(company, { target = 'all', filings = null, linkConcept = () => true, robots = 'index, follow' } = {}) {
+  const conceptRef = (concept) => (linkConcept(concept.tag) ? `<a href="${metricPath(company, concept)}">${esc(concept.label)}</a>` : esc(concept.label));
   if (company.schema !== 'canli.company-reference.v1' || !/^\d{10}$/.test(company.cik) || company.concepts.length < 4 || !/^[a-f0-9]{64}$/.test(company.source_sha256)) throw new Error('Invalid company reference');
   if (filings !== null && (!Number.isSafeInteger(filings?.filings) || filings.filings < 1)) throw new Error('Invalid filings summary');
   const filingsSection = filings ? `<section aria-labelledby="filings"><h2 id="filings">Filings</h2><p><a href="${pathFor(company)}/filings">${filings.filings} ${esc(label(company))} filings with published measures</a>: what each annual or quarterly report tagged, with the periods it covered, as reported in that filing. The histories above show the latest-filed value per period.</p></section>` : '';
@@ -97,7 +105,7 @@ export function renderCompanyPages(company, { target = 'all', filings = null } =
   if (!['all', 'overview', ...company.concepts.map(concept => concept.tag)].includes(target)) return [];
   const matches = matchingHistoryConcepts(company.concepts);
   const pages = [];
-  const page = options => pages.push(renderReferenceDocument(options));
+  const page = options => pages.push(renderReferenceDocument({ ...options, robots }));
   const lastmod = (company.content_updated_at ?? company.fetched_at).slice(0, 10);
   const sources = [`company-data/${company.cik}.json`];
   const historicalNote = historicalFiler(company) ? historicalFilerNotice(company.name, latestFiling(company), company.fetched_at) : '';
@@ -105,7 +113,7 @@ export function renderCompanyPages(company, { target = 'all', filings = null } =
   const overviewNotes = [...new Set(company.concepts.flatMap(concept => companyFilingNotes(company, concept.tag)).filter(note => note.include_on_overview))];
   const overviewContext = overviewNotes.length ? `<section aria-labelledby="filing-context"><h2 id="filing-context">Context from the filing</h2>${overviewNotes.map(note => `<p>${esc(note.text)} <a href="${esc(note.filing_url)}">Read the source filing</a>.</p>`).join('')}</section>` : '';
   const rows = company.concepts.flatMap((concept) => latestObservationsByUnit(concept.observations).map((latest) => {
-    return `<tr><th scope="row"><a href="${metricPath(company, concept)}">${esc(concept.label)}</a></th>${periodStartCell(latest)}<td>${esc(latest.end)}</td>${numberCell(latest.val)}<td>${esc(latest.unit)}</td><td>${esc(latest.filed)}</td></tr>`;
+    return `<tr><th scope="row">${conceptRef(concept)}</th>${periodStartCell(latest)}<td>${esc(latest.end)}</td>${numberCell(latest.val)}<td>${esc(latest.unit)}</td><td>${esc(latest.filed)}</td></tr>`;
   })).join('');
   if (target === 'all' || target === 'overview') page({ path: pathFor(company), title: `${label(company)}: filing data`, description: `Explore ${company.name} financial histories from SEC filings, with original units, reporting periods, filing dates and downloadable source data.`, heading: `${company.name}: financial reference`, sources, lastmod, dataset: company,
     body: `${historicalNote}${editorialNote}${overviewContext}<section><h2>Reported financial histories</h2><p>Choose a measure to inspect its definition, complete selected history and filing provenance. Each row shows the latest period available for that selected concept and original unit. Separate currencies and reporting intervals remain separate rows. Coverage dates can differ between concepts. A recent capture does not imply recent accounting coverage; these amounts are not prices.</p><div class="company-reference__table" role="region" aria-label="Latest financial observations" tabindex="0"><table><caption>Latest periods by selected concept and original unit</caption><thead><tr><th scope="col">Measure</th><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col" class="company-reference__num">Value</th><th scope="col">Unit</th><th scope="col">Filed</th></tr></thead><tbody>${rows}</tbody></table></div></section>${filingsSection}${provenance(company)}` });
@@ -120,12 +128,12 @@ export function renderCompanyPages(company, { target = 'all', filings = null } =
     const observationNote = observationHolds.length ? `<section aria-labelledby="withheld-observations"><h2 id="withheld-observations">Withheld reporting periods</h2>${withholdingNotices(observationHolds)}</section>` : '';
 
     const constants = constantHistoryUnits(concept);
-    const historyContext = equalHistories.length || constants.length ? `<section aria-labelledby="history-context"><h2 id="history-context">Reading these values</h2>${constants.map(unit => `<p>The selected <strong>${esc(unit.unit)}</strong> history reports ${number(unit.value)} at all ${unit.reportingEnds} reporting ends.${unit.value === 0 ? ' These are reported zeros, not values substituted for missing data.' : ''} This describes this concept and the selected periods only; it does not establish that other measures or later periods are unchanged.</p>`).join('')}${equalHistories.length ? `<p>This selected numerical history matches ${equalHistories.map(other => `<a href="${metricPath(company, other)}">${esc(other.label)}</a>`).join(', ')} for the same reporting intervals and original units. The accounting definitions remain distinct. Equal values do not establish that the concepts are interchangeable or explain why they match; filing dates and accessions may differ. Compare the definitions and source filings before combining them.</p>` : ''}</section>` : '';
+    const historyContext = equalHistories.length || constants.length ? `<section aria-labelledby="history-context"><h2 id="history-context">Reading these values</h2>${constants.map(unit => `<p>The selected <strong>${esc(unit.unit)}</strong> history reports ${number(unit.value)} at all ${unit.reportingEnds} reporting ends.${unit.value === 0 ? ' These are reported zeros, not values substituted for missing data.' : ''} This describes this concept and the selected periods only; it does not establish that other measures or later periods are unchanged.</p>`).join('')}${equalHistories.length ? `<p>This selected numerical history matches ${equalHistories.map(other => conceptRef(other)).join(', ')} for the same reporting intervals and original units. The accounting definitions remain distinct. Equal values do not establish that the concepts are interchangeable or explain why they match; filing dates and accessions may differ. Compare the definitions and source filings before combining them.</p>` : ''}</section>` : '';
     const shortName = label(company);
     const title = `${shortName}: ${concept.label}`;
     const rows = concept.observations.map((row) => `<tr>${periodStartCell(row)}<th scope="row">${esc(row.end)}</th>${numberCell(row.val)}<td>${esc(row.unit)}</td><td>${esc(row.filed)}</td><td><a href="${accessionLink(company, row)}">${esc(row.form)} · ${esc(row.accn)}</a></td></tr>`).join('');
     page({ path: metricPath(company, concept), title, description: `${concept.label} for ${company.name.replace(/\.$/, '')}. Inspect selected reporting periods, original units and SEC filing links; download the financial history.`, heading: `${company.name}: ${concept.label.toLowerCase()}`, sources, lastmod, dataset: company, coverage,
-      body: `<p><a href="${pathFor(company)}">All ${esc(company.name)} financial histories</a></p><section><h2>What this measure means</h2><p>${esc(concept.meaning)}</p><p>Exact concept: <code>us-gaap:${esc(concept.tag)}</code>. ${concept.kind === 'duration' ? 'Each value covers an annual-duration reporting interval, shown with both start and end dates.' : 'Each value is a balance at the reporting date, not a flow earned over a year.'} Different units remain separate; no currency conversion or interpolation is applied.</p></section>${coverageNote}${observationNote}${historyContext}${filingNotes.length ? `<section aria-labelledby="filing-context"><h2 id="filing-context">Context from the filing</h2>${filingNotes.map(note => `<p>${esc(note.text)} <a href="${esc(note.filing_url)}">Read the source filing</a>.</p>`).join('')}</section>` : ''}<section><h2>Selected filing history</h2><div class="company-reference__table" role="region" aria-label="${esc(concept.label)} filing history" tabindex="0"><table><caption>${esc(concept.label)} in original reported units, latest-filed observation per period</caption><thead><tr><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col" class="company-reference__num">Value</th><th scope="col">Unit</th><th scope="col">Filed</th><th scope="col">Source filing</th></tr></thead><tbody>${rows}</tbody></table></div></section><section><h2>Related ${esc(company.name)} histories</h2><ul class="company-reference__related">${company.concepts.filter(other => other.tag !== concept.tag).map(other => `<li><a href="${metricPath(company, other)}">${esc(other.label)}</a></li>`).join('')}</ul></section>${provenance(company)}` });
+      body: `<p><a href="${pathFor(company)}">All ${esc(company.name)} financial histories</a></p><section><h2>What this measure means</h2><p>${esc(concept.meaning)}</p><p>Exact concept: <code>us-gaap:${esc(concept.tag)}</code>. ${concept.kind === 'duration' ? 'Each value covers an annual-duration reporting interval, shown with both start and end dates.' : 'Each value is a balance at the reporting date, not a flow earned over a year.'} Different units remain separate; no currency conversion or interpolation is applied.</p></section>${coverageNote}${observationNote}${historyContext}${filingNotes.length ? `<section aria-labelledby="filing-context"><h2 id="filing-context">Context from the filing</h2>${filingNotes.map(note => `<p>${esc(note.text)} <a href="${esc(note.filing_url)}">Read the source filing</a>.</p>`).join('')}</section>` : ''}<section><h2>Selected filing history</h2><div class="company-reference__table" role="region" aria-label="${esc(concept.label)} filing history" tabindex="0"><table><caption>${esc(concept.label)} in original reported units, latest-filed observation per period</caption><thead><tr><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col" class="company-reference__num">Value</th><th scope="col">Unit</th><th scope="col">Filed</th><th scope="col">Source filing</th></tr></thead><tbody>${rows}</tbody></table></div></section><section><h2>Related ${esc(company.name)} histories</h2><ul class="company-reference__related">${company.concepts.filter(other => other.tag !== concept.tag).map(other => `<li>${conceptRef(other)}</li>`).join('')}</ul></section>${provenance(company)}` });
   }
   return pages;
 }
