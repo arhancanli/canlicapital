@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.6.0 (2026-09-26)
+
 - `validate_luck_trials` takes the returns' `autocorrelation` and corrects the Sharpe as Lo (2002)
   first. Measured on the Null Zoo: with autocorrelation 0.2 and none sent, a nominal 5 percent
   test rejected 20.0 percent of skill-less searches; with it corrected, 5.9 percent.
