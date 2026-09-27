@@ -29,7 +29,7 @@ export async function loadCompanyRelease({ releaseHash, readReleaseObject, readC
   const filingsCatalog = release.filings_root && readFilingsObject ? createCompanyFilingsCatalog({ rootHash: release.filings_root, readObject: readFilingsObject }) : null;
   const filings = createCompanyFilingsHandler({ filings: filingsCatalog, assets, indexable: filingsCatalog ? filingsIndexable : false, historyIndexable: indexable });
   const company = createCompanyHtmlHandler({ catalog, assets, indexable, filings: filingsCatalog, filingsIndexable: filingsCatalog ? filingsIndexable : false });
-  const directory = createCompanyDirectoryHandler({ catalog, assets, indexable: directoryIndexable === true });
+  const directory = createCompanyDirectoryHandler({ catalog, assets, indexable: directoryIndexable === true, filings: filingsCatalog, filingsIndexable: filingsCatalog ? filingsIndexable : false });
   const download = createCompanyDownloadHandler({ index: downloads, readDownload });
   return { releaseHash, release, catalog, downloads, company, directory, download, filings, filingsCatalog };
 }
