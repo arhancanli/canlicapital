@@ -14,7 +14,7 @@
       "label": "Literature reviews",
       "count": 10,
       "path": "/research/topics/literature-reviews",
-      "blurb": "What the published evidence actually supports for each mechanism, with citations, and where our reading of it stops."
+      "blurb": "What the published evidence actually supports for each mechanism, with citations, and where our reading of it stops, before any test of our own."
     },
     {
       "slug": "feasibility-protocols",
@@ -33,7 +33,7 @@
     {
       "slug": "equities",
       "label": "Equities",
-      "count": 33,
+      "count": 34,
       "path": "/research/topics/equities",
       "blurb": "Cross-sectional equity research: momentum construction, quality and value replication on a survivorship-free universe, and the filing-derived signals tested against it."
     },
@@ -54,7 +54,7 @@
     {
       "slug": "rates-and-treasuries",
       "label": "Rates and treasuries",
-      "count": 11,
+      "count": 10,
       "path": "/research/topics/rates-and-treasuries",
       "blurb": "Auction concession, pre-FOMC drift, swap-spread dislocation and curve carry include identities that were not observable as pre-registered."
     },
@@ -89,7 +89,7 @@
     {
       "slug": "execution-and-market-structure",
       "label": "Execution and market structure",
-      "count": 9,
+      "count": 10,
       "path": "/research/topics/execution-and-market-structure",
       "blurb": "Borrow availability and fees, financing, corporate actions, market-status replay and fill modelling decide whether a paper edge survives contact."
     }
@@ -98,7 +98,7 @@
     {
       "slug": "active-ownership-item4-v3-feasibility",
       "title": "Active ownership escalation — Schedule 13D Item 4 source-schema v3",
-      "description": "V2 used the unchanged 160-accession sample and added the SEC structured Schedule 13D schema, but the implementation required the primary bytes to begin with…",
+      "description": "No heading phrase, minimum length, active-intent classifier, ownership regex, sample row, threshold, or label is changed. Any machine failure is DATA_GATED.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026activeownershipitem4v3feasibility",
@@ -131,7 +131,7 @@
     {
       "slug": "alphavintage-macro-surprise-lineage",
       "title": "Point-in-Time Inflation Surprise and the Equity Size Spread",
-      "description": "This paper reports a point-in-time inflation-surprise strategy applied to the dollar-neutral IWM-minus-SPY equity size spread.",
+      "description": "This paper reports a point-in-time inflation-surprise strategy applied to the dollar-neutral IWM-minus-SPY equity size spread. The fixed specification…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026alphavintagemacrosurpriselineage",
@@ -142,7 +142,7 @@
     {
       "slug": "alphavintage-missing-release-correction",
       "title": "AlphaVintage missing-release correction protocol",
-      "description": "The point-in-time RTDSM lake has no October 2025 headline or core CPI level.",
+      "description": "The point-in-time RTDSM lake has no October 2025 headline or core CPI level. Do not tune AR lags, sign, clip, costs, entry timing, instruments, scale, or gates.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026alphavintagemissingreleasecorrection",
@@ -164,7 +164,7 @@
     {
       "slug": "bond-etf-nav-dislocation-feasibility",
       "title": "Bond-ETF NAV dislocation — locked no-return source feasibility protocol",
-      "description": "Failure of any gate is DATA_GATED. Passing does not authorize returns. Thresholds and routes are not modified after collection.",
+      "description": "Failure of any gate is DATA_GATED. Passing does not authorize returns. Thresholds and routes are not modified after collection. iNAV is not accepted as…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026bondetfnavdislocationfeasibility",
@@ -186,7 +186,7 @@
     {
       "slug": "cftc-hedging-pressure-feasibility",
       "title": "CFTC hedging pressure — no-return feasibility protocol",
-      "description": "This stage audits only identifiers, dates, market labels and commodity classifications from the CFTC Disaggregated Futures Only dataset (72hh-3qpy).",
+      "description": "This stage audits only identifiers, dates, market labels and commodity classifications from the CFTC Disaggregated Futures Only dataset (72hh-3qpy). It…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026cftchedgingpressurefeasibility",
@@ -208,7 +208,7 @@
     {
       "slug": "corporate-action-lifecycle",
       "title": "Corporate-action and delisting lifecycle replay",
-      "description": "AlphaForge now replays point-in-time splits, cash dividends, and metadata-confirmed delistings inside the event-driven backtester.",
+      "description": "AlphaForge now replays point-in-time splits, cash dividends, and metadata-confirmed delistings inside the event-driven backtester. This is engineering…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026corporateactionlifecycle",
@@ -219,7 +219,7 @@
     {
       "slug": "crowding-risk-foundation",
       "title": "Point-in-time crowding and stressed capacity",
-      "description": "AlphaForge now has a coverage-aware crowding gate in the shared pre-trade path.",
+      "description": "AlphaForge now has a coverage-aware crowding gate in the shared pre-trade path. It keeps institutional ownership, short interest, borrow utilization, fund…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026crowdingriskfoundation",
@@ -263,7 +263,7 @@
     {
       "slug": "crypto-lab-carry-crash-incident",
       "title": "When Crypto Carry Became Crash Exposure: The LABUSDT Incident",
-      "description": "AlphaForge bought LABUSDT at a paper fill of 16.150421 USDT on 5 July 2026 while its point-in-time funding signal was negative.",
+      "description": "AlphaForge bought LABUSDT at a paper fill of 16.150421 USDT on 5 July 2026 while its point-in-time funding signal was negative. This distinction matters.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026cryptolabcarrycrashincident",
@@ -274,7 +274,7 @@
     {
       "slug": "crypto-momentum-lineage",
       "title": "Crypto momentum: complete trial lineage and failed sleeve-admission evidence",
-      "description": "AlphaForge tested cross-sectional and time-series momentum in perpetual-futures prices.",
+      "description": "AlphaForge tested cross-sectional and time-series momentum in perpetual-futures prices. Diversification without standalone edge does not earn a sleeve slot.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026cryptomomentumlineage",
@@ -285,7 +285,7 @@
     {
       "slug": "crypto-multifactor-engine-lineage",
       "title": "Crypto multi-factor engine: seven trials, capacity decay, and no-deploy verdict",
-      "description": "AlphaForge ran a historical robustness matrix over crypto perpetual futures from 2021-01-01 through 2026-06-01.",
+      "description": "AlphaForge ran a historical robustness matrix over crypto perpetual futures from 2021-01-01 through 2026-06-01. Seven charged identities belong to the broad…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026cryptomultifactorenginelineage",
@@ -296,7 +296,7 @@
     {
       "slug": "crypto-reversal-lineage",
       "title": "Crypto short-horizon reversal: two decisive negative trials",
-      "description": "Two historical identities test whether crypto perpetual-futures returns reverse after common movement is removed.",
+      "description": "Two historical identities test whether crypto perpetual-futures returns reverse after common movement is removed. One uses a 24-hour residual signal; the…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026cryptoreversallineage",
@@ -307,7 +307,7 @@
     {
       "slug": "crypto-vrp-lineage",
       "title": "Crypto volatility risk premium: one proxy trial and a published null",
-      "description": "AlphaForge tested one preregistered BTC/ETH volatility-risk-premium timing rule from 2021-03-24 through 2026-06-01.",
+      "description": "AlphaForge tested one preregistered BTC/ETH volatility-risk-premium timing rule from 2021-03-24 through 2026-06-01. It compared Deribit DVOL closes with a…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026cryptovrplineage",
@@ -318,7 +318,7 @@
     {
       "slug": "current-book-diversification-model",
       "title": "Current-book diversification: the confidence-bound result",
-      "description": "The long-run portfolio objective is approximately −0.03 average correlation. The current measured point is 0.0548 above it.",
+      "description": "The long-run portfolio objective is approximately −0.03 average correlation. The current measured point is 0.0548 above it. Calling +0.0248 “near zero” may be…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026currentbookdiversificationmodel",
@@ -329,7 +329,7 @@
     {
       "slug": "current-book-drawdown-model",
       "title": "Current-composition maximum-drawdown model",
-      "description": "This study estimates the two-year maximum-drawdown distribution of the current ALPHAC composition: four constituent sleeves at equal-quarter weights plus a…",
+      "description": "This study estimates the two-year maximum-drawdown distribution of the current ALPHAC composition: three constituent sleeves (AlphaMax, AlphaTrend and…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026currentbookdrawdownmodel",
@@ -340,7 +340,7 @@
     {
       "slug": "customer-supplier-propagation-feasibility",
       "title": "Customer–supplier propagation — locked no-return relationship-source protocol",
-      "description": "Use the existing hash-addressed SEC 10-K manifest and local primary-document cache. Restrict filing dates to 2016-01-01 through 2025-12-31.",
+      "description": "Use the existing hash-addressed SEC 10-K manifest and local primary-document cache. Restrict filing dates to 2016-01-01 through 2025-12-31. Every manifest…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026customersupplierpropagationfeasibility",
@@ -351,7 +351,7 @@
     {
       "slug": "electricity-load-weather-feasibility",
       "title": "Electricity load/weather spread — key-free feasibility decision",
-      "description": "Unexpected weather-driven electricity demand can change the marginal generation stack and the value of regional power relative to its marginal fuel.",
+      "description": "Unexpected weather-driven electricity demand can change the marginal generation stack and the value of regional power relative to its marginal fuel. The…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026electricityloadweatherfeasibility",
@@ -373,7 +373,7 @@
     {
       "slug": "engineering-quality",
       "title": "Engineering quality boundary",
-      "description": "This page reports the current static-quality boundary honestly. It is engineering evidence, not investment-performance evidence, and generating it evaluates…",
+      "description": "This page reports the current static-quality boundary honestly. Twelve credentialed network tests remain deliberately deselected from the offline suite.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026engineeringquality",
@@ -384,7 +384,7 @@
     {
       "slug": "equity-insider-activity-lineage",
       "title": "Clustered insider purchases: a corrected preregistered null",
-      "description": "This record examines whether clustered open-market purchases by corporate insiders predict issuer returns after a realistic filing delay.",
+      "description": "This record examines whether clustered open-market purchases by corporate insiders predict issuer returns after a realistic filing delay. Two immutable…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026equityinsideractivitylineage",
@@ -406,7 +406,7 @@
     {
       "slug": "equity-narrative-change-lineage",
       "title": "Annual risk-factor narrative stability: a preregistered null",
-      "description": "ALPHAC preregistered one test of annual 10-K Item 1A narrative stability before opening the 2016–2025 return window.",
+      "description": "ALPHAC preregistered one test of annual 10-K Item 1A narrative stability before opening the 2016–2025 return window. The locked strategy bought issuers with…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026equitynarrativechangelineage",
@@ -417,7 +417,7 @@
     {
       "slug": "equity-quality-lineage",
       "title": "Equity fundamental quality: 11 identities and no validated sleeve",
-      "description": "ALPHAC recorded 11 distinct equity-quality return identities spanning gross profitability, operating margin, return on equity, a quality composite, and a…",
+      "description": "Novy-Marx's gross-profitability evidence provides an important prior (Journal of Financial Economics). One family can contribute at most one independent sleeve.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026equityqualitylineage",
@@ -428,7 +428,7 @@
     {
       "slug": "equity-value-investment-lineage",
       "title": "Equity value, issuance, and investment: 13 identities and unstable evidence",
-      "description": "ALPHAC recorded 13 equity value/investment identities: book-to-price, earnings yield, sales-to-price, accruals, asset growth, net issuance,…",
+      "description": "Value ratios ask whether prices are low relative to accounting fundamentals. Cooper, Gulen, and Schill document the asset-growth effect (Journal of Finance).",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026equityvalueinvestmentlineage",
@@ -450,7 +450,7 @@
     {
       "slug": "filing-facts-v0",
       "title": "FilingFacts v0: financial reasoning items verified from SEC XBRL data",
-      "description": "FilingFacts is a set of 1,882 questions about the annual SEC filings of 402 companies.",
+      "description": "FilingFacts is a set of 1,882 questions about the annual SEC filings of 402 companies. Every answer is computed from the company's XBRL facts, re-derived by…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026filingfactsv0",
@@ -461,7 +461,7 @@
     {
       "slug": "financing-replay",
       "title": "Point-in-time cash and collateral financing replay",
-      "description": "AlphaForge can now accrue explicit cash-credit, margin-debit, and short-collateral rates inside the event-driven backtester.",
+      "description": "AlphaForge can now accrue explicit cash-credit, margin-debit, and short-collateral rates inside the event-driven backtester. This is engineering evidence, not…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026financingreplay",
@@ -472,7 +472,7 @@
     {
       "slug": "forward-sharpe-evidence-standard",
       "title": "When a Forward Sharpe Ratio Becomes Evidence",
-      "description": "A forward Sharpe ratio should not become a headline merely because a short paper-trading curve can produce one.",
+      "description": "A forward Sharpe ratio should not become a headline merely because a short paper-trading curve can produce one. This paper defines the precommitted evidence…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026forwardsharpeevidencestandard",
@@ -483,7 +483,7 @@
     {
       "slug": "futures-execution-foundation",
       "title": "Dated-futures execution foundation",
-      "description": "AlphaForge can now represent a dated futures contract as a first-class FUTURE instrument and make deterministic lifecycle decisions without using…",
+      "description": "AlphaForge can now represent a dated futures contract as a first-class FUTURE instrument and make deterministic lifecycle decisions without using information…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026futuresexecutionfoundation",
@@ -494,7 +494,7 @@
     {
       "slug": "identity-redesign-notes",
       "title": "Identity redesign notes: three families that mis-specified their population",
-      "description": "Status: DRAFT. Nothing here is registered. No hypothesis identity, no threshold, no universe is fixed by this document.",
+      "description": "Status: DRAFT. Nothing here is registered. No hypothesis identity, no threshold, no universe is fixed by this document. Registering any of it spends a trial…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026identityredesignnotes",
@@ -505,7 +505,7 @@
     {
       "slug": "inflation-breakeven-relative-value-feasibility",
       "title": "Inflation breakeven relative value — no-return source-feasibility audit",
-      "description": "The 5Y and 10Y files are aligned, long, unique, and internally complete. Vintage CPI is also held. That establishes signal-source depth only.",
+      "description": "The 5Y and 10Y files are aligned, long, unique, and internally complete. Vintage CPI is also held. That establishes signal-source depth only. The 2Y leg is…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026inflationbreakevenrelativevaluefeasibility",
@@ -516,7 +516,7 @@
     {
       "slug": "kill-alphamax-betaneutral",
       "title": "Beta-Neutral Momentum Construction (campaign): a killed candidate",
-      "description": "The premise was that a dollar-neutral momentum book carries hidden NEGATIVE market beta, so a junk rally hurts both legs at once.",
+      "description": "The premise was that a dollar-neutral momentum book carries hidden NEGATIVE market beta, so a junk rally hurts both legs at once. Measuring the premise first…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killalphamaxbetaneutral",
@@ -527,7 +527,7 @@
     {
       "slug": "kill-alphamax-short-margin-floor",
       "title": "AlphaMax Short-Leg Margin Floor (disclosure, not a strategy): a killed candidate",
-      "description": "A disclosure against our own published number rather than a tested idea.",
+      "description": "A disclosure against our own published number rather than a tested idea. The equity sleeve's backtest has never modelled the broker's $5.00-per-share short…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killalphamaxshortmarginfloor",
@@ -549,7 +549,7 @@
     {
       "slug": "kill-alphamax-volscale",
       "title": "Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate",
-      "description": "Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve.",
+      "description": "Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve. On the canonical window it HURTS (net…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killalphamaxvolscale",
@@ -582,7 +582,7 @@
     {
       "slug": "kill-commodity-inventory-seasonal",
       "title": "EIA Petroleum Inventory Scarcity: a killed candidate",
-      "description": "One pre-registered configuration on 782 accepted official EIA WPSR first-release Table 4 vintages, 2016-2026 OOS: commercial crude excluding SPR mapped to…",
+      "description": "One pre-registered configuration on 782 accepted official EIA WPSR first-release Table 4 vintages, 2016-2026 OOS: commercial crude excluding SPR mapped to USO…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killcommodityinventoryseasonal",
@@ -593,7 +593,7 @@
     {
       "slug": "kill-cot-positioning",
       "title": "COT Positioning Overlay (campaign): a killed candidate",
-      "description": "Indistinguishable from zero (t~0.42 over 25 years); dies at 2x cost; the entire 'edge' is two equity-index legs.",
+      "description": "Indistinguishable from zero (t~0.42 over 25 years); dies at 2x cost; the entire 'edge' is two equity-index legs. Genuine decorrelation, no edge to attach it to.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killcotpositioning",
@@ -615,7 +615,7 @@
     {
       "slug": "kill-crypto-lowvol-720",
       "title": "Crypto Low-Volatility: a killed candidate",
-      "description": "The STRONGEST in-sample signal the 200+-factor campaign found anywhere (Rank-IC t = 6.66). Full purged walk-forward: net Sharpe 0.69 — respectable.",
+      "description": "The STRONGEST in-sample signal the 200+-factor campaign found anywhere (Rank-IC t = 6.66). Full purged walk-forward: net Sharpe 0.69 — respectable. But the…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killcryptolowvol720",
@@ -637,7 +637,7 @@
     {
       "slug": "kill-crypto-vrp",
       "title": "Crypto Variance-Risk-Premium (campaign): a killed candidate",
-      "description": "Pitched at 2.15 Sharpe — the headline was a 252-vs-365 vol-annualization error inventing a phantom 15-vol-point premium.",
+      "description": "Pitched at 2.15 Sharpe — the headline was a 252-vs-365 vol-annualization error inventing a phantom 15-vol-point premium. Honest measurement: net Sharpe -0.07…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killcryptovrp",
@@ -681,7 +681,7 @@
     {
       "slug": "kill-eq-mom-margin",
       "title": "Equity Momentum (with Margin Costs): a killed candidate",
-      "description": "Margin financing costs erode the momentum edge below the frozen k30dn63 baseline.",
+      "description": "Margin financing costs erode the momentum edge below the frozen k30dn63 baseline. This tested one specific construction choice inside the momentum family.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killeqmommargin",
@@ -703,7 +703,7 @@
     {
       "slug": "kill-eq-quality-gp",
       "title": "Equity Quality (Gross Profitability): a killed candidate",
-      "description": "Quality via GP/A + ROE fails on the narrow top-200 / 5-year slice. Net Sharpe below the 0.30 gate; needs the wide Sharadar fundamentals universe (20yr /…",
+      "description": "Quality via GP/A + ROE fails on the narrow top-200 / 5-year slice. Net Sharpe below the 0.30 gate; needs the wide Sharadar fundamentals universe (20yr / 3000…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killeqqualitygp",
@@ -714,7 +714,7 @@
     {
       "slug": "kill-eq-value-btp",
       "title": "Equity Value (Book-to-Price): a killed candidate",
-      "description": "Value premium inverted across the 2022-2026 window. Net Sharpe below the 0.30 gate; the narrow top-200 universe is too small for the small/mid-cap value…",
+      "description": "Value premium inverted across the 2022-2026 window. Net Sharpe below the 0.30 gate; the narrow top-200 universe is too small for the small/mid-cap value signal.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killeqvaluebtp",
@@ -725,7 +725,7 @@
     {
       "slug": "kill-equity-pead",
       "title": "Post-Earnings-Announcement Drift (campaign): a killed candidate",
-      "description": "Clean null on a tradable top-1000 universe: the drift is the WRONG sign net of cost; the published PEAD edge lives only in untradeable micro-caps.",
+      "description": "Clean null on a tradable top-1000 universe: the drift is the WRONG sign net of cost; the published PEAD edge lives only in untradeable micro-caps. Corr 0.47…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killequitypead",
@@ -736,7 +736,7 @@
     {
       "slug": "kill-equity-short-interest-dtc",
       "title": "Short Interest / Days-to-Cover Deciles (probe): a killed candidate",
-      "description": "The first genuinely NEW INPUT in months rather than another transformation of price and volume: bi-monthly FINRA short interest for the whole US tape,…",
+      "description": "The first genuinely NEW INPUT in months rather than another transformation of price and volume: bi-monthly FINRA short interest for the whole US tape…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killequityshortinterestdtc",
@@ -791,7 +791,7 @@
     {
       "slug": "kill-fx-carry-trend-overlay",
       "title": "FX Carry + Trend Overlay (the real construction): a killed candidate",
-      "description": "The professional FX book: trend hedges carry's crashes. It screened at 0.32 — but the robustness stress-test killed it.",
+      "description": "The professional FX book: trend hedges carry's crashes. It screened at 0.32 — but the robustness stress-test killed it. The Sharpe SPIKED only at the exact…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killfxcarrytrendoverlay",
@@ -813,7 +813,7 @@
     {
       "slug": "kill-insider-purchase-clusters",
       "title": "Clustered Insider Open-Market Purchases: a killed candidate",
-      "description": "One pre-registered configuration on official SEC Form 4 purchases, 2016-2026: at least two officers/directors and $100k purchased inside 30 calendar days,…",
+      "description": "One pre-registered configuration on official SEC Form 4 purchases, 2016-2026: at least two officers/directors and $100k purchased inside 30 calendar days…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killinsiderpurchaseclusters",
@@ -835,7 +835,7 @@
     {
       "slug": "kill-letf-eod-flow",
       "title": "Leveraged-ETF End-of-Day Forced-Rebalance Flow (probe): a killed candidate",
-      "description": "Leveraged ETFs MUST trade into the close (~$277B QQQ-family rebalance multiplier, ~$4B/day estimated flow) — a real, large, mechanical flow.",
+      "description": "Leveraged ETFs MUST trade into the close (~$277B QQQ-family rebalance multiplier, ~$4B/day estimated flow) — a real, large, mechanical flow. But it is NOT…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killletfeodflow",
@@ -857,7 +857,7 @@
     {
       "slug": "kill-mf-realfutures-breadth",
       "title": "Real-Futures Breadth for the Trend Sleeve (probe): a killed candidate",
-      "description": "We had been treating 'buy real futures data for genuine breadth' as the roadmap for the trend sleeve, on the theory that Sharpe scales with the square root…",
+      "description": "We had been treating 'buy real futures data for genuine breadth' as the roadmap for the trend sleeve, on the theory that Sharpe scales with the square root of…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killmfrealfuturesbreadth",
@@ -879,7 +879,7 @@
     {
       "slug": "kill-multivenue-funding",
       "title": "Crypto Multi-Venue Funding Aggregation (probe): a killed candidate",
-      "description": "Would aggregating funding across exchanges beat our Binance-only carry signal?",
+      "description": "Would aggregating funding across exchanges beat our Binance-only carry signal? This died at the screen stage, before a full walk-forward was ever run.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killmultivenuefunding",
@@ -890,7 +890,7 @@
     {
       "slug": "kill-onchain-carry-filter",
       "title": "On-Chain Carry-Quality Filter (campaign): a killed candidate",
-      "description": "Placebo-indistinguishable: a random risk-off coin-flip of equal intensity matches it, and it does NOT repair carry's 2022 tail (skew got worse).",
+      "description": "Placebo-indistinguishable: a random risk-off coin-flip of equal intensity matches it, and it does NOT repair carry's 2022 tail (skew got worse). No paid-data…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killonchaincarryfilter",
@@ -901,7 +901,7 @@
     {
       "slug": "kill-pm-odds-signal",
       "title": "Prediction-Market Odds as Macro Signal (probe): a killed candidate",
-      "description": "Do Polymarket-implied probabilities lead tradable markets? No — they lag them.",
+      "description": "Do Polymarket-implied probabilities lead tradable markets? No — they lag them. This died at the screen stage, before a full walk-forward was ever run.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killpmoddssignal",
@@ -912,7 +912,7 @@
     {
       "slug": "kill-prereg-bab",
       "title": "Pre-Registered Betting-Against-Beta: a killed candidate",
-      "description": "Pre-registered BAB on 21 years. Net Sharpe ~ -0.07, failed the DSR >= 0.95 gate. Low-risk anomaly does not survive net of cost here. KILLED.",
+      "description": "Pre-registered BAB on 21 years. Net Sharpe ~ -0.07, failed the DSR >= 0.95 gate. Low-risk anomaly does not survive net of cost here. KILLED. The…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killpreregbab",
@@ -923,7 +923,7 @@
     {
       "slug": "kill-prereg-momentum",
       "title": "Pre-Registered Momentum (deep history): a killed candidate",
-      "description": "Pre-registered momentum on 21 years of deep history. Net Sharpe ~ -0.05, failed the DSR >= 0.95 gate.",
+      "description": "Pre-registered momentum on 21 years of deep history. Net Sharpe ~ -0.05, failed the DSR >= 0.95 gate. The deployed momentum sleeve is the frozen 2023+ k30dn63…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killpreregmomentum",
@@ -956,7 +956,7 @@
     {
       "slug": "kill-rates-curve-carry",
       "title": "Rates-Curve Carry (campaign): a killed candidate",
-      "description": "Robustly NEGATIVE, not fragile-positive: the signal points the wrong way — steepest curves preceded the worst duration drawdowns (2022).",
+      "description": "Robustly NEGATIVE, not fragile-positive: the signal points the wrong way — steepest curves preceded the worst duration drawdowns (2022). Real decorrelation…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killratescurvecarry",
@@ -978,7 +978,7 @@
     {
       "slug": "kill-tail-overlay",
       "title": "Long-Vol Tail Overlay (campaign): a killed candidate",
-      "description": "An honest positive-skew (+2.06) anti-equity hedge — but its ONLY thesis, improving the combined book, fails at every hedge weight.",
+      "description": "An honest positive-skew (+2.06) anti-equity hedge — but its ONLY thesis, improving the combined book, fails at every hedge weight. AlphaTrend already provides…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killtailoverlay",
@@ -989,7 +989,7 @@
     {
       "slug": "kill-xasset-carry",
       "title": "Cross-Asset Carry (campaign): a killed candidate",
-      "description": "5 constructions. The COMBINED cross-asset book is net-NEGATIVE (3 of 4 legs lose); the one positive leg (oil backwardation, +0.37) is a single-instrument…",
+      "description": "5 constructions. The COMBINED cross-asset book is net-NEGATIVE (3 of 4 legs lose); the one positive leg (oil backwardation, +0.37) is a single-instrument bet…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killxassetcarry",
@@ -1011,7 +1011,7 @@
     {
       "slug": "kill-xs-seasonality",
       "title": "Cross-Sectional Same-Calendar-Month Seasonality (probe): a killed candidate",
-      "description": "The one equity-side signal genuinely DECORRELATED from our momentum sleeve — and that is exactly why it is worth publishing.",
+      "description": "The one equity-side signal genuinely DECORRELATED from our momentum sleeve — and that is exactly why it is worth publishing. Same-calendar-month ranking…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026killxsseasonality",
@@ -1022,7 +1022,7 @@
     {
       "slug": "legacy-dsr-restatement",
       "title": "Legacy DSR restatement",
-      "description": "This is a correction ledger, not a performance upgrade. Original artifacts remain intact.",
+      "description": "This is a correction ledger, not a performance upgrade. Original artifacts remain intact. Current selection context: N=228, identity-aligned V[SR]=0.0008957471.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026legacydsrrestatement",
@@ -1033,7 +1033,7 @@
     {
       "slug": "literature-bond-etf-nav-dislocation",
       "title": "Bond-ETF NAV dislocation — literature and mechanism review",
-      "description": "Corporate-bond ETFs can trade away from their reported net asset value because ETF shares trade continuously while many underlying bonds trade infrequently…",
+      "description": "That observation does not establish a secondary-market alpha. Daily premium/discount data alone cannot identify which side of the gap contains the information.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026literaturebondetfnavdislocation",
@@ -1055,7 +1055,7 @@
     {
       "slug": "literature-electricity-load-weather",
       "title": "Electricity load/weather dislocation: literature and implementation boundary",
-      "description": "Power must balance continuously, while demand and renewable output depend on weather.",
+      "description": "Power must balance continuously, while demand and renewable output depend on weather. It supports the forecasting problem, not a specific profitable rule.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026literatureelectricityloadweather",
@@ -1066,7 +1066,7 @@
     {
       "slug": "literature-frontier-2026-08-16",
       "title": "ALPHAC literature frontier — 2026-08-16",
-      "description": "Status: literature and data-feasibility screen only. No return series was opened and no return identity was spent.",
+      "description": "Status: literature and data-feasibility screen only. No return series was opened and no return identity was spent. That target was withdrawn on 2026-08-21.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026literaturefrontier20260816",
@@ -1077,7 +1077,7 @@
     {
       "slug": "literature-inflation-breakeven-relative-value",
       "title": "Inflation breakeven relative value — literature and claim boundary",
-      "description": "Breakeven inflation is the spread between comparable nominal Treasury and inflation-indexed Treasury yields.",
+      "description": "Breakeven inflation is the spread between comparable nominal Treasury and inflation-indexed Treasury yields. The literature forbids three flattering shortcuts.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026literatureinflationbreakevenrelativevalue",
@@ -1088,7 +1088,7 @@
     {
       "slug": "literature-natural-gas-storage-weather",
       "title": "Natural-gas storage/weather residual — literature and claim boundary",
-      "description": "Weekly working-gas inventory changes combine weather-driven demand, production, imports/exports, and operational flows.",
+      "description": "Weekly working-gas inventory changes combine weather-driven demand, production, imports/exports, and operational flows. The forecast vintage is load-bearing.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026literaturenaturalgasstorageweather",
@@ -1099,7 +1099,7 @@
     {
       "slug": "literature-options-dispersion",
       "title": "Options dispersion: literature and implementation boundary",
-      "description": "The defensible mechanism is a priced difference between index correlation/variance insurance and the corresponding single-stock option basket.",
+      "description": "The defensible mechanism is a priced difference between index correlation/variance insurance and the corresponding single-stock option basket. It is not a…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026literatureoptionsdispersion",
@@ -1110,7 +1110,7 @@
     {
       "slug": "literature-repurchase-issuance-flow",
       "title": "Repurchase and issuance flow: literature dossier",
-      "description": "The literature supports a real economic family around corporate equity supply.",
+      "description": "The literature supports a real economic family around corporate equity supply. Net share issuance has predicted lower subsequent cross-sectional returns…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026literaturerepurchaseissuanceflow",
@@ -1121,7 +1121,7 @@
     {
       "slug": "literature-spin-off-dislocation",
       "title": "Spin-off dislocation — literature and claim boundary",
-      "description": "A completed corporate separation can create temporary price pressure and information frictions.",
+      "description": "A completed corporate separation can create temporary price pressure and information frictions. These studies do not establish a modern executable sleeve.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026literaturespinoffdislocation",
@@ -1143,7 +1143,7 @@
     {
       "slug": "luck-equivalent-trials",
       "title": "Luck-equivalent trials: how many skill-less strategies it takes to reach a Sharpe by luck",
-      "description": "A backtest's Sharpe ratio means little until you know how many strategies were tried to find it.",
+      "description": "A backtest's Sharpe ratio means little until you know how many strategies were tried to find it. Luck-equivalent trials answers the reviewer's question in the…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026luckequivalenttrials",
@@ -1154,7 +1154,7 @@
     {
       "slug": "macro-economic-trend-lineage",
       "title": "Point-in-time macroeconomic trend: seven identities without a validated sleeve",
-      "description": "ALPHAC evaluates seven immutable identities spanning an economic-trend engine, CPI-surprise sizing, and point-in-time macro-vintage variants.",
+      "description": "ALPHAC evaluates seven immutable identities spanning an economic-trend engine, CPI-surprise sizing, and point-in-time macro-vintage variants. Persisted…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026macroeconomictrendlineage",
@@ -1165,7 +1165,7 @@
     {
       "slug": "market-status-replay",
       "title": "Point-in-time market-status and outage replay",
-      "description": "AlphaForge can now replay explicit venue and instrument market-status intervals inside the event-driven backtester.",
+      "description": "AlphaForge can now replay explicit venue and instrument market-status intervals inside the event-driven backtester. This is engineering evidence, not…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026marketstatusreplay",
@@ -1187,7 +1187,7 @@
     {
       "slug": "natural-gas-storage-weather-feasibility",
       "title": "Natural-gas storage/weather residual — no-return source-feasibility protocol",
-      "description": "Failure is DATA_GATED; thresholds, archive windows, weather initialization, and file endpoints are not revised after aggregate coverage is observed.",
+      "description": "Failure is DATA_GATED; thresholds, archive windows, weather initialization, and file endpoints are not revised after aggregate coverage is observed. A source…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026naturalgasstorageweatherfeasibility",
@@ -1198,7 +1198,7 @@
     {
       "slug": "null-zoo-v0",
       "title": "Null Zoo v0: backtest-overfitting corrections scored on ground truth",
-      "description": "Every correction for backtest overfitting makes a promise: that a skill-less strategy will pass it no more often than its stated level.",
+      "description": "Every correction for backtest overfitting makes a promise: that a skill-less strategy will pass it no more often than its stated level. The level is 5.0%.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026nullzoov0",
@@ -1220,7 +1220,7 @@
     {
       "slug": "options-execution-foundation",
       "title": "Point-in-time options execution foundation",
-      "description": "AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin,…",
+      "description": "AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026optionsexecutionfoundation",
@@ -1231,7 +1231,7 @@
     {
       "slug": "pre-fomc-announcement-drift-feasibility",
       "title": "Pre-FOMC announcement drift — no-return feasibility protocol",
-      "description": "Can the scheduled FOMC decision calendar and exact statement-release clock be reconstructed from official Federal Reserve sources without using market…",
+      "description": "Can the scheduled FOMC decision calendar and exact statement-release clock be reconstructed from official Federal Reserve sources without using market prices…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026prefomcannouncementdriftfeasibility",
@@ -1253,7 +1253,7 @@
     {
       "slug": "prereg-pre-fomc-announcement-drift",
       "title": "PRE-REGISTRATION — post-publication pre-FOMC announcement drift",
-      "description": "Declared 2026-08-16 after official schedule-lineage PASS and before opening any market return associated with this identity.",
+      "description": "Declared 2026-08-16 after official schedule-lineage PASS and before opening any market return associated with this identity. A negative result is not inverted.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026preregprefomcannouncementdrift",
@@ -1264,7 +1264,7 @@
     {
       "slug": "repurchase-issuance-flow-feasibility",
       "title": "Repurchase and issuance flow: no-return SEC feasibility protocol",
-      "description": "Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and…",
+      "description": "This audit measures data feasibility only. It may inspect filing metadata, XBRL facts, Item 703 tables, taxonomies, contexts, amendments, and extraction errors.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026repurchaseissuanceflowfeasibility",
@@ -1275,7 +1275,7 @@
     {
       "slug": "sharadar-hdb-zero-dividend-quarantine",
       "title": "Sharadar HDB zero-dividend quarantine",
-      "description": "The frozen Sharadar ACTIONS archive contains 11 dividends whose values are not positive.",
+      "description": "The frozen Sharadar ACTIONS archive contains 11 dividends whose values are not positive. This is a vendor-originated source defect, not a backtest result.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026sharadarhdbzerodividendquarantine",
@@ -1286,7 +1286,7 @@
     {
       "slug": "spin-off-dislocation-lineage",
       "title": "Spin-off dislocation — SEC Form 10 lineage protocol",
-      "description": "Can the complete 2016–2025 exchange-registration candidate universe be reconstructed from official quarterly EDGAR full indexes without starting from a…",
+      "description": "Can the complete 2016–2025 exchange-registration candidate universe be reconstructed from official quarterly EDGAR full indexes without starting from a modern…",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026spinoffdislocationlineage",
@@ -1297,7 +1297,7 @@
     {
       "slug": "spin-off-document-schema",
       "title": "Spin-off dislocation — initial Form 10 document-schema protocol",
-      "description": "From the sealed 204 initial 10-12B registrations in 2016–2025, sort each year by SHA-256 of CIK|accession and retain the first ten, or all rows when a year…",
+      "description": "No company names, filings, or years may be removed because they are not genuine spin-offs. Form 10 is deliberately being tested as a noisy discovery source.",
       "author": "Arhan Canli",
       "publication_year": "2026",
       "citation_key": "canli2026spinoffdocumentschema",
