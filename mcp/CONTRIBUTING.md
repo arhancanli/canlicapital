@@ -39,7 +39,7 @@ Every change in behaviour comes with a test that fails without it:
   argument validation;
 - a change to a validator's arithmetic gets a check against an independent reference (a paper's
   worked example, a reference implementation such as CRAN `pbo`, or a property in
-  `test/properties.test.mjs`);
+  `test/properties.test.js`);
 - a bug fix gets a regression test that reproduces the bug.
 
 Tests use only local stubs; none calls the production API or issues a real key.

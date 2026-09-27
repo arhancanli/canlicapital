@@ -8,33 +8,13 @@
 // CANLI_KEY; when CANLI_KEY is set, get_key does not call the network.
 import { readFileSync, realpathSync } from "node:fs";
 import { pathToFileURL } from "node:url";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { McpServer } from "@modelcontextprotocol/server";
 import { z } from "zod";
 import { computeLocally } from "./local.mjs";
 import { readMatrixFile, readSeriesFile } from "./series-file.mjs";
 import { verifyReceipt } from "./local/js/receipt-statement.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import {
-  breadthInput,
-  trackRecordInput,
-  auditBacktestInput,
-  verifyReceiptToolShape,
-  backtestLengthInput,
-  haircutSharpeInput,
-  luckTrialsInput,
-  auditBacktestToolShape,
-  companyHistoryInput,
-  companyHistoryToolShape,
-  deflatedSharpeInput,
-  deflatedSharpeToolShape,
-  emptyInput,
-  getKeyInput,
-  getReceiptInput,
-  overfittingInput,
-  LIMITS_SENTENCES,
-  paperEvidenceInput,
-  TOOL_DESCRIPTIONS,
-} from "./schemas.mjs";
+import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
+import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, LIMITS_SENTENCES, paperEvidenceInput, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
 
 export const DEFAULT_BASE = "https://canlicapital.com";
 export const SERVER_NAME = "canlicapital-validation-mcp";
@@ -526,72 +506,72 @@ export function registerTools(server, session) {
   const register = (name, ...rest) => { if (enabled.has(name)) server.registerTool(name, ...rest); };
   register(
     "get_key",
-    { title: "Get a free validation key", annotations: { title: "Get a free validation key", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true }, description: TOOL_DESCRIPTIONS.get_key, inputSchema: getKeyInput },
+    { title: "Get a free validation key", annotations: { title: "Get a free validation key", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true }, description: TOOL_DESCRIPTIONS.get_key, inputSchema: getKeyInput, outputSchema: keyOutput },
     (args) => toolGetKey(session, args),
   );
   register(
     "validate_deflated_sharpe",
-    { title: "Validate deflated Sharpe", annotations: { title: "Validate deflated Sharpe", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_deflated_sharpe, inputSchema: deflatedSharpeToolShape },
+    { title: "Validate deflated Sharpe", annotations: { title: "Validate deflated Sharpe", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_deflated_sharpe, inputSchema: deflatedSharpeToolShape, outputSchema: validationOutput },
     (args) => toolValidateDeflatedSharpe(session, args),
   );
   register(
     "validate_overfitting",
-    { title: "Validate overfitting (CSCV)", annotations: { title: "Validate overfitting (CSCV)", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_overfitting, inputSchema: overfittingInput },
+    { title: "Validate overfitting (CSCV)", annotations: { title: "Validate overfitting (CSCV)", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_overfitting, inputSchema: overfittingInput, outputSchema: validationOutput },
     (args) => toolValidateOverfitting(session, args),
   );
   register(
     "validate_paper_evidence",
-    { title: "Validate paper evidence", annotations: { title: "Validate paper evidence", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_paper_evidence, inputSchema: paperEvidenceInput },
+    { title: "Validate paper evidence", annotations: { title: "Validate paper evidence", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_paper_evidence, inputSchema: paperEvidenceInput, outputSchema: validationOutput },
     (args) => toolValidatePaperEvidence(session, args),
   );
   register(
     "validate_breadth",
-    { title: "Validate breadth ceiling", annotations: { title: "Validate breadth ceiling", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_breadth, inputSchema: breadthInput },
+    { title: "Validate breadth ceiling", annotations: { title: "Validate breadth ceiling", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_breadth, inputSchema: breadthInput, outputSchema: validationOutput },
     (args) => toolValidateBreadth(session, args),
   );
   register(
     "validate_track_record",
-    { title: "Minimum track record length", annotations: { title: "Minimum track record length", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_track_record, inputSchema: trackRecordInput },
+    { title: "Minimum track record length", annotations: { title: "Minimum track record length", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_track_record, inputSchema: trackRecordInput, outputSchema: validationOutput },
     (args) => toolValidateTrackRecord(session, args),
   );
   register(
     "validate_backtest_length",
-    { title: "Minimum backtest length", annotations: { title: "Minimum backtest length", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_backtest_length, inputSchema: backtestLengthInput },
+    { title: "Minimum backtest length", annotations: { title: "Minimum backtest length", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_backtest_length, inputSchema: backtestLengthInput, outputSchema: validationOutput },
     (args) => toolValidateBacktestLength(session, args),
   );
   register(
     "validate_haircut_sharpe",
-    { title: "Haircut Sharpe ratio", annotations: { title: "Haircut Sharpe ratio", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_haircut_sharpe, inputSchema: haircutSharpeInput },
+    { title: "Haircut Sharpe ratio", annotations: { title: "Haircut Sharpe ratio", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_haircut_sharpe, inputSchema: haircutSharpeInput, outputSchema: validationOutput },
     (args) => toolValidateHaircutSharpe(session, args),
   );
   register(
     "validate_luck_trials",
-    { title: "Luck-equivalent trials", annotations: { title: "Luck-equivalent trials", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_luck_trials, inputSchema: luckTrialsInput },
+    { title: "Luck-equivalent trials", annotations: { title: "Luck-equivalent trials", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_luck_trials, inputSchema: luckTrialsInput, outputSchema: validationOutput },
     (args) => toolValidateLuckTrials(session, args),
   );
   register(
     "audit_backtest",
-    { title: "Audit a backtest", annotations: { title: "Audit a backtest", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.audit_backtest, inputSchema: auditBacktestToolShape },
+    { title: "Audit a backtest", annotations: { title: "Audit a backtest", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.audit_backtest, inputSchema: auditBacktestToolShape, outputSchema: auditOutput },
     (args) => toolAuditBacktest(session, args),
   );
   register(
     "get_receipt",
-    { title: "Get a receipt", annotations: { title: "Get a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.get_receipt, inputSchema: getReceiptInput },
+    { title: "Get a receipt", annotations: { title: "Get a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.get_receipt, inputSchema: getReceiptInput, outputSchema: receiptOutput },
     (args) => toolGetReceipt(session, args),
   );
   register(
     "verify_receipt",
-    { title: "Verify a receipt", annotations: { title: "Verify a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.verify_receipt, inputSchema: verifyReceiptToolShape },
+    { title: "Verify a receipt", annotations: { title: "Verify a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.verify_receipt, inputSchema: verifyReceiptToolShape, outputSchema: verifyReceiptOutput },
     (args) => toolVerifyReceipt(session, args),
   );
   register(
     "service_status",
-    { title: "Service status", annotations: { title: "Service status", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.service_status, inputSchema: emptyInput },
+    { title: "Service status", annotations: { title: "Service status", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.service_status, inputSchema: emptyInput, outputSchema: statusOutput },
     () => toolServiceStatus(session),
   );
   register(
     "company_financial_history",
-    { title: "Company financial history (SEC)", annotations: { title: "Company financial history (SEC)", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.company_financial_history, inputSchema: companyHistoryToolShape },
+    { title: "Company financial history (SEC)", annotations: { title: "Company financial history (SEC)", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.company_financial_history, inputSchema: companyHistoryToolShape, outputSchema: companyHistoryOutput },
     (args) => toolCompanyFinancialHistory(session, args),
   );
 }

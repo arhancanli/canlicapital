@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.8.0 (2026-09-27)
+
+- Built on the MCP SDK's v2 server package (`@modelcontextprotocol/server` 2.1.0) instead of
+  `@modelcontextprotocol/sdk` 1.30: the installed dependency tree goes from about 95 packages to 4
+  (Express, CORS, cross-spawn, ajv and the rest were never used by a stdio server). v1 and v2
+  clients both connect (checked over stdio and Streamable HTTP).
+- Every tool publishes an output schema. They are open (extra fields always pass) and terse; a
+  test lists tools the way real clients do and fails on a missing or closed schema.
+- Tool descriptions say when to use each validator and which sibling to use instead.
+- The property-based tests are `test/properties.test.js`, so fuzzing detectors that scan `.js`
+  files find them.
+
 ## 0.7.1 (2026-09-27)
 
 - Hosted endpoint: when the shared anonymous key's daily quota is used up, a validation is still
