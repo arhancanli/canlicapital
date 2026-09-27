@@ -54,6 +54,7 @@ test("the hosted fundamentals server introduces itself and answers a point-in-ti
     assert.equal(init.status, 200);
     assert.equal(init.json.result.serverInfo.name, "canli-fundamentals-mcp");
     assert.equal(init.json.result.serverInfo.title, "Canli Fundamentals");
+    assert.match(init.json.result.instructions, /call known_as_of/);
     assert.equal(init.headers.get("x-robots-tag"), "noindex");
     const list = await rpc(url, "tools/list", {});
     assert.deepEqual(list.json.result.tools.map((t) => t.name).sort(), ["history", "known_as_of", "list_concepts", "restatements", "vintages"]);
@@ -68,6 +69,7 @@ test("the hosted research server lists its tools and searches the record", async
     const init = await rpc(url, "initialize", INIT);
     assert.equal(init.json.result.serverInfo.name, "canli-research-mcp");
     assert.equal(init.json.result.serverInfo.title, "Canli Research");
+    assert.match(init.json.result.instructions, /search_research/);
     const list = await rpc(url, "tools/list", {});
     assert.equal(list.json.result.tools.length, 6);
     const call = await rpc(url, "tools/call", { name: "search_research", arguments: { query: "momentum" } });
