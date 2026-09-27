@@ -77,9 +77,9 @@ test("list tools, then call each one: every result passes the schema the client 
       await client.listTools();
       const calls = [
         ["known_as_of", { company: "FIX", as_of: "2020-02-01" }],
-        ["history", { company: "FIX", concept: "Revenues", basis: "latest" }],
-        ["restatements", { company: "FIX" }],
-        ["vintages", { company: "FIX", concept: "Assets", end: "2019-09-30" }],
+        ["history", { company: "FIX", concept: "revenue", as_of: "2020-06-30" }],
+        ["restatements", { company: "FIX", include_splits: true }],
+        ["vintages", { company: "FIX", concept: "revenue", end: "2019-09-30" }],
         ["list_concepts", { company: "FIX", search: "revenue" }],
       ];
       for (const [name, args] of calls) {
