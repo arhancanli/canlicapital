@@ -15,7 +15,7 @@ const values = (p, column) => readSeriesFile(p, column).values;
 
 test("a date,return CSV with a header reads the return column and skips the dates", () => {
   const p = file("dated.csv", "date,return\n2024-01-02,0.01\n2024-01-03,-0.005\n2024-01-04,0.002\n");
-  assert.deepEqual(readSeriesFile(p), { values: [0.01, -0.005, 0.002], skipped: [] });
+  assert.deepEqual(readSeriesFile(p), { values: [0.01, -0.005, 0.002], column: 2, skipped: [] });
 });
 
 test("one number per line, a JSON array, and semicolon or tab separated files all read", () => {
@@ -27,9 +27,9 @@ test("one number per line, a JSON array, and semicolon or tab separated files al
 
 test("a pandas export's unnamed or counting index column is skipped and reported", () => {
   const unnamed = file("pandas.csv", ",ret\n0,0.01\n1,-0.02\n2,0.03\n3,0.01\n");
-  assert.deepEqual(readSeriesFile(unnamed), { values: [0.01, -0.02, 0.03, 0.01], skipped: [1] });
+  assert.deepEqual(readSeriesFile(unnamed), { values: [0.01, -0.02, 0.03, 0.01], column: 2, skipped: [1] });
   const counting = file("counting.csv", "n,ret\n1,0.01\n2,-0.02\n3,0.03\n");
-  assert.deepEqual(readSeriesFile(counting), { values: [0.01, -0.02, 0.03], skipped: [1] });
+  assert.deepEqual(readSeriesFile(counting), { values: [0.01, -0.02, 0.03], column: 2, skipped: [1] });
   const matrix = file("pandas-vars.csv", ",a,b\n0,0.1,0.2\n1,0.3,0.4\n2,0.5,0.6\n");
   assert.deepEqual(readMatrixFile(matrix), { matrix: [[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]], skipped: [1] });
 });
@@ -40,6 +40,26 @@ test("several numeric columns need returns_column, by header name or 1-based pos
   assert.deepEqual(values(p, "benchmark"), [0.002, 0.001]);
   assert.deepEqual(values(p, 2), [0.01, 0.02]);
   assert.throws(() => readSeriesFile(p, "missing"), /matches no numeric column/);
+});
+
+test("a blank or NaN cell in the numbers is refused with its line, never answered from another column", () => {
+  const blank = file("blank_cell.csv", "date,strategy,benchmark\n2024-01-02,0.01,0.002\n2024-01-03,,0.001\n2024-01-04,0.03,0.003\n2024-01-05,0.01,0.001\n");
+  assert.throws(() => readSeriesFile(blank), /column 2 holds numbers but is empty or not a number on line 3; fill or remove those rows/);
+  assert.throws(() => readSeriesFile(blank, "strategy"), /column 2 .* line 3/);
+  assert.throws(() => readSeriesFile(blank, 2), /column 2 .* line 3/);
+  assert.deepEqual(readSeriesFile(blank, "benchmark").values, [0.002, 0.001, 0.003, 0.001], "a complete column still reads when named");
+  const nan = file("nan.csv", "r\n0.01\nNaN\n0.02\n0.03\n");
+  assert.throws(() => readSeriesFile(nan), /column 1 .* line 3/);
+  assert.throws(() => readMatrixFile(file("gappy-vars.csv", "a,b\n0.1,0.2\n0.3,\n0.5,0.6\n")), /column 2 .* line 3/);
+  const many = file("many-gaps.csv", `r\n${["0.1", "NaN", "0.2", "NaN", "NaN", "0.3", "NaN", "NaN", "0.4", "NaN", "NaN", "0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "1.1"].join("\n")}\n`);
+  assert.throws(() => readSeriesFile(many), /on lines 3, 5, 6, 8, 9 and 2 more; fill/);
+});
+
+test("a file without a header whose first column is a date keeps its first row", () => {
+  const p = file("noheader_dates.csv", "2024-01-02,0.05\n2024-01-03,0.01\n2024-01-04,-0.02\n2024-01-05,0.03\n2024-01-08,0.01\n");
+  assert.deepEqual(readSeriesFile(p), { values: [0.05, 0.01, -0.02, 0.03, 0.01], column: 2, skipped: [] });
+  const slashes = file("slash_dates.csv", "01/02/2024,0.05\n01/03/2024,0.01\n01/04/2024,0.02\n");
+  assert.deepEqual(readSeriesFile(slashes).values, [0.05, 0.01, 0.02]);
 });
 
 test("no error message repeats a cell or a header from the file", () => {
@@ -96,7 +116,7 @@ test("audit_backtest from files equals the audit of the same numbers sent inline
   const dataOf = (a) => Object.fromEntries(Object.entries(a.checks).map(([k, v]) => [k, v.data]));
   assert.deepEqual(dataOf(fromFiles), dataOf(inline));
   assert.deepEqual(fromFiles.source, {
-    returns_file: returnsFile, observations: 300, skipped_row_counter_columns: [1],
+    returns_file: returnsFile, returns_column_position: 2, observations: 300, skipped_row_counter_columns: [1],
     variants_file: variantsFile, variants: 3, periods: 300,
   });
   assert.equal(inline.source, undefined);

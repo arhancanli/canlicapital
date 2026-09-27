@@ -41,7 +41,7 @@ async function fetchText(session, path) {
     res = await session.fetchImpl(`${session.base}${path}`, { signal, redirect: "error" });
     text = await res.text();
   } catch {
-    throw new Error(signal.aborted ? `${path} exceeded the request deadline.` : `${path} could not be reached.`);
+    throw new Error(`${path} ${signal.aborted ? "exceeded the request deadline" : "could not be reached"} at ${session.base}. The research files are static; retry in a moment.`);
   }
   if (res.status === 404) throw new Error(`${path} was not found.`);
   if (res.status >= 400) throw new Error(`${path} returned HTTP ${res.status}.`);
@@ -128,13 +128,19 @@ export const paperInput = z.object({
 function sections(markdown) {
   const lines = markdown.split("\n");
   const out = [];
-  lines.forEach((line, i) => { if (/^#{2,3} /.test(line)) out.push({ heading: line.replace(/^#+ /, "").trim(), line: i }); });
+  lines.forEach((line, i) => { if (/^#{2,3} /.test(line)) out.push({ heading: line.replace(/^#+ /, "").trim(), line: i, level: line.match(/^#+/)[0].length }); });
   return { lines, out };
 }
 
 export async function toolGetPaper(session, args) {
   const { slug, section, max_chars: maxChars = 12000 } = parse(paperInput, args, "get_paper");
-  const markdown = await fetchText(session, `/research/${slug}.md`);
+  let markdown;
+  try {
+    markdown = await fetchText(session, `/research/${slug}.md`);
+  } catch (err) {
+    if (/was not found\.$/.test(err.message)) throw new Error(`get_paper: no paper has the slug ${slug}. search_research or list_topics returns the slugs.`);
+    throw err;
+  }
   const { lines, out } = sections(markdown);
   let text = markdown;
   let chosen = null;
@@ -142,7 +148,10 @@ export async function toolGetPaper(session, args) {
     const i = out.findIndex((s) => s.heading.toLowerCase().includes(section.toLowerCase()));
     if (i === -1) throw new Error(`get_paper: no heading in ${slug} contains "${section}"; headings are listed by get_paper without a section.`);
     chosen = out[i].heading;
-    text = lines.slice(out[i].line, i + 1 < out.length ? out[i + 1].line : lines.length).join("\n");
+    // A section runs to the next heading of its own level or higher, so a "##" section keeps its
+    // "###" subsections.
+    const next = out.slice(i + 1).find((h) => h.level <= out[i].level);
+    text = lines.slice(out[i].line, next ? next.line : lines.length).join("\n");
   }
   const truncated = text.length > maxChars;
   return asText({

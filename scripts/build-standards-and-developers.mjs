@@ -328,6 +328,38 @@ function mcpAssistantSection() {
   </section>`;
 }
 
+// The other servers of the MCP family, each read from its own package so the page cannot drift
+// from what npm serves: name, description and registry name from package.json, tool names from the
+// server's registerTools calls. .vercelignore uploads exactly these two files per package.
+const MCP_FAMILY = Object.freeze([
+  { dir: "mcp-fundamentals", title: "SEC fundamentals point in time" },
+  { dir: "mcp-research", title: "the open research record" },
+]);
+
+export function mcpFamily(root = ROOT) {
+  return MCP_FAMILY.map(({ dir, title }) => {
+    const pkg = JSON.parse(readFileSync(resolve(root, dir, "package.json"), "utf8"));
+    const source = readFileSync(resolve(root, dir, "src/server.mjs"), "utf8");
+    const tools = [...source.matchAll(/\btool\("([a-z_]+)",/g)].map((m) => m[1]);
+    if (!tools.length) throw new Error(`${dir}/src/server.mjs registers no tools this page can list`);
+    return { dir, title, anchor: dir, name: pkg.name, description: pkg.description, mcpName: pkg.mcpName, tools };
+  });
+}
+
+function mcpFamilyBlock() {
+  const items = mcpFamily().map((s) => {
+    const add = `claude mcp add ${s.name.replace(/-mcp$/, "")} -- npx -y ${s.name}`;
+    return `    <article class="dev-endpoint" id="${esc(s.anchor)}"><h4><code>${esc(s.name)}</code>: ${esc(s.title)}</h4><p>${esc(s.description)} Tools: ${s.tools.map((t) => `<code>${esc(t)}</code>`).join(", ")}.</p>
+      <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Add ${esc(s.name)} to Claude Code"><code>${esc(add)}</code></pre></div>
+      <p class="dev-note"><a href="https://www.npmjs.com/package/${esc(s.name)}" rel="noreferrer">npm</a>, <a href="https://registry.modelcontextprotocol.io/v0/servers?search=${esc(s.mcpName)}" rel="noreferrer">MCP Registry</a>, <a href="https://github.com/arhancanli/canlicapital/tree/main/${esc(s.dir)}" rel="noreferrer">Source</a>.</p></article>`;
+  });
+  return `<section class="dev-section" id="mcp-family">
+    <h2>More MCP servers</h2>
+    <p class="dev-note">Each server does one job with a small tool list, so the tools an assistant re-reads on every turn stay cheap. Add only the ones you need; they run side by side.</p>
+${items.join("\n")}
+  </section>`;
+}
+
 function buildDevelopers() {
   const index = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/index.json"), "utf8"));
   const openapi = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/openapi.json"), "utf8"));
@@ -511,6 +543,20 @@ function buildDevelopers() {
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         author: { "@id": `${ORIGIN}/#arhan-canli` },
       },
+      ...mcpFamily().map((s) => ({
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: s.name,
+        description: s.description,
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: "Node.js",
+        url: `${ORIGIN}/developers#${s.anchor}`,
+        downloadUrl: `https://www.npmjs.com/package/${s.name}`,
+        codeRepository: `https://github.com/arhancanli/canlicapital/tree/main/${s.dir}`,
+        license: "https://opensource.org/licenses/MIT",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        author: { "@id": `${ORIGIN}/#arhan-canli` },
+      })),
       ...SOURCE_REPOSITORIES.map(([name, language, description]) => ({
         "@context": "https://schema.org",
         "@type": "SoftwareSourceCode",
@@ -593,6 +639,8 @@ ${renderProductShellHeader({ active: "developers" })}
   <script type="module" src="/js/developer-workbench.js"></script>
 
   ${mcpAssistantSection()}
+
+  ${mcpFamilyBlock()}
 
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>
