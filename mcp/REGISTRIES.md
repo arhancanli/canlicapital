@@ -76,6 +76,13 @@ and the listings are checked, 0.7.1 stays the latest published version.
 to create the package; npm trusted publishing for later versions needs the package's Trusted Publisher
 setting on npmjs.com (workflow `mcp-research-publish.yml`, environment `mcp-research-release`).
 
+`canli-fundamentals-mcp` (the `mcp-fundamentals/` directory) publishes from
+`mcp-fundamentals-publish.yml` on a tag `fundamentals-mcp-v<version>`, the same way. npm attaches a
+trusted publisher only to a package that exists, so its 0.1.0 is published to npm by hand once
+(`npm publish --access public` in `mcp-fundamentals/`); then its Trusted Publisher setting on
+npmjs.com (workflow `mcp-fundamentals-publish.yml`, environment `mcp-fundamentals-release`) lets the
+tag publish every later version, and the `fundamentals-mcp-v0.1.0` tag publishes the registry entry.
+
 ## Official registry (registry.modelcontextprotocol.io)
 
 The manifest is `mcp/server.json`. Its top-level and npm package versions must match
