@@ -5,6 +5,10 @@
 - Built on the MCP SDK's v2 server package (`@modelcontextprotocol/server` 2.1.0): about 94
   installed packages down to 4.
 - Every tool publishes an open output schema, and the descriptions say when to use each tool.
+- `get_paper` with a `section` keeps its subsections: a section runs to the next heading of its own
+  level or higher. 0.1.0 stopped at the first `###`, returning a few characters of a long section
+  with `truncated: false`.
+- An unknown slug says to use `search_research` or `list_topics`; an unreachable site says to retry.
 
 ## 0.1.0 (2026-09-26)
 

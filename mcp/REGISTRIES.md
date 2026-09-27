@@ -66,10 +66,15 @@ the stdio server issues the free key itself on first use; README first screen) p
 the tag `mcp-v0.7.1` ran `mcp-publish.yml` (run 36300300720) to npm with a provenance attestation
 and to the official MCP Registry, where 0.7.1 is listed as latest.
 
-Next release, not yet published: `canli-validation-mcp@0.8.0` (MCP SDK v2 server package, about 95
-installed packages down to 4; open output schemas on every tool; usage guidance in the tool
-descriptions). It publishes from `mcp-publish.yml` on the tag `mcp-v0.8.0`. Until that run succeeds
-and the listings are checked, 0.7.1 stays the latest published version.
+Release checkpoint, September 27, 2026: `canli-validation-mcp@0.8.0` (MCP SDK v2 server package,
+about 95 installed packages down to 4; open output schemas on every tool; usage guidance in the tool
+descriptions) published from CI: the tag `mcp-v0.8.0` ran `mcp-publish.yml` (run 36302867139) to npm
+and to the official MCP Registry, where 0.8.0 is listed as latest.
+
+Next release, not yet published: `canli-validation-mcp@0.8.1` (fixes from the 2026-09-27 audit: a
+blank cell can no longer make `audit_backtest` read another column, `verify_receipt` answers a
+malformed receipt, inline matrices are capped at the API's 200 variants). It publishes from
+`mcp-publish.yml` on the tag `mcp-v0.8.1`; until then 0.8.0 stays the latest published version.
 
 `canli-research-mcp` (the `mcp-research/` directory) publishes from `mcp-research-publish.yml` on a tag
 `research-mcp-v<version>`, the same way. Its 0.1.0 was published to npm by hand on September 26, 2026,
