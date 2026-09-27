@@ -139,3 +139,16 @@ test("the boundary language has not drifted from api/_lib/limits.js LIMITS_TEXT"
     assert.ok(LIMITS_TEXT.includes(sentence), `LIMITS_SENTENCES.${key} is not in LIMITS_TEXT verbatim: ${sentence}`);
   }
 });
+
+test("no description key is defined twice, so no tool shows another tool's wording", () => {
+  const source = readFileSync(new URL("../src/schemas.mjs", import.meta.url), "utf8");
+  const block = source.slice(source.indexOf("export const FIELD_DESCRIPTIONS"), source.indexOf("});", source.indexOf("export const FIELD_DESCRIPTIONS")));
+  const keys = [...block.matchAll(/^\s{2}([a-z_]+):/gm)].map((m) => m[1]);
+  assert.deepEqual(keys.filter((k, i) => keys.indexOf(k) !== i), []);
+});
+
+test("an inline matrix is capped at the API's 200 variants per row, so a call stays inside the stdio buffer", () => {
+  const row = Array.from({ length: 201 }, () => 0.01);
+  assert.equal(overfittingInput.safeParse({ matrix: [row, row] }).success, false);
+  assert.equal(overfittingInput.safeParse({ matrix: [row.slice(0, 200), row.slice(0, 200)] }).success, true);
+});

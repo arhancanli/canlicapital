@@ -41,6 +41,26 @@ function readText(path) {
 }
 
 const isNumber = (cell) => cell.trim() !== "" && Number.isFinite(Number(cell.trim()));
+// Cells a spreadsheet or pandas writes for a missing value.
+const isMissing = (cell) => /^(|nan|na|n\/a|#n\/a|null|none|-)$/i.test(cell.trim());
+const DATE = /^(\d{4}[-/.]\d{1,2}[-/.]\d{1,2}|\d{1,2}[-/.]\d{1,2}[-/.]\d{2,4})([ T].*)?$/;
+const kindOf = (cell) => (isNumber(cell) ? "number" : isMissing(cell) ? "missing" : DATE.test(cell.trim()) ? "date" : "text");
+
+// The first row is a header when one of its cells differs in kind from the cells below it: a label
+// above numbers or dates. A date above dates is data, so a file without a header keeps its first row.
+function hasHeader(first, below) {
+  if (!first.some((cell) => !isNumber(cell))) return false;
+  if (!below.length) return true;
+  return first.some((cell, j) => {
+    if (isNumber(cell)) return false;
+    // Missing values say nothing about what a column holds, so they do not vote.
+    const kinds = below.map((row) => kindOf(row[j] ?? "")).filter((k) => k !== "missing");
+    if (!kinds.length) return true;
+    const count = (k) => kinds.filter((x) => x === k).length;
+    const common = [...new Set(kinds)].sort((a, b) => count(b) - count(a))[0];
+    return kindOf(cell) !== common;
+  });
+}
 
 // A JSON array (of numbers, or of arrays of numbers), or delimited text: comma, semicolon or tab
 // separated, one row per line, with an optional header row naming the columns.
@@ -65,7 +85,7 @@ function parseTable(text, path) {
   const delimiter = [",", ";", "\t"].find((d) => lines[0].includes(d)) ?? ",";
   const split = (line) => line.split(delimiter).map((cell) => cell.trim());
   const first = split(lines[0]);
-  const header = first.some((cell) => !isNumber(cell)) ? first : null;
+  const header = hasHeader(first, lines.slice(1, 6).map(split)) ? first : null;
   const body = header ? lines.slice(1) : lines;
   const width = (header ?? first).length;
   const rows = body.map((line, i) => {
@@ -85,40 +105,58 @@ function isRowCounter(name, values) {
 }
 
 // Numeric columns only: a date or label column is dropped, never parsed; a row counter is skipped.
+// A column of numbers with some empty or NaN cells is not dropped: it is reported as incomplete, so
+// a blank cell can never make the reader pick a different column (a benchmark) in its place.
 function numericColumns({ header, rows }) {
   const width = rows[0]?.length ?? 0;
   const columns = [];
+  const incomplete = [];
   const skipped = [];
+  const offset = header ? 2 : 1; // file line of the first data row
   for (let j = 0; j < width; j += 1) {
-    if (rows.every((row) => typeof row[j] === "number" || isNumber(String(row[j])))) {
-      const values = rows.map((row) => Number(row[j]));
+    const cells = rows.map((row) => (typeof row[j] === "number" ? String(row[j]) : String(row[j])));
+    const numeric = cells.filter(isNumber).length;
+    if (numeric === cells.length) {
+      const values = cells.map(Number);
       if (isRowCounter(header ? header[j] : null, values)) skipped.push(j + 1);
       else columns.push({ index: j, name: header ? header[j] : String(j + 1), values });
+    } else if (numeric > 0 && numeric * 2 >= cells.length && cells.every((c) => isNumber(c) || isMissing(c))) {
+      const gaps = cells.map((c, i) => (isNumber(c) ? null : i + offset)).filter((i) => i !== null);
+      incomplete.push({ index: j, name: header ? header[j] : String(j + 1), gaps });
     }
   }
-  return { columns, skipped };
+  return { columns, incomplete, skipped };
 }
 
+const lineList = (gaps) => (gaps.length > 5 ? `${gaps.slice(0, 5).join(", ")} and ${gaps.length - 5} more` : gaps.join(", "));
+const incompleteError = (path, c) => new Error(`${path}: column ${c.index + 1} holds numbers but is empty or not a number on line${c.gaps.length > 1 ? "s" : ""} ${lineList(c.gaps)}; fill or remove those rows, or pick another column with returns_column`);
+
 // One series. With several numeric columns, `column` (a header name or a 1-based index) picks it.
-// Returns the values and the positions of any row-counter columns skipped.
+// Returns the values, the 1-based position of the column read, and the positions of any row-counter
+// columns skipped. Without `column`, any incomplete numeric column is refused, naming its lines.
 export function readSeriesFile(path, column) {
   const table = parseTable(readText(path), path);
   if (!table.rows.length) throw new Error(`${path}: no data rows`);
-  const { columns, skipped } = numericColumns(table);
-  if (!columns.length) throw new Error(`${path}: no column holds only numbers`);
+  const { columns, incomplete, skipped } = numericColumns(table);
+  const match = (list) => list.find((c) => c.name === String(column)) ?? list.find((c) => String(c.index + 1) === String(column));
   if (column === undefined) {
+    if (incomplete.length) throw incompleteError(path, incomplete[0]);
+    if (!columns.length) throw new Error(`${path}: no column holds only numbers`);
     if (columns.length > 1) throw new Error(`${path}: ${columns.length} numeric columns (positions ${columns.map((c) => c.index + 1).join(", ")}); pick one with returns_column, by header name or position`);
-    return { values: columns[0].values, skipped };
+    return { values: columns[0].values, column: columns[0].index + 1, skipped };
   }
-  const picked = columns.find((c) => c.name === String(column)) ?? columns.find((c) => String(c.index + 1) === String(column));
-  if (!picked) throw new Error(`${path}: returns_column matches no numeric column; numeric columns are at positions ${columns.map((c) => c.index + 1).join(", ")}`);
-  return { values: picked.values, skipped };
+  const gappy = match(incomplete);
+  if (gappy) throw incompleteError(path, gappy);
+  const picked = match(columns);
+  if (!picked) throw new Error(`${path}: returns_column matches no numeric column; numeric columns are at positions ${columns.map((c) => c.index + 1).join(", ") || "none"}`);
+  return { values: picked.values, column: picked.index + 1, skipped };
 }
 
-// Every numeric column is one variant; rows are periods.
+// Every numeric column is one variant; rows are periods. An incomplete column is refused.
 export function readMatrixFile(path) {
   const table = parseTable(readText(path), path);
-  const { columns, skipped } = numericColumns(table);
+  const { columns, incomplete, skipped } = numericColumns(table);
+  if (incomplete.length) throw incompleteError(path, incomplete[0]);
   if (columns.length < 2) throw new Error(`${path}: needs at least 2 numeric columns, one per variant`);
   return { matrix: table.rows.map((_, i) => columns.map((c) => c.values[i])), skipped };
 }
