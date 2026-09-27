@@ -54,3 +54,24 @@ test('directory HTTP handler returns genuine 404s, outages as 503, conditional r
   for (const page of ['0', '02', '9999999999', 'nope', '4']) assert.equal((await call(catalog, page)).statusCode, 404);
   assert.equal((await call({ directoryPage: async () => { throw new Error('offline'); } })).statusCode, 503);
 });
+test('each directory row links its admitted filing index, so every filing page is four clicks from the homepage', async () => {
+  const page = { page: 2, pages: 3, total: 101, companies: [{ cik: '0000000051', name: 'Admitted' }, { cik: '0000000052', name: 'Withheld' }, { cik: '0000000053', name: 'No filings' }, { cik: '0000000054', name: 'One filing' }] };
+  const counts = { '0000000051': 37, '0000000052': 9, '0000000054': 1 };
+  const reads = [];
+  const filings = { filingSummary: async cik => { reads.push(cik); return counts[cik] ? { filings: counts[cik] } : null; } };
+  async function call(options) {
+    const response = { headers: {}, setHeader(k, v) { this.headers[k] = v; }, end(body) { this.body = body; } };
+    await createCompanyDirectoryHandler({ catalog: { directoryPage: async () => page }, assets, ...options })({ method: 'GET', query: { page: '2' }, headers: {} }, response); return response;
+  }
+  const res = await call({ filings, filingsIndexable: cik => cik !== '0000000052' });
+  assert.equal(res.statusCode, 200);
+  assert.match(res.body, /<a href="\/companies\/0000000051\/filings">37 filings<\/a>/);
+  assert.match(res.body, /<a href="\/companies\/0000000054\/filings">1 filing<\/a>/);
+  assert.ok(!res.body.includes('/companies/0000000052/filings'), 'a withheld company links no filing index');
+  assert.ok(!res.body.includes('/companies/0000000053/filings'), 'a company without filing pages links no filing index');
+  assert.ok(!reads.includes('0000000052'), 'the predicate decides before any storage read');
+  const preview = await call({ filings });
+  assert.match(preview.body, /\/companies\/0000000052\/filings/);
+  assert.ok(!(await call({})).body.includes('/filings"'), 'a release without filings links none');
+  assert.equal((await call({ filings: { filingSummary: async () => { throw new Error('offline'); } } })).statusCode, 503);
+});
