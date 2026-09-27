@@ -247,3 +247,13 @@ test('with filings storage down a history page still serves, citing sec.gov only
   assert.equal(page.statusCode, 200);
   assert.deepEqual(internalFilingHrefs(page.body, records[0].cik), []);
 });
+
+test('the company directory links each company\'s filing index, and only indexes that exist', async t => {
+  const { documents, options } = fixture(t);
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
+  const page = await get(handler, '/companies');
+  assert.equal(page.statusCode, 200);
+  const linked = [...page.body.matchAll(/href="\/companies\/(\d{10})\/filings">(\d+) filings?<\/a>/g)].map(m => [m[1], Number(m[2])]);
+  assert.deepEqual(new Map(linked), new Map(documents.map(d => [d.cik, d.filings.length])));
+  for (const [cik] of linked) assert.equal((await get(handler, `/companies/${cik}/filings`)).statusCode, 200, `filing index ${cik} exists`);
+});

@@ -19,6 +19,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { renderProductShellFooter, renderProductShellHeader } from "./product-shell.mjs";
+import { demandCompanies } from "./lib/demand-companies.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -33,6 +34,10 @@ const HAND_AUTHORED = [
   "performance.html",
   "research.html",
 ];
+
+//: The hand-authored pages whose footer lists the company records searchers find most
+//: (renderProductShellFooter companies option); developers.html gets it from its generator.
+const COMPANY_LINKED = new Set(["index.html", "research.html"]);
 
 function replaceBlock(source, file, openTag, closeTag, replacement) {
   const start = source.indexOf(openTag);
@@ -60,7 +65,7 @@ for (const file of HAND_AUTHORED) {
   );
   after = replaceBlock(
     after, file, '<footer class="cc-footer"', "</footer>",
-    renderProductShellFooter(),
+    renderProductShellFooter({ companies: COMPANY_LINKED.has(file) ? demandCompanies().companies : [] }),
   );
 
   if (after !== before) {
