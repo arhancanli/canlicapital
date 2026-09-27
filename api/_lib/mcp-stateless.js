@@ -27,7 +27,7 @@ function rpcError(res, status, code, message) {
   res.end(`${JSON.stringify({ jsonrpc: "2.0", error: { code, message }, id: null })}\n`);
 }
 
-export function createStatelessMcpHandler({ serverInfo, register, path }) {
+export function createStatelessMcpHandler({ serverInfo, instructions, register, path }) {
   return async function handler(req, res) {
     corsHeaders(res);
     if (req.method === "OPTIONS") { res.statusCode = 204; return res.end(); }
@@ -40,7 +40,7 @@ export function createStatelessMcpHandler({ serverInfo, register, path }) {
       if (e instanceof BodyError) return rpcError(res, e.status, -32700, e.message);
       return rpcError(res, 400, -32700, "Could not read the request body");
     }
-    const server = new McpServer(serverInfo);
+    const server = new McpServer(serverInfo, instructions ? { instructions } : undefined);
     register(server);
     const transport = new WebStandardStreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
     res.on("close", () => { transport.close(); server.close(); });

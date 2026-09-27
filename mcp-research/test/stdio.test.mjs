@@ -45,13 +45,16 @@ test("the tool list stays small: under 2500 characters a model reads", async () 
   assert.ok(visible < 2500, `${visible} characters`);
 });
 
-test("initialize introduces the server: title, documentation page and icons", async () => {
+test("initialize introduces the server: title, documentation page, icons and instructions", async () => {
   const client = await connectClient();
   try {
     const info = client.getServerVersion();
     assert.equal(info.title, "Canli Research");
     assert.match(info.websiteUrl, /^https:\/\/canlicapital\.com\/developers#/);
     assert.ok(info.icons.some((i) => i.src === "https://canlicapital.com/icon-512.png" && i.sizes.includes("512x512")));
+    const { SERVER_INSTRUCTIONS } = await import("../src/server.mjs");
+    assert.equal(client.getInstructions(), SERVER_INSTRUCTIONS, "initialize carries the byte-stable instructions");
+    assert.ok(SERVER_INSTRUCTIONS.length < 700, "instructions stay short: they sit in the system prompt");
   } finally {
     await client.close();
   }

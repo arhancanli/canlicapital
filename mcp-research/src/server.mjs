@@ -16,6 +16,10 @@ import { z } from "zod";
 
 export const SERVER_NAME = "canli-research-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
+// Sent once in initialize; clients such as Claude Code put it in the system prompt, so the model
+// knows the first call to make even when tool definitions are deferred. Byte-stable across runs.
+export const SERVER_INSTRUCTIONS = "Canli Capital's open research record. Find papers with search_research or list_topics, then read one with get_paper, using section for one part. trial_ledger says how many hypotheses were tried, which any published result should be judged against, and live_record is the paper-trading record. Each result carries its source's own limits; quote them with any finding.";
+
 // How the server introduces itself in initialize: a readable title, the page that documents it
 // and its icon, so clients and directories that read serverInfo show more than a package name.
 export const SERVER_INFO = Object.freeze({
@@ -255,7 +259,7 @@ const isMain = (() => {
 })();
 
 if (isMain) {
-  const server = new McpServer(SERVER_INFO);
+  const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
   registerTools(server, createSession());
   await server.connect(new StdioServerTransport());
 }

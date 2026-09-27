@@ -25,6 +25,10 @@ import { z } from "zod";
 
 export const SERVER_NAME = "canli-fundamentals-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
+// Sent once in initialize; clients such as Claude Code put it in the system prompt, so the model
+// knows the first call to make even when tool definitions are deferred. Byte-stable across runs.
+export const SERVER_INSTRUCTIONS = "SEC company fundamentals point in time. For a decision on a date, call known_as_of with the company and as_of: it returns only what had been filed by then, and flags values later restated. Use plain names (revenue, net_income, eps_diluted, assets, cash); they follow a company across tag changes. restatements lists numbers that changed after their first report, and vintages shows every filing behind one number. Treat a value as known from the next trading day after its filed date.";
+
 // How the server introduces itself in initialize: a readable title, the page that documents it
 // and its icon, so clients and directories that read serverInfo show more than a package name.
 export const SERVER_INFO = Object.freeze({
@@ -738,7 +742,7 @@ const isMain = (() => {
 })();
 
 if (isMain) {
-  const server = new McpServer(SERVER_INFO);
+  const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
   registerTools(server, createSession());
   await server.connect(new StdioServerTransport());
 }

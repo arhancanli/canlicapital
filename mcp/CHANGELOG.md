@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.9.0 (2026-09-27)
+
+- Server instructions: `initialize` carries a short, byte-stable paragraph on which tool to call
+  first (clients such as Claude Code put it in the system prompt, which matters most when tool
+  definitions are deferred). Also on the hosted endpoint.
+- The tool list is 9% smaller (4,229 to 3,834 tokens, o200k, `bench/tool_list_tokens.py`): tool and
+  parameter descriptions say the same in fewer words, and every tool keeps its boundary sentence
+  and its "use this other tool instead" guidance.
+
 ## 0.8.2 (2026-09-27)
 
 - Registry and client metadata: the MCP Registry entry now declares the hosted endpoint
