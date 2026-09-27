@@ -7,11 +7,13 @@
 // Source: for every company in its reference, canlicapital.com serves the SEC companyfacts response
 // byte for byte (a gzip snapshot) and names its SHA-256 in the company record. This server fetches
 // the record, fetches the snapshot, refuses it unless the hash matches, and computes everything on
-// this machine. Nothing is sent anywhere but the two GETs.
+// this machine. Names are searched in the site's company name index. Nothing is sent anywhere but
+// GETs of those files and the ticker list.
 //
-// Built to the family's cost and latency rules: five tools, so the tool list an agent re-reads
+// Built to the family's cost and latency rules: six tools, so the tool list an agent re-reads
 // every turn stays small and byte-identical; one snapshot download per company, cached on disk by
-// its hash (a hash-named file can never go stale); compact columnar results.
+// its hash (a hash-named file can never go stale); the ticker list, name index and records cached on
+// disk for six hours and then revalidated by ETag; compact columnar results.
 import { createHash, randomBytes } from "node:crypto";
 import { mkdirSync, readFileSync, realpathSync, renameSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
@@ -27,7 +29,7 @@ export const SERVER_NAME = "canli-fundamentals-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 // Sent once in initialize; clients such as Claude Code put it in the system prompt, so the model
 // knows the first call to make even when tool definitions are deferred. Byte-stable across runs.
-export const SERVER_INSTRUCTIONS = "SEC company fundamentals point in time. For a decision on a date, call known_as_of with the company and as_of: it returns only what had been filed by then, and flags values later restated. Use plain names (revenue, net_income, eps_diluted, assets, cash); they follow a company across tag changes. restatements lists numbers that changed after their first report, and vintages shows every filing behind one number. Treat a value as known from the next trading day after its filed date.";
+export const SERVER_INSTRUCTIONS = "SEC company fundamentals point in time. company takes a ticker, CIK or name; find_company searches names. For a decision on a date, call known_as_of with the company and as_of: it returns only what had been filed by then, and flags values later restated. Use plain names (revenue, net_income, eps_diluted, assets, cash); they follow a company across tag changes. restatements lists numbers that changed after their first report, and vintages shows every filing behind one number. Treat a value as known from the next trading day after its filed date.";
 
 // How the server introduces itself in initialize: a readable title, the page that documents it
 // and its icon, so clients and directories that read serverInfo show more than a package name.
@@ -48,6 +50,11 @@ const MAX_RECORD_BYTES = 16 * MIB;
 const MAX_SNAPSHOT_BYTES = 16 * MIB;
 const MAX_RAW_BYTES = 256 * MIB;
 const MAX_COMPANIES = 8;
+// The ticker list, the name index and company records change only when the company reference is
+// released again, so a copy on disk is used without asking for up to six hours, then revalidated
+// by its ETag. A snapshot is named by its hash and never needs revalidating.
+const REFERENCE_FRESH_MS = 6 * 60 * 60 * 1000;
+const MAX_NAMES_BYTES = 8 * MIB;
 
 // The boundary every result carries.
 export const LIMITS = Object.freeze([
@@ -57,24 +64,26 @@ export const LIMITS = Object.freeze([
   "Company-reported data, not investment advice.",
 ]);
 
-export function createSession({ base, fetchImpl, cacheDir } = {}) {
+export function createSession({ base, fetchImpl, cacheDir, now = () => Date.now() } = {}) {
   const envCache = process.env.CANLI_CACHE_DIR;
   return {
     base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE,
     fetchImpl: fetchImpl ?? fetch,
     // A path, or an empty value to keep nothing on disk.
     cacheDir: cacheDir !== undefined ? cacheDir : envCache !== undefined ? envCache : join(homedir(), ".cache", "canli-fundamentals"),
+    now,
     companies: new Map(),
     tickers: null,
+    names: null,
   };
 }
 
-async function fetchBytes(session, path, maxBytes) {
+async function fetchBytes(session, path, maxBytes, headers) {
   const signal = AbortSignal.timeout(REQUEST_TIMEOUT_MS);
   let res;
   let body;
   try {
-    res = await session.fetchImpl(`${session.base}${path}`, { signal, redirect: "error" });
+    res = await session.fetchImpl(`${session.base}${path}`, { signal, redirect: "error", ...(headers ? { headers } : {}) });
     const declared = Number(res.headers?.get?.("content-length"));
     if (declared > maxBytes) return { status: 413, body: null };
     body = Buffer.from(await res.arrayBuffer());
@@ -82,7 +91,55 @@ async function fetchBytes(session, path, maxBytes) {
     throw new Error(signal.aborted ? `${path} exceeded the request deadline.` : `${path} could not be reached.`);
   }
   if (body.length > maxBytes) return { status: 413, body: null };
-  return { status: res.status, body };
+  return { status: res.status, body, etag: res.headers?.get?.("etag") ?? null };
+}
+
+// Owner-only directory; the temporary file gets an unpredictable name and is created exclusively
+// (never written through a file or link that is already there), then renamed into place. A cache
+// that cannot be written only costs a download next time.
+function writeCache(session, name, bytes) {
+  if (!session.cacheDir) return;
+  try {
+    mkdirSync(session.cacheDir, { recursive: true, mode: 0o700 });
+    const file = join(session.cacheDir, name);
+    const tmp = `${file}.${randomBytes(8).toString("hex")}.tmp`;
+    writeFileSync(tmp, bytes, { flag: "wx", mode: 0o600 });
+    renameSync(tmp, file);
+  } catch {
+    // Not cached.
+  }
+}
+
+// A reference file (the ticker list, the name index, a company record) as parsed JSON, from the
+// disk copy while it is fresh, else from the site with the copy's ETag, so an unchanged file costs
+// a 304 and no body. When the site cannot be reached, a stale copy is used rather than failing.
+async function referenceJson(session, path, name, maxBytes, what) {
+  let cached = null;
+  if (session.cacheDir) {
+    try {
+      cached = JSON.parse(readFileSync(join(session.cacheDir, name), "utf8"));
+      if (typeof cached?.at !== "number" || cached.body === undefined) cached = null;
+    } catch {
+      cached = null;
+    }
+  }
+  if (cached && session.now() - cached.at < REFERENCE_FRESH_MS) return { status: 200, json: cached.body };
+  let res;
+  try {
+    res = await fetchBytes(session, path, maxBytes, cached?.etag ? { "if-none-match": cached.etag } : undefined);
+  } catch (err) {
+    if (cached) return { status: 200, json: cached.body };
+    throw err;
+  }
+  if (res.status === 304 && cached) {
+    writeCache(session, name, JSON.stringify({ ...cached, at: session.now() }));
+    return { status: 200, json: cached.body };
+  }
+  if (res.status >= 500 && cached) return { status: 200, json: cached.body };
+  if (res.status !== 200) return { status: res.status, json: null };
+  const json = parseJson(res.body, what);
+  writeCache(session, name, JSON.stringify({ etag: res.etag, at: session.now(), body: json }));
+  return { status: 200, json };
 }
 
 function parseJson(buf, what) {
@@ -102,11 +159,85 @@ const isGzip = (buf) => buf.length > 2 && buf[0] === 0x1f && buf[1] === 0x8b;
 
 async function tickerMap(session) {
   if (!session.tickers) {
-    const { status, body } = await fetchBytes(session, "/api/v1/company-tickers.json", 8 * MIB);
+    const { status, json } = await referenceJson(session, "/api/v1/company-tickers.json", "company-tickers.json", 8 * MIB, "The ticker list");
     if (status >= 400) throw new Error(`The ticker list returned HTTP ${status}.`);
-    session.tickers = parseJson(body, "The ticker list").tickers ?? {};
+    session.tickers = json?.tickers ?? {};
   }
   return session.tickers;
+}
+
+// Company names compared the way people write them: case, punctuation, a state tag such as /DE/,
+// and trailing legal words (Inc, Corp, Holdings) ignored, so "Exxon Mobil Corporation" and
+// "ExxonMobil Holdings Corp" have the same key.
+const LEGAL_WORDS = new Set(["inc", "incorporated", "corp", "corporation", "co", "company", "ltd", "limited", "plc", "llc", "lp", "llp", "holdings", "holding", "group", "sa", "nv", "ag", "se"]);
+export function nameWords(name) {
+  const words = String(name).toLowerCase().replace(/&/g, " and ").replace(/\/[a-z]{2,3}\/?/g, " ").replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(Boolean);
+  // "& Co" leaves "and" behind once "co" is dropped.
+  while (words.length > 1 && (LEGAL_WORDS.has(words[words.length - 1]) || words[words.length - 1] === "and")) words.pop();
+  if (words.length > 1 && words[0] === "the") words.shift();
+  return words;
+}
+
+async function nameIndex(session) {
+  if (!session.names) {
+    const { status, json } = await referenceJson(session, "/api/v1/company-names.json", "company-names.json", MAX_NAMES_BYTES, "The company name index");
+    if (status >= 400) throw new Error(`The company name index returned HTTP ${status}.`);
+    const cik10 = (cik) => String(cik).padStart(10, "0");
+    session.names = {
+      companies: (Array.isArray(json?.rows) ? json.rows : []).map(([cik, name, tickers]) => {
+        const words = nameWords(name);
+        return { cik: cik10(cik), name: String(name), tickers: Array.isArray(tickers) ? tickers : [], words, key: words.join("") };
+      }),
+      outside: new Map((Array.isArray(json?.outside?.rows) ? json.outside.rows : []).map(([ticker, cik, name]) => [String(ticker), { ticker: String(ticker), cik: cik10(cik), name: String(name) }])),
+      captured: json?.source?.captured ?? null,
+    };
+  }
+  return session.names;
+}
+
+// How well a company matches, best first. A company is used for a query without asking only when
+// it is clearly the one meant: the single match at the best level, where that level is a ticker, a
+// CIK, the same name or the start of a name; or, among several there, the only one with a current
+// ticker (Alphabet Inc. rather than Alphabet Holding Company; Toyota Motor Corp rather than Toyota
+// Motor Credit); or the single match at all.
+const MATCH_LEVELS = ["ticker", "cik", "name", "same_name_as_ticker_holder", "name_start", "name_words", "name_contains"];
+
+export async function findCompanies(session, query, limit = 8) {
+  const text = String(query).trim().replace(/^\$/, "");
+  const ticker = text.toUpperCase();
+  const names = await nameIndex(session);
+  const found = new Map();
+  const add = (c, level) => {
+    const prior = found.get(c.cik);
+    if (!prior || level < prior.level) found.set(c.cik, { c, level });
+  };
+  const qWords = nameWords(text);
+  const qKey = qWords.join("");
+  const outside = names.outside.get(ticker) ?? names.outside.get(ticker.replace(/\./g, "-")) ?? names.outside.get(ticker.replace(/-/g, ".")) ?? null;
+  const holderKey = outside ? nameWords(outside.name).join("") : null;
+  const cik = /^\d{1,10}$/.test(text) ? text.padStart(10, "0") : null;
+  for (const c of names.companies) {
+    if (c.tickers.includes(ticker) || c.tickers.includes(ticker.replace(/\./g, "-")) || c.tickers.includes(ticker.replace(/-/g, "."))) add(c, 0);
+    if (cik && c.cik === cik) add(c, 1);
+    if (!qKey) continue;
+    if (c.key === qKey) add(c, 2);
+    else if (holderKey && c.key === holderKey) add(c, 3);
+    else if (qWords.every((w, i) => c.words[i] === w)) add(c, 4);
+    else if (qWords.every((w) => c.words.includes(w))) add(c, 5);
+    else if (qKey.length >= 4 && c.key.includes(qKey)) add(c, 6);
+  }
+  const ranked = [...found.values()].sort((a, b) => a.level - b.level || (b.c.tickers.length > 0) - (a.c.tickers.length > 0) || a.c.words.length - b.c.words.length || a.c.cik.localeCompare(b.c.cik));
+  const best = ranked[0];
+  const tied = best ? ranked.filter((r) => r.level === best.level) : [];
+  const listed = tied.filter((r) => r.c.tickers.length);
+  const pick = !best ? null : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
+  return {
+    matches: ranked.slice(0, limit).map(({ c, level }) => ({ cik: c.cik, name: c.name, tickers: c.tickers, match: MATCH_LEVELS[level] })),
+    total: ranked.length,
+    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level] } : null,
+    outside,
+    captured: names.captured,
+  };
 }
 
 export async function resolveCompany(session, company) {
@@ -115,8 +246,23 @@ export async function resolveCompany(session, company) {
   const ticker = text.toUpperCase().replace(/^\$/, "");
   const map = await tickerMap(session);
   const cik = map[ticker] ?? map[ticker.replace(/\./g, "-")] ?? map[ticker.replace(/-/g, ".")];
-  if (!cik) throw new Error(`${text} is not a ticker in the Canli company reference (${Object.keys(map).length} tickers). Try the company's SEC CIK instead.`);
-  return { cik, ticker };
+  if (cik) return { cik, ticker };
+  // Not a current ticker in the reference: a company name, a ticker whose holder the reference does
+  // not cover, or a former company. A site without the name index still answers tickers and CIKs.
+  let found;
+  try {
+    found = await findCompanies(session, text, 5);
+  } catch {
+    throw new Error(`${text} is not a ticker in the Canli company reference (${Object.keys(map).length} tickers), and its name index could not be read. Try the company's SEC CIK instead.`);
+  }
+  const heldBy = found.outside ? `${found.outside.ticker} is the SEC's ticker for ${found.outside.name} (CIK ${found.outside.cik}), which the Canli company reference does not cover` : null;
+  if (found.resolved) {
+    const note = found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : undefined;
+    return { cik: found.resolved.cik, ticker: null, matched: { query: text, by: found.resolved.match, ...(note ? { note } : {}) } };
+  }
+  const options = found.matches.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ""})`).join("; ");
+  if (options) throw new Error(`${heldBy ? `${heldBy}. ` : ""}"${text}" matches ${found.total} companies; pass one CIK as company: ${options}.`);
+  throw new Error(`${heldBy ? `${heldBy}. ` : ""}"${text}" is not a current ticker or a company name in the Canli company reference. Former tickers are not listed: find_company searches by name, and the SEC CIK always works.`);
 }
 
 async function snapshotBytes(session, sha, snapshotPath) {
@@ -139,36 +285,24 @@ async function snapshotBytes(session, sha, snapshotPath) {
     throw new Error(`The SEC snapshot ${snapshotPath} is not valid gzip.`);
   }
   if (sha256(raw) !== sha) throw new Error(`The SEC snapshot for this company does not match the SHA-256 its record publishes (${sha.slice(0, 12)}); nothing was used.`);
-  if (file) {
-    try {
-      // Owner-only directory; the temporary file gets an unpredictable name and is created
-      // exclusively (never written through a file or link that is already there), then renamed
-      // into place. A cached file is re-hashed on every read, so it can never be trusted blindly.
-      mkdirSync(session.cacheDir, { recursive: true, mode: 0o700 });
-      const tmp = `${file}.${randomBytes(8).toString("hex")}.tmp`;
-      writeFileSync(tmp, isGzip(body) ? body : gzipSync(raw), { flag: "wx", mode: 0o600 });
-      renameSync(tmp, file);
-    } catch {
-      // A cache that cannot be written only costs a download next time.
-    }
-  }
+  // A cached snapshot is re-hashed on every read, so it can never be trusted blindly.
+  if (file) writeCache(session, `${sha}.json.gz`, isGzip(body) ? body : gzipSync(raw));
   return raw;
 }
 
 export async function loadCompany(session, company) {
-  const { cik, ticker } = await resolveCompany(session, company);
+  const { cik, ticker, matched } = await resolveCompany(session, company);
   const cached = session.companies.get(cik);
   if (cached) {
     // Most recently used last, so the oldest company is the one evicted.
     session.companies.delete(cik);
     session.companies.set(cik, cached);
-    return ticker ? { ...cached, ticker } : cached;
+    return ticker || matched ? { ...cached, ticker, matched } : cached;
   }
   const recordPath = `/company-data/${cik}.json`;
-  const { status, body } = await fetchBytes(session, recordPath, MAX_RECORD_BYTES);
-  if (status === 404) throw new Error(`CIK ${cik} is not in the Canli company reference. It covers the SEC filers listed at ${session.base}/companies.`);
+  const { status, json: record } = await referenceJson(session, recordPath, `company-${cik}.json`, MAX_RECORD_BYTES, recordPath);
+  if (status === 404) throw new Error(`CIK ${cik} is not in the Canli company reference. It covers the SEC filers listed at ${session.base}/companies; find_company searches them by name.`);
   if (status >= 400) throw new Error(`${recordPath} returned HTTP ${status}.`);
-  const record = parseJson(body, recordPath);
   const sha = record.source_sha256;
   const snapshotPath = record.source_snapshot;
   if (!/^[0-9a-f]{64}$/.test(sha ?? "") || typeof snapshotPath !== "string" || !snapshotPath.startsWith("/company-data/sources/")) {
@@ -178,6 +312,7 @@ export async function loadCompany(session, company) {
   const entry = {
     cik,
     ticker,
+    matched,
     name: record.name ?? facts.entityName ?? null,
     index: indexFacts(facts),
     page: `${session.base}/companies/${cik}`,
@@ -187,7 +322,7 @@ export async function loadCompany(session, company) {
   // A large filer's index takes 12 to 15 MB of heap; keep the eight most recently used. Evicted
   // companies reload from the hash-named disk cache.
   if (session.companies.size >= MAX_COMPANIES) session.companies.delete(session.companies.keys().next().value);
-  session.companies.set(cik, { ...entry, ticker: null });
+  session.companies.set(cik, { ...entry, ticker: null, matched: undefined });
   return entry;
 }
 
@@ -226,6 +361,16 @@ const byFiling = (a, b) => a.filed.localeCompare(b.filed) || String(a.accn).loca
 
 export function indexFacts(facts) {
   const concepts = new Map();
+  // Every fact of one filing repeats its accession number, date, form and fiscal period as fresh
+  // strings; keeping one copy of each shrinks a large filer's index severalfold.
+  const pool = new Map();
+  const one = (s) => {
+    if (s == null) return null;
+    const had = pool.get(s);
+    if (had !== undefined) return had;
+    pool.set(s, s);
+    return s;
+  };
   for (const [taxonomy, tags] of Object.entries(facts?.facts ?? {})) {
     if (SKIP_TAXONOMIES.has(taxonomy)) continue;
     for (const [tag, body] of Object.entries(tags ?? {})) {
@@ -238,8 +383,8 @@ export function indexFacts(facts) {
           if (NON_PERIODIC_FORM.test(r.form ?? "")) continue;
           const key = `${r.start ?? ""}/${r.end}`;
           let p = periods.get(key);
-          if (!p) periods.set(key, (p = { start: r.start ?? null, end: r.end, vintages: [] }));
-          p.vintages.push({ val: r.val, filed: r.filed, form: r.form ?? null, accn: r.accn ?? null, fy: r.fy ?? null, fp: r.fp ?? null });
+          if (!p) periods.set(key, (p = { start: one(r.start), end: one(r.end), vintages: [] }));
+          p.vintages.push({ val: r.val, filed: one(r.filed), form: one(r.form), accn: one(r.accn), fy: r.fy ?? null, fp: one(r.fp) });
         }
         const list = [...periods.values()];
         // Filing order: by date, then accession number, so the order never depends on the file.
@@ -362,7 +507,9 @@ function pickUnit(concepts, unit, label) {
 // A name becomes a series. A plain name (revenue, eps_diluted, and the synonyms above) reads its
 // whole tag list; an XBRL tag reads that tag in every taxonomy that has it, unless the name is
 // prefixed with one (us-gaap:Assets).
-export function resolveSeries(entry, name, unit) {
+// keep: false for a scan over every concept (list_concepts, a full restatements scan), which would
+// otherwise hold a series for each of a large filer's ~1,000 concepts in memory.
+export function resolveSeries(entry, name, unit, { keep = true } = {}) {
   const raw = name.trim();
   const key = normalize(raw);
   const plain = !raw.includes(":") && !/[A-Z]/.test(raw);
@@ -392,8 +539,11 @@ export function resolveSeries(entry, name, unit) {
   }
   const u = pickUnit(concepts, unit, display);
   const memo = `${display}|${u}`;
-  if (!entry.series.has(memo)) entry.series.set(memo, buildSeries(concepts, u));
-  const periods = entry.series.get(memo);
+  let periods = entry.series.get(memo);
+  if (!periods) {
+    periods = buildSeries(concepts, u);
+    if (keep) entry.series.set(memo, periods);
+  }
   // An XBRL tag the company stopped using: say which plain name follows it to later periods.
   let newer = null;
   if (exact.length === 1) {
@@ -427,12 +577,12 @@ function select(p, basis, asOf) {
 // Tools
 // ---------------------------------------------------------------------------------------------
 
-const company = z.string().min(1).max(20).describe("Ticker (AAPL) or SEC CIK.");
+const company = z.string().min(1).max(100).describe("Ticker (AAPL), CIK or company name.");
 const conceptArg = z.string().min(1).max(200).describe("Plain name (revenue, eps_diluted, assets; follows tag changes) or XBRL tag (Revenues).");
 const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
 const periodsArg = z.enum(["annual", "quarterly", "all"]).optional().describe("annual (default), quarterly, or all (adds year-to-date).");
 const unitArg = z.string().min(1).max(40).optional().describe("Default: the unit with most periods.");
-const MAX_CHARS = 14000;
+const MAX_CHARS = 10000;
 
 const asText = (value) => ({ content: [{ type: "text", text: JSON.stringify(value) }], structuredContent: value });
 
@@ -452,11 +602,21 @@ function fit(rows) {
   return { rows, truncated: false };
 }
 
+// One page of a long list: at most limit rows from offset, cut to MAX_CHARS, with next_offset
+// whenever rows remain after it.
+function page(rows, offset, limit) {
+  const shown = fit(rows.slice(offset, offset + limit));
+  const next = offset + shown.rows.length;
+  return { ...shown, ...(next < rows.length ? { next_offset: next } : {}) };
+}
+
+const offsetArg = z.number().int().min(0).max(100000).optional().describe("next_offset from the last page.");
+
 function head(e, asOf) {
   const fetched = e.snapshot.fetched_at;
   const age = fetched ? Math.floor((Date.now() - Date.parse(fetched)) / DAY_MS) : null;
   const out = {
-    company: { cik: e.cik, name: e.name, ...(e.ticker ? { ticker: e.ticker } : {}), page: e.page },
+    company: { cik: e.cik, name: e.name, ...(e.ticker ? { ticker: e.ticker } : {}), ...(e.matched ? { matched: e.matched } : {}), page: e.page },
     snapshot: { ...e.snapshot, age_days: age },
   };
   if (asOf && fetched && asOf > fetched.slice(0, 10)) out.snapshot_note = `as_of is after this snapshot (fetched ${fetched.slice(0, 10)}): filings made after that date are not in it.`;
@@ -467,15 +627,16 @@ export const listInput = z.object({
   company,
   search: z.string().min(1).max(100).optional().describe("Words in concept names or labels, e.g. revenue."),
   limit: z.number().int().min(1).max(300).optional().describe("Default 40."),
+  offset: offsetArg,
 }).strict();
 
 export async function toolListConcepts(session, args) {
-  const { company: who, search, limit = 40 } = parse(listInput, args, "list_concepts");
+  const { company: who, search, limit = 40, offset = 0 } = parse(listInput, args, "list_concepts");
   const e = await loadCompany(session, who);
   const q = search ? words(search) : [];
   const rows = [...e.index.values()]
     .map((c) => {
-      const s = resolveSeries(e, `${c.taxonomy}:${c.tag}`);
+      const s = resolveSeries(e, `${c.taxonomy}:${c.tag}`, undefined, { keep: false });
       const have = new Set([...words(c.tag), ...words(c.label)]);
       return { c, s, hits: q.filter((w) => have.has(w)).length };
     })
@@ -484,7 +645,7 @@ export async function toolListConcepts(session, args) {
   const friendly = Object.entries(FRIENDLY)
     .map(([k, keys]) => [k, keys.filter((key) => e.index.has(key)).map(tagName)])
     .filter(([, tags]) => tags.length);
-  const shown = fit(rows.slice(0, limit).map(({ c, s }) => [conceptName(c), c.label, s.unit, s.periods.length, s.periods[s.periods.length - 1].end, s.periods[0].end, s.periods.filter((p) => p.restated).length]));
+  const shown = page(rows.map(({ c, s }) => [conceptName(c), c.label, s.unit, s.periods.length, s.periods[s.periods.length - 1].end, s.periods[0].end, s.periods.filter((p) => p.restated).length]), offset, limit);
   return asText({
     ...head(e),
     concepts: e.index.size,
@@ -620,15 +781,16 @@ export const restatementsInput = z.object({
   min_change_pct: z.number().min(0).max(1e6).optional().describe("Minimum absolute change, % of first value."),
   include_splits: z.boolean().optional().describe("Also list stock-split changes; default false."),
   limit: z.number().int().min(1).max(400).optional().describe("Default 25, newest first."),
+  offset: offsetArg,
 }).strict();
 
 export async function toolRestatements(session, args) {
-  const { company: who, concept, periods = "annual", since, min_change_pct: minPct = 0, include_splits: withSplits = false, limit = 25 } = parse(restatementsInput, args, "restatements");
+  const { company: who, concept, periods = "annual", since, min_change_pct: minPct = 0, include_splits: withSplits = false, limit = 25, offset = 0 } = parse(restatementsInput, args, "restatements");
   const e = await loadCompany(session, who);
   const ratios = splitRatios(e);
   const scope = concept
     ? [resolveSeries(e, concept)]
-    : [...e.index.values()].flatMap((c) => Object.keys(c.units).map((u) => resolveSeries(e, `${c.taxonomy}:${c.tag}`, u)));
+    : [...e.index.values()].flatMap((c) => Object.keys(c.units).map((u) => resolveSeries(e, `${c.taxonomy}:${c.tag}`, u, { keep: false })));
   let scanned = 0;
   let reverted = 0;
   let splits = 0;
@@ -654,7 +816,7 @@ export async function toolRestatements(session, args) {
   const size = (x) => (x.pct === null ? Infinity : Math.abs(x.pct));
   found.sort((a, b) => b.p.end.localeCompare(a.p.end) || size(b) - size(a) || a.s.name.localeCompare(b.s.name));
   const round = (x) => (x === null ? null : Math.round(x * 100) / 100);
-  const shown = fit(found.slice(0, limit).map(({ s, p, first, last, pct, cause }) => [s.name, s.unit, p.end, p.start, first.val, first.filed, last.val, last.filed, round(pct), p.vintages.length, cause]));
+  const shown = page(found.map(({ s, p, first, last, pct, cause }) => [s.name, s.unit, p.end, p.start, first.val, first.filed, last.val, last.filed, round(pct), p.vintages.length, cause]), offset, limit);
   return asText({
     ...head(e),
     periods,
@@ -696,6 +858,33 @@ export async function toolVintages(session, args) {
   });
 }
 
+export const findInput = z.object({
+  query: z.string().min(1).max(100).describe("Name (Exxon Mobil), ticker or CIK."),
+  limit: z.number().int().min(1).max(20).optional().describe("Default 8."),
+}).strict();
+
+export const FIND_LIMITS = Object.freeze([
+  "Companies are those in the Canli company reference, named as the SEC records them; tickers are the SEC's current ticker file, so a former ticker is not listed and a company that no longer trades has none.",
+  "The CIK is the identity: a ticker can be reused after a delisting.",
+]);
+
+export async function toolFindCompany(session, args) {
+  const { query, limit = 8 } = parse(findInput, args, "find_company");
+  const found = await findCompanies(session, query, limit);
+  return asText({
+    query,
+    ...(found.resolved ? { resolved: found.resolved } : {}),
+    total: found.total,
+    columns: ["cik", "name", "tickers", "match"],
+    rows: found.matches.map((m) => [m.cik, m.name, m.tickers, m.match]),
+    ...(found.outside ? { ticker_holder: { ...found.outside, in_reference: false } } : {}),
+    tickers_as_of: found.captured,
+    next: found.resolved ? `Every other tool takes "${query}" as company and reads CIK ${found.resolved.cik}.` : "Pass one cik above as company to any other tool.",
+    meaning: "match: ticker, cik, name (the same name once Inc, Corp and punctuation are ignored), same_name_as_ticker_holder (the SEC gives this ticker to a company outside the reference, named in ticker_holder; this covered filer has the same name), name_start, name_words or name_contains. resolved is the company the other tools use for this query; it is set only when one match is clearly best.",
+    limits: FIND_LIMITS,
+  });
+}
+
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true };
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
@@ -704,12 +893,13 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   restatements: "Periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
   vintages: "Every filing that reported one period of one measure, oldest first: the revision history behind a number.",
   list_concepts: "The XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
+  find_company: "Find a company's SEC CIK and tickers by name, ticker or CIK. The other tools also take a name as company.",
 });
 
 // Output schemas: published OPEN (extra fields always pass), every field optional. A client
 // validates a result against the schema it listed, and a closed schema turns any field a later
 // version adds into a failed call.
-const table = { columns: z.array(z.string()).optional(), rows: z.array(z.unknown()).optional(), truncated: z.boolean().optional() };
+const table = { columns: z.array(z.string()).optional(), rows: z.array(z.unknown()).optional(), truncated: z.boolean().optional(), next_offset: z.number().optional() };
 const common = { company: z.looseObject({}).optional(), snapshot: z.looseObject({}).optional(), limits: z.array(z.string()).optional(), meaning: z.string().optional() };
 export const OUTPUT_SCHEMAS = Object.freeze({
   known_as_of: z.looseObject({ ...common, as_of: z.string().optional(), ...table, missing: z.array(z.string()).optional() })
@@ -722,6 +912,8 @@ export const OUTPUT_SCHEMAS = Object.freeze({
     .describe("rows: every filing that reported the period, oldest first."),
   list_concepts: z.looseObject({ ...common, concepts: z.number().optional(), matched: z.number().optional(), plain_names: z.looseObject({}).optional(), ...table })
     .describe("rows: one per concept in the order of columns; plain_names maps each supported plain name to its tags."),
+  find_company: z.looseObject({ query: z.string().optional(), resolved: z.looseObject({}).optional(), total: z.number().optional(), ...table, ticker_holder: z.looseObject({}).optional(), limits: z.array(z.string()).optional(), meaning: z.string().optional() })
+    .describe("rows: matching companies, best first, in the order of columns; resolved is the one the other tools use for this query."),
 });
 
 export function registerTools(server, session) {
@@ -731,6 +923,7 @@ export function registerTools(server, session) {
   tool("restatements", "Restated periods", restatementsInput, (args) => toolRestatements(session, args));
   tool("vintages", "Filing vintages", vintagesInput, (args) => toolVintages(session, args));
   tool("list_concepts", "List concepts", listInput, (args) => toolListConcepts(session, args));
+  tool("find_company", "Find a company", findInput, (args) => toolFindCompany(session, args));
 }
 
 const isMain = (() => {
