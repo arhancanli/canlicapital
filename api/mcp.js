@@ -10,7 +10,7 @@
 // <key>") when present, otherwise a shared anonymous key (CANLI_REMOTE_MCP_KEY) with a shared
 // daily quota. The caller's key is forwarded to the validation API and never echoed or logged.
 import { McpServer, WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/server";
-import { configuredToolsets, createSession, registerAll, SERVER_INFO } from "../mcp/src/server.mjs";
+import { configuredToolsets, createSession, registerAll, SERVER_INFO, SERVER_INSTRUCTIONS } from "../mcp/src/server.mjs";
 import { BodyError, readJsonBody } from "./_lib/body.js";
 import { inProcessFetch } from "./_lib/in-process-fetch.js";
 
@@ -81,7 +81,7 @@ export function createHostedHandler({ env = () => process.env, fetchImpl = inPro
       base: env().CANLI_API_BASE,
       hosted: { keySource: resolved.keySource },
     });
-    const server = new McpServer(SERVER_INFO);
+    const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
     registerAll(server, session);
     const transport = new WebStandardStreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
     res.on("close", () => { transport.close(); server.close(); });

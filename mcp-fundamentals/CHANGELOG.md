@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.3.0
+
+Find any company, faster, in less memory:
+
+- `find_company` searches the 12,738 companies in the Canli company reference by name, ticker or
+  CIK, best match first. Every other tool also takes a name as `company` (`Exxon Mobil`, `Alphabet`,
+  `Goldman Sachs`) and says how it resolved it in `company.matched`. A name is used only when one
+  company is clearly meant; otherwise the error lists the candidates with their CIKs. Looked up by
+  its own name, each of the 12,738 companies resolves to itself (12,446), to another company with
+  the same name (125) or to a list to choose from (167), and never to a different company.
+- A ticker the SEC now gives to a company outside the reference is followed to the covered filer
+  with the same name, and the result says so: `XOM` names ExxonMobil Holdings Corp (CIK 2115436), a
+  new holding company, and Exxon Mobil Corporation (CIK 34088) is read. Former tickers are not
+  listed; search by name (`Twitter`).
+- The ticker list, the name index and company records are cached on disk (owner-only files, like
+  snapshots), used for six hours without asking and then revalidated by ETag. A stale copy is used
+  when the site cannot be reached. The first call for a company in a new process, with the disk
+  warm, took 38 to 72 ms (AAPL, JPM, MSFT; 384 to 431 ms in 0.2.0).
+- Heap after garbage collection with nine large filers loaded is 60 MB (172 MB in 0.2.0):
+  `list_concepts` and a full `restatements` scan no longer keep a series for every concept, and an
+  index keeps one copy of each filing's accession number, date and form.
+- Results are capped at 10,000 characters of rows (14,000 in 0.2.0). `list_concepts` and
+  `restatements` page with `offset`, and say `next_offset` while rows remain.
+
 ## 0.2.0
 
 Point-in-time fixes from an outside audit of 0.1.0, each with a test that fails without it:
@@ -33,6 +57,7 @@ New:
   entry carries the same title, website and icons.
 - Hosted at https://canlicapital.com/mcp/fundamentals over MCP Streamable HTTP (stateless, no key), declared
   as a remote in the registry entry.
+- Server instructions in `initialize`: which tool to call first, byte-stable.
 
 ## 0.1.0
 
