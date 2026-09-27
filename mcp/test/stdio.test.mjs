@@ -63,6 +63,10 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   await client.connect(transport);
   t.after(() => client.close());
   assert.equal(client.getServerVersion().version, JSON.parse(readFileSync(path.join(testedRoot, "package.json"))).version);
+  const info = client.getServerVersion();
+  assert.equal(info.title, "Canli Validation");
+  assert.equal(info.websiteUrl, "https://canlicapital.com/developers#ai-assistant");
+  assert.ok(info.icons.some((i) => i.src === "https://canlicapital.com/icon-512.png"));
 
   const { tools } = await client.listTools();
   const names = tools.map((tool) => tool.name).sort();

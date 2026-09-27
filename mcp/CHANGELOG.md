@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.2 (2026-09-27)
+
+- Registry and client metadata: the MCP Registry entry now declares the hosted endpoint
+  (`remotes`: streamable HTTP at https://canlicapital.com/mcp, with an optional secret
+  Authorization header), a title, the documentation page, icons and the environment variables the
+  package reads (`CANLI_KEY`, `CANLI_LOCAL`, `CANLI_API_BASE`). Its description names what the
+  server checks. `initialize` returns the same title, website and icons in `serverInfo`, on stdio
+  and on the hosted endpoint.
+- npm keywords, so the package is found by `deflated-sharpe-ratio`, `cscv`, `backtesting` and the
+  other terms people search for.
+
 ## 0.8.1 (2026-09-27)
 
 Fixes from an outside audit, each with a test that fails without it:

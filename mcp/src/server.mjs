@@ -19,6 +19,18 @@ import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolSh
 export const DEFAULT_BASE = "https://canlicapital.com";
 export const SERVER_NAME = "canlicapital-validation-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
+// How the server introduces itself in initialize: a readable title, the page that documents it
+// and its icon, so clients and directories that read serverInfo show more than a package name.
+export const SERVER_INFO = Object.freeze({
+  name: SERVER_NAME,
+  version: SERVER_VERSION,
+  title: "Canli Validation",
+  websiteUrl: "https://canlicapital.com/developers#ai-assistant",
+  icons: [
+    { src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] },
+    { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] },
+  ],
+});
 export const REQUEST_TIMEOUT_MS = 30_000;
 
 // One place a value fails a zod schema turns into a short, readable message instead of a raw
@@ -693,7 +705,7 @@ export function registerAll(server, session) {
 }
 
 export function createServer(session = createSession()) {
-  const server = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
+  const server = new McpServer(SERVER_INFO);
   registerAll(server, session);
   return server;
 }

@@ -11,6 +11,12 @@ import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
+async function connectClient() {
+  const client = new Client({ name: "stdio-test", version: "1" });
+  await client.connect(new StdioClientTransport({ command: process.execPath, args: [resolve(ROOT, "src/server.mjs")] }));
+  return client;
+}
+
 async function listTools() {
   const client = new Client({ name: "stdio-test", version: "1" });
   await client.connect(new StdioClientTransport({ command: process.execPath, args: [resolve(ROOT, "src/server.mjs")] }));
@@ -37,6 +43,18 @@ test("the tool list stays small: under 2500 characters a model reads", async () 
   const { tools } = JSON.parse((await listTools()).json);
   const visible = tools.reduce((n, t) => { const { $schema, ...params } = t.inputSchema; return n + t.description.length + JSON.stringify(params).length; }, 0);
   assert.ok(visible < 2500, `${visible} characters`);
+});
+
+test("initialize introduces the server: title, documentation page and icons", async () => {
+  const client = await connectClient();
+  try {
+    const info = client.getServerVersion();
+    assert.equal(info.title, "Canli Research");
+    assert.match(info.websiteUrl, /^https:\/\/canlicapital\.com\/developers#/);
+    assert.ok(info.icons.some((i) => i.src === "https://canlicapital.com/icon-512.png" && i.sizes.includes("512x512")));
+  } finally {
+    await client.close();
+  }
 });
 
 test("no shipped file contains an em dash", () => {

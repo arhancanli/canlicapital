@@ -97,6 +97,18 @@ test("list tools, then call each one: every result passes the schema the client 
   });
 });
 
+test("initialize introduces the server: title, documentation page and icons", async () => {
+  const client = await connect();
+  try {
+    const info = client.getServerVersion();
+    assert.equal(info.title, "Canli Fundamentals");
+    assert.match(info.websiteUrl, /^https:\/\/canlicapital\.com\/developers#/);
+    assert.ok(info.icons.some((i) => i.src === "https://canlicapital.com/icon-512.png" && i.sizes.includes("512x512")));
+  } finally {
+    await client.close();
+  }
+});
+
 test("no shipped file contains an em dash", () => {
   const shipped = ["README.md", "package.json", ...readdirSync(resolve(ROOT, "src")).map((f) => `src/${f}`)];
   for (const f of shipped) assert.ok(!readFileSync(resolve(ROOT, f), "utf8").includes("—"), f);

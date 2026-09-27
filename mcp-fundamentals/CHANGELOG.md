@@ -29,6 +29,8 @@ New:
   vintage chains.
 - Results are capped at about 14,000 characters of rows (`truncated`), and memory keeps the eight
   most recently used companies.
+- `initialize` returns a title, the documentation page and icons in `serverInfo`, and the registry
+  entry carries the same title, website and icons.
 
 ## 0.1.0
 
