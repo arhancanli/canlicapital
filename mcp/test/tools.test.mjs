@@ -709,6 +709,24 @@ test("verify_receipt: a receipt passed in verifies offline, and a changed number
   assert.equal(unknown.checks.key_published, false);
 });
 
+test("verify_receipt: a malformed receipt is a failed check that says what is missing, not an internal error", async () => {
+  const { key, data } = signedReceipt();
+  const session = createSession({ base: "https://example.test", fetchImpl: neverFetch, receiptKeys: [key] });
+  const { output, ...noOutput } = data;
+  const result = await toolVerifyReceipt(session, { receipt: noOutput });
+  assert.notEqual(result.isError, true);
+  const out = parsedText(result);
+  assert.equal(out.valid, false);
+  assert.equal(out.checks.well_formed, false);
+  assert.match(out.meaning, /not well formed: it has no output, so it cannot be checked\. Send the whole receipt object/);
+  assert.doesNotMatch(JSON.stringify(out), /canonical-json|undefined has no/);
+});
+
+test("company_financial_history: an unreachable ticker index says what to do next", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: async () => { throw new Error("offline"); } });
+  await assert.rejects(toolCompanyFinancialHistory(session, { ticker: "AAPL" }), /could not reach the ticker index at https:\/\/example\.test\. Retry, check service_status, or pass the SEC CIK/);
+});
+
 test("verify_receipt: exactly one of id or receipt, and a missing receipt's error passes through", async () => {
   const session = createSession({ base: "https://example.test", fetchImpl: fakeFetch([{ status: 404, body: envelope({ endpoint: "receipts/x", error: { code: "not_found", message: "No receipt with that id" } }) }]) });
   await assert.rejects(toolVerifyReceipt(session, {}), /exactly one of id or receipt/);

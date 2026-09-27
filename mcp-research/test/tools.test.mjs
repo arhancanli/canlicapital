@@ -23,7 +23,7 @@ const INDEX = {
   ],
   archival_papers: [{ title: "Clustered Insider Purchases", path: "/publication/equity-insider-activity/v0.1.0" }],
 };
-const PAPER = "# Title\n\nIntro.\n\n## Method\n\nMethod text.\n\n## Claim boundary\n\nWhat it does not establish.\n";
+const PAPER = "# Title\n\nIntro.\n\n## Method\n\nMethod text.\n\n### Data\n\nData text.\n\n### Tests\n\nTest text.\n\n## Claim boundary\n\nWhat it does not establish.\n";
 const ENVELOPE = (data, limits) => ({ schema: "canli.api.v1", generated_at: "2026-09-26T00:00:00Z", canonical_human_page: "https://canlicapital.com/trials", limits, data });
 
 function site(overrides = {}) {
@@ -70,12 +70,16 @@ test("the index is fetched once per session; later calls read the cache", async 
 test("get_paper returns the text with its headings, one section on request, and a truncation flag", async () => {
   const { session } = site();
   const whole = read(await toolGetPaper(session, { slug: "alphamax-equity-momentum-lineage" }));
-  assert.deepEqual(whole.headings, ["Method", "Claim boundary"]);
+  assert.deepEqual(whole.headings, ["Method", "Data", "Tests", "Claim boundary"]);
   assert.equal(whole.text, PAPER);
   assert.equal(whole.truncated, false);
   const part = read(await toolGetPaper(session, { slug: "alphamax-equity-momentum-lineage", section: "claim" }));
   assert.equal(part.section, "Claim boundary");
   assert.equal(part.text, "## Claim boundary\n\nWhat it does not establish.\n");
+  const method = read(await toolGetPaper(session, { slug: "alphamax-equity-momentum-lineage", section: "method" }));
+  assert.equal(method.text, "## Method\n\nMethod text.\n\n### Data\n\nData text.\n\n### Tests\n\nTest text.\n", "a ## section keeps its ### subsections");
+  const data = read(await toolGetPaper(session, { slug: "alphamax-equity-momentum-lineage", section: "data" }));
+  assert.equal(data.text, "### Data\n\nData text.\n", "a ### section ends at the next ###");
   const short = read(await toolGetPaper(session, { slug: "alphamax-equity-momentum-lineage", max_chars: 500 }));
   assert.equal(short.truncated, false);
   const { session: big } = site({ "/research/long.md": `# Long\n\n${"x".repeat(2000)}` });
@@ -91,7 +95,7 @@ test("get_paper refuses a path, an unknown section and a missing paper", async (
   await assert.rejects(toolGetPaper(session, { slug: "a/b" }), /get_paper/);
   assert.equal(calls.length, 0, "an invalid slug never reaches the network");
   await assert.rejects(toolGetPaper(session, { slug: "alphamax-equity-momentum-lineage", section: "nonexistent" }), /no heading/);
-  await assert.rejects(toolGetPaper(session, { slug: "no-such-paper" }), /not found/);
+  await assert.rejects(toolGetPaper(session, { slug: "no-such-paper" }), /no paper has the slug no-such-paper\. search_research or list_topics returns the slugs/);
 });
 
 test("the ledger, the live record and the chain head carry their sources' own limits", async () => {
