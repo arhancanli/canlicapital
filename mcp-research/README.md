@@ -27,6 +27,12 @@ performance or investment advice.
 claude mcp add canli-research -- npx -y canli-research-mcp
 ```
 
+Hosted, no install (claude.ai connectors, ChatGPT, Cursor, or any client that takes a URL):
+
+```bash
+claude mcp add --transport http canli-research https://canlicapital.com/mcp/research
+```
+
 Any MCP client that spawns a process works the same way: `npx -y canli-research-mcp`.
 
 ## Cost and speed

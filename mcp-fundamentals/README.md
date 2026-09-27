@@ -21,6 +21,12 @@ Claude Code:
 claude mcp add canli-fundamentals -- npx -y canli-fundamentals-mcp
 ```
 
+Hosted, no install (claude.ai connectors, ChatGPT, Cursor, or any client that takes a URL):
+
+```bash
+claude mcp add --transport http canli-fundamentals https://canlicapital.com/mcp/fundamentals
+```
+
 Claude Desktop, Cursor or any MCP client (`mcpServers` in its config):
 
 ```json

@@ -343,7 +343,10 @@ export function mcpFamily(root = ROOT) {
     const source = readFileSync(resolve(root, dir, "src/server.mjs"), "utf8");
     const tools = [...source.matchAll(/\btool\("([a-z_]+)",/g)].map((m) => m[1]);
     if (!tools.length) throw new Error(`${dir}/src/server.mjs registers no tools this page can list`);
-    return { dir, title, anchor: dir, name: pkg.name, description: pkg.description, mcpName: pkg.mcpName, tools };
+    // The hosted URL, when the package has one, comes from the registry entry it publishes.
+    const registry = JSON.parse(readFileSync(resolve(root, dir, "server.json"), "utf8"));
+    const hosted = (registry.remotes ?? []).find((r) => r.type === "streamable-http")?.url ?? null;
+    return { dir, title, anchor: dir, name: pkg.name, description: pkg.description, mcpName: pkg.mcpName, tools, hosted };
   });
 }
 
@@ -351,7 +354,8 @@ function mcpFamilyBlock() {
   const items = mcpFamily().map((s) => {
     const add = `claude mcp add ${s.name.replace(/-mcp$/, "")} -- npx -y ${s.name}`;
     return `    <article class="dev-endpoint" id="${esc(s.anchor)}"><h4><code>${esc(s.name)}</code>: ${esc(s.title)}</h4><p>${esc(s.description)} Tools: ${s.tools.map((t) => `<code>${esc(t)}</code>`).join(", ")}.</p>
-      <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Add ${esc(s.name)} to Claude Code"><code>${esc(add)}</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Add ${esc(s.name)} to Claude Code"><code>${esc(add)}</code></pre></div>${s.hosted ? `
+      <div class="dev-snippet"><p class="dev-snippet-label">Hosted, no install: ${esc(s.hosted)}</p><pre class="dev-code" tabindex="0" aria-label="Hosted ${esc(s.name)} endpoint"><code>${esc(`claude mcp add --transport http ${s.name.replace(/-mcp$/, "")} ${s.hosted}`)}</code></pre></div>` : ""}
       <p class="dev-note"><a href="https://www.npmjs.com/package/${esc(s.name)}" rel="noreferrer">npm</a>, <a href="https://registry.modelcontextprotocol.io/v0/servers?search=${esc(s.mcpName)}" rel="noreferrer">MCP Registry</a>, <a href="https://github.com/arhancanli/canlicapital/tree/main/${esc(s.dir)}" rel="noreferrer">Source</a>.</p></article>`;
   });
   return `<section class="dev-section" id="mcp-family">

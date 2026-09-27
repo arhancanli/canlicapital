@@ -31,6 +31,8 @@ New:
   most recently used companies.
 - `initialize` returns a title, the documentation page and icons in `serverInfo`, and the registry
   entry carries the same title, website and icons.
+- Hosted at https://canlicapital.com/mcp/fundamentals over MCP Streamable HTTP (stateless, no key), declared
+  as a remote in the registry entry.
 
 ## 0.1.0
 

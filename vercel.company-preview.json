@@ -300,6 +300,14 @@
       "destination": "/api/mcp"
     },
     {
+      "source": "/mcp/fundamentals",
+      "destination": "/api/mcp-fundamentals"
+    },
+    {
+      "source": "/mcp/research",
+      "destination": "/api/mcp-research"
+    },
+    {
       "source": "/api/v1/status",
       "destination": "/api/v1/status.json"
     },
@@ -343,6 +351,14 @@
     },
     "api/mcp.js": {
       "includeFiles": "mcp/{package.json,src/**}",
+      "maxDuration": 30
+    },
+    "api/mcp-fundamentals.js": {
+      "includeFiles": "mcp-fundamentals/{package.json,src/**}",
+      "maxDuration": 30
+    },
+    "api/mcp-research.js": {
+      "includeFiles": "mcp-research/{package.json,src/**}",
       "maxDuration": 30
     }
   }

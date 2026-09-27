@@ -36,13 +36,16 @@ integrations
 # at build time (the assistant block and the published version), so those two stay in the upload.
 mcp/*
 # The research and fundamentals MCP packages are published to npm on their own; the site never
-# imports them. The /developers generator reads each one's package.json and src/server.mjs (name,
-# description, tool names), so those two stay in the upload.
+# imports them. The /developers generator reads each one's package.json, server.json and
+# src/server.mjs (name, description, hosted URL, tool names), and the hosted endpoints
+# (api/mcp-fundamentals.js, api/mcp-research.js) import src, so those stay in the upload.
 mcp-research/*
 !mcp-research/package.json
+!mcp-research/server.json
 !mcp-research/src
 mcp-fundamentals/*
 !mcp-fundamentals/package.json
+!mcp-fundamentals/server.json
 !mcp-fundamentals/src
 !mcp/README.md
 !mcp/package.json

@@ -1,7 +1,7 @@
 // Every tool against a companyfacts fixture whose answers are known, through the same fetch path
 // the live server uses. Each case reproduces a failure the 2026-09-27 audit found in real filings.
 import assert from "node:assert/strict";
-import { mkdtempSync, readdirSync } from "node:fs";
+import { mkdtempSync, readdirSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -204,6 +204,14 @@ test("the disk cache is keyed by hash, and memory keeps at most eight companies"
   for (const cik of extra) await toolListConcepts(many.s, { company: cik });
   assert.equal(many.s.companies.size, 8);
   assert.ok(!many.s.companies.has(extra[0]), "the least recently used company was evicted");
+});
+
+test("the disk cache is private: an owner-only directory and owner-only files", async () => {
+  const dir = join(mkdtempSync(join(tmpdir(), "canli-fundamentals-")), "cache");
+  await toolListConcepts(createSession({ base: "https://example.test", fetchImpl: fakeFetch().impl, cacheDir: dir }), { company: "FIX" });
+  assert.equal(statSync(dir).mode & 0o777, 0o700);
+  assert.equal(statSync(join(dir, `${SHA}.json.gz`)).mode & 0o777, 0o600);
+  assert.deepEqual(readdirSync(dir), [`${SHA}.json.gz`], "no temporary file is left behind");
 });
 
 test("inputs are validated before anything is fetched", async () => {
