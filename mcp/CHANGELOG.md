@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.8.1 (2026-09-27)
+
+Fixes from an outside audit, each with a test that fails without it:
+
+- `audit_backtest` with `returns_file`: a blank or NaN cell in a column of numbers made the reader
+  drop that column, and with one other numeric column left (a benchmark) it audited that one
+  instead, reporting success. Such a column is now refused, naming its lines, and `source` gives
+  `returns_column_position`. A file without a header whose first column is a date no longer loses
+  its first row: a row is a header only when its cells differ in kind from the rows below.
+- `verify_receipt` answers a malformed receipt with `valid: false`, `well_formed: false` and what
+  is missing, instead of an internal error.
+- Inline `matrix` and `variants` are capped at 200 variants per row, the API's quota, so a call
+  can no longer exceed the stdio buffer and end the server; larger searches use `variants_file`.
+- `validate_deflated_sharpe` and `validate_track_record` describe `skew` as their own field again
+  (the luck-trials wording had overwritten it); a test fails on any duplicated description key.
+- `company_financial_history`: when the ticker index cannot be reached, the error says to retry,
+  check `service_status`, or pass the SEC CIK.
+
 ## 0.8.0 (2026-09-27)
 
 - Built on the MCP SDK's v2 server package (`@modelcontextprotocol/server` 2.1.0) instead of

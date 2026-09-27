@@ -47,7 +47,7 @@ export const FIELD_DESCRIPTIONS = Object.freeze({
   autocorrelation: "First-order autocorrelation of the returns, -1 to 1; default 0. Corrects the annualized Sharpe as Lo (2002).",
   other_sharpes: "Annualized Sharpe ratios of the other tests, over the same observations; adds the Holm and BHY haircuts.",
   lt_trials: "Independent trials tried; adds the chance that the best of them reached this Sharpe by luck.",
-  skew: "Skewness of the returns; below -0.5 the reading warns that the counts are too generous.",
+  lt_skew: "Skewness of the returns; below -0.5 the reading warns that the counts are too generous.",
   variants: "Optional returns of every variant tried, this one included, as fractions: one row per period, one column per variant. Adds the overfitting check.",
   returns_file: "Path to a CSV or JSON file of the returns on the machine running this server, instead of returns. Not available on the hosted endpoint.",
   returns_column: "Header name or 1-based position of the returns column when returns_file has several numeric columns.",
@@ -108,7 +108,7 @@ export const deflatedSharpeToolShape = z
 
 export const overfittingInput = z
   .object({
-    matrix: z.array(z.array(z.number())).min(2).max(20000).describe(d.matrix),
+    matrix: z.array(z.array(z.number()).max(200)).min(2).max(20000).describe(d.matrix),
     n_splits: z.number().int().positive().optional().describe(d.n_splits),
     max_combinations: z.number().int().positive().max(2000).optional().describe(d.max_combinations),
     seed: z.number().optional().describe(d.seed),
@@ -192,7 +192,7 @@ export const luckTrialsInput = z
     periods_per_year: z.number().min(1).max(10000).describe(d.periods_per_year),
     observations: z.number().int().min(3).max(1000000).describe(d.hc_observations),
     effective_independent_trials: z.number().int().min(1).max(1000000000).optional().describe(d.lt_trials),
-    skew: z.number().min(-100).max(100).optional().describe(d.skew),
+    skew: z.number().min(-100).max(100).optional().describe(d.lt_skew),
     autocorrelation: z.number().gt(-1).lt(1).optional().describe(d.autocorrelation),
   })
   .strict();
@@ -212,7 +212,7 @@ export const auditBacktestToolShape = z
     cross_trial_sharpe_sd_annualized: z.number().min(0).max(10).describe(d.cross_trial_sharpe_sd_annualized),
     benchmark_sharpe_annualized: z.number().min(-10).max(10).optional().describe(d.benchmark_sharpe_annualized),
     confidence: z.number().gt(0).lt(1).optional().describe(d.confidence),
-    variants: z.array(z.array(z.number())).min(2).max(20000).optional().describe(d.variants),
+    variants: z.array(z.array(z.number()).max(200)).min(2).max(20000).optional().describe(d.variants),
     variants_file: z.string().min(1).max(4096).optional().describe(d.variants_file),
     n_splits: z.number().int().positive().optional().describe(d.n_splits),
   })
