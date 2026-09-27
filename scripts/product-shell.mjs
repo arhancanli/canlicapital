@@ -153,7 +153,21 @@ const DEVELOPER_STRIP = `  <section class="cc-footer__dev" aria-labelledby="cc-f
   </section>
 `;
 
-export function renderProductShellFooter({ developerStrip = true } = {}) {
+// companies: the home, research and developer pages pass the company records searchers already
+// find (lib/demand-companies.mjs, read by their build step), one click from the pages Google
+// crawls most. Other pages pass none and keep their footer bytes. The list is passed in rather
+// than read here because this module is also bundled for the browser by design-system/.
+function renderDemandCompanies(companies) {
+  if (!companies.length) return '';
+  return `    <nav aria-label="Company records searched most">
+      <span>Company records</span>
+${companies.map(company => `      <a href="${company.href}">${company.label.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</a>`).join('\n')}
+      <a href="/companies">All companies</a>
+    </nav>
+`;
+}
+
+export function renderProductShellFooter({ developerStrip = true, companies = [] } = {}) {
   return `<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
 ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary>${renderOpticalHandoff()}</details>
   <div class="cc-footer__lead">
@@ -206,7 +220,7 @@ ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><s
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
       <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
     </nav>
-  </div>
+${renderDemandCompanies(companies)}  </div>
   <div class="cc-footer__boundary">
     <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
     <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper

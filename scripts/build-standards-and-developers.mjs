@@ -23,6 +23,7 @@ import {
 import { KEY_LIFECYCLE_TEXT, LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
 import { MANIFEST, SNIPPET_LABELS } from "../api/_lib/manifest.js";
 import { renderAll, renderCurl, renderJs, renderPython } from "./render-snippets.mjs";
+import { demandCompanies } from "./lib/demand-companies.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
@@ -742,7 +743,7 @@ ${renderProductShellHeader({ active: "developers" })}
       is the fastest way to get it fixed and recorded.</p>
   </section>
 </main>
-${renderProductShellFooter()}
+${renderProductShellFooter({ companies: demandCompanies().companies })}
 </body>
 </html>
 `;
