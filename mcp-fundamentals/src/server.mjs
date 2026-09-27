@@ -12,7 +12,7 @@
 // Built to the family's cost and latency rules: five tools, so the tool list an agent re-reads
 // every turn stays small and byte-identical; one snapshot download per company, cached on disk by
 // its hash (a hash-named file can never go stale); compact columnar results.
-import { createHash } from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 import { mkdirSync, readFileSync, realpathSync, renameSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -137,9 +137,12 @@ async function snapshotBytes(session, sha, snapshotPath) {
   if (sha256(raw) !== sha) throw new Error(`The SEC snapshot for this company does not match the SHA-256 its record publishes (${sha.slice(0, 12)}); nothing was used.`);
   if (file) {
     try {
-      mkdirSync(session.cacheDir, { recursive: true });
-      const tmp = `${file}.${process.pid}.tmp`;
-      writeFileSync(tmp, isGzip(body) ? body : gzipSync(raw));
+      // Owner-only directory; the temporary file gets an unpredictable name and is created
+      // exclusively (never written through a file or link that is already there), then renamed
+      // into place. A cached file is re-hashed on every read, so it can never be trusted blindly.
+      mkdirSync(session.cacheDir, { recursive: true, mode: 0o700 });
+      const tmp = `${file}.${randomBytes(8).toString("hex")}.tmp`;
+      writeFileSync(tmp, isGzip(body) ? body : gzipSync(raw), { flag: "wx", mode: 0o600 });
       renameSync(tmp, file);
     } catch {
       // A cache that cannot be written only costs a download next time.
