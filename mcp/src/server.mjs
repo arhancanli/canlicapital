@@ -19,6 +19,10 @@ import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolSh
 export const DEFAULT_BASE = "https://canlicapital.com";
 export const SERVER_NAME = "canlicapital-validation-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
+// Sent once in initialize; clients such as Claude Code put it in the system prompt, so the model
+// knows the first call to make even when tool definitions are deferred. Byte-stable across runs.
+export const SERVER_INSTRUCTIONS = "Checks whether a backtest's result is real. For one strategy's returns, call audit_backtest, pointing returns_file at the backtest's CSV instead of pasting long series. For a Sharpe found by a search, validate_deflated_sharpe needs how many independent variants were tried and how their Sharpes spread; with every variant's returns, validate_overfitting gives the probability of backtest overfitting. Set CANLI_LOCAL=1 to compute on this machine with no network. Every result says what it does not establish; quote those limits with the number.";
+
 // How the server introduces itself in initialize: a readable title, the page that documents it
 // and its icon, so clients and directories that read serverInfo show more than a package name.
 export const SERVER_INFO = Object.freeze({
@@ -705,7 +709,7 @@ export function registerAll(server, session) {
 }
 
 export function createServer(session = createSession()) {
-  const server = new McpServer(SERVER_INFO);
+  const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
   registerAll(server, session);
   return server;
 }
