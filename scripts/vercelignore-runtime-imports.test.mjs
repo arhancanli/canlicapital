@@ -63,3 +63,10 @@ test("the check itself can fail: an excluded path is reported", () => {
   // dist/ is excluded and, unlike node_modules in some checkouts, never a symbolic link.
   assert.deepEqual(ignoredByVercel(["dist/example.js"]), ["dist/example.js"]);
 });
+
+test("the files the /developers generator reads from the MCP family packages are uploaded", () => {
+  const inputs = ["mcp-fundamentals", "mcp-research"].flatMap((dir) => [`${dir}/package.json`, `${dir}/src/server.mjs`]);
+  for (const file of inputs) assert.ok(existsSync(join(ROOT, file)), `${file} is missing`);
+  assert.deepEqual(ignoredByVercel(inputs), [], "these build inputs are excluded by .vercelignore");
+  assert.deepEqual(ignoredByVercel(["mcp-fundamentals/test/tools.test.mjs", "mcp-research/README.md"]).length, 2, "the rest of each package stays out of the upload");
+});

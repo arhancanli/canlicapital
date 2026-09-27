@@ -7,8 +7,9 @@ filing says, and what was **known on a given date**. Every value comes with the 
 That difference matters. Apple's diluted EPS for fiscal 2018 was 11.91 in the annual reports of
 2018 and 2019, and 2.98 in the 2020 report, after its 4-for-1 split. A backtest that reads today's
 data for a 2018 decision uses a number nobody saw in 2018. Apple's accounts payable at the end of
-fiscal 2017 was first reported as $49.05B and changed to $44.24B a year later. Across Apple's annual
-figures, 232 reported periods changed after their first report.
+fiscal 2017 was first reported as $49.05B and changed to $44.24B a year later. Of 3,827 annual
+periods Apple has reported, 190 now read differently from their first report, not counting 35
+per-share and share-count changes from its stock splits.
 
 ```bash
 npx -y canli-fundamentals-mcp
@@ -31,21 +32,46 @@ Claude Desktop, Cursor or any MCP client (`mcpServers` in its config):
 ```
 
 Then ask things like "What did Apple report as of 31 December 2018?", "Which of Microsoft's annual
-numbers were restated?" or "Show every filing that reported Apple's 2017 accounts payable".
+numbers were restated?", "Show Toyota's revenue since 2015" or "Show every filing that reported
+Apple's 2017 accounts payable".
 
 ## Tools
 
 | Tool | What it returns |
 |---|---|
-| `known_as_of` | For each concept, the most recent period filed on or before a date and its value as it stood then, flagged if later restated. Defaults to ten common concepts. The point-in-time primitive for backtests. |
-| `history` | One concept over time, newest first: `first_reported` (default), `latest`, or `as_of` a date. Annual, quarterly or all periods. |
-| `restatements` | Periods whose value changed in a later filing, with first and latest values and the percent change. Scans every concept when none is given. |
-| `vintages` | Every filing that reported one period of one concept, oldest first. |
-| `list_concepts` | The concepts a company reports, with units, period counts, date range and how many periods changed. |
+| `known_as_of` | For each measure, the most recent period filed on or before a date and its value as it stood then. Flags values later restated (`changed_after`) and measures the company stopped reporting (`stale`). Defaults to ten common measures. The point-in-time primitive for backtests. |
+| `history` | One measure over time, newest first: `first_reported` (default), `latest`, or as known on an `as_of` date. Annual, quarterly or all periods. |
+| `restatements` | Periods whose latest value differs from the first report, with both values, the percent change and a cause: `split`, `split_likely`, `tag_change`, or none (a restatement, reclassification or correction). Scans every concept when none is given. |
+| `vintages` | Every filing that reported one period of one measure, oldest first. |
+| `list_concepts` | The concepts a company reports and the plain names it supports, with units, period counts, date range and restated-period counts. |
 
-Companies are named by ticker (`AAPL`) or SEC CIK (`320193`). Concepts are XBRL names (`Revenues`,
-`NetIncomeLoss`, `Assets`), us-gaap by default; prefix another taxonomy, for example
-`dei:EntityCommonStockSharesOutstanding`. All five tools are read-only.
+Companies are named by ticker (`AAPL`) or SEC CIK (`320193`). All five tools are read-only.
+
+### Naming a measure
+
+Use a **plain name** and the server follows the measure across the tags a company has used for it.
+Apple's revenue was `SalesRevenueNet` until fiscal 2017 and
+`RevenueFromContractWithCustomerExcludingAssessedTax` from 2018; Toyota's figures moved from us-gaap
+to IFRS. Each value names the tag it came from.
+
+| Plain name | Tags, in order of preference |
+|---|---|
+| `revenue` | Revenues, RevenueFromContractWithCustomerExcludingAssessedTax, RevenueFromContractWithCustomerIncludingAssessedTax, SalesRevenueNet, ifrs-full:Revenue, ifrs-full:RevenueFromContractsWithCustomers |
+| `net_income` | NetIncomeLoss, ifrs-full:ProfitLossAttributableToOwnersOfParent, ProfitLoss, ifrs-full:ProfitLoss |
+| `operating_income` | OperatingIncomeLoss, ifrs-full:ProfitLossFromOperatingActivities |
+| `gross_profit` | GrossProfit, ifrs-full:GrossProfit |
+| `eps_diluted`, `eps_basic` | EarningsPerShareDiluted or Basic, ifrs-full:DilutedEarningsLossPerShare or BasicEarningsLossPerShare |
+| `assets`, `liabilities` | Assets or Liabilities, and the ifrs-full tags of the same name |
+| `equity` | StockholdersEquity, ifrs-full:EquityAttributableToOwnersOfParent, StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest, ifrs-full:Equity |
+| `cash` | CashAndCashEquivalentsAtCarryingValue, ifrs-full:CashAndCashEquivalents, CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents |
+| `operating_cash_flow` | NetCashProvidedByUsedInOperatingActivities, ifrs-full:CashFlowsFromUsedInOperatingActivities |
+| `diluted_shares` | WeightedAverageNumberOfDilutedSharesOutstanding, ifrs-full:AdjustedWeightedAverageShares |
+| `shares_outstanding` | dei:EntityCommonStockSharesOutstanding, CommonStockSharesOutstanding |
+
+Common variants work too (`sales`, `revenues`, `EPS`, `total_assets`). Any **XBRL tag** also works
+(`AccountsPayableCurrent`), us-gaap by default; a tag that exists in two taxonomies is read from
+both, and a prefix picks one (`us-gaap:Assets`, `dei:EntityCommonStockSharesOutstanding`). A tag the
+company stopped using comes back with `newer_series`, naming the plain name that continues it.
 
 ## Where the numbers come from, and how you can check them
 
@@ -65,18 +91,33 @@ How periods are handled:
 
 - A period is its start and end date. A quarter and a year-to-date figure that end on the same day
   are different periods, and values are never merged across them.
-- Durations of 350 to 380 days are annual (52- and 53-week years included), 80 to 100 days
-  quarterly, and anything else (six- and nine-month year-to-date figures) appears only under
-  `periods: "all"`.
+- Durations of 350 to 380 days are annual (52- and 53-week years included). Durations of 80 to 125
+  days are quarterly, which covers 12- to 17-week quarters such as Kroger's 16-week first quarter.
+  Anything else (six- and nine-month year-to-date figures) appears only under `periods: "all"`.
 - A balance (an instant) takes the kind of the report that first carried it: year-end balances are
-  first reported in annual reports, quarter-end balances in 10-Qs.
-- `first_reported` is the earliest filing by filed date, then accession number. `as_of` counts only
-  filings made on or before the date.
+  first reported in annual reports, interim balances in 10-Qs and 6-Ks.
+- `first_reported` is the earliest filing by filed date, then accession number. With `as_of`, only
+  filings made on or before that date exist, for every basis, so nothing filed later can leak in.
+- When one filing reports a period under two tags of a plain name, the value comes from the tag
+  that first reported the period, so a second definition in the same filing is not read as a
+  revision.
+- Filing-fee exhibits (the `ffd` taxonomy) and registration statements (424B prospectuses, S- and
+  F- forms) are left out: they repeat facts that are not periodic results.
+- A split is recognised when the change matches a split ratio the company reported
+  (`StockholdersEquityNoteStockSplitConversionRatio1`). With no reported ratio, a per-share or share
+  change by a whole ratio from 2 to 20 is marked `split_likely`. Both are left out of
+  `restatements` unless `include_splits` is set. A value that changed and later went back to its
+  first report is counted in `changed_then_reverted`, not listed.
 
 ## Limits
 
 - Values are as the SEC's companyfacts API reports them in the snapshot named with each result.
-  Filings made after the snapshot date are missing, so check `snapshot.fetched_at`.
+  Filings made after the snapshot date are missing: each result gives the snapshot's `age_days`,
+  and `snapshot_note` says so when `as_of` is later than the snapshot.
+- `tag_change` means the first and latest values come from different tags of a plain name. That can
+  be a real restatement or two definitions of the measure; read both filings.
+- Results are capped at about 14,000 characters of rows, newest first; `truncated` says when rows
+  were cut.
 - `filed` is the date a filing reached EDGAR. To avoid lookahead, treat a value as known from the
   next trading day after it was filed.
 - A changed value can be a restatement, a reclassification or a correction; the accession number
@@ -89,7 +130,7 @@ How periods are handled:
 
 | Variable | Default | What it does |
 |---|---|---|
-| `CANLI_CACHE_DIR` | `~/.cache/canli-fundamentals` | Where snapshots are cached, named by their SHA-256, so a cached file can never go stale. Set it to an empty value to keep nothing on disk. |
+| `CANLI_CACHE_DIR` | `~/.cache/canli-fundamentals` | Where snapshots are cached, named by their SHA-256, so a cached file can never go stale. Set it to an empty value to keep nothing on disk. Memory holds the eight most recently used companies. |
 | `CANLI_API_BASE` | `https://canlicapital.com` | The site to read from. |
 
 ## Part of the Canli MCP family

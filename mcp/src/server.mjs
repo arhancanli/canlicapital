@@ -349,7 +349,7 @@ export async function toolAuditBacktest(session, args) {
     checks,
     ...(input.returns_file || input.variants_file
       ? { source: {
-          ...(returnsRead ? { returns_file: input.returns_file, observations: returns.length, ...(returnsRead.skipped.length ? { skipped_row_counter_columns: returnsRead.skipped } : {}) } : {}),
+          ...(returnsRead ? { returns_file: input.returns_file, returns_column_position: returnsRead.column, observations: returns.length, ...(returnsRead.skipped.length ? { skipped_row_counter_columns: returnsRead.skipped } : {}) } : {}),
           ...(variantsRead ? { variants_file: input.variants_file, variants: variants[0].length, periods: variants.length, ...(variantsRead.skipped.length ? { skipped_variant_row_counter_columns: variantsRead.skipped } : {}) } : {}),
         } }
       : {}),
@@ -372,7 +372,21 @@ export async function toolVerifyReceipt(session, args) {
     data = response.envelope?.data;
   }
   const endpoint = String(data?.endpoint ?? "").replace(/^\/api\/v1\//, "");
-  const result = verifyReceipt({ ...data, endpoint }, session.receiptKeys ?? RECEIPT_KEYS.keys);
+  // A receipt missing a field (output, bindings, input_sha256) cannot be hashed, and that is a
+  // failed check, not a tool error: the answer is still "not issued for this content".
+  let result;
+  try {
+    result = verifyReceipt({ ...data, endpoint }, session.receiptKeys ?? RECEIPT_KEYS.keys);
+  } catch {
+    const missing = ["id", "endpoint", "input_sha256", "output", "bindings", "signature"].filter((k) => data?.[k] === undefined);
+    return asText({
+      receipt_id: data?.id ?? null,
+      valid: false,
+      checks: { well_formed: false, id_matches_content: false, signature_valid: false, key_published: false },
+      key_id: data?.signature?.key_id ?? null,
+      meaning: `The receipt is not well formed${missing.length ? `: it has no ${missing.join(", ")}` : ""}, so it cannot be checked. Send the whole receipt object as get_receipt or the validation result returned it, or send its id.`,
+    });
+  }
   return asText({
     receipt_id: data?.id ?? null,
     valid: result.valid,
@@ -408,7 +422,7 @@ async function resolveTicker(session, ticker) {
     try {
       res = await session.fetchImpl(`${session.base}/api/v1/company-tickers.json`, { headers: { Accept: "application/json" }, signal, redirect: "error" });
     } catch {
-      throw new Error(signal.aborted ? "company_financial_history: the ticker index request timed out" : "company_financial_history: could not reach the ticker index");
+      throw new Error(`company_financial_history: ${signal.aborted ? "the ticker index request timed out" : "could not reach the ticker index"} at ${session.base}. Retry, check service_status, or pass the SEC CIK instead of a ticker.`);
     }
     if (!res.ok) throw new Error(`company_financial_history: the ticker index returned HTTP ${res.status}`);
     session.tickerIndex = await res.json();
