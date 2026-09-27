@@ -50,8 +50,23 @@ Apple's 2017 accounts payable".
 | `restatements` | Periods whose latest value differs from the first report, with both values, the percent change and a cause: `split`, `split_likely`, `tag_change`, or none (a restatement, reclassification or correction). Scans every concept when none is given. |
 | `vintages` | Every filing that reported one period of one measure, oldest first. |
 | `list_concepts` | The concepts a company reports and the plain names it supports, with units, period counts, date range and restated-period counts. |
+| `find_company` | Companies matching a name, ticker or CIK, best first, with their CIKs and tickers, and which one the other tools would read. |
 
-Companies are named by ticker (`AAPL`) or SEC CIK (`320193`). All five tools are read-only.
+All six tools are read-only.
+
+### Naming a company
+
+`company` takes a ticker (`AAPL`), an SEC CIK (`320193`) or a name (`Exxon Mobil`, `Alphabet`,
+`Goldman Sachs`). Names are compared without case, punctuation or trailing legal words (Inc, Corp,
+Holdings), and a result read by name says how it was resolved in `company.matched`. A name is used
+only when one company is clearly meant: the only company with that name or name start, or the only
+one of them with a current ticker (Alphabet Inc. rather than Alphabet Holding Company). Otherwise
+the error lists the candidates with their CIKs, and `find_company` shows them ranked.
+
+Some tickers now belong to companies outside the reference. `XOM` is the SEC's ticker for
+ExxonMobil Holdings Corp (CIK 2115436), a new holding company; the server reads the covered filer
+with the same name, Exxon Mobil Corporation (CIK 34088), and says so. Former tickers are not listed:
+search by name (`Twitter`) or use the CIK.
 
 ### Naming a measure
 
@@ -85,13 +100,21 @@ For every company in its reference, [canlicapital.com](https://canlicapital.com/
 the SEC's XBRL companyfacts response byte for byte, as a gzip snapshot, and names the snapshot's
 SHA-256 in the company's record. This server:
 
-1. resolves the ticker from `https://canlicapital.com/api/v1/company-tickers.json`;
+1. resolves a ticker from `https://canlicapital.com/api/v1/company-tickers.json`, and a name from
+   the company name index at `/api/v1/company-names.json`;
 2. reads the company record at `/company-data/{CIK}.json`;
 3. downloads the snapshot it names and refuses it unless its SHA-256 matches;
 4. computes everything else on your machine.
 
 Those GETs are the only network traffic. Each result names the snapshot (its date, hash, URL and the
-SEC URL it came from), so you can fetch the same file from the SEC and compare.
+SEC URL it came from), so you can fetch the same file from the SEC and compare. Snapshots change
+when the company reference is released again; `snapshot.age_days` on every result says how old the
+one you read is.
+
+The ticker list, the name index and company records are kept on disk and used for six hours without
+asking, then revalidated by their ETag; if the site cannot be reached, the copy on disk is used.
+With the disk warm, the first call for a company in a new process took 38 to 72 ms in our
+measurement (AAPL, JPM, MSFT).
 
 How periods are handled:
 
@@ -122,21 +145,22 @@ How periods are handled:
   and `snapshot_note` says so when `as_of` is later than the snapshot.
 - `tag_change` means the first and latest values come from different tags of a plain name. That can
   be a real restatement or two definitions of the measure; read both filings.
-- Results are capped at about 14,000 characters of rows, newest first; `truncated` says when rows
-  were cut.
+- Results are capped at 10,000 characters of rows, newest first; `truncated` says when rows were
+  cut. `list_concepts` and `restatements` page with `offset` and give `next_offset` while rows
+  remain.
 - `filed` is the date a filing reached EDGAR. To avoid lookahead, treat a value as known from the
   next trading day after it was filed.
 - A changed value can be a restatement, a reclassification or a correction; the accession number
   names the filing to read.
-- Coverage is the SEC filers in the Canli company reference (6,415 tickers). A company outside it
-  returns an error naming its CIK.
+- Coverage is the 12,738 SEC filers in the Canli company reference, 5,277 of them with a current
+  ticker (6,415 tickers). A company outside it returns an error naming its CIK.
 - Company-reported data. Not investment advice.
 
 ## Settings
 
 | Variable | Default | What it does |
 |---|---|---|
-| `CANLI_CACHE_DIR` | `~/.cache/canli-fundamentals` | Where snapshots are cached, named by their SHA-256, so a cached file can never go stale. Set it to an empty value to keep nothing on disk. Memory holds the eight most recently used companies. |
+| `CANLI_CACHE_DIR` | `~/.cache/canli-fundamentals` | Where snapshots (named by their SHA-256, so a cached file can never go stale) and the ticker list, name index and records (revalidated after six hours) are cached, owner-only. Set it to an empty value to keep nothing on disk. Memory holds the eight most recently used companies. |
 | `CANLI_API_BASE` | `https://canlicapital.com` | The site to read from. |
 
 ## Part of the Canli MCP family

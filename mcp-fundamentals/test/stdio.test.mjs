@@ -1,4 +1,4 @@
-// The real server over stdio, as a client meets it: five read-only tools, a small tool list that
+// The real server over stdio, as a client meets it: six read-only tools, a small tool list that
 // is byte-identical on every launch (providers cache it), and every result validated against the
 // output schema the client listed first. The server reads a local copy of the fixture site.
 import assert from "node:assert/strict";
@@ -37,7 +37,7 @@ async function connect(base) {
   return client;
 }
 
-test("five read-only tools, the package version, and a byte-identical list on every launch", async () => {
+test("six read-only tools, the package version, and a byte-identical list on every launch", async () => {
   const list = async () => {
     const client = await connect();
     try {
@@ -48,7 +48,7 @@ test("five read-only tools, the package version, and a byte-identical list on ev
   };
   const first = await list();
   const { tools } = JSON.parse(first.json);
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["history", "known_as_of", "list_concepts", "restatements", "vintages"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["find_company", "history", "known_as_of", "list_concepts", "restatements", "vintages"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.destructiveHint, false, t.name);
@@ -59,12 +59,12 @@ test("five read-only tools, the package version, and a byte-identical list on ev
   assert.equal((await list()).json, first.json);
 });
 
-test("the tool list stays small: under 4500 characters a model reads", async () => {
+test("the tool list stays small: under 5000 characters a model reads (six tools)", async () => {
   const client = await connect();
   try {
     const { tools } = await client.listTools();
     const visible = tools.reduce((n, t) => { const { $schema, ...params } = t.inputSchema; return n + t.description.length + JSON.stringify(params).length; }, 0);
-    assert.ok(visible < 4500, `${visible} characters`);
+    assert.ok(visible < 5000, `${visible} characters`);
   } finally {
     await client.close();
   }
@@ -81,6 +81,8 @@ test("list tools, then call each one: every result passes the schema the client 
         ["restatements", { company: "FIX", include_splits: true }],
         ["vintages", { company: "FIX", concept: "revenue", end: "2019-09-30" }],
         ["list_concepts", { company: "FIX", search: "revenue" }],
+        ["find_company", { query: "Fixture" }],
+        ["known_as_of", { company: "Fixture Corp", as_of: "2020-02-01" }],
       ];
       for (const [name, args] of calls) {
         const r = await client.callTool({ name, arguments: args });
@@ -97,13 +99,16 @@ test("list tools, then call each one: every result passes the schema the client 
   });
 });
 
-test("initialize introduces the server: title, documentation page and icons", async () => {
+test("initialize introduces the server: title, documentation page, icons and instructions", async () => {
   const client = await connect();
   try {
     const info = client.getServerVersion();
     assert.equal(info.title, "Canli Fundamentals");
     assert.match(info.websiteUrl, /^https:\/\/canlicapital\.com\/developers#/);
     assert.ok(info.icons.some((i) => i.src === "https://canlicapital.com/icon-512.png" && i.sizes.includes("512x512")));
+    const { SERVER_INSTRUCTIONS } = await import("../src/server.mjs");
+    assert.equal(client.getInstructions(), SERVER_INSTRUCTIONS, "initialize carries the byte-stable instructions");
+    assert.ok(SERVER_INSTRUCTIONS.length < 700, "instructions stay short: they sit in the system prompt");
   } finally {
     await client.close();
   }

@@ -1,0 +1,79 @@
+{
+  "manifest_version": "0.3",
+  "name": "canli-fundamentals-mcp",
+  "display_name": "Canli Fundamentals",
+  "version": "0.3.0",
+  "description": "SEC company fundamentals point in time: what was first reported, what was known on a date, and every later restatement.",
+  "long_description": "For any value a company reported to the SEC in XBRL: what was first reported, what the latest filing says, and what was known on a given date, each with the filing behind it. Computed on this computer from a hash-checked SEC snapshot served by canlicapital.com; no key or account. Name a company by ticker, CIK or name. Company-reported data, not investment advice.",
+  "author": {
+    "name": "Arhan Canli",
+    "url": "https://canlicapital.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arhancanli/canli-fundamentals-mcp"
+  },
+  "homepage": "https://canlicapital.com/developers#mcp-fundamentals",
+  "documentation": "https://github.com/arhancanli/canlicapital/tree/main/mcp-fundamentals",
+  "support": "https://github.com/arhancanli/canlicapital/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "src/server.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/src/server.mjs"
+      ]
+    }
+  },
+  "tools": [
+    {
+      "name": "known_as_of",
+      "description": "What a company had reported as of a date"
+    },
+    {
+      "name": "history",
+      "description": "One measure over time, as first reported, latest or as of a date"
+    },
+    {
+      "name": "restatements",
+      "description": "Periods whose value changed in a later filing"
+    },
+    {
+      "name": "vintages",
+      "description": "Every filing that reported one period of one measure"
+    },
+    {
+      "name": "list_concepts",
+      "description": "The concepts a company reports and the plain names it supports"
+    },
+    {
+      "name": "find_company",
+      "description": "Find a company's CIK by name, ticker or CIK"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=20.10.0"
+    }
+  },
+  "keywords": [
+    "sec",
+    "edgar",
+    "xbrl",
+    "fundamentals",
+    "point in time",
+    "restatements",
+    "backtesting"
+  ],
+  "license": "MIT",
+  "privacy_policies": [
+    "https://github.com/arhancanli/canlicapital/blob/main/mcp-fundamentals/SECURITY.md"
+  ]
+}

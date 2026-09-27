@@ -13,6 +13,7 @@
   entry carries the same title, website and icons.
 - Hosted at https://canlicapital.com/mcp/research over MCP Streamable HTTP (stateless, no key), declared
   as a remote in the registry entry.
+- Server instructions in `initialize`: which tool to call first, byte-stable.
 
 ## 0.1.0 (2026-09-26)
 

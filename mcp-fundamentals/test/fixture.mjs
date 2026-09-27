@@ -140,13 +140,42 @@ const record = (cik, sha) => Buffer.from(JSON.stringify({
   fetched_at: "2026-09-19T09:30:25.021Z",
 }));
 
+// The site's name index, shaped like public/api/v1/company-names.json, with the cases the real one
+// holds: a covered filer whose ticker the SEC now gives to a new holding company (Exxon Mobil and
+// XOM), names that share a first word (Meta, Toyota), a name that reduces to another's (Alphabet
+// Holding Company), "& Co" (JPMorgan Chase), and a company that no longer trades (Twitter).
+export const EXXON = "0000034088";
+export const NAMES = {
+  schema: "canli.company-names.v1",
+  source: { url: "https://www.sec.gov/files/company_tickers.json", captured: "2026-09-19" },
+  count: 12,
+  columns: ["cik", "name", "tickers"],
+  rows: [
+    [19617, "JPMORGAN CHASE & CO", ["JPM"]],
+    [34088, "Exxon Mobil Corporation", []],
+    [123456, "Fixture Corp", ["FIX"]],
+    [834071, "Toyota Motor Credit Corporation", []],
+    [1067983, "Berkshire Hathaway Inc", ["BRK-B"]],
+    [1094517, "TOYOTA MOTOR CORP/", ["TM"]],
+    [1326801, "Meta Platforms, Inc.", []],
+    [1418091, "Twitter, Inc.", []],
+    [1431959, "Meta Materials Inc.", []],
+    [1598014, "Metallus Inc.", []],
+    [1652044, "Alphabet Inc.", ["GOOGL"]],
+    [2100000, "Alphabet Holding Company, Inc.", []],
+  ],
+  outside: { columns: ["ticker", "cik", "name"], rows: [["XOM", 2115436, "ExxonMobil Holdings Corp"], ["NEWCO", 2200000, "Brand New Holdings Inc"]] },
+};
+
 // extraCiks: more companies that share the same snapshot, to exercise the in-memory cache limit.
-export function files({ sha = SHA, snapshot = gzipSync(RAW), extraCiks = [] } = {}) {
+// names: false serves a site without the name index.
+export function files({ sha = SHA, snapshot = gzipSync(RAW), extraCiks = [], names = true } = {}) {
   const out = {
     "/api/v1/company-tickers.json": Buffer.from(JSON.stringify({ schema: "canli.company-tickers.v1", count: 2, tickers: { FIX: CIK, "BRK-B": "0001067983" } })),
     [`/company-data/${CIK}.json`]: record(CIK, sha),
     [SNAPSHOT_PATH]: snapshot,
   };
+  if (names) out["/api/v1/company-names.json"] = Buffer.from(JSON.stringify(NAMES));
   for (const cik of extraCiks) out[`/company-data/${cik}.json`] = record(cik, sha);
   return out;
 }
