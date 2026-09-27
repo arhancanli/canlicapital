@@ -2,9 +2,9 @@
   "manifest_version": "0.3",
   "name": "canli-fundamentals-mcp",
   "display_name": "Canli Fundamentals",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "SEC company fundamentals point in time: what was first reported, what was known on a date, and every later restatement.",
-  "long_description": "For any value a company reported to the SEC in XBRL: what was first reported, what the latest filing says, and what was known on a given date, each with the filing behind it. Computed on this computer from a hash-checked SEC snapshot served by canlicapital.com; no key or account. Company-reported data, not investment advice.",
+  "long_description": "For any value a company reported to the SEC in XBRL: what was first reported, what the latest filing says, and what was known on a given date, each with the filing behind it. Computed on this computer from a hash-checked SEC snapshot served by canlicapital.com; no key or account. Name a company by ticker, CIK or name. Company-reported data, not investment advice.",
   "author": {
     "name": "Arhan Canli",
     "url": "https://canlicapital.com"
@@ -47,6 +47,10 @@
     {
       "name": "list_concepts",
       "description": "The concepts a company reports and the plain names it supports"
+    },
+    {
+      "name": "find_company",
+      "description": "Find a company's CIK by name, ticker or CIK"
     }
   ],
   "compatibility": {
