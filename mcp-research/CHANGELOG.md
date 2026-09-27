@@ -11,6 +11,8 @@
 - An unknown slug says to use `search_research` or `list_topics`; an unreachable site says to retry.
 - `initialize` returns a title, the documentation page and icons in `serverInfo`, and the registry
   entry carries the same title, website and icons.
+- Hosted at https://canlicapital.com/mcp/research over MCP Streamable HTTP (stateless, no key), declared
+  as a remote in the registry entry.
 
 ## 0.1.0 (2026-09-26)
 
