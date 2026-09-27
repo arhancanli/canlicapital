@@ -9,8 +9,7 @@
 // can honestly offer. The key a request runs under is the caller's own ("Authorization: Bearer
 // <key>") when present, otherwise a shared anonymous key (CANLI_REMOTE_MCP_KEY) with a shared
 // daily quota. The caller's key is forwarded to the validation API and never echoed or logged.
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { McpServer, WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/server";
 import { configuredToolsets, createSession, registerAll, SERVER_NAME, SERVER_VERSION } from "../mcp/src/server.mjs";
 import { BodyError, readJsonBody } from "./_lib/body.js";
 import { inProcessFetch } from "./_lib/in-process-fetch.js";
@@ -84,11 +83,18 @@ export function createHostedHandler({ env = () => process.env, fetchImpl = inPro
     });
     const server = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
     registerAll(server, session);
-    const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
+    const transport = new WebStandardStreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
     res.on("close", () => { transport.close(); server.close(); });
     try {
       await server.connect(transport);
-      await transport.handleRequest(req, res, body);
+      // The SDK's transport speaks web Request/Response; the body is already read and bounded above.
+      const headers = new Headers();
+      for (const [name, value] of Object.entries(req.headers)) if (value !== undefined) headers.set(name, Array.isArray(value) ? value.join(", ") : String(value));
+      const request = new Request(`https://${req.headers.host ?? "canlicapital.com"}${req.url ?? "/mcp"}`, { method: "POST", headers, body: JSON.stringify(body) });
+      const response = await transport.handleRequest(request, { parsedBody: body });
+      res.statusCode = response.status;
+      response.headers.forEach((value, name) => res.setHeader(name, value));
+      res.end(Buffer.from(await response.arrayBuffer()));
     } catch {
       if (!res.headersSent) rpcError(res, 500, -32603, "Internal error");
     }

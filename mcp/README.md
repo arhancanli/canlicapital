@@ -378,6 +378,8 @@ HTTP stub. It neither publishes a package nor issues a production API key.
 
 ## Dependencies
 
-Only `@modelcontextprotocol/sdk` (pinned exact) and `zod` (pinned exact). No other runtime
-dependency is added, and nothing in this package touches the site's root `package.json`,
+Only `@modelcontextprotocol/server` (pinned exact; the MCP SDK's server package, which itself
+depends only on `@modelcontextprotocol/core` and `zod`) and `zod` (pinned exact): four packages in
+the installed tree, where 0.7 and earlier pulled in about 95 through `@modelcontextprotocol/sdk`.
+No other runtime dependency is added, and nothing in this package touches the site's root `package.json`,
 `.vercelignore`, `api/`, `scripts/`, `js/`, or `public/`.

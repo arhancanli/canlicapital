@@ -85,8 +85,8 @@ async function chat(model, messages, tools) {
 }
 
 async function mcpClient() {
-  const { Client } = await import(resolve(HERE, "../../../mcp/node_modules/@modelcontextprotocol/sdk/dist/esm/client/index.js"));
-  const { StdioClientTransport } = await import(resolve(HERE, "../../../mcp/node_modules/@modelcontextprotocol/sdk/dist/esm/client/stdio.js"));
+  const { Client } = await import(resolve(HERE, "../../../mcp/node_modules/@modelcontextprotocol/client/dist/index.mjs"));
+  const { StdioClientTransport } = await import(resolve(HERE, "../../../mcp/node_modules/@modelcontextprotocol/client/dist/stdio.mjs"));
   const client = new Client({ name: "filing-facts-eval", version: "0" });
   await client.connect(new StdioClientTransport({ command: process.execPath, args: [resolve(HERE, "../../../mcp/src/server.mjs")], env: { ...process.env, CANLI_TOOLSETS: "company", CANLI_KEY: "" } }));
   const tools = (await client.listTools()).tools.map((t) => ({ type: "function", function: { name: t.name, description: t.description, parameters: (({ $schema, ...p }) => p)(t.inputSchema) } }));

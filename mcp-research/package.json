@@ -1,6 +1,6 @@
 {
   "name": "canli-research-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server for Canli Capital's open research record: every paper, killed candidate, trial count, the live paper record and its verification chain, each with its own limits.",
   "private": false,
   "type": "module",
@@ -19,7 +19,7 @@
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.30.0",
+    "@modelcontextprotocol/server": "2.1.0",
     "zod": "4.6.5"
   },
   "mcpName": "io.github.arhancanli/canli-research-mcp",
@@ -32,5 +32,17 @@
   "bugs": {
     "url": "https://github.com/arhancanli/canlicapital/issues"
   },
-  "keywords": ["mcp", "model-context-protocol", "quant", "quantitative-finance", "research", "backtesting", "trading", "open-research"]
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "quant",
+    "quantitative-finance",
+    "research",
+    "backtesting",
+    "trading",
+    "open-research"
+  ],
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.1.0"
+  }
 }

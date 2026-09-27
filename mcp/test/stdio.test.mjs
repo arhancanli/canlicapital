@@ -11,8 +11,8 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 import { readFileSync } from "node:fs";
 
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+import { Client } from "@modelcontextprotocol/client";
+import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
 const mcpRoot = path.resolve(fileURLToPath(import.meta.url), "../..");
 const testedRoot = process.env.CANLI_TEST_PACKAGE_ROOT || mcpRoot;

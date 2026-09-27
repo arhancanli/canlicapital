@@ -303,17 +303,61 @@ export const REGISTRY_DESCRIPTION_MAX = 100;
 // calls the tool, not only inside the returned envelope.
 export const TOOL_DESCRIPTIONS = Object.freeze({
   get_key: `Issue a free canlicapital.com validation key (POST /api/v1/keys) and hold it in memory for this session. Only needed before a validation when neither CANLI_KEY nor local mode is set; the read tools (get_receipt, service_status, company_financial_history) never need a key. ${LIMITS_SENTENCES.quotas}`,
-  validate_deflated_sharpe: `Whether a Sharpe survives the number of variants tried: probabilistic and deflated Sharpe (0 to 1) and the Sharpe luck alone would reach. Send the seven statistics or a return series, not both. ${LIMITS_SENTENCES.notAdmission}`,
-  audit_backtest: `Audit one strategy's return series in one call: deflated Sharpe, the minimum track record length for its Sharpe to beat the benchmark, and, with every variant's returns, the probability of backtest overfitting. Point returns_file at the backtest's CSV or JSON rather than copying long series into the call. Each check is the matching validate_ tool's result with its own receipt, side by side; the audit does not grade the strategy. Uses one validation per check. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_overfitting: `Probability (0 to 1) that picking the best of several backtested variants was overfitting, by CSCV over every variant's returns. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_paper_evidence: `Whether a paper or simulated performance record meets canli.paper-evidence.v0, with each failure's JSON pointer. ${LIMITS_SENTENCES.scope}`,
-  validate_backtest_length: `Minimum backtest length, in years, before the best of N independent trials is not expected to reach a target Sharpe by luck, and with backtest_years, the most independent trials those years allow. Send effective_independent_trials, backtest_years, or both. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_luck_trials: `How many skill-less strategies a search would have had to try for its best to reach this Sharpe by luck, and, with a trial count, the chance that it did. Calibrated by Monte Carlo. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_haircut_sharpe: `Haircut Sharpe ratio for multiple testing (Harvey and Liu, 2015): the Sharpe a single test would have needed once the number of tests is counted, by Bonferroni and for independent tests, and with the other tests' Sharpe ratios by Holm and BHY. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_track_record: `Minimum track record length, in observations and years, for an observed Sharpe to beat a benchmark at a confidence level, and with observations, the record's probabilistic Sharpe so far. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_breadth: `Highest book Sharpe reachable by adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. ${LIMITS_SENTENCES.scope}`,
+  validate_deflated_sharpe: `Deflated Sharpe ratio: the probability (0 to 1) that one selected strategy's Sharpe beats the best Sharpe that luck alone would give across the variants tried, with the probabilistic Sharpe and that luck benchmark. Use it for the strategy you kept after a search, when you know how many variants were tried and how their Sharpe ratios spread; send the seven statistics or a return series, not both. With every variant's returns use validate_overfitting; to state luck as a trial count use validate_luck_trials; for a multiple-testing haircut use validate_haircut_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
+  audit_backtest: `Audit one strategy's return series in one call: deflated Sharpe, the minimum track record length for its Sharpe to beat the benchmark, and, with every variant's returns, the probability of backtest overfitting. Point returns_file at the backtest's CSV or JSON rather than copying long series into the call. Each check is the matching validate_ tool's result with its own receipt, side by side; the audit does not grade the strategy. Prefer it to calling those validators one by one when you have one strategy's return series. Uses one validation per check. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_overfitting: `Probability of backtest overfitting (0 to 1) by CSCV: how often the variant that is best in sample falls below the median out of sample. Use it when you have every variant's returns as a matrix (periods by variants); with summary statistics only, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_paper_evidence: `Whether a paper or simulated performance record meets canli.paper-evidence.v0, with each failure's JSON pointer. Use it on a record document before publishing or relying on it: it checks structure and required disclosures, not whether the returns are good. ${LIMITS_SENTENCES.scope}`,
+  validate_backtest_length: `Minimum backtest length, in years, before the best of N independent trials is not expected to reach a target Sharpe by luck, and with backtest_years, the most independent trials those years allow. Send effective_independent_trials, backtest_years, or both. Use it before or while planning a search, to size the backtest for the number of trials; once a search has a result, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_luck_trials: `How many skill-less strategies a search would have had to try for its best to reach this Sharpe by luck, and, with a trial count, the chance that it did. Calibrated by Monte Carlo. Use it to state luck as a count ("as good as the best of N random tries") or to test a result against the trials actually run; for a probability that the Sharpe is real, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_haircut_sharpe: `Haircut Sharpe ratio for multiple testing (Harvey and Liu, 2015): the Sharpe a single test would have needed once the number of tests is counted, by Bonferroni and for independent tests, and with the other tests' Sharpe ratios by Holm and BHY. Use it to report a Sharpe adjusted for the number of tests, as finance papers do; for a probability that the Sharpe is real, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_track_record: `Minimum track record length, in observations and years, for an observed Sharpe to beat a benchmark at a confidence level, and with observations, the record's probabilistic Sharpe so far. Use it for a live or paper record: how long it must run before its Sharpe is evidence. To size a backtest against the number of trials, use validate_backtest_length. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_breadth: `Highest book Sharpe reachable by adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. Use it for portfolio construction, to see what adding strategies can and cannot do; it validates no single strategy. ${LIMITS_SENTENCES.scope}`,
   verify_receipt: `Check a validation receipt's Ed25519 signature offline against the canlicapital.com public key bundled in this package, that its output hashes to its output_sha256, and that its content hashes to its id. Send an id to fetch the receipt first, or a receipt already fetched. ${LIMITS_SENTENCES.unsigned}`,
-  get_receipt: `Fetch a stored verdict by receipt id (GET /api/v1/receipts/{id}) to re-check an earlier result. No key. ${LIMITS_SENTENCES.unsigned}`,
+  get_receipt: `Fetch a stored verdict by receipt id (GET /api/v1/receipts/{id}) to re-read an earlier result. No key. To check that the receipt is genuine, use verify_receipt. ${LIMITS_SENTENCES.unsigned}`,
   service_status: `Whether the validation API is up, with quota constants (GET /api/v1/validate/status); check after a timeout before resubmitting. No key. ${LIMITS_SENTENCES.scope}`,
   company_financial_history: `SEC-reported financial history for one company from the canlicapital.com company reference (GET /company-data/{cik}.json), by cik or by ticker (resolved through GET /api/v1/company-tickers.json, companies in the release only). Without a concept it lists the available histories; with one it returns observations, newest first, each with its filing accession, form, filed date and unit, plus the SHA-256 of the original SEC response. No key required. ${COMPANY_REFERENCE_BOUNDARY}`,
 });
+
+// Output schemas (0.8.0). Published OPEN: extra fields always pass. A client validates a tool's
+// structured result against the output schema it listed, so a closed schema turns every field a
+// later version adds into a failed call (2026-09-26, the mcp-factory servers). Every field is
+// optional because refusals and local results carry different subsets. They are kept terse: the
+// tool list is re-sent to the model every turn, and one sentence per schema says what to read.
+const refusal = z.looseObject({}).nullable().optional();
+const sentences = z.array(z.string()).optional();
+const loose = z.looseObject({}).optional();
+
+export const validationOutput = z
+  .looseObject({
+    data: loose,
+    error: refusal,
+    limits: sentences,
+    receipt: z.looseObject({}).nullable().optional(),
+    computed: z.string().optional(),
+    note: z.string().optional(),
+  })
+  .describe("data.result holds the statistics (data.plain_reading states them); limits say what the result does not establish; receipt ({id, url}) is the signed record, null when none was stored; error ({code, message}) is set only on refusal.");
+
+export const auditOutput = z
+  .looseObject({ readings: loose, checks: loose, not_run: loose, limits: sentences, note: z.string().optional(), error: refusal })
+  .describe("checks holds each check's full validate_ result by name; readings one sentence per check; not_run the checks skipped and why.");
+
+export const keyOutput = z
+  .looseObject({ note: z.string().optional(), key_source: z.string().optional(), key_present: z.boolean().optional(), data: loose, error: refusal })
+  .describe("key_source says which key the session uses; data.key is set when a new key was issued.");
+
+export const receiptOutput = z
+  .looseObject({ data: loose, error: refusal, limits: sentences })
+  .describe("data is the stored receipt: validator, input, output, their hashes, source hashes and signature.");
+
+export const verifyReceiptOutput = z
+  .looseObject({ receipt_id: z.string().nullable().optional(), valid: z.boolean().optional(), checks: z.unknown().optional(), key_id: z.string().nullable().optional(), meaning: z.string().optional(), error: refusal })
+  .describe("valid is true only when the signature, output hash and content id all check out; checks lists each.");
+
+export const statusOutput = z
+  .looseObject({ data: loose, limits: sentences, error: refusal })
+  .describe("data.store_reachable, data.quotas and, when available, data.usage for this key.");
+
+export const companyHistoryOutput = z
+  .looseObject({ company: loose, claim_boundary: z.string().optional(), source: loose, histories: z.array(z.unknown()).optional(), history: loose, error: refusal })
+  .describe("Without a concept, histories lists what is available; with one, history holds the observations newest first as columns and rows, each with its filing. Values are as reported to the SEC.");

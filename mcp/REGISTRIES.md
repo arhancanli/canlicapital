@@ -61,10 +61,15 @@ so each release of the standalone repository gets a DOI) published from CI: the 
 `mcp-publish.yml` (run 36257888022) to npm with a provenance attestation and to the official MCP
 Registry, where 0.7.0 is listed as latest.
 
-Next release, not yet published: `canli-validation-mcp@0.7.1` (hosted shared-quota fallback; the
-stdio server issues the free key itself on the first validation; README first screen). It publishes
-from `mcp-publish.yml` on the tag `mcp-v0.7.1`. Until that run succeeds and the listings are checked,
-0.7.0 stays the latest published version.
+Release checkpoint, September 27, 2026: `canli-validation-mcp@0.7.1` (hosted shared-quota fallback;
+the stdio server issues the free key itself on first use; README first screen) published from CI:
+the tag `mcp-v0.7.1` ran `mcp-publish.yml` (run 36300300720) to npm with a provenance attestation
+and to the official MCP Registry, where 0.7.1 is listed as latest.
+
+Next release, not yet published: `canli-validation-mcp@0.8.0` (MCP SDK v2 server package, about 95
+installed packages down to 4; open output schemas on every tool; usage guidance in the tool
+descriptions). It publishes from `mcp-publish.yml` on the tag `mcp-v0.8.0`. Until that run succeeds
+and the listings are checked, 0.7.1 stays the latest published version.
 
 `canli-research-mcp` (the `mcp-research/` directory) publishes from `mcp-research-publish.yml` on a tag
 `research-mcp-v<version>`, the same way. Its 0.1.0 was published to npm by hand on September 26, 2026,

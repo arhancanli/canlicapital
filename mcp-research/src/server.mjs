@@ -10,8 +10,8 @@
 import { readFileSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { McpServer } from "@modelcontextprotocol/server";
+import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 
 export const SERVER_NAME = "canli-research-mcp";
@@ -186,16 +186,37 @@ export async function toolChainHead(session) {
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true };
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
-  search_research: "Find Canli Capital research papers (strategy tests, killed candidates, literature reviews, feasibility protocols) by words in their titles and summaries.",
+  search_research: "Find Canli Capital research papers (strategy tests, killed candidates, literature reviews, feasibility protocols) by words in their titles and summaries. Use it to find a paper's slug, then read it with get_paper; to browse by subject instead, use list_topics.",
   list_topics: "The research topics, with how many papers each holds and what it covers.",
-  get_paper: "A research paper's text as published, by slug, with its headings; send section for one part, and max_chars to cap the length.",
-  trial_ledger: "How many distinct hypotheses Canli Capital has tried against its declared budget, and how many were killed or survived.",
-  live_record: "The live paper-trading record (returns, costs, risk, corrections, provenance) and each sleeve's paper equity, with their limits.",
-  chain_head: "The head of the tamper-evident chain that shows the published record was not rewritten after publication, with where to verify it.",
+  get_paper: "A research paper's text as published, by slug, with its headings; send section for one part, and max_chars to cap the length. Find the slug with search_research or list_topics first.",
+  trial_ledger: "How many distinct hypotheses Canli Capital has tried against its declared budget, and how many were killed or survived. Use it to judge any published result against the size of the search behind it.",
+  live_record: "The live paper-trading record (returns, costs, risk, corrections, provenance) and each sleeve's paper equity, with their limits. Use it for how the strategies are doing now; for why they exist, read the papers.",
+  chain_head: "The head of the tamper-evident chain that shows the published record was not rewritten after publication, with where to verify it. Use it to check that a figure you read was not changed later.",
+});
+
+// Output schemas: published OPEN (extra fields always pass), every field optional, one sentence
+// each on what to read. A client validates a result against the schema it listed, and a closed
+// schema turns any field a later version adds into a failed call.
+const loose = z.looseObject({}).optional();
+const table = { columns: z.array(z.string()).optional(), rows: z.array(z.unknown()).optional() };
+const limits = z.array(z.string()).optional();
+export const OUTPUT_SCHEMAS = Object.freeze({
+  search_research: z.looseObject({ query: z.string().optional(), matched: z.number().optional(), ...table, next: z.string().optional(), limits })
+    .describe("rows are the matching papers, one per row in the order of columns; next says how to read one with get_paper."),
+  list_topics: z.looseObject({ papers: z.number().optional(), ...table, url: z.string().optional(), limits })
+    .describe("rows are the topics, one per row in the order of columns, with how many papers each holds."),
+  get_paper: z.looseObject({ slug: z.string().optional(), url: z.string().optional(), headings: z.array(z.unknown()).optional(), total_chars: z.number().optional(), truncated: z.boolean().optional(), text: z.string().optional(), limits })
+    .describe("text is the paper as published (or the requested section); headings list its sections; truncated says whether max_chars cut it."),
+  trial_ledger: z.looseObject({ data: loose, limits, page: z.string().optional(), meaning: z.string().optional() })
+    .describe("data counts the distinct hypotheses tried against the budget, and how many were killed or survived."),
+  live_record: z.looseObject({ record: loose, sleeves: loose, limits })
+    .describe("record is the live paper record (returns, costs, risk, corrections, provenance, claim maturity); sleeves each sleeve's paper equity."),
+  chain_head: z.looseObject({ data: loose, limits, page: z.string().optional(), verify: z.string().optional() })
+    .describe("data.head is the latest entry of the tamper-evident chain; verify says how to check it."),
 });
 
 export function registerTools(server, session) {
-  const tool = (name, title, inputSchema, fn) => server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema }, fn);
+  const tool = (name, title, inputSchema, fn) => server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
   tool("search_research", "Search research", searchInput, (args) => toolSearchResearch(session, args));
   tool("list_topics", "Research topics", z.object({}).strict(), () => toolListTopics(session));
   tool("get_paper", "Read a paper", paperInput, (args) => toolGetPaper(session, args));
