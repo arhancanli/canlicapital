@@ -38,3 +38,33 @@ test("audit_backtest falls back per check the same way", async () => {
   assert.match(result.content[0].text, /hosted_without_receipt/);
   assert.doesNotMatch(result.content[0].text, /quota_exhausted/);
 });
+
+test("stdio without a key: the first validation issues the free key once and retries", async () => {
+  const calls = [];
+  const fetchImpl = async (url, init) => {
+    calls.push({ path: new URL(url).pathname, auth: init.headers.Authorization ?? null });
+    if (url.endsWith("/api/v1/keys")) return new Response(JSON.stringify({ data: { key: "ck_live_test" }, error: null }), { status: 201 });
+    if (!init.headers.Authorization) return new Response(JSON.stringify({ data: {}, error: { code: "unauthorized", message: "no key" } }), { status: 401 });
+    return new Response(JSON.stringify({ data: { result: { deflated_sharpe_ratio: 0.5 } }, error: null, receipt: { id: "r1", url: "https://example.test/r1" } }), { status: 200 });
+  };
+  const session = createSession({ base: "https://example.test", fetchImpl });
+  const result = await toolValidateDeflatedSharpe(session, INPUTS);
+  assert.equal(result.isError, undefined);
+  assert.deepEqual(calls.map((c) => [c.path, c.auth]), [
+    ["/api/v1/validate/deflated-sharpe", null],
+    ["/api/v1/keys", null],
+    ["/api/v1/validate/deflated-sharpe", "Bearer ck_live_test"],
+  ]);
+  calls.length = 0;
+  await toolValidateDeflatedSharpe(session, INPUTS);
+  assert.equal(calls.length, 1, "the key is kept for the session; no second issuance");
+});
+
+test("stdio: if no key can be issued, the original refusal is reported", async () => {
+  const fetchImpl = async (url) => url.endsWith("/api/v1/keys")
+    ? new Response(JSON.stringify({ data: {}, error: { code: "quota_exhausted", message: "5 keys a day" } }), { status: 429 })
+    : new Response(JSON.stringify({ data: {}, error: { code: "unauthorized", message: "no key" } }), { status: 401 });
+  const result = await toolValidateDeflatedSharpe(createSession({ base: "https://example.test", fetchImpl }), INPUTS);
+  assert.equal(result.isError, true);
+  assert.equal(result.structuredContent.error.code, "unauthorized");
+});

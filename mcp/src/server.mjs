@@ -140,7 +140,16 @@ async function callApi(session, { path, method = "GET", body }) {
 export const SHARED_QUOTA_NOTE = "The shared anonymous quota of this hosted endpoint is used up for today (it resets at 00:00 UTC), so this result was computed by the same code on the hosted endpoint and no receipt was stored. For a receipt and a quota of your own, get a free key at https://canlicapital.com/developers#quickstart and send it as 'Authorization: Bearer <key>'. To run with no quota at all, on your own machine: npx -y canli-validation-mcp with CANLI_LOCAL=1.";
 
 async function validateRemote(session, tool, path, body) {
-  const response = await callApi(session, { path, method: "POST", body });
+  let response = await callApi(session, { path, method: "POST", body });
+  // stdio without CANLI_KEY: the first validation used to come back 401 and the model had to work
+  // out that get_key comes first. Issue the free key once, as get_key would, and retry once.
+  if (response.failed && response.envelope?.error?.code === "unauthorized" && !session.hosted && !session.key && !session.envKey) {
+    const issued = await callApi(session, { path: "/api/v1/keys", method: "POST", body: { label: "auto" } });
+    if (!issued.failed && issued.envelope?.data?.key) {
+      session.key = issued.envelope.data.key;
+      response = await callApi(session, { path, method: "POST", body });
+    }
+  }
   if (!response.failed || session.hosted?.keySource !== "shared" || response.envelope?.error?.code !== "quota_exhausted") return response;
   const fallback = computeLocally(tool, body);
   return { ...fallback, envelope: { ...fallback.envelope, computed: "hosted_without_receipt", note: SHARED_QUOTA_NOTE } };

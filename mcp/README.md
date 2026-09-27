@@ -16,7 +16,7 @@ haircut Sharpe ratio, and luck-equivalent trials. Free and MIT-licensed.
 # Claude Code, computed on your machine: no key, nothing sent anywhere
 claude mcp add canli-local --env CANLI_LOCAL=1 -- npx -y canli-validation-mcp
 
-# the same tools with signed, stored receipts from the free API (the get_key tool issues a key)
+# the same tools with signed, stored receipts from the free API (a free key is issued on first use)
 claude mcp add canli -- npx -y canli-validation-mcp
 
 # nothing to install: the hosted endpoint
