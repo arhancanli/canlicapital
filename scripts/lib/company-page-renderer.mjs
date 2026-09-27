@@ -5,8 +5,8 @@ import { renderProductShellHeader, renderProductShellFooter, renderProductShellS
 import { escapeXml as esc } from './sitemaps.mjs';
 import { companyLabel, titleLabel } from './company-label.mjs';
 import { fitDescription } from './descriptions.mjs';
-import { compactAmount, historySummary, percent, summaryDescription, summarySentences } from './company-history-summary.mjs';
-import { relatedConcepts, shareOfParent } from './company-concept-groups.mjs';
+import { historySummary, summaryDescription, summarySentences } from './company-history-summary.mjs';
+import { relatedConcepts, shareSentence } from './company-concept-groups.mjs';
 const origin = 'https://canlicapital.com';
 const pathFor = (company) => `/companies/${company.cik}`;
 const dataFor = (company) => `/company-data/${company.cik}.json`;
@@ -138,10 +138,8 @@ export function renderCompanyPages(company, { target = 'all', filings = null, li
     const summary = historySummary(concept);
     const glance = summarySentences(summary, { company: label(company), label: concept.label, kind: concept.kind });
     // The measure against its statement total for the same period, from the company's own record.
-    const share = summary ? shareOfParent(company.concepts, concept, summary.latest) : null;
-    if (share) glance.push(concept.kind === 'duration'
-      ? `That was ${percent(share.fraction)} of revenue (${compactAmount(share.row.val, share.row.unit)}) for the same year.`
-      : `That was ${percent(share.fraction)} of total assets (${compactAmount(share.row.val, share.row.unit)}) at the same date.`);
+    const share = shareSentence(company.concepts, concept, summary);
+    if (share) glance.push(share);
     const glanceSection = glance.length ? `<section aria-labelledby="at-a-glance"><h2 id="at-a-glance">At a glance</h2><p>${glance.map(esc).join(' ')}</p><p class="company-reference__note">Computed from the values in the table below${summary.unit ? `, in ${esc(summary.unit)}` : ''}; each links to the filing it came from.</p></section>` : '';
     const rows = concept.observations.map((row) => `<tr>${periodStartCell(row)}<th scope="row">${esc(row.end)}</th>${numberCell(row.val)}<td>${esc(row.unit)}</td><td>${esc(row.filed)}</td><td>${filingLink(row.accn) ? `<a href="${filingLink(row.accn)}">${esc(row.form)} · ${esc(row.accn)}</a> <a href="${accessionLink(company, row)}" rel="noreferrer">SEC</a>` : `<a href="${accessionLink(company, row)}">${esc(row.form)} · ${esc(row.accn)}</a>`}</td></tr>`).join('');
     page({ path: metricPath(company, concept), title, description: summaryDescription(summary, { company: label(company), label: concept.label, kind: concept.kind }) ?? fitDescription(`${concept.label} for ${company.name.replace(/\.$/, '')}. Inspect selected reporting periods, original units and SEC filing links; download the financial history.`, ['Each value links to the filing it came from.']), heading: `${company.name}: ${concept.label.toLowerCase()}`, sources, lastmod, dataset: company, coverage,

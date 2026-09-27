@@ -1,3 +1,5 @@
+import { compactAmount, percent } from './company-history-summary.mjs';
+
 // Where each published measure sits in the financial statements, and what follows from it for a
 // history page: the handful of measures worth reading next, and the measure's size against the
 // statement total it belongs to.
@@ -61,4 +63,14 @@ export function shareOfParent(concepts, concept, latest) {
     if (row && row.val > 0) return { parent, row, fraction: latest.val / row.val };
   }
   return null;
+}
+
+// The sentence the history page prints, shared with audit-published-numbers.mjs, which reruns it
+// on the page's source to trace every figure it contains.
+export function shareSentence(concepts, concept, summary) {
+  const share = summary ? shareOfParent(concepts, concept, summary.latest) : null;
+  if (!share) return null;
+  return concept.kind === 'duration'
+    ? `That was ${percent(share.fraction)} of revenue (${compactAmount(share.row.val, share.row.unit)}) for the same year.`
+    : `That was ${percent(share.fraction)} of total assets (${compactAmount(share.row.val, share.row.unit)}) at the same date.`;
 }

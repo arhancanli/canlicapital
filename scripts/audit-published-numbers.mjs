@@ -38,6 +38,7 @@ import { dirname, resolve, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { companyLabel } from "./lib/company-label.mjs";
 import { historySummary, summaryDescription, summarySentences } from "./lib/company-history-summary.mjs";
+import { shareSentence } from "./lib/company-concept-groups.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -331,7 +332,7 @@ for (const file of htmlFiles) {
   }
 
   // RECOMPUTED. A company history page opens with a summary derived from its own table (the change
-  // on the prior year, the compound annual rate). Such a figure is in no artifact; it traces when the
+  // on the prior year, the compound annual rate, the share of its statement total). Such a figure is in no artifact; it traces when the
   // shared summary function, rerun on the page's declared source (company-data/<cik>.json), prints
   // exactly that token. A rule, not an exemption: a renderer that printed any other number fails.
   const recomputed = new Set();
@@ -344,7 +345,7 @@ for (const file of htmlFiles) {
       if (concept) {
         const summary = historySummary(concept);
         const context = { company: companyLabel(company.name), label: concept.label, kind: concept.kind };
-        const computed = [...summarySentences(summary, context), summaryDescription(summary, context) ?? ""].join(" ");
+        const computed = [...summarySentences(summary, context), shareSentence(company.concepts, concept, summary) ?? "", summaryDescription(summary, context) ?? ""].join(" ");
         for (const token of computed.match(NUMERAL) || []) recomputed.add(token);
       }
     }
