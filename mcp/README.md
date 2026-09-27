@@ -5,6 +5,34 @@
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14954/badge)](https://www.bestpractices.dev/projects/14954)
 [![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
 
+**Is your best backtest real, or just the luckiest of the variants you tried?** This MCP server
+lets Claude, Cursor or any MCP client answer that with the standard corrections: the deflated
+Sharpe ratio, the CSCV probability of backtest overfitting, the minimum track record length, the
+haircut Sharpe ratio, and luck-equivalent trials. Free and MIT-licensed.
+
+## Quick start
+
+```bash
+# Claude Code, computed on your machine: no key, nothing sent anywhere
+claude mcp add canli-local --env CANLI_LOCAL=1 -- npx -y canli-validation-mcp
+
+# the same tools with signed, stored receipts from the free API (the get_key tool issues a key)
+claude mcp add canli -- npx -y canli-validation-mcp
+
+# nothing to install: the hosted endpoint
+claude mcp add --transport http canli https://canlicapital.com/mcp
+```
+
+Then ask, for example: *"I tried 229 variants and kept the best: an annualised Sharpe of
+1.5 over 730 daily returns (365 a year), skew -0.5, kurtosis 5, and the variants'
+Sharpe ratios spread by 0.57. Is it real?"* The assistant calls `validate_deflated_sharpe`: the
+best of 229 skill-less variants would reach 1.60 by luck alone, so the probability that the
+Sharpe is above zero falls from 98.1% to 44.4% once the search is counted. Claude Desktop and any
+other stdio client (Cursor, VS Code) run the same `npx` command; see "Claude Desktop" and
+"Generic stdio client" below.
+
+## What it does
+
 An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
 gives a coding agent fourteen tools: issue a free key, run the eight validators (deflated Sharpe,
 CSCV overfitting, paper-evidence conformance, breadth ceiling, minimum track record length,
