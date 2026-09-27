@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.7.1 (2026-09-27)
+
+- Hosted endpoint: when the shared anonymous key's daily quota is used up, a validation is still
+  answered, computed by the same code on the hosted endpoint, with `computed: "hosted_without_receipt"`,
+  no stored receipt, and a note on getting a free key or running locally with `CANLI_LOCAL=1`. A
+  caller's own key, and every other refusal, is reported unchanged.
+- stdio without `CANLI_KEY`: the first validation no longer comes back 401 for the model to work
+  out that `get_key` comes first. The server issues the free key once, as `get_key` would, and
+  retries once; if no key can be issued, the original refusal is reported.
+- README: a first screen with the question the server answers, a three-line quick start and a
+  worked example.
+
 ## 0.7.0 (2026-09-26)
 
 - Toolsets: `CANLI_TOOLSETS` (stdio) or `?toolsets=` (hosted endpoint) lists only `validate`,
