@@ -67,6 +67,9 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   assert.equal(info.title, "Canli Validation");
   assert.equal(info.websiteUrl, "https://canlicapital.com/developers#ai-assistant");
   assert.ok(info.icons.some((i) => i.src === "https://canlicapital.com/icon-512.png"));
+  const { SERVER_INSTRUCTIONS } = await import("../src/server.mjs");
+  assert.equal(client.getInstructions(), SERVER_INSTRUCTIONS);
+  assert.match(SERVER_INSTRUCTIONS, /audit_backtest/);
 
   const { tools } = await client.listTools();
   const names = tools.map((tool) => tool.name).sort();

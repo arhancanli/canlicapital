@@ -76,9 +76,13 @@ audit) published from CI: the tag `mcp-v0.8.1` ran `mcp-publish.yml` (run 363273
 a provenance attestation and to the official MCP Registry; the mirror's v0.8.1 release carries the
 signed Claude Desktop bundle.
 
-Next release, not yet published: `canli-validation-mcp@0.8.2` (registry metadata: the hosted
-endpoint as a remote, title, website, icons and environment variables; the same title, website and
-icons in `serverInfo`; npm keywords). It publishes from `mcp-publish.yml` on the tag `mcp-v0.8.2`.
+Release checkpoint, September 27, 2026: `canli-validation-mcp@0.8.2` (registry metadata: the hosted
+endpoint as a remote, title, website, icons and environment variables; npm keywords) published from
+CI: the tag `mcp-v0.8.2` ran `mcp-publish.yml` (run 36331874195) to npm and to the official MCP
+Registry.
+
+Next release, not yet published: `canli-validation-mcp@0.9.0` (server instructions; a 9% smaller
+tool list). It publishes from `mcp-publish.yml` on the tag `mcp-v0.9.0`.
 
 `canli-research-mcp` (the `mcp-research/` directory) publishes from `mcp-research-publish.yml` on a tag
 `research-mcp-v<version>`, the same way. Its 0.1.0 was published to npm by hand on September 26, 2026,

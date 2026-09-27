@@ -333,11 +333,11 @@ tokenizers give different absolute counts), in the shape an OpenAI-style client 
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| `all` | 14 | 3,888 | 100% |
-| `validate` | 10 | 3,154 | 81% |
-| `receipts` | 2 | 340 | 9% |
-| `company` | 1 | 302 | 8% |
-| `status` | 1 | 98 | 3% |
+| `all` | 14 | 3,834 | 100% |
+| `validate` | 10 | 3,166 | 83% |
+| `receipts` | 2 | 312 | 8% |
+| `company` | 1 | 273 | 7% |
+| `status` | 1 | 89 | 2% |
 
 Providers cache a tool list that is identical from turn to turn and bill the cached part at a
 fraction of the price (`test/tool-list-stable.test.mjs` keeps each list byte-stable); a smaller list
