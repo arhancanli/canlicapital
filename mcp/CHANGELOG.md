@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Hosted endpoint: when the shared anonymous key's daily quota is used up, a validation is still
+  answered, computed by the same code on the hosted endpoint, with `computed: "hosted_without_receipt"`,
+  no stored receipt, and a note on getting a free key or running locally with `CANLI_LOCAL=1`. A
+  caller's own key, and every other refusal, is reported unchanged.
+
 ## 0.7.0 (2026-09-26)
 
 - Toolsets: `CANLI_TOOLSETS` (stdio) or `?toolsets=` (hosted endpoint) lists only `validate`,

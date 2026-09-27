@@ -132,6 +132,20 @@ async function callApi(session, { path, method = "GET", body }) {
   return { envelope, failed: res.status >= 400 || Boolean(envelope?.error) };
 }
 
+// The hosted endpoint's shared anonymous key has one daily quota for every caller who connects
+// without a key of their own. When it is used up, the answer is still computed, by the same code
+// the API runs (src/local, byte for byte), on the hosted endpoint; what the caller loses is the
+// stored, signed receipt, and the note says how to get one. A caller's own key, or a missing
+// shared key, still gets the API's refusal unchanged.
+export const SHARED_QUOTA_NOTE = "The shared anonymous quota of this hosted endpoint is used up for today (it resets at 00:00 UTC), so this result was computed by the same code on the hosted endpoint and no receipt was stored. For a receipt and a quota of your own, get a free key at https://canlicapital.com/developers#quickstart and send it as 'Authorization: Bearer <key>'. To run with no quota at all, on your own machine: npx -y canli-validation-mcp with CANLI_LOCAL=1.";
+
+async function validateRemote(session, tool, path, body) {
+  const response = await callApi(session, { path, method: "POST", body });
+  if (!response.failed || session.hosted?.keySource !== "shared" || response.envelope?.error?.code !== "quota_exhausted") return response;
+  const fallback = computeLocally(tool, body);
+  return { ...fallback, envelope: { ...fallback.envelope, computed: "hosted_without_receipt", note: SHARED_QUOTA_NOTE } };
+}
+
 // Compact context (0.3.0): minified JSON. Indentation is whitespace an agent pays for in tokens and
 // never reads; every field, boundary sentence and provenance value is kept. Measured on the live
 // Apple StockholdersEquity record (README, "Compact context"): 2,214 -> 1,560 tokens minified,
@@ -230,56 +244,56 @@ export async function toolValidateDeflatedSharpe(session, args) {
     );
   }
   if (session.local) { const local = computeLocally("validate_deflated_sharpe", parsed.data); return validationText(session, local); }
-  const response = await callApi(session, { path: "/api/v1/validate/deflated-sharpe", method: "POST", body: parsed.data });
+  const response = await validateRemote(session, "validate_deflated_sharpe", "/api/v1/validate/deflated-sharpe", parsed.data);
   return validationText(session, response);
 }
 
 export async function toolValidateOverfitting(session, args) {
   const body = parseOrThrow(overfittingInput, args, "validate_overfitting");
   if (session.local) { const local = computeLocally("validate_overfitting", body); return validationText(session, local); }
-  const response = await callApi(session, { path: "/api/v1/validate/overfitting", method: "POST", body });
+  const response = await validateRemote(session, "validate_overfitting", "/api/v1/validate/overfitting", body);
   return validationText(session, response);
 }
 
 export async function toolValidatePaperEvidence(session, args) {
   const body = parseOrThrow(paperEvidenceInput, args, "validate_paper_evidence");
   if (session.local) { const local = computeLocally("validate_paper_evidence", body); return validationText(session, local); }
-  const response = await callApi(session, { path: "/api/v1/validate/paper-evidence", method: "POST", body });
+  const response = await validateRemote(session, "validate_paper_evidence", "/api/v1/validate/paper-evidence", body);
   return validationText(session, response);
 }
 
 export async function toolValidateBreadth(session, args) {
   const body = parseOrThrow(breadthInput, args, "validate_breadth");
   if (session.local) { const local = computeLocally("validate_breadth", body); return validationText(session, local); }
-  const response = await callApi(session, { path: "/api/v1/validate/breadth", method: "POST", body });
+  const response = await validateRemote(session, "validate_breadth", "/api/v1/validate/breadth", body);
   return validationText(session, response);
 }
 
 export async function toolValidateTrackRecord(session, args) {
   const body = parseOrThrow(trackRecordInput, args, "validate_track_record");
   if (session.local) { const local = computeLocally("validate_track_record", body); return validationText(session, local); }
-  const response = await callApi(session, { path: "/api/v1/validate/track-record", method: "POST", body });
+  const response = await validateRemote(session, "validate_track_record", "/api/v1/validate/track-record", body);
   return validationText(session, response);
 }
 
 export async function toolValidateBacktestLength(session, args) {
   const body = parseOrThrow(backtestLengthInput, args, "validate_backtest_length");
   if (session.local) { const local = computeLocally("validate_backtest_length", body); return validationText(session, local); }
-  const response = await callApi(session, { path: "/api/v1/validate/backtest-length", method: "POST", body });
+  const response = await validateRemote(session, "validate_backtest_length", "/api/v1/validate/backtest-length", body);
   return validationText(session, response);
 }
 
 export async function toolValidateHaircutSharpe(session, args) {
   const body = parseOrThrow(haircutSharpeInput, args, "validate_haircut_sharpe");
   if (session.local) { const local = computeLocally("validate_haircut_sharpe", body); return validationText(session, local); }
-  const response = await callApi(session, { path: "/api/v1/validate/haircut-sharpe", method: "POST", body });
+  const response = await validateRemote(session, "validate_haircut_sharpe", "/api/v1/validate/haircut-sharpe", body);
   return validationText(session, response);
 }
 
 export async function toolValidateLuckTrials(session, args) {
   const body = parseOrThrow(luckTrialsInput, args, "validate_luck_trials");
   if (session.local) { const local = computeLocally("validate_luck_trials", body); return validationText(session, local); }
-  const response = await callApi(session, { path: "/api/v1/validate/luck-trials", method: "POST", body });
+  const response = await validateRemote(session, "validate_luck_trials", "/api/v1/validate/luck-trials", body);
   return validationText(session, response);
 }
 
@@ -287,7 +301,7 @@ export async function toolValidateLuckTrials(session, args) {
 // through the API (one validation of quota, one receipt).
 async function runValidator(session, tool, path, body) {
   if (session.local) return computeLocally(tool, body);
-  return callApi(session, { path, method: "POST", body });
+  return validateRemote(session, tool, path, body);
 }
 
 const sameJson = (a, b) => JSON.stringify(a) === JSON.stringify(b);

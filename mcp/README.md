@@ -165,7 +165,9 @@ claude mcp add --transport http canli https://canlicapital.com/mcp
 ```
 
 Without a key, requests run under a shared anonymous key, so the daily validation quota is shared
-by every hosted caller. For your own quota, issue a free key (see
+by every hosted caller. When that shared quota is used up for the day, validations are still
+answered, computed by the same code on the hosted endpoint, but without a stored receipt; the
+result says so. For your own quota, issue a free key (see
 [/developers](https://canlicapital.com/developers#quickstart)) and send it as a header:
 
 ```bash
