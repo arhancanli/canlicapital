@@ -71,10 +71,14 @@ about 95 installed packages down to 4; open output schemas on every tool; usage 
 descriptions) published from CI: the tag `mcp-v0.8.0` ran `mcp-publish.yml` (run 36302867139) to npm
 and to the official MCP Registry, where 0.8.0 is listed as latest.
 
-Next release, not yet published: `canli-validation-mcp@0.8.1` (fixes from the 2026-09-27 audit: a
-blank cell can no longer make `audit_backtest` read another column, `verify_receipt` answers a
-malformed receipt, inline matrices are capped at the API's 200 variants). It publishes from
-`mcp-publish.yml` on the tag `mcp-v0.8.1`; until then 0.8.0 stays the latest published version.
+Release checkpoint, September 27, 2026: `canli-validation-mcp@0.8.1` (fixes from the 2026-09-27
+audit) published from CI: the tag `mcp-v0.8.1` ran `mcp-publish.yml` (run 36327331341) to npm with
+a provenance attestation and to the official MCP Registry; the mirror's v0.8.1 release carries the
+signed Claude Desktop bundle.
+
+Next release, not yet published: `canli-validation-mcp@0.8.2` (registry metadata: the hosted
+endpoint as a remote, title, website, icons and environment variables; the same title, website and
+icons in `serverInfo`; npm keywords). It publishes from `mcp-publish.yml` on the tag `mcp-v0.8.2`.
 
 `canli-research-mcp` (the `mcp-research/` directory) publishes from `mcp-research-publish.yml` on a tag
 `research-mcp-v<version>`, the same way. Its 0.1.0 was published to npm by hand on September 26, 2026,

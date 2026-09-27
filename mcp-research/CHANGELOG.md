@@ -9,6 +9,8 @@
   level or higher. 0.1.0 stopped at the first `###`, returning a few characters of a long section
   with `truncated: false`.
 - An unknown slug says to use `search_research` or `list_topics`; an unreachable site says to retry.
+- `initialize` returns a title, the documentation page and icons in `serverInfo`, and the registry
+  entry carries the same title, website and icons.
 
 ## 0.1.0 (2026-09-26)
 

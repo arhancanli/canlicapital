@@ -25,6 +25,18 @@ import { z } from "zod";
 
 export const SERVER_NAME = "canli-fundamentals-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
+// How the server introduces itself in initialize: a readable title, the page that documents it
+// and its icon, so clients and directories that read serverInfo show more than a package name.
+export const SERVER_INFO = Object.freeze({
+  name: SERVER_NAME,
+  version: SERVER_VERSION,
+  title: "Canli Fundamentals",
+  websiteUrl: "https://canlicapital.com/developers#mcp-fundamentals",
+  icons: [
+    { src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] },
+    { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] },
+  ],
+});
 const DEFAULT_BASE = "https://canlicapital.com";
 const REQUEST_TIMEOUT_MS = 30000;
 const MIB = 1024 * 1024;
@@ -723,7 +735,7 @@ const isMain = (() => {
 })();
 
 if (isMain) {
-  const server = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
+  const server = new McpServer(SERVER_INFO);
   registerTools(server, createSession());
   await server.connect(new StdioServerTransport());
 }
