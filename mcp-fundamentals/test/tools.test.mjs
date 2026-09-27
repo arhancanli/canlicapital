@@ -11,13 +11,15 @@ import {
   createSession,
   durationKind,
   instantKind,
+  loadCompany,
+  toolFindCompany,
   toolHistory,
   toolKnownAsOf,
   toolListConcepts,
   toolRestatements,
   toolVintages,
 } from "../src/server.mjs";
-import { CIK, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
+import { CIK, EXXON, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
 
 const session = (map) => {
   const f = fakeFetch(map);
@@ -180,7 +182,59 @@ test("companies resolve by ticker, dotted ticker or CIK; unknown ones say what t
   assert.equal(out(await toolListConcepts(s, { company: "fix" })).company.cik, CIK);
   assert.equal(out(await toolListConcepts(s, { company: "123456" })).company.cik, CIK);
   await assert.rejects(toolListConcepts(s, { company: "BRK.B" }), /0001067983 is not in the Canli company reference/);
-  await assert.rejects(toolListConcepts(s, { company: "ZZZZ" }), /not a ticker in the Canli company reference \(2 tickers\)/);
+  await assert.rejects(toolListConcepts(s, { company: "ZZZZ" }), /"ZZZZ" is not a current ticker or a company name in the Canli company reference\. Former tickers are not listed: find_company searches by name/);
+  // A site without the name index still answers tickers and CIKs, and says what it could not do.
+  const { s: old } = session(files({ names: false }));
+  assert.equal(out(await toolListConcepts(old, { company: "FIX" })).company.cik, CIK);
+  await assert.rejects(toolListConcepts(old, { company: "ZZZZ" }), /not a ticker in the Canli company reference \(2 tickers\), and its name index could not be read/);
+});
+
+test("a company name resolves, and every result says how", async () => {
+  const { s } = session(files({ extraCiks: [EXXON, "0001418091"] }));
+  const fixture = out(await toolListConcepts(s, { company: "fixture corp." })).company;
+  assert.equal(fixture.cik, CIK);
+  assert.deepEqual(fixture.matched, { query: "fixture corp.", by: "name" });
+  assert.equal(out(await toolListConcepts(s, { company: "Twitter" })).company.cik, "0001418091", "a company that no longer trades, by name");
+  // XOM is the SEC's ticker for a new holding company the reference does not cover; the covered
+  // filer with the same name is read, and the result says so.
+  const xom = out(await toolKnownAsOf(s, { company: "XOM", as_of: "2020-01-01" })).company;
+  assert.equal(xom.cik, EXXON);
+  assert.equal(xom.matched.by, "same_name_as_ticker_holder");
+  assert.match(xom.matched.note, /XOM is the SEC's ticker for ExxonMobil Holdings Corp \(CIK 0002115436\), which the Canli company reference does not cover; the covered filer with the same name was used\./);
+  // A name several companies start with is never guessed: the error lists them, best first.
+  await assert.rejects(toolListConcepts(s, { company: "Meta" }), /"Meta" matches 3 companies; pass one CIK as company: Meta Platforms, Inc\. \(CIK 0001326801\); Meta Materials Inc\. \(CIK 0001431959\); Metallus Inc\. \(CIK 0001598014\)\./);
+  await assert.rejects(toolListConcepts(s, { company: "NEWCO" }), /NEWCO is the SEC's ticker for Brand New Holdings Inc \(CIK 0002200000\), which the Canli company reference does not cover\. "NEWCO" is not a current ticker or a company name/);
+  // A ticker or CIK is read as before, with nothing added.
+  assert.equal(out(await toolListConcepts(s, { company: "FIX" })).company.matched, undefined);
+});
+
+test("find_company: best match first, resolved only when one is clearly best, and where a ticker points", async () => {
+  const { s } = session();
+  const meta = out(await toolFindCompany(s, { query: "Meta" }));
+  assert.equal(meta.resolved, undefined);
+  assert.equal(meta.total, 3);
+  assert.deepEqual(meta.rows.map((r) => [r[0], r[3]]), [["0001326801", "name_start"], ["0001431959", "name_start"], ["0001598014", "name_contains"]]);
+  assert.equal(meta.tickers_as_of, "2026-09-19");
+  const xom = out(await toolFindCompany(s, { query: "xom" }));
+  assert.deepEqual(xom.resolved, { cik: EXXON, name: "Exxon Mobil Corporation", match: "same_name_as_ticker_holder" });
+  assert.deepEqual(xom.ticker_holder, { ticker: "XOM", cik: "0002115436", name: "ExxonMobil Holdings Corp", in_reference: false });
+  assert.equal(out(await toolFindCompany(s, { query: "FIX" })).resolved.match, "ticker");
+  assert.equal(out(await toolFindCompany(s, { query: "123456" })).resolved.match, "cik");
+  assert.equal(out(await toolFindCompany(s, { query: "Exxon Mobil Corp" })).resolved.match, "name");
+  assert.equal(out(await toolFindCompany(s, { query: "Meta", limit: 1 })).rows.length, 1);
+  // Several at the best level: the one with a current ticker is the one meant.
+  assert.deepEqual(out(await toolFindCompany(s, { query: "Alphabet" })).resolved, { cik: "0001652044", name: "Alphabet Inc.", match: "name" });
+  assert.deepEqual(out(await toolFindCompany(s, { query: "Toyota" })).resolved, { cik: "0001094517", name: "TOYOTA MOTOR CORP/", match: "name_start" });
+  assert.equal(out(await toolFindCompany(s, { query: "JPMorgan Chase" })).resolved.match, "name", "& Co drops like Inc");
+  // The start of one name and no other: resolved. A word inside names is used only when it is the
+  // single match at all.
+  assert.equal(out(await toolFindCompany(s, { query: "Exxon" })).resolved.cik, EXXON);
+  const mobil = out(await toolFindCompany(s, { query: "mobil" }));
+  assert.deepEqual([mobil.total, mobil.resolved.match], [1, "name_words"]);
+  assert.equal(out(await toolFindCompany(s, { query: "motor" })).resolved, undefined, "two Toyota names hold the word");
+  const none = out(await toolFindCompany(s, { query: "Nothing Like It" }));
+  assert.deepEqual([none.total, none.rows, none.resolved], [0, [], undefined]);
+  await assert.rejects(toolFindCompany(s, { query: "" }), /find_company: query/);
 });
 
 test("a snapshot whose hash does not match its record is refused", async () => {
@@ -194,7 +248,7 @@ test("the disk cache is keyed by hash, and memory keeps at most eight companies"
   const dir = mkdtempSync(join(tmpdir(), "canli-fundamentals-"));
   const first = fakeFetch();
   await toolListConcepts(createSession({ base: "https://example.test", fetchImpl: first.impl, cacheDir: dir }), { company: "FIX" });
-  assert.deepEqual(readdirSync(dir), [`${SHA}.json.gz`]);
+  assert.deepEqual(readdirSync(dir).sort(), [`${SHA}.json.gz`, `company-${CIK}.json`, "company-tickers.json"]);
   const second = fakeFetch();
   await toolListConcepts(createSession({ base: "https://example.test", fetchImpl: second.impl, cacheDir: dir }), { company: "FIX" });
   assert.ok(!second.calls.some((p) => p.startsWith("/company-data/sources/")), second.calls.join(", "));
@@ -210,8 +264,57 @@ test("the disk cache is private: an owner-only directory and owner-only files", 
   const dir = join(mkdtempSync(join(tmpdir(), "canli-fundamentals-")), "cache");
   await toolListConcepts(createSession({ base: "https://example.test", fetchImpl: fakeFetch().impl, cacheDir: dir }), { company: "FIX" });
   assert.equal(statSync(dir).mode & 0o777, 0o700);
-  assert.equal(statSync(join(dir, `${SHA}.json.gz`)).mode & 0o777, 0o600);
-  assert.deepEqual(readdirSync(dir), [`${SHA}.json.gz`], "no temporary file is left behind");
+  const names = readdirSync(dir).sort();
+  assert.deepEqual(names, [`${SHA}.json.gz`, `company-${CIK}.json`, "company-tickers.json"], "no temporary file is left behind");
+  for (const name of names) assert.equal(statSync(join(dir, name)).mode & 0o777, 0o600, name);
+});
+
+test("the ticker list and records are read from disk for six hours, then revalidated by ETag; a stale copy covers an outage", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "canli-fundamentals-"));
+  const map = files();
+  let down = false;
+  const calls = [];
+  const impl = async (url, opts = {}) => {
+    const path = new URL(url).pathname;
+    const etag = `"${path.length}"`;
+    calls.push([path, opts.headers?.["if-none-match"] ?? null]);
+    if (down) throw new TypeError("fetch failed");
+    if (opts.headers?.["if-none-match"] === etag) return new Response(null, { status: 304, headers: { etag } });
+    return map[path] ? new Response(map[path], { status: 200, headers: { etag } }) : new Response("not found", { status: 404 });
+  };
+  const t0 = Date.parse("2026-09-27T12:00:00Z");
+  const run = (now) => toolListConcepts(createSession({ base: "https://example.test", fetchImpl: impl, cacheDir: dir, now: () => now }), { company: "FIX" });
+  await run(t0);
+  assert.deepEqual(calls.map(([p]) => p), ["/api/v1/company-tickers.json", `/company-data/${CIK}.json`, `/company-data/sources/${SHA}.json.gz`]);
+  calls.length = 0;
+  await run(t0 + 5 * 3600e3);
+  assert.deepEqual(calls, [], "a fresh copy costs no request");
+  await run(t0 + 7 * 3600e3);
+  assert.deepEqual(calls, [["/api/v1/company-tickers.json", `"${"/api/v1/company-tickers.json".length}"`], [`/company-data/${CIK}.json`, `"${`/company-data/${CIK}.json`.length}"`]], "a stale copy is revalidated, and a 304 keeps it");
+  calls.length = 0;
+  await run(t0 + 8 * 3600e3);
+  assert.deepEqual(calls, [], "the 304 renewed the copy");
+  down = true;
+  assert.equal(out(await run(t0 + 30 * 3600e3)).company.cik, CIK, "a stale copy is used when the site cannot be reached");
+});
+
+test("results stay under 12,000 characters and page with offset; a scan over every concept keeps no series in memory", async () => {
+  const { s } = session();
+  const all = out(await toolListConcepts(s, { company: "FIX" }));
+  const first = out(await toolListConcepts(s, { company: "FIX", limit: 3 }));
+  assert.equal(first.rows.length, 3);
+  assert.equal(first.next_offset, 3);
+  const second = out(await toolListConcepts(s, { company: "FIX", limit: 3, offset: 3 }));
+  assert.deepEqual(second.rows, all.rows.slice(3, 6));
+  const last = out(await toolListConcepts(s, { company: "FIX", offset: all.rows.length - 1 }));
+  assert.equal(last.rows.length, 1);
+  assert.equal(last.next_offset, undefined);
+  const e = await loadCompany(s, "FIX");
+  await toolRestatements(s, { company: "FIX", periods: "all" });
+  assert.equal(e.series.size, 0, "list_concepts and a full restatements scan build series without keeping them");
+  await toolHistory(s, { company: "FIX", concept: "revenue" });
+  assert.equal(e.series.size, 1, "a series read by name is kept");
+  for (const r of [all, first, out(await toolRestatements(s, { company: "FIX", periods: "all", include_splits: true }))]) assert.ok(JSON.stringify(r).length < 12000);
 });
 
 test("inputs are validated before anything is fetched", async () => {

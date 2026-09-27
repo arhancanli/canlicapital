@@ -57,10 +57,14 @@ test("the hosted fundamentals server introduces itself and answers a point-in-ti
     assert.match(init.json.result.instructions, /call known_as_of/);
     assert.equal(init.headers.get("x-robots-tag"), "noindex");
     const list = await rpc(url, "tools/list", {});
-    assert.deepEqual(list.json.result.tools.map((t) => t.name).sort(), ["history", "known_as_of", "list_concepts", "restatements", "vintages"]);
+    assert.deepEqual(list.json.result.tools.map((t) => t.name).sort(), ["find_company", "history", "known_as_of", "list_concepts", "restatements", "vintages"]);
     const call = await rpc(url, "tools/call", { name: "known_as_of", arguments: { company: "FIX", as_of: "2019-12-31", concepts: ["revenue"] } });
     const out = call.json.result.structuredContent;
     assert.deepEqual(out.rows[0].slice(0, 5), ["revenue", "SalesRevenueNet", "2019-09-30", "2018-10-01", 100]);
+    const byName = await rpc(url, "tools/call", { name: "known_as_of", arguments: { company: "Fixture Corp", as_of: "2019-12-31", concepts: ["revenue"] } });
+    assert.deepEqual(byName.json.result.structuredContent.company.matched, { query: "Fixture Corp", by: "name" });
+    const found = await rpc(url, "tools/call", { name: "find_company", arguments: { query: "xom" } });
+    assert.equal(found.json.result.structuredContent.resolved.name, "Exxon Mobil Corporation");
   });
 });
 
