@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use canli-fundamentals-mcp, please cite the software and its author."
+title: "canli-fundamentals-mcp: SEC company fundamentals point in time, as an MCP server"
+type: software
+authors:
+  - family-names: "Canli"
+    given-names: "Arhan"
+    orcid: "https://orcid.org/0009-0004-4138-7907"
+repository-code: "https://github.com/arhancanli/canli-fundamentals-mcp"
+url: "https://canlicapital.com/developers#mcp-fundamentals"
+license: MIT
+keywords:
+  - model context protocol
+  - point-in-time data
+  - SEC XBRL
+  - restatements
+  - lookahead bias
+abstract: >-
+  A Model Context Protocol server that answers, for any value a company reported to the SEC in
+  XBRL, what was first reported, what the latest filing says and what was known on a given date,
+  each with the filing behind it, so a backtest reads only what investors could have known. It
+  computes locally from a hash-checked copy of the SEC companyfacts response and labels each
+  later change as a stock split or a change of reporting tag where the filings show it.
