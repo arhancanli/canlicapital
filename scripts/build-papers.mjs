@@ -285,6 +285,10 @@ const PAGE_SOURCES = {
     "public/glassbox/paper_evidence_conformance.json",
     "public/api/v1/index.json",
     "public/api/v1/openapi.json",
+    "mcp-fundamentals/package.json",
+    "mcp-fundamentals/src/server.mjs",
+    "mcp-research/package.json",
+    "mcp-research/src/server.mjs",
   ],
   "/costs": ["scripts/build-cost-coverage.mjs"],
   "/standards/paper-evidence": [

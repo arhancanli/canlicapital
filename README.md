@@ -4,6 +4,8 @@
 the strategies that failed.** Live at **[canlicapital.com](https://canlicapital.com)**.
 
 [![npm](https://img.shields.io/npm/v/canli-validation-mcp?label=canli-validation-mcp)](https://www.npmjs.com/package/canli-validation-mcp)
+[![npm](https://img.shields.io/npm/v/canli-fundamentals-mcp?label=canli-fundamentals-mcp)](https://www.npmjs.com/package/canli-fundamentals-mcp)
+[![npm](https://img.shields.io/npm/v/canli-research-mcp?label=canli-research-mcp)](https://www.npmjs.com/package/canli-research-mcp)
 [![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arhancanli/canlicapital/badge)](https://scorecard.dev/viewer/?uri=github.com/arhancanli/canlicapital)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue)](LICENSE)
@@ -34,6 +36,12 @@ python3 reproduce.py --dir .
   haircut Sharpe, luck-equivalent trials) as an [MCP server](mcp/README.md) and a
   [free API](https://canlicapital.com/developers), each result with a signed receipt anyone can
   recompute.
+- **SEC fundamentals point in time** as an [MCP server](mcp-fundamentals/README.md)
+  (`npx -y canli-fundamentals-mcp`): what a company first reported, what was known on any date, and
+  every later restatement, each value with its filing, computed locally from a hash-checked SEC
+  snapshot.
+- **The research record** as an [MCP server](mcp-research/README.md) (`npx -y canli-research-mcp`):
+  papers, killed candidates, trial counts and the live paper record.
 - **Company reference pages** built from SEC XBRL filings: financial histories where every value
   links to the filing it came from, with the year-on-year change and growth rate worked out.
 
