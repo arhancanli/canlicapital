@@ -5,7 +5,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { bookSharpe, breadthCeiling, breadthCurve, ceilingCaptured, sleevesRequired } from "./breadth-core.js";
+import { bookSharpe, breadthCeiling, breadthCurve, ceilingCaptured, maxSleeves, sleevesRequired } from "./breadth-core.js";
 
 const close = (a, b, tol = 1e-12) => Math.abs(a - b) < tol;
 
@@ -50,9 +50,37 @@ test("THE CEILING: breadth cannot beat s over root rho", () => {
   }
 });
 
-test("zero or negative correlation has no ceiling", () => {
+test("zero correlation has no ceiling; a negative one caps the count, and the ceiling is the book at the cap", () => {
   assert.equal(breadthCeiling({ sleeveSharpe: 0.5, correlation: 0 }), Number.POSITIVE_INFINITY);
-  assert.equal(breadthCeiling({ sleeveSharpe: 0.5, correlation: -0.02 }), Number.POSITIVE_INFINITY);
+  // The 2026-09-27 audit's case: rho = -0.3 admits 4 sleeves, worth sqrt(40) = 6.32 at a sleeve Sharpe of 1.
+  assert.equal(maxSleeves(-0.3), 4);
+  assert.ok(Math.abs(breadthCeiling({ sleeveSharpe: 1, correlation: -0.3 }) / Math.sqrt(40) - 1) < 1e-12);
+  assert.equal(maxSleeves(-0.1), 10, "rho = -0.1 is degenerate at 11 sleeves");
+  assert.equal(maxSleeves(-0.25), 4, "rho = -0.25 is degenerate at 5 sleeves");
+  assert.equal(maxSleeves(-1), 1);
+  assert.equal(breadthCeiling({ sleeveSharpe: 0.5, correlation: -0.02 }), bookSharpe({ sleeveSharpe: 0.5, sleeves: 50, correlation: -0.02 }));
+  assert.equal(maxSleeves(-1e-17), Number.POSITIVE_INFINITY, "a cap beyond 2^53 sleeves is treated as none");
+});
+
+test("sleevesRequired is exact at any size: the audit's 3,333 sleeves, and a brute-force search agrees", () => {
+  assert.deepEqual(sleevesRequired({ sleeveSharpe: 1, correlation: 0.0001, target: 50 }), { sleeves: 3333, ceiling: 100, reachable: true });
+  const top = breadthCeiling({ sleeveSharpe: 1, correlation: -0.3 });
+  assert.equal(sleevesRequired({ sleeveSharpe: 1, correlation: -0.3, target: top }).sleeves, 4, "a maximum is reached");
+  assert.equal(sleevesRequired({ sleeveSharpe: 1, correlation: -0.3, target: 6.33 }).reachable, false);
+  assert.equal(sleevesRequired({ sleeveSharpe: 1, correlation: 0.25, target: 2 }).reachable, false, "a positive-rho ceiling is a limit no book reaches");
+  for (const s of [0.3, 0.5, 1.2]) {
+    for (const rho of [-0.02, 0, 0.001, 0.05, 0.3]) {
+      for (const target of [0.2, 0.9, 1.5, 2.5, 4]) {
+        const got = sleevesRequired({ sleeveSharpe: s, correlation: rho, target });
+        let brute = null;
+        for (let n = 1; n <= Math.min(maxSleeves(rho), 20000); n += 1) {
+          if (bookSharpe({ sleeveSharpe: s, sleeves: n, correlation: rho }) >= target) { brute = n; break; }
+        }
+        if (brute !== null) assert.equal(got.sleeves, brute, `s ${s} rho ${rho} target ${target}`);
+        else if (got.reachable) assert.ok(got.sleeves > 20000, `s ${s} rho ${rho} target ${target}: ${got.sleeves}`);
+      }
+    }
+  }
 });
 
 test("an impossible correlation is refused, not computed", () => {

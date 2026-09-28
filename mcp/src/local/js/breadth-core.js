@@ -58,22 +58,60 @@ export function bookSharpe({ sleeveSharpe, sleeves, correlation }) {
   return sleeveSharpe * Math.sqrt(sleeves / denominator);
 }
 
-/** The value no amount of breadth can exceed. Infinite only when rho <= 0. */
-export function breadthCeiling({ sleeveSharpe, correlation }) {
-  if (correlation <= 0) return Number.POSITIVE_INFINITY;
-  return sleeveSharpe / Math.sqrt(correlation);
+/**
+ * The most sleeves a shared correlation admits: `1 + (N-1)*rho` must stay positive, so a negative
+ * rho allows only N < 1 - 1/rho (rho = -0.3 allows 4). Infinite when rho >= 0, and when rho is so
+ * close to zero (above about -1e-16) that the cap passes 2^53 sleeves.
+ */
+export function maxSleeves(correlation) {
+  if (!(correlation < 0)) return Number.POSITIVE_INFINITY;
+  const bound = 1 - 1 / correlation;
+  if (!(bound < Number.MAX_SAFE_INTEGER)) return Number.POSITIVE_INFINITY;
+  let n = Math.max(1, Math.ceil(bound) - 1);
+  // The closed form, then one step either way against floating-point rounding at the boundary.
+  while (n > 1 && 1 + (n - 1) * correlation <= 0) n -= 1;
+  while (1 + n * correlation > 0) n += 1;
+  return n;
 }
 
-/** The smallest N reaching `target`, or null when the ceiling forbids it. */
-export function sleevesRequired({ sleeveSharpe, correlation, target, maxSleeves = 500 }) {
+/**
+ * The most a book of these sleeves can be worth. For rho > 0 it is the limit s / sqrt(rho), which
+ * no finite book reaches. For rho < 0 it is the book at maxSleeves, which is reached: a negative
+ * shared correlation caps the count, so it caps the Sharpe too. Infinite when rho is 0 (and, in
+ * practice, within about 1e-16 below it).
+ */
+export function breadthCeiling({ sleeveSharpe, correlation }) {
+  if (correlation > 0) return sleeveSharpe / Math.sqrt(correlation);
+  const cap = maxSleeves(correlation);
+  if (!Number.isFinite(cap)) return Number.POSITIVE_INFINITY;
+  return bookSharpe({ sleeveSharpe, sleeves: cap, correlation });
+}
+
+/**
+ * The smallest N reaching `target`, or null when no admissible N does. Exact at any size: from
+ * s * sqrt(N / (1 + (N-1)*rho)) >= T, with k = (T/s)^2, N * (1 - k*rho) >= k * (1 - rho). A target
+ * of 50 from sleeves of Sharpe 1 at rho = 0.0001 needs 3,333 sleeves; a search that stopped at 500
+ * called it unreachable.
+ */
+export function sleevesRequired({ sleeveSharpe, correlation, target }) {
   const ceiling = breadthCeiling({ sleeveSharpe, correlation });
-  if (target > ceiling) return { sleeves: null, ceiling, reachable: false };
-  for (let n = 1; n <= maxSleeves; n += 1) {
-    if (bookSharpe({ sleeveSharpe, sleeves: n, correlation }) >= target) {
-      return { sleeves: n, ceiling, reachable: true };
-    }
+  const unreachable = { sleeves: null, ceiling, reachable: false };
+  if (!(sleeveSharpe > 0) || !(target > 0)) return unreachable;
+  if (target <= sleeveSharpe) return { sleeves: 1, ceiling, reachable: true };
+  // For rho > 0 the ceiling is a limit no book attains; for rho < 0 it is attained at maxSleeves.
+  if (correlation > 0 ? target >= ceiling : target > ceiling) return unreachable;
+  const k = (target / sleeveSharpe) ** 2;
+  const book = (n) => bookSharpe({ sleeveSharpe, sleeves: n, correlation });
+  let n = Math.max(1, Math.ceil((k * (1 - correlation)) / (1 - k * correlation)));
+  if (!Number.isSafeInteger(n)) return unreachable;
+  const cap = maxSleeves(correlation);
+  if (n > cap) n = cap;
+  while (n > 1 && book(n - 1) >= target) n -= 1;
+  while (book(n) < target) {
+    if (n >= cap || !Number.isSafeInteger(n + 1)) return unreachable;
+    n += 1;
   }
-  return { sleeves: null, ceiling, reachable: false };
+  return { sleeves: n, ceiling, reachable: true };
 }
 
 /** The curve of book Sharpe against N, for plotting. */

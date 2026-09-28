@@ -81,8 +81,13 @@ endpoint as a remote, title, website, icons and environment variables; npm keywo
 CI: the tag `mcp-v0.8.2` ran `mcp-publish.yml` (run 36331874195) to npm and to the official MCP
 Registry.
 
-Next release, not yet published: `canli-validation-mcp@0.9.0` (server instructions; a 9% smaller
-tool list). It publishes from `mcp-publish.yml` on the tag `mcp-v0.9.0`.
+Release checkpoint, September 27, 2026: `canli-validation-mcp@0.9.0` (server instructions; a 9%
+smaller tool list) published from CI: the tag `mcp-v0.9.0` ran `mcp-publish.yml` (run 36341749959)
+to npm with provenance and to the official MCP Registry; the mirror's v0.9.0 release carries the
+signed Claude Desktop bundle.
+
+Next release, not yet published: `canli-validation-mcp@0.9.1` (exact breadth answers). It publishes
+from `mcp-publish.yml` on the tag `mcp-v0.9.1`.
 
 `canli-research-mcp` (the `mcp-research/` directory) publishes from `mcp-research-publish.yml` on a tag
 `research-mcp-v<version>`, the same way. Its 0.1.0 was published to npm by hand on September 26, 2026,
