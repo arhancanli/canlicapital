@@ -14,7 +14,7 @@ import { computeLocally } from "./local.mjs";
 import { readMatrixFile, readSeriesFile } from "./series-file.mjs";
 import { verifyReceipt } from "./local/js/receipt-statement.js";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
-import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, LIMITS_SENTENCES, paperEvidenceInput, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
+import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
 
 export const DEFAULT_BASE = "https://canlicapital.com";
 export const SERVER_NAME = "canlicapital-validation-mcp";
@@ -66,7 +66,7 @@ export function configuredLocal(value) {
 // is most of each turn's prompt (README, "Toolsets"; bench/tool_list_tokens.py measures it), so a
 // client that needs one kind of tool can load only that kind. Default: all.
 export const TOOLSETS = Object.freeze({
-  validate: Object.freeze(["get_key", "validate_deflated_sharpe", "validate_overfitting", "validate_paper_evidence", "validate_breadth", "validate_track_record", "validate_backtest_length", "validate_haircut_sharpe", "validate_luck_trials", "audit_backtest"]),
+  validate: Object.freeze(["get_key", "validate_deflated_sharpe", "validate_overfitting", "validate_paper_evidence", "validate_breadth", "validate_track_record", "validate_backtest_length", "validate_haircut_sharpe", "validate_luck_trials", "validate_reality_check", "audit_backtest"]),
   receipts: Object.freeze(["get_receipt", "verify_receipt"]),
   company: Object.freeze(["company_financial_history"]),
   status: Object.freeze(["service_status"]),
@@ -257,6 +257,20 @@ export async function toolValidateOverfitting(session, args) {
   const body = parseOrThrow(overfittingInput, args, "validate_overfitting");
   if (session.local) { const local = computeLocally("validate_overfitting", body); return validationText(session, local); }
   const response = await validateRemote(session, "validate_overfitting", "/api/v1/validate/overfitting", body);
+  return validationText(session, response);
+}
+
+// Every variant's returns, from the call or from a file on this machine (stdio only), tested for
+// data snooping in one call; the file is read here and only its numbers are sent.
+export async function toolValidateRealityCheck(session, args) {
+  const input = parseOrThrow(realityCheckInput, args, "validate_reality_check");
+  if (input.matrix_file && session.hosted) {
+    throw new Error("validate_reality_check: the hosted endpoint cannot read files on your machine; send matrix as numbers, or run the server locally with npx -y canli-validation-mcp.");
+  }
+  const { matrix_file: file, ...rest } = input;
+  const body = file ? { ...rest, matrix: readMatrixFile(file).matrix } : rest;
+  if (session.local) { const local = computeLocally("validate_reality_check", body); return validationText(session, local); }
+  const response = await validateRemote(session, "validate_reality_check", "/api/v1/validate/reality-check", body);
   return validationText(session, response);
 }
 
@@ -548,6 +562,11 @@ export function registerTools(server, session) {
     "validate_overfitting",
     { title: "Validate overfitting (CSCV)", annotations: { title: "Validate overfitting (CSCV)", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_overfitting, inputSchema: overfittingInput, outputSchema: validationOutput },
     (args) => toolValidateOverfitting(session, args),
+  );
+  register(
+    "validate_reality_check",
+    { title: "Data-snooping tests (SPA, Reality Check, StepM)", annotations: { title: "Data-snooping tests (SPA, Reality Check, StepM)", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_reality_check, inputSchema: realityCheckToolShape, outputSchema: validationOutput },
+    (args) => toolValidateRealityCheck(session, args),
   );
   register(
     "validate_paper_evidence",

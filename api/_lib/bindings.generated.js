@@ -20,6 +20,8 @@ export const BINDINGS = Object.freeze({
     "js/validate/haircut-sharpe.js",
     "js/luck-core.js",
     "js/validate/luck-trials.js",
+    "js/snooping-core.js",
+    "js/validate/reality-check.js",
     "public/glassbox/deflated_sharpe_calculator_contract.json",
     "standards/validation-api/vectors.json"
   ],
@@ -43,6 +45,8 @@ export const BINDINGS = Object.freeze({
     "js/validate/haircut-sharpe.js": "sha256:177158344edadb9bffd9c732a3bc3a2c7e55c766c35d5199ebcc2a95977663d5",
     "js/luck-core.js": "sha256:d697c1bd6bc4a9e70c63223cc4c8def10b2a72fa15eb20222398ba7b6291454e",
     "js/validate/luck-trials.js": "sha256:cdd9784e3ee75f4edcf2bd6394097a7dc7b4534eebf72baa48dff0826eed8b3e",
+    "js/snooping-core.js": "sha256:0f36126cbde52546f81a2638187fe0c5c020357f6980a0c4e94811f8ff59c68b",
+    "js/validate/reality-check.js": "sha256:75875b47b209f88418ca3d925873a88ade218e1c05665f704f316d8c5e9017ec",
     "public/glassbox/deflated_sharpe_calculator_contract.json": "sha256:2ba8fcb339a5fdb9304da074fcbdf9e229f9b6f5ec2f8a787c542f5f31db7e8f",
     "standards/validation-api/vectors.json": "sha256:e575dc7b72d5d4e80334a2d64e4454fa333f1ed2fa02860a6894d6c2ee21fb15"
   }

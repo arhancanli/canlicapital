@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.10.0 (2026-09-28)
+
+- `validate_reality_check`: data-snooping tests on every variant a search tried. Hansen's SPA
+  (2005) gives the chance that the best variant's studentized excess return is this good when no
+  variant has an edge, with lower and upper bounds and its Monte Carlo error; White's Reality
+  Check (2000) asks the same without studentizing; Romano and Wolf's StepM (2005) names the
+  variants that beat the benchmark with the familywise error held at `alpha`. One seeded stationary
+  bootstrap feeds all three, so a result reproduces exactly from its inputs. Send `matrix`, or
+  `matrix_file` (read on your machine, then sent as numbers), and an optional `benchmark` series.
+  Works in local mode and on the hosted endpoint, and is `POST /api/v1/validate/reality-check` on
+  the API.
+- Checked against independent implementations: on three fixed-seed cases the p-values agree with
+  Python's `arch` 8.0 and with a numpy transcription of Hansen's formulas within Monte Carlo error,
+  the SPA statistic to nine digits, and the StepM sets match `arch`'s. On pure noise, a 5% SPA
+  rejects at most 10% of 200 searches in CI.
+- A matrix cell that is not a number (JSON null, a string) is refused with its row and column,
+  never read as zero.
+
 ## 0.9.1 (2026-09-28)
 
 Breadth answers are exact where two were wrong without warning:

@@ -7,8 +7,9 @@
 
 **Is your best backtest real, or just the luckiest of the variants you tried?** This MCP server
 lets Claude, Cursor or any MCP client answer that with the standard corrections: the deflated
-Sharpe ratio, the CSCV probability of backtest overfitting, the minimum track record length, the
-haircut Sharpe ratio, and luck-equivalent trials. Free and MIT-licensed.
+Sharpe ratio, the CSCV probability of backtest overfitting, data-snooping tests on every variant
+tried (Hansen's SPA, White's Reality Check, Romano-Wolf StepM), the minimum track record length,
+the haircut Sharpe ratio, and luck-equivalent trials. Free and MIT-licensed.
 
 ## Quick start
 
@@ -34,9 +35,10 @@ other stdio client (Cursor, VS Code) run the same `npx` command; see "Claude Des
 ## What it does
 
 An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
-gives a coding agent fourteen tools: issue a free key, run the eight validators (deflated Sharpe,
-CSCV overfitting, paper-evidence conformance, breadth ceiling, minimum track record length,
-minimum backtest length, haircut Sharpe ratio, luck-equivalent trials),
+gives a coding agent fifteen tools: issue a free key, run the nine validators (deflated Sharpe,
+CSCV overfitting, data-snooping tests (Hansen's SPA, White's Reality Check and Romano-Wolf StepM),
+paper-evidence conformance, breadth ceiling, minimum track record length, minimum backtest length,
+haircut Sharpe ratio, luck-equivalent trials),
 audit one backtest with three of them in a single call, fetch a stored receipt, verify a
 receipt's signature offline, read service status, and read a company's reported financial history
 from SEC filings. Every validation result carries, beside the number, the sentences that say what
@@ -80,6 +82,7 @@ repository for the full design.
 | `validate_backtest_length` | `POST /api/v1/validate/backtest-length` | yes |
 | `validate_haircut_sharpe` | `POST /api/v1/validate/haircut-sharpe` | yes |
 | `validate_luck_trials` | `POST /api/v1/validate/luck-trials` | yes |
+| `validate_reality_check` | `POST /api/v1/validate/reality-check` (a `matrix_file` is read on your machine and sent as numbers) | yes |
 | `audit_backtest` | the deflated Sharpe, track record and, with `variants`, overfitting routes, one validation each | yes |
 | `verify_receipt` | `GET /api/v1/receipts/{id}` when given an id; the checks run locally | no |
 | `get_receipt` | `GET /api/v1/receipts/{id}` | no |
@@ -96,6 +99,24 @@ repository for the full design.
 
 Sending fields from both shapes, or from neither, is rejected before any request leaves the
 process; see `src/schemas.mjs`.
+
+`validate_reality_check` takes the returns of every variant the search tried, one row per period
+and one column per variant, as `matrix` or as `matrix_file` (a CSV or JSON on your machine), and an
+optional `benchmark` series; with none, variants are tested against zero. It runs three tests on one
+seeded stationary bootstrap:
+
+- Hansen's SPA: the chance that the best variant's studentized excess return is this good if no
+  variant has an edge, with lower and upper bounds (`spa.p_value`, the consistent p-value, is the
+  headline, and `monte_carlo_se` its sampling error);
+- White's Reality Check: the same question without studentizing, so one volatile variant can
+  dominate it;
+- Romano and Wolf's StepM: which variants beat the benchmark, with the familywise error held at
+  `alpha`.
+
+A result reproduces exactly from its `seed`. On three fixed-seed cases the p-values agree with
+Python's `arch` 8.0 and with a numpy transcription of Hansen's formulas within Monte Carlo error, and
+the StepM sets match `arch`'s (`js/snooping-core.test.js`). Only the variants sent are counted: a
+search that tried more than it sends makes luck look smaller than it was.
 
 `company_financial_history` is different from the other tools: it reads the public company
 reference at canlicapital.com, not the validation API. Give it a CIK (1 to 10 digits) to list a
@@ -317,7 +338,7 @@ On a breadth result this is about half the text. Set `CANLI_FULL_ENVELOPE=1` to 
 ## Toolsets (tokens)
 
 A client sends the model the whole tool list on every turn, and it is most of each turn's prompt:
-a validation result is a few hundred tokens, the list of all fourteen tools several thousand. A
+a validation result is a few hundred tokens, the list of all fifteen tools several thousand. A
 client that needs one kind of tool can list only that kind, with `CANLI_TOOLSETS` (stdio) or
 `?toolsets=` (hosted endpoint). The default is every tool.
 
@@ -333,9 +354,9 @@ tokenizers give different absolute counts), in the shape an OpenAI-style client 
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| `all` | 14 | 3,834 | 100% |
-| `validate` | 10 | 3,166 | 83% |
-| `receipts` | 2 | 312 | 8% |
+| `all` | 15 | 4,194 | 100% |
+| `validate` | 11 | 3,526 | 84% |
+| `receipts` | 2 | 312 | 7% |
 | `company` | 1 | 273 | 7% |
 | `status` | 1 | 89 | 2% |
 
