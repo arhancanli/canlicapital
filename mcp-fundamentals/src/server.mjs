@@ -787,6 +787,13 @@ export function pointInTimeRatios(e, asOf, kind) {
   };
 }
 
+// A quarter is behind when the same measure has a later fiscal year filed by as_of: companies report
+// their fourth quarter only inside the annual report, so for about three months after each 10-K the
+// newest quarter on its own is a quarter older than what the company has published.
+function behindAnnual(s, quarter, asOf) {
+  return s.periods.some((p) => p.kind === "annual" && p.end > quarter.end && select(p, "as_of", asOf) !== null);
+}
+
 export async function toolKnownAsOf(session, args) {
   const { company: who, as_of: asOf, concepts, periods = "annual", ratios = false } = parse(knownInput, args, "known_as_of");
   const e = await loadCompany(session, who);
@@ -815,7 +822,7 @@ export async function toolKnownAsOf(session, args) {
       missing.push(name);
       continue;
     }
-    rows.push([s.name, tagName(hit.sel.v.tag), hit.p.end, hit.p.start, hit.sel.v.val, s.unit, hit.sel.v.filed, hit.sel.v.form, hit.sel.v.accn, hit.sel.changedLater, hit.p.end < staleBefore]);
+    rows.push([s.name, tagName(hit.sel.v.tag), hit.p.end, hit.p.start, hit.sel.v.val, s.unit, hit.sel.v.filed, hit.sel.v.form, hit.sel.v.accn, hit.sel.changedLater, hit.p.end < staleBefore || (periods === "quarterly" && behindAnnual(s, hit.p, asOf))]);
   }
   return asText({
     ...head(e, asOf),
@@ -825,7 +832,7 @@ export async function toolKnownAsOf(session, args) {
     rows,
     ...(missing.length ? { missing } : {}),
     ...(ratios ? { ratios: pointInTimeRatios(e, asOf, periods) } : {}),
-    meaning: `Each row is the most recent period whose value had been filed on or before as_of, with the value as it stood then. changed_after: a later filing reported a different value, so a backtest reading today's data would use a number nobody knew on as_of. stale: the period ended long before as_of, so the company may have stopped reporting this measure.${ratios ? " ratios: computed only from values filed by as_of for one period; each names its inputs and their filings." : ""}`,
+    meaning: `Each row is the most recent period whose value had been filed on or before as_of, with the value as it stood then. changed_after: a later filing reported a different value, so a backtest reading today's data would use a number nobody knew on as_of. stale: the period ended long before as_of, so the company may have stopped reporting this measure; or, for a quarter, a later fiscal year has been filed, whose fourth quarter the company reports only inside the annual report.${ratios ? " ratios: computed only from values filed by as_of for one period; each names its inputs and their filings." : ""}`,
     limits: LIMITS,
   });
 }
@@ -1020,7 +1027,7 @@ export async function toolCrossSection(session, args) {
           if (sel) { hit = { p, sel }; break; }
         }
         if (!hit) { results[i] = { query, missing: `no ${periods} ${s.name} filed by ${asOf}` }; continue; }
-        results[i] = { row: [query, cik, e.name, s.name, tagName(hit.sel.v.tag), hit.p.end, hit.p.start, hit.sel.v.val, s.unit, hit.sel.v.filed, hit.sel.v.form, hit.sel.v.accn, hit.sel.changedLater, hit.p.end < staleBefore, e.snapshot.fetched_at?.slice(0, 10) ?? null, ...(matched ? [matched.by] : [null])] };
+        results[i] = { row: [query, cik, e.name, s.name, tagName(hit.sel.v.tag), hit.p.end, hit.p.start, hit.sel.v.val, s.unit, hit.sel.v.filed, hit.sel.v.form, hit.sel.v.accn, hit.sel.changedLater, hit.p.end < staleBefore || (periods === "quarterly" && behindAnnual(s, hit.p, asOf)), e.snapshot.fetched_at?.slice(0, 10) ?? null, ...(matched ? [matched.by] : [null])] };
       } catch (err) {
         results[i] = { query, missing: String(err.message ?? err).split(". ")[0] };
       }
@@ -1037,7 +1044,7 @@ export async function toolCrossSection(session, args) {
     columns: ["company", "cik", "name", "concept", "tag", "end", "start", "val", "unit", "filed", "form", "accn", "changed_after", "stale", "snapshot_date", "matched_by"],
     ...shown,
     ...(missing.length ? { missing } : {}),
-    meaning: "One row per company, in the order asked: the most recent period whose value had been filed on or before as_of, with the value as it stood then. changed_after: a later filing reported a different value. stale: the period ended long before as_of. Companies' fiscal years end on different dates, so compare end before comparing val.",
+    meaning: "One row per company, in the order asked: the most recent period whose value had been filed on or before as_of, with the value as it stood then. changed_after: a later filing reported a different value. stale: the period ended long before as_of, or, for a quarter, a later fiscal year has been filed, whose fourth quarter is reported only inside the annual report. Companies' fiscal years end on different dates, so compare end before comparing val.",
     limits: LIMITS,
   });
 }
