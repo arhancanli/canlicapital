@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.0
+
+- `known_as_of` with `ratios: true` adds ratios computed only from values filed by `as_of`, for the
+  latest period whose revenue (or, with none, net income) had been filed: gross, operating and net
+  margin, return on equity and on assets (averaging the balances at the period's start and end,
+  annual periods only), liabilities to equity, free cash flow and its margin. Each ratio lists its
+  inputs with their period end, filed date and accession number, and `changed_after` says a later
+  filing changed one of them. A balance restated after `as_of` is not used: before the restatement
+  is filed, the ratio reads the balance as first reported. Apple's fiscal 2019, as of 2020-01-01:
+  net margin 0.2124, return on equity 0.5592, free cash flow $58.9B, from the figures in its 10-K.
+- New plain name `capex` (PaymentsToAcquirePropertyPlantAndEquipment, the IFRS purchase of
+  property, plant and equipment, PaymentsToAcquireProductiveAssets); `capital_expenditures` works too.
+
 ## 0.3.0
 
 Find any company, faster, in less memory:

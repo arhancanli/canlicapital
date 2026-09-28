@@ -45,7 +45,7 @@ Apple's 2017 accounts payable".
 
 | Tool | What it returns |
 |---|---|
-| `known_as_of` | For each measure, the most recent period filed on or before a date and its value as it stood then. Flags values later restated (`changed_after`) and measures the company stopped reporting (`stale`). Defaults to ten common measures. The point-in-time primitive for backtests. |
+| `known_as_of` | For each measure, the most recent period filed on or before a date and its value as it stood then. Flags values later restated (`changed_after`) and measures the company stopped reporting (`stale`). Defaults to ten common measures. With `ratios: true`, adds margins, return on equity and assets, liabilities to equity and free cash flow computed only from those filings, each listing its inputs and their filings. The point-in-time primitive for backtests. |
 | `history` | One measure over time, newest first: `first_reported` (default), `latest`, or as known on an `as_of` date. Annual, quarterly or all periods. |
 | `restatements` | Periods whose latest value differs from the first report, with both values, the percent change and a cause: `split`, `split_likely`, `tag_change`, or none (a restatement, reclassification or correction). Scans every concept when none is given. |
 | `vintages` | Every filing that reported one period of one measure, oldest first. |
@@ -88,6 +88,7 @@ to IFRS. Each value names the tag it came from.
 | `operating_cash_flow` | NetCashProvidedByUsedInOperatingActivities, ifrs-full:CashFlowsFromUsedInOperatingActivities |
 | `diluted_shares` | WeightedAverageNumberOfDilutedSharesOutstanding, ifrs-full:AdjustedWeightedAverageShares |
 | `shares_outstanding` | dei:EntityCommonStockSharesOutstanding, CommonStockSharesOutstanding |
+| `capex` | PaymentsToAcquirePropertyPlantAndEquipment, ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities, PaymentsToAcquireProductiveAssets |
 
 Common variants work too (`sales`, `revenues`, `EPS`, `total_assets`). Any **XBRL tag** also works
 (`AccountsPayableCurrent`), us-gaap by default; a tag that exists in two taxonomies is read from
