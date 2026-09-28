@@ -15,6 +15,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import fc from "fast-check";
 
+import { bookSharpe } from "../src/local/js/breadth-core.js";
 import { minimumTrackRecordLength, probabilisticSharpe } from "../src/local/js/dsr-core.js";
 import { compute as breadth } from "../src/local/js/validate/breadth.js";
 import { compute as deflatedSharpe } from "../src/local/js/validate/deflated-sharpe.js";
@@ -183,7 +184,8 @@ test("breadth is total, and the ceiling is s / sqrt(rho) exactly when rho is pos
       const s = Number(body.sleeve_sharpe);
       const rho = Number(body.average_pairwise_correlation);
       if (rho > 0) assert.equal(out.ceiling, s / Math.sqrt(rho));
-      else assert.equal(out.ceiling_is_unbounded, true);
+      else if (rho === 0) assert.equal(out.ceiling_is_unbounded, true);
+      else if (!out.ceiling_is_unbounded) assert.equal(out.ceiling_kind, "maximum");
     }),
     RUNS,
   );
@@ -201,14 +203,39 @@ test("a book never exceeds the breadth ceiling, and adding sleeves never lowers 
   );
 });
 
-test("sleeves_required is the smallest count that reaches the target", () => {
+test("sleeves_required is the smallest count that reaches the target, at any size and any correlation", () => {
   fc.assert(
-    fc.property(breadthInput.filter((b) => b.average_pairwise_correlation > 0), fc.double({ min: 0.05, max: 5, noNaN: true }), (input, target) => {
+    fc.property(breadthInput, fc.double({ min: 0.05, max: 60, noNaN: true }), (input, target) => {
       const out = breadth({ ...input, target });
-      if (!out.target.reachable || out.target.sleeves_required > 500) return;
+      const s = input.sleeve_sharpe;
+      const rho = input.average_pairwise_correlation;
+      const book = (n) => bookSharpe({ sleeveSharpe: s, sleeves: n, correlation: rho });
+      if (!out.target.reachable) {
+        // Unreachable only when no admissible count gets there.
+        if (out.max_sleeves !== undefined) assert.ok(book(out.max_sleeves) < target * (1 + SLACK), `${out.max_sleeves} sleeves reach ${target}`);
+        else if (rho > 0) assert.ok(target >= (s / Math.sqrt(rho)) * (1 - SLACK), `${target} is under the ceiling`);
+        return;
+      }
       const n = out.target.sleeves_required;
-      assert.ok(breadth({ ...input, sleeves: n }).book.book_sharpe >= target * (1 - SLACK), `${n} sleeves fall short of ${target}`);
-      if (n > 1) assert.ok(breadth({ ...input, sleeves: n - 1 }).book.book_sharpe < target * (1 + SLACK), `${n - 1} sleeves already reach ${target}`);
+      assert.ok(book(n) >= target * (1 - SLACK), `${n} sleeves fall short of ${target}`);
+      if (n > 1) assert.ok(book(n - 1) < target * (1 + SLACK), `${n - 1} sleeves already reach ${target}`);
+      if (out.max_sleeves !== undefined) assert.ok(n <= out.max_sleeves);
+    }),
+    RUNS,
+  );
+});
+
+test("a negative shared correlation caps the count, and the ceiling is the book at that cap", () => {
+  fc.assert(
+    fc.property(breadthInput.filter((b) => b.average_pairwise_correlation < -1e-6), (input) => {
+      const out = breadth(input);
+      const rho = input.average_pairwise_correlation;
+      const cap = out.max_sleeves;
+      assert.equal(out.ceiling_kind, "maximum");
+      assert.ok(1 + (cap - 1) * rho > 0 && 1 + cap * rho <= 0, `${cap} is not the largest admissible count at ${rho}`);
+      assert.equal(out.ceiling, bookSharpe({ sleeveSharpe: input.sleeve_sharpe, sleeves: cap, correlation: rho }));
+      if (cap <= 500) assert.equal(breadth({ ...input, sleeves: cap }).book.ceiling_captured, 1, "the ceiling is reached at the cap");
+      if (cap < 500) assert.throws(() => breadth({ ...input, sleeves: cap + 1 }), RangeError);
     }),
     RUNS,
   );

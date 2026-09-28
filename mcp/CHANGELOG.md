@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.9.1 (2026-09-28)
+
+Breadth answers are exact where two were wrong without warning:
+
+- `sleeves_required` is solved in closed form at any size. It searched only up to 500 sleeves, so a
+  reachable target that needs more was called unreachable: a target of 50 from sleeves of Sharpe 1
+  at correlation 0.0001 needs 3,333 sleeves, and now says so.
+- A negative average correlation caps the sleeve count (`1 + (N - 1) * rho` must stay positive), so
+  it caps the book Sharpe too. The result gives `max_sleeves` and the ceiling reached there
+  (`ceiling_kind: "maximum"`): at -0.3, 4 sleeves of Sharpe 1 reach 6.32. It was reported as having
+  no ceiling. `ceiling_kind` is `limit` for a positive correlation (approached, never reached) and
+  `unbounded` only at zero. A sleeve count above `max_sleeves` is refused, naming the cap.
+- The target note states the sleeve count it found.
+
+The same code runs the API, local mode and the calculator at canlicapital.com/tools/breadth.
+
 ## 0.9.0 (2026-09-27)
 
 - Server instructions: `initialize` carries a short, byte-stable paragraph on which tool to call
