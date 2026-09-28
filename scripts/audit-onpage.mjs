@@ -18,6 +18,7 @@ import { dirname, resolve, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { jsonLdProblems } from "./lib/jsonld-rules.mjs";
+import { checksummedFiles, imageDimensions, readMeta } from "./lib/social-meta.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -48,6 +49,16 @@ const decodeEntities = (text) =>
     .replace(/&amp;/g, "&");
 
 const problems = [];
+const FROZEN = existsSync(DIST) ? checksummedFiles(DIST) : new Set();
+const imageSizes = new Map();
+function imageSize(url) {
+  if (!imageSizes.has(url)) {
+    let size = null;
+    try { size = imageDimensions(readFileSync(join(DIST, decodeURIComponent(new URL(url).pathname)))); } catch { size = null; }
+    imageSizes.set(url, size);
+  }
+  return imageSizes.get(url);
+}
 const note = (page, severity, message) => problems.push({ page, severity, message });
 
 function htmlFiles(dir) {
@@ -150,7 +161,27 @@ function audit(file) {
     !(pendingTechnicalAuthorship && authors[0][1] === "Canli Capital")
   )
     note(page, "error", `author metadata is ${JSON.stringify(authors[0][1])}, not Arhan Canli`);
-  if (!/property="og:title"/i.test(html)) note(page, "warning", "no Open Graph title");
+  // Social cards, as the Open Graph, X, LinkedIn, Slack and Discord preview debuggers read them.
+  // scripts/stamp-social-meta.mjs completes the tags after the build; a gap here is a page it
+  // could not complete (an image of unknown size, or one without alt text).
+  const meta = readMeta(html);
+  const first = (key) => meta[key]?.[0];
+  // An archival file under a published SHA256SUMS keeps its bytes; its bundle page carries the card.
+  if (!FROZEN.has(file)) for (const key of ["og:title", "og:description", "og:type", "og:url", "og:site_name", "og:image", "og:image:width", "og:image:height", "og:image:alt", "twitter:card", "twitter:image:alt"]) {
+    if (!first(key)) note(page, "error", `no ${key} (link previews read it)`);
+  }
+  if (first("og:url") && canonical && first("og:url") !== canonical) note(page, "error", `og:url ${first("og:url")} differs from the canonical ${canonical}`);
+  if (first("twitter:card") && first("twitter:card") !== "summary_large_image") note(page, "warning", `twitter:card is ${first("twitter:card")}, not summary_large_image`);
+  const ogImage = first("og:image");
+  if (ogImage && !ogImage.startsWith(`${ORIGIN}/`)) note(page, "error", `og:image is not an absolute URL on this site: ${ogImage}`);
+  else if (ogImage) {
+    const size = imageSize(ogImage);
+    if (!size) note(page, "error", `og:image ${ogImage} is not a PNG or JPEG in dist/`);
+    else {
+      if (size.width < 1200 || size.height < 630) note(page, "error", `og:image is ${size.width}x${size.height}, below the 1200x630 the previews use`);
+      if (first("og:image:width") && (Number(first("og:image:width")) !== size.width || Number(first("og:image:height")) !== size.height)) note(page, "error", `og:image declares ${first("og:image:width")}x${first("og:image:height")} but the file is ${size.width}x${size.height}`);
+    }
+  }
 
   for (const img of html.matchAll(/<img\b([^>]*)>/gi)) {
     if (!/\balt=/i.test(img[1])) note(page, "error", "an <img> has no alt attribute");

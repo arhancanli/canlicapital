@@ -77,10 +77,14 @@ function structuredData({ title, wrapperRoute, originalRoute, baseRoute, descrip
     "@type": "ScholarlyArticle",
     "@id": `${ORIGIN}${originalRoute}`,
     name: title,
-    headline: title,
+    // Google reads at most 110 characters of a headline; a longer title uses the paper's own short title.
+    headline: title.length <= 110 || !paper.short_title ? title : presentationCopy(paper.short_title),
     url: `${ORIGIN}${originalRoute}`,
     ...(paper.abstract ? { abstract: presentationCopy(paper.abstract) } : {}),
-    ...(paper.date ? { datePublished: paper.date } : {}),
+    // An archival bundle version is immutable (its files are under a published SHA256SUMS), so the
+    // date it was published is also the date it was last modified.
+    ...(paper.date ? { datePublished: paper.date, dateModified: paper.date } : {}),
+    image: { "@type": "ImageObject", url: `${ORIGIN}/og.png`, width: 1200, height: 630 },
     ...(paper.language ? { inLanguage: paper.language } : {}),
     ...(paper.version ? { version: String(paper.version) } : {}),
     ...(authors.length ? { author: authors } : {}),
@@ -88,7 +92,7 @@ function structuredData({ title, wrapperRoute, originalRoute, baseRoute, descrip
     // one by a machine reading the page, which is the entire point of publishing
     // the review state as data rather than as a sentence someone might skim past.
     creativeWorkStatus: paper.peer_reviewed === true ? "Peer reviewed" : "Preprint, not peer reviewed",
-    publisher: { "@type": "Organization", name: "Canli Capital", url: ORIGIN },
+    publisher: { "@type": "Organization", name: "Canli Capital", url: ORIGIN, logo: { "@type": "ImageObject", url: `${ORIGIN}/brand-mark.svg` } },
     isPartOf: { "@type": "Periodical", name: "Canli Capital working papers", url: `${ORIGIN}/research` },
     ...(encoding.length ? { encoding } : {}),
     ...(paper.claim_boundary ? { disambiguatingDescription: presentationCopy(paper.claim_boundary) } : {}),
