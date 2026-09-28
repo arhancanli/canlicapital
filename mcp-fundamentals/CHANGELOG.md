@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- In quarterly mode, `known_as_of` and `cross_section` mark a quarter `stale` once a later fiscal year
+  has been filed. Companies report their fourth quarter only inside the annual report, so for about
+  three months after each 10-K the newest stand-alone quarter is a quarter older than what the
+  company has published: Apple as of 2025-11-15 returned the quarter ending 2025-06-28 with
+  `stale: false`, although its 10-K for the year ending 2025-09-27 was filed on 2025-10-31. The
+  fourth quarter itself (the annual figure less the first three quarters) comes in the next major.
+
 ## 0.5.0
 
 - `cross_section`: one measure for up to 50 companies (tickers, CIKs or names) as filed by a date.
