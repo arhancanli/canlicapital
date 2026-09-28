@@ -1,6 +1,7 @@
 // Build the source-bound founder case study at /founder.
 
 import { createHash } from "node:crypto";
+import { AUTHOR_SAME_AS } from "./lib/author-identity.mjs";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -161,7 +162,7 @@ function main() {
       url: `${ORIGIN}/founder`,
       mainEntityOfPage: `${ORIGIN}/founder`,
       worksFor: { "@id": `${ORIGIN}/#organization` },
-      sameAs: [GITHUB, "https://orcid.org/0009-0004-4138-7907"],
+      sameAs: [...AUTHOR_SAME_AS],
       knowsAbout: [
         "Systematic trading",
         "Quantitative research",
