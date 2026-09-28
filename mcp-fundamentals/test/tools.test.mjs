@@ -103,8 +103,8 @@ test("a tag in two taxonomies is one measure; a taxonomy prefix picks one", asyn
   const { s } = session();
   const exact = out(await toolHistory(s, { company: "FIX", concept: "Assets" }));
   assert.deepEqual(exact.concept.tags, ["ifrs-full:Assets", "Assets"], "the IFRS series, still reported, comes first");
-  assert.deepEqual(byCol(exact).map((r) => [r.end, r.val, r.tag]), [["2021-09-30", 700, "ifrs-full:Assets"], ["2019-09-30", 500, "Assets"]]);
-  assert.deepEqual(byCol(out(await toolHistory(s, { company: "FIX", concept: "assets" }))).map((r) => r.val), [700, 500]);
+  assert.deepEqual(byCol(exact).map((r) => [r.end, r.val, r.tag]), [["2021-09-30", 700, "ifrs-full:Assets"], ["2020-09-30", 600, "Assets"], ["2019-09-30", 500, "Assets"]]);
+  assert.deepEqual(byCol(out(await toolHistory(s, { company: "FIX", concept: "assets" }))).map((r) => r.val), [700, 600, 500]);
   const usgaap = out(await toolHistory(s, { company: "FIX", concept: "us-gaap:Assets" }));
   assert.deepEqual(usgaap.concept.tags, ["Assets"]);
 });
@@ -163,7 +163,7 @@ test("restatements: splits, reverted values, zero first values and tag changes a
 test("list_concepts: plain names, folded plurals and taxonomy prefixes; filing fees are not concepts", async () => {
   const { s } = session();
   const all = out(await toolListConcepts(s, { company: "FIX" }));
-  assert.equal(all.concepts, 11, "ffd:FeeRate is left out");
+  assert.equal(all.concepts, 18, "ffd:FeeRate is left out");
   assert.deepEqual(all.plain_names.revenue, ["Revenues", "SalesRevenueNet"]);
   assert.deepEqual(all.plain_names.assets, ["Assets", "ifrs-full:Assets"]);
   assert.ok(byCol(all).some((r) => r.concept === "dei:EntityCommonStockSharesOutstanding"));
@@ -323,3 +323,36 @@ test("inputs are validated before anything is fetched", async () => {
   await assert.rejects(toolHistory(s, { company: "FIX", concept: "Revenues", surprise: 1 }), /history:/);
   assert.deepEqual(calls, []);
 });
+
+test("known_as_of ratios: every input as filed by as_of, one period, averages across the year, and a restatement filed later is not used", async () => {
+  const { s } = session();
+  const ratioRows = (res) => Object.fromEntries(res.ratios.rows.map((row) => [row[0], Object.fromEntries(res.ratios.columns.map((c, i) => [c, row[i]]))]));
+  // After the 2020 10-K: fiscal 2020 throughout, and the 10-K/A's restated assets (520) for the start.
+  const late = out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-11-01", ratios: true }));
+  assert.deepEqual(late.ratios.period, { start: "2019-10-01", end: "2020-09-30" });
+  const r = ratioRows(late);
+  assert.equal(r.gross_margin.value, 0.4);
+  assert.equal(r.operating_margin.value, 0.2);
+  assert.equal(r.net_margin.value, 0.1);
+  assert.equal(r.return_on_equity.value, 0.2, "11 over the average of 50 and 60");
+  assert.equal(r.return_on_assets.value, 0.0196429, "11 over the average of 600 and 520");
+  assert.equal(r.liabilities_to_equity.value, 9);
+  assert.equal(r.free_cash_flow.value, 22);
+  assert.equal(r.free_cash_flow.unit, "USD");
+  assert.equal(r.free_cash_flow_margin.value, 0.2);
+  assert.deepEqual(r.return_on_assets.inputs.map((x) => [x[0], x[1], x[2]]), [["net_income", 11, "2020-09-30"], ["assets", 600, "2020-09-30"], ["assets", 520, "2019-09-30"]]);
+  assert.equal(r.net_margin.changed_after, false);
+  // Before the 10-K/A was filed (2020-01-15): fiscal 2019, and the assets as first reported (500).
+  const early = ratioRows(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-01-10", ratios: true })));
+  assert.equal(early.return_on_assets.value, 0.018, "9 over 500: the restated 520 was not known yet");
+  assert.match(early.return_on_assets.basis, /balance at the period's end/);
+  assert.equal(early.net_margin.value, 0.09, "fiscal 2019 revenue as first reported, 100");
+  assert.equal(early.net_margin.changed_after, true, "revenue for fiscal 2019 was later restated to 90");
+  assert.equal(ratioRows(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-01-20", ratios: true }))).return_on_assets.value, round(9 / 520));
+  // Quarterly: margins only where both inputs exist for the quarter; no ROE or ROA.
+  const q = out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-11-01", periods: "quarterly", ratios: true }));
+  assert.ok(q.ratios.missing.some((m) => /annual periods only/.test(m)));
+  // Without ratios, nothing is added.
+  assert.equal(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-11-01" })).ratios, undefined);
+});
+const round = (x) => Number(x.toPrecision(6));

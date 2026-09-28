@@ -74,6 +74,7 @@ export const FACTS = {
             K(null, "2019-09-30", 500, "2019-10-30", "10-K", A19, 2019, "FY"),
             K(null, "2019-09-30", 520, "2020-01-15", "10-K/A", AM20, 2019, "FY"),
             K(null, "2019-12-31", 510, "2020-01-29", "10-Q", Q20, 2020, "Q1"),
+            K(null, "2020-09-30", 600, "2020-10-29", "10-K", A20, 2020, "FY"),
           ],
         },
       },
@@ -109,6 +110,21 @@ export const FACTS = {
           ],
         },
       },
+      // For known_as_of ratios: fiscal 2020 (2019-10-01 to 2020-09-30) filed in the 2020 10-K, fiscal
+      // 2019 net income, and the balances at both year ends.
+      GrossProfit: { label: "Gross Profit", units: { USD: [K("2019-10-01", "2020-09-30", 44, "2020-10-29", "10-K", A20, 2020, "FY")] } },
+      OperatingIncomeLoss: { label: "Operating Income (Loss)", units: { USD: [K("2019-10-01", "2020-09-30", 22, "2020-10-29", "10-K", A20, 2020, "FY")] } },
+      NetIncomeLoss: {
+        label: "Net Income (Loss)",
+        units: { USD: [K("2018-10-01", "2019-09-30", 9, "2019-10-30", "10-K", A19, 2019, "FY"), K("2019-10-01", "2020-09-30", 11, "2020-10-29", "10-K", A20, 2020, "FY")] },
+      },
+      StockholdersEquity: {
+        label: "Stockholders' Equity",
+        units: { USD: [K(null, "2019-09-30", 50, "2019-10-30", "10-K", A19, 2019, "FY"), K(null, "2020-09-30", 60, "2020-10-29", "10-K", A20, 2020, "FY")] },
+      },
+      Liabilities: { label: "Liabilities", units: { USD: [K(null, "2020-09-30", 540, "2020-10-29", "10-K", A20, 2020, "FY")] } },
+      NetCashProvidedByUsedInOperatingActivities: { label: "Net Cash Provided by (Used in) Operating Activities", units: { USD: [K("2019-10-01", "2020-09-30", 30, "2020-10-29", "10-K", A20, 2020, "FY")] } },
+      PaymentsToAcquirePropertyPlantAndEquipment: { label: "Payments to Acquire Property, Plant, and Equipment", units: { USD: [K("2019-10-01", "2020-09-30", 8, "2020-10-29", "10-K", A20, 2020, "FY")] } },
       CashAndCashEquivalentsAtCarryingValue: {
         label: "Cash and Cash Equivalents, at Carrying Value",
         units: { USD: [K(null, "2019-09-30", 55, "2020-10-29", "10-K", A20, 2020, "FY")] },

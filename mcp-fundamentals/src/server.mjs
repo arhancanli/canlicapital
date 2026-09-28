@@ -420,6 +420,7 @@ export const FRIENDLY = Object.freeze({
   operating_cash_flow: ["us-gaap:NetCashProvidedByUsedInOperatingActivities", "ifrs-full:CashFlowsFromUsedInOperatingActivities"],
   diluted_shares: ["us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding", "ifrs-full:AdjustedWeightedAverageShares"],
   shares_outstanding: ["dei:EntityCommonStockSharesOutstanding", "us-gaap:CommonStockSharesOutstanding"],
+  capex: ["us-gaap:PaymentsToAcquirePropertyPlantAndEquipment", "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "us-gaap:PaymentsToAcquireProductiveAssets"],
 });
 const SYNONYMS = Object.freeze({
   revenues: "revenue", sales: "revenue", net_sales: "revenue", turnover: "revenue", total_revenue: "revenue",
@@ -427,6 +428,7 @@ const SYNONYMS = Object.freeze({
   operating_profit: "operating_income", eps: "eps_diluted", diluted_eps: "eps_diluted", basic_eps: "eps_basic",
   total_assets: "assets", total_liabilities: "liabilities", shareholders_equity: "equity", stockholders_equity: "equity",
   cash_and_cash_equivalents: "cash", cash_and_equivalents: "cash", cfo: "operating_cash_flow", cash_from_operations: "operating_cash_flow",
+  capital_expenditures: "capex", capital_expenditure: "capex", capital_spending: "capex",
   shares_diluted: "diluted_shares", weighted_diluted_shares: "diluted_shares", shares: "shares_outstanding",
 });
 // known_as_of reads these when no concepts are named.
@@ -700,12 +702,84 @@ export async function toolHistory(session, args) {
 export const knownInput = z.object({
   company,
   as_of: date.describe("Decision date: only filings on or before it count."),
-  concepts: z.array(z.string().min(1).max(200)).min(1).max(20).optional().describe("Default: ten common measures (revenue, net_income, eps_diluted, assets, cash...)."),
+  concepts: z.array(z.string().min(1).max(200)).min(1).max(20).optional().describe("Default: ten common measures."),
   periods: z.enum(["annual", "quarterly"]).optional().describe("annual (default) or quarterly."),
+  ratios: z.boolean().optional().describe("Adds margins, ROE, ROA, leverage, free cash flow."),
 }).strict();
 
+// A value as it stood on as_of: the newest period `pick` accepts whose value had been filed by then.
+function knownValue(e, name, pick, asOf) {
+  let s;
+  try {
+    s = resolveSeries(e, name);
+  } catch {
+    return null;
+  }
+  for (const p of s.periods) {
+    if (!pick(p)) continue;
+    const sel = select(p, "as_of", asOf);
+    if (sel) return { name, val: sel.v.val, unit: s.unit, start: p.start, end: p.end, filed: sel.v.filed, accn: sel.v.accn, changed: sel.changedLater };
+  }
+  return null;
+}
+
+const round6 = (x) => (Number.isFinite(x) ? Number(x.toPrecision(6)) : null);
+
+// Ratios point in time: every input is the value as filed by as_of for one period, the latest whose
+// revenue (or, with none, net income) had been filed. Flows share that period's start and end;
+// balances are read at its end, and ROE and ROA average the balance at the end with the latest
+// balance filed before the period began (annual periods only). Each ratio names its inputs and their
+// filings, and changed_after says a later filing changed any of them.
+export function pointInTimeRatios(e, asOf, kind) {
+  const flow = (name, key) => knownValue(e, name, (p) => p.kind === kind && p.start === key.start && p.end === key.end, asOf);
+  const anchor = knownValue(e, "revenue", (p) => p.kind === kind, asOf) ?? knownValue(e, "net_income", (p) => p.kind === kind, asOf);
+  if (!anchor) return { missing: ["no revenue or net income had been filed by as_of"] };
+  const key = { start: anchor.start, end: anchor.end };
+  const earliest = new Date(Date.parse(key.start) - 400 * DAY_MS).toISOString().slice(0, 10);
+  const balanceAt = (name) => knownValue(e, name, (p) => p.start === null && p.end === key.end, asOf);
+  const balanceBefore = (name) => knownValue(e, name, (p) => p.start === null && p.end < key.start && p.end >= earliest, asOf);
+  const v = {
+    revenue: flow("revenue", key), gross_profit: flow("gross_profit", key), operating_income: flow("operating_income", key),
+    net_income: flow("net_income", key), operating_cash_flow: flow("operating_cash_flow", key), capex: flow("capex", key),
+    equity: balanceAt("equity"), assets: balanceAt("assets"), liabilities: balanceAt("liabilities"),
+    equity_before: balanceBefore("equity"), assets_before: balanceBefore("assets"),
+  };
+  const rows = [];
+  const missing = [];
+  const add = (ratio, need, value, unit, basis) => {
+    const inputs = need.map((n) => v[n]);
+    const absent = need.filter((n, i) => !inputs[i]);
+    if (absent.length || !Number.isFinite(value)) { missing.push(`${ratio}: ${absent.length ? `no ${absent.join(", ")} filed by as_of for this period` : "a zero denominator"}`); return; }
+    rows.push([ratio, round6(value), unit, basis, inputs.map((x) => [x.name, x.val, x.end, x.filed, x.accn]), inputs.some((x) => x.changed)]);
+  };
+  const val = (n) => v[n]?.val;
+  const share = (a, b) => val(a) / val(b);
+  add("gross_margin", ["gross_profit", "revenue"], share("gross_profit", "revenue"), "ratio", "same period");
+  add("operating_margin", ["operating_income", "revenue"], share("operating_income", "revenue"), "ratio", "same period");
+  add("net_margin", ["net_income", "revenue"], share("net_income", "revenue"), "ratio", "same period");
+  if (kind === "annual") {
+    for (const [ratio, bal] of [["return_on_equity", "equity"], ["return_on_assets", "assets"]]) {
+      const both = v[`${bal}_before`];
+      if (both) add(ratio, ["net_income", bal, `${bal}_before`], val("net_income") / ((val(bal) + both.val) / 2), "ratio", "average of the balances at the period's start and end");
+      else add(ratio, ["net_income", bal], val("net_income") / val(bal), "ratio", "balance at the period's end (none filed for its start)");
+    }
+  } else {
+    missing.push("return_on_equity, return_on_assets: annual periods only");
+  }
+  add("liabilities_to_equity", ["liabilities", "equity"], share("liabilities", "equity"), "ratio", "balances at the period's end");
+  add("free_cash_flow", ["operating_cash_flow", "capex"], val("operating_cash_flow") - val("capex"), v.operating_cash_flow?.unit ?? null, "operating cash flow less capital expenditure");
+  add("free_cash_flow_margin", ["operating_cash_flow", "capex", "revenue"], (val("operating_cash_flow") - val("capex")) / val("revenue"), "ratio", "same period");
+  return {
+    period: key,
+    columns: ["ratio", "value", "unit", "basis", "inputs", "changed_after"],
+    rows,
+    ...(missing.length ? { missing } : {}),
+    inputs_columns: ["concept", "val", "end", "filed", "accn"],
+  };
+}
+
 export async function toolKnownAsOf(session, args) {
-  const { company: who, as_of: asOf, concepts, periods = "annual" } = parse(knownInput, args, "known_as_of");
+  const { company: who, as_of: asOf, concepts, periods = "annual", ratios = false } = parse(knownInput, args, "known_as_of");
   const e = await loadCompany(session, who);
   const staleBefore = new Date(Date.parse(asOf) - (periods === "annual" ? 456 : 200) * DAY_MS).toISOString().slice(0, 10);
   const rows = [];
@@ -741,7 +815,8 @@ export async function toolKnownAsOf(session, args) {
     columns: ["concept", "tag", "end", "start", "val", "unit", "filed", "form", "accn", "changed_after", "stale"],
     rows,
     ...(missing.length ? { missing } : {}),
-    meaning: "Each row is the most recent period whose value had been filed on or before as_of, with the value as it stood then. changed_after: a later filing reported a different value, so a backtest reading today's data would use a number nobody knew on as_of. stale: the period ended long before as_of, so the company may have stopped reporting this measure.",
+    ...(ratios ? { ratios: pointInTimeRatios(e, asOf, periods) } : {}),
+    meaning: `Each row is the most recent period whose value had been filed on or before as_of, with the value as it stood then. changed_after: a later filing reported a different value, so a backtest reading today's data would use a number nobody knew on as_of. stale: the period ended long before as_of, so the company may have stopped reporting this measure.${ratios ? " ratios: computed only from values filed by as_of for one period; each names its inputs and their filings." : ""}`,
     limits: LIMITS,
   });
 }
@@ -888,7 +963,7 @@ export async function toolFindCompany(session, args) {
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true };
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
-  known_as_of: "What a company had reported as of a date: per measure, the latest period filed by as_of, its value then, and whether it was later restated. For point-in-time backtests and 'what was known on date X'.",
+  known_as_of: "What a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
   history: "One measure over time, newest first: as first reported (default), as latest filed, or as known on as_of, each with its filing and whether it later changed.",
   restatements: "Periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
   vintages: "Every filing that reported one period of one measure, oldest first: the revision history behind a number.",
@@ -902,7 +977,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
 const table = { columns: z.array(z.string()).optional(), rows: z.array(z.unknown()).optional(), truncated: z.boolean().optional(), next_offset: z.number().optional() };
 const common = { company: z.looseObject({}).optional(), snapshot: z.looseObject({}).optional(), limits: z.array(z.string()).optional(), meaning: z.string().optional() };
 export const OUTPUT_SCHEMAS = Object.freeze({
-  known_as_of: z.looseObject({ ...common, as_of: z.string().optional(), ...table, missing: z.array(z.string()).optional() })
+  known_as_of: z.looseObject({ ...common, as_of: z.string().optional(), ...table, missing: z.array(z.string()).optional(), ratios: z.looseObject({}).optional() })
     .describe("rows: one per measure in the order of columns, the value as it stood on as_of; changed_after flags values later restated."),
   history: z.looseObject({ ...common, concept: z.looseObject({}).optional(), basis: z.string().optional(), total: z.number().optional(), ...table })
     .describe("rows: one per period, newest first, in the order of columns."),
