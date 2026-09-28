@@ -257,3 +257,40 @@ test('the company directory links each company\'s filing index, and only indexes
   assert.deepEqual(new Map(linked), new Map(documents.map(d => [d.cik, d.filings.length])));
   for (const [cik] of linked) assert.equal((await get(handler, `/companies/${cik}/filings`)).statusCode, 200, `filing index ${cik} exists`);
 });
+
+// The link-depth gate of the indexing plan, checked on the real handlers: crawl the release from
+// its directory page by following the links the pages actually render, and require every company
+// URL family within two links of it. In production a company is listed on /companies/page/N, two
+// clicks from the homepage, so two links from the directory page is four from the homepage. (In this
+// three-company fixture the directory page is /companies itself; measuring from it keeps the budget
+// the same as production.) A template that stops linking a family, or links it one level deeper,
+// fails here instead of in Search Console.
+test('every company page family is within four clicks of the homepage, by crawling the rendered links', async t => {
+  const { records, documents, options } = fixture(t);
+  // Production predicates admitting exactly what the release holds: a page may link a history only
+  // when it is admitted, as the activation's admission decides in production.
+  const held = new Map(records.map(r => [r.cik, new Set(r.concepts.map(c => c.tag))]));
+  const indexable = (cik, tag) => held.has(cik) && (tag === undefined || held.get(cik).has(tag));
+  const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, indexable, directoryIndexable: true, filingsIndexable: cik => held.has(cik) }) });
+  const depth = new Map([['/companies', 0]]), queue = ['/companies'];
+  while (queue.length) {
+    const path = queue.shift();
+    const page = await get(handler, path);
+    assert.equal(page.statusCode, 200, `${path} is served`);
+    for (const [, href] of page.body.matchAll(/(?:^|\s)href="(\/companies[^"#?]*)"/g)) {
+      if (!depth.has(href)) { depth.set(href, depth.get(path) + 1); queue.push(href); }
+    }
+  }
+  const families = {
+    overview: records.map(r => `/companies/${r.cik}`),
+    history: records.flatMap(r => r.concepts.map(c => `/companies/${r.cik}/${c.tag}`)),
+    'filing index': documents.map(d => filingsIndexPath(d.cik)),
+    filing: documents.flatMap(d => d.filings.map(f => filingPath(d.cik, f.accession))),
+  };
+  const histogram = Object.fromEntries(Object.entries(families).map(([family, paths]) => [family, paths.reduce((h, p) => ({ ...h, [depth.get(p) ?? 'unreached']: (h[depth.get(p) ?? 'unreached'] ?? 0) + 1 }), {})]));
+  for (const [family, paths] of Object.entries(families)) {
+    assert.ok(paths.length > 0, `${family}: the fixture has pages to reach`);
+    for (const path of paths) assert.ok((depth.get(path) ?? Infinity) <= 2, `${family} ${path} is ${depth.get(path) ?? 'unreached'} links from its directory page (histogram ${JSON.stringify(histogram)})`);
+  }
+  assert.ok(families.filing.length > 5 * documents.length, 'the fixture has filings beyond the five the overview lists');
+});
