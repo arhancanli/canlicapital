@@ -2,7 +2,7 @@
 // lines, not checked); verify checks every line's chain, signature and form, offline. It returns
 // verdicts and hashes, never the file's contents. Local only; nothing here writes the journal.
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { closeSync, fstatSync, openSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 import { journalHead, verifyJournal } from "./core/js/trade-journal-core.js";
@@ -56,11 +56,21 @@ export function journalPath(home) {
   return join(home, "journal.jsonl");
 }
 
+// One open file descriptor for the size check and the read, so the file cannot change between them.
 function readJournalFile(path) {
-  if (!existsSync(path)) return null;
-  const size = statSync(path).size;
-  if (size > MAX_JOURNAL_BYTES) throw new Error(`journal: ${path} is larger than ${MAX_JOURNAL_BYTES} bytes`);
-  return readFileSync(path);
+  let fd;
+  try {
+    fd = openSync(path, "r");
+  } catch (error) {
+    if (error.code === "ENOENT") return null;
+    throw error;
+  }
+  try {
+    if (fstatSync(fd).size > MAX_JOURNAL_BYTES) throw new Error(`journal: ${path} is larger than ${MAX_JOURNAL_BYTES} bytes`);
+    return readFileSync(fd);
+  } finally {
+    closeSync(fd);
+  }
 }
 
 const fingerprint = (keyB64) => `sha256:${createHash("sha256").update(Buffer.from(keyB64, "base64")).digest("hex").slice(0, 16)}`;
