@@ -31,6 +31,15 @@ is imported from it at each release, so open issues and pull requests on canlica
    site build; a pull request merges only when they pass, and only as a squash merge of signed
    commits.
 
+## Releases
+
+A release is a substantial step, not a single change: developers pin versions, and a stream of small
+releases reads as churn. Feature pull requests do not bump the version in `package.json`,
+`server.json` or the bundle manifest; they add their entry under `## Unreleased` in `CHANGELOG.md`.
+A release gathers those entries into one version, one changelog section, one npm publish, one
+registry entry and one GitHub release, once the batch is worth upgrading for. The one exception is
+a fix for an answer that was wrong without warning, which ships as a patch as soon as it is ready.
+
 ## Test policy
 
 Every change in behaviour comes with a test that fails without it:
