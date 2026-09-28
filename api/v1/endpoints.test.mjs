@@ -195,3 +195,17 @@ test("reality-check: a real edge among noise is found, noise is not, a benchmark
   assert.throws(() => realityCheck({ matrix: edge, reps: 100 }), /reps must be an integer from 500/);
   assert.throws(() => realityCheck({ matrix: edge, block_length: 300 }), /block_length must be an integer from 1 to half/);
 });
+
+test("a JSON null or malformed string in any series or matrix is refused by its position, never read as zero", () => {
+  const returns = Array.from({ length: 60 }, (_, i) => 0.01 * Math.sin(i) + 0.002);
+  const base = { periods_per_year: 252, effective_independent_trials: 10, cross_trial_sharpe_sd_annualized: 0.5 };
+  // Before: returns[5] = null was read as a 0 return (the Sharpe moved from 5.19 to 5.56) and "0.01x" was dropped.
+  assert.throws(() => dsr({ returns: returns.map((v, i) => (i === 5 ? null : v)), ...base }), /returns\[5\] is null, not a finite number/);
+  assert.throws(() => dsr({ returns: [...returns.slice(0, 10), "0.01x", ...returns.slice(10)], ...base }), /returns\[10\] is "0.01x", not a finite number/);
+  const asStrings = dsr({ returns: returns.map(String), ...base });
+  assert.equal(asStrings.derived_inputs.observed_sharpe_annualized, dsr({ returns, ...base }).derived_inputs.observed_sharpe_annualized, "numeric strings still read as numbers");
+  const matrix = Array.from({ length: 40 }, (_, i) => [0.01 * Math.sin(i) + 0.002, 0.01 * Math.cos(i), 0.003 * (i % 4) - 0.004]);
+  assert.throws(() => pbo({ matrix: matrix.map((r, i) => (i === 3 ? [null, r[1], r[2]] : r)), n_splits: 4 }), /matrix\[3\]\[0\] is null/);
+  assert.throws(() => pbo({ matrix: [...matrix.slice(0, 20), [0.01, 0.02], ...matrix.slice(20)], n_splits: 4 }), /matrix row 20 has 2 values; every row needs 3/);
+  assert.throws(() => haircut({ observed_sharpe_annualized: 1.5, periods_per_year: 252, observations: 756, other_sharpe_ratios_annualized: [0.5, null, 0.2] }), /other_sharpe_ratios_annualized\[1\] is null/);
+});

@@ -1,6 +1,7 @@
 // js/validate/overfitting.js
 // The pure computation behind POST /api/v1/validate/overfitting, shared by the API route and the
 // MCP package's local mode (mcp/src/local mirrors it byte for byte), so the two cannot disagree.
+import { finiteNumbers } from "../moments-core.js";
 import { pboCscv } from "../pbo-core.js";
 import { LIMITS } from "../../api/_lib/limits.js";
 
@@ -12,7 +13,12 @@ export function compute(body) {
   if (matrix.length > LIMITS.max_observations) throw new RangeError(`A matrix may hold at most ${LIMITS.max_observations} rows`);
   if (matrix[0].length > LIMITS.max_variants) throw new RangeError(`A matrix may hold at most ${LIMITS.max_variants} variants`);
   if (!Number.isInteger(max_combinations) || max_combinations > LIMITS.max_cscv_combinations) throw new RangeError(`max_combinations may not exceed ${LIMITS.max_cscv_combinations}`);
-  const out = pboCscv(matrix, { nSplits: Number(n_splits), maxCombinations: max_combinations, seed: Number(seed) });
+  const k = matrix[0].length;
+  const rows = matrix.map((row, t) => {
+    if (!Array.isArray(row) || row.length !== k) throw new RangeError(`matrix row ${t} has ${Array.isArray(row) ? row.length : "no"} values; every row needs ${k}, one per variant`);
+    return finiteNumbers(row, `matrix[${t}]`);
+  });
+  const out = pboCscv(rows, { nSplits: Number(n_splits), maxCombinations: max_combinations, seed: Number(seed) });
   const sorted = [...out.lambdas].sort((a, b) => a - b);
   const q = (p) => sorted[Math.min(sorted.length - 1, Math.floor(p * sorted.length))];
   const degraded = out.is_oos_pairs.filter(([i, o]) => o < i).length / out.is_oos_pairs.length;

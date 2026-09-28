@@ -4,4 +4,4 @@ import { validatorHandler } from "../../_lib/handler.js";
 
 export { compute };
 
-export default validatorHandler({ endpoint: "validate/haircut-sharpe", sourcesPaths: ["js/validate/haircut-sharpe.js", "js/haircut-core.js", "js/student-t.js"], compute });
+export default validatorHandler({ endpoint: "validate/haircut-sharpe", sourcesPaths: ["js/validate/haircut-sharpe.js", "js/moments-core.js", "js/haircut-core.js", "js/student-t.js"], compute });

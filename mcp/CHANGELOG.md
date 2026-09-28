@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.10.1 (2026-09-28)
+
+- A missing value is refused by its position instead of being read as zero. JSON has no NaN, so a
+  gap arrives as `null`, and the API read `null` as 0: in a return series it became a period of
+  zero return (a 60-period series with one null moved its Sharpe from 5.19 to 5.56), in a variants
+  matrix a zero cell, and in `other_sharpe_ratios_annualized` a Sharpe of 0. A malformed string was
+  dropped without a word. Now `returns[5] is null, not a finite number` (and `matrix[3][0]`,
+  `other_sharpe_ratios_annualized[1]`) comes back as an error; numeric strings still read as
+  numbers. The MCP tools already refused these through their input schemas; this closes the same
+  gap for direct API calls.
+- A matrix whose rows differ in length is refused, naming the row.
+- The receipts of `overfitting` and `haircut-sharpe` name `js/moments-core.js`, and those of
+  `reality-check` name `api/_lib/limits.js`, the code each now runs.
+
 ## 0.10.0 (2026-09-28)
 
 - `validate_reality_check`: data-snooping tests on every variant a search tried. Hansen's SPA
