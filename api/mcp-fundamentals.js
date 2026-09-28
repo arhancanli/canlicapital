@@ -8,7 +8,7 @@ import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { createSession, registerTools, SERVER_INFO, SERVER_INSTRUCTIONS } from "../mcp-fundamentals/src/server.mjs";
+import { createSession, registerTools, SERVER_INFO, SERVER_INSTRUCTIONS } from "../mcp-released/fundamentals/src/server.mjs";
 import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
 
 // A private cache directory per function instance (mkdtemp: unique name, owner-only), never a
