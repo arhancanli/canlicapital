@@ -1,0 +1,49 @@
+{
+  "name": "canli-execution-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that checks orders before they are sent: cost (commission, spread, square-root impact), the trader's own limits, market state and a kill switch. Rejects with every reason, never resizes.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "canli-execution-mcp": "src/server.mjs"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.1.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.1.0"
+  },
+  "mcpName": "io.github.arhancanli/canli-execution-mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhancanli/canlicapital.git",
+    "directory": "mcp-execution"
+  },
+  "homepage": "https://canlicapital.com/developers",
+  "bugs": {
+    "url": "https://github.com/arhancanli/canlicapital/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "trading",
+    "pre-trade",
+    "transaction-costs",
+    "market-impact",
+    "risk-limits",
+    "execution",
+    "quantitative-finance"
+  ]
+}

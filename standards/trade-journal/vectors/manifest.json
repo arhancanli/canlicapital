@@ -1,0 +1,257 @@
+{
+  "schema": "canli.trade-journal.v0",
+  "vectors": [
+    {
+      "name": "valid-paper-session",
+      "valid": true,
+      "first_bad_line": null,
+      "reason": null,
+      "why": "A paper session with one entry of every kind; every verifier accepts it."
+    },
+    {
+      "name": "valid-genesis-only",
+      "valid": true,
+      "first_bad_line": null,
+      "reason": null,
+      "why": "A journal can be just its first line."
+    },
+    {
+      "name": "invalid-empty-file",
+      "valid": false,
+      "first_bad_line": 0,
+      "reason": "encoding",
+      "why": "A journal has at least its first line."
+    },
+    {
+      "name": "invalid-no-final-newline",
+      "valid": false,
+      "first_bad_line": 10,
+      "reason": "encoding",
+      "why": "Every line ends in a newline, so a truncated write is visible."
+    },
+    {
+      "name": "invalid-crlf",
+      "valid": false,
+      "first_bad_line": 0,
+      "reason": "encoding",
+      "why": "Line ends are LF only."
+    },
+    {
+      "name": "invalid-blank-line",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "encoding",
+      "why": "A blank line is not an entry."
+    },
+    {
+      "name": "invalid-not-utf8",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "encoding",
+      "why": "The file is UTF-8."
+    },
+    {
+      "name": "invalid-extra-line-member",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "shape",
+      "why": "A line holds exactly entry and sig."
+    },
+    {
+      "name": "invalid-entry-missing-member",
+      "valid": false,
+      "first_bad_line": 2,
+      "reason": "shape",
+      "why": "An entry has exactly its six members."
+    },
+    {
+      "name": "invalid-unsorted-members",
+      "valid": false,
+      "first_bad_line": 3,
+      "reason": "canonical",
+      "why": "Members are sorted, so the signed bytes are fixed."
+    },
+    {
+      "name": "invalid-integral-float",
+      "valid": false,
+      "first_bad_line": 5,
+      "reason": "canonical",
+      "why": "An integral number is written as digits: 10, not 10.0."
+    },
+    {
+      "name": "invalid-whitespace",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "canonical",
+      "why": "No whitespace outside strings."
+    },
+    {
+      "name": "invalid-raw-non-ascii",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "canonical",
+      "why": "Characters above U+007F are escaped."
+    },
+    {
+      "name": "invalid-number-too-large",
+      "valid": false,
+      "first_bad_line": 6,
+      "reason": "canonical",
+      "why": "Numbers stay below 1e15, where every language writes them the same way."
+    },
+    {
+      "name": "invalid-version",
+      "valid": false,
+      "first_bad_line": 2,
+      "reason": "version",
+      "why": "v is 1."
+    },
+    {
+      "name": "invalid-seq-skipped",
+      "valid": false,
+      "first_bad_line": 4,
+      "reason": "seq",
+      "why": "seq counts lines from 0."
+    },
+    {
+      "name": "invalid-prev-wrong",
+      "valid": false,
+      "first_bad_line": 3,
+      "reason": "prev",
+      "why": "prev is the hash of the line before."
+    },
+    {
+      "name": "invalid-dropped-line",
+      "valid": false,
+      "first_bad_line": 4,
+      "reason": "seq",
+      "why": "A dropped line leaves a gap in seq."
+    },
+    {
+      "name": "invalid-reordered-lines",
+      "valid": false,
+      "first_bad_line": 3,
+      "reason": "seq",
+      "why": "Reordered lines break seq."
+    },
+    {
+      "name": "invalid-inserted-line",
+      "valid": false,
+      "first_bad_line": 4,
+      "reason": "seq",
+      "why": "An inserted line shifts every seq after it."
+    },
+    {
+      "name": "invalid-ts-backwards",
+      "valid": false,
+      "first_bad_line": 5,
+      "reason": "ts",
+      "why": "ts never goes backwards."
+    },
+    {
+      "name": "invalid-ts-form",
+      "valid": false,
+      "first_bad_line": 2,
+      "reason": "ts",
+      "why": "ts has milliseconds: exactly 24 characters."
+    },
+    {
+      "name": "invalid-ts-impossible-date",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "ts",
+      "why": "ts is a real calendar time: there is no 31 September."
+    },
+    {
+      "name": "invalid-ts-hour-24",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "ts",
+      "why": "Hours run 00 to 23."
+    },
+    {
+      "name": "invalid-ts-extended-year",
+      "valid": false,
+      "first_bad_line": 0,
+      "reason": "ts",
+      "why": "ts is exactly 24 characters, which also keeps text order equal to time order."
+    },
+    {
+      "name": "invalid-ts-year-zero",
+      "valid": false,
+      "first_bad_line": 0,
+      "reason": "ts",
+      "why": "Years start at 0001."
+    },
+    {
+      "name": "invalid-first-line-prev",
+      "valid": false,
+      "first_bad_line": 0,
+      "reason": "prev",
+      "why": "Line 0 has no previous line: its prev is null."
+    },
+    {
+      "name": "invalid-unknown-kind",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "kind",
+      "why": "Only the ten kinds."
+    },
+    {
+      "name": "invalid-first-line-not-config",
+      "valid": false,
+      "first_bad_line": 0,
+      "reason": "kind",
+      "why": "Line 0 is the config that names the key."
+    },
+    {
+      "name": "invalid-order-without-qty",
+      "valid": false,
+      "first_bad_line": 3,
+      "reason": "payload",
+      "why": "An order states its quantity."
+    },
+    {
+      "name": "invalid-mark-zero-price",
+      "valid": false,
+      "first_bad_line": 6,
+      "reason": "payload",
+      "why": "A mark is a price above 0."
+    },
+    {
+      "name": "invalid-correction-of-a-later-line",
+      "valid": false,
+      "first_bad_line": 10,
+      "reason": "payload",
+      "why": "A correction corrects an earlier line."
+    },
+    {
+      "name": "invalid-genesis-bad-key",
+      "valid": false,
+      "first_bad_line": 0,
+      "reason": "payload",
+      "why": "Line 0 names a 32-byte Ed25519 key."
+    },
+    {
+      "name": "invalid-signed-by-another-key",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "signature",
+      "why": "Every line is signed by the key from line 0."
+    },
+    {
+      "name": "invalid-edited-after-signing",
+      "valid": false,
+      "first_bad_line": 5,
+      "reason": "signature",
+      "why": "Changing a signed entry breaks its signature."
+    },
+    {
+      "name": "invalid-signature-not-64-bytes",
+      "valid": false,
+      "first_bad_line": 1,
+      "reason": "signature",
+      "why": "SIG is 64 bytes of base64."
+    }
+  ]
+}

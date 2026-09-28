@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Signed statements and content hashes escape DEL (U+007F) as `\u007f`, as Python's `json.dumps`
+  does. It was written raw, so a statement containing it would not have reproduced in Python.
+
 ## 0.10.1 (2026-09-28)
 
 - A missing value is refused by its position instead of being read as zero. JSON has no NaN, so a

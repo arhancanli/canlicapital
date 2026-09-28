@@ -78,8 +78,10 @@ test("non-ASCII is escaped the way Python escapes it", () => {
     { cite: "L\u00f3pez de Prado" },
     { dash: "a \u2014 b", quote: "\u201cq\u201d", astral: "\ud83d\ude80" },
     { "key_\u00e9": "value" },
+    { del: "a\u007fb" },
   ];
   assert.ok(canonicalJson(values[1]).includes("\\u00f3"), "accent must be escaped, not raw");
+  assert.equal(canonicalJson(values[4]), '{"del":"a\\u007fb"}', "DEL is escaped too: Python escapes everything outside printable ASCII");
   assertMatchesPython(values, "non-ascii");
 });
 

@@ -47,6 +47,8 @@ mcp-fundamentals/*
 !mcp-fundamentals/package.json
 !mcp-fundamentals/server.json
 !mcp-fundamentals/src
+# canli-execution-mcp is unreleased: nothing on the site imports it, and its test fixtures are large.
+mcp-execution
 !mcp/README.md
 !mcp/package.json
 # The hosted endpoint (api/mcp.js) imports the package's tools from mcp/src at runtime.

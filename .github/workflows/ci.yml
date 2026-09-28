@@ -92,6 +92,9 @@ jobs:
       - run: npm ci --prefix mcp-fundamentals
       - run: npm audit --prefix mcp-fundamentals --audit-level=high
       - run: npm test --prefix mcp-fundamentals
+      - run: npm ci --prefix mcp-execution
+      - run: npm audit --prefix mcp-execution --audit-level=high
+      - run: npm test --prefix mcp-execution
 
   key-lifecycle:
     name: Key revocation PostgreSQL contract
