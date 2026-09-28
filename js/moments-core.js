@@ -7,9 +7,23 @@
 // standards/validation-api/vectors.json.
 import { calculateDsr } from "./dsr-core.js";
 
+// JSON has no NaN, so a missing value arrives as null, and Number(null) is 0: read that way, a gap
+// becomes a period of zero return, and a malformed string used to be dropped without a word. Each
+// entry must be a finite number or a numeric string; anything else is refused by its position.
+export function finiteNumbers(values, name) {
+  if (!Array.isArray(values)) throw new RangeError(`${name} must be an array of numbers`);
+  const out = new Array(values.length);
+  for (let i = 0; i < values.length; i += 1) {
+    const v = values[i];
+    const x = typeof v === "number" ? v : typeof v === "string" && v.trim() !== "" ? Number(v) : Number.NaN;
+    if (!Number.isFinite(x)) throw new RangeError(`${name}[${i}] is ${v === null ? "null" : v === undefined ? "missing" : JSON.stringify(v)}, not a finite number: remove missing periods rather than sending them, since they would otherwise be read as zero`);
+    out[i] = x;
+  }
+  return out;
+}
+
 export function perPeriodMoments(returns) {
-  if (!Array.isArray(returns)) throw new RangeError("returns must be an array of numbers");
-  const x = returns.map(Number).filter((v) => Number.isFinite(v));
+  const x = finiteNumbers(returns, "returns");
   const n = x.length;
   if (n < 2) throw new RangeError("need at least 2 finite return observations");
   let min = Infinity;

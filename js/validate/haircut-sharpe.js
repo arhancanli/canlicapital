@@ -1,6 +1,7 @@
 // js/validate/haircut-sharpe.js
 // The pure computation behind POST /api/v1/validate/haircut-sharpe, shared by the API route and the
 // MCP package's local mode (mcp/src/local mirrors it byte for byte), so the two cannot disagree.
+import { finiteNumbers } from "../moments-core.js";
 import { haircutSharpe } from "../haircut-core.js";
 
 // The haircut Sharpe ratio of Harvey and Liu, "Backtesting" (2015), checked against the authors'
@@ -13,7 +14,7 @@ const MAX_OTHERS = 10000;
 export function compute(body) {
   const missing = ["observed_sharpe_annualized", "periods_per_year", "observations"].filter((k) => body[k] === undefined);
   if (missing.length) throw new RangeError(`Missing required fields: ${missing.join(", ")}`);
-  const others = body.other_sharpe_ratios_annualized;
+  const others = body.other_sharpe_ratios_annualized === undefined || !Array.isArray(body.other_sharpe_ratios_annualized) ? body.other_sharpe_ratios_annualized : finiteNumbers(body.other_sharpe_ratios_annualized, "other_sharpe_ratios_annualized");
   if (others !== undefined && (!Array.isArray(others) || others.length < 1 || others.length > MAX_OTHERS)) {
     throw new RangeError(`other_sharpe_ratios_annualized must be an array of 1 to ${MAX_OTHERS} Sharpe ratios`);
   }

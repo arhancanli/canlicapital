@@ -4,4 +4,4 @@ import { validatorHandler } from "../../_lib/handler.js";
 
 export { compute };
 
-export default validatorHandler({ endpoint: "validate/reality-check", sourcesPaths: ["js/validate/reality-check.js", "js/snooping-core.js", "js/selection-risk-core.js"], compute });
+export default validatorHandler({ endpoint: "validate/reality-check", sourcesPaths: ["js/validate/reality-check.js", "api/_lib/limits.js", "js/snooping-core.js", "js/selection-risk-core.js"], compute });

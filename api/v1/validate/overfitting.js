@@ -6,6 +6,6 @@ export { compute };
 
 export default validatorHandler({
   endpoint: "validate/overfitting",
-  sourcesPaths: ["js/validate/overfitting.js", "js/pbo-core.js", "js/selection-risk-core.js", "api/_lib/limits.js", "standards/validation-api/vectors.json"],
+  sourcesPaths: ["js/validate/overfitting.js", "js/moments-core.js", "js/pbo-core.js", "js/selection-risk-core.js", "api/_lib/limits.js", "standards/validation-api/vectors.json"],
   compute,
 });
