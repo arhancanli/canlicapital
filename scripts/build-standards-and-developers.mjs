@@ -335,12 +335,12 @@ function mcpAssistantSection() {
 // Read from the released copies the hosted endpoints serve (mcp-released/, written by
 // scripts/build-mcp-released.mjs), so this page lists what users get, not work in progress.
 const MCP_FAMILY = Object.freeze([
-  { dir: "mcp-released/fundamentals", source: "mcp-fundamentals", anchor: "mcp-fundamentals", title: "SEC fundamentals point in time" },
-  { dir: "mcp-released/research", source: "mcp-research", anchor: "mcp-research", title: "the open research record" },
+  { dir: "mcp-released/fundamentals", sourceDir: "mcp-fundamentals", anchor: "mcp-fundamentals", title: "SEC fundamentals point in time" },
+  { dir: "mcp-released/research", sourceDir: "mcp-research", anchor: "mcp-research", title: "the open research record" },
 ]);
 
 export function mcpFamily(root = ROOT) {
-  return MCP_FAMILY.map(({ dir, source, anchor, title }) => {
+  return MCP_FAMILY.map(({ dir, sourceDir, anchor, title }) => {
     const pkg = JSON.parse(readFileSync(resolve(root, dir, "package.json"), "utf8"));
     const source = readFileSync(resolve(root, dir, "src/server.mjs"), "utf8");
     const tools = [...source.matchAll(/\btool\("([a-z_]+)",/g)].map((m) => m[1]);
@@ -348,7 +348,7 @@ export function mcpFamily(root = ROOT) {
     // The hosted URL, when the package has one, comes from the registry entry it publishes.
     const registry = JSON.parse(readFileSync(resolve(root, dir, "server.json"), "utf8"));
     const hosted = (registry.remotes ?? []).find((r) => r.type === "streamable-http")?.url ?? null;
-    return { dir: source, title, anchor, name: pkg.name, version: pkg.version, description: pkg.description, mcpName: pkg.mcpName, tools, hosted };
+    return { dir: sourceDir, title, anchor, name: pkg.name, version: pkg.version, description: pkg.description, mcpName: pkg.mcpName, tools, hosted };
   });
 }
 
