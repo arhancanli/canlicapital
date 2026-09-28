@@ -51,8 +51,17 @@ Apple's 2017 accounts payable".
 | `vintages` | Every filing that reported one period of one measure, oldest first. |
 | `list_concepts` | The concepts a company reports and the plain names it supports, with units, period counts, date range and restated-period counts. |
 | `find_company` | Companies matching a name, ticker or CIK, best first, with their CIKs and tickers, and which one the other tools would read. |
+| `cross_section` | One measure for up to 50 companies (tickers, CIKs or names) as filed by a date: each company's latest period, its value then, the filing, and whether it was later restated. The point-in-time building block of a peer comparison or a factor. |
 
-All six tools are read-only.
+All seven tools are read-only.
+
+A cross-section indexes only the measure asked for in each company's snapshot and keeps none of
+them in memory, so fifty companies cost about as much memory as one. Checked against an independent
+Python selection over the same SEC snapshots (`scripts/research/fundamentals-pit-check/` in the
+canlicapital repository): 20 companies on 3 dates, `NetIncomeLoss`, annual, 60 of 60 identical in
+value, period, filed date, accession number and `changed_after`, including 5 where neither side had
+a value (Meta before its first 10-K, for example). Fiscal years end on different dates, so compare
+`end` before comparing values.
 
 ### Naming a company
 

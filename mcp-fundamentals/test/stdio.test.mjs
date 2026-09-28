@@ -1,4 +1,4 @@
-// The real server over stdio, as a client meets it: six read-only tools, a small tool list that
+// The real server over stdio, as a client meets it: seven read-only tools, a small tool list that
 // is byte-identical on every launch (providers cache it), and every result validated against the
 // output schema the client listed first. The server reads a local copy of the fixture site.
 import assert from "node:assert/strict";
@@ -37,7 +37,7 @@ async function connect(base) {
   return client;
 }
 
-test("six read-only tools, the package version, and a byte-identical list on every launch", async () => {
+test("seven read-only tools, the package version, and a byte-identical list on every launch", async () => {
   const list = async () => {
     const client = await connect();
     try {
@@ -48,7 +48,7 @@ test("six read-only tools, the package version, and a byte-identical list on eve
   };
   const first = await list();
   const { tools } = JSON.parse(first.json);
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["find_company", "history", "known_as_of", "list_concepts", "restatements", "vintages"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["cross_section", "find_company", "history", "known_as_of", "list_concepts", "restatements", "vintages"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.destructiveHint, false, t.name);
@@ -59,12 +59,12 @@ test("six read-only tools, the package version, and a byte-identical list on eve
   assert.equal((await list()).json, first.json);
 });
 
-test("the tool list stays small: under 5000 characters a model reads (six tools)", async () => {
+test("the tool list stays small: under 6000 characters a model reads (seven tools)", async () => {
   const client = await connect();
   try {
     const { tools } = await client.listTools();
     const visible = tools.reduce((n, t) => { const { $schema, ...params } = t.inputSchema; return n + t.description.length + JSON.stringify(params).length; }, 0);
-    assert.ok(visible < 5000, `${visible} characters`);
+    assert.ok(visible < 6000, `${visible} characters`);
   } finally {
     await client.close();
   }
@@ -83,6 +83,7 @@ test("list tools, then call each one: every result passes the schema the client 
         ["list_concepts", { company: "FIX", search: "revenue" }],
         ["find_company", { query: "Fixture" }],
         ["known_as_of", { company: "Fixture Corp", as_of: "2020-02-01" }],
+        ["cross_section", { companies: ["FIX", "Fixture Corp"], concept: "assets", as_of: "2020-11-01" }],
       ];
       for (const [name, args] of calls) {
         const r = await client.callTool({ name, arguments: args });
