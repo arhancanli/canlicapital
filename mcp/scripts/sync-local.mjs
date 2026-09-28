@@ -28,6 +28,8 @@ export const LOCAL_FILES = [
   "js/validate/haircut-sharpe.js",
   "js/luck-core.js",
   "js/validate/luck-trials.js",
+  "js/snooping-core.js",
+  "js/validate/reality-check.js",
   "api/_lib/limits.js",
   "standards/paper-evidence/schema.json",
 ];

@@ -86,6 +86,7 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
     "validate_luck_trials",
     "validate_overfitting",
     "validate_paper_evidence",
+    "validate_reality_check",
     "validate_track_record",
     "verify_receipt",
   ]);

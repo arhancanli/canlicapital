@@ -2,13 +2,14 @@
 // own computation returns, send nothing over the network, and store no receipt. The mirrored
 // source under src/local must stay byte-identical to the repository it is copied from.
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { LOCAL_FILES } from "../scripts/sync-local.mjs";
-import { configuredLocal, createSession, toolValidateBacktestLength, toolValidateBreadth, toolValidateHaircutSharpe, toolValidateLuckTrials, toolValidateDeflatedSharpe, toolValidateOverfitting, toolValidateTrackRecord } from "../src/server.mjs";
+import { configuredLocal, createSession, toolValidateBacktestLength, toolValidateBreadth, toolValidateHaircutSharpe, toolValidateLuckTrials, toolValidateDeflatedSharpe, toolValidateOverfitting, toolValidateRealityCheck, toolValidateTrackRecord } from "../src/server.mjs";
 
 const MCP = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(MCP, "..");
@@ -31,11 +32,15 @@ function noNetwork() {
 
 const parsed = (result) => JSON.parse(result.content[0].text);
 
+// Forty periods of three variants; the first has an edge.
+const RC_MATRIX = Array.from({ length: 40 }, (_, i) => [0.01 * Math.sin(1.3 * i) + 0.004, 0.01 * Math.cos(0.7 * i), 0.01 * Math.sin(2.9 * i + 1)]);
+
 const CASES = [
   ["validate_breadth", toolValidateBreadth, "js/validate/breadth.js", { sleeve_sharpe: 0.5, average_pairwise_correlation: 0.05, sleeves: 4, target: 1.5 }],
   ["validate_track_record", toolValidateTrackRecord, "js/validate/track-record.js", { observed_sharpe_annualized: 2, benchmark_sharpe_annualized: 1, periods_per_year: 252, skew: 0, non_excess_kurtosis: 3, observations: 504 }],
   ["validate_deflated_sharpe", toolValidateDeflatedSharpe, "js/validate/deflated-sharpe.js", { observed_sharpe_annualized: 2.5, observations: 1250, periods_per_year: 250, skew: -3, non_excess_kurtosis: 10, effective_independent_trials: 100, cross_trial_sharpe_sd_annualized: Math.sqrt(0.5) }],
   ["validate_overfitting", toolValidateOverfitting, "js/validate/overfitting.js", { matrix: Array.from({ length: 16 }, (_, i) => [0.01 * Math.sin(i), 0.01 * Math.cos(i), 0.002 * (i % 3)]), n_splits: 4 }],
+  ["validate_reality_check", toolValidateRealityCheck, "js/validate/reality-check.js", { matrix: RC_MATRIX, reps: 500 }],
 ];
 
 for (const [tool, fn, rel, input] of CASES) {
@@ -108,4 +113,19 @@ test("luck-equivalent trials compute locally, with no network and no receipt", a
   assert.equal(Math.floor(out.data.result.trials_for_even_odds), 144);
   assert.equal(out.receipt, null);
   assert.equal(calls(), 0);
+});
+
+test("data-snooping tests read a matrix file on this machine, give the inline answer, and the hosted endpoint refuses a path", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "canli-rc-"));
+  const file = join(dir, "variants.csv");
+  writeFileSync(file, `a,b,c\n${RC_MATRIX.map((row) => row.join(",")).join("\n")}\n`);
+  const { session, calls } = noNetwork();
+  const fromFile = parsed(await toolValidateRealityCheck(session, { matrix_file: file, reps: 500 }));
+  const inline = parsed(await toolValidateRealityCheck(session, { matrix: RC_MATRIX, reps: 500 }));
+  assert.deepEqual(fromFile.data, inline.data);
+  assert.equal(fromFile.data.best_variant.index, 0);
+  assert.equal(calls(), 0);
+  await assert.rejects(toolValidateRealityCheck(session, { matrix: RC_MATRIX, matrix_file: file }), /Send exactly one of matrix or matrix_file/);
+  const hosted = createSession({ base: "https://example.test", fetchImpl: async () => { throw new Error("no network"); }, hosted: { keySource: "shared" } });
+  await assert.rejects(toolValidateRealityCheck(hosted, { matrix_file: file }), /hosted endpoint cannot read files on your machine/);
 });

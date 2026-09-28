@@ -10,6 +10,7 @@ import { compute as trackRecord } from "./local/js/validate/track-record.js";
 import { compute as backtestLength } from "./local/js/validate/backtest-length.js";
 import { compute as haircutSharpe } from "./local/js/validate/haircut-sharpe.js";
 import { compute as luckTrials } from "./local/js/validate/luck-trials.js";
+import { compute as realityCheck } from "./local/js/validate/reality-check.js";
 
 export const LOCAL_VALIDATORS = Object.freeze({
   validate_deflated_sharpe: { endpoint: "validate/deflated-sharpe", compute: deflatedSharpe },
@@ -20,6 +21,7 @@ export const LOCAL_VALIDATORS = Object.freeze({
   validate_backtest_length: { endpoint: "validate/backtest-length", compute: backtestLength },
   validate_haircut_sharpe: { endpoint: "validate/haircut-sharpe", compute: haircutSharpe },
   validate_luck_trials: { endpoint: "validate/luck-trials", compute: luckTrials },
+  validate_reality_check: { endpoint: "validate/reality-check", compute: realityCheck },
 });
 
 const NOTE = "Computed on this machine in local mode. Nothing was sent to canlicapital.com and no receipt was stored.";

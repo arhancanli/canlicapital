@@ -24,7 +24,7 @@ test("every registered tool is in exactly one toolset, and every toolset name is
   const members = Object.values(TOOLSETS).flat();
   assert.equal(new Set(members).size, members.length, "no tool is in two toolsets");
   assert.deepEqual([...members].sort(), [...all].sort());
-  assert.equal(all.length, 14);
+  assert.equal(all.length, 15);
   // A real McpServer accepts the same registrations.
   registerTools(new McpServer({ name: "t", version: "0" }), createSession({ toolsets: ["company"] }));
 });

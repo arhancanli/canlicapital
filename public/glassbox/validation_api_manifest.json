@@ -254,6 +254,192 @@
       ]
     },
     {
+      "path": "/api/v1/validate/reality-check",
+      "method": "POST",
+      "keyed": true,
+      "summary": "Data-snooping tests on every variant a search tried: Hansen's SPA, White's Reality Check and Romano and Wolf's StepM on one seeded stationary bootstrap. Did the best variant beat the benchmark by more than the best of K would by luck, and which variants did?",
+      "requestExample": {
+        "matrix": [
+          [
+            0.0045,
+            0.0065,
+            -0.0005
+          ],
+          [
+            0.0073,
+            -0.0031,
+            -0.0042
+          ],
+          [
+            -0.0002,
+            -0.0055,
+            0.0058
+          ],
+          [
+            -0.0049,
+            0.0051,
+            -0.0002
+          ],
+          [
+            0.0008,
+            0.0038,
+            -0.0046
+          ],
+          [
+            0.0041,
+            -0.0064,
+            0.0023
+          ],
+          [
+            0.0006,
+            -0.0016,
+            0.0012
+          ],
+          [
+            0.002,
+            0.007,
+            0.0015
+          ],
+          [
+            0.0068,
+            -0.0007,
+            -0.0062
+          ],
+          [
+            0.0024,
+            -0.0066,
+            0.0044
+          ],
+          [
+            -0.0051,
+            0.003,
+            0.002
+          ],
+          [
+            -0.0018,
+            0.0055,
+            -0.0036
+          ],
+          [
+            0.0049,
+            -0.0047,
+            -0.0004
+          ],
+          [
+            0.003,
+            -0.0037,
+            0.0011
+          ],
+          [
+            0.0006,
+            0.0058,
+            0.0041
+          ],
+          [
+            0.0047,
+            0.0016,
+            -0.0068
+          ],
+          [
+            0.0042,
+            -0.006,
+            0.0021
+          ],
+          [
+            -0.0036,
+            0.0004,
+            0.003
+          ],
+          [
+            -0.0041,
+            0.0055,
+            -0.0012
+          ],
+          [
+            0.0041,
+            -0.0022,
+            -0.0022
+          ],
+          [
+            0.0056,
+            -0.0044,
+            -0.0006
+          ],
+          [
+            0.0009,
+            0.0034,
+            0.0062
+          ],
+          [
+            0.0021,
+            0.0029,
+            -0.0056
+          ],
+          [
+            0.0046,
+            -0.0039,
+            -0.0003
+          ],
+          [
+            -0.0011,
+            -0.0014,
+            0.0022
+          ],
+          [
+            -0.0051,
+            0.0039,
+            0.0015
+          ],
+          [
+            0.0019,
+            0.0001,
+            -0.0024
+          ],
+          [
+            0.0073,
+            -0.0034,
+            -0.0031
+          ],
+          [
+            0.0027,
+            0.0008,
+            0.0069
+          ],
+          [
+            -0.0001,
+            0.0026,
+            -0.0033
+          ]
+        ]
+      },
+      "requestOptional": [],
+      "requestExtraProperties": {
+        "benchmark": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "The benchmark's return in each period, one per row of matrix. Defaults to zero: the test is then whether the best variant's mean return beats zero."
+        },
+        "block_length": {
+          "type": "integer",
+          "description": "Mean block length of the stationary bootstrap, in periods. Defaults to round(n^(1/3))."
+        },
+        "reps": {
+          "type": "integer",
+          "description": "Bootstrap draws. Defaults to 2000, fewer when the matrix is large; periods x variants x draws may not exceed 200,000,000."
+        },
+        "seed": {
+          "type": "integer",
+          "description": "Defaults to 42. Seeds the service's own generator, so a result reproduces exactly."
+        },
+        "alpha": {
+          "type": "number",
+          "description": "Familywise error for StepM and the verdict. Defaults to 0.05."
+        }
+      }
+    },
+    {
       "path": "/api/v1/validate/status",
       "method": "GET",
       "keyed": false,
