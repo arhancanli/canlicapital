@@ -53,7 +53,7 @@ export function effectiveLimits(base = {}, requested = {}) {
     const b = requested[key];
     if (a !== undefined || b !== undefined) out[key] = [...new Set(a === undefined ? b : b === undefined ? a : a.filter((x) => b.includes(x)))].sort();
   }
-  if (base.require_market_state || requested.require_market_state) out.require_market_state = true;
+  for (const key of ["require_market_state", "require_drawdown_state"]) if (base[key] || requested[key]) out[key] = true;
   return out;
 }
 

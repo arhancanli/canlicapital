@@ -58,6 +58,9 @@ export const limitsSchema = z.object({
   allowed_types: z.array(z.enum(["market", "limit"])).optional(),
   require_market_state: z.boolean().optional(),
 }).strict();
+// The trader's limits file also holds policy no call sets: size_position refuses without drawdown
+// state when require_drawdown_state is true.
+export const limitsFileSchema = limitsSchema.extend({ require_drawdown_state: z.boolean().optional() }).strict();
 
 const baseInput = {
   orders: z.array(order).min(1).max(MAX_ORDERS),

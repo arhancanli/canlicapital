@@ -26,7 +26,7 @@ const ORDER_ARGS = {
   limits: { price_collar_frac: 0.05 },
 };
 
-test("one read-only tool, the package version, and a byte-identical list on every launch", async () => {
+test("two read-only tools, the package version, and a byte-identical list on every launch", async () => {
   const list = async () => {
     const client = await connect();
     try {
@@ -37,11 +37,12 @@ test("one read-only tool, the package version, and a byte-identical list on ever
   };
   const first = await list();
   const { tools } = JSON.parse(first.json);
-  assert.deepEqual(tools.map((t) => t.name), ["check_orders"]);
-  const [t] = tools;
-  assert.deepEqual(t.annotations, { title: "Check orders", readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false });
-  assert.ok(t.outputSchema, "check_orders has an output schema");
-  assert.doesNotMatch(JSON.stringify(t.outputSchema), /"additionalProperties":false/, "the output schema is open");
+  assert.deepEqual(tools.map((t) => t.name), ["size_position", "check_orders"]);
+  for (const t of tools) {
+    assert.deepEqual({ ...t.annotations, title: undefined }, { title: undefined, readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false }, t.name);
+    assert.ok(t.outputSchema, `${t.name} has an output schema`);
+    assert.doesNotMatch(JSON.stringify(t.outputSchema), /"additionalProperties":false/, `${t.name} publishes a closed output schema`);
+  }
   assert.equal(first.version, JSON.parse(readFileSync(resolve(ROOT, "package.json"), "utf8")).version);
   assert.equal((await list()).json, first.json);
 });
@@ -65,6 +66,9 @@ test("list tools, then call: the result passes the listed schema and reads the l
     assert.equal(bad.isError, true, "a field the schema does not name is refused, not ignored");
     const negative = await client.callTool({ name: "check_orders", arguments: { ...ORDER_ARGS, orders: [{ symbol: "AAPL", side: "buy", qty: -5 }] } });
     assert.match(negative.content[0].text, /orders\.0\.qty: Too small/, "the refused field is named");
+    const sized = await client.callTool({ name: "size_position", arguments: { side: "buy", asset_class: "us_equity", equity: 100000, price: 100, vol: { daily: 0.02 }, lot_size: 1, budget: { method: "fixed_fraction", fraction: 0.5 }, caps: { max_position_frac: 0.1 } } });
+    assert.notEqual(sized.isError, true, JSON.stringify(sized.content));
+    assert.deepEqual([sized.structuredContent.position_qty, sized.structuredContent.binding_constraint], [100, "position_cap"]);
     const limits = await client.readResource({ uri: "execution://limits" });
     assert.equal(JSON.parse(limits.contents[0].text).kill_switch, "engaged");
   } finally {

@@ -11,6 +11,7 @@ const REPO = resolve(PKG, "..");
 export const CORE_FILES = [
   "js/exec-cost-core.js",
   "js/pretrade-core.js",
+  "js/sizing-core.js",
   "scripts/canonical-json.mjs",
 ];
 

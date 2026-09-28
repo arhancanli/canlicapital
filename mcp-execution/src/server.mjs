@@ -18,14 +18,15 @@ import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 
 import { effectiveLimits } from "./core/js/pretrade-core.js";
 import { SERVER_INFO, SERVER_NAME, SERVER_VERSION } from "./info.mjs";
-import { advertised, CHECK_ORDERS_DESCRIPTION, CHECK_ORDERS_JSON, CHECK_ORDERS_OUTPUT, checkOrdersInput, limitsDigest, limitsSchema, parseInput, runCheckOrders } from "./check-orders.mjs";
+import { advertised, CHECK_ORDERS_DESCRIPTION, CHECK_ORDERS_JSON, CHECK_ORDERS_OUTPUT, checkOrdersInput, limitsDigest, limitsFileSchema, parseInput, runCheckOrders } from "./check-orders.mjs";
+import { runSizePosition, SIZE_POSITION_DESCRIPTION, SIZE_POSITION_JSON, SIZE_POSITION_OUTPUT, sizePositionInput } from "./size-position.mjs";
 
 // Sent once in initialize; byte-stable across runs (a test pins it).
-export const SERVER_INSTRUCTIONS = "Checks orders before they are sent. check_orders estimates each order's cost and checks it against the trader's limits, the market state and the kill switch; it rejects with every reason and never resizes. Limits come from the trader's own limits file and can only be tightened by a call. Every number comes from inputs given; what is missing is listed as not modelled. Nothing here is investment advice.";
+export const SERVER_INSTRUCTIONS = "Plans and checks orders before they are sent. size_position turns a budget the trader states into a position within their caps; check_orders estimates each order's cost and checks it against the trader's limits, the market state and the kill switch, rejecting with every reason and never resizing. Limits come from the trader's own limits file and can only be tightened by a call. Every number comes from inputs given; what is missing is listed as not modelled. Nothing here is investment advice.";
 
 // Toolsets, chosen with CANLI_EXEC_TOOLSETS (comma-separated names, or "all"); an unknown name is
 // refused, so a typo cannot silently drop a tool.
-export const TOOLSETS = Object.freeze({ plan: Object.freeze(["check_orders"]) });
+export const TOOLSETS = Object.freeze({ plan: Object.freeze(["size_position", "check_orders"]) });
 
 export function configuredToolsets(value) {
   const v = value?.trim();
@@ -54,7 +55,7 @@ export function readLimitsFile(session) {
   } catch (error) {
     throw new Error(`the limits file ${path} could not be read as JSON (${error.message}); checks refuse rather than run without it`);
   }
-  const valid = limitsSchema.safeParse(parsed);
+  const valid = limitsFileSchema.safeParse(parsed);
   if (!valid.success) throw new Error(`the limits file ${path} is not valid (${valid.error.issues.map((i) => `${i.path.join(".") || "file"}: ${i.message}`).join("; ")}); checks refuse rather than run without it`);
   return { path, limits: valid.data, mtime: statSync(path).mtime.toISOString() };
 }
@@ -75,10 +76,19 @@ export async function toolCheckOrders(session, args) {
   return asText({ ...result, limits_file: file.path });
 }
 
+export async function toolSizePosition(session, args) {
+  const input = parseInput(sizePositionInput, args, "size_position");
+  const file = readLimitsFile(session);
+  return asText({ ...runSizePosition(input, { baseLimits: file.limits }), limits_file: file.path });
+}
+
 const CHECK = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 
 export function registerTools(server, session) {
   const enabled = new Set(session.toolsets.flatMap((name) => TOOLSETS[name]));
+  if (enabled.has("size_position")) {
+    server.registerTool("size_position", { title: "Size a position", annotations: { title: "Size a position", ...CHECK }, description: SIZE_POSITION_DESCRIPTION, inputSchema: advertised(sizePositionInput, SIZE_POSITION_JSON), outputSchema: SIZE_POSITION_OUTPUT }, (args) => toolSizePosition(session, args));
+  }
   if (enabled.has("check_orders")) {
     server.registerTool("check_orders", { title: "Check orders", annotations: { title: "Check orders", ...CHECK }, description: CHECK_ORDERS_DESCRIPTION, inputSchema: advertised(checkOrdersInput, CHECK_ORDERS_JSON), outputSchema: CHECK_ORDERS_OUTPUT }, (args) => toolCheckOrders(session, args));
   }

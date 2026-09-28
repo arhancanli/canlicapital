@@ -4,10 +4,38 @@
 release, 0.1.0, is paper trading only and ships when every item of its release bar holds (see
 `CHANGELOG.md`).
 
-An MCP server that checks orders before they are sent. `check_orders` estimates what each order
-would cost and checks it against the trader's own limits, the market state and a kill switch. It
-rejects with every reason and never resizes an order. It places no orders: this build has no broker
-code at all.
+An MCP server for planning and checking orders before they are sent. It places no orders: this
+build has no broker code at all.
+
+- `size_position` turns a budget you state into a lot-rounded position that stays under every cap,
+  with the orders from your current position and the cap that binds.
+- `check_orders` estimates what each order would cost and checks it against your limits, the
+  market state and a kill switch. It rejects with every reason and never resizes an order.
+
+## What `size_position` computes
+
+You state a budget, in one of three ways:
+- a volatility target: the position whose annual volatility is that share of equity;
+- risk per trade: a stop distance and the share of equity you accept losing at the stop;
+- a fixed fraction of equity.
+
+The position is then the smallest of that budget and your caps. The caps are the position,
+gross and net caps as fractions of equity, and ADV participation, which caps the opening order.
+The result is floored to your lot size. The tool names the cap that binds and the headroom left
+under each one.
+
+A drawdown state from your own ladder halves the budget, or zeroes it. The ladder halves at
+`half_at`, goes flat at `flat_at`, and a halved ladder releases below 0.75 of `half_at`.
+
+The orders to reach the position follow the same rules as AlphaForge's rebalancer:
+- The lot grid is applied.
+- A small opening order is skipped below 1.05 times the minimum notional.
+- A reduce is never skipped.
+- A flip is sent as a reduce-only close, then an open.
+
+A reduce that brings a position back under a cap is rounded up to the lot, so the position ends
+at or under the cap. There are no default caps: `max_position_frac` must come from the call or
+your limits file.
 
 ## What `check_orders` computes
 
@@ -56,6 +84,14 @@ limits, so a record can show which limits a check ran under.
 - The cost functions match AlphaForge's `TransactionCostModel`, `FeeSchedule` and book walk on
   1,000 random cases each, to 1e-12.
 - The verdicts and reason codes match AlphaForge's `PreTradeChecker` on 5,000 random batches.
+- The sizing was checked against AlphaForge:
+  - 2,996 of 3,000 lot-rounding cases give the same orders. In the other 4, AlphaForge raises
+    building a zero-lot order; here that order is left out.
+  - 59,889 of 60,000 drawdown-ladder updates give the same state. The other 111 are the live
+    ladder's timed rearms after a halt. A stateless call cannot count bars, so it stays flat until
+    you pass state `normal`.
+  - All 1,000 volatility-target cases match.
+- Across 10,000 random books, a sized position never added exposure past a cap.
 - Each rule was broken in turn, and a test failed every time.
 - The recorded fixtures and the scripts that recorded them are in this repository
   (`scripts/research/execution-parity/`), pinned to the AlphaForge commit named in each file.
