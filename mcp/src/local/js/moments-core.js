@@ -16,7 +16,7 @@ export function finiteNumbers(values, name) {
   for (let i = 0; i < values.length; i += 1) {
     const v = values[i];
     const x = typeof v === "number" ? v : typeof v === "string" && v.trim() !== "" ? Number(v) : Number.NaN;
-    if (!Number.isFinite(x)) throw new RangeError(`${name}[${i}] is ${v === null ? "null" : v === undefined ? "missing" : JSON.stringify(v)}, not a finite number: remove missing periods rather than sending them, since they would otherwise be read as zero`);
+    if (!Number.isFinite(x)) throw new RangeError(`${name}[${i}] is ${v === null ? "null" : v === undefined ? "missing" : typeof v === "number" ? String(v) : JSON.stringify(v)}, not a finite number: remove missing periods rather than sending them, since they would otherwise be read as zero`);
     out[i] = x;
   }
   return out;

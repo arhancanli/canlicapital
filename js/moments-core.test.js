@@ -34,6 +34,9 @@ test("a constant series is refused, not reported as infinite", () => {
   assert.throws(() => perPeriodMoments([0.01, 0.01, 0.01, 0.01]), /zero variance/);
 });
 
-test("fewer than two finite values is refused", () => {
-  assert.throws(() => perPeriodMoments([0.01, NaN]), /at least 2/);
+test("fewer than two values is refused, and a value that is not finite is refused by its position", () => {
+  assert.throws(() => perPeriodMoments([0.01]), /at least 2/);
+  assert.throws(() => perPeriodMoments([0.01, NaN]), /returns\[1\] is NaN, not a finite number/);
+  assert.throws(() => perPeriodMoments([0.01, 0.02, Infinity]), /returns\[2\] is Infinity/);
+  assert.throws(() => perPeriodMoments([0.01, null, 0.02]), /returns\[1\] is null/);
 });

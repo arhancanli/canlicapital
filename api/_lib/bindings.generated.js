@@ -27,7 +27,7 @@ export const BINDINGS = Object.freeze({
   ],
   "files": {
     "js/dsr-core.js": "sha256:79ec18cc7c15e0b2ad004dd5296e83020187912aab161b68aad4784d959816d1",
-    "js/moments-core.js": "sha256:d04cf18383654c6014e851c510e33ded5954c5511e3db2883651e278e15c3fa8",
+    "js/moments-core.js": "sha256:bf0ccc0268df91fa684eb6ac34ca25bee7c90dfb2ebc1dc52fead64d354a0cb9",
     "js/pbo-core.js": "sha256:56d66a9065256fac879da7a1c9d13e45e739d548332b1feaaca315f26051979f",
     "js/selection-risk-core.js": "sha256:b2730eb3e29348530265c72196f39cca58774000da64ebeaf5bbddb3053f8f75",
     "js/breadth-core.js": "sha256:f90522e17a8a407d5e060131abdcf2cc882ee79d91abef55a3e80c17affef2a7",
