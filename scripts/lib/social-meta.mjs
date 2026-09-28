@@ -13,7 +13,7 @@
 // archival papers inside each publication bundle) is never touched: its bytes are what readers verify.
 // =============================================================================
 
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 export const ORIGIN = "https://canlicapital.com";
@@ -100,10 +100,10 @@ export function imageDimensions(bytes) {
 export function checksummedFiles(root) {
   const out = new Set();
   const walk = (dir) => {
-    for (const entry of readdirSync(dir)) {
-      const full = join(dir, entry);
-      if (statSync(full).isDirectory()) walk(full);
-      else if (entry === "SHA256SUMS") {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.isFile() && entry.name === "SHA256SUMS") {
         for (const line of readFileSync(full, "utf8").split("\n")) {
           const m = line.match(/^[0-9a-f]{64} [ *](.+)$/);
           if (m) out.add(join(dirname(full), m[1]));

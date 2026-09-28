@@ -8,7 +8,7 @@
 // from the image file in dist/, never assumed.
 // =============================================================================
 
-import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -19,10 +19,10 @@ const DIST = process.argv[2] ? resolve(process.argv[2]) : resolve(ROOT, "dist");
 
 function htmlFiles(dir) {
   const out = [];
-  for (const entry of readdirSync(dir)) {
-    const full = join(dir, entry);
-    if (statSync(full).isDirectory()) { if (entry !== "assets") out.push(...htmlFiles(full)); }
-    else if (entry.endsWith(".html")) out.push(full);
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) { if (entry.name !== "assets") out.push(...htmlFiles(full)); }
+    else if (entry.isFile() && entry.name.endsWith(".html")) out.push(full);
   }
   return out;
 }
