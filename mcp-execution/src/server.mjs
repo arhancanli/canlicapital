@@ -19,6 +19,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { effectiveLimits } from "./core/js/pretrade-core.js";
 import { SERVER_INFO, SERVER_NAME, SERVER_VERSION } from "./info.mjs";
 import { advertised, CHECK_ORDERS_DESCRIPTION, CHECK_ORDERS_JSON, CHECK_ORDERS_OUTPUT, checkOrdersInput, limitsDigest, limitsFileSchema, parseInput, runCheckOrders } from "./check-orders.mjs";
+import { JOURNAL_DESCRIPTION, JOURNAL_JSON, JOURNAL_OUTPUT, journalInput, runJournal } from "./journal.mjs";
 import { runSizePosition, SIZE_POSITION_DESCRIPTION, SIZE_POSITION_JSON, SIZE_POSITION_OUTPUT, sizePositionInput } from "./size-position.mjs";
 
 // Sent once in initialize; byte-stable across runs (a test pins it).
@@ -26,7 +27,7 @@ export const SERVER_INSTRUCTIONS = "Plans and checks orders before they are sent
 
 // Toolsets, chosen with CANLI_EXEC_TOOLSETS (comma-separated names, or "all"); an unknown name is
 // refused, so a typo cannot silently drop a tool.
-export const TOOLSETS = Object.freeze({ plan: Object.freeze(["size_position", "check_orders"]) });
+export const TOOLSETS = Object.freeze({ plan: Object.freeze(["size_position", "check_orders"]), journal: Object.freeze(["journal"]) });
 
 export function configuredToolsets(value) {
   const v = value?.trim();
@@ -82,6 +83,10 @@ export async function toolSizePosition(session, args) {
   return asText({ ...runSizePosition(input, { baseLimits: file.limits }), limits_file: file.path });
 }
 
+export async function toolJournal(session, args) {
+  return asText(runJournal(parseInput(journalInput, args, "journal"), { home: session.home }));
+}
+
 const CHECK = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 
 export function registerTools(server, session) {
@@ -92,10 +97,14 @@ export function registerTools(server, session) {
   if (enabled.has("check_orders")) {
     server.registerTool("check_orders", { title: "Check orders", annotations: { title: "Check orders", ...CHECK }, description: CHECK_ORDERS_DESCRIPTION, inputSchema: advertised(checkOrdersInput, CHECK_ORDERS_JSON), outputSchema: CHECK_ORDERS_OUTPUT }, (args) => toolCheckOrders(session, args));
   }
+  if (enabled.has("journal")) {
+    server.registerTool("journal", { title: "Trade journal", annotations: { title: "Trade journal", ...CHECK }, description: JOURNAL_DESCRIPTION, inputSchema: advertised(journalInput, JOURNAL_JSON), outputSchema: JOURNAL_OUTPUT }, (args) => toolJournal(session, args));
+  }
 }
 
-// The limits file as a resource: read-only, and free of tool-list tokens.
+// The limits file and the journal head as resources: read-only, and free of tool-list tokens.
 export function registerResources(server, session) {
+  server.registerResource("journal-head", "execution://journal/head", { title: "Journal head", description: "The trader's journal: its last hash, entry count and signing key, from the first and last lines (not verified).", mimeType: "application/json" }, async (uri) => ({ contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify(runJournal({ action: "head" }, { home: session.home })) }] }));
   server.registerResource("limits", "execution://limits", { title: "Effective limits", description: "The trader's limits file as check_orders reads it: path, modification time, limits and their digest.", mimeType: "application/json" }, async (uri) => {
     const file = readLimitsFile(session);
     return { contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify({ path: file.path ?? join(session.home, "limits.json"), exists: file.path !== null, mtime: file.mtime ?? null, limits: effectiveLimits(file.limits, {}), limits_digest: limitsDigest(effectiveLimits(file.limits, {})), kill_switch: killState(session).engaged ? "engaged" : "clear" }) }] };

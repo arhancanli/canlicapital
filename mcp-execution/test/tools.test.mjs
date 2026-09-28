@@ -169,9 +169,10 @@ test("malformed calls are refused with the field named", async () => {
   await assert.rejects(call(session(), { ...BASE, orders: Array.from({ length: 201 }, () => buy()) }), /orders/);
 });
 
-test("toolsets: plan by default; an unknown name is refused", () => {
-  assert.deepEqual(configuredToolsets(undefined), ["plan"]);
-  assert.deepEqual(configuredToolsets("all"), ["plan"]);
+test("toolsets: plan and journal by default; an unknown name is refused", () => {
+  assert.deepEqual(configuredToolsets(undefined), ["plan", "journal"]);
+  assert.deepEqual(configuredToolsets("all"), ["plan", "journal"]);
+  assert.deepEqual(configuredToolsets("journal"), ["journal"]);
   assert.throws(() => configuredToolsets("plan,broker"), /Unknown toolset broker/);
   const names = [];
   registerTools({ registerTool: (n) => names.push(n) }, createSession({ toolsets: ["plan"] }));

@@ -11,6 +11,21 @@ build has no broker code at all.
   with the orders from your current position and the cap that binds.
 - `check_orders` estimates what each order would cost and checks it against your limits, the
   market state and a kill switch. It rejects with every reason and never resizes an order.
+- `journal` reads a trade journal and checks it, offline.
+
+## The trade journal
+
+A trade journal (`canli.trade-journal.v0`, specified in `standards/trade-journal/`) is an
+append-only file of signed, hash-chained entries: what was decided, checked, sent, acknowledged,
+filled, marked and corrected, in order. Anyone holding the file can check that no entry was changed,
+dropped, reordered or inserted, and that every entry was signed by the key named on the first line.
+`journal` with `verify` names the first line that fails, and why; `head` gives the last hash, the
+entry count and the key's fingerprint. It returns verdicts and hashes, never the entries.
+
+The standard was checked with a second verifier, written in Python from the standard's text alone:
+- The two agree on all 36 named vectors, one for each way a journal can fail.
+- They agree on 1,000 journals that each had one byte flipped. Every one of those fails at the
+  line holding the flipped byte.
 
 ## What `size_position` computes
 
