@@ -1,0 +1,13 @@
+{
+  "schema": "canli.receipt-keys.v1",
+  "description": "Public keys that sign canlicapital.com validation receipts. A receipt's signature is Ed25519 over the canonical JSON of {schema, id, endpoint, input_sha256, output_sha256, bindings}; its key_id is the first 16 hex characters of sha256 over the key's 32 raw bytes.",
+  "keys": [
+    {
+      "key_id": "269d381734732ea6",
+      "alg": "Ed25519",
+      "x": "k1ojmfzJlaiXwaEU5aql0CvNyHMS_vXTj9Q9-zTeYAw",
+      "status": "active",
+      "valid_from": "2026-09-26"
+    }
+  ]
+}

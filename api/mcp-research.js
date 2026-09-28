@@ -3,7 +3,7 @@
 // The hosted canli-research-mcp (canlicapital.com/mcp/research): the npm package's own tools over
 // MCP Streamable HTTP, reading the same static research files. One session per warm function
 // instance, so its short file cache serves repeat requests.
-import { createSession, registerTools, SERVER_INFO, SERVER_INSTRUCTIONS } from "../mcp-research/src/server.mjs";
+import { createSession, registerTools, SERVER_INFO, SERVER_INSTRUCTIONS } from "../mcp-released/research/src/server.mjs";
 import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
 
 export function createResearchHandler({ session = createSession() } = {}) {

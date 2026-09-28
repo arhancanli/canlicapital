@@ -55,7 +55,7 @@ function ignoredByVercel(paths) {
 
 test("every file an api/ function imports at runtime is uploaded", () => {
   const closure = runtimeClosure(functionEntries());
-  assert.ok(closure.includes("mcp/src/server.mjs"), "the hosted MCP endpoint's import was not followed");
+  for (const server of ["validation", "fundamentals", "research"]) assert.ok(closure.includes(`mcp-released/${server}/src/server.mjs`), `the hosted ${server} endpoint's import was not followed`);
   assert.deepEqual(ignoredByVercel(closure), [], "these runtime imports are excluded by .vercelignore");
 });
 
@@ -64,8 +64,8 @@ test("the check itself can fail: an excluded path is reported", () => {
   assert.deepEqual(ignoredByVercel(["dist/example.js"]), ["dist/example.js"]);
 });
 
-test("the files the /developers generator reads from the MCP family packages are uploaded", () => {
-  const inputs = ["mcp-fundamentals", "mcp-research"].flatMap((dir) => [`${dir}/package.json`, `${dir}/server.json`, `${dir}/src/server.mjs`]);
+test("the files the /developers generator reads from the released MCP family packages are uploaded", () => {
+  const inputs = ["mcp-released/fundamentals", "mcp-released/research"].flatMap((dir) => [`${dir}/package.json`, `${dir}/server.json`, `${dir}/src/server.mjs`]);
   for (const file of inputs) assert.ok(existsSync(join(ROOT, file)), `${file} is missing`);
   assert.deepEqual(ignoredByVercel(inputs), [], "these build inputs are excluded by .vercelignore");
   assert.deepEqual(ignoredByVercel(["mcp-fundamentals/test/tools.test.mjs", "mcp-research/README.md"]).length, 2, "the rest of each package stays out of the upload");

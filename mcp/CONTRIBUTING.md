@@ -37,7 +37,10 @@ A release is a substantial step, not a single change: developers pin versions, a
 releases reads as churn. Feature pull requests do not bump the version in `package.json`,
 `server.json` or the bundle manifest; they add their entry under `## Unreleased` in `CHANGELOG.md`.
 A release gathers those entries into one version, one changelog section, one npm publish, one
-registry entry and one GitHub release, once the batch is worth upgrading for. The one exception is
+registry entry and one GitHub release, once the batch is worth upgrading for. The same release
+updates `config/mcp-hosted-releases.json` and runs `node scripts/build-mcp-released.mjs`, so the hosted
+endpoint at canlicapital.com serves exactly that version; work merged between releases never reaches
+it. The one exception is
 a fix for an answer that was wrong without warning, which ships as a patch as soon as it is ready.
 
 ## Test policy

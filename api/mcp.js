@@ -10,7 +10,7 @@
 // <key>") when present, otherwise a shared anonymous key (CANLI_REMOTE_MCP_KEY) with a shared
 // daily quota. The caller's key is forwarded to the validation API and never echoed or logged.
 import { McpServer, WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/server";
-import { configuredToolsets, createSession, registerAll, SERVER_INFO, SERVER_INSTRUCTIONS } from "../mcp/src/server.mjs";
+import { configuredToolsets, createSession, registerAll, SERVER_INFO, SERVER_INSTRUCTIONS } from "../mcp-released/validation/src/server.mjs";
 import { BodyError, readJsonBody } from "./_lib/body.js";
 import { inProcessFetch } from "./_lib/in-process-fetch.js";
 

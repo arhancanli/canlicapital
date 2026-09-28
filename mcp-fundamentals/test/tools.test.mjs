@@ -381,3 +381,18 @@ test("cross_section: one row per company in the order asked, each value as filed
   await assert.rejects(toolCrossSection(s, { companies: Array.from({ length: 51 }, () => "FIX"), concept: "assets", as_of: "2020-01-01" }), /cross_section: companies/);
   await assert.rejects(toolCrossSection(s, { companies: [], concept: "assets", as_of: "2020-01-01" }), /cross_section: companies/);
 });
+
+test("a quarter is stale once a later fiscal year has been filed: the fourth quarter is only inside the annual report", async () => {
+  const { s } = session();
+  const quarter = async (asOf) => {
+    const r = out(await toolKnownAsOf(s, { company: "FIX", as_of: asOf, periods: "quarterly", concepts: ["revenue"] }));
+    const row = byCol(r)[0];
+    return [row.end, row.stale];
+  };
+  // The 16-week second quarter (to 2020-04-21) is the newest quarter all year; once the fiscal 2020
+  // 10-K (to 2020-09-30) is filed on 2020-10-29, the company has published a later period.
+  assert.deepEqual(await quarter("2020-06-01"), ["2020-04-21", false]);
+  assert.deepEqual(await quarter("2020-11-01"), ["2020-04-21", true]);
+  const xs = out(await toolCrossSection(s, { companies: ["FIX"], concept: "revenue", as_of: "2020-11-01", periods: "quarterly" }));
+  assert.equal(byCol(xs)[0].stale, true);
+});

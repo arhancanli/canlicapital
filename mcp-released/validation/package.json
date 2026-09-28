@@ -1,0 +1,55 @@
+{
+  "name": "canli-validation-mcp",
+  "version": "0.10.1",
+  "description": "Check whether a backtest is real: deflated Sharpe, CSCV probability of backtest overfitting, minimum track record and backtest length, haircut Sharpe and luck-equivalent trials, as an MCP server. Local mode, hosted endpoint, signed receipts.",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "backtesting",
+    "backtest",
+    "deflated-sharpe-ratio",
+    "probability-of-backtest-overfitting",
+    "cscv",
+    "sharpe-ratio",
+    "overfitting",
+    "quantitative-finance",
+    "quant",
+    "trading"
+  ],
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "canlicapital-validation-mcp": "src/server.mjs"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs test/*.test.js",
+    "test:package": "node test/package-smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.1.0",
+    "zod": "4.6.5"
+  },
+  "mcpName": "io.github.arhancanli/canli-validation-mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhancanli/canlicapital.git",
+    "directory": "mcp"
+  },
+  "homepage": "https://canlicapital.com/developers",
+  "bugs": {
+    "url": "https://github.com/arhancanli/canlicapital/issues"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.1.0",
+    "fast-check": "4.10.2"
+  }
+}
