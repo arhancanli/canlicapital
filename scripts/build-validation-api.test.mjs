@@ -24,6 +24,7 @@ const BODY_VALIDATORS = {
   "/api/v1/validate/backtest-length": async () => (await import("../api/v1/validate/backtest-length.js")).compute,
   "/api/v1/validate/haircut-sharpe": async () => (await import("../api/v1/validate/haircut-sharpe.js")).compute,
   "/api/v1/validate/luck-trials": async () => (await import("../api/v1/validate/luck-trials.js")).compute,
+  "/api/v1/validate/reality-check": async () => (await import("../api/v1/validate/reality-check.js")).compute,
 };
 
 test("the quota constants are the documented values and every one has a sentence", () => {

@@ -1,0 +1,111 @@
+{
+  "schema": "canli.reality-check-reference.v1",
+  "what": "Independent p-values for js/snooping-core.js on the fixed-seed cases in scripts/research/reality-check/cases.mjs: arch's SPA, RealityCheck and StepM (not studentized), and Hansen's studentized SPA transcribed from the paper in numpy. The two sides draw with different generators, so they agree within Monte Carlo error.",
+  "reference": {
+    "package": "arch==8.0.0",
+    "reps": 10000,
+    "numpy_seed": 20260928,
+    "bootstrap": "stationary",
+    "block_length": "round(n^(1/3))"
+  },
+  "cases": [
+    {
+      "name": "noise",
+      "seed": 11,
+      "n": 1000,
+      "k": 50,
+      "block_length": 10,
+      "arch_spa_unstudentized": {
+        "lower": 0.3556,
+        "consistent": 0.4844,
+        "upper": 0.496
+      },
+      "arch_reality_check": 0.4993,
+      "arch_stepm_superior": [],
+      "hansen_spa_studentized": {
+        "lower": 0.4514,
+        "consistent": 0.5911,
+        "upper": 0.6061,
+        "statistic": 2.065173048942605
+      }
+    },
+    {
+      "name": "one_real_edge",
+      "seed": 12,
+      "n": 1000,
+      "k": 20,
+      "edge": 0.0012,
+      "block_length": 10,
+      "arch_spa_unstudentized": {
+        "lower": 0.0117,
+        "consistent": 0.018,
+        "upper": 0.018
+      },
+      "arch_reality_check": 0.0175,
+      "arch_stepm_superior": [
+        1
+      ],
+      "hansen_spa_studentized": {
+        "lower": 0.009,
+        "consistent": 0.0146,
+        "upper": 0.0146,
+        "statistic": 3.198292791282746
+      }
+    },
+    {
+      "name": "autocorrelated_borderline",
+      "seed": 13,
+      "n": 750,
+      "k": 30,
+      "edge": 0.0007,
+      "ar": 0.2,
+      "block_length": 9,
+      "arch_spa_unstudentized": {
+        "lower": 0.1389,
+        "consistent": 0.2259,
+        "upper": 0.2284
+      },
+      "arch_reality_check": 0.2302,
+      "arch_stepm_superior": [],
+      "hansen_spa_studentized": {
+        "lower": 0.0687,
+        "consistent": 0.1042,
+        "upper": 0.1068,
+        "statistic": 2.6457546521871285
+      }
+    },
+    {
+      "name": "several_edges",
+      "seed": 48,
+      "n": 1000,
+      "k": 24,
+      "edges": [
+        0.004,
+        0.0011,
+        0.001,
+        0.0009,
+        0.0008
+      ],
+      "block_length": 10,
+      "arch_spa_unstudentized": {
+        "lower": 0,
+        "consistent": 0,
+        "upper": 0
+      },
+      "arch_reality_check": 0,
+      "arch_stepm_superior": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "hansen_spa_studentized": {
+        "lower": 0,
+        "consistent": 0,
+        "upper": 0,
+        "statistic": 14.899619134867699
+      }
+    }
+  ]
+}

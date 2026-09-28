@@ -24,6 +24,12 @@ export const FIELD_DESCRIPTIONS = Object.freeze({
   n_splits: "Even number of blocks, at least 2; default 16.",
   max_combinations: "Most splits evaluated, up to 2000 (default).",
   seed: "Sampling seed; default 42.",
+  rc_matrix: "Returns of every variant the search tried, one row per period, one column per variant.",
+  matrix_file: "Path to a CSV or JSON with one numeric column per variant, instead of matrix.",
+  rc_benchmark: "Benchmark return per period; default zero.",
+  block_length: "Mean bootstrap block in periods; default round(n^(1/3)).",
+  reps: "Bootstrap draws; default 2000.",
+  alpha: "Familywise error for StepM; default 0.05.",
   record: "A canli.paper-evidence.v0 record.",
   sleeve_sharpe: "Annualized Sharpe of one sleeve.",
   average_pairwise_correlation: "Average correlation between sleeves, -1 to 1.",
@@ -114,6 +120,24 @@ export const overfittingInput = z
     seed: z.number().optional().describe(d.seed),
   })
   .strict();
+
+// ---------------------------------------------------------------------------------------------
+// validate_reality_check: every variant's returns, inline or from a file on this machine.
+// ---------------------------------------------------------------------------------------------
+
+export const realityCheckToolShape = z
+  .object({
+    matrix: z.array(z.array(z.number()).max(200)).min(30).max(20000).optional().describe(d.rc_matrix),
+    matrix_file: z.string().min(1).max(4096).optional().describe(d.matrix_file),
+    benchmark: z.array(z.number()).min(30).max(20000).optional().describe(d.rc_benchmark),
+    block_length: z.number().int().min(1).max(10000).optional().describe(d.block_length),
+    reps: z.number().int().min(500).max(400000).optional().describe(d.reps),
+    seed: z.number().int().optional().describe(d.seed),
+    alpha: z.number().gt(0).max(0.5).optional().describe(d.alpha),
+  })
+  .strict();
+
+export const realityCheckInput = realityCheckToolShape.refine((v) => (v.matrix === undefined) !== (v.matrix_file === undefined), "Send exactly one of matrix or matrix_file");
 
 // ---------------------------------------------------------------------------------------------
 // validate_paper_evidence: the record shape is the open standard itself, so this schema only
@@ -306,6 +330,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   validate_deflated_sharpe: `Deflated Sharpe ratio: the probability (0 to 1) that the selected strategy's Sharpe beats the best that luck gives across the variants tried, with the probabilistic Sharpe and that luck benchmark. Send the seven statistics or a return series. With every variant's returns use validate_overfitting; luck as a trial count, validate_luck_trials; a multiple-testing haircut, validate_haircut_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
   audit_backtest: `One-call audit of a strategy's returns: deflated Sharpe, minimum track record and, with every variant's returns, the probability of backtest overfitting, each the matching validator's result with its own receipt. Point returns_file at the backtest's CSV or JSON instead of pasting long series. Prefer it to calling the validators one by one; one validation per check. ${LIMITS_SENTENCES.notAdmission}`,
   validate_overfitting: `Probability of backtest overfitting (0 to 1) by CSCV: how often the in-sample best variant falls below the out-of-sample median. Needs every variant's returns (periods by variants); with summary statistics only, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
+  validate_reality_check: `Data-snooping tests on every variant a search tried: Hansen's SPA p-value that the best beat the benchmark only by luck, White's Reality Check, and the variants Romano-Wolf StepM finds better. Send all variants tried, not only the winners. ${LIMITS_SENTENCES.notAdmission}`,
   validate_paper_evidence: `Whether a paper or simulated performance record meets canli.paper-evidence.v0, with a JSON pointer per failure. Checks structure and required disclosures, not whether the returns are good. ${LIMITS_SENTENCES.scope}`,
   validate_backtest_length: `Minimum backtest length (years) before the best of N independent trials is not expected to reach a target Sharpe by luck; with backtest_years, the most trials those years allow. For planning a search; once it has a result, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
   validate_luck_trials: `How many skill-less strategies a search would need for its best to reach this Sharpe by luck (Monte Carlo), and with a trial count, the chance it did. States luck as the best of N random tries; for the probability the Sharpe is real, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,

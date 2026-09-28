@@ -18,6 +18,7 @@ const BOUND = [
   "js/validate/breadth.js", "js/validate/track-record.js", "js/validate/backtest-length.js",
   "js/student-t.js", "js/haircut-core.js", "js/validate/haircut-sharpe.js",
   "js/luck-core.js", "js/validate/luck-trials.js",
+  "js/snooping-core.js", "js/validate/reality-check.js",
   "public/glassbox/deflated_sharpe_calculator_contract.json", "standards/validation-api/vectors.json",
 ];
 const sha = (p) => `sha256:${createHash("sha256").update(readFileSync(resolve(ROOT, p))).digest("hex")}`;

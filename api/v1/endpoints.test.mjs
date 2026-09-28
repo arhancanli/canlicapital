@@ -13,6 +13,7 @@ import { compute as trackRecord } from "./validate/track-record.js";
 import { compute as backtestLength } from "./validate/backtest-length.js";
 import { compute as haircut } from "./validate/haircut-sharpe.js";
 import { compute as luck } from "./validate/luck-trials.js";
+import { compute as realityCheck } from "./validate/reality-check.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const VECTORS = JSON.parse(readFileSync(resolve(ROOT, "standards/validation-api/vectors.json"), "utf8"));
@@ -22,7 +23,7 @@ test("the manifest names every route file and every route has a summary and an e
   assert.deepEqual(paths, [
     "GET /api/v1/receipts/{id}", "GET /api/v1/receipts/{id}/badge.svg", "GET /api/v1/validate/status",
     "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/backtest-length", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe", "POST /api/v1/validate/haircut-sharpe",
-    "POST /api/v1/validate/luck-trials", "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence", "POST /api/v1/validate/track-record",
+    "POST /api/v1/validate/luck-trials", "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence", "POST /api/v1/validate/reality-check", "POST /api/v1/validate/track-record",
   ]);
   for (const m of MANIFEST) { assert.ok(m.summary.length > 20, m.path); if (m.method === "POST") assert.ok(m.requestExample, m.path); }
 });
@@ -167,4 +168,30 @@ test("luck-trials inverts the best-of-N probability, says when one trial explain
   assert.match(luck({ observed_sharpe_annualized: -1, periods_per_year: 252, observations: 300 }).plain_reading, /luck alone readily explains it/);
   assert.throws(() => luck({ observed_sharpe_annualized: 1, periods_per_year: 252 }), /Missing required fields: observations/);
   assert.throws(() => luck({ observed_sharpe_annualized: 1, periods_per_year: 252, observations: 300, effective_independent_trials: 0 }), /effective_independent_trials/);
+});
+
+test("reality-check: a real edge among noise is found, noise is not, a benchmark is subtracted, and bad input is named", () => {
+  const n = 400;
+  let state = 7;
+  const noise = () => { state = (state * 16807) % 2147483647; return state / 2147483647 - 0.5; };
+  const edge = Array.from({ length: n }, (_, t) => [0.01 * noise() + 0.004, 0.01 * noise(), 0.01 * noise(), 0.01 * noise()]);
+  const found = realityCheck({ matrix: edge });
+  assert.equal(found.best_variant.index, 0);
+  assert.ok(found.spa.p_value < 0.01, `${found.spa.p_value}`);
+  assert.deepEqual(found.stepm.superior_variants, [0]);
+  assert.match(found.verdict, /beats zero by more than the best of 4 would by luck/);
+  const flat = realityCheck({ matrix: edge.map((row) => row.map((x, j) => (j === 0 ? x - 0.004 : x))) });
+  assert.ok(flat.spa.p_value > 0.05, `${flat.spa.p_value}`);
+  assert.match(flat.verdict, /does not beat zero/);
+  // The same edge measured against a benchmark that earns it is no edge at all.
+  const matched = realityCheck({ matrix: edge, benchmark: edge.map((row) => row[0] - 0.01 * noise() * 0) });
+  assert.equal(matched.benchmark, "series");
+  assert.equal(matched.constant_variants_excluded?.[0], 0, "variant 0 minus itself is constant");
+  assert.equal(realityCheck({ matrix: edge, seed: 5 }).spa.p_value, realityCheck({ matrix: edge, seed: 5 }).spa.p_value, "a seed reproduces");
+  assert.throws(() => realityCheck({ matrix: edge.slice(0, 10) }), /at least 30 rows/);
+  assert.throws(() => realityCheck({ matrix: [...edge.slice(0, 40), [0.1]] }), /matrix row 40 has 1 values; every row needs 4/);
+  assert.throws(() => realityCheck({ matrix: edge.map((r, t) => (t === 3 ? [r[0], null, r[2], r[3]] : r)) }), /matrix\[3\]\[1\] is not a finite number/);
+  assert.throws(() => realityCheck({ matrix: edge, benchmark: [1, 2] }), /benchmark must be one return per row of matrix \(400\)/);
+  assert.throws(() => realityCheck({ matrix: edge, reps: 100 }), /reps must be an integer from 500/);
+  assert.throws(() => realityCheck({ matrix: edge, block_length: 300 }), /block_length must be an integer from 1 to half/);
 });

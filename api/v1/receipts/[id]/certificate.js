@@ -23,6 +23,7 @@ const VALIDATOR_NAMES = Object.freeze({
   "validate/backtest-length": "Minimum backtest length",
   "validate/haircut-sharpe": "Haircut Sharpe ratio",
   "validate/luck-trials": "Luck-equivalent trials",
+  "validate/reality-check": "Data-snooping tests (SPA, Reality Check, StepM)",
 });
 
 function page({ title, body, status = 200 }) {
