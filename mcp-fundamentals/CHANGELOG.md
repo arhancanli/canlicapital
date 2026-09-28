@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0
+
+- `cross_section`: one measure for up to 50 companies (tickers, CIKs or names) as filed by a date.
+  Each row is a company's latest period whose value had been filed by `as_of`, with the value then,
+  its filing, `changed_after` and `stale`, in the order asked; companies without a value are named
+  in `missing` with the reason. Each company's snapshot is indexed for the one measure only and none
+  is kept in memory: twelve large filers took 2.4 s with a cold disk and 145 ms warm, with 23 MB of
+  heap. Checked against an independent Python selection over the same SEC snapshots: 20 companies
+  on 3 dates, 60 of 60 identical, including 5 where neither side had a value.
+
 ## 0.4.0
 
 - `known_as_of` with `ratios: true` adds ratios computed only from values filed by `as_of`, for the

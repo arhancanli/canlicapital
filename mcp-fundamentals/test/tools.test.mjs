@@ -12,6 +12,7 @@ import {
   durationKind,
   instantKind,
   loadCompany,
+  toolCrossSection,
   toolFindCompany,
   toolHistory,
   toolKnownAsOf,
@@ -356,3 +357,27 @@ test("known_as_of ratios: every input as filed by as_of, one period, averages ac
   assert.equal(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-11-01" })).ratios, undefined);
 });
 const round = (x) => Number(x.toPrecision(6));
+
+test("cross_section: one row per company in the order asked, each value as filed by as_of, unknowns named, nothing kept in memory", async () => {
+  const extra = ["0000900001", "0000900002"];
+  const { s } = session(files({ extraCiks: extra }));
+  const col = (res) => (name) => res.columns.indexOf(name);
+  const late = out(await toolCrossSection(s, { companies: ["0000900002", "FIX", "ZZZZ", "0000900001"], concept: "assets", as_of: "2020-11-01" }));
+  const c = col(late);
+  assert.deepEqual(late.rows.map((r) => r[c("company")]), ["0000900002", "FIX", "0000900001"], "the order asked, unknown left out of rows");
+  assert.deepEqual(late.rows.map((r) => [r[c("end")], r[c("val")]]), [["2020-09-30", 600], ["2020-09-30", 600], ["2020-09-30", 600]]);
+  assert.equal(late.missing.length, 1);
+  assert.match(late.missing[0], /^ZZZZ: "ZZZZ" is not a current ticker or a company name/);
+  // Before the 10-K/A (2020-01-15), the 2019 year-end assets as first reported, flagged as later changed.
+  const early = out(await toolCrossSection(s, { companies: ["FIX"], concept: "assets", as_of: "2020-01-10" }));
+  const e = col(early);
+  assert.deepEqual([early.rows[0][e("end")], early.rows[0][e("val")], early.rows[0][e("changed_after")]], ["2019-09-30", 500, true]);
+  const byName = out(await toolCrossSection(s, { companies: ["Fixture Corp"], concept: "revenue", as_of: "2020-11-01" }));
+  assert.equal(byName.rows[0][col(byName)("matched_by")], "name");
+  assert.equal(byName.rows[0][col(byName)("val")], 110);
+  assert.equal(s.companies.size, 0, "a cross-section keeps no company index in memory");
+  const none = out(await toolCrossSection(s, { companies: ["FIX"], concept: "revenue", as_of: "2010-01-01" }));
+  assert.deepEqual([none.rows.length, none.missing], [0, ["FIX: no annual revenue filed by 2010-01-01"]]);
+  await assert.rejects(toolCrossSection(s, { companies: Array.from({ length: 51 }, () => "FIX"), concept: "assets", as_of: "2020-01-01" }), /cross_section: companies/);
+  await assert.rejects(toolCrossSection(s, { companies: [], concept: "assets", as_of: "2020-01-01" }), /cross_section: companies/);
+});

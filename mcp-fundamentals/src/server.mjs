@@ -290,6 +290,32 @@ async function snapshotBytes(session, sha, snapshotPath) {
   return raw;
 }
 
+// A company's record and its hash-checked SEC snapshot, indexed: every concept, or only the keys in
+// `only` (taxonomy:tag), which a cross-section uses so fifty companies never sit in memory at once.
+// Null when the reference has no record for the CIK.
+async function readCompany(session, cik, { ticker = null, matched, only } = {}) {
+  const recordPath = `/company-data/${cik}.json`;
+  const { status, json: record } = await referenceJson(session, recordPath, `company-${cik}.json`, MAX_RECORD_BYTES, recordPath);
+  if (status === 404) return null;
+  if (status >= 400) throw new Error(`${recordPath} returned HTTP ${status}.`);
+  const sha = record.source_sha256;
+  const snapshotPath = record.source_snapshot;
+  if (!/^[0-9a-f]{64}$/.test(sha ?? "") || typeof snapshotPath !== "string" || !snapshotPath.startsWith("/company-data/sources/")) {
+    throw new Error(`The company record for CIK ${cik} names no verifiable SEC snapshot.`);
+  }
+  const facts = parseJson(await snapshotBytes(session, sha, snapshotPath), "The SEC snapshot");
+  return {
+    cik,
+    ticker,
+    matched,
+    name: record.name ?? facts.entityName ?? null,
+    index: indexFacts(facts, only),
+    page: `${session.base}/companies/${cik}`,
+    snapshot: { fetched_at: record.fetched_at ?? null, sha256: sha, url: `${session.base}${snapshotPath}`, sec_url: record.source_url ?? null },
+    series: new Map(),
+  };
+}
+
 export async function loadCompany(session, company) {
   const { cik, ticker, matched } = await resolveCompany(session, company);
   const cached = session.companies.get(cik);
@@ -299,26 +325,8 @@ export async function loadCompany(session, company) {
     session.companies.set(cik, cached);
     return ticker || matched ? { ...cached, ticker, matched } : cached;
   }
-  const recordPath = `/company-data/${cik}.json`;
-  const { status, json: record } = await referenceJson(session, recordPath, `company-${cik}.json`, MAX_RECORD_BYTES, recordPath);
-  if (status === 404) throw new Error(`CIK ${cik} is not in the Canli company reference. It covers the SEC filers listed at ${session.base}/companies; find_company searches them by name.`);
-  if (status >= 400) throw new Error(`${recordPath} returned HTTP ${status}.`);
-  const sha = record.source_sha256;
-  const snapshotPath = record.source_snapshot;
-  if (!/^[0-9a-f]{64}$/.test(sha ?? "") || typeof snapshotPath !== "string" || !snapshotPath.startsWith("/company-data/sources/")) {
-    throw new Error(`The company record for CIK ${cik} names no verifiable SEC snapshot.`);
-  }
-  const facts = parseJson(await snapshotBytes(session, sha, snapshotPath), "The SEC snapshot");
-  const entry = {
-    cik,
-    ticker,
-    matched,
-    name: record.name ?? facts.entityName ?? null,
-    index: indexFacts(facts),
-    page: `${session.base}/companies/${cik}`,
-    snapshot: { fetched_at: record.fetched_at ?? null, sha256: sha, url: `${session.base}${snapshotPath}`, sec_url: record.source_url ?? null },
-    series: new Map(),
-  };
+  const entry = await readCompany(session, cik, { ticker, matched });
+  if (!entry) throw new Error(`CIK ${cik} is not in the Canli company reference. It covers the SEC filers listed at ${session.base}/companies; find_company searches them by name.`);
   // A large filer's index takes 12 to 15 MB of heap; keep the eight most recently used. Evicted
   // companies reload from the hash-named disk cache.
   if (session.companies.size >= MAX_COMPANIES) session.companies.delete(session.companies.keys().next().value);
@@ -359,7 +367,7 @@ export function durationKind(start, end) {
 
 const byFiling = (a, b) => a.filed.localeCompare(b.filed) || String(a.accn).localeCompare(String(b.accn));
 
-export function indexFacts(facts) {
+export function indexFacts(facts, only) {
   const concepts = new Map();
   // Every fact of one filing repeats its accession number, date, form and fiscal period as fresh
   // strings; keeping one copy of each shrinks a large filer's index severalfold.
@@ -374,6 +382,7 @@ export function indexFacts(facts) {
   for (const [taxonomy, tags] of Object.entries(facts?.facts ?? {})) {
     if (SKIP_TAXONOMIES.has(taxonomy)) continue;
     for (const [tag, body] of Object.entries(tags ?? {})) {
+      if (only && !only(taxonomy, tag)) continue;
       const units = {};
       for (const [unit, rows] of Object.entries(body?.units ?? {})) {
         if (!Array.isArray(rows)) continue;
@@ -960,6 +969,79 @@ export async function toolFindCompany(session, args) {
   });
 }
 
+// ---------------------------------------------------------------------------------------------
+// cross_section: one measure for a set of companies, each as it stood on a date
+// ---------------------------------------------------------------------------------------------
+
+const MAX_CROSS_SECTION = 50;
+const CROSS_SECTION_PARALLEL = 4;
+
+export const crossSectionInput = z.object({
+  companies: z.array(z.string().min(1).max(100)).min(1).max(MAX_CROSS_SECTION).describe("Tickers, CIKs or names."),
+  concept: conceptArg,
+  as_of: date.describe("Only filings on or before it count."),
+  periods: z.enum(["annual", "quarterly"]).optional().describe("annual (default) or quarterly."),
+}).strict();
+
+// The keys a concept can resolve to, so each company indexes only those: a plain name's tags, or an
+// XBRL tag in any taxonomy (and, for a tag that is also a plain name, that name's tags).
+function conceptFilter(name) {
+  const raw = name.trim();
+  const key = normalize(raw);
+  const plain = !raw.includes(":") && !/[A-Z]/.test(raw);
+  const friendlyKey = FRIENDLY[key] ? key : SYNONYMS[key];
+  const friendly = new Set(friendlyKey ? FRIENDLY[friendlyKey] : []);
+  if (plain && friendlyKey) return (taxonomy, tag) => friendly.has(`${taxonomy}:${tag}`);
+  const lower = raw.toLowerCase();
+  return (taxonomy, tag) => (raw.includes(":") ? `${taxonomy}:${tag}`.toLowerCase() === lower : tag.toLowerCase() === lower) || friendly.has(`${taxonomy}:${tag}`);
+}
+
+export async function toolCrossSection(session, args) {
+  const { companies, concept, as_of: asOf, periods = "annual" } = parse(crossSectionInput, args, "cross_section");
+  const only = conceptFilter(concept);
+  const staleBefore = new Date(Date.parse(asOf) - (periods === "annual" ? 456 : 200) * DAY_MS).toISOString().slice(0, 10);
+  const results = new Array(companies.length);
+  let next = 0;
+  const worker = async () => {
+    while (next < companies.length) {
+      const i = next++;
+      const query = companies[i];
+      try {
+        const { cik, matched } = await resolveCompany(session, query);
+        // A company already in memory is read from its full index; any other indexes only this
+        // concept's tags and is dropped after, so memory does not grow with the list.
+        const e = session.companies.get(cik) ?? (await readCompany(session, cik, { only }));
+        if (!e) { results[i] = { query, missing: `CIK ${cik} is not in the Canli company reference` }; continue; }
+        const s = resolveSeries(e, concept, undefined, { keep: false });
+        let hit = null;
+        for (const p of s.periods) {
+          if (p.kind !== periods) continue;
+          const sel = select(p, "as_of", asOf);
+          if (sel) { hit = { p, sel }; break; }
+        }
+        if (!hit) { results[i] = { query, missing: `no ${periods} ${s.name} filed by ${asOf}` }; continue; }
+        results[i] = { row: [query, cik, e.name, s.name, tagName(hit.sel.v.tag), hit.p.end, hit.p.start, hit.sel.v.val, s.unit, hit.sel.v.filed, hit.sel.v.form, hit.sel.v.accn, hit.sel.changedLater, hit.p.end < staleBefore, e.snapshot.fetched_at?.slice(0, 10) ?? null, ...(matched ? [matched.by] : [null])] };
+      } catch (err) {
+        results[i] = { query, missing: String(err.message ?? err).split(". ")[0] };
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(CROSS_SECTION_PARALLEL, companies.length) }, worker));
+  const shown = fit(results.filter((r) => r.row).map((r) => r.row));
+  const missing = results.filter((r) => r.missing).map((r) => `${r.query}: ${r.missing}`);
+  return asText({
+    as_of: asOf,
+    concept,
+    periods,
+    companies: companies.length,
+    columns: ["company", "cik", "name", "concept", "tag", "end", "start", "val", "unit", "filed", "form", "accn", "changed_after", "stale", "snapshot_date", "matched_by"],
+    ...shown,
+    ...(missing.length ? { missing } : {}),
+    meaning: "One row per company, in the order asked: the most recent period whose value had been filed on or before as_of, with the value as it stood then. changed_after: a later filing reported a different value. stale: the period ended long before as_of. Companies' fiscal years end on different dates, so compare end before comparing val.",
+    limits: LIMITS,
+  });
+}
+
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true };
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
@@ -969,6 +1051,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   vintages: "Every filing that reported one period of one measure, oldest first: the revision history behind a number.",
   list_concepts: "The XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
   find_company: "Find a company's SEC CIK and tickers by name, ticker or CIK. The other tools also take a name as company.",
+  cross_section: "One measure for up to 50 companies as filed by a date: each one's latest period, its value then, and whether it was later restated. For point-in-time peer and factor work.",
 });
 
 // Output schemas: published OPEN (extra fields always pass), every field optional. A client
@@ -989,6 +1072,8 @@ export const OUTPUT_SCHEMAS = Object.freeze({
     .describe("rows: one per concept in the order of columns; plain_names maps each supported plain name to its tags."),
   find_company: z.looseObject({ query: z.string().optional(), resolved: z.looseObject({}).optional(), total: z.number().optional(), ...table, ticker_holder: z.looseObject({}).optional(), limits: z.array(z.string()).optional(), meaning: z.string().optional() })
     .describe("rows: matching companies, best first, in the order of columns; resolved is the one the other tools use for this query."),
+  cross_section: z.looseObject({ as_of: z.string().optional(), concept: z.string().optional(), companies: z.number().optional(), ...table, missing: z.array(z.string()).optional(), limits: z.array(z.string()).optional(), meaning: z.string().optional() })
+    .describe("rows: one per company found, in the order asked, in the order of columns; missing names the others and why."),
 });
 
 export function registerTools(server, session) {
@@ -999,6 +1084,7 @@ export function registerTools(server, session) {
   tool("vintages", "Filing vintages", vintagesInput, (args) => toolVintages(session, args));
   tool("list_concepts", "List concepts", listInput, (args) => toolListConcepts(session, args));
   tool("find_company", "Find a company", findInput, (args) => toolFindCompany(session, args));
+  tool("cross_section", "Cross-section as of a date", crossSectionInput, (args) => toolCrossSection(session, args));
 }
 
 const isMain = (() => {

@@ -27,7 +27,8 @@ branch and the latest npm release are supported.
   the name index and each company record read, with its ETag and the time it was fetched, used
   for six hours and then revalidated. The directory is created owner-only (`0700`) and each file is
   written owner-only (`0600`) under a random temporary name, then renamed;
-- keeps at most 8 companies in memory for the session;
+- keeps at most 8 companies in memory for the session (a `cross_section` of up to 50 companies
+  reads each one's snapshot, keeps only the measure asked for, and holds none of them after);
 - needs no key or account, sends no telemetry and logs nothing; stdout carries only the MCP
   protocol.
 
