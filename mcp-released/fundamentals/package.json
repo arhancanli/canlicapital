@@ -1,0 +1,50 @@
+{
+  "name": "canli-fundamentals-mcp",
+  "version": "0.5.0",
+  "description": "MCP server for SEC company fundamentals point in time: what was first reported, what was known on any date, and every later restatement, each value with the filing behind it. Computed locally from a hash-checked SEC snapshot.",
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "canli-fundamentals-mcp": "src/server.mjs"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.1.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.1.0"
+  },
+  "mcpName": "io.github.arhancanli/canli-fundamentals-mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhancanli/canlicapital.git",
+    "directory": "mcp-fundamentals"
+  },
+  "homepage": "https://canlicapital.com/developers",
+  "bugs": {
+    "url": "https://github.com/arhancanli/canlicapital/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "sec",
+    "edgar",
+    "xbrl",
+    "fundamentals",
+    "point-in-time",
+    "restatements",
+    "backtesting",
+    "quantitative-finance"
+  ]
+}
