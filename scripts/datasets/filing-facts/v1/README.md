@@ -67,6 +67,10 @@ company metadata, and independently checks every selected output by rereading th
 archives. It refuses to overwrite an existing output or summary. No network,
 model, submission, cloud, annotation or broker action is part of these commands.
 
+The candidate and summary are separate exclusive writes. A summary-write failure
+can leave a valid candidate file from that failed run; use a new destination when
+retrying and check both files before using the packet.
+
 ```sh
 node scripts/datasets/filing-facts/v1/generate.mjs public/company-data public/company-data/sources /tmp/new-first-later.jsonl 2026-09-18 2
 node scripts/datasets/filing-facts/v1/check.mjs /tmp/new-first-later.jsonl public/company-data public/company-data/sources

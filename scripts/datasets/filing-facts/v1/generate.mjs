@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, writeFileSync } from 'node:fs';
+import { constants, readdirSync, openSync, writeFileSync, closeSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { SCHEMA, TEMPLATE, POLICY, LIMITS, validDate, filingUrl, questionFor, candidateId } from './contract.mjs';
@@ -6,6 +6,12 @@ import { readArchive, validateCutoff } from './source.mjs';
 import { checkCandidate } from './check.mjs';
 
 const DAY = 86400000;
+function writeExclusive(path, contents) {
+  // Exclusive creation refuses an existing path. Writes use the opened descriptor
+  // even if the pathname changes afterward.
+  const fd = openSync(path, constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL, 0o600);
+  try { writeFileSync(fd, contents); } finally { closeSync(fd); }
+}
 const increment = (map, key, amount = 1) => { map[key] = (map[key] ?? 0) + amount; };
 const projection = (row, cik) => ({ value: row.val === 0 ? 0 : row.val, filed: row.filed, accn: row.accn, form: row.form, fp: row.fp, fy: row.fy, url: filingUrl(cik, row.accn) });
 
@@ -111,10 +117,12 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
   try {
     const [records, snapshots, out, asOf, limit = '2', ...extra] = process.argv.slice(2);
     if (!records || !snapshots || !out || !asOf || extra.length) throw new Error('Usage: node generate.mjs RECORDS_DIR SNAPSHOTS_DIR OUT.jsonl AS_OF [LIMIT_PER_COMPANY]');
-    if (existsSync(out) || existsSync(out + '.summary.json')) throw new Error('Refusing to overwrite an existing candidate or summary file');
     const result = generateCandidates(records, snapshots, { asOf, limit: Number(limit) });
-    writeFileSync(out, result.candidates.map((c) => JSON.stringify(c)).join('\n') + (result.candidates.length ? '\n' : ''), { flag: 'wx' });
-    writeFileSync(out + '.summary.json', JSON.stringify(result.summary, null, 2) + '\n', { flag: 'wx' });
+    writeExclusive(out, result.candidates.map((c) => JSON.stringify(c)).join('\n') + (result.candidates.length ? '\n' : ''));
+    writeExclusive(out + '.summary.json', JSON.stringify(result.summary, null, 2) + '\n');
     console.log(JSON.stringify({ companies: result.summary.companies_seen, candidates: result.candidates.length, independently_checked: result.summary.independently_checked, as_of: asOf }));
-  } catch (error) { console.error(error.message); process.exitCode = 1; }
+  } catch (error) {
+    console.error(error.code === 'EEXIST' ? 'Refusing to overwrite an existing candidate or summary file' : error.message);
+    process.exitCode = 1;
+  }
 }

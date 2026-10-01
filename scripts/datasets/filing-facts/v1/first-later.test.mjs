@@ -169,3 +169,20 @@ test('CLI generates a reproducible small packet, verifies it independently and p
   assert.equal(second.status, 1); assert.match(second.stderr, /overwrite/); assert.deepEqual(readFileSync(out), before);
   assert.deepEqual(generateCandidates(f.dir, f.snapshots, { asOf: '2021-12-31', limit: 2 }).candidates, [JSON.parse(before.toString().trim())]);
 });
+
+test('CLI preserves a competing output or summary created immediately before its exclusive open', (t) => {
+  const f = fixture(t);
+  for (const summary of [false, true]) {
+    const out = join(f.dir, summary ? 'summary-race.jsonl' : 'output-race.jsonl');
+    const target = summary ? out + '.summary.json' : out;
+    const hook = join(f.dir, summary ? 'summary-race.mjs' : 'output-race.mjs');
+    writeFileSync(hook, `import fs from 'node:fs';\nimport { syncBuiltinESMExports } from 'node:module';\nconst original = fs.openSync;\nfs.openSync = (path, ...args) => {\n  if (path === ${JSON.stringify(target)}) {\n    const rival = original(path, 'wx');\n    try { fs.writeFileSync(rival, 'competing file'); } finally { fs.closeSync(rival); }\n  }\n  return original(path, ...args);\n};\nsyncBuiltinESMExports();\n`);
+    const result = spawnSync(process.execPath, ['--import', hook, join(HERE, 'generate.mjs'), f.dir, f.snapshots, out, '2021-12-31'], { encoding: 'utf8' });
+    assert.equal(result.status, 1); assert.match(result.stderr, /overwrite/);
+    assert.equal(readFileSync(target, 'utf8'), 'competing file');
+    if (summary) {
+      const partial = JSON.parse(readFileSync(out, 'utf8').trim());
+      assert.equal(check(f, partial).valid, true);
+    }
+  }
+});
