@@ -1138,3 +1138,59 @@ ACTIVE: fourSovereignpillars, efficient distinct MCP/API/legitimateadoption,
 rights-cleared expertrefinery, governedALPHACforwardtargets/paperthenlawfulcapital,
 10Mactuallyindexed qualitycanonicals/relevantkeywords/SEO/analyzers/design/research.
 Software checks do not establish those outcomes. Observed 2026-10-01T20:12:50.540054+00:00.
+
+
+## Private journal MCP writer adapter draft, 2026-10-01T21:28:52.478008+00:00
+
+New isolated primary work/journal-mcp-write-20261001 starts from verified actual
+main32785aa9/tree74a after PR353 delivery. Existing signed private storage352
+is reused without edits. New journal-write adapter and strict opt-in session wiring
+add local initialize/append only with CANLI_EXEC_JOURNAL_WRITE=1. Default tool
+schema/description/output/instructions, hosted source, package/version/locks and
+mirrored cores remain unchanged. Key bytes come only from the fixed private local
+journal.key; results omit keys/raw payloads. Typed busy/refusal/uncertainty errors
+return no success receipt. Home checks observe replacements before/after writing;
+interrupted or completed uncertain files remain for manual review.
+
+Fourteen synthetic adapter cases are WRITTEN ONLY, including default denial/schema
+parity, retry/original-prefix/key privacy, unsafe inputs/homes/keys, accessor/budget
+refusal, pending-lock retention, same-user directory replacement, close-once failure,
+account export/source binding and actual opt-in stdio. No local Node/import/test/CLI
+job, dependency install, CPU request/grant/nonce or model/provider/resource/hold/spend.
+Signed source/static peer/current remote CI precede delivery; no site/npm/hosted or
+version publication. All full Sovereign/10M actual indexing/qualitySEO/keywords/
+analyzers/design/adoption/rights-cleared expert/refinery/research/governedALPHAC/
+paperthenlawfulcapital goals remain ACTIVE.
+
+Third static indexing readiness762f751c/finite plan2cd22a61 verified; current
+Google/Bing indexed counts stay null. Seven source/auth/provenance/canonical/
+measurement gaps remain distinct from916480 sitemap URLs and old dated counts.
+Secondary owns the assigned synthetic-only durable attempt collector from327.
+
+
+## Opt-in journal MCP adapter final evidence candidate, 2026-10-01T22:28:51.098714+00:00
+
+Implementation9e11d535 adds explicit local initialize/append with existing private
+key and delivered352 writer; default/hosted/package/version/core contracts remain
+unchanged. Actual remote Node22.23.3 passes14 new named adapter/wire cases inside
+83 execution,880main+6pre+9notifications/699pages0errors0warnings/build683/416.
+All7 source CI/currentmergea2cef tree417/CodeQL0 retained, with two runner notice
+annotations recorded truthfully. Independent Codex STATIC6ab477ff has no blockers
+and verifies9source pins/5708protected Git identities377508754B/default schema/
+keyprivacy/retry/pendinglock/uncertainty/homeguard/close-once/account export. It
+is not reviewer runtime, human expert annotation or external financial evidence.
+
+Finaldocs/evidence candidate retains36 exact gzassets plusMANIFEST under
+docs/goal/evidence/journal-mcp-write-20261001, including rawlogs/metadata/original
+capture refusal and precision addenda/third review. Artifact
+artifacts/goal/journal-mcp-write-20261001.json binds source9e and archive; same
+implementation/test/server bytes, updated guide/changelog validation wording only.
+Finalsignedhead CI/source/archive extension and ordinarymerge remain separate gates.
+No local project job/import/test/helper/CPUgrant/nonce/provider/model/resources/
+financialhold/spend/expertlabels/orders/site/npm/registry/version publication.
+The execution batch remainsUnreleased; all full owner objectives stayACTIVE.
+Collector356946 is separately held for primary encoded-control-frame P2 5e8228a2;
+its previous37/38/40 proof and corrected44 written cases are preserved. Fresh
+Google/Bing indexed countsnull; Sovereign/10M useful actualcanonicals/SEO/keywords/
+analyzers/design/adoption/rights-cleared expertrefinery/research/novelty/governed
+ALPHAC forwardtargets/paperthenlawfulcapital remain open.

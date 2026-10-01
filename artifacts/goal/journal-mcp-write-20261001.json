@@ -1,0 +1,106 @@
+{
+  "schema": "canli.journal-mcp-write-quality.v1",
+  "state": "IMPLEMENTATION_SOURCE_VALIDATED_WITH_SCOPED_STATIC_PEER",
+  "implementation_commit": "9e11d5352531af8da4a1059376dd054acc980806",
+  "implementation_tree": "417161b2a51a1a46ca3714e9ba13d4c6e1aaaf7e",
+  "base": "32785aa947df51fdc1790c414c0ae9e4cf7deaaf",
+  "feature": "Explicit local startup opt-in for signed journal initialize/append using delivered private storage",
+  "default_mode": "Prior head/verify/export registration and schema preserved by actual default and opt-in wire fixtures",
+  "signing": "Existing private local supplied journal.key; receipt only; captured key buffer cleared",
+  "runtime_source_pins": {
+    "mcp-execution/src/journal-write.mjs": {
+      "bytes": 6699,
+      "sha256": "c8b8bea0120082a638e2e470148fe052090c487493afd76757cba46039f1c354"
+    },
+    "mcp-execution/src/server.mjs": {
+      "bytes": 10539,
+      "sha256": "c56f2918d556473b0dac3eb8553918e9eaa1e0323241fcce4d29774d25419716"
+    },
+    "mcp-execution/test/journal-write.test.mjs": {
+      "bytes": 14579,
+      "sha256": "5f98d5def89e4f65188c7cdc2248b2fd3d6f2cc88fc3f22e41407d9649675790"
+    }
+  },
+  "remote_validation": {
+    "node": "22.23.3",
+    "new_adapter_cases": 14,
+    "case_names": [
+      "default write denial and registration leave the original journal schema unchanged",
+      "only exact explicit flag values enable writes; invalid configuration refuses",
+      "initialize and append emit bound receipts without keys or raw payloads",
+      "exact retries retain the original prefix after a later append",
+      "changed retry identity or expected head refuses without changing journal bytes",
+      "write calls refuse arbitrary files, inline keys, missing fields and unsupported kinds",
+      "missing key and unsafe home refuse without generating keys or creating a journal",
+      "unsafe key permissions and key symlinks refuse without persistence",
+      "reserved and accessor payloads refuse without invoking getters or creating journals",
+      "a pending lock returns a typed error and is never automatically removed",
+      "observed home replacement after key capture returns uncertainty without a receipt",
+      "directory close failure before the writer is called never acknowledges or retries close",
+      "written synthetic account exports and verifies against the original journal",
+      "the actual opt-in stdio lists and invokes writes without exposing signing material"
+    ],
+    "execution_suite_cases": 83,
+    "main_cases": 880,
+    "preverify_cases": 6,
+    "notification_cases": 9,
+    "page_audit": {
+      "pages": 699,
+      "errors": 0,
+      "warnings": 0
+    },
+    "build_preservation": {
+      "pages": 683,
+      "checksummed_files": 416
+    },
+    "source_run": 36929198062,
+    "mcp_job": 110594005520,
+    "vite_job": 110594005683,
+    "all_seven_success": true,
+    "tested_merge_ref": "a2cef2c072cabf0dd3bb2d47f1fab87f7855b1d6",
+    "merge_tree_equal": true,
+    "ref_codeql_open_alerts": 0,
+    "codeql_analyses_results": 0,
+    "annotation_boundary": "Actual JS/Python annotations each contain one GitHub runner-image migration notice, with no warning/failure annotation. Raw responses retained."
+  },
+  "independent_source_review": {
+    "thread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+    "source_commit": "9e11d5352531af8da4a1059376dd054acc980806",
+    "status": "PASS_WITH_STATIC_SCOPE_LIMITS_NO_BLOCKING_FINDINGS",
+    "receipt_sha256": "6ab477fff2ff3b5588be28a10d33b3e0fc81c3679edb243ac0696069aeeffa30",
+    "archive": "docs/goal/evidence/journal-mcp-write-20261001/third-peer-review-9e11d535.json.gz",
+    "reviewer_project_runtime": false
+  },
+  "evidence_archive": {
+    "path": "docs/goal/evidence/journal-mcp-write-20261001",
+    "manifest_sha256": "190e995999f2e230a2789adac379fd070650a07d4693e341e4d4f16d58fca4b8",
+    "assets": 36,
+    "raw_bytes": 798597,
+    "gzip_bytes": 161357,
+    "all_exact_gzip_roundtrip_verified": true,
+    "source_CI_capture_refusals_precision_and_peer_preserved": true
+  },
+  "review_scope_limits": [
+    "Synthetic software and stdio checks only, not real fills or independent financial evidence",
+    "Cooperative owned POSIX private files; same-user wholly between-check replacements and hardware/power-loss durability remain outside the guarantee",
+    "Typed uncertainty retains evidence and returns no success receipt; manual recovery",
+    "No latency/token/field/indexing/model/expert/adoption/ALPHAC outcome established"
+  ],
+  "release": {
+    "version_changed": false,
+    "npm_or_registry_publish": false,
+    "hosted_changed": false,
+    "website_publish": false,
+    "status": "Unreleased substantial execution batch remains open"
+  },
+  "local_project_execution": false,
+  "provider_models_cloud_resources_holds_spend_human_labels_broker_orders": false,
+  "full_owner_goal": "ACTIVE",
+  "protected_git_metadata": {
+    "count": 5708,
+    "bytes": 377508754,
+    "mode_type_object_size_equal_base": true,
+    "whole_protected_working_byte_audit_repeated_by_peer": false
+  },
+  "checkpoint_boundary": "A docs/evidence-only final head still requires its own exact remoteCI and merge receipt; validation above binds implementation9e11, without a self-referential final-commit claim."
+}
