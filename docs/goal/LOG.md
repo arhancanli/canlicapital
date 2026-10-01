@@ -4221,3 +4221,16 @@ CLI and legacy/v1 wording corrections.34 FilingFacts tests and800+6 full tests p
 bindings refreshed from this signed source. Actual clean Git-free production snapshot
 build passes, leaving416 checksummed files untouched. Revised PR CI and primary recheck
 remain pending; all goals active and no model/cloud/broker/human-review outcome claimed.
+
+
+## 2026-10-01 — secondary final denominator wording and journal peer review
+
+#343 signed head8356eea7 passed all seven CI checks with zero open CodeQL alerts,
+confirmed against its remote head. Primary requested one precise documentation exception:
+answerable numbers_wrong uses finite numbers_given, while group accuracy/abstention and
+unanswerable invention use their complete selected groups. Corrected the replay guide only;
+scoring/source closure and the verified34/800+6 implementation are unchanged. Final documentation
+head CI/recheck follows. Primary assigned independent journal review of frozen #344
+ae33cebab132a02f8af6316ad28dceeaaf9aa475; isolated detached journal-peer checkout added,
+no primary edits or external requests. Tamper, selection, missing evidence, private access
+and self-attestation limits are review scope. All platform objectives stay active.

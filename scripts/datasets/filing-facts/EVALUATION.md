@@ -56,8 +56,12 @@ Wrong-unit numbers on answerable questions are also counted as numbers given and
 
 Overall accuracy divides correct answers by every selected item, including missing captures,
 missing responses and request errors. `response_accuracy` separately uses captured responses
-without request errors; it is null when there are none. Per-template and answerable/unanswerable
-behaviour use the full selected sample. Abstention requires a complete absence answer;
+without request errors; it is null when there are none. Per-template accuracy uses every
+selected item in that template. Answerable accuracy and abstention use every selected
+answerable item; unanswerable correctness, abstention and invented-number rates use every
+selected unanswerable item. `numbers_given` uses every selected answerable item, while
+`numbers_wrong` divides incorrect finite numeric answers by the number of finite numeric
+answers given; it is null when none were given. Abstention requires a complete absence answer;
 malformed prose is neither a valid number nor an abstention. Coverage reports request failures,
 missing evidence and responses without a final answer so a smaller successful subset cannot
 hide incomplete work.
