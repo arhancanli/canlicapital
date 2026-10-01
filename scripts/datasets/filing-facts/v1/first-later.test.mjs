@@ -186,3 +186,31 @@ test('CLI preserves a competing output or summary created immediately before its
     }
   }
 });
+
+test('symlink CLI aliases reject missing arguments and perform the same generation and checks as direct paths', (t) => {
+  const f = fixture(t);
+  const aliases = {};
+  const missing = [];
+  for (const name of ['generate.mjs', 'check.mjs']) {
+    const direct = join(HERE, name); const alias = join(f.dir, 'alias ' + name);
+    symlinkSync(direct, alias); aliases[name] = alias;
+    for (const [kind, path] of [['direct', direct], ['alias', alias]]) {
+      const run = spawnSync(process.execPath, [path], { encoding: 'utf8' });
+      missing.push({ name, kind, status: run.status, usage: /Usage:/.test(run.stderr), stdout: run.stdout });
+    }
+  }
+  assert.deepEqual(missing, ['generate.mjs', 'check.mjs'].flatMap((name) => ['direct', 'alias'].map((kind) => ({ name, kind, status: 1, usage: true, stdout: '' }))));
+  const aliasOut = join(f.dir, 'alias-candidates.jsonl'), directOut = join(f.dir, 'direct-candidates.jsonl');
+  for (const [script, out] of [[aliases['generate.mjs'], aliasOut], [join(HERE, 'generate.mjs'), directOut]]) {
+    const generated = spawnSync(process.execPath, [script, f.dir, f.snapshots, out, '2021-12-31', '2'], { encoding: 'utf8' });
+    assert.equal(generated.status, 0, generated.stderr);
+    assert.deepEqual(JSON.parse(generated.stdout), { companies: 1, candidates: 1, independently_checked: 1, as_of: '2021-12-31' });
+  }
+  assert.deepEqual(readFileSync(aliasOut), readFileSync(directOut));
+  assert.deepEqual(readFileSync(aliasOut + '.summary.json'), readFileSync(directOut + '.summary.json'));
+  for (const script of [aliases['check.mjs'], join(HERE, 'check.mjs')]) {
+    const checked = spawnSync(process.execPath, [script, aliasOut, f.dir, f.snapshots], { encoding: 'utf8' });
+    assert.equal(checked.status, 0, checked.stderr);
+    const result = JSON.parse(checked.stdout); assert.equal(result.passed, 1); assert.equal(result.failed, 0);
+  }
+});

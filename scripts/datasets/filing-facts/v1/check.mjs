@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { join } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { SCHEMA, TEMPLATE, POLICY, LIMITS, validDate, filingUrl, questionFor, candidateId } from './contract.mjs';
 import { readArchive, validateCutoff } from './source.mjs';
+import { isEntryPoint } from './cli.mjs';
 
 // Independently select raw observations and recompute answers. This module never
 // imports the generator, its period groups or its arithmetic/selection functions.
@@ -79,7 +79,7 @@ export function checkCandidates(items, recordsDir, snapshotsDir) {
   return { schema: 'canli.filing-facts-first-later-check.v1', candidates: items.length, passed: results.filter((r) => r.valid).length, failed: results.filter((r) => !r.valid).length, results };
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+if (isEntryPoint(import.meta.url)) {
   try {
     const [input, records, snapshots, ...extra] = process.argv.slice(2);
     if (!input || !records || !snapshots || extra.length) throw new Error('Usage: node check.mjs CANDIDATES.jsonl RECORDS_DIR SNAPSHOTS_DIR');

@@ -1,9 +1,9 @@
 import { constants, readdirSync, openSync, writeFileSync, closeSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { join } from 'node:path';
 import { SCHEMA, TEMPLATE, POLICY, LIMITS, validDate, filingUrl, questionFor, candidateId } from './contract.mjs';
 import { readArchive, validateCutoff } from './source.mjs';
 import { checkCandidate } from './check.mjs';
+import { isEntryPoint } from './cli.mjs';
 
 const DAY = 86400000;
 function writeExclusive(path, contents) {
@@ -113,7 +113,7 @@ export function generateCandidates(recordsDir, snapshotsDir, options) {
   return { candidates, summary: { schema: 'canli.filing-facts-first-later-generation.v1', policy: POLICY, as_of: options.asOf, companies_seen: companies.length, candidates: candidates.length, independently_checked: candidates.length, companies, limitations: LIMITS } };
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+if (isEntryPoint(import.meta.url)) {
   try {
     const [records, snapshots, out, asOf, limit = '2', ...extra] = process.argv.slice(2);
     if (!records || !snapshots || !out || !asOf || extra.length) throw new Error('Usage: node generate.mjs RECORDS_DIR SNAPSHOTS_DIR OUT.jsonl AS_OF [LIMIT_PER_COMPANY]');
