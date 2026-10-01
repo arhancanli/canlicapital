@@ -739,3 +739,8 @@ CPU/publication slot after actual secondary release12:52:16. Every goal active.
 Page349 now integrates actual v1 mainfe68e73e with eight tested page/source/binding
 paths unchanged and both histories preserved. No new heavy local run; final-head
 remote CI/independent primary-third review pending. All owner goals remain active.
+
+
+PR349 HOLD: third visualP2 clipped table focus; MCP-scoped inset correction
+prepared, pending independent pixel/native-arrow recheck and signed-head CI.
+Old84 proof/source hashes intact; no new score/source outcome. Every goal active.

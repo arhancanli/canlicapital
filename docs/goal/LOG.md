@@ -4752,3 +4752,26 @@ checks remain bound to648236ad and exact inherited page code; no heavy local
 repeat or revised-head pass invented. Final integrated remote CI and primary/
 third read-only review follow. Primary CPU/publication lease remains respected;
 image/ARIA preparation is separate and unverified. Every owner goal active.
+
+
+## 2026-10-01 — independent visual table-focus P2 and scoped correction
+
+Third's ten native development-browser cases pass atad7, but screenshot inspection
+finds an invisible table focus outline: validation320 focus/blur images have
+identicalSHA3fb2c346 and zero differing pixels. Native focus/ArrowRight/ArrowLeft
+and table semantics work; two overflow wrappers clip the external ring. Primary
+holds349 merge/publication. Secondary adds only MCP-scoped dark3px/-3px inset
+focus to the native table and any focusable navigation scroll region. Browser
+recheck/actual signed-head CI remain pending; no fix PASS yet. Exact initial
+finding, browser receipt, comparison and original image are retained separately
+in artifacts/goal/mcp-table-focus-correction-20261001.json and its folder.
+Earlier84 archives/source-hashed source and performance measurements stay exact
+and historical, not rewritten as a new run. Seven other measured source/binding
+paths stay unchanged; no JS/content/semantics/v0/v1/journal/evaluation/annotation/
+MCP/header change. Three forced local fallback wrap differences remain a bounded
+geometry limitation, not a field/CLS guarantee. No LH/full local repeat required.
+Independent short focus lease must be scheduled after actual Trace/Proveloom
+queue; no lease inferred from absence. Separate heroARIA prototype remains held.
+Read-only adoption baseline was considered while waiting but no requests ran
+before this new blocking finding; no adoption result is claimed. All owner goals
+remain active, including actual indexing, expert annotation and ALPHAC outcomes.

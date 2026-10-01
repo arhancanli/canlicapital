@@ -1,0 +1,52 @@
+{
+  "schema": "canli.mcp-table-focus-correction.v1",
+  "prepared_at": "2026-10-01T14:07:41.736888+00:00",
+  "before_head": "ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17",
+  "historical_measurement_manifest": "artifacts/goal/mcp-page-quality-20261001.json",
+  "historical_measurement_manifest_sha256": "f9dcfb44af3b15cc85f14b38202f8a463059f5f1debd2855f2965a29591e3589",
+  "historical_measurements_unchanged": true,
+  "blocking_finding": "P2: table focus matches :focus-visible and native arrows scroll, but both overflow wrappers clip its visible outline. Independent before screenshots are identical (zero different pixels).",
+  "before_screenshot_sha256": "3fb2c346127ad07a465f4a8c197d2136102d4d543e34e2dfcc1b8ab52400aa47",
+  "before_receipts": [
+    {
+      "path": "artifacts/goal/mcp-table-focus-correction-20261001/review-findings.json.gz",
+      "raw_sha256": "e369924273cfae92962960013eccd31c87ad10c5798b700ad150eec4a50a5ba1",
+      "gzip_sha256": "e4df7560e9a4299fee47a36fbcc95d36b059d8f196e22f5dbf144fc3b98be97b",
+      "raw_bytes": 8927
+    },
+    {
+      "path": "artifacts/goal/mcp-table-focus-correction-20261001/browser-review.json.gz",
+      "raw_sha256": "16af571b50d06b10c1c44a5267e9bf3b4bd9fb8b1c1ed0fd9743b3986f99dd9d",
+      "gzip_sha256": "5957473df6c86d3c685c8ea6f80a63e22eaec56d1fea22ed82fb4fcb0f3ac6c4",
+      "raw_bytes": 46696
+    },
+    {
+      "path": "artifacts/goal/mcp-table-focus-correction-20261001/focus-screenshot-comparison.json.gz",
+      "raw_sha256": "0199bfec673af0e23954aef2707ee97fc245fc2609b792e81c39eca825f7d312",
+      "gzip_sha256": "8a046763e84faf297f69bae6b10a161336d9ee31c32409537cd0b2e9d6393ee1",
+      "raw_bytes": 256
+    }
+  ],
+  "implementation_commit": null,
+  "correction": "MCP-scoped 3px ink outline with -3px inset for native table and any focusable navigation scroll region; no JS, semantics or source-content changes.",
+  "current_source_sha256": {
+    "css/mcp-pages.css": "04cbb6b0761d5f55e9dd6d61db990a08153b473127eeb0aeaef927fa981a49da",
+    "scripts/build-mcp-pages.mjs": "eeef776362aaddd3269823e26310793efe796746a8bec068e57e249fa1fb5d04",
+    "scripts/audit-developer-mcp-pages.py": "e8b53582b19b100e435a5e2369c51ac1251c8ba01f61bbabe4d3e9f2ae2f2d17",
+    "mcp-servers.html": "716a4401575f4ebf1e39f9657335fc9870d19f68ed53466c3d4c4c3daf13b521",
+    "mcp-servers/validation.html": "e8dfe81347810f48d520908e348a61f725f300fa0928f46c7868d3687975c6be",
+    "mcp-servers/fundamentals.html": "7d293ea0063878c04589ed65f719cf1bf0803a4e8db3298fcdd59872d68dddec",
+    "mcp-servers/research.html": "d0ac551b977237289f49b757e10cae431714244794327206ae9f8c06d32c2349",
+    "config/source-dates.json": "2cce44fa8909f2e549d2065f8acf7f15d5425b2406493f67c93853c66d0c7e6c"
+  },
+  "changed_source_paths": [
+    "css/mcp-pages.css"
+  ],
+  "independent_browser_recheck": null,
+  "final_head_ci": null,
+  "limits": [
+    "No repeated Lighthouse or local full suite, and no new performance score is claimed. Earlier source-hashed reports stay bound to their actual source.",
+    "Third forced macOS fallback showed three changed heading wraps; this remains a scoped geometry limitation, not delayed-network CLS or a guarantee across fonts/platforms.",
+    "Original v0/v1, evaluation, annotation, journal, released MCP, header and every owner goal remain unchanged."
+  ]
+}

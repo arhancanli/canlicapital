@@ -31,6 +31,8 @@ html[data-page="mcp-discovery"] body.dev-page {
 .mcp-workflow { padding-left: 1.5rem; max-width: 75ch; }
 .mcp-workflow li, .mcp-related li { margin: .8rem 0; line-height: 1.75; }
 .mcp-table { overflow-x: auto; }
+/* Draw keyboard focus inside both scrolling layers so neither clips it. */
+html[data-page="mcp-discovery"] .mcp-table :is(.dev-table, .cc-table-scroll):focus-visible { outline: 3px solid var(--dev-ink); outline-offset: -3px; }
 .mcp-table th { vertical-align: top; text-align: left; }
 .mcp-table td { line-height: 1.65; }
 .mcp-table caption { text-align: left; padding: .8rem 0; font-size: .9rem; color: #405566; }
