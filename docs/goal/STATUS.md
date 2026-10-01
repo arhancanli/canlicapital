@@ -428,3 +428,20 @@ fixture; escaped the same test character and the writing audit now passes. Prior
 failing regression, corrected fixture expectations and visual findings are retained
 in the coordination folder; final full/source validation is next. No actual human
 labels, publication, indexing or strategy outcome claimed. All master objectives stay active.
+
+
+## Annotation intake verified checkpoint, 2026-10-01
+
+Signed implementation 6904d60b is tested on Node 22.23.2: 23 focused and
+795 main + 6 preverify tests pass. Built Chromium 148.0.7778.96 passes 15 cases
+without page errors/external requests; source/export/recovery/focus and narrow widths
+are covered. All 699 page audits pass without errors/warnings; 336 indexable static
+pages remain within 3 clicks, 363 linked pages remain noindex. Clean Git-free
+production snapshot validation passes, leaving 416 checksummed files untouched.
+All five published v0 bundle files match the base commit byte-for-byte. Browser
+exports agree with offline coverage (50 expected, 1 synthetic pair, 49 pending).
+Failures and exact compressed verification logs are retained in the QA artifacts.
+Only annotation source-date bindings were renewed; unrelated generated changes
+were restored. Evidence: artifacts/goal/annotation-intake-quality-20261001.json.
+Signed PR/primary independent review next; no publication or human-label claim.
+Every original owner objective remains active; analyzers are a later distinct phase.
