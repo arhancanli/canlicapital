@@ -1,0 +1,35 @@
+✔ answers are read from the last ANSWER line and scored within each kind's tolerance (7.292083ms)
+✔ behaviour separates abstaining from answering: a model that abstains on everything is not rewarded (0.298625ms)
+✖ blank, malformed and mixed answers cannot become correct numerical or absence answers (0.634709ms)
+✔ the sample is stratified by template and fixed by its seed (7.991542ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 84.797
+
+✖ failing tests:
+
+test at scripts/datasets/filing-facts/eval.test.mjs:35:1
+✖ blank, malformed and mixed answers cannot become correct numerical or absence answers (0.634709ms)
+  AssertionError [ERR_ASSERTION]: ANSWER:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/arhancanli/canlicapital-secondary-20261001/scripts/datasets/filing-facts/eval.test.mjs:37:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

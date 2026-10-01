@@ -4152,3 +4152,90 @@ Evidence: artifacts/seo/mcp-findability-deployment-20261001.json (2026-10-01T08:
 No package version, human gold label, broker order, novel-method or strategy outcome claimed.
 Goal stays active. Next: independent journal accounting oracle, local file/MCP integration,
 paper reconciliation, real expert annotation and substantial MCP releases; every pillar stays.
+
+
+## 2026-10-01 — secondary Codex evaluation reliability phase
+
+Owner requested a second cooperating Codex role and goal. Primary thread 01a0f5c2 assigned
+secondary 01a0f6ba Pillar 3 evaluation reliability; journal/export/MCP integration stays with
+primary. Isolated checkout canlicapital-secondary-20261001, assist/quality-20261001, from
+18f693fa. Reproduced blank ANSWER coercing to zero, malformed numeric concatenation and
+contradictory numeric/absence acceptance. Added a failing regression first; evidence is in
+canlicapital-coordination-20261001/eval-regressions-before.txt. Plan: strict scorer and
+versioned offline raw-answer/provenance evidence with explicit missing-history limitations.
+Historical dataset/evaluation bytes stay immutable. No paid calls, human labels or Azure
+activation. Full original goal stays active; assignment receipt is primary-assignment.md.
+
+
+## 2026-10-01 — secondary evaluation reliability verified
+
+Strict FilingFacts scoring and v1 raw-answer capture/offline replay are implemented in
+assist/quality-20261001 (signed implementation 472291d3). Blank/concatenated/nonfinite or
+contradictory numeric/absence answers cannot pass. Exact dataset bytes, seeded sample,
+scorer/source hashes, observed provider/tool metadata and full coverage are retained;
+missing captures/errors remain in the selected denominator. Historical v0 bytes/stats are
+preserved and explicitly unrescorable (150 records per arm, zero raw answers). Existing
+dataset canonical discloses the limitation and links the offline guide. No model API call,
+new expert review, journal/MCP edit, package bump or deployment by this role.
+
+FilingFacts 32/32; full build passes; full verify 798 main + 6 preverify; 699 page audits,
+0 errors/warnings; actual clean Git-free production snapshot validator passes, with 416
+checksummed files untouched. Restored 645 unrelated generated files in this isolated tree.
+Two content-date bindings renewed from the signed implementation. Initial failing regression
+and verification limits retained in artifacts/goal/filingfacts-evaluation-quality-20261001.json.
+Signed PR/primary independent review next. Both session goals and every original pillar stay active.
+
+
+## 2026-10-01 — secondary numeric-absence metric correction
+
+#343 at 2fbb9572 passed all seven CI checks with zero open alerts; primary began
+independent review. Secondary self-review then reproduced omitted invented-number
+counts for currency/percent-formatted numeric answers to unanswerable questions.
+Both were already incorrect, but the metric returned0. Corrected finite numeric
+classification before expected-absence unit gates; a fresh failing regression is
+preserved, and 32/32 focused tests pass. Historical raw bundle and published statistics
+stay unchanged; no model request or expert label. Revised-head full/CI checks and
+primary review remain pending; owner goals stay active.
+
+
+## 2026-10-01 — secondary addresses independent review findings
+
+Primary falsified missing helper-source bindings and closed-book tool consistency,
+and requested wrong-unit numerical classification and explicit legacy/v1 wording.
+Bound all seven local scoring/sampling/CLI modules, reject closed tool metadata/calls/
+traces, and count finite wrong-unit answerable numbers as wrong. Dataset page/README
+now state legacy parsing effects cannot be measured without raw responses and identify
+v1 full-sample denominators. Scratch mutation tests initially33/34 because /var aliases
+skipped CLI entry; fixed realpath entry checks. Initial failure is preserved. All seven
+comment-only source mutations now actually refuse replay; FilingFacts34/34, full build
+and verify800+6,699 page audits0 errors/warnings. Source-date refresh, clean snapshot,
+signed revised head and primary recheck next. Historical raw bundle/stats unchanged;
+no model/paid/cloud/broker call, invented gold or achieved full-platform outcome.
+
+
+## 2026-10-01 — secondary peer corrections clean snapshot verified
+
+Signed implementation bed645b8 carries source-closure, closed-arm, wrong-unit, realpath
+CLI and legacy/v1 wording corrections.34 FilingFacts tests and800+6 full tests pass;
+699 page audits have0 errors/warnings. Changed dataset Markdown/research directory
+bindings refreshed from this signed source. Actual clean Git-free production snapshot
+build passes, leaving416 checksummed files untouched. Revised PR CI and primary recheck
+remain pending; all goals active and no model/cloud/broker/human-review outcome claimed.
+
+
+## 2026-10-01 — secondary final denominator wording and journal peer review
+
+#343 signed head8356eea7 passed all seven CI checks with zero open CodeQL alerts,
+confirmed against its remote head. Primary requested one precise documentation exception:
+answerable numbers_wrong uses finite numbers_given, while group accuracy/abstention and
+unanswerable invention use their complete selected groups. Corrected the replay guide only;
+scoring/source closure and the verified34/800+6 implementation are unchanged. Final documentation
+head CI/recheck follows. Primary assigned independent journal review of frozen #344
+ae33cebab132a02f8af6316ad28dceeaaf9aa475; isolated detached journal-peer checkout added,
+no primary edits or external requests. Tamper, selection, missing evidence, private access
+and self-attestation limits are review scope. All platform objectives stay active.
+
+
+Secondary denominator wording correction: numbers_given is a count of finite numeric
+answers on answerable items, not a rate. Clarified that count and the numbers_wrong
+denominator together. Implementation and evidence remain unchanged.

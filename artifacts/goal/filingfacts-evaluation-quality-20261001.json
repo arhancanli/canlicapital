@@ -1,0 +1,148 @@
+{
+  "schema": "canli.filing-facts-evaluation-quality-checkpoint.v1",
+  "verified_at": "2026-10-01T09:40:15.386247+00:00",
+  "base_commit": "18f693fafc9a63fee5de081b6e359f49085a6173",
+  "primary_thread": "01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23",
+  "secondary_thread": "01a0f6ba-8819-7f53-8226-3b0889eca2bf",
+  "role": "Pillar 3 evaluation reliability",
+  "scorer_version": "canli.filing-facts-scoring.v1",
+  "checks": {
+    "regression_before": {
+      "tests": 4,
+      "passed": 3,
+      "failed": 1,
+      "exit_code": 1,
+      "artifact": "artifacts/goal/filingfacts-eval-regressions-before-20261001.txt"
+    },
+    "filingfacts_tests": {
+      "command": "node --test scripts/datasets/filing-facts/*.test.mjs",
+      "tests": 32,
+      "passed": 32,
+      "exit_code": 0,
+      "models": "mocked synthetic fixtures only"
+    },
+    "production_build": {
+      "command": "npm run build",
+      "exit_code": 0,
+      "checksummed_files_left_untouched": 416
+    },
+    "full_verify": {
+      "command": "npm run verify",
+      "preverify_tests": 6,
+      "main_tests": 798,
+      "passed": 804,
+      "exit_code": 0,
+      "audited_pages": 699,
+      "onpage_errors": 0,
+      "onpage_warnings": 0,
+      "indexable_site_pages": 336,
+      "noindex_site_pages": 363
+    },
+    "historical_records": {
+      "closed": {
+        "runs": 150,
+        "raw_answers": 0,
+        "status": "unrescorable"
+      },
+      "mcp": {
+        "runs": 150,
+        "raw_answers": 0,
+        "status": "unrescorable"
+      },
+      "published_v0_checksums": "unchanged"
+    },
+    "clean_snapshot": {
+      "command": "node scripts/validate-deploy-snapshot.mjs /Users/arhancanli/canlicapital-secondary-20261001",
+      "exit_code": 0,
+      "git_available": false,
+      "production_mode": true,
+      "checksummed_files_left_untouched": 416
+    }
+  },
+  "scope": {
+    "model_api_calls": 0,
+    "human_labels_created": 0,
+    "azure_resources_activated": 0,
+    "journal_or_mcp_source_edits": 0,
+    "package_version_changes": 0,
+    "production_deployment": "not activated by this role"
+  },
+  "limits": [
+    "Scoring replay binds local captures and dataset bytes; it does not authenticate model responses, filing truth or expert review.",
+    "Public v0 evaluation statistics remain historical; no raw answers are synthesized from parsed values.",
+    "Full owner goals remain active, including all Sovereign pillars, actual indexing, SEO, adoption and governed engine outcomes."
+  ],
+  "implementation_commit": "472291d3",
+  "revision": {
+    "observed_at": "2026-10-01T09:58:26.106325+00:00",
+    "prior_head": "2fbb95725c7e3feb58e39494892ed2600673655a",
+    "issue": "Currency/percent-formatted numeric claims on unanswerable questions were incorrect but omitted from invented-number reporting.",
+    "regression_before": {
+      "tests": 7,
+      "passed": 6,
+      "failed": 1,
+      "exit_code": 1,
+      "artifact": "artifacts/goal/filingfacts-invented-number-regression-before-20261001.txt"
+    },
+    "focused_after": {
+      "tests": 32,
+      "passed": 32,
+      "exit_code": 0
+    },
+    "historical_v0": "bytes and statistics unchanged",
+    "full_reverification": "pending on revised head; earlier full evidence remains the prior checkpoint"
+  },
+  "peer_review_revision": {
+    "reviewer_thread": "01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23",
+    "prior_head": "25bd6aefc76a161ed7132b032ead81c2e0f46128",
+    "findings": [
+      "Unbound sampler/canonicalizer source files could change without audit refusing.",
+      "Closed-book captures accepted tool counts/metadata.",
+      "Wrong-unit finite numbers were omitted from numbers_wrong.",
+      "Legacy parsing effects are unmeasured and v1 denominators must be named."
+    ],
+    "additional_regression": "Scratch CLI on /var aliases exited0 without audit because import URL and argv path differed; corrected entry guards using real paths.",
+    "initial_source_test": {
+      "tests": 34,
+      "passed": 33,
+      "failed": 1,
+      "artifact": "artifacts/goal/filingfacts-peer-source-regression-20261001.txt"
+    },
+    "checks": {
+      "filingfacts": {
+        "tests": 34,
+        "passed": 34,
+        "exit_code": 0
+      },
+      "build": {
+        "exit_code": 0
+      },
+      "full_verify": {
+        "main_tests": 800,
+        "preverify_tests": 6,
+        "passed": 806,
+        "exit_code": 0,
+        "pages": 699,
+        "errors": 0,
+        "warnings": 0
+      },
+      "source_mutations_refused": 7,
+      "clean_snapshot": {
+        "command": "node scripts/validate-deploy-snapshot.mjs /Users/arhancanli/canlicapital-secondary-20261001",
+        "exit_code": 0,
+        "git_available": false,
+        "production_mode": true,
+        "checksummed_files_left_untouched": 416
+      },
+      "CI": "pending on revised head"
+    },
+    "historical_v0": "bytes and statistics unchanged",
+    "model_api_calls": 0,
+    "implementation_commit": "bed645b8",
+    "verified_at": "2026-10-01T10:18:54.497813+00:00",
+    "ci_verified_head": "8356eea7b28e1891d15588239adce08e35a3e2d3",
+    "ci_checks_successful": 7,
+    "open_codeql_alerts": 0,
+    "final_denominator_wording": "numbers_wrong uses finite numeric answers given; group accuracy, abstention and invented-number rates use their complete selected groups."
+  }
+}
