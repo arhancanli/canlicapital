@@ -719,3 +719,33 @@ Frozen signed final-head remoteCI and primary alias recheck/source-equivalence
 extension next. No heavy local repeats or duplicate publisher; primary owns
 shared integrated slot. Initial alert/P2/test-helper failures retained; every
 owner objective and source/rights/history/date/cause limit stays active.
+
+
+Secondary MCP page quality follow-up: independent live baseline captured from74d;
+header348 frozen for primary review. New isolated branch owns measured MCP font
+shift, 320px target/table and skip-focus corrections at generators/CSS. No fix
+verification yet; every original objective remains active.
+
+
+Secondary MCP page quality verified locally at signed648236ad, integrated main0d.
+Full829+6/6990errors0warnings/Git-free683/416 and10 built browser/axe/keyboard
+cases pass. Controlled local mobile performance69–71→83–84, desktop99; CLS0 in
+all8 after profiles. Single lab measurements and manual/external/field/indexing
+limits are retained in artifacts/goal/mcp-page-quality-20261001.json. Source/core/
+data bytes stay unchanged; frozen PR/CI/primary review next. Primary owns next
+CPU/publication slot after actual secondary release12:52:16. Every goal active.
+
+
+Page349 now integrates actual v1 mainfe68e73e with eight tested page/source/binding
+paths unchanged and both histories preserved. No new heavy local run; final-head
+remote CI/independent primary-third review pending. All owner goals remain active.
+
+
+PR349 HOLD: third visualP2 clipped table focus; MCP-scoped inset correction
+prepared, pending independent pixel/native-arrow recheck and signed-head CI.
+Old84 proof/source hashes intact; no new score/source outcome. Every goal active.
+
+
+34999af focusP2 resolved by independent6DEV/12element/12PNG checks withrealTab/
+arrows andexplicit restoredwrapperfixture. Separateafterproof retained; final
+evidence-only7CI/source-extension/primarymerge/pub next. Old84 intact/allgoalsactive.

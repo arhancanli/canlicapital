@@ -4695,3 +4695,103 @@ Frozen signed final-head remoteCI and primary alias recheck/source-equivalence
 extension next. No heavy local repeats or duplicate publisher; primary owns
 shared integrated slot. Initial alert/P2/test-helper failures retained; every
 owner objective and source/rights/history/date/cause limit stays active.
+
+
+## 2026-10-01 — secondary MCP page quality follow-up
+
+Header PR348 is frozen separately at416f6a6d; primary reviews/publishes it.
+New isolated assist/mcp-page-quality-20261001 starts from deployed74d704d4.
+Actual live Lighthouse13.5.0 five routes/two profiles: accessibility,best-practices,
+SEO100 each; developer mobile99/desktop100 performance, MCP mobile72–76 with
+font-swap CLS0.221–0.308, desktop67–99 including slow TTFB outlier. Full-DOM
+axe4.13 at1440/320: no desktop violations; three server pages have two small
+section-link targets each, validation has an unfocusable scrollable table. Native
+skip Enter remains on the link for all four MCP pages despite focusable main.
+Schema/metadata local contracts and whole699-page static graph pass; incomplete
+contrast/ARIA checks and developer external Google fonts are retained. Fix only
+reproduced generator/CSS defects; preserve source/model/journal/data bytes and
+full goal hierarchy. External/field/indexing decisions remain unmeasured.
+
+
+## 2026-10-01 — secondary MCP page quality verification
+
+Signed implementation1eded5b7 fixes the observed skip-handler class, native table
+keyboard access, missing 44px section-link styles and late font layout shifts.
+Generated88a1ca17 renews only the real generator source-date binding; integration
+648236ad includes actual main0d9c88c6 (#346/#348) with all8 page/source/binding
+paths identical. Both primary and secondary continuity histories are preserved.
+Node22.23.2 full829+6,699 page audits0/0 and actual clean Git-free683/416 pass.
+10 Chromium148/axe4.13 full-DOM and keyboard cases at1440/320 pass; all four MCP
+skip links focus main, validation320 table scrolls with ArrowRight and all earlier
+small-target/scrollable violations disappear. Manual/incomplete checks remain.
+Eight controlled before and8 after Lighthouse13.5 runs: mobile performance69–71
+to83–84; desktop99 to99. CLS is0 in all8 corrected profiles, against mobile
+0.222–0.241 before. These are single local lab runs; live five-page baseline,
+actual browser/environment, raw scores and unscored checks stay separate. Live
+metadata/JSON-LD repository contracts/social image and699-page static graph pass;
+these do not establish external rich-result decisions, field metrics or indexing.
+Restored644 unrelated build and129 verification outputs in this isolated checkout.
+Initial restore guard refusal is retained; no historical input hashes rewritten.
+CPU lease guardreleased12:52:16UTC; primary owns the next header publication slot.
+Evidence: artifacts/goal/mcp-page-quality-20261001.json and84 exact gzip archives.
+Remaining mobile decorative-image LCP~4.36s, pre aria-label support and contrast
+manual checks are explicit follow-ups; developer external fonts are retained.
+Signed frozen PR/exact CI and primary independent review follow; no deployment
+or all-goal achievement claimed. All Sovereign/10M-indexing/quality/SEO/design/
+research/adoption/annotation and governed ALPHAC objectives remain active.
+
+
+## 2026-10-01 — secondary page integration preserves new v1 main
+
+Page #349 is frozen at signedea8a1854; primary assigned independent third review.
+Actual mainfe68e73e merges reviewed v1 candidate tooling (#347). Integrated it
+while keeping all8 tested page/source/binding paths exact, both continuity
+histories and every v1 source/test/artifact. All public v0, existing evaluation/
+annotation/journal and MCP source equal main. Earlier page829+6/full/Git-free
+checks remain bound to648236ad and exact inherited page code; no heavy local
+repeat or revised-head pass invented. Final integrated remote CI and primary/
+third read-only review follow. Primary CPU/publication lease remains respected;
+image/ARIA preparation is separate and unverified. Every owner goal active.
+
+
+## 2026-10-01 — independent visual table-focus P2 and scoped correction
+
+Third's ten native development-browser cases pass atad7, but screenshot inspection
+finds an invisible table focus outline: validation320 focus/blur images have
+identicalSHA3fb2c346 and zero differing pixels. Native focus/ArrowRight/ArrowLeft
+and table semantics work; two overflow wrappers clip the external ring. Primary
+holds349 merge/publication. Secondary adds only MCP-scoped dark3px/-3px inset
+focus to the native table and any focusable navigation scroll region. Browser
+recheck/actual signed-head CI remain pending; no fix PASS yet. Exact initial
+finding, browser receipt, comparison and original image are retained separately
+in artifacts/goal/mcp-table-focus-correction-20261001.json and its folder.
+Earlier84 archives/source-hashed source and performance measurements stay exact
+and historical, not rewritten as a new run. Seven other measured source/binding
+paths stay unchanged; no JS/content/semantics/v0/v1/journal/evaluation/annotation/
+MCP/header change. Three forced local fallback wrap differences remain a bounded
+geometry limitation, not a field/CLS guarantee. No LH/full local repeat required.
+Independent short focus lease must be scheduled after actual Trace/Proveloom
+queue; no lease inferred from absence. Separate heroARIA prototype remains held.
+Read-only adoption baseline was considered while waiting but no requests ran
+before this new blocking finding; no adoption result is claimed. All owner goals
+remain active, including actual indexing, expert annotation and ALPHAC outcomes.
+
+
+## 2026-10-01 — independent table-focus correction verified
+
+Third's independent99af source/browser/visual review passes. Six DEVChromium148
+cases at320/1440,12 table/wrapper focus checks complete11.3984s, no failures/page
+errors/external requests. Native validation320 ArrowRight30 toArrowLeft0; other
+five native tables do not overflow, no scroll claim. All six wrappers normally
+nonfocusable; disclosed/restored +120px width fixture uses existing ResizeObserver
+to create labeled focusable region, realTab/native arrows40 to0 pass. Actual12
+focused screenshots viewed by independent Codex worker show dark3px inset rings;
+validation320 focus/blur now differs5156pixels. No human/expert/WCAGcertificate
+claim. Third and primary independently view actual captures. Lease99cc guard
+released14:33:15.515, all own browsers/contexts/server/port closed. Current8source
+hashes/other7/5290protected files/old84archives+manifest match; exact99af7CI/ref0
+verified. Initial failures unchanged. Separate compressedafterreceipt/probes/raw
+logs and24 actual PNGs retained with hashes; no new localfull/LH/score required.
+Prepared evidence-only signed final head must preserve all8 tested99af source
+paths; final remoteCI/peer source extension and primary ordinary merge/pub next.
+HeroARIA/adoption requests stay held until fresh delivery; all owner goals active.

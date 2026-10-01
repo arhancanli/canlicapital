@@ -1,4 +1,25 @@
 @font-face { font-family: Inter; src: url('/fonts/inter/InterVariable.woff2') format('woff2'); font-style: normal; font-weight: 100 900; font-display: swap; }
+/* Match the loaded heading font's line metrics and approximate glyph widths.
+   Mean advances use A-Z, digits and space from the actual Chakra/Arial Narrow
+   Bold files; measured delayed-font browser checks cover the resulting layout. */
+@font-face {
+  font-family: "Chakra Petch Fallback";
+  src: local("Arial Narrow Bold");
+  font-weight: 700;
+  size-adjust: 117.74%;
+  ascent-override: 84.25%;
+  descent-override: 26.16%;
+  line-gap-override: 0%;
+}
+html[data-page="mcp-discovery"] {
+  --cin-display: "Chakra Petch", "Chakra Petch Fallback", "Arial Narrow", sans-serif;
+}
+html[data-page="mcp-discovery"] body.dev-page {
+  font-family: "Inter", "Inter Fallback", Arial, sans-serif;
+}
+.dev-page-index { display: flex; flex-wrap: wrap; gap: 8px 32px; padding: 18px max(24px, 4vw); background: #111; color: #fff; }
+.dev-page-index a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; font-size: .86rem; line-height: 1.4; text-decoration: none; }
+.dev-page-index a:hover { text-decoration: underline; text-underline-offset: 6px; }
 .mcp-breadcrumbs { display: flex; flex-wrap: wrap; gap: .7rem 1.4rem; margin-bottom: 2.2rem; font-size: .86rem; }
 .mcp-breadcrumbs a { color: #c6d7ef; text-underline-offset: .3rem; }
 .mcp-breadcrumbs a[aria-current] { color: #fff; text-decoration-thickness: 2px; }
@@ -10,6 +31,8 @@
 .mcp-workflow { padding-left: 1.5rem; max-width: 75ch; }
 .mcp-workflow li, .mcp-related li { margin: .8rem 0; line-height: 1.75; }
 .mcp-table { overflow-x: auto; }
+/* Draw keyboard focus inside both scrolling layers so neither clips it. */
+html[data-page="mcp-discovery"] .mcp-table :is(.dev-table, .cc-table-scroll):focus-visible { outline: 3px solid var(--dev-ink); outline-offset: -3px; }
 .mcp-table th { vertical-align: top; text-align: left; }
 .mcp-table td { line-height: 1.65; }
 .mcp-table caption { text-align: left; padding: .8rem 0; font-size: .9rem; color: #405566; }
