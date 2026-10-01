@@ -521,3 +521,9 @@ this isolated checkout. Proof: artifacts/goal/annotation-intake-integration-qual
 Signed exact-head PR update/CI/merge and live delivery are next; not yet claimed.
 Journal344 remains primary-owned and pending its independent correction recheck;
 secondary owns the later analyzer phase. All master objectives remain active.
+
+
+Secondary MCP page quality follow-up: independent live baseline captured from74d;
+header348 frozen for primary review. New isolated branch owns measured MCP font
+shift, 320px target/table and skip-focus corrections at generators/CSS. No fix
+verification yet; every original objective remains active.

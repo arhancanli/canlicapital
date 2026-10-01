@@ -4465,3 +4465,19 @@ this isolated checkout. Proof: artifacts/goal/annotation-intake-integration-qual
 Signed exact-head PR update/CI/merge and live delivery are next; not yet claimed.
 Journal344 remains primary-owned and pending its independent correction recheck;
 secondary owns the later analyzer phase. All master objectives remain active.
+
+
+## 2026-10-01 — secondary MCP page quality follow-up
+
+Header PR348 is frozen separately at416f6a6d; primary reviews/publishes it.
+New isolated assist/mcp-page-quality-20261001 starts from deployed74d704d4.
+Actual live Lighthouse13.5.0 five routes/two profiles: accessibility,best-practices,
+SEO100 each; developer mobile99/desktop100 performance, MCP mobile72–76 with
+font-swap CLS0.221–0.308, desktop67–99 including slow TTFB outlier. Full-DOM
+axe4.13 at1440/320: no desktop violations; three server pages have two small
+section-link targets each, validation has an unfocusable scrollable table. Native
+skip Enter remains on the link for all four MCP pages despite focusable main.
+Schema/metadata local contracts and whole699-page static graph pass; incomplete
+contrast/ARIA checks and developer external Google fonts are retained. Fix only
+reproduced generator/CSS defects; preserve source/model/journal/data bytes and
+full goal hierarchy. External/field/indexing decisions remain unmeasured.
