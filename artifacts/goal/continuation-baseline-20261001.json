@@ -1,0 +1,154 @@
+{
+  "checked_at": "2026-10-01T04:47:14.440Z",
+  "base_commit": "607e0a1cb893f1fbf1bf2d5e2242563ff419926a",
+  "hosted": [
+    {
+      "name": "validation",
+      "url": "https://canlicapital.com/mcp",
+      "server": {
+        "name": "canlicapital-validation-mcp",
+        "version": "0.10.1",
+        "title": "Canli Validation",
+        "websiteUrl": "https://canlicapital.com/developers#ai-assistant",
+        "icons": [
+          {
+            "src": "https://canlicapital.com/icon-512.png",
+            "mimeType": "image/png",
+            "sizes": [
+              "512x512"
+            ]
+          },
+          {
+            "src": "https://canlicapital.com/favicon.svg",
+            "mimeType": "image/svg+xml",
+            "sizes": [
+              "any"
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "get_key",
+        "validate_deflated_sharpe",
+        "validate_overfitting",
+        "validate_reality_check",
+        "validate_paper_evidence",
+        "validate_breadth",
+        "validate_track_record",
+        "validate_backtest_length",
+        "validate_haircut_sharpe",
+        "validate_luck_trials",
+        "audit_backtest",
+        "get_receipt",
+        "verify_receipt",
+        "service_status",
+        "company_financial_history"
+      ],
+      "tool_list_sha256": "65d2cbd2e66af191e9f3c5f852cd253d3a3a24a0a9687f451e902bfa28d877b6",
+      "error": null
+    },
+    {
+      "name": "fundamentals",
+      "url": "https://canlicapital.com/mcp/fundamentals",
+      "server": {
+        "name": "canli-fundamentals-mcp",
+        "version": "0.5.0",
+        "title": "Canli Fundamentals",
+        "websiteUrl": "https://canlicapital.com/developers#mcp-fundamentals",
+        "icons": [
+          {
+            "src": "https://canlicapital.com/icon-512.png",
+            "mimeType": "image/png",
+            "sizes": [
+              "512x512"
+            ]
+          },
+          {
+            "src": "https://canlicapital.com/favicon.svg",
+            "mimeType": "image/svg+xml",
+            "sizes": [
+              "any"
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "known_as_of",
+        "history",
+        "restatements",
+        "vintages",
+        "list_concepts",
+        "find_company",
+        "cross_section"
+      ],
+      "tool_list_sha256": "1b9cb70003546c41c907828413fc7de19a587e226a114a6c127d847f3947cf93",
+      "error": null
+    },
+    {
+      "name": "research",
+      "url": "https://canlicapital.com/mcp/research",
+      "server": {
+        "name": "canli-research-mcp",
+        "version": "0.2.0",
+        "title": "Canli Research",
+        "websiteUrl": "https://canlicapital.com/developers#mcp-research",
+        "icons": [
+          {
+            "src": "https://canlicapital.com/icon-512.png",
+            "mimeType": "image/png",
+            "sizes": [
+              "512x512"
+            ]
+          },
+          {
+            "src": "https://canlicapital.com/favicon.svg",
+            "mimeType": "image/svg+xml",
+            "sizes": [
+              "any"
+            ]
+          }
+        ]
+      },
+      "tools": [
+        "search_research",
+        "list_topics",
+        "get_paper",
+        "trial_ledger",
+        "live_record",
+        "chain_head"
+      ],
+      "tool_list_sha256": "5500e6acdd0fbdaa5f2606ec16cf87bb48ecb69b5b59ab988cf3a9125538d242",
+      "error": null
+    }
+  ],
+  "npm": [
+    {
+      "name": "canli-validation-mcp",
+      "status": 200,
+      "version": "0.10.1"
+    },
+    {
+      "name": "canli-fundamentals-mcp",
+      "status": 200,
+      "version": "0.1.0"
+    },
+    {
+      "name": "canli-research-mcp",
+      "status": 200,
+      "version": "0.1.0"
+    },
+    {
+      "name": "canli-execution-mcp",
+      "status": 404,
+      "version": null
+    }
+  ],
+  "dataset": {
+    "items": 1882,
+    "items_sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+    "gold_packet_items": 50,
+    "filled_gold_labels": 0,
+    "human_verified_items": null,
+    "human_verification_evidence": "No filled independent annotator submissions or adjudication artifacts found in the published v0 bundle; generation and agreement-scoring code exist."
+  }
+}

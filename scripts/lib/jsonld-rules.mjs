@@ -48,16 +48,19 @@ function walkAll(node, visit) {
   Object.values(node).forEach((v) => walkAll(v, visit));
 }
 
-// What Google's Rich Results Test and the Schema.org validator report for a page's own items (the
-// top-level nodes of a block, or its @graph): an article's headline (at most 110 characters),
-// image, dates and an author a reader can follow; an application's category and offer.
+// The site's metadata contract for its own items (top-level nodes or an @graph). Google's
+// Article properties are recommended, with no required fields or headline character limit:
+// https://developers.google.com/search/docs/appearance/structured-data/article
+// We additionally require applicable dates, images and a concise 110-character headline.
+// Apps have honest priced offers; this presence check does not establish rich-result eligibility
+// (which also depends on Google's other rules and authentic reviews/ratings).
 function itemProblems(node, block) {
   const out = [];
   const types = typesOf(node);
   const label = `JSON-LD block ${block} ${types.join("/")}`;
   if (types.some((t) => ARTICLE_TYPES.has(t))) {
     if (!nonEmpty(node.headline)) out.push(`${label} has no headline`);
-    else if (node.headline.length > HEADLINE_MAX) out.push(`${label} headline is ${node.headline.length} characters (Google reads at most ${HEADLINE_MAX})`);
+    else if (node.headline.length > HEADLINE_MAX) out.push(`${label} headline is ${node.headline.length} characters (site budget ${HEADLINE_MAX})`);
     for (const key of ["image", "datePublished", "dateModified", "author"]) if (node[key] === undefined) out.push(`${label} has no ${key}`);
     for (const author of [].concat(node.author ?? [])) {
       if (author && typeof author === "object" && !(nonEmpty(author.url) || author.sameAs)) out.push(`${label} names an author without a url`);
@@ -65,7 +68,8 @@ function itemProblems(node, block) {
   }
   if (types.some((t) => APP_TYPES.has(t))) {
     if (!nonEmpty(node.applicationCategory)) out.push(`${label} has no applicationCategory`);
-    if (!node.offers && !node.aggregateRating && !node.review) out.push(`${label} has no offers (Google needs offers or a rating for an app result)`);
+    const offers = [].concat(node.offers ?? []);
+    if (!offers.some((offer) => offer && (typeof offer.price === "number" || typeof offer.price === "string") && String(offer.price).trim() && Number.isFinite(Number(offer.price)) && Number(offer.price) >= 0)) out.push(`${label} has no offers with a nonnegative price (site metadata contract)`);
   }
   return out;
 }

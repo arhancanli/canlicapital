@@ -77,7 +77,7 @@ function structuredData({ title, wrapperRoute, originalRoute, baseRoute, descrip
     "@type": "ScholarlyArticle",
     "@id": `${ORIGIN}${originalRoute}`,
     name: title,
-    // Google reads at most 110 characters of a headline; a longer title uses the paper's own short title.
+    // The site's concise-headline budget is 110 characters; longer titles use their own short title.
     headline: title.length <= 110 || !paper.short_title ? title : presentationCopy(paper.short_title),
     url: `${ORIGIN}${originalRoute}`,
     ...(paper.abstract ? { abstract: presentationCopy(paper.abstract) } : {}),

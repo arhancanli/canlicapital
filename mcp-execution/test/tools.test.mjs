@@ -176,7 +176,7 @@ test("toolsets: plan and journal by default; an unknown name is refused", () => 
   assert.throws(() => configuredToolsets("plan,broker"), /Unknown toolset broker/);
   const names = [];
   registerTools({ registerTool: (n) => names.push(n) }, createSession({ toolsets: ["plan"] }));
-  assert.deepEqual(names, ["size_position", "check_orders"]);
+  assert.deepEqual(names, ["size_position", "check_orders", "measure_shortfall"]);
 });
 
 test("no output, description or instruction uses advice words", async () => {

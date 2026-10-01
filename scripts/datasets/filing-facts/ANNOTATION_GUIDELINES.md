@@ -35,6 +35,37 @@ labels with another annotator until both packets are submitted.
 
 ## After both packets are in
 
-`node scripts/datasets/filing-facts/agreement.mjs a.json b.json` reports raw agreement and Cohen's
-kappa per judgement, and lists every disagreement for a third person to adjudicate. An item enters
-the gold set only when adjudication says its answer matches the filing.
+Give each submission a distinct annotator name or stable handle. The names are declarations;
+the project must separately verify who performed the review and any claimed qualifications.
+
+`node scripts/datasets/filing-facts/agreement.mjs a.json b.json gold.json` reports raw agreement
+and Cohen's kappa on complete pairs, total gold coverage, missing/incomplete labels and every
+disagreement. Always supply the canonical gold packet when reporting dataset coverage. Comparing
+two partial packets without it reports only the union of submitted IDs. A `no` or `cannot_find`
+without the source note is incomplete. Duplicate IDs and changed source items are refused.
+
+A third person records an explicit final decision for every item admitted to the gold set:
+
+```json
+{
+  "schema": "canli.filing-facts-adjudication.v1",
+  "adjudicator": "a distinct reviewer handle",
+  "packet_sha256": "the digest printed by agreement.mjs",
+  "decisions": [{
+    "id": "the original item id",
+    "verdict": "accept",
+    "notes": "What was checked and how any disagreement was resolved.",
+    "evidence": [{"url": "the cited SEC filing URL", "locator": "document, statement/table and line"}]
+  }]
+}
+```
+
+Use `reject` when the item fails. An adjudicator must be distinct from both annotators. The
+evidence must name one of the item's cited filings and a document/table locator.
+
+`node scripts/datasets/filing-facts/adjudicate.mjs gold.json a.json b.json decisions.json > reviewed.json`
+exports only items with two complete independent named submissions and explicit source-backed
+adjudication. Missing reviews, undecided items and rejected items remain visible in the report.
+Accepted items retain both submissions' judgements and notes beside the final source decision.
+Do not change the immutable v0 dataset or its published checksums to add labels; publish the review
+artifact separately. This file records review claims, not authenticated identities or expertise.

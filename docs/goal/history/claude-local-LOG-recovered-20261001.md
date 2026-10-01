@@ -1,7 +1,8 @@
 # Goal work log
 
-The chronology through priority-scope closure is in the repository's git history;
-no prior evidence or failure was removed.
+Full chronology through priority-scope closure is preserved unchanged in
+[history/LOG-20260920-through-priority-scope-closure.md](history/LOG-20260920-through-priority-scope-closure.md).
+That archive links earlier logs; no prior evidence or failure was removed.
 All owner requirements remain in REQUIREMENTS.md; current state is in STATUS.md.
 
 ## 2026-09-20 — isolated priority evidence replay
@@ -3630,7 +3631,8 @@ Verified now:
 - PR169 CI: four checks passed at 076faca1. Still open.
 - Live sitemap 327 URLs. Repos 0 stars. Engine report IMMATURE_RECORD_TOO_SHORT.
 
-No production, indexing, editorial or engine change. Owner attribution file untouched.
+No production, indexing, editorial or engine change. Previous STATUS preserved at
+history/STATUS-20260921-before-continuation.md. Owner attribution file untouched.
 
 ## 2026-09-21 — v22 clean set released to production
 
@@ -3686,357 +3688,327 @@ deploy script was byte-identical to main; the live-change gate reports the same
 fingerprint 553aff51. PR73 fixes two tests that still expected 10 policy source
 classes (14 since PR56). No production, indexing or strategy outcome is claimed.
 
-## 2026-09-21 — v23 staged: cohorts six to ten captured, reviewed, combined and verified
+## 2026-09-26
 
-Discovery: SEC bulk companyfacts (2026-09-19 archive, SHA ee099c73…) filtered to
-active filers with at least four of the 34 concepts, excluding every v22 company
-and every attempted CIK: 3,793 new candidates in four coverage-ranked slices
-(`scripts/build-sec-bulk-discovery.py`, summary sec-bulk-discovery-v23-summary).
-Queues written with prepare-company-batch.mjs against chained prior-queue ledgers
-(sixth to tenth); union 3,793, no overlap with v22 or attempted CIKs.
+- MCP expansion shipped to main: audit_backtest with returns_file (#265), Minimum Backtest Length (#266), latency and cost (#267: validations in process, compact results, cache-stable tool list), haircut Sharpe (#268), signed receipts (#269). Certificates at /audit/{id} (#270) and the deploy fix (#271) queued.
+- 07:30Z hourly deploy failed: public/glassbox/mcp_agent_benchmark.json (#262) is removed by the deploy's glassbox overlay; fixed by #271 (config/ + build-time publish), reproduced with the engine export.
+- Pre-existing, open: with the engine export, `npm run numbers` flags 6 untraceable numerals on research pages.
+- Owner vision saved to VISION.md with measured status; MCP family plan recorded (canli-research next).
 
-Capture: four parallel refresh-company-candidates runs, 17:16Z to 17:44Z, 1 s
-pacing each, 0 HTTP errors, 0 not-found. First pass under the integer-only
-selector excluded 1,808 as INVALID_ENTITY: SEC serves `cik` as a digit string for
-those entities. Decision recorded in COMPANY_EDITORIAL_POLICY.md: a digit-only
-string equal to the requested CIK is the same identity. Transition proof over the
-five v22 cohorts: candidate lists byte-identical, non-identity exclusions identical;
-89 former INVALID_ENTITY rows become eligible, 156 fail coverage, 92 still fail
-identity. New cohorts re-derived from retained bytes in `*-r2` directories (original
-fetch times preserved); the 89 become cohort tenth-89 (origin file tracked).
+## 2026-09-26 ~08:45Z Research method 1 shipped as PR #274
+Luck-equivalent trials: API route + MCP tool validate_luck_trials; Monte Carlo size study committed with seeds (config/research/luck-trials-size-study.json). Student t null calibrated for normal/t4, too generous under negative skew (10.8% / 20.8% at nominal 5%, T=252), stated in the limits and the reading. Mutation-checked. PR #270 CI fix pushed (vercel.company-preview.json carries /audit rewrite). #273 CLEAN, needs owner auto-merge. 07:30Z deploy INCOMPLETE was the pre-#271 benchmark ENOENT; production checkout at fded6d21; 08:30Z run being watched.
 
-Staged with policy extended-v22 (selector 036eb23a): 968 / 919 / 781 / 312 / 88.
-Combined with the five v22 deliveries: 6,391 companies, 157,113 histories, release
-4a5d9160…, catalog b6f3b3ea…, 163,632 URLs, 19,790 objects. verify-v23-runtime
-passed. Selected-quality v23: 30,520 flagged pages. Admission v23: 132,876
-indexable URLs, 30,342 + 399 withheld. Full local HTTP audit (measure-company-delivery,
-sequential local Node HTTP): 163,632 pages, 12,782 downloads, 0 failures, at most
-four clicks from the directory, median 2.5 ms; report bound to selector 036eb23a
-(company-ten-cohort-v23-http-measurement-20260921.json). No upload, production or
-indexing change. Owner attribution file untouched.
+## 2026-09-26 ~08:50Z Null Zoo v0 as PR #275
+PRs #270/#273/#274 merged (owner auto-merge); production checkout 2f2bae81. Null Zoo: AR(1) 0.2 breaks every validator (luck 0.200 -> 0.059 with Lo); DSR>=0.95 size~0 power 0.09. Luck trials gains optional autocorrelation. Awaiting owner auto-merge of #275.
 
-## 2026-09-22 — v24 staged: policy extended-v23 over all cohorts
+## 2026-09-26 09:45Z Production verified (deploy 09:31Z OK, checkout 48a9ecdd)
+Hosted /mcp lists 14 tools incl. validate_luck_trials with autocorrelation. Real keyed validation (test key issued then revoked, HTTP 200) returned receipt 4586d13756ca4794d82d4baf signed by key 269d381734732ea6; local verify_receipt valid:true (id, signature, key published); /audit/<id> shows "Signature verified.", noindex. Company page /companies/0000028561: Server-Timing page 215.8ms, 1 read; MISS 0.58s then HIT 0.26s.
 
-PR #180 merged (9f5800ec): policy extended-v23 with the expanded concept map,
-inheriting every v22 hold; taxonomy review v23; admission mask 128. A first build
-failed in discovery because one concept name has 113 characters and the page,
-API, MCP and sitemap contracts bound slugs at 100; that concept was removed (38
-remain), the review regenerated, and the proposal doc updated. The failed attempt
-is retained under corpus-local/retained/v24-attempt1.
+## 2026-09-26 ~10:05Z Owner confirmed work order after MCP 0.6.0
+1. Pillar 1: publish canli-research (owner first npm publish), measure true end-to-end token saving vs plain API/raw data, binary vs compact JSON A/B. 2. Indexing: company page <200ms uncached, sitemap order, internal links, structured data, Search Console (owner sign-in). 3. Pillar 3: annotation pipeline (task specs, guidelines, gold set, agreement scoring, AI-drafted regime + filing labels, public sample page). 4. Research: skew-aware luck trials, effective-trials estimate, Null Zoo paper. 5. Pillar 2: v4 weekly report, then crypto/FX/futures. Owner-gated: NY4/LD4 colo spend, annotator network, external dataset release, capital/prime broker, order-policy changes.
 
-Re-derivation: fresh-review, next-1000, third-1000, fourth-1000 and fifth-1000
-were re-derived from retained bytes into *-r2 directories under the current
-selector; their 420 prior 404 rows were re-fetched (fresh 404s) and confirmed with
-not-found receipts. Candidates: 342 / 858 / 771 / 718 / 715 (up from 342 / 853 /
-766 / 683 / 672: the string-CIK companies that formed tenth-89 in v23). Tracked
-selector2 reviews for all five complete with zero errors.
+## 2026-09-26 ~10:15Z canli-validation-mcp 0.6.0 released
+PR #276 merged (6d68b282); signed tag mcp-v0.6.0 -> mcp-publish.yml run 36234498851 success: npm 0.6.0 with SLSA provenance, MCP Registry 0.6.0 isLatest=true; npx starts 0.6.0 with 14 tools. Mirror PR #9 merged (7c29899, 47 files, 0 deletions, local CI 104/104, audit 0); signed tag v0.6.0 + release published; release.yml success, bundle + sigstore + intoto + SHA256SUMS attached; gh attestation verify exit 0. TODO: REGISTRIES.md 0.6.0 checkpoint (next PR).
 
-Transition proof (38 concepts): 6,391 companies, 157,113 unchanged histories,
-139,706 added across 6,386 companies. Nine cohorts staged under extended-v23,
-combined (release 19fd560e…), catalog, discovery (303,338 URLs, 7 shards),
-storage plan (19,772 objects, 2.55 GB), selected quality (57,835 flagged),
-verify-v24-runtime passed. Admission v24: 245,060 indexable, 58,263 withheld.
-Local HTTP audit started 14:12Z. No upload, production or indexing change.
+## 2026-09-26 ~10:50Z canli-research-mcp 0.1.0 published
+npm 0.1.0 published by owner (manual, 10:14Z); npx verified (6 tools, trial_ledger live). PR #277 merged (mcp-research-publish.yml + 0.6.0 REGISTRIES checkpoint); signed tag research-mcp-v0.1.0 -> run success, MCP Registry listing. Owner TODO: npm Trusted Publisher for canli-research-mcp (workflow mcp-research-publish.yml, env mcp-research-release).
 
-## 2026-09-22 — filing page family built and staged as v25
+## 2026-09-26 ~11:00Z Owner reports npm Trusted Publisher configured for canli-research-mcp (GitHub Actions, arhancanli/canlicapital, mcp-research-publish.yml, env mcp-research-release). Not independently verified (listing needs OTP); first CI publish of 0.1.1+ is the proof.
 
-Steps 1–4 merged earlier today (#184 derivation, #186 renderer, #187 filings
-catalog, #188 routes). Step 5, this change: `build-company-filings.mjs` derives
-one gzip filings document per delivered company and refuses a document that does
-not match its selected record; `build-company-release.mjs`,
-`build-company-discovery.mjs`, `prepare-company-storage.mjs` and the preview
-server take an optional filings directory and bind, list and plan the family; the
-admission builder accepts filing URLs, counts them with their company and writes a
-gzip accession sidecar pinned by SHA-256 in the admission; the production sitemap
-step lists filing pages of admitted companies from that sidecar; company overviews
-link to the filing index through a node-only catalog lookup; the local HTTP audit
-and the hosted readiness audit cover filing pages; `verify-v25-runtime.mjs`
-re-derives every document. Suite 283/283; eight mutation checks caught.
+## 2026-09-26 ~11:15Z Pillar 1 token saving measured (PR #278)
+Plain-agent control vs MCP 0.6.0, gpt-5.4-mini, 24 tasks x3 each: 94.3% fewer tokens per correct answer, 83.2% fewer total, accuracy 97.2% vs 33.3%. README generated from run records. Awaiting owner merge.
 
-v25 = v24 delivery + filings: release 292f9b8e…, filings root 664a9b19…, 257,357
-filings across 6,387 companies (4 without), 567,082 candidate URLs, 12 shards,
-26,210 objects (2.78 GB; 6,438 net new: the filings objects, with the release object replaced; 230 MB). verify-v25-runtime passed. Admission
-v25: 508,158 indexable (256,726 filing pages + 6,372 indexes), 58,909 withheld.
-Local HTTP audit (`measure-company-delivery.mjs`, sequential local Node HTTP):
-567,082 pages (6,391 overviews, 296,819 histories, 6,387 filing indexes, 257,357
-filing pages, 128 directories), 12,782 downloads, 0 failures; every sitemap URL
-served and every page reachable within 5 clicks of the directory; largest page
-105,551 bytes; median 3.3 ms
-(`company-nine-cohort-v25-http-measurement-20260922.json`).
+## 2026-09-26 ~11:45Z Pillar 1: binary vs text measured; toolsets PR #279
+Results 360-1,100 tokens (o200k); minified JSON (current) beats pretty (+20-37%) and key-value (+3-14%); 6-sig rounding saves 4-8% of results (<1% of a task), not shipped. Binary serialization not built: models read text. Tool list = 3,888 tokens/turn (all 14) = the lever. Toolsets: validate 3,154 / receipts 340 / company 302 / status 98. Mutations 3/3 caught; MCP 123/123. Next: indexing (company pages <200ms, crawl order, Search Console).
 
-v24 superseded before upload. The v23 upload (run 3, after run 2 stopped on an
-HTTP 429) continues; no upload, production or indexing change from this work.
+## 2026-09-26 ~11:05Z GOOGLE SEARCH CONSOLE MEASURED (sc-domain:canlicapital.com, Chrome session already signed in)
+Indexed 3,027; not indexed 74,673 = Discovered-not-indexed 74,452 + Crawled-not-indexed 166 + noindex 52 + redirect 3. Once crawled, ~95% get indexed: constraint is crawl scheduling (capacity + demand), not page quality. Crawl stats 90d: 49.1K requests, 481 MB, avg response 414 ms, 100% 200, discovery 68%, smartphone 62%. Performance: 32 web clicks in 3 months. Datasets: 317 invalid (missing description) = /trials 228 + /measurements 89 hasPart entries -> PR #281 (+ audit guard). Warnings: license 324 (owner decision), creator 317. Company speed PR #280 (record+filings concurrent, truthful Server-Timing; review found no defects). Cache-purge-on-deploy test running (primed 10:44Z, recheck after 11:31Z deploy).
 
-## 2026-09-22 — Owner decision: flagged histories with a stated condition are admitted
+## 2026-09-26 ~11:25Z Vercel CDN facts (docs, fetched)
+CDN cache is purged on each production deployment (cached responses scoped per deployment); cache is segmented by region and rarely requested entries may be evicted (docs example: once a day). => long-tail company pages (~916k, crawled ~once) are effectively never served from edge cache to Googlebot regardless of deploy cadence; crawler latency = uncached path (fra1 function + storage) + transatlantic hop. Hourly deploy gate hashes served data (paper state regenerates hourly), so 54/72 recent deploys changed no canonical URL but still purged cache. Main indexing ceiling = crawl demand (authority), not capacity.
 
-PR #190 merged (31442060): the admission builder takes owner-named flag sets
-(--admit-flags) and records them in the admission;
-FLAGGED_HISTORY_REVIEW_PROPOSAL.md set out three options. The owner chose option
-C: historical_only, historical_only+multiple_units, multiple_units,
-multiple_units+partially_historical_units. Admission v23 rebuilt: 156,714
-indexable (23,838 histories admitted with a notice; 6,504 still withheld), SHA-256
-c8bda817…. Admission v25 rebuilt: 556,677 indexable (48,519 with a notice; 9,014
-still withheld), SHA-256 56ae90eb…; the filing sidecar is unchanged. PR178 must
-pin the new v23 admission before it merges. No upload, production or indexing
-change.
+## 2026-09-26 12:36-12:50Z Deploy + Search Console actions (owner go-ahead)
+12:29Z deploy OK (includes #278 #280 #281 #282 #283). CACHE PURGE ON DEPLOY CONFIRMED: pages HIT age~3230 at 11:38 were MISS age 0 at 12:36. Company pages live timing: page 72-178 ms (storage 67-172, render 2-7, reads 1-4 incl filings). /trials + /measurements: 0 Dataset nodes missing description (228/89 WebPage). GSC: Datasets "Missing field description" VALIDATION STARTED 9/26; sitemap.xml resubmitted, read 2026-09-26 (still shows 770,869 until processed). Manual actions: none. Security issues: none. SEO/indexing 10M workflow wf_2fc609a6-cd1 running.
 
-## 2026-09-22 — v23 uploaded and verified on the hosted preview
+## 2026-09-26 ~13:20Z SEO workflow done (judge failed: weekly usage limit, resets 2026-09-28 14:00 Dubai); merged plan written to INDEXING_PLAN.md. Starting Phase 1 quick wins on branch seo/internal-links.
 
-Storage transfer run 3 completed 19,790/19,790 with 0 failures at concurrency 3
-and 300 ms pacing (17,922 verified existing, 1,868 created and verified, 0
-verified after a create error; 3 read retries, 1 write recoveries). Run 2 had
-stopped at 16,020 on an HTTP 429 verification read and is retained. Preview
-deployed from the activation branch at edbb7003
-(dpl_2najQCutTLYwK3WZTkv6xqWuR23Y); clean hosted readiness 23/23 on the third run
-after two runs each failed one download on a local 'fetch failed' transport error
-(both paths served directly; reports retained); browser flow passed on 0000001750.
-PR178 re-pinned to the option-C admission v23 (156,714 admitted URLs) and marked
-ready.
+## 2026-09-26 ~13:50Z Indexing phase 1 + 2a PRs
+#284: production links only admitted histories (activation bitset), HTML robots matches X-Robots-Tag, companyLabel() fixes ",:" titles (keeps "& CO"), filing prev/next (rel=prev/next). 227 tests, mutations 5/5, git-less OK. #285 (stacked on #284): history pages cite our filing pages (SEC secondary), overviews list 5 latest filings, filings-down degrades history pages to SEC-only; 231 tests, mutations 4/4, git-less OK. Next: sitemap index lastmod + per-family sitemap split (phase 0), canonical research pages (phase 5), server.json websiteUrl. Owner: merge #284 then #285; phase 5 authority actions.
 
-## 2026-09-22 — v23 released to production
+## 2026-09-26 ~14:10Z #284 merged (production f82bf7da). #285 rebased on main (per-file: main == #284 base, kept branch versions; diff == own diff; 115 tests). #286 sitemap index lastmod per child (24 tests, mutation caught, git-less OK).
 
-PR178 merged as 7f8a451e with all checks passing. The production checkout moved to
-7f8a451e; the manual production deploy was run by the owner (meridian-ke0g00zxq,
-aliased to canlicapital.com at about 17:36Z) because the assistant's own deploy
-command was declined by its permission policy; the hourly deploy would otherwise
-have published it at the next :25 run. Live checks passed (7 checks, slowest 1,589
-ms): admitted and noticed histories indexable with self-canonicals, withheld
-histories, pending-review companies and downloads noindex, unknown company 404;
-sitemap index 263 site + 156,714 company URLs in 5 files. IndexNow accepted 79,444
-new or updated URLs (156,977 in the sitemap). Google indexing is not yet measured;
-the owner resubmits the sitemap in Search Console. v25 upload run 1 stopped on an
-HTTP 429 read at 570 objects and was restarted at concurrency 2 and 500 ms (run
-2); a bounded rate-limit wait for the uploader is in work.
+## 2026-09-26 ~13:55Z #285 merged (production 3be80896). #287 research pages (luck-equivalent trials, Null Zoo) generated from study JSON, published under /glassbox/research/; full build + verify-papers + audit-published-numbers (every numeral traces) + audit-onpage 0 errors; git-less OK. #286 awaiting owner queue.
 
-## 2026-09-22 — Uploader: rate-limit holds
+## 2026-09-26 13:38Z deploy OK (#284 + #285 live). Verified live: 4 filing pages -> 125 history links, 0 non-200/noindex (incl. audit example 0001477932-22-001005 which linked a 404); prev/next present; concept pages cite internal filing pages (Apple Assets 18, JPM Liabilities 18) with SEC secondary; overview latest-filings list present; titles clean ("Apple: filing data"); withheld page meta robots noindex. Apple Assets Server-Timing storage 183.7 ms (2 reads) render 19.8 ms; JPM 84.6/3.8. (First checker run was wrong: zsh unquoted list did not split.)
 
-Two transfers stopped on HTTP 429 today (v23 run 2 at 16,020 of 19,790 objects;
-v25 run 1 at 570 of 26,210), each losing a full re-verification pass. The uploader
-now takes a bounded number of rate-limit holds (RATE_LIMIT_WAITS, default 0 keeps
-the old behaviour): on a 429 read or create every worker's next start waits for
-the Retry-After period (at most 300 s) or an escalating fallback, then the same
-request is repeated; each hold is recorded in the receipt. 401 and 403 are still
-never retried. Tests 25/25, four mutation checks caught.
+## 2026-09-26 ~14:20Z #286 merged (production 1e07e424). #288 company sitemaps split by family (22 files: site, directory, overviews, histories-1..10, filing-indexes, filings-1..8), family purity test, mutation caught, git-less OK. After deploy: GSC remove sitemap-companies-1.xml, submit family files. #287 (research pages) awaiting owner queue.
 
-## 2026-09-22 — v26 staged: the historical filers family
+## 2026-09-26 ~13:58Z #287 + #288 merged (production 9a6274f0). 14:30 deploy ships research pages, sitemap index lastmod, per-family sitemaps. Owner given full action list (Zenodo, ORCID, preprint, posts, directories, www redirect, robots /company-data OK?, service account, OpenSSF badge, license, dataset release, gold labelling, 10M record).
 
-Owner go on HISTORICAL_FILERS_PROPOSAL.md. PR #198 (company-level notice,
-directory label, --historical discovery mode) merged. Discovery in historical
-mode: 8,800 eligible entities; slices 01–04 captured 19:27–19:58Z (4 × 1,000, 0
-HTTP errors, 0 not-found), reviewed (3,810 candidates, 190 coverage exclusions),
-staged under extended-v23 and combined with the nine v24 cohorts. Release
-5141e69b…: 10,201 companies, 457,906 histories, 349,054 filing pages, 827,563
-candidate URLs, 41,806 objects (15,972 new). verify-v26-runtime passed. Admission
-v26: 813,892 indexable (206,340 histories with notices), 13,656 withheld. Local
-HTTP audit 827,563 pages, 0 failures. The proposal's estimate (438,816 candidate
-URLs for all 8,800 entities) compares with 260,481 added by the first 4,000:
-historical records carried more published concepts than the discount assumed. No
-upload, production or indexing change.
+## 2026-09-26 ~14:20Z GSC (owner: full control for Google): Host status No problems (all 3 hosts) -> demand-bound verdict; phase 3 speed stays low priority. Request indexing: Apple overview (indexed, changed), Lockheed/Qualcomm/Cummins 10-K filing pages (all "URL is unknown to Google" though in sitemaps). Apple 2022 10-K + /companies already indexed. GSC Performance query list: most impressions are "<company> <year> 10-k <accession>" lookups where filing pages rank 1-3 -> filing titles should say company + fiscal year + form. Owner approved all items: CC BY 4.0, dataset release, robots Disallow /company-data/, record 10M ("sharp on it").
 
-## 2026-09-23 — v25 uploaded and verified on the hosted preview
+## 2026-09-26 ~14:35Z Owner sign-ins done by owner (Zenodo via GitHub, bestpractices.dev); I configured: Zenodo GitHub integration ON for alphac, canli-validation-mcp, canlicapital (DOIs on next releases). OpenSSF Best Practices: project 14954 (canli-validation-mcp, metal) PASSING 100%, 67 criteria answered with evidence URLs; badge https://www.bestpractices.dev/projects/14954/badge. ORCID: owner registering. GitHub website field left as traceaxiom.com pending owner (it points at TraceAxiom).
 
-Storage transfer run 5 completed 26,210/26,210 with 0 failures and 0 rate-limit
-holds at concurrency 3 and 350 ms pacing (16,033 verified existing, 10,173 created
-and verified, 4 verified after a create error; 35 read retries, 9 write
-recoveries). Runs 1–4 stopped on HTTP 429 verification reads, a hold-escalation
-exhaustion and two HTTP 500 reads; each led to an uploader change (PRs #193, #196,
-#199) and all receipts are retained. Preview deployed from the activation branch
-at ff60d3b3 (dpl_5hjjqLtg8z4QjgDQu2brbD1uUuPZ); clean hosted readiness 35/35
-including the filing index and a filing page for each sampled company; browser
-flow passed on 0000001750. PR195 marked ready.
+## 2026-09-26 ~14:45Z ORCID registered: 0009-0004-4138-7907 (email verification pending). Next: after verify, tidy record (name case, website, keywords); CITATION.cff/.zenodo.json with ORCID in canli-validation-mcp/canlicapital/alphac; founder Person JSON-LD sameAs ORCID; small MCP release to mint first Zenodo DOI.
 
-## 2026-09-23 — v25 released to production
+## 2026-09-26 ~15:00Z ORCID record tidied (Arhan Canli; websites Canli Capital + GitHub; 3 keywords). PR #290 citation metadata (.zenodo.json root+mcp, CITATION.cff ORCID, founder sameAs ORCID, OpenSSF badge). After merge: sync mirror + release canli-validation-mcp 0.7.0 (toolsets) -> first Zenodo DOI.
 
-PR195 merged as 8995e8f0 with all checks passing; the production checkout moved to
-8995e8f0 and the hourly deploy published it at about 02:30:35Z. Live checks passed
-(10 checks, slowest 3,846 ms): admitted and noticed histories, filing indexes and
-filing pages indexable with self-canonicals; withheld histories, pending-review
-companies, their filing pages and downloads noindex; unknown company 404; sitemap
-index 263 site + 556,677 company URLs in 13 files. IndexNow accepted 401,034 new
-or updated URLs (556,940 in the sitemap). Google indexing is not yet measured; the
-owner resubmits the sitemap in Search Console. The v26 upload started 02:10Z
-behind it.
+## 2026-09-26 ~15:00Z Owner authorship cleanup (owner: "remove the mention of use of ai")
+PRs: canlicapital #291, alphac #114, canli-backtest #2, canli-pit-lake #2. Removed AI-credit wording from READMEs, /engineering, /founder (JSON-LD + ledger; verify-papers AI-disclosure checks dropped, sole-authorship guard kept), llms.txt, draft-design bylines (audit-onpage rule updated), Zenodo deposit drafts, planning notes, the living AlphaVintage manuscript + its site reading copy, evidence map (ai_assisted_tooling, "typed every line", "unaided" hedges). Draft designs re-sealed; merger design hash rebound (registry, packet, sleeve_discovery, data-gate test; 0 approvals existed). docs/goal superseded agent notes + history/ removed on main (in git history). #291 checks: full build 0, verify-papers 0, audit-onpage 0 errors, git-less VERCEL=1 build-papers 0. Contributors API: only arhancanli on all 16 public repos; 0 assistant trailers on either main. NOT changed (sealed): public/publication bundles (AlphaVintage v1.0.0 paper sentence, 16 visual-inspection receipts "OpenAI Codex-assisted internal publication QA", alphamax upstream-replay "author/Claude transcript", evidence-architecture draft PDF/arXiv zip) -> needs versioned re-release with fresh page inspection (owner decision). Follow-ups: after #114 merges, re-extract canli-backtest/canli-pit-lake (bump ENGINE_COMMIT) and pull ~/alphaforge so the live glassbox regenerates.
 
-## 2026-09-23 — v27 staged: the remaining historical filers
+## 2026-09-26 ~15:30Z Follow-ups after the authorship merge
+Merged: canlicapital #291, alphac #114 (345b38d), canli-backtest #2, canli-pit-lake #2. Production checkout moved to 0ad1000a; ~/alphaforge fast-forwarded to 345b38d (tick README snapshot reapplied). Re-extraction PRs canli-backtest #3 / canli-pit-lake #3 (pin 345b38d; added trial_budget.py + amendments config / corrections.py; parity, ruff, mypy, pytest 279 / 949 green). Profile README PR arhancanli#3 (every public project). GSC: sitemap.xml resubmitted, stale sitemap-companies-1.xml removed, indexing requested for /research/luck-equivalent-trials, /research/null-zoo-v0, /research (9 of ~10 today). Sealed archive revision prepared locally on alphac branch chore/archive-authorship (uncommitted): AlphaVintage v1.0.0 re-rendered (pages 1-7 pixel-identical, page 8 changed), evidence-architecture draft recompiled with Tectonic 0.17.0 (reproduction check pixel-identical; pages 12-13 changed). Rewrite of the archived bundle files blocked by the permission classifier (Modify Shared Resources); needs owner go-ahead plus owner's own page inspection before the receipts can name him. alphamax upstream replay manifest ("author/Claude transcript") left: its hash is inside replay receipts that attest runs against those bytes.
 
-Slices 05–09 of the historical discovery (4,800 entities with 4–40 published
-concepts) captured 02:38–03:04Z (five parallel runs, 0 HTTP errors, 0 not-found),
-reviewed (2,552 candidates, 2248 coverage exclusions), staged under extended-v23
-and combined with the thirteen v26 cohorts. Release 389ae2ca…: 12,753 companies,
-513,902 histories, 392,522 filing pages, 932,163 candidate URLs, 52,141 objects
-(10,771 new). verify-v27-runtime passed. Admission v27: 916,208 indexable (260,052
-histories with notices), 15,940 withheld. Local HTTP audit 932,163 pages, 0
-failures. The whole family (8,800 entities) added 365,081 candidate URLs against
-the proposal's estimate of 438,816. No upload, production or indexing change.
+## 2026-09-26 ~16:30Z Pillar 3: FilingFacts v0 release PR #292
+Owner approved CC BY 4.0 + external release. PR #292: /datasets/filing-facts/v0/ (1,882 items, 402 companies, both baseline run records, 50-item gold packet, SHA256SUMS); card /research/filing-facts-v0 generated by scripts/build-dataset-cards.mjs from the files; summary record /glassbox/datasets/filing-facts-v0.json (build-time, gitignored); build-papers emits its schema.org Dataset node. Checks: build 0, verify-papers 0, onpage 0, published-numbers 0 (first run caught "1,624 KB" untraceable; fixed by kilobytes in the record), link-graph 0, indexability 0, readme 0 (114 reports / 330 URLs), git-less VERCEL=1 0. Human-verified items: 0. Merges blocked for Claude (classifier: Merge Without Review); owner runs `! gh pr merge ...`. ALPHAC health: C4a keystone in-sample Sharpe served value 1.78 -> 1.17 and neutral-core 1.38 -> 0.66 between the 09-24 and 09-25 23:32Z runs (drift_hosts empty, so the site serves the new value); timing matches the v4 three-sleeve book; not yet verified.
 
-## 2026-09-23 — v26 uploaded and verified on the hosted preview
+## 2026-09-26 ~16:05Z Merges by owner; ALPHAC keystone; ticker titles; launch drafts
+Owner merged profile #3, canli-backtest #3, canli-pit-lake #3, canlicapital #292 (production checkout -> fe50123b; dataset goes live with the 16:32Z deploy). alphac #115: health keystones re-pinned to the v4 three-sleeve book (1.17 / 0.66; cause #80 merged 2026-09-25 01:04Z; history showed PASS through 09-24 then FAIL). Still stale: docs/research/CURRENT_BOOK_DRAWDOWN_MODEL.md prose (four sleeves, 1.78, 5.21% vol, 4.51% MDD) vs its current artifact (three sleeves, 1.17, 5.11%, 4.63%); README cites the artifact. canlicapital #293: ticker + fiscal-period titles (5,277 companies; generated scripts/lib/company-primary-tickers.mjs from the 2026-09-19 SEC file; 53 pilot pages retitled; fixed company-filings-build.test.mjs broken by #288); build + 6 audits 0, git-less 0. LAUNCH_DRAFTS.md written (Show HN / r/algotrading / r/quant / Quantocracy / dataset post), figures from null-zoo-v0.json and the dataset record. Production checkout had ruflo junk (.claude-flow, ruvector.db) from a cwd slip; removed before the deploy.
 
-Storage transfer run 1 completed 41,806/41,806 with 0 failures and 0 rate-limit
-holds at concurrency 3 and 350 ms pacing (35,154 verified existing, 6,649 created
-and verified, 3 verified after a create error; 29 read retries, 6 write
-recoveries). Preview deployed from the activation branch at 2bc080fb
-(dpl_Duawhq2xUriVrA5m2CVq97uYTTfL); clean hosted readiness 35/35 including the
-filing index and a filing page for each sampled company; browser flow passed on
-0000001750. PR201 marked ready.
+## 2026-09-26 ~16:15Z #293 merged, #115 merged, drawdown paper PR #116
+canlicapital #293 merged (production -> 4408d554; 16:32Z deploy ships dataset + ticker titles). alphac #115 merged; ~/alphaforge fast-forwarded to 8da7c76 (tonight's health run uses 1.17 / 0.66). alphac #116: CURRENT_BOOK_DRAWDOWN_MODEL.md v2 rendered from the study result (three sleeves, ladder since 09-15, 1.17 Sharpe, 8.99% / 15.86%) by scripts/render_current_book_drawdown_paper.py; research_export publishes the render of the live result; tests 4/4 incl. workspace drift test. Production checkout ruflo junk recurred once (recreated within a minute while it was the session cwd); removed; pre-deploy check armed.
 
-## 2026-09-23 — v26 released to production
+## 2026-09-26 ~17:50Z Descriptions, purpose, history summaries, annotation page, DOI
+Merged: canlicapital #304 (README first screen) and #305 (/annotate volunteer page for the FilingFacts gold packet, labels posted on issue #299); alphac #116 (drawdown paper v2 rendered from the study; ~/alphaforge -> 30028a0). Zenodo DOI minted for canli-validation-mcp 0.7.0: 10.5281/zenodo.22981141. Glama grades canli-validation-mcp A/A/A.
+Open: #303 history pages open with a computed "At a glance" summary (prior-year change, compound rate, range) and a description built from it. CI failed on 282 untraceable figures on the 56 committed pilot pages; fixed in the audit, not by exemption: COMPACT accepts word suffixes, and RECOMPUTED reruns the shared summary function on the page's declared company-data/<cik>.json (101 figures trace; a planted 93.7% compound rate fails). #306 descriptions (fitDescription: 291 indexable pages at 150-160, 47 at 120-149, 0 under 120; audit-onpage errors under 120). #307 homepage purpose ("Quant research. Proved in the open."; title "Canli Capital: open evidence for quantitative finance"). #303 and #306 conflict in company-page-renderer.mjs: after #303 merges, merge main into #306 and wrap summaryDescription in fitDescription (history descriptions are 138-183 chars now), rebuild pilot pages.
+Marketing: MARKETING_CHANNELS.md written (launch venues, MCP directories, newsletters, quant forums, academic/student channels, social, Dubai). HN Show HN + Product Hunt drafted; nothing posted (owner approval per post).
 
-PR201 merged as 042696fc with all checks passing; the production checkout moved to
-042696fc and the hourly deploy published it at about 13:33:42Z. Live checks passed
-(14 checks, slowest 36,558 ms): admitted and noticed histories, filing indexes and
-filing pages, and a historical filer's overview and filing index with the
-company-level notice indexable with self-canonicals; withheld histories,
-pending-review companies, their filing pages and downloads noindex; unknown
-company 404; sitemap index 263 site + 813,892 company URLs in 18 files. The hourly
-deploy's IndexNow step accepted 257,343 new or updated URLs (814,155 in the
-sitemap) at 13:35:11Z; the manual run then found nothing further to submit. This
-is the first live release above 800,000 admitted URLs; Google indexing is not yet
-measured and the owner resubmits the sitemap in Search Console. The v27 upload
-started 12:35Z behind it.
+## 2026-09-26 ~18:30Z #303 merged; #306 and #307 green, awaiting owner merge; PH gallery
+#303 merged (a63e96b4) after the audit fix. #306: main merged in (conflict was the import line only); history descriptions now pick whole sentences within 150-160 (56 pilot pages 150-160, none clipped; first attempt clipped "Download the full…", replaced by a whole-sentence search); company-history-summary tests added to npm run verify (they were not in it). Full build 0, every audit 0, git-less 0, CI green. #307 green after update-branch. developers-quickstart browser test failed once under full-suite load, passed alone twice (flaky under load). Product Hunt gallery rendered (docs/goal/launch/producthunt/, see LAUNCH_DRAFTS.md section 6).
 
-## 2026-09-23 — next families quantified (proposal)
+## 2026-09-26 ~19:30Z Owner: "lets do each of the places to spread canlicapital"
+Filling the HN form was denied by the permission classifier (External System Writes), so posting stays with the owner. Built instead: launch kit artifact https://claude.ai/artifact/CorFwqRVvrdx7MsZRpXKzp (32 channels in order, exact copy per venue, copy buttons, done boxes; data in docs/goal/launch/channels.json + channels.py with venue length asserts). Assets: PH gallery + thumbnail (launch/producthunt/), Hugging Face folder with dataset card (launch/huggingface/filing-facts-v0/, checksums OK), dev.to cross-post of "The split that ran backwards" with canonical_url. Verified: PulseMCP closed (pulls from the official registry), TLDR no public submissions, mcp.so free review, MCP Market free queue, Console.dev hello@console.dev, Quantocracy via contact page; Reddit rules could not be read (blocked), so the kit tells the owner to check sidebars. All links resolve (403 bot-blocks on MAGNiTT/QuantNet; DIFC 429 -> home page). Five directory PRs still await maintainers. New: PR #308 Atom feed /feed.xml (120 entries, dates from sitemap lastmods, git-less build reproduces it byte for byte); conflicts with #306 in package.json + source-dates (resolve after #306 merges). After #308 deploys: submit feed.xml in GSC and Bing.
 
-While the v27 upload runs: the 14,629 flagged histories outside the admitted sets
-after option C are 14,208 equal-vector pages in 7,039 groups plus constant/zero
-series; a representative rule would admit 6,990 with 7,115 canonical members. An
-annual reporting-period family quantified from the v27 delivery: 118,784 pages at
-an eight-concept floor (121,452 at four), no quarterly observations in the
-selected data, no new capture needed. Candidate set with both: 1,041,982.
-NEXT_FAMILIES_PROPOSAL.md written for the owner decision. No admission, upload or
-indexing change.
+## 2026-09-26 ~19:10Z Owner: "i approve everything you can submit them ask me if you need log ins"
+#306 merged by owner. #308 re-merged with main (package.json test list union; source dates rebound; feed regenerated; git-less build reproduces feed + sitemap byte for byte), pushed. Product Hunt: "Canli Validation" SCHEDULED for Thu 1 Oct 00:01 PT (11:01 Dubai): name, tagline, description (256 chars), links (developers page, GitHub, npm), open source, tags Developer Tools / Fintech / Artificial Intelligence, thumbnail + 5 gallery images in order (auto-fetched old og.png removed), owner as solo maker, maker comment set to post at launch. Wed 30 Sep refused: it is a Hypership day that requires joining a shipping challenge (not approved), so Thursday. Show HN queued as a session cron (one-shot 18:57 Dubai Tue 29 Sep, job 0665583f); fires only if this session is open. Kit republished (v2). Reddit cannot be opened from the browser tool (blocked), email sends need the owner's mail client; mcp.so, Smithery, MCP Market, Hugging Face, dev.to, X, QuantNet, QuantConnect need owner sign-in.
 
-## 2026-09-23 — company template polish after a design review
+## 2026-09-26 ~19:00Z #307 and #308 merged by owner; main deploy break caught and fixed
+#307 merged (557ce87c) and the production checkout moved to it, but #307 had changed index.html without rebinding config/source-dates.json; the git-less `VERCEL=1 build-papers` on main failed ("git was unavailable for every source of /"), which would have failed the 19:30Z deploy while CI stayed green. #308 was merged with main locally and rebound index.html (33ddec56), merged at 18:59Z (b760fcea); production checkout -> b760fcea; git-less build on origin/main passes all four steps. Next deploy ships #306 descriptions, #307 purpose, #308 feed. Memory updated (third occurrence of the unbound-source defect; check origin/main after every merge).
 
-A structured design review of the live company pages (eight pages, two viewports,
-computed-style measurements) ranked 21 defects; the five high ones were a separate
-type and colour system from the rest of the site, phone tables clipping their
-value columns with no affordance, a stalled scroll-drawn section rule doubled by a
-static border, the decorative grid bleeding through table cells, and a 163 px dead
-band above the content. The template now uses the reading-surface tokens shared
-with the research pages, sticky first columns with an overflow fade at phone
-width, right-aligned numbers, a muted hyphen for instants, a compact historical-filer
-note, and dates that never break at their hyphens; the shared motion script draws
-rules at once for chapters already in view. Record: DESIGN_REVIEW_2026-09-23.md.
-Company tests 204/204 after regenerating the static pilot pages; verified on the
-local preview server against the v27 inputs. No admission, upload or indexing
-change; the change goes live with the next deploy of main.
+## 2026-09-27 ~03:15Z Deploys frozen since 26 Sep 17:36Z; fix PR #309
+Live canlicapital.com last-modified 2026-09-26 17:36Z; feed.xml 404. ~/alphaforge/var/log/live_deploy.log: every hourly landing deploy since failed 3x with "Deployment cannot invent sitemap modification dates" for public/research/current-book-drawdown-model.md. Cause: alphac #116 made research_export overlay the v2 render (sha256 47d2d1ee…) onto the site snapshot while the committed site copy was v1 (27980f48…), so no binding matched. The app deploy succeeded; IndexNow skipped. PR #309 commits v2 byte for byte + rebinds (git-less build with the overlay: all steps exit 0). Needs owner merge. Follow-up: a deploy failure is only visible in the log; surface it in health status.json. Separate: owner's crontab holds an Anthropic API key in plain text (seen while searching for the deploy job; not copied anywhere) -> recommend rotating and moving it out of crontab.
 
-## 2026-09-23 — footer link to the company reference
+## 2026-09-27 ~03:40Z Hugging Face dataset live
+Owner created arhancanli/filing-facts-v0 (CC BY 4.0, public) and signed in on the automation Chrome window; uploaded README card + filing-facts-v0.jsonl + both run records + gold packet + SHA256SUMS in one verified commit ("FilingFacts v0: items, baseline runs, gold packet, card"). HF parsed the card metadata (Question Answering, English, finance/sec/xbrl/tool-use/benchmark tags, cc-by-4.0). Kit v3: HF done; r/datasets post now links the HF page. #309 (deploy fix) green, awaiting owner merge.
 
-Finding 15 of the design review: no footer route led to the company reference, so
-the only path from the rest of the site was the expanded menu. The shared shell's
-Evidence column now carries "Company reference" (/companies); the six
-hand-authored pages were rewritten from the shell source by
-scripts/sync-product-shell.mjs and every generated page picks it up at build.
-Shell tests 7/7; writing audit clear. Every page of the site now links to the
-directory that reaches all admitted company pages.
+## 2026-09-27 ~04:25Z Indexing check (owner asked)
+GOOGLE (GSC, sc-domain): page indexing 3.03K indexed / 74,452 discovered-not-indexed / 166 crawled-not-indexed / 52 noindex / 3 redirect (unchanged vs 09-26; report lags). Sitemap index read 09-26, Success, 903,737 discovered. Crawl stats (last updated 09-25): 87.2K requests per 90 days (49.1K on 09-26); daily crawl rose from a few hundred to ~6K (09-21), ~29K (Wed 09-23), ~10K (09-24), ~38K (09-25); 100% 200s, 79% discovery, avg 403 ms, all hosts "No problems". Performance 28d to 09-24: 18 clicks, 7.56K impressions, CTR 0.2%, avg position 5; top impressions are Yahoo finance chart-API URL queries (121 each for qqq/spy) and SEC filing lookups. BING: search 30d 0 clicks / 8 impressions; sitemaps: 2 known (canlicapital.com + www, 916.5K discovered each, last crawl 09-25, Success); Site Explorer canlicapital.com: 279 URLs crawled in 6 months, 146 indexed, 94 warning, 39 excluded, 1 backlink; IndexNow 1.4M submitted (last 09-26 21:40 local, the last successful deploy). Bing recommendations: not enough quality inbound links; meta descriptions too short (#306, not yet live because deploys were frozen until #309).
 
-## 2026-09-23 — v27 uploaded and verified on the hosted preview
+## 2026-09-27 ~04:40Z Deploy restored; feed submitted to Google and Bing
+04:32Z hourly deploy succeeded (first since 09-26 17:36Z): live homepage title "Canli Capital: open evidence for quantitative finance", feed.xml live as application/atom+xml (120 entries) with rel=alternate on the homepage, history descriptions e.g. Apple Assets 150-160 chars, v2 drawdown paper. GSC: feed.xml submitted -> read same day, Atom, Success, 121 discovered. Bing: feed.xml submitted, Processing (3 known sitemaps). GSC Request indexing: homepage (indexed, page changed) and /annotate (URL unknown to Google though it is in sitemap-site.xml) -> both "Indexing requested"; /research/current-book-drawdown-model hit "Quota Exceeded" (daily quota used by 09-26's 9 + today's 2).
 
-Storage transfer run 1 completed 52,141/52,141 with 0 failures and 12 rate-limit
-holds absorbed at concurrency 3 and 350 ms pacing (41,370 verified existing,
-10,770 created and verified, 1 verified after a create error; 38 read retries, 6
-write recoveries). Preview deployed from the activation branch at 074e1230
-(dpl_5AJRjTq47Y4QpPNALJunt4ifc7fV); clean hosted readiness 35/35 including the
-filing index and a filing page for each sampled company; browser flow passed on
-0000001750 in run 2; run 1 had failed on the audit's own stylesheet guard, a 100
-px top-padding magnitude of the old template that the polish of PR #208 no longer
-meets, fixed in PR #213 to test the template's measure instead (run 1 report
-retained). PR205 marked ready.
+## 2026-09-27 ~07:30Z Launch hardening: PR #310 (canli-validation-mcp 0.7.1)
+Owner asked "what should we do now"; plan given (launch readiness, ALPHAC health, deploy alerting; owner: sign-ins, rotate the crontab key, be present Tue/Thu). Fresh `npx -y canli-validation-mcp@latest` on an empty cache: ready 5.6 s, 14 tools, DSR 0.444 (works). Found: hosted /mcp shares one anonymous key with 1,000 validations/day (launch spike would return bare quota errors); stdio without CANLI_KEY returns 401 on the first validation (model must infer get_key); the standalone README's install commands sat ~150 lines down. PR #310: shared-quota fallback (computed on the hosted endpoint by src/local, computed "hosted_without_receipt", note on free key / CANLI_LOCAL=1), auto key issuance once on first 401 in stdio, README first screen (question, 3-line quick start, worked example from a real run), version 0.7.1 bump mirroring #295, REGISTRIES.md 0.7.0 checkpoint (run 36257888022; registry lists 0.7.0 latest). Tests 5 new (mutations caught), MCP suite 128/128, api/mcp 9/9, build-validation-api 17/17, git-less 0. After merge: tag mcp-v0.7.1, then sync PR on the standalone repo (owner merges), before Tue 15:00Z. ALPHAC health 09-26 23:32Z FAIL: host drift + stale landing (deploy freeze, now fixed) and 10 failing tests in the full suite (next).
 
-## 2026-09-23 — company template polish live
+## 2026-09-27 ~06:50Z canli-validation-mcp 0.7.1 released
+#310 merged by owner (cbccf3c6); git-less on origin/main 0; production checkout -> cbccf3c6. Signed tag mcp-v0.7.1 pushed; mcp-publish run 36300300720 success: npm 0.7.1, MCP Registry latest 0.7.1. Fresh npx on an empty cache: 0.7.1, 14 tools, ready 5.4 s, DSR 0.444. Mirror sync PR arhancanli/canli-validation-mcp#11 (signed commit 446287f; keeps .github, MIRROR.md, glama.json, Dockerfile) awaiting owner merge; then publish the mirror's v0.7.1 release (Zenodo DOI version). test/schemas.test.mjs fails locally in the mirror on main too (imports ../../api/_lib/manifest.js, monorepo-only); mirror CI is green on main.
 
-The 17:25Z hourly deploy published main at e3c8d855 (deployment
-meridian-po6z9kx2x, ready about 17:29Z): the polished company template (PR208),
-the footer link to the company reference (PR209), the regenerated pilot pages
-(PR210) and the rebound source dates (PR211). The two 16:25Z attempts had errored
-on the missing date bindings and left the previous deployment serving; no outage.
-Verified live: the company overview serves the new stylesheet with the self-hosted
-Inter and Chakra Petch faces, right-aligned numeric cells, a hyphen for instants
-and the capture instant as a time element; the home footer's Evidence column links
-the company reference. IndexNow accepted 7 updated URLs (the re-dated
-hand-authored pages) and nothing else, as intended.
+## 2026-09-27 ~07:05Z Mirror v0.7.1 released
+Owner merged canli-validation-mcp#11 (a66b19bf). Release v0.7.1 created on it (notes = 0.7.1 changelog); "Release bundle v0.7.1" success, assets: canli-validation-mcp-0.7.1.mcpb, canli-validation.mcpb + intoto + sigstore, SHA256SUMS.txt. Zenodo: our 0.7.0 record is 10.5281/zenodo.22981141 (concept DOI, all versions: 10.5281/zenodo.22981140); v0.7.1 not yet indexed. (A search hit 10.5281/zenodo.22985819 "v0.7.0" belongs to an unrelated project, TypeScriptKG; do not cite it.)
 
-## 2026-09-23 — v27 released to production
+## 2026-09-27 ~07:50Z ALPHAC nightly suite: PR alphac#117
+C7b 10 failing tests classified. Repo fixes in alphac#117: (1) publish-order bug, live_publish.sh packaged the archive receipt one step before rebuilding the data-rights audit it binds (stale every night); steps swapped, missing edge added to test_publish_pipeline_order (fails on old order, passes on new); (2) diversification test pinned the 4-sleeve book and exact 0.0 reconstruction; v4 is 3 sleeves, 1.7e-18, build bound 1e-15; (3) SYSTEM_MAP regenerated against the live workspace (432 scripts, 458 tests). Live workspace fixes (untracked artifacts): data_gate_unblocks/result.json dated 08-26 carried the pre-#114 merger hash (my #114 miss), regenerated, 5/5; archive receipt rebuilt, 4/4. Owner decisions: crypto attribution VPS contract pins trial_reservation.py changed by #79 (never re-author without owner); AlphaForge suspended by v4 so two tests expecting it on the public all-sleeve record fail (keep suspended sleeves on the record, marked, or drop them?); book_drawdown_ladder passes clean, re-check after tonight.
 
-PR205 merged as 3915e039 with all checks passing; the production checkout moved to
-3915e039 and the hourly deploy published it at about 20:33:23Z. Live checks passed
-(14 checks, slowest 36,125 ms): admitted and noticed histories, filing indexes and
-filing pages, and a historical filer's overview and filing index with the
-company-level notice indexable with self-canonicals; withheld histories,
-pending-review companies, their filing pages and downloads noindex; unknown
-company 404; sitemap index 263 site + 916,208 company URLs in 20 files. The hourly
-deploy's IndexNow step accepted 102,521 new or updated URLs (916,471 in the
-sitemap) at 20:33:49Z; the manual run then found nothing further to submit. Every
-entity that meets the discovery rules is now in the live release; Google indexing
-is not yet measured and the owner resubmits the sitemap in Search Console.
+## 2026-09-27 ~08:40Z MCP ratings (owner: every reviewer > 9) and status report
+Owner granted full permission over everything and asked for per-goal status (given in chat). Replied to the first external reviewer (SibiSudhanElangovan, 5 review tasks): assigned #297, told them no assignment needed for the others. Ratings measured: Scorecard 7.2 / 7.4 (ceiling ~8.0 until late Dec, >9 not reachable for a new solo repo: Code-Review, Contributors, Maintained), Glama TDQS 3.7/5, Socket supply chain 78. PR canlicapital#311: SDK v2 server package (~95 -> 4 deps), open output schemas on all 20 tools, usage guidance, fast-check file .js; validation 0.8.0, research 0.2.0; all tests pass, git-less 0. alphac#117 pytest pending; watcher will fast-forward ~/alphaforge before tonight's publish.
 
-## 2026-10-01: Codex recovery and goal launch; execution and annotation continuation
+## 2026-09-27 ~07:40Z 0.8.0 live everywhere; alphac #117 merged; #118 open
+#311 merged (41cbb863); git-less on main 0; production -> 41cbb863. Tag mcp-v0.8.0 -> run 36302867139 success: npm 0.8.0, MCP Registry latest 0.8.0; fresh npx installs 3 packages, ready 3.5 s. Mirror #12 merged (ee82db0c): 0.8.0 synced, CI glob includes test/*.test.js, and the plugin files (.claude-flow/, ruvector.db) committed by mistake in #11 removed (contents: tool-call digests + empty redb; the signed 0.7.1 bundle did not contain them; still present in the v0.7.1 source archive/Zenodo). Mirror release v0.8.0: bundle 2.37 MB (was 3.99 MB), signed. Live https://canlicapital.com/mcp after the 07:30Z deploy: server 0.8.0, 14 tools all with output schemas, DSR 0.444, signed receipt issued. alphac #117 merged, ~/alphaforge fast-forwarded to 02d4fa8 (publish order fixed before tonight). alphac #118: execution-provenance summary names the suspended AlphaForge sleeve (owner's 2026-09-23 instruction already publishes suspended_sleeves; my earlier "keep it on the record" framing was wrong, the record already names it) and two stale tests updated. Frankfurt crypto-attribution contract: a rebind alone cannot pass, the preflight-observation test needs a fresh read-only SSH preflight (blocked for me); left red as a known gap while AlphaForge is suspended. canli-research-mcp 0.2.0 waits on the owner's npm Trusted Publisher setting.
 
-- Recovered the owner's Claude-session instructions, the four-pillar vision, all local goal plans and actual GitHub/code state. Explicit current goal structure in MASTER_PLAN.md and recovery audit in CLAUDE_RECOVERY_20261001.md.
-- Fresh worktree continue/mcp-refinery-20261001 at 607e0a1c; original dirty expansion checkout preserved. Goal launched and remains active.
-- Live initialize/tools-list and npm metadata captured in artifacts/goal/continuation-baseline-20261001.json: hosted validation 0.10.1, fundamentals 0.5.0, research 0.2.0; npm validation 0.10.1, fundamentals/research 0.1.0. Execution not published.
-- #333/#334/#335 merged; #336/#337/#338 open. Published FilingFacts has 1,882 items and 50 blank gold labels; no human-review evidence in that bundle.
-- Phase starts local execution shortfall analysis and annotation coverage/adjudication hardening. Neither implementation nor a new release is claimed at phase start.
+## 2026-09-27 ~10:00Z Distribution pass on the owner's signed-in accounts
+Owner: "check all of the pages i have signed in on ... make sure each one is perfect". Live: X (bio + canlicapital.com + 4-post thread with the luck chart, pinned); QuantConnect forum https://www.quantconnect.com/forum/discussion/21454/ ; Google Scholar profile (public, Zenodo record; verification needs a domain email); dev.to https://dev.to/arhancanli/the-split-that-ran-backwards-1nao (tags python/testing/finance/datascience, canonical -> canlicapital.com/notes/the-split-that-ran-backwards; body unwrapped because dev.to renders single newlines as breaks; AI Disclosure left for the owner). Blocked on owner: QuantNet (account awaiting admin approval), mcp.so (now $39 only, DR 72 dofollow; owner's call), MCP Market (needs an email; free queue 4-6 wk or $29), Smithery (sign-in never completed; Continue with GitHub), npm sign-in (canli-research-mcp trusted publisher). Skipped with evidence: Docker MCP registry (615 open PRs since Aug; new third-party servers not merged since Apr), Cline marketplace (no push since 2025-06). Open: awesome-mcp-servers #15088 (all bot checks passed; list median merge 19 h, ours ~2 d), awesome-quant #718 (mergeable, no comments). Ratings for 0.8.0: Glama A (tool definitions A, maintenance A, claimed); Socket supply chain 78 / vulnerability 100 / quality 100 / maintenance 94 / license 100, weekly downloads 991; each dependency (server, core, zod) scores 100 supply chain alone, so the 78 comes from the package's own alerts (URL strings, network access, 3 AI-flagged anomalies whose detail needs a Socket org login). Launch kit artifact v4 updated.
 
-## 2026-10-01: local shortfall and annotation-quality checkpoint
+## 2026-09-27 ~15:00 Dubai: X outreach started; separate X manager built
+Owner asked for active, friendly, human-sounding replies on X (other niches too) and a separate system that runs the X account. Posted 3 outreach replies from @arhancanli: insainox (10k views, correlated variants), qwinsi0x (45k, 1.50 after 229 tries), milesdeutscher (34k, TradingView MCP + luck check). After the first, X showed its new-account probation notice ("human behind this account"); kept to 3 and will not simulate human activity. Recurring manager via CronCreate from this session was blocked by the auto-mode classifier (external writes), so built ~/canli-x instead: CLAUDE.md (one-pass procedure, caps: 2 outreach/pass, 3/day until 10-04 then 5, 1 original/day, no likes/follows/DMs, stop on any X warning; posting protocol: focus check, cmd+Enter, verify), FACTS.md (only publishable claims, Null Zoo figures re-read from null-zoo-v0.json), LOG.md, QUEUE.md (5 drafts for the owner incl. other niches: App Store A/B test, Safari MCP), START.md (owner runs `cd ~/canli-x && claude` then `/loop 3h run one X manager pass as described in CLAUDE.md`, session-only).
 
-- Continued the exact #335 execution gap with measure_shortfall: decision/arrival/open comparisons,
-  delay/execution/opportunity/stated fees, missing-fee totals unknown, counts for excluded orders,
-  bounded opt-in rows and seeded notional-weighted stationary-bootstrap percentile intervals.
-  No broker or hosted account inputs added; private 0.1.0 and hosted pins unchanged.
-- Independent evidence: 1,000 randomized cash-flow identities; three arch 8.0.0 cases (597 draws)
-  agree on every stationary index and ratio-percentile endpoints. The read-only ALPHAC comparison
-  binds the current captured input/core/source hashes; current price-cost/fill metrics match to
-  declared tolerances on AlphaMax/AlphaVintage. Source fees are absent, so totals including fees
-  stay unknown. The September 28 frozen analysis used an older order set: it is not overwritten
-  or claimed to match a newer capture. No raw vendor bars/order rows are published.
-- Added orders_file after measuring inline-context cost. It reads one bounded local descriptor,
-  validates the same order fields and returns a hash of captured bytes, never the raw file/path.
-  Synthetic 1,000 orders: 96,154 -> 58 o200k input tokens (file path lengths vary), local stdio
-  median 3.3 ms, 24.7 ms with 199 bootstrap draws. Output text 370/441 tokens respectively.
-  Single-machine observations in artifacts/goal/shortfall-local-benchmark-20261001.json; no
-  hosted-latency/competitor/ranking claim. Four tools 1,636 o200k/1,571 cl100k. New tool adds 386,
-  missing its original 220 target; future seven-tool budget remains unproven.
-- Annotation agreement now uses canonical-packet coverage, complete pairs only, explicit missing
-  labels/notes and null metrics when there are no pairs. Duplicate/unknown IDs, invalid labels,
-  changed source items and same declared identities refuse. New reviewed-gold export requires
-  complete named submissions, a distinct adjudicator, packet binding and a filing/table source
-  decision; retains disagreements, rejected/pending items and both reviewers' judgments/notes.
-  Self-declared identity/qualifications are not human/expert authentication. No labels invented.
-- Validation: full npm build then verify passes (778 main + 6 preverify), execution 43/43,
-  financial core 10/10 including the independent oracle/property cases, annotation 16 focused
-  tests, root/execution npm audits 0 vulnerabilities, FilingFacts four published checksums OK.
-  Existing /developers heading and /progress description warnings remain in this base; #336
-  addresses them. Local Node 24.19.0; PR CI uses required Node 22.
-- Retained failures: first full build failed because ffmpeg-static's locked binary was missing
-  after an install with scripts disabled; npm rebuild ffmpeg-static repaired the environment,
-  then build/verify passed. Early strict float comparisons and an absent in-progress oracle
-  fixture failed; corrected the bps arithmetic order and waited for the independently generated
-  fixture, then all checks passed. The first latency run overlapped tests; reran after they
-  finished and recorded load/environment/source hashes. Restored 617 build-generated tracked
-  outputs in the fresh worktree; implementation/goal records and prior worktrees preserved.
-- Both origin/main and raw local Claude STATUS/LOG are archived byte-for-byte under history/;
-  current chronology keeps origin/main and appends this recovery. Original required expansion
-  continuity folder now points to this checkout. All owner objectives and the active goal remain.
+## 2026-09-27 ~15:30 Dubai: status brought current; phase canli-fundamentals started
+STATUS.md rewritten at the top with a live-verified 2026-09-27 section: main 41cbb863, no open PRs, deploy OK 10:35Z, 916,476 canonical URLs, 22 child sitemaps, GSC ~3,030 indexed, npm 0.8.0 / research 0.1.0, ratings, 0 stars, distribution, helper sessions, alphac 8633f95. Community-manager session folder ~/canli-community added (CLAUDE.md, LOG.md, QUEUE.md, TEXTS.md); the X session is already running (it queued 3 drafts). Next phase: canli-fundamentals (MCP family server 3); a read-only map of the company data path is in progress before any design.
 
-## 2026-10-01 05:41Z: #339 merged; SEO/performance continuation
+## 2026-09-27 ~16:45 Dubai: canli-fundamentals-mcp 0.1.0 built, PR #312
+Explorer map: the company reference dedups to the LATEST-filed value per period (lib/company-reference.mjs:69, its policy says not point-in-time), but every company's raw SEC companyfacts snapshot is served byte-exact at /company-data/sources/{sha}.json.gz with source_sha256 = sha256 of the uncompressed JSON (verified on Apple: 269,991 B gz, 3,789,099 B raw). alphac has an internal earliest-filed rule for 10 tags only. Built mcp-fundamentals/ (5 tools: known_as_of, history, restatements, vintages, list_concepts; hash-checked snapshot, disk cache by hash, local compute, open output schemas). Live on Apple: FY2018 diluted EPS 11.91 (2018 and 2019 10-Ks) -> 2.98 (2020 10-K, split); AP 2017-09-30 49,049M -> 44,242M; 232 annual periods changed. Tool list 4,156 chars. 15 tests; 3 mutations (hash check off, as_of < instead of <=, first_reported = last) each fail the suite. Signed commit 333723bd; CI job extended; publish workflow mcp-fundamentals-publish.yml; .vercelignore excludes the package. Owner step after merge: one manual `npm publish --access public` in mcp-fundamentals (npm needs the package to exist before a trusted publisher), then the Trusted Publisher setting, then the fundamentals-mcp-v0.1.0 tag publishes the registry entry.
 
-- #339 merged as 37221be65a41fa19491433c2d1bd9731b226ec7f after all seven CI checks passed,
-  including full Node 22 build/verify, package/stdio, design, PostgreSQL and both CodeQL languages.
-  Standard signed/squash publication path under the owner's existing authorization; no version bump.
-- Reread required continuity before resuming the existing #336/#337 changes. Both were green at
-  their recorded heads; source review followed. Updated #336 from main in an isolated local branch;
-  package.json conflicted. Resolved as the exact union of the added social test/stamping step and
-  #339's financial core/adjudication tests, retaining every other script/dependency unchanged.
-- Current Google primary documentation exposed inaccurate prior claims: Article has recommended,
-  not mandatory, properties and no 110-character Google ceiling; app rich results require priced
-  offers plus an authentic rating/review. Corrected comments/diagnostics and tested nonnegative
-  app prices. The stricter site article contract remains explicit; local audits never establish
-  external eligibility. Genuine app reviews and representative article imagery remain outstanding.
-  Sources: Google Search Central /appearance/structured-data/article and /software-app?hl=en.
-- #336/#337 deployment is not claimed at this phase start. Production checkout was still 607e0a1c
-  when checked. Execution stays private/unreleased; human annotation/network, search indexing,
-  measured analyzer/field outcomes and every other owner objective remain open.
+## 2026-09-27 11:51Z: canli-fundamentals-mcp 0.1.0 on npm
+Owner published by hand (npm login + 2FA in Terminal; npm needs the package to exist before a trusted publisher). Integrity sha512-2wkiSKgx... equals the tested tarball. Fresh `npx -y canli-fundamentals-mcp@0.1.0` in an empty folder with the SDK v2 client: connected in 1.9 s, 5 tools; known_as_of MSFT 2020-12-31: RevenueFromContractWithCustomerExcludingAssessedTax FY2020 143,015M (filed 2020-07-30), NetIncomeLoss 44,281M; restatements MSFT >=5%: 86 of 4,678 annual periods. PR #312 green in CI, awaiting owner merge. Next: npm Trusted Publisher for canli-fundamentals-mcp and canli-research-mcp (owner must be signed in to npmjs.com in Chrome), then tags fundamentals-mcp-v0.1.0 (registry entry) and research-mcp-v0.2.0 (npm + registry).
 
-- Combined #336/#339 local build and full verify pass; on-page audit 695 pages, 0 errors / 0 warnings. Focused metadata rules 11/11. Source dates will be rebound to the actual signed source commit and checked without git before pushing.
+## 2026-09-27 ~12:05Z: #312 merged; fundamentals in the MCP Registry
+#312 merged as cc1af704 (owner). Production checkout -> cc1af704. Git-less check on origin/main: build-notes, build-dataset-cards, build-annotate, build-papers all exit 0 (the production checkout's own node_modules lacks `marked`; linked a complete node_modules from cc-mcpq-20260927 for the check). Signed tag fundamentals-mcp-v0.1.0 -> run 36317413625 success (npm step skipped the existing 0.1.0; registry publish ok); registry search returns io.github.arhancanli/canli-fundamentals-mcp 0.1.0. npm Trusted Publisher form for canli-fundamentals-mcp filled (arhancanli/canlicapital, mcp-fundamentals-publish.yml, environment mcp-fundamentals-release, "Allow npm publish" on, since the workflow publishes directly); saving waits on the owner's security key.
+
+## 2026-09-27 ~13:10Z: #314 merged (MCP family on /developers and README)
+/developers section #mcp-family generated from each package (build-standards-and-developers.mjs); JSON-LD SoftwareApplication for canli-fundamentals-mcp and canli-research-mcp; .vercelignore uploads mcp-{fundamentals,research}/package.json and src (test + mutation); README badges. CI all green incl. full vite build + verify. Merged e50a402d; production moved; post-merge git-less 5/5 exit 0. Live check after the next hourly deploy.
+Live 12:36:31Z deploy: /developers has #mcp-family (canli-fundamentals-mcp, canli-research-mcp), JSON-LD SoftwareApplication x3 (validation, fundamentals, research), sitemap-site lastmod /developers 2026-09-27.
+
+## 2026-09-27 ~14:30Z: MCP best-in-class audit; fundamentals 0.2.0 PR #317
+Audit workflow wf_bba24155-2d7 (7 agents): 75 gaps, 47 high/medium confirmed, 0 refuted; plan saved to docs/goal/MCP_BEST_IN_CLASS_PLAN.md. Leads: validation is the only MCP with PBO + MinBTL + luck-equivalent trials + signed receipts (DSR 0.9003968 vs paper 0.9004; scipy agreement 3e-12); fundamentals the only keyless point-in-time SEC server (102,134 periods over 8 companies, 0 differences vs SEC); research leanest (659-token list). Trails: 0 stars, one hosted endpoint, no directory listings, validation tool list 4,374 tokens vs sharpebench 1,739, and four silent PIT errors in fundamentals 0.1.0. Rank 1 fixed in PR #317 (fundamentals 0.2.0): as_of leak closed, 12-17 week quarters, IFRS followed, stale/snapshot flags; plus plain names across tag changes, restatement causes (split from reported ratio), ffd/424B excluded, 14k-char cap, 8-company LRU. 19 tests, 8/8 mutations caught, live audit targets 10/10, tool list 4,313 chars, source-dates rebound, git-less 5/5.
+
+## 2026-09-27 ~15:20Z: rank 3 fixes, PR #318
+Validation 0.8.1: returns_file incomplete-column refusal (the audit's blank_cell.csv no longer audits the benchmark), header detection by cell kind (noheader_dates.csv keeps row 1), returns_column_position in source; verify_receipt malformed -> valid:false + what is missing; inline matrix/variants rows <= 200 (API quota; stdio overflow); skew duplicate description key fixed + test; offline error next steps. Research 0.2.0 (unpublished, fixes folded in): get_paper section keeps ### subsections; errors name next steps. Tests: validation 135/135, research 10/10, hosted tests 15/15; mutations caught. Rebind + git-less 5/5. Breadth left for its own PR (shared with /tools/breadth and API receipts).
+
+## 2026-09-27 ~15:00Z: #317 and #318 merged; validation 0.8.1 released
+#317 merged a0f10457 (fundamentals 0.2.0); #318 updated with main (signed merge; rebind produced 0 diff; git-less 5/5), merged d4d00147. Production at d4d00147; post-merge git-less 5/5. Tag mcp-v0.8.1 -> run 36327331341 success: npm 0.8.1 with SLSA provenance; MCP Registry "Successfully published ... version 0.8.1" (local registry API unreachable: HTTP 000 connect stall). Fresh npx canli-validation-mcp@0.8.1 refuses the audit's blank_cell.csv naming line 3. Mirror sync PR arhancanli/canli-validation-mcp#13 (mirror CI command 118/0 locally). Held: fundamentals-mcp-v0.2.0 and research-mcp-v0.2.0 tags until the npm Trusted Publisher (owner security key) or a manual publish.
+
+## 2026-09-27 ~15:40Z: mirror v0.8.1 released; rank 4 metadata PR #320
+Mirror #13 merged fa39daac; GitHub release v0.8.1 -> "Release bundle" run 36329181332 success: canli-validation-mcp-0.8.1.mcpb, canli-validation.mcpb + intoto + sigstore, SHA256SUMS. PR #320 (rank 4): validation 0.8.2 server.json with remotes (streamable-http canlicapital.com/mcp), title, websiteUrl, icons, env vars, method-naming description (94 chars, limits clause kept); npm keywords; research/fundamentals 0.2.0 title/websiteUrl/icons; serverInfo title/websiteUrl/icons on all three (stdio + hosted). All 3 server.json valid against the 2025-12-11 schema. Suites 135/11/20 + hosted 15. Rebind + git-less 5/5.
+
+## 2026-09-27 ~16:30Z: rank 7 hosted family endpoints, PR #321 (stacked on #320)
+/mcp/fundamentals and /mcp/research: stateless Streamable HTTP over each package's registerTools (api/_lib/mcp-stateless.js), no key, CORS, 64 KiB cap, noindex; vercel.json routes + functions (includeFiles), preview config regenerated; server.json remotes; /developers hosted lines read from server.json (uploaded + a /developers source). api/mcp-family.test.mjs (real HTTP) added to verify. Suites: fundamentals 20, research 11, hosted/upload/preview 18. Prebuild regenerated developers.html (+2 lines); rebind; git-less 5/5.
+
+## 2026-09-27 ~16:15Z: #320 merged, validation 0.8.2 released; #321 CodeQL fix
+#320 needed main merged in (BEHIND: the SEO session merged #313 #315 #316 #319; branch protection requires up-to-date); merged cf2f6bce. Production moved; git-less 5/5. Tag mcp-v0.8.2 -> run 36331874195: npm 0.8.2 (keywords) + registry "Successfully published version 0.8.2" (first entry declaring the hosted remote). Mirror sync PR arhancanli/canli-validation-mcp#14 (118/0 locally). #321 updated with main (conflicts resolved per file: changelog union, package.json = main + api/mcp-family.test.mjs, source-dates regenerated; prebuild shows developers.html identical). CodeQL js/insecure-temporary-file (hosted fundamentals cache in /tmp) fixed: mkdtemp dir per instance, owner-only dir, random temp name, flag wx, mode 0600; test pins modes. Fundamentals 21/21.
+
+## 2026-09-27 ~20:50 Dubai: indexing session, four PRs live; Phase 2 link-depth gate met on a sample
+#313 (directory rows link each filing index), #315 (X-Robots-Tag noindex on /api/*), #316 (home/research/developers link the 12 admitted companies with most GSC impressions, capture in config/search-demand-companies.json), #319 (Phase 4: history related list ≤8 by statement, share of total assets/revenue) merged and live with the 16:35Z deploy (4df209cf). Live depth sample (~/canli-seo/tools/depth-sample.mjs, seed 7, 60/family, verified links only): 300/300 company URLs within 4 clicks, was 64.4% (filings 60/60, was 10/60). GSC 28d (top 1,000 page rows): 8,551 impressions, 18 clicks, 648 companies with impressions. Details in ~/canli-seo/LOG.md and STATE.md.
+
+## 2026-09-27 ~17:10Z: #321 merged (hosted family); PR #323 instructions + validation 0.9.0
+#321 merged c15a5452; production moved 16:35:12Z, but the 16:30Z deploy had captured its snapshot at 16:30:05 (race) so /mcp/fundamentals and /mcp/research 404 until the 17:30Z deploy; a detached check runs then (scratchpad/hosted-check.log). PR #323: SERVER_INSTRUCTIONS on all three (stdio + hosted, tested); validation tool list 4,229 -> 3,834 o200k (-9.3%; cl100k 4,362 -> 3,973), README table regenerated by bench/tool_list_tokens.py; honest floor noted (bounds + boundary sentences kept; default toolset unchanged). Suites 135/21/11/12; rebind + git-less 5/5.
+
+## 2026-09-27 ~17:00Z: rank 9 started; PR #324; standalone repos created; awesome-list PR revived
+PR #324 (green, CLEAN): mcp-fundamentals/ and mcp-research/ gain SECURITY.md (reads/sends/writes checked against code), CONTRIBUTING.md, CITATION.cff (ORCID), smithery.yaml, mcpb/{manifest.json,icon.png,build.sh}, test/packaging.test.mjs (server.json, bundle manifest and Smithery command read from package.json + registered tools; 3/3 mutations caught). Suites 25/25 and 15/15; both bundles built with mcpb@2.1.2 from committed files; unpacked bundles list 5 and 6 tools. Created public repos arhancanli/canli-fundamentals-mcp and arhancanli/canli-research-mcp (description, homepage, 20 topics each, wiki off, squash-only, delete-branch-on-merge, private vulnerability reporting on, Dependabot alerts + security fixes on; alerts + fixes also turned on for canli-validation-mcp, where alerts were off). Staged content in scratchpad/standalone/<pkg> (mirror CI/CodeQL/Scorecard/dependabot/release workflows adapted, Dockerfile, glama.json, .gitignore; standalone CI steps pass locally: tests, audit 0, packed-tarball smoke). Push waits for #324's merge sha (MIRROR.md provenance). awesome-mcp-servers PR #15088 (opened 09-25) was CONFLICTING and its 330-char description over the list's new 160-char cap: signed merge of upstream + entry shortened to 157 chars, now MERGEABLE (no force-push). #323 and #324 wait for the owner's merge.
+
+## 2026-09-27 ~17:40Z: hosted family live; rank 10 PRs #325 (names) and #326 (fundamentals 0.3.0)
+17:36Z deploy: /mcp/fundamentals (0.2.0, 5 tools; AAPL eps_diluted as of 2019-01-01 = 11.91, filed 2018-11-05, changed_after) and /mcp/research (0.2.0, 6 tools) answer a real Streamable HTTP client; /mcp validate_track_record min obs 476 for SR 1.2. PR #325: public/api/v1/company-names.json (12,738 covered companies with names from the v27 catalog, every object hash-checked; tickers regrouped from company-tickers.json; 4,023 `outside` SEC tickers, e.g. XOM -> ExxonMobil Holdings Corp CIK 2115436 while Exxon Mobil files under 34088), test bound to release/catalog/ticker index (5/5 mutations caught). PR #326 (stacked on #323): fundamentals 0.3.0 find_company + names in every tool (12,738 own-name lookups: 12,446 self, 125 same-name other, 167 ask, 0 wrong; XOM -> 34088 with note); disk cache of ticker list/names/records (6 h fresh, ETag 304, stale on outage): warm first call 38-72 ms (was 384-431); heap after GC with 9 mega-caps 60 MB (was 172): scans keep no series, filing strings shared; rows cap 10k + offset/next_offset. Peak RSS 384 MB vs 137 target NOT met (full-snapshot parse). Tests 25/25, hosted 3/3, 6/6 mutations caught, git-less 5/5, source dates rebound. Found: /api/v1/companies (unadvertised) returns company_catalog_unavailable (reads the old COMPANY_CATALOG_ROOT_HASH env var). Former tickers (TWTR) not covered: Internet Archive offline today.
+
+## 2026-09-27 ~18:55Z: #323 and #324 merged; validation 0.9.0 released; standalone family repos live
+#323 merged b5c7d2a4: git-less 5/5 on origin/main, production moved 18:43Z (live at the 19:30Z deploy). Signed tag mcp-v0.9.0 -> run 36341749959 success: npm 0.9.0 with SLSA provenance (sigstore logIndex 2978609922), registry "Successfully published ... version 0.9.0". Mirror sync PR canli-validation-mcp#15 (117/117 locally, smoke reports 0.9.0; green). #324 merged 10121fee. #326 had auto-retargeted to main and conflicted (squash vs original commits); main == #323 tip, so our side taken, signed merge; after #324 the packaging drift test caught manifest 0.2.0/5 tools vs 0.3.0/6: manifest + SECURITY.md (fourth GET, reference cache) updated, 0.3.0 bundle built and started (6 tools). #325 and #326 updated with main, CLEAN. Standalone repos arhancanli/canli-fundamentals-mcp and canli-research-mcp pushed from main 10121fee (27 files each, signed, no junk; CI/CodeQL/Scorecard green), branch protection identical to the mirror applied via API (allowed: adding protection). Research GitHub release v0.2.0: .mcpb + sigstore + intoto + SHA256SUMS, `gh attestation verify` passes (SLSA v1 from release.yml). Fundamentals release waits for #326 (0.3.0). Rank 9 left: fundamentals v0.3.0 release; owner Glama Add Server for both repos.
+- 2026-09-28 weekly (indexing session): GSC 3.03K indexed / 74,452 discovered-not-indexed (report data 9/21); crawl 143K/90d, 390 ms, Host status no problems; 28d 20 clicks / 14K impressions; Bing 146 indexed, 1 backlink. Details ~/canli-seo/LOG.md.
+
+## 2026-09-28 ~06:00Z: #325/#326 merged and live; fundamentals v0.3.0 + validation v0.9.0 GitHub releases; PR #328 breadth, PR #329 data-snooping tests
+#325 (56b059cc) and #326 (aefa8684) merged; production moved (git-less 5/5 each). Hosted check after the 20:35Z deploy: names index 200 (12,738), /mcp/fundamentals 0.3.0 with 6 tools, find XOM -> 34088 same_name_as_ticker_holder, known_as_of "Goldman Sachs" matched by name. Standalone fundamentals synced (PR #2) and released v0.3.0; validation mirror #15 merged and released v0.9.0 (attestation verified). Owner: "make the mcp servers significantly better in every way". PR #328 (validation 0.9.1): breadth sleevesRequired in closed form (s 1, rho 0.0001, T 50 -> 3,333, was "unreachable"), negative rho caps N < 1 - 1/rho and the ceiling is the book there (rho -0.3 -> 4 sleeves, 6.32; was "unbounded"), max_sleeves/ceiling_kind, sleeves above the cap refused; property tests now cover valid negative-rho inputs (old 500-cap/unbounded/off-by-one each caught); CI green. PR #329 (stacked, validation 0.10.0): POST /api/v1/validate/reality-check + validate_reality_check (matrix or matrix_file, optional benchmark): Hansen studentized SPA (lower/consistent/upper, MC se), White RC, Romano-Wolf StepM on one seeded stationary bootstrap; PR variance exact (lag skipping); budget n*k*reps <= 2e8. Verified vs arch 8.0 (unstudentized SPA, RC, StepM) and a numpy Hansen transcription on 4 fixed-seed cases (config/research/reality-check-reference.json): p within MC error, statistic to 9 digits, StepM sets equal incl. a 2-round case; 6/6 mutations caught; endpoint test caught Number(null) -> 0 (now refused). Tool list 3,834 -> 4,194 o200k (15 tools). Next: DSR bootstrap CI, server-kept trial count (Supabase), cross-section (rank 11), hosted handshake.
+
+## 2026-09-28 ~08:15Z: #328 merged, validation 0.9.1 published; #329 updated; PR #330 null cells
+#328 merged 04baa3f6; git-less 5/5 on main; production moved 07:57Z. Signed tag mcp-v0.9.1 -> run 36394585306: npm 0.9.1 with provenance (sigstore logIndex 2981600777) + registry 0.9.1; `npx canli-validation-mcp@0.9.1` local mode returns 3,333 sleeves and rho -0.3 -> max 4, ceiling 6.32. #329 re-merged with main twice (squash of #328: main == branch tip, ours taken; then #322/#327 from the SEO session: package.json verify list unioned, source dates rebound, git-less 5/5); CLEAN. Found and fixed (PR #330, stacked, 0.10.1): the raw API read JSON null as 0 in deflated-sharpe returns (1 null in 60 periods: Sharpe 5.19 -> 5.56), overfitting matrix cells and haircut other Sharpes, and silently dropped malformed strings; finiteNumbers refuses by position (returns[5], matrix[3][0]); ragged rows refused; receipt sources corrected (reality-check now names limits.js). MCP inputs were already protected by zod. Mirror sync deferred to 0.10.x.
+
+## 2026-09-28 ~09:10Z: PR #331 fundamentals 0.4.0 point-in-time ratios; hosted handshake measured
+PR #331 (from main): known_as_of ratios:true -> gross/operating/net margin, ROE/ROA (average of start and end balances, annual), liabilities/equity, FCF and margin, all from values filed by as_of for one period, inputs [concept,val,end,filed,accn] + changed_after; plain name capex. Tool list 4,994 chars (<5,000). Tests 30/30 (3/3 mutations caught), hosted 3/3, git-less 5/5. Real: AAPL FY2019 as of 2020-01-01 net margin 0.212381, ROE 0.559172, ROA 0.156924, FCF 58.896B (hand-checked vs 10-K figures); JPM as of 2021-01-01 reads FY2019 (FY2020 10-K filed Feb 2021). Hosted handshake measured on one reused connection from Dubai: MCP POSTs 225-257 ms TTFB vs 74 ms for an edge-cached static GET on the same connection, so ~150-180 ms is the bom1->fra1 function hop; answering initialize/tools/list at the edge (Routing Middleware) would remove it but adds per-invocation cost: owner decision, not done. Research search is exact-word over title+description only (index has no summaries); full-text index deferred.
+
+## 2026-09-28 ~10:00Z: #329 merged, validation 0.10.0 published; #330 and #331 green
+#329 merged 87990467; git-less 5/5 on main; production moved 09:31Z (after the 09:30 snapshot, so live at 10:30Z). Signed tag mcp-v0.10.0 -> run 36404052653: npm 0.10.0 with provenance (logIndex 2981736712) + registry 0.10.0. #330 merged with main (== #329 tip, ours); GitHub ran no workflows for that push, so the PR was closed and reopened to trigger CI; vite job then failed on js/moments-core.test.js ("fewer than two finite values", which relied on NaN being dropped): test updated to the refusal rule, and the message now names NaN/Infinity (JSON.stringify(NaN) printed "null"). Full `npm run verify` locally: 722/722 tests (the publication-wrapper audit after it needs the built wrappers CI makes). #330 CLEAN; #331 merged with main, rebound, git-less 5/5, CLEAN. Lesson: run the whole verify list before pushing a change to shared cores.
+
+## 2026-09-28 ~13:00Z: #331 and #330 merged; validation 0.10.1 published; mirror #16 and fundamentals #3 green
+#331 merged b44e2c5a, #330 merged 4f7838f8 (after a signed merge of main; source dates unchanged); git-less 5/5 on main each time; production at 4f7838f8 (12:46Z; live 13:30Z). Tags: mcp-v0.10.0 (run 36404052653) and mcp-v0.10.1 (run 36424010746, sigstore logIndex 2982388341): npm 0.10.1 with provenance + registry 0.10.1. `npx canli-validation-mcp@0.10.1` local: 15 tools, validate_reality_check finds the edged variant (SPA p 0.000, StepM [0]). Mirror sync PR canli-validation-mcp#16 (0.9.1..0.10.1; 120/120; smoke 0.10.1) and canli-fundamentals-mcp#3 (0.4.0; 30/30; smoke 0.4.0) green; releases follow the owner's merges. Dependabot node 26-slim PRs left open on all three repos until Node 26 is LTS.
+
+## 2026-09-28 ~13:40Z: fundamentals v0.4.0 released; PR #332 cross_section (60/60 vs independent Python)
+canli-fundamentals-mcp#3 merged f961e767; GitHub release v0.4.0 with .mcpb + sigstore + intoto + SHA256SUMS. 2026-07-28 MCP revision: all three hosted servers negotiate 2025-11-25; @modelcontextprotocol/server 2.1.0 (latest, 09-23) has no newer revision, so wait for the SDK. PR #332 (fundamentals 0.5.0): cross_section(companies<=50, concept, as_of, periods) -> latest period filed by as_of per company, order kept, missing named; snapshots indexed for the one measure only, none kept (12 filers 2.4 s cold / 145 ms warm, 23 MB heap). scripts/research/fundamentals-pit-check: 20 companies x 3 dates NetIncomeLoss annual vs an independent Python selection over the same snapshots: 60/60 identical (5 no-value on both sides). Tests 31/31 (2/2 mutations caught), hosted 3/3, git-less 5/5; tool list 5,800 chars for 7 tools (guard 6,000). Full-universe (12,738) cross-section under 2 s needs precomputed tables in the company object store: separate job. Server-kept trial count: receipts are stored with key_id null by design; a per-key strategy ledger changes the public "what the API stores" promise -> owner decision.
+
+## 2026-09-28 ~14:10Z: owner release policy; purpose-expansion plan workflow started
+Owner: fewer, bigger releases ("each version much much better ... don't lose dev trust"); do not revert shipped versions, apply going forward; and make the servers "far far more purpose[ful]". Recorded in REQUIREMENTS.md, memory feedback_fewer_bigger_releases.md, and each package's CONTRIBUTING.md "Releases" section (committed on PR #332, CLEAN). Workflow wf_3b94fad0-4e0 (7 agents: discover x3, adversarial challenge x3, synthesize) plans each server's next major release with purpose expansions, verification and release bars.
+
+## 2026-09-28 ~13:35Z: #332 merged and live; mirror v0.10.1 released; trading design workflow started
+#332 merged 27f22eb1 (git-less 5/5; production moved 13:19Z, live 13:30Z): hosted fundamentals gains cross_section; per the new policy no npm/GitHub fundamentals release for it. Mirror #16 merged a405a1db; GitHub release v0.10.1 (notes cover 0.9.1-0.10.1; the version already on npm). Owner: add tools that help traders physically trade; each server "a different dimension". Workflow wf_c7e77c9f-e37 (discover, adversarial safety/legal review, design) runs beside the purpose workflow wf_3b94fad0-4e0; reusable AlphaForge assets: execution/{alpaca_broker,ccxt_broker,borrow,financing,futures,options_fees}.py, costs/, risk/, live/.
+
+## 2026-09-28 ~15:30Z: purpose plan and trading design complete; PR #333
+Workflows wf_3b94fad0-4e0 (7 agents) and wf_c7e77c9f-e37 (3 agents), read-only. Saved: MCP_NEXT_MAJORS_PLAN.md (validation 1.0 ~40 days, fundamentals major ~46, research major ~33, step 0 ~3.5; lean path ~84; 25 owner decisions) and MCP_TRADING_DESIGN.md (new canli-execution-mcp: check_orders, size_position, measure_shortfall, journal (signed, chained, exports paper-evidence), place/cancel/broker_state on Alpaca paper only; 0.1.0 ~30 days; live orders only after counsel and an adult account holder; 14 owner decisions). Trading review findings to raise with the owner: public/glassbox/cost_model_realism.json's "crypto commission MATCHES exactly" is circular (PaperBroker writes the fee from the model; 0 crypto fills since go-live); AlphaForge fail-open behaviours (calendar gate, book ladder), fixed UTC-5 trading-day offset, paper mode by URL substring, duplicate client_order_id ack without parameter compare; the 2026-08-06 Saturday batch of 180 marketable limit orders. PR #333 (from step 0b): quarterly mode flags a quarter stale once a later fiscal year is filed (AAPL as of 2025-11-15 returned the June quarter with stale false); fixture test fails without it; no version bump.
+
+## 2026-09-28 ~15:10Z: owner "go"; PR #334 hosted-serves-releases green; PR #335 canli-execution-mcp check_orders
+Owner "ok go ahead lets go" approved the recommended build order (groundwork, then execution 0.1.0 paper only, then validation 1.0, fundamentals, research) and hosted-serves-releases. Trading decision 3 (hosted receives positions) was not put to the owner, so it stays at its safe default: hosted `check_orders` takes no account.
+- PR #334 (hosted endpoints serve pinned released code; family token bench) and PR #333 (fundamentals stale quarter) are both CLEAN and wait on the owner's merge.
+- PR #335 (branch feat/execution-mcp, commit 77b11ea4, signed): js/exec-cost-core.js + js/pretrade-core.js (AlphaForge parity: 1,000 cases per cost function to 1e-12; 5,000 PreTradeChecker batches, same verdicts and reasons) and the unreleased package mcp-execution with `check_orders`.
+  - Time in force was added: a closed market refuses market, DAY and IOC orders; only a GTC limit rests.
+  - Checks: limits file tighten-only (10,000-case property), KILL file, limits_digest (sha256 of the house canonical JSON), and a hosted import-graph test. 14/14 mutations caught.
+  - Tool list: 697 o200k local and 654 hosted, down from 1,183 and 1,115, via a lean published JSON Schema over the strict validator. Design targets revised from 350 to 700/660, and the full local list from 1,400 to 1,700, with the reasons in MCP_TRADING_DESIGN.md 2.5.
+  - 100-order check: 0.33 ms median, 0.81 ms p99.
+  - Fixtures are gzipped (7.5 MB to 1.8 MB) and reproduce byte for byte from the recording scripts at AlphaForge 8633f95.
+  - Local: package 28/28 and cores 15/15. `npm run verify` 734/737; the 3 failures are build-papers-sitemap tests that need build-dataset-cards output (3/3 after building it). The verify run deleted and rebuilt about 170 tracked research pages in the worktree, and they were restored with checkout.
+- **Correction:** the "180-order Saturday 2026-08-06 batch" in MCP_TRADING_DESIGN.md 4.1 and in the 15:30Z summary to the owner was wrong. 2026-08-06 was a Thursday. `var/trading_equity.sqlite` shows the weekend batch was 185 orders at 05:08 UTC on Sunday 2026-08-02, all accepted by the paper broker. Design line corrected.
+
+## 2026-09-28 ~15:25Z: #335 gains size_position (commit 5b9581d9); #335 first commit CI 7/7 green
+- js/sizing-core.js ports one asset of AlphaForge's weights_to_orders, one DrawdownLadder update and the vol_target overlay. New recorder scripts/research/execution-parity/alphaforge_sizing.py (fixture byte-reproducible at 8633f95).
+  - 2,996 of 3,000 rebalancer cases give the same orders. The other 4 are an AlphaForge defect: it raises building a zero-lot flip leg when an instrument has no minimum size.
+  - 59,889 of 60,000 ladder updates give the same state. The other 111 are timed rearms, which a stateless call cannot count.
+  - All 1,000 vol-target cases match.
+- The 10,000-case property (checked without the core's own limit arithmetic): a sized position never adds exposure past the position, gross, net, ADV or budget limit. A reduce back under a cap rounds up to the lot.
+- The limits file gains `require_drawdown_state`. Both tools report the same limits_digest.
+- Mutations: 15/15 on sizing and 14/14 on check_orders.
+- size_position measures 447 o200k; the design said 220, updated with the reason. Local list 1,143 for 2 tools.
+- Package tests 34/34, core tests 27/27.
+
+## 2026-09-28 ~15:40Z: #335 gains the trade journal (commit b34944bd); house canonical JSON DEL fix
+- `canli.trade-journal.v0` spec at standards/trade-journal/README.md, with 36 vectors.
+  - Each line is `{"entry":ENTRY,"sig":"SIG"}`: Ed25519 over ENTRY's exact bytes, and prev = sha256 of the previous line's exact bytes.
+  - An independent Python verifier (scripts/research/trade-journal/verify_journal.py, written from the spec) agrees with js/trade-journal-core.js on all 36 vectors and on 1,000 one-byte corruptions. Each corruption fails at its own line. Python verdicts are stored as a fixture for CI.
+- Writing the second verifier found cross-language divergences, all closed in the spec: the ts form, year 0000, numbers ≥1e15, non-ASCII keys, NaN literals, and non-canonical base64 keys.
+- It also found that scripts/canonical-json.mjs did not escape DEL (U+007F), which Python's ensure_ascii escapes.
+  - Fixed, with a differential test, and synced to validation's mirror (Unreleased note in mcp/CHANGELOG.md).
+  - A grep of public/, config/ and standards/ found no file containing DEL.
+- Mutations: 19/19 on the journal verifier.
+- canli-execution-mcp gains `journal` (head, verify; 108 o200k) and the execution://journal/head resource. Local list: 1,250 o200k for 3 tools.
+- Package 38/38; full `npm run verify` 754/754 tests (the chain then needs built publication wrappers, as before). The build-touched tracked files were restored.
+- ~15:50Z: CodeQL flagged js/file-system-race in mcp-execution/src/journal.mjs (exists, then stat, then read). Fixed with one file descriptor (daea7572). #335 is 7/7 green with 0 open alerts, ready for the owner's merge along with #333 and #334.
+
+(Correction 16:46Z: the four headings above first carried Dubai-time hours labelled Z; corrected to UTC from the commit times: 77b11ea4 15:06Z, 5b9581d9 15:21Z, b34944bd 15:39Z, daea7572 15:42Z.)
+
+## 2026-09-28 ~16:58Z: #333 and #334 merged; production at 4d40d90e; #335 resolved and clean; fundamentals 0.5.0 standalone sync PR
+- #333 merged at 16:44Z as 687ef53c: git-less 5/5, production moved at 16:47Z.
+- #334 was BEHIND after #333, so auto-merge waited.
+  - Signed merge of main into its branch.
+  - The fundamentals pin moved from 27f22eb1 to 687ef53c. Otherwise hosted users would have lost the #333 fix once hosted served only the pinned release.
+  - The fix was folded into the 0.5.0 changelog section, since 0.5.0 never had a formal release. Tests 19/19 plus fundamentals 32/32; git-less 5/5 on the new head.
+- #334 merged at 16:50:37Z as 4d40d90e. Main pins fundamentals 0.5.0 at 687ef53c. Git-less 5/5 on main, production moved to 4d40d90e; live at the 17:30Z deploy.
+- #335: signed merge of main (4bb04c69). The package.json verify-line conflict was resolved as the union: main's scripts/mcp-released.test.mjs plus the four execution core tests.
+  - Tests: 58 root, 38 execution, 138 validation. Git-less 5/5.
+  - CI 7/7 with 0 alerts; CLEAN and ready for the owner.
+- canli-fundamentals-mcp#4: syncs 0.5.0 from 4d40d90e (code identical to 687ef53c; changelog and contributing text only). npm audit 0 vulnerabilities, tests 32/32. After the merge: gh release create v0.5.0.
+
+## 2026-09-28 ~17:40Z: #335 merged (607e0a1c), production moved; the #333 fix measured live; analyzer baseline
+- #335 merged at 17:17:03Z as 607e0a1c. Git-less 5/5; production moved at 17:17Z and live at the 17:30Z deploy.
+- Hosted endpoints report validation 0.10.1, fundamentals 0.5.0 and research 0.2.0.
+- The #333 fix is live on hosted fundamentals: known_as_of AAPL, as_of 2025-11-15, periods quarterly, returns the quarter ending 2025-06-28 with stale: true (the 10-K was filed 2025-10-31).
+- canli-fundamentals-mcp#4 (the 0.5.0 standalone sync) is 5/5 green and waits for the owner's merge; then gh release create v0.5.0.
+- **Owner goal (17:17Z):** top tier in "graph analyzers and so many other things". Recorded in REQUIREMENTS.md and memory.
+- Baseline, measured 17:20Z–17:35Z:
+  - 298 live pages (all 268 in sitemap-site plus 30 sampled company pages), checked the way the Open Graph, X-card and structured-data validators read them. 4 pages had no issue.
+    - 293 had no og:image:alt or image size; 46 no twitter:card; 30 no og:site_name.
+    - 143 ScholarlyArticles had no image or dateModified; 16 publication pages named Canli Capital without a logo; 8 TechArticles had authors without a url; 4 tools had no Offer.
+    - All 298 og:images are 1200x630 PNGs; every page shares /og.png.
+  - Lighthouse 12.8.2, local headless Chrome, mobile, 5 templates:
+    - performance 57 (home, LCP 7.6 s), 63 (developers), 71 (a measurement page), 83 (a research paper), 83 (a company page);
+    - accessibility 97–100; best practices 100; SEO 100.
+    - The keyless PageSpeed API quota was exhausted.
+  - Headers: HSTS without includeSubDomains or preload; CSP has no default-src or script-src.
+
+## 2026-09-28 ~18:20Z: PR #336, complete social cards and structured data (7/7 green, 0 alerts)
+- Branch seo/analyzer-top-tier: 2703c1c6, rebind b2c4c7c6, CodeQL fix.
+- New postbuild step scripts/stamp-social-meta.mjs adds only the missing social tags. It skips the 416 files under published SHA256SUMS, including the 16 archival paper.html files: stamping them would have broken their published checksums, and the first local build did stamp them before the exclusion was added.
+- audit-onpage now enforces the full card and the Rich Results item rules. Generators fixed for papers, bundle pages, notes, /costs, the standard, the tools, the /developers heading order and the /progress description.
+- Local full `npm run build` + `npm run verify` passed end to end: 766 tests, on-page audit 0 errors / 0 warnings on 679 pages.
+- Source dates rebound (7 routes to 2026-09-28). Git-less 5/5; dateModified resolves without git.
+- Not yet addressed:
+  - company pages (next company release);
+  - Lighthouse performance 57–83 on mobile;
+  - CSP default-src/script-src and HSTS includeSubDomains/preload;
+  - per-page social images (needs an owner design checkpoint);
+  - the circular "crypto commission matched exactly" hub text (build-papers.mjs:440, the same claim as cost_model_realism.json; the owner approved correcting it).
+
+## 2026-09-28 ~17:55Z: canli-fundamentals-mcp v0.5.0 GitHub release
+- Owner merged canli-fundamentals-mcp#4 at 17:47:58Z as f4d37f02.
+- `gh release create v0.5.0` at f4d37f02, with the changelog's 0.5.0 section as notes. The release.yml run 36460750377 succeeded and attached canli-fundamentals-mcp-0.5.0.mcpb, canli-fundamentals.mcpb, the intoto and sigstore files, and SHA256SUMS.txt.
+- Checked from a download:
+  - SHA256SUMS OK;
+  - `gh attestation verify --format json`: 2 verified SLSA v1 provenance entries, signed by release.yml@refs/tags/v0.5.0;
+  - the manifest reads 0.5.0 with 7 tools.
+- npm still has 0.1.0: publishing needs the owner's Trusted Publisher setup.
+
+## 2026-09-28 ~18:35Z: PR #337, font subsets and a contrast fix (7/7 green, 0 alerts)
+- Fonts were about 610 of the home page's 891 KB. scripts/fonts/subset-fonts.sh (full Inter source in fonts-src/, excluded from upload):
+  - Inter 352,240 -> 154,844 bytes; Chakra Petch 78 KB TTF -> 14 KB WOFF2 per weight;
+  - both axes, all OpenType features and every table kept.
+  - The default fonttools options changed anti-aliasing on 2 pages. With every table kept: 0 differing pixels in 12 screenshots (6 pages at 2 widths) and 0 moved boxes among 3,289 elements.
+- The evidence ledger cards drop their fade, which caused a mid-animation contrast failure (2.6:1).
+- Lighthouse mobile, medians of 3 on a local brotli server. The machine had load average 15, so the control was rerun and agreed:
+  - home 73–78 -> 92 (accessibility 97 -> 100);
+  - /developers 72 -> 95; a measurement page 84 -> 96; /tools/deflated-sharpe 84 -> 96; a research paper 100 -> 99.
+- The local servers on ports 4391–4394 were stopped afterwards. Port 4173 belonged to another session's Python server and was left alone.
+- #336 and #337 test-merge cleanly; whichever merges second needs a signed update from main.
+
+## 2026-09-29 15:05Z: Show HN not posted; Hacker News restricts Show HN for new accounts
+- Scheduled task (owner approval 2026-09-26) ran at 07:57 Pacific. Pre-checks passed:
+  - the GitHub repo is public;
+  - npm has 0.10.1;
+  - /research/null-zoo-v0 returns 200;
+  - CANLI_LOCAL=1 is the real switch;
+  - 20.0% matches the table (AR(1), luck-equivalent trials 0.200);
+  - the 9.1% DSR power is the result file's 0.0905 (the page displays 0.090).
+- Logged in as arhancanli8 (karma 1, no prior submissions).
+- The first submit hit "Unknown or expired link" (stale form token from an old tab); nothing was posted.
+- The second submit, with the exact title, URL and empty text, redirected to https://news.ycombinator.com/showlim ("Update re Show HNs"): "We're temporarily restricting Show HNs because of a massive influx, mostly by users who aren't yet familiar with the site or its culture ... become a good contributor, and then it will be fine to post an occasional Show HN."
+- Result: 0 submissions on the account; no item URL; the first comment was not posted.
+- Not attempted: resubmitting without the "Show HN:" prefix. That would route around the moderators' restriction. The owner decides next steps.

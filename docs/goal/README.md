@@ -1,7 +1,20 @@
 # Persistent CanliCapital goal
 
+Current continuation (2026-10-01): Codex launched the goal and recovered the owner's Claude
+instructions. Read MASTER_PLAN.md for the full goal structure and CLAUDE_RECOVERY_20261001.md
+for the verified stopping point. Active worktree:
+`/Users/arhancanli/canlicapital-continuation-20261001`. The MCP/annotation continuation
+merged as #339; current branch `review/claude-seo-20261001` updates the existing #336.
+STATUS's newest section supersedes the historical working-location notes below.
+
+Both origin/main's records and the differing local Claude STATUS/LOG were archived byte-for-byte
+under `history/` with `origin-main-*` and `claude-local-*` names dated 20261001. Current STATUS/LOG
+retain origin/main's chronology and append the verified continuation. The raw Claude archives
+retain links as written in the original expansion folder. Earlier failures remain available.
+
 This folder is the continuity record requested by the owner on 19 September 2026.
-The session goal is active. Current task ledger:
+The session goal is active. On 20 September 2026 the owner assigned all implementation
+and review to Codex directly; Hermes delegation is stopped. Current task ledger:
 `EXECUTION_LEDGER.md`. This folder does not claim the goal has been achieved.
 
 Read in order before each phase and after every chat compaction:
@@ -17,13 +30,13 @@ Do not assume a command finished, a PR merged or production changed because it w
 planned. Update the records after verification. Status records describe material
 transitions, not continuous telemetry or proof that background work is running.
 
-Working locations:
+Historical working locations (September 21; newest STATUS supersedes these):
 
 - Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/batch2-remaining-legacy-20260921`. PR168 merged with tested tree verified. Scope-v31:672 reviewed/128 pending;101 targeted tests pass. Latest full release checks/archive cover scope-v29. Recovery79720 running; expansion unpublished. STATUS.md records exact evidence.
-- Production checkout: `/Users/arhancanli/canlicapital-production-20260920` (the hourly deploy's design source), detached at 3915e039 (PR205, v27 activation) since 2026-09-23. Inspect actual deployment/alias state before claiming new production behavior.
-- Activation: `config/company-production-activation.json` pins release 389ae2ca…, storage bases and `config/company-admission-v27.json` (filing family, historical filers, option C flag sets; the filing sidecar `config/company-filing-admission-v26.json.gz` feeds the sitemap step). Rebuild admissions with `scripts/build-company-admission.mjs` from the release's discovery, selected-quality report, scope ledgers and `--admit-flags`.
+- Production checkout: `/Users/arhancanli/canlicapital-production-20260920` (the hourly deploy's design source), detached at f6d37926 (PR170) since 2026-09-21. Inspect actual deployment/alias state before claiming new production behavior.
+- Activation: `config/company-production-activation.json` pins release 7573eb42…, storage bases and `config/company-admission-v22.json`. Rebuild admission with `scripts/build-company-admission.mjs` from the v22 discovery, selected-quality report and scope ledgers.
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.
 - SEC collector quality: `/Users/arhancanli/alphac-source-quality-20260919`, branch `fix/sec-companyfacts-source-quality`; PR https://github.com/arhancanli/alphac/pull/70. Tests use the security worktree's existing Python environment; do not commit a .venv symlink.
-- Original website and engine worktrees contain existing work and runtime state. Keep changes isolated; do not overwrite the owner's work.
+- Original website and engine worktrees contain existing work and runtime state. Keep changes isolated; do not overwrite other agents' or the owner's work.
 - Engine integration verification: `/Users/arhancanli/alphac-integration-20260920`, branch `integration/owner-goals-20260920`. PR https://github.com/arhancanli/alphac/pull/71 merged as0aff241a on September20 after all six CIjobs passed. The merged tree matches the reviewed candidate; running-engine activation remains pending.

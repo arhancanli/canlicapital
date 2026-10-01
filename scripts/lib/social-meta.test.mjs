@@ -81,6 +81,9 @@ test("an app needs a category and an offer; a breadcrumb is numbered and linked;
   const app = { "@type": "WebApplication", name: "Tool", applicationCategory: "FinanceApplication", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } };
   assert.deepEqual(jsonLdProblems(ld(app)), []);
   assert.match(jsonLdProblems(ld({ ...app, offers: undefined }))[0], /no offers/);
+  for (const offers of [{}, { price: -1 }, { price: "unpriced" }, { price: "" }]) {
+    assert.match(jsonLdProblems(ld({ ...app, offers, aggregateRating: { ratingValue: 5 } }))[0], /nonnegative price/);
+  }
   assert.match(jsonLdProblems(ld({ ...app, applicationCategory: undefined }))[0], /no applicationCategory/);
   const crumbs = (items) => ({ "@type": "BreadcrumbList", itemListElement: items });
   assert.deepEqual(jsonLdProblems(ld(crumbs([{ position: 1, name: "Home", item: "https://canlicapital.com" }, { position: 2, name: "Here" }]))), []);
