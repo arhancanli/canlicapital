@@ -521,3 +521,19 @@ this isolated checkout. Proof: artifacts/goal/annotation-intake-integration-qual
 Signed exact-head PR update/CI/merge and live delivery are next; not yet claimed.
 Journal344 remains primary-owned and pending its independent correction recheck;
 secondary owns the later analyzer phase. All master objectives remain active.
+
+
+Secondary analyzer phase (2026-10-01): reviewed code batch merged74d704d4;
+primary owns joint deployment/live verification. New assist/mcp-analyzers-secondary
+checkout owns actual developer+four MCP canonical-page measurements and demonstrated
+generator/CSS fixes. Preparing local tools; live baseline requires primary receipt.
+No measurement/new score yet. All original owner objectives and claim boundaries remain.
+
+
+Secondary raw-download correction (2026-10-01): deployed74d independently verified,
+both missing noindex headers reproduced. Signede513e79e correction preserves five
+v0 byte hashes; focused14/full829+6/6990errors0warnings/clean Git-free build pass.
+Initial preview-parity failure retained and corrected. Small PR/exact CI/primary
+review and live header verification next. Five developer/MCP pages have retained
+live Lighthouse/axe baseline; generator/CSS defects follow after this header freeze.
+All owner goals remain active; no indexing, human/model or field-performance claim.

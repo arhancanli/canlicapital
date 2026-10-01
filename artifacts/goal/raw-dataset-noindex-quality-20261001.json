@@ -1,0 +1,280 @@
+{
+  "schema": "canli.raw-dataset-noindex-quality.v1",
+  "checked_at": "2026-10-01T12:10:05.077494+00:00",
+  "base_commit": "74d704d45df502e8a76c37439415842b47b93cb7",
+  "implementation_commit": "e513e79ea87cd21f1d61fd8c84fb5ffb92907883",
+  "implementation_signature": "G, SSH verified locally",
+  "source_sha256": {
+    "vercel.json": "25c744205442163cc66b0e5a01fb5bc50bbb88709fac655645141264e7c33364",
+    "vercel.company-preview.json": "6e27eed04d3333bfa7f1fa570a16a7bd9cae461ded5b736fd7bfe9c21a8392d8",
+    "scripts/api-noindex.test.mjs": "29320c64ca442d98ef5777b56ccd639ec77e77e78019b97a81475e550e2d772d"
+  },
+  "problem": "Live JSONL dataset and extensionless SHA256SUMS lacked X-Robots-Tag: noindex while the other three raw JSON downloads already carried it.",
+  "change": "Add jsonl to the raw extension rule and a complete /datasets/(.*)/SHA256SUMS rule; regenerate identical base headers in the company-preview config. HTML canonical routes remain outside these two rules.",
+  "before_live": {
+    "checked_at": "2026-10-01T12:01:46.900Z",
+    "site_commit": "74d704d45df502e8a76c37439415842b47b93cb7",
+    "receipt_sha256": "95bd9643be3d65aaabb6a57bcfe68072b496b916f23acf8f28a0da6f16ed9971",
+    "scope": "Fresh GET responses before correction; no inference about actual search indexing.",
+    "rows": [
+      {
+        "path": "/datasets/filing-facts/v0/filing-facts-v0.jsonl",
+        "status": 200,
+        "url": "https://canlicapital.com/datasets/filing-facts/v0/filing-facts-v0.jsonl",
+        "bytes": 1663084,
+        "sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+        "x_robots_tag": null,
+        "content_type": "application/octet-stream",
+        "cache_control": "public, max-age=0, must-revalidate",
+        "x_vercel_cache": "HIT",
+        "matches_committed_bytes": true,
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/datasets/filing-facts/v0/SHA256SUMS",
+        "status": 200,
+        "url": "https://canlicapital.com/datasets/filing-facts/v0/SHA256SUMS",
+        "bytes": 343,
+        "sha256": "b54dca812414ede42ab7258dbb83fa3c041a71a4ff5223691b3dc2c00525e1d8",
+        "x_robots_tag": null,
+        "content_type": "application/octet-stream",
+        "cache_control": "public, max-age=0, must-revalidate",
+        "x_vercel_cache": "HIT",
+        "matches_committed_bytes": true,
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/datasets/filing-facts/v0/ff-eval-closed.json",
+        "status": 200,
+        "url": "https://canlicapital.com/datasets/filing-facts/v0/ff-eval-closed.json",
+        "bytes": 32458,
+        "sha256": "450bff2b316adf5e8f4562d4cacdceca143c6b10ed657ecefa02af24e4c95720",
+        "x_robots_tag": "noindex",
+        "content_type": "application/json; charset=utf-8",
+        "cache_control": "max-age=0, must-revalidate, s-maxage=60, stale-while-revalidate=300",
+        "x_vercel_cache": "HIT",
+        "matches_committed_bytes": true,
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/datasets/filing-facts/v0/ff-eval-mcp.json",
+        "status": 200,
+        "url": "https://canlicapital.com/datasets/filing-facts/v0/ff-eval-mcp.json",
+        "bytes": 32324,
+        "sha256": "50a88c0c383ac492a8c1c2d489a1c5830c478a71ae7bab7660fd2878a73cb6c6",
+        "x_robots_tag": "noindex",
+        "content_type": "application/json; charset=utf-8",
+        "cache_control": "max-age=0, must-revalidate, s-maxage=60, stale-while-revalidate=300",
+        "x_vercel_cache": "HIT",
+        "matches_committed_bytes": true,
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/datasets/filing-facts/v0/gold-packet-v0.json",
+        "status": 200,
+        "url": "https://canlicapital.com/datasets/filing-facts/v0/gold-packet-v0.json",
+        "bytes": 28263,
+        "sha256": "91c6f960e34509653800a4cda81bd0632dd58c889ee78eb6461a985765500413",
+        "x_robots_tag": "noindex",
+        "content_type": "application/json; charset=utf-8",
+        "cache_control": "max-age=0, must-revalidate, s-maxage=60, stale-while-revalidate=300",
+        "x_vercel_cache": "HIT",
+        "matches_committed_bytes": true,
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/developers",
+        "status": 200,
+        "url": "https://canlicapital.com/developers",
+        "bytes": 81868,
+        "sha256": "209bcd88333adc2af935171c266bebcf865a0f7cacea3b1258b61a928c49efed",
+        "x_robots_tag": null,
+        "content_type": "text/html; charset=utf-8",
+        "cache_control": "public, max-age=0, must-revalidate, stale-while-revalidate=60",
+        "x_vercel_cache": "HIT",
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/mcp-servers",
+        "status": 200,
+        "url": "https://canlicapital.com/mcp-servers",
+        "bytes": 19795,
+        "sha256": "9e1f5b9bc6eb3fb145028e1d1b20032161da6576f429999b115677af8627da72",
+        "x_robots_tag": null,
+        "content_type": "text/html; charset=utf-8",
+        "cache_control": "public, max-age=0, must-revalidate",
+        "x_vercel_cache": "HIT",
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/mcp-servers/validation",
+        "status": 200,
+        "url": "https://canlicapital.com/mcp-servers/validation",
+        "bytes": 28231,
+        "sha256": "a3d2466e380362bd2b3bc6618031643a4f9dcc0abd45b0c710866a20c23b0535",
+        "x_robots_tag": null,
+        "content_type": "text/html; charset=utf-8",
+        "cache_control": "public, max-age=0, must-revalidate",
+        "x_vercel_cache": "HIT",
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/mcp-servers/fundamentals",
+        "status": 200,
+        "url": "https://canlicapital.com/mcp-servers/fundamentals",
+        "bytes": 22726,
+        "sha256": "329b1e52feed1fc7bb1199d1065890ae2eac218253cc52cc5e3436bb13368386",
+        "x_robots_tag": null,
+        "content_type": "text/html; charset=utf-8",
+        "cache_control": "public, max-age=0, must-revalidate",
+        "x_vercel_cache": "HIT",
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/mcp-servers/research",
+        "status": 200,
+        "url": "https://canlicapital.com/mcp-servers/research",
+        "bytes": 22618,
+        "sha256": "ab7cad7843793e1227a6fac075d9f09c1a32994cf5e3a2f519668c04cddc4228",
+        "x_robots_tag": null,
+        "content_type": "text/html; charset=utf-8",
+        "cache_control": "public, max-age=0, must-revalidate",
+        "x_vercel_cache": "HIT",
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/research/filing-facts-v0",
+        "status": 200,
+        "url": "https://canlicapital.com/research/filing-facts-v0",
+        "bytes": 28195,
+        "sha256": "0853ea552e5c49ba8cd2899760e4127f3e242b4507d2ec288255a5f6b9f8c38f",
+        "x_robots_tag": null,
+        "content_type": "text/html; charset=utf-8",
+        "cache_control": "public, max-age=0, must-revalidate, stale-while-revalidate=60",
+        "x_vercel_cache": "HIT",
+        "matches_joint_batch_receipt": true
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "url": "https://canlicapital.com/",
+        "bytes": 59116,
+        "sha256": "a7cf8778ad3fc355fe60b01b09e6c131b87ec5e6648977266a7cf886b7b14eac",
+        "x_robots_tag": null,
+        "content_type": "text/html; charset=utf-8",
+        "cache_control": "public, max-age=0, must-revalidate, stale-while-revalidate=60",
+        "x_vercel_cache": "HIT",
+        "matches_joint_batch_receipt": true
+      }
+    ]
+  },
+  "regression": {
+    "baseline_source": "74d704d4 vercel.json copied to an isolated fixture with current tests",
+    "baseline_tests": 10,
+    "baseline_pass": 7,
+    "baseline_fail": 3,
+    "failed_paths": [
+      "/datasets/filing-facts/v0/filing-facts-v0.jsonl",
+      "/datasets/filing-facts/v0/SHA256SUMS",
+      "/datasets/filing-facts/v1/items.jsonl"
+    ],
+    "fixed_focused_tests": 14,
+    "focused_node": "24.19.0"
+  },
+  "full_verification": {
+    "node": "22.23.2",
+    "main_tests": 829,
+    "preverify_tests": 6,
+    "errors": 0,
+    "audited_pages": 699,
+    "page_errors": 0,
+    "page_warnings": 0,
+    "indexable_static_pages": 336,
+    "linked_noindex_static_pages": 363,
+    "indexability_conflicts": 0,
+    "all_indexable_static_pages_within_homepage_clicks": 3
+  },
+  "git_free_snapshot": {
+    "node": "22.23.2",
+    "validated": true,
+    "stamped_html_pages": 683,
+    "checksummed_files_untouched": 416
+  },
+  "immutable_v0_files": [
+    {
+      "path": "public/datasets/filing-facts/v0/SHA256SUMS",
+      "sha256": "b54dca812414ede42ab7258dbb83fa3c041a71a4ff5223691b3dc2c00525e1d8",
+      "bytes": 343,
+      "matches_deployed_baseline": true
+    },
+    {
+      "path": "public/datasets/filing-facts/v0/ff-eval-closed.json",
+      "sha256": "450bff2b316adf5e8f4562d4cacdceca143c6b10ed657ecefa02af24e4c95720",
+      "bytes": 32458,
+      "matches_deployed_baseline": true
+    },
+    {
+      "path": "public/datasets/filing-facts/v0/ff-eval-mcp.json",
+      "sha256": "50a88c0c383ac492a8c1c2d489a1c5830c478a71ae7bab7660fd2878a73cb6c6",
+      "bytes": 32324,
+      "matches_deployed_baseline": true
+    },
+    {
+      "path": "public/datasets/filing-facts/v0/filing-facts-v0.jsonl",
+      "sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+      "bytes": 1663084,
+      "matches_deployed_baseline": true
+    },
+    {
+      "path": "public/datasets/filing-facts/v0/gold-packet-v0.json",
+      "sha256": "91c6f960e34509653800a4cda81bd0632dd58c889ee78eb6461a985765500413",
+      "bytes": 28263,
+      "matches_deployed_baseline": true
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "artifacts/goal/raw-dataset-noindex-20261001/verification/raw-headers-before.txt.gz",
+      "sha256": "3d666ab74b3eee8bc4651936a5ef2e801ede67ad71dbbc1a785b79b29bcf8fc5",
+      "uncompressed_sha256": "2e46aaf328437713dcfa3a60f5930838f8cce2e1067eeec32536a4077bda671c",
+      "uncompressed_bytes": 2546
+    },
+    {
+      "path": "artifacts/goal/raw-dataset-noindex-20261001/verification/raw-headers-before-independent.txt.gz",
+      "sha256": "964be92946e34906baa298a15f3c42146908dfb86e9dd4f3fdc74dff29531f80",
+      "uncompressed_sha256": "48ddf2e34c37e3acac07b4d65ba0679ca55bfee973625c49b727248be0e6cc78",
+      "uncompressed_bytes": 4926
+    },
+    {
+      "path": "artifacts/goal/raw-dataset-noindex-20261001/verification/raw-headers-after-independent.txt.gz",
+      "sha256": "e5e6224c9b80965cf5482c004f2bea981e58e5e64df5905b86a209eec29553a0",
+      "uncompressed_sha256": "73ca299aae385c0e1e77c1bef5971a4fbfb269679c0b53a66c6bff9280b84501",
+      "uncompressed_bytes": 2966
+    },
+    {
+      "path": "artifacts/goal/raw-dataset-noindex-20261001/verification/raw-headers-full-verify.txt.gz",
+      "sha256": "83675ee96d74301d2f251155ffdb98697240296866a33c2bb352a1fb15a975a1",
+      "uncompressed_sha256": "1d69caf30f1cb31b0f394c6b54a4e8d9387454d010251a21cf6398ad90d8f193",
+      "uncompressed_bytes": 207841
+    },
+    {
+      "path": "artifacts/goal/raw-dataset-noindex-20261001/verification/raw-headers-full-verify-after.txt.gz",
+      "sha256": "8206d1bb7a44324c14d7603998f361d2cbb849497b5331e9bfcabb53bf816a1e",
+      "uncompressed_sha256": "963dc8aa37cbc1c83a3b1463a512a71b9e73f175bdaf614650ff9d76053a0c27",
+      "uncompressed_bytes": 195325
+    },
+    {
+      "path": "artifacts/goal/raw-dataset-noindex-20261001/verification/raw-headers-clean-snapshot.txt.gz",
+      "sha256": "3bef2a5e28be6dbac63a71a67692dc2dc4c252aa641aa840f484fb1362e2c03e",
+      "uncompressed_sha256": "9c5d65e80cbe7cd880c38257212c87e89d87c50b1a6e417465bc0128d2350fa9",
+      "uncompressed_bytes": 112650
+    }
+  ],
+  "retained_failure": "First full run passed 828/829 main tests and failed company-preview parity because its config still had the old base headers. Regenerated the preview from companyPreviewConfig(base); final full run and clean Git-free snapshot pass. Earlier compact and independently split raw-path regression failures are both retained.",
+  "limits": [
+    "Header-pattern regressions use the repository simple pattern subset; deployed response behavior still requires primary verification.",
+    "This evidence does not claim indexing, ranking, external analyzer certification or field performance.",
+    "The primary session remains the sole publisher; dataset bytes, model evaluations and public MCP versions are unchanged.",
+    "Every Sovereign pillar, expert annotation, 10M actual indexing, SEO/adoption/research and governed ALPHAC objective remains active."
+  ]
+}
