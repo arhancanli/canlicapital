@@ -393,6 +393,36 @@ merging it activates v27.
    remain immature (six current-epoch returns, four sleeves).
 
 
+## Secondary evaluation reliability work, 2026-10-01
+
+Owner-requested cooperating goal active in thread 01a0f6ba. Primary assigned strict
+FilingFacts scoring and offline source-bound raw-answer evidence in isolated checkout
+canlicapital-secondary-20261001, assist/quality-20261001. Failing regression captured;
+implementation/repository review pending. Primary continues journal/export/MCP work.
+Every original owner objective remains active; no model run, human review or release claim.
+
+
+Secondary verified checkpoint: FilingFacts evaluation reliability implemented at signed
+472291d3, 32/32 focused, 798 + 6 full tests, 699 audited pages without errors/warnings
+and actual clean Git-free production snapshot build pass. Historical evaluations stay
+unrescorable with unchanged raw bundle bytes. PR and independent primary review pending.
+Primary journal/MCP work, all expert annotation and longer-term owner goals remain active.
+
+
+Secondary review correction checkpoint: bed645b8 addresses the primary findings, with34
+FilingFacts tests,800+6 full tests,699 page audits0/0 and clean Git-free production build
+passing. Revised signed PR head/CI and independent primary recheck remain pending. Prior
+verification remains history; raw v0 bytes/stats unchanged and unrescorable. All goals active.
+
+
+Secondary final documentation/review checkpoint (2026-10-01): remote #3438356eea7
+passed seven CI checks and has zero open CodeQL alerts. Primary requested exact numeric-only
+numbers_wrong denominator wording; guide corrected without source changes, awaiting final
+documentation-head CI and review. Independent peer review starts on frozen #344ae33ceba
+in a detached checkout.34focused/800+6full/clean Git-free checks remain implementation
+evidence, not deployment or authentic model/human outcomes. Every original goal remains active.
+
+
 ## Annotation browser intake phase, 2026-10-01
 
 Owner started cooperating thread 01a0f6dd and explicitly requested an active goal.
@@ -445,3 +475,13 @@ Only annotation source-date bindings were renewed; unrelated generated changes
 were restored. Evidence: artifacts/goal/annotation-intake-quality-20261001.json.
 Signed PR/primary independent review next; no publication or human-label claim.
 Every original owner objective remains active; analyzers are a later distinct phase.
+
+
+## Annotation integration preparation after #343, 2026-10-01
+
+Main advanced to91d15052 after the independently reviewed evaluation PR343.
+Read-only merge-tree found only STATUS/LOG conflicts. Prepared a separate candidate
+in canlicapital-annotation-integration-20261001, assist/annotation-integration-20261001,
+keeping both appended histories and both source-date updates. Original PR345 head
+f625bfac and its source checkout stay frozen while primary/secondary peer review
+runs. Combined validation is next; no integrated push or merge claimed. All goals stay active.
