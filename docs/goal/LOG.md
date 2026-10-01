@@ -4062,3 +4062,27 @@ is not yet measured and the owner resubmits the sitemap in Search Console.
 - Clarified the shortfall oracle wording: tests share recorded arch starts/uniforms; the local
   xorshift32 generator is not NumPy's generator. Equal numeric seeds across libraries do not
   imply equal draws. No algorithm/evidence/value changed.
+
+## 2026-10-01 06:46Z–06:56Z: #337 merged, production activated and verified
+
+- #337 merged as 2dce28bfce1a1e31cc56c98cf8cdba456d587799 at 06:46:58Z after all seven
+  checks passed; its merged-main commit also passed all seven. Candidate and squash-merge
+  trees agree. The font candidate passed the actual clean Git-free deployment snapshot build.
+- Production was clean at 607e0a1c. Under the existing owner's publication authorization,
+  used the shared deploy lock to activate 2dce28bf without changing runtime/configuration.
+  The established hourly publisher captured source hash 936b1032… and completed successfully
+  at 06:52:49Z. Landing deployment dpl_67mau6nJZ3pFnv726CTgRSyHpnBn is Ready, with
+  canlicapital.com and www aliases; app deployment eqqxdlv1s completed too. Lock released.
+- Fresh live checks pass: four built pages have complete social tags and self-canonicals;
+  Inter/Chakra WOFF2 bytes match tested source (154,844 / 14,228 / 14,052); admitted overview/
+  history stay indexable, a pending-review company stays noindex, unknown company is 404 noindex.
+  Homepage matches the captured deployment. Hosted MCP versions/tool names match the recovery
+  baseline (0.10.1/15, 0.5.0/7, 0.2.0/6); unfinished execution is not hosted.
+- Sitemap index retains 22 children. Publisher reports 916,476 canonical URLs; IndexNow accepted
+  23 updated URLs at 06:52:23Z, HTTP 200. This measures submission, not actual indexing.
+  Evidence: artifacts/goal/deployment-checkpoint-20261001.json. No new package release,
+  human annotation, paid agent benchmark, broker order or forward/indexing outcome claimed.
+- Current durable checkpoint branch is records/continuation-checkpoint-20261001. Both required
+  original continuity folder and this checkout are updated. Next: execution journal export/paper
+  reconciliation, actual annotation and v1 task quality, trusted-publisher parity, remaining
+  analyzer/adoption/research goals. Every owner objective remains active.
