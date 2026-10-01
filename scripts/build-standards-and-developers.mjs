@@ -10,6 +10,7 @@
 // =============================================================================
 
 import { CLAUDE_DESKTOP_BUNDLE_URL, cursorInstallLink, MCP_LISTINGS, vscodeAddCommand } from "./lib/mcp-install-links.mjs";
+import { sourceDate } from "./lib/page-sources.mjs";
 import { copyFileSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -139,7 +140,11 @@ function buildStandard(vectorCount) {
       headline: "canli.paper-evidence.v0: an open standard for paper-trading evidence",
       description,
       url: `${ORIGIN}/standards/paper-evidence`,
-      author: { "@id": `${ORIGIN}/#arhan-canli` },
+      // First published in caa683ea (2026-09-06); modified as of the sitemap's own date for this page.
+      datePublished: "2026-09-06",
+      ...(sourceDate(ROOT, "/standards/paper-evidence") ? { dateModified: sourceDate(ROOT, "/standards/paper-evidence") } : {}),
+      author: { "@type": "Person", "@id": `${ORIGIN}/#arhan-canli`, name: "Arhan Canli", url: `${ORIGIN}/founder` },
+      image: { "@type": "ImageObject", url: `${ORIGIN}/og.png`, width: 1200, height: 630 },
       license: "https://opensource.org/licenses/MIT",
     },
   })}
@@ -355,7 +360,7 @@ export function mcpFamily(root = ROOT) {
 function mcpFamilyBlock() {
   const items = mcpFamily().map((s) => {
     const add = `claude mcp add ${s.name.replace(/-mcp$/, "")} -- npx -y ${s.name}`;
-    return `    <article class="dev-endpoint" id="${esc(s.anchor)}"><h4><code>${esc(s.name)}</code>: ${esc(s.title)}</h4><p>${esc(s.description)} Tools: ${s.tools.map((t) => `<code>${esc(t)}</code>`).join(", ")}.</p>
+    return `    <article class="dev-endpoint" id="${esc(s.anchor)}"><h3><code>${esc(s.name)}</code>: ${esc(s.title)}</h3><p>${esc(s.description)} Tools: ${s.tools.map((t) => `<code>${esc(t)}</code>`).join(", ")}.</p>
       <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Add ${esc(s.name)} to Claude Code"><code>${esc(add)}</code></pre></div>${s.hosted ? `
       <div class="dev-snippet"><p class="dev-snippet-label">Hosted, no install: ${esc(s.hosted)}</p><pre class="dev-code" tabindex="0" aria-label="Hosted ${esc(s.name)} endpoint"><code>${esc(`claude mcp add --transport http ${s.name.replace(/-mcp$/, "")} ${s.hosted}`)}</code></pre></div>` : ""}
       <p class="dev-note"><a href="https://www.npmjs.com/package/${esc(s.name)}" rel="noreferrer">npm</a>, <a href="https://registry.modelcontextprotocol.io/v0/servers?search=${esc(s.mcpName)}" rel="noreferrer">MCP Registry</a>, <a href="https://github.com/arhancanli/canlicapital/tree/main/${esc(s.dir)}" rel="noreferrer">Source</a>.</p></article>`;

@@ -4,7 +4,8 @@
 
 Goal ACTIVE, NOT ACHIEVED. Codex recovered the owner's Claude instructions and launched the
 goal. Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
-`continue/mcp-refinery-20261001`, based on actual origin/main 607e0a1c (merged #335).
+`review/claude-seo-20261001`. The implementation started from 607e0a1c (#335); #339
+merged as 37221be6 at 05:41Z after all seven Node 22/security/contract CI checks passed.
 The original expansion checkout and its existing uncommitted work are preserved.
 
 - Hosted validation 0.10.1 / 15 tools, fundamentals 0.5.0 / 7 tools, research 0.2.0 / 6 tools
@@ -27,7 +28,7 @@ Evidence: `artifacts/goal/continuation-baseline-20261001.json` and
 execution continuation plus annotation-quality controls. Local verification: full build,
 778 repository tests + 6 preverify, 43 execution tests, root/execution audits with zero
 vulnerabilities, immutable FilingFacts v0 checksums intact. The on-page audit passes with two
-existing warnings addressed by open #336. No new code is published yet.
+existing warnings addressed by open #336. PR #339 is merged on main; execution remains unreleased and no new package/hosted feature was published.
 
 Evidence also includes the three arch 8.0.0 bootstrap oracle cases, current read-only ALPHAC
 parity in `shortfall-local-parity-20261001.json`, and `shortfall-local-benchmark-20261001.json`.
@@ -36,7 +37,18 @@ The four-tool list is 1,636 o200k / 1,571 cl100k. A synthetic 1,000-order local-
 24.7 ms with 199 bootstrap draws; these are single-machine observations, not hosted/ranking claims.
 The new tool's original 220-token target is missed (386); the full seven-tool budget is unproven.
 
-Next: continuation PR and Node 22 CI; then journal export/paper broker/reconciliation work under
+Current phase: reviewed #336 and #337 against actual source/checks. Combined #336/#339
+build and verify pass (786 main + 6 preverify, 695 pages, 0 errors / 0 warnings); five
+production generators pass without git using rebound source-date hashes. Updating #336 with merged
+main, preserving the union of all financial/annotation/social tests. Its metadata checks now
+state the site's stricter contract accurately: Google Article fields are recommended; 110
+characters is a site budget, not a Google limit. App offers need prices; real reviews/ratings
+and representative article imagery remain external eligibility work. Local checks are not
+a claim of Rich Results Test approval. Current docs:
+https://developers.google.com/search/docs/appearance/structured-data/article and
+https://developers.google.com/search/docs/appearance/structured-data/software-app?hl=en.
+
+Next: verified #336/#337 integration/deployment; then journal export/paper broker/reconciliation under
 MCP_TRADING_DESIGN.md. Verify trusted publishers before addressing fundamentals/research npm
 version parity. Keep the 10M indexing, SEO/performance, all four pillars, adoption and governed
 ALPHAC goals active; actual human review and forward/indexing outcomes cannot be inferred from code.

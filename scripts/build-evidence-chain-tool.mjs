@@ -117,6 +117,7 @@ function main() {
     description,
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Any modern web browser",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     author: { "@id": `${ORIGIN}/#arhan-canli` },
     creator: { "@id": `${ORIGIN}/#arhan-canli` },
     isAccessibleForFree: true,

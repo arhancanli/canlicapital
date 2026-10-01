@@ -4019,3 +4019,26 @@ is not yet measured and the owner resubmits the sitemap in Search Console.
 - Both origin/main and raw local Claude STATUS/LOG are archived byte-for-byte under history/;
   current chronology keeps origin/main and appends this recovery. Original required expansion
   continuity folder now points to this checkout. All owner objectives and the active goal remain.
+
+## 2026-10-01 05:41Z: #339 merged; SEO/performance continuation
+
+- #339 merged as 37221be65a41fa19491433c2d1bd9731b226ec7f after all seven CI checks passed,
+  including full Node 22 build/verify, package/stdio, design, PostgreSQL and both CodeQL languages.
+  Standard signed/squash publication path under the owner's existing authorization; no version bump.
+- Reread required continuity before resuming the existing #336/#337 changes. Both were green at
+  their recorded heads; source review followed. Updated #336 from main in an isolated local branch;
+  package.json conflicted. Resolved as the exact union of the added social test/stamping step and
+  #339's financial core/adjudication tests, retaining every other script/dependency unchanged.
+- Current Google primary documentation exposed inaccurate prior claims: Article has recommended,
+  not mandatory, properties and no 110-character Google ceiling; app rich results require priced
+  offers plus an authentic rating/review. Corrected comments/diagnostics and tested nonnegative
+  app prices. The stricter site article contract remains explicit; local audits never establish
+  external eligibility. Genuine app reviews and representative article imagery remain outstanding.
+  Sources: Google Search Central /appearance/structured-data/article and /software-app?hl=en.
+- #336/#337 deployment is not claimed at this phase start. Production checkout was still 607e0a1c
+  when checked. Execution stays private/unreleased; human annotation/network, search indexing,
+  measured analyzer/field outcomes and every other owner objective remain open.
+
+- Combined #336/#339 local build and full verify pass; on-page audit 695 pages, 0 errors / 0 warnings. Focused metadata rules 11/11. Source dates will be rebound to the actual signed source commit and checked without git before pushing.
+
+- Final combined verify: 786 main tests plus 6 preverify; all audits pass, 695 pages / 0 errors / 0 warnings. After the signed source commit, portable source-date hashes were rebuilt. Five VERCEL=1 generators ran with git unavailable: costs, standards/developers, publication wrappers, papers, method papers; all exit 0. No published checksum was changed. #336 will carry this tested integration and the corrected platform-claim boundary.
