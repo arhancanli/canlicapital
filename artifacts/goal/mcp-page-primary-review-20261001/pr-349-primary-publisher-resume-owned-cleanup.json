@@ -1,0 +1,31 @@
+{
+  "schema": "canli.publisher-owned-watchdog-cleanup.v1",
+  "observed_at": "2026-10-01T15:51:23.533784+00:00",
+  "owned_publisher_pgid": 16754,
+  "recorded_owner_process": {
+    "started_at": "2026-10-01T15:42:14.405271+00:00",
+    "pid": 16754,
+    "pgid": 16754,
+    "args": [
+      "nice",
+      "-n",
+      "10",
+      "zsh",
+      "/Users/arhancanli/alphaforge/scripts/live_deploy_hourly.sh"
+    ]
+  },
+  "remaining_owned_members_before": [
+    "16982     1 16754 SN      08:55 sleep",
+    "17590     1 16754 SN      07:28 sleep"
+  ],
+  "action": "SIGTERM to recorded own publisher process group containing only orphaned sleep watchdog children",
+  "group_after": "ESRCH",
+  "prior_guarded_release": {
+    "released_at": "2026-10-01T15:45:18.382381+00:00",
+    "nonce": "f86f2d80fada4b93b73f3ae1aa12a652",
+    "ownerThread": "01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23",
+    "nonce_guard_matched": true
+  },
+  "chronology_limit": "Publisher returned0 and nonce was guarded-released before follow-up discovered these sleep-only descendants. Cleanup occurred afterward; original timestamps are unchanged.",
+  "unrelated_jobs_touched": false
+}

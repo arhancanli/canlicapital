@@ -1,0 +1,1691 @@
+{
+  "schema": "canli.mcp-page-peer-source-review.v1",
+  "checked_at": "2026-10-01T13:22:34.695539+00:00",
+  "head": "ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17",
+  "base": "fe68e73eb12d0f8c6a3a93eb4cf4f363c4ca1099",
+  "frozen": "ea8a185460a42f2d6f92f31af614d1ffb27240f8",
+  "measured": "648236adeadc902e4b1327134dbc81ea11f79de2",
+  "signature": "G arhancanli@icloud.com",
+  "python": "3.9.6",
+  "node": "v24.19.0",
+  "probe_sha256": "2e84e428bed28610cdac4d894d020d477662db12935b91c9a4a1ab73b087d7d8",
+  "scope": [
+    {
+      "path": "css/mcp-pages.css",
+      "sha256": "2eeb8056f05503c094a3957f23ba5c6d50a55c71bda966e373fc865c5ef3f65d",
+      "equal_frozen": true,
+      "equal_measured": true
+    },
+    {
+      "path": "scripts/build-mcp-pages.mjs",
+      "sha256": "eeef776362aaddd3269823e26310793efe796746a8bec068e57e249fa1fb5d04",
+      "equal_frozen": true,
+      "equal_measured": true
+    },
+    {
+      "path": "scripts/audit-developer-mcp-pages.py",
+      "sha256": "e8b53582b19b100e435a5e2369c51ac1251c8ba01f61bbabe4d3e9f2ae2f2d17",
+      "equal_frozen": true,
+      "equal_measured": true
+    },
+    {
+      "path": "mcp-servers.html",
+      "sha256": "716a4401575f4ebf1e39f9657335fc9870d19f68ed53466c3d4c4c3daf13b521",
+      "equal_frozen": true,
+      "equal_measured": true
+    },
+    {
+      "path": "mcp-servers/validation.html",
+      "sha256": "e8dfe81347810f48d520908e348a61f725f300fa0928f46c7868d3687975c6be",
+      "equal_frozen": true,
+      "equal_measured": true
+    },
+    {
+      "path": "mcp-servers/fundamentals.html",
+      "sha256": "7d293ea0063878c04589ed65f719cf1bf0803a4e8db3298fcdd59872d68dddec",
+      "equal_frozen": true,
+      "equal_measured": true
+    },
+    {
+      "path": "mcp-servers/research.html",
+      "sha256": "d0ac551b977237289f49b757e10cae431714244794327206ae9f8c06d32c2349",
+      "equal_frozen": true,
+      "equal_measured": true
+    },
+    {
+      "path": "config/source-dates.json",
+      "sha256": "2cce44fa8909f2e549d2065f8acf7f15d5425b2406493f67c93853c66d0c7e6c",
+      "equal_frozen": true,
+      "equal_measured": true
+    }
+  ],
+  "scope_routes": [
+    "/developers",
+    "/mcp-servers",
+    "/mcp-servers/validation",
+    "/mcp-servers/fundamentals",
+    "/mcp-servers/research"
+  ],
+  "changed_paths": [
+    "artifacts/goal/mcp-page-quality-20261001.json",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/developers-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/developers-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-fundamentals-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-fundamentals-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-research-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-research-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-validation-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-validation-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-baseline/summary.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/developers-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/developers-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/developers-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/developers-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-fundamentals-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-fundamentals-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-fundamentals-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-fundamentals-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-research-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-research-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-research-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-research-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-validation-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-validation-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-validation-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-validation-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/live-browser/summary.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/developers-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/developers-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/developers-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/developers-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-fundamentals-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-fundamentals-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-fundamentals-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-fundamentals-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-research-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-research-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-research-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-research-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-validation-desktop-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-validation-desktop.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-validation-mobile-axe.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-validation-mobile.html.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-browser-after/summary.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-fundamentals-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-fundamentals-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-research-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-research-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-validation-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-validation-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/summary.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-fundamentals-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-fundamentals-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-research-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-research-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-validation-desktop.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-validation-mobile.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/summary.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/chakra-fallback-derivation.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/live-metadata.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/live-social-cards.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/local-browser-after.txt.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/local-focused-graph.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/local-mcp-after.txt.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/local-mcp-before.txt.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-build-restored.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-build.txt.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-clean-snapshot.txt.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-focused.txt.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-full-restored.json.gz",
+    "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-full-verify.txt.gz",
+    "config/source-dates.json",
+    "css/mcp-pages.css",
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "mcp-servers.html",
+    "mcp-servers/fundamentals.html",
+    "mcp-servers/research.html",
+    "mcp-servers/validation.html",
+    "scripts/audit-developer-mcp-pages.py",
+    "scripts/build-mcp-pages.mjs"
+  ],
+  "unexpected_paths": [],
+  "protected_base_files_unchanged": 5290,
+  "binding_count": 320,
+  "binding_mismatches": [
+    {
+      "path": "measurements",
+      "date": "2026-09-26",
+      "expected": "ce4f975c894cdf37c26ac5eefe06cfe12016f533b1fc36e155866ecf7ef1190b",
+      "actual": "1c635a64afc66f83d4df1017589dbc3303e6913e3d7bf98ed6c6b61cb986f27a",
+      "match": false
+    },
+    {
+      "path": "public/api/v1/index.json",
+      "date": "2026-09-20",
+      "expected": "b1097d6ca08fe2c9a6bf8c42bfde2767943c517e2c3e6d98b825d82ef0c5c793",
+      "actual": "5d43b028f85385ef22a56d237df16dc2731c513736027b80cbcea7dcf8573b58",
+      "match": false
+    },
+    {
+      "path": "public/glassbox",
+      "date": "2026-09-28",
+      "expected": "e49fe6cd361540e6cc36d066fb8d295afb1f7529276ae46efc38d05bdea0a460",
+      "actual": "7e550e0a2d822b2c1660632a982f434f93c82eccf371694eea9f9fd2d80c309a",
+      "match": false
+    },
+    {
+      "path": "public/glassbox/cost_coverage.json",
+      "date": "2026-09-20",
+      "expected": "bb3151530d485a1d3975da5b6952e87024415c3bd86a1c264a514389b8316019",
+      "actual": "a8725e7cd1224cd102ad0372a59b6007917aafa7bac80741db61cbf158e322c2",
+      "match": false
+    },
+    {
+      "path": "public/glassbox/paper_evidence_conformance.json",
+      "date": "2026-09-20",
+      "expected": "b91166b6597f75758250e92d0e0fd8986fd57d17f8d741c34e2be76e7fd729b4",
+      "actual": "bbb12a393df9373b84126fa7e0197fb0015d2549fca5cc1280f9773ed1966687",
+      "match": false
+    },
+    {
+      "path": "publication/alphamax/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "cc6a2188041b5caece3bdca2ca426861c619c8edc704657969d6f24bc725d3e3",
+      "actual": "ef3ba8e303bd7fb871fdca6f1292805b1acebcf67b3ae01ec404b36ff14809cf",
+      "match": false
+    },
+    {
+      "path": "publication/alphatrend/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "1f0b88d24a686fc8dad89b60bc1128a56ba51f872f7427eab76e148131553c8d",
+      "actual": "1790722b8e90d4178895b0ccfd5d517dc5633af31a0077175e5d18a59cfb92b0",
+      "match": false
+    },
+    {
+      "path": "publication/alphavintage/v1.0.0.html",
+      "date": "2026-09-20",
+      "expected": "9fa1836aad1ace2e3c178fae0ad812d16f75a50b051a2f61e20ea3b363d6ee81",
+      "actual": "9ea519c03f349c3240b7d3c72088394eb854d1bba64b1d46e585dda91ff51921",
+      "match": false
+    },
+    {
+      "path": "publication/crypto-carry/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "31f9eec3a83c98857875b2459dec29796e3663a48c4b24d00965847277be251d",
+      "actual": "7f627b4b193ab9999f27e9c2a1e44c61899bc3aeffbd9dc2ad38cb7071a7f96e",
+      "match": false
+    },
+    {
+      "path": "publication/crypto-defensive/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "20a2a5a7d2aab82702265a5d73a444f3aef2228cfd43175ca24b515e2615b485",
+      "actual": "f0f96196a9c11118a94c897dac6f78a3c04f5d2b2919c0f9c5492b1cd774464e",
+      "match": false
+    },
+    {
+      "path": "publication/crypto-momentum/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "c801f2b8c9937167c3ff2b1cae07b6398ae4de390a94a79e53ec5735ad41fed4",
+      "actual": "8d2975eef5b3687e2bd64560939711697696bfca15626bf7cc2b5ca05c86682a",
+      "match": false
+    },
+    {
+      "path": "publication/crypto-multifactor-engine/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "95d7f31b6c2349215c11953085a0210a54020cc5e9bfaeeeedcba328878cd03f",
+      "actual": "bef1b601f5de00448c998af4cbcbdc9fe6220bd08d9178abcafd7be85c989455",
+      "match": false
+    },
+    {
+      "path": "publication/crypto-reversal/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "f4ab9ee6b1ca25fde828136985b3e1dd59b8399e6d034ddb9af8aa07fd16affc",
+      "actual": "e418ff76bd7e82f3a93b64f41fb2d09c4f5c5ea3fae5210319d9859c2fd096ec",
+      "match": false
+    },
+    {
+      "path": "publication/crypto-vrp/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "bbbe29a707bc388998802f20e5d1e321d0ca42fc0ce30d743af59773bc869020",
+      "actual": "fb0f0169334450f88070d4ee90bfd0ddca0b0ace06741767e3ed6cd72072a006",
+      "match": false
+    },
+    {
+      "path": "publication/energy-inventory/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "696c104d22534bc3fef16711e9093b66583c4e92570db8a6a5fef89391f74d3b",
+      "actual": "f2a16e1c42d952556d003d8f086b6ed4de2b9fb3684acc15cacc357b0ab5f2e1",
+      "match": false
+    },
+    {
+      "path": "publication/equity-insider-activity/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "3470921d486c4acf64f2d151000de9cee902dabaa64e17063962479110787ecf",
+      "actual": "5b696e0fae9f88cc61a90ddf006800dc7069ee661a5470a0b68563f90dd874ab",
+      "match": false
+    },
+    {
+      "path": "publication/equity-low-beta/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "53d5cdffe3d7b4989c7d73cdc0e904043586781ea8e1cbfb2b6b73b04ba62971",
+      "actual": "1a25469b681cc6683b1dccb97bd4440ce1288f0df8705edf44a4d9d87d201de1",
+      "match": false
+    },
+    {
+      "path": "publication/equity-narrative-change/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "bf4e0da69881998c80aca3b38aa7e881efcdc9392c9868329f40669e743aa8ee",
+      "actual": "2ad1cfed517b89a8e15891447cad5a56163883e78d734491c0c330a536eddb05",
+      "match": false
+    },
+    {
+      "path": "publication/equity-quality/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "849b0b3923598240dfec19ea0a5f6fc3a26f6cdbaaadc73c9ef6f96c98b7bb7c",
+      "actual": "bed876169d6ff6de5c43db8afec1fec6e60a87d15d62ffebbbc193ade2de8807",
+      "match": false
+    },
+    {
+      "path": "publication/equity-value-investment/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "274ab8bd5b3af81b81f69d7041f130de9f93c301c58ef6db4494384f24b44be8",
+      "actual": "e6eb0d1a5796e38fe929687c2a0f482643dc1b3fe75d6fac38f9460322e43725",
+      "match": false
+    },
+    {
+      "path": "publication/macro-economic-trend/v0.1.0.html",
+      "date": "2026-09-20",
+      "expected": "666502be985cf92c28eb6fdfd32c15aaf91f16244b4634b3b2b794de12e81fcc",
+      "actual": "e806c6053afd88e1da5ce273f7049d7638c54544b6482c367140ad1aa1133e25",
+      "match": false
+    }
+  ],
+  "changed_bindings": [
+    "scripts/build-mcp-pages.mjs"
+  ],
+  "generator_commit_date": "2026-10-01",
+  "archive_count": 84,
+  "archive_groups": {
+    "live-baseline": 11,
+    "local-mcp-before": 9,
+    "local-mcp-after": 9,
+    "live-browser": 21,
+    "local-browser-after": 21,
+    "verification": 13
+  },
+  "archives": [
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/developers-desktop.json.gz",
+      "sha256": "56c8ee800f6874281a81864bb98e4d3669d3d2afd722a7ea94a8cc473763088e",
+      "raw_sha256": "1873a67379ddca2a2ee89366b40ac9ac3170179fd0b97e85341be1e3162b38bd",
+      "raw_bytes": 1025980
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/developers-mobile.json.gz",
+      "sha256": "c9371d820701e92173efdf65f53baee0f0fa21e8fea5a2e5f843c6a42228d7d4",
+      "raw_sha256": "7a7a18e0cc5c700ee10157187f899ab0242fa372ee30d742bf2d2597a94abeb3",
+      "raw_bytes": 1005903
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-desktop.json.gz",
+      "sha256": "092c27d870c9470a92719b44ba50af2f01b9a8e6cb92e51a154c8a684db12537",
+      "raw_sha256": "485d4c1bf956cd398e18869ac1dbd86f41d75484a7b0ac97a68323fdd07d0427",
+      "raw_bytes": 444186
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-fundamentals-desktop.json.gz",
+      "sha256": "d282d5c7f50efbcd2c0363b34634d6aa2b4862aa023b55d4e4bbf9e3a98f0def",
+      "raw_sha256": "43d291559c09f0bb084dd18bf631a84102b333c01332ff967ba28d49145d1f1c",
+      "raw_bytes": 531017
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-fundamentals-mobile.json.gz",
+      "sha256": "b01e38fc1b2064122301d436be8167cc92ec8307effabe47f16abded1fe16526",
+      "raw_sha256": "0f4861e6da82792eb7c592e2a8808e09016e0f917eaa291f1749f25c9c928a52",
+      "raw_bytes": 525096
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-mobile.json.gz",
+      "sha256": "8e5de08ff19fcf0d3596cda60e0ae4f6f18738445a85bf8f6713754f883b8d86",
+      "raw_sha256": "f2ebc327a2afc2aae61eb7f7c1c2cdd1049a6d149c9b0669858642ab6af4c7b9",
+      "raw_bytes": 480532
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-research-desktop.json.gz",
+      "sha256": "763a26c416eb2f4fc8493b407dcd729b1b95645f0be993b1020bb2a50737f0a7",
+      "raw_sha256": "961825777060d855e9df944ee996cb348e11c0a49827474c090b6273a0fbe20f",
+      "raw_bytes": 537952
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-research-mobile.json.gz",
+      "sha256": "3ec46031f49cc16ec20b96d4b7fd079870f57926052586428f8b311b7840ed6d",
+      "raw_sha256": "0810f412028ce89c3345cd573b12b02d8196871816ede4104d63270f0eefdf60",
+      "raw_bytes": 528788
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-validation-desktop.json.gz",
+      "sha256": "809f17c3b027e1f3ea4c45da2a4a9ab9170fddfc5bc85b419d548b18dd9bb0b4",
+      "raw_sha256": "df3d5c290fa05664b21b00eb32cc061774a978f10e68ecc9c312f9781e70118c",
+      "raw_bytes": 697393
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/mcp-servers-validation-mobile.json.gz",
+      "sha256": "02412424b2f07a54908fb43cb4cafb55626c3b4e5a8cbf180f82f5a3fe389c05",
+      "raw_sha256": "c0e9906df2a3683d612d86a97eb79bc4ac4320d4fa378b516e765ab002842ade",
+      "raw_bytes": 702304
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-baseline/summary.json.gz",
+      "sha256": "a0b2b5f01b5b0e76a5a86594fb9d3d3bf22de5b253665abb82a3f5e16648c658",
+      "raw_sha256": "a71cf18c4d2f611757fd7129dd0442f1fc19fd0ca73037a83af2762efe27d3e6",
+      "raw_bytes": 36675
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-desktop.json.gz",
+      "sha256": "0fa26d9d79285b61d37bce8a55bde6e171665d6359731d09a18b7cf552620a91",
+      "raw_sha256": "b8a5aa939eb27274652351780f26381020c70c475f3b53ff9705b0394650172e",
+      "raw_bytes": 487378
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-fundamentals-desktop.json.gz",
+      "sha256": "bff98532a4df8524d502c18befc7de1e7df7a690f08e17efba3bbf7e9e4b2d12",
+      "raw_sha256": "c87cfd615885fc0950cd042f01ec61e92d7eb4e35d48f9c49bea27f502737b3b",
+      "raw_bytes": 547385
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-fundamentals-mobile.json.gz",
+      "sha256": "ba87882afb6eb6b4ac54f3d21d06998ca50b545e1c66c99e0172769571f9029e",
+      "raw_sha256": "dac03e9a32a72da6a5a6e7f56709ff015900e90ea07c86407634480a3ce865f8",
+      "raw_bytes": 534819
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-mobile.json.gz",
+      "sha256": "8f7b58e6f8634c56f79b136ab82caf1710fb980568e98835fc0a5d0cb377a95f",
+      "raw_sha256": "a30e70a1f291534935eb6164d9553554bbb9e15ef8e4b1fb2bb1f8b6d9b99dd4",
+      "raw_bytes": 502825
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-research-desktop.json.gz",
+      "sha256": "6837568d62e0a36f538a824eed1e741c746986fd958de27173ac648ef62afd8b",
+      "raw_sha256": "4f59c131f6a1dc013846927a04e9ac2055656a13cdaa7f47fbdb6c93b31abee8",
+      "raw_bytes": 548052
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-research-mobile.json.gz",
+      "sha256": "3e3c12e0ca0e671ea232429a62b3e7dfe852c44f5a17f8d5f2c7141de7c394a5",
+      "raw_sha256": "8138c753704e38bcabf3f2befa0b2141a7670c882919c691f5e641b968ef72f9",
+      "raw_bytes": 538692
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-validation-desktop.json.gz",
+      "sha256": "46e9516ee0dfec099d906bf3d4de90f252141583d021ef4785e3399e9d842308",
+      "raw_sha256": "64b496ba2edd21eba0bd7a06bbd106f61e89f9f1a7a647aff49d39bb7f1700eb",
+      "raw_bytes": 705424
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/mcp-servers-validation-mobile.json.gz",
+      "sha256": "37a06a3fe42a152ca4483a686a4917da9c76ca8d4a9a8ed3f6e94071e0120a14",
+      "raw_sha256": "39d9e227086e47beec4b53e3aa11559320679fb6acc1973f3e5995e655eadbb0",
+      "raw_bytes": 713274
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-before/summary.json.gz",
+      "sha256": "6956dd4bfcecfe6d636d86d04ad456468c062b03504ac83b2a5f228c51be6d55",
+      "raw_sha256": "a1847d183dea5514513813409bad80cde7920ef4208c35f7bc20aa9797746aa8",
+      "raw_bytes": 27832
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-desktop.json.gz",
+      "sha256": "8cf27667a6923318618617afa97e6c5e6d5957f03d067488bec5bc117e531512",
+      "raw_sha256": "98234e495310f80994ea20ce43be95d56bf2891ec30c5ede29b77f67ee5e7c9a",
+      "raw_bytes": 484191
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-fundamentals-desktop.json.gz",
+      "sha256": "402a5f659837af34985914f5bc52442e7152017926a9f3712c93951f67434c04",
+      "raw_sha256": "56e5e6ccf30a197749f5058832a5ea6f881ac8dd3a785aa98ff53fa0770cf795",
+      "raw_bytes": 542711
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-fundamentals-mobile.json.gz",
+      "sha256": "b70c9c0605056e27e81c6190b011bb81a4f5aba31db950f631d236eaa2b7f120",
+      "raw_sha256": "1f78a4623fe821d8dbb3ed2c6eb841b66bf404c3a19cd9d1d3c0b99fe760f73b",
+      "raw_bytes": 530218
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-mobile.json.gz",
+      "sha256": "6d868dc3558854c75bb799d4bd9771d3659526d436f5c3d8828abfd10cc5b4ee",
+      "raw_sha256": "d7951844dd24958c24340c633696892c0321439276f6646d26ae629199d004ed",
+      "raw_bytes": 496616
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-research-desktop.json.gz",
+      "sha256": "2a2898815efcba7dab4a976487a142604ebbf43b14d0f6e0efd48346ce203a2a",
+      "raw_sha256": "0f4fb5b533b7b510d58c282185a4192d51671f3896b50057f25f00091eb1f07d",
+      "raw_bytes": 540704
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-research-mobile.json.gz",
+      "sha256": "b139a546d916333444fa12d3ffa2cb25b9c23dfc50c42b6e9204307d0e8abd8e",
+      "raw_sha256": "4403d0e9fcdd18764a9a7537c6fcdf93c6ece5385364c96bbaae300f239e6a2e",
+      "raw_bytes": 532084
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-validation-desktop.json.gz",
+      "sha256": "8151727985a2b2e6a97f9ce950b5dd0b1eb9c3519ee9b8dd259dc632a51c2716",
+      "raw_sha256": "e5b0abdd95ab4199da231f0ee99b94ef5bb74271569cb576de59d245126d5bb1",
+      "raw_bytes": 700984
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/mcp-servers-validation-mobile.json.gz",
+      "sha256": "c459c5bb424555aec7abf10a6a2ef4483c640c1476e33f714b7ea5e3b56a2b93",
+      "raw_sha256": "e590760fd37d37a577c53a956a801e695c8fc45d2106b07b63b120a02b92898c",
+      "raw_bytes": 693761
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-mcp-after/summary.json.gz",
+      "sha256": "e6ffcd7fd59ff63d36284d57ddb6df44cbe434f565cd50dfeaa5be3bdff354ed",
+      "raw_sha256": "9e2b22519190abed08e281c4365fb82f6e80ae590221a53e3c918378ade95de7",
+      "raw_bytes": 26645
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/developers-desktop-axe.json.gz",
+      "sha256": "f3876cf125becb8af8ff9eb9b16bee18ca222f2c443b38f76537566a71c29b45",
+      "raw_sha256": "fab0f2acab906ed64d571e3821443c8401e9c1d8a468b90e8dca47f38811a070",
+      "raw_bytes": 2218875
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/developers-desktop.html.gz",
+      "sha256": "42468de31f285e5c700ab594cbfa9dfe0cecf38f8b6e39411177a5143c9a257f",
+      "raw_sha256": "209bcd88333adc2af935171c266bebcf865a0f7cacea3b1258b61a928c49efed",
+      "raw_bytes": 81868
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/developers-mobile-axe.json.gz",
+      "sha256": "3013383f01507cdb72e18f7e38b7c9be167d959f6295eb8a3fc6dfb6e3949518",
+      "raw_sha256": "e1ba7e4aa36dee56ef3df5587b6730558882bafedd0f3dbd56dc0298f97f6cd9",
+      "raw_bytes": 2201135
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/developers-mobile.html.gz",
+      "sha256": "42468de31f285e5c700ab594cbfa9dfe0cecf38f8b6e39411177a5143c9a257f",
+      "raw_sha256": "209bcd88333adc2af935171c266bebcf865a0f7cacea3b1258b61a928c49efed",
+      "raw_bytes": 81868
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-desktop-axe.json.gz",
+      "sha256": "648a95d861537ad9b70f906f1ae38d8a0e7e72cccd151eab9062634db2273633",
+      "raw_sha256": "cce8e71097627dfa8cdf0b1f8edaf37f40fa05307f479c5022fcaa6a780c6ddd",
+      "raw_bytes": 469974
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-desktop.html.gz",
+      "sha256": "50817fa62507b9b04d54a4f3d2dd4659b6c7feaa231691cad5d7bfafc0bca75c",
+      "raw_sha256": "9e1f5b9bc6eb3fb145028e1d1b20032161da6576f429999b115677af8627da72",
+      "raw_bytes": 19795
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-fundamentals-desktop-axe.json.gz",
+      "sha256": "c7c631a86167928b55348ec5df35aede5b02fa71995db3d07f1cc662a0f6edc1",
+      "raw_sha256": "79b484f79a26faff95089e938a0c4b3e8ce333a351e7c5cdc67cfd669bd4dcb1",
+      "raw_bytes": 543875
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-fundamentals-desktop.html.gz",
+      "sha256": "199ffbae56829331e8ae785ff2680adf423e2332dbe602a30425e1ac423b22e2",
+      "raw_sha256": "329b1e52feed1fc7bb1199d1065890ae2eac218253cc52cc5e3436bb13368386",
+      "raw_bytes": 22726
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-fundamentals-mobile-axe.json.gz",
+      "sha256": "53271e641c27e85c8c747430d563e91831f09e316c1c38b27295a84f1062db3a",
+      "raw_sha256": "874ebf1aa2e8817d888dee12e858d6612b6d1240e4481be84d15366dcc6f22c9",
+      "raw_bytes": 526216
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-fundamentals-mobile.html.gz",
+      "sha256": "199ffbae56829331e8ae785ff2680adf423e2332dbe602a30425e1ac423b22e2",
+      "raw_sha256": "329b1e52feed1fc7bb1199d1065890ae2eac218253cc52cc5e3436bb13368386",
+      "raw_bytes": 22726
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-mobile-axe.json.gz",
+      "sha256": "38d183379fa7f8a529064a2c48b0fc2bebffe0b497104021c003c955f2f73a0d",
+      "raw_sha256": "50411c7509d3c6dccc8b8094ed813d6e44206ead32fffed9ff0350bfbabae17f",
+      "raw_bytes": 450317
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-mobile.html.gz",
+      "sha256": "50817fa62507b9b04d54a4f3d2dd4659b6c7feaa231691cad5d7bfafc0bca75c",
+      "raw_sha256": "9e1f5b9bc6eb3fb145028e1d1b20032161da6576f429999b115677af8627da72",
+      "raw_bytes": 19795
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-research-desktop-axe.json.gz",
+      "sha256": "a447ab592ab5dc2da570cf3315e1143fd3e7d90664129e794410cd50e3d83861",
+      "raw_sha256": "524de60148259918e939ada9b11b9b8cd5b602f4392a35ec895f48afd151a645",
+      "raw_bytes": 541409
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-research-desktop.html.gz",
+      "sha256": "13f1a366fabeacc61fdf28dfeb52cd020d9674b59c10427de77e890db1ec423f",
+      "raw_sha256": "ab7cad7843793e1227a6fac075d9f09c1a32994cf5e3a2f519668c04cddc4228",
+      "raw_bytes": 22618
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-research-mobile-axe.json.gz",
+      "sha256": "2532e9221aa095c0ea45b9905914470c5e805f494f84dc639b4d66c80e0e5997",
+      "raw_sha256": "734073bea4a83c6406eb0774ac39cc2761a7b0958b0b03816339ce361e7b12d1",
+      "raw_bytes": 524122
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-research-mobile.html.gz",
+      "sha256": "13f1a366fabeacc61fdf28dfeb52cd020d9674b59c10427de77e890db1ec423f",
+      "raw_sha256": "ab7cad7843793e1227a6fac075d9f09c1a32994cf5e3a2f519668c04cddc4228",
+      "raw_bytes": 22618
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-validation-desktop-axe.json.gz",
+      "sha256": "681e24c56b054c8a94a53340cd142000855a7db16f46108269514fb85e73b5c0",
+      "raw_sha256": "fe67f193cecca1ce670b030e3403e080b0b0a320a787cbc50419f190a499e087",
+      "raw_bytes": 576126
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-validation-desktop.html.gz",
+      "sha256": "90eb77f1f18c37665582270bd5a80f69c797bf8b193bc7d7c76f2ff57cdd57a1",
+      "raw_sha256": "a3d2466e380362bd2b3bc6618031643a4f9dcc0abd45b0c710866a20c23b0535",
+      "raw_bytes": 28231
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-validation-mobile-axe.json.gz",
+      "sha256": "9e78441cdd0cb13fe8ea615e14418e4aadd09eca1dfbf0ee0f51e6f57dfa8715",
+      "raw_sha256": "3d68aae16af39e985ffad1fb34568efbbda6f3f851c8f0cb7c5abecdd0c2828c",
+      "raw_bytes": 558174
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/mcp-servers-validation-mobile.html.gz",
+      "sha256": "90eb77f1f18c37665582270bd5a80f69c797bf8b193bc7d7c76f2ff57cdd57a1",
+      "raw_sha256": "a3d2466e380362bd2b3bc6618031643a4f9dcc0abd45b0c710866a20c23b0535",
+      "raw_bytes": 28231
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/live-browser/summary.json.gz",
+      "sha256": "129348c28737b3ac58ed9e03ef2d7956b84d71dffb2a2d9846e7c97dfb4c76d2",
+      "raw_sha256": "d9560ea6b7e50eee7eee6ee73264f23c5ce4c2eff1835060386e274fbfde4fad",
+      "raw_bytes": 201112
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/developers-desktop-axe.json.gz",
+      "sha256": "056089fd06cc65cc7fcead80b8764b804bc9e570f8f14d8180bbd176f2b9fd01",
+      "raw_sha256": "aa4d2f3b15b8f9a19984cddfb68ad76d39b615c23dcd2ba319b553afaf818bbe",
+      "raw_bytes": 2218872
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/developers-desktop.html.gz",
+      "sha256": "42468de31f285e5c700ab594cbfa9dfe0cecf38f8b6e39411177a5143c9a257f",
+      "raw_sha256": "209bcd88333adc2af935171c266bebcf865a0f7cacea3b1258b61a928c49efed",
+      "raw_bytes": 81868
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/developers-mobile-axe.json.gz",
+      "sha256": "479e9eaf02f1914f2debe55bd421b5061c35924496a0de45efca01d929c33d77",
+      "raw_sha256": "e843386d47e79ea22970d68fd68579987ffbd90d03a2a72155da9afd00b748ee",
+      "raw_bytes": 2201132
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/developers-mobile.html.gz",
+      "sha256": "42468de31f285e5c700ab594cbfa9dfe0cecf38f8b6e39411177a5143c9a257f",
+      "raw_sha256": "209bcd88333adc2af935171c266bebcf865a0f7cacea3b1258b61a928c49efed",
+      "raw_bytes": 81868
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-desktop-axe.json.gz",
+      "sha256": "3550230e27549fe7e2e0498934cb5c5d4fa925afc3d59f32abd1d83664e3ed6b",
+      "raw_sha256": "17c5a7274484655aa161bf5248259a55e28c7748cb65ef1aef68920d55b94a50",
+      "raw_bytes": 470011
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-desktop.html.gz",
+      "sha256": "ca15dcb83fe8250e03bd2dc4fd8d0f25e28e9e7202c40887c9ea8e8608722e31",
+      "raw_sha256": "a1a15abbb62a3965b8c762be4061ae1a7a0b47269da5809a6bc642b0f7688e60",
+      "raw_bytes": 20021
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-fundamentals-desktop-axe.json.gz",
+      "sha256": "857d7904d78d7b63d2cd7727b74e5fa4f50aa4f61c9868a6506fda5cdb7502b4",
+      "raw_sha256": "b6ce109414f4225d3eb42c26f70ce8e26d7038fa82b5ecc7e0ba21978a4a7cc2",
+      "raw_bytes": 546315
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-fundamentals-desktop.html.gz",
+      "sha256": "e6b4e7bf1fd551b1c6c6a8ce62a554564963bd9a5239f4e70261569bdd3002f7",
+      "raw_sha256": "08e4b2690ac651d53e88b52574f98d1fb3268e2aa488fa2f3a124811f7aba37b",
+      "raw_bytes": 22965
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-fundamentals-mobile-axe.json.gz",
+      "sha256": "329394e714bc0958a243d6c1d701769d1e0c6e6820b5cd12518b6a05ae68dea0",
+      "raw_sha256": "aa4ecf79fdc03e9513b188a0ee63ca1511278017dca599089f6522ebcfb62964",
+      "raw_bytes": 525906
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-fundamentals-mobile.html.gz",
+      "sha256": "e6b4e7bf1fd551b1c6c6a8ce62a554564963bd9a5239f4e70261569bdd3002f7",
+      "raw_sha256": "08e4b2690ac651d53e88b52574f98d1fb3268e2aa488fa2f3a124811f7aba37b",
+      "raw_bytes": 22965
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-mobile-axe.json.gz",
+      "sha256": "d21cf89aee24f551804fe96539355f8e0e74633e342b70fdc28938e11668674a",
+      "raw_sha256": "fa700d306c192c141c2c389496aa3829d8b5234a00507e125da8958f2b99a001",
+      "raw_bytes": 450354
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-mobile.html.gz",
+      "sha256": "ca15dcb83fe8250e03bd2dc4fd8d0f25e28e9e7202c40887c9ea8e8608722e31",
+      "raw_sha256": "a1a15abbb62a3965b8c762be4061ae1a7a0b47269da5809a6bc642b0f7688e60",
+      "raw_bytes": 20021
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-research-desktop-axe.json.gz",
+      "sha256": "46133e27e3610b8e6d73ff24696c28fed2ab4e59c4a53d140de586d43a6ed3c4",
+      "raw_sha256": "0c1c6c2d9a97abac188f19d30d1affe7d303cbfdc69058cafc005e85577fab76",
+      "raw_bytes": 543849
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-research-desktop.html.gz",
+      "sha256": "47554daeae33a65c9e56b2434c21342c5cd5748366b98c72605723d5ce42ff96",
+      "raw_sha256": "ecc660a6b30bfa1af7dee60a0a1cea0fd1a9c0fc6102f121cc29cd33163e6936",
+      "raw_bytes": 22857
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-research-mobile-axe.json.gz",
+      "sha256": "4d73485db0038112c4a62ed5c408793f3894fe358097565b8445d8f064fd898c",
+      "raw_sha256": "e9e9001df29388887208229c20db9b83e85733852003891583edda69ee1c9154",
+      "raw_bytes": 523812
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-research-mobile.html.gz",
+      "sha256": "47554daeae33a65c9e56b2434c21342c5cd5748366b98c72605723d5ce42ff96",
+      "raw_sha256": "ecc660a6b30bfa1af7dee60a0a1cea0fd1a9c0fc6102f121cc29cd33163e6936",
+      "raw_bytes": 22857
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-validation-desktop-axe.json.gz",
+      "sha256": "7d4966265ccaa165f8712d2724569ca707940790cc12376b808aa724bfe504bb",
+      "raw_sha256": "b460d8615de9d144d461ae3ab63e46dac4e488017156aa1803faa9d6ea6dc059",
+      "raw_bytes": 578566
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-validation-desktop.html.gz",
+      "sha256": "f26cf373a782acf842857d68f12497e2f317065bb9cf95e63d22ccc737b9528b",
+      "raw_sha256": "2d9f7e72de8b1db6c63f2180e8a30ad90bfb3ba2509eb8db7534ded56d380268",
+      "raw_bytes": 28470
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-validation-mobile-axe.json.gz",
+      "sha256": "78ab469a80838d6e7634d01707d5f655df2799d890781705e045e06d45c44b7b",
+      "raw_sha256": "b596cf9a1ac1efcc298a8d2219f9007cd8ad4582e549a3faa4fa769be3bfae91",
+      "raw_bytes": 557501
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/mcp-servers-validation-mobile.html.gz",
+      "sha256": "f26cf373a782acf842857d68f12497e2f317065bb9cf95e63d22ccc737b9528b",
+      "raw_sha256": "2d9f7e72de8b1db6c63f2180e8a30ad90bfb3ba2509eb8db7534ded56d380268",
+      "raw_bytes": 28470
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/local-browser-after/summary.json.gz",
+      "sha256": "fcc891a2f926c1744919ded1496b1d65f4146caf7b7b7f2cdc44a35b6b1b6bfb",
+      "raw_sha256": "73b123b3c08cde2d73a66b90706e25b175c0a41e79e35d5045465ff04e07a029",
+      "raw_bytes": 150210
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/live-metadata.json.gz",
+      "sha256": "b3289e726bc3594be638757cf09e1be87b0d7072914ead54613c639e0b7710e1",
+      "raw_sha256": "8edf5113d5461061c20aeba50673ef98bb1efbbd790b5c314b9108abbbb34d3e",
+      "raw_bytes": 5099
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/live-social-cards.json.gz",
+      "sha256": "b664d982633e96249a53f104620427846386c90961348a5bb31e04737d80f3f9",
+      "raw_sha256": "a9613e4a6bcf6ee85418c2e8c2e99f8ec49ab1d4a268b8a66514d9c25272202b",
+      "raw_bytes": 7649
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/local-focused-graph.json.gz",
+      "sha256": "5a48ac21b092fd93443e0cdce95174b74cfd2a9fbe4775ef6338e57945817c0e",
+      "raw_sha256": "39163ef8c4652b5414bd3cdc1b9ddba8a2ffe8da20be6b2fc1ffb45408137a0b",
+      "raw_bytes": 60521
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/chakra-fallback-derivation.json.gz",
+      "sha256": "dcfe3a12f2bf7ce822fab323f6bab52921c28fb966c3499189297ccecd0ce006",
+      "raw_sha256": "b1c3929fd29a70198f903707a34d4762934c5bac2eda705d439b56dae2bcb3b3",
+      "raw_bytes": 1273
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-build-restored.json.gz",
+      "sha256": "c15408f9b48cbfb412b3bf695ba824a7ce54aa4381701631d3e1a8cf255cd26a",
+      "raw_sha256": "e39b517bcb9b56662b457eb6e9567ba12edd1033c6dd6c1cff25eb8716c025dc",
+      "raw_bytes": 28307
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-full-restored.json.gz",
+      "sha256": "3d68823806cce6be7ca5504829762cb2a68af387857010e085736b4e4ddff8e9",
+      "raw_sha256": "409ea23a189e4f03e9bb7a74379406492e55fe0e6625285a9bd3880230e241cd",
+      "raw_bytes": 6303
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-focused.txt.gz",
+      "sha256": "25fdcc2c6490f81ad67ac37541b00ed357a6ba461071b6c1f5330e604b66c097",
+      "raw_sha256": "d14d37ab6091929a8382937a505ec2b3d75944ad2d3812c87696a5a075e08f55",
+      "raw_bytes": 643
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-build.txt.gz",
+      "sha256": "096bf7d81cd67750aeffdd38634982a7cd23456f7c592dbc424dd45cfa686a2c",
+      "raw_sha256": "77cdd62edc7990cd748ce7df0bc6b802856274cc5a4add1e2d2ee2f4b85f7b01",
+      "raw_bytes": 111713
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-full-verify.txt.gz",
+      "sha256": "c9cbaba5158caeb278b19570cf47079076a8fbf38abffa7a4fec337c98d8923b",
+      "raw_sha256": "6d98ea7406623b8709d1014e5200a45227ecd285e85d01bae3cc2a116a622fd0",
+      "raw_bytes": 195198
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/mcp-page-clean-snapshot.txt.gz",
+      "sha256": "a76f7165d90bf526b4576ec6fbfdaf77fdd88443566cc101e2278f8155ece6eb",
+      "raw_sha256": "27371b80f9809d3c647cadb0dd807ac75076783f725760ebb7fc1e6732144082",
+      "raw_bytes": 111922
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/local-mcp-before.txt.gz",
+      "sha256": "5d880e6b1f2a90f5e8faa3a0db1fe679892e1b02c165abb285f855d55a80ab11",
+      "raw_sha256": "429c4956b6eee9d7b76696f60d5e4ed9b269110d28c47822979123ffe4898854",
+      "raw_bytes": 1849
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/local-mcp-after.txt.gz",
+      "sha256": "0e8efcf7ca088e175d24b114208bfaa7cd1310222bfc3ac37e79d103524e3f32",
+      "raw_sha256": "df4a06e3332a8d08f52ec20f76038cda0afb024967b6e72cc5150ddfc42b3453",
+      "raw_bytes": 1850
+    },
+    {
+      "path": "artifacts/goal/mcp-page-quality-20261001/verification/local-browser-after.txt.gz",
+      "sha256": "2ff59ddcb96313d9c82f8d387012ed6e9bbdc3a8922a94d0445971016cf158fa",
+      "raw_sha256": "f67b5c31d397e7a6d513c6a77ef206989efef1c816b4571ba5b5f62d863721a0",
+      "raw_bytes": 3083
+    }
+  ],
+  "browser_receipt_checks": [
+    {
+      "group": "live-browser",
+      "route": "/developers",
+      "profile": "desktop",
+      "body_sha256": "209bcd88333adc2af935171c266bebcf865a0f7cacea3b1258b61a928c49efed",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 26
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 14
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 5
+    },
+    {
+      "group": "live-browser",
+      "route": "/developers",
+      "profile": "mobile",
+      "body_sha256": "209bcd88333adc2af935171c266bebcf865a0f7cacea3b1258b61a928c49efed",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 26
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 17
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 5
+    },
+    {
+      "group": "live-browser",
+      "route": "/mcp-servers",
+      "profile": "desktop",
+      "body_sha256": "9e1f5b9bc6eb3fb145028e1d1b20032161da6576f429999b115677af8627da72",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 0
+    },
+    {
+      "group": "live-browser",
+      "route": "/mcp-servers",
+      "profile": "mobile",
+      "body_sha256": "9e1f5b9bc6eb3fb145028e1d1b20032161da6576f429999b115677af8627da72",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 0
+    },
+    {
+      "group": "live-browser",
+      "route": "/mcp-servers/validation",
+      "profile": "desktop",
+      "body_sha256": "a3d2466e380362bd2b3bc6618031643a4f9dcc0abd45b0c710866a20c23b0535",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 0
+    },
+    {
+      "group": "live-browser",
+      "route": "/mcp-servers/validation",
+      "profile": "mobile",
+      "body_sha256": "a3d2466e380362bd2b3bc6618031643a4f9dcc0abd45b0c710866a20c23b0535",
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": 1
+        },
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "nodes": 2
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 0
+    },
+    {
+      "group": "live-browser",
+      "route": "/mcp-servers/fundamentals",
+      "profile": "desktop",
+      "body_sha256": "329b1e52feed1fc7bb1199d1065890ae2eac218253cc52cc5e3436bb13368386",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 0
+    },
+    {
+      "group": "live-browser",
+      "route": "/mcp-servers/fundamentals",
+      "profile": "mobile",
+      "body_sha256": "329b1e52feed1fc7bb1199d1065890ae2eac218253cc52cc5e3436bb13368386",
+      "violations": [
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "nodes": 2
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 0
+    },
+    {
+      "group": "live-browser",
+      "route": "/mcp-servers/research",
+      "profile": "desktop",
+      "body_sha256": "ab7cad7843793e1227a6fac075d9f09c1a32994cf5e3a2f519668c04cddc4228",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 0
+    },
+    {
+      "group": "live-browser",
+      "route": "/mcp-servers/research",
+      "profile": "mobile",
+      "body_sha256": "ab7cad7843793e1227a6fac075d9f09c1a32994cf5e3a2f519668c04cddc4228",
+      "violations": [
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "nodes": 2
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "74d704d45df502e8a76c37439415842b47b93cb7",
+      "base_url": "https://canlicapital.com",
+      "external_requests": 0
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/developers",
+      "profile": "desktop",
+      "body_sha256": "209bcd88333adc2af935171c266bebcf865a0f7cacea3b1258b61a928c49efed",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 26
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 14
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 5
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/developers",
+      "profile": "mobile",
+      "body_sha256": "209bcd88333adc2af935171c266bebcf865a0f7cacea3b1258b61a928c49efed",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 26
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 17
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 5
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/mcp-servers",
+      "profile": "desktop",
+      "body_sha256": "a1a15abbb62a3965b8c762be4061ae1a7a0b47269da5809a6bc642b0f7688e60",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 0
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/mcp-servers",
+      "profile": "mobile",
+      "body_sha256": "a1a15abbb62a3965b8c762be4061ae1a7a0b47269da5809a6bc642b0f7688e60",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 0
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/mcp-servers/validation",
+      "profile": "desktop",
+      "body_sha256": "2d9f7e72de8b1db6c63f2180e8a30ad90bfb3ba2509eb8db7534ded56d380268",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 0
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/mcp-servers/validation",
+      "profile": "mobile",
+      "body_sha256": "2d9f7e72de8b1db6c63f2180e8a30ad90bfb3ba2509eb8db7534ded56d380268",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 0
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/mcp-servers/fundamentals",
+      "profile": "desktop",
+      "body_sha256": "08e4b2690ac651d53e88b52574f98d1fb3268e2aa488fa2f3a124811f7aba37b",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 0
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/mcp-servers/fundamentals",
+      "profile": "mobile",
+      "body_sha256": "08e4b2690ac651d53e88b52574f98d1fb3268e2aa488fa2f3a124811f7aba37b",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 0
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/mcp-servers/research",
+      "profile": "desktop",
+      "body_sha256": "ecc660a6b30bfa1af7dee60a0a1cea0fd1a9c0fc6102f121cc29cd33163e6936",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 0
+    },
+    {
+      "group": "local-browser-after",
+      "route": "/mcp-servers/research",
+      "profile": "mobile",
+      "body_sha256": "ecc660a6b30bfa1af7dee60a0a1cea0fd1a9c0fc6102f121cc29cd33163e6936",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 3
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 11
+        }
+      ],
+      "browser": "148.0.7778.96",
+      "python": "3.9.6",
+      "source_label": "1eded5b7663395caa4c001a0caff09d8fedd6dd3",
+      "base_url": "http://127.0.0.1:5293",
+      "external_requests": 0
+    }
+  ],
+  "lighthouse_comparison": [
+    {
+      "route": "/mcp-servers",
+      "profile": "mobile",
+      "paired_config_equal": true,
+      "before": {
+        "performance": 0.7,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "after": {
+        "performance": 0.84,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "screen_emulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "host_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36",
+      "benchmark_before": 2647.5,
+      "benchmark_after": 3785.5,
+      "declared": {
+        "route": "/mcp-servers",
+        "profile": "mobile",
+        "performance_before": 70,
+        "performance_after": 84,
+        "cls_before": 0.221877,
+        "cls_after": 0,
+        "lcp_before_ms": 4513.602,
+        "lcp_after_ms": 4360.518599999999,
+        "other_category_scores_after": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    },
+    {
+      "route": "/mcp-servers",
+      "profile": "desktop",
+      "paired_config_equal": true,
+      "before": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "after": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "screen_emulation": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "host_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36",
+      "benchmark_before": 2667.5,
+      "benchmark_after": 4422,
+      "declared": {
+        "route": "/mcp-servers",
+        "profile": "desktop",
+        "performance_before": 99,
+        "performance_after": 99,
+        "cls_before": 0.006951,
+        "cls_after": 0,
+        "lcp_before_ms": 847.2879,
+        "lcp_after_ms": 846.1626000000001,
+        "other_category_scores_after": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    },
+    {
+      "route": "/mcp-servers/validation",
+      "profile": "mobile",
+      "paired_config_equal": true,
+      "before": {
+        "performance": 0.7,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "after": {
+        "performance": 0.83,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "screen_emulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "host_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36",
+      "benchmark_before": 2673,
+      "benchmark_after": 4130,
+      "declared": {
+        "route": "/mcp-servers/validation",
+        "profile": "mobile",
+        "performance_before": 70,
+        "performance_after": 83,
+        "cls_before": 0.229797,
+        "cls_after": 0,
+        "lcp_before_ms": 4505.895,
+        "lcp_after_ms": 4364.330400000001,
+        "other_category_scores_after": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    },
+    {
+      "route": "/mcp-servers/validation",
+      "profile": "desktop",
+      "paired_config_equal": true,
+      "before": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "after": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "screen_emulation": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "host_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36",
+      "benchmark_before": 2653,
+      "benchmark_after": 4293.5,
+      "declared": {
+        "route": "/mcp-servers/validation",
+        "profile": "desktop",
+        "performance_before": 99,
+        "performance_after": 99,
+        "cls_before": 0.021547,
+        "cls_after": 0,
+        "lcp_before_ms": 846.67455,
+        "lcp_after_ms": 852.9533999999999,
+        "other_category_scores_after": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    },
+    {
+      "route": "/mcp-servers/fundamentals",
+      "profile": "mobile",
+      "paired_config_equal": true,
+      "before": {
+        "performance": 0.69,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "after": {
+        "performance": 0.83,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "screen_emulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "host_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36",
+      "benchmark_before": 2658,
+      "benchmark_after": 4409,
+      "declared": {
+        "route": "/mcp-servers/fundamentals",
+        "profile": "mobile",
+        "performance_before": 69,
+        "performance_after": 83,
+        "cls_before": 0.241321,
+        "cls_after": 0,
+        "lcp_before_ms": 4504.8513,
+        "lcp_after_ms": 4361.9546,
+        "other_category_scores_after": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    },
+    {
+      "route": "/mcp-servers/fundamentals",
+      "profile": "desktop",
+      "paired_config_equal": true,
+      "before": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "after": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "screen_emulation": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "host_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36",
+      "benchmark_before": 2664.5,
+      "benchmark_after": 4396.5,
+      "declared": {
+        "route": "/mcp-servers/fundamentals",
+        "profile": "desktop",
+        "performance_before": 99,
+        "performance_after": 99,
+        "cls_before": 0.021536,
+        "cls_after": 0,
+        "lcp_before_ms": 846.7165500000001,
+        "lcp_after_ms": 851.2628,
+        "other_category_scores_after": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    },
+    {
+      "route": "/mcp-servers/research",
+      "profile": "mobile",
+      "paired_config_equal": true,
+      "before": {
+        "performance": 0.71,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "after": {
+        "performance": 0.84,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "screen_emulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "host_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36",
+      "benchmark_before": 2674.5,
+      "benchmark_after": 4412,
+      "declared": {
+        "route": "/mcp-servers/research",
+        "profile": "mobile",
+        "performance_before": 71,
+        "performance_after": 84,
+        "cls_before": 0.241321,
+        "cls_after": 0,
+        "lcp_before_ms": 4207.1146,
+        "lcp_after_ms": 4356.8330000000005,
+        "other_category_scores_after": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    },
+    {
+      "route": "/mcp-servers/research",
+      "profile": "desktop",
+      "paired_config_equal": true,
+      "before": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "after": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "screen_emulation": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "host_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36",
+      "benchmark_before": 2654,
+      "benchmark_after": 4398,
+      "declared": {
+        "route": "/mcp-servers/research",
+        "profile": "desktop",
+        "performance_before": 99,
+        "performance_after": 99,
+        "cls_before": 0.021528,
+        "cls_after": 0,
+        "lcp_before_ms": 844.2574500000001,
+        "lcp_after_ms": 849.8322000000001,
+        "other_category_scores_after": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    }
+  ],
+  "font": {
+    "target": {
+      "sha256": "65fbf76d95651697275e19db4d717c0e95a789ddd3476478b05292104db278a0",
+      "units_per_em": 1000,
+      "ascent": 992,
+      "descent": -308,
+      "line_gap": 0,
+      "mean_advance": 0.6191081081081081,
+      "zero_advance": 0.652
+    },
+    "fallback": {
+      "sha256": "fcf34b330033e26c06e9bd466bea5a3e4b2f39272972275369beb7d8b257ed57",
+      "units_per_em": 2048,
+      "ascent": 1916,
+      "descent": -434,
+      "line_gap": 0,
+      "mean_advance": 0.5258261190878378,
+      "zero_advance": 0.4560546875
+    },
+    "served_woff2": {
+      "sha256": "e087867074d33918c3505dfb21ca3862d0b39014ba1e731b362262130610c57d",
+      "units_per_em": 1000,
+      "ascent": 992,
+      "descent": -308,
+      "line_gap": 0,
+      "mean_advance": 0.6191081081081081,
+      "zero_advance": 0.652
+    },
+    "derived_values": {
+      "size_adjust": 117.74008282093111,
+      "ascent_override": 84.25338051687257,
+      "descent_override": 26.159315724996723,
+      "line_gap_override": 0.0
+    }
+  },
+  "diff_check_exit": 0,
+  "failures": [
+    "framed source binding measurements",
+    "framed source binding public/api/v1/index.json",
+    "framed source binding public/glassbox",
+    "framed source binding public/glassbox/cost_coverage.json",
+    "framed source binding public/glassbox/paper_evidence_conformance.json",
+    "framed source binding publication/alphamax/v0.1.0.html",
+    "framed source binding publication/alphatrend/v0.1.0.html",
+    "framed source binding publication/alphavintage/v1.0.0.html",
+    "framed source binding publication/crypto-carry/v0.1.0.html",
+    "framed source binding publication/crypto-defensive/v0.1.0.html",
+    "framed source binding publication/crypto-momentum/v0.1.0.html",
+    "framed source binding publication/crypto-multifactor-engine/v0.1.0.html",
+    "framed source binding publication/crypto-reversal/v0.1.0.html",
+    "framed source binding publication/crypto-vrp/v0.1.0.html",
+    "framed source binding publication/energy-inventory/v0.1.0.html",
+    "framed source binding publication/equity-insider-activity/v0.1.0.html",
+    "framed source binding publication/equity-low-beta/v0.1.0.html",
+    "framed source binding publication/equity-narrative-change/v0.1.0.html",
+    "framed source binding publication/equity-quality/v0.1.0.html",
+    "framed source binding publication/equity-value-investment/v0.1.0.html",
+    "framed source binding publication/macro-economic-trend/v0.1.0.html"
+  ],
+  "limits": [
+    "Read-only source and archive inspection, no new browser/axe/Lighthouse/full build runs in this receipt.",
+    "Archive hashes verify receipt consistency; supplied commit labels and captured-time metadata do not independently attest serving history.",
+    "Eight paired Lighthouse profiles are four MCP routes at two simulated profiles; five browser routes use 1440/320 widths. Single-run local lab evidence is separate from live and field performance.",
+    "Font width matching is approximate and uses this actual macOS local font; fallback availability and every platform/language are not established.",
+    "Retained incomplete contrast/ARIA checks, hero LCP, developer external fonts, external validators/indexing and screen-reader behavior remain bounded.",
+    "No changes to implementation, released MCP packages, v0/v1 candidate bytes, annotation/evaluation/journal or other owned worktrees. All owner objectives remain active."
+  ]
+}

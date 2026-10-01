@@ -1,0 +1,32 @@
+{
+  "schema": "canli.page-publication-harness-failure.v1",
+  "observed_at": "2026-10-01T15:13:57.218453+00:00",
+  "source_commit": "62d2a195b31a81dedbd9b7a897a76e2af95ae1fb",
+  "result": "FAILED_BEFORE_VALIDATOR",
+  "terminal": {
+    "ended_at": "2026-10-01T15:10:16.796402+00:00",
+    "exit_code": 1,
+    "seconds": 8.629608416,
+    "pid": 99273,
+    "pgid": 99273,
+    "log": "/Users/arhancanli/canlicapital-coordination-20261001/analyzers/pr-349-primary-overlay.log",
+    "log_sha256": "4ccef82bbfbd106e6af1bdac2649e0825812a7d2717e85ab728d54e74ade7173"
+  },
+  "cause": "Snapshot already contains ignored dependency symlink; ln treated existing directory as target and refused duplicate node_modules child.",
+  "correction": "Create dependency link only when absent; independently require both paths resolve to identical installed dependencies.",
+  "before_harness_sha256": "8fb91e858ffe05d6084b36694592d42b8cc3d641032f3620539148da1f3a09ea",
+  "after_harness_sha256": "b041615f1b0a1ccdab2a32fef2235168ac154a3f5a552f5a74388dcaa61b2799",
+  "production_untouched": "0d9c88c605d7abfda150bde87c95f8554672352e",
+  "release": {
+    "released_at": "2026-10-01T15:10:16.799980+00:00",
+    "nonce": "65224d494bd9480eb4e2a1f3927906d5",
+    "ownerThread": "01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23",
+    "nonce_guard_matched": true
+  },
+  "limits": [
+    "No product finding and no validator/build/publication success claimed.",
+    "Before harness reconstructed by reversing sole known correction; reconstruction disclosed.",
+    "Receipt assembly initially hit nested-heredoc parser refusal; no receipt overwritten; corrected delimiter used.",
+    "Lead retry grant required before next own nonce."
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "canli.mcp-page-primary-review-artifacts.v1",
+  "assembled_at": "2026-10-01T14:05:12.251656+00:00",
+  "reviewed_head": "ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17",
+  "review_status": "CHANGES_REQUESTED",
+  "files": [
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/pr-349-primary-source-review.json",
+      "sha256": "2d32d44c5b7838f0e65e08d49ae7315570102f098940ed33d1c7fae55776827a"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/pr-349-primary-archive-review.json",
+      "sha256": "52caa74523ec47c62223ad2ca89889f391ff5ea2ca6b25e8eabb48d26aeb7463"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/pr-349-primary-combined-verifier-failure.json",
+      "sha256": "fab8d53749e672894555f03698169864b96c263d37c6f1b7ec6555b27273c854"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/review-findings.json",
+      "sha256": "e369924273cfae92962960013eccd31c87ad10c5798b700ad150eec4a50a5ba1"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/browser-review.json",
+      "sha256": "16af571b50d06b10c1c44a5267e9bf3b4bd9fb8b1c1ed0fd9743b3986f99dd9d"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/focus-screenshot-comparison.json",
+      "sha256": "0199bfec673af0e23954aef2707ee97fc245fc2609b792e81c39eca825f7d312"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/source-review-initial.json",
+      "sha256": "d65a0e1d2dd2bfa2b8d0662299415d53bf81cd12896293c3e52e21d936280231"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/source-review.json",
+      "sha256": "6d6308e0a639d703d28c90589e9bc39416be2b1b304c1dc3aaa5b89b6d32a99a"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/source-binding-baseline.json",
+      "sha256": "87b56cdbe0313c2fa815e9e85805d1c4271076939d494f792fba53aeb20da5b2"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/portable-mcp-dates.json",
+      "sha256": "8809b4fbf92b5df86f9c0654e62f56ae88e4447480ebec819ee48951ef9fbbfa"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/validation-320-table-focused.png",
+      "sha256": "3fb2c346127ad07a465f4a8c197d2136102d4d543e34e2dfcc1b8ab52400aa47"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/validation-320-table-unfocused.png",
+      "sha256": "3fb2c346127ad07a465f4a8c197d2136102d4d543e34e2dfcc1b8ab52400aa47"
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/browser_review.py.gz",
+      "sha256": "ae13378a6381e4b2ee4e09537b9b7d12fd30aab9c37e5768d64189c447be8b4d",
+      "raw_sha256": "3bb1d417fc00510bdbaa7a8ab57736c8f28881125d031e15e8aa2566e998d92d",
+      "raw_bytes": 12181
+    },
+    {
+      "path": "artifacts/goal/mcp-page-primary-review-20261001/serve.mjs.gz",
+      "sha256": "857477cf86cbdf48cf041ec45eda424f95ddc4621e91bf0274d08c86761ee1f7",
+      "raw_sha256": "40780d44bf5095d1c86efc024274462e10e7d22ac13c1ea4bb4608f1d4a7bf23",
+      "raw_bytes": 678
+    }
+  ],
+  "limits": [
+    "Automated ten-case pass coexists with independently captured invisible table focus finding.",
+    "Original source/archive checks do not establish browser-wide WCAG conformance; no merge or publication.",
+    "Original broad-binding and primary raw/framed observer failures retained unchanged."
+  ]
+}

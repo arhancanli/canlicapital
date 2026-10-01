@@ -1,0 +1,133 @@
+{
+  "schema": "canli.execution-private-doc-claims-peer-review.v1",
+  "checked_at": "2026-10-01T14:08:48.579503+00:00",
+  "head": "ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17",
+  "base": "fe68e73eb12d0f8c6a3a93eb4cf4f363c4ca1099",
+  "scope": "Primary-assigned read-only private execution README/source comments/CHANGELOG versus pinned token/write receipts; separate inherited baseline, not349 blocking findings.",
+  "findings": [
+    {
+      "id": "CC-EXEC-DOC-TOKENS",
+      "severity": "P2 documentation",
+      "blocks_pr349": false,
+      "inherited_exact_base": true,
+      "locations": [
+        {
+          "path": "mcp-execution/README.md",
+          "line": 80
+        },
+        {
+          "path": "mcp-execution/CHANGELOG.md",
+          "line": 30
+        }
+      ],
+      "claim": "The full four-tool list is1636o200k/1571cl100k and reproduce the current repository bench.",
+      "evidence": "1636/1571 is a valid historical shortfall checkpoint, artifacts/goal/mcp-tool-tokens-20261001.json:33/34 last changed #33937221be6. Journal expansion #34474d704d4 records1691/1621 with7013 characters at artifacts/mcp/journal-tool-tokens-20261001.json:33/34. Current private source/package/shared-bench script remains byte-identical to that latest snapshot. README does not mark its total historical; CHANGELOG shortfall entry should explicitly attribute the milestone.",
+      "historical_values": {
+        "server": "execution",
+        "version": "0.1.0",
+        "tools": 4,
+        "chars": 6806,
+        "o200k_base": 1636,
+        "cl100k_base": 1571
+      },
+      "latest_source_equivalent_values": {
+        "server": "execution",
+        "version": "0.1.0",
+        "tools": 4,
+        "chars": 7013,
+        "o200k_base": 1691,
+        "cl100k_base": 1621
+      },
+      "requested_correction": "Explicitly preserve old1636/1571 as shortfall-stage history; use or link latest1691/1621 for the present four-tool list. Disclose journal163>150 and incomplete seven-tool1700 gate; no new token run or historical artifact rewrite."
+    },
+    {
+      "id": "CC-EXEC-DOC-WRITES",
+      "severity": "P2 documentation",
+      "blocks_pr349": false,
+      "inherited_exact_base": true,
+      "locations": [
+        {
+          "path": "mcp-execution/README.md",
+          "line": 203
+        },
+        {
+          "path": "mcp-execution/src/server.mjs",
+          "line": 6
+        }
+      ],
+      "claim": "Local state is CANLI_HOME/default~/.canli and no tool writes to it.",
+      "evidence": "runJournal journal.mjs:103 explicitly calls storeExport(home,bytes) for bundles above16KiB. storeExport journal-export-file.mjs:17 creates home if absent;19/21 creates CANLI_HOME/exports;30/34/45 creates and writes exclusive0600 JSON files there. README106\u2013112 and CHANGELOG already disclose large local exports, and server.mjs:109 truthfully annotates journal readOnlyHint:false/idempotentHint:false. The blanket no-write sentence contradicts this implemented behavior.",
+      "requested_correction": "Narrow no-write wording to limits.json,KILL and original journal inputs; say head/verify read only, export may create private CANLI_HOME/exports files above16KiB and leave failed/partial files. Preserve existing permissions/refusal/signing/self-attestation/no-upload limits.",
+      "adjacent_read_frequency_scope": "Both are read on every call should mean applicable trade checks:check_orders reads limits+KILL;size_position reads limits;measure_shortfall andjournal do not read those trade-control files. This source-comment/README clarification changes no behavior."
+    }
+  ],
+  "history": {
+    "old_token_artifact_commit": "37221be65a41fa19491433c2d1bd9731b226ec7f 2026-10-01T09:41:16+04:00",
+    "latest_token_artifact_commit": "74d704d45df502e8a76c37439415842b47b93cb7 2026-10-01T15:24:28+04:00",
+    "current_advertised_source_equal_latest_journal_snapshot": true
+  },
+  "release_gates": {
+    "journal_original_o200k_target": 150,
+    "journal_measured_o200k": 163,
+    "seven_tool_original_o200k_target": 1700,
+    "four_tools_measured_o200k": 1691,
+    "seven_tool_list_complete": false,
+    "qualified_trading_release": false,
+    "version_bump": false,
+    "npm_publication": false,
+    "broker_requests": 0,
+    "expert_gold_created": 0,
+    "fresh_indexing_measured": false
+  },
+  "shortfall_source_hashes_match": {
+    "js/shortfall-core.js": true,
+    "mcp-execution/src/measure-shortfall.mjs": true,
+    "scripts/bench/execution-shortfall.py": true
+  },
+  "shortfall_numeric_claims": "1000-order3.9990835ms inline/3.3090625ms file/24.6685625ms file199-bootstrap round to4.0/3.3/24.7; input96154inline vs58file, output_text370file. These scoped historical local synthetic claims match the captured artifact and unchanged sources.",
+  "source_receipt_hashes": [
+    {
+      "path": "mcp-execution/README.md",
+      "sha256": "eb5eed169b7d9298a22f6d5738e28f184dca7e1c61ac6fb8ce583f8b3239ba2a"
+    },
+    {
+      "path": "mcp-execution/CHANGELOG.md",
+      "sha256": "4910b72d1df85128edbc63898be22613dd53c2184a7faaefcdc769a19093d4c7"
+    },
+    {
+      "path": "mcp-execution/src/server.mjs",
+      "sha256": "2363be43ff6a72faea70fc95db4defb41f2f865a9ba7d32e2f81fd92b906a056"
+    },
+    {
+      "path": "mcp-execution/src/journal.mjs",
+      "sha256": "72829724fd58fb8d6c7af8dc21fde02a0f97b68a57eedd606f5ff92826957619"
+    },
+    {
+      "path": "mcp-execution/src/journal-export-file.mjs",
+      "sha256": "71c49225e7e26c7f9e0368f20a731a2dcb0ceaf87818e9e386b1ed0b998ce834"
+    },
+    {
+      "path": "artifacts/goal/mcp-tool-tokens-20261001.json",
+      "sha256": "5297b21456c970b082e489e1a1193909599bdff2b14bd104fac65df1956683a5"
+    },
+    {
+      "path": "artifacts/mcp/journal-tool-tokens-20261001.json",
+      "sha256": "82936c2e5a1a5e354fd6ccf17868f3ada75da6250b985bb0709fcea1c88c85df"
+    },
+    {
+      "path": "artifacts/mcp/journal-accounting-20261001.json",
+      "sha256": "d41c1206b15242e78de3402a3ec319a54f1526e27b2f1bc5d72e5605d99e4614"
+    },
+    {
+      "path": "artifacts/goal/shortfall-local-benchmark-20261001.json",
+      "sha256": "2f0ce43ca9c705cf4ccfb7079f4c9c1822621935f4e4613406e7f09237b0f030"
+    }
+  ],
+  "limits": [
+    "No tests, benchmarks, tokenizer runs, Chrome, builds, source changes or publication performed for this audit.",
+    "Token totals are separately encoded historical observations with exact source equivalence, not universal billing or hosted/field latency claims.",
+    "Four tools1691 is not a passed seven-tool1700 gate; journal163 exceeds original150; private tools remain unreleased/no broker requests.",
+    "All source/rights/history/annotation and Sovereign/ALPHAC/indexing/SEO/findability/adoption owner objectives remain active."
+  ],
+  "primary_owns_documentation_correction": true
+}
