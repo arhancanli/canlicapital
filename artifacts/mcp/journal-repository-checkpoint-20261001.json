@@ -1,0 +1,25 @@
+{
+  "schema": "canli.journal-repository-checkpoint.v1",
+  "observed_at": "2026-10-01T10:12:39Z",
+  "implementation_commit": "0f63b8d101a931538cc75c54dbb957d02a515d9d",
+  "implementation_tree": "40e97734f0de1e71fdcf7a7e0b5e89a7145fc58f",
+  "commit_signature_status": "G",
+  "upload_source_clean": true,
+  "git_free_deployment_validator": {
+    "command": "node scripts/validate-deploy-snapshot.mjs /Users/arhancanli/canlicapital-continuation-20261001",
+    "exit_code": 0,
+    "validation_clone": "/var/folders/qk/0lc9wn8s1cjb65x50t0gn3km0000gn/T/canli-validation-rDrTmW",
+    "log": "/tmp/canli-journal-clean-snapshot-20261001.log",
+    "log_sha256": "d0a3656b8cbc470f3c73ce87d4c53fa889ff787d630fe9bec88787fdaf41be4a",
+    "stamped_pages": 683,
+    "checksummed_files_untouched": 416,
+    "scope": "Actual clean upload source copied without Git metadata, artifacts or credentials; VERCEL=1 full build, not a production deployment."
+  },
+  "accounting_evidence": "artifacts/mcp/journal-accounting-20261001.json",
+  "production_changed": false,
+  "package_versions_changed": false,
+  "npm_published": false,
+  "broker_requests": 0,
+  "azure_resources_activated": 0,
+  "overall_owner_goal": "active"
+}

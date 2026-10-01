@@ -4257,3 +4257,15 @@ packet binding, complete negative exports and keyboard behavior, in its separate
 MCP/developer analyzer work remains an active later phase. All original objectives persist.
 Azure lead reports included-credit qualification/guard context; no resource/spend reserved or
 activated by Canli. Await committed Linux contract coordination; no unapproved cash workload.
+
+
+## 2026-10-01 — signed journal implementation and clean snapshot verified
+
+Signed implementation 0f63b8d101a931538cc75c54dbb957d02a515d9d (signature G) is clean;
+tree 40e97734f0de1e71fdcf7a7e0b5e89a7145fc58f. Resumed the existing deployment-validator
+process rather than restarting it: exit 0, real Git-free VERCEL=1 build, 683 stamped pages,
+416 checksummed files untouched. Exact source, clone and log digest are recorded in
+artifacts/mcp/journal-repository-checkpoint-20261001.json. Repository PR is next; no version,
+npm or production change. Secondary #343 revised head 25bd6aef has seven successful checks;
+merge remains held for independent correction/source/arm/wording review. Third reports 23
+focused annotation tests; browser/full checks and pinned PR remain pending. All goals active.

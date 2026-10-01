@@ -35,7 +35,10 @@ passes, both dependency audits have zero vulnerabilities. Four execution tools: 
 Synthetic 350-mark stdio timing after this worktree's checks: export median 20.44 ms, validation
 20.25 ms; concurrent/pre-clock runs retained with explicit limits. Artifacts: artifacts/mcp/journal-*20261001.json.
 645 unrelated generated outputs restored and archived; historical vectors/site outputs preserved.
-Signed PR, clean snapshot, CI and repository publication pending; execution stays private/unreleased.
+Signed implementation 0f63b8d1 is clean. Actual Git-free production snapshot build passes;
+683 stamped pages and 416 checksummed files untouched. Repository checkpoint records the exact
+commit/tree and validator log hash. PR, CI and repository publication pending; execution stays
+private/unreleased and no production deployment is claimed for this batch.
 
 Parallel: secondary owns FilingFacts evaluation reliability (#343 held for metric/source/arm
 corrections after independent review); third owns annotation browser draft/export integrity.
