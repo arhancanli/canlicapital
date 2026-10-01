@@ -3,10 +3,15 @@
 Current continuation (2026-10-01): Codex launched the goal and recovered the owner's Claude
 instructions. Read MASTER_PLAN.md for the full goal structure and CLAUDE_RECOVERY_20261001.md
 for the verified stopping point. Active worktree:
-`/Users/arhancanli/canlicapital-continuation-20261001`. The MCP/annotation continuation
+`/Users/arhancanli/canlicapital-journal-store-20261001`. The MCP/annotation continuation
 merged as #339; #336/#337 are merged and their website changes are verified in production.
 Journal #344 merged as74d704d4 after evaluation #343 and annotation #345.
-Current checkpoint branch `records/raw-noindex-delivery-20261001` retains final review/build/source evidence.
+Documentation/evidence checkpoint #350 merged63cea029 with independent review and equal tree.
+Current branch `work/journal-store-20261001` completes the private local journal storage
+foundation:21 focused passes and three independently verified synthetic snapshots/five receipts.
+PR352 source c440 has seven successful CI checks; its evidence commit and delivery are pending.
+Offline baseline351 is delivered1ed2f9cb; attempt ledger353 narrow correction is source-reviewed,
+with exact final evidence/CI review and delivery still pending.
 The raw-header correction #348 is live from0d9c88c6; both download noindex controls and
 indexable canonical pages pass independent HTTP checks. Source-only v1 candidate tooling #347
 is merged asfe68e73e. Page #349 merged as62d2a195 from signed88d4ac9a with equal tree,
