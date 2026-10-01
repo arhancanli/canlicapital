@@ -4211,3 +4211,13 @@ comment-only source mutations now actually refuse replay; FilingFacts34/34, full
 and verify800+6,699 page audits0 errors/warnings. Source-date refresh, clean snapshot,
 signed revised head and primary recheck next. Historical raw bundle/stats unchanged;
 no model/paid/cloud/broker call, invented gold or achieved full-platform outcome.
+
+
+## 2026-10-01 — secondary peer corrections clean snapshot verified
+
+Signed implementation bed645b8 carries source-closure, closed-arm, wrong-unit, realpath
+CLI and legacy/v1 wording corrections.34 FilingFacts tests and800+6 full tests pass;
+699 page audits have0 errors/warnings. Changed dataset Markdown/research directory
+bindings refreshed from this signed source. Actual clean Git-free production snapshot
+build passes, leaving416 checksummed files untouched. Revised PR CI and primary recheck
+remain pending; all goals active and no model/cloud/broker/human-review outcome claimed.

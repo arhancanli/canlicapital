@@ -407,3 +407,9 @@ Secondary verified checkpoint: FilingFacts evaluation reliability implemented at
 and actual clean Git-free production snapshot build pass. Historical evaluations stay
 unrescorable with unchanged raw bundle bytes. PR and independent primary review pending.
 Primary journal/MCP work, all expert annotation and longer-term owner goals remain active.
+
+
+Secondary review correction checkpoint: bed645b8 addresses the primary findings, with34
+FilingFacts tests,800+6 full tests,699 page audits0/0 and clean Git-free production build
+passing. Revised signed PR head/CI and independent primary recheck remain pending. Prior
+verification remains history; raw v0 bytes/stats unchanged and unrescorable. All goals active.

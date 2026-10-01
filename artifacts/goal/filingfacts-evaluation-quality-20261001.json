@@ -127,10 +127,18 @@
         "warnings": 0
       },
       "source_mutations_refused": 7,
-      "clean_snapshot": "pending after binding updated dataset source hashes",
+      "clean_snapshot": {
+        "command": "node scripts/validate-deploy-snapshot.mjs /Users/arhancanli/canlicapital-secondary-20261001",
+        "exit_code": 0,
+        "git_available": false,
+        "production_mode": true,
+        "checksummed_files_left_untouched": 416
+      },
       "CI": "pending on revised head"
     },
     "historical_v0": "bytes and statistics unchanged",
-    "model_api_calls": 0
+    "model_api_calls": 0,
+    "implementation_commit": "bed645b8",
+    "verified_at": "2026-10-01T10:18:54.497813+00:00"
   }
 }
