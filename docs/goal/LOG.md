@@ -4239,3 +4239,85 @@ and self-attestation limits are review scope. All platform objectives stay activ
 Secondary denominator wording correction: numbers_given is a count of finite numeric
 answers on answerable items, not a rate. Clarified that count and the numbers_wrong
 denominator together. Implementation and evidence remain unchanged.
+
+
+## Annotation browser intake phase, 2026-10-01
+
+Owner started cooperating thread 01a0f6dd and explicitly requested an active goal.
+Primary 01a0f5c2 owns journal/export/MCP validation; secondary 01a0f6ba owns
+FilingFacts evaluation reliability #343. Third-role proposal sent to both sessions:
+source-bound annotation drafts/submissions and browser reliability, isolated in
+canlicapital-annotation-intake-20261001, assist/annotation-intake-20261001 from
+18f693fa. Assignment response pending; defects are being reproduced first.
+No expert labels are created. All original Sovereign, indexing, SEO, adoption and
+governed ALPHAC objectives remain active.
+
+
+## Primary priority correction: annotation intake, 2026-10-01
+
+After receiving the reproduced browser defects, primary 01a0f5c2 prioritized
+annotation intake and redirected third worker 01a0f6dd back to that scope.
+The assigned implementation is in canlicapital-annotation-intake-20261001,
+assist/annotation-intake-20261001. Baseline captures 3 malformed-draft crashes,
+radio focus lost on change and incomplete negative labels in copied submissions.
+Source-bound drafts/exports and visible recovery are in progress, not verified.
+Analyzer work remains open; its separate checkout has only local phase records.
+All owner goals and primary/secondary boundaries remain active.
+
+
+## Annotation intake implementation and browser checkpoint, 2026-10-01
+
+Source-bound draft restoration, visible original-byte recovery, complete named copy,
+partial draft downloads, packet/offline digest parity and keyboard focus are implemented.
+23 focused tests pass. Built Chromium 148.0.7778.96 passes 15 synthetic browser cases
+with no page errors or external requests, including 320/390 widths. First full run
+passed 795 tests plus 6 prechecks, then failed the writing ratchet on a Unicode test
+fixture; escaped the same test character and the writing audit now passes. Prior
+failing regression, corrected fixture expectations and visual findings are retained
+in the coordination folder; final full/source validation is next. No actual human
+labels, publication, indexing or strategy outcome claimed. All master objectives stay active.
+
+
+## Annotation intake verified checkpoint, 2026-10-01
+
+Signed implementation 6904d60b is tested on Node 22.23.2: 23 focused and
+795 main + 6 preverify tests pass. Built Chromium 148.0.7778.96 passes 15 cases
+without page errors/external requests; source/export/recovery/focus and narrow widths
+are covered. All 699 page audits pass without errors/warnings; 336 indexable static
+pages remain within 3 clicks, 363 linked pages remain noindex. Clean Git-free
+production snapshot validation passes, leaving 416 checksummed files untouched.
+All five published v0 bundle files match the base commit byte-for-byte. Browser
+exports agree with offline coverage (50 expected, 1 synthetic pair, 49 pending).
+Failures and exact compressed verification logs are retained in the QA artifacts.
+Only annotation source-date bindings were renewed; unrelated generated changes
+were restored. Evidence: artifacts/goal/annotation-intake-quality-20261001.json.
+Signed PR/primary independent review next; no publication or human-label claim.
+Every original owner objective remains active; analyzers are a later distinct phase.
+
+
+## Annotation integration preparation after #343, 2026-10-01
+
+Main advanced to91d15052 after the independently reviewed evaluation PR343.
+Read-only merge-tree found only STATUS/LOG conflicts. Prepared a separate candidate
+in canlicapital-annotation-integration-20261001, assist/annotation-integration-20261001,
+keeping both appended histories and both source-date updates. Original PR345 head
+f625bfac and its source checkout stay frozen while primary/secondary peer review
+runs. Combined validation is next; no integrated push or merge claimed. All goals stay active.
+
+
+## Annotation independent review and integrated verification, 2026-10-01
+
+Secondary read-only review PASSES frozen #345f625bfac:23 focused tests and10
+independent Chromium148 development-server probes on Node24.19, no blocking
+findings/errors/external requests. Signed integration3c72be6e merges actual
+main91d15052 (#343); annotation source stays byte-identical to the reviewed head.
+On Node22.23.2,807 main+6 preverify tests,15 separate built-browser cases and699
+page audits0/0 pass. Actual clean Git-free deployment validation passes (683
+stamped pages;416 checksummed files untouched). Both parents' changed source-date
+bindings and all5 immutable v0 files are preserved exactly. Previous failures
+remain in QA artifacts, including proof-assembly hash-framing corrections with
+no source or manifest changes; unrelated generated files were restored only in
+this isolated checkout. Proof: artifacts/goal/annotation-intake-integration-quality-20261001.json.
+Signed exact-head PR update/CI/merge and live delivery are next; not yet claimed.
+Journal344 remains primary-owned and pending its independent correction recheck;
+secondary owns the later analyzer phase. All master objectives remain active.

@@ -70,8 +70,12 @@ ${renderProductShellStylesheet()}
 .annotate__judgement legend{font-weight:600;margin-bottom:.35rem}
 .annotate__judgement label{margin-right:1.25rem;white-space:nowrap}
 .annotate__item textarea,.annotate__send input{width:100%;font:inherit;padding:.5rem;margin:.35rem 0 .75rem;box-sizing:border-box}
-.annotate__nav button,.annotate__send button{font:inherit;padding:.45rem 1rem;margin-right:.5rem;cursor:pointer}
+.annotate__nav button,.annotate__send button,.annotate__recovery button{font:inherit;padding:.45rem 1rem;margin-right:.5rem;cursor:pointer}
 .annotate__warn{color:#9a3412}
+.annotate__recovery{border-left:3px solid #9a3412;padding:.6rem 1rem;margin:1rem 0}
+#annotate-app [hidden]{display:none}
+#annotate-app :focus-visible{outline:2px solid #1b4e78;outline-offset:3px}
+html[data-page="annotate"] .cc-footer[data-product-shell] .cc-footer__dev{margin-top:0}
 </style>
 <script type="application/ld+json">${JSON.stringify(breadcrumbs)}</script>
 </head>
@@ -98,19 +102,22 @@ ${renderProductShellHeader({ active: "research" })}
       </ol>
       <p>The filing is the only source: do not use a search engine, a data vendor or an AI model to
       decide an answer. The full rules are in <a href="${GUIDELINES}">the annotation guidelines</a>.</p>
-      <div id="annotate-app" aria-live="polite"><p>Loading the questions...</p></div>
+      <div id="annotate-app"><p>Loading the questions...</p></div>
       <noscript><p>This page needs JavaScript. The packet is also a plain file you can fill in by hand:
       <a href="/datasets/filing-facts/v0/gold-packet-v0.json">gold-packet-v0.json</a>.</p></noscript>
       <section class="verify__level" id="privacy">
         <h2>What this page stores</h2>
-        <p>Your answers stay in this browser, so you can stop and come back. Nothing is sent anywhere
-        until you post your labels yourself.</p>
+        <p>Your answers stay in this browser, so you can stop and come back. A draft applies only to
+        the questions it was saved against. Earlier drafts stay available for download if the
+        packet changes. Download keeps incomplete work; copied reviews include only complete
+        judgements and required source notes. Nothing is sent anywhere until you post your labels yourself.</p>
       </section>
       <section class="verify__level" id="boundary">
         <h2>What a label does and does not establish</h2>
-        <p>A label is one person's reading of one filing. An item enters the gold set only when two
-        independent annotators agree or a third person adjudicates their disagreement, using the
-        published agreement script.</p>
+        <p>A label is one person's reading of one filing. An item enters the gold set only after two
+        independent named annotators submit complete reviews and a distinct third person records a
+        source-backed final decision. The agreement and adjudication scripts retain missing reviews
+        and disagreements. Names are declarations; identity and expert qualifications need separate verification.</p>
       </section>
     </div>
   </article>

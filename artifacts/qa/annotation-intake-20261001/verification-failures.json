@@ -1,0 +1,7 @@
+{
+  "initial_regression": "4/5 passed; complete negative choices without their required note were included in copied submissions",
+  "corrected_unit_fixture": "The first parity test incorrectly expected missing-field descriptions to be identical between a full draft and compact copy. Both retain the same gold denominator, complete counts, judgement statistics and pending item IDs; the test now compares those invariants.",
+  "corrected_browser_fixture": "The seed script initially reset localStorage on every reload. A once-per-tab guard now seeds the fixture once so persisted navigation is tested.",
+  "visual_findings_fixed": "Inspection of the first passing screenshots found a literal null text node from an absent recovery region, and the inherited footer heading clipped by a negative margin. Removed the null child and scoped the footer margin fix to annotate; final built browser checks pass.",
+  "full_verify_initial": "795 tests plus 6 prechecks passed; writing ratchet rejected the Unicode test fixture's literal em dash. Escaped that test character without changing the Unicode value or the ratchet. Final verification pending."
+}

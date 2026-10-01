@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 import { canonicalJson } from "../../canonical-json.mjs";
+import { packetContent } from "../../../js/filing-facts-packet.js";
 
 export const JUDGEMENTS = Object.freeze({
   question_clear: ["yes", "no"],
@@ -18,9 +19,7 @@ export const identity = (value) => value.trim().normalize("NFKC").toLowerCase();
 
 /** Bind reviews to the immutable questions, answers and citations, not to editable judgements. */
 export function packetDigest(packet) {
-  const items = [...packet.labels].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0).map((label) =>
-    Object.fromEntries(ITEM_FIELDS.filter((key) => label[key] !== undefined).map((key) => [key, label[key]])));
-  return createHash("sha256").update(canonicalJson({ schema: packet.schema, items })).digest("hex");
+  return createHash("sha256").update(packetContent(packet)).digest("hex");
 }
 
 export function indexPacket(packet, who, gold) {

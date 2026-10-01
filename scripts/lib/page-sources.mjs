@@ -69,7 +69,7 @@ export const PAGE_SOURCES = {
   ],
   "/engineering": ["scripts/build-engineering.mjs", "public/glassbox/engineering_open_source.json"],
   "/how-to-validate-a-backtest": ["scripts/build-how-to-validate-a-backtest.mjs"],
-  "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
+  "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "js/filing-facts-packet.js", "scripts/canonical-json.mjs", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
   "/developers": [
     // Owned by another generator (scripts/build-standards-and-developers.mjs) this fix does not
     // edit; listed here only so /developers gets a real content date instead of the build date.

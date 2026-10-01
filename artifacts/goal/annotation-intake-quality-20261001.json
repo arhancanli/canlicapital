@@ -1,0 +1,83 @@
+{
+  "schema": "canli.annotation-intake-quality.v1",
+  "verified_at": "2026-10-01T10:26:03.351388+00:00",
+  "implementation_commit": "6904d60b95fd988c4b543a46ba626daf8d18e10c",
+  "base_commit": "18f693fafc9a63fee5de081b6e359f49085a6173",
+  "worktree": "/Users/arhancanli/canlicapital-annotation-intake-20261001",
+  "branch": "assist/annotation-intake-20261001",
+  "node": "22.23.2",
+  "source_packet_sha256": "15c595ed8109dd324dffeddd104d2f72154ef3710b9d64a0fb7eac7ddc95b7ee",
+  "baseline": {
+    "draft_crashes": 3,
+    "focus_after_radio": "BODY",
+    "incomplete_negative_labels_copied": 1,
+    "source": "artifacts/qa/annotation-intake-20261001/browser-before.json",
+    "failing_regression": "artifacts/qa/annotation-intake-20261001/regressions-before.txt"
+  },
+  "validation": {
+    "focused_tests": 23,
+    "preverify_tests": 6,
+    "main_tests": 795,
+    "main_failures": 0,
+    "built_browser_cases": 15,
+    "browser_page_errors": 0,
+    "browser_external_requests": 0,
+    "onpage_pages": 699,
+    "onpage_errors": 0,
+    "onpage_warnings": 0,
+    "indexable_static_pages": 336,
+    "linked_noindex_static_pages": 363,
+    "link_graph_max_indexable_depth": 3,
+    "git_free_production_build": "passed",
+    "checksummed_files_left_untouched": 416,
+    "published_v0_files_byte_identical": 5,
+    "browser_export_offline_check": {
+      "expected": 50,
+      "synthetic_complete_pairs": 1,
+      "pending_items": 49
+    }
+  },
+  "behaviors": [
+    "New drafts are scoped to the canonical source fingerprint; legacy/foreign drafts are not reinterpreted.",
+    "Original malformed/foreign bytes remain visible as recovery downloads before any replacement; unchanged recovery is not multiplied on reload.",
+    "Draft downloads preserve all work. Named copied submissions contain only complete judgements, with reasons for No/Cannot find it.",
+    "Browser and offline review tools share canonical packet content; mismatched submission hashes are refused.",
+    "Keyboard selection retains focus, navigation focuses the current question, and storage failures are visible."
+  ],
+  "evidence": {
+    "browser": "artifacts/qa/annotation-intake-20261001/browser.json",
+    "dataset_byte_check": "artifacts/qa/annotation-intake-20261001/dataset-byte-check.json",
+    "failures_retained": "artifacts/qa/annotation-intake-20261001/verification-failures.json",
+    "logs": [
+      {
+        "path": "artifacts/qa/annotation-intake-20261001/logs/full-build.txt.gz",
+        "sha256": "2300f1f7067856d1c8275e13569339befb1496d593d2fc4cb56d2e9224a5d07b",
+        "uncompressed_sha256": "a19f0978bc8f2712c35126f8ff34b33c0cae325c99cdbf9c40d40b85a0917621",
+        "uncompressed_bytes": 112443
+      },
+      {
+        "path": "artifacts/qa/annotation-intake-20261001/logs/full-verify.txt.gz",
+        "sha256": "8a6f5839d6abde46563f49e06334bd8b57910464e45bf354dcecfabd520e42ee",
+        "uncompressed_sha256": "2637e35ecd804fd6015c1fb24a5276b2433c51ab1883f1881780e7e10f2cc63c",
+        "uncompressed_bytes": 187150
+      },
+      {
+        "path": "artifacts/qa/annotation-intake-20261001/logs/clean-snapshot.txt.gz",
+        "sha256": "a4a9a29ee0df038319c144e36b1616de0dd325979143a16792a1fcc80d944caa",
+        "uncompressed_sha256": "a56e31a19fc0ccab8b94da25591737c8aae896e6dbcbb95e0b6dec4eaaa7bd69",
+        "uncompressed_bytes": 112650
+      },
+      {
+        "path": "artifacts/qa/annotation-intake-20261001/logs/full-verify-writing-failure.txt.gz",
+        "sha256": "e13fbd1f35e84e4ae595c1cff37316c3ecbcffb87e12d47898e5af891caab04c",
+        "uncompressed_sha256": "e495d388d69cab6aa9d44db1cbf18dfbd09b5856cc56a6688e1a8ec5e1617d4b",
+        "uncompressed_bytes": 183459
+      }
+    ]
+  },
+  "limits": [
+    "Synthetic browser fixtures are not human annotations or expert verification.",
+    "No external submission, live deployment, model API call, cloud activation, package release or indexing/performance outcome is claimed.",
+    "Actual expert reviews, v1 dataset tasks, analyzers, MCP releases and every longer-term MASTER_PLAN objective remain active."
+  ]
+}
