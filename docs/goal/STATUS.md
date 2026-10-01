@@ -9,7 +9,18 @@ CLAUDE_RECOVERY_20261001.md lists sources and distinguishes dated notes from ver
 Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
 `continue/journal-evidence-20261001`. Prior dirty worktrees are preserved.
 
-### Completed implementation and publication checkpoint
+### Latest verified findability transition
+
+#341 merged as 65dad63f, all seven checks and candidate/main tree parity passing. Production
+publisher completed 08:25:49Z; eight sampled pages, all new sitemap/llms entries, exact discovery
+JSON, fonts, company admission and hosted contracts pass. Publisher reports 916,480 sitemap
+URLs; IndexNow accepted 42 updates, not actual indexing. #342 checkpoint is on main at 18f693fa.
+Production remains at 65dad63f; current journal branch still needs integration with new main.
+Local export core/profile and six focused accounting/adversarial tests pass (fbbdf827); full
+1,000-journal independent oracle, bounded file helpers, MCP integration and release remain open.
+See the findability checkout artifacts/seo/mcp-findability-deployment-20261001.json.
+
+### Earlier website batch, verified 06:52Z; superseded by findability
 
 - #339 merged as 37221be6 at 05:41Z: local execution shortfall and complete FilingFacts
   review/adjudication controls. Execution remains private/unreleased 0.1.0, four local tools.
@@ -18,7 +29,7 @@ Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
 - #337 merged as 2dce28bf at 06:46Z: smaller web fonts and ledger contrast fix, integrated
   with both preceding changes. Each PR passed all seven Node 22/security/contract CI checks.
   The merged #337 commit also passed all seven checks. No package version was bumped.
-- Production checkout is clean, detached at 2dce28bfce1a1e31cc56c98cf8cdba456d587799.
+- At the earlier checkpoint, production was clean, detached at 2dce28bfce1a1e31cc56c98cf8cdba456d587799.
   Existing locked hourly publisher completed at 06:52:49Z, with a stable source snapshot.
   Landing deployment dpl_67mau6nJZ3pFnv726CTgRSyHpnBn is Ready and aliased to canlicapital.com.
   Live homepage bytes match the deployment; sampled site metadata, fonts, canonical URLs,

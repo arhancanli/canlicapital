@@ -4133,3 +4133,44 @@ The initial test run had two incorrect fixture expectations (selection field/sta
 to the unchanged standard and retained this failure here. This is not the 1,000-journal
 independent Python financial oracle or an MCP integration result. Wrapper/file safeguards,
 full independent validation and release gates remain pending. No export tool release claimed.
+
+
+## 2026-10-01 08:20Z–08:23Z — MCP findability merged; publisher started
+
+PR #341 merged at 08:20:31Z as 65dad63f8865552272aec22a3c27d6c5298154ea after all seven
+PR checks passed. Candidate and merged-main trees are identical (55e4e9f1...). Automatic merged
+main checks also pass. The final clean checkout and current engine-export overlay both pass the
+actual Git-free deployment validator. Under the existing owner publication authorization,
+activated the clean production checkout at 65dad63f using the shared deployment lock; released
+the lock and started the established hourly publisher at 08:23:20Z. Live delivery and IndexNow
+results are still pending. A regular 07:40 run had already redeployed the prior source with
+updated engine exports, completed 07:55:28Z; it reported no new/updated IndexNow URLs.
+The complete goal remains active. Journal draft fbbdf827 is local, six focused tests passing;
+full oracle, file safeguards, MCP integration and release gates remain pending.
+
+
+## 2026-10-01 — findability delivery verified live
+
+#341's production publisher completed at 08:25:49Z with source hash 917dfddc..., after a
+stable snapshot on its first attempt. Landing dpl_BNHMwJKNW9R9nZf8MT1hNEq3ermY is Ready
+and aliased to canlicapital.com/www. Eight live page checks pass, including all four new
+MCP canonicals and complete social metadata; the public home matches the captured deployment.
+The discovery JSON exactly matches tested bytes, all new pages occur in sitemap-site.xml
+and llms.txt, and the full registered tool/source lists are visible on the server pages.
+Hosted versions and tool names remain 0.10.1/15, 0.5.0/7, 0.2.0/6. Fonts match tested bytes;
+admitted and withheld company cases and real unknown-company 404/noindex behavior pass.
+The sitemap index retains 22 children; publisher reports 916,480 URLs. IndexNow accepted
+42 new/updated canonicals, HTTP 200. Submission is not search-engine indexing. Fresh indexing
+and rankings remain unmeasured; the dated Sep 27 Google ~3,030/Bing 146 baseline is retained.
+Evidence: artifacts/seo/mcp-findability-deployment-20261001.json (2026-10-01T08:28:42.651Z).
+No package version, human gold label, broker order, novel-method or strategy outcome claimed.
+Goal stays active. Next: independent journal accounting oracle, local file/MCP integration,
+paper reconciliation, real expert annotation and substantial MCP releases; every pillar stays.
+
+
+## 2026-10-01 08:38Z — verified goal checkpoint published
+
+#342 merged at 08:38:35Z as 18f693fafc9a63fee5de081b6e359f49085a6173 after all seven checks
+passed. Main now carries the live findability evidence, full goal map and pending journal/annotation
+work. Production remains clean at the tested website commit 65dad63f; #342 is documentation and
+evidence only. Goal remains active. No additional indexing, human labels or strategy outcomes.
