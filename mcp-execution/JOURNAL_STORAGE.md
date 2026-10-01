@@ -38,6 +38,8 @@ request serialization or filesystem access. It counts escaped strings, member
 names and JSON punctuation as well as depth and nodes. The final signed line
 has its separate 64 KiB limit, including signing metadata. This is a resource
 bound, with no latency claim.
+Kind and timestamp are bounded strings before request serialization. The signed
+chain remains authoritative for supported kinds and calendar-valid timestamps.
 
 The reserved payload member `_canli_store` records the operation ID and hash of
 the exact kind, payload, timestamp and original expected head. An identical

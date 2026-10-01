@@ -5049,3 +5049,14 @@ hold/spend/publication or latency/hardware claim. All Sovereign, actual10M
 indexing, quality/SEO/keywords/design/analyzers/adoption/novelresearch/expert
 refinery and governedALPHAC/paper-then-lawful-capital objectives stay ACTIVE.
 Observed: 2026-10-01T17:59:36.756272+00:00.
+
+
+## 2026-10-01 — request scalar bounds complete the static budget correction
+
+Third source review also identifies kind/ts as unsnapshotted fields entering
+the canonical request. Require a short kind string and fixed-form timestamp
+before canonicalization; chain validation retains kind/calendar authority.
+Extend regression18 to check oversized/non-string kind/ts refuse with zero
+filesystem opens. Still18written storage cases, no test run after correction.
+Original815 actual3PASS/16FAIL, static findings and grants remain unchanged;
+fresh exact-source18+3 grant required. All full owner goals remain ACTIVE.

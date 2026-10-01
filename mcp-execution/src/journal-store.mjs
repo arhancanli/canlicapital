@@ -108,16 +108,21 @@ function request(input, initialize) {
       !isAbsolute(input.home) || typeof input.operationId !== 'string' || !ID.test(input.operationId)) throw refused('invalid options or operation ID');
   const expectedHead = initialize ? null : input.expectedHead;
   if (!initialize && (typeof expectedHead !== 'string' || !DIGEST.test(expectedHead))) throw refused('an append requires its expected journal head');
+  const kind = initialize ? 'config' : input.kind, ts = input.ts;
+  if (typeof kind !== 'string' || kind.length < 1 || kind.length > 32 ||
+      typeof ts !== 'string' || ts.length !== 24 ||
+      !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(ts)) {
+    throw refused('a bounded kind and fixed-form timestamp are required');
+  }
   let key;
   try {
     key = input.privateKey instanceof KeyObject ? input.privateKey : createPrivateKey(input.privateKey);
     if (key.type !== 'private') throw new Error();
     if (key.asymmetricKeyType !== 'ed25519') throw new Error();
   } catch { throw refused('a supplied Ed25519 private signing key is required'); }
-  const kind = initialize ? 'config' : input.kind;
   const payload = snapshotPayload(input.payload);
   if (initialize && Object.hasOwn(payload, 'journal_key')) throw refused('genesis signing key is supplied separately');
-  const body = { kind, payload, ts: input.ts, expected_head: expectedHead };
+  const body = { kind, payload, ts, expected_head: expectedHead };
   let requestHash;
   try { requestHash = digest(canonicalJson(body)); } catch { throw refused('request must contain valid JSON fields'); }
   return { home: input.home, key, id: input.operationId, ...body, requestHash };

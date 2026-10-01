@@ -339,4 +339,13 @@ test('aggregate canonical payload bytes, escaped strings and oversized keys refu
     assert.deepEqual(read(s.file).bytes, before);
     assert.equal(fs.existsSync(s.lock), false);
   }
+  for (const update of [{ kind: 'x'.repeat(MAX_APPEND_BYTES + 1) }, { kind: {} },
+    { ts: '0'.repeat(MAX_APPEND_BYTES + 1) }, { ts: {} }]) {
+    let opened = 0;
+    patch({ openSync: original => (...args) => { opened++; return original(...args); } },
+      () => assert.throws(() => appendJournalStore({ ...s.args, ...update }), /bounded kind and fixed-form timestamp/));
+    assert.equal(opened, 0);
+    assert.deepEqual(read(s.file).bytes, before);
+    assert.equal(fs.existsSync(s.lock), false);
+  }
 });
