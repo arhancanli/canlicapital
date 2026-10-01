@@ -1,0 +1,40 @@
+{
+  "schema": "canli.filingfacts-v1-primary-cli-alias-finding.v1",
+  "observed_at": "2026-10-01T12:34:01.919459+00:00",
+  "reviewed_head": "1a6027c8d2ba0dbefab0eac538fb6fbba9784e47",
+  "node": "v24.19.0",
+  "results": [
+    {
+      "module": "generate.mjs",
+      "source_sha256": "739cd054e0320e4d8213a954d02497ef4dce5330f3f8e5d65ee5795bfa60636e",
+      "direct": {
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Usage: node generate.mjs RECORDS_DIR SNAPSHOTS_DIR OUT.jsonl AS_OF [LIMIT_PER_COMPANY]\n"
+      },
+      "symlink_alias": {
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "missing_arguments_silently_succeed_under_alias": true
+    },
+    {
+      "module": "check.mjs",
+      "source_sha256": "03ca79a5fea82b2a25100f2cbd5a924d67f6553cfbd896b56fa0de6a66282e9e",
+      "direct": {
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Usage: node check.mjs CANDIDATES.jsonl RECORDS_DIR SNAPSHOTS_DIR\n"
+      },
+      "symlink_alias": {
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "missing_arguments_silently_succeed_under_alias": true
+    }
+  ],
+  "finding": "P2: CLI entrypoint guards compare unresolved argv symlink paths to real module URLs. A normal symlink invocation silently exits0 without checking arguments or performing generation/validation.",
+  "scope": "No model, labels, network, overwrite or v0 modification. Temporary symlinks removed."
+}

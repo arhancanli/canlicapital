@@ -1,0 +1,97 @@
+{
+  "schema": "canli.filingfacts-v1-codeql-before.v1",
+  "pr": 347,
+  "head": "a7ccc64e5be5a1591686ebf39eddd778ec3be2cf",
+  "checks": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-01T12:09:43Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36859766176/job/110360818729",
+      "name": "analyze (javascript-typescript)",
+      "startedAt": "2026-10-01T12:08:12Z",
+      "status": "COMPLETED",
+      "workflowName": "CodeQL"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-01T12:09:37Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36859765952/job/110360818380",
+      "name": "vite production build",
+      "startedAt": "2026-10-01T12:08:12Z",
+      "status": "COMPLETED",
+      "workflowName": "ci"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-01T12:09:24Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36859766176/job/110360818451",
+      "name": "analyze (python)",
+      "startedAt": "2026-10-01T12:08:12Z",
+      "status": "COMPLETED",
+      "workflowName": "CodeQL"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-01T12:08:23Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36859765952/job/110360818383",
+      "name": "design wrapper build and contracts",
+      "startedAt": "2026-10-01T12:08:11Z",
+      "status": "COMPLETED",
+      "workflowName": "ci"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-01T12:08:36Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36859765952/job/110360818082",
+      "name": "MCP package and stdio contracts",
+      "startedAt": "2026-10-01T12:08:12Z",
+      "status": "COMPLETED",
+      "workflowName": "ci"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-01T12:09:03Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36859765952/job/110360818429",
+      "name": "Key revocation PostgreSQL contract",
+      "startedAt": "2026-10-01T12:08:12Z",
+      "status": "COMPLETED",
+      "workflowName": "ci"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-01T12:09:17Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/runs/110361196904",
+      "name": "CodeQL",
+      "startedAt": "2026-10-01T12:09:15Z",
+      "status": "COMPLETED",
+      "workflowName": ""
+    }
+  ],
+  "alerts": [
+    {
+      "number": 85,
+      "rule": "js/file-system-race",
+      "security_severity": "high",
+      "message": {
+        "text": "The file may have changed since it was checked."
+      },
+      "location": {
+        "path": "scripts/datasets/filing-facts/v1/generate.mjs",
+        "start_line": 116,
+        "end_line": 116,
+        "start_column": 5,
+        "end_column": 140
+      },
+      "ref": "refs/pull/347/merge",
+      "analysis_commit_sha": "e7d1671f143bb81378369d4faf8b77b3caec39c7",
+      "url": "https://github.com/arhancanli/canlicapital/security/code-scanning/85"
+    }
+  ]
+}

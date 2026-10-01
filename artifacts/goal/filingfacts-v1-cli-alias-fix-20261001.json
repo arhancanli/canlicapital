@@ -1,0 +1,78 @@
+{
+  "schema": "canli.filingfacts-v1-cli-alias-correction.v1",
+  "observed_at": "2026-10-01T12:41:48.037336+00:00",
+  "pr": 347,
+  "superseded_head": "1a6027c8d2ba0dbefab0eac538fb6fbba9784e47",
+  "signed_correction_source_commit": "44195a78f8801cb77c3994f9379c85f13f05c0f2",
+  "primary_independent_finding": "P2 CLI alias entrypoint silently skipped execution",
+  "primary_independent_node": "24.19.0",
+  "local_node": "22.23.2",
+  "local_before": {
+    "pass": 14,
+    "fail": 1
+  },
+  "local_after": {
+    "pass": 15,
+    "fail": 0
+  },
+  "real_source_regeneration_via_symlink_alias": {
+    "passed": true,
+    "candidates": 14,
+    "packet_byte_identical": true,
+    "summary_byte_identical": true,
+    "packet_sha256": "5a9944765a923a853a610c2c1c39160ec46629a118f5bbed098c31fe10a61a66",
+    "independent_checker_via_alias_passed": 14,
+    "independent_checker_failed": 0
+  },
+  "protected_source_data_files_unchanged": 210,
+  "v0_files_unchanged": 5,
+  "current_v1_module_hashes": [
+    {
+      "path": "scripts/datasets/filing-facts/v1/README.md",
+      "sha256": "d9f5c52763b83959acc457d6a2869f9ea8bdd3e526a79a2dcf1c61a0a77b4463"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/check.mjs",
+      "sha256": "7327648d7301932da66d35379791ffab44aa3de14e100370388eb9c8dd552eb5"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/cli.mjs",
+      "sha256": "9624d089f79f54f13c9f40911107c0a9a9051a169e39e6a5bf4617eb4c3babe7"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/contract.mjs",
+      "sha256": "01c2b8f458face664a116b51b2792f2ea894c5bc39b7d416242346d3060fe378"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/first-later.test.mjs",
+      "sha256": "435a280828e5d90b1b10b544a324b1703c48206a284c8809f98daee83be9ffcf"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/generate.mjs",
+      "sha256": "51907f63d3738bd3eae9855ef0ff2443c6d926b964ba1d05a1469fb217a8519c"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/oracle.py",
+      "sha256": "208d12192912b7685fa3c825bc0029da5dbfec093ca38839bdcc24348e2bd41b"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/source.mjs",
+      "sha256": "92e3799a16c3556ff69ae98a814dad5f4b26d751afea9aaefe9155b540bf7b44"
+    }
+  ],
+  "evidence": {
+    "primary_before": "artifacts/qa/filingfacts-v1-20261001/pr-347-primary-cli-alias-before.json",
+    "regression_before": "artifacts/qa/filingfacts-v1-20261001/focused-cli-alias-before.txt",
+    "regression_after": "artifacts/qa/filingfacts-v1-20261001/focused-cli-alias-after.txt",
+    "actual_alias_check": "artifacts/qa/filingfacts-v1-20261001/check-after-cli-alias-fix.json",
+    "previous_corrected_head_ci": "artifacts/qa/filingfacts-v1-20261001/pr-347-1a6027c8-ci-quality.json",
+    "previous_corrected_head_ci_log": "artifacts/qa/filingfacts-v1-20261001/logs/pr-347-1a6027c8-full-ci.txt.gz",
+    "previous_ci_compressed_sha256": "5acd0a26ceee14c20c5bebc9128df7f68f4c8e720a4388314fb24526e26d5641",
+    "previous_ci_uncompressed_sha256": "1a49f99bd1bf697d759fb4057bcf561304f5a0a9a29735448601e978555db4e0"
+  },
+  "remaining": "Corrected exact-head remote CI, primary alias recheck and ongoing numerical/source review; one346/348 integration after348delivery. Local heavy repeats held for primary slot. No merge or public v1 dataset release.",
+  "rights_source_capture_history_date_safe_integer_cause_limits_preserved": true,
+  "expert_labels": 0,
+  "model_calls": 0,
+  "master_goals_active": true
+}

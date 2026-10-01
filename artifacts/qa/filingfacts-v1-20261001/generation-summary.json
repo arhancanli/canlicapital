@@ -1,0 +1,198 @@
+{
+  "schema": "canli.filing-facts-first-later-generation.v1",
+  "policy": {
+    "version": "canli.filing-facts-annual-source-policy.v1",
+    "taxonomy": "us-gaap",
+    "unit": "USD",
+    "forms": [
+      "10-K",
+      "10-K/A"
+    ],
+    "fp": "FY",
+    "min_duration_days": 335,
+    "max_duration_days": 395,
+    "amounts": "safe_integer_USD_values_and_difference",
+    "cutoff": "filed_date_lte_as_of",
+    "history": "eligible_observations_present_in_one_captured_companyfacts_response",
+    "earliest": "earliest_eligible_filed_date_present_not_first_ever",
+    "percent_change": "100 * (later - earliest) / abs(earliest); null when earliest is zero"
+  },
+  "as_of": "2026-09-18",
+  "companies_seen": 7,
+  "candidates": 14,
+  "independently_checked": 14,
+  "companies": [
+    {
+      "cik": "0000019617",
+      "as_of": "2026-09-18",
+      "observations_us_gaap_all_units": 49845,
+      "excluded_rows": {
+        "quarterly_filing_form": 31278,
+        "nonannual_filing_form": 1766,
+        "instant_or_missing_start": 5589,
+        "other_unit": 3846,
+        "quarter_or_short_duration": 8,
+        "invalid_filing_metadata": 24,
+        "ytd_or_partial_year_duration": 2
+      },
+      "malformed_unit_arrays": 0,
+      "eligible_rows": 7332,
+      "annual_groups": 3140,
+      "rejected_groups": {
+        "no_later_distinct_filed_date": 739,
+        "unchanged_at_cutoff": 2162,
+        "invalid_filing_metadata": 14,
+        "reverted_at_cutoff": 1
+      },
+      "candidate_groups_before_limit": 224,
+      "candidates_selected": 2,
+      "independently_checked": 2
+    },
+    {
+      "cik": "0000025232",
+      "as_of": "2026-09-18",
+      "observations_us_gaap_all_units": 19765,
+      "excluded_rows": {
+        "quarterly_filing_form": 10852,
+        "instant_or_missing_start": 2243,
+        "other_unit": 2927,
+        "ytd_or_partial_year_duration": 1,
+        "quarter_or_short_duration": 15
+      },
+      "malformed_unit_arrays": 0,
+      "eligible_rows": 3727,
+      "annual_groups": 1540,
+      "rejected_groups": {
+        "no_later_distinct_filed_date": 397,
+        "unchanged_at_cutoff": 1028,
+        "reverted_at_cutoff": 1
+      },
+      "candidate_groups_before_limit": 114,
+      "candidates_selected": 2,
+      "independently_checked": 2
+    },
+    {
+      "cik": "0000029534",
+      "as_of": "2026-09-18",
+      "observations_us_gaap_all_units": 16611,
+      "excluded_rows": {
+        "quarterly_filing_form": 8010,
+        "instant_or_missing_start": 2331,
+        "quarter_or_short_duration": 359,
+        "other_unit": 2408,
+        "nonannual_filing_form": 5
+      },
+      "malformed_unit_arrays": 0,
+      "eligible_rows": 3498,
+      "annual_groups": 1398,
+      "rejected_groups": {
+        "no_later_distinct_filed_date": 243,
+        "unchanged_at_cutoff": 1131
+      },
+      "candidate_groups_before_limit": 24,
+      "candidates_selected": 2,
+      "independently_checked": 2
+    },
+    {
+      "cik": "0000034088",
+      "as_of": "2026-09-18",
+      "observations_us_gaap_all_units": 20506,
+      "excluded_rows": {
+        "quarterly_filing_form": 10192,
+        "instant_or_missing_start": 2891,
+        "other_unit": 2272,
+        "quarter_or_short_duration": 4,
+        "nonannual_filing_form": 5
+      },
+      "malformed_unit_arrays": 0,
+      "eligible_rows": 5142,
+      "annual_groups": 1993,
+      "rejected_groups": {
+        "no_later_distinct_filed_date": 336,
+        "unchanged_at_cutoff": 1587,
+        "reverted_at_cutoff": 5
+      },
+      "candidate_groups_before_limit": 65,
+      "candidates_selected": 2,
+      "independently_checked": 2
+    },
+    {
+      "cik": "0000320193",
+      "as_of": "2026-09-18",
+      "observations_us_gaap_all_units": 25046,
+      "excluded_rows": {
+        "quarterly_filing_form": 13325,
+        "instant_or_missing_start": 2729,
+        "nonannual_filing_form": 941,
+        "other_unit": 3146,
+        "quarter_or_short_duration": 309
+      },
+      "malformed_unit_arrays": 0,
+      "eligible_rows": 4596,
+      "annual_groups": 1859,
+      "rejected_groups": {
+        "unchanged_at_cutoff": 1410,
+        "no_later_distinct_filed_date": 347
+      },
+      "candidate_groups_before_limit": 102,
+      "candidates_selected": 2,
+      "independently_checked": 2
+    },
+    {
+      "cik": "0000789019",
+      "as_of": "2026-09-18",
+      "observations_us_gaap_all_units": 32536,
+      "excluded_rows": {
+        "quarterly_filing_form": 18716,
+        "instant_or_missing_start": 3788,
+        "nonannual_filing_form": 1513,
+        "other_unit": 3410,
+        "quarter_or_short_duration": 518
+      },
+      "malformed_unit_arrays": 0,
+      "eligible_rows": 4591,
+      "annual_groups": 1944,
+      "rejected_groups": {
+        "no_later_distinct_filed_date": 436,
+        "unchanged_at_cutoff": 1447
+      },
+      "candidate_groups_before_limit": 61,
+      "candidates_selected": 2,
+      "independently_checked": 2
+    },
+    {
+      "cik": "0001045810",
+      "as_of": "2026-09-18",
+      "observations_us_gaap_all_units": 27114,
+      "excluded_rows": {
+        "quarterly_filing_form": 15118,
+        "other_unit": 3923,
+        "instant_or_missing_start": 3273,
+        "quarter_or_short_duration": 337,
+        "ytd_or_partial_year_duration": 8,
+        "invalid_filing_metadata": 1,
+        "nonannual_filing_form": 5
+      },
+      "malformed_unit_arrays": 0,
+      "eligible_rows": 4449,
+      "annual_groups": 1910,
+      "rejected_groups": {
+        "no_later_distinct_filed_date": 467,
+        "unchanged_at_cutoff": 1200,
+        "invalid_filing_metadata": 1,
+        "reverted_at_cutoff": 6
+      },
+      "candidate_groups_before_limit": 236,
+      "candidates_selected": 2,
+      "independently_checked": 2
+    }
+  ],
+  "limitations": [
+    "Machine-checked candidate; no human or expert verification.",
+    "Earliest and latest refer only to eligible observations present in the named snapshot through the filed-date cutoff; history may be incomplete.",
+    "Filed dates do not establish intraday availability; capture time is record metadata, not independent time attestation.",
+    "A numeric difference does not establish an accounting restatement, its cause or the correct economic comparison basis.",
+    "Only exact USD/us-gaap annual-duration intervals in 10-K(/A) FY rows are eligible; quarter, YTD, instant and other-form rows are excluded.",
+    "This initial candidate policy requires safe integer USD values and differences; percentages use binary64 arithmetic."
+  ]
+}
