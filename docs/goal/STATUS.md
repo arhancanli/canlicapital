@@ -571,3 +571,21 @@ separate decimal policy. New datasheet scopes rights/history/date precision and
 formal-cause/human limitations. Source packet/checks under artifacts/qa/filingfacts-v1-20261001.
 Latest-main/full build/CI/signed peer review remain pending, not claimed. Every
 master goal remains active; production and existing owned code stay separate.
+
+
+## FilingFacts v1 integrated local verification, 2026-10-01
+
+Signed implementation2565941d and integration0dbf5822 include actual main74d704d4
+without changing v1 modules or released evaluation/annotation/journal/MCP code.
+Package conflict resolution preserved every main test and added13 v1 tests.
+Node22.23.2 full834+6 tests and699 page audits0/0 pass. Actual clean Git-free
+production validation passes:683 stamped pages,416 checksummed files untouched.
+All210 protected source/data files, including5 published v0 files and7 archived
+record/gzip pairs, equal main; source-date manifest also unchanged. Restored only
+645 generated build changes in this isolated worktree and retained exact logs.
+The14 source-bound machine candidates still pass independent Node and Python3.9.6
+source/selection/arithmetic checks. No expert/human labels, models, source-authenticity
+or first-ever/cause claims. Proof: artifacts/goal/filingfacts-v1-quality-20261001.json.
+Frozen signed PR and primary independent source/ambiguity review are next; merge
+and public v1 release remain unclaimed. Primary remains publisher, secondary owns
+analyzers/raw-download headers; every master objective remains active.
