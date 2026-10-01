@@ -4465,3 +4465,42 @@ this isolated checkout. Proof: artifacts/goal/annotation-intake-integration-qual
 Signed exact-head PR update/CI/merge and live delivery are next; not yet claimed.
 Journal344 remains primary-owned and pending its independent correction recheck;
 secondary owns the later analyzer phase. All master objectives remain active.
+
+
+## 2026-10-01 11:24Z — final integrated journal repository delivery
+
+Guarded #344 squash merged74d704d4 from signed96dd15a3; exact tree488ca525 and all seven
+PR checks verified. Merged-main checks and GitHub signature verification pass. Final combined
+821+6,699 audits0/0,clean and actual engine-overlay Git-free683/416 checks pass. Independent
+peer23 focused+53 record/6 companion mutations and nonfinite/directory/failed-write probes
+pass;13 reviewed source scopes are unchanged7515..74d. Retained BEFORE probe SHA a537c8fc
+and AFTER6f23ad36 both match original receipts. Reviewer reconstruction newline failure,
+primary TAP/standard-reporter receipt mismatch and initial overlay missing dependencies are
+recorded without source/hash rewrites. Final immutable checkpoint and compressed logs are in
+artifacts/mcp/journal-final-integrated-checkpoint-20261001.json; peer sources retain internal
+checkout paths/limits. V0/legacy numbers, old financial source bindings and benchmark runs stay.
+
+#343/#345 are delivered; shared production65dad63f awaits the current publisher lock. Primary
+owns one joint publication, secondary next owns analyzers and third has a source-audited v1
+phase. Execution remains private/Unreleased. No new labels, models, indexing, adoption,
+broker or forward-strategy outcomes. All original owner objectives remain active.
+
+
+## 2026-10-01 11:41Z — shared website publication and live evidence
+
+After the scheduled publisher completed11:33:37Z, acquired the shared lock and activated
+clean production74d704d4. Established publisher11:38:22–11:41:07Z captured e369a5e0;
+landing dpl_2vT6DevMd5MooA9E2Aunn8nDragK Ready/canlicapital.com/www verified. Eight HTML,
+legacy disclosure/guide, four company admission/404, five byte-identical v0 files, exact
+source/font/sitemap22/llms and pinned15/7/6 contracts pass. Fifteen LIVE annotation cases on
+Chromium148/Python3.9 pass; earlier BUILT/DEV evidence remains separate. Synthetic draft/
+copy/download outputs only, no actual human labels or outgoing submissions.
+
+Actual HTTP audit records two raw-download header failures: JSONL and SHA256SUMS return200/
+correct bytes but lack noindex. Assigned narrow config/regressions/live fix to secondary;
+its analyzer baseline is now authorized against actual74d. Third continues strict v1 source
+work. Publisher reports916,480 sitemap URLs, IndexNow3 updated/HTTP200; no fresh actual
+indexing claim. Retained full HTTP failures and browser outputs/source hashes in publication
+receipt. Updated Linux contract74d source pin sent to lead; an initially guessed extra test
+filename was corrected to actual journal-export.test.mjs, failure recorded. Lead reports
+queued/unallocated; primary activated no resource. All original goals remain active.

@@ -1,0 +1,55 @@
+{
+  "schema": "canli.internal-peer-review.v1",
+  "reviewed_commit": "7515ae96c54f39b6056cfaed89a27a69a9f4228d",
+  "synthetic_only": true,
+  "model_or_broker_calls": 0,
+  "record_leaf_mutations_refused": 53,
+  "companion_mutations_refused": 6,
+  "signed_selection_clock_missing_and_self_attestation_probes": "pass",
+  "observations": {
+    "minimum_track_record": {
+      "operation_accepted": false,
+      "error": "minimum track record has nonfinite derived values",
+      "periods_per_year": 1e-309
+    },
+    "directory_swap": {
+      "operation_accepted": false,
+      "error": "journal export directory changed during creation",
+      "injected_concurrent_swap": true
+    },
+    "no_replacement_cleanup": {
+      "operation_accepted": false,
+      "error": "synthetic injected write failure after pathname replacement",
+      "replacement_created": true,
+      "unrelated_replacement_survives": true
+    }
+  },
+  "scope_limits": [
+    "Internal code review, not external financial or expert review",
+    "Financial numerical oracle not rerun; no independent Sharpe, MinTRL or annual-compounding implementation"
+  ],
+  "node_version": "v24.19.0",
+  "probe_sha256": "6f23ad36bdfd55bb763c1b4ba71f064c9c517cf71b44b4eaff7e8c81fd81d1e7",
+  "focused": {
+    "pass": 23,
+    "fail": 0
+  },
+  "observed_at": "2026-10-01T11:08:52.449934+00:00",
+  "integrated_head": "96dd15a3be55b67ebaac6e2725131ffab4136a77",
+  "source_equivalence_paths": [
+    "js/trade-journal-core.js",
+    "js/trade-journal-export-core.js",
+    "js/trade-journal-export-core.test.js",
+    "js/trade-journal-export-python.test.js",
+    "js/journal-files.js",
+    "js/journal-files.test.js",
+    "js/dsr-core.js",
+    "js/moments-core.js",
+    "scripts/canonical-json.mjs",
+    "standards/trade-journal",
+    "scripts/research/trade-journal",
+    "mcp",
+    "mcp-execution"
+  ],
+  "review_extension_basis": "Exact Git diff is empty across all journal/MCP/package/core/test/docs/research paths listed; prior independent review applies. Combined build/full checks and exact-head CI remain separate required gates."
+}
