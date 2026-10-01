@@ -18,7 +18,12 @@ build has no broker code at all.
 The private storage foundation in `src/journal-store.mjs` is for later local paper
 workflows. It is not an MCP tool and places no orders. Its current implementation
 and failure/retry limits are described in [JOURNAL_STORAGE.md](./JOURNAL_STORAGE.md);
-validation and the substantial release gates remain pending.
+18 storage cases and 3 packaging cases pass. Three emitted synthetic signed snapshots
+also pass the independent Python verifier, with five request/receipt/prefix bindings
+recomputed separately. The [retained evidence](../artifacts/goal/private-journal-storage-quality-20261001.json)
+includes the initial failure and corrections. These checks establish software behavior
+on the recorded local environment; hardware persistence and latency remain unmeasured.
+The substantial release gates remain open.
 
 ## What `measure_shortfall` computes
 

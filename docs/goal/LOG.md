@@ -5060,3 +5060,79 @@ Extend regression18 to check oversized/non-string kind/ts refuse with zero
 filesystem opens. Still18written storage cases, no test run after correction.
 Original815 actual3PASS/16FAIL, static findings and grants remain unchanged;
 fresh exact-source18+3 grant required. All full owner goals remain ACTIVE.
+
+
+## 2026-10-01 — private journal storage evidence checkpoint
+
+Signed clean source c4403ddb517f805315807c7b7c8c364fc2aa65ff passes
+21 focused cases (18 storage + 3 packaging) on Node22.23.2, with no failed
+or skipped cases. The original 815 initialization failure remains19 cases:
+3 packaging passes and16 storage failures; it did not establish execution of
+the fault paths. Descriptor-close, directory-link identity and aggregate
+payload/kind/timestamp bounds are corrected without tool registration or
+version changes. Source/recovery/raw-provenance reviews retain their scopes.
+
+The single separately granted emitted gate passes all5 sequential stages:
+three signed synthetic snapshots pass the unchanged Python verifier; five
+request/receipt/prefix bindings match stdlib recomputation, including two
+original-prefix retries after a later append. Four typed JSON alias controls
+are in-process canonical comparisons, not four tampered-file CLI runs. Actual
+Node22.23.2, Python3.12.13 and cryptography50.0.0 are recorded; five environment
+file pins provide partial environment binding. Gate interval1.174286708s ends
+after final source/environment/version observations, before terminal writing;
+preclaim admission is excluded. This is not journal latency. Cleanup/PG97486
+absence precede guarded release at19:31:17Z; no process or lease remains.
+
+Historical focused intervals remain unchanged:815 recorded0.822520792s and
+c440 recorded1.38514575s measure through cleanup/release and exclude later
+final source observations. They are not complete runner wall durations. The
+separate precision receipt preserves both originals. Initial strict-Python-
+JSON and end-timer helper findings, withdrawn preclaim requests, failed815
+job and all source/helper/raw bytes remain retained. Private grant bodies
+stay in coordination; lease hashes and process evidence are archived.
+
+PR352 source c440 has all7 CI SUCCESS, equal merge-ref tree and currentref
+CodeQL0. Remote verification854main+6pre+9notification,699 pages0/0 and
+683 stamped HTML/416 preserved checksummed files is source-bound remote
+evidence, not a new local Git-free snapshot. Evidence assembly initially
+contains98 gzip archives/1,677,607 raw bytes, each hash/decompression bound
+to its original. Final evidence commit/source equivalence/current CI/peer
+extension and ordinary repository merge remain pending. No website
+publication is needed. Hardware/power-loss, Windows/NFS, fully-between-checks
+same-user changes and authenticated key/clock/fill provenance remain outside
+these checks; no automatic lock recovery, broker replay or orders.
+
+PR353 original eb25 remote passes stay historical. Independent primary and
+third static P2 found a known attempt above an item cap hidden by missing or
+shorter item clocks. Source6ff03d94 reports that attempt separately and has
+26 written regression cases; primary static fix receipt70f926ef verifies
+six own+37 parent hashes and the exact five-path correction. Current source
+CI is successful; exact raw26, final evidence/peer extension and delivery
+remain separate pending work. No duplicate local runtime job is proposed.
+
+Every owner objective remains ACTIVE: all Sovereign pillars, actual10M
+indexed quality pages, relevant SEO/keywords/design/analyzers, differentiated
+efficient MCP/API/repository adoption, rights-cleared expert refinery, prior
+art and governed ALPHAC/paper-then-lawful-capital outcomes. No model/provider
+calls, cloud resources, financial holds/spend, human labels, outreach, hero
+publication, live orders or indexing/strategy/adoption outcome is claimed.
+Observed: 2026-10-01T19:48:45.114784+00:00.
+
+
+## 2026-10-01 — independent journal raw review and final archive freeze
+
+Third emitted-actual-review-c4403ddb receipt a67ed4e1 independently checks
+23 raw files, eleven source pins, request/prefix/typed receipt bindings and
+three canonical snapshots/five receipts. Three signature verdicts are the
+retained author runs of the separate Python implementation; the reviewer
+did not rerun project code. Lead closure162fd5b7 independently verifies
+retained stage/grant/helper/nonce evidence and fresh posthoc PG97486 absence.
+Neither receipt invents an independent launch observation or unlink timestamp.
+Final QA has100 gzip archives/1,718,904 raw bytes, each matching its original.
+All11 measured source paths remain byte-identical to c440. Evidence-only
+commit, final-head CI/peer archive extension and ordinary352 merge follow.
+PR353 corrected6ff raw26/root880 passes independently verified949cf7fc,
+with fresh currentrefCodeQL0; originaleb25/P2 and351 actual25 stay distinct.
+All full owner goals ACTIVE; no new runtime job/lease/model/resources/holds/
+spend/expert labels/orders/outreach/website publication or outcome claim.
+Observed: 2026-10-01T19:55:22.351491+00:00.
