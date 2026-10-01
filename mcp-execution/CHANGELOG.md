@@ -4,6 +4,18 @@
 
 The first release, 0.1.0, is paper trading only. It ships when every item of its release bar holds.
 
+- `journal export` recomputes cash, explicit fees, per-mark returns, turnover and drawdown
+  from a declared signed account/window into paper-evidence.v0. Unknown fees, incomplete marks,
+  unresolved reconciliation and unsupported financial events refuse; insolvencies stay visible.
+  - 1,000 signed synthetic journals agree with separate Python Decimal accounting to absolute
+    1e-12. A real two-stdio link validates a signed private export against its source journal.
+  - Bundles above 16 KiB create exclusive local 0600 files with hash/path summaries. Signing
+    is explicit and requires a private matching genesis key; no keys/journal entries are uploaded.
+  - Journal annotations now declare possible local writes; head/verify still do not write.
+    Bounded regular-file snapshots refuse FIFO/device input and detected concurrent edits.
+  - The original 150-token journal and full seven-tool 1,700-token release gates remain open;
+    no version bump or publication. Current measurements are recorded with the batch evidence.
+
 - `measure_shortfall` (local only): delay, execution, unfilled opportunity and stated USD fill
   fees, with decision/arrival/at-open comparisons and a seeded stationary-bootstrap interval.
   - Missing fees keep total cost unknown. Missing arrival keeps the delay/execution split unknown.

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Local `validate_paper_evidence` accepts a record/export file and its signed source journal;
+  verifies full-file/range hashes, optional detached self-signature and recomputed claims.
+  Full export companion metrics/observations are checked too. No journal means conformance
+  only. File/signature inputs require local stdio and are never sent to the hosted API.
+  Local mode preserves `receipt:null`; hosted/API contracts and version remain unchanged.
+
 - Signed statements and content hashes escape DEL (U+007F) as `\u007f`, as Python's `json.dumps`
   does. It was written raw, so a statement containing it would not have reproduced in Python.
 

@@ -1,0 +1,29 @@
+{
+  "schema": "canli.journal-export-benchmark.v1",
+  "measured_at": "2026-10-01T09:35:03.187Z",
+  "scope": "synthetic 350-mark local stdio; 5 warmups + 20 measured runs; no broker/model API or paid workload",
+  "node": "v24.19.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cpu": "Apple M5 Pro",
+  "observation_count": 350,
+  "journal_bytes": 108512,
+  "journal_sha256": "sha256:7f5c2b5433198ae7ea8ccb540e829c08f45153f9ab8a5aa673eab123f6a5252f",
+  "export": {
+    "runs": 20,
+    "median_ms": 28.51758300000006,
+    "p95_ms": 29.273832999999968,
+    "artifact_bytes": 31923,
+    "summary_bytes": 1478
+  },
+  "validation": {
+    "runs": 20,
+    "median_ms": 28.62958300000014,
+    "p95_ms": 30.736458999999968,
+    "response_bytes": 1909,
+    "source_bound": true,
+    "stored_receipt": false
+  },
+  "python_reference_sha256": "sha256:c2b545e00c9e7b0dad3ed03074940696913c5d6beeb3b84b338c5abf5b6309d2",
+  "measurement_context": "Superseded development sample: 350 synthetic 2026 marks extended past its generation date; corrected by selected-prefix clock consistency and 2025 synthetic fixture. Not final-release timing."
+}

@@ -4199,3 +4199,61 @@ records. Backup branch records/journal-before-integration-20261001 preserves ori
 Next: independent 1,000-journal financial oracle, bounded file/export helpers and local MCP
 source-validation link. Generic journal vectors and hosted release pins stay unchanged.
 No broker requests, package bump or new indexing/human/strategy outcomes claimed.
+
+
+## 2026-10-01 09:16Z — journal accounting and local MCP link verified
+
+Previous goal turn made progress: independently recomputed 1,000 signed synthetic journals
+using the separate Python integrity verifier and Decimal accounting; all 36,192 numerical
+comparisons match to absolute 1e-12 (largest error 4.547473508864641e-13). Five insolvency/
+recovery cases retain undefined subsequent returns and drawdown above 100%. Added root CI
+tests and a reproducible compressed Python reference; this is internal independent code,
+not external human review or authentic broker evidence. Root focused tests: 11/11.
+
+Implemented bounded regular-file reads with size/change checks, FIFO/device refusal, explicit
+matching private 0600 key signing, exclusive private exports above 16 KiB, and source-bound
+local validation. File/signature inputs refuse hosted and remote modes before reading or
+fetching. Execution 47/47 and validation 141/141 tests pass, including two real stdio processes
+linked by an export path. Validation isolated tarball/install/stdiod wiring passes (35 files).
+
+The first execution run had 41/43 pass: old 500-character head/verify budget and all-read-only
+annotation assumptions failed. Updated the draft bounded-shape check to 1,000 characters and
+the writing annotation explicitly; the original 150-token journal and seven-tool 1,700-token
+release targets are NOT relaxed or claimed met. Current full four-tool list: 1,758 o200k /
+1,688 cl100k; validation: 4,353 / 4,319 (working source only). Full build, CI, release docs,
+remaining broker/research/gate/receipt requirements and publication remain open. Local mode
+still returns receipt:null; no Canli receipt signature is invented. No package bump, broker
+request, actual expert gold, indexing or forward-performance result.
+
+Received the owner's Azure-credit coordination instruction through the sibling session.
+No Azure resources/jobs are activated or reserved here; notified the TraceAxiom lead thread
+01a0f6ae-ec9e-75c0-b7e9-01ba7ab69b1c and requested current balance/expiry/overage guards before
+any Canli workload. Local implementation continues; the full original goal stays active.
+
+
+## 2026-10-01 — final local journal checks and independent parallel review
+
+Journal full build/verify passes: 801 main + 6 preliminary tests, 699 page audits without
+errors/warnings; execution 47/47, validation 141/141, isolated tarball and both zero-vulnerability
+audits pass. Added record-file identity guard, full companion-field binding, selected-prefix
+clock consistency and deterministic growth/same-size race tests. Removed duplicate signature
+verification. Kept the old pre-clock and concurrent benchmarks explicitly; final 350-mark
+stdio medians after this worktree's checks are 20.44 ms export / 20.25 ms source validation.
+Other system activity is uncontrolled; these are synthetic local timings, not broker latency.
+All inputs remain visible; tool prose reduced four-tool context from 1,758 to 1,691 o200k
+(1,621 cl100k). Journal alone is 163; original 150 and complete seven-tool 1,700 release gates
+remain unmet. Saved five artifacts/mcp/journal-*20261001.json evidence files. Archived/restored
+645 generated outputs from the isolated build; sealed/generic historical vectors unchanged.
+
+Secondary #343 at 2fbb9572 had seven successful CI checks and 32 focused tests. Independent
+review reproduced sampler/canonicalizer source mutations still passing replay and closed-arm
+captures with tool calls passing; sent exact reproductions and requested source/arm consistency
+corrections. Secondary also found formatted invented-number classification omission. Merge
+is held for a new signed head and independent recheck. Requested public legacy-parser/v1
+denominator wording. No model calls or human labels occurred.
+
+Third cooperating session owns annotation intake: stale/corrupt/foreign draft recovery, exact
+packet binding, complete negative exports and keyboard behavior, in its separate worktree.
+MCP/developer analyzer work remains an active later phase. All original objectives persist.
+Azure lead reports included-credit qualification/guard context; no resource/spend reserved or
+activated by Canli. Await committed Linux contract coordination; no unapproved cash workload.

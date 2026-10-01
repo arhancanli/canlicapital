@@ -15,6 +15,10 @@ report. The current `main` branch and the latest npm release are supported.
   `audit_backtest` names one (`returns_file`, `variants_file`): it parses numbers from that file,
   up to 5 MB, and never returns the file's text; error messages name rows and columns by position,
   never by content. The hosted endpoint refuses file paths;
+- in the unreleased repository source, `validate_paper_evidence` can read `record_file`
+  (64 MiB) and `journal_file` (256 MiB) only in stdio with `CANLI_LOCAL=1`. Inputs must be
+  regular files, with bounded reads and concurrent-edit checks. Hosted/remote modes refuse
+  these fields and detached signatures before any file read or network request;
 - sends requests only to `CANLI_API_BASE` (default `https://canlicapital.com`), and only when a
   tool is called;
 - writes no files, keeps no local cache, sends no telemetry, and logs only a fatal startup error
@@ -31,6 +35,12 @@ With `CANLI_LOCAL=1` the validators compute on your machine from `src/local`, a 
 the API's computation. The series you submit is not sent anywhere and no receipt is stored. The read
 tools (`get_receipt`, `service_status`, `company_financial_history`) still call canlicapital.com and
 send no series.
+
+The unreleased source can bind a paper record to the supplied signed journal and recompute its
+selected window. A full export file's companion financial metrics/observations are checked too.
+Without `journal_file`, only conformance is checked, with `bindings.checked:false`. A user's
+detached export signature is self-attestation; local mode does not issue a Canli signed receipt.
+The validator does not read signing keys or write export files.
 
 ## The hosted endpoint
 

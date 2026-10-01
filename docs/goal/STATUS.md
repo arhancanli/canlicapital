@@ -24,9 +24,23 @@ Publisher reports 916,480 sitemap URLs; IndexNow accepted 42 updated URLs, not i
 Evidence: artifacts/seo/mcp-findability-deployment-20261001.json. No package bump.
 Fresh search-engine counts remain unavailable; retain dated Sep 27 Google ~3,030/Bing 146.
 FINDABILITY_20261001.md and artifacts/seo/mcp-findability-verification-20261001.json hold details.
-Journal draft fbbdf827 is in continue/journal-evidence-20261001 in the continuation checkout: six
-focused accounting/adversarial tests pass; independent 1,000-journal oracle, bounded file helpers,
-MCP wrapper integration and release gates are pending. Execution remains private/unreleased.
+Journal batch is in continue/journal-evidence-20261001: full build/verify passes (801 main +
+6 preverify), 699 pages with zero errors/warnings; execution 47/47 and validation 141/141 pass.
+The 1,000-case independent Python financial oracle matches 36,192 comparisons to absolute
+1e-12 (maximum 4.55e-13). Source-bound local validation checks hashes/range, self-signature,
+record and companion metrics/observations. Concurrent-file edits, unsafe keys/directories,
+future selected entries and incomplete financial evidence refuse. Isolated validation tarball
+passes, both dependency audits have zero vulnerabilities. Four execution tools: 1,691 o200k /
+1,621 cl100k; journal alone 163, above the original 150 target. Seven-tool release remains open.
+Synthetic 350-mark stdio timing after this worktree's checks: export median 20.44 ms, validation
+20.25 ms; concurrent/pre-clock runs retained with explicit limits. Artifacts: artifacts/mcp/journal-*20261001.json.
+645 unrelated generated outputs restored and archived; historical vectors/site outputs preserved.
+Signed PR, clean snapshot, CI and repository publication pending; execution stays private/unreleased.
+
+Parallel: secondary owns FilingFacts evaluation reliability (#343 held for metric/source/arm
+corrections after independent review); third owns annotation browser draft/export integrity.
+The analyzer, actual expert gold, indexing, adoption and governed engine goals remain open.
+Azure lead coordinates the included credit; no Canli resource or paid workload activated.
 
 ### Earlier website batch, verified 06:52Z; superseded by findability
 

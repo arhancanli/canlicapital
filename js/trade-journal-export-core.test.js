@@ -74,3 +74,24 @@ test('decimal partial fills totaling 0.3 do not become a binary overfill',()=>{
  const e=structuredClone(EVENTS.slice(0,3));e[0][1].qty=0.3;e[1][1].qty=0.1;e.splice(2,0,['fill',{...e[1][1],fill_id:'f-extra',qty:0.2,fee:0},'2026-01-01T01:02:00.000Z']);
  const b=exportJournal(journal(e),{generated_at:GENERATED});assert.equal(b.metrics.fill_count,2);assert.equal(b.metrics.closing_equity,1002);
 });
+test('missing or duplicate period buckets are irregular, without filling gaps with zeros',()=>{
+ for(const ts of ['2026-01-02T02:00:00.000Z','2026-01-04T00:00:00.000Z']) {
+  const e=structuredClone(EVENTS);e[5][2]=ts;e[6][2]='2026-01-05T00:00:00.000Z';
+  const b=exportJournal(journal(e),{generated_at:'2026-01-06T00:00:00.000Z'});
+  assert.equal(b.record.period.frequency,'IRREGULAR');assert.equal(b.series.length,3);
+  assert.equal(b.record.returns.annualised,null);assert.equal(b.record.returns.sharpe_annualised,null);assert.equal(b.metrics.turnover_annualised,null);
+ }
+});
+test('a selected prefix ignores later accounting corrections but verifies their signed bytes',()=>{
+ const e=structuredClone(EVENTS);e.push(['correction',{corrects_seq:2,reason:'later fee correction',replacement:{fee:10}},'2026-01-04T01:00:00.000Z']);
+ const bytes=journal(e),earlier=exportJournal(bytes,{to:7,generated_at:GENERATED}),later=exportJournal(bytes,{generated_at:GENERATED});
+ assert.equal(earlier.metrics.fees_usd,1.5);assert.equal(later.metrics.fees_usd,10.5);
+ assert.equal(earlier.record.corrections.count,0);assert.equal(later.record.corrections.count,1);
+ const corrupt=Buffer.from(bytes);corrupt[corrupt.length-10]^=1;
+ assert.throws(()=>exportJournal(corrupt,{to:7,generated_at:GENERATED}),/invalid journal/);
+});
+test('export time cannot precede the selected entries; unselected future entries still receive integrity checks',()=>{
+ const bytes=journal(),generated_at='2026-01-03T12:00:00.000Z';
+ assert.throws(()=>exportJournal(bytes,{generated_at}),/precedes a selected journal entry/);
+ assert.equal(exportJournal(bytes,{to:6,generated_at}).series.length,2);
+});

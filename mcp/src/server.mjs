@@ -11,10 +11,11 @@ import { pathToFileURL } from "node:url";
 import { McpServer } from "@modelcontextprotocol/server";
 import { z } from "zod";
 import { computeLocally } from "./local.mjs";
+import { validateLocalJournalEvidence } from "./journal-evidence.mjs";
 import { readMatrixFile, readSeriesFile } from "./series-file.mjs";
 import { verifyReceipt } from "./local/js/receipt-statement.js";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
-import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
+import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, paperEvidenceToolShape, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
 
 export const DEFAULT_BASE = "https://canlicapital.com";
 export const SERVER_NAME = "canlicapital-validation-mcp";
@@ -276,8 +277,9 @@ export async function toolValidateRealityCheck(session, args) {
 
 export async function toolValidatePaperEvidence(session, args) {
   const body = parseOrThrow(paperEvidenceInput, args, "validate_paper_evidence");
-  if (session.local) { const local = computeLocally("validate_paper_evidence", body); return validationText(session, local); }
-  const response = await validateRemote(session, "validate_paper_evidence", "/api/v1/validate/paper-evidence", body);
+  if ((body.record_file || body.journal_file || body.signature) && (session.hosted || !session.local)) throw new Error('validate_paper_evidence: local evidence requires the stdio server with CANLI_LOCAL=1; files and signatures are never uploaded');
+  if (session.local) return validationText(session, validateLocalJournalEvidence(body));
+  const response = await validateRemote(session, "validate_paper_evidence", "/api/v1/validate/paper-evidence", { record: body.record });
   return validationText(session, response);
 }
 
@@ -570,7 +572,7 @@ export function registerTools(server, session) {
   );
   register(
     "validate_paper_evidence",
-    { title: "Validate paper evidence", annotations: { title: "Validate paper evidence", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_paper_evidence, inputSchema: paperEvidenceInput, outputSchema: validationOutput },
+    { title: "Validate paper evidence", annotations: { title: "Validate paper evidence", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_paper_evidence, inputSchema: paperEvidenceToolShape, outputSchema: validationOutput },
     (args) => toolValidatePaperEvidence(session, args),
   );
   register(

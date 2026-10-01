@@ -1,0 +1,29 @@
+{
+  "schema": "canli.journal-export-benchmark.v1",
+  "measured_at": "2026-10-01T09:46:14.398Z",
+  "scope": "synthetic 350-mark local stdio; 5 warmups + 20 measured runs; no broker/model API or paid workload",
+  "node": "v24.19.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cpu": "Apple M5 Pro",
+  "observation_count": 350,
+  "journal_bytes": 108512,
+  "journal_sha256": "sha256:7e7ff731f18c4d43144652a88b7d47f5fc7c5dfa441d78ce05714ac057dd7e12",
+  "export": {
+    "runs": 20,
+    "median_ms": 20.442499999999995,
+    "p95_ms": 22.013124999999945,
+    "artifact_bytes": 31923,
+    "summary_bytes": 1478
+  },
+  "validation": {
+    "runs": 20,
+    "median_ms": 20.247542000000067,
+    "p95_ms": 23.02662500000008,
+    "response_bytes": 1909,
+    "source_bound": true,
+    "stored_receipt": false
+  },
+  "python_reference_sha256": "sha256:c2b545e00c9e7b0dad3ed03074940696913c5d6beeb3b84b338c5abf5b6309d2",
+  "measurement_context": "Final synthetic inputs; this worktree verification finished before measurement; other system activity uncontrolled."
+}

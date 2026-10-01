@@ -57,7 +57,11 @@ For a signed fill quantity q (positive buy, negative sell), price p and fee f:
 `from`/`to` are inclusive journal sequence bounds. `from` is genesis or a mark used as the
 opening valuation; `to` includes at least one later mark. State before `from` is replayed.
 All bytes are verified, even outside the selected prefix; only corrections at or before `to`
-can affect the calculation. A fill after the last selected mark refuses export: it needs a
+can affect the calculation. Financial-profile checks apply to the prefix through `to`; later
+entries receive integrity checks and do not establish later accounting completeness.
+The record's `generated_at` may not precede any selected entry; these are consistency checks
+on declared times, not trusted timestamps.
+A fill after the last selected mark refuses export: it needs a
 valuation or an explicitly earlier `to`. Full-file SHA256 and selected end-line hash bind scope.
 
 Equity at or below zero is retained. Later relative returns whose denominator is nonpositive
