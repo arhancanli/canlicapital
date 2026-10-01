@@ -72,7 +72,8 @@ item's exact cited facts.
 
 - \`ANNOTATION_GUIDELINES.md\`: how an annotator checks an item against the filing itself.
 - \`gold-packet.mjs\` writes a stratified gold packet (${gold.labels.length} items in v0); two annotators fill copies independently.
-- \`agreement.mjs\` reports raw agreement and Cohen's kappa per judgement and lists disagreements for adjudication. No item is called human-verified until a human has verified it; none has yet.
+- \`agreement.mjs a.json b.json gold.json\` reports agreement on complete pairs, missing labels and total gold coverage. Duplicate IDs, invalid labels and changed source items are refused.
+- \`adjudicate.mjs\` exports only items with two distinct named complete submissions and a third reviewer's explicit filing-backed decision. Review identities/qualifications remain self-declared until independently checked. No item is called human-verified until a human has verified it; none has yet.
 
 ## Release
 

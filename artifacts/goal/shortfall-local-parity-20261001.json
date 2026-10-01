@@ -1,0 +1,128 @@
+{
+  "checked_at": "2026-10-01T05:33:52.367114+00:00",
+  "source_commit": "8633f954725afda8244563239a56627c075ade29",
+  "source_analysis_sha256": "ca87396ddf26b7c5a074288a8c7809ca4f390e4bad4e1432a6dadef0a25210dd",
+  "comparisons": {
+    "alphamax": {
+      "checks": {
+        "price_cost_bps": {
+          "actual": 39.86643772650967,
+          "reference": 39.86643772650968,
+          "absolute_difference": 7.105427357601002e-15,
+          "tolerance": 1e-09,
+          "pass": true
+        },
+        "fill_rate_by_count": {
+          "actual": 0.8223979866978249,
+          "reference": 0.8223979866978249,
+          "absolute_difference": 0.0,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        "fill_rate_by_notional": {
+          "actual": 0.7906332089338743,
+          "reference": 0.7906332089338743,
+          "absolute_difference": 0.0,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        "decision_notional_usd": {
+          "actual": 1476465.128705,
+          "reference": 1476465.128705,
+          "absolute_difference": 0.0,
+          "tolerance": 1e-09,
+          "pass": true
+        },
+        "orders": {
+          "actual": 5563,
+          "reference": 5563,
+          "pass": true
+        }
+      },
+      "fees": "not supplied by the source analysis; total including fees remains unknown",
+      "total_including_fees_bps": null,
+      "excluded": [
+        {
+          "id": "record-147",
+          "reason": "no_price"
+        },
+        {
+          "id": "record-513",
+          "reason": "implausible_move"
+        },
+        {
+          "id": "record-872",
+          "reason": "implausible_move"
+        },
+        {
+          "id": "record-1029",
+          "reason": "implausible_move"
+        },
+        {
+          "id": "record-2977",
+          "reason": "implausible_move"
+        },
+        {
+          "id": "record-3699",
+          "reason": "implausible_move"
+        },
+        {
+          "id": "record-5209",
+          "reason": "implausible_move"
+        },
+        {
+          "id": "record-5389",
+          "reason": "implausible_move"
+        },
+        {
+          "id": "record-5498",
+          "reason": "implausible_move"
+        }
+      ]
+    },
+    "alphavintage": {
+      "checks": {
+        "price_cost_bps": {
+          "actual": -9.34524826429762,
+          "reference": -9.345248264297622,
+          "absolute_difference": 1.7763568394002505e-15,
+          "tolerance": 1e-09,
+          "pass": true
+        },
+        "fill_rate_by_count": {
+          "actual": 0.9242424242424242,
+          "reference": 0.9242424242424242,
+          "absolute_difference": 0.0,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        "fill_rate_by_notional": {
+          "actual": 0.7007620502159966,
+          "reference": 0.7007620502159968,
+          "absolute_difference": 2.220446049250313e-16,
+          "tolerance": 1e-12,
+          "pass": true
+        },
+        "decision_notional_usd": {
+          "actual": 3353870.447707,
+          "reference": 3353870.4477070007,
+          "absolute_difference": 4.656612873077393e-10,
+          "tolerance": 1e-09,
+          "pass": true
+        },
+        "orders": {
+          "actual": 66,
+          "reference": 66,
+          "pass": true
+        }
+      },
+      "fees": "not supplied by the source analysis; total including fees remains unknown",
+      "total_including_fees_bps": null,
+      "excluded": []
+    }
+  },
+  "core_sha256": "0be616f9be0a51d357dbe799cdbf810da67c826c4501a6f0bcdf258a035f49e0",
+  "captured_input_sha256": "4e019eb6c449073514001df115800460196c237789bccaaac8026fd754fddb6c",
+  "pass": true,
+  "boundary": "Local recorded paper data; not funded execution. No source order/price rows are published by this report."
+}

@@ -4,6 +4,21 @@
 
 The first release, 0.1.0, is paper trading only. It ships when every item of its release bar holds.
 
+- `measure_shortfall` (local only): delay, execution, unfilled opportunity and stated USD fill
+  fees, with decision/arrival/at-open comparisons and a seeded stationary-bootstrap interval.
+  - Missing fees keep total cost unknown. Missing arrival keeps the delay/execution split unknown.
+  - Duplicate IDs, overfills and backwards fill timestamps refuse; missing prices, zero quantity
+    and possible splits are counted as exclusions. Default output is a bounded aggregate.
+  - `orders_file` validates a bounded local JSON array and binds its captured bytes by SHA-256.
+    The recorded 1,000-order request uses 58 o200k input tokens versus 96,154 inline; path
+    lengths vary. No raw history is returned or uploaded. Local median: 3.3 ms without CI,
+    24.7 ms with 199 bootstrap draws; these are single-machine synthetic measurements.
+  - The stationary indices and ratio-percentile intervals agree with arch 8.0.0 on three
+    recorded synthetic fixed-seed cases. An independent cash-flow identity checks 1,000 orders.
+  - The full four-tool list measures 1,636 o200k / 1,571 cl100k using the shared family bench.
+    The new tool adds 386 o200k; its original 220-token target is not met. Broker tools and the
+    full seven-tool release budget remain outstanding. No version bump or publication.
+
 - `check_orders`: each order's estimated cost (the commission you state, half the quoted spread,
   square-root impact at coefficients 0.5, 1.0 and 1.5, and short borrow carry), checked against
   your limits, the market state and the kill switch.
