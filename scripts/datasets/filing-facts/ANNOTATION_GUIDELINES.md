@@ -69,3 +69,21 @@ adjudication. Missing reviews, undecided items and rejected items remain visible
 Accepted items retain both submissions' judgements and notes beside the final source decision.
 Do not change the immutable v0 dataset or its published checksums to add labels; publish the review
 artifact separately. This file records review claims, not authenticated identities or expertise.
+
+## Browser drafts and submissions
+
+The `/annotate` workspace hashes the immutable questions, answers and citations with the same
+canonical SHA-256 as `agreement.mjs`. Its drafts are stored separately for each packet. Only a
+matching draft restores answers. Earlier, foreign or damaged drafts remain visible as recovery
+downloads, with their original bytes retained; they are never silently applied to new questions.
+
+Download my draft keeps all work, including incomplete judgements. Copy completed reviews needs
+a reviewer name or stable handle and includes only items with all three judgements and a source
+note for any `no` or `cannot_find`. Both formats include `packet_sha256`. An incomplete draft
+remains incomplete in the offline coverage report and cannot enter the adjudicated gold set.
+
+The browser does not authenticate names or establish expertise. Use the canonical gold packet
+with the agreement and adjudication commands above. Test fixtures are synthetic labels, not
+human review. To reproduce the browser checks, serve the built site with `npm run preview`, then
+run `python3 scripts/annotate.browser.py --base-url http://localhost:4173`; Python Playwright and
+Chromium are required. The test writes recovery, keyboard and export results to its output folder.

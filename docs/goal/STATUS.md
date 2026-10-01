@@ -391,3 +391,40 @@ merging it activates v27.
 4. Engine: merge PR73; the nightly publish regenerates the audits and the health
    check should turn green on the next run. Sharpe, sleeve and drawdown goals
    remain immature (six current-epoch returns, four sleeves).
+
+
+## Annotation browser intake phase, 2026-10-01
+
+Owner started cooperating thread 01a0f6dd and explicitly requested an active goal.
+Primary 01a0f5c2 owns journal/export/MCP validation; secondary 01a0f6ba owns
+FilingFacts evaluation reliability #343. Third-role proposal sent to both sessions:
+source-bound annotation drafts/submissions and browser reliability, isolated in
+canlicapital-annotation-intake-20261001, assist/annotation-intake-20261001 from
+18f693fa. Assignment response pending; defects are being reproduced first.
+No expert labels are created. All original Sovereign, indexing, SEO, adoption and
+governed ALPHAC objectives remain active.
+
+
+## Primary priority correction: annotation intake, 2026-10-01
+
+After receiving the reproduced browser defects, primary 01a0f5c2 prioritized
+annotation intake and redirected third worker 01a0f6dd back to that scope.
+The assigned implementation is in canlicapital-annotation-intake-20261001,
+assist/annotation-intake-20261001. Baseline captures 3 malformed-draft crashes,
+radio focus lost on change and incomplete negative labels in copied submissions.
+Source-bound drafts/exports and visible recovery are in progress, not verified.
+Analyzer work remains open; its separate checkout has only local phase records.
+All owner goals and primary/secondary boundaries remain active.
+
+
+## Annotation intake implementation and browser checkpoint, 2026-10-01
+
+Source-bound draft restoration, visible original-byte recovery, complete named copy,
+partial draft downloads, packet/offline digest parity and keyboard focus are implemented.
+23 focused tests pass. Built Chromium 148.0.7778.96 passes 15 synthetic browser cases
+with no page errors or external requests, including 320/390 widths. First full run
+passed 795 tests plus 6 prechecks, then failed the writing ratchet on a Unicode test
+fixture; escaped the same test character and the writing audit now passes. Prior
+failing regression, corrected fixture expectations and visual findings are retained
+in the coordination folder; final full/source validation is next. No actual human
+labels, publication, indexing or strategy outcome claimed. All master objectives stay active.
