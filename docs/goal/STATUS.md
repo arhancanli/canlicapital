@@ -931,3 +931,42 @@ No public tool/schema/version, broker/model/resource/hold/spend or website chang
 All owner objectives remain ACTIVE. Static finding receipt:
 coordination/journal-store/a4f-close-error-static-finding.json.
 Observed: 2026-10-01T17:30:00.085133+00:00.
+
+
+## 2026-10-01 — offline baseline delivered; first journal failure retained
+
+PR351 final69d7845d ordinary merged1ed2f9cb at17:46:33Z, equal treead2005b7.
+Primary12source/31original-archive checks and independent34311a32/current7CI/
+CodeQL0 pass. Actual25baseline/eval/evidence tests and15question-only plan
+remain offline pipeline smoke; no model ranking, human gold or source-parity
+claim. No redundant website publication; production62d2 remains the live batch.
+Delivery: coordination/filingfacts-baseline/primary-final-69d7845d/delivery.json.
+
+Primary815699c6 first granted journal check actually failed at17:41:21Z:
+19registered,3packagingPASS/16storageFAIL,0.822520792s,Node22.23.2. Shared
+initialization failures mean storage fault paths have no observed PASS yet.
+OwnedPG18662ESRCH/cleanup precedes guarded release; no automatic retry.
+Raw eight files/hash manifest retained in journal-store/815699-first-actual-failure.json.
+Olda4 close-fault finding and unused withdrawn grant, missing815grantfile
+preflight refusal and later actual815 grant remain separate historical records.
+
+Integrate actual351 main, retaining its full STATUS/LOG prefix plus all own
+additive suffixes. A source correction excludes mutable directory child-link
+counts from directory identity while preserving dev/inode/owner/group/mode
+and the exactone-link file rule. Existing metadata on this machine reports
+directory nlink=children+2; the wrapped failure did not expose its immediate
+cause, so errors now retain cause for local diagnosis. New regression17
+simulates changed directory link counts; no test pass asserted yet.
+
+Independent static CC-JOURNAL-PAYLOAD-AGGREGATE-BOUND identifies potentially
+large whole-request serialization despite per-string/node caps. Count aggregate
+canonical bytes, including escaped strings/ASCII keys/punctuation, before full
+request serialization or filesystem access; regression18 uses bounded synthetic
+inputs to avoid an OOM experiment. Original arithmetic/static finding retained;
+no dynamic OOM claim. Secondary recovery semantics remain scoped static evidence,
+third reviews filesystem/provenance. Fresh signed18+3/futuregrant required.
+No tool/schema/version/hosted/core mirror/data change, broker/model/resource/
+hold/spend/publication or latency/hardware claim. All Sovereign, actual10M
+indexing, quality/SEO/keywords/design/analyzers/adoption/novelresearch/expert
+refinery and governedALPHAC/paper-then-lawful-capital objectives stay ACTIVE.
+Observed: 2026-10-01T17:59:36.756272+00:00.

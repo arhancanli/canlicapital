@@ -15,8 +15,10 @@ const META = '_canli_store';
 const DIGEST = /^sha256:[0-9a-f]{64}$/;
 const ID = /^[A-Za-z0-9._:-]{1,128}$/;
 const digest = bytes => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
-const sameIdentity = (a, b) => ['dev', 'ino', 'uid', 'gid', 'mode', 'nlink'].every(k => a[k] === b[k]);
-const sameSnapshot = (a, b) => sameIdentity(a, b) &&
+// Directory link counts can change with ordinary child creation on supported systems.
+const sameIdentity = (a, b) => ['dev', 'ino', 'uid', 'gid', 'mode'].every(k => a[k] === b[k]);
+const sameFileIdentity = (a, b) => sameIdentity(a, b) && a.nlink === b.nlink;
+const sameSnapshot = (a, b) => sameFileIdentity(a, b) &&
   ['size', 'mtimeNs', 'ctimeNs'].every(k => a[k] === b[k]);
 
 function refused(message) {
@@ -24,8 +26,8 @@ function refused(message) {
   error.code = 'JOURNAL_STORE_REFUSED';
   return error;
 }
-function uncertain(persistenceStarted) {
-  const error = new Error('journal store: persistence is uncertain; retain the journal and pending lock for explicit recovery review');
+function uncertain(persistenceStarted, cause) {
+  const error = new Error('journal store: persistence is uncertain; retain the journal and pending lock for explicit recovery review', { cause });
   error.code = 'JOURNAL_STORE_UNCERTAIN';
   error.journal_persistence_attempted = persistenceStarted;
   return error;
@@ -44,22 +46,33 @@ function privateDirectory(stat) {
 
 // Capture plain JSON before filesystem effects, without invoking getters/toJSON or dropping values.
 function snapshotPayload(payload) {
-  let nodes = 0;
+  let nodes = 0, bytes = 0;
   const ancestors = new Set();
+  const budget = length => {
+    bytes += length;
+    if (bytes > MAX_APPEND_BYTES) throw refused('payload exceeds aggregate canonical JSON byte limit');
+  };
+  const scalar = value => {
+    let rendered;
+    try { rendered = canonicalJson(value); } catch { throw refused('payload value has no supported canonical JSON form'); }
+    budget(Buffer.byteLength(rendered));
+    return value;
+  };
   function copy(value, depth) {
     if (++nodes > MAX_APPEND_BYTES || depth > 40) throw refused('payload exceeds JSON bounds');
-    if (value === null || typeof value === 'boolean') return value;
+    if (value === null || typeof value === 'boolean') return scalar(value);
     if (typeof value === 'number') {
       if (!Number.isFinite(value) || Math.abs(value) >= 1e15) throw refused('payload number is outside journal bounds');
-      return value;
+      return scalar(value);
     }
     if (typeof value === 'string') {
       if (Buffer.byteLength(value) > MAX_APPEND_BYTES) throw refused('payload string exceeds append bounds');
-      return value;
+      return scalar(value);
     }
     if (!value || typeof value !== 'object' || ancestors.has(value)) throw refused('payload must be acyclic plain JSON');
     const array = Array.isArray(value);
     if (!array && ![Object.prototype, null].includes(Object.getPrototypeOf(value))) throw refused('payload must be plain JSON');
+    if (array && value.length > MAX_APPEND_BYTES) throw refused('payload arrays exceed JSON bounds');
     const descriptors = Object.getOwnPropertyDescriptors(value);
     const keys = Object.keys(value);
     if (Object.getOwnPropertySymbols(value).length || keys.length > MAX_APPEND_BYTES ||
@@ -67,10 +80,15 @@ function snapshotPayload(payload) {
     if (array && (value.length > MAX_APPEND_BYTES || keys.length !== value.length ||
         keys.some((key, i) => key !== String(i)))) throw refused('payload arrays must be dense');
     ancestors.add(value);
+    budget(2); // Braces or brackets.
     const out = array ? [] : Object.create(null);
+    let index = 0;
     for (const key of keys) {
       const field = descriptors[key];
-      if (!Object.hasOwn(field, 'value') || !field.enumerable || !/^[\x00-\x7f]*$/.test(key)) throw refused('payload members must be ASCII JSON data');
+      if (!Object.hasOwn(field, 'value') || !field.enumerable || key.length > MAX_APPEND_BYTES ||
+          !/^[\x00-\x7f]*$/.test(key)) throw refused('payload members must be bounded ASCII JSON data');
+      if (index++) budget(1); // Comma.
+      if (!array) { scalar(key); budget(1); } // Member name and colon.
       out[key] = copy(field.value, depth + 1);
     }
     ancestors.delete(value);
@@ -137,7 +155,7 @@ function fileGuard(home, path, fd) {
     home.check();
     const current = fstatSync(fd, { bigint: true }), named = lstatSync(path, { bigint: true });
     privateFile(current); privateFile(named);
-    if (!sameIdentity(initial, current) || !sameIdentity(current, named)) throw refused('file identity changed');
+    if (!sameFileIdentity(initial, current) || !sameFileIdentity(current, named)) throw refused('file identity changed');
     return current;
   };
 }
@@ -283,20 +301,20 @@ function persist(input, initialize) {
   } catch (error) {
     if (lockFd !== undefined && !lockReleased) {
       if (!persistenceStarted && lockReady) {
-        try { release(); } catch { throw uncertain(false); }
-      } else { throw uncertain(persistenceStarted); }
+        try { release(); } catch (releaseError) { throw uncertain(false, releaseError); }
+      } else { throw uncertain(persistenceStarted, error); }
     }
-    if (persistenceStarted) throw uncertain(true);
+    if (persistenceStarted) throw uncertain(true, error);
     throw error;
   } finally {
     // Never unlink a journal on failure or a replaced lock pathname.
-    let closeFailed = false;
+    let closeFailed = false, closeError;
     for (const fd of [journalFd, lockFd, home.fd]) {
       if (fd !== undefined) {
-        try { closeSync(fd); } catch { closeFailed = true; }
+        try { closeSync(fd); } catch (error) { closeFailed = true; closeError ??= error; }
       }
     }
-    if (closeFailed) throw uncertain(persistenceStarted);
+    if (closeFailed) throw uncertain(persistenceStarted, closeError);
   }
 }
 

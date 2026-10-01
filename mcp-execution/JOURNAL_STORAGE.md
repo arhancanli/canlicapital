@@ -29,6 +29,15 @@ then add one canonical signed line. Files must be owned regular files with mode
 changes and ordinary concurrent edits refuse. Permissions are never repaired
 silently. This module caps a journal at 8 MiB and one new line at 64 KiB; other
 journal readers retain their separate limits.
+Directory identity uses its device, inode, owner, group and permissions; its
+link count can change when child entries are created. Regular journal and lock
+files still require exactly one link.
+
+Payload capture enforces an aggregate canonical JSON byte budget before full
+request serialization or filesystem access. It counts escaped strings, member
+names and JSON punctuation as well as depth and nodes. The final signed line
+has its separate 64 KiB limit, including signing metadata. This is a resource
+bound, with no latency claim.
 
 The reserved payload member `_canli_store` records the operation ID and hash of
 the exact kind, payload, timestamp and original expected head. An identical
@@ -59,10 +68,13 @@ journal before deciding how to recover. Do not delete a lock based solely on a
 PID, age or a failed response. This foundation supplies no recovery command,
 broker submission, truncation, automatic replay or reconciliation policy.
 Failure cleanup never unlinks a journal or an unrelated replacement lock.
-Each descriptor is closed at most once. A close error returns uncertainty and
+Each descriptor is closed at most once. After the private home is validated,
+a close error returns uncertainty and
 no acknowledgement; the descriptor may already have been closed by the system.
 There is no blind retry on its numeric descriptor. Other held descriptors still
 receive their own close attempt.
+Uncertainty errors retain their immediate error as `cause` for local diagnosis;
+that cause does not establish whether any bytes reached durable storage.
 
 The supported model is cooperating writers on a local POSIX filesystem that
 implements exclusive creation and directory `fsync`. Network filesystems and

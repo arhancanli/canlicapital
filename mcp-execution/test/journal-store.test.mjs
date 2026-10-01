@@ -301,3 +301,42 @@ test('descriptor close errors preserve uncertainty and never retry an ambiguous 
     if (target === 'validation') assert.deepEqual(read(s.file).bytes, before.bytes);
   }
 });
+
+test('directory child link-count changes do not invalidate its owned inode and permissions', t => {
+  const dir = home(t);
+  let directoryReads = 0;
+  patch({ fstatSync: original => (...args) => {
+    const stat = original(...args);
+    if (stat.isDirectory()) {
+      directoryReads++;
+      stat.nlink += typeof stat.nlink === 'bigint' ? BigInt(directoryReads) : directoryReads;
+    }
+    return stat;
+  } }, () => {
+    const first = initializeJournalStore({ home: dir, privateKey: KEY,
+      operationId: 'link-count-init', ts: TS, payload: {} });
+    appendJournalStore({ home: dir, privateKey: KEY, operationId: 'link-count-decision',
+      ts: TS, kind: 'decision', expectedHead: first.entry_head, payload: { decision_id: 'synthetic' } });
+  });
+  assert.ok(directoryReads > 2);
+  assert.equal(verifyJournal(read(join(dir, 'journal.jsonl')).bytes).entries, 2);
+});
+
+test('aggregate canonical payload bytes, escaped strings and oversized keys refuse before filesystem effects', t => {
+  const s = setup(t), before = read(s.file).bytes;
+  const cases = [
+    { decision_id: 'bounded', bulk: Array(4).fill('x'.repeat(32 * 1024)) },
+    { decision_id: 'bounded', text: '\u0000'.repeat(16 * 1024) },
+    { decision_id: 'bounded', text: '\u00e9'.repeat(16 * 1024) },
+    { decision_id: 'bounded', ['x'.repeat(MAX_APPEND_BYTES + 1)]: true },
+  ];
+  for (const payload of cases) {
+    let opened = 0;
+    patch({ openSync: original => (...args) => { opened++; return original(...args); } },
+      () => assert.throws(() => appendJournalStore({ ...s.args, payload }),
+        /aggregate canonical JSON byte limit|bounded ASCII JSON data/));
+    assert.equal(opened, 0);
+    assert.deepEqual(read(s.file).bytes, before);
+    assert.equal(fs.existsSync(s.lock), false);
+  }
+});
