@@ -5,7 +5,7 @@ instructions. Read MASTER_PLAN.md for the full goal structure and CLAUDE_RECOVER
 for the verified stopping point. Active worktree:
 `/Users/arhancanli/canlicapital-findability-20261001`. The MCP/annotation continuation
 merged as #339; #336/#337 are merged and their website changes are verified in production.
-Current branch `continue/findability-20261001` adds canonical MCP discovery coverage.
+Current branch `records/findability-checkpoint-20261001` records merged and verified live MCP discovery.
 Journal export remains in the separate `continue/journal-evidence-20261001` checkout.
 STATUS's newest section supersedes the historical working-location notes below.
 

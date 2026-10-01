@@ -31,7 +31,10 @@ count; corrected 332 to 336 and retained the failure in LOG. On-page and graph c
 Eight local browser cases at 390/1440 passed HTTP, canonical, heading, font, overflow and
 JavaScript checks. Visual inspection found a footer heading clipped by a shared negative
 margin; a fix is scoped to these new pages. Final full build/verify and the Git-free deployment validator pass. The eight browser cases
-pass again after the scoped footer fix. CI and production publication remain pending.
+pass again after the scoped footer fix. PR #341 merged as 65dad63f at 08:20:31Z after all seven checks passed. Production publisher
+completed at 08:25:49Z; fresh live checks pass for eight pages, all new sitemap/llms entries,
+exact discovery JSON, fonts, company admission and unchanged hosted release contracts.
+Evidence: `artifacts/seo/mcp-findability-deployment-20261001.json`.
 
 Fresh observations: Firecrawl map sampled 120 URLs and extracted developer/annotation content.
 Direct HTTP separately confirmed those pages' metadata, 200 status and self-canonicals.
@@ -41,7 +44,8 @@ older npm package. Evidence: `artifacts/seo/findability-baseline-20261001.json`.
 
 Actual search indexing is still the key unresolved outcome. The last recovered Search Console
 baseline is approximately 3,030 Google-indexed pages on 27 September; Bing was 146. The latest
-verified publisher had 916,476 sitemap URLs. Fresh Search Console content could not be read
+verified publisher has 916,480 sitemap URLs and accepted 42 new/updated URLs through IndexNow
+in this phase, which establishes submission only. Fresh Search Console content could not be read
 with available access: Chrome denies JavaScript from Apple Events and no connector is available.
 No browser-security preference was changed. No new indexed count or ranking is inferred.
 

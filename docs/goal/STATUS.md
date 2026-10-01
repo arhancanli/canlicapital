@@ -5,21 +5,30 @@
 Goal ACTIVE, NOT ACHIEVED. Recovered the owner's relevant Claude CanliCapital messages,
 vision, memory and 16 detailed plans. MASTER_PLAN.md maps the complete objectives;
 CLAUDE_RECOVERY_20261001.md lists sources and distinguishes dated notes from verified state.
-Current phase: canonical MCP findability coverage, locally verified; CI/publication pending.
-Worktree: `/Users/arhancanli/canlicapital-findability-20261001`, branch `continue/findability-20261001`.
+Current phase: verified findability publication checkpoint; journal export is next.
+Worktree: `/Users/arhancanli/canlicapital-findability-20261001`, branch `records/findability-checkpoint-20261001`.
 Journal export work remains isolated in the continuation checkout. Prior dirty worktrees are preserved.
 
-### Findability candidate, 2026-10-01
+### Findability merged and live, 2026-10-01
 
 Four source-bound canonical pages cover the directory and released validation/fundamentals/research
 servers; source lists contain 15/7/6 tools. Source dates, shared footer, sitemap, llms.txt and intent
 ownership are integrated. Full build/verify passes: 788 + 6 tests, 699 on-page checks without errors
 or warnings, 336 indexable pages within three static links of home. Eight browser cases and the
-Git-free deployment validator pass; scoped footer clipping fix included. No package bump.
+Git-free deployment validator pass from the clean source and actual engine-export overlay;
+scoped footer clipping fix included. #341 merged as 65dad63f at 08:20:31Z with all seven PR
+checks passing; automatic merged-main checks pass and candidate/main trees agree. Production
+checkout clean at 65dad63f; hourly publisher completed at 08:25:49Z. Eight live pages, all new
+sitemap/llms entries, exact discovery JSON, fonts, company admission and hosted contracts pass.
+Publisher reports 916,480 sitemap URLs; IndexNow accepted 42 updated URLs, not indexing proof.
+Evidence: artifacts/seo/mcp-findability-deployment-20261001.json. No package bump.
 Fresh search-engine counts remain unavailable; retain dated Sep 27 Google ~3,030/Bing 146.
 FINDABILITY_20261001.md and artifacts/seo/mcp-findability-verification-20261001.json hold details.
+Journal draft fbbdf827 is in continue/journal-evidence-20261001 in the continuation checkout: six
+focused accounting/adversarial tests pass; independent 1,000-journal oracle, bounded file helpers,
+MCP wrapper integration and release gates are pending. Execution remains private/unreleased.
 
-### Completed implementation and publication checkpoint
+### Earlier website batch, verified 06:52Z; superseded by findability
 
 - #339 merged as 37221be6 at 05:41Z: local execution shortfall and complete FilingFacts
   review/adjudication controls. Execution remains private/unreleased 0.1.0, four local tools.
@@ -28,7 +37,7 @@ FINDABILITY_20261001.md and artifacts/seo/mcp-findability-verification-20261001.
 - #337 merged as 2dce28bf at 06:46Z: smaller web fonts and ledger contrast fix, integrated
   with both preceding changes. Each PR passed all seven Node 22/security/contract CI checks.
   The merged #337 commit also passed all seven checks. No package version was bumped.
-- Production checkout is clean, detached at 2dce28bfce1a1e31cc56c98cf8cdba456d587799.
+- At the earlier checkpoint, production was clean, detached at 2dce28bfce1a1e31cc56c98cf8cdba456d587799.
   Existing locked hourly publisher completed at 06:52:49Z, with a stable source snapshot.
   Landing deployment dpl_67mau6nJZ3pFnv726CTgRSyHpnBn is Ready and aliased to canlicapital.com.
   Live homepage bytes match the deployment; sampled site metadata, fonts, canonical URLs,
