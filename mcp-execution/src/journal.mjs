@@ -1,30 +1,46 @@
 // journal: reads a canli.trade-journal.v0 file and reports on it. head is quick (the first and last
 // lines, not checked); verify checks every line's chain, signature and form, offline. It returns
-// verdicts and hashes, never the file's contents. Local only; nothing here writes the journal.
+// verdicts and hashes. export reconstructs one account/window and may write a private export
+// artifact. Local only; the source journal is never modified or uploaded.
 import { createHash } from "node:crypto";
-import { closeSync, fstatSync, openSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 import { journalHead, verifyJournal } from "./core/js/trade-journal-core.js";
+import { exportJournal, signJournalExport } from "./core/js/trade-journal-export-core.js";
+import { MAX_JOURNAL_BYTES, MAX_RECORD_BYTES, readBoundedFile } from "./core/js/journal-files.js";
+import { exportDigest, INLINE_EXPORT_BYTES, storeExport } from "./journal-export-file.mjs";
 import { z } from "zod";
 
-export const MAX_JOURNAL_BYTES = 256 * 1024 * 1024;
+export { MAX_JOURNAL_BYTES };
 
 export const journalInput = z.object({
-  action: z.enum(["head", "verify"]),
+  action: z.enum(["head", "verify", "export"]),
   file: z.string().min(1).max(1000).optional(),
+  from: z.number().int().min(0).max(99999).optional(),
+  to: z.number().int().min(0).max(99999).optional(),
+  strategy_id: z.string().min(1).max(256).optional(),
+  session_id: z.string().min(1).max(256).optional(),
+  publish_url: z.string().min(1).max(2000).optional(),
+  sign: z.boolean().optional(),
 }).strict();
 
 export const JOURNAL_JSON = Object.freeze({
   type: "object",
   properties: {
-    action: { type: "string", enum: ["head", "verify"] },
-    file: { type: "string", description: "a journal file to read instead of your own" },
+    action: { type: "string", enum: ["head", "verify", "export"] },
+    file: { type: "string" },
+    from: { type: "integer", minimum: 0, maximum: 99999 },
+    to: { type: "integer", minimum: 0, maximum: 99999 },
+    strategy_id: { type: "string" },
+    session_id: { type: "string" },
+    publish_url: { type: "string", description: "Unfetched HTTPS source" },
+    sign: { type: "boolean", description: "Use matching 0600 journal.key" },
   },
   required: ["action"],
+  additionalProperties: false,
 });
 
-export const JOURNAL_DESCRIPTION = "Reads a trade journal (canli.trade-journal.v0: signed, hash-chained entries). head gives its last hash, entry count and signing key quickly; verify checks every line offline and names the first line that fails, and why.";
+export const JOURNAL_DESCRIPTION = "head unverified; verify integrity; export paper-evidence.v0 from account.v0. Large exports yield record_file. Signing is self-attested.";
 
 export const JOURNAL_OUTPUT = z.looseObject({
   file: z.string().optional(),
@@ -33,7 +49,7 @@ export const JOURNAL_OUTPUT = z.looseObject({
   valid: z.boolean().optional(),
   first_bad_line: z.number().nullable().optional(),
   reason: z.string().nullable().optional(),
-}).describe("head is the sha256 of the last line; valid, first_bad_line and reason come from verify.");
+}).describe("head/verify report integrity. export returns an inline record or a private record_file with artifact_sha256; source journal bytes are not returned.");
 
 export const JOURNAL_LIMITS = Object.freeze([
   "A valid journal shows its key holder wrote these entries in this order and has not changed them since. It does not show when they were written or that no other journal exists.",
@@ -56,30 +72,36 @@ export function journalPath(home) {
   return join(home, "journal.jsonl");
 }
 
-// One open file descriptor for the size check and the read, so the file cannot change between them.
 function readJournalFile(path) {
-  let fd;
   try {
-    fd = openSync(path, "r");
+    return readBoundedFile(path, { maxBytes: MAX_JOURNAL_BYTES });
   } catch (error) {
     if (error.code === "ENOENT") return null;
     throw error;
-  }
-  try {
-    if (fstatSync(fd).size > MAX_JOURNAL_BYTES) throw new Error(`journal: ${path} is larger than ${MAX_JOURNAL_BYTES} bytes`);
-    return readFileSync(fd);
-  } finally {
-    closeSync(fd);
   }
 }
 
 const fingerprint = (keyB64) => `sha256:${createHash("sha256").update(Buffer.from(keyB64, "base64")).digest("hex").slice(0, 16)}`;
 
-/** head or verify, for the trader's journal in `home` or for `file`. */
-export function runJournal(input, { home }) {
+/** Read-only head/verify, or an explicitly requested export of a reconstructed account. */
+export function runJournal(input, { home, now = () => new Date() }) {
+  if (input.action !== "export" && Object.keys(input).some(k => !["action", "file"].includes(k))) throw new Error('journal: export parameters require action export');
   const path = input.file ? resolve(input.file) : journalPath(home);
   const data = readJournalFile(path);
   if (!data) return { action: input.action, file: path, exists: false, limits: JOURNAL_LIMITS };
+  if (input.action === "export") {
+    const { from, to, strategy_id, session_id, publish_url } = input;
+    let bundle = exportJournal(data, { from, to, strategy_id, session_id, publish_url, generated_at: now().toISOString() });
+    if (input.sign) {
+      const key = readBoundedFile(join(home, 'journal.key'), { maxBytes: 16 * 1024, privateFile: true });
+      try { bundle = signJournalExport(bundle, key); } finally { key.fill(0); }
+    }
+    const bytes = Buffer.from(JSON.stringify(bundle) + '\n');
+    if (bytes.length > MAX_RECORD_BYTES) throw new Error(`journal export exceeds ${MAX_RECORD_BYTES} bytes; select a smaller window`);
+    const summary = { action: 'export', file: path, exists: true, artifact_bytes: bytes.length, artifact_sha256: exportDigest(bytes), limits: [...JOURNAL_LIMITS, ...bundle.record.claim_maturity.does_not_establish] };
+    if (bytes.length <= INLINE_EXPORT_BYTES) return { ...summary, inline: true, ...bundle };
+    return { ...summary, inline: false, record_file: storeExport(home, bytes), journal_sha256: bundle.journal_sha256, head: bundle.head, entry_range: bundle.entry_range, metrics: bundle.metrics, signed: bundle.record.provenance.signed };
+  }
   if (input.action === "verify") {
     const r = verifyJournal(data);
     return { action: "verify", file: path, exists: true, valid: r.valid, entries: r.entries, head: r.head, first_bad_line: r.first_bad_line, reason: r.reason, ...(r.reason ? { reason_text: REASON_TEXT[r.reason] } : {}), limits: JOURNAL_LIMITS };

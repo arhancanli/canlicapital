@@ -1,0 +1,75 @@
+{
+  "schema": "canli.journal-accounting-checkpoint.v1",
+  "scope": "signed synthetic paper/simulation; internal independent Python Decimal code, not external review or broker evidence",
+  "account_profile": "canli.trade-journal.account.v0",
+  "comparison": {
+    "cases": 1000,
+    "compared_numeric_values": 36192,
+    "max_absolute_error": 4.547473508864641e-13,
+    "failures": []
+  },
+  "source_sha256": {
+    "js/trade-journal-export-core.js": "6ae1e0f1b03462e7aa364ec624e2eaaf0c6463c46857b11c0749594fea411635",
+    "js/journal-files.js": "52a67922101613665b343c38c3f3133c50c496a0f90086ef31910b22c1e0646d",
+    "scripts/research/trade-journal/export-corpus.mjs": "da15414626247ffc59199e5db7b279f3a052a40d877fb4221352bf79eeebed9a",
+    "scripts/research/trade-journal/recompute_export.py": "b7635808d0deaba21f157ac497fc8d466c89c83d5d60ab1a950996cd6a217ed0",
+    "scripts/research/trade-journal/verify_journal.py": "15dd7edaebbfc675868e6360811bc9142ca958901471f0792f76c2beb59e2ce1",
+    "mcp-execution/test/fixtures/journal-export-python.json.gz": "c2b545e00c9e7b0dad3ed03074940696913c5d6beeb3b84b338c5abf5b6309d2",
+    "standards/trade-journal/EXPORT.md": "039a78dfda6087e672766c35785184344734fe8a5f526d24113be5e533bc8cac"
+  },
+  "checks": {
+    "root_verify": {
+      "main_tests": 801,
+      "preverify_tests": 6,
+      "pass": 807,
+      "page_audit": 699,
+      "errors": 0,
+      "warnings": 0,
+      "indexable_local_pages": 336,
+      "noindex_local_pages": 363
+    },
+    "execution": {
+      "tests": 47,
+      "pass": 47
+    },
+    "validation": {
+      "tests": 141,
+      "pass": 141
+    },
+    "validation_tarball": {
+      "pass": true,
+      "files": 35,
+      "scope": "isolated install and real stdio; no npm publication"
+    },
+    "dependency_audits": {
+      "validation_vulnerabilities": 0,
+      "execution_vulnerabilities": 0
+    },
+    "two_stdio_link": {
+      "signed_large_export": true,
+      "source_range_signature_record_and_companion_fields_match": true,
+      "stored_receipt": false
+    },
+    "generated_outputs_restored": 645
+  },
+  "release_gates": {
+    "journal_original_o200k_target": 150,
+    "journal_measured_o200k": 163,
+    "seven_tool_original_o200k_target": 1700,
+    "four_tools_measured_o200k": 1691,
+    "seven_tool_list_complete": false,
+    "qualified_trading_release": false,
+    "version_bump": false,
+    "npm_publication": false,
+    "broker_requests": 0,
+    "expert_gold_created": 0,
+    "fresh_indexing_measured": false
+  },
+  "limits": [
+    "Python oracle compares cash, fees, interval returns, turnover, drawdown, selected hashes/ranges and frequencies; it does not independently recompute Sharpe/MinTRL or annualised compounding.",
+    "All generic historical journal vectors, dataset bytes and website generated outputs preserved.",
+    "Source signatures are self-attestation; trial ledger, authentic broker fills, trusted time, full costs and outside review remain unproven.",
+    "Full four-pillar owner goal remains active."
+  ],
+  "verified_at": "2026-10-01T10:02:59.940656+00:00"
+}

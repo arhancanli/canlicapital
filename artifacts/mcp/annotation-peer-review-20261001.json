@@ -1,0 +1,112 @@
+{
+  "reviewed_commit": "f625bfacfca6b96c247521aca4d1c7cb33428292",
+  "synthetic_only": true,
+  "browser": "148.0.7778.96",
+  "mode": "isolated Vite development server",
+  "cases": [
+    {
+      "case": "foreign-current-digest-refused-with-exact-recovery",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "damaged-draft-recovery-survives-save-and-reload-without-duplication",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "matching-malformed-fields-sanitized-and-original-bytes-retained",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "negative-without-note-excluded-from-copy-and-preserved-in-draft",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "packet_sha256": "15c595ed8109dd324dffeddd104d2f72154ef3710b9d64a0fb7eac7ddc95b7ee"
+    },
+    {
+      "case": "unnamed-copy-refused-and-name-control-focused",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "blocked-storage-shown-and-unsaved-memory-remains-downloadable",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "clipboard-failure-disclosed-with-download-available",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "native-radio-arrows-retain-focus-across-renders-and-item-navigation",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "changed-question-gets-distinct-binding-and-old-labels-stay-unapplied",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "unsafe-packet-refused-before-any-form-render",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    }
+  ],
+  "passed": 10,
+  "human_labels_or_submissions": 0,
+  "schema": "canli.internal-annotation-peer-review.v1",
+  "observed_at": "2026-10-01T10:54:48.759902+00:00",
+  "node_version": "v24.19.0",
+  "focused_tests": {
+    "pass": 23,
+    "fail": 0,
+    "files": [
+      "js/annotate-core.test.js",
+      "scripts/datasets/filing-facts/agreement.test.mjs",
+      "scripts/datasets/filing-facts/adjudicate.test.mjs"
+    ]
+  },
+  "source_hashes": {
+    "js/annotate.js": "7f7fed828015acf6680536e1ebb342fa050e9ee1e45b5ee67dcbc624c6a7b8aa",
+    "js/annotate-core.js": "077c8cd3d7c4c2ad8c69ce9dfa24c8b38f6c4ff3b17470cb4d2645396506bdd3",
+    "js/filing-facts-packet.js": "eb61ab2bf78d7047569c8cf92ea348dc5c3a9e6fe311c16a63361765b2e08bc8",
+    "scripts/datasets/filing-facts/agreement.mjs": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6"
+  },
+  "probe_sha256": "e665a484e785731fcde473815470a218524690789f7ad2788bc519844329d859",
+  "limits": [
+    "Read-only internal peer review, not expert annotation or external review",
+    "Independent browser checks ran on an isolated development server, not production or a built deployment",
+    "Original five public dataset files and all real annotations were untouched",
+    "Clipboard was a synthetic capture/failure fixture; no label was sent to GitHub or a third party"
+  ],
+  "blocking_findings": [],
+  "integration_head": "034ac4e687cab18390cfb98818b6f98289a2dca1",
+  "reviewed_annotation_sources_identical": [
+    "annotate.html",
+    "js/annotate.js",
+    "js/annotate-core.js",
+    "js/annotate-core.test.js",
+    "js/filing-facts-packet.js",
+    "scripts/build-annotate.mjs",
+    "scripts/annotate.browser.py",
+    "scripts/lib/page-sources.mjs",
+    "scripts/datasets/filing-facts/agreement.mjs",
+    "scripts/datasets/filing-facts/ANNOTATION_GUIDELINES.md",
+    "scripts/canonical-json.mjs"
+  ],
+  "review_extension_basis": "Exact Git diff for 11 reviewed source/test/generator/page/guide/canonicalizer paths is empty; independent prior review still applies. Integrated build/browser/full checks are separately recorded by third worker."
+}

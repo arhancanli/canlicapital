@@ -1,6 +1,6 @@
 // Mirror the shared cores into the package, byte for byte, at the same relative paths they have in
 // the canlicapital repository, so their relative imports resolve unchanged and the package computes
-// exactly what the repository's tests check. test/core-mirror.test.mjs fails if a copy drifts.
+// exactly what the repository's tests check. test/packaging.test.mjs fails if a copy drifts.
 // Run from anywhere: node mcp-execution/scripts/sync-core.mjs
 import { copyFileSync, mkdirSync, rmSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -14,6 +14,10 @@ export const CORE_FILES = [
   "js/sizing-core.js",
   "js/shortfall-core.js",
   "js/trade-journal-core.js",
+  "js/trade-journal-export-core.js",
+  "js/journal-files.js",
+  "js/dsr-core.js",
+  "js/moments-core.js",
   "scripts/canonical-json.mjs",
 ];
 

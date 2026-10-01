@@ -5,9 +5,9 @@
 Goal ACTIVE, NOT ACHIEVED. Recovered the owner's relevant Claude CanliCapital messages,
 vision, memory and 16 detailed plans. MASTER_PLAN.md maps the complete objectives;
 CLAUDE_RECOVERY_20261001.md lists sources and distinguishes dated notes from verified state.
-Current phase: verified findability publication checkpoint; journal export is next.
-Worktree: `/Users/arhancanli/canlicapital-findability-20261001`, branch `records/findability-checkpoint-20261001`.
-Journal export work remains isolated in the continuation checkout. Prior dirty worktrees are preserved.
+Current phase: journal export, source-bound validation and independent accounting verification.
+Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch `continue/journal-evidence-20261001`.
+Main 18f693fa is integrated with local draft fbbdf827; previous dirty worktrees are preserved.
 
 ### Findability merged and live, 2026-10-01
 
@@ -24,9 +24,27 @@ Publisher reports 916,480 sitemap URLs; IndexNow accepted 42 updated URLs, not i
 Evidence: artifacts/seo/mcp-findability-deployment-20261001.json. No package bump.
 Fresh search-engine counts remain unavailable; retain dated Sep 27 Google ~3,030/Bing 146.
 FINDABILITY_20261001.md and artifacts/seo/mcp-findability-verification-20261001.json hold details.
-Journal draft fbbdf827 is in continue/journal-evidence-20261001 in the continuation checkout: six
-focused accounting/adversarial tests pass; independent 1,000-journal oracle, bounded file helpers,
-MCP wrapper integration and release gates are pending. Execution remains private/unreleased.
+Journal batch integrates reviewed evaluation merge #343 (91d15052). Full build/verify passes:
+814 main + 6 preverify; 699 page audits without errors/warnings; execution 51/51,
+validation 141/141 and isolated tarball/stdio pass. Current core matches the saved 1,000-case
+independent Python fixture; the earlier numerical evidence stays bound to its original sources.
+Peer review found two edge cases: nonfinite MinTRL years and concurrent export-directory
+substitution. Four failing regressions were retained; fixes now refuse nonfinite output and
+observed directory/file swaps, with private owned home/exports and conservative failure cleanup.
+Portable pathname checks do not defend a compromised same-user process swapping/restoring
+entirely between checks; failed/partial files may remain and are never advertised as valid.
+Artifacts: artifacts/mcp/journal-peer-fix-20261001.json and retained peer/before/after evidence.
+New signed head, CI, clean snapshot and independent recheck are next. Execution remains
+private/unreleased; original token and remaining trading release gates are open.
+
+#343 exact head61caa533 merged at10:33:45Z as91d15052; independent34 focused tests,
+eight reviewer probe groups, all seven source-comment mutations, five immutable v0 files,
+public historical/numeric-denominator wording and seven successful CI checks verified.
+The public disclaimer has not been deployed by this batch. Annotation #345 source f625bfac
+passes independent23 focused/10 dev-browser cases; third owns integration/full/built checks.
+Analyzer work is assigned to secondary after these reviews/deliveries. Actual expert gold,
+indexing, adoption and governed engine outcomes remain open. Azure workload pin is held for
+the signed journal fix; no Canli reservation/resource activated. All owner goals stay active.
 
 ### Earlier website batch, verified 06:52Z; superseded by findability
 

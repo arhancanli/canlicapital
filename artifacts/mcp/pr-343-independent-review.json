@@ -1,0 +1,27 @@
+{
+  "schema": "canli.independent-pr-review.v1",
+  "pull_request": 343,
+  "reviewed_head": "61caa5336631b3015689fd2a9ef1238783c84cdf",
+  "signature": "G",
+  "independent_scoring_probes": "evaluation-independent-probe-8356eea7.json",
+  "source_only_reviewed_head": "8356eea7b28e1891d15588239adce08e35a3e2d3",
+  "later_changes": "Documentation/checkpoints only; exact final count and denominator wording reviewed.",
+  "focused_tests": {
+    "pass": 34,
+    "fail": 0,
+    "log": "evaluation-focused-independent-e6173a8e.log"
+  },
+  "source_mutations_refused": 7,
+  "published_v0_files_byte_equal": 5,
+  "public_wording": "Historical v0 parsing effect is unmeasured without raw responses; v1 coverage and group/numeric-specific denominators are explicit.",
+  "initial_reviewer_failure": "Partial reviewer copy lacked public fixtures; copied exact pinned files then 34/34 passed; failure log retained.",
+  "all_seven_ci_success": true,
+  "model_or_broker_requests": 0,
+  "scope": "Internal independent offline review; no provider authentication, real model run or expert gold.",
+  "logs_sha256": {
+    "evaluation-independent-probe-8356eea7.json": "afdfb6f82a8805eb225ba6a87ffac116691fe2b893a126cd0e8e9e03154f43bf",
+    "evaluation-focused-independent-8356eea7.log": "f1c3e535d78daea63776602056176099996ef08d6a1814d73949dba6e9acb852",
+    "evaluation-focused-independent-e6173a8e.log": "b512ea8b0277673d483386b604e014fb53f8f1acfcb00954b17cf429a3a6b93f",
+    "evaluation-public-v0-preservation-e6173a8e.json": "f1abf0391bd5a8865ff4b3bd40b8a58a8dda689cee4b5d5d0e5552d51f8c3292"
+  }
+}
