@@ -32,7 +32,7 @@ def tool_list(server_file):
         {"jsonrpc": "2.0", "method": "notifications/initialized"},
         {"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
     ]
-    env = {**os.environ, "CANLI_KEY": "", "CANLI_TOOLSETS": "all"}
+    env = {**os.environ, "CANLI_KEY": "", "CANLI_TOOLSETS": "all", "CANLI_EXEC_TOOLSETS": "all"}
     proc = subprocess.Popen(["node", str(server_file)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, env=env)
     for m in messages:
         proc.stdin.write(json.dumps(m) + "\n")

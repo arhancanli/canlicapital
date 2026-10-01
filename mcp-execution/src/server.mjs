@@ -21,13 +21,14 @@ import { SERVER_INFO, SERVER_NAME, SERVER_VERSION } from "./info.mjs";
 import { advertised, CHECK_ORDERS_DESCRIPTION, CHECK_ORDERS_JSON, CHECK_ORDERS_OUTPUT, checkOrdersInput, limitsDigest, limitsFileSchema, parseInput, runCheckOrders } from "./check-orders.mjs";
 import { JOURNAL_DESCRIPTION, JOURNAL_JSON, JOURNAL_OUTPUT, journalInput, runJournal } from "./journal.mjs";
 import { runSizePosition, SIZE_POSITION_DESCRIPTION, SIZE_POSITION_JSON, SIZE_POSITION_OUTPUT, sizePositionInput } from "./size-position.mjs";
+import { runShortfall, SHORTFALL_DESCRIPTION, SHORTFALL_JSON, SHORTFALL_OUTPUT, shortfallInput } from "./measure-shortfall.mjs";
 
 // Sent once in initialize; byte-stable across runs (a test pins it).
-export const SERVER_INSTRUCTIONS = "Plans and checks orders before they are sent. size_position turns a budget the trader states into a position within their caps; check_orders estimates each order's cost and checks it against the trader's limits, the market state and the kill switch, rejecting with every reason and never resizing. Limits come from the trader's own limits file and can only be tightened by a call. Every number comes from inputs given; what is missing is listed as not modelled. Nothing here is investment advice.";
+export const SERVER_INSTRUCTIONS = "Plans and checks orders before they are sent. size_position turns a budget the trader states into a position within their caps; check_orders estimates each order's cost and checks it against the trader's limits, the market state and the kill switch, rejecting with every reason and never resizing. measure_shortfall decomposes the cost of supplied fills; missing fees remain unknown. Limits come from the trader's own limits file and can only be tightened by a call. Every number comes from inputs given; what is missing is listed as not modelled. Nothing here is investment advice.";
 
 // Toolsets, chosen with CANLI_EXEC_TOOLSETS (comma-separated names, or "all"); an unknown name is
 // refused, so a typo cannot silently drop a tool.
-export const TOOLSETS = Object.freeze({ plan: Object.freeze(["size_position", "check_orders"]), journal: Object.freeze(["journal"]) });
+export const TOOLSETS = Object.freeze({ plan: Object.freeze(["size_position", "check_orders", "measure_shortfall"]), journal: Object.freeze(["journal"]) });
 
 export function configuredToolsets(value) {
   const v = value?.trim();
@@ -87,6 +88,10 @@ export async function toolJournal(session, args) {
   return asText(runJournal(parseInput(journalInput, args, "journal"), { home: session.home }));
 }
 
+export async function toolShortfall(args) {
+  return asText(runShortfall(parseInput(shortfallInput, args, "measure_shortfall")));
+}
+
 const CHECK = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 
 export function registerTools(server, session) {
@@ -96,6 +101,9 @@ export function registerTools(server, session) {
   }
   if (enabled.has("check_orders")) {
     server.registerTool("check_orders", { title: "Check orders", annotations: { title: "Check orders", ...CHECK }, description: CHECK_ORDERS_DESCRIPTION, inputSchema: advertised(checkOrdersInput, CHECK_ORDERS_JSON), outputSchema: CHECK_ORDERS_OUTPUT }, (args) => toolCheckOrders(session, args));
+  }
+  if (enabled.has("measure_shortfall")) {
+    server.registerTool("measure_shortfall", { title: "Measure execution shortfall", annotations: { title: "Measure execution shortfall", ...CHECK }, description: SHORTFALL_DESCRIPTION, inputSchema: advertised(shortfallInput, SHORTFALL_JSON), outputSchema: SHORTFALL_OUTPUT }, (args) => toolShortfall(args));
   }
   if (enabled.has("journal")) {
     server.registerTool("journal", { title: "Trade journal", annotations: { title: "Trade journal", ...CHECK }, description: JOURNAL_DESCRIPTION, inputSchema: advertised(journalInput, JOURNAL_JSON), outputSchema: JOURNAL_OUTPUT }, (args) => toolJournal(session, args));
