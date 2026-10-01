@@ -749,3 +749,19 @@ Old84 proof/source hashes intact; no new score/source outcome. Every goal active
 34999af focusP2 resolved by independent6DEV/12element/12PNG checks withrealTab/
 arrows andexplicit restoredwrapperfixture. Separateafterproof retained; final
 evidence-only7CI/source-extension/primarymerge/pub next. Old84 intact/allgoalsactive.
+
+
+## 2026-10-01 — offline finite model-baseline contract started
+
+Secondary starts the assigned Pillar3 contract in isolated branch
+assist/filingfacts-baseline-contract-20261001, base62d2a195. PR349 is merged and
+verified live; source/HTTP evidence is retained separately. Reuse PR343 sampler,
+capture, scorer and replay unchanged. Prepare pinned V0 five-byte checksums and
+canonical caveats, a small deterministic stratified sample, expected/source
+bindings, arm/source fairness admission and complete error/missing/usage/cost/
+latency records. This phase is offline only: provider/model, cloud resources,
+financial holds, execution and spend remain unassigned. No heavy slot claimed.
+The held hero/ARIA prototype stays separate. All four Sovereign pillars, actual
+10M indexing, source-backed quality/SEO/keywords/design/analyzers/research,
+legitimate adoption and governed ALPHAC outcomes remain active; no expert gold
+or model baseline is claimed. Concrete draft/targeted checks/peer review next.

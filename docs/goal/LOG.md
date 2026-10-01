@@ -4795,3 +4795,19 @@ logs and24 actual PNGs retained with hashes; no new localfull/LH/score required.
 Prepared evidence-only signed final head must preserve all8 tested99af source
 paths; final remoteCI/peer source extension and primary ordinary merge/pub next.
 HeroARIA/adoption requests stay held until fresh delivery; all owner goals active.
+
+
+## 2026-10-01 — offline finite model-baseline contract started
+
+Secondary starts the assigned Pillar3 contract in isolated branch
+assist/filingfacts-baseline-contract-20261001, base62d2a195. PR349 is merged and
+verified live; source/HTTP evidence is retained separately. Reuse PR343 sampler,
+capture, scorer and replay unchanged. Prepare pinned V0 five-byte checksums and
+canonical caveats, a small deterministic stratified sample, expected/source
+bindings, arm/source fairness admission and complete error/missing/usage/cost/
+latency records. This phase is offline only: provider/model, cloud resources,
+financial holds, execution and spend remain unassigned. No heavy slot claimed.
+The held hero/ARIA prototype stays separate. All four Sovereign pillars, actual
+10M indexing, source-backed quality/SEO/keywords/design/analyzers/research,
+legitimate adoption and governed ALPHAC outcomes remain active; no expert gold
+or model baseline is claimed. Concrete draft/targeted checks/peer review next.

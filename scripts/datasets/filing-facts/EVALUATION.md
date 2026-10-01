@@ -1,5 +1,9 @@
 # Reproducible FilingFacts evaluation
 
+For a fixed 15-item offline pipeline smoke plan, exact V0/context/source pins and
+question-only projection, see [BASELINE.md](./BASELINE.md). Preparation allocates
+no model, resource or spend; source parity and cost/latency capture remain execution gates.
+
 `replay-evaluation.mjs` scores saved answers and audits evidence entirely offline. It does not
 load API credentials, call models or connect to MCP servers. Use the exact dataset bytes and
 the evaluator checkout recorded in the evidence. The source hashes bind the scorer, evidence
