@@ -1,0 +1,159 @@
+{
+  "schema": "canli.journal-final-integrated-checkpoint.v1",
+  "observed_at": "2026-10-01T11:36:24.513918+00:00",
+  "goal": "active",
+  "candidate": "96dd15a3be55b67ebaac6e2725131ffab4136a77",
+  "merged_commit": "74d704d45df502e8a76c37439415842b47b93cb7",
+  "tree": "488ca525c113cfcffcb51cb9787b8edae27a9389",
+  "candidate_merged_trees_equal": true,
+  "candidate_signature": "G",
+  "merged_signature": "Verified by GitHub commit API; local GPG executable unavailable",
+  "implementation_fix": "7515ae96c54f39b6056cfaed89a27a69a9f4228d",
+  "peer_extension_paths": [
+    "js/trade-journal-core.js",
+    "js/trade-journal-export-core.js",
+    "js/trade-journal-export-core.test.js",
+    "js/trade-journal-export-python.test.js",
+    "js/journal-files.js",
+    "js/journal-files.test.js",
+    "js/dsr-core.js",
+    "js/moments-core.js",
+    "scripts/canonical-json.mjs",
+    "standards/trade-journal",
+    "scripts/research/trade-journal",
+    "mcp",
+    "mcp-execution"
+  ],
+  "peer_extension_git_diff_empty": true,
+  "full_checks": {
+    "main_tests": 821,
+    "preverify": 6,
+    "failures": 0,
+    "pages": 699,
+    "errors": 0,
+    "warnings": 0,
+    "indexable_static": 336,
+    "public_noindex_static": 363,
+    "maximum_indexable_link_depth": 3,
+    "execution_tests": 51,
+    "validation_tests": 141
+  },
+  "git_free_validation": {
+    "clean": {
+      "pass": true,
+      "stamped": 683,
+      "checksummed_files_untouched": 416
+    },
+    "engine_overlay": {
+      "pass": true,
+      "stamped": 683,
+      "checksummed_files_untouched": 416,
+      "stable_source_hash": "45e5de07162592af1eef8cbc8ed9a1a04ad7a1223a6ce02e05f87474ee43ed9e"
+    }
+  },
+  "peer": {
+    "focused": 23,
+    "record_mutations_refused": 53,
+    "companion_mutations_refused": 6,
+    "nonfinite_refused": true,
+    "directory_swap_refused": true,
+    "failed_write_replacement_survives": true,
+    "internal_review_only": true
+  },
+  "failures_retained": [
+    "Original two peer findings and failing regressions in journal-peer-fix-20261001.json",
+    "Initial merged receipt parser expected TAP while Node used its standard reporter; no implementation change",
+    "Initial overlay local harness omitted node_modules link; corrected to installed dependencies, clean source unaffected",
+    "Peer BEFORE probe assembly separator error caught by hash check; original evidence hash not rewritten"
+  ],
+  "limitations": [
+    "Portable directory/file identity checks do not exclude same-user ABA entirely between checks; failed/partial files may remain",
+    "Current core passes saved Python fixture; no fresh Python regeneration in this checkpoint",
+    "Independent financial oracle excludes Sharpe/MinTRL and annualised compounding",
+    "No expert labels, model requests, broker orders, package release, new strategy or indexed-page outcome"
+  ],
+  "versions_changed": false,
+  "production_at_checkpoint": {
+    "commit": "65dad63f8865552272aec22a3c27d6c5298154ea",
+    "joint_batch": "pending shared publisher lock and live verification"
+  },
+  "logs": {
+    "final-integrated-build": {
+      "path": "artifacts/mcp/journal-final-integrated-build-20261001.log.gz",
+      "sha256": "0b721d6cd394af0ebd20bc89a2c62a66a666d285bbc75eca3e278fe90edff859",
+      "uncompressed_sha256": "66e7f94ff57a26fe8a73a9ea8e7552ae317e71ecc4c230e90da8816e1ac34cd7",
+      "exit_code": 0
+    },
+    "final-integrated-verify": {
+      "path": "artifacts/mcp/journal-final-integrated-verify-20261001.log.gz",
+      "sha256": "dd7290051264155e18eae1f356c3919e07d6b11543ae678eb2ee089c2b7ba854",
+      "uncompressed_sha256": "424d0a182abd6780333424527ec11ec36b08dd40ba6e6244e40ff0ac5f01b387",
+      "exit_code": 0
+    },
+    "final-clean-snapshot": {
+      "path": "artifacts/mcp/journal-final-clean-snapshot-20261001.log.gz",
+      "sha256": "4fd7f8fdb39c5bf18b070b406368537805886bc63e9c2cb8afd0e4283a677f86",
+      "uncompressed_sha256": "ace52f060140112af7350fe1d2aa09666f8758e9eab7da9935fa461c74500255",
+      "exit_code": 0
+    },
+    "final-overlay-snapshot": {
+      "path": "artifacts/mcp/journal-final-overlay-snapshot-20261001.log.gz",
+      "sha256": "65b6fe89ff7f233f57060445309c1c4061a56b5fbed1a5e9768fa16fbc697a1d",
+      "uncompressed_sha256": "9a054351eaafbad6cce40b47dac937a82d4e834d6f452fb9c319fc8943398faf",
+      "exit_code": 0
+    },
+    "final-overlay-initial-missing-dependency": {
+      "path": "artifacts/mcp/journal-final-overlay-initial-missing-dependency-20261001.log.gz",
+      "sha256": "36b07619c6e65f767bc912a6ecfd879cb8d1d3431341b3d3abe6cb2b4c1f13ee",
+      "uncompressed_sha256": "27c1a7878492711b0c138f16029628e36bd16811520a0be987661a4c0a566d7b",
+      "exit_code": 1
+    },
+    "journal-peer-focused-after.txt": {
+      "path": "artifacts/mcp/journal-peer-focused-after.txt.gz",
+      "sha256": "bb4a81e128940972d6a0c80660fa9b90a29046d926bef5be6855e144041375a6",
+      "uncompressed_sha256": "9b81151ca79b7188c7f5ebd861f7432e9040117e39178c4dc48ebb9b87f757dc",
+      "exit_code": 0
+    }
+  },
+  "retained_files": {
+    "artifacts/mcp/journal-peer-review-after-20261001.json": {
+      "sha256": "90f1899c19e07a14d87efcba71df46c013136ddc1f26f5a84902e0de3c06cdd4",
+      "source": "Internal coordination receipt/probe; original bytes retained."
+    },
+    "artifacts/mcp/journal-peer-evidence-assembly-failures.json": {
+      "sha256": "284b16b917d55e2c1baceb9fefd71b7b9dd765f5070f12609bd8a2d79225f965",
+      "source": "Internal coordination receipt/probe; original bytes retained."
+    },
+    "artifacts/mcp/pr-344-final-preflight.json": {
+      "sha256": "8d86c2d6df1388bf4c91c2d6175aaa03544a961e0b6d778a8193c20eaf2d6b73",
+      "source": "Internal coordination receipt/probe; original bytes retained."
+    },
+    "artifacts/mcp/pr-344-delivery.json": {
+      "sha256": "95a88f867570ffb1571e47b6a3cd5ad16da3b22bdccb772b3ddd3626c7df7f62",
+      "source": "Internal coordination receipt/probe; original bytes retained."
+    },
+    "artifacts/mcp/pr-344-merged-main-checks.json": {
+      "sha256": "9b4337ea8faa314edcda093e86391065687568afdca5f3f90c827672f364d805",
+      "source": "Internal coordination receipt/probe; original bytes retained."
+    },
+    "artifacts/mcp/pr-345-independent-delivery-review.json": {
+      "sha256": "bc8494d9c968fa4ad0b9da304902979d6d15d65ccfab5a2278a4199a1f550c94",
+      "source": "Internal coordination receipt/probe; original bytes retained."
+    },
+    "artifacts/mcp/journal-peer-probes-before-20261001.mjs.gz": {
+      "sha256": "9246e979dedca1d45c6fb7f6b1f0ba0d04bbe4ff675e31b46b4f6ed440cfacc1",
+      "source": "Exact immutable original internal probe, archived without alteration.",
+      "original_filename": "artifacts/mcp/journal-peer-probes-before-20261001.mjs",
+      "uncompressed_sha256": "a537c8fc80f5e854a05ed6f7424e4f0baf421756d0b0b1735b5a5a1956e5737a",
+      "encoding": "gzip"
+    },
+    "artifacts/mcp/journal-peer-probes.mjs.gz": {
+      "sha256": "06a6e1e0b5db97794144a6ac3a7f09901162ce404a71cf008c269aac93afe812",
+      "source": "Exact immutable original internal probe, archived without alteration.",
+      "original_filename": "artifacts/mcp/journal-peer-probes.mjs",
+      "uncompressed_sha256": "6f23ad36bdfd55bb763c1b4ba71f064c9c517cf71b44b4eaff7e8c81fd81d1e7",
+      "encoding": "gzip"
+    }
+  },
+  "observer_source_correction": "artifacts/mcp/journal-peer-observer-correction-20261001.json"
+}
