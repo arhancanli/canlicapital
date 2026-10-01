@@ -2,11 +2,12 @@
 
 ## Verified continuation, 2026-10-01
 
-Goal ACTIVE, NOT ACHIEVED. Recovered the owner's relevant Claude CanliCapital messages,
+Goal ACTIVE, NOT ACHIEVED. Current phase: journal export and source-bound validation;
+implementation is in progress, no completion/release claim. Recovered the owner's relevant Claude CanliCapital messages,
 vision, memory and 16 detailed plans. MASTER_PLAN.md maps the complete objectives;
 CLAUDE_RECOVERY_20261001.md lists sources and distinguishes dated notes from verified state.
 Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
-`records/continuation-checkpoint-20261001`. Prior dirty worktrees are preserved.
+`continue/journal-evidence-20261001`. Prior dirty worktrees are preserved.
 
 ### Completed implementation and publication checkpoint
 
