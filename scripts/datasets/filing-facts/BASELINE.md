@@ -19,6 +19,9 @@ files (including `SHA256SUMS`), the canonical dataset card, current README and
 evaluation caveats, all seven PR343 scoring/replay dependencies, and the plan's
 own compiler, CLI and instructions. Audit reconstructs the entire contract and
 refuses changed bytes, sample order, expected/source bindings or requirements.
+Preparation/scoring dependency bytes are captured when the module loads; later
+disk changes are refused. Each V0 file is read once per preparation, and its
+checked bytes supply all bindings. Projection/replay recheck their source binding.
 Keep the original plan and its source checkout. A changed implementation or card
 requires a new plan; never replace old hashes to make an old audit pass.
 

@@ -765,3 +765,24 @@ The held hero/ARIA prototype stays separate. All four Sovereign pillars, actual
 10M indexing, source-backed quality/SEO/keywords/design/analyzers/research,
 legitimate adoption and governed ALPHAC outcomes remain active; no expert gold
 or model baseline is claimed. Concrete draft/targeted checks/peer review next.
+
+
+## 2026-10-01 — offline smoke draft CI and permission-test correction
+
+Signed draftbaec/PR351 functional remoteCI passes852 main +6 prechecks +9
+notification tests; initial CodeQL finds4 js/file-system-race alerts86–89 in
+the new private-output permission test. Original source, fullCI log and alert
+JSON retained in coordination/filingfacts-baseline. Correct test uses one open
+FD for permissions and bytes; no suppression or scorer/data changes. This
+changes the exact queued head, so conditionalbaec30s intent is withdrawn before
+claim and awaits corrected-head lead grant. No local attempt/lease/model/resource/
+hold/spend happened. Source-assisted/measurement adapter and all owner goals
+remain active/held as specified. Current-head CI/source/peer proof still needed.
+
+
+Offline contract correction also snapshots preparation/scoring dependencies
+at module load, derives all V0 bindings from the same checked read bytes, and
+rechecks projection/replay source bindings. A ninth private-copy post-load
+source-mutation test is added; original seven343 scorer/sampler files remain
+byte-identical. Initial draft CI is retained, corrected-head CI is pending.
+No local slot/attempt/model result is claimed.

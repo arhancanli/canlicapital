@@ -20,17 +20,20 @@ export const V0_SHA256 = Object.freeze({
 const DIRECTORY = "scripts/datasets/filing-facts";
 const PLAN_SOURCES = ["baseline-contract.mjs", "baseline-contract-cli.mjs", "BASELINE.md"];
 const CONTEXT = ["public/research/filing-facts-v0.md", `${DIRECTORY}/README.md`, `${DIRECTORY}/EVALUATION.md`];
+const LOADED_SOURCES = Object.fromEntries([...SCORING_SOURCE_FILES, ...PLAN_SOURCES]
+  .map((relative) => [relative, readFileSync(new URL(relative, import.meta.url))]));
 const digest = (value) => sha256(canonicalJson(value));
 const pin = (bytes) => ({ bytes: bytes.length, sha256: sha256(bytes) });
 const read = (root, path) => readFileSync(join(root, path));
 
 export function createBaselineContract(root) {
-  const v0 = Object.fromEntries(Object.entries(V0_SHA256).map(([name, expected]) => {
+  const v0Bytes = Object.fromEntries(Object.entries(V0_SHA256).map(([name, expected]) => {
     const bytes = read(root, `${V0_DIRECTORY}/${name}`);
     if (sha256(bytes) !== expected) throw new RangeError(`historical V0 bytes changed: ${name}`);
-    return [name, pin(bytes)];
+    return [name, bytes];
   }));
-  const dataset = readDataset(read(root, `${V0_DIRECTORY}/filing-facts-v0.jsonl`));
+  const v0 = Object.fromEntries(Object.entries(v0Bytes).map(([name, bytes]) => [name, pin(bytes)]));
+  const dataset = readDataset(v0Bytes["filing-facts-v0.jsonl"]);
   const sample = stratifiedSample(dataset.items, 3, 20261001);
   const templateCounts = Object.fromEntries([...new Set(sample.map((item) => item.template))].sort()
     .map((template) => [template, sample.filter((item) => item.template === template).length]));
@@ -40,18 +43,18 @@ export function createBaselineContract(root) {
   const sources = Object.fromEntries([...SCORING_SOURCE_FILES, ...PLAN_SOURCES].map((relative) => {
     const path = normalize(join(DIRECTORY, relative));
     const bytes = read(root, path);
-    if (!bytes.equals(readFileSync(new URL(relative, import.meta.url)))) {
+    if (!bytes.equals(LOADED_SOURCES[relative]) || !bytes.equals(readFileSync(new URL(relative, import.meta.url)))) {
       throw new RangeError(`loaded preparation/scoring source differs from supplied checkout: ${path}`);
     }
     return [path, pin(bytes)];
   }));
   const legacy = Object.fromEntries(["ff-eval-closed.json", "ff-eval-mcp.json"].map((name) => {
-    const audit = auditEvidence(read(root, `${V0_DIRECTORY}/filing-facts-v0.jsonl`), JSON.parse(read(root, `${V0_DIRECTORY}/${name}`)));
+    const audit = auditEvidence(v0Bytes["filing-facts-v0.jsonl"], JSON.parse(v0Bytes[name]));
     if (audit.status !== "unrescorable" || audit.raw_answers_present !== 0) throw new RangeError("unexpected historical baseline evidence");
     return [name, { status: audit.status, runs: audit.runs, raw_answers_present: audit.raw_answers_present,
       parsing_change_effect: "unmeasured" }];
   }));
-  const gold = JSON.parse(read(root, `${V0_DIRECTORY}/gold-packet-v0.json`));
+  const gold = JSON.parse(v0Bytes["gold-packet-v0.json"]);
   const bindings = sample.map((item) => ({
     id: item.id, template: item.template, company_cik: item.company.cik,
     question_sha256: sha256(item.question), item_sha256: digest(item),
@@ -126,7 +129,9 @@ export function auditBaselineContract(root, contract) {
 
 export function projectQuestions(root, contract) {
   auditBaselineContract(root, contract);
-  const items = new Map(readDataset(read(root, `${V0_DIRECTORY}/filing-facts-v0.jsonl`)).items.map((item) => [item.id, item]));
+  const bytes = read(root, `${V0_DIRECTORY}/filing-facts-v0.jsonl`);
+  if (sha256(bytes) !== contract.dataset.sha256) throw new RangeError("dataset changed during question projection");
+  const items = new Map(readDataset(bytes).items.map((item) => [item.id, item]));
   return { schema: QUESTIONS_SCHEMA, purpose: "pipeline-smoke-question-projection", contract_sha256: contract.contract_sha256,
     model_calls_authorized: false,
     questions: contract.sampling.item_ids.map((id) => ({ id, question: items.get(id).question })) };
@@ -146,8 +151,10 @@ export function auditBaselineFixture(root, contract, capture) {
     per_template: contract.sampling.per_template, item_ids: contract.sampling.item_ids })) {
     throw new RangeError("fixture must retain the entire predeclared smoke cohort");
   }
-  const evidence = evaluateCapture(read(root, `${V0_DIRECTORY}/filing-facts-v0.jsonl`), capture);
-  const replay = auditEvidence(read(root, `${V0_DIRECTORY}/filing-facts-v0.jsonl`), evidence);
+  const bytes = read(root, `${V0_DIRECTORY}/filing-facts-v0.jsonl`);
+  const evidence = evaluateCapture(bytes, capture);
+  const replay = auditEvidence(bytes, evidence);
+  auditBaselineContract(root, contract);
   return { status: "synthetic-fixture-replayed", purpose: FIXTURE_PURPOSE, model_baseline: false,
     contract_sha256: contract.contract_sha256, replay, coverage: evidence.summary.coverage,
     measurement_status: "synthetic fixture; no observed provider usage, cost or latency claimed" };

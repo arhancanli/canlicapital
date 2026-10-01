@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from "node:fs";
+import { closeSync, copyFileSync, fstatSync, mkdirSync, mkdtempSync, openSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import test from "node:test";
 
 import { auditBaselineContract, auditBaselineFixture, createBaselineContract, FIXTURE_PURPOSE, projectQuestions, V0_DIRECTORY, V0_SHA256 } from "./baseline-contract.mjs";
@@ -29,6 +29,11 @@ function snapshot() {
     ...Object.keys(V0_SHA256).map((name) => `${V0_DIRECTORY}/${name}`)];
   for (const path of paths) { mkdirSync(dirname(join(root, path)), { recursive: true }); copyFileSync(join(ROOT, path), join(root, path)); }
   return root;
+}
+function readPrivate(path) {
+  const fd = openSync(path, "r");
+  try { assert.equal(fstatSync(fd).mode & 0o777, 0o600); return readFileSync(fd); }
+  finally { closeSync(fd); }
 }
 
 test("finite smoke cohort binds all five historical files, context, expected/source facts and existing scorer", () => {
@@ -75,6 +80,21 @@ test("question projection has exact original question bytes and excludes oracle/
     assert.deepEqual(Object.keys(row), ["id", "question"]);
     assert.equal(row.question, items.get(row.id).question);
   }
+});
+
+test("source changed after module load is refused instead of binding old executing code to new disk bytes", () => {
+  const root = snapshot();
+  try {
+    const script = `
+      import { appendFileSync } from 'node:fs';
+      const module = await import(${JSON.stringify(pathToFileURL(join(root, 'scripts/datasets/filing-facts/baseline-contract.mjs')).href)});
+      appendFileSync(${JSON.stringify(join(root, 'scripts/datasets/filing-facts/eval.mjs'))}, '\\n// synthetic post-load source mutation\\n');
+      try { module.createBaselineContract(${JSON.stringify(root)}); process.exitCode = 10; }
+      catch (error) { if (!error.message.includes('loaded preparation/scoring source differs')) throw error; }
+    `;
+    const result = spawnSync(process.execPath, ["--input-type=module", "--eval", script], { encoding: "utf8", timeout: 10000 });
+    assert.equal(result.status, 0, result.stderr);
+  } finally { rmSync(root, { recursive: true, force: true }); }
 });
 
 test("existing replay retains errors, nulls, absent records and blank answers in all fifteen denominators", () => {
@@ -134,12 +154,11 @@ test("CLI creates private files, refuses overwrite/tampering and executes throug
     const run = (...args) => spawnSync(process.execPath, [CLI, ...args], { encoding: "utf8", timeout: 10000 });
     const first = run("prepare", ROOT, plan);
     assert.equal(first.status, 0, first.stderr); assert.equal(JSON.parse(first.stdout).items, 15);
-    assert.equal(statSync(plan).mode & 0o777, 0o600);
-    const before = readFileSync(plan);
+    const before = readPrivate(plan);
     assert.equal(run("prepare", ROOT, plan).status, 1); assert.deepEqual(readFileSync(plan), before);
     assert.equal(run("audit", ROOT, plan).status, 0);
     assert.equal(run("questions", ROOT, plan, questions).status, 0);
-    assert.equal(statSync(questions).mode & 0o777, 0o600);
+    assert.equal(JSON.parse(readPrivate(questions)).questions.length, 15);
     assert.equal(run("questions", ROOT, plan, plan).status, 1); assert.deepEqual(readFileSync(plan), before);
     writeFileSync(capture, JSON.stringify(fixture()));
     const replay = run("audit-fixture", ROOT, plan, capture);
