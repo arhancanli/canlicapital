@@ -511,8 +511,9 @@ function waitDefault(delay, signal) {
     if (signal.aborted) finish();
   });
 }
-function boundedCall(task, remaining, external) {
-  if (remaining === null || remaining <= 0) return Promise.resolve({ kind: 'timeout', reason: 'absolute fixture deadline elapsed or clock unavailable' });
+function boundedCall(task, deadline, observe, external) {
+  const budget = remaining(deadline, observe());
+  if (budget === null || budget <= 0) return Promise.resolve({ kind: 'timeout', reason: 'absolute fixture deadline elapsed or clock unavailable' });
   if (external?.aborted) return Promise.resolve({ kind: 'aborted', reason: 'explicit caller abort' });
   return new Promise(resolve => {
     const controller = new AbortController(); let settled = false, timer;
@@ -524,9 +525,18 @@ function boundedCall(task, remaining, external) {
     };
     const abort = () => finish({ kind: 'aborted', reason: 'explicit caller abort' });
     external?.addEventListener('abort', abort, { once: true });
-    timer = setTimeout(() => finish({ kind: 'timeout', reason: 'absolute fixture deadline elapsed' }), Math.max(1, Math.ceil(remaining)));
+    timer = setTimeout(() => finish({ kind: 'timeout', reason: 'absolute fixture deadline elapsed' }), Math.max(1, Math.ceil(budget)));
     // Every loser is handled, but has no collector continuation, write or new dispatch.
-    Promise.resolve().then(() => settled ? undefined : task(controller.signal))
+    Promise.resolve().then(() => {
+      if (settled) return undefined;
+      if (external?.aborted) { abort(); return undefined; }
+      const current = remaining(deadline, observe());
+      if (current === null || current <= 0) {
+        finish({ kind: 'timeout', reason: 'absolute fixture deadline elapsed or clock unavailable at queued dispatch' });
+        return undefined;
+      }
+      return task(controller.signal);
+    })
       .then(value => { if (!settled) finish({ kind: 'returned', value }); }, error => { if (!settled) finish({ kind: 'exception', reason: exceptionReason(error) }); });
     if (external?.aborted) abort();
   });
@@ -583,7 +593,7 @@ export async function collectFixture(root, input, policyInput, directory, runtim
         if (step.delay_ms) {
           journal.emit('wait', { id: plan.id, ordinal, observed }); observed = observe();
           const waitStarted = observed;
-          const waited = await boundedCall(signal => (runtime.wait ?? waitDefault)(step.delay_ms, signal), remaining(deadline, observed), runtime.signal);
+          const waited = await boundedCall(signal => (runtime.wait ?? waitDefault)(step.delay_ms, signal), deadline, observe, runtime.signal);
           const waitEnded = observe();
           let status = waited.kind === 'returned' ? 'elapsed' : waited.kind === 'exception' ? 'error' : waited.kind;
           let waitReason = status === 'elapsed' ? null : waited.reason;
@@ -602,7 +612,7 @@ export async function collectFixture(root, input, policyInput, directory, runtim
         observed = observe();
         const request = frozen({ purpose: PURPOSE, id: plan.id, question: questions.find(question => question.id === plan.id).question,
           attempt_id: step.id, ordinal, turn: step.turn, request_raw: step.request_raw, directive: JSON.parse(JSON.stringify(step)), deadline_monotonic_ms: deadline });
-        const outcome = await boundedCall(signal => runtime.transport(Object.freeze({ ...request, signal })), remaining(deadline, observed), runtime.signal);
+        const outcome = await boundedCall(signal => runtime.transport(Object.freeze({ ...request, signal })), deadline, observe, runtime.signal);
         let rawSequence = null, classification, reason = null, received = null;
         if (outcome.kind === 'returned') {
           const captured = acceptedRaw(outcome.value);
@@ -646,6 +656,8 @@ export function recoverFixture(root, input, policyInput, directory, runtime = {}
   try {
     const names = store.io.readdirSync(store.path).sort();
     if (names.length > MAX_EVENTS + 7) fail('capture file count exceeds finite bound');
+    const eventNames = names.filter(name => /^event-\d{4}\.json$/.test(name));
+    if (eventNames.length > MAX_EVENTS) fail('capture event count exceeds finite bound');
     for (const name of INPUTS) if (context.inputs[name] !== null) {
       const bytes = store.read(`${name}.json`);
       if (!bytes.equals(context.inputs[name])) fail('persisted original input binding mismatch');
@@ -658,7 +670,6 @@ export function recoverFixture(root, input, policyInput, directory, runtime = {}
     if (!manifestBytes.equals(encoded(manifestFor(context)))) fail('capture manifest binding mismatch');
     store.remember('manifest.json', manifestBytes);
     let previous = sha256(manifestBytes); const frames = [];
-    const eventNames = names.filter(name => /^event-\d{4}\.json$/.test(name));
     for (let index = 0; index < eventNames.length; index++) {
       const name = `event-${String(index + 1).padStart(4, '0')}.json`;
       if (eventNames[index] !== name) fail('event sequence has a gap or duplicate');

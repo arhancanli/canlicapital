@@ -438,3 +438,33 @@ test('directory admission validates the opened descriptor and refuses public or 
   await assert.rejects(collectFixture(ROOT, s.inputs, s.policyBytes, alias, runtime(() => { calls++; return response(); })));
   assert.equal(calls, 0); assert.deepEqual(fs.readdirSync(s.home), []);
 });
+
+test('a queued microtask consuming the deadline prevents transport dispatch before any timer can run', async t => {
+  const s = setup(t, continuation(configuration())); let tick = 0, calls = 0, queued = false;
+  const io = instrument({ close(path) {
+    if (!queued && basename(path) === 'event-0002.json') { queued = true; queueMicrotask(() => { tick = 30001; }); }
+  } });
+  const output = await collect(s, { io, monotonic: () => tick, wall: () => TS, transport: () => { calls++; return response(); } });
+  assert.equal(queued, true); assert.equal(calls, 0); assert.equal(output.ledger.items[0].attempts[0].status, 'aborted');
+  assert.match(output.ledger.items[0].attempts[0].error, /queued dispatch/);
+  assert.equal(events(s.home).some(event => event.kind === 'raw'), false);
+  assert.equal(recover(s).report.items[0].attempts[0].usage.input_tokens, null);
+});
+
+test('recovery caps513 packetless event names before reads while a512-name inventory reaches bounded parsing', async t => {
+  const config = configuration(0), s = setup(t, config); await collect(s);
+  const metadata = fs.readdirSync(s.home).filter(name => !/^event-/.test(name)); assert.equal(metadata.length, 6);
+  for (const count of [513, 512]) {
+    let eventOpens = 0;
+    const io = { ...fs,
+      readdirSync(path) { return path === s.home ? [...metadata, ...Array.from({ length: count }, (_, index) => `event-${String(index + 1).padStart(4, '0')}.json`)] : fs.readdirSync(path); },
+      openSync(path, flags, mode) { if (/^event-/.test(basename(path))) eventOpens++; return fs.openSync(path, flags, mode); } };
+    if (count === 513) {
+      assert.throws(() => recoverFixture(ROOT, s.inputs, s.policyBytes, s.home, { io }), /event count exceeds finite bound/);
+      assert.equal(eventOpens, 0);
+    } else {
+      assert.throws(() => recoverFixture(ROOT, s.inputs, s.policyBytes, s.home, { io }), { code: 'ENOENT' });
+      assert.equal(eventOpens, 2); // One actual final event, then a missing second file; no valid512-event capture is claimed.
+    }
+  }
+});

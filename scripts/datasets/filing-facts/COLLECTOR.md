@@ -79,7 +79,11 @@ inject `monotonic`, `wall`, `wait` and an `io` facade for explicit offline fault
 controls; these are trusted callbacks too. An absolute deadline covers waiting,
 backoff, request work and capture checks. Abort/timeout is raced against each
 asynchronous fixture/wait, and losing callbacks have no collector write or retry
-continuation. Captured results that arrive before finalization retain known usage
+continuation. The absolute clock and explicit abort are rechecked inside the queued
+dispatch continuation before invoking a fixture or wait; earlier queued work cannot
+reuse a stale remaining-time admission. Recovery caps the actual event inventory
+at512 before opening event files, including when the packet input is null.
+Captured results that arrive before finalization retain known usage
 even if a subsequent capture check exceeds the deadline. Unknown usage, identity,
 price and clocks stay null/reasoned; actual provider billing is always null.
 

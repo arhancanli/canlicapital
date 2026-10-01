@@ -1193,3 +1193,25 @@ identity guards. New38th test refuses public/symlink directories before capture.
 This correction is static and UNEXECUTED until its own signed-source remoteCI.
 No local project/runtime job, model/provider/resource/hold/spend/labels/order/
 outreach/site/npm/version change; all full owner goals remain ACTIVE.
+
+
+## Independent collector P2s and corrected queued admission/event cap, 2026-10-01T21:55:47.419329+00:00
+
+Signed244a actualremote38namedPASS/918+6pre+9notification/all7SUCCESS and
+zero current CodeQL objects are retained in fidelity51d585d8 (rawc2d07ecb/
+actualdc3a0f38). Independent third STATIC findingcd481661 confirms two
+P2s also present in f78: queued dispatch uses a stale remaining-time snapshot,
+and six packetless metadata files allow513events under the total-file guard.
+These are source counterexamples, not executed reproductions. Author11b8731e
+agrees independently. Original38/37passes do not establish these properties.
+Current correction passes the absolute deadline/observe function into queued
+admission and rechecks clock/abort immediately before a fixture/wait callback;
+recovery independently caps512event names before event reads. New39/40bounded
+controls use one deterministic microtask and a finite inventory facade; no
+busy loop/large-data experiment/provider/runtime job. New40 cases are UNEXECUTED
+until their signed-source remoteCI. Keep originalCodeQL90/directory fix and
+both independent finding records, source/guide/data histories untouched.
+Primary accepted the final evidence archive within existing scope, but source
+review/current CI/archive/integration/delivery remain gates. All full owner
+goals remain ACTIVE with no local job/grant/model/resource/hold/spend/labels/
+orders/outreach/site/npm/version publication or outcome claims.
