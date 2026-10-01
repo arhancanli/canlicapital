@@ -312,6 +312,23 @@ test('declared finite-bound violations remain reported with their failed/retry c
   assert.equal(report.cost.complete_usage_estimate, '6.1'); assert.equal(report.execution_authorized, false);
 });
 
+test('attempt durations exceeding the item cap remain visible with missing or understated item clocks', () => {
+  for (const itemDuration of [null, 3]) {
+    const value = ledger(), item = value.items[0], attempt = item.attempts[0];
+    attempt.time.duration_ms = 30001; item.time.duration_ms = itemDuration;
+    item.time.unavailable_reason = itemDuration === null ? 'item duration not captured' : null;
+    const report = audit(value);
+    assert.deepEqual(report.bounds_violations, [{ id: item.id, attempt_id: attempt.id, ordinal: 1,
+      observed_duration_ms: 30001, reviewed_item_duration_ms: 30000,
+      reason: 'observed attempt duration exceeds reviewed item bound' }]);
+    assert.equal(report.cost.complete_usage_estimate, '6'); assert.equal(report.cost.known_component_subtotal, '6');
+    assert.equal(report.latency.complete_attempt_duration_total_ms, 30029);
+    assert.equal(report.items[0].time.duration_ms, itemDuration);
+    assert.equal(report.latency.mean_item_duration_ms, itemDuration === null ? null : 3);
+    assert.equal(report.execution_authorized, false);
+  }
+});
+
 test('bounded raw/JSON inputs refuse without a resource exhaustion experiment', () => {
   const value = ledger(); value.items[0].attempts[0].request_raw = 'x'.repeat(MAX_RAW_BYTES + 1);
   assert.throws(() => audit(value), /request body exceeds/);

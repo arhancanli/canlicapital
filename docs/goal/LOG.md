@@ -4993,3 +4993,21 @@ Old baseline/evaluation/V0/journal/MCP/site/hero and failures remain unchanged.
 Every full owner objective remains ACTIVE; no provider/model/price lookup/resources
 /financialhold/spend/humanlabels/orders/sitepublication/outreach.
 Observed 2026-10-01T19:19:26.981220+00:00.
+
+
+## 2026-10-01 — attempt-duration bound visibility correction
+
+Initial eb768da4 remoteNode22.23.3 has actual25 newPASS/all7CI success,
+879main+6pre+9notification/0fail. These original passes/logs remain unchanged.
+Primary independentSTATIC P2 CC-353-ATTEMPT-DURATION-BOUND-VISIBILITY
+(ed8c3533) identifies a known overlong attempt hidden when item duration is
+missing/understated; this is source reasoning, not an executed reproduction.
+Correction reports each known attempt above the item cap with item/attempt IDs,
+ordinal/observed duration/cap while retaining costs and unknown item time. New
+bounded regression covers missing and shorter item clocks:26 cases now WRITTEN.
+Guide/report distinguish no listed violations from verified complete budget
+coverage; attempt-duration sums are not item wall time. Correction is not yet
+runtime-verified. New signedsource/peerfixACK/currentremoteCI precede delivery.
+No localNode/test/CLI/helper/job/request/grant/nonce, models/resources/holds
+/spend/humanlabels/orders/sitepublication/outreach. AllfullownergoalsACTIVE.
+Observed 2026-10-01T19:40:40.095006+00:00.

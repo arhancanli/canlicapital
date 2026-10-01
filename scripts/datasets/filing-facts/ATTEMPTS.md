@@ -106,5 +106,9 @@ not performance claims. Declared finite-bound violations are reported rather tha
 erasing their costs or failed attempts. Replay reconstructs the full report from
 the same bound inputs. Synthetic values prove software behavior only; every owner
 goal still needs its own indexing, expert, adoption, research and financial evidence.
+Known attempt durations above the declared item cap are reported with item and
+attempt IDs, including when the item clock is missing or shorter. An empty violation
+list does not verify complete budget coverage: missing clocks, backoff, tool time
+and unrecorded activity remain unverified. Attempt-duration sums are not item wall time.
 Text fields require well-formed Unicode; truncation that cuts a surrogate pair
 refuses rather than allowing distinct strings to share replacement-character bytes.

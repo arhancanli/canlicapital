@@ -326,6 +326,10 @@ function replayLedger(contract, ledgerInput) {
     ...(row.declared_attempts !== null && row.declared_attempts > ledger.bounds.attempts_per_item ? [{ id: row.id, reason: 'declared attempts exceed reviewed bound' }] : []),
     ...(row.attempts.some(attempt => attempt.ordinal > ledger.bounds.attempts_per_item) ? [{ id: row.id, reason: 'observed attempt position exceeds reviewed bound' }] : []),
     ...(row.time?.duration_ms > ledger.bounds.item_duration_ms ? [{ id: row.id, reason: 'observed item duration exceeds reviewed bound' }] : []),
+    ...row.attempts.filter(attempt => attempt.time.duration_ms !== null && attempt.time.duration_ms > ledger.bounds.item_duration_ms)
+      .map(attempt => ({ id: row.id, attempt_id: attempt.id, ordinal: attempt.ordinal,
+        observed_duration_ms: attempt.time.duration_ms, reviewed_item_duration_ms: ledger.bounds.item_duration_ms,
+        reason: 'observed attempt duration exceeds reviewed item bound' })),
   ]);
   return { schema: REPORT_SCHEMA, purpose: ledger.purpose, model_baseline: false, provider_authenticity_verified: false, observed_billing_verified: false,
     execution_authorized: false, source_assisted_execution: 'held', unanswerable_full_source_coverage: 'unverified-held',
@@ -358,6 +362,7 @@ function replayLedger(contract, ledgerInput) {
     limits: ['Synthetic fixture values are software inputs, never observed model performance, latency or cost.',
       'Known subtotals include recorded failed/retried attempts; missing attempts and items prevent complete totals.',
       'Duration is supplied caller-observed monotonic elapsed time; wall timestamps do not establish it.',
+      'No listed bounds violations does not verify the execution budget: missing clocks, backoff, tool time and unrecorded activity remain unverified.',
       'Usage is extracted from retained raw JSON through declared pointers; invalid or missing components stay unavailable.',
       'Cost estimates cover supplied component rates only; pricing truth, tax, discounts, other fees and billing remain unverified.',
       'This artifact is separate from PR343 scoring evidence and provides no source-assisted-to-closed conversion.'] };
