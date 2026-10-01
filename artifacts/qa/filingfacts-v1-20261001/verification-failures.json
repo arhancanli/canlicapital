@@ -6,6 +6,16 @@
       "cause": "A test helper supplied its default cutoff when the missing-cutoff test passed undefined.",
       "correction": "Call the public function directly to test missing cutoff; implementation unchanged.",
       "log": "focused-test-helper-failure.txt"
+    },
+    {
+      "phase": "initial PR347 CI",
+      "head": "a7ccc64e5be5a1591686ebf39eddd778ec3be2cf",
+      "result": "six CI checks passed; combined CodeQL gate failed",
+      "cause": "CodeQL85 js/file-system-race on named output-write following existsSync. Existing wx writes were already exclusive; the revised code eliminates the precheck and uses O_CREAT|O_EXCL descriptors.",
+      "correction_source_commit": "1fcba8e1f0a8d556623bca4180e685fc98a97119",
+      "suppressed_or_dismissed": false,
+      "receipt": "codeql-output-before.json",
+      "regression": "focused-output-fix.txt:14 pass, including competing output and summary files"
     }
   ]
 }

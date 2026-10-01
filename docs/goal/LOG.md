@@ -4533,3 +4533,22 @@ or first-ever/cause claims. Proof: artifacts/goal/filingfacts-v1-quality-2026100
 Frozen signed PR and primary independent source/ambiguity review are next; merge
 and public v1 release remain unclaimed. Primary remains publisher, secondary owns
 analyzers/raw-download headers; every master objective remains active.
+
+
+## FilingFacts v1 PR347 CodeQL correction, 2026-10-01
+
+Initial signed a7ccc64e passed six functional/security-analysis CI jobs; combined
+CodeQL gate failed alert85 on output existence-check/write sequencing. Retained
+receipt: artifacts/qa/filingfacts-v1-20261001/codeql-output-before.json. Signed
+source correction1fcba8e1 removes the precheck and opens both outputs exclusively,
+writes through descriptors and closes them.14 focused tests pass, including
+competing candidate/summary creation immediately before exclusive open; competing
+bytes remain intact. Separate-write failure may leave a valid candidate and is
+explicit in the datasheet.14 actual-source candidates and summary regenerate
+byte-for-byte; separate Node/Python checks still pass.210 protected files/5v0
+unchanged. Proof: artifacts/goal/filingfacts-v1-output-fix-20261001.json.
+New local heavy reruns held per lead request; initial full834+6/6990/0/Git-free
+683/416 receipts remain historical evidence, not recast as corrected-head runs.
+Corrected exact-head CI and primary independent review pending. No alert
+suppression/dismissal, expert labels, public v1 release or merge claimed. All
+master goals and ownership boundaries remain active.
