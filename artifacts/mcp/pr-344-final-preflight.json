@@ -1,0 +1,110 @@
+{
+  "candidate": "96dd15a3be55b67ebaac6e2725131ffab4136a77",
+  "tree": "488ca525c113cfcffcb51cb9787b8edae27a9389",
+  "signature": "G",
+  "clean": true,
+  "pr": {
+    "baseRefOid": "45b305559d58a2e8689e842ddf5507b1b6d8f039",
+    "headRefOid": "96dd15a3be55b67ebaac6e2725131ffab4136a77",
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T11:10:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36853523055/job/110340486800",
+        "name": "analyze (javascript-typescript)",
+        "startedAt": "2026-10-01T11:08:50Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T11:11:04Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36853523053/job/110340487203",
+        "name": "vite production build",
+        "startedAt": "2026-10-01T11:08:50Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T11:10:03Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36853523055/job/110340487005",
+        "name": "analyze (python)",
+        "startedAt": "2026-10-01T11:08:50Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T11:09:11Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36853523053/job/110340487509",
+        "name": "design wrapper build and contracts",
+        "startedAt": "2026-10-01T11:08:50Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T11:09:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36853523053/job/110340487516",
+        "name": "MCP package and stdio contracts",
+        "startedAt": "2026-10-01T11:08:50Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T11:09:32Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36853523053/job/110340487626",
+        "name": "Key revocation PostgreSQL contract",
+        "startedAt": "2026-10-01T11:08:50Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T11:09:57Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/runs/110340862194",
+        "name": "CodeQL",
+        "startedAt": "2026-10-01T11:09:54Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "url": "https://github.com/arhancanli/canlicapital/pull/344"
+  },
+  "head_scoped_open_codeql_alerts": [],
+  "snapshot_exit_code": 0,
+  "checksummed_files_untouched": 416,
+  "stamped_pages": 683,
+  "main_tests": 821,
+  "preverify_tests": 6,
+  "audited_pages": 699,
+  "page_errors": 0,
+  "page_warnings": 0,
+  "logs": {
+    "canli-journal-final-integrated-build-20261001.log": {
+      "path": "/tmp/canli-journal-final-integrated-build-20261001.log",
+      "sha256": "66e7f94ff57a26fe8a73a9ea8e7552ae317e71ecc4c230e90da8816e1ac34cd7"
+    },
+    "canli-journal-final-integrated-verify-20261001.log": {
+      "path": "/tmp/canli-journal-final-integrated-verify-20261001.log",
+      "sha256": "424d0a182abd6780333424527ec11ec36b08dd40ba6e6244e40ff0ac5f01b387"
+    },
+    "canli-journal-final-clean-snapshot-20261001.log": {
+      "path": "/tmp/canli-journal-final-clean-snapshot-20261001.log",
+      "sha256": "ace52f060140112af7350fe1d2aa09666f8758e9eab7da9935fa461c74500255"
+    }
+  },
+  "receipt_check_correction": "Initial preflight expected TAP prefixes; this Node invocation used standard reporter. Corrected parser; no source or test change."
+}

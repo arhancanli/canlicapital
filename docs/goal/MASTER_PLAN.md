@@ -1,13 +1,16 @@
 # CanliCapital goal structure
 
-Verified 2026-10-01 08:28Z: #341 is merged and the four canonical MCP discovery pages are
-live, with exact released tool/source lists and dataset/annotation/research links. All seven
-PR checks, 788 + 6 local tests, 699 page audits, eight browser cases and clean/engine-overlay
-Git-free deployment builds pass. Live metadata, sitemap/llms discovery, exact source JSON,
-font/company/hosted-contract checks pass. Publisher reports 916,480 sitemap URLs and 42
-accepted IndexNow updates; actual indexing remains the dated Sep 27 baseline. Evidence:
-artifacts/seo/mcp-findability-deployment-20261001.json. Journal accounting is a local draft
-(fbbdf827, six focused tests); independent oracle, file/MCP integration and release are pending.
+Verified 2026-10-01 11:41Z: #343 evaluation, #345 annotation and #344 journal are merged
+with exact candidate/main trees and successful CI. The combined website batch is live at
+clean74d704d4; current hosted releases stay pinned. Eight HTML checks, five unchanged v0
+files, company admission/404, discovery/fonts and hosted contracts pass. Fifteen live annotation
+browser cases pass. Two raw-download noindex omissions are retained and assigned for correction;
+no overall analyzer quality score or fresh indexed count is claimed. Publisher reports916,480
+sitemap URLs and3 accepted IndexNow updates. Full821+6/699 local checks, clean/overlay builds
+and fixed/rechecked journal peer findings remain in the source-bound checkpoint. The entire
+owner objective map stays active, including actual expert gold,10M indexing, adoption,
+governed forward performance and substantial MCP releases. Evidence:
+artifacts/goal/joint-batch-publication-20261001.json and JOURNAL_BATCH_20261001.md.
 
 Reconciled 2026-10-01 from the owner's Claude messages, VISION.md, REQUIREMENTS.md,
 MCP_NEXT_MAJORS_PLAN.md, MCP_TRADING_DESIGN.md and the actual repository and live servers.
@@ -25,7 +28,7 @@ for the biggest finance/quant family and scores above 9 remain targets, never cl
 | Validation | Calibrated audit, counted research trials, return/trade reconciliation, costs, leakage checks and useful remediation | Hosted/npm 0.10.1, 15 tools |
 | Fundamentals | First-reported financial data; complete quarters/TTM, survivorship-aware universe, statements, factors and input audit | Hosted 0.5.0, 7 tools; npm 0.1.0 |
 | Research | Find prior trials/papers, explain failures, preflight ideas, check feasibility and artifact integrity | Hosted 0.2.0, 6 tools; npm 0.1.0 |
-| Execution | User-stated sizing and limits, pre-trade costs, post-trade shortfall, signed journals and paper execution | Private/unreleased 0.1.0 source, 4 tools including local shortfall; #339 merged; not on npm |
+| Execution | User-stated sizing and limits, pre-trade costs, post-trade shortfall, signed journals and paper execution | Private/unreleased 0.1.0 source, 4 tools with signed journal export and local shortfall; #339/#344 merged; not on npm |
 | Backtest | Local point-in-time backtests, validation and evidence receipts | Future family member; inspect canli-backtest/canli-pit-lake before implementation |
 | Portfolio | Local breadth, correlations, drawdown controls and sizing | Future family member; reuse shared validated cores |
 | Market/venue extensions | Additional asset classes and venue context | Data rights and measured need precede publication |

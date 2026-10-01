@@ -1,0 +1,40 @@
+{
+  "schema": "canli.internal-peer-review.v1",
+  "reviewed_commit": "173e7f77eece35168607d55ac259ebc248a4e94f",
+  "synthetic_only": true,
+  "observer_contracts": {
+    "pathname_replacement_reads_original_descriptor": true,
+    "final_symlink_refused": true,
+    "oversized_observation_refused": true
+  },
+  "model_or_broker_calls": 0,
+  "record_leaf_mutations_refused": 53,
+  "companion_mutations_refused": 6,
+  "signed_selection_clock_missing_and_self_attestation_probes": "pass",
+  "observations": {
+    "minimum_track_record": {
+      "operation_accepted": false,
+      "error": "minimum track record has nonfinite derived values",
+      "periods_per_year": 1e-309
+    },
+    "directory_swap": {
+      "operation_accepted": false,
+      "error": "journal export directory changed during creation",
+      "injected_concurrent_swap": true
+    },
+    "no_replacement_cleanup": {
+      "operation_accepted": false,
+      "error": "synthetic injected write failure after pathname replacement",
+      "replacement_created": true,
+      "unrelated_replacement_survives": true
+    }
+  },
+  "scope_limits": [
+    "Internal code review, not external financial or expert review",
+    "Financial numerical oracle not rerun; no independent Sharpe, MinTRL or annual-compounding implementation"
+  ],
+  "observer_sha256": "3bfe5b6c3cc6f65d4c1be0b7a49a4aff14da67995f220aa6f2f0f968fbb29deb",
+  "observed_at": "2026-10-01T12:18:55.874781+00:00",
+  "node_version": "v24.19.0",
+  "review_scope": "Primary descriptor-observer revision/recheck. Original secondary before/after review evidence remains separate and unmodified."
+}
