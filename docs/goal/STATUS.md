@@ -503,3 +503,53 @@ this isolated checkout. Proof: artifacts/goal/annotation-intake-integration-qual
 Signed exact-head PR update/CI/merge and live delivery are next; not yet claimed.
 Journal344 remains primary-owned and pending its independent correction recheck;
 secondary owns the later analyzer phase. All master objectives remain active.
+
+
+## FilingFacts v1 source-audit phase started, 2026-10-01
+
+Third worker's annotation #345 is merged as45b30555; its exact candidate/main
+trees and all seven PR plus seven merged-main checks pass. New isolated worktree
+canlicapital-filingfacts-v1-20261001, assist/filingfacts-v1-20261001 starts from
+45b30555 for primary's existing v1 first/later-source task plan. Audit actual SEC
+snapshot availability, rights and lineage before creating machine-checked candidates;
+report source gaps first. Own new v1 generator/checker/tests/datasheet/evidence;
+preserve every v0 byte and current eval/browser/journal/MCP code. Require explicit
+filed/as-of/accession/hash, annual/quarter/YTD separation and ambiguity refusal;
+no unsupported first-ever, actual expert/human labels, models, outreach or cloud.
+Primary remains publisher; secondary owns the later analyzer phase. All Sovereign,
+10M actual indexing, content/SEO/keyword/adoption and governed ALPHAC goals remain active.
+
+
+## FilingFacts v1 actual source gaps reported before generation, 2026-10-01
+
+Seven committed Sep19 representative record/gzip pairs hash/CIK/name-match.
+Each is one SEC companyfacts response, not every historical capture; rows lack
+acceptance timestamps and complete-history guarantees. Quarter/YTD/annual and
+nonperiodic forms coexist; changed numeric values do not prove an accounting
+restatement. Rights scope uses numeric facts/identifiers and newly authored
+questions, with official Copyright Office and SEC API links; historical blanket
+public-domain language is not assumed for every company filing. Capture time is
+metadata, not independent time attestation. Before generation primary was sent
+these gaps. Initial candidate scope: USD/us-gaap,10-K(/A),FY,exact335-395-day
+annual intervals; excluded periods and ambiguity are counted/refused. Earliest
+means earliest eligible observation present in the captured response at an
+explicit date cutoff. Proof: artifacts/goal/filingfacts-v1-source-audit-20261001.json.
+No candidates or new labels yet; every owner objective and ownership boundary stays active.
+
+
+## FilingFacts v1 local candidate checkpoint, 2026-10-01
+
+New v1 generator and independent archive-rereading checker pass13 focused tests.
+Actual archived sources produce14 machine candidates at explicit2026-09-18
+cutoff; all14 pass separate Node checks and independently implemented Python
+source/endpoint/arithmetic recomputation. Every protected v0/eval/browser/MCP
+byte still matches45b30555. Initial test-helper missing-cutoff expectation failed
+12/13; corrected the helper call and retained the failure, with no implementation
+change. Summary counts107491 quarterly-form rows,1550 quarter/short and11 YTD/
+partial-year duration rows excluded;25 invalid source rows refuse15 groups.
+Also2965 no-later groups,9965 unchanged and13 reverted groups are retained in
+counts. Safe integer USD policy is explicit; fractional/large amounts need a
+separate decimal policy. New datasheet scopes rights/history/date precision and
+formal-cause/human limitations. Source packet/checks under artifacts/qa/filingfacts-v1-20261001.
+Latest-main/full build/CI/signed peer review remain pending, not claimed. Every
+master goal remains active; production and existing owned code stay separate.

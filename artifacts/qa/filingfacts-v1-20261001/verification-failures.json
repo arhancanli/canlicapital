@@ -1,0 +1,11 @@
+{
+  "failures": [
+    {
+      "phase": "first focused test run",
+      "result": "12 pass, 1 fail",
+      "cause": "A test helper supplied its default cutoff when the missing-cutoff test passed undefined.",
+      "correction": "Call the public function directly to test missing cutoff; implementation unchanged.",
+      "log": "focused-test-helper-failure.txt"
+    }
+  ]
+}
