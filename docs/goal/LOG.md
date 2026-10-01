@@ -4867,3 +4867,45 @@ primary prepares paper-store/recovery next. All Sovereign/10M actual-indexing/SE
 quality/keywords/analyzers/design/adoption/novelresearch/humanexpert/governedALPHAC
 objectives remain active; overall goal not achieved. No orders or micro MCP release.
 Proof: artifacts/goal/mcp-page-primary-review-20261001/after-manifest.json.
+
+
+## 2026-10-01 — delivery checkpoint closed; local journal storage started
+
+PR350 signed891d0806 ordinary merged63cea029 at16:38:29Z; reviewed and merged
+tree20d8c5f0 match. Seven exact CI checks, current-ref CodeQL0, primary94archive
+hashes and independent final52465ff6 pass. Newly assembled manifest provenance
+and initial observer diagnostics remain separate; no historical evidence rewrite.
+This is repository documentation/evidence delivery; production62d2 remains the
+verified15:45:17 website batch, with no redundant website publication.
+
+Primary starts private local journal storage in isolated
+`/Users/arhancanli/canlicapital-journal-store-20261001`, branch
+`work/journal-store-20261001`, now fast-forwarded to actual main63cea029.
+Supplied-key initialization/exclusive appends, verified chains, deterministic
+retry identity, fsync-before-success and interrupted-write refusal are the
+bounded scope. Synthetic filesystem tests and independent Python verification
+are planned; no test or latency claim yet and no local CPU lease acquired.
+Secondary owns offline15-item PR351 contract; its old baec test intent was
+withdrawn before any attempt and corrected a27 awaits fresh lead grant/CI.
+Third owns read-only corrected351 review. No broker call, model/resource/hold/
+spend, tool/schema/version change or public execution release. All four
+Sovereign pillars,10M actual indexing, source-backed quality/SEO/keywords/
+analyzers/design/adoption/novel research/expert refinery/governedALPHAC goals
+remain ACTIVE. Proof: coordination/pr-350-primary-after-language-fix/delivery.json;
+preparation: coordination/primary-paper-store-contract.json.
+Observed transition: 2026-10-01T16:44:05.889971+00:00.
+
+
+## 2026-10-01 — private journal storage draft implemented, validation pending
+
+Local new module and 15 focused test cases cover supplied-key initialization,
+exclusive appends, complete-chain/key checks, signed deterministic retry metadata,
+file/directory persistence, readback and retained uncertainty. Synthetic tests
+include short/partial writes, sync failures, real child writer contention,
+directory substitution and unrelated pathname preservation. These are written
+checks, not observed passes. No local Node/Python execution or heavy lease yet.
+Package includes its storage guide; versions/dependencies and every existing
+MCP tool/schema, shared mirror, raw dataset and public page remain unchanged.
+No broker/model/resource/hold/spend/publication, hardware durability or latency
+claim. All full owner objectives remain active. Next bounded Node check under
+lead scheduling, independent emitted-journal verification and source review.

@@ -15,6 +15,11 @@ build has no broker code at all.
   and stated fees. It runs locally; the default result is an aggregate rather than a long fill list.
 - `journal` checks a signed journal and exports recomputed paper evidence, offline.
 
+The private storage foundation in `src/journal-store.mjs` is for later local paper
+workflows. It is not an MCP tool and places no orders. Its current implementation
+and failure/retry limits are described in [JOURNAL_STORAGE.md](./JOURNAL_STORAGE.md);
+validation and the substantial release gates remain pending.
+
 ## What `measure_shortfall` computes
 
 All prices are USD; each fee is the USD amount charged for that fill (a rebate can be negative).

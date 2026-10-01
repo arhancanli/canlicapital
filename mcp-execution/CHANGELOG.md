@@ -4,6 +4,11 @@
 
 The first release, 0.1.0, is paper trading only. It ships when every item of its release bar holds.
 
+- Private local journal storage foundation: supplied-key initialization and
+  exclusive appends verify the chain, bind retry identity and request persistence
+  before success. Interrupted operations return uncertainty and retain pending
+  evidence. Not registered as a tool; see `JOURNAL_STORAGE.md`. Validation pending.
+
 - `journal export` recomputes cash, explicit fees, per-mark returns, turnover and drawdown
   from a declared signed account/window into paper-evidence.v0. Unknown fees, incomplete marks,
   unresolved reconciliation and unsupported financial events refuse; insolvencies stay visible.
