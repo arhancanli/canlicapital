@@ -138,7 +138,7 @@ const DEVELOPER_STRIP = `  <section class="cc-footer__dev" aria-labelledby="cc-f
       <span>MCP server</span>
       <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
       <code>npx -y canli-validation-mcp</code>
-      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
     </div>
     <div class="cc-footer__dev-item">
       <span>Open source</span>

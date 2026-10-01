@@ -6,7 +6,8 @@ Goal ACTIVE, NOT ACHIEVED. Recovered the owner's relevant Claude CanliCapital me
 vision, memory and 16 detailed plans. MASTER_PLAN.md maps the complete objectives;
 CLAUDE_RECOVERY_20261001.md lists sources and distinguishes dated notes from verified state.
 Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
-`records/continuation-checkpoint-20261001`. Prior dirty worktrees are preserved.
+`continue/findability-20261001` in `/Users/arhancanli/canlicapital-findability-20261001`.
+Journal export work remains isolated in the continuation checkout. Prior dirty worktrees are preserved.
 
 ### Completed implementation and publication checkpoint
 

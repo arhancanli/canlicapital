@@ -4086,3 +4086,26 @@ is not yet measured and the owner resubmits the sitemap in Search Console.
   original continuity folder and this checkout are updated. Next: execution journal export/paper
   reconciliation, actual annotation and v1 task quality, trusted-publisher parity, remaining
   analyzer/adoption/research goals. Every owner objective remains active.
+
+
+## 2026-10-01 — owner findability steering and MCP coverage phase
+
+The owner requested a progress report and the highest SEO standard, with indexed pages for
+every useful output. Kept the full active goal and the journal export branch; SEO work is
+isolated in canlicapital-findability-20261001, continue/findability-20261001, from ed511f1a.
+New directory and three distinct canonical MCP pages derive tool lists from the exact hosted
+release pins (15/7/6 tools), validate their illustrative inputs, and link datasets, annotation,
+research, standards and repositories. Sitemap, source dates, shared footer, llms.txt and
+editorial intent ownership are updated. No release versions or live tool contracts change.
+Fresh npm registry observation confirms 0.10.1/0.1.0/0.1.0; hosted remains 0.10.1/0.5.0/0.2.0.
+Firecrawl sampled 120 URLs and two content extracts; full metadata was checked separately by
+direct HTTP. Search Console refresh could not be read because existing Chrome disallows
+Apple Events JavaScript and no connector is available; dated Sep 27 Google/Bing counts remain.
+
+Initial verification: 788 tests plus 6 preverify passed; all 699 pages passed on-page, link-graph
+and indexability checks. The overall verify command then failed the README's old sitemap
+count; corrected 332 to 336, retaining the failed run. An earlier focused test had a mistaken
+import name, corrected before the full run. Eight browser cases at 390/1440 passed metadata,
+font load, HTTP, overflow and JavaScript checks; visual inspection then found a clipped footer
+heading from a shared negative margin. Scoped the fix to the new pages; final checks pending.
+Actual indexing, rankings, human labels, funded outcomes and deployment are not yet claimed.

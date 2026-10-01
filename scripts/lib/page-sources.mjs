@@ -86,6 +86,10 @@ export const PAGE_SOURCES = {
     "mcp-released/research/server.json",
     "mcp-released/research/src/server.mjs",
   ],
+  ...Object.fromEntries(['', '/validation', '/fundamentals', '/research'].map(suffix => [`/mcp-servers${suffix}`, [
+    'scripts/build-mcp-pages.mjs', 'config/mcp-discovery.json', 'config/mcp-hosted-releases.json',
+    ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released']),
+  ]])),
   "/costs": ["scripts/build-cost-coverage.mjs"],
   "/standards/paper-evidence": [
     "scripts/build-paper-evidence.mjs",
