@@ -1,0 +1,40 @@
+{
+  "schema": "canli.mcp-page-overlay-passed-publication-lock-deferred.v1",
+  "observed_at": "2026-10-01T15:43:14.057751+00:00",
+  "source_commit": "62d2a195b31a81dedbd9b7a897a76e2af95ae1fb",
+  "overlay_result": "PASS",
+  "overlay_terminal": {
+    "ended_at": "2026-10-01T15:37:13.954701+00:00",
+    "exit_code": 0,
+    "seconds": 30.358523666,
+    "pid": 8218,
+    "pgid": 8218,
+    "log": "/Users/arhancanli/canlicapital-coordination-20261001/analyzers/pr-349-primary-bounded90-overlay.log",
+    "log_sha256": "3965b11fa39150765c267c23b71119e96c523b3d05d5b23637aadd05ebdd3271"
+  },
+  "node": "22.23.2",
+  "stamped_pages": 683,
+  "checksummed_files_unchanged": 416,
+  "overlay_source_hash": "e2cc60f02e7a07e87d84af77c2fadf9d2a7453c2fcca05c4a491b543d748830c",
+  "activation_terminal": {
+    "ended_at": "2026-10-01T15:37:14.041227+00:00",
+    "exit_code": 73,
+    "seconds": 0.019158208000000343,
+    "pid": 14815,
+    "pgid": 14815,
+    "log": "/Users/arhancanli/canlicapital-coordination-20261001/analyzers/pr-349-primary-bounded90-activation.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "guarded_release": {
+    "released_at": "2026-10-01T15:37:14.041874+00:00",
+    "nonce": "8b0d0d3edb484408a700d42c7de4bf99",
+    "ownerThread": "01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23",
+    "nonce_guard_matched": true
+  },
+  "actual_other_publisher_completed_at": "2026-10-01T15:38:12Z",
+  "limits": [
+    "First activation refused73 while foreign shareddeploylock held; no pointer switch or publisher in that lease.",
+    "Publisher-only continuation is separate and reuses completed proof; not a fourth validation.",
+    "No live/indexing/field/global measurement claim before actual delivery checks."
+  ]
+}

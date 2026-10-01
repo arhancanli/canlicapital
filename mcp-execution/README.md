@@ -77,8 +77,11 @@ The recorded local stdio benchmark uses synthetic fills and three warmups per ca
 orders, aggregate-only medians were 4.0 ms inline and 3.3 ms from a file; a 199-resample bootstrap
 from the file was 24.7 ms. The supplied inline orders cost 96,154 o200k input tokens; the file
 request cost 58 (path lengths vary), with a 370-token text response. These are one-machine
-measurements, not hosted latency or a comparative ranking. The full four-tool list is 1,636
-o200k / 1,571 cl100k. From the repository root, reproduce with:
+measurements, not hosted latency or a comparative ranking. At the shortfall checkpoint, the
+four-tool list measured 1,636 o200k / 1,571 cl100k. The later journal-export checkpoint measured
+1,691 / 1,621; its journal definition used 163 o200k, above the 150-token target. The full
+seven-tool release gate remains open. These recorded checkpoints are separate from a fresh
+measurement of later source. From the repository root, reproduce with:
 
 ```sh
 uv run --no-project --with tiktoken python scripts/bench/execution-shortfall.py
@@ -86,6 +89,9 @@ uv run --no-project --with tiktoken python scripts/bench/mcp-tool-tokens.py --js
 ```
 
 Full observations and source hashes: `artifacts/goal/shortfall-local-benchmark-20261001.json`.
+The two tool-list receipts are `artifacts/goal/mcp-tool-tokens-20261001.json` and
+`artifacts/mcp/journal-tool-tokens-20261001.json`; journal release limits are recorded in
+`artifacts/mcp/journal-accounting-20261001.json`.
 
 ## The trade journal
 
@@ -200,14 +206,16 @@ never passed silently.
 
 ## Your limits and the kill switch
 
-Local state lives in one directory you control, `~/.canli` (or `CANLI_HOME`). No tool writes to it:
+Keep your limits and kill switch in `~/.canli` (or `CANLI_HOME`). Tools do not edit these files:
 
 - `limits.json`: your limits. A call can only tighten them, never loosen them. An unreadable or
   invalid file refuses every check rather than run without it.
 - `KILL`: while this file exists, every order is refused as `kill_switch_engaged`.
 
-Both are read on every call. Each result carries `limits_digest`, the sha256 of the effective
-limits, so a record can show which limits a check ran under.
+`check_orders` reads both files on each call; `size_position` reads the limits file. Both tools
+return `limits_digest`, the sha256 of their effective limits, so a record can show which limits
+a check ran under. Journal `head` and `verify` only read; `export` can create a private file under
+`CANLI_HOME/exports` and leave a failed or partial file. It never edits the original journal.
 
 ## How it was checked
 

@@ -1,0 +1,60 @@
+{
+  "schema": "canli.private-execution-doc-independent-correction-review.v1",
+  "reviewed_at": "2026-10-01T14:40:50.881242+00:00",
+  "mode": "Uncommitted primary local documentation/source-comment draft; no delivery claim",
+  "working_root": "/Users/arhancanli/canlicapital-continuation-20261001",
+  "base_head": "fe68e73eb12d0f8c6a3a93eb4cf4f363c4ca1099",
+  "result": "PASS",
+  "resolved_local_findings": [
+    "CC-EXEC-DOC-TOKENS",
+    "CC-EXEC-DOC-WRITES"
+  ],
+  "current_sha256": {
+    "mcp-execution/README.md": "96911e6f53f69e287f4f4f7b2fead8257746974ba42e99dea0e39a6fc89fdcd2",
+    "mcp-execution/CHANGELOG.md": "e325065d277b84fef17d2d4ebaa6e30625b6328e64c6f58edaf0493b95db217d",
+    "mcp-execution/src/server.mjs": "5a5e578087b01f462dc5ec56bdf6679ddb52fd07a94e507baaff46441384cbc8"
+  },
+  "runtime_from_first_import_byte_identical": true,
+  "runtime_body_sha256": "9e546f699addb591d699de1984ffaa9a2f10484eae659f2e202f12dba127880a",
+  "historical_token_checkpoint": {
+    "server": "execution",
+    "version": "0.1.0",
+    "tools": 4,
+    "chars": 6806,
+    "o200k_base": 1636,
+    "cl100k_base": 1571
+  },
+  "later_journal_token_checkpoint": {
+    "server": "execution",
+    "version": "0.1.0",
+    "tools": 4,
+    "chars": 7013,
+    "o200k_base": 1691,
+    "cl100k_base": 1621
+  },
+  "unchanged_benchmark_receipts": [
+    {
+      "path": "artifacts/goal/mcp-tool-tokens-20261001.json",
+      "sha256": "5297b21456c970b082e489e1a1193909599bdff2b14bd104fac65df1956683a5"
+    },
+    {
+      "path": "artifacts/mcp/journal-tool-tokens-20261001.json",
+      "sha256": "82936c2e5a1a5e354fd6ccf17868f3ada75da6250b985bb0709fcea1c88c85df"
+    },
+    {
+      "path": "artifacts/mcp/journal-accounting-20261001.json",
+      "sha256": "d41c1206b15242e78de3402a3ec319a54f1526e27b2f1bc5d72e5605d99e4614"
+    },
+    {
+      "path": "artifacts/goal/shortfall-local-benchmark-20261001.json",
+      "sha256": "2f0ce43ca9c705cf4ccfb7079f4c9c1822621935f4e4613406e7f09237b0f030"
+    }
+  ],
+  "prior_finding_receipt_sha256": "19c3419d5562fc4b4e3f5c0715ab2875cce6811e293516d1e47a5d352a172676",
+  "limits": [
+    "Static read-only correction review; no token/latency rerun, test, browser, build, model or implementation edit.",
+    "Comment-only server source bytes change; old benchmark source hash remains historical, exact executable code remains unchanged.",
+    "150-token journal and complete seven-tool1700 gates remain open; private execution remains unreleased, no version bump/publication/broker orders.",
+    "Primary owns signed checkpoint/CI/integration; review must extend to actual final head if content changes."
+  ]
+}

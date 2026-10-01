@@ -1,5 +1,43 @@
 # Current state
 
+## MCP page update live; final evidence checkpoint, 2026-10-01
+
+Goal ACTIVE, NOT ACHIEVED. PR349 merged62d2a195 from signed88d4ac9a at15:00:27Z;
+candidate/main tree61d07878 matches. All seven checks pass, with zero open current
+merge-ref CodeQL findings. Independent review verifies eight current source hashes,
+5,290 protected files, original84 archives/manifest and46 retained after-assets.
+The visible-focus P2 is fixed. Six DEV cases/twelve elements pass; the normally
+nonfocusable wrappers use a disclosed, restored overflow fixture. Primary separately
+viewed the validation320 focused/blurred pair. Historical laboratory observations
+remain bound to648236ad, with no new Lighthouse or field score claimed.
+
+Actual engine-overlay Git-free build passes on Node22.23.2 in30.358s:683 pages
+stamped and416 checksummed files unchanged. Initial duplicate-dependency setup and
+15s incomplete deadline remain separate; exact timed internal stage was inferred
+and corrected in an addendum. First activation refused the existing publisher's
+shared lock. After its15:38:12Z completion, publisher-only continuation activated
+clean production62d2 and completed15:45:17Z. Deployment dpl_93B7GAGx7dipxc1YRYhRW3eLHZmy
+is Ready on canli/www. Eight HTML, four company, five exact v0 and hosted15/7/6
+contract checks pass. Published snapshot a8f388d0 is distinct from validated overlay
+e2cc60f0; current evidence records both. Two sleep-only owned watchdog descendants
+were found after the nonce release and removed from the recorded owned group;
+ESRCH is verified afterward. This cleanup chronology remains explicit.
+
+IndexNow reports zero new/updated URLs in this batch and916,480 canonical sitemap
+URLs. Neither establishes indexing. Fresh Search Console measurements remain open.
+The private execution description correction distinguishes historical1636/1571 from
+later1691/1621, applicable limits/KILL reads and private exports. Executable code
+from its first import is unchanged; journal163>150 and complete seven-tool1700
+release gates remain open. Independent local doc review passes; signed checkpoint
+review/CI/merge follow, with no new package version or hosted execution release.
+
+Next roles: primary paper-store/recovery preparation, secondary offline finite
+model-baseline contract reusing343, third independent documentation/evidence audit.
+No model, resource, reservation or spend is assigned. All Sovereign pillars, real
+expert gold,10M actually indexed quality pages, SEO/keywords/analyzers/design,
+legitimate adoption, novel research and governed ALPHAC outcomes remain active.
+Evidence: artifacts/goal/mcp-page-primary-review-20261001/pr-349-publication.json.
+
 ## Live batch verified, 2026-10-01 11:41Z
 
 Goal ACTIVE, NOT ACHIEVED. Production checkout is clean at74d704d4. The established

@@ -1,0 +1,45 @@
+{
+  "source_session": "rollout-2026-10-01T08-39-24-01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23.jsonl",
+  "events": [
+    {
+      "timestamp": "2026-10-01T13:24:50.618Z",
+      "ordinal": 4129,
+      "type": "event_msg",
+      "payload": {
+        "type": "item_completed",
+        "thread_id": "01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23",
+        "turn_id": "01a0f6ba-7046-7fb2-96fb-b27cef4f337f",
+        "item": {
+          "type": "CommandExecution",
+          "id": "exec-565051b8-22ef-4601-adf4-49001577dd23",
+          "process_id": "23710",
+          "command": [
+            "/bin/zsh",
+            "-lc",
+            "python3 - <<'PY'\nimport subprocess,json,gzip,hashlib,datetime\nfrom pathlib import Path\nhead='ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17'; coord=Path('/Users/arhancanli/canlicapital-coordination-20261001/analyzers')\ndef blob(p): return subprocess.check_output(['git','show',head+':'+p])\nx=json.loads(blob('artifacts/goal/mcp-page-quality-20261001.json')); seen=set(); reports={}\nfor entry in x['verification_files']:\n p=entry['path']; assert p not in seen; seen.add(p); b=blob(p); raw=gzip.decompress(b); assert hashlib.sha256(b).hexdigest()==entry['sha256'] and hashlib.sha256(raw).hexdigest()==entry['raw_sha256'] and len(raw)==entry['raw_bytes'],p\n if p.endswith('/summary.json.gz'): reports[p]=json.loads(raw)\nmanifest=json.loads(blob('config/source-dates.json')); old=json.loads(subprocess.check_output(['git','show','fe68e73e:config/source-dates.json']))\nchanged=[k for k in set(manifest['files'])|set(old['files']) if manifest['files'].get(k)!=old['files'].get(k)]; assert changed==['scripts/build-mcp-pages.mjs']; assert manifest['files'][changed[0]]['sha256']==hashlib.sha256(blob(changed[0])).hexdigest()\nproof=json.loads((coord/'pr-349-primary-source-review.json').read_text()); proof['all_84_archive_checksums_and_raw_bytes_verified']=True; proof['source_date_change_exactly_one_generator_binding']=True; proof['summary_archives']={p:list(s.keys()) for p,s in reports.items()}; (coord/'pr-349-primary-source-review.json').write_text(json.dumps(proof,indent=2)+'\\n')\nprint('84 exact gzip/raw hashes verified; source-date changed only generator binding.')\nfor p,s in reports.items():\n print(p,'keys',list(s.keys()))\n if 'results' in s: print('firstresultkeys',list(s['results'][0].keys()) if s['results'] else [])\nprint('Lighthouse receipt keys',list(x['lighthouse']))\nPY"
+          ],
+          "cwd": "file:///Users/arhancanli/canlicapital-continuation-20261001",
+          "parsed_cmd": [
+            {
+              "type": "unknown",
+              "cmd": "python3 - <<'PY'\nimport subprocess,json,gzip,hashlib,datetime\nfrom pathlib import Path\nhead='ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17'; coord=Path('/Users/arhancanli/canlicapital-coordination-20261001/analyzers')\ndef blob(p): return subprocess.check_output(['git','show',head+':'+p])\nx=json.loads(blob('artifacts/goal/mcp-page-quality-20261001.json')); seen=set(); reports={}\nfor entry in x['verification_files']:\n p=entry['path']; assert p not in seen; seen.add(p); b=blob(p); raw=gzip.decompress(b); assert hashlib.sha256(b).hexdigest()==entry['sha256'] and hashlib.sha256(raw).hexdigest()==entry['raw_sha256'] and len(raw)==entry['raw_bytes'],p\n if p.endswith('/summary.json.gz'): reports[p]=json.loads(raw)\nmanifest=json.loads(blob('config/source-dates.json')); old=json.loads(subprocess.check_output(['git','show','fe68e73e:config/source-dates.json']))\nchanged=[k for k in set(manifest['files'])|set(old['files']) if manifest['files'].get(k)!=old['files'].get(k)]; assert changed==['scripts/build-mcp-pages.mjs']; assert manifest['files'][changed[0]]['sha256']==hashlib.sha256(blob(changed[0])).hexdigest()\nproof=json.loads((coord/'pr-349-primary-source-review.json').read_text()); proof['all_84_archive_checksums_and_raw_bytes_verified']=True; proof['source_date_change_exactly_one_generator_binding']=True; proof['summary_archives']={p:list(s.keys()) for p,s in reports.items()}; (coord/'pr-349-primary-source-review.json').write_text(json.dumps(proof,indent=2)+'\\n')\nprint('84 exact gzip/raw hashes verified; source-date changed only generator binding.')\nfor p,s in reports.items():\n print(p,'keys',list(s.keys()))\n if 'results' in s: print('firstresultkeys',list(s['results'][0].keys()) if s['results'] else [])\nprint('Lighthouse receipt keys',list(x['lighthouse']))\nPY"
+            }
+          ],
+          "source": "unified_exec_startup",
+          "status": "failed",
+          "stdout": "Traceback (most recent call last):\n  File \"<stdin>\", line 10, in <module>\nAssertionError\n",
+          "stderr": "",
+          "aggregated_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 10, in <module>\nAssertionError\n",
+          "exit_code": 1,
+          "duration": {
+            "secs": 1,
+            "nanos": 496799042
+          },
+          "formatted_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 10, in <module>\nAssertionError\n"
+        },
+        "started_at_ms": 1790861089120,
+        "completed_at_ms": 1790861090618
+      }
+    }
+  ]
+}

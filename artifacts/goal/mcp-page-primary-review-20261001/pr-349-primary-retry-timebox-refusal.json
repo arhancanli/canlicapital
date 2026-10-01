@@ -1,0 +1,29 @@
+{
+  "schema": "canli.page-publication-timebox-refusal.v1",
+  "observed_at": "2026-10-01T15:27:28.692961+00:00",
+  "source_commit": "62d2a195b31a81dedbd9b7a897a76e2af95ae1fb",
+  "result": "INCOMPLETE_TIMEBOX_BEFORE_BUILD_OUTPUT",
+  "terminal": {
+    "ended_at": "2026-10-01T15:24:49.391902+00:00",
+    "exit_code": 124,
+    "seconds": 15.009475416999999,
+    "pid": 4664,
+    "pgid": 4664,
+    "log": "/Users/arhancanli/canlicapital-coordination-20261001/analyzers/pr-349-primary-retry-overlay.log",
+    "log_sha256": "d1a0f443a65bbd9dc1896c03c38a63cf3d648d341e7dd8647f7e2209eb331c47"
+  },
+  "own_group": "ESRCH",
+  "guarded_release": {
+    "released_at": "2026-10-01T15:24:49.393235+00:00",
+    "nonce": "dede6f14a0464e1bb4f8e8b0d6f176a1",
+    "ownerThread": "01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23",
+    "nonce_guard_matched": true
+  },
+  "production_untouched": "0d9c88c605d7abfda150bde87c95f8554672352e",
+  "cause": "Fifteen seconds did not cover stable snapshot capture and the Git-free validation clone; no npm output recorded.",
+  "next": "One ninety-second total validator timebox requested from capacity lead; no third job yet.",
+  "limits": [
+    "No completed build/validation/publication/score claimed.",
+    "Existing product source/CI/independent visual proof unaffected."
+  ]
+}

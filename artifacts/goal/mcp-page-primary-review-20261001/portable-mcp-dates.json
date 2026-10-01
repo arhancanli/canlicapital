@@ -1,0 +1,121 @@
+{
+  "schema": "canli.mcp-page-peer-portable-date.v1",
+  "head": "ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17",
+  "checked_at": "2026-10-01T13:37:56.659Z",
+  "node": "v24.19.0",
+  "routes": {
+    "/mcp-servers": {
+      "with_git": "2026-10-01",
+      "sources": [
+        "scripts/build-mcp-pages.mjs",
+        "config/mcp-discovery.json",
+        "config/mcp-hosted-releases.json",
+        "mcp-released"
+      ],
+      "without_git": "2026-10-01",
+      "portable_sources": [
+        {
+          "path": "scripts/build-mcp-pages.mjs",
+          "date": "2026-10-01"
+        },
+        {
+          "path": "config/mcp-discovery.json",
+          "date": "2026-10-01"
+        },
+        {
+          "path": "config/mcp-hosted-releases.json",
+          "date": "2026-09-28"
+        },
+        {
+          "path": "mcp-released",
+          "date": "2026-09-28"
+        }
+      ]
+    },
+    "/mcp-servers/validation": {
+      "with_git": "2026-10-01",
+      "sources": [
+        "scripts/build-mcp-pages.mjs",
+        "config/mcp-discovery.json",
+        "config/mcp-hosted-releases.json",
+        "mcp-released/validation"
+      ],
+      "without_git": "2026-10-01",
+      "portable_sources": [
+        {
+          "path": "scripts/build-mcp-pages.mjs",
+          "date": "2026-10-01"
+        },
+        {
+          "path": "config/mcp-discovery.json",
+          "date": "2026-10-01"
+        },
+        {
+          "path": "config/mcp-hosted-releases.json",
+          "date": "2026-09-28"
+        },
+        {
+          "path": "mcp-released/validation",
+          "date": "2026-09-28"
+        }
+      ]
+    },
+    "/mcp-servers/fundamentals": {
+      "with_git": "2026-10-01",
+      "sources": [
+        "scripts/build-mcp-pages.mjs",
+        "config/mcp-discovery.json",
+        "config/mcp-hosted-releases.json",
+        "mcp-released/fundamentals"
+      ],
+      "without_git": "2026-10-01",
+      "portable_sources": [
+        {
+          "path": "scripts/build-mcp-pages.mjs",
+          "date": "2026-10-01"
+        },
+        {
+          "path": "config/mcp-discovery.json",
+          "date": "2026-10-01"
+        },
+        {
+          "path": "config/mcp-hosted-releases.json",
+          "date": "2026-09-28"
+        },
+        {
+          "path": "mcp-released/fundamentals",
+          "date": "2026-09-28"
+        }
+      ]
+    },
+    "/mcp-servers/research": {
+      "with_git": "2026-10-01",
+      "sources": [
+        "scripts/build-mcp-pages.mjs",
+        "config/mcp-discovery.json",
+        "config/mcp-hosted-releases.json",
+        "mcp-released/research"
+      ],
+      "without_git": "2026-10-01",
+      "portable_sources": [
+        {
+          "path": "scripts/build-mcp-pages.mjs",
+          "date": "2026-10-01"
+        },
+        {
+          "path": "config/mcp-discovery.json",
+          "date": "2026-10-01"
+        },
+        {
+          "path": "config/mcp-hosted-releases.json",
+          "date": "2026-09-28"
+        },
+        {
+          "path": "mcp-released/research",
+          "date": "2026-09-28"
+        }
+      ]
+    }
+  },
+  "method": "Read-only sourceDate/gitCommitDate calls with Git then PATH intentionally unavailable; no build/stamping or manifest writes."
+}

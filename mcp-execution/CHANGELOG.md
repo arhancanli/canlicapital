@@ -13,8 +13,9 @@ The first release, 0.1.0, is paper trading only. It ships when every item of its
     is explicit and requires a private matching genesis key; no keys/journal entries are uploaded.
   - Journal annotations now declare possible local writes; head/verify still do not write.
     Bounded regular-file snapshots refuse FIFO/device input and detected concurrent edits.
-  - The original 150-token journal and full seven-tool 1,700-token release gates remain open;
-    no version bump or publication. Current measurements are recorded with the batch evidence.
+  - The journal-export checkpoint measured the four-tool list at 1,691 o200k / 1,621 cl100k,
+    with journal at 163 o200k. The 150-token journal and full seven-tool 1,700-token release
+    gates remain open; no version bump or publication. Receipts are retained with the batch.
 
 - `measure_shortfall` (local only): delay, execution, unfilled opportunity and stated USD fill
   fees, with decision/arrival/at-open comparisons and a seeded stationary-bootstrap interval.
@@ -27,7 +28,8 @@ The first release, 0.1.0, is paper trading only. It ships when every item of its
     24.7 ms with 199 bootstrap draws; these are single-machine synthetic measurements.
   - The stationary indices and ratio-percentile intervals agree with arch 8.0.0 on three
     recorded synthetic fixed-seed cases. An independent cash-flow identity checks 1,000 orders.
-  - The full four-tool list measures 1,636 o200k / 1,571 cl100k using the shared family bench.
+  - At the earlier shortfall checkpoint, the four-tool list measured 1,636 o200k / 1,571 cl100k
+    using the shared family bench; the later journal-export measurement is recorded above.
     The new tool adds 386 o200k; its original 220-token target is not met. Broker tools and the
     full seven-tool release budget remain outstanding. No version bump or publication.
 

@@ -1,0 +1,31 @@
+{
+  "schema": "canli.private-execution-documentation-artifacts.v1",
+  "assembled_at": "2026-10-01T16:03:51.449069+00:00",
+  "base_commit": "62d2a195b31a81dedbd9b7a897a76e2af95ae1fb",
+  "working_source_sha256": {
+    "mcp-execution/README.md": "96911e6f53f69e287f4f4f7b2fead8257746974ba42e99dea0e39a6fc89fdcd2",
+    "mcp-execution/CHANGELOG.md": "e325065d277b84fef17d2d4ebaa6e30625b6328e64c6f58edaf0493b95db217d",
+    "mcp-execution/src/server.mjs": "5a5e578087b01f462dc5ec56bdf6679ddb52fd07a94e507baaff46441384cbc8"
+  },
+  "runtime_body_sha256": "9e546f699addb591d699de1984ffaa9a2f10484eae659f2e202f12dba127880a",
+  "runtime_body_byte_identical": true,
+  "files": [
+    {
+      "path": "artifacts/goal/private-execution-documentation-correction-20261001/execution-doc-claims-review.json",
+      "sha256": "19c3419d5562fc4b4e3f5c0715ab2875cce6811e293516d1e47a5d352a172676"
+    },
+    {
+      "path": "artifacts/goal/private-execution-documentation-correction-20261001/execution-doc-correction-after-review.json",
+      "sha256": "42a2d7e287c835d23f839b408cda7c4e1cc8e01af92f302169e8b9b81cfa21d0"
+    },
+    {
+      "path": "artifacts/goal/private-execution-documentation-correction-20261001/review.json",
+      "sha256": "3b57ff18abd438a0ae17365bd58c270bf56b9fea3aa5330fc7dabb8d7cff57c6"
+    }
+  ],
+  "limits": [
+    "Historical and later token receipts remain unchanged; no new benchmark.",
+    "Correction covers descriptions and header comments only; no runtime/tool/schema/version change.",
+    "Independent uncommitted review extends by exact source hashes; signed checkpoint review/CI follows."
+  ]
+}

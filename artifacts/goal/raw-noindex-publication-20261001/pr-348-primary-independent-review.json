@@ -1,0 +1,23 @@
+{
+  "reviewed_at": "2026-10-01T12:29:18.247911+00:00",
+  "head": "416f6a6d11c4def9ba08c1b3eef00211b5c0c355",
+  "base": "74d704d45df502e8a76c37439415842b47b93cb7",
+  "node": "v24.19.0",
+  "focused_test_log_sha256": "e963727beea69eca1ea0d7c75a2a912c58a5557cb5d0c37878b5088e16afea5c",
+  "focused_tests": 13,
+  "five_immutable_v0_files_verified": true,
+  "all_six_compressed_logs_verified": true,
+  "configuration_change_exactly_two_raw_rules": true,
+  "all_other_configuration_preserved": true,
+  "no_blocking_source_findings": true,
+  "limits": [
+    "Focused pattern tests do not establish Vercel production header behavior; live GET verification remains required.",
+    "Full 829+6 and clean Git-free 683/416 remain separately attributed secondary evidence.",
+    "This is no evidence of actual indexing or ranking."
+  ],
+  "focused_test_files": [
+    "scripts/api-noindex.test.mjs",
+    "scripts/company-preview-config.test.mjs"
+  ],
+  "focused_count_source": "Actual Node reporter, not secondary total"
+}

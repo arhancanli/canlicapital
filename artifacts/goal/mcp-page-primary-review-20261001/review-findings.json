@@ -1,0 +1,196 @@
+{
+  "schema": "canli.mcp-page-peer-review.v1",
+  "checked_at": "2026-10-01T14:00:47.073976+00:00",
+  "verdict": "CHANGES_REQUESTED",
+  "head": "ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17",
+  "base": "fe68e73eb12d0f8c6a3a93eb4cf4f363c4ca1099",
+  "source_and_archive_verdict": "PASS",
+  "browser_automated_checks": {
+    "cases": 10,
+    "failures": [],
+    "browser": "148.0.7778.96",
+    "python": "3.9.6",
+    "node": "v24.19.0",
+    "mode": "DEV Vite; separate from secondary BUILT/Lighthouse and primary LIVE evidence",
+    "elapsed_seconds": 13.584142125,
+    "page_errors": 0,
+    "external_requests_mcp": 0,
+    "external_requests_developer_control": 8,
+    "no_fresh_axe_lighthouse_full_build": true
+  },
+  "blocking_findings": [
+    {
+      "id": "CC349-P2-TABLE-FOCUS",
+      "severity": "P2",
+      "blocking": true,
+      "title": "Make focus on the new keyboard-accessible tool table visibly painted",
+      "source_path": "scripts/build-mcp-pages.mjs",
+      "source_line": 105,
+      "related_paths": [
+        {
+          "path": "css/mcp-pages.css",
+          "line": 33
+        },
+        {
+          "path": "js/navigation.js",
+          "line": 70
+        },
+        {
+          "path": "css/navigation-system.css",
+          "line": 68
+        }
+      ],
+      "observed": "The validation320 table is focused and matches :focus-visible, accepts native ArrowRight30px/ArrowLeft0, and has a computed3px outline. Both .cc-table-scroll and .mcp-table clip at exactly the table bounds, hiding the outline. Captured focused and unfocused screenshots are byte-identical and actual visual inspection confirms no visible focus indicator.",
+      "reproduction": "Serve signedad7 in an isolated Vite DEV checkout at320x900 with reduced motion. Use keyboard skip/section navigation, then focus table.dev-table and press ArrowRight/Left. Inspect the table focus ring rather than only computed CSS; focused/unfocused PNGs show zero different pixels.",
+      "visually_confirmed_route": "/mcp-servers/validation",
+      "visually_confirmed_viewport": [
+        320,
+        900
+      ],
+      "focus": {
+        "focused": true,
+        "visible": true,
+        "outline": "rgb(7, 20, 30) solid 3px",
+        "offset": "0px",
+        "rect": {
+          "left": 24,
+          "top": 98.765625,
+          "right": 296,
+          "bottom": 5927.890625
+        },
+        "clipping_ancestors": [
+          {
+            "tag": "DIV",
+            "class": "cc-table-scroll",
+            "overflowX": "auto",
+            "overflowY": "auto",
+            "left": 24,
+            "top": 98.765625,
+            "right": 296,
+            "bottom": 5927.890625
+          },
+          {
+            "tag": "DIV",
+            "class": "mcp-table",
+            "overflowX": "auto",
+            "overflowY": "auto",
+            "left": 24,
+            "top": 98.765625,
+            "right": 296,
+            "bottom": 5927.890625
+          }
+        ]
+      },
+      "screenshots": {
+        "focused_sha256": "3fb2c346127ad07a465f4a8c197d2136102d4d543e34e2dfcc1b8ab52400aa47",
+        "unfocused_sha256": "3fb2c346127ad07a465f4a8c197d2136102d4d543e34e2dfcc1b8ab52400aa47",
+        "different_pixels": 0,
+        "bbox": null,
+        "size": [
+          320,
+          900
+        ]
+      },
+      "scope": "Generator creates the same new tabbable table structure for validation/fundamentals/research; visual screenshot confirmation is validation320, with clipping geometry captured in all table cases.",
+      "requested_result": "Paint a clearly visible focus indicator inside the clipped scrolling viewport, or on a visible focused container, while keeping native table semantics and both arrow directions. Secondary owns the source correction; signedhead, minimal browser visual recheck and fresh7CI required."
+    }
+  ],
+  "nonblocking_font_geometry_limit": [
+    {
+      "route": "/mcp-servers/validation",
+      "width": 320,
+      "loaded_height": 206.9375,
+      "forced_local_fallback_height": 258.671875,
+      "difference": 51.734375
+    },
+    {
+      "route": "/mcp-servers/research",
+      "width": 320,
+      "loaded_height": 258.671875,
+      "forced_local_fallback_height": 310.40625,
+      "difference": 51.734375
+    },
+    {
+      "route": "/mcp-servers/research",
+      "width": 1440,
+      "loaded_height": 254.015625,
+      "forced_local_fallback_height": 338.6875,
+      "difference": 84.671875
+    }
+  ],
+  "font_limit_description": "Forced available macOS local fallback changes3 heading wraps in this DEV capture; this is scoped geometry, not delayed-network CLS, a field score or a contradiction of the8 recorded controlled Lighthouse0CLS values. Keep approximate matching/preload/platform limits explicit.",
+  "browser_lease": {
+    "owner_thread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+    "nonce": "c215aa643f0f4a05bcb60c84d7d53445",
+    "claimed_at": "2026-10-01T13:54:44.536394+00:00",
+    "purpose": "CanliCapital349 read-only serial Chromium keyboard/geometry peer review",
+    "head": "ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17",
+    "maximum_seconds": 180,
+    "browser_deadline_seconds": 150,
+    "scope": "ONE serial browser; own DEV server/cache; no build/LH/full/axe/model/cloud/publication",
+    "authorization": "Trace lead explicit next-slot release must be observed before this claim; file absence alone is not approval.",
+    "guarded_released_at": "2026-10-01T13:55:51.730255+00:00"
+  },
+  "proof_files": [
+    {
+      "path": "browser-review.json",
+      "sha256": "16af571b50d06b10c1c44a5267e9bf3b4bd9fb8b1c1ed0fd9743b3986f99dd9d"
+    },
+    {
+      "path": "browser_review.py",
+      "sha256": "3bb1d417fc00510bdbaa7a8ab57736c8f28881125d031e15e8aa2566e998d92d"
+    },
+    {
+      "path": "serve.mjs",
+      "sha256": "40780d44bf5095d1c86efc024274462e10e7d22ac13c1ea4bb4608f1d4a7bf23"
+    },
+    {
+      "path": "browser-run.txt",
+      "sha256": "bbadaf36e257ff8bfa7d92e90f7249a685fe5bc455d4a861f42bd92d68a2d47e"
+    },
+    {
+      "path": "focus-screenshot-comparison.json",
+      "sha256": "0199bfec673af0e23954aef2707ee97fc245fc2609b792e81c39eca825f7d312"
+    },
+    {
+      "path": "validation-320-table-focused.png",
+      "sha256": "3fb2c346127ad07a465f4a8c197d2136102d4d543e34e2dfcc1b8ab52400aa47"
+    },
+    {
+      "path": "validation-320-table-unfocused.png",
+      "sha256": "3fb2c346127ad07a465f4a8c197d2136102d4d543e34e2dfcc1b8ab52400aa47"
+    },
+    {
+      "path": "source-review-initial.json",
+      "sha256": "d65a0e1d2dd2bfa2b8d0662299415d53bf81cd12896293c3e52e21d936280231"
+    },
+    {
+      "path": "source_review_initial.py",
+      "sha256": "2e84e428bed28610cdac4d894d020d477662db12935b91c9a4a1ab73b087d7d8"
+    },
+    {
+      "path": "source-review.json",
+      "sha256": "6d6308e0a639d703d28c90589e9bc39416be2b1b304c1dc3aaa5b89b6d32a99a"
+    },
+    {
+      "path": "source-binding-baseline.json",
+      "sha256": "87b56cdbe0313c2fa815e9e85805d1c4271076939d494f792fba53aeb20da5b2"
+    }
+  ],
+  "claim_limits": [
+    "Independent Chromium keyboard/geometry/semantic cases only, no fresh axe/Lighthouse/full/Git-free run, Firefox/WebKit, screen reader or overall WCAG certification.",
+    "Forced available macOS fallback geometry is a scoped DOM measurement, not delayed-network CLS or a field performance score.",
+    "Developer external font requests remain captured, not represented as zero external requests for all routes.",
+    "No labels, submissions, implementation edits or publication; all owner objectives remain active.",
+    "Read-only source and archive inspection, no new browser/axe/Lighthouse/full build runs in this receipt.",
+    "Archive hashes verify receipt consistency; supplied commit labels and captured-time metadata do not independently attest serving history.",
+    "Eight paired Lighthouse profiles are four MCP routes at two simulated profiles; five browser routes use 1440/320 widths. Single-run local lab evidence is separate from live and field performance.",
+    "Font width matching is approximate and uses this actual macOS local font; fallback availability and every platform/language are not established.",
+    "Retained incomplete contrast/ARIA checks, hero LCP, developer external fonts, external validators/indexing and screen-reader behavior remain bounded.",
+    "No changes to implementation, released MCP packages, v0/v1 candidate bytes, annotation/evaluation/journal or other owned worktrees. All owner objectives remain active.",
+    "The committed manifest has320 entries,299 matching raw checked-in sources and21 independently proven identical mismatches already present in basefe68. They are separate from the416-file clean Git-free build checksum gate; no manifest or historical bytes were rewritten. Initial broad-binding failure receipt is retained as source-review-initial.json."
+  ],
+  "owned_source_or_worktrees_modified": false,
+  "publication_held": true,
+  "all_owner_objectives_remain_active": true
+}

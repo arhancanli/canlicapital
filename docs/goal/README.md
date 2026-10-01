@@ -6,9 +6,15 @@ for the verified stopping point. Active worktree:
 `/Users/arhancanli/canlicapital-continuation-20261001`. The MCP/annotation continuation
 merged as #339; #336/#337 are merged and their website changes are verified in production.
 Journal #344 merged as74d704d4 after evaluation #343 and annotation #345.
-Current checkpoint branch `records/journal-batch-delivery-20261001` retains final review/build/source evidence.
-The joint website batch is live at74d704d4; two raw-download noindex omissions remain
-assigned to the analyzer worker. Full owner goals and fresh indexing measurements remain open.
+Current checkpoint branch `records/raw-noindex-delivery-20261001` retains final review/build/source evidence.
+The raw-header correction #348 is live from0d9c88c6; both download noindex controls and
+indexable canonical pages pass independent HTTP checks. Source-only v1 candidate tooling #347
+is merged asfe68e73e. Page #349 merged as62d2a195 from signed88d4ac9a with equal tree,
+seven successful CI checks and independent visible-focus correction proof. Its engine-overlay
+build passed; production62d2a195 completed publication at15:45:17Z and is Ready on canli/www.
+Eight HTML, four company, five exact v0 and three hosted-contract checks pass. Initial setup,
+short deadline and shared-lock refusals remain retained. Full owner goals and fresh indexing
+measurements remain open.
 The findability worktree retains the verified live #341/#342 evidence.
 STATUS's newest section supersedes the historical working-location notes below.
 
