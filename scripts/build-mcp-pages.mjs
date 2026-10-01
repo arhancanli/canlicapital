@@ -65,11 +65,13 @@ function document({ route, title, description, structured, body }) {
 <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="${esc(title)}" />
 <meta name="twitter:description" content="${esc(description)}" /><meta name="twitter:image" content="${ORIGIN}/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preload" as="font" href="/fonts/chakra-petch/ChakraPetch-Bold.woff2" type="font/woff2" crossorigin />
+<link rel="preload" as="font" href="/fonts/inter/InterVariable.woff2" type="font/woff2" crossorigin />
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/developers.css" /><link rel="stylesheet" href="/css/mcp-pages.css" />
 <script type="application/ld+json">${jsonLd([page, breadcrumbs(route, title), ...structured])}</script>
 </head><body class="dev-page">
-<a class="dev-skip" href="#content">Skip to content</a>
+<a class="dev-skip skip-link" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: 'developers' })}
 <main id="content" tabindex="-1">${body}</main>
 ${renderProductShellFooter()}
@@ -100,7 +102,7 @@ export function serverPage(s, servers) {
 <section class="dev-section" id="workflow"><h2>A useful first workflow</h2><ol class="mcp-workflow">${s.workflow.map(step => `<li>${esc(step)}</li>`).join('')}</ol>
 <h3>Example tool arguments</h3><p>${esc(s.example_note)}</p><pre class="dev-code" tabindex="0" aria-label="${esc(s.example.name)} example"><code>${esc(JSON.stringify(s.example, null, 2))}</code></pre>
 <p>This is a tool name and arguments for your MCP client, not an HTTP request to paste into the endpoint.</p></section>
-<section class="dev-section" id="tools"><h2>Tools in the hosted release</h2><div class="mcp-table"><table class="dev-table"><caption>${esc(name)} ${esc(s.version)} tool reference</caption><thead><tr><th scope="col">Tool</th><th scope="col">Purpose and input scope</th></tr></thead><tbody>${s.tools.map(tool => `<tr><th scope="row"><code>${esc(tool.name)}</code></th><td>${esc(tool.description)}</td></tr>`).join('')}</tbody></table></div></section>
+<section class="dev-section" id="tools"><h2>Tools in the hosted release</h2><div class="mcp-table"><table class="dev-table" tabindex="0"><caption>${esc(name)} ${esc(s.version)} tool reference</caption><thead><tr><th scope="col">Tool</th><th scope="col">Purpose and input scope</th></tr></thead><tbody>${s.tools.map(tool => `<tr><th scope="row"><code>${esc(tool.name)}</code></th><td>${esc(tool.description)}</td></tr>`).join('')}</tbody></table></div></section>
 <section class="dev-section" id="limits"><h2>Evidence limits</h2><p>${esc(s.limits)}</p><p>Source for this tool list: <a href="${sourceHref(s)}" rel="noreferrer">released commit ${s.commit.slice(0, 12)}</a> and the <a href="/glassbox/mcp_discovery.json">machine-readable discovery record</a>. The page follows the same release pin as the hosted handler. Future package work is described in the repository and is not added here until the hosted release changes.</p></section>
 <section class="dev-section"><h2>Continue with the underlying evidence</h2><ul class="mcp-related">${links(s.related)}</ul><p><a href="${MCP_ROUTE}">Compare the finance MCP servers</a> or <a href="/developers">use the developer API and open repositories</a>.</p></section>`;
   return document({ route: s.route, title: s.title, description, structured: [app], body });
