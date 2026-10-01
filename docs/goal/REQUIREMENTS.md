@@ -7,6 +7,12 @@ execution map: MASTER_PLAN.md; recovery evidence: CLAUDE_RECOVERY_20261001.md.
 
 All remain active; later SEO requests do not replace the platform or algorithm goals.
 
+Owner update (2026-10-01): report concrete progress and keep SEO at the highest standard so
+everything useful we build is findable, with indexed pages covering the MCP servers, datasets,
+research and supported reference topics. Maintain a canonical page for each distinct useful
+answer, crawlable internal links and measured search-engine coverage. Eligibility, sitemap
+submission and actual indexing remain separate; indexing and rankings cannot be guaranteed.
+
 - Review earlier changes and continue the CanliCapital vision.
 - Grow both research/evidence and company/market reference.
 - Reach at least **800,000 actually indexed canonical pages**, targeting **1,000,000**.

@@ -1,0 +1,97 @@
+{
+  "schema": "canli.findability-baseline.v1",
+  "observed_at": "2026-10-01T07:49:00.389Z",
+  "npm": [
+    {
+      "package": "canli-validation-mcp",
+      "status": 200,
+      "version": "0.10.1",
+      "sha256": "59292559b9582c4ea51707f09934a2719f5112639704731c01d62506c8b0def2"
+    },
+    {
+      "package": "canli-fundamentals-mcp",
+      "status": 200,
+      "version": "0.1.0",
+      "sha256": "fa07bbd77baa8cacb760eb78669f6d5572da571bfcfb01bf352a87a156d9b2ed"
+    },
+    {
+      "package": "canli-research-mcp",
+      "status": 200,
+      "version": "0.1.0",
+      "sha256": "dc159e9946389788931bd5acf98aa62dbcc90349465124876d5b0f043298aab8"
+    }
+  ],
+  "pages": [
+    {
+      "requested_url": "https://canlicapital.com/developers",
+      "body_sha256": "81f2fdc6101657809745af69eb4cca8d7d53c2818615fb06269160ca05044a83",
+      "bytes": 81738,
+      "words": 4299,
+      "title": "Developers | Canli Capital",
+      "description": "A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits.",
+      "canonical": "https://canlicapital.com/developers",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large",
+      "h1": [
+        "Validate your backtest. Keep the receipt."
+      ],
+      "schema_types": [
+        "SoftwareApplication",
+        "SoftwareSourceCode",
+        "WebAPI"
+      ],
+      "invalid_json_ld_blocks": 0,
+      "raw_markdown_internal_links": [],
+      "status": 200,
+      "x_robots_tag": null
+    },
+    {
+      "requested_url": "https://canlicapital.com/annotate",
+      "body_sha256": "11764ecd48d8834853499dac5765594b006f934a79a097222cb909b0e74bb67b",
+      "bytes": 17369,
+      "words": 598,
+      "title": "Check financial questions against SEC filings | Canli Capital",
+      "description": "Help verify the FilingFacts dataset: check 50 questions against the SEC filings they cite, in your browser, and get credited for the labels you post.",
+      "canonical": "https://canlicapital.com/annotate",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large",
+      "h1": [
+        "Check financial questions against SEC filings"
+      ],
+      "schema_types": [
+        "BreadcrumbList"
+      ],
+      "invalid_json_ld_blocks": 0,
+      "raw_markdown_internal_links": [],
+      "status": 200,
+      "x_robots_tag": null
+    }
+  ],
+  "firecrawl_map": {
+    "sample_limit": 120,
+    "urls_returned": 120,
+    "sha256": "2efe311ffe1ef5975ebb6d8fbc873dd1a3c29339bb5c109e645f58d5d3f0fe40"
+  },
+  "indexing": {
+    "fresh_measurement": false,
+    "reason": "Existing Chrome denies JavaScript from Apple Events; no Search Console connector is available. September 27 count is retained as dated evidence.",
+    "last_google_indexed_approx": 3030,
+    "last_bing_indexed": 146,
+    "last_count_date": "2026-09-27"
+  },
+  "claim_boundary": "A sampled crawl and npm registry observation, not indexing/ranking/demand or complete live-site coverage.",
+  "firecrawl_content": [
+    {
+      "url": "https://canlicapital.com/developers",
+      "words": 3713,
+      "extract_sha256": "cda42175139715521f1326f4c5f04f642a8580b861bb75c5583a591007269620",
+      "metadata_checked": false,
+      "note": "Firecrawl HTML output is a content extraction. Full-document metadata is checked separately by direct HTTP."
+    },
+    {
+      "url": "https://canlicapital.com/annotate",
+      "words": 674,
+      "extract_sha256": "c875b86aa9ceb19f146b28a6da4511d1ec14e221bfd7265819fe97d4eda398d1",
+      "metadata_checked": false,
+      "note": "Firecrawl HTML output is a content extraction. Full-document metadata is checked separately by direct HTTP."
+    }
+  ]
+}

@@ -5,8 +5,19 @@
 Goal ACTIVE, NOT ACHIEVED. Recovered the owner's relevant Claude CanliCapital messages,
 vision, memory and 16 detailed plans. MASTER_PLAN.md maps the complete objectives;
 CLAUDE_RECOVERY_20261001.md lists sources and distinguishes dated notes from verified state.
-Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
-`records/continuation-checkpoint-20261001`. Prior dirty worktrees are preserved.
+Current phase: canonical MCP findability coverage, locally verified; CI/publication pending.
+Worktree: `/Users/arhancanli/canlicapital-findability-20261001`, branch `continue/findability-20261001`.
+Journal export work remains isolated in the continuation checkout. Prior dirty worktrees are preserved.
+
+### Findability candidate, 2026-10-01
+
+Four source-bound canonical pages cover the directory and released validation/fundamentals/research
+servers; source lists contain 15/7/6 tools. Source dates, shared footer, sitemap, llms.txt and intent
+ownership are integrated. Full build/verify passes: 788 + 6 tests, 699 on-page checks without errors
+or warnings, 336 indexable pages within three static links of home. Eight browser cases and the
+Git-free deployment validator pass; scoped footer clipping fix included. No package bump.
+Fresh search-engine counts remain unavailable; retain dated Sep 27 Google ~3,030/Bing 146.
+FINDABILITY_20261001.md and artifacts/seo/mcp-findability-verification-20261001.json hold details.
 
 ### Completed implementation and publication checkpoint
 
