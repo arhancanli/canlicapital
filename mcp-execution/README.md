@@ -11,7 +11,81 @@ build has no broker code at all.
   with the orders from your current position and the cap that binds.
 - `check_orders` estimates what each order would cost and checks it against your limits, the
   market state and a kill switch. It rejects with every reason and never resizes an order.
+- `measure_shortfall` measures the cost of supplied fills: delay, execution, unfilled opportunity
+  and stated fees. It runs locally; the default result is an aggregate rather than a long fill list.
 - `journal` reads a trade journal and checks it, offline.
+
+## What `measure_shortfall` computes
+
+All prices are USD; each fee is the USD amount charged for that fill (a rebate can be negative).
+The denominator is the whole order's decision notional, including in arrival/at-open comparisons.
+Positive means cost. The fill source is your declaration, not authenticated broker evidence.
+
+Send this to `measure_shortfall` through your local MCP client:
+
+```json
+{
+  "fill_source": "self_reported",
+  "orders": [{
+    "id": "example", "side": "buy", "qty": 100,
+    "decision_price": 100, "decision_ts": "2026-10-01T12:00:00Z",
+    "arrival_mid": 101, "horizon_price": 104,
+    "fills": [{"qty": 60, "price": 102, "fee": 6, "ts": "2026-10-01T12:01:00Z"}]
+  }]
+}
+```
+
+The result is 60 bp delay, 60 bp execution, 160 bp opportunity and 6 bp fees: 286 bp total.
+Sixty of the hundred shares filled, so the fill rate by notional is 0.6.
+
+For a large local history, save just the `orders` array as JSON, then call with
+`{"fill_source":"self_reported","orders_file":"/absolute/path/to/orders.json"}` instead of
+inline `orders`. Give exactly one input form. Files are capped at 16 MiB, validated against the
+same order schema, and read through one file descriptor. The result binds the captured bytes
+with their SHA-256, without returning the path or raw history. Nothing is uploaded.
+
+- Remove `fee` from that fill: `fees_bps` and `total_bps` become null; `price_cost_bps` remains
+  280. Missing fees are never zero-filled. With no `arrival_mid`, the delay/execution split is
+  unknown while combined price cost is still measurable.
+- Add `"benchmark": "arrival"`: delay is zero, execution is 60 bp, unfilled opportunity is
+  120 bp and fees are 6 bp, for 186 bp against arrival, still divided by decision notional.
+  `"at_open"` uses each order's `open_price` instead.
+
+Unfilled quantity needs a `horizon_price`; without it the whole order is excluded, with its reason.
+The fixed 30% price-move guard excludes possible splits/bad marks and also real large moves.
+Duplicate IDs, overfills and fills before their decision timestamp refuse rather than change data.
+`max_rows` is 0 by default; set it to 1..200 for per-order rows. Exclusions are counted, with a
+bounded list of IDs. The tool never returns every order just because the input contains many.
+
+For a 95% stationary-bootstrap percentile interval, send `"bootstrap": {}`, optionally a top-level `seed`,
+and `block_length`/`resamples` inside the bootstrap object. Defaults: seed 20261001, mean block
+length min(5, usable orders), 499 resamples. Orders must be chronological by decision time.
+The interval resamples geometric circular blocks and recomputes the notional-weighted ratio.
+If any fill fee is missing, every resampled order uses price cost excluding fees. Fewer than two
+usable orders cannot produce an interval. This interval depends on ordering/block length and
+does not establish profitability or account for regime shifts.
+
+Three synthetic cases agree with arch 8.0.0 on every sampled index and the cost/notional
+ratio-percentile interval when using the recorded shared random draws. The local seeded
+generator is xorshift32, distinct from NumPy/arch; equal numeric seeds across libraries do not
+imply identical draws. The fixtures are reproducible with
+`scripts/research/execution-parity/record-shortfall-arch.py`. A separate read-only local check
+compares against ALPHAC's paper-order analysis; only aggregates are published, not vendor bars
+or order rows. Paper-engine costs remain labeled as paper measurements.
+
+The recorded local stdio benchmark uses synthetic fills and three warmups per case. For 1,000
+orders, aggregate-only medians were 4.0 ms inline and 3.3 ms from a file; a 199-resample bootstrap
+from the file was 24.7 ms. The supplied inline orders cost 96,154 o200k input tokens; the file
+request cost 58 (path lengths vary), with a 370-token text response. These are one-machine
+measurements, not hosted latency or a comparative ranking. The full four-tool list is 1,636
+o200k / 1,571 cl100k. From the repository root, reproduce with:
+
+```sh
+uv run --no-project --with tiktoken python scripts/bench/execution-shortfall.py
+uv run --no-project --with tiktoken python scripts/bench/mcp-tool-tokens.py --json
+```
+
+Full observations and source hashes: `artifacts/goal/shortfall-local-benchmark-20261001.json`.
 
 ## The trade journal
 

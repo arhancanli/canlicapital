@@ -1,0 +1,63 @@
+{
+  "checked_at": "2026-10-01T05:36:17.740380+00:00",
+  "scope": "Local continuation checkpoint; private execution package remains unreleased",
+  "base_commit": "607e0a1cb893f1fbf1bf2d5e2242563ff419926a",
+  "checks": {
+    "build": "passed; ffmpeg-static binary rebuilt after initial environment failure",
+    "repository": [
+      {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "skipped": 0
+      },
+      {
+        "tests": 778,
+        "pass": 778,
+        "fail": 0,
+        "skipped": 0
+      }
+    ],
+    "execution": [
+      {
+        "tests": 43,
+        "pass": 43,
+        "fail": 0,
+        "skipped": 0
+      }
+    ],
+    "root_dependency_audit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "execution_dependency_audit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "dataset_checksums": {
+    "ff-eval-closed.json": "450bff2b316adf5e8f4562d4cacdceca143c6b10ed657ecefa02af24e4c95720",
+    "ff-eval-mcp.json": "50a88c0c383ac492a8c1c2d489a1c5830c478a71ae7bab7660fd2878a73cb6c6",
+    "filing-facts-v0.jsonl": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+    "gold-packet-v0.json": "91c6f960e34509653800a4cda81bd0632dd58c889ee78eb6461a985765500413"
+  },
+  "evidence": [
+    "continuation-baseline-20261001.json",
+    "mcp-tool-tokens-20261001.json",
+    "shortfall-local-benchmark-20261001.json",
+    "shortfall-local-parity-20261001.json"
+  ],
+  "limits": [
+    "Local Node 24.19.0; required Node 22 verification is supplied by PR CI.",
+    "Two existing on-page warnings await PR336.",
+    "No new human submissions, npm release, confirmed indexing or forward performance outcome established."
+  ]
+}

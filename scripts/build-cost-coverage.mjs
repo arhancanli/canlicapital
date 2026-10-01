@@ -20,6 +20,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { canonicalJson as canonical } from "./canonical-json.mjs";
+import { sourceDate } from "./lib/page-sources.mjs";
 
 import {
   renderProductShellFooter, renderProductShellHeader, renderProductShellStylesheet,
@@ -186,7 +187,11 @@ ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify({
   "@context": "https://schema.org", "@type": "TechArticle",
   headline: "What the costs actually are", description, url: `${ORIGIN}/costs`,
-  author: { "@id": `${ORIGIN}/#arhan-canli` },
+  // First published in caa683ea (2026-09-06); modified as of the sitemap's own date for /costs.
+  datePublished: "2026-09-06",
+  ...(sourceDate(ROOT, "/costs") ? { dateModified: sourceDate(ROOT, "/costs") } : {}),
+  author: { "@type": "Person", "@id": `${ORIGIN}/#arhan-canli`, name: "Arhan Canli", url: `${ORIGIN}/founder` },
+  image: { "@type": "ImageObject", url: `${ORIGIN}/og.png`, width: 1200, height: 630 },
 })}</script>
 </head>
 <body class="dev-page">

@@ -3970,3 +3970,95 @@ deploy's IndexNow step accepted 102,521 new or updated URLs (916,471 in the
 sitemap) at 20:33:49Z; the manual run then found nothing further to submit. Every
 entity that meets the discovery rules is now in the live release; Google indexing
 is not yet measured and the owner resubmits the sitemap in Search Console.
+
+## 2026-10-01: Codex recovery and goal launch; execution and annotation continuation
+
+- Recovered the owner's Claude-session instructions, the four-pillar vision, all local goal plans and actual GitHub/code state. Explicit current goal structure in MASTER_PLAN.md and recovery audit in CLAUDE_RECOVERY_20261001.md.
+- Fresh worktree continue/mcp-refinery-20261001 at 607e0a1c; original dirty expansion checkout preserved. Goal launched and remains active.
+- Live initialize/tools-list and npm metadata captured in artifacts/goal/continuation-baseline-20261001.json: hosted validation 0.10.1, fundamentals 0.5.0, research 0.2.0; npm validation 0.10.1, fundamentals/research 0.1.0. Execution not published.
+- #333/#334/#335 merged; #336/#337/#338 open. Published FilingFacts has 1,882 items and 50 blank gold labels; no human-review evidence in that bundle.
+- Phase starts local execution shortfall analysis and annotation coverage/adjudication hardening. Neither implementation nor a new release is claimed at phase start.
+
+## 2026-10-01: local shortfall and annotation-quality checkpoint
+
+- Continued the exact #335 execution gap with measure_shortfall: decision/arrival/open comparisons,
+  delay/execution/opportunity/stated fees, missing-fee totals unknown, counts for excluded orders,
+  bounded opt-in rows and seeded notional-weighted stationary-bootstrap percentile intervals.
+  No broker or hosted account inputs added; private 0.1.0 and hosted pins unchanged.
+- Independent evidence: 1,000 randomized cash-flow identities; three arch 8.0.0 cases (597 draws)
+  agree on every stationary index and ratio-percentile endpoints. The read-only ALPHAC comparison
+  binds the current captured input/core/source hashes; current price-cost/fill metrics match to
+  declared tolerances on AlphaMax/AlphaVintage. Source fees are absent, so totals including fees
+  stay unknown. The September 28 frozen analysis used an older order set: it is not overwritten
+  or claimed to match a newer capture. No raw vendor bars/order rows are published.
+- Added orders_file after measuring inline-context cost. It reads one bounded local descriptor,
+  validates the same order fields and returns a hash of captured bytes, never the raw file/path.
+  Synthetic 1,000 orders: 96,154 -> 58 o200k input tokens (file path lengths vary), local stdio
+  median 3.3 ms, 24.7 ms with 199 bootstrap draws. Output text 370/441 tokens respectively.
+  Single-machine observations in artifacts/goal/shortfall-local-benchmark-20261001.json; no
+  hosted-latency/competitor/ranking claim. Four tools 1,636 o200k/1,571 cl100k. New tool adds 386,
+  missing its original 220 target; future seven-tool budget remains unproven.
+- Annotation agreement now uses canonical-packet coverage, complete pairs only, explicit missing
+  labels/notes and null metrics when there are no pairs. Duplicate/unknown IDs, invalid labels,
+  changed source items and same declared identities refuse. New reviewed-gold export requires
+  complete named submissions, a distinct adjudicator, packet binding and a filing/table source
+  decision; retains disagreements, rejected/pending items and both reviewers' judgments/notes.
+  Self-declared identity/qualifications are not human/expert authentication. No labels invented.
+- Validation: full npm build then verify passes (778 main + 6 preverify), execution 43/43,
+  financial core 10/10 including the independent oracle/property cases, annotation 16 focused
+  tests, root/execution npm audits 0 vulnerabilities, FilingFacts four published checksums OK.
+  Existing /developers heading and /progress description warnings remain in this base; #336
+  addresses them. Local Node 24.19.0; PR CI uses required Node 22.
+- Retained failures: first full build failed because ffmpeg-static's locked binary was missing
+  after an install with scripts disabled; npm rebuild ffmpeg-static repaired the environment,
+  then build/verify passed. Early strict float comparisons and an absent in-progress oracle
+  fixture failed; corrected the bps arithmetic order and waited for the independently generated
+  fixture, then all checks passed. The first latency run overlapped tests; reran after they
+  finished and recorded load/environment/source hashes. Restored 617 build-generated tracked
+  outputs in the fresh worktree; implementation/goal records and prior worktrees preserved.
+- Both origin/main and raw local Claude STATUS/LOG are archived byte-for-byte under history/;
+  current chronology keeps origin/main and appends this recovery. Original required expansion
+  continuity folder now points to this checkout. All owner objectives and the active goal remain.
+
+## 2026-10-01 05:41Z: #339 merged; SEO/performance continuation
+
+- #339 merged as 37221be65a41fa19491433c2d1bd9731b226ec7f after all seven CI checks passed,
+  including full Node 22 build/verify, package/stdio, design, PostgreSQL and both CodeQL languages.
+  Standard signed/squash publication path under the owner's existing authorization; no version bump.
+- Reread required continuity before resuming the existing #336/#337 changes. Both were green at
+  their recorded heads; source review followed. Updated #336 from main in an isolated local branch;
+  package.json conflicted. Resolved as the exact union of the added social test/stamping step and
+  #339's financial core/adjudication tests, retaining every other script/dependency unchanged.
+- Current Google primary documentation exposed inaccurate prior claims: Article has recommended,
+  not mandatory, properties and no 110-character Google ceiling; app rich results require priced
+  offers plus an authentic rating/review. Corrected comments/diagnostics and tested nonnegative
+  app prices. The stricter site article contract remains explicit; local audits never establish
+  external eligibility. Genuine app reviews and representative article imagery remain outstanding.
+  Sources: Google Search Central /appearance/structured-data/article and /software-app?hl=en.
+- #336/#337 deployment is not claimed at this phase start. Production checkout was still 607e0a1c
+  when checked. Execution stays private/unreleased; human annotation/network, search indexing,
+  measured analyzer/field outcomes and every other owner objective remain open.
+
+- Combined #336/#339 local build and full verify pass; on-page audit 695 pages, 0 errors / 0 warnings. Focused metadata rules 11/11. Source dates will be rebound to the actual signed source commit and checked without git before pushing.
+
+- Final combined verify: 786 main tests plus 6 preverify; all audits pass, 695 pages / 0 errors / 0 warnings. After the signed source commit, portable source-date hashes were rebuilt. Five VERCEL=1 generators ran with git unavailable: costs, standards/developers, publication wrappers, papers, method papers; all exit 0. No published checksum was changed. #336 will carry this tested integration and the corrected platform-claim boundary.
+
+## 2026-10-01 06:04Z: #336 merged; #337 font/performance integration
+
+- #336 merged as e9a410ed39f628c0504b1f56acb8f410fd94b152 after all seven checks passed. Full
+  source snapshot validation (without git, excluding private env files) built successfully;
+  679 built pages completed social tags, 416 checksummed files untouched. Cold clean-source
+  gitless generators also pass. Production activation waits for the tested performance batch.
+- #337 merged main locally with no conflict. Full build/verify passes (786 main + 6 preverify,
+  695 pages, 0 errors/warnings). Browser verification used webapp-testing with an owned strict
+  port and build marker; server stopped on completion. Three pages at widths 390/1440 preserve
+  all 4,670 measured boxes. Five of six comparisons have zero pixel differences. Mobile home
+  has 180 different pixels; the same-font control has zero. The initial hard pixel comparison
+  failed and is retained; we do not repeat the old all-pages pixel-identity claim. Font payloads
+  are 154,844/14,228/14,052 bytes, with original Inter and Chakra TTFs as the control.
+- Browser test scope: current generated pages, local requests, reduced motion, video/canvas
+  hidden for font comparison. This is font/layout evidence, not a movie/motion or fresh
+  Lighthouse score. September 28 Lighthouse medians remain dated measurements.
+- Clarified the shortfall oracle wording: tests share recorded arch starts/uniforms; the local
+  xorshift32 generator is not NumPy's generator. Equal numeric seeds across libraries do not
+  imply equal draws. No algorithm/evidence/value changed.

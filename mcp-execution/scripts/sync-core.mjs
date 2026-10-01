@@ -12,6 +12,7 @@ export const CORE_FILES = [
   "js/exec-cost-core.js",
   "js/pretrade-core.js",
   "js/sizing-core.js",
+  "js/shortfall-core.js",
   "js/trade-journal-core.js",
   "scripts/canonical-json.mjs",
 ];

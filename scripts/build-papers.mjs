@@ -39,6 +39,7 @@ import {
 } from "./product-shell.mjs";
 import { discover as discoverMeasurementArtifacts, rawArtifactUrl } from "./build-measurements.mjs";
 import { gitCommitDate, artifactDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
+import { PAGE_SOURCES } from "./lib/page-sources.mjs";
 import { fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
 import { describeProvenanceUrl } from "./describe-provenance-url.mjs";
 
@@ -209,126 +210,6 @@ const STATIC_ROUTES = [
   { path: "/tools", priority: "0.8", changefreq: "weekly" },
 ];
 
-// =============================================================================
-// LASTMOD SOURCES for every STATIC_ROUTES page.
-// -----------------------------------------------------------------------------
-// Five of these (/, /systems, /performance, /progress, /open) are hand-authored
-// HTML edited directly: their lastmod is the git commit date of that file.
-//
-// Every other page here is fully OVERWRITTEN on each build by a generator script
-// (verified by inspection: none of them sentinel-inject into a hand file the way
-// build-papers.mjs does with research.html). Its content therefore changes only
-// when (a) the generator script itself is edited, or (b) one of the data files it
-// reads as input changes. Both are captured by git commit date.
-//
-// DELIBERATE CHOICE: for these generated pages we read the git commit date of each
-// input file, never a live `generated_at` field written INTO that file. Several of
-// these inputs (cost_coverage.json, engineering_open_source.json, public/api/v1/*)
-// are themselves regenerated on every build and self-stamp `generated_at:
-// new Date().toISOString()` -- trusting that field here would silently reintroduce
-// the exact bug this module exists to fix (every dependent page moving on every
-// build). A file's git commit date only advances when it is actually committed, so
-// it stays stable across repeated builds of the same tree, which is the property
-// under test.
-// =============================================================================
-const PAGE_SOURCES = {
-  "/": ["index.html"],
-  "/systems": ["systems.html"],
-  "/performance": ["performance.html"],
-  "/progress": ["progress.html"],
-  "/open": ["open.html"],
-  // "/research" and "/measurements" and "/trials" and "/notes" are hub indexes whose lastmod is
-  // computed as max(their own generator, every member page's lastmod) further down, once member
-  // lastmods are known.
-  "/research": ["research.html", "scripts/build-papers.mjs"],
-  "/measurements": ["scripts/build-measurements.mjs"],
-  "/trials": ["scripts/build-trials.mjs", "public/glassbox/trial_sharpe_distribution.json"],
-  "/notes": ["scripts/build-notes.mjs"],
-  "/verify": ["scripts/build-verify.mjs", "public/glassbox"],
-  "/review": [
-    "scripts/build-review.mjs",
-    "public/glassbox/external_submission_plan.json",
-    "public/glassbox/stanford_cs_evidence_map.json",
-  ],
-  "/foundry": ["scripts/build-foundry.mjs", "public/glassbox/foundry_local_contract_verification.json"],
-  "/founder": [
-    "scripts/build-founder.mjs",
-    "public/glassbox/kill_log.json",
-    "public/glassbox/trial_ledger.json",
-    "public/glassbox/transparency_log.json",
-    "public/glassbox/founder_commitment.json",
-    "public/glassbox/track_record.json",
-    "public/glassbox/stanford_cs_evidence_map.json",
-    "research",
-    "measurements",
-  ],
-  "/methodology": [
-    "scripts/build-methodology.mjs",
-    "public/glassbox/kill_log.json",
-    "public/glassbox/trial_ledger.json",
-    "public/glassbox/transparency_log.json",
-    "public/glassbox/legacy_dsr_restatement.json",
-    "public/glassbox/track_record.json",
-    "public/glassbox/sleeve_admission_contract.json",
-    "research",
-    "measurements",
-  ],
-  "/engineering": ["scripts/build-engineering.mjs", "public/glassbox/engineering_open_source.json"],
-  "/how-to-validate-a-backtest": ["scripts/build-how-to-validate-a-backtest.mjs"],
-  "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
-  "/developers": [
-    // Owned by another generator (scripts/build-standards-and-developers.mjs) this fix does not
-    // edit; listed here only so /developers gets a real content date instead of the build date.
-    "scripts/build-standards-and-developers.mjs",
-    "standards/paper-evidence/vectors/manifest.json",
-    "standards/paper-evidence/schema.json",
-    "public/glassbox/paper_evidence_conformance.json",
-    "public/api/v1/index.json",
-    "public/api/v1/openapi.json",
-    "mcp-released/fundamentals/package.json",
-    "mcp-released/fundamentals/server.json",
-    "mcp-released/fundamentals/src/server.mjs",
-    "mcp-released/research/package.json",
-    "mcp-released/research/server.json",
-    "mcp-released/research/src/server.mjs",
-  ],
-  "/costs": ["scripts/build-cost-coverage.mjs"],
-  "/standards/paper-evidence": [
-    "scripts/build-paper-evidence.mjs",
-    "standards/paper-evidence/schema.json",
-    "contracts/public-claims.registry.json",
-    "public/paper-state.json",
-    "public/glassbox/alpaca_broker_reconciliation.json",
-    "public/glassbox/cost_coverage.json",
-  ],
-  "/tools/deflated-sharpe": [
-    "scripts/build-dsr-tool.mjs",
-    "public/glassbox/deflated_sharpe_calculator_contract.json",
-    "public/glassbox/trial_ledger.json",
-  ],
-  "/tools/evidence-chain": [
-    "scripts/build-evidence-chain-tool.mjs",
-    "public/glassbox/transparency_log.json",
-    "public/glassbox/ots/anchors.json",
-    "public/glassbox/verify_transparency.py",
-  ],
-  "/tools/trial-accounting": [
-    "scripts/build-trial-accounting-tool.mjs",
-    "public/glassbox/trial_ledger.json",
-    "public/glassbox/trial_packet_manifest.json",
-    "public/glassbox/trial-packets/index.json",
-    "public/glassbox/prospective_trial_record.json",
-  ],
-  "/tools/selection-risk": ["scripts/build-selection-risk.mjs", "public/glassbox/selection_risk_lab_contract.json"],
-  "/tools/breadth": [
-    "scripts/build-breadth.mjs",
-    "public/glassbox/breadth_lab_contract.json",
-    "contracts/public-claims.registry.json",
-  ],
-  "/tools/execution": ["scripts/build-execution.mjs", "public/glassbox/execution_lab_contract.json"],
-  "/tools/backtest-overfitting": ["scripts/build-backtest-overfitting-tool.mjs", "standards/validation-api/vectors.json"],
-  "/tools": ["scripts/build-tools-hub.mjs"],
-};
 
 const BUILD_DATE_FALLBACK_WARNINGS = [];
 
@@ -722,7 +603,7 @@ const breadcrumbs = (trail) => ({
   })),
 });
 
-function pageHtml({ title, shortTitle, description, slug, body, sourceFile, sourceSha256, sources = [], related = "", citation, datasetJsonLd = null }) {
+function pageHtml({ title, shortTitle, description, slug, body, sourceFile, sourceSha256, sources = [], related = "", citation, datasetJsonLd = null, dateModified }) {
   const url = `${ORIGIN}/research/${slug}`;
   const trail = breadcrumbs([
     ["Canli Capital", ORIGIN],
@@ -738,6 +619,9 @@ function pageHtml({ title, shortTitle, description, slug, body, sourceFile, sour
     inLanguage: "en",
     isAccessibleForFree: true,
     datePublished: PUBLICATION_YEAR,
+    // The date the source file last changed, the same one the sitemap's <lastmod> carries.
+    dateModified,
+    image: { "@type": "ImageObject", url: `${ORIGIN}/og.png`, width: 1200, height: 630 },
     author: {
       "@type": "Person",
       "@id": `${ORIGIN}/#arhan-canli`,
@@ -1025,6 +909,28 @@ function main() {
     });
   }
 
+  // BUILD DATE IS A FALLBACK OF LAST RESORT, NEVER THE RULE. It is only reached when git itself is
+  // unavailable and nothing supplied its own date -- see PAGE_SOURCES and lastmod.mjs above. Every
+  // other lastmod below is derived from either an artifact's own generated_at/evidence_date or the
+  // git commit date of the real file that would have to change for the page to change, so a build
+  // that changes nothing in git produces byte-identical <lastmod> values to the one before it.
+  const buildDate = new Date().toISOString().slice(0, 10);
+
+  const paperLastmods = new Map(
+    papers.map((paper) => [
+      paper.slug,
+      resolveLastmod({
+        root: ROOT,
+        files: [`public/research/${paper.sourceFile}`],
+        buildDate,
+        onFallback: () =>
+          BUILD_DATE_FALLBACK_WARNINGS.push(
+            `git has no history for public/research/${paper.sourceFile}; used the build date.`,
+          ),
+      }),
+    ]),
+  );
+
   for (const paper of papers) {
     const { pairs, markdown } = extractFrontMatter(paper.markdown);
     const body = mastheadHtml(pairs, paper.shortTitle) + describeAutolinkedProvenanceUrls(
@@ -1039,6 +945,7 @@ function main() {
         related: relatedSection(paper, papers),
         citation: bibtex(paper),
         datasetJsonLd: datasetRecordJsonLd(paper.markdown),
+        dateModified: paperLastmods.get(paper.slug),
       })),
     );
     writeFileSync(resolve(CITATION_DIR, `${paper.slug}.bib`), bibtex(paper));
@@ -1145,27 +1052,6 @@ function main() {
   }
   writeFileSync(libraryPage, normalizeEditableCopy(rewritten));
 
-  // BUILD DATE IS A FALLBACK OF LAST RESORT, NEVER THE RULE. It is only reached when git itself is
-  // unavailable and nothing supplied its own date -- see PAGE_SOURCES and lastmod.mjs above. Every
-  // other lastmod below is derived from either an artifact's own generated_at/evidence_date or the
-  // git commit date of the real file that would have to change for the page to change, so a build
-  // that changes nothing in git produces byte-identical <lastmod> values to the one before it.
-  const buildDate = new Date().toISOString().slice(0, 10);
-
-  const paperLastmods = new Map(
-    papers.map((paper) => [
-      paper.slug,
-      resolveLastmod({
-        root: ROOT,
-        files: [`public/research/${paper.sourceFile}`],
-        buildDate,
-        onFallback: () =>
-          BUILD_DATE_FALLBACK_WARNINGS.push(
-            `git has no history for public/research/${paper.sourceFile}; used the build date.`,
-          ),
-      }),
-    ]),
-  );
 
   const measurements = measurementRoutes();
   const trials = trialRoutes();
