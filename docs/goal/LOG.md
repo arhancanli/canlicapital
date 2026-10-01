@@ -4570,3 +4570,128 @@ files. All product source outside docs/artifacts remains byte-identical to416f.
 No heavy local tests repeated under the shared CPU lock; remote exact-head CI
 and primary equivalence review/ordinary merge/sole deployment follow. Dataset
 bytes and every owner goal remain intact; CSS follow-up stays separate.
+
+## FilingFacts v1 source-audit phase started, 2026-10-01
+
+Third worker's annotation #345 is merged as45b30555; its exact candidate/main
+trees and all seven PR plus seven merged-main checks pass. New isolated worktree
+canlicapital-filingfacts-v1-20261001, assist/filingfacts-v1-20261001 starts from
+45b30555 for primary's existing v1 first/later-source task plan. Audit actual SEC
+snapshot availability, rights and lineage before creating machine-checked candidates;
+report source gaps first. Own new v1 generator/checker/tests/datasheet/evidence;
+preserve every v0 byte and current eval/browser/journal/MCP code. Require explicit
+filed/as-of/accession/hash, annual/quarter/YTD separation and ambiguity refusal;
+no unsupported first-ever, actual expert/human labels, models, outreach or cloud.
+Primary remains publisher; secondary owns the later analyzer phase. All Sovereign,
+10M actual indexing, content/SEO/keyword/adoption and governed ALPHAC goals remain active.
+
+
+## FilingFacts v1 actual source gaps reported before generation, 2026-10-01
+
+Seven committed Sep19 representative record/gzip pairs hash/CIK/name-match.
+Each is one SEC companyfacts response, not every historical capture; rows lack
+acceptance timestamps and complete-history guarantees. Quarter/YTD/annual and
+nonperiodic forms coexist; changed numeric values do not prove an accounting
+restatement. Rights scope uses numeric facts/identifiers and newly authored
+questions, with official Copyright Office and SEC API links; historical blanket
+public-domain language is not assumed for every company filing. Capture time is
+metadata, not independent time attestation. Before generation primary was sent
+these gaps. Initial candidate scope: USD/us-gaap,10-K(/A),FY,exact335-395-day
+annual intervals; excluded periods and ambiguity are counted/refused. Earliest
+means earliest eligible observation present in the captured response at an
+explicit date cutoff. Proof: artifacts/goal/filingfacts-v1-source-audit-20261001.json.
+No candidates or new labels yet; every owner objective and ownership boundary stays active.
+
+
+## FilingFacts v1 local candidate checkpoint, 2026-10-01
+
+New v1 generator and independent archive-rereading checker pass13 focused tests.
+Actual archived sources produce14 machine candidates at explicit2026-09-18
+cutoff; all14 pass separate Node checks and independently implemented Python
+source/endpoint/arithmetic recomputation. Every protected v0/eval/browser/MCP
+byte still matches45b30555. Initial test-helper missing-cutoff expectation failed
+12/13; corrected the helper call and retained the failure, with no implementation
+change. Summary counts107491 quarterly-form rows,1550 quarter/short and11 YTD/
+partial-year duration rows excluded;25 invalid source rows refuse15 groups.
+Also2965 no-later groups,9965 unchanged and13 reverted groups are retained in
+counts. Safe integer USD policy is explicit; fractional/large amounts need a
+separate decimal policy. New datasheet scopes rights/history/date precision and
+formal-cause/human limitations. Source packet/checks under artifacts/qa/filingfacts-v1-20261001.
+Latest-main/full build/CI/signed peer review remain pending, not claimed. Every
+master goal remains active; production and existing owned code stay separate.
+
+
+## FilingFacts v1 integrated local verification, 2026-10-01
+
+Signed implementation2565941d and integration0dbf5822 include actual main74d704d4
+without changing v1 modules or released evaluation/annotation/journal/MCP code.
+Package conflict resolution preserved every main test and added13 v1 tests.
+Node22.23.2 full834+6 tests and699 page audits0/0 pass. Actual clean Git-free
+production validation passes:683 stamped pages,416 checksummed files untouched.
+All210 protected source/data files, including5 published v0 files and7 archived
+record/gzip pairs, equal main; source-date manifest also unchanged. Restored only
+645 generated build changes in this isolated worktree and retained exact logs.
+The14 source-bound machine candidates still pass independent Node and Python3.9.6
+source/selection/arithmetic checks. No expert/human labels, models, source-authenticity
+or first-ever/cause claims. Proof: artifacts/goal/filingfacts-v1-quality-20261001.json.
+Frozen signed PR and primary independent source/ambiguity review are next; merge
+and public v1 release remain unclaimed. Primary remains publisher, secondary owns
+analyzers/raw-download headers; every master objective remains active.
+
+
+## FilingFacts v1 PR347 CodeQL correction, 2026-10-01
+
+Initial signed a7ccc64e passed six functional/security-analysis CI jobs; combined
+CodeQL gate failed alert85 on output existence-check/write sequencing. Retained
+receipt: artifacts/qa/filingfacts-v1-20261001/codeql-output-before.json. Signed
+source correction1fcba8e1 removes the precheck and opens both outputs exclusively,
+writes through descriptors and closes them.14 focused tests pass, including
+competing candidate/summary creation immediately before exclusive open; competing
+bytes remain intact. Separate-write failure may leave a valid candidate and is
+explicit in the datasheet.14 actual-source candidates and summary regenerate
+byte-for-byte; separate Node/Python checks still pass.210 protected files/5v0
+unchanged. Proof: artifacts/goal/filingfacts-v1-output-fix-20261001.json.
+New local heavy reruns held per lead request; initial full834+6/6990/0/Git-free
+683/416 receipts remain historical evidence, not recast as corrected-head runs.
+Corrected exact-head CI and primary independent review pending. No alert
+suppression/dismissal, expert labels, public v1 release or merge claimed. All
+master goals and ownership boundaries remain active.
+
+
+## FilingFacts v1 primary CLI alias finding corrected locally, 2026-10-01
+
+Primary independent Node24.19 review of3471a6027c8 found P2: ordinary symlinks
+silently skipped both CLI entrypoints. Exact source hashes and before receipt
+are retained. Actual regression on Node22.23.2 reproduced14 pass/1 fail, then
+15 pass after signed source44195a78 normalizes argv/module real paths. Temporary
+aliases cover missing args and successful generation/checking; real14 candidates
+and summary generated via alias are byte-identical, alias checker passes14.
+210 protected source/data files and5v0 unchanged; no source/value/policy changes.
+Initial failures plus prior835+6/LinuxNode22.23.3 CI are separate historical
+receipts, not relabeled as current runs. New source proof:
+artifacts/goal/filingfacts-v1-cli-alias-fix-20261001.json.
+Final signed head/remote CI and primary recheck next; merge held. Heavy local
+jobs remain held for primary's one integrated slot;346/348 fold follows348
+delivery once. Source/rights/history/date/safeint/cause limits and all master
+goals stay active; no models, human labels, cloud or public v1 release.
+
+
+## FilingFacts v1 integrated corrected source, 2026-10-01
+
+Signed fba5762c integrates actual main0d9c88c6 (#346/#348) once after required
+CLI realpath correction44195a78. Only STATUS/LOG append conflicts occurred;
+both full conflict-side histories are retained. All346/348 header/preview/test
+records, source-date manifest and package dependencies/versions remain exact;
+package adds only the v1 test registration. Every v1 module equals preintegration
+fe46ef30. Numerical/selection exports, contract/source/oracle and raw14 packet
+are byte-identical to independently reviewed1a6027c8 except CLI imports/guards
+and the new alias test/helper. Final15 focused tests passNode22.23.2; protected
+210 files/5v0 unchanged. Primary before-review passes8 source groups/60 recomputed
+ID leaf mutations onNode24.19 and separately rereads7 actualsources/14 candidates
+with Pythonstdlib/Fraction; max percent roundingerror1.421e-14. These are code
+and numerical checks, no expert/human labels. Exact proof/peer receipts:
+artifacts/goal/filingfacts-v1-final-integration-quality-20261001.json.
+Frozen signed final-head remoteCI and primary alias recheck/source-equivalence
+extension next. No heavy local repeats or duplicate publisher; primary owns
+shared integrated slot. Initial alert/P2/test-helper failures retained; every
+owner objective and source/rights/history/date/cause limit stays active.

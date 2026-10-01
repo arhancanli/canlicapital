@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: selects the earliest and latest eligible filed observations through an explicit cutoff, not array or fiscal-year order
+ok 1 - selects the earliest and latest eligible filed observations through an explicit cutoff, not array or fiscal-year order
+  ---
+  duration_ms: 24.356625
+  type: 'test'
+  ...
+# Subtest: quarter, YTD, instant and nonperiodic observations cannot contaminate an annual pair, and every exclusion is counted
+ok 2 - quarter, YTD, instant and nonperiodic observations cannot contaminate an annual pair, and every exclusion is counted
+  ---
+  duration_ms: 1.973375
+  type: 'test'
+  ...
+# Subtest: concepts, currencies and exact start dates remain distinct even with a common period end
+ok 3 - concepts, currencies and exact start dates remain distinct even with a common period end
+  ---
+  duration_ms: 2.884584
+  type: 'test'
+  ...
+# Subtest: duplicate exact source rows do not inflate accessions; conflicting values for one accession refuse the whole group
+ok 4 - duplicate exact source rows do not inflate accessions; conflicting values for one accession refuse the whole group
+  ---
+  duration_ms: 8.221333
+  type: 'test'
+  ...
+# Subtest: same-day differing accession values refuse arbitrary date-only ordering
+ok 5 - same-day differing accession values refuse arbitrary date-only ordering
+  ---
+  duration_ms: 4.898458
+  type: 'test'
+  ...
+# Subtest: zero earliest value makes percentage explicitly undefined; negative earliest uses its absolute magnitude
+ok 6 - zero earliest value makes percentage explicitly undefined; negative earliest uses its absolute magnitude
+  ---
+  duration_ms: 3.332875
+  type: 'test'
+  ...
+# Subtest: reverted endpoint values are recorded separately, without claiming no historical change
+ok 7 - reverted endpoint values are recorded separately, without claiming no historical change
+  ---
+  duration_ms: 1.017667
+  type: 'test'
+  ...
+# Subtest: invalid dates, source fiscal metadata and fractional or unsafe amounts cannot yield partially plausible pairs
+ok 8 - invalid dates, source fiscal metadata and fractional or unsafe amounts cannot yield partially plausible pairs
+  ---
+  duration_ms: 6.937959
+  type: 'test'
+  ...
+# Subtest: cutoff requires a real calendar date within capture bounds and bounded integral output limits
+ok 9 - cutoff requires a real calendar date within capture bounds and bounded integral output limits
+  ---
+  duration_ms: 1.358625
+  type: 'test'
+  ...
+# Subtest: snapshot corruption and record identity/time/URL changes are refused before source use
+ok 10 - snapshot corruption and record identity/time/URL changes are refused before source use
+  ---
+  duration_ms: 6.948791
+  type: 'test'
+  ...
+# Subtest: independent checker refuses source, endpoint, arithmetic, claims and question tampering even with recomputed IDs
+ok 11 - independent checker refuses source, endpoint, arithmetic, claims and question tampering even with recomputed IDs
+  ---
+  duration_ms: 3.477584
+  type: 'test'
+  ...
+# Subtest: batch checker reports duplicate IDs and malformed candidates instead of inflating success
+ok 12 - batch checker reports duplicate IDs and malformed candidates instead of inflating success
+  ---
+  duration_ms: 1.736042
+  type: 'test'
+  ...
+# Subtest: CLI generates a reproducible small packet, verifies it independently and preserves existing output bytes
+ok 13 - CLI generates a reproducible small packet, verifies it independently and preserves existing output bytes
+  ---
+  duration_ms: 155.1285
+  type: 'test'
+  ...
+# Subtest: CLI preserves a competing output or summary created immediately before its exclusive open
+ok 14 - CLI preserves a competing output or summary created immediately before its exclusive open
+  ---
+  duration_ms: 104.156083
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 404.605166

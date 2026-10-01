@@ -1,0 +1,195 @@
+TAP version 13
+# Subtest: selects the earliest and latest eligible filed observations through an explicit cutoff, not array or fiscal-year order
+ok 1 - selects the earliest and latest eligible filed observations through an explicit cutoff, not array or fiscal-year order
+  ---
+  duration_ms: 30.568709
+  type: 'test'
+  ...
+# Subtest: quarter, YTD, instant and nonperiodic observations cannot contaminate an annual pair, and every exclusion is counted
+ok 2 - quarter, YTD, instant and nonperiodic observations cannot contaminate an annual pair, and every exclusion is counted
+  ---
+  duration_ms: 2.772625
+  type: 'test'
+  ...
+# Subtest: concepts, currencies and exact start dates remain distinct even with a common period end
+ok 3 - concepts, currencies and exact start dates remain distinct even with a common period end
+  ---
+  duration_ms: 2.903459
+  type: 'test'
+  ...
+# Subtest: duplicate exact source rows do not inflate accessions; conflicting values for one accession refuse the whole group
+ok 4 - duplicate exact source rows do not inflate accessions; conflicting values for one accession refuse the whole group
+  ---
+  duration_ms: 4.19
+  type: 'test'
+  ...
+# Subtest: same-day differing accession values refuse arbitrary date-only ordering
+ok 5 - same-day differing accession values refuse arbitrary date-only ordering
+  ---
+  duration_ms: 3.005416
+  type: 'test'
+  ...
+# Subtest: zero earliest value makes percentage explicitly undefined; negative earliest uses its absolute magnitude
+ok 6 - zero earliest value makes percentage explicitly undefined; negative earliest uses its absolute magnitude
+  ---
+  duration_ms: 3.14325
+  type: 'test'
+  ...
+# Subtest: reverted endpoint values are recorded separately, without claiming no historical change
+ok 7 - reverted endpoint values are recorded separately, without claiming no historical change
+  ---
+  duration_ms: 1.389958
+  type: 'test'
+  ...
+# Subtest: invalid dates, source fiscal metadata and fractional or unsafe amounts cannot yield partially plausible pairs
+ok 8 - invalid dates, source fiscal metadata and fractional or unsafe amounts cannot yield partially plausible pairs
+  ---
+  duration_ms: 7.872416
+  type: 'test'
+  ...
+# Subtest: cutoff requires a real calendar date within capture bounds and bounded integral output limits
+ok 9 - cutoff requires a real calendar date within capture bounds and bounded integral output limits
+  ---
+  duration_ms: 1.606042
+  type: 'test'
+  ...
+# Subtest: snapshot corruption and record identity/time/URL changes are refused before source use
+ok 10 - snapshot corruption and record identity/time/URL changes are refused before source use
+  ---
+  duration_ms: 8.79475
+  type: 'test'
+  ...
+# Subtest: independent checker refuses source, endpoint, arithmetic, claims and question tampering even with recomputed IDs
+ok 11 - independent checker refuses source, endpoint, arithmetic, claims and question tampering even with recomputed IDs
+  ---
+  duration_ms: 4.978084
+  type: 'test'
+  ...
+# Subtest: batch checker reports duplicate IDs and malformed candidates instead of inflating success
+ok 12 - batch checker reports duplicate IDs and malformed candidates instead of inflating success
+  ---
+  duration_ms: 2.937291
+  type: 'test'
+  ...
+# Subtest: CLI generates a reproducible small packet, verifies it independently and preserves existing output bytes
+ok 13 - CLI generates a reproducible small packet, verifies it independently and preserves existing output bytes
+  ---
+  duration_ms: 194.221667
+  type: 'test'
+  ...
+# Subtest: CLI preserves a competing output or summary created immediately before its exclusive open
+ok 14 - CLI preserves a competing output or summary created immediately before its exclusive open
+  ---
+  duration_ms: 110.967958
+  type: 'test'
+  ...
+# Subtest: symlink CLI aliases reject missing arguments and perform the same generation and checks as direct paths
+not ok 15 - symlink CLI aliases reject missing arguments and perform the same generation and checks as direct paths
+  ---
+  duration_ms: 172.641084
+  type: 'test'
+  location: '/Users/arhancanli/canlicapital-filingfacts-v1-20261001/scripts/datasets/filing-facts/v1/first-later.test.mjs:190:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      [
+        {
+          kind: 'direct',
+          name: 'generate.mjs',
+          status: 1,
+    ...
+          name: 'generate.mjs',
+    +     status: 0,
+    -     status: 1,
+          stdout: '',
+    +     usage: false
+    -     usage: true
+        },
+        {
+          kind: 'direct',
+          name: 'check.mjs',
+          status: 1,
+    ...
+          name: 'check.mjs',
+    +     status: 0,
+    -     status: 1,
+          stdout: '',
+    +     usage: false
+    -     usage: true
+        }
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      name: 'generate.mjs'
+      kind: 'direct'
+      status: 1
+      usage: true
+      stdout: ''
+    1:
+      name: 'generate.mjs'
+      kind: 'alias'
+      status: 1
+      usage: true
+      stdout: ''
+    2:
+      name: 'check.mjs'
+      kind: 'direct'
+      status: 1
+      usage: true
+      stdout: ''
+    3:
+      name: 'check.mjs'
+      kind: 'alias'
+      status: 1
+      usage: true
+      stdout: ''
+  actual:
+    0:
+      name: 'generate.mjs'
+      kind: 'direct'
+      status: 1
+      usage: true
+      stdout: ''
+    1:
+      name: 'generate.mjs'
+      kind: 'alias'
+      status: 0
+      usage: false
+      stdout: ''
+    2:
+      name: 'check.mjs'
+      kind: 'direct'
+      status: 1
+      usage: true
+      stdout: ''
+    3:
+      name: 'check.mjs'
+      kind: 'alias'
+      status: 0
+      usage: false
+      stdout: ''
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/arhancanli/canlicapital-filingfacts-v1-20261001/scripts/datasets/filing-facts/v1/first-later.test.mjs:202:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 14
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 639.880792

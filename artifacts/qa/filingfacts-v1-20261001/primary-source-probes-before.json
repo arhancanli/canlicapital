@@ -1,0 +1,51 @@
+{
+  "schema": "canli.filingfacts-v1-primary-source-probes.v1",
+  "observed_at": "2026-10-01T12:42:06.706Z",
+  "reviewed_head": "1a6027c8d2ba0dbefab0eac538fb6fbba9784e47",
+  "node": "v24.19.0",
+  "cases": [
+    {
+      "name": "335 and395 day inclusive boundaries accepted;334 and396 rejected",
+      "passed": true
+    },
+    {
+      "name": "cutoff inclusive and post-cutoff source rows excluded",
+      "passed": true
+    },
+    {
+      "name": "same-day ambiguity in intermediate observations refuses entire group",
+      "passed": true
+    },
+    {
+      "name": "same accession with changed fiscal metadata refuses; exact duplicates deduplicate",
+      "passed": true
+    },
+    {
+      "name": "annual rows in10-Q and differing units/taxonomy cannot change endpoint",
+      "passed": true
+    },
+    {
+      "name": "reversion counted, zero denominator null, negative denominator uses magnitude",
+      "passed": true
+    },
+    {
+      "name": "fractional values and unsafe differences refuse",
+      "passed": true
+    },
+    {
+      "name": "every candidate leaf mutation refuses after attacker recomputes content ID",
+      "passed": true
+    }
+  ],
+  "candidate_leaf_mutations_refused": 60,
+  "source_hashes": {
+    "generate.mjs": "739cd054e0320e4d8213a954d02497ef4dce5330f3f8e5d65ee5795bfa60636e",
+    "check.mjs": "03ca79a5fea82b2a25100f2cbd5a924d67f6553cfbd896b56fa0de6a66282e9e",
+    "source.mjs": "92e3799a16c3556ff69ae98a814dad5f4b26d751afea9aaefe9155b540bf7b44",
+    "contract.mjs": "01c2b8f458face664a116b51b2792f2ea894c5bc39b7d416242346d3060fe378"
+  },
+  "limits": [
+    "Independent synthetic source/selection/binding probes; not additional expert review, source-authenticity or complete-history evidence.",
+    "CLI alias finding is retained separately; this source probe pass does not approve a head with that unresolved CLI bug."
+  ]
+}

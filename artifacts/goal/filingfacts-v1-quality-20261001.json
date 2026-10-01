@@ -1,0 +1,130 @@
+{
+  "schema": "canli.filingfacts-v1-local-quality.v1",
+  "verified_at": "2026-10-01T12:07:03.363742+00:00",
+  "signed_implementation_commit": "2565941d5b72c8aea2b19932ff4fffb0c84001cf",
+  "signed_integration_commit": "0dbf58227c667ab67028b28e30514c8f5243b475",
+  "integrated_main": "74d704d45df502e8a76c37439415842b47b93cb7",
+  "validation": {
+    "node": "22.23.2",
+    "python": "3.9.6",
+    "focused_tests": 13,
+    "main_tests": 834,
+    "preverify_tests": 6,
+    "failed_tests": 0,
+    "onpage_pages": 699,
+    "onpage_errors": 0,
+    "onpage_warnings": 0,
+    "git_free_deployment_snapshot": "passed",
+    "stamped_pages": 683,
+    "checksummed_files_left_untouched": 416,
+    "protected_source_data_files_unchanged_vs_main": 210,
+    "published_v0_files_byte_identical": 5,
+    "source_date_manifest_unchanged_vs_main": true,
+    "generated_only_restored_files": 645
+  },
+  "candidate_sample": {
+    "as_of": "2026-09-18",
+    "snapshot_pairs": 7,
+    "candidates": 14,
+    "per_company_limit": 2,
+    "node_passed": 14,
+    "node_failed": 0,
+    "python_numerical_oracle_checked": 14,
+    "human_or_expert_reviews": 0,
+    "model_calls": 0,
+    "packet_sha256": "5a9944765a923a853a610c2c1c39160ec46629a118f5bbed098c31fe10a61a66",
+    "eligible_raw_rows": 33335,
+    "candidate_groups_before_sampling": 826,
+    "excluded_raw_rows_by_reason": {
+      "quarterly_filing_form": 107491,
+      "nonannual_filing_form": 4235,
+      "instant_or_missing_start": 22844,
+      "other_unit": 21932,
+      "quarter_or_short_duration": 1550,
+      "invalid_filing_metadata": 25,
+      "ytd_or_partial_year_duration": 11
+    },
+    "rejected_groups_by_reason": {
+      "no_later_distinct_filed_date": 2965,
+      "unchanged_at_cutoff": 9965,
+      "invalid_filing_metadata": 15,
+      "reverted_at_cutoff": 13
+    }
+  },
+  "v1_source_modules": [
+    {
+      "path": "scripts/datasets/filing-facts/v1/README.md",
+      "sha256": "80d5fc0038f411fe75d77b5b7aa0998e2c2ceae59e822a940c1da9a9bb574d0e",
+      "unchanged_from_signed_implementation": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/check.mjs",
+      "sha256": "03ca79a5fea82b2a25100f2cbd5a924d67f6553cfbd896b56fa0de6a66282e9e",
+      "unchanged_from_signed_implementation": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/contract.mjs",
+      "sha256": "01c2b8f458face664a116b51b2792f2ea894c5bc39b7d416242346d3060fe378",
+      "unchanged_from_signed_implementation": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/first-later.test.mjs",
+      "sha256": "82d936e6e7bb9ff6983e934deeeaa283e9f3a3b8d96d899a5a3b18f3ccc6c1fd",
+      "unchanged_from_signed_implementation": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/generate.mjs",
+      "sha256": "e7dd40279e6ab03eb8166d902dfcda8605232e2d7690e288a7212875cf2b8506",
+      "unchanged_from_signed_implementation": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/oracle.py",
+      "sha256": "208d12192912b7685fa3c825bc0029da5dbfec093ca38839bdcc24348e2bd41b",
+      "unchanged_from_signed_implementation": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/v1/source.mjs",
+      "sha256": "92e3799a16c3556ff69ae98a814dad5f4b26d751afea9aaefe9155b540bf7b44",
+      "unchanged_from_signed_implementation": true
+    }
+  ],
+  "evidence": {
+    "source_audit": "artifacts/goal/filingfacts-v1-source-audit-20261001.json",
+    "generation_summary": "artifacts/qa/filingfacts-v1-20261001/generation-summary.json",
+    "candidate_sample": "artifacts/qa/filingfacts-v1-20261001/candidates-annual-v1.jsonl",
+    "independent_node_check": "artifacts/qa/filingfacts-v1-20261001/node-source-check.json",
+    "independent_python_numerical_oracle": "artifacts/qa/filingfacts-v1-20261001/python-oracle.json",
+    "protected_source_proof": "artifacts/qa/filingfacts-v1-20261001/protected-source-check.json",
+    "generated_restoration": "artifacts/qa/filingfacts-v1-20261001/generated-restoration.json",
+    "retained_test_helper_failure": "artifacts/qa/filingfacts-v1-20261001/verification-failures.json",
+    "logs": [
+      {
+        "path": "artifacts/qa/filingfacts-v1-20261001/logs/full-build.txt.gz",
+        "sha256": "09e961d73cb6644682a18bdedb4bc2b446944a23d3dfa191744f8708eb1f49c0",
+        "uncompressed_sha256": "997d8677e3798be7d1a0d77265e877d75ef6cfcdf18c1ad512728f275beafd68",
+        "uncompressed_bytes": 112437
+      },
+      {
+        "path": "artifacts/qa/filingfacts-v1-20261001/logs/full-verify.txt.gz",
+        "sha256": "050f6a60b75cf966dde0c217af7dbb0f7ed65cbce59e9840999db8a7430eb49c",
+        "uncompressed_sha256": "aa4f4953c63e6cf8b3e21810d2362b744f0f81867d61bc88a2c0fa99942f303f",
+        "uncompressed_bytes": 197239
+      },
+      {
+        "path": "artifacts/qa/filingfacts-v1-20261001/logs/clean-snapshot.txt.gz",
+        "sha256": "8b1cede0736c3e3a06e2da1437cfe26209134acfe41211c3efb36efdb8a9a864",
+        "uncompressed_sha256": "88bcf8806f7e5c039bcdae4534279b1aa0f3839453bf204ab8d3d23fbd290b01",
+        "uncompressed_bytes": 112650
+      }
+    ]
+  },
+  "remaining_limits": [
+    "One capture per filer cannot establish complete historical or first-ever reporting; capture timestamps are metadata, not independently time-attested.",
+    "Date-only filing metadata supplies no intraday ordering or decision-time availability guarantee.",
+    "Changed values do not establish accounting restatement, cause or consistent accounting basis.",
+    "Safe-integer annual USD/us-gaap policy excludes fractional, unsafe, quarter/YTD/instant and nonannual rows; counts are not a full financial-data census.",
+    "Python is a numerical/source-selection oracle, not a complete schema, expert or human-gold certificate.",
+    "Independent human review, actual expert labels, exact-head PR CI, merge and separate public v1 release remain pending.",
+    "All Sovereign MCP/data refinery/governed ALPHAC/execution/10,000,000 actual-indexing/quality/SEO/keyword/analyzer/legitimate adoption goals remain active; primary owns shared website publication."
+  ]
+}
