@@ -698,3 +698,24 @@ Final signed head/remote CI and primary recheck next; merge held. Heavy local
 jobs remain held for primary's one integrated slot;346/348 fold follows348
 delivery once. Source/rights/history/date/safeint/cause limits and all master
 goals stay active; no models, human labels, cloud or public v1 release.
+
+
+## FilingFacts v1 integrated corrected source, 2026-10-01
+
+Signed fba5762c integrates actual main0d9c88c6 (#346/#348) once after required
+CLI realpath correction44195a78. Only STATUS/LOG append conflicts occurred;
+both full conflict-side histories are retained. All346/348 header/preview/test
+records, source-date manifest and package dependencies/versions remain exact;
+package adds only the v1 test registration. Every v1 module equals preintegration
+fe46ef30. Numerical/selection exports, contract/source/oracle and raw14 packet
+are byte-identical to independently reviewed1a6027c8 except CLI imports/guards
+and the new alias test/helper. Final15 focused tests passNode22.23.2; protected
+210 files/5v0 unchanged. Primary before-review passes8 source groups/60 recomputed
+ID leaf mutations onNode24.19 and separately rereads7 actualsources/14 candidates
+with Pythonstdlib/Fraction; max percent roundingerror1.421e-14. These are code
+and numerical checks, no expert/human labels. Exact proof/peer receipts:
+artifacts/goal/filingfacts-v1-final-integration-quality-20261001.json.
+Frozen signed final-head remoteCI and primary alias recheck/source-equivalence
+extension next. No heavy local repeats or duplicate publisher; primary owns
+shared integrated slot. Initial alert/P2/test-helper failures retained; every
+owner objective and source/rights/history/date/cause limit stays active.

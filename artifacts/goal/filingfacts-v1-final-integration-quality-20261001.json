@@ -1,0 +1,42 @@
+{
+  "schema": "canli.filingfacts-v1-final-integration-quality.v1",
+  "observed_at": "2026-10-01T12:50:27.564412+00:00",
+  "signed_integration_source_commit": "fba5762c03b63ab0cef258dfc2d55aab0ba95261",
+  "integrated_main": "0d9c88c605d7abfda150bde87c95f8554672352e",
+  "cli_correction_source_commit": "44195a78f8801cb77c3994f9379c85f13f05c0f2",
+  "local_node": "22.23.2",
+  "local_focused_tests": 15,
+  "local_failed_tests": 0,
+  "protected_source_data_files_unchanged": 210,
+  "published_v0_files_unchanged": 5,
+  "source_packet_sha256": "5a9944765a923a853a610c2c1c39160ec46629a118f5bbed098c31fe10a61a66",
+  "actual_source_candidates": 14,
+  "expert_labels": 0,
+  "model_calls": 0,
+  "independent_primary_source_review": {
+    "reviewed_head": "1a6027c8d2ba0dbefab0eac538fb6fbba9784e47",
+    "node": "24.19.0",
+    "cases": 8,
+    "recomputed_id_leaf_mutations": 60,
+    "separate_python_fraction_crosscheck_candidates": 14,
+    "maximum_absolute_percent_error": 1.4210854715202004e-14,
+    "extension": "Numeric/selection exports, contract/source/Python oracle and all raw/candidate bytes are identical; final alias recheck pending."
+  },
+  "evidence": {
+    "source_audit": "artifacts/goal/filingfacts-v1-source-audit-20261001.json",
+    "initial_local_checks": "artifacts/goal/filingfacts-v1-quality-20261001.json",
+    "output_alert_fix": "artifacts/goal/filingfacts-v1-output-fix-20261001.json",
+    "cli_alias_fix": "artifacts/goal/filingfacts-v1-cli-alias-fix-20261001.json",
+    "source_equivalence": "artifacts/qa/filingfacts-v1-20261001/final-integration-source-proof.json",
+    "final_focused": "artifacts/qa/filingfacts-v1-20261001/focused-final-integrated.txt",
+    "primary_source_probes_before": "artifacts/qa/filingfacts-v1-20261001/primary-source-probes-before.json",
+    "primary_actual_fraction_crosscheck": "artifacts/qa/filingfacts-v1-20261001/primary-actual-source-crosscheck.json",
+    "prior_exact_head_ci": "artifacts/qa/filingfacts-v1-20261001/pr-347-1a6027c8-ci-quality.json"
+  },
+  "pending": [
+    "Final signed-head remote CI and primary CLI alias recheck/source-review extension.",
+    "No new local heavy build/full/Git-free repeats; primary owns one shared integrated validation/publication slot.",
+    "Public v1 dataset release, human expert labels, source-authenticity/history/time/cause proof remain outstanding."
+  ],
+  "master_goals_active": true
+}
