@@ -25,6 +25,16 @@ includes the initial failure and corrections. These checks establish software be
 on the recorded local environment; hardware persistence and latency remain unmeasured.
 The substantial release gates remain open.
 
+## Offline paper-journal example
+
+[EXAMPLES.md](./EXAMPLES.md) connects sizing and pre-trade checks to explicit
+local journal writes, verification and a signed synthetic account export. From
+the repository root, use `node mcp-execution/examples/paper-journal.mjs --home /absolute/private/example-home`;
+add `--write` only after preparing the private
+home and key. The default performs checks without journal writes. The example
+has a finite call/deadline policy and stops on uncertainty without resubmitting.
+It uses supplied synthetic fills and is an unreleased repository example.
+
 ## What `measure_shortfall` computes
 
 All prices are USD; each fee is the USD amount charged for that fill (a rebate can be negative).

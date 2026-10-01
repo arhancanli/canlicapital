@@ -5416,3 +5416,51 @@ Exact final frozen-headCI/source/archive extensions and primary ordinary merge r
 No local project/import/test/CLI/browser/CPUgrant/job/provider/model/resources/holds/spend/
 labels/orders/outreach/site/npm/version publication. Full Sovereign/10M actual indexing/qualitySEO/
 intents/MCP/adoption/real-expert refinery/research/ALPHAC/paper then lawful capital goals ACTIVE.
+
+
+## Secondary finite offline paper-journal example begins, 2026-10-01T23:31:07.173474+00:00
+
+Actual main3658d0b60f5b06144b267b0cddc8fde81e6af6d8/tree d6bb is verified,
+collector356 and writer355 are delivered with reviewed-tree identity. Historical
+343/353/collector assignments are fulfilled; their sources/evidence stay frozen.
+Current coordination primary-assignment.md SHAd81cbc15 assigns a new isolated
+assist/paper-journal-example-20261001 checkout and exactly six paths: new
+mcp-execution/examples/paper-journal.mjs, test/paper-journal-example.test.mjs,
+EXAMPLES.md, README example instructions, append-only STATUS and LOG.
+The scenario will use supplied synthetic sizing/limits/prices/fills/fees, an
+injected local MCP call interface and finite actual-stdio demonstration. Caller
+prepares home/key and explicitly enables writes. Failed checks, typed errors,
+missing/conflicting receipts, cancellation/uncertainty stop; no automatic retry.
+Source/schema/math/store/default-tool-list/locks/versions/public site/ALPHAC and
+FilingFacts343/351/353/356/V0 remain protected. Five root and worktree continuity
+files read. No Node/import/test/helper/browser/build/job is run locally; written
+tests require signed-source existing remote CI and independent review. No grant
+reused or requested; no provider/broker/model/spend/hero/publication. All full
+Sovereign pillars, real independent expert refinery, governed ALPHAC outcomes,
+10M actually indexed useful source-backed canonicals, qualitySEO/intents/design/
+analyzers, legitimate API/MCP/repository adoption and research stay ACTIVE.
+
+
+## Secondary offline paper example implementation written, 2026-10-01T23:54:03.178347+00:00
+
+The six assigned paths now contain a bounded injected local MCP runner and a
+fixed-server actual-stdio demonstration. The maximum is11 explicit tool calls;
+stdio reserves5s inside the30s nominal total for one SDK close. Both boundaries
+recheck native cancellation and observed clocks at dispatch; synchronous trusted
+code/filesystem/event-loop suspension cannot be forcibly preempted. Caller must
+prepare home/key and explicitly enable writes. Supplied synthetic fill fees are
+never inferred; missing fees, skipped/rejected checks, kill switch, malformed or
+replayed receipts, changed heads, busy/refused/uncertain writes and cancellation
+stop. Exact operation/request/expected-head and pending-write/export status are
+retained. No resubmission or lock cleanup. Export signature/artifact/head/prefix
+bindings reuse the delivered server account replay and public-key verification.
+Locked client2.1 static source revealed its HEADER_MISMATCH retry path; explicit
+delivered toolDefinition suppresses that path and implicit tool discovery.
+Written actual-stdio/CLI and meaningful fault/coverage cases await existing
+remoteCI. No local JS/import/test/helper/job or nominal passing count is claimed.
+Git whitespace check passes; 5835 protected working files/380904798 bytes
+match actual3658 Git blob/mode identities, and both original goal prefixes are
+unchanged. Source freeze, independent review, exact CI/evidence and handoff remain
+open. All full Sovereign/10M actual indexing/qualitySEO/intents/design/analyzers/
+legitimateadoption/realexpertrefinery/research/governedALPHAC/paperthenlawfulcapital
+objectives stay ACTIVE; no model/provider/broker/spend/site/version/hero action.
