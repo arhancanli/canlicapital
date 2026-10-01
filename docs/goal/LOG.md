@@ -4867,3 +4867,89 @@ primary prepares paper-store/recovery next. All Sovereign/10M actual-indexing/SE
 quality/keywords/analyzers/design/adoption/novelresearch/humanexpert/governedALPHAC
 objectives remain active; overall goal not achieved. No orders or micro MCP release.
 Proof: artifacts/goal/mcp-page-primary-review-20261001/after-manifest.json.
+
+## 2026-10-01 — offline finite model-baseline contract started
+
+Secondary starts the assigned Pillar3 contract in isolated branch
+assist/filingfacts-baseline-contract-20261001, base62d2a195. PR349 is merged and
+verified live; source/HTTP evidence is retained separately. Reuse PR343 sampler,
+capture, scorer and replay unchanged. Prepare pinned V0 five-byte checksums and
+canonical caveats, a small deterministic stratified sample, expected/source
+bindings, arm/source fairness admission and complete error/missing/usage/cost/
+latency records. This phase is offline only: provider/model, cloud resources,
+financial holds, execution and spend remain unassigned. No heavy slot claimed.
+The held hero/ARIA prototype stays separate. All four Sovereign pillars, actual
+10M indexing, source-backed quality/SEO/keywords/design/analyzers/research,
+legitimate adoption and governed ALPHAC outcomes remain active; no expert gold
+or model baseline is claimed. Concrete draft/targeted checks/peer review next.
+
+
+## 2026-10-01 — offline smoke draft CI and permission-test correction
+
+Signed draftbaec/PR351 functional remoteCI passes852 main +6 prechecks +9
+notification tests; initial CodeQL finds4 js/file-system-race alerts86–89 in
+the new private-output permission test. Original source, fullCI log and alert
+JSON retained in coordination/filingfacts-baseline. Correct test uses one open
+FD for permissions and bytes; no suppression or scorer/data changes. This
+changes the exact queued head, so conditionalbaec30s intent is withdrawn before
+claim and awaits corrected-head lead grant. No local attempt/lease/model/resource/
+hold/spend happened. Source-assisted/measurement adapter and all owner goals
+remain active/held as specified. Current-head CI/source/peer proof still needed.
+
+
+Offline contract correction also snapshots preparation/scoring dependencies
+at module load, derives all V0 bindings from the same checked read bytes, and
+rechecks projection/replay source bindings. A ninth private-copy post-load
+source-mutation test is added; original seven343 scorer/sampler files remain
+byte-identical. Initial draft CI is retained, corrected-head CI is pending.
+No local slot/attempt/model result is claimed.
+
+
+## 2026-10-01 — baseline draft integrates actual checkpoint main
+
+Primary PR350 is actually merged63cea029; PR351 a27 had a goal LOG append
+conflict, so remoteCI did not run on a27. Integration preserves both LOG chunks
+verbatim and all12 compiler/CLI/scoring/caveat/test paths exactlya27. Source
+extension receipt: coordination/filingfacts-baseline/main350-integration-source.json.
+Current signed integratedhead/CI and replacement30s source grant follow.
+Oldbaec conditional intent remains withdrawn; no localattempt/nonce or model/
+resource/hold/spend. Pipeline smoke is not ranking/expertgold, and all prior
+Sovereign/indexing/SEO/quality/keywords/analyzers/design/adoption/research/ALPHAC
+objectives remain active. Primary is sole publisher.
+
+
+## 2026-10-01 — independent fixture-buffer binding finding corrected
+
+Third static review of1bc finds P2 CC-351-FIXTURE-DATASET-PIN: fixture
+scoring accepted capture-bound bytes without comparing that exact buffer to
+the plan dataset digest. A transient swapped/restored read could otherwise
+use a different oracle under the original contract hash. Finding receipt is
+retained in coordination/filingfacts-baseline-peer/fixture-dataset-binding-finding.json.
+Add same-buffer digest guard before existing evaluateCapture and a private-process
+transient-read regression test. Ten new focused tests now; seven343 modules and
+fiveV0 files unchanged. Withdraw1bc30s grant before any localnonce/attempt; no
+result used the affected helper. Corrected frozen source/CI/peerACK/newgrant next.
+Source-assisted/measurement/model/resource/hold/spend remain unassigned/held;
+every owner objective and primary sole-publisher authority stay active.
+
+
+## 2026-10-01 — offline FilingFacts pipeline smoke validated
+
+Exact244c passes one actual Node22.23.2 serial focused run:25 tests,
+10 baseline+7 eval+8 evidence, zero failures. Nominal10+34 wording in original
+requests/ACK/grant was inaccurate; all3 approved files ran, originalreceipts
+unchanged, separate precision addendum retained. No count-filling repeat. Same
+owned cap prepares/audits 15-item/3-per-template seed20261001 plan and question-
+only output in3.524860625s. OwnPG90144 absent BEFORE nonce2c352 guardrelease
+17:12:00.472545Z; source/head/checkout unchanged. No model/resource/hold/spend.
+Currentremote7CI passes854 main+6 prechecks+9 notification, HTML0/0 andref0
+CodeQL. Third static/source ACK plus independent produced-JSON review rederive
+all15 source/question/expected/fact bindings and exact contractebb44b37; no
+reviewer JS/execution/human-expert qualification claimed. Initial4CodeQLalerts,
+static P2, withheld oldsource grants and count drift stay preserved.
+Artifact: artifacts/goal/filingfacts-baseline-contract-20261001.json with31
+byte/hash-bound raw assets, original plan/questions, metadata/timing scope limits.
+Evidence-only signedfinal sourceextension/currentCI/peer/main handoff follows;
+all12 sourcepaths must remain244c-exact. Primary solepublisher; offline-only
+contract needs no website deployment. Model/schema/measurement/source-parity
+financial gates remain held/unassigned, every full owner goal still active.
