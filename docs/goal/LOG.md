@@ -4931,3 +4931,25 @@ fiveV0 files unchanged. Withdraw1bc30s grant before any localnonce/attempt; no
 result used the affected helper. Corrected frozen source/CI/peerACK/newgrant next.
 Source-assisted/measurement/model/resource/hold/spend remain unassigned/held;
 every owner objective and primary sole-publisher authority stay active.
+
+
+## 2026-10-01 — offline FilingFacts pipeline smoke validated
+
+Exact244c passes one actual Node22.23.2 serial focused run:25 tests,
+10 baseline+7 eval+8 evidence, zero failures. Nominal10+34 wording in original
+requests/ACK/grant was inaccurate; all3 approved files ran, originalreceipts
+unchanged, separate precision addendum retained. No count-filling repeat. Same
+owned cap prepares/audits 15-item/3-per-template seed20261001 plan and question-
+only output in3.524860625s. OwnPG90144 absent BEFORE nonce2c352 guardrelease
+17:12:00.472545Z; source/head/checkout unchanged. No model/resource/hold/spend.
+Currentremote7CI passes854 main+6 prechecks+9 notification, HTML0/0 andref0
+CodeQL. Third static/source ACK plus independent produced-JSON review rederive
+all15 source/question/expected/fact bindings and exact contractebb44b37; no
+reviewer JS/execution/human-expert qualification claimed. Initial4CodeQLalerts,
+static P2, withheld oldsource grants and count drift stay preserved.
+Artifact: artifacts/goal/filingfacts-baseline-contract-20261001.json with31
+byte/hash-bound raw assets, original plan/questions, metadata/timing scope limits.
+Evidence-only signedfinal sourceextension/currentCI/peer/main handoff follows;
+all12 sourcepaths must remain244c-exact. Primary solepublisher; offline-only
+contract needs no website deployment. Model/schema/measurement/source-parity
+financial gates remain held/unassigned, every full owner goal still active.
