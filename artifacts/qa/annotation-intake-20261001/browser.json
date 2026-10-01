@@ -1,0 +1,123 @@
+{
+  "schema": "canli.annotation-intake-browser-check.v1",
+  "browser": "148.0.7778.96",
+  "url": "http://127.0.0.1:5182",
+  "source_packet_sha256": "15c595ed8109dd324dffeddd104d2f72154ef3710b9d64a0fb7eac7ddc95b7ee",
+  "cases": [
+    {
+      "case": "legacy malformed draft preserved",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "original": {
+        "index": 999,
+        "answers": {}
+      },
+      "recovered_byte_for_byte": true
+    },
+    {
+      "case": "legacy malformed draft preserved",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "original": {
+        "index": 0,
+        "answers": null
+      },
+      "recovered_byte_for_byte": true
+    },
+    {
+      "case": "legacy malformed draft preserved",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "original": {
+        "index": -1,
+        "answers": {}
+      },
+      "recovered_byte_for_byte": true
+    },
+    {
+      "case": "matching damaged draft normalized with recovery",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "original_preserved": true
+    },
+    {
+      "case": "matching damaged draft normalized with recovery",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "original_preserved": true
+    },
+    {
+      "case": "matching damaged draft normalized with recovery",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "original_preserved": true
+    },
+    {
+      "case": "matching damaged draft normalized with recovery",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "original_preserved": true
+    },
+    {
+      "case": "foreign source refused; recovery does not multiply on reload",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "invalid JSON remains recoverable",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "matching source restores complete reviews and navigation",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "keyboard, notes, named submission and real downloads",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "complete_labels": 1,
+      "incomplete_work_preserved": true,
+      "digest": "15c595ed8109dd324dffeddd104d2f72154ef3710b9d64a0fb7eac7ddc95b7ee"
+    },
+    {
+      "case": "failed storage is visible; memory work can still download",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "changed question gets separate draft and visible prior-source recovery",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": []
+    },
+    {
+      "case": "narrow viewport without horizontal overflow",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "width": 320
+    },
+    {
+      "case": "narrow viewport without horizontal overflow",
+      "passed": true,
+      "page_errors": [],
+      "external_requests": [],
+      "width": 390
+    }
+  ],
+  "claims": "Synthetic browser fixtures only; no human review, expert labels, external submission or field-performance result."
+}

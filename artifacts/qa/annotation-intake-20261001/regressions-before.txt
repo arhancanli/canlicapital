@@ -1,0 +1,46 @@
+✔ an item is complete only with all three judgements, and a 'no' needs a note (1.460417ms)
+✔ the filled packet keeps the schema and order the agreement script reads, and ignores invalid values (0.333375ms)
+✔ the GitHub comment carries only fully answered items (0.236458ms)
+✖ a negative judgement without its required source note stays out of submitted labels (0.728708ms)
+✔ the copied submission is a real Markdown code block (0.220667ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.874667
+
+✖ failing tests:
+
+test at js/annotate-core.test.js:42:1
+✖ a negative judgement without its required source note stays out of submitted labels (0.728708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     answer_matches_filing: 'no',
+  +     citation_correct: 'yes',
+  +     id: 'e37027a149058b40',
+  +     notes: '',
+  +     question_clear: 'yes'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///Users/arhancanli/canlicapital-annotation-intake-20261001/js/annotate-core.test.js:46:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { id: 'e37027a149058b40', question_clear: 'yes', answer_matches_filing: 'no', citation_correct: 'yes', notes: '' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,66 @@
+{
+  "schema": "canli.annotation-intake-integration-quality.v1",
+  "verified_at": "2026-10-01T10:58:15.605151+00:00",
+  "integration_source_commit": "3c72be6e965690a8a669271d98e9e7b730a6669e",
+  "integrated_main": "91d1505254dfa9b42fad29152e76cf3507924e80",
+  "independently_reviewed_annotation_commit": "f625bfacfca6b96c247521aca4d1c7cb33428292",
+  "source_unchanged_after_review": true,
+  "validation": {
+    "local_build_full_node": "22.23.2",
+    "independent_peer_probe_node": "24.19.0",
+    "main_tests": 807,
+    "preverify_tests": 6,
+    "failed_tests": 0,
+    "built_browser_cases": 15,
+    "independent_dev_browser_cases": 10,
+    "independent_focused_tests": 23,
+    "onpage_pages": 699,
+    "onpage_errors": 0,
+    "onpage_warnings": 0,
+    "git_free_deployment_snapshot": "passed",
+    "checksummed_files_left_untouched": 416,
+    "published_v0_files_byte_identical": 5,
+    "manifest_parent_bindings_preserved": true
+  },
+  "source_packet_sha256": "15c595ed8109dd324dffeddd104d2f72154ef3710b9d64a0fb7eac7ddc95b7ee",
+  "evidence": {
+    "source_binding": "artifacts/qa/annotation-intake-integration-20261001/source-binding-check.json",
+    "built_browser": "artifacts/qa/annotation-intake-integration-20261001/built-browser.json",
+    "independent_dev_review": "artifacts/qa/annotation-intake-integration-20261001/independent-dev-browser-review.json",
+    "independent_dev_script": "artifacts/qa/annotation-intake-integration-20261001/independent-dev-browser-probes.py",
+    "independent_focused": "artifacts/qa/annotation-intake-integration-20261001/independent-focused.txt",
+    "assembly_failures_retained": "artifacts/qa/annotation-intake-integration-20261001/evidence-assembly-failures.json",
+    "logs": [
+      {
+        "path": "artifacts/qa/annotation-intake-integration-20261001/logs/integration-build.txt.gz",
+        "sha256": "abc8bf460c05ab884b9ab74e3581a6b42eb56ceb28886157807bd7f800c4b807",
+        "uncompressed_sha256": "84ab706b8e50f60b13327ff2ca3fd043f4645506272211737dc6d72236f6b03e",
+        "uncompressed_bytes": 112453
+      },
+      {
+        "path": "artifacts/qa/annotation-intake-integration-20261001/logs/integration-verify.txt.gz",
+        "sha256": "267fdb0ec7051b4fa825709cfd3a1057acec619aa67b3495c5cc8a8e86cbdbb7",
+        "uncompressed_sha256": "83f7233583c7be2cea1e6d59a95414ad6c5be54dcf7305c49b35f452793b9e7f",
+        "uncompressed_bytes": 190252
+      },
+      {
+        "path": "artifacts/qa/annotation-intake-integration-20261001/logs/integration-browser.txt.gz",
+        "sha256": "763e9ce7d27b88200ecbb4ff3d7b76b27f97fe52011176ea3f5289db2cb3dbde",
+        "uncompressed_sha256": "91e21c28994394477af9b2615f233727ff6e682b834d2caa7a7864b9b5897cb6",
+        "uncompressed_bytes": 658
+      },
+      {
+        "path": "artifacts/qa/annotation-intake-integration-20261001/logs/integration-clean-snapshot.txt.gz",
+        "sha256": "e0dfe7577440b84b9a39a5ec79423ba488e5f02bb40ea2a552531cdf0fbafa1e",
+        "uncompressed_sha256": "49d1c26d6725de7575ec5cf4f562881740b91a65dc5fa79ffc934fa7bba435e7",
+        "uncompressed_bytes": 112371
+      }
+    ]
+  },
+  "limits": [
+    "Independent peer browser probes used an isolated development server and Node 24; built checks on Node 22 are recorded separately.",
+    "Synthetic probes do not create human annotations, adjudicated gold, real model evaluation or external submissions.",
+    "Exact-head PR push, CI, merge and production delivery require separate receipts.",
+    "All Sovereign MCP, data-refinery, governed ALPHAC/execution, 10,000,000 actual-indexing, SEO/analyzer/keyword and legitimate adoption objectives remain active."
+  ]
+}
