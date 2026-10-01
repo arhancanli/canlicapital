@@ -1,0 +1,405 @@
+{
+  "schema": "canli.filingfacts-baseline-preparation-quality.v1",
+  "status": "OFFLINE_PIPELINE_SMOKE_PASS",
+  "source_commit": "244c3e3969ca844fe54ee277f0c18502628be1ba",
+  "source_tree": "f5d0cf7e9281b6d026ac8a60d51408e1e14466b6",
+  "source_sha256": {
+    "scripts/datasets/filing-facts/baseline-contract.mjs": "6afd5958d30f81c786bc12c63f2d7fc00692a66d94c1421c432c032c6ec4f912",
+    "scripts/datasets/filing-facts/baseline-contract-cli.mjs": "12ee9c7322fbaa3b3288676493c6177923165e243beaffc3f093988492ba6c61",
+    "scripts/datasets/filing-facts/BASELINE.md": "739c537d6c524088e8cec8c19818f3eeb88bbbef6e0ec094e384344aee86f173",
+    "scripts/datasets/filing-facts/eval.mjs": "f95e96cc30567a36e32511ded977cca0762a4e2f6d91980c90d849e505bb1eb3",
+    "scripts/datasets/filing-facts/evidence.mjs": "e6aea6e8a12b14525fb6bcacfc9081e73a86555d091edebc55e9027fa8789de5",
+    "scripts/datasets/filing-facts/generate.mjs": "bdf1f304d83e54b0d82343a73d31837d3d4930cfdf45e5e3f27f0a97dbe377ac",
+    "scripts/datasets/filing-facts/check.mjs": "a12d8add05d602bd8d28a8b1b10b2021e5b572433df0d7668658999b08f27796",
+    "scripts/datasets/filing-facts/templates.mjs": "4c21c2ff57f22771d474fe46a95d606da6e1249977e06f3cc1ac9fdae77ebea4",
+    "scripts/datasets/filing-facts/replay-evaluation.mjs": "c6a877d8d576c772606cc523f1e85d65c968433961bbf5b23bf7523151688911",
+    "scripts/datasets/filing-facts/EVALUATION.md": "4178e266c0c39fe4b8327601a956560c8cb2c0908352f971a3258bc6be2652b6",
+    "scripts/datasets/filing-facts/baseline-contract.test.mjs": "6af9c9080a065a1f12c2c2d086994772dd1e44ede34a7064d2a846d675136640",
+    "scripts/canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+  },
+  "plan": {
+    "contract_sha256": "ebb44b37252a11b1aa3b2ab0bbd57c0a157797a623da273c16b4329767a6a9dc",
+    "seed": 20261001,
+    "items": 15,
+    "per_template": 3,
+    "by_template": {
+      "change": 3,
+      "lookup": 3,
+      "net_assets": 3,
+      "ratio": 3,
+      "unanswerable": 3
+    },
+    "model_calls_authorized": false,
+    "role": "software pipeline smoke only"
+  },
+  "local": {
+    "tests": 25,
+    "pass": 25,
+    "fail": 0,
+    "by_file": {
+      "baseline-contract.test.mjs": 10,
+      "eval.test.mjs": 7,
+      "evidence.test.mjs": 8
+    },
+    "count_precision": "Approved exact three named test files ran. 10 new plus 15 existing tests is 25, not the nominal 44. Original grant/ACK/terminal/TAP remain unchanged. No extra retry or tests to fill the mistaken count.",
+    "terminal": {
+      "schema": "canli.filingfacts-offline-smoke-terminal.v1",
+      "source": "244c3e3969ca844fe54ee277f0c18502628be1ba",
+      "nonce": "2c352443d233425c9fee6404f05c248f",
+      "exit_code": 0,
+      "failure": null,
+      "ended_at": "2026-10-01T17:12:00.472545+00:00",
+      "seconds": 3.524860625,
+      "guarded_released": true,
+      "owned_process_group_absent": true,
+      "source_head_unchanged": true,
+      "checkout_clean": true,
+      "node_version": "v22.23.2",
+      "model_calls": 0,
+      "cloud_resources_created": 0,
+      "financial_holds_created": 0,
+      "spend": 0
+    },
+    "process": {
+      "pid": 90144,
+      "pgid": 90144,
+      "started_at": "2026-10-01T17:11:56.856648+00:00",
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-baseline/run-focused.py",
+        "--worker"
+      ]
+    },
+    "optional_stages": [
+      "prepare",
+      "audit",
+      "questions"
+    ],
+    "helper_sha256": "de493eac20a80a7e37797931f6bc710b25dd1ccbfb0fc23af22af26276ea738c"
+  },
+  "remote_ci": {
+    "head": "244c3e3969ca844fe54ee277f0c18502628be1ba",
+    "ci_run": 36896667556,
+    "codeql_run": 36896667558,
+    "all_checks_success": 7,
+    "main_tests": 854,
+    "precheck_tests": 6,
+    "notification_tests": 9,
+    "html_errors": 0,
+    "html_warnings": 0,
+    "merge_ref_open_codeql_alerts": 0
+  },
+  "independent_review": {
+    "source_status": "PASS_STATIC_SOURCE_ACK",
+    "reviewer_thread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+    "original_finding": "CC-351-FIXTURE-DATASET-PIN",
+    "resolution": "exact same-buffer dataset digest checked before scoring; transient-read regression passed in author local and remote tests",
+    "reviewer_executed_project_code": false,
+    "raw_plan_question_metadata_review": "PASS_READ_ONLY_JSON; independent Python rederived exact plan and all15 question/expected/fact bindings; no JS/compiler/test execution",
+    "raw_plan_question_metadata_sha256": "ac25c30baa7cde3ba71a034a4ae0d7adfe87898c24bc1709d637cd27fe811f00"
+  },
+  "preserved_failures": [
+    {
+      "head": "baecbf275ae9d616e9b19952c7027b610d48a4d6",
+      "functional_remote_main_tests": 852,
+      "codeql_open_alerts": [
+        86,
+        87,
+        88,
+        89
+      ],
+      "resolution": "permission/byte checks use the same FD; no query suppression"
+    },
+    {
+      "head": "a27f60b2071c112ac30a909c64affdd453f9418d",
+      "remote_ci": "did not run due to main350 goal-log conflict",
+      "resolution": "both chronology chunks preserved verbatim"
+    },
+    {
+      "head": "1bc76ea8fe20c48aa553bab547a02364b0e31c14",
+      "finding": "static possible transient fixture-oracle substitution",
+      "resolution": "same-buffer digest guard; no local attempt used this head"
+    },
+    {
+      "issue": "nominal 10+34/44 wording in source/capacity requests",
+      "actual": "all three approved files ran 10+7+8=25; original receipts unchanged; no count-filling repeat"
+    }
+  ],
+  "execution_state": {
+    "closed": "held",
+    "source_assisted": "held: schema/measurement adapter and immutable source parity unassigned",
+    "mcp": "held: immutable source parity/measurement adapter unassigned",
+    "provider": null,
+    "model": null,
+    "price": null,
+    "resource": null,
+    "financial_hold": null,
+    "model_calls": 0,
+    "model_baseline_results": 0,
+    "expert_gold_claim": false,
+    "data_oracle": "unchanged machine-checked public V0; human review remains separate"
+  },
+  "private_capacity_evidence": {
+    "grant_sha256": "66b8ca6102b480e4761642c106cbc49163d745a754d71b6fffe4ec7c50304c6d",
+    "raw_grant_and_predecessor": "retained in local coordination, not republished as product evidence",
+    "scope": "ONE completed local job; grants no model/resource/spend/publication acceptance"
+  },
+  "limits": [
+    "15 public items are software pipeline smoke, not model ranking, statistical power or held-out expert gold.",
+    "Historical V0 model scores remain byte-unchanged/unrescorable; parser impact remains unmeasured.",
+    "No complete source availability is inferred from selected V0 cited fact rows or an earliest absence row.",
+    "No actual model usage, cost or latency measurement is claimed; reviewed attempt-level adapter and fresh financial/usable-model admission are outstanding.",
+    "Static source review, author software tests and deterministic replay do not authenticate provider responses, filing truth or human expertise.",
+    "All Sovereign pillars, 10M actual indexing, source-backed quality/SEO/keywords/design/analyzers/research, legitimate adoption and governed ALPHAC outcomes remain active."
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/plan.json",
+      "bytes": 19426,
+      "sha256": "c1587bc3d002b86e68973145b99b56de6f5797a44f79419fc3da3e3b3b33a3b9",
+      "raw_bytes": 19426,
+      "raw_sha256": "c1587bc3d002b86e68973145b99b56de6f5797a44f79419fc3da3e3b3b33a3b9",
+      "format": "unchanged JSON"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/questions.json",
+      "bytes": 4033,
+      "sha256": "65dc1668b1f78fd1db352e052345814bc6f65f5203af49c2073fc30e30af4b5f",
+      "raw_bytes": 4033,
+      "raw_sha256": "65dc1668b1f78fd1db352e052345814bc6f65f5203af49c2073fc30e30af4b5f",
+      "format": "unchanged JSON"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/audit-terminal.json.gz",
+      "bytes": 295,
+      "sha256": "e853b508d3cead19ab5abc88080a36d0dfa1c1f9e41bba7edfb714637e676e62",
+      "raw_bytes": 529,
+      "raw_sha256": "4f8ae0d45943bde0011d1a4735166efe89546fd5bf0db7bb4af66283aa029785",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/audit.log.gz",
+      "bytes": 163,
+      "sha256": "b3dbc0f5eb2d5f91e7351c92ab7cc00d0da576522500ae3877b0abab6609a524",
+      "raw_bytes": 182,
+      "raw_sha256": "a83c7d7d4edf3db73b89f6ffc13ff93478e7348c215ce40e2a6fdfc078c7086f",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/focused-tests-terminal.json.gz",
+      "bytes": 280,
+      "sha256": "eb36a02a2cea8ec4ce85636ef00956d034a4178a43531048b9336f522f00b159",
+      "raw_bytes": 487,
+      "raw_sha256": "a6835721ff09cc19d2a11252d50e4de897bb19d566c182fc1c77b15133105a0c",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/focused-tests.log.gz",
+      "bytes": 1637,
+      "sha256": "62fbc4b999b89df5f02db97c11d8714eed758da3389e71d4b44c2ecfebcb15c7",
+      "raw_bytes": 6286,
+      "raw_sha256": "2e432a7f707f245b865ff5b8a245a61c292510783de118aece5ecbc9ec15f469",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/lease.json.gz",
+      "bytes": 465,
+      "sha256": "4725de296250a9205d49b3d841492ebb33513e195bcc0bc2983abd333345657a",
+      "raw_bytes": 666,
+      "raw_sha256": "1402de7f4bd1de57b78054681faebd9a3aa2dff6d977c01999340e02fbdfb109",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/prepare-terminal.json.gz",
+      "bytes": 297,
+      "sha256": "df205cf0c2d0baf613415079e3c5bbaa5dd78236510000b5612eb5c100e390e2",
+      "raw_bytes": 533,
+      "raw_sha256": "b4ae3ae58d60c7326130c9d745f66bb52ed01f10116142ece56d8f285ca6e177",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/prepare.log.gz",
+      "bytes": 163,
+      "sha256": "b3dbc0f5eb2d5f91e7351c92ab7cc00d0da576522500ae3877b0abab6609a524",
+      "raw_bytes": 182,
+      "raw_sha256": "a83c7d7d4edf3db73b89f6ffc13ff93478e7348c215ce40e2a6fdfc078c7086f",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/process.json.gz",
+      "bytes": 225,
+      "sha256": "019347b912046981a49b9108993cda7d4968495400ae0aea94d975398c00fe07",
+      "raw_bytes": 278,
+      "raw_sha256": "7c8a893d14511b25efec6e1ef4078d15be6686f343bfb4649747d35f4267d48a",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/questions-terminal.json.gz",
+      "bytes": 304,
+      "sha256": "1ba3905536237c8e3ff2ba9af2736df025e7ff2c8b177df40298cb45500416a6",
+      "raw_bytes": 642,
+      "raw_sha256": "cc982391400297dd63714213f589167385a18c31c789cae2cb1a5d2b579f96fe",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/questions.log.gz",
+      "bytes": 97,
+      "sha256": "7bcde53e656d22a78179c4a6d2facc1f00540cbaf5d37efaed8a0822962a47df",
+      "raw_bytes": 83,
+      "raw_sha256": "035289205e7ea2e6c2377ab16527c3be9935d23d99b1407bafb94a0390918b80",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/terminal.json.gz",
+      "bytes": 337,
+      "sha256": "7ee9b268f3e071373aa81af32d8321ce4352f5fbc29237f8c96a92455ed71a37",
+      "raw_bytes": 531,
+      "raw_sha256": "cdce58c357585f8f06ef70ddd3cb335b4209799a8e0cd2c6f3966be39988bb9b",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/worker.log.gz",
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/current/244c-remote-vite.log.gz",
+      "bytes": 108905,
+      "sha256": "34aedc4ae68b2b360f151a790955718ba6d3f20262ad55a856ed41baf3043188",
+      "raw_bytes": 1032364,
+      "raw_sha256": "4dd7deb187607646f06adb42c55013116503e924321e1c24781de11eb0ddfa82",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/current/244c-codeql-alerts.json.gz",
+      "bytes": 22,
+      "sha256": "64406e753d82e11c6bd63d1d04bb6aa083eefa0a46949bbfce994d556b989f0f",
+      "raw_bytes": 2,
+      "raw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/current/244c-source-extension.json.gz",
+      "bytes": 976,
+      "sha256": "96c5f34fc9c9da8532ec4ff5931a78be5be9d42e3d02a7fcfcf450a70c68514e",
+      "raw_bytes": 2625,
+      "raw_sha256": "633c360665df1a5ce164d160117790c7cab7764f53c3877694a76adc05e06a92",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/current/244c-local-actual-manifest.json.gz",
+      "bytes": 1224,
+      "sha256": "8e044c2f032beff5664b5961cc923fc67481e5474f6255e55033127a35634ab0",
+      "raw_bytes": 3051,
+      "raw_sha256": "061bd2c8e7077c0c223a8de586a6e36de7af89b99de19b221282acc05350bb6a",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/current/244c-focused-count-precision.json.gz",
+      "bytes": 420,
+      "sha256": "edd2631d29a521284dde5ccc618709035b2aa658b650c6553605cd85f25e3cf1",
+      "raw_bytes": 636,
+      "raw_sha256": "c23d748dc52b78318a6ae60b8277c71c61948836574089d03278127215490372",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/current/main350-integration-source.json.gz",
+      "bytes": 908,
+      "sha256": "5f47ce09c37e1524866eddabeb39e11855081ccb88e48c495585fa98bf15da10",
+      "raw_bytes": 2472,
+      "raw_sha256": "d446767d4aa7d37d5a1e01928cdf03556ca491b5b94e704d318c2e7339fef0ae",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/initial/baec-remote-vite.log.gz",
+      "bytes": 109056,
+      "sha256": "e921b1e72d4d69173244af59b9ce1575da25847f8e691ef5fa2da40c917b0ac1",
+      "raw_bytes": 1032831,
+      "raw_sha256": "d799a7351ae97b2adb2a2e0a03a6df74db84b55b0a54304d0918ac9d094a1b5c",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/initial/baec-codeql-alerts.json.gz",
+      "bytes": 1838,
+      "sha256": "d54f9ab1a3dddc39eaa4c4e68d721552b0c2327f80d1c931cdfefc5e36153bc4",
+      "raw_bytes": 14425,
+      "raw_sha256": "58e73ace3b9ef90df50f203b21a7ef4ef66718da227a97d6685a42d525b51d65",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/initial/baec-baseline-contract.test.mjs.gz",
+      "bytes": 3063,
+      "sha256": "54edf886524725f52596ff17189eb4906bdfa91c9cdace8688d0e59be76113f9",
+      "raw_bytes": 10025,
+      "raw_sha256": "ec40f68d0500eb567e1d64f74a75f424da152dfaff0acd34e1be0556ade9454b",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/initial/draft-source.json.gz",
+      "bytes": 563,
+      "sha256": "98e719ea9afc728bf4e236b3cfbed88e2e9e563426d36a26ccf9caf6335758d8",
+      "raw_bytes": 1197,
+      "raw_sha256": "2695ad56ac5c510cc9ef20eab3f2963657b7764a5c8cd9337f563c6344a58dd1",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/initial/a27-protected-source.json.gz",
+      "bytes": 808,
+      "sha256": "6b39c0b6dc5718c9127971611c70ba72925280de57253dd438fd540efb1d465a",
+      "raw_bytes": 2324,
+      "raw_sha256": "d0799e8cb1c877ac7887fe281f3bd62b395cf8d744074b2724af0e6a5603fb3c",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/initial/1bc-codeql-alerts.json.gz",
+      "bytes": 22,
+      "sha256": "64406e753d82e11c6bd63d1d04bb6aa083eefa0a46949bbfce994d556b989f0f",
+      "raw_bytes": 2,
+      "raw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/peer/original-fixture-binding-finding.json.gz",
+      "bytes": 1565,
+      "sha256": "9a07e04482ebd05656a6de99982ed6f311fa23acc8cf89d7b462618fd205e051",
+      "raw_bytes": 3153,
+      "raw_sha256": "7e484af9cc48d0412f0f9370333d64966a28e502698c1a97165007f93912e418",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/peer/corrected-static-source-review.json.gz",
+      "bytes": 2074,
+      "sha256": "78da6ef876ba86fb7a7ebac89686c7526bfc482506d6db661a94e69c30db2c57",
+      "raw_bytes": 4516,
+      "raw_sha256": "7aefb77091bf51ecc390bfde9338bcc00ab241cfa26200d54116b37ab7bbb3db",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/peer/primary-source-ack.json.gz",
+      "bytes": 1457,
+      "sha256": "132568d2cf93cf1cdc48d90c6dba2424a457ce7548b2a84a39d9899095fdd775",
+      "raw_bytes": 3577,
+      "raw_sha256": "0bbbaca6f22166e4bf44e96334a79da4a5159d5db9dc1e1eaf911155db182396",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/local/executed-helper.py.gz",
+      "bytes": 2590,
+      "sha256": "5db670f46511933409a7fcd63f02d2f11f40e415b2e6cbeab0b4f832b3ad5108",
+      "raw_bytes": 6794,
+      "raw_sha256": "de493eac20a80a7e37797931f6bc710b25dd1ccbfb0fc23af22af26276ea738c",
+      "format": "gzip"
+    },
+    {
+      "path": "artifacts/goal/filingfacts-baseline-contract-20261001/peer/independent-produced-json-review.json.gz",
+      "bytes": 1939,
+      "sha256": "a9ee682bd1558db9de91574d21c5ce236cdac54417389148566351611b86d3c1",
+      "raw_bytes": 4899,
+      "raw_sha256": "ac25c30baa7cde3ba71a034a4ae0d7adfe87898c24bc1709d637cd27fe811f00",
+      "format": "gzip"
+    }
+  ]
+}

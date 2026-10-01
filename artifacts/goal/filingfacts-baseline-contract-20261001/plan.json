@@ -1,0 +1,422 @@
+{
+  "schema": "canli.filing-facts-baseline-contract.v1",
+  "purpose": "pipeline-smoke-preparation",
+  "execution": {
+    "status": "unassigned",
+    "provider": null,
+    "model": null,
+    "price": null,
+    "resource": null,
+    "hold": null,
+    "model_calls_authorized": false,
+    "admission": "separate fresh lead/127f financial and usable-model review required"
+  },
+  "dataset": {
+    "canonical": "https://canlicapital.com/research/filing-facts-v0",
+    "directory": "public/datasets/filing-facts/v0",
+    "items": 1882,
+    "sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+    "files": {
+      "SHA256SUMS": {
+        "bytes": 343,
+        "sha256": "b54dca812414ede42ab7258dbb83fa3c041a71a4ff5223691b3dc2c00525e1d8"
+      },
+      "ff-eval-closed.json": {
+        "bytes": 32458,
+        "sha256": "450bff2b316adf5e8f4562d4cacdceca143c6b10ed657ecefa02af24e4c95720"
+      },
+      "ff-eval-mcp.json": {
+        "bytes": 32324,
+        "sha256": "50a88c0c383ac492a8c1c2d489a1c5830c478a71ae7bab7660fd2878a73cb6c6"
+      },
+      "filing-facts-v0.jsonl": {
+        "bytes": 1663084,
+        "sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d"
+      },
+      "gold-packet-v0.json": {
+        "bytes": 28263,
+        "sha256": "91c6f960e34509653800a4cda81bd0632dd58c889ee78eb6461a985765500413"
+      }
+    }
+  },
+  "context": {
+    "public/research/filing-facts-v0.md": {
+      "bytes": 5365,
+      "sha256": "de5ad90172a55e11b6c3e2a7c0aa588a84431005de985413aa62955aa9d093d5"
+    },
+    "scripts/datasets/filing-facts/README.md": {
+      "bytes": 4520,
+      "sha256": "ebd0f8467f0f34ec6bae5e2852de8996e09cffc3bbaab6d6e0142fe559d1abb8"
+    },
+    "scripts/datasets/filing-facts/EVALUATION.md": {
+      "bytes": 6050,
+      "sha256": "4178e266c0c39fe4b8327601a956560c8cb2c0908352f971a3258bc6be2652b6"
+    }
+  },
+  "historical_baselines": {
+    "ff-eval-closed.json": {
+      "status": "unrescorable",
+      "runs": 150,
+      "raw_answers_present": 0,
+      "parsing_change_effect": "unmeasured"
+    },
+    "ff-eval-mcp.json": {
+      "status": "unrescorable",
+      "runs": 150,
+      "raw_answers_present": 0,
+      "parsing_change_effect": "unmeasured"
+    }
+  },
+  "annotation": {
+    "packet_rows": 50,
+    "completed_packet_rows": 0,
+    "authenticated_expert_review": false
+  },
+  "sampling": {
+    "method": "stratified",
+    "seed": 20261001,
+    "per_template": 3,
+    "item_ids": [
+      "9f8b792a04fdbca5",
+      "bd18539a382e3ff2",
+      "f5afbfa4c400ff5a",
+      "8f3c74a53bd701ae",
+      "77c18c49c95bd30d",
+      "900ecd22c6b84632",
+      "f41c884e06412a79",
+      "7fcdffd84bd63e79",
+      "97709bdb5be342ee",
+      "8b9496419d6f9387",
+      "727c09addfeea17d",
+      "c5ed77712f67f5af",
+      "31354e29f03bd8d2",
+      "55f8087ddc921031",
+      "9657789f06c70723"
+    ],
+    "items": 15,
+    "by_template": {
+      "change": 3,
+      "lookup": 3,
+      "net_assets": 3,
+      "ratio": 3,
+      "unanswerable": 3
+    },
+    "role": "software pipeline smoke; no model ranking, statistical power or held-out expert-gold claim"
+  },
+  "bindings": [
+    {
+      "id": "9f8b792a04fdbca5",
+      "template": "change",
+      "company_cik": "0000740663",
+      "question_sha256": "c57e4136776fbf1e014ff2f244938379c29612472ed2744966e5f06a100fac43",
+      "item_sha256": "5b4e5a7bcdffe893f2a3747febf52d59e69f6139f1eabfb1b02c314d50989ac8",
+      "expected_sha256": "5ee25ef72a9a564a0960214af361f346b56787d4f179696d1fe78e6cc568d09a",
+      "cited_facts_sha256": "bcd818f34c65ba50fcfd9fbe667a5ed53270b990104d166cbcf939bd6e925732",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/740663/000143774925007257/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "bd18539a382e3ff2",
+      "template": "change",
+      "company_cik": "0000109657",
+      "question_sha256": "1438294d47354364628684187051bc1ddcdd6bb347d80675ce6b1216755f4e81",
+      "item_sha256": "42d3102004768436be61376e3f697e77713b03c085b8e6dc7b3871948760b421",
+      "expected_sha256": "08f258da88d7d5690b41c7c0f903013810755c082f33c8430c9a26e90e024d49",
+      "cited_facts_sha256": "2b53acd77fffe909da42b5c53262f5b5b8cd5023c819cbabb097d18c92838d70",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/109657/000149315224011332/",
+        "https://www.sec.gov/Archives/edgar/data/109657/000149315225007908/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "f5afbfa4c400ff5a",
+      "template": "change",
+      "company_cik": "0000042682",
+      "question_sha256": "6a260a6dd68073abc3909037454d42bc279092bde0c846632f0477098c637ed2",
+      "item_sha256": "eaa2d7df234739ea16a481088b48e222a1cbcb53b41625930f11a97ccc379623",
+      "expected_sha256": "3553b19a58ee3049c271721e8f6b45002437063cf54e706515540be92c271a7d",
+      "cited_facts_sha256": "ddba6ba7d802ef332bc8f206b9d6cbacc8cfef44d2a63b3d54812f9a54c20786",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/42682/000119312526084820/",
+        "https://www.sec.gov/Archives/edgar/data/42682/000143774925005856/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "8f3c74a53bd701ae",
+      "template": "lookup",
+      "company_cik": "0001546296",
+      "question_sha256": "e0d7a9c87c1aec636b83fd7331c3d406b97ca92d6e02e8e2d1cecacf4e4aac4f",
+      "item_sha256": "ed02dac6f8e5d73e9900e881c51443f07a806acd218ebd91714ea7eacb20981d",
+      "expected_sha256": "12f505b59672eff3f8d727586d63f7dd3b9492be6999c139beeec3173ba3e592",
+      "cited_facts_sha256": "85c53d8b0c83a79ff5cdf0584a5f180029a15656d4fbcb3d1096fdc453bffd5b",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1546296/000149315223010178/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "77c18c49c95bd30d",
+      "template": "lookup",
+      "company_cik": "0000815556",
+      "question_sha256": "95077e4850da24d7b111a69552985dd33facefab720ab5d6be60680c9b0812e6",
+      "item_sha256": "1f2e9268f83908fac79214289d36b7a8a3a5c4671439df89e74f80c10a889a1c",
+      "expected_sha256": "ec36506a936f722d29a5746bfa61d2ef1c3e771f652a485e40ae7e23ff9d6a9d",
+      "cited_facts_sha256": "e120eec1890acfdf2b4dfdf67e87665704d8320e5c65f480af77c89400b2aec0",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/815556/000081555623000009/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "900ecd22c6b84632",
+      "template": "lookup",
+      "company_cik": "0000034285",
+      "question_sha256": "fd3b221fcdb778b3b51029de2d8b338b6141dc65e53229f95aa3c4ee5f52094e",
+      "item_sha256": "68145a9fcab2d19a873f1c92c7ec027bd1571ea00b03c4c487f9357707480ab4",
+      "expected_sha256": "31ea7f82319018b2f26f728e943ef98c78de205cf2d39dc7a4816383c2f63160",
+      "cited_facts_sha256": "dd0285e3ad59cd11348ef34db26e460ca77c0b1fa989be2e8dd28e1d6aa0c58a",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/34285/000107997417000088/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "f41c884e06412a79",
+      "template": "net_assets",
+      "company_cik": "0001528849",
+      "question_sha256": "e957126cb87862c51f4ef3ff43985f06b190caaf59b05a5868bbd9120c8b7046",
+      "item_sha256": "b5ba1fe75cabd2af3b7b7295a2df2dbed0cfb649a2af33e9f5f16f15f3c280fe",
+      "expected_sha256": "72f214881e43072396e1a9fda9f9bae2a33b4e1ac838441d0748228325400390",
+      "cited_facts_sha256": "10e746836ef06d10e915370228fc6ded9a263aff4567c3280ca95623bcbf751e",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1528849/000155837024004248/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "7fcdffd84bd63e79",
+      "template": "net_assets",
+      "company_cik": "0000714310",
+      "question_sha256": "e326dee9935868d70e6f6a81611e9435e10968ae65c9bb1a3be01378b1704231",
+      "item_sha256": "cb997546659c842c32da9648f8093c506d4e0b5516b1361d72fd8300c04b8c89",
+      "expected_sha256": "cdf4ef73b8cd06bd0864d832d05cf6d42482963d291a2fc0eb1cf574a6e96c96",
+      "cited_facts_sha256": "e65ef197d6c4e6069635a3b5ac61cfaf122f388962e02a36a044b2b9e533c5b1",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/714310/000071431026000017/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "97709bdb5be342ee",
+      "template": "net_assets",
+      "company_cik": "0001345016",
+      "question_sha256": "e12c3b2801bbf8cfd4b7ccaea29873d3df6756cc2abdba72df421127266f479a",
+      "item_sha256": "1cfe32ff33eddee733daec2a8127b0e1e807d0ff4a3aad5e3760df83f2095c65",
+      "expected_sha256": "29e1784b74345442de2e72e3987497b03b8889fc4a3dc34b313a448fff63b6bc",
+      "cited_facts_sha256": "776c26e512cdad809c2425f3f1321c4ffb422252c8851515ade3d5f33044138a",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1345016/000134501626000019/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "8b9496419d6f9387",
+      "template": "ratio",
+      "company_cik": "0000924515",
+      "question_sha256": "d65fa30604f0545ad9b0fbf4d1e8c7dd87df7c3ab40e76d89254f29ff5a12e48",
+      "item_sha256": "51ba466ff9f92b6c2260d61cd0c97d414de06291f87354989b068d26fc6986a8",
+      "expected_sha256": "488ab14c484bc41269bd17c7fcf462f48dbf8b887d8717a0cd5d8d049e72a098",
+      "cited_facts_sha256": "40add7757a96a3be573a132399d58509c9da5420df90e7ffe43526bd0c598212",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/924515/000147793224001549/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "727c09addfeea17d",
+      "template": "ratio",
+      "company_cik": "0000216877",
+      "question_sha256": "8ee1a0d1cd66cf25a049996316b4c9155dddabce6c725c8653e6b45ddcd034b9",
+      "item_sha256": "fc5034e1151f94024b99d12c2780e794f43ad057211d9c33b2f7aef88a02028a",
+      "expected_sha256": "86586340cccbcea2308bbf0d5a7d11cb9a16196250b372ad0463348eb241afe0",
+      "cited_facts_sha256": "016d78b94fec20680fb94d878df8302984136384f48c3596ddb520e6de8d2be7",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/216877/000106299325000751/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "c5ed77712f67f5af",
+      "template": "ratio",
+      "company_cik": "0000773840",
+      "question_sha256": "e5f831195778ae1a3b3e8f64b55bdb986571d38f99357e10c3ae28680b0a005d",
+      "item_sha256": "c1d173ecb9e824a069add235112e61437e02a3bf5d938bbba119c95885b4ff2d",
+      "expected_sha256": "cc23c68cb7498789ca5dcdf03506ee37b75c3bb57dea73257beac4bfcd8c5726",
+      "cited_facts_sha256": "5cee2e85afc8e10dc5c321d69a3a3397b360f4b96fc1b2002acc3b799b74084e",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/773840/000077384025000010/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "not an absence task"
+    },
+    {
+      "id": "31354e29f03bd8d2",
+      "template": "unanswerable",
+      "company_cik": "0000008858",
+      "question_sha256": "4b109128f3166cb7d1bc9f77b11e0b8d9929ebf06b7690d975d809f52915944e",
+      "item_sha256": "fba75a8456104dbaa3d5ef441dc356f9171aa906bd882b0c00c078786467dcfa",
+      "expected_sha256": "a6e25dd564fe72ed27ea9274f5cb923d9516b203c12b7fd0aeffaef11b49aafe",
+      "cited_facts_sha256": "32c0da7d4a46faea742b4ec29312a35658e915e276422b9b2aae06952eacf144",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/8858/000095012310077359/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "full annual concept history required; one earliest cited row does not prove completeness"
+    },
+    {
+      "id": "55f8087ddc921031",
+      "template": "unanswerable",
+      "company_cik": "0000084839",
+      "question_sha256": "726aec14d5b3395531b91cdeea50114e97f8481bea0f19342ee4f36f927a4b33",
+      "item_sha256": "1a33a43c2d27b3923e721ec015726a130eda079b53dec798ce5677d864e35499",
+      "expected_sha256": "92d91b03103724e9c7bc77ba6fa35ee474a9d1da5aade4a4ed6ff0400767becc",
+      "cited_facts_sha256": "1cee572c0e211d86b5a4cd1cf6e29a56907de7de0306f7d1be4aca229fffbeca",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/84839/000104746912001690/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "full annual concept history required; one earliest cited row does not prove completeness"
+    },
+    {
+      "id": "9657789f06c70723",
+      "template": "unanswerable",
+      "company_cik": "0001000209",
+      "question_sha256": "2d6a031a77bfd299c4b024ce427e9aa2271ebbbbdfdef6dd671f9c07f9dcf49b",
+      "item_sha256": "d7158ff595cf34fffaa8d24580865781dd88580f676ad5341687c100f9259345",
+      "expected_sha256": "fc009d129321487c7e2a2b07facac4ff9440198d51862e69643a14ae513ee1af",
+      "cited_facts_sha256": "3a093c48be3715ca5a7371c9582d28f1e6edbb57f9a4ad44d42127c0e0078539",
+      "cited_filing_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1000209/000119312519073307/"
+      ],
+      "source_availability": "unverified",
+      "absence_coverage": "full annual concept history required; one earliest cited row does not prove completeness"
+    }
+  ],
+  "implementation": {
+    "scoring_version": "canli.filing-facts-scoring.v1",
+    "sources": {
+      "scripts/datasets/filing-facts/eval.mjs": {
+        "bytes": 11123,
+        "sha256": "f95e96cc30567a36e32511ded977cca0762a4e2f6d91980c90d849e505bb1eb3"
+      },
+      "scripts/datasets/filing-facts/evidence.mjs": {
+        "bytes": 8838,
+        "sha256": "e6aea6e8a12b14525fb6bcacfc9081e73a86555d091edebc55e9027fa8789de5"
+      },
+      "scripts/datasets/filing-facts/generate.mjs": {
+        "bytes": 2868,
+        "sha256": "bdf1f304d83e54b0d82343a73d31837d3d4930cfdf45e5e3f27f0a97dbe377ac"
+      },
+      "scripts/datasets/filing-facts/check.mjs": {
+        "bytes": 3442,
+        "sha256": "a12d8add05d602bd8d28a8b1b10b2021e5b572433df0d7668658999b08f27796"
+      },
+      "scripts/datasets/filing-facts/templates.mjs": {
+        "bytes": 9216,
+        "sha256": "4c21c2ff57f22771d474fe46a95d606da6e1249977e06f3cc1ac9fdae77ebea4"
+      },
+      "scripts/canonical-json.mjs": {
+        "bytes": 9481,
+        "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+      },
+      "scripts/datasets/filing-facts/replay-evaluation.mjs": {
+        "bytes": 1750,
+        "sha256": "c6a877d8d576c772606cc523f1e85d65c968433961bbf5b23bf7523151688911"
+      },
+      "scripts/datasets/filing-facts/baseline-contract.mjs": {
+        "bytes": 12116,
+        "sha256": "6afd5958d30f81c786bc12c63f2d7fc00692a66d94c1421c432c032c6ec4f912"
+      },
+      "scripts/datasets/filing-facts/baseline-contract-cli.mjs": {
+        "bytes": 1970,
+        "sha256": "12ee9c7322fbaa3b3288676493c6177923165e243beaffc3f093988492ba6c61"
+      },
+      "scripts/datasets/filing-facts/BASELINE.md": {
+        "bytes": 5109,
+        "sha256": "739c537d6c524088e8cec8c19818f3eeb88bbbef6e0ec094e384344aee86f173"
+      }
+    }
+  },
+  "arms": {
+    "closed": {
+      "capture_arm": "closed",
+      "status": "held",
+      "source_access": "question only",
+      "tool_contract": "forbidden",
+      "tool_calls": 0,
+      "tool_trace": "empty; no source context or source contract"
+    },
+    "source_assisted": {
+      "capture_arm": null,
+      "status": "held",
+      "source_access": "identical immutable source bundle as MCP for every selected question",
+      "reason": "PR343 capture schema has no separate source-assisted arm; reviewed adapter/schema required before execution"
+    },
+    "mcp": {
+      "capture_arm": "mcp",
+      "status": "held",
+      "source_access": "identical immutable source bundle as source-assisted",
+      "reason": "server/tool contract and exact source availability must be pinned before execution"
+    }
+  },
+  "comparison": {
+    "questions": "same ordered item IDs and question bytes in every arm; expected answers excluded from prompts",
+    "model": "same provider/model/version and generation settings in every compared arm",
+    "source_parity": "source-assisted and MCP must expose the same immutable source bytes, coverage and truncation policy",
+    "cohort": "freeze source availability and complete comparison cohort before requests; never trim failures or missing answers afterwards",
+    "closed_vs_assisted": "measures source access plus the workflow; does not isolate an MCP transport effect",
+    "source_proof": "V0 selected facts/accession URLs do not establish a complete provider or server source snapshot"
+  },
+  "capture_requirements": {
+    "reuse": "canli.filing-facts-answer-capture.v1 and canli.filing-facts-evaluation.v1; replay-evaluation.mjs is authoritative",
+    "per_item": [
+      "raw response_text or null",
+      "error or null",
+      "provider response IDs and observed model",
+      "raw provider usage or explicitly unavailable",
+      "raw tool arguments/results and truncation",
+      "every request/retry attempt, including failed attempts",
+      "attempt start/completion timestamps and elapsed latency",
+      "measured billed cost or null with reason and pinned price basis"
+    ],
+    "denominators": "all 15 selected items, including missing captures, missing responses, request errors and no final answers",
+    "usage_cost_latency": "missing measurements are null with explicit coverage; never zero-fill or report a partial total as complete",
+    "retries": "include attempts, tokens, cost and elapsed time from errors/retries; no success-only averages",
+    "admission": "current eval.mjs lacks per-attempt latency/cost/retry records; a reviewed measurement adapter is required",
+    "financial": "fresh wallet and usable existing model, shared $6 total tax-only cash guard, $2 reviewed job hold, $20 credit margin; no allocation in this contract"
+  },
+  "limitations": [
+    "This is an offline preparation artifact. No model was called, provider result authenticated, resource allocated or financial hold created.",
+    "V0 is machine-generated/checked XBRL evidence, not human-verified filing truth or authenticated expert gold; tagging errors may enter answers.",
+    "Historical V0 scores remain unrescorable and byte-unchanged; no raw answers may be reconstructed from expected, parsed or correct fields.",
+    "Public V0 questions may have appeared in training; this sample is not a held-out benchmark or a model-ranking study.",
+    "Use only cleared original questions, numeric facts and filing identifiers. The historical card's blanket public-domain wording does not clear rendered issuer filings or vendor rows.",
+    "Annual XBRL absence is narrower than absence from all rendered filings; complete captured concept history is still unverified."
+  ],
+  "contract_sha256": "ebb44b37252a11b1aa3b2ab0bbd57c0a157797a623da273c16b4329767a6a9dc"
+}
