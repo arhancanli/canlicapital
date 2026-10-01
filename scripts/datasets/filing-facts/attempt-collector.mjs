@@ -17,8 +17,11 @@ const PURPOSE = 'synthetic-software-fixture';
 const MAX_CAPTURE_BYTES = 32 * 1024 * 1024;
 const MAX_EVENTS = 512;
 const MAX_PACKET_BYTES = 256 * 1024;
-const MAX_CONTROL_EVENT_BYTES = 64 * 1024;
-const MAX_RAW_EVENT_BYTES = Math.ceil(MAX_FIXTURE_BYTES / 3) * 4 + MAX_CONTROL_EVENT_BYTES;
+const MAX_FRAME_OVERHEAD_BYTES = 64 * 1024;
+// item_end retains one accepted64KiB error; JSON escaping can require six bytes
+// per decoded byte. Reserve that encoded maximum plus the bounded frame fields.
+const MAX_CONTROL_EVENT_BYTES = 6 * MAX_RAW_BYTES + MAX_FRAME_OVERHEAD_BYTES;
+const MAX_RAW_EVENT_BYTES = Math.ceil(MAX_FIXTURE_BYTES / 3) * 4 + MAX_FRAME_OVERHEAD_BYTES;
 const DISPATCH_RESERVE_BYTES = MAX_RAW_EVENT_BYTES + 8 * MAX_CONTROL_EVENT_BYTES;
 const INITIAL_CONTROL_RESERVE_BYTES = 4 * MAX_CONTROL_EVENT_BYTES;
 const LEDGER_DISPATCH_RESERVE_BYTES = 8 * MAX_FIXTURE_BYTES;

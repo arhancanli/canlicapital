@@ -1239,3 +1239,28 @@ Only assignedcollector/test/guide/append-onlySTATUS+LOG changed; package,
 353/351/343/V0/journal/MCP/site/ALPHAC and previousarchives remain unchanged.
 No localNode/import/test/CLI/browser/job/grant/model/provider/resources/holds/
 spend/experts/orders/outreach/site/npm/version change. All full owner goalsACTIVE.
+
+
+## Encoded error-frame correction, 2026-10-01T22:30:00.766247+00:00
+
+Signed946 actual existing remoteCI verifies44 namedPASS/924main+6pre+9
+notification/Node22.23.3/all7SUCCESS/zero current CodeQL objects; tested
+mergee3f77603/tree077 equals946. Raw e81a73b4/receiptfd3771fe/fidelity
+5595824a are retained. Primary5e8228a2 closes prior event admission0a97
+and raises CC-356-CONTROL-FRAME-ENCODED-BOUND: accepted64KiB error plus
+JSON overhead/escaping can exceed64KiB control-frame cap. Static examples
+are not executed collector reproductions and44 does not cover this edge.
+Control reserve/cap now includes6x64KiB accepted-error escaping plus64KiB
+of frame fields; raw-event base64 reserve independently retains64KiB of
+fields. Startup/dispatch/footer guards derive from those exact limits.
+New45 checks both64KiB ASCII and NUL-error captures, exact retained raw/
+item+attempt errors, finalized full-N/known usage and byte-equal read-only
+replay. This new case is WRITTEN/UNEXECUTED until its own signed-sourceCI.
+Original37/38/40/44, CodeQL90 and every independent P2 remain unchanged.
+No local Node/import/project/test/job/grant/CPUclaim/provider/model/resource/
+hold/spend/experts/orders/outreach/site/npm/version publication. Only three
+assigned collector sources and append-onlySTATUS/LOG change; package and
+353/351/343/V0/MCP/journal/site/ALPHAC/oldarchive bytes remain unchanged.
+Final independent review/archive/CI/primary ordinary merge stay open; all
+full Sovereign/10M actual indexing/SEO/intents/MCP/adoption/refinery/expert/
+research/ALPHAC/paper then legally governed capital goals remain ACTIVE.

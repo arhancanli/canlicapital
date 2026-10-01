@@ -516,3 +516,23 @@ test('bounded generation settings near the JSON limit refuse initial ledger expa
   await assert.rejects(collect(s, runtime(() => { calls++; return response(); })), /initial ledger leaves no reserved/);
   assert.equal(calls, 0); assert.deepEqual(fs.readdirSync(s.home), []);
 });
+
+test('accepted64KiB ASCII and escaped-control errors finalize and recover without truncation', async t => {
+  for (const unit of ['x', '\u0000']) {
+    const s = setup(t), error = unit.repeat(MAX_RAW_BYTES);
+    const raw = bytes({ ...JSON.parse(response({}, 429)), error });
+    assert.equal(Buffer.byteLength(error), MAX_RAW_BYTES); assert.ok(raw.length <= MAX_FIXTURE_BYTES);
+    let calls = 0;
+    const output = await collect(s, runtime(() => { calls++; return raw; }));
+    assert.equal(calls, 1); assert.equal(output.finalized, true);
+    assert.equal(output.ledger.items[0].status, 'error'); assert.equal(output.ledger.items[0].error, error);
+    assert.equal(output.ledger.items[0].attempts[0].error, error);
+    const captured = events(s.home), itemEnd = captured.find(event => event.kind === 'item_end');
+    assert.ok(itemEnd.raw.length > MAX_RAW_BYTES); assert.ok(itemEnd.raw.length <= s.policy.capture_limits.control_event_bytes);
+    assert.deepEqual(Buffer.from(captured.find(event => event.kind === 'raw').data.payload_base64, 'base64'), raw);
+    assert.equal(output.report.items[0].attempts[0].usage.input_tokens, 2);
+    assert.equal(output.report.cost.actual_billed_total, null);
+    const reproduced = recover(s);
+    assert.deepEqual(reproduced.ledger_bytes, output.ledger_bytes); assert.deepEqual(reproduced.report_bytes, output.report_bytes);
+  }
+});

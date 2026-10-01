@@ -61,7 +61,11 @@ pending/raw/terminal, backoff pair and final marker, refusing plans above512
 before capture effects. Original inputs/policy/manifest must leave reserved
 control/footer space. Each new dispatch reserves a maximum bounded raw event
 plus eight control frames; insufficient remaining byte capacity stops explicitly
-before callback invocation. The8MiB ledger also reserves4MiB before a dispatch
+before callback invocation. A control frame reserves six times the accepted64KiB
+error limit plus64KiB for its other fields, so JSON control-character escaping
+cannot turn an accepted error into an oversized item-end record. The raw frame
+separately reserves the512KiB envelope's base64 expansion plus64KiB of fields.
+The8MiB ledger also reserves4MiB before a dispatch
 for request/response/tool/answer expansion; initial ledger/control capacity is
 checked before effects, and recomputed reports must fit the8MiB JSON bound.
 These conservative limits can stop a plan before its maximum attempt count.
