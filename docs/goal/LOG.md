@@ -4953,3 +4953,43 @@ Evidence-only signedfinal sourceextension/currentCI/peer/main handoff follows;
 all12 sourcepaths must remain244c-exact. Primary solepublisher; offline-only
 contract needs no website deployment. Model/schema/measurement/source-parity
 financial gates remain held/unassigned, every full owner goal still active.
+
+
+## 2026-10-01 — offline attempt-accounting/source-parity implementation phase
+
+Primary assignment18:17:50 is verified in coordination/primary-assignment.md.
+Secondary creates assist/attempt-accounting-20261001 from actual mergedmain
+1ed2f9cbb0c4c83f96a1a6fdc2b4746773458518 in canlicapital-attempt-accounting-20261001.
+Standalone module/guide and25 meaningful regression cases are WRITTEN, not run.
+Contract binds351baseline/question-only projection/dataset/sample/scoring/newimplementation
+and source packets. Ledger covers raw retry/errors/pending/missing items and slots,
+caller-observed time/usage provenance, exact decimal supplied-rate estimates and explicit
+unknowns/fullN. Source packet byteparity/truncation is separate from claimedrights/complete
+filing availability; all absence/source-assisted/original-source requirements remain held.
+No default/provider/client/network/automaticretry/run/source conversion or billing claim.
+Old343seven/V0five/351compiler-CLI-guide/archive/MCP/journal/site remain untouched.
+Focused test registration only; sourcefreeze/independentreview/freshlead exact Node slot/CI
+are next. No Node/test/CLI/build/browser/provider/job/lease/financialmodel/resource/hold/spend
+/orders/publication has run in this phase. Historical6-gap intake9c0fc5d6 preserved.
+Primary journalc440 actual21PASS is separate author evidence; third owns raw/Python gates.
+Every owner objective stays ACTIVE: fourSovereign pillars/efficient distinct MCP family,
+rights-cleared realexperts/refinery, governedALPHACnetforwardSharpe>2/14distinctqualified
+sleeves/realizedmaxDD<=10%, paperthenlawfulcapital,10Mactuallyindexed usefulcanonical
+pages, source-backedquality/SEO/relevantkeywords/analyzers/design/research/realadoption.
+Observed 2026-10-01T18:57:13.395178+00:00.
+
+
+## 2026-10-01 — attempt-accounting source ready for independent review
+
+Standalone implementation, guide and25 test cases are written. Static review tightens
+Unicode/hash/currency types, refuses duplicate usage pointers and keeps an abort with
+no retained attempts out of complete cost estimates. The only six changed paths are
+the new module/test/guide, focused package registration and goalSTATUS/LOG. Actual
+working-byte comparison verifies all5,570 protected base files (374,779,574 bytes)
+match1ed2f9cb; receipt static-pre-freeze.json SHA6d50fc48cf433863de36f6caafecd544b31fd1028109d4382a70e03934c40089.
+No Node import/test/CLI execution has occurred. Signed source, peer contract review,
+remoteCI and a fresh source-specific lead grant precede any focused local job.
+Old baseline/evaluation/V0/journal/MCP/site/hero and failures remain unchanged.
+Every full owner objective remains ACTIVE; no provider/model/price lookup/resources
+/financialhold/spend/humanlabels/orders/sitepublication/outreach.
+Observed 2026-10-01T19:19:26.981220+00:00.
