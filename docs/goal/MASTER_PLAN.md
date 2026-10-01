@@ -11,12 +11,12 @@ low measured latency, low token cost, understandable errors, independent checks 
 examples. Keep improving existing servers while expanding the family. The owner's requests
 for the biggest finance/quant family and scores above 9 remain targets, never claims.
 
-| Server | Purpose and next substantial work | Verified starting point |
+| Server | Purpose and next substantial work | Verified checkpoint (2026-10-01) |
 | --- | --- | --- |
 | Validation | Calibrated audit, counted research trials, return/trade reconciliation, costs, leakage checks and useful remediation | Hosted/npm 0.10.1, 15 tools |
 | Fundamentals | First-reported financial data; complete quarters/TTM, survivorship-aware universe, statements, factors and input audit | Hosted 0.5.0, 7 tools; npm 0.1.0 |
 | Research | Find prior trials/papers, explain failures, preflight ideas, check feasibility and artifact integrity | Hosted 0.2.0, 6 tools; npm 0.1.0 |
-| Execution | User-stated sizing and limits, pre-trade costs, post-trade shortfall, signed journals and paper execution | Private/unreleased 0.1.0 source, 3 tools; not on npm |
+| Execution | User-stated sizing and limits, pre-trade costs, post-trade shortfall, signed journals and paper execution | Private/unreleased 0.1.0 source, 4 tools including local shortfall; #339 merged; not on npm |
 | Backtest | Local point-in-time backtests, validation and evidence receipts | Future family member; inspect canli-backtest/canli-pit-lake before implementation |
 | Portfolio | Local breadth, correlations, drawdown controls and sizing | Future family member; reuse shared validated cores |
 | Market/venue extensions | Additional asset classes and venue context | Data rights and measured need precede publication |
@@ -91,13 +91,14 @@ remain separate governed milestones. Preserve the owner's ambition to become a r
 
 Recovery and live inventory are complete for the sources listed in CLAUDE_RECOVERY_20261001.md.
 Local shortfall analysis and annotation coverage/adjudication controls are implemented and tested
-in the continuation branch. Shortfall accepts a bounded local file to avoid sending raw histories
+on main via #339. SEO/performance #336/#337 are merged and verified live at the 06:52Z
+production checkpoint. Shortfall accepts a bounded local file to avoid sending raw histories
 through model context; token and local latency observations are recorded, not worldwide rankings.
 The annotation export preserves review claims and source decisions; real expert submissions
 remain outstanding. Both are reversible code work under
 the owner's existing authorization. Keep version numbers and hosted pins unchanged until their
 substantial release bars hold. Then resume the detailed family plans, publication parity,
-SEO/performance PRs and independent review, recording each transition in STATUS.md and LOG.md.
+remaining SEO/performance measurements and independent review, recording each transition in STATUS.md and LOG.md.
 
 Source evidence: artifacts/goal/continuation-baseline-20261001.json. Read this map together with
 the owner's full vision and requirements; it does not replace either.

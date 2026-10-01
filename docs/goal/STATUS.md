@@ -2,64 +2,79 @@
 
 ## Verified continuation, 2026-10-01
 
-Goal ACTIVE, NOT ACHIEVED. Codex recovered the owner's Claude instructions and launched the
-goal. Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
-`review/claude-perf-20261001`. The implementation started from 607e0a1c (#335); #339
-merged as 37221be6 at 05:41Z after all seven Node 22/security/contract CI checks passed.
-The original expansion checkout and its existing uncommitted work are preserved.
+Goal ACTIVE, NOT ACHIEVED. Recovered the owner's relevant Claude CanliCapital messages,
+vision, memory and 16 detailed plans. MASTER_PLAN.md maps the complete objectives;
+CLAUDE_RECOVERY_20261001.md lists sources and distinguishes dated notes from verified state.
+Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
+`records/continuation-checkpoint-20261001`. Prior dirty worktrees are preserved.
 
-- Hosted validation 0.10.1 / 15 tools, fundamentals 0.5.0 / 7 tools, research 0.2.0 / 6 tools
-  initialize and list successfully. npm latest is 0.10.1 / 0.1.0 / 0.1.0 respectively.
-- Execution remains private/unreleased 0.1.0. This branch adds `measure_shortfall` to sizing,
-  order checks and journal verification (four local tools); no npm package exists. Shortfall has
-  explicit unknown fees, counted exclusions, bounded output, a seeded stationary bootstrap and
-  a hashed local-file input. The hosted build/pins and package versions are unchanged.
-- FilingFacts: 1,882 machine-checked generated items, CC BY 4.0 public bundle, 50 blank gold
-  items. No independent human-review/adjudication artifacts in that bundle. Coverage accounting,
-  distinct declared identities, immutable source bindings and a source-backed adjudication
-  export are implemented here. Accepted items retain both submitted judgments/notes. Next:
-  actual independent reviewers, adjudicator and expert qualification evidence.
-- Website #336 merged as e9a410ed at 06:04Z after seven CI checks and a clean git-free deployment
-  snapshot build passed. #337 font/performance integration is local and being verified; #338
-  dependency update remains open. Production checkout is still 607e0a1c until activation.
-- Google/Bing counts, scorecards and forward-performance measurements below are historical;
-  this continuation has not freshly measured search-engine indexing or forward outcomes.
+### Completed implementation and publication checkpoint
 
-Evidence: `artifacts/goal/continuation-baseline-20261001.json` and
-`CLAUDE_RECOVERY_20261001.md`. Full goal structure: `MASTER_PLAN.md`. Phase started:
-execution continuation plus annotation-quality controls. Local verification: full build,
-778 repository tests + 6 preverify, 43 execution tests, root/execution audits with zero
-vulnerabilities, immutable FilingFacts v0 checksums intact. The on-page audit passes with two
-existing warnings addressed by open #336. PR #339 is merged on main; execution remains unreleased and no new package/hosted feature was published.
+- #339 merged as 37221be6 at 05:41Z: local execution shortfall and complete FilingFacts
+  review/adjudication controls. Execution remains private/unreleased 0.1.0, four local tools.
+- #336 merged as e9a410ed at 06:04Z: generated social cards and truthful structured-data
+  quality contracts; source dates work without git; 416 checksummed files remain untouched.
+- #337 merged as 2dce28bf at 06:46Z: smaller web fonts and ledger contrast fix, integrated
+  with both preceding changes. Each PR passed all seven Node 22/security/contract CI checks.
+  The merged #337 commit also passed all seven checks. No package version was bumped.
+- Production checkout is clean, detached at 2dce28bfce1a1e31cc56c98cf8cdba456d587799.
+  Existing locked hourly publisher completed at 06:52:49Z, with a stable source snapshot.
+  Landing deployment dpl_67mau6nJZ3pFnv726CTgRSyHpnBn is Ready and aliased to canlicapital.com.
+  Live homepage bytes match the deployment; sampled site metadata, fonts, canonical URLs,
+  admitted/withheld company pages and unknown-company 404 behavior pass.
+- Hosted validation 0.10.1 / 15 tools, fundamentals 0.5.0 / 7, research 0.2.0 / 6 still
+  initialize/list successfully, with the same versions and tool names as the recovery baseline.
+  npm latest remains 0.10.1 / 0.1.0 / 0.1.0 as checked at recovery; publisher parity is open.
+- Live sitemap has 22 children. Publisher reported 916,476 canonical URLs and IndexNow
+  accepted 23 updated URLs (HTTP 200). Neither number proves actual search indexing.
 
-Evidence also includes the three arch 8.0.0 bootstrap oracle cases, current read-only ALPHAC
-parity in `shortfall-local-parity-20261001.json`, and `shortfall-local-benchmark-20261001.json`.
-The four-tool list is 1,636 o200k / 1,571 cl100k. A synthetic 1,000-order local-file request uses
-58 o200k input tokens versus 96,154 inline; file paths vary. Local stdio median is 3.3 ms, or
-24.7 ms with 199 bootstrap draws; these are single-machine observations, not hosted/ranking claims.
-The new tool's original 220-token target is missed (386); the full seven-tool budget is unproven.
+Validation: combined full build/verify passes, 786 main tests plus 6 preverify, 695 audited
+pages with 0 errors/warnings; execution package 43/43, independent financial oracles and
+16 focused annotation tests. Root/execution audits had zero vulnerabilities. Both SEO and
+font candidates passed the clean Git-free deployment snapshot build. Fresh font browser
+comparison preserved 4,670 boxes in six cases; five cases were pixel-identical, mobile home
+had a 180-pixel paint difference, with an identical same-font control. That initial strict
+pixel-check failure and limitation are retained; September Lighthouse scores remain historical.
+External Rich Results approval, authentic app reviews and representative article imagery
+remain open. Local metadata tests are the site's quality contract, not external eligibility.
 
-Completed #336; current phase integrates #337 with main. Browser comparison: 4,670 element
-boxes unchanged across three pages at phone/desktop widths; five of six cases pixel-identical,
-mobile home has a 180-pixel paint difference. Same-font control is identical. This limitation
-is recorded in artifacts/goal/font-browser-integration-20261001.json; no all-page identity claim.
-Combined build/verify passes (786 main + 6 preverify, 695 pages, 0 errors/warnings).
+### MCP and annotation evidence
 
-Prior #336 checkpoint: Combined #336/#339
-build and verify pass (786 main + 6 preverify, 695 pages, 0 errors / 0 warnings); five
-production generators pass without git using rebound source-date hashes. Updating #336 with merged
-main, preserving the union of all financial/annotation/social tests. Its metadata checks now
-state the site's stricter contract accurately: Google Article fields are recommended; 110
-characters is a site budget, not a Google limit. App offers need prices; real reviews/ratings
-and representative article imagery remain external eligibility work. Local checks are not
-a claim of Rich Results Test approval. Current docs:
-https://developers.google.com/search/docs/appearance/structured-data/article and
-https://developers.google.com/search/docs/appearance/structured-data/software-app?hl=en.
+Shortfall exposes unknown fees, counted exclusions, bounded output, a seeded stationary
+bootstrap and a hashed local-file input. Arch parity uses shared recorded random draws;
+equal numeric seeds across different generators do not imply equal draws. Current read-only
+ALPHAC parity matches price costs; fee totals stay null when source fees are absent.
+The four-tool list costs 1,636 o200k / 1,571 cl100k tokens. A synthetic 1,000-order file
+request used 58 o200k input tokens versus 96,154 inline; paths vary. Median local stdio was
+3.3 ms, or 24.7 ms with 199 draws. These are single-machine observations. The new tool's
+original 220-token target is missed (386); the full seven-tool release budget is unproven.
 
-Next: verified #336/#337 integration/deployment; then journal export/paper broker/reconciliation under
-MCP_TRADING_DESIGN.md. Verify trusted publishers before addressing fundamentals/research npm
-version parity. Keep the 10M indexing, SEO/performance, all four pillars, adoption and governed
-ALPHAC goals active; actual human review and forward/indexing outcomes cannot be inferred from code.
+FilingFacts v0 has 1,882 machine-checked generated items across 402 companies, public CC BY
+4.0, and 50 blank gold items. Published checksums remain intact. Complete coverage accounting,
+immutable packet bindings, distinct declared reviewer identities and source-backed adjudication
+are implemented; accepted exports retain both submitted judgments and notes. No independent
+human submissions or adjudication were found in the published bundle. The vetted expert network,
+actual human labels, model baselines and rights-cleared regime/order-book expansion remain open.
+
+Evidence: artifacts/goal/continuation-baseline-20261001.json,
+continuation-checkpoint-20261001.json, shortfall-local-parity-20261001.json,
+shortfall-local-benchmark-20261001.json, mcp-tool-tokens-20261001.json,
+font-browser-integration-20261001.json and deployment-checkpoint-20261001.json.
+
+### Next work and continuing outcomes
+
+1. Continue journal export, paper-broker/reconciliation and release gates under
+   MCP_TRADING_DESIGN.md; keep the owner's distinct-purpose, compact/fast family and
+   substantial batched release requirements. Verify trusted publishers before npm parity work.
+2. Prepare source-backed FilingFacts v1/restatement tasks and complete actual independent
+   review/adjudication with real expert qualification evidence. Do not call automated labels human gold.
+3. Continue detailed next-major MCP plans, source-backed company metadata, representative
+   imagery, external analyzer checks, governed methods and legitimate developer adoption.
+   Dependency PR #338 remains open; verify its current head before integration.
+4. Keep all four Sovereign pillars, 10M actually indexed quality pages, SEO/design/keyword
+   coverage, and ALPHAC net forward Sharpe >2 / >=14 distinct qualified sleeves / max drawdown
+   <=10% active. Search-engine counts and forward outcomes need fresh evidence; dated records
+   below are history. No broker orders or new human/strategy/indexing outcomes are claimed.
 
 ## Historical origin/main state before continuation
 
