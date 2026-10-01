@@ -1,0 +1,12 @@
+{
+  "failures": [
+    {
+      "kind": "before_probe_source_reconstruction",
+      "first_sha256": "9ea57469f6b20127861c6934071340d306739e41f1b4f3611ee53f51e9a2f094",
+      "recorded_sha256": "a537c8fc80f5e854a05ed6f7424e4f0baf421756d0b0b1735b5a5a1956e5737a",
+      "cause": "one extra blank line remained when removing the later cleanup probe",
+      "correction": "remove the added separator newline; original recorded hash is unchanged",
+      "corrected_sha256": "a537c8fc80f5e854a05ed6f7424e4f0baf421756d0b0b1735b5a5a1956e5737a"
+    }
+  ]
+}
