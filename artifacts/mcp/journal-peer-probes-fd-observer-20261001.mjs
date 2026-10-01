@@ -6,10 +6,53 @@ import fs from 'node:fs';
 import { syncBuiltinESMExports } from 'node:module';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { genesisLine, nextLine } from '../canlicapital-journal-peer-20261001/js/trade-journal-core.js';
-import { exportJournal, journalBindings, signJournalExport } from '../canlicapital-journal-peer-20261001/js/trade-journal-export-core.js';
-import { validateLocalJournalEvidence } from '../canlicapital-journal-peer-20261001/mcp/src/journal-evidence.mjs';
-import { storeExport } from '../canlicapital-journal-peer-20261001/mcp-execution/src/journal-export-file.mjs';
+import { fileURLToPath } from 'node:url';
+import { genesisLine, nextLine } from '../../js/trade-journal-core.js';
+import { exportJournal, journalBindings, signJournalExport } from '../../js/trade-journal-export-core.js';
+import { validateLocalJournalEvidence } from '../../mcp/src/journal-evidence.mjs';
+import { storeExport } from '../../mcp-execution/src/journal-export-file.mjs';
+
+
+// Read back bounded synthetic evidence through one descriptor. No pathname check/read pair.
+function observeFile(path) {
+  const fd = fs.openSync(path, fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW);
+  try {
+    const metadata = fs.fstatSync(fd);
+    assert(metadata.isFile() && metadata.size <= 16 * 1024, 'synthetic observation size/type');
+    const data = Buffer.alloc(metadata.size + 1);
+    const count = fs.readSync(fd, data, 0, data.length, 0);
+    assert.equal(count, metadata.size, 'synthetic observation length');
+    return { mode: metadata.mode & 0o777, data: data.subarray(0, count) };
+  } finally { fs.closeSync(fd); }
+}
+function observedBytesEqual(path, expected) {
+  if (!path) return false;
+  try { return observeFile(path).data.equals(expected); } catch { return false; }
+}
+const observerTemp = fs.mkdtempSync(join(tmpdir(), 'canli-fd-observer-'));
+const observerContracts = {};
+try {
+  const target = join(observerTemp, 'target');
+  const original = Buffer.from('synthetic original descriptor');
+  fs.writeFileSync(target, original, { mode: 0o600, flag: 'wx' });
+  const originalRead = fs.readSync;
+  let replaced = false;
+  fs.readSync = function(fd, ...args) {
+    if (!replaced) {
+      fs.renameSync(target, target + '.opened');
+      fs.writeFileSync(target, Buffer.from('synthetic replacement'), { mode: 0o600, flag: 'wx' });
+      replaced = true;
+    }
+    return originalRead.call(fs, fd, ...args);
+  };
+  try { assert.equal(observeFile(target).data.equals(original), true); }
+  finally { fs.readSync = originalRead; }
+  observerContracts.pathname_replacement_reads_original_descriptor = replaced;
+  const link = join(observerTemp, 'link'); fs.symlinkSync(target, link);
+  assert.throws(() => observeFile(link)); observerContracts.final_symlink_refused = true;
+  const large = join(observerTemp, 'large'); fs.writeFileSync(large, Buffer.alloc(16 * 1024 + 1), { mode: 0o600, flag: 'wx' });
+  assert.throws(() => observeFile(large)); observerContracts.oversized_observation_refused = true;
+} finally { fs.rmSync(observerTemp, { recursive: true, force: true }); }
 
 const { privateKey } = generateKeyPairSync('ed25519');
 const pem = privateKey.export({ format: 'pem', type: 'pkcs8' });
@@ -114,7 +157,8 @@ try {
   try {
     const payload = Buffer.from('synthetic private export');
     const output = storeExport(home, payload);
-    observations.directory_swap = { operation_accepted: true, path_advertised_under_exports: output.startsWith(exports + '/'), written_under_foreign_directory: fs.realpathSync(output).startsWith(foreignCanonical + '/'), final_mode: fs.statSync(output).mode & 0o777, data_equal: fs.readFileSync(output).equals(payload), injected_concurrent_swap: swapped };
+    const observed = observeFile(output);
+    observations.directory_swap = { operation_accepted: true, path_advertised_under_exports: output.startsWith(exports + '/'), written_under_foreign_directory: fs.realpathSync(output).startsWith(foreignCanonical + '/'), final_mode: observed.mode, data_equal: observed.data.equals(payload), injected_concurrent_swap: swapped };
   } catch (error) {
     observations.directory_swap = { operation_accepted: false, error: error.message, injected_concurrent_swap: swapped };
   } finally { fs.openSync = originalOpen; syncBuiltinESMExports(); }
@@ -144,8 +188,8 @@ try {
   try { storeExport(cleanupHome, Buffer.from('synthetic export payload')); accepted = true; }
   catch (error) { cleanupError = error.message; }
   finally { fs.openSync = originalOpen; fs.writeFileSync = originalWrite; syncBuiltinESMExports(); }
-  observations.no_replacement_cleanup = { operation_accepted: accepted, error: cleanupError, replacement_created: replacementCreated, unrelated_replacement_survives: Boolean(namedPath && fs.existsSync(namedPath) && fs.readFileSync(namedPath).equals(sentinel)) };
+  observations.no_replacement_cleanup = { operation_accepted: accepted, error: cleanupError, replacement_created: replacementCreated, unrelated_replacement_survives: observedBytesEqual(namedPath, sentinel) };
 } finally { fs.rmSync(temp, { recursive: true, force: true }); }
 
-const reviewed_commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: '/Users/arhancanli/canlicapital-journal-peer-20261001', encoding: 'utf8' }).trim();
-console.log(JSON.stringify({ schema: 'canli.internal-peer-review.v1', reviewed_commit, synthetic_only: true, model_or_broker_calls: 0, record_leaf_mutations_refused: refused, companion_mutations_refused: companions, signed_selection_clock_missing_and_self_attestation_probes: 'pass', observations, scope_limits: ['Internal code review, not external financial or expert review', 'Financial numerical oracle not rerun; no independent Sharpe, MinTRL or annual-compounding implementation'] }, null, 2));
+const reviewed_commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: fileURLToPath(new URL('../../', import.meta.url)), encoding: 'utf8' }).trim();
+console.log(JSON.stringify({ schema: 'canli.internal-peer-review.v1', reviewed_commit, synthetic_only: true, observer_contracts: observerContracts, model_or_broker_calls: 0, record_leaf_mutations_refused: refused, companion_mutations_refused: companions, signed_selection_clock_missing_and_self_attestation_probes: 'pass', observations, scope_limits: ['Internal code review, not external financial or expert review', 'Financial numerical oracle not rerun; no independent Sharpe, MinTRL or annual-compounding implementation'] }, null, 2));

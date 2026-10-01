@@ -4504,3 +4504,19 @@ indexing claim. Retained full HTTP failures and browser outputs/source hashes in
 receipt. Updated Linux contract74d source pin sent to lead; an initially guessed extra test
 filename was corrected to actual journal-export.test.mjs, failure recorded. Lead reports
 queued/unallocated; primary activated no resource. All original goals remain active.
+
+
+## 2026-10-01 — checkpoint probe observer corrected without evidence changes
+
+PR346 first signed173e7f77 passed six functional/scanning jobs, but aggregate CodeQL
+reported83/84 at both retained historical probe line117: stat(path) thenread(path) during
+synthetic wrong-directory observation. This was a probe readback issue, not new product code.
+Archived exact original BEFORE/AFTER sources as gzip; rawSHAa537c8fc/6f23ad36 still match
+immutable peer receipts. Kept warnings and originals in history; no query disable/dismissal.
+A separate portable current-repository runner uses bounded nofollow descriptors for readback,
+including failed-write sentinel checks. Three observer contracts pass (pathname replacement
+reads original FD, final symlink and oversized files refuse);53 record/6 companion mutations
+and actual nonfinite/directory/failed-write probes pass. This is primary observer evidence,
+separate from original secondary review. New exact-head CI is required before ordinarymerge.
+Product source remains identical to deployed74d. Header348 frozen416f6a6d is independently
+reviewed next; v1worker holds347 while correcting its own output-write diagnostic. All goals active.

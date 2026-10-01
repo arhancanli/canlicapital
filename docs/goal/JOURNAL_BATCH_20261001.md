@@ -69,3 +69,13 @@ fix and canonical-page negative regressions; primary owns publication. IndexNow 
 updated URLs and the publisher reports916,480 sitemap URLs; neither establishes indexing.
 Fresh Search Console evidence, real gold and broader adoption/strategy/release outcomes stay
 open. See artifacts/goal/joint-batch-publication-20261001.json for separately scoped results.
+
+## Immutable probe sources and current observer
+
+The first checkpoint's security gate flagged pathname check/read pairs in the historical
+synthetic probe observer. Exact before/after sources are retained as gzip with unchanged raw
+SHA hashes; the original independent reviews and their limits are intact. A separate current
+runner uses bounded nofollow descriptor reads and relative repository imports. Its three
+observer contracts,53 record/6 companion mutations and original edge probes pass. This new
+run is primary evidence, not another independent review. Warnings and correction are retained
+in artifacts/mcp/journal-peer-observer-correction-20261001.json; scans stay enabled.
