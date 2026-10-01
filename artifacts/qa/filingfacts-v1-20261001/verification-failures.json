@@ -16,6 +16,18 @@
       "suppressed_or_dismissed": false,
       "receipt": "codeql-output-before.json",
       "regression": "focused-output-fix.txt:14 pass, including competing output and summary files"
+    },
+    {
+      "phase": "primary independent CLI alias review",
+      "finding": "P2: Both CLI guards silently skip when invoked through symlinks.",
+      "reviewed_head": "1a6027c8d2ba0dbefab0eac538fb6fbba9784e47",
+      "independent_primary_node": "24.19.0",
+      "primary_receipt": "pr-347-primary-cli-alias-before.json",
+      "local_before": "focused-cli-alias-before.txt:14 pass/1 fail on Node22.23.2",
+      "correction_source_commit": "44195a78f8801cb77c3994f9379c85f13f05c0f2",
+      "correction": "Normalize both entrypoint and module paths through realpath using a shared CLI-only helper. Actual temporary aliases test missing arguments, successful generation/check output, and direct-path byte equivalence.",
+      "after": "focused-cli-alias-after.txt:15 pass on Node22.23.2",
+      "source_packet_or_v0_changed": false
     }
   ]
 }

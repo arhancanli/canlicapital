@@ -608,3 +608,21 @@ New local heavy reruns held per lead request; initial full834+6/6990/0/Git-free
 Corrected exact-head CI and primary independent review pending. No alert
 suppression/dismissal, expert labels, public v1 release or merge claimed. All
 master goals and ownership boundaries remain active.
+
+
+## FilingFacts v1 primary CLI alias finding corrected locally, 2026-10-01
+
+Primary independent Node24.19 review of3471a6027c8 found P2: ordinary symlinks
+silently skipped both CLI entrypoints. Exact source hashes and before receipt
+are retained. Actual regression on Node22.23.2 reproduced14 pass/1 fail, then
+15 pass after signed source44195a78 normalizes argv/module real paths. Temporary
+aliases cover missing args and successful generation/checking; real14 candidates
+and summary generated via alias are byte-identical, alias checker passes14.
+210 protected source/data files and5v0 unchanged; no source/value/policy changes.
+Initial failures plus prior835+6/LinuxNode22.23.3 CI are separate historical
+receipts, not relabeled as current runs. New source proof:
+artifacts/goal/filingfacts-v1-cli-alias-fix-20261001.json.
+Final signed head/remote CI and primary recheck next; merge held. Heavy local
+jobs remain held for primary's one integrated slot;346/348 fold follows348
+delivery once. Source/rights/history/date/safeint/cause limits and all master
+goals stay active; no models, human labels, cloud or public v1 release.
