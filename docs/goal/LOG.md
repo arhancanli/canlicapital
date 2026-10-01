@@ -4586,3 +4586,31 @@ Schema/metadata local contracts and whole699-page static graph pass; incomplete
 contrast/ARIA checks and developer external Google fonts are retained. Fix only
 reproduced generator/CSS defects; preserve source/model/journal/data bytes and
 full goal hierarchy. External/field/indexing decisions remain unmeasured.
+
+
+## 2026-10-01 — secondary MCP page quality verification
+
+Signed implementation1eded5b7 fixes the observed skip-handler class, native table
+keyboard access, missing 44px section-link styles and late font layout shifts.
+Generated88a1ca17 renews only the real generator source-date binding; integration
+648236ad includes actual main0d9c88c6 (#346/#348) with all8 page/source/binding
+paths identical. Both primary and secondary continuity histories are preserved.
+Node22.23.2 full829+6,699 page audits0/0 and actual clean Git-free683/416 pass.
+10 Chromium148/axe4.13 full-DOM and keyboard cases at1440/320 pass; all four MCP
+skip links focus main, validation320 table scrolls with ArrowRight and all earlier
+small-target/scrollable violations disappear. Manual/incomplete checks remain.
+Eight controlled before and8 after Lighthouse13.5 runs: mobile performance69–71
+to83–84; desktop99 to99. CLS is0 in all8 corrected profiles, against mobile
+0.222–0.241 before. These are single local lab runs; live five-page baseline,
+actual browser/environment, raw scores and unscored checks stay separate. Live
+metadata/JSON-LD repository contracts/social image and699-page static graph pass;
+these do not establish external rich-result decisions, field metrics or indexing.
+Restored644 unrelated build and129 verification outputs in this isolated checkout.
+Initial restore guard refusal is retained; no historical input hashes rewritten.
+CPU lease guardreleased12:52:16UTC; primary owns the next header publication slot.
+Evidence: artifacts/goal/mcp-page-quality-20261001.json and84 exact gzip archives.
+Remaining mobile decorative-image LCP~4.36s, pre aria-label support and contrast
+manual checks are explicit follow-ups; developer external fonts are retained.
+Signed frozen PR/exact CI and primary independent review follow; no deployment
+or all-goal achievement claimed. All Sovereign/10M-indexing/quality/SEO/design/
+research/adoption/annotation and governed ALPHAC objectives remain active.

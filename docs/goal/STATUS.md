@@ -600,3 +600,12 @@ Secondary MCP page quality follow-up: independent live baseline captured from74d
 header348 frozen for primary review. New isolated branch owns measured MCP font
 shift, 320px target/table and skip-focus corrections at generators/CSS. No fix
 verification yet; every original objective remains active.
+
+
+Secondary MCP page quality verified locally at signed648236ad, integrated main0d.
+Full829+6/6990errors0warnings/Git-free683/416 and10 built browser/axe/keyboard
+cases pass. Controlled local mobile performance69–71→83–84, desktop99; CLS0 in
+all8 after profiles. Single lab measurements and manual/external/field/indexing
+limits are retained in artifacts/goal/mcp-page-quality-20261001.json. Source/core/
+data bytes stay unchanged; frozen PR/CI/primary review next. Primary owns next
+CPU/publication slot after actual secondary release12:52:16. Every goal active.
