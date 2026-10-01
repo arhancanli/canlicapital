@@ -63,6 +63,12 @@ test("strict answers keep units, abstentions and invented numbers distinct", () 
     assert.equal(scored.correct, false, text);
     assert.equal(behaviour([{ template: "unanswerable", ...scored }]).unanswerable_invented_number, 1, text);
   }
+  for (const [kind, text] of [["number", "ANSWER: 12 EUR"], ["number", "ANSWER: 12%"], ["ratio", "ANSWER: 1 USD"]]) {
+    const scored = scoreAnswer(item(kind, 12), text);
+    assert.equal(scored.correct, false, text);
+    assert.equal(behaviour([{ template: "lookup", ...scored }]).numbers_given, 1, text);
+    assert.equal(behaviour([{ template: "lookup", ...scored }]).numbers_wrong, 1, text);
+  }
 });
 
 test("the live adapter retains final text and observed provider/tool evidence without oracle answers", async () => {

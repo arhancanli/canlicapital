@@ -2,8 +2,9 @@
 
 `replay-evaluation.mjs` scores saved answers and audits evidence entirely offline. It does not
 load API credentials, call models or connect to MCP servers. Use the exact dataset bytes and
-the evaluator checkout recorded in the evidence. The source hashes identify the scorer and
-evidence runner; replay refuses changed sources, captures, scores or totals.
+the evaluator checkout recorded in the evidence. The source hashes bind the scorer, evidence
+runner, CLI, sampler, its imported generator/checker/template modules and canonical JSON
+helper. Replay refuses changed sources, captures, scores or totals.
 
 ```sh
 node scripts/datasets/filing-facts/replay-evaluation.mjs score items.jsonl capture.json evaluation.json
@@ -21,7 +22,9 @@ of the exact JSONL bytes. `sampling` declares `method: "stratified"`, an unsigne
 `seed`, positive integer `per_template` and the selected `item_ids` in deterministic order.
 Each captured run supplies `id`, raw `response_text` (string or null), `error` (string or null),
 and nonnegative integer `tokens` and `tool_calls`. An MCP capture also retains its observed
-`tool_contract.tools`. Missing captured runs stay visible in coverage.
+`tool_contract.tools`. Closed-book captures must omit tool contracts and have zero tool calls
+and empty or omitted tool traces. Inconsistent closed-book claims are refused. Missing captured
+runs stay visible in coverage.
 
 `eval.mjs` writes this capture inside `canli.filing-facts-evaluation.v1`, together with scores,
 raw answers, the exact dataset digest, scorer version and source hashes. It records observed
@@ -49,6 +52,7 @@ available`, `no data`, `does not report`, `not disclosed` or `unavailable`, with
 final period or exclamation mark. A numeric answer followed by an absence phrase is incorrect.
 Finite numeric answers to absence questions are counted as invented numbers, including
 answers with a recognized currency or percent suffix.
+Wrong-unit numbers on answerable questions are also counted as numbers given and wrong.
 
 Overall accuracy divides correct answers by every selected item, including missing captures,
 missing responses and request errors. `response_accuracy` separately uses captured responses
@@ -58,8 +62,10 @@ malformed prose is neither a valid number nor an abstention. Coverage reports re
 missing evidence and responses without a final answer so a smaller successful subset cannot
 hide incomplete work.
 
-The public v0 baselines contain parsed answers and recorded scores but no raw model responses,
-source-bound capture or scorer version. Their bytes and published scores remain historical.
+The public v0 baselines used legacy answer parsing and contain parsed answers and recorded
+scores but no raw model responses, source-bound capture or scorer version. The effect of these
+parsing changes on the old baseline is unmeasured. Full-sample coverage/denominator rules in
+this guide apply to v1 evaluation evidence. V0 bytes and published scores remain historical.
 They are explicitly **unrescorable**; do not synthesize raw answers from `parsed`, `expected`
 or `correct`, or silently replace historical accuracy and abstention statistics.
 

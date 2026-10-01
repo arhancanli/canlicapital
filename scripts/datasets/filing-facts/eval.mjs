@@ -2,7 +2,7 @@
 // (CANLI_TOOLSETS=company, so the model sees one tool). A stratified sample with a fixed seed; the
 // model ends with "ANSWER: <value>" and is scored against the item's recomputed answer.
 //   node scripts/datasets/filing-facts/eval.mjs <items.jsonl> <out.json> --arm closed|mcp [--per-template 30] [--model gpt-5.4-mini]
-import { closeSync, openSync, readFileSync, writeFileSync } from "node:fs";
+import { closeSync, openSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -11,6 +11,10 @@ import { mulberry32 } from "./generate.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
+const isEntry = () => {
+  try { return Boolean(process.argv[1]) && realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url)); }
+  catch { return false; }
+};
 
 export const SCORING_VERSION = "canli.filing-facts-scoring.v1";
 const ABSENCE = /^(?:not reported|not available|no data|does not report|not disclosed|unavailable)[.!]?$/i;
@@ -34,7 +38,7 @@ export function scoreAnswer(item, text) {
   if ((match[1] && (kind !== "number" || unit !== "USD")) ||
     (suffix === "%" && kind !== "percent") ||
     (suffix && suffix !== "%" && (kind !== "number" || suffix !== unit))) {
-    return { answered: true, correct: false, parsed: raw };
+    return { answered: true, correct: false, parsed: value };
   }
   const truth = item.answer.value;
   const ok = item.answer.kind === "number" ? Math.abs(value - truth) <= Math.max(Math.abs(truth) * 0.001, 0.005)
@@ -136,7 +140,7 @@ export async function runItem(item, { model, arm, mcp, request = chat }) {
     provider_responses: providerResponses, tool_trace: toolTrace };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (isEntry()) {
   const [itemsFile, outFile] = process.argv.slice(2);
   if (!itemsFile || !outFile) throw new RangeError("usage: eval.mjs items.jsonl out.json --arm closed|mcp [--per-template 30] [--seed 20260926] [--model gpt-5.4-mini]");
   const model = arg("model", "gpt-5.4-mini"), arm = arg("arm", "closed"), perTemplate = Number(arg("per-template", "30")), seed = Number(arg("seed", "20260926"));

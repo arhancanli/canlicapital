@@ -68,10 +68,11 @@ declining to answer. Where the model with the tool was wrong, the misses checked
 development were the model's arithmetic or row reading, not the tool's data: the tool returned the
 item's exact cited facts.
 
-Historical v0 run records preserve parsed answers and scores but no raw model responses, so their
-original scores cannot be independently rescored. New evaluations retain raw answers, source
-bindings and a scoring version; see [EVALUATION.md](./EVALUATION.md) for offline replay and
-explicit coverage, denominator and abstention rules. Historical files remain unchanged.
+Historical v0 run records used legacy answer parsing and preserve parsed answers and scores,
+but no raw model responses, so their original scores cannot be independently rescored. The
+effect of the parsing changes on the old baseline is unmeasured. The v1 runner retains raw
+answers, source bindings and a scoring version; see [EVALUATION.md](./EVALUATION.md) for offline
+replay and v1 coverage, denominator and abstention rules. Historical files remain unchanged.
 
 ## Human layer
 

@@ -91,5 +91,46 @@
     },
     "historical_v0": "bytes and statistics unchanged",
     "full_reverification": "pending on revised head; earlier full evidence remains the prior checkpoint"
+  },
+  "peer_review_revision": {
+    "reviewer_thread": "01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23",
+    "prior_head": "25bd6aefc76a161ed7132b032ead81c2e0f46128",
+    "findings": [
+      "Unbound sampler/canonicalizer source files could change without audit refusing.",
+      "Closed-book captures accepted tool counts/metadata.",
+      "Wrong-unit finite numbers were omitted from numbers_wrong.",
+      "Legacy parsing effects are unmeasured and v1 denominators must be named."
+    ],
+    "additional_regression": "Scratch CLI on /var aliases exited0 without audit because import URL and argv path differed; corrected entry guards using real paths.",
+    "initial_source_test": {
+      "tests": 34,
+      "passed": 33,
+      "failed": 1,
+      "artifact": "artifacts/goal/filingfacts-peer-source-regression-20261001.txt"
+    },
+    "checks": {
+      "filingfacts": {
+        "tests": 34,
+        "passed": 34,
+        "exit_code": 0
+      },
+      "build": {
+        "exit_code": 0
+      },
+      "full_verify": {
+        "main_tests": 800,
+        "preverify_tests": 6,
+        "passed": 806,
+        "exit_code": 0,
+        "pages": 699,
+        "errors": 0,
+        "warnings": 0
+      },
+      "source_mutations_refused": 7,
+      "clean_snapshot": "pending after binding updated dataset source hashes",
+      "CI": "pending on revised head"
+    },
+    "historical_v0": "bytes and statistics unchanged",
+    "model_api_calls": 0
   }
 }

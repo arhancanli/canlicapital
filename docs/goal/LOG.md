@@ -4196,3 +4196,18 @@ classification before expected-absence unit gates; a fresh failing regression is
 preserved, and 32/32 focused tests pass. Historical raw bundle and published statistics
 stay unchanged; no model request or expert label. Revised-head full/CI checks and
 primary review remain pending; owner goals stay active.
+
+
+## 2026-10-01 — secondary addresses independent review findings
+
+Primary falsified missing helper-source bindings and closed-book tool consistency,
+and requested wrong-unit numerical classification and explicit legacy/v1 wording.
+Bound all seven local scoring/sampling/CLI modules, reject closed tool metadata/calls/
+traces, and count finite wrong-unit answerable numbers as wrong. Dataset page/README
+now state legacy parsing effects cannot be measured without raw responses and identify
+v1 full-sample denominators. Scratch mutation tests initially33/34 because /var aliases
+skipped CLI entry; fixed realpath entry checks. Initial failure is preserved. All seven
+comment-only source mutations now actually refuse replay; FilingFacts34/34, full build
+and verify800+6,699 page audits0 errors/warnings. Source-date refresh, clean snapshot,
+signed revised head and primary recheck next. Historical raw bundle/stats unchanged;
+no model/paid/cloud/broker call, invented gold or achieved full-platform outcome.

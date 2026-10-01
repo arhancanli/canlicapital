@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { appendFileSync, copyFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
 
-import { auditEvidence, CAPTURE_SCHEMA, evaluateCapture, readDataset } from "./evidence.mjs";
+import { auditEvidence, CAPTURE_SCHEMA, evaluateCapture, readDataset, SCORING_SOURCE_FILES } from "./evidence.mjs";
 import { SCORING_VERSION, stratifiedSample } from "./eval.mjs";
 
 const items = ["lookup", "unanswerable", "ratio"].flatMap((template) => Array.from({ length: 3 }, (_, i) => ({
@@ -87,6 +87,41 @@ test("unknown schema, bad source items, missing raw text, negative costs and MCP
   ]) {
     const bad = capture(); mutate(bad); assert.throws(() => evaluateCapture(bytes, bad), RangeError);
   }
+});
+
+test("closed-book captures cannot claim tool contracts, calls or traces", () => {
+  for (const mutate of [
+    (record) => { record.tool_contract = { tools: [{ name: "fixture-tool" }] }; },
+    (record) => { record.runs[0].tool_calls = 1; },
+    (record) => { record.runs[0].tool_trace = [{ name: "fixture-tool" }]; },
+  ]) {
+    const bad = capture(); mutate(bad);
+    assert.throws(() => evaluateCapture(bytes, bad), /closed-book/);
+  }
+  const assisted = capture(); assisted.arm = "mcp"; assisted.tool_contract = { tools: [{ name: "fixture-tool" }] };
+  assisted.runs[0].tool_calls = 1; assisted.runs[0].tool_trace = [{ name: "fixture-tool" }];
+  assert.equal(evaluateCapture(bytes, assisted).summary.accuracy, 1);
+});
+
+test("replay refuses changed scoring/sampling helper sources even when outputs would be identical", () => {
+  const dir = mkdtempSync(join(tmpdir(), "canli-eval-source-binding-"));
+  try {
+    const scripts = join(dir, "scripts"); mkdirSync(scripts);
+    cpSync(new URL("./", import.meta.url), join(scripts, "datasets/filing-facts"), { recursive: true });
+    copyFileSync(new URL("../../canonical-json.mjs", import.meta.url), join(scripts, "canonical-json.mjs"));
+    const source = join(dir, "items.jsonl"), evidence = join(dir, "evidence.json");
+    writeFileSync(source, bytes); writeFileSync(evidence, JSON.stringify(evaluateCapture(bytes, capture())));
+    const cli = join(scripts, "datasets/filing-facts/replay-evaluation.mjs");
+    const run = () => spawnSync(process.execPath, [cli, "audit", source, evidence], { encoding: "utf8", env: { PATH: process.env.PATH }, timeout: 5000 });
+    assert.equal(run().status, 0);
+    for (const name of SCORING_SOURCE_FILES) {
+      const file = join(scripts, "datasets/filing-facts", name), original = readFileSync(file);
+      appendFileSync(file, "\n// independent source mutation; numerical behavior unchanged\n");
+      const result = run(); assert.equal(result.status, 1, name); assert.match(result.stderr, /scoring replay/, name);
+      writeFileSync(file, original);
+    }
+    assert.equal(run().status, 0);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
 test("historical v0 records remain byte-identical and explicitly unrescorable without raw answers", () => {

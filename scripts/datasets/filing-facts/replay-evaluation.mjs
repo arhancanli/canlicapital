@@ -1,7 +1,7 @@
 // Offline only: no API credentials, model calls, MCP connections or network access.
 // score <items.jsonl> <capture.json> <out.json>; audit <items.jsonl> <evaluation.json>
-import { readFileSync, writeFileSync } from "node:fs";
-import { pathToFileURL } from "node:url";
+import { readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { auditEvidence, evaluateCapture } from "./evidence.mjs";
 
@@ -26,7 +26,10 @@ export function main(args) {
   return result.status === "unrescorable" ? 2 : 0;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+let isEntry = false;
+try { isEntry = Boolean(process.argv[1]) && realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url)); }
+catch { /* Imported from a process without an existing script entry. */ }
+if (isEntry) {
   try { process.exitCode = main(process.argv.slice(2)); }
   catch (error) { console.error(error.message); process.exitCode = 1; }
 }

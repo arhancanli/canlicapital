@@ -7,6 +7,10 @@ import { behaviour, SCORING_VERSION, scoreAnswer, stratifiedSample } from "./eva
 
 export const CAPTURE_SCHEMA = "canli.filing-facts-answer-capture.v1";
 export const EVIDENCE_SCHEMA = "canli.filing-facts-evaluation.v1";
+export const SCORING_SOURCE_FILES = Object.freeze([
+  "eval.mjs", "evidence.mjs", "generate.mjs", "check.mjs", "templates.mjs",
+  "../../canonical-json.mjs", "replay-evaluation.mjs",
+]);
 const KINDS = { lookup: "number", change: "percent", ratio: "ratio", net_assets: "number", unanswerable: "not_reported" };
 export const sha256 = (data) => createHash("sha256").update(data).digest("hex");
 const digest = (value) => sha256(canonicalJson(value));
@@ -46,6 +50,7 @@ function selectedItems(dataset, capture) {
   if (capture.arm === "mcp" && (!capture.tool_contract || !Array.isArray(capture.tool_contract.tools) || !capture.tool_contract.tools.length)) {
     throw new RangeError("MCP capture needs the observed tool contract");
   }
+  if (capture.arm === "closed" && Object.hasOwn(capture, "tool_contract")) throw new RangeError("closed-book capture cannot declare a tool contract");
   return sample;
 }
 
@@ -60,6 +65,10 @@ export function evaluateCapture(bytes, capture) {
     if (!Object.hasOwn(run, "response_text") || (run.response_text !== null && typeof run.response_text !== "string") ||
       !Object.hasOwn(run, "error") || (run.error !== null && !nonempty(run.error)) || !count(run.tokens) || !count(run.tool_calls)) {
       throw new RangeError(`capture ${run.id} needs raw response_text, error, and nonnegative integer token/tool counts`);
+    }
+    if (run.tool_trace !== undefined && !Array.isArray(run.tool_trace)) throw new RangeError(`capture ${run.id} tool_trace must be an array`);
+    if (capture.arm === "closed" && (run.tool_calls !== 0 || run.tool_trace?.length)) {
+      throw new RangeError("closed-book capture cannot include tool calls or tool traces");
     }
     supplied.set(run.id, run);
   }
@@ -80,7 +89,8 @@ export function evaluateCapture(bytes, capture) {
   return {
     schema: EVIDENCE_SCHEMA,
     scoring: { version: SCORING_VERSION, scorer_sha256: sha256(readFileSync(new URL("./eval.mjs", import.meta.url))),
-      evidence_runner_sha256: sha256(readFileSync(new URL("./evidence.mjs", import.meta.url))) },
+      evidence_runner_sha256: sha256(readFileSync(new URL("./evidence.mjs", import.meta.url))),
+      sources: Object.fromEntries(SCORING_SOURCE_FILES.map((path) => [path, sha256(readFileSync(new URL(path, import.meta.url)))])) },
     dataset: { schema: "canli.filing-facts-item.v0", sha256: dataset.sha256, bytes: dataset.bytes, items: dataset.items.length },
     capture_sha256: digest(capture), capture,
     summary: { model: capture.model, arm: capture.arm, items: sample.length, accuracy: correct / sample.length,
