@@ -5,7 +5,8 @@ instructions. Read MASTER_PLAN.md for the full goal structure and CLAUDE_RECOVER
 for the verified stopping point. Active worktree:
 `/Users/arhancanli/canlicapital-continuation-20261001`. The MCP/annotation continuation
 merged as #339; #336/#337 are merged and their website changes are verified in production.
-Current branch `continue/journal-evidence-20261001` records the tested release checkpoint.
+Current branch `continue/journal-evidence-20261001` integrates main 18f693fa and resumes journal export.
+The findability worktree retains the verified live #341/#342 evidence.
 STATUS's newest section supersedes the historical working-location notes below.
 
 Both origin/main's records and the differing local Claude STATUS/LOG were archived byte-for-byte

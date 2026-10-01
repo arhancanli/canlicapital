@@ -2,23 +2,31 @@
 
 ## Verified continuation, 2026-10-01
 
-Goal ACTIVE, NOT ACHIEVED. Current phase: journal export and source-bound validation;
-implementation is in progress, no completion/release claim. Recovered the owner's relevant Claude CanliCapital messages,
+Goal ACTIVE, NOT ACHIEVED. Recovered the owner's relevant Claude CanliCapital messages,
 vision, memory and 16 detailed plans. MASTER_PLAN.md maps the complete objectives;
 CLAUDE_RECOVERY_20261001.md lists sources and distinguishes dated notes from verified state.
-Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
-`continue/journal-evidence-20261001`. Prior dirty worktrees are preserved.
+Current phase: journal export, source-bound validation and independent accounting verification.
+Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch `continue/journal-evidence-20261001`.
+Main 18f693fa is integrated with local draft fbbdf827; previous dirty worktrees are preserved.
 
-### Latest verified findability transition
+### Findability merged and live, 2026-10-01
 
-#341 merged as 65dad63f, all seven checks and candidate/main tree parity passing. Production
-publisher completed 08:25:49Z; eight sampled pages, all new sitemap/llms entries, exact discovery
-JSON, fonts, company admission and hosted contracts pass. Publisher reports 916,480 sitemap
-URLs; IndexNow accepted 42 updates, not actual indexing. #342 checkpoint is on main at 18f693fa.
-Production remains at 65dad63f; current journal branch still needs integration with new main.
-Local export core/profile and six focused accounting/adversarial tests pass (fbbdf827); full
-1,000-journal independent oracle, bounded file helpers, MCP integration and release remain open.
-See the findability checkout artifacts/seo/mcp-findability-deployment-20261001.json.
+Four source-bound canonical pages cover the directory and released validation/fundamentals/research
+servers; source lists contain 15/7/6 tools. Source dates, shared footer, sitemap, llms.txt and intent
+ownership are integrated. Full build/verify passes: 788 + 6 tests, 699 on-page checks without errors
+or warnings, 336 indexable pages within three static links of home. Eight browser cases and the
+Git-free deployment validator pass from the clean source and actual engine-export overlay;
+scoped footer clipping fix included. #341 merged as 65dad63f at 08:20:31Z with all seven PR
+checks passing; automatic merged-main checks pass and candidate/main trees agree. Production
+checkout clean at 65dad63f; hourly publisher completed at 08:25:49Z. Eight live pages, all new
+sitemap/llms entries, exact discovery JSON, fonts, company admission and hosted contracts pass.
+Publisher reports 916,480 sitemap URLs; IndexNow accepted 42 updated URLs, not indexing proof.
+Evidence: artifacts/seo/mcp-findability-deployment-20261001.json. No package bump.
+Fresh search-engine counts remain unavailable; retain dated Sep 27 Google ~3,030/Bing 146.
+FINDABILITY_20261001.md and artifacts/seo/mcp-findability-verification-20261001.json hold details.
+Journal draft fbbdf827 is in continue/journal-evidence-20261001 in the continuation checkout: six
+focused accounting/adversarial tests pass; independent 1,000-journal oracle, bounded file helpers,
+MCP wrapper integration and release gates are pending. Execution remains private/unreleased.
 
 ### Earlier website batch, verified 06:52Z; superseded by findability
 

@@ -1,0 +1,302 @@
+{
+  "schema": "canli.mcp-discovery-record.v1",
+  "directory": "https://canlicapital.com/mcp-servers",
+  "servers": [
+    {
+      "id": "validation",
+      "title": "Backtest validation MCP server",
+      "heading": "Check the research behind a backtest",
+      "summary": "Test selection bias, overfitting and track-record maturity from an AI assistant. Inspect the inputs, calculation limits and reproducible validation receipts.",
+      "purpose": "Use this server when you have strategy returns or summary statistics and need to assess the evidence behind a reported result. Deflated Sharpe accounts for the declared search size; CSCV uses the full matrix of tried variants; minimum track record length asks how much evidence an observed Sharpe needs. The server also checks paper-record disclosures and portfolio breadth.",
+      "workflow": [
+        "Count all variants tried, including failures. Keep the observation frequency and cost assumptions with your returns.",
+        "Choose the test that matches your inputs. Send every variant to CSCV or the data-snooping tests; send summary statistics or one return series to deflated Sharpe.",
+        "Inspect the result and its limitations. A remote validation returns a receipt that can be retrieved and reproduced from the named source core."
+      ],
+      "example": {
+        "name": "validate_deflated_sharpe",
+        "arguments": {
+          "observed_sharpe_annualized": 1.5,
+          "observations": 1260,
+          "periods_per_year": 252,
+          "skew": -0.3,
+          "non_excess_kurtosis": 4,
+          "effective_independent_trials": 20,
+          "cross_trial_sharpe_sd_annualized": 0.5
+        }
+      },
+      "example_note": "Illustrative statistics for a five-year daily record after twenty declared independent trials. Supply your measured statistics and justified search count; this example is not a strategy result.",
+      "limits": "The tests evaluate exactly the submitted inputs. They cannot establish clean source data, absence of lookahead, complete costs, live profitability or investment suitability. A signed receipt authenticates the service's calculation, not the financial outcome. Local mode is available in the npm package; remote validations store receipts and use the disclosed free-key quotas.",
+      "related": [
+        {
+          "path": "/how-to-validate-a-backtest",
+          "label": "Backtest validation guide"
+        },
+        {
+          "path": "/tools/deflated-sharpe",
+          "label": "Deflated Sharpe calculator"
+        },
+        {
+          "path": "/standards/paper-evidence",
+          "label": "Paper evidence standard"
+        }
+      ],
+      "dir": "mcp",
+      "package": "canli-validation-mcp",
+      "version": "0.10.1",
+      "commit": "4f7838f8db3562b67b5f175bae81a0f911c70d55",
+      "tag": "mcp-v0.10.1",
+      "route": "/mcp-servers/validation",
+      "endpoint": "/mcp",
+      "tool_count": 15,
+      "tools": [
+        {
+          "name": "get_key",
+          "title": "Get a free validation key",
+          "description": "Issue a free validation key for this session. Rarely needed: the first validation issues one itself unless CANLI_KEY or local mode is set, and the read tools need none. Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per validation request, 1024 bytes per key revocation request, 20000 observations per series, 200 variants per matrix."
+        },
+        {
+          "name": "validate_deflated_sharpe",
+          "title": "Validate deflated Sharpe",
+          "description": "Deflated Sharpe ratio: the probability (0 to 1) that the selected strategy's Sharpe beats the best that luck gives across the variants tried, with the probabilistic Sharpe and that luck benchmark. Send the seven statistics or a return series. With every variant's returns use validate_overfitting; luck as a trial count, validate_luck_trials; a multiple-testing haircut, validate_haircut_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+        },
+        {
+          "name": "validate_overfitting",
+          "title": "Validate overfitting (CSCV)",
+          "description": "Probability of backtest overfitting (0 to 1) by CSCV: how often the in-sample best variant falls below the out-of-sample median. Needs every variant's returns (periods by variants); with summary statistics only, use validate_deflated_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+        },
+        {
+          "name": "validate_reality_check",
+          "title": "Data-snooping tests (SPA, Reality Check, StepM)",
+          "description": "Data-snooping tests on every variant a search tried: Hansen's SPA p-value that the best beat the benchmark only by luck, White's Reality Check, and the variants Romano-Wolf StepM finds better. Send all variants tried, not only the winners. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+        },
+        {
+          "name": "validate_paper_evidence",
+          "title": "Validate paper evidence",
+          "description": "Whether a paper or simulated performance record meets canli.paper-evidence.v0, with a JSON pointer per failure. Checks structure and required disclosures, not whether the returns are good. This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built."
+        },
+        {
+          "name": "validate_breadth",
+          "title": "Validate breadth ceiling",
+          "description": "Book Sharpe ceiling from adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. For portfolio construction; it validates no single strategy. This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built."
+        },
+        {
+          "name": "validate_track_record",
+          "title": "Minimum track record length",
+          "description": "Minimum track record length (observations and years) for an observed Sharpe to beat a benchmark at a confidence level; with observations, the record's probabilistic Sharpe so far. For live or paper records; to size a backtest for its trials, use validate_backtest_length. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+        },
+        {
+          "name": "validate_backtest_length",
+          "title": "Minimum backtest length",
+          "description": "Minimum backtest length (years) before the best of N independent trials is not expected to reach a target Sharpe by luck; with backtest_years, the most trials those years allow. For planning a search; once it has a result, use validate_deflated_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+        },
+        {
+          "name": "validate_haircut_sharpe",
+          "title": "Haircut Sharpe ratio",
+          "description": "Haircut Sharpe for multiple testing (Harvey and Liu 2015): the Sharpe a single test would have needed, by Bonferroni and independent tests, and with the other tests' Sharpes, Holm and BHY. For the probability the Sharpe is real, use validate_deflated_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+        },
+        {
+          "name": "validate_luck_trials",
+          "title": "Luck-equivalent trials",
+          "description": "How many skill-less strategies a search would need for its best to reach this Sharpe by luck (Monte Carlo), and with a trial count, the chance it did. States luck as the best of N random tries; for the probability the Sharpe is real, use validate_deflated_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+        },
+        {
+          "name": "audit_backtest",
+          "title": "Audit a backtest",
+          "description": "One-call audit of a strategy's returns: deflated Sharpe, minimum track record and, with every variant's returns, the probability of backtest overfitting, each the matching validator's result with its own receipt. Point returns_file at the backtest's CSV or JSON instead of pasting long series. Prefer it to calling the validators one by one; one validation per check. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+        },
+        {
+          "name": "get_receipt",
+          "title": "Get a receipt",
+          "description": "Fetch a stored verdict by receipt id to re-read it. No key; verify_receipt checks it is genuine. The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json."
+        },
+        {
+          "name": "verify_receipt",
+          "title": "Verify a receipt",
+          "description": "Verify a receipt offline: its Ed25519 signature against the bundled canlicapital.com key, its output hash and its id. Send an id to fetch it first, or the receipt itself. The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json."
+        },
+        {
+          "name": "service_status",
+          "title": "Service status",
+          "description": "Whether the validation API is up, with its quotas; check after a timeout before resubmitting. No key. This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built."
+        },
+        {
+          "name": "company_financial_history",
+          "title": "Company financial history (SEC)",
+          "description": "SEC-reported financial history for one company in the canlicapital.com reference, by cik or ticker: without a concept, the histories available; with one, observations newest first with accession, form, filed date and unit, plus the source's SHA-256. For point-in-time values use canli-fundamentals-mcp. Public company accounting reference, not market prices, returns, an investment recommendation, or ALPHAC performance. Validate a separately constructed return series with the validation API; accounting values are not returns."
+        }
+      ]
+    },
+    {
+      "id": "fundamentals",
+      "title": "SEC fundamentals MCP server",
+      "heading": "Read company fundamentals as known then",
+      "summary": "Query SEC fundamentals as filed by a date, follow restatements and compare company vintages. Every value retains its reporting period and source filing.",
+      "purpose": "Use this server to construct a point-in-time company comparison or inspect how a financial measure changed across filings. Resolve a company by name, ticker or SEC CIK, then ask what had been reported by your decision date. Plain measure names follow the supported XBRL tags; the returned value names the tag actually selected.",
+      "workflow": [
+        "Resolve the company and inspect its available concepts. A ticker can change owners; read the resolution metadata before combining records.",
+        "Ask known_as_of for a decision date, or history for first-reported, latest or as-of values. Keep period ends, units, filed dates and accession numbers with the values.",
+        "Use vintages and restatements to inspect revisions. Use cross_section for up to fifty companies, comparing fiscal period ends before treating them as peers."
+      ],
+      "example": {
+        "name": "known_as_of",
+        "arguments": {
+          "company": "AAPL",
+          "as_of": "2020-12-31",
+          "concepts": [
+            "revenue",
+            "net_income"
+          ],
+          "periods": "annual"
+        }
+      },
+      "example_note": "Read Apple's annual revenue and net income from filings available by the stated decision date. The result describes the retained SEC snapshot; missing periods remain missing.",
+      "limits": "Coverage is limited to the retained company reference and its SEC snapshots. Filed dates provide filing-date causality, not an intraday information clock. Fiscal calendars differ, later restatements can have several causes, and accounting values are not market prices or strategy returns. The server does not route orders.",
+      "related": [
+        {
+          "path": "/companies",
+          "label": "SEC company reference"
+        },
+        {
+          "path": "/companies/0000320193",
+          "label": "Apple source filings and financial history"
+        },
+        {
+          "path": "/research/filing-facts-v0",
+          "label": "FilingFacts dataset and evaluation"
+        },
+        {
+          "path": "/annotate",
+          "label": "Review questions against SEC evidence"
+        }
+      ],
+      "dir": "mcp-fundamentals",
+      "package": "canli-fundamentals-mcp",
+      "version": "0.5.0",
+      "commit": "687ef53c0f0ebb996eb7c11f7ca54bc2c0c8533a",
+      "route": "/mcp-servers/fundamentals",
+      "endpoint": "/mcp/fundamentals",
+      "tool_count": 7,
+      "tools": [
+        {
+          "name": "known_as_of",
+          "title": "Known as of a date",
+          "description": "What a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests."
+        },
+        {
+          "name": "history",
+          "title": "Measure history",
+          "description": "One measure over time, newest first: as first reported (default), as latest filed, or as known on as_of, each with its filing and whether it later changed."
+        },
+        {
+          "name": "restatements",
+          "title": "Restated periods",
+          "description": "Periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything."
+        },
+        {
+          "name": "vintages",
+          "title": "Filing vintages",
+          "description": "Every filing that reported one period of one measure, oldest first: the revision history behind a number."
+        },
+        {
+          "name": "list_concepts",
+          "title": "List concepts",
+          "description": "The XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts."
+        },
+        {
+          "name": "find_company",
+          "title": "Find a company",
+          "description": "Find a company's SEC CIK and tickers by name, ticker or CIK. The other tools also take a name as company."
+        },
+        {
+          "name": "cross_section",
+          "title": "Cross-section as of a date",
+          "description": "One measure for up to 50 companies as filed by a date: each one's latest period, its value then, and whether it was later restated. For point-in-time peer and factor work."
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "title": "Quant research MCP server",
+      "heading": "Read the papers, failures and paper record",
+      "summary": "Search Canli Capital's quant research, inspect killed candidates and trial counts, and read the published paper record with its stated evidence limits.",
+      "purpose": "Use this server to inspect the research record behind ALPHAC. Search paper titles and summaries, browse topic indexes, and read a paper or one section without sending the entire library to an assistant. The trial ledger provides search context; the paper record and verification-chain head provide the current published evidence.",
+      "workflow": [
+        "Search by a mechanism or browse list_topics. Include feasibility work and killed candidates when checking how a mechanism was investigated.",
+        "Read the returned paper slug with get_paper. Request a section and set max_chars when you need a bounded excerpt; follow the paper's own sources and limitations.",
+        "Check trial_ledger before interpreting a result, then inspect live_record and chain_head. Distinguish current paper observations from mature, funded or independently reviewed performance."
+      ],
+      "example": {
+        "name": "search_research",
+        "arguments": {
+          "query": "momentum",
+          "limit": 5
+        }
+      },
+      "example_note": "Find up to five published papers matching momentum, then read a returned slug with get_paper. Search results reflect this project's research record, not the entire academic literature.",
+      "limits": "The server reads public Canli Capital documents and caches them for the session. A paper can describe a failed, corrected or incomplete investigation. Paper execution does not establish funded results. A tamper-evident publication chain does not establish completeness of the research search or independent review.",
+      "related": [
+        {
+          "path": "/research",
+          "label": "Research library and topic hubs"
+        },
+        {
+          "path": "/trials",
+          "label": "Published trial packets"
+        },
+        {
+          "path": "/performance",
+          "label": "Paper performance and evidence limits"
+        },
+        {
+          "path": "/verify",
+          "label": "Verify published artifact hashes"
+        },
+        {
+          "path": "/research/null-zoo-v0",
+          "label": "Null Zoo benchmark and research methods"
+        }
+      ],
+      "dir": "mcp-research",
+      "package": "canli-research-mcp",
+      "version": "0.2.0",
+      "commit": "10121fee41325d6e04a3b17715d1ca619a18bfd6",
+      "route": "/mcp-servers/research",
+      "endpoint": "/mcp/research",
+      "tool_count": 6,
+      "tools": [
+        {
+          "name": "search_research",
+          "title": "Search research",
+          "description": "Find Canli Capital research papers (strategy tests, killed candidates, literature reviews, feasibility protocols) by words in their titles and summaries. Use it to find a paper's slug, then read it with get_paper; to browse by subject instead, use list_topics."
+        },
+        {
+          "name": "list_topics",
+          "title": "Research topics",
+          "description": "The research topics, with how many papers each holds and what it covers."
+        },
+        {
+          "name": "get_paper",
+          "title": "Read a paper",
+          "description": "A research paper's text as published, by slug, with its headings; send section for one part, and max_chars to cap the length. Find the slug with search_research or list_topics first."
+        },
+        {
+          "name": "trial_ledger",
+          "title": "Trial ledger",
+          "description": "How many distinct hypotheses Canli Capital has tried against its declared budget, and how many were killed or survived. Use it to judge any published result against the size of the search behind it."
+        },
+        {
+          "name": "live_record",
+          "title": "Live paper record",
+          "description": "The live paper-trading record (returns, costs, risk, corrections, provenance) and each sleeve's paper equity, with their limits. Use it for how the strategies are doing now; for why they exist, read the papers."
+        },
+        {
+          "name": "chain_head",
+          "title": "Verification chain head",
+          "description": "The head of the tamper-evident chain that shows the published record was not rewritten after publication, with where to verify it. Use it to check that a figure you read was not changed later."
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "Released hosted contracts and illustrative inputs; no measured adoption, human review, indexing or strategy outcomes."
+}

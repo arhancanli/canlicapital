@@ -1,0 +1,52 @@
+{
+  "schema": "canli.mcp-findability-verification.v1",
+  "observed_at": "2026-10-01T08:12:59.109Z",
+  "stage": "local candidate; CI and production pending",
+  "source_commit": "fec002de",
+  "tests": {
+    "main": 788,
+    "preverify": 6,
+    "failures": 0
+  },
+  "page_audit": {
+    "pages": 699,
+    "indexable": 336,
+    "noindex": 363,
+    "errors": 0,
+    "warnings": 0,
+    "orphan_pages": 0,
+    "max_static_clicks": 3,
+    "internal_links": 21386
+  },
+  "intents": {
+    "canonical_owners": 110,
+    "query_hypotheses": 163,
+    "unassigned_review_queue": 226,
+    "measured_demand": false
+  },
+  "browser": {
+    "cases": 8,
+    "widths": [
+      390,
+      1440
+    ],
+    "passed": true,
+    "artifact": "artifacts/seo/mcp-discovery-browser-20261001.json"
+  },
+  "gitfree_deploy_validation": {
+    "passed": true,
+    "method": "scripts/validate-deploy-snapshot.mjs on the built candidate"
+  },
+  "logs": {
+    "build_sha256": "3654f9f0a6c1012d29b87aa504f20e986fb5de3a7e776be3b449c4388cd8d313",
+    "verify_sha256": "e50599ebfc249b15fbcb387846c19d7f51f3bceeca8f2009ac55ef64e2c06dab",
+    "gitfree_sha256": "33c7c421f2925aa66669449fc74bc9a7ccd4de76c9ee3d57f45a024c420c0dde"
+  },
+  "claims": {
+    "new_indexing_count": false,
+    "rankings": false,
+    "new_package_release": false,
+    "broker_orders": false,
+    "human_gold_labels": false
+  }
+}

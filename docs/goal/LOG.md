@@ -4087,17 +4087,6 @@ is not yet measured and the owner resubmits the sitemap in Search Console.
   reconciliation, actual annotation and v1 task quality, trusted-publisher parity, remaining
   analyzer/adoption/research goals. Every owner objective remains active.
 
-## 2026-10-01 — journal evidence continuation phase
-
-Previous goal turn made progress: #339/#336/#337 and continuity #340 merged, with live
-production evidence. Current main reverified at ed511f1a; only dependency #338 is open.
-New isolated branch: continue/journal-evidence-20261001. Next implement source-bound journal
-export and validation recomputation before paper-broker integration. Existing generic signed
-journals verify integrity but lack mandatory opening-state/fee/valuation evidence; export must
-state its additive financial profile and refuse missing or unresolved financial evidence.
-No broker orders, new package version, human gold labels or strategy/indexing outcomes implied.
-All master objectives remain active.
-
 
 ## 2026-10-01 — owner findability steering and MCP coverage phase
 
@@ -4122,17 +4111,14 @@ heading from a shared negative margin. Scoped the fix to the new pages; final ch
 Actual indexing, rankings, human labels, funded outcomes and deployment are not yet claimed.
 
 
-## 2026-10-01 — journal export accounting core checkpoint (local draft)
+## 2026-10-01 — findability candidate passes final local gates
 
-Draft additive account profile and export/signature/binding core are present in the isolated
-journal branch. Six focused hand-accounting/adversarial tests pass: decimal partial fills,
-carried window state, fees/marks/turnover/drawdown, source/signature/claim binding and refusal
-of incomplete or unresolved evidence. Fixed bounded entry counting, hourly buckets, declared
-genesis cash-flow rejection and correction validation, including unused bad mark prices.
-The initial test run had two incorrect fixture expectations (selection field/status); corrected
-to the unchanged standard and retained this failure here. This is not the 1,000-journal
-independent Python financial oracle or an MCP integration result. Wrapper/file safeguards,
-full independent validation and release gates remain pending. No export tool release claimed.
+Full build/verify: 788 main + 6 preverify, 699 pages, zero on-page errors/warnings; 336 indexable,
+363 deliberately noindex, all indexable pages within three static links of home. The 4 new pages
+are scoped to the published discovery record for numerical claims. Intent map: 110 owners/163
+query hypotheses; 226 unassigned canonicals remain a review queue, not measured missing demand.
+Eight browser cases pass after the scoped footer fix. Actual Git-free deployment validator passes.
+CI and production remain pending. Details: FINDABILITY_20261001.md and the verification artifact.
 
 
 ## 2026-10-01 08:20Z–08:23Z — MCP findability merged; publisher started
@@ -4168,9 +4154,48 @@ Goal stays active. Next: independent journal accounting oracle, local file/MCP i
 paper reconciliation, real expert annotation and substantial MCP releases; every pillar stays.
 
 
+## 2026-10-01 — journal evidence continuation phase
+
+Previous goal turn made progress: #339/#336/#337 and continuity #340 merged, with live
+production evidence. Current main reverified at ed511f1a; only dependency #338 is open.
+New isolated branch: continue/journal-evidence-20261001. Next implement source-bound journal
+export and validation recomputation before paper-broker integration. Existing generic signed
+journals verify integrity but lack mandatory opening-state/fee/valuation evidence; export must
+state its additive financial profile and refuse missing or unresolved financial evidence.
+No broker orders, new package version, human gold labels or strategy/indexing outcomes implied.
+All master objectives remain active.
+
+
+
+## 2026-10-01 — journal export accounting core checkpoint (local draft)
+
+Draft additive account profile and export/signature/binding core are present in the isolated
+journal branch. Six focused hand-accounting/adversarial tests pass: decimal partial fills,
+carried window state, fees/marks/turnover/drawdown, source/signature/claim binding and refusal
+of incomplete or unresolved evidence. Fixed bounded entry counting, hourly buckets, declared
+genesis cash-flow rejection and correction validation, including unused bad mark prices.
+The initial test run had two incorrect fixture expectations (selection field/status); corrected
+to the unchanged standard and retained this failure here. This is not the 1,000-journal
+independent Python financial oracle or an MCP integration result. Wrapper/file safeguards,
+full independent validation and release gates remain pending. No export tool release claimed.
+
+
+
 ## 2026-10-01 08:38Z — verified goal checkpoint published
 
 #342 merged at 08:38:35Z as 18f693fafc9a63fee5de081b6e359f49085a6173 after all seven checks
 passed. Main now carries the live findability evidence, full goal map and pending journal/annotation
 work. Production remains clean at the tested website commit 65dad63f; #342 is documentation and
 evidence only. Goal remains active. No additional indexing, human labels or strategy outcomes.
+
+
+## 2026-10-01 — journal implementation resumed after findability delivery
+
+Previous goal turn made progress: #341/#342 merged, four new MCP canonicals verified live,
+and journal accounting draft checkpointed. Reverified clean worktrees, main 18f693fa and only
+dependency PR #338 open. Integrated latest main into the journal branch; three continuity
+conflicts resolved by retaining the latest verified main state and local journal phase/failure
+records. Backup branch records/journal-before-integration-20261001 preserves original bytes.
+Next: independent 1,000-journal financial oracle, bounded file/export helpers and local MCP
+source-validation link. Generic journal vectors and hosted release pins stay unchanged.
+No broker requests, package bump or new indexing/human/strategy outcomes claimed.

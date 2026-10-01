@@ -1,5 +1,14 @@
 # CanliCapital goal structure
 
+Verified 2026-10-01 08:28Z: #341 is merged and the four canonical MCP discovery pages are
+live, with exact released tool/source lists and dataset/annotation/research links. All seven
+PR checks, 788 + 6 local tests, 699 page audits, eight browser cases and clean/engine-overlay
+Git-free deployment builds pass. Live metadata, sitemap/llms discovery, exact source JSON,
+font/company/hosted-contract checks pass. Publisher reports 916,480 sitemap URLs and 42
+accepted IndexNow updates; actual indexing remains the dated Sep 27 baseline. Evidence:
+artifacts/seo/mcp-findability-deployment-20261001.json. Journal accounting is a local draft
+(fbbdf827, six focused tests); independent oracle, file/MCP integration and release are pending.
+
 Reconciled 2026-10-01 from the owner's Claude messages, VISION.md, REQUIREMENTS.md,
 MCP_NEXT_MAJORS_PLAN.md, MCP_TRADING_DESIGN.md and the actual repository and live servers.
 The goal is active. This is an execution map; ambitions are not measured achievements.

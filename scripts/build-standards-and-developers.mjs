@@ -596,6 +596,7 @@ ${renderProductShellHeader({ active: "developers" })}
     <div class="dev-downloads">
       <a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a>
       <a class="dev-button" href="#ai-assistant">Connect the MCP server</a>
+      <a class="dev-button" href="/mcp-servers">Compare the finance MCP servers</a>
       <a class="dev-button" href="https://github.com/arhancanli/alphac" rel="noreferrer">Explore ALPHAC on GitHub</a>
       <a class="dev-button" href="#validation">Explore the validators</a>
       <a class="dev-button" href="/api/v1">Discovery document</a>
