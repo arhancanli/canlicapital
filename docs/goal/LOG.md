@@ -5294,3 +5294,27 @@ Primary accepted the final evidence archive within existing scope, but source
 review/current CI/archive/integration/delivery remain gates. All full owner
 goals remain ACTIVE with no local job/grant/model/resource/hold/spend/labels/
 orders/outreach/site/npm/version publication or outcome claims.
+
+
+## Collector capacity and synchronous abort corrections, 2026-10-01T22:15:19.698623+00:00
+
+4fb actualremote40namedPASS/full920+6pre+9notification/all7SUCCESS/zero
+CodeQL objects and equal testedmerge11cd/tree37572690 remain preserved
+(rawd135f3dc/receiptb6a002b7). IndependentPRIMARY0a97ed68/deltad2bb9702
+finds an admitted15x8/seven-backoff plan needing601events under512cap,
+so pending512 could dispatch without space for raw513. IndependentTHIRD
+c02e5b85 finds native abort requested inside observe() can settle cancellation
+yet stillinvoke task unless settled/abort are checked after the clock returns.
+These are STATIC counterexamples, not executed exploit reproductions.
+Corrections reject conservative worst-case event plans before effects (616
+with one possible-overrun/item), recheck post-clock settlement/abort, reserve
+raw/control/footer bytes before dispatch and startup metadata capacity, and
+reserve bounded353 ledger expansion/report bytes. Known capture limits stop
+explicitly before callbacks; filesystem failure remains separately uncertain.
+New41abort/42maximum-plan/43bounded-input-footer/44bounded-ledger controls
+are UNEXECUTED until their own signed-source remoteCI. Existing37/38/40
+passes and all originalCodeQL/P2 records are retained; no old run is rewritten.
+Only assignedcollector/test/guide/append-onlySTATUS+LOG changed; package,
+353/351/343/V0/journal/MCP/site/ALPHAC and previousarchives remain unchanged.
+No localNode/import/test/CLI/browser/job/grant/model/provider/resources/holds/
+spend/experts/orders/outreach/site/npm/version change. All full owner goalsACTIVE.

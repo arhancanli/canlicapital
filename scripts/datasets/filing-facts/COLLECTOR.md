@@ -56,6 +56,17 @@ bounded refusal with observed length and no invented raw digest. Invalid Unicode
 is not repaired. Inputs/events/ledgers are each bounded at8MiB, JSON depth40 and
 200,000 nodes; a capture is bounded at32MiB and512 events. Duplicate JSON members,
 conflicting identities, substituted files and tampered bindings are refused.
+Admission conservatively counts every planned start/end/possible-overrun,
+pending/raw/terminal, backoff pair and final marker, refusing plans above512
+before capture effects. Original inputs/policy/manifest must leave reserved
+control/footer space. Each new dispatch reserves a maximum bounded raw event
+plus eight control frames; insufficient remaining byte capacity stops explicitly
+before callback invocation. The8MiB ledger also reserves4MiB before a dispatch
+for request/response/tool/answer expansion; initial ledger/control capacity is
+checked before effects, and recomputed reports must fit the8MiB JSON bound.
+These conservative limits can stop a plan before its maximum attempt count.
+These are capture resource controls, not financial
+holds or a promise against unexpected filesystem failure.
 
 Supply an existing empty, owned mode0700 directory. Inputs, manifest and immutable
 hash-chained events are created exclusively as singly linked regular mode0600
@@ -80,8 +91,10 @@ controls; these are trusted callbacks too. An absolute deadline covers waiting,
 backoff, request work and capture checks. Abort/timeout is raced against each
 asynchronous fixture/wait, and losing callbacks have no collector write or retry
 continuation. The absolute clock and explicit abort are rechecked inside the queued
-dispatch continuation before invoking a fixture or wait; earlier queued work cannot
-reuse a stale remaining-time admission. Recovery caps the actual event inventory
+dispatch continuation before invoking a fixture or wait, including a second
+settled/abort check after the clock callback returns; earlier queued work or a
+synchronous clock-requested cancellation cannot reuse a stale admission.
+Recovery caps the actual event inventory
 at512 before opening event files, including when the packet input is null.
 Captured results that arrive before finalization retain known usage
 even if a subsequent capture check exceeds the deadline. Unknown usage, identity,

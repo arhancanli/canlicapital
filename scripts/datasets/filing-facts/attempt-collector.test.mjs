@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
 import { createBaselineContract, projectQuestions, V0_DIRECTORY, V0_SHA256 } from './baseline-contract.mjs';
-import { prepareAttemptContract, PACKETS_SCHEMA, MAX_RAW_BYTES } from './attempt-accounting.mjs';
+import { prepareAttemptContract, PACKETS_SCHEMA, MAX_RAW_BYTES, MAX_JSON_BYTES } from './attempt-accounting.mjs';
 import { sha256 } from './evidence.mjs';
 import { CONFIGURATION_SCHEMA, POLICY_SCHEMA, RESPONSE_SCHEMA, MAX_FIXTURE_BYTES,
   prepareCollectorPolicy, collectFixture, recoverFixture } from './attempt-collector.mjs';
@@ -467,4 +467,52 @@ test('recovery caps513 packetless event names before reads while a512-name inven
       assert.equal(eventOpens, 2); // One actual final event, then a missing second file; no valid512-event capture is claimed.
     }
   }
+});
+
+test('a synchronous native abort inside the fresh queued clock check prevents transport invocation', async t => {
+  const s = setup(t), controller = new AbortController(); let armed = false, queued = false, calls = 0;
+  const io = instrument({ close(path) {
+    if (!queued && basename(path) === 'event-0002.json') { queued = true; queueMicrotask(() => { armed = true; }); }
+  } });
+  const output = await collect(s, { io, signal: controller.signal, wall: () => TS,
+    monotonic: () => { if (armed) { armed = false; controller.abort(); } return 0; },
+    transport: () => { calls++; return response(); } });
+  assert.equal(controller.signal.aborted, true); assert.equal(calls, 0);
+  assert.equal(output.ledger.items[0].attempts[0].status, 'aborted'); assert.equal(events(s.home).some(event => event.kind === 'raw'), false);
+  assert.equal(recover(s).report.items[0].attempts[0].usage.input_tokens, null);
+});
+
+test('maximum full-cohort retry plan is refused before capture because its worst-case events exceed512', async t => {
+  const s = setup(t), config = configuration(15); let calls = 0;
+  for (const item of config.items) {
+    const first = item.steps[0];
+    for (let ordinal = 2; ordinal <= 8; ordinal++) item.steps.push({ ...first, id: `${first.id}-retry-${ordinal}`, retry_of: ordinal - 1,
+      trigger: 'http_error', http_statuses: [429], delay_ms: 1, reason: 'Explicit bounded synthetic retry' });
+  }
+  s.inputs.configuration = bytes(config);
+  assert.throws(() => prepareCollectorPolicy(ROOT, s.inputs), /planned worst-case events/);
+  await assert.rejects(collect(s, runtime(() => { calls++; return response({}, 429); })), /planned worst-case events/);
+  assert.equal(calls, 0); assert.deepEqual(fs.readdirSync(s.home), []);
+  const valid = configuration(15), validPolicy = prepareCollectorPolicy(ROOT, { ...s.inputs, configuration: bytes(valid) });
+  assert.equal(validPolicy.capture_limits.planned_worst_case_events, 91); // Includes a possible overrun per item and final marker.
+});
+
+test('bounded maximum-size original inputs refuse missing footer capacity before any filesystem effect', async t => {
+  const s = setup(t); let calls = 0;
+  const padded = input => Buffer.concat([input, Buffer.alloc(MAX_JSON_BYTES - input.length, 0x20)]);
+  const baseline = padded(BASE), questions = padded(Q);
+  s.inputs = { baseline, questions, packets: null,
+    accounting: padded(bytes(prepareAttemptContract(ROOT, baseline, questions))), configuration: padded(bytes(configuration())) };
+  s.policyBytes = bytes(prepareCollectorPolicy(ROOT, s.inputs));
+  await assert.rejects(collect(s, runtime(() => { calls++; return response(); })), /reserved control\/footer capacity/);
+  assert.equal(calls, 0); assert.deepEqual(fs.readdirSync(s.home), []);
+});
+
+test('bounded generation settings near the JSON limit refuse initial ledger expansion before capture', async t => {
+  const s = setup(t), config = configuration(); let calls = 0;
+  config.generation_settings.fixture_padding = 'x'.repeat(MAX_JSON_BYTES - 20000);
+  s.inputs.configuration = bytes(config); assert.ok(s.inputs.configuration.length < MAX_JSON_BYTES);
+  assert.throws(() => prepareCollectorPolicy(ROOT, s.inputs), /initial ledger leaves no reserved/);
+  await assert.rejects(collect(s, runtime(() => { calls++; return response(); })), /initial ledger leaves no reserved/);
+  assert.equal(calls, 0); assert.deepEqual(fs.readdirSync(s.home), []);
 });

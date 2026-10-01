@@ -17,6 +17,11 @@ const PURPOSE = 'synthetic-software-fixture';
 const MAX_CAPTURE_BYTES = 32 * 1024 * 1024;
 const MAX_EVENTS = 512;
 const MAX_PACKET_BYTES = 256 * 1024;
+const MAX_CONTROL_EVENT_BYTES = 64 * 1024;
+const MAX_RAW_EVENT_BYTES = Math.ceil(MAX_FIXTURE_BYTES / 3) * 4 + MAX_CONTROL_EVENT_BYTES;
+const DISPATCH_RESERVE_BYTES = MAX_RAW_EVENT_BYTES + 8 * MAX_CONTROL_EVENT_BYTES;
+const INITIAL_CONTROL_RESERVE_BYTES = 4 * MAX_CONTROL_EVENT_BYTES;
+const LEDGER_DISPATCH_RESERVE_BYTES = 8 * MAX_FIXTURE_BYTES;
 const HERE = 'scripts/datasets/filing-facts';
 const OWN_FILES = ['attempt-collector.mjs', 'COLLECTOR.md'];
 const LOADED = Object.fromEntries(OWN_FILES.map(name => [name, fs.readFileSync(new URL(name, import.meta.url))]));
@@ -141,7 +146,9 @@ function ledgerShell(contract, config) {
     response_pointers: config.response_pointers, price_basis: config.price_basis, items: [] };
 }
 function audit(root, inputs, ledger) {
-  return auditAttemptLedger(root, inputs.accounting, inputs.baseline, inputs.questions, inputs.packets, encoded(ledger));
+  const report = auditAttemptLedger(root, inputs.accounting, inputs.baseline, inputs.questions, inputs.packets, encoded(ledger));
+  if (encoded(report).length > MAX_JSON_BYTES) fail('reconstructed report exceeds353 bounded JSON bytes');
+  return report;
 }
 function prepare(root, inputs) {
   if (typeof root !== 'string' || !isAbsolute(root)) fail('root must be an absolute checkout path');
@@ -184,11 +191,21 @@ function prepare(root, inputs) {
       }
     }
   }
-  audit(root, inputs, ledgerShell(contract, config)); // Reuse353 settings/pointers/price/source validation.
+  // One start/end/possible-overrun per item, pending/raw/terminal per attempt,
+  // two events per explicit backoff and one final marker. Reserve every possible path.
+  const plannedEvents = 1 + config.items.reduce((total, item) => total + 3 + item.steps.length * 3 + item.steps.filter(step => step.delay_ms > 0).length * 2, 0);
+  if (plannedEvents > MAX_EVENTS) fail('planned worst-case events exceed the finite capture budget before dispatch');
+  const initialLedger = ledgerShell(contract, config);
+  if (encoded(initialLedger).length + 2 * MAX_CONTROL_EVENT_BYTES > MAX_JSON_BYTES) fail('initial ledger leaves no reserved control/footer capacity');
+  audit(root, inputs, initialLedger); // Reuse353 settings/pointers/price/source validation.
   const body = { schema: POLICY_SCHEMA, purpose: PURPOSE, inputs: Object.fromEntries(INPUTS.map(name => [name, inputs[name] === null ? null : pin(inputs[name])])),
     accounting_contract_sha256: contract.contract_sha256, dataset_sha256: contract.baseline.dataset_sha256,
     selected_questions: contract.questions.bindings, sample: contract.sample, configuration: config,
-    implementation: implementation(root), execution: { fixture_only: true, model_calls_authorized: false, provider_authenticity_verified: false,
+    implementation: implementation(root), capture_limits: { events: MAX_EVENTS, planned_worst_case_events: plannedEvents,
+      total_bytes: MAX_CAPTURE_BYTES, control_event_bytes: MAX_CONTROL_EVENT_BYTES, raw_event_bytes: MAX_RAW_EVENT_BYTES,
+      dispatch_reserve_bytes: DISPATCH_RESERVE_BYTES, initial_control_reserve_bytes: INITIAL_CONTROL_RESERVE_BYTES,
+      ledger_bytes: MAX_JSON_BYTES, ledger_dispatch_reserve_bytes: LEDGER_DISPATCH_RESERVE_BYTES },
+    execution: { fixture_only: true, model_calls_authorized: false, provider_authenticity_verified: false,
       source_assisted: 'unsupported-held', source_rights_and_complete_coverage: 'unverified-held' } };
   return { policy: { ...body, policy_sha256: digest(body) }, contract, config };
 }
@@ -196,7 +213,10 @@ export function prepareCollectorPolicy(root, input) { return prepare(root, input
 function checked(root, input, policyInput) {
   const inputs = inputsSnapshot(input), policy = parse(policyInput, 'policy'), prepared = prepare(root, inputs);
   if (!same(policy.value, prepared.policy)) fail('policy/input/implementation binding mismatch');
-  return { inputs, policyBytes: policy.bytes, ...prepared };
+  const context = { inputs, policyBytes: policy.bytes, ...prepared };
+  const initialBytes = INPUTS.reduce((total, name) => total + (inputs[name]?.length ?? 0), 0) + policy.bytes.length + encoded(manifestFor(context)).length;
+  if (initialBytes + INITIAL_CONTROL_RESERVE_BYTES > MAX_CAPTURE_BYTES) fail('initial capture bytes leave no reserved control/footer capacity');
+  return context;
 }
 
 // Existing private home, immutable exclusive files, same-descriptor readback, no unlink cleanup.
@@ -482,6 +502,7 @@ class Journal {
       sequence: this.frames.length + 1, previous_sha256: this.previous, kind, data };
     replay(this.context, [...this.frames, frame]);
     const bytes = encoded(frame);
+    if (bytes.length > (kind === 'raw' ? MAX_RAW_EVENT_BYTES : MAX_CONTROL_EVENT_BYTES)) fail('event exceeds its bound reserved frame size');
     this.store.write(`event-${String(frame.sequence).padStart(4, '0')}.json`, bytes);
     this.frames.push(frame); this.previous = sha256(bytes);
     return frame;
@@ -531,6 +552,9 @@ function boundedCall(task, deadline, observe, external) {
       if (settled) return undefined;
       if (external?.aborted) { abort(); return undefined; }
       const current = remaining(deadline, observe());
+      // observe() is a trusted callback and may synchronously request native abort.
+      if (settled) return undefined;
+      if (external?.aborted) { abort(); return undefined; }
       if (current === null || current <= 0) {
         finish({ kind: 'timeout', reason: 'absolute fixture deadline elapsed or clock unavailable at queued dispatch' });
         return undefined;
@@ -578,14 +602,20 @@ export async function collectFixture(root, input, policyInput, directory, runtim
     store.write('policy.json', context.policyBytes); store.write('manifest.json', manifestBytes);
     const journal = new Journal(store, context, manifestBytes);
     const questions = parse(context.inputs.questions, 'questions').value.questions;
+    let stopNewItems = false;
     for (const plan of context.config.items) {
-      if (runtime.signal?.aborted) break;
+      if (runtime.signal?.aborted || stopNewItems || store.total + INITIAL_CONTROL_RESERVE_BYTES > MAX_CAPTURE_BYTES ||
+          encoded(journal.state().ledger).length + 2 * MAX_CONTROL_EVENT_BYTES > MAX_JSON_BYTES) break;
       const start = observe(), deadline = start.monotonic_ms === null ? null : start.monotonic_ms + context.config.limits.item_duration_ms;
       journal.emit('item_start', { id: plan.id, observed: start });
       let end = null;
       for (let index = 0; index < plan.steps.length; index++) {
         const step = plan.steps[index], ordinal = index + 1;
         if (index && !matches(step, journal.state().states.get(plan.id).attempts.at(-1))) break;
+        // Known capacity may refuse admission; it must not cause avoidable loss after a callback.
+        if (store.total + DISPATCH_RESERVE_BYTES > MAX_CAPTURE_BYTES || encoded(journal.state().ledger).length + LEDGER_DISPATCH_RESERVE_BYTES > MAX_JSON_BYTES) {
+          end = { status: 'aborted', error: 'capture or ledger byte reserve unavailable before fixture dispatch' }; stopNewItems = true; break;
+        }
         let observed = observe();
         if (runtime.signal?.aborted || remaining(deadline, observed) === null || remaining(deadline, observed) <= 0) {
           end = { status: 'aborted', error: runtime.signal?.aborted ? 'explicit caller abort before dispatch' : 'absolute item deadline elapsed or clock unavailable before dispatch' }; break;
