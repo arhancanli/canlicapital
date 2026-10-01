@@ -1,0 +1,14 @@
+{
+  "schema": "canli.overlay-timebox-stage-precision-addendum.v1",
+  "recorded_at": "2026-10-01T15:36:17.873344+00:00",
+  "original_incomplete_receipt_sha256": "76f07ad9a1a9947352a3168c735aea274e0f25f1662ed714773fe42eaf2085c1",
+  "observable": "Only stable snapshot capture appeared before deadline; no build output.",
+  "correction": "Exact internal stage was not captured. Clone/copy stage was inferred from harness; dependency guard completion was not separately logged.",
+  "next_instrumentation": "Dependency-resolution completion marker immediately before validator; no product source change or new run.",
+  "next_helper_sha256": "17018b008e8932935a32bb003ffff37124cd96808a666db3589daced463e595c",
+  "pending_timebox_request_seconds": 90,
+  "limits": [
+    "No completed validation/publication and no third job/nonce claimed here.",
+    "Historical failed/incomplete artifacts unchanged."
+  ]
+}

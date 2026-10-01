@@ -1,0 +1,98 @@
+{
+  "reviewed_head": "1a6027c8d2ba0dbefab0eac538fb6fbba9784e47",
+  "implementation": "Primary separate Python stdlib source reread; exact integer subtraction and Fraction percentage crosscheck, no JS or supplied oracle imports.",
+  "actual_source_candidates": 14,
+  "source_companies": 7,
+  "all_pass": true,
+  "cases": [
+    {
+      "id": "01262346090f800c000fd42527a8ef3360ac98e5723b74085aa69d3d5a85f77f",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": 44000000,
+      "fraction_based_percentage_error": 4.440892098500626e-16
+    },
+    {
+      "id": "b8eda7625e2b786a5db1c7debc5a85732b5bdd295df8bb49896f06337ae97690",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": -39000000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "0109e0224c756b1cfe62306eb541f60f8ef7efc6b3bb2baedd3dbc99194d615c",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": -468004000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "da9437b071aa126eb83f6ed5a968655c8154bf653f514e0b90c49c42d1b90821",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": 468004000,
+      "fraction_based_percentage_error": null
+    },
+    {
+      "id": "af86042543c2986733f9be1ed72f60d90aa6c90cc58ec87dfcde9fa4ee27b6fb",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": -4510000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "abf76bbd715b873d5e213314885e7e08003f6d121d157501e7736c4bed8a3dd1",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": -33296000,
+      "fraction_based_percentage_error": 1.4210854715202004e-14
+    },
+    {
+      "id": "dc2ab3819f74eb4c05d17fd5a1cf02598320f19390e721738cfc01a2d854e8b6",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": 195000000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "886b8af9dfd88bb8cf04e4eb46bbd9bab47e31241851bd2756b932924eda9633",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": -195000000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "075d172a63999c38a798d30a9f2a034f73cf090bb6c4d44e599dff18ce3273fa",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": 28000000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "9668853905aaed92c654baa81f2be3579bbdb1fed0414ce7064fb3982a08cde3",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": 269000000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "8d7ccfdbafdc8c56c3ec8ef418e66154c1072c2e0d7a7e2ad809a99e2bfb5153",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": -2000000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "13fa1b194fcb5f73dfea8a91a805def45833ed576dc3c5057017a51fb96f0ee6",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": -1000000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "257d49d019d38c1e62b94c4e6ba4d5607b6d7140e88104a9bf40496db6bb7669",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": -861000000,
+      "fraction_based_percentage_error": 0.0
+    },
+    {
+      "id": "5242f187861cfc587e3c8db38536afa9041f9f8714669eed2a4c2d8b4f4e4ed1",
+      "source_values_and_endpoints_match": true,
+      "exact_integer_difference": -40000000,
+      "fraction_based_percentage_error": 0.0
+    }
+  ],
+  "limits": [
+    "Uses selected hash-bound snapshots; does not establish authenticity, complete history, capture time or intraday availability.",
+    "Fraction crosscheck measures stated binary64 rounding and is not a schema/expert certificate.",
+    "Source packet is machine candidates, not gold."
+  ]
+}

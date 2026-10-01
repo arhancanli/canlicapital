@@ -1,0 +1,117 @@
+{
+  "checked_at": "2026-10-01T12:38:52.347289+00:00",
+  "candidate": "f999f6d6ba378cee1eef36d0f98bb524dd3ab44d",
+  "reviewed_source_head": "416f6a6d11c4def9ba08c1b3eef00211b5c0c355",
+  "source_equivalence_paths": [
+    "vercel.json",
+    "vercel.company-preview.json",
+    "scripts/api-noindex.test.mjs"
+  ],
+  "entire_product_diff_from_reviewed_head_empty": true,
+  "primary_log_preserved_as_prefix": true,
+  "base": "e45fe44dea1dab354d47f2aa00ba2a081e9c0709",
+  "candidate_tree": "4f7c6432c4c6b7839ae256d9705fc6b539d0bc85",
+  "pr": {
+    "baseRefOid": "e45fe44dea1dab354d47f2aa00ba2a081e9c0709",
+    "headRefOid": "f999f6d6ba378cee1eef36d0f98bb524dd3ab44d",
+    "mergeStateStatus": "CLEAN",
+    "number": 348,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:35:29Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596409/job/110370187785",
+        "name": "analyze (javascript-typescript)",
+        "startedAt": "2026-10-01T12:33:55Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:35:49Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596395/job/110370188419",
+        "name": "vite production build",
+        "startedAt": "2026-10-01T12:33:54Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:53Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596409/job/110370188062",
+        "name": "analyze (python)",
+        "startedAt": "2026-10-01T12:33:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:06Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596395/job/110370187923",
+        "name": "design wrapper build and contracts",
+        "startedAt": "2026-10-01T12:33:53Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:13Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596395/job/110370188193",
+        "name": "MCP package and stdio contracts",
+        "startedAt": "2026-10-01T12:33:53Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:29Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596395/job/110370188237",
+        "name": "Key revocation PostgreSQL contract",
+        "startedAt": "2026-10-01T12:33:54Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:47Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/runs/110370515832",
+        "name": "CodeQL",
+        "startedAt": "2026-10-01T12:34:44Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "url": "https://github.com/arhancanli/canlicapital/pull/348"
+  },
+  "merge_ref_alerts": [],
+  "primary_review_receipt": "analyzers/pr-348-primary-independent-review.json",
+  "prior_focused_tests_apply_to_identical_source": 13,
+  "live_header_verification_pending": true,
+  "delivery": {
+    "headRefOid": "f999f6d6ba378cee1eef36d0f98bb524dd3ab44d",
+    "mergeCommit": {
+      "oid": "0d9c88c605d7abfda150bde87c95f8554672352e"
+    },
+    "mergedAt": "2026-10-01T12:38:56Z",
+    "number": 348,
+    "state": "MERGED",
+    "url": "https://github.com/arhancanli/canlicapital/pull/348"
+  },
+  "merged_tree": "4f7c6432c4c6b7839ae256d9705fc6b539d0bc85",
+  "trees_equal": true,
+  "merged_signature": {
+    "verified": true,
+    "reason": "valid",
+    "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqvlRfCRC1aQ7uu5UhlAAALYMQAFFFxLhwOCfAAJ8unNsBPnRM\nRmZYOwYJnZuAE+6JAnWjVB4qvTyX9g1O1UFnuFZ6v8CyigLyt1fxEmVoz8JRWK3n\nOG03uImRf2K9r8MGZldDF4SsRlEohBg9kuy1v/y2Ny8HwoCet6aLlIKuAezXqFc1\nb3jC6i3utOSkNHH7FxdEuSXPS4Q9s74uxbAAitc96Qu3Q8/0LblUOfXHdW5tn3GI\npceNpOKrSFpseGksh1dAy5FrvSzDQ3jdQ5GJ4sl1C7JiXJyt6WwUd/8yMiMoxzYn\nGtT73TX9/WyX99Cq90DbL+y+LIdXkvvPFmL8dYgeklkAUBviJrXvh/cwMhaR55Px\nY18Br78trylN90o8HNwZnok6hDVjDohupYsEpfmOSjAeFuKb5ufdmxg+F4RXvtMl\nu7TNeI3UPcJ7M9U+VFFkkDUytnZZkXVEvFK0+d5iEgfh2o6AakPXv4wK1GbhpoRm\n/7q3l0xFwfXxtdKPcf5d2woK+fKgLgliSH7wj6kN5QVZpUVp197IWMdhFThdPfRQ\n7Hv/GKCl3zqU7Eg7MZwgLroxORh363PZNFQlB7FZqpq4N2yQctNdGxVSrCCwMhZ8\nqV8XYRPFEC0lMxVQLfNkBYv+8IrZASQM2ErYBAN29wKCQ4biuQF6/EaFP0c0sEWb\nEOdAq+7lyOrlvV/9Hta+\n=1CFO\n-----END PGP SIGNATURE-----\n",
+    "payload": "tree 4f7c6432c4c6b7839ae256d9705fc6b539d0bc85\nparent e45fe44dea1dab354d47f2aa00ba2a081e9c0709\nauthor Arhan Canli <arhancanli8@gmail.com> 1790858335 +0400\ncommitter GitHub <noreply@github.com> 1790858335 +0400\n\nAdd noindex headers to raw FilingFacts downloads (#348)\n\nLive batch verification found FilingFacts JSONL and its extensionless\nSHA256SUMS download missing `X-Robots-Tag: noindex`. Cover JSONL in the\nraw-file rule and complete dataset checksum paths in a separate scoped\nrule, with the company-preview configuration regenerated from the same\nbase. All five published dataset files retain their exact bytes, and\ncanonical HTML routes retain their existing indexing intent.\n\nValidation: both actual paths fail independently against the old\nconfiguration; 14 focused checks, 829 main + 6 preverify tests on Node\n22.23.2, 699 page audits with zero errors/warnings, and a clean Git-free\nbuild pass. The retained artifact includes the original live responses,\ninitial preview-parity failure, corrected run, source hashes, and\ncompressed logs: [raw dataset header\nevidence](artifacts/goal/raw-dataset-noindex-quality-20261001.json).\nPrimary-owned deployment must verify the final live headers.\n\n---------\n\nCo-authored-by: Arhan Canli <315329124+arhancanli@users.noreply.github.com>",
+    "verified_at": "2026-10-01T12:38:55Z"
+  }
+}

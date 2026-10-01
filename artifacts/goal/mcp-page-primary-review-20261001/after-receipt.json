@@ -1,0 +1,459 @@
+{
+  "schema": "canli.mcp-table-focus-independent-after-review.v1",
+  "reviewed_at": "2026-10-01T14:36:45.169357+00:00",
+  "reviewer_thread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "head": "99af5fca424655a502397695c05e4b1fb9a85723",
+  "tree": "d97b80dcb04a7981f4ec2bf4fd2c6bb17f80107d",
+  "before_head": "ad7b9511f4f4e2afef1d0c13fccc4f36c5505c17",
+  "base": "fe68e73eb12d0f8c6a3a93eb4cf4f363c4ca1099",
+  "signature": "G locally and GitHub SSH verified",
+  "scope_result": "PASS",
+  "blocking_finding": {
+    "id": "CC349-P2-TABLE-FOCUS",
+    "before": "External table outline wholly clipped; focus/blur sameSHA3fb2c346..., zero changed pixels at validation320. Original failure/probe/images retained unchanged.",
+    "after": "RESOLVED in bounded independent DEV Chromium cases at99af. Dark3px/-3px focus ring visibly paints inside native table and overflow wrapper; actualTab, native arrows where applicable, native table semantics and labeled overflow region retained.",
+    "remaining_blocking_findings": []
+  },
+  "source_scope": [
+    {
+      "path": "css/mcp-pages.css",
+      "sha256": "04cbb6b0761d5f55e9dd6d61db990a08153b473127eeb0aeaef927fa981a49da",
+      "same_as_before": false,
+      "correction_manifest_match": true
+    },
+    {
+      "path": "scripts/build-mcp-pages.mjs",
+      "sha256": "eeef776362aaddd3269823e26310793efe796746a8bec068e57e249fa1fb5d04",
+      "same_as_before": true,
+      "correction_manifest_match": true
+    },
+    {
+      "path": "scripts/audit-developer-mcp-pages.py",
+      "sha256": "e8b53582b19b100e435a5e2369c51ac1251c8ba01f61bbabe4d3e9f2ae2f2d17",
+      "same_as_before": true,
+      "correction_manifest_match": true
+    },
+    {
+      "path": "mcp-servers.html",
+      "sha256": "716a4401575f4ebf1e39f9657335fc9870d19f68ed53466c3d4c4c3daf13b521",
+      "same_as_before": true,
+      "correction_manifest_match": true
+    },
+    {
+      "path": "mcp-servers/validation.html",
+      "sha256": "e8dfe81347810f48d520908e348a61f725f300fa0928f46c7868d3687975c6be",
+      "same_as_before": true,
+      "correction_manifest_match": true
+    },
+    {
+      "path": "mcp-servers/fundamentals.html",
+      "sha256": "7d293ea0063878c04589ed65f719cf1bf0803a4e8db3298fcdd59872d68dddec",
+      "same_as_before": true,
+      "correction_manifest_match": true
+    },
+    {
+      "path": "mcp-servers/research.html",
+      "sha256": "d0ac551b977237289f49b757e10cae431714244794327206ae9f8c06d32c2349",
+      "same_as_before": true,
+      "correction_manifest_match": true
+    },
+    {
+      "path": "config/source-dates.json",
+      "sha256": "2cce44fa8909f2e549d2065f8acf7f15d5425b2406493f67c93853c66d0c7e6c",
+      "same_as_before": true,
+      "correction_manifest_match": true
+    }
+  ],
+  "protected_base_files_unchanged": 5290,
+  "historical_archive_count_unchanged": 84,
+  "historical_manifest_sha256": "f9dcfb44af3b15cc85f14b38202f8a463059f5f1debd2855f2965a29591e3589",
+  "original_failed_binding_receipt_sha256": "d65a0e1d2dd2bfa2b8d0662299415d53bf81cd12896293c3e52e21d936280231",
+  "remote_ci": {
+    "exact_head": "99af5fca424655a502397695c05e4b1fb9a85723",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T14:10:55Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36874118096/job/110409042977",
+        "name": "analyze (javascript-typescript)",
+        "startedAt": "2026-10-01T14:09:23Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T14:11:18Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36874118114/job/110409043716",
+        "name": "vite production build",
+        "startedAt": "2026-10-01T14:09:24Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T14:10:33Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36874118096/job/110409043567",
+        "name": "analyze (python)",
+        "startedAt": "2026-10-01T14:09:23Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T14:09:41Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36874118114/job/110409043413",
+        "name": "design wrapper build and contracts",
+        "startedAt": "2026-10-01T14:09:23Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T14:09:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36874118114/job/110409043657",
+        "name": "MCP package and stdio contracts",
+        "startedAt": "2026-10-01T14:09:23Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T14:10:10Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36874118114/job/110409043648",
+        "name": "Key revocation PostgreSQL contract",
+        "startedAt": "2026-10-01T14:09:23Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T14:10:27Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/runs/110409508241",
+        "name": "CodeQL",
+        "startedAt": "2026-10-01T14:10:24Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "all_seven_success": true,
+    "merge_ref": "b5206ff5508564acc0fe7672362154e45ef2c7f1",
+    "merge_ref_tree": "d97b80dcb04a7981f4ec2bf4fd2c6bb17f80107d",
+    "open_alerts": 0,
+    "latest_language_analyses": {
+      "javascript-typescript": {
+        "ref": "refs/pull/349/merge",
+        "commit_sha": "b5206ff5508564acc0fe7672362154e45ef2c7f1",
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "environment": "{\"language\":\"javascript-typescript\"}",
+        "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+        "error": "",
+        "created_at": "2026-10-01T14:10:47Z",
+        "results_count": 0,
+        "rules_count": 103,
+        "id": 1874483718,
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1874483718",
+        "sarif_id": "e55ef104-bda1-11f1-832c-2bae90850cfc",
+        "tool": {
+          "name": "CodeQL",
+          "guid": null,
+          "version": "2.27.1"
+        },
+        "deletable": true,
+        "warning": ""
+      },
+      "python": {
+        "ref": "refs/pull/349/merge",
+        "commit_sha": "b5206ff5508564acc0fe7672362154e45ef2c7f1",
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "environment": "{\"language\":\"python\"}",
+        "category": ".github/workflows/codeql.yml:analyze/language:python",
+        "error": "",
+        "created_at": "2026-10-01T14:10:26Z",
+        "results_count": 0,
+        "rules_count": 50,
+        "id": 1874481236,
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1874481236",
+        "sarif_id": "d8694756-bda1-11f1-835b-a3d14161718a",
+        "tool": {
+          "name": "CodeQL",
+          "guid": null,
+          "version": "2.27.1"
+        },
+        "deletable": true,
+        "warning": ""
+      }
+    },
+    "observed_ci_node": "22.23.3",
+    "test_groups": [
+      6,
+      844,
+      9
+    ],
+    "page_audit": {
+      "pages": 699,
+      "errors": 0,
+      "warnings": 0
+    },
+    "ci_build_log_raw_sha256": "31af2078d2452267ccebe2974166057390ad1565dc84808b34bd9732008271a6"
+  },
+  "browser": {
+    "served_mode": "Independent DEV Vite; separate from historical BUILT/LH/LIVE",
+    "node": "v24.19.0",
+    "python": "3.9.6",
+    "chromium": "148.0.7778.96",
+    "completed_cases": 6,
+    "element_checks": 12,
+    "elapsed_seconds": 11.398404875,
+    "automated_failures": [],
+    "page_errors": 0,
+    "external_requests": 0,
+    "normal_table_native_scroll": "validation320 ArrowRight30\u2192ArrowLeft0; other five normal tables do not overflow, no scroll claim.",
+    "wrapper_scroll": "All six wrappers normally nonfocusable. Controlled min-width +120px DOM fixture triggers existing ResizeObserver tabindex/region/label; actualTab and nativeArrowRight40\u2192ArrowLeft0 pass, fixture restored.",
+    "manual_visual_review": "All twelve actual focused PNG captures independently viewed; visible ink ring confirmed.",
+    "images": [
+      {
+        "route": "/mcp-servers/validation",
+        "width": 320,
+        "layer": "table",
+        "focused_png": "validation-320-table-focused.png",
+        "focused_sha256": "3bb9d0ff3051e3961aec83a32ca590e06f11f9ac6bda4f5499278b113b2e71d4",
+        "unfocused_png": "validation-320-table-unfocused.png",
+        "unfocused_sha256": "479e187cc22151ad9fac9e9f47083d8f06e1964771bf77cb7c6d6a22e3464985",
+        "different_pixels": 5156,
+        "dark_top_edge_pixels": 816,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": null
+      },
+      {
+        "route": "/mcp-servers/validation",
+        "width": 320,
+        "layer": "wrapper",
+        "focused_png": "validation-320-wrapper-focused.png",
+        "focused_sha256": "3741177d984fd448e20ea29405302390bc28f63bc0469c7df16944ec1ca533f7",
+        "unfocused_png": "validation-320-wrapper-unfocused.png",
+        "unfocused_sha256": "8f4375ccb38d3b64e2050a86d3d152b0e747b3e7555809c89632501e21f3cdaf",
+        "different_pixels": 5072,
+        "dark_top_edge_pixels": 816,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": "Controlled table min-width +120px DOM fixture; existing ResizeObserver automatically made wrapper focusable"
+      },
+      {
+        "route": "/mcp-servers/validation",
+        "width": 1440,
+        "layer": "table",
+        "focused_png": "validation-1440-table-focused.png",
+        "focused_sha256": "8c27c931a4d8ba27613e3940565b39a1e8a69017472880d48a61c7261609e626",
+        "unfocused_png": "validation-1440-table-unfocused.png",
+        "unfocused_sha256": "3f8c9fcfdbc785f24c9f19d43e4d4e04c0894621fa83d06dd4dcf0d5597290ae",
+        "different_pixels": 8076,
+        "dark_top_edge_pixels": 3720,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": null
+      },
+      {
+        "route": "/mcp-servers/validation",
+        "width": 1440,
+        "layer": "wrapper",
+        "focused_png": "validation-1440-wrapper-focused.png",
+        "focused_sha256": "2b123002419ab5e5d6213f605a126f592c1c8a32b2b0a777caf41148380a6d99",
+        "unfocused_png": "validation-1440-wrapper-unfocused.png",
+        "unfocused_sha256": "e31cbd295ad822a572b6ed43fb123ca62e25ec6748d1513c91f31edcbd0f1362",
+        "different_pixels": 8020,
+        "dark_top_edge_pixels": 3720,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": "Controlled table min-width +120px DOM fixture; existing ResizeObserver automatically made wrapper focusable"
+      },
+      {
+        "route": "/mcp-servers/fundamentals",
+        "width": 320,
+        "layer": "table",
+        "focused_png": "fundamentals-320-table-focused.png",
+        "focused_sha256": "60a605ac7d3166767ce533c286bc9f3fee98f33d80551e7624280ac80f1812d1",
+        "unfocused_png": "fundamentals-320-table-unfocused.png",
+        "unfocused_sha256": "bb2533a6de882f957246ed5b9c92822014b6e1ed8822970c60f84733540fbd6d",
+        "different_pixels": 5178,
+        "dark_top_edge_pixels": 822,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": null
+      },
+      {
+        "route": "/mcp-servers/fundamentals",
+        "width": 320,
+        "layer": "wrapper",
+        "focused_png": "fundamentals-320-wrapper-focused.png",
+        "focused_sha256": "a262faf3d504b912b78d0922a8644a0400b1e77cbb2af0493ed2a6f9f8e5a115",
+        "unfocused_png": "fundamentals-320-wrapper-unfocused.png",
+        "unfocused_sha256": "4b2041795b14f0e09e437447fbeaf2f71f4d70a430544edf9ead25d2df1a9528",
+        "different_pixels": 5094,
+        "dark_top_edge_pixels": 822,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": "Controlled table min-width +120px DOM fixture; existing ResizeObserver automatically made wrapper focusable"
+      },
+      {
+        "route": "/mcp-servers/fundamentals",
+        "width": 1440,
+        "layer": "table",
+        "focused_png": "fundamentals-1440-table-focused.png",
+        "focused_sha256": "4d98e2ad5d15f68cfa56ec10391b783ddd3ef80f6597afdd46e7a926be2dce92",
+        "unfocused_png": "fundamentals-1440-table-unfocused.png",
+        "unfocused_sha256": "b25756cb8df68a7a0d5872502819885c875c8262e748e1623540d245120fe07d",
+        "different_pixels": 10302,
+        "dark_top_edge_pixels": 3720,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": null
+      },
+      {
+        "route": "/mcp-servers/fundamentals",
+        "width": 1440,
+        "layer": "wrapper",
+        "focused_png": "fundamentals-1440-wrapper-focused.png",
+        "focused_sha256": "e83207338dce9ebbdf9eded4f88c0663f4f3cf1c409966b6d03af1dc0660568b",
+        "unfocused_png": "fundamentals-1440-wrapper-unfocused.png",
+        "unfocused_sha256": "bd8ba2524c08bb30caf599e116c71dc338345e5850310ca87478e4cf9e2f0f1e",
+        "different_pixels": 10131,
+        "dark_top_edge_pixels": 3720,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": "Controlled table min-width +120px DOM fixture; existing ResizeObserver automatically made wrapper focusable"
+      },
+      {
+        "route": "/mcp-servers/research",
+        "width": 320,
+        "layer": "table",
+        "focused_png": "research-320-table-focused.png",
+        "focused_sha256": "08f8c0756f51e52d4052efe50d5f0f98cccc1b0f2f31a0c141911f8fd9533633",
+        "unfocused_png": "research-320-table-unfocused.png",
+        "unfocused_sha256": "be28c88a8082b2f31f865e68c5193a2a8c9e56b672e7b3f51d18aa4ede70c488",
+        "different_pixels": 5178,
+        "dark_top_edge_pixels": 816,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": null
+      },
+      {
+        "route": "/mcp-servers/research",
+        "width": 320,
+        "layer": "wrapper",
+        "focused_png": "research-320-wrapper-focused.png",
+        "focused_sha256": "84012babb8fdcb6ab9c085f0d0238fdb60f648d186ac6439de6c70b714cf2ef6",
+        "unfocused_png": "research-320-wrapper-unfocused.png",
+        "unfocused_sha256": "a44711f942aa04dbaa685c9906df51a8cf3cad10831aafe4574375a4d6ce5ad7",
+        "different_pixels": 5111,
+        "dark_top_edge_pixels": 816,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": "Controlled table min-width +120px DOM fixture; existing ResizeObserver automatically made wrapper focusable"
+      },
+      {
+        "route": "/mcp-servers/research",
+        "width": 1440,
+        "layer": "table",
+        "focused_png": "research-1440-table-focused.png",
+        "focused_sha256": "bdc6160e21a0e8e806baa6b8d7a2f1931141af9444c5ebc766b70545c795788f",
+        "unfocused_png": "research-1440-table-unfocused.png",
+        "unfocused_sha256": "221470865db8a5f8eac641f028c94969df2577099a35142acbbc261eb027cd5c",
+        "different_pixels": 10362,
+        "dark_top_edge_pixels": 3720,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": null
+      },
+      {
+        "route": "/mcp-servers/research",
+        "width": 1440,
+        "layer": "wrapper",
+        "focused_png": "research-1440-wrapper-focused.png",
+        "focused_sha256": "41dfcf2302d1ff27abb9f40ad0b84b8ec4afaaee3b2e3f1333520377f1b2ab70",
+        "unfocused_png": "research-1440-wrapper-unfocused.png",
+        "unfocused_sha256": "68024b8874c1466ed14aeb93be975d98b3e80e12e59f0c00eaf4b9812dab228c",
+        "different_pixels": 10187,
+        "dark_top_edge_pixels": 3720,
+        "manual_visual_result": "PASS: actual dark inset ring visible along top and both sides in focused capture; closed bottom also visible when table fits viewport.",
+        "wrapper_fixture": "Controlled table min-width +120px DOM fixture; existing ResizeObserver automatically made wrapper focusable"
+      }
+    ]
+  },
+  "lease": {
+    "owner_thread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+    "nonce": "99cc392269404873ac0754dba99f650d",
+    "claimed_at": "2026-10-01T14:31:18.932309+00:00",
+    "purpose": "CanliCapital349 ONE independent visible focus/native arrow correction recheck",
+    "head": "99af5fca424655a502397695c05e4b1fb9a85723",
+    "maximum_seconds": 150,
+    "browser_deadline_seconds": 60,
+    "scope": "ONE serial Chromium DEV browser/own server/cache; no LH/full/axe/build/model/cloud/publisher",
+    "authorization": "Explicit lead after Proveloom actual cleanup/release plus primary source eligibility; preserved capacity-grant.json. Absence not permission.",
+    "guarded_released_at": "2026-10-01T14:33:15.515828+00:00"
+  },
+  "cleanup": {
+    "observed_at": "2026-10-01T14:33:15.357430+00:00",
+    "helper_terminal_exit": 0,
+    "helper_log_all_servers_stopped": true,
+    "port5299_connect_ex": 61,
+    "chromium_testing_processes_remaining": [],
+    "own_browser_close_finally": true,
+    "own_context_close_finally": true,
+    "tracked_checkout_status": ""
+  },
+  "receipt_and_probe_sha256": {
+    "pr-349-99af-merge-ref-commit.json": "f2094feef53cd6be6af8cf4f02c287407b997a764d50c78b0600eebf7f05ae41",
+    "probe-inventory-before-browser.json": "d8725c74379f4415312961cf5c2716e0dedcbc5243f831b3832aaa7fa1eaeee2",
+    "remote-review-initial.json": "99cd99176c05fffd39c55fd7f8d1a898cc9b2825d3ae9d3b711b6ff6221bd15c",
+    "validation-320-wrapper-focused.png": "3741177d984fd448e20ea29405302390bc28f63bc0469c7df16944ec1ca533f7",
+    "pr-349-99af-ci.json": "caf1676bfcf106699969468003b9797cd00c5d5ed65ddc4b119ed2b895e6ade8",
+    "fundamentals-1440-wrapper-unfocused.png": "bd8ba2524c08bb30caf599e116c71dc338345e5850310ca87478e4cf9e2f0f1e",
+    "research-1440-table-unfocused.png": "221470865db8a5f8eac641f028c94969df2577099a35142acbbc261eb027cd5c",
+    "fundamentals-320-table-unfocused.png": "bb2533a6de882f957246ed5b9c92822014b6e1ed8822970c60f84733540fbd6d",
+    "validation-1440-table-unfocused.png": "3f8c9fcfdbc785f24c9f19d43e4d4e04c0894621fa83d06dd4dcf0d5597290ae",
+    "research-320-table-unfocused.png": "be28c88a8082b2f31f865e68c5193a2a8c9e56b672e7b3f51d18aa4ede70c488",
+    "pr-349-99af-ci-build-extract.txt": "2395e58a2eaaa9ed34da699009cb1e860ee2bb010ee94255ab4ac597db6c9818",
+    "research-1440-table-focused.png": "bdc6160e21a0e8e806baa6b8d7a2f1931141af9444c5ebc766b70545c795788f",
+    "browser-review.json": "fd84bd083d1a175e0ffcf9e76bd9e5ed89b71db31db077d5e2215d28e7fd46e3",
+    "pr-349-99af-codeql-alerts.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "fundamentals-320-table-focused.png": "60a605ac7d3166767ce533c286bc9f3fee98f33d80551e7624280ac80f1812d1",
+    "research-320-wrapper-unfocused.png": "a44711f942aa04dbaa685c9906df51a8cf3cad10831aafe4574375a4d6ce5ad7",
+    "validation-320-table-focused.png": "3bb9d0ff3051e3961aec83a32ca590e06f11f9ac6bda4f5499278b113b2e71d4",
+    "research-320-table-focused.png": "08f8c0756f51e52d4052efe50d5f0f98cccc1b0f2f31a0c141911f8fd9533633",
+    "browser_lease.py": "55e9d5a965cee01541b0351c1d244278f6e95db7f620c03593ce5392c8c07319",
+    "fundamentals-1440-table-unfocused.png": "b25756cb8df68a7a0d5872502819885c875c8262e748e1623540d245120fe07d",
+    "remote_review_initial.py": "ec4c9c125a2ebf90c4a9cbf9c35db8dfaae79c20d2ffe29363f5433924a82d06",
+    "validation-1440-table-focused.png": "8c27c931a4d8ba27613e3940565b39a1e8a69017472880d48a61c7261609e626",
+    "fundamentals-320-wrapper-unfocused.png": "4b2041795b14f0e09e437447fbeaf2f71f4d70a430544edf9ead25d2df1a9528",
+    "cleanup.json": "729ef3c0ab915f81fe08e2e12417e77a348b1d2d9371f7f8c4b9b2832e1e4dd5",
+    "focus_review.py": "f75c759db1dcaced82dba296e6f15310999707c91c2a092187b65588ae8821b5",
+    "source_review.py": "2e70987c1e29f11eebb03d8c93d50f7848632e35e8aa0059c5e2b1c0529f4e67",
+    "source-review.json": "368af3c5efe95a393269a96de0c6454b1d0f5ef1dcd4e66ae4241341ac6c7235",
+    "remote_review.py": "1214f0a37ad1ae040afaaba84076ceafbe4e1d76e16fe1f9b09b998a08a637c2",
+    "research-320-wrapper-focused.png": "84012babb8fdcb6ab9c085f0d0238fdb60f648d186ac6439de6c70b714cf2ef6",
+    "validation-320-wrapper-unfocused.png": "8f4375ccb38d3b64e2050a86d3d152b0e747b3e7555809c89632501e21f3cdaf",
+    "remote-review.json": "d4d18a599077015a58e0461750ba64626a789eeb5468be61e3895523a61bc1fe",
+    "fundamentals-320-wrapper-focused.png": "a262faf3d504b912b78d0922a8644a0400b1e77cbb2af0493ed2a6f9f8e5a115",
+    "research-1440-wrapper-focused.png": "41dfcf2302d1ff27abb9f40ad0b84b8ec4afaaee3b2e3f1333520377f1b2ab70",
+    "validation-1440-wrapper-focused.png": "2b123002419ab5e5d6213f605a126f592c1c8a32b2b0a777caf41148380a6d99",
+    "pr-349-99af-ci-build.txt.gz": "57c525256148c23445a44f0e2ed7a072df02454f278eccd144f1cb106c82991c",
+    "validation-320-table-unfocused.png": "479e187cc22151ad9fac9e9f47083d8f06e1964771bf77cb7c6d6a22e3464985",
+    "browser-lease.json": "666ccfa0ab05815e3a1a21f1f23a0b1edf425e8ad392137951df6f1e1d95d030",
+    "research-1440-wrapper-unfocused.png": "68024b8874c1466ed14aeb93be975d98b3e80e12e59f0c00eaf4b9812dab228c",
+    "fundamentals-1440-table-focused.png": "4d98e2ad5d15f68cfa56ec10391b783ddd3ef80f6597afdd46e7a926be2dce92",
+    "fundamentals-1440-wrapper-focused.png": "e83207338dce9ebbdf9eded4f88c0663f4f3cf1c409966b6d03af1dc0660568b",
+    "browser-run.txt": "9c3607c981aaf34b90b691b4f5c7b8b990e3c1510907db67ca8f89cfbd256885",
+    "validation-1440-wrapper-unfocused.png": "e31cbd295ad822a572b6ed43fb123ca62e25ec6748d1513c91f31edcbd0f1362",
+    "capacity-grant.json": "4b6468a30fc9cbbb922de9192f98e066870064ab89a31dd5d5e651b2d1a29d8d",
+    "pr-349-99af-commit.json": "dd6e86f215d706e3f3c6cfff531b0b6e4924062721727d89747b6ccd6efcc07b",
+    "pr-349-99af-codeql-analyses.json": "39c8522e46201db5018674229cbf75ac32f2c9ea68a558a77dc54aa8fe8ce13c",
+    "serve.mjs": "63bd6ce8c793beb9d500b6f93d6b2be4bd13e5cdaf644b6d6bfbde49581156e7"
+  },
+  "limits": [
+    "Independent headless Chromium148 DEV evidence only; normal native tables and explicitly controlled overflow-wrapper fixtures; no assertion wrapper normally scrolls at these widths.",
+    "Six-case11.4s focus followup is separate from old10DEV cases, BUILT/axe/LH/live runs and their historical source/date pins.",
+    "No new local full/Lighthouse/axe/Git-free/build run, score, delayed-network CLS, real-device/Firefox/WebKit/screen-reader or full WCAG claim.",
+    "Three earlier forced macOS fallback wrap changes remain disclosed; old eight LH0CLS measurements stay historical, not global platform guarantees.",
+    "Source/metadata/archive consistency is not independent serving-history, timestamp, authenticity, causal or financial-outcome attestation.",
+    "Retained first broad-binding failure and inherited21 baseline mismatches preserved; remote observer initially used wrong analysis language field, corrected offline from captured environment JSON with initial failure/probe preserved.",
+    "Primary sole merger/publisher; evidence-only next signed head requires source equivalence and fresh exact-head CI. No implementation edits, labels, submissions, models, releases or broker orders.",
+    "All Sovereign/MCP/data-refinery/legal execution, ALPHAC qualification,10M actual-indexing,quality/SEO/keywords/design/analyzers/research/adoption goals remain active."
+  ]
+}

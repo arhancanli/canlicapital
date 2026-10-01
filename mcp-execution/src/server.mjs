@@ -3,11 +3,13 @@
 // and checks it against the trader's limits, the market state and the kill switch; it rejects with
 // every reason and never resizes. This build places no orders: it has no broker code at all.
 //
-// Local state lives in one directory the trader controls (CANLI_HOME, default ~/.canli), and no
-// tool writes to it:
+// Order-check state lives in a trader-controlled directory (CANLI_HOME, default ~/.canli).
+// Tools never edit these files:
 //   limits.json  the trader's own limits; a request can only tighten them, never loosen them;
 //   KILL         while this file exists, every order is rejected as kill_switch_engaged.
-// Both are read on every call, so a change takes effect on the next check.
+// check_orders reads both on every call; size_position reads limits.json.
+// Journal head/verify only read. Export can create private files under exports,
+// including retained partial files on failure; it never edits the source journal.
 import { existsSync, readFileSync, realpathSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";

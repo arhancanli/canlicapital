@@ -1,16 +1,29 @@
 # CanliCapital goal structure
 
-Verified 2026-10-01 11:41Z: #343 evaluation, #345 annotation and #344 journal are merged
-with exact candidate/main trees and successful CI. The combined website batch is live at
-clean74d704d4; current hosted releases stay pinned. Eight HTML checks, five unchanged v0
-files, company admission/404, discovery/fonts and hosted contracts pass. Fifteen live annotation
-browser cases pass. Two raw-download noindex omissions are retained and assigned for correction;
-no overall analyzer quality score or fresh indexed count is claimed. Publisher reports916,480
-sitemap URLs and3 accepted IndexNow updates. Full821+6/699 local checks, clean/overlay builds
-and fixed/rechecked journal peer findings remain in the source-bound checkpoint. The entire
-owner objective map stays active, including actual expert gold,10M indexing, adoption,
-governed forward performance and substantial MCP releases. Evidence:
-artifacts/goal/joint-batch-publication-20261001.json and JOURNAL_BATCH_20261001.md.
+Verified 2026-10-01: #343 evaluation, #345 annotation and #344 journal are merged with equal
+reviewed/main trees; the evaluation and annotation website changes are live. Raw-header #348
+is live from clean0d9c88c6 after the current engine-overlay build and independent HTTP checks.
+Both raw-download noindex failures are corrected; canonical dataset/MCP pages remain crawlable.
+Eight HTML, four company admission/404, five exact v0 files, discovery/fonts and hosted15/7/6
+contracts pass. The publisher reports916,480 sitemap URLs and no new URLs in the header batch;
+fresh search-engine indexed counts remain open. #347 source-only candidate tooling is merged
+asfe68e73e:14 machine candidates from seven snapshot pairs, with independent arithmetic/source
+checks and corrected CLI aliases. Human gold and public v1 distribution remain open.
+
+Page #349 merged as62d2a195 from signed88d4ac9a with equal tree, seven successful CI checks
+and zero open merge-ref CodeQL findings. Independent visible-focus correction evidence passes
+six DEV cases/twelve elements; a restored overflow fixture covers the normally nonfocusable
+wrappers. Engine-overlay validation passed in30.36s on Node22.23.2; the established publisher
+completed15:45:17Z and Ready/canli/www plus eight HTML, four company, five exact v0 and three
+hosted-contract checks pass. Initial setup, short deadline and deployment-lock refusals remain
+retained. Its earlier CLS/performance observations stay bound to648236ad; the minimal CSS
+correction is separate from those historical measurements.
+Private execution documentation corrections are local: runtime code and benchmark receipts
+remain unchanged. Every owner objective stays active, including expert gold,10M actual indexing,
+SEO/analyzers/keywords/design, adoption, research, governed forward performance and substantial
+MCP releases. Evidence: artifacts/goal/raw-noindex-publication-20261001,
+artifacts/goal/filingfacts-v1-primary-delivery-20261001 and
+artifacts/goal/mcp-page-primary-review-20261001.
 
 Reconciled 2026-10-01 from the owner's Claude messages, VISION.md, REQUIREMENTS.md,
 MCP_NEXT_MAJORS_PLAN.md, MCP_TRADING_DESIGN.md and the actual repository and live servers.
@@ -62,8 +75,11 @@ The first product is FilingFacts, using source-backed SEC facts and accession ci
    accounting, agreement metrics, adjudication, and a reviewable gold-set export.
 3. Measure model baselines by template and distinguish arithmetic errors, missing data and
    unsupported answers. Keep held-out evaluation and contamination controls explicit.
-4. V1 adds first-reported/restatement tasks from raw SEC snapshots, more useful multi-hop
-   questions and coverage/quality flags; never silently mix quarter/YTD and annual data.
+4. V1 source tooling now selects snapshot-relative first/later annual observations:14 machine
+   candidates from seven captured responses at an explicit cutoff. Quarter/YTD and annual
+   data stay separate. True first-ever reporting and formal restatement-cause tasks require
+   additional history or primary evidence; useful multi-hop questions and coverage/quality
+   flags remain part of the broader v1 goal.
 5. Rights-cleared public samples, datasheets, licenses, checksums, reproducible builds and
    distribution through the site and dataset repositories. V0 is already published CC BY 4.0;
    the old PILLAR3.md approval language is superseded for that existing release.
@@ -102,15 +118,15 @@ remain separate governed milestones. Preserve the owner's ambition to become a r
 ## Current execution sequence
 
 Recovery and live inventory are complete for the sources listed in CLAUDE_RECOVERY_20261001.md.
-Local shortfall analysis and annotation coverage/adjudication controls are implemented and tested
-on main via #339. SEO/performance #336/#337 are merged and verified live at the 06:52Z
-production checkpoint. Shortfall accepts a bounded local file to avoid sending raw histories
-through model context; token and local latency observations are recorded, not worldwide rankings.
-The annotation export preserves review claims and source decisions; real expert submissions
-remain outstanding. Both are reversible code work under
-the owner's existing authorization. Keep version numbers and hosted pins unchanged until their
-substantial release bars hold. Then resume the detailed family plans, publication parity,
-remaining SEO/performance measurements and independent review, recording each transition in STATUS.md and LOG.md.
+Source-bound shortfall/journal, annotation intake/coverage, strict evaluation and v1 candidate
+tooling are delivered to main. The website, raw-header and page349 batches are verified live;
+page349 passed visual correction review, guarded merge, overlay validation and sole publication.
+Retain initial
+failures and separate local, integrated CI, development-browser and live receipts. Finish the
+delivery checkpoint, then continue paper reconciliation, substantial MCP-family release gates,
+rights-cleared v1 discovery and actual expert intake, SEO/analyzers/search measurements and
+governed ALPHAC/research/adoption work. Keep versions and hosted pins unchanged until their
+release bars hold. Record each material transition in STATUS.md and LOG.md.
 
 Source evidence: artifacts/goal/continuation-baseline-20261001.json. Read this map together with
 the owner's full vision and requirements; it does not replace either.

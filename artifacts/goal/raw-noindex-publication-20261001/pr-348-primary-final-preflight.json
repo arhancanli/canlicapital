@@ -1,0 +1,98 @@
+{
+  "checked_at": "2026-10-01T12:38:52.347289+00:00",
+  "candidate": "f999f6d6ba378cee1eef36d0f98bb524dd3ab44d",
+  "reviewed_source_head": "416f6a6d11c4def9ba08c1b3eef00211b5c0c355",
+  "source_equivalence_paths": [
+    "vercel.json",
+    "vercel.company-preview.json",
+    "scripts/api-noindex.test.mjs"
+  ],
+  "entire_product_diff_from_reviewed_head_empty": true,
+  "primary_log_preserved_as_prefix": true,
+  "base": "e45fe44dea1dab354d47f2aa00ba2a081e9c0709",
+  "candidate_tree": "4f7c6432c4c6b7839ae256d9705fc6b539d0bc85",
+  "pr": {
+    "baseRefOid": "e45fe44dea1dab354d47f2aa00ba2a081e9c0709",
+    "headRefOid": "f999f6d6ba378cee1eef36d0f98bb524dd3ab44d",
+    "mergeStateStatus": "CLEAN",
+    "number": 348,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:35:29Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596409/job/110370187785",
+        "name": "analyze (javascript-typescript)",
+        "startedAt": "2026-10-01T12:33:55Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:35:49Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596395/job/110370188419",
+        "name": "vite production build",
+        "startedAt": "2026-10-01T12:33:54Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:53Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596409/job/110370188062",
+        "name": "analyze (python)",
+        "startedAt": "2026-10-01T12:33:53Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:06Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596395/job/110370187923",
+        "name": "design wrapper build and contracts",
+        "startedAt": "2026-10-01T12:33:53Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:13Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596395/job/110370188193",
+        "name": "MCP package and stdio contracts",
+        "startedAt": "2026-10-01T12:33:53Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:29Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36862596395/job/110370188237",
+        "name": "Key revocation PostgreSQL contract",
+        "startedAt": "2026-10-01T12:33:54Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-01T12:34:47Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/runs/110370515832",
+        "name": "CodeQL",
+        "startedAt": "2026-10-01T12:34:44Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "url": "https://github.com/arhancanli/canlicapital/pull/348"
+  },
+  "merge_ref_alerts": [],
+  "primary_review_receipt": "analyzers/pr-348-primary-independent-review.json",
+  "prior_focused_tests_apply_to_identical_source": 13,
+  "live_header_verification_pending": true
+}

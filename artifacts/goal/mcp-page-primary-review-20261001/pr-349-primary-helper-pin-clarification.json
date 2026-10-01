@@ -1,0 +1,23 @@
+{
+  "schema": "canli.overlay-helper-pin-clarification.v1",
+  "recorded_at": "2026-10-01T15:59:53.303439+00:00",
+  "original_stage_addendum_sha256": "70b1f1e482e2d05399770b02ce3b48dbee3f02c860b22f4ef4288d8619ca05e2",
+  "clarified_field": "next_helper_sha256 names publish-reviewed-page-bounded90.py, the prepared orchestration helper; it does not name validate-page-overlay.zsh.",
+  "prepared_orchestration_helper": {
+    "name": "publish-reviewed-page-bounded90.py",
+    "sha256": "17018b008e8932935a32bb003ffff37124cd96808a666db3589daced463e595c",
+    "matches_original_prelaunch_preparation_digest": true,
+    "retained_current_bytes": "publish-reviewed-page-bounded90.py.gz"
+  },
+  "validator_shell_retained_after_run": {
+    "name": "validate-page-overlay.zsh",
+    "sha256": "8660930e7524c65955da342e27307011a4534373b7c64b2ce4acada306605fd2",
+    "retained_current_bytes": "validate-page-overlay.zsh.gz",
+    "separate_launch_time_hash_captured": false
+  },
+  "limits": [
+    "Original ambiguous field and peer observer failure/finding remain preserved.",
+    "Current shell bytes are captured after the run; their hash is not presented as a separately observed historical launch hash.",
+    "Successful overlay log, sourcecommit, outputchecksums and public/source gates are independent evidence."
+  ]
+}
