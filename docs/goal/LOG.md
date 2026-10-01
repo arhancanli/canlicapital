@@ -4775,3 +4775,23 @@ queue; no lease inferred from absence. Separate heroARIA prototype remains held.
 Read-only adoption baseline was considered while waiting but no requests ran
 before this new blocking finding; no adoption result is claimed. All owner goals
 remain active, including actual indexing, expert annotation and ALPHAC outcomes.
+
+
+## 2026-10-01 — independent table-focus correction verified
+
+Third's independent99af source/browser/visual review passes. Six DEVChromium148
+cases at320/1440,12 table/wrapper focus checks complete11.3984s, no failures/page
+errors/external requests. Native validation320 ArrowRight30 toArrowLeft0; other
+five native tables do not overflow, no scroll claim. All six wrappers normally
+nonfocusable; disclosed/restored +120px width fixture uses existing ResizeObserver
+to create labeled focusable region, realTab/native arrows40 to0 pass. Actual12
+focused screenshots viewed by independent Codex worker show dark3px inset rings;
+validation320 focus/blur now differs5156pixels. No human/expert/WCAGcertificate
+claim. Third and primary independently view actual captures. Lease99cc guard
+released14:33:15.515, all own browsers/contexts/server/port closed. Current8source
+hashes/other7/5290protected files/old84archives+manifest match; exact99af7CI/ref0
+verified. Initial failures unchanged. Separate compressedafterreceipt/probes/raw
+logs and24 actual PNGs retained with hashes; no new localfull/LH/score required.
+Prepared evidence-only signed final head must preserve all8 tested99af source
+paths; final remoteCI/peer source extension and primary ordinary merge/pub next.
+HeroARIA/adoption requests stay held until fresh delivery; all owner goals active.

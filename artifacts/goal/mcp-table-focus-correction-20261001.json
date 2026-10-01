@@ -27,7 +27,7 @@
       "raw_bytes": 256
     }
   ],
-  "implementation_commit": null,
+  "implementation_commit": "99af5fca424655a502397695c05e4b1fb9a85723",
   "correction": "MCP-scoped 3px ink outline with -3px inset for native table and any focusable navigation scroll region; no JS, semantics or source-content changes.",
   "current_source_sha256": {
     "css/mcp-pages.css": "04cbb6b0761d5f55e9dd6d61db990a08153b473127eeb0aeaef927fa981a49da",
@@ -42,11 +42,405 @@
   "changed_source_paths": [
     "css/mcp-pages.css"
   ],
-  "independent_browser_recheck": null,
-  "final_head_ci": null,
+  "independent_browser_recheck": {
+    "reviewer_type": "Independent Codex worker; no human expert label or human WCAG review claimed",
+    "reviewed_head": "99af5fca424655a502397695c05e4b1fb9a85723",
+    "scope_result": "PASS",
+    "receipt": "artifacts/goal/mcp-table-focus-correction-20261001/after/after-receipt.json.gz",
+    "raw_receipt_sha256": "08c3ec578060217f62737cdaa3449e23a52c96f65b446426b5b822677b1a6296",
+    "cases": 6,
+    "focus_elements": 12,
+    "elapsed_seconds": 11.398404875,
+    "native_validation_320_arrow_right": 30,
+    "native_validation_320_arrow_left": 0,
+    "wrapper_fixture": "All six wrappers normally nonfocusable; controlled/restored +120px table width triggers existing ResizeObserver focusable labeled region. Native Tab and arrows40 to0 pass.",
+    "independent_codex_visual_inspection": "All12 actual focused PNGs viewed by independent worker; ring visible on both layers at320/1440 across all3 server pages.",
+    "normal_validation_320_focus_blur_different_pixels": 5156,
+    "remaining_blocking_findings": [],
+    "after_artifacts": [
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/after-receipt.json.gz",
+        "original_name": "after-receipt.json",
+        "raw_sha256": "08c3ec578060217f62737cdaa3449e23a52c96f65b446426b5b822677b1a6296",
+        "stored_sha256": "6f1e02115ab7c43e3b8adca2dffd86c9f9e630a94e80ff84544ffd5bb99fabcb",
+        "raw_bytes": 25175,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/browser-lease.json.gz",
+        "original_name": "browser-lease.json",
+        "raw_sha256": "666ccfa0ab05815e3a1a21f1f23a0b1edf425e8ad392137951df6f1e1d95d030",
+        "stored_sha256": "61f8f97cf3bbd657e11e7df40c1c97d0fa1569e0de1127796d735bd38b09c9a0",
+        "raw_bytes": 699,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/browser-review.json.gz",
+        "original_name": "browser-review.json",
+        "raw_sha256": "fd84bd083d1a175e0ffcf9e76bd9e5ed89b71db31db077d5e2215d28e7fd46e3",
+        "stored_sha256": "c10bfccfd61a0f2a8b8b1ec2f2ddf3e769202bc9abcecd6a0f7a84dac694a791",
+        "raw_bytes": 35993,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/browser-run.txt.gz",
+        "original_name": "browser-run.txt",
+        "raw_sha256": "9c3607c981aaf34b90b691b4f5c7b8b990e3c1510907db67ca8f89cfbd256885",
+        "stored_sha256": "47f47421395ec0690c7ddd09cb769dcd27ff4cf59de19c8ddeedd16085c85b01",
+        "raw_bytes": 1232,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/browser_lease.py.gz",
+        "original_name": "browser_lease.py",
+        "raw_sha256": "55e9d5a965cee01541b0351c1d244278f6e95db7f620c03593ce5392c8c07319",
+        "stored_sha256": "aa7d65d5544df1fef55b071fa00ae1258f09bf4e71ae59bbe4fee0be1e205fca",
+        "raw_bytes": 2444,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/cleanup.json.gz",
+        "original_name": "cleanup.json",
+        "raw_sha256": "729ef3c0ab915f81fe08e2e12417e77a348b1d2d9371f7f8c4b9b2832e1e4dd5",
+        "stored_sha256": "88aaecf658c0186535100d4db227a92099f64387a5f8de1c0d2ea4798432151f",
+        "raw_bytes": 309,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/focus_review.py.gz",
+        "original_name": "focus_review.py",
+        "raw_sha256": "f75c759db1dcaced82dba296e6f15310999707c91c2a092187b65588ae8821b5",
+        "stored_sha256": "255794d6468ad0f8b8a5541c6f177c9ef096c0872c64bc79b2777e4a57e875af",
+        "raw_bytes": 12880,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/fundamentals-1440-table-focused.png",
+        "original_name": "fundamentals-1440-table-focused.png",
+        "raw_sha256": "4d98e2ad5d15f68cfa56ec10391b783ddd3ef80f6597afdd46e7a926be2dce92",
+        "stored_sha256": "4d98e2ad5d15f68cfa56ec10391b783ddd3ef80f6597afdd46e7a926be2dce92",
+        "raw_bytes": 112101,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/fundamentals-1440-table-unfocused.png",
+        "original_name": "fundamentals-1440-table-unfocused.png",
+        "raw_sha256": "b25756cb8df68a7a0d5872502819885c875c8262e748e1623540d245120fe07d",
+        "stored_sha256": "b25756cb8df68a7a0d5872502819885c875c8262e748e1623540d245120fe07d",
+        "raw_bytes": 112379,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/fundamentals-1440-wrapper-focused.png",
+        "original_name": "fundamentals-1440-wrapper-focused.png",
+        "raw_sha256": "e83207338dce9ebbdf9eded4f88c0663f4f3cf1c409966b6d03af1dc0660568b",
+        "stored_sha256": "e83207338dce9ebbdf9eded4f88c0663f4f3cf1c409966b6d03af1dc0660568b",
+        "raw_bytes": 109972,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/fundamentals-1440-wrapper-unfocused.png",
+        "original_name": "fundamentals-1440-wrapper-unfocused.png",
+        "raw_sha256": "bd8ba2524c08bb30caf599e116c71dc338345e5850310ca87478e4cf9e2f0f1e",
+        "stored_sha256": "bd8ba2524c08bb30caf599e116c71dc338345e5850310ca87478e4cf9e2f0f1e",
+        "raw_bytes": 110247,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/fundamentals-320-table-focused.png",
+        "original_name": "fundamentals-320-table-focused.png",
+        "raw_sha256": "60a605ac7d3166767ce533c286bc9f3fee98f33d80551e7624280ac80f1812d1",
+        "stored_sha256": "60a605ac7d3166767ce533c286bc9f3fee98f33d80551e7624280ac80f1812d1",
+        "raw_bytes": 65238,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/fundamentals-320-table-unfocused.png",
+        "original_name": "fundamentals-320-table-unfocused.png",
+        "raw_sha256": "bb2533a6de882f957246ed5b9c92822014b6e1ed8822970c60f84733540fbd6d",
+        "stored_sha256": "bb2533a6de882f957246ed5b9c92822014b6e1ed8822970c60f84733540fbd6d",
+        "raw_bytes": 65462,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/fundamentals-320-wrapper-focused.png",
+        "original_name": "fundamentals-320-wrapper-focused.png",
+        "raw_sha256": "a262faf3d504b912b78d0922a8644a0400b1e77cbb2af0493ed2a6f9f8e5a115",
+        "stored_sha256": "a262faf3d504b912b78d0922a8644a0400b1e77cbb2af0493ed2a6f9f8e5a115",
+        "raw_bytes": 70882,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/fundamentals-320-wrapper-unfocused.png",
+        "original_name": "fundamentals-320-wrapper-unfocused.png",
+        "raw_sha256": "4b2041795b14f0e09e437447fbeaf2f71f4d70a430544edf9ead25d2df1a9528",
+        "stored_sha256": "4b2041795b14f0e09e437447fbeaf2f71f4d70a430544edf9ead25d2df1a9528",
+        "raw_bytes": 71236,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/pr-349-99af-ci-build-extract.txt.gz",
+        "original_name": "pr-349-99af-ci-build-extract.txt",
+        "raw_sha256": "2395e58a2eaaa9ed34da699009cb1e860ee2bb010ee94255ab4ac597db6c9818",
+        "stored_sha256": "09925305b4e0bef900e76e2bd88eaf897ea333d55fb8be6e7c8c893d84ed3446",
+        "raw_bytes": 19144,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/pr-349-99af-ci-build.txt.gz",
+        "original_name": "pr-349-99af-ci-build.txt.gz",
+        "raw_sha256": "57c525256148c23445a44f0e2ed7a072df02454f278eccd144f1cb106c82991c",
+        "stored_sha256": "57c525256148c23445a44f0e2ed7a072df02454f278eccd144f1cb106c82991c",
+        "raw_bytes": 107399,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/pr-349-99af-ci.json.gz",
+        "original_name": "pr-349-99af-ci.json",
+        "raw_sha256": "caf1676bfcf106699969468003b9797cd00c5d5ed65ddc4b119ed2b895e6ade8",
+        "stored_sha256": "7713ec12b8981b719cb0a94bb7af867274e3537d2b8e69197abaf2d3345f0eb4",
+        "raw_bytes": 2294,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/pr-349-99af-codeql-alerts.json.gz",
+        "original_name": "pr-349-99af-codeql-alerts.json",
+        "raw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "stored_sha256": "64406e753d82e11c6bd63d1d04bb6aa083eefa0a46949bbfce994d556b989f0f",
+        "raw_bytes": 2,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/pr-349-99af-codeql-analyses.json.gz",
+        "original_name": "pr-349-99af-codeql-analyses.json",
+        "raw_sha256": "39c8522e46201db5018674229cbf75ac32f2c9ea68a558a77dc54aa8fe8ce13c",
+        "stored_sha256": "bee770c636d9ce8d1305f240a8a51506d0910d8d4af4891743681f735baaf166",
+        "raw_bytes": 3560,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/pr-349-99af-commit.json.gz",
+        "original_name": "pr-349-99af-commit.json",
+        "raw_sha256": "dd6e86f215d706e3f3c6cfff531b0b6e4924062721727d89747b6ccd6efcc07b",
+        "stored_sha256": "1fa4132c6ba2d6845993e69195f4d8e1acdb9bffc6ff77879b0e9e8dc32cd344",
+        "raw_bytes": 16362,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/pr-349-99af-merge-ref-commit.json.gz",
+        "original_name": "pr-349-99af-merge-ref-commit.json",
+        "raw_sha256": "f2094feef53cd6be6af8cf4f02c287407b997a764d50c78b0600eebf7f05ae41",
+        "stored_sha256": "35ce9293ed6a3daae72cd74f01668a850ed5d1be2351d17973592c56a0b3abd7",
+        "raw_bytes": 192056,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/probe-inventory-before-browser.json.gz",
+        "original_name": "probe-inventory-before-browser.json",
+        "raw_sha256": "d8725c74379f4415312961cf5c2716e0dedcbc5243f831b3832aaa7fa1eaeee2",
+        "stored_sha256": "89d486c37089db7bc9b88af12f1993aa4f1d755f409026138b9716790f4f89f5",
+        "raw_bytes": 1739,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/remote-review-initial.json.gz",
+        "original_name": "remote-review-initial.json",
+        "raw_sha256": "99cd99176c05fffd39c55fd7f8d1a898cc9b2825d3ae9d3b711b6ff6221bd15c",
+        "stored_sha256": "15ef51217347d1cca2f99e374d6e7b6e85da0794b5b419d9f333aefcc97876df",
+        "raw_bytes": 5238,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/remote-review.json.gz",
+        "original_name": "remote-review.json",
+        "raw_sha256": "d4d18a599077015a58e0461750ba64626a789eeb5468be61e3895523a61bc1fe",
+        "stored_sha256": "2882fe17be344473bea327cef1eccf67787524ba1b09d563a0969e139773f8b1",
+        "raw_bytes": 5904,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/remote_review.py.gz",
+        "original_name": "remote_review.py",
+        "raw_sha256": "1214f0a37ad1ae040afaaba84076ceafbe4e1d76e16fe1f9b09b998a08a637c2",
+        "stored_sha256": "a504cd66d89110a7d8dd07ce9743f4a34cb703c6fa7e0d934b5633431ef84b92",
+        "raw_bytes": 5273,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/remote_review_initial.py.gz",
+        "original_name": "remote_review_initial.py",
+        "raw_sha256": "ec4c9c125a2ebf90c4a9cbf9c35db8dfaae79c20d2ffe29363f5433924a82d06",
+        "stored_sha256": "cf9a774f5677f712fec787bc250d4a9384ff4d7cdf7c37e7b7345774d2cdb0da",
+        "raw_bytes": 4987,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/research-1440-table-focused.png",
+        "original_name": "research-1440-table-focused.png",
+        "raw_sha256": "bdc6160e21a0e8e806baa6b8d7a2f1931141af9444c5ebc766b70545c795788f",
+        "stored_sha256": "bdc6160e21a0e8e806baa6b8d7a2f1931141af9444c5ebc766b70545c795788f",
+        "raw_bytes": 118307,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/research-1440-table-unfocused.png",
+        "original_name": "research-1440-table-unfocused.png",
+        "raw_sha256": "221470865db8a5f8eac641f028c94969df2577099a35142acbbc261eb027cd5c",
+        "stored_sha256": "221470865db8a5f8eac641f028c94969df2577099a35142acbbc261eb027cd5c",
+        "raw_bytes": 118387,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/research-1440-wrapper-focused.png",
+        "original_name": "research-1440-wrapper-focused.png",
+        "raw_sha256": "41dfcf2302d1ff27abb9f40ad0b84b8ec4afaaee3b2e3f1333520377f1b2ab70",
+        "stored_sha256": "41dfcf2302d1ff27abb9f40ad0b84b8ec4afaaee3b2e3f1333520377f1b2ab70",
+        "raw_bytes": 111414,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/research-1440-wrapper-unfocused.png",
+        "original_name": "research-1440-wrapper-unfocused.png",
+        "raw_sha256": "68024b8874c1466ed14aeb93be975d98b3e80e12e59f0c00eaf4b9812dab228c",
+        "stored_sha256": "68024b8874c1466ed14aeb93be975d98b3e80e12e59f0c00eaf4b9812dab228c",
+        "raw_bytes": 111637,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/research-320-table-focused.png",
+        "original_name": "research-320-table-focused.png",
+        "raw_sha256": "08f8c0756f51e52d4052efe50d5f0f98cccc1b0f2f31a0c141911f8fd9533633",
+        "stored_sha256": "08f8c0756f51e52d4052efe50d5f0f98cccc1b0f2f31a0c141911f8fd9533633",
+        "raw_bytes": 66086,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/research-320-table-unfocused.png",
+        "original_name": "research-320-table-unfocused.png",
+        "raw_sha256": "be28c88a8082b2f31f865e68c5193a2a8c9e56b672e7b3f51d18aa4ede70c488",
+        "stored_sha256": "be28c88a8082b2f31f865e68c5193a2a8c9e56b672e7b3f51d18aa4ede70c488",
+        "raw_bytes": 66286,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/research-320-wrapper-focused.png",
+        "original_name": "research-320-wrapper-focused.png",
+        "raw_sha256": "84012babb8fdcb6ab9c085f0d0238fdb60f648d186ac6439de6c70b714cf2ef6",
+        "stored_sha256": "84012babb8fdcb6ab9c085f0d0238fdb60f648d186ac6439de6c70b714cf2ef6",
+        "raw_bytes": 72866,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/research-320-wrapper-unfocused.png",
+        "original_name": "research-320-wrapper-unfocused.png",
+        "raw_sha256": "a44711f942aa04dbaa685c9906df51a8cf3cad10831aafe4574375a4d6ce5ad7",
+        "stored_sha256": "a44711f942aa04dbaa685c9906df51a8cf3cad10831aafe4574375a4d6ce5ad7",
+        "raw_bytes": 73587,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/serve.mjs.gz",
+        "original_name": "serve.mjs",
+        "raw_sha256": "63bd6ce8c793beb9d500b6f93d6b2be4bd13e5cdaf644b6d6bfbde49581156e7",
+        "stored_sha256": "91f7fb144f8593248685fbbc91bccf54a0b7fdd2009562967a7248a6361496e5",
+        "raw_bytes": 670,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/source-review.json.gz",
+        "original_name": "source-review.json",
+        "raw_sha256": "368af3c5efe95a393269a96de0c6454b1d0f5ef1dcd4e66ae4241341ac6c7235",
+        "stored_sha256": "50b9ccb63675fe1fc21aab8fe3a888cf887d1009f37ea1790c4f9b69cc54a994",
+        "raw_bytes": 24873,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/source_review.py.gz",
+        "original_name": "source_review.py",
+        "raw_sha256": "2e70987c1e29f11eebb03d8c93d50f7848632e35e8aa0059c5e2b1c0529f4e67",
+        "stored_sha256": "7d624b7387350b9f0ddd5ca06cacd5c1fd70b0a40e0d6bded699fea479a1b9a5",
+        "raw_bytes": 8184,
+        "gzip_added": true
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/validation-1440-table-focused.png",
+        "original_name": "validation-1440-table-focused.png",
+        "raw_sha256": "8c27c931a4d8ba27613e3940565b39a1e8a69017472880d48a61c7261609e626",
+        "stored_sha256": "8c27c931a4d8ba27613e3940565b39a1e8a69017472880d48a61c7261609e626",
+        "raw_bytes": 208161,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/validation-1440-table-unfocused.png",
+        "original_name": "validation-1440-table-unfocused.png",
+        "raw_sha256": "3f8c9fcfdbc785f24c9f19d43e4d4e04c0894621fa83d06dd4dcf0d5597290ae",
+        "stored_sha256": "3f8c9fcfdbc785f24c9f19d43e4d4e04c0894621fa83d06dd4dcf0d5597290ae",
+        "raw_bytes": 208433,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/validation-1440-wrapper-focused.png",
+        "original_name": "validation-1440-wrapper-focused.png",
+        "raw_sha256": "2b123002419ab5e5d6213f605a126f592c1c8a32b2b0a777caf41148380a6d99",
+        "stored_sha256": "2b123002419ab5e5d6213f605a126f592c1c8a32b2b0a777caf41148380a6d99",
+        "raw_bytes": 204768,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/validation-1440-wrapper-unfocused.png",
+        "original_name": "validation-1440-wrapper-unfocused.png",
+        "raw_sha256": "e31cbd295ad822a572b6ed43fb123ca62e25ec6748d1513c91f31edcbd0f1362",
+        "stored_sha256": "e31cbd295ad822a572b6ed43fb123ca62e25ec6748d1513c91f31edcbd0f1362",
+        "raw_bytes": 204973,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/validation-320-table-focused.png",
+        "original_name": "validation-320-table-focused.png",
+        "raw_sha256": "3bb9d0ff3051e3961aec83a32ca590e06f11f9ac6bda4f5499278b113b2e71d4",
+        "stored_sha256": "3bb9d0ff3051e3961aec83a32ca590e06f11f9ac6bda4f5499278b113b2e71d4",
+        "raw_bytes": 74790,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/validation-320-table-unfocused.png",
+        "original_name": "validation-320-table-unfocused.png",
+        "raw_sha256": "479e187cc22151ad9fac9e9f47083d8f06e1964771bf77cb7c6d6a22e3464985",
+        "stored_sha256": "479e187cc22151ad9fac9e9f47083d8f06e1964771bf77cb7c6d6a22e3464985",
+        "raw_bytes": 75212,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/validation-320-wrapper-focused.png",
+        "original_name": "validation-320-wrapper-focused.png",
+        "raw_sha256": "3741177d984fd448e20ea29405302390bc28f63bc0469c7df16944ec1ca533f7",
+        "stored_sha256": "3741177d984fd448e20ea29405302390bc28f63bc0469c7df16944ec1ca533f7",
+        "raw_bytes": 73928,
+        "gzip_added": false
+      },
+      {
+        "path": "artifacts/goal/mcp-table-focus-correction-20261001/after/validation-320-wrapper-unfocused.png",
+        "original_name": "validation-320-wrapper-unfocused.png",
+        "raw_sha256": "8f4375ccb38d3b64e2050a86d3d152b0e747b3e7555809c89632501e21f3cdaf",
+        "stored_sha256": "8f4375ccb38d3b64e2050a86d3d152b0e747b3e7555809c89632501e21f3cdaf",
+        "raw_bytes": 74433,
+        "gzip_added": false
+      }
+    ],
+    "lease_guard_released_at": "2026-10-01T14:33:15.515828+00:00",
+    "own_browser_server_closed": true
+  },
+  "final_head_ci": "Evidence-only final head checks follow this preparation; primary publication receipt establishes actual merged source/deployment.",
   "limits": [
     "No repeated Lighthouse or local full suite, and no new performance score is claimed. Earlier source-hashed reports stay bound to their actual source.",
     "Third forced macOS fallback showed three changed heading wraps; this remains a scoped geometry limitation, not delayed-network CLS or a guarantee across fonts/platforms.",
     "Original v0/v1, evaluation, annotation, journal, released MCP, header and every owner goal remain unchanged."
-  ]
+  ],
+  "verified_at": "2026-10-01T14:43:23.672575+00:00",
+  "implementation_head_ci": {
+    "head": "99af5fca424655a502397695c05e4b1fb9a85723",
+    "checks_success": 7,
+    "open_merge_ref_codeql": 0,
+    "source": "Independent peer captured GitHub CI/API receipt; compressed raw inputs retained in after folder."
+  }
 }

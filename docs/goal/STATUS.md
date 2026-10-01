@@ -744,3 +744,8 @@ remote CI/independent primary-third review pending. All owner goals remain activ
 PR349 HOLD: third visualP2 clipped table focus; MCP-scoped inset correction
 prepared, pending independent pixel/native-arrow recheck and signed-head CI.
 Old84 proof/source hashes intact; no new score/source outcome. Every goal active.
+
+
+34999af focusP2 resolved by independent6DEV/12element/12PNG checks withrealTab/
+arrows andexplicit restoredwrapperfixture. Separateafterproof retained; final
+evidence-only7CI/source-extension/primarymerge/pub next. Old84 intact/allgoalsactive.
