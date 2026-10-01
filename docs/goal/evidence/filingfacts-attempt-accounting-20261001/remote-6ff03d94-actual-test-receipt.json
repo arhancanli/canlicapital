@@ -1,0 +1,129 @@
+{
+  "correction": "CC-353-ATTEMPT-DURATION-BOUND-VISIBILITY",
+  "full_suite": {
+    "cancelled": 0,
+    "failures": 0,
+    "main_tests": 880,
+    "notification_tests": 9,
+    "preverify_tests": 6,
+    "skipped": 0
+  },
+  "local_test_or_lease": false,
+  "new26_actual_passes": [
+    {
+      "name": "full fixed cohort replays exact supplied-rate estimates without claiming billing or a model benchmark",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0938397Z ok 592 - full fixed cohort replays exact supplied-rate estimates without claiming billing or a model benchmark"
+    },
+    {
+      "name": "a failed429 and its retry both contribute recorded usage, latency and exact cost",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0953382Z ok 593 - a failed429 and its retry both contribute recorded usage, latency and exact cost"
+    },
+    {
+      "name": "missing error usage is unknown and prevents complete totals rather than becoming zero",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0965395Z ok 594 - missing error usage is unknown and prevents complete totals rather than becoming zero"
+    },
+    {
+      "name": "malformed raw response is retained as a failed attempt with unavailable usage",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0969409Z ok 595 - malformed raw response is retained as a failed attempt with unavailable usage"
+    },
+    {
+      "name": "transport failure before a response retains explicit missing raw response and error",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0977019Z ok 596 - transport failure before a response retains explicit missing raw response and error"
+    },
+    {
+      "name": "partial usage keeps a known component subtotal while full estimate stays unknown",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0984884Z ok 597 - partial usage keeps a known component subtotal while full estimate stays unknown"
+    },
+    {
+      "name": "missing prices or a different observed model never become a zero or applicable estimate",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0988967Z ok 598 - missing prices or a different observed model never become a zero or applicable estimate"
+    },
+    {
+      "name": "a partial capture retains all15 item denominators and unknown attempt/item totals",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1003214Z ok 599 - a partial capture retains all15 item denominators and unknown attempt/item totals"
+    },
+    {
+      "name": "declared missing attempts and missing retry predecessors stay visible",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1007336Z ok 600 - declared missing attempts and missing retry predecessors stay visible"
+    },
+    {
+      "name": "not-started and unknown-attempt-count items keep unavailable measurements",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1011017Z ok 601 - not-started and unknown-attempt-count items keep unavailable measurements"
+    },
+    {
+      "name": "interrupted pending attempt remains recorded and cannot supply final latency or complete cost",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1015440Z ok 602 - interrupted pending attempt remains recorded and cannot supply final latency or complete cost"
+    },
+    {
+      "name": "unknown/duplicate items and altered question bindings refuse instead of changing the cohort",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1019673Z ok 603 - unknown/duplicate items and altered question bindings refuse instead of changing the cohort"
+    },
+    {
+      "name": "duplicate attempts, forward retry references and changing retry request bytes refuse",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1023924Z ok 604 - duplicate attempts, forward retry references and changing retry request bytes refuse"
+    },
+    {
+      "name": "raw answers, HTTP outcomes and final attempt selection cannot contradict their record",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1027911Z ok 605 - raw answers, HTTP outcomes and final attempt selection cannot contradict their record"
+    },
+    {
+      "name": "negative/nonfinite/backwards times and invalid price metadata refuse",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1052318Z ok 606 - negative/nonfinite/backwards times and invalid price metadata refuse"
+    },
+    {
+      "name": "invalid raw usage stays unavailable, never counted as measured zero",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1058006Z ok 607 - invalid raw usage stays unavailable, never counted as measured zero"
+    },
+    {
+      "name": "exact decimal rate arithmetic and changed report/raw ledger bytes are auditable",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1062541Z ok 608 - exact decimal rate arithmetic and changed report/raw ledger bytes are auditable"
+    },
+    {
+      "name": "source packet equality binds all15 availability rows but never proves rights or absence completeness",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1067056Z ok 609 - source packet equality binds all15 availability rows but never proves rights or absence completeness"
+    },
+    {
+      "name": "source packet divergence, omitted availability, uncleared rights or split Unicode truncation refuse",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1071840Z ok 610 - source packet divergence, omitted availability, uncleared rights or split Unicode truncation refuse"
+    },
+    {
+      "name": "closed/source-assisted labels cannot bypass source-arm and tool-trace restrictions",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1076161Z ok 611 - closed/source-assisted labels cannot bypass source-arm and tool-trace restrictions"
+    },
+    {
+      "name": "MCP success packets and explicit tool errors retain full and supplied result bindings",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1080167Z ok 612 - MCP success packets and explicit tool errors retain full and supplied result bindings"
+    },
+    {
+      "name": "changed accounting/scoring/data source bytes refuse without altering original fixtures",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1084437Z ok 613 - changed accounting/scoring/data source bytes refuse without altering original fixtures"
+    },
+    {
+      "name": "declared finite-bound violations remain reported with their failed/retry costs",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1088349Z ok 614 - declared finite-bound violations remain reported with their failed/retry costs"
+    },
+    {
+      "name": "attempt durations exceeding the item cap remain visible with missing or understated item clocks",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1093515Z ok 615 - attempt durations exceeding the item cap remain visible with missing or understated item clocks"
+    },
+    {
+      "name": "bounded raw/JSON inputs refuse without a resource exhaustion experiment",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1097284Z ok 616 - bounded raw/JSON inputs refuse without a resource exhaustion experiment"
+    },
+    {
+      "name": "offline CLI creates private exclusive outputs, replays them and refuses input overwrite",
+      "tap_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1101332Z ok 617 - offline CLI creates private exclusive outputs, replays them and refuses input overwrite"
+    }
+  ],
+  "observed_at": "2026-10-01T19:46:06.276276+00:00",
+  "provider_or_model_calls": 0,
+  "raw_vite_log": {
+    "bytes": 1056851,
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-6ff03d94-vite.log",
+    "sha256": "7ad686f8d562c465d8066ea9c3aa936d52ff43d0002e35b00fd657bd6d34d070"
+  },
+  "runtime": "remote Node22.23.3",
+  "source": "6ff03d94f6db653993488e63c254bcf2257d24dd",
+  "source_fix_review_pending": true,
+  "website_published": false
+}

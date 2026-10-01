@@ -1,0 +1,38 @@
+{
+  "schema": "canli.primary-static-attempt-duration-fix.v1",
+  "observed_at": "2026-10-01T19:45:47.185340+00:00",
+  "source": "6ff03d94f6db653993488e63c254bcf2257d24dd",
+  "tree": "a903b6fb90ac7e7529d4b5a74134a859d328603a",
+  "signature": "G",
+  "clean": true,
+  "finding": "CC-353-ATTEMPT-DURATION-BOUND-VISIBILITY",
+  "original_source": "eb768da4c3e5644cd5d4b7fbf199e31116081b3b",
+  "original_primary_receipt_sha256": "ed8c353333bb146b30e16288036d998bbecea751b9782341f36a0ff5323984f3",
+  "verdict": "FIX_ACK_WITH_STATIC_SCOPE_LIMITS",
+  "own_file_hashes_verified": 6,
+  "parent_file_hashes_verified": 37,
+  "source_manifest_sha256": "d7856833ea7aedc6d6c7908b8ee1d719334d77670f654355728ab62ff0a51e3d",
+  "delta_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "scripts/datasets/filing-facts/ATTEMPTS.md",
+    "scripts/datasets/filing-facts/attempt-accounting.mjs",
+    "scripts/datasets/filing-facts/attempt-accounting.test.mjs"
+  ],
+  "checks": [
+    "Known attempt duration strictly greater than the declared item cap independently creates a violation with item/attempt IDs, ordinal and observed/cap values.",
+    "Item duration null or smaller does not hide the known attempt violation.",
+    "Equality with the cap does not create an exceedance.",
+    "Costs, caller durations and null item-clock coverage retain existing paths.",
+    "One bounded regression covers both missing and understated item clocks and asserts retained cost and timing fields.",
+    "Guide/report do not equate an empty violation list to verified budget coverage or sum attempts into item wall time."
+  ],
+  "runtime_scope": "No project imports, Node execution, CLI, test, process or grant. Current GitHub head and all seven successful CI checks independently observed; new raw 26-case log capture remains separate author/peer work.",
+  "local_runtime_runs": 0,
+  "limits": [
+    "Full 5570 protected-file working-byte proof belongs to the author; primary checked the 6+37 manifest file bytes and exact five-path correction.",
+    "Fixture duration inputs are caller supplied; no provider timing or cost truth established."
+  ],
+  "review_setup_note": "An initial diff request used a nonexistent research path and returned no diff. Corrected datasets paths were read in full before this verdict; no source-equivalence inference used the empty result.",
+  "full_owner_goal": "ACTIVE"
+}

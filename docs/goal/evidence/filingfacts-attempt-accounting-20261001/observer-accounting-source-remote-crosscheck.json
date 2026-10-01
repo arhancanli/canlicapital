@@ -1,0 +1,733 @@
+{
+  "schema": "canli.independent-accounting-source-and-remote-evidence-review.v1",
+  "observed_at": "2026-10-01T19:53:30.059589+00:00",
+  "reviewer_thread": "01a0f6bc-127f-7210-b096-464e8d397807",
+  "verdict": "SCOPED_ACCOUNTING_SOURCE_AND_REMOTE_EVIDENCE_ACK_6ff03d94",
+  "source": "6ff03d94f6db653993488e63c254bcf2257d24dd",
+  "working_head_when_checked": "6ff03d94f6db653993488e63c254bcf2257d24dd",
+  "working_status_when_checked": "",
+  "signature": "G",
+  "scope": "Independent accounting/unknown-value/time-bound/source-binding and retained remote CI review. Third/primary own full product review and primary alone merges/publishes.",
+  "read_coverage": {
+    "module": "all current lines1-415 across chunked reads; truncated198-372 hidden retry/final-response lines278-293 reissued",
+    "guide": "complete corrected ATTEMPTS.md",
+    "test_source": "fixture builders and accounting cases1-17, full exact6ff regression diff; other case names/metadata parsed, no claim all remaining source tests read",
+    "source_diff": "full eb->6ff module/guide/new regression and six changed path metadata; docs append product scope preserved"
+  },
+  "financial_and_accounting_observations": [
+    "Fixed15 cohort remains denominator, missing captures/declared attempts/unknown counts do not become zero or complete totals.",
+    "Usage components parsed from retained raw response JSON/pointers; partial/error usage has explicit missing reason, with known subtotal separate from complete usage estimate.",
+    "Recorded retry/failed attempts enter cost/usage/duration accounting; pending attempts cannot supply complete latency.",
+    "Decimal rates use BigInt at12 currency decimal places, rate provenance/model applicability retained; actual_billed_total null and observed_billing_verified false.",
+    "All source-assisted/provider/model/resource allocation/execution remain held; source parity and rights declarations are explicitly not completeness/authenticity/rights proof.",
+    "6ff lists each known attempt over item cap independently of missing/understated item clock; item wall-time unknown remains unknown, costs preserved, empty violations not complete budget evidence."
+  ],
+  "independent_decimal_math": {
+    "15x(2x0.1+1x0.2)": "6.0",
+    "known429_extra_input": "6.1",
+    "partial_one_output_missing": "5.8",
+    "one_missing_attempt_usage_known_subtotal": "5.6",
+    "30_input_at_1e-12": "3.0E-11",
+    "method": "stdlib decimal arithmetic only; no project module import/execution"
+  },
+  "source_pin_checks": [
+    {
+      "kind": "source_files",
+      "path": "docs/goal/LOG.md",
+      "bytes": 335686,
+      "sha256": "88281b2ae314df26e530a820c3966bcddc7d72f07793e6edff9e72f2a7d23302",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "source_files",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 60322,
+      "sha256": "82d252de5fab7affacb865eb891a66ba20925f56bfbe0b679627e733fc375be3",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "source_files",
+      "path": "package.json",
+      "bytes": 11648,
+      "sha256": "1d4e1bb734efbf9eb97c61a4c10d54b83c49a1e9c5ab308b0c78346f8680e310",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "source_files",
+      "path": "scripts/datasets/filing-facts/ATTEMPTS.md",
+      "bytes": 8109,
+      "sha256": "111bc920dd2e4cf8a0bc4d896173b3ce457a65817af7d915f38e644a33945330",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "source_files",
+      "path": "scripts/datasets/filing-facts/attempt-accounting.mjs",
+      "bytes": 36915,
+      "sha256": "9522325f5baaa3b38f2909b7cabd95cba557714254bd9f2162478e1a7024e8f4",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "source_files",
+      "path": "scripts/datasets/filing-facts/attempt-accounting.test.mjs",
+      "bytes": 26879,
+      "sha256": "9d53990c481ac5217c9fa00348cde96bbf1aad0021431a883b77a1413ddf6848",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "public/datasets/filing-facts/v0/SHA256SUMS",
+      "bytes": 343,
+      "sha256": "b54dca812414ede42ab7258dbb83fa3c041a71a4ff5223691b3dc2c00525e1d8",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "public/datasets/filing-facts/v0/ff-eval-closed.json",
+      "bytes": 32458,
+      "sha256": "450bff2b316adf5e8f4562d4cacdceca143c6b10ed657ecefa02af24e4c95720",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "public/datasets/filing-facts/v0/ff-eval-mcp.json",
+      "bytes": 32324,
+      "sha256": "50a88c0c383ac492a8c1c2d489a1c5830c478a71ae7bab7660fd2878a73cb6c6",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "public/datasets/filing-facts/v0/filing-facts-v0.jsonl",
+      "bytes": 1663084,
+      "sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "public/datasets/filing-facts/v0/gold-packet-v0.json",
+      "bytes": 28263,
+      "sha256": "91c6f960e34509653800a4cda81bd0632dd58c889ee78eb6461a985765500413",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "public/research/filing-facts-v0.md",
+      "bytes": 5365,
+      "sha256": "de5ad90172a55e11b6c3e2a7c0aa588a84431005de985413aa62955aa9d093d5",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/canonical-json.mjs",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/ANNOTATION_GUIDELINES.md",
+      "bytes": 5426,
+      "sha256": "0c358e06d3e68dedb96c85be73392783a2f639a581870b4d239fa33a7e544afb",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/BASELINE.md",
+      "bytes": 5109,
+      "sha256": "739c537d6c524088e8cec8c19818f3eeb88bbbef6e0ec094e384344aee86f173",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/EVALUATION.md",
+      "bytes": 6050,
+      "sha256": "4178e266c0c39fe4b8327601a956560c8cb2c0908352f971a3258bc6be2652b6",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/README.md",
+      "bytes": 4520,
+      "sha256": "ebd0f8467f0f34ec6bae5e2852de8996e09cffc3bbaab6d6e0142fe559d1abb8",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/adjudicate.mjs",
+      "bytes": 4984,
+      "sha256": "2bea4f898d074f07a43813e3721b883081d8be205d0962dd2d84d7268485f4a2",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/adjudicate.test.mjs",
+      "bytes": 4065,
+      "sha256": "e7f130ccb370bfc9498bc27a26815ce460e8a5af83604b3020c2c92b9f4ee325",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/agreement.mjs",
+      "bytes": 6423,
+      "sha256": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/agreement.test.mjs",
+      "bytes": 5447,
+      "sha256": "d312c9230a1fe9f83b2725a3c5234468d3e26e09440a3d243d2b71e5bd8ab094",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/baseline-contract-cli.mjs",
+      "bytes": 1970,
+      "sha256": "12ee9c7322fbaa3b3288676493c6177923165e243beaffc3f093988492ba6c61",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/baseline-contract.mjs",
+      "bytes": 12116,
+      "sha256": "6afd5958d30f81c786bc12c63f2d7fc00692a66d94c1421c432c032c6ec4f912",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/baseline-contract.test.mjs",
+      "bytes": 13829,
+      "sha256": "6af9c9080a065a1f12c2c2d086994772dd1e44ede34a7064d2a846d675136640",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/check.mjs",
+      "bytes": 3442,
+      "sha256": "a12d8add05d602bd8d28a8b1b10b2021e5b572433df0d7668658999b08f27796",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/eval.mjs",
+      "bytes": 11123,
+      "sha256": "f95e96cc30567a36e32511ded977cca0762a4e2f6d91980c90d849e505bb1eb3",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/eval.test.mjs",
+      "bytes": 7486,
+      "sha256": "95787483e4d206d422308b795c587759c549a2976aebf0b6b149b66887e0078f",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/evidence.mjs",
+      "bytes": 8838,
+      "sha256": "e6aea6e8a12b14525fb6bcacfc9081e73a86555d091edebc55e9027fa8789de5",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/evidence.test.mjs",
+      "bytes": 9463,
+      "sha256": "62a8f992ce48829bf3ccc4b26868c692d006a928f6aeef751ff7e6cdb528e571",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/filing-facts.test.mjs",
+      "bytes": 4851,
+      "sha256": "785a4da99b363f63c214077e9905b90f7d532f7d3f250eec88aa3ba35466f2ed",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/generate.mjs",
+      "bytes": 2868,
+      "sha256": "bdf1f304d83e54b0d82343a73d31837d3d4930cfdf45e5e3f27f0a97dbe377ac",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/gold-packet.mjs",
+      "bytes": 1663,
+      "sha256": "6a25aaf90a351ff5feab96fcd2fe162d3885ebbdb48d8a7f67ff4535f084895f",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/replay-evaluation.mjs",
+      "bytes": 1750,
+      "sha256": "c6a877d8d576c772606cc523f1e85d65c968433961bbf5b23bf7523151688911",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/report.mjs",
+      "bytes": 6498,
+      "sha256": "769ffb57f3a8f93f42314f1bdd79ee69c143d5567dd8fff513ac07f0ec518920",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/templates.mjs",
+      "bytes": 9216,
+      "sha256": "4c21c2ff57f22771d474fe46a95d606da6e1249977e06f3cc1ac9fdae77ebea4",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/v1/README.md",
+      "bytes": 5817,
+      "sha256": "d9f5c52763b83959acc457d6a2869f9ea8bdd3e526a79a2dcf1c61a0a77b4463",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/v1/check.mjs",
+      "bytes": 6632,
+      "sha256": "7327648d7301932da66d35379791ffab44aa3de14e100370388eb9c8dd552eb5",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/v1/cli.mjs",
+      "bytes": 332,
+      "sha256": "9624d089f79f54f13c9f40911107c0a9a9051a169e39e6a5bf4617eb4c3babe7",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/v1/contract.mjs",
+      "bytes": 2801,
+      "sha256": "01c2b8f458face664a116b51b2792f2ea894c5bc39b7d416242346d3060fe378",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/v1/first-later.test.mjs",
+      "bytes": 14898,
+      "sha256": "435a280828e5d90b1b10b544a324b1703c48206a284c8809f98daee83be9ffcf",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/v1/generate.mjs",
+      "bytes": 8749,
+      "sha256": "51907f63d3738bd3eae9855ef0ff2443c6d926b964ba1d05a1469fb217a8519c",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/v1/oracle.py",
+      "bytes": 5720,
+      "sha256": "208d12192912b7685fa3c825bc0029da5dbfec093ca38839bdcc24348e2bd41b",
+      "frozen_git_and_working_bytes_match": true
+    },
+    {
+      "kind": "parent_files_unchanged",
+      "path": "scripts/datasets/filing-facts/v1/source.mjs",
+      "bytes": 3197,
+      "sha256": "92e3799a16c3556ff69ae98a814dad5f4b26d751afea9aaefe9155b540bf7b44",
+      "frozen_git_and_working_bytes_match": true
+    }
+  ],
+  "protected_git_object_check": {
+    "manifest": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/static-pre-freeze.json",
+      "bytes": 1511354,
+      "sha256": "6d50fc48cf433863de36f6caafecd544b31fd1028109d4382a70e03934c40089"
+    },
+    "paths": 5570,
+    "declared_blob_bytes": 374779574,
+    "all_git_modes_and_blob_ids_exact_base": true,
+    "method": "Git tree identities, not duplicate374MB working-byte hashing; full author worktree-byte claim remains author evidence"
+  },
+  "changed_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "package.json",
+    "scripts/datasets/filing-facts/ATTEMPTS.md",
+    "scripts/datasets/filing-facts/attempt-accounting.mjs",
+    "scripts/datasets/filing-facts/attempt-accounting.test.mjs"
+  ],
+  "retained_remote": {
+    "eb768da4": {
+      "source": "eb768da4c3e5644cd5d4b7fbf199e31116081b3b",
+      "tree": "11f169e466912aefd7368bf9ac816fc1c0248cde",
+      "raw": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-eb768da4-vite.log",
+        "bytes": 1059570,
+        "sha256": "82be5a56d1ade8d163898b730717c643e5229d2c7dccf60e93fdce41f217838c"
+      },
+      "retained_author_receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-eb768da4-actual-test-receipt.json",
+        "bytes": 10214,
+        "sha256": "dd077381c51402b0b0ec5f2461850762ffe9a17bdc82b4abc363d140aa2a7eb9"
+      },
+      "exact_named_passes": [
+        {
+          "name": "full fixed cohort replays exact supplied-rate estimates without claiming billing or a model benchmark",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9885161Z ok 592 - full fixed cohort replays exact supplied-rate estimates without claiming billing or a model benchmark"
+        },
+        {
+          "name": "a failed429 and its retry both contribute recorded usage, latency and exact cost",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9896066Z ok 593 - a failed429 and its retry both contribute recorded usage, latency and exact cost"
+        },
+        {
+          "name": "missing error usage is unknown and prevents complete totals rather than becoming zero",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9905252Z ok 594 - missing error usage is unknown and prevents complete totals rather than becoming zero"
+        },
+        {
+          "name": "malformed raw response is retained as a failed attempt with unavailable usage",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9909297Z ok 595 - malformed raw response is retained as a failed attempt with unavailable usage"
+        },
+        {
+          "name": "transport failure before a response retains explicit missing raw response and error",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9913369Z ok 596 - transport failure before a response retains explicit missing raw response and error"
+        },
+        {
+          "name": "partial usage keeps a known component subtotal while full estimate stays unknown",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9917149Z ok 597 - partial usage keeps a known component subtotal while full estimate stays unknown"
+        },
+        {
+          "name": "missing prices or a different observed model never become a zero or applicable estimate",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9921281Z ok 598 - missing prices or a different observed model never become a zero or applicable estimate"
+        },
+        {
+          "name": "a partial capture retains all15 item denominators and unknown attempt/item totals",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9925170Z ok 599 - a partial capture retains all15 item denominators and unknown attempt/item totals"
+        },
+        {
+          "name": "declared missing attempts and missing retry predecessors stay visible",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9931870Z ok 600 - declared missing attempts and missing retry predecessors stay visible"
+        },
+        {
+          "name": "not-started and unknown-attempt-count items keep unavailable measurements",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9935694Z ok 601 - not-started and unknown-attempt-count items keep unavailable measurements"
+        },
+        {
+          "name": "interrupted pending attempt remains recorded and cannot supply final latency or complete cost",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9940191Z ok 602 - interrupted pending attempt remains recorded and cannot supply final latency or complete cost"
+        },
+        {
+          "name": "unknown/duplicate items and altered question bindings refuse instead of changing the cohort",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9944373Z ok 603 - unknown/duplicate items and altered question bindings refuse instead of changing the cohort"
+        },
+        {
+          "name": "duplicate attempts, forward retry references and changing retry request bytes refuse",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9948795Z ok 604 - duplicate attempts, forward retry references and changing retry request bytes refuse"
+        },
+        {
+          "name": "raw answers, HTTP outcomes and final attempt selection cannot contradict their record",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9952682Z ok 605 - raw answers, HTTP outcomes and final attempt selection cannot contradict their record"
+        },
+        {
+          "name": "negative/nonfinite/backwards times and invalid price metadata refuse",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9970531Z ok 606 - negative/nonfinite/backwards times and invalid price metadata refuse"
+        },
+        {
+          "name": "invalid raw usage stays unavailable, never counted as measured zero",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9975138Z ok 607 - invalid raw usage stays unavailable, never counted as measured zero"
+        },
+        {
+          "name": "exact decimal rate arithmetic and changed report/raw ledger bytes are auditable",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9980033Z ok 608 - exact decimal rate arithmetic and changed report/raw ledger bytes are auditable"
+        },
+        {
+          "name": "source packet equality binds all15 availability rows but never proves rights or absence completeness",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9985255Z ok 609 - source packet equality binds all15 availability rows but never proves rights or absence completeness"
+        },
+        {
+          "name": "source packet divergence, omitted availability, uncleared rights or split Unicode truncation refuse",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9990916Z ok 610 - source packet divergence, omitted availability, uncleared rights or split Unicode truncation refuse"
+        },
+        {
+          "name": "closed/source-assisted labels cannot bypass source-arm and tool-trace restrictions",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:58.9995900Z ok 611 - closed/source-assisted labels cannot bypass source-arm and tool-trace restrictions"
+        },
+        {
+          "name": "MCP success packets and explicit tool errors retain full and supplied result bindings",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:59.0035417Z ok 612 - MCP success packets and explicit tool errors retain full and supplied result bindings"
+        },
+        {
+          "name": "changed accounting/scoring/data source bytes refuse without altering original fixtures",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:59.0040419Z ok 613 - changed accounting/scoring/data source bytes refuse without altering original fixtures"
+        },
+        {
+          "name": "declared finite-bound violations remain reported with their failed/retry costs",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:59.0044510Z ok 614 - declared finite-bound violations remain reported with their failed/retry costs"
+        },
+        {
+          "name": "bounded raw/JSON inputs refuse without a resource exhaustion experiment",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:59.0048681Z ok 615 - bounded raw/JSON inputs refuse without a resource exhaustion experiment"
+        },
+        {
+          "name": "offline CLI creates private exclusive outputs, replays them and refuses input overwrite",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:23:59.0052677Z ok 616 - offline CLI creates private exclusive outputs, replays them and refuses input overwrite"
+        }
+      ],
+      "whole_TAP_summaries": {
+        "tests": [
+          6,
+          879,
+          9
+        ],
+        "pass": [
+          6,
+          879,
+          9
+        ],
+        "fail": [
+          0,
+          0,
+          0
+        ],
+        "cancelled": [
+          0,
+          0,
+          0
+        ],
+        "skipped": [
+          0,
+          0,
+          0
+        ]
+      },
+      "raw_node_setup_line": [
+        "vite production build\tRun actions/setup-node@820762786026740c76f36085b0efc47a31fe5020\t2026-10-01T19:21:57.0694827Z node: v22.23.3"
+      ],
+      "run_id": 36913716169,
+      "api": {
+        "ci-run": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-eb768da4-ci-run.json",
+          "bytes": 13292,
+          "sha256": "ca7a4b8df9c5e055087bd44385562e380bdc27d597c76792d68a832540055039"
+        },
+        "merge-commit": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-eb768da4-merge-commit.json",
+          "bytes": 2648,
+          "sha256": "0bd58b9661a7dc19c968e7d239cb6759648c5882251d8afda976ccbfc933dfe3"
+        },
+        "codeql-alerts": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-eb768da4-codeql-alerts.json",
+          "bytes": 4,
+          "sha256": "cf1cbb66a638b4860a516671fb74850e6ccf787fe6c4c8d29e9c04efe880bd05"
+        },
+        "pr353": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-eb768da4-pr353.json",
+          "bytes": 2253,
+          "sha256": "e65d10da047d1f2729e9120bc446ef3fcda7dad948888e365d793c9d0a3ce00c"
+        }
+      },
+      "api_merge_ref": "a47d9dd098b7f54684990e6f9f1e3229d97ddbbe",
+      "api_merge_tree_matches_source": true,
+      "codeql_capture_shape": "[[]]: one retained empty pagination page, zero alert objects; not literal[]",
+      "all_seven_CI_success": true,
+      "audit_lines": [
+        "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:24:06.8253678Z audited 699 pages"
+      ]
+    },
+    "6ff03d94": {
+      "source": "6ff03d94f6db653993488e63c254bcf2257d24dd",
+      "tree": "a903b6fb90ac7e7529d4b5a74134a859d328603a",
+      "raw": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-6ff03d94-vite.log",
+        "bytes": 1056851,
+        "sha256": "7ad686f8d562c465d8066ea9c3aa936d52ff43d0002e35b00fd657bd6d34d070"
+      },
+      "retained_author_receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-6ff03d94-actual-test-receipt.json",
+        "bytes": 9504,
+        "sha256": "bffc2ccdbc47d0feaba0dccd1546409eb693bad9820cdee7a82b2178cf0702aa"
+      },
+      "exact_named_passes": [
+        {
+          "name": "full fixed cohort replays exact supplied-rate estimates without claiming billing or a model benchmark",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0938397Z ok 592 - full fixed cohort replays exact supplied-rate estimates without claiming billing or a model benchmark"
+        },
+        {
+          "name": "a failed429 and its retry both contribute recorded usage, latency and exact cost",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0953382Z ok 593 - a failed429 and its retry both contribute recorded usage, latency and exact cost"
+        },
+        {
+          "name": "missing error usage is unknown and prevents complete totals rather than becoming zero",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0965395Z ok 594 - missing error usage is unknown and prevents complete totals rather than becoming zero"
+        },
+        {
+          "name": "malformed raw response is retained as a failed attempt with unavailable usage",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0969409Z ok 595 - malformed raw response is retained as a failed attempt with unavailable usage"
+        },
+        {
+          "name": "transport failure before a response retains explicit missing raw response and error",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0977019Z ok 596 - transport failure before a response retains explicit missing raw response and error"
+        },
+        {
+          "name": "partial usage keeps a known component subtotal while full estimate stays unknown",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0984884Z ok 597 - partial usage keeps a known component subtotal while full estimate stays unknown"
+        },
+        {
+          "name": "missing prices or a different observed model never become a zero or applicable estimate",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.0988967Z ok 598 - missing prices or a different observed model never become a zero or applicable estimate"
+        },
+        {
+          "name": "a partial capture retains all15 item denominators and unknown attempt/item totals",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1003214Z ok 599 - a partial capture retains all15 item denominators and unknown attempt/item totals"
+        },
+        {
+          "name": "declared missing attempts and missing retry predecessors stay visible",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1007336Z ok 600 - declared missing attempts and missing retry predecessors stay visible"
+        },
+        {
+          "name": "not-started and unknown-attempt-count items keep unavailable measurements",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1011017Z ok 601 - not-started and unknown-attempt-count items keep unavailable measurements"
+        },
+        {
+          "name": "interrupted pending attempt remains recorded and cannot supply final latency or complete cost",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1015440Z ok 602 - interrupted pending attempt remains recorded and cannot supply final latency or complete cost"
+        },
+        {
+          "name": "unknown/duplicate items and altered question bindings refuse instead of changing the cohort",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1019673Z ok 603 - unknown/duplicate items and altered question bindings refuse instead of changing the cohort"
+        },
+        {
+          "name": "duplicate attempts, forward retry references and changing retry request bytes refuse",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1023924Z ok 604 - duplicate attempts, forward retry references and changing retry request bytes refuse"
+        },
+        {
+          "name": "raw answers, HTTP outcomes and final attempt selection cannot contradict their record",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1027911Z ok 605 - raw answers, HTTP outcomes and final attempt selection cannot contradict their record"
+        },
+        {
+          "name": "negative/nonfinite/backwards times and invalid price metadata refuse",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1052318Z ok 606 - negative/nonfinite/backwards times and invalid price metadata refuse"
+        },
+        {
+          "name": "invalid raw usage stays unavailable, never counted as measured zero",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1058006Z ok 607 - invalid raw usage stays unavailable, never counted as measured zero"
+        },
+        {
+          "name": "exact decimal rate arithmetic and changed report/raw ledger bytes are auditable",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1062541Z ok 608 - exact decimal rate arithmetic and changed report/raw ledger bytes are auditable"
+        },
+        {
+          "name": "source packet equality binds all15 availability rows but never proves rights or absence completeness",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1067056Z ok 609 - source packet equality binds all15 availability rows but never proves rights or absence completeness"
+        },
+        {
+          "name": "source packet divergence, omitted availability, uncleared rights or split Unicode truncation refuse",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1071840Z ok 610 - source packet divergence, omitted availability, uncleared rights or split Unicode truncation refuse"
+        },
+        {
+          "name": "closed/source-assisted labels cannot bypass source-arm and tool-trace restrictions",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1076161Z ok 611 - closed/source-assisted labels cannot bypass source-arm and tool-trace restrictions"
+        },
+        {
+          "name": "MCP success packets and explicit tool errors retain full and supplied result bindings",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1080167Z ok 612 - MCP success packets and explicit tool errors retain full and supplied result bindings"
+        },
+        {
+          "name": "changed accounting/scoring/data source bytes refuse without altering original fixtures",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1084437Z ok 613 - changed accounting/scoring/data source bytes refuse without altering original fixtures"
+        },
+        {
+          "name": "declared finite-bound violations remain reported with their failed/retry costs",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1088349Z ok 614 - declared finite-bound violations remain reported with their failed/retry costs"
+        },
+        {
+          "name": "attempt durations exceeding the item cap remain visible with missing or understated item clocks",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1093515Z ok 615 - attempt durations exceeding the item cap remain visible with missing or understated item clocks"
+        },
+        {
+          "name": "bounded raw/JSON inputs refuse without a resource exhaustion experiment",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1097284Z ok 616 - bounded raw/JSON inputs refuse without a resource exhaustion experiment"
+        },
+        {
+          "name": "offline CLI creates private exclusive outputs, replays them and refuses input overwrite",
+          "raw_ok_line": "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:42.1101332Z ok 617 - offline CLI creates private exclusive outputs, replays them and refuses input overwrite"
+        }
+      ],
+      "whole_TAP_summaries": {
+        "tests": [
+          6,
+          880,
+          9
+        ],
+        "pass": [
+          6,
+          880,
+          9
+        ],
+        "fail": [
+          0,
+          0,
+          0
+        ],
+        "cancelled": [
+          0,
+          0,
+          0
+        ],
+        "skipped": [
+          0,
+          0,
+          0
+        ]
+      },
+      "raw_node_setup_line": [
+        "vite production build\tRun actions/setup-node@820762786026740c76f36085b0efc47a31fe5020\t2026-10-01T19:41:18.3740476Z node: v22.23.3"
+      ],
+      "run_id": 36916097061,
+      "api": {
+        "ci-run": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-6ff03d94-ci-run.json",
+          "bytes": 13296,
+          "sha256": "3531a02b3fe91923e936e5a67554e04a30b472c53434fc48ef420b7b1545203e"
+        },
+        "merge-commit": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-6ff03d94-merge-commit.json",
+          "bytes": 2648,
+          "sha256": "864a1a710d9e713f2039a3c5d7c09f37a226ed7a94ba52466446e348f59c7eed"
+        },
+        "codeql-alerts": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-6ff03d94-codeql-alerts.json",
+          "bytes": 4,
+          "sha256": "cf1cbb66a638b4860a516671fb74850e6ccf787fe6c4c8d29e9c04efe880bd05"
+        },
+        "pr353": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-accounting/remote-6ff03d94-pr353.json",
+          "bytes": 2253,
+          "sha256": "48bb6502ccf1d991f37c82bf000b1de9d450aa3343417981dabe6f42fcdca4f0"
+        }
+      },
+      "api_merge_ref": "5248d68de751e1d2858b6258f215ad7c9680e834",
+      "api_merge_tree_matches_source": true,
+      "codeql_capture_shape": "[[]]: one retained empty pagination page, zero alert objects; not literal[]",
+      "all_seven_CI_success": true,
+      "audit_lines": [
+        "vite production build\tVerify source evidence, SEO and developer contracts\t2026-10-01T19:42:50.2255737Z audited 699 pages"
+      ]
+    }
+  },
+  "fresh_read_only_API": {
+    "path": "/Users/arhancanli/traceaxiom-coordination-claude-codex/reviews/canli353-api-observation-by-codex-127f-20261001T1954Z.json",
+    "bytes": 8961,
+    "sha256": "1d0511989f33660c4ca01a2400c124cb4919e716fea3f87aad6ebc79c3460877"
+  },
+  "cross_review_findings": {
+    "finding": "CC-353-ATTEMPT-DURATION-BOUND-VISIBILITY",
+    "original": "eb retained25PASS does not close missing counterexample; no source ACK issued for eb",
+    "corrected": "6ff narrow source fix and new named remote regression verified PASS with all26,880+6+9.",
+    "third_source_ACK": "separate reviewer expected; not fabricated or inferred from this scoped ACK"
+  },
+  "old_351_actual25": "unchanged10baseline+7eval+8evidence; remote854+6+9 distinct historical evidence",
+  "limits": [
+    "Remote synthetic tests and static review do not establish billing/provider authenticity, model baseline, annotation expertise/rights, source completeness, production publishing, indexing or strategy outcomes.",
+    "This review neither executes the product nor repeats CI/tests nor creates a CPU/grant/nonce/job.",
+    "All full owner goals stay ACTIVE."
+  ],
+  "reviewer_project_execution": false,
+  "local_lease_or_job": false,
+  "new_resource_model_hold_spend": 0
+}

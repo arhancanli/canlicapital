@@ -1,0 +1,39 @@
+{
+  "schema": "canli.attempt-accounting-primary-static-finding.v1",
+  "observed_at": "2026-10-01T19:37:04.868574+00:00",
+  "source": "eb768da4c3e5644cd5d4b7fbf199e31116081b3b",
+  "source_signature": "G",
+  "source_worktree_clean": true,
+  "source_manifest_sha256": "d9b4d178c114e8a7af559b7c71a085cf047c7cdf352717635b63d0a642366b9f",
+  "reviewed_source_pins": 6,
+  "verified_parent_pins": 31,
+  "finding": "CC-353-ATTEMPT-DURATION-BOUND-VISIBILITY",
+  "severity": "P2",
+  "status": "SOURCE_ONLY_REVIEW_CONCERN",
+  "module_sha256": "1e91aef6570471e12b404a0c0d8a64e2c1694d4daef4b35d33e15bcba67d5abd",
+  "line_start": 325,
+  "code": "  const violations = items.flatMap(row => [\n    ...(row.declared_attempts !== null && row.declared_attempts > ledger.bounds.attempts_per_item ? [{ id: row.id, reason: 'declared attempts exceed reviewed bound' }] : []),\n    ...(row.attempts.some(attempt => attempt.ordinal > ledger.bounds.attempts_per_item) ? [{ id: row.id, reason: 'observed attempt position exceeds reviewed bound' }] : []),\n    ...(row.time?.duration_ms > ledger.bounds.item_duration_ms ? [{ id: row.id, reason: 'observed item duration exceeds reviewed bound' }] : []),\n  ]);\n",
+  "scenario": {
+    "starting_fixture": "ledger() from frozen attempt-accounting.test.mjs (15 selected successful records)",
+    "changes": {
+      "items[0].attempts[0].time.duration_ms": 30001,
+      "items[0].time.duration_ms": null,
+      "items[0].time.unavailable_reason": "item duration not captured"
+    },
+    "unchanged_bounds": {
+      "attempts_per_item": 8,
+      "item_duration_ms": 30000
+    },
+    "source_path_reasoning": "timing accepts finite30001<=86400000; nullable item duration with reason passes; all original request/answer/usage/final-attempt checks remain unchanged. All3 bound branches check declared attempts, recorded ordinal and only item duration. Known first-attempt duration30001 is never compared with reviewed30000 bound; null item duration cannot produce the existing item-duration violation.",
+    "expected_current_source_behavior": "No reported bounds violation for that known overlong attempt, while its latency and costs remain counted. This is static control-flow reasoning, not observed runtime reproduction."
+  },
+  "requested_resolution": "Report a known per-attempt duration exceeding the declared item bound, identifying item/attempt. Preserve raw data/costs/unknown item duration. Cover unavailable or smaller item duration with a bounded synthetic regression; add documentation distinguishing unknown budget coverage from a verified within-bound run.",
+  "project_import_or_execution_by_reviewer": false,
+  "local_test_or_cpu_lease": false,
+  "existing_remote_25_pass_not_invalidated": true,
+  "need_duplicate_old_local_test": false,
+  "source_module_or_dataset_edited": false,
+  "model_calls": 0,
+  "spend": 0,
+  "owner_full_goal": "ACTIVE"
+}

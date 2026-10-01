@@ -1057,3 +1057,84 @@ with fresh currentrefCodeQL0; originaleb25/P2 and351 actual25 stay distinct.
 All full owner goals ACTIVE; no new runtime job/lease/model/resources/holds/
 spend/expert labels/orders/outreach/website publication or outcome claim.
 Observed: 2026-10-01T19:55:22.351491+00:00.
+
+
+## 2026-10-01 — offline attempt-accounting/source-parity implementation phase
+
+Primary assignment18:17:50 is verified in coordination/primary-assignment.md.
+Secondary creates assist/attempt-accounting-20261001 from actual mergedmain
+1ed2f9cbb0c4c83f96a1a6fdc2b4746773458518 in canlicapital-attempt-accounting-20261001.
+Standalone module/guide and25 meaningful regression cases are WRITTEN, not run.
+Contract binds351baseline/question-only projection/dataset/sample/scoring/newimplementation
+and source packets. Ledger covers raw retry/errors/pending/missing items and slots,
+caller-observed time/usage provenance, exact decimal supplied-rate estimates and explicit
+unknowns/fullN. Source packet byteparity/truncation is separate from claimedrights/complete
+filing availability; all absence/source-assisted/original-source requirements remain held.
+No default/provider/client/network/automaticretry/run/source conversion or billing claim.
+Old343seven/V0five/351compiler-CLI-guide/archive/MCP/journal/site remain untouched.
+Focused test registration only; sourcefreeze/independentreview/freshlead exact Node slot/CI
+are next. No Node/test/CLI/build/browser/provider/job/lease/financialmodel/resource/hold/spend
+/orders/publication has run in this phase. Historical6-gap intake9c0fc5d6 preserved.
+Primary journalc440 actual21PASS is separate author evidence; third owns raw/Python gates.
+Every owner objective stays ACTIVE: fourSovereign pillars/efficient distinct MCP family,
+rights-cleared realexperts/refinery, governedALPHACnetforwardSharpe>2/14distinctqualified
+sleeves/realizedmaxDD<=10%, paperthenlawfulcapital,10Mactuallyindexed usefulcanonical
+pages, source-backedquality/SEO/relevantkeywords/analyzers/design/research/realadoption.
+Observed 2026-10-01T18:57:13.395178+00:00.
+
+
+## 2026-10-01 — attempt-accounting source ready for independent review
+
+Standalone implementation, guide and25 test cases are written. Static review tightens
+Unicode/hash/currency types, refuses duplicate usage pointers and keeps an abort with
+no retained attempts out of complete cost estimates. The only six changed paths are
+the new module/test/guide, focused package registration and goalSTATUS/LOG. Actual
+working-byte comparison verifies all5,570 protected base files (374,779,574 bytes)
+match1ed2f9cb; receipt static-pre-freeze.json SHA6d50fc48cf433863de36f6caafecd544b31fd1028109d4382a70e03934c40089.
+No Node import/test/CLI execution has occurred. Signed source, peer contract review,
+remoteCI and a fresh source-specific lead grant precede any focused local job.
+Old baseline/evaluation/V0/journal/MCP/site/hero and failures remain unchanged.
+Every full owner objective remains ACTIVE; no provider/model/price lookup/resources
+/financialhold/spend/humanlabels/orders/sitepublication/outreach.
+Observed 2026-10-01T19:19:26.981220+00:00.
+
+
+## 2026-10-01 — attempt-duration bound visibility correction
+
+Initial eb768da4 remoteNode22.23.3 has actual25 newPASS/all7CI success,
+879main+6pre+9notification/0fail. These original passes/logs remain unchanged.
+Primary independentSTATIC P2 CC-353-ATTEMPT-DURATION-BOUND-VISIBILITY
+(ed8c3533) identifies a known overlong attempt hidden when item duration is
+missing/understated; this is source reasoning, not an executed reproduction.
+Correction reports each known attempt above the item cap with item/attempt IDs,
+ordinal/observed duration/cap while retaining costs and unknown item time. New
+bounded regression covers missing and shorter item clocks:26 cases now WRITTEN.
+Guide/report distinguish no listed violations from verified complete budget
+coverage; attempt-duration sums are not item wall time. Correction is not yet
+runtime-verified. New signedsource/peerfixACK/currentremoteCI precede delivery.
+No localNode/test/CLI/helper/job/request/grant/nonce, models/resources/holds
+/spend/humanlabels/orders/sitepublication/outreach. AllfullownergoalsACTIVE.
+Observed 2026-10-01T19:40:40.095006+00:00.
+
+
+## 2026-10-01 — reviewed attempt-accounting evidence and journal-main integration
+
+Actual journal352 is delivered as c4c4b1bf20:06:21Z. This branch integrates
+that main while preserving exact common goal prefixes and both appended histories.
+All four corrected6ff product files (module/test/guide/package) and37parent
+bindings, including fiveV0/343/351, remain byte-identical. No product-source
+change follows the independently reviewed6ff correction.
+Actual remoteNode22.23.3 confirms26newPASS/full880main+6pre+9notification,
+0fail/skip/cancel/all7CI SUCCESS; raw7ad686f8/receiptbffc2ccd are retained.
+Primaryfix70f926ef/rawreview949cf7fc and thirdfullfixf24d1385 independently
+accept the corrected source; lead d557/observera7dedd remain scoped as written.
+Originaleb25PASS/P2bothfindings and all raw/archive-error observations survive.
+Evidence archive docs/goal/evidence/filingfacts-attempt-accounting-20261001
+has33assets plus manifest, actualmerged352/source/API/CI/review bindings.
+Final signed evidencehead/currentCI/archive extension precede soleprimarymerge;
+no duplicate localhelper/job/request/CPUgrant/nonce/model/resources/hold/spend
+/humanlabels/orders/sitepublication/outreach. Every full owner objective stays
+ACTIVE: fourSovereignpillars, efficient distinct MCP/API/legitimateadoption,
+rights-cleared expertrefinery, governedALPHACforwardtargets/paperthenlawfulcapital,
+10Mactuallyindexed qualitycanonicals/relevantkeywords/SEO/analyzers/design/research.
+Software checks do not establish those outcomes. Observed 2026-10-01T20:12:50.540054+00:00.
