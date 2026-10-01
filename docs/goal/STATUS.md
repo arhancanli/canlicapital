@@ -485,3 +485,21 @@ in canlicapital-annotation-integration-20261001, assist/annotation-integration-2
 keeping both appended histories and both source-date updates. Original PR345 head
 f625bfac and its source checkout stay frozen while primary/secondary peer review
 runs. Combined validation is next; no integrated push or merge claimed. All goals stay active.
+
+
+## Annotation independent review and integrated verification, 2026-10-01
+
+Secondary read-only review PASSES frozen #345f625bfac:23 focused tests and10
+independent Chromium148 development-server probes on Node24.19, no blocking
+findings/errors/external requests. Signed integration3c72be6e merges actual
+main91d15052 (#343); annotation source stays byte-identical to the reviewed head.
+On Node22.23.2,807 main+6 preverify tests,15 separate built-browser cases and699
+page audits0/0 pass. Actual clean Git-free deployment validation passes (683
+stamped pages;416 checksummed files untouched). Both parents' changed source-date
+bindings and all5 immutable v0 files are preserved exactly. Previous failures
+remain in QA artifacts, including proof-assembly hash-framing corrections with
+no source or manifest changes; unrelated generated files were restored only in
+this isolated checkout. Proof: artifacts/goal/annotation-intake-integration-quality-20261001.json.
+Signed exact-head PR update/CI/merge and live delivery are next; not yet claimed.
+Journal344 remains primary-owned and pending its independent correction recheck;
+secondary owns the later analyzer phase. All master objectives remain active.

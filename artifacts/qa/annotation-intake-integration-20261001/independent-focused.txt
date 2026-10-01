@@ -1,0 +1,31 @@
+✔ an item is complete only with all three judgements, and a 'no' needs a note (3.487542ms)
+✔ the filled packet keeps the schema and order the agreement script reads, and ignores invalid values (0.431416ms)
+✔ the GitHub comment carries only fully answered items (0.557375ms)
+✔ a negative judgement without its required source note stays out of submitted labels (0.363083ms)
+✔ the copied submission is a real Markdown code block (0.289833ms)
+✔ browser fingerprints exactly match offline review digests, including non-ASCII source text (12.900458ms)
+✔ only a draft bound to the current packet can restore labels; recovery status remains explicit (0.630833ms)
+✔ matching drafts safely normalize corrupt state without accepting foreign IDs or invalid labels (0.302125ms)
+✔ download and copied complete submissions reproduce offline coverage and packet binding (3.972375ms)
+✔ unsafe or malformed source packets cannot render as review work (1.063708ms)
+✔ only complete pairs with an explicit source-backed adjudication enter the gold export (7.8465ms)
+✔ disagreements are retained; a final rejection does not appear as an accepted item (2.445417ms)
+✔ anonymous, same-reviewer and stale-packet claims cannot create a gold set (6.023625ms)
+✔ source substitutions, unknown/duplicate decisions, missing locators and external evidence refuse (10.389875ms)
+✔ the canonical item digest ignores label order and judgement edits but binds answer/citation edits (1.888208ms)
+✔ Cohen's kappa matches the textbook example (0.4 for 50 items: 20 yes/yes, 15 no/no, 5 and 10 off) (1.0205ms)
+✔ perfect agreement is kappa 1; one shared constant label leaves kappa undefined; chance-level agreement is 0 (0.567791ms)
+✔ agreement compares two filled packets, lists disagreements and rejects labels outside the allowed set (8.647959ms)
+✔ coverage exposes missing and incomplete items instead of silently dropping them (0.897667ms)
+✔ invalid labels outside the intersection and duplicate IDs cannot inflate agreement (0.348416ms)
+✔ a negative judgement without its required source note is incomplete (0.163ms)
+✔ distinct identities and unchanged source items are checked when a gold packet is supplied (0.175875ms)
+✔ reviewer identities and required source notes cannot be replaced by non-text values (0.110916ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 111.514417

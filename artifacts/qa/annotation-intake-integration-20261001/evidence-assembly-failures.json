@@ -1,0 +1,14 @@
+{
+  "failures": [
+    {
+      "phase": "source-date proof assembly",
+      "reason": "The first proof incorrectly compared raw file hashes with framed source-date hashes.",
+      "correction": "Use scripts/lastmod.mjs framing. No source or manifest change."
+    },
+    {
+      "phase": "source-date proof assembly",
+      "reason": "The second proof assumed all changed records named regular files; the evaluation parent also binds the research directory.",
+      "correction": "Reproduce sorted recursive directory-member framing. No source or manifest change."
+    }
+  ]
+}
