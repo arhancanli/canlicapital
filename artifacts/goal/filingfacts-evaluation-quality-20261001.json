@@ -72,5 +72,24 @@
     "Public v0 evaluation statistics remain historical; no raw answers are synthesized from parsed values.",
     "Full owner goals remain active, including all Sovereign pillars, actual indexing, SEO, adoption and governed engine outcomes."
   ],
-  "implementation_commit": "472291d3"
+  "implementation_commit": "472291d3",
+  "revision": {
+    "observed_at": "2026-10-01T09:58:26.106325+00:00",
+    "prior_head": "2fbb95725c7e3feb58e39494892ed2600673655a",
+    "issue": "Currency/percent-formatted numeric claims on unanswerable questions were incorrect but omitted from invented-number reporting.",
+    "regression_before": {
+      "tests": 7,
+      "passed": 6,
+      "failed": 1,
+      "exit_code": 1,
+      "artifact": "artifacts/goal/filingfacts-invented-number-regression-before-20261001.txt"
+    },
+    "focused_after": {
+      "tests": 32,
+      "passed": 32,
+      "exit_code": 0
+    },
+    "historical_v0": "bytes and statistics unchanged",
+    "full_reverification": "pending on revised head; earlier full evidence remains the prior checkpoint"
+  }
 }

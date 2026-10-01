@@ -47,7 +47,8 @@ Numerical tolerances stay at 0.1% relative (minimum 0.005) for numbers, 0.05 poi
 answers and 0.0005 for ratios. Absence requires the complete answer `not reported`, `not
 available`, `no data`, `does not report`, `not disclosed` or `unavailable`, with an optional
 final period or exclamation mark. A numeric answer followed by an absence phrase is incorrect.
-Numeric answers to absence questions are counted as invented numbers.
+Finite numeric answers to absence questions are counted as invented numbers, including
+answers with a recognized currency or percent suffix.
 
 Overall accuracy divides correct answers by every selected item, including missing captures,
 missing responses and request errors. `response_accuracy` separately uses captured responses

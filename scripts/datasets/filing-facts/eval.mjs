@@ -26,16 +26,15 @@ export function scoreAnswer(item, text) {
   if (ABSENCE.test(raw)) return { answered: true, correct: item.answer.kind === "not_reported", parsed: raw };
   const match = NUMERIC.exec(raw);
   const { kind, unit } = item.answer;
-  const suffix = match?.[3]?.toUpperCase();
-  if (!match || (match[1] && (kind !== "number" || unit !== "USD")) ||
+  const value = match ? Number(match[2].replaceAll(",", "")) : NaN;
+  if (!Number.isFinite(value)) return { answered: true, correct: false, parsed: raw };
+  // Any finite numeric claim on an absence question is an invented number, including units.
+  if (kind === "not_reported") return { answered: true, correct: false, parsed: value };
+  const suffix = match[3]?.toUpperCase();
+  if ((match[1] && (kind !== "number" || unit !== "USD")) ||
     (suffix === "%" && kind !== "percent") ||
     (suffix && suffix !== "%" && (kind !== "number" || suffix !== unit))) {
     return { answered: true, correct: false, parsed: raw };
-  }
-  const value = Number(match[2].replaceAll(",", ""));
-  if (!Number.isFinite(value)) return { answered: true, correct: false, parsed: raw };
-  if (item.answer.kind === "not_reported") {
-    return { answered: true, correct: false, parsed: value };
   }
   const truth = item.answer.value;
   const ok = item.answer.kind === "number" ? Math.abs(value - truth) <= Math.max(Math.abs(truth) * 0.001, 0.005)

@@ -4184,3 +4184,15 @@ checksummed files untouched. Restored 645 unrelated generated files in this isol
 Two content-date bindings renewed from the signed implementation. Initial failing regression
 and verification limits retained in artifacts/goal/filingfacts-evaluation-quality-20261001.json.
 Signed PR/primary independent review next. Both session goals and every original pillar stay active.
+
+
+## 2026-10-01 — secondary numeric-absence metric correction
+
+#343 at 2fbb9572 passed all seven CI checks with zero open alerts; primary began
+independent review. Secondary self-review then reproduced omitted invented-number
+counts for currency/percent-formatted numeric answers to unanswerable questions.
+Both were already incorrect, but the metric returned0. Corrected finite numeric
+classification before expected-absence unit gates; a fresh failing regression is
+preserved, and 32/32 focused tests pass. Historical raw bundle and published statistics
+stay unchanged; no model request or expert label. Revised-head full/CI checks and
+primary review remain pending; owner goals stay active.

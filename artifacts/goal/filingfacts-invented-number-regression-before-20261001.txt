@@ -1,0 +1,38 @@
+✔ answers are read from the last ANSWER line and scored within each kind's tolerance (2.544917ms)
+✔ behaviour separates abstaining from answering: a model that abstains on everything is not rewarded (0.830375ms)
+✔ blank, malformed and mixed answers cannot become correct numerical or absence answers (0.189375ms)
+✖ strict answers keep units, abstentions and invented numbers distinct (0.54175ms)
+✔ the live adapter retains final text and observed provider/tool evidence without oracle answers (0.551041ms)
+✔ the live adapter preserves failed-call evidence and cannot turn a missing final response into zero (0.149666ms)
+✔ the sample is stratified by template and fixed by its seed (16.671917ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.310917
+
+✖ failing tests:
+
+test at scripts/datasets/filing-facts/eval.test.mjs:47:1
+✖ strict answers keep units, abstentions and invented numbers distinct (0.54175ms)
+  AssertionError [ERR_ASSERTION]: ANSWER: 123 USD
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///Users/arhancanli/canlicapital-secondary-20261001/scripts/datasets/filing-facts/eval.test.mjs:64:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
