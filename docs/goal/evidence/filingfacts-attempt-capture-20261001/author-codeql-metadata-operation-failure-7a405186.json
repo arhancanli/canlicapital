@@ -1,0 +1,8 @@
+{
+  "schema": "canli.evidence-metadata-operation-failure.v1",
+  "operation": "CodeQL-analysis metadata receipt only",
+  "raw_error": "KeyError: language",
+  "reason": "language lives in JSON environment member, not top-level analysis record; original raw captures/testreceipt retained; corrected metadata extraction verifies both actual languages and exact tested merge",
+  "collector_execution": false,
+  "ci_or_product_failure": false
+}

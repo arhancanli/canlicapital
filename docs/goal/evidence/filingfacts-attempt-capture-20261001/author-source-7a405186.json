@@ -1,0 +1,47 @@
+{
+  "schema": "canli.collector-signed-source.v1",
+  "observed_at": "2026-10-01T22:30:00.766247+00:00",
+  "head": "7a405186341ebb83672df0e9d7b8118198632cfb",
+  "tree": "7bc2d52b812dd16c037a9d22e75e18b9c30a20c2",
+  "signature": "G",
+  "parent": "946e7d20fe08b119d9c921654a4e4c83e6927fc9",
+  "base": "32785aa947df51fdc1790c414c0ae9e4cf7deaaf",
+  "delta": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "scripts/datasets/filing-facts/COLLECTOR.md",
+    "scripts/datasets/filing-facts/attempt-collector.mjs",
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs"
+  ],
+  "files": {
+    "scripts/datasets/filing-facts/attempt-collector.mjs": {
+      "bytes": 52508,
+      "sha256": "21a3fb735a42cb004e61bd5015d44ab305718dde8b33c81cb792a548f16693d2"
+    },
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs": {
+      "bytes": 39904,
+      "sha256": "6778f9cd83db32d4cd5f4bf5807ec5579c7aef88986f068bd9fdb1c9b5279799"
+    },
+    "scripts/datasets/filing-facts/COLLECTOR.md": {
+      "bytes": 8555,
+      "sha256": "6141bbce6a482d1e6e8b0c9f6f0b57941ec9a432fe8d79e1f0a08422f5a38555"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 81860,
+      "sha256": "2cb6fb36012ef07daa29b77517f3e83c9b2ee291fefd82b6d7468601fd939388"
+    },
+    "docs/goal/LOG.md": {
+      "bytes": 357224,
+      "sha256": "edcb34fbaf3f581819fa09700eff735cce7c7e93fa14de8b949d6fd950c447e7"
+    },
+    "package.json": {
+      "bytes": 11828,
+      "sha256": "896e565ea59dabea9cc06a2c7c454ff148ea6c7284a7c692d54224c542b9eaf4"
+    }
+  },
+  "nominal_new_cases": 45,
+  "local_runtime": false,
+  "remote_ci": "pending",
+  "primary_control_frame_finding_sha256": "5e8228a2fdc821a8686de4fd5221fd148249ed82648bab0c998aa900cf5c6d73",
+  "original37_38_40_44_and_findings_retained": true
+}

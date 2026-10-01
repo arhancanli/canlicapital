@@ -1,0 +1,122 @@
+{
+  "schema": "canli.collector-third-static-source-extension.v1",
+  "observed_at": "2026-10-01T22:20:04.067839+00:00",
+  "head": "946e7d20fe08b119d9c921654a4e4c83e6927fc9",
+  "tree": "077bc285da33b14ba6577295ae9e3377c796f5cc",
+  "parent": "4fb16673ff0ffccd788e0df40c2c242b5ab79393",
+  "signature": "G",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture/source-946e7d20.json",
+    "bytes": 1847,
+    "sha256": "50f52354e93985185e2da48e6eddfbcccc631f52b4ce9c0692d16fee8c0c80df"
+  },
+  "status": "PASS_WITH_STATIC_SCOPE_LIMITS_FOR_NARROW_CORRECTIONS_CURRENT_REMOTE_CI_SEPARATE",
+  "six_source_pins": [
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 355609,
+      "sha256": "e7a0c35ecfc6693742023a27fd524af6844beccebe4455509e8188d2c5684415",
+      "blob": "1b71adf22f4da57084d3fe6e82c4956ef007d6ba",
+      "working_equal_at_observation": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 80245,
+      "sha256": "e7f62f3b2c84e071818a51204efc92e534c7326513a73b202421eb94e04bc0fb",
+      "blob": "8efb2e8571f4a94503e456643bc76dd0e1143b4c",
+      "working_equal_at_observation": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 11828,
+      "sha256": "896e565ea59dabea9cc06a2c7c454ff148ea6c7284a7c692d54224c542b9eaf4",
+      "blob": "1bcddb9c82ed45aeb9971de4ab720eacb8fb0eb9",
+      "working_equal_at_observation": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/COLLECTOR.md",
+      "bytes": 8265,
+      "sha256": "6e4d3c90552f74c0f279b10d5ce865690952af5168802536653dd8eba27acaec",
+      "blob": "a1461dee0619ebb1509c1d0e425bf82998f30aa0",
+      "working_equal_at_observation": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/attempt-collector.mjs",
+      "bytes": 52266,
+      "sha256": "2ee7cc00d1722f2d50dcf28095c6e31dbcd0d50aff1a46049cc1ba8dd0a65db4",
+      "blob": "d61c573fa37cbf7be30832d2f2c82b0c66673f40",
+      "working_equal_at_observation": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/attempt-collector.test.mjs",
+      "bytes": 38527,
+      "sha256": "53e616f079d81237c2d9165919a7fa953824275e2fc81fd577b9cb482407be8f",
+      "blob": "e6be2a335c023660cba87917ff47368033cdac39",
+      "working_equal_at_observation": true
+    }
+  ],
+  "exact_delta_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "scripts/datasets/filing-facts/COLLECTOR.md",
+    "scripts/datasets/filing-facts/attempt-collector.mjs",
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs"
+  ],
+  "package_unchanged": true,
+  "goal_chronologies_exact_parent_prefix": true,
+  "protected_Git_metadata": {
+    "count": 5712,
+    "bytes": 377535699,
+    "mode_type_object_size_equal_actual_main327": true,
+    "full_protected_working_bytes_audited_by_peer": false
+  },
+  "retained_original_review": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/static-review-4fb16673.json",
+    "bytes": 30191,
+    "sha256": "ce5acabdcaba97c955d07d86d80ea0ceda4d9224879d55e850856a24bcb49dd1"
+  },
+  "retained_abort_finding": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/static-fix-extension-4fb16673.json",
+    "bytes": 4766,
+    "sha256": "c02e5b858bc54943b0027648b3a80b59568965f8c80a2a267829152dee76316b"
+  },
+  "original_abort_trace": {
+    "id": "CC-356-QUEUED-ABORT-REENTRANCY",
+    "status": "CORRECTED_IN_FROZEN_SOURCE_STATIC_ONLY",
+    "location": "attempt-collector.mjs:552-562",
+    "proof": "After fresh observe(), settled is rechecked and external.aborted explicitly aborts before task. Native abort inside trusted observer settles the registered listener, so queued task is skipped. Initial and queued unavailable/expired clocks remain refusals; losing async outcomes have no collector continuation."
+  },
+  "primary_capacity_correction": {
+    "original_receipt": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-primary-review/review-244a2344.json",
+      "bytes": 9085,
+      "sha256": "0a97ed68023f5dfe78dcaf94c8169431a9064d64a22880a18485b9ea24ca3bb1"
+    },
+    "event_admission": "planned1+sum(3 per item+3 per configured attempt+2 per positive backoff);15*(3+8*3+7*2)+1=616>512 rejected in prepare before CaptureStore. One possible-overrun included;15 single attempts needs91 including final.",
+    "raw_reserve_bytes": 764588,
+    "dispatch_reserve_bytes": 1288876,
+    "startup_control_footer_reserve_bytes": 262144,
+    "ledger_dispatch_reserve_bytes": 4194304,
+    "proof": "Exact original input/policy/manifest bytes plus4 bounded controls admitted before CaptureStore; each new item leaves4 controls; each step leaves one max base64 raw event plus8 controls before wait/pending/transport. Max subsequent wait/wait_done/pending/terminal/item_end/item_overrun/final requires7 controls; nonraw frames are checked <=64KiB and raw <=base64(512KiB)+64KiB before writes. When guard fails, no callback begins, remaining item terminates and later items stop; final missing full15N is retained. Initial ledger leaves2 controls, per-dispatch4MiB exceeds finite duplicated512KiB envelope + bounded64KiB request/answers/tool-derived expansion; replay8MiB and reconstructed report8MiB limits are enforced.",
+    "limits": "This is static control-flow/arithmetic review, not executed boundary/capacity/platform/durability evidence. Frame-size or filesystem refusals remain explicit uncertain captures with originals retained. Recovery is read-only, capped512events and32MiB total; its descriptor/event parser uses8MiB per-file reads, not a provenance proof that an arbitrary self-attested input was written by this writer."
+  },
+  "new_written_cases": [
+    "a synchronous native abort inside the fresh queued clock check prevents transport invocation",
+    "maximum full-cohort retry plan is refused before capture because its worst-case events exceed512",
+    "bounded maximum-size original inputs refuse missing footer capacity before any filesystem effect",
+    "bounded generation settings near the JSON limit refuse initial ledger expansion before capture"
+  ],
+  "written_total": 44,
+  "actual_current_tests_executed_by_peer": 0,
+  "remote_current_status": "Author source manifest pending at freeze; no new-head runtime pass asserted in this source receipt",
+  "old_runtime_evidence": "Original37/38/40 and917/918/920+6+9 remain distinct retained CI generations; source extension does not rewrite them.",
+  "archive_proposal": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/archive-proposal-4fb16673.json",
+    "bytes": 26041,
+    "sha256": "5ff5e53a4349137fdd7817a922f827c336bcc6c142439e847c3b511ea8019a3f"
+  },
+  "additional_archive_requirement": "Retain this source-only receipt plus original primary0a97 and thirdc02 traces, original CodeQL90, all37/38/40 raw CI, then exact44/current7CI/final archive equivalence. No author staging/source edits by peer.",
+  "project_import_tests_CLI_browser_network_provider_job_lease_spend_or_owned_edits": false,
+  "full_owner_goals": "ACTIVE",
+  "primary_only_ordinary_merge": true
+}

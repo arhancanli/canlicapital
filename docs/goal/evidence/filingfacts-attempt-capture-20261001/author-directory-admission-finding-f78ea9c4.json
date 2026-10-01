@@ -1,0 +1,18 @@
+{
+  "schema": "canli.collector-directory-admission-finding.v1",
+  "observed_at": "2026-10-01T21:41:48.821339+00:00",
+  "source": "f78ea9c40f11b89cc5d25173a57bfb76416ccb99",
+  "finding": "CC-356-DIRECTORY-OPEN-FD-ADMISSION",
+  "codeql_alert": 90,
+  "path": "scripts/datasets/filing-facts/attempt-collector.mjs",
+  "line": 211,
+  "classification": "actual CodeQL filesystem-race alert, not a claimed executed exploit",
+  "original_remote_named_passes": 37,
+  "original_suite": "917+6pre+9notification, zero fail/skip/cancel",
+  "actual_test_receipt_sha256": "6561fe92206e45ec3503a82659c944afc6fc3f02e3718ad1fe05ef635217fb14",
+  "raw_log_sha256": "9e4aeafac377e9430819d19c04790542dd4122e713a51b60e166ed95b719c0c5",
+  "alerts_sha256": "8f118067e4e7613cc906cce8d245255406fe77b27ed635cca5d6c704336a3017",
+  "planned_correction": "Open directory first with O_DIRECTORY/NOFOLLOW; validate ownership/mode/identity on fstat descriptor before path binding/any child operation. Retain post-open path/realpath guards.",
+  "delivery_held": true,
+  "local_runtime": false
+}

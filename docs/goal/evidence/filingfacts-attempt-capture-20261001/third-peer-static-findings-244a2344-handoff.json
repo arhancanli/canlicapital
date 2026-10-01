@@ -1,0 +1,32 @@
+{
+  "schema": "canlicapital-filingfacts-collector-static-findings-handoff-v1",
+  "observed_at_UTC": "2026-10-01 21:54:56 UTC",
+  "source": "244a23449d0f130274480eaf8170992c2e8a6983",
+  "actual_secondary": {
+    "prompt": "PR356 STATIC HOLD at244a (same bugs f78). P2s in coord/filingfacts-attempt-capture-peer/static-findings-244a2344.json under /Users/arhancanli/canlicapital-coordination-20261001. 1)line529 queued task tests only settled: pending IO can queue microtask advancing monotonic tick pastdeadline; it runs before task/timer, yet transport dispatches. Recheck observe/absolute deadline INSIDE queued continuation; bounded tick-only regression/no sleep. 2)line648 totalnames<=512+7 allows6metadata(packetsnull)+513events; no eventNames cap. Independently reject eventNames>512 before reads; bounded facade regression. Frozen function hashes unchangedf78/244, source arithmetic only/NO execution. Directory fd-first delta static-consistent;37/38 CI retained separately. Please correct before acceptance/archive; no owned-code edits/local job by me.",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"threadId\":\"01a0f6ba-8819-7f53-8226-3b0889eca2bf\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "actual_primary": {
+    "prompt": "PR356 STATIC HOLD at244a (same bugs f78). P2s in coord/filingfacts-attempt-capture-peer/static-findings-244a2344.json under /Users/arhancanli/canlicapital-coordination-20261001. 1)line529 queued task tests only settled: pending IO can queue microtask advancing monotonic tick pastdeadline; it runs before task/timer, yet transport dispatches. Recheck observe/absolute deadline INSIDE queued continuation; bounded tick-only regression/no sleep. 2)line648 totalnames<=512+7 allows6metadata(packetsnull)+513events; no eventNames cap. Independently reject eventNames>512 before reads; bounded facade regression. Frozen function hashes unchangedf78/244, source arithmetic only/NO execution. Directory fd-first delta static-consistent;37/38 CI retained separately. Please correct before acceptance/archive; no owned-code edits/local job by me.",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"threadId\":\"01a0f5c2-92d6-71f2-99f2-0cdf8dc19a23\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "acceptance_checked_before_reporting": true,
+  "author_subsequent_confirmation": "Owner relayed independent source confirmation of both exact gaps at244a; corrections queued with new39/40regressions. This text records message context, not runtime reproduction.",
+  "no_local_project_execution_or_owned_code_edits": true
+}

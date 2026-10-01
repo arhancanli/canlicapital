@@ -1,0 +1,27 @@
+{
+  "schema": "canli.collector-static-boundary-findings.v1",
+  "observed_at": "2026-10-01T21:51:47.855063+00:00",
+  "source": "244a23449d0f130274480eaf8170992c2e8a6983",
+  "origin": "third peer commentary and author independent frozen-source inspection; third full finding receipt pending",
+  "classification": "static counterexamples, not executed reproductions",
+  "findings": [
+    {
+      "id": "CC-356-QUEUED-DISPATCH-DEADLINE",
+      "path": "scripts/datasets/filing-facts/attempt-collector.mjs",
+      "function": "boundedCall",
+      "counterexample": "Remaining time is captured before the queued Promise callback. A previously queued microtask can consume the absolute deadline before transport/wait dispatch, while timers have not run. The callback dispatch lacks a fresh absolute monotonic check.",
+      "correction": "Pass absolute deadline and observation function, recheck at queued dispatch before invoking any trusted fixture/wait callback."
+    },
+    {
+      "id": "CC-356-RECOVERY-EVENT-CAP",
+      "path": "scripts/datasets/filing-facts/attempt-collector.mjs",
+      "function": "recoverFixture",
+      "counterexample": "Without packets there are six fixed files. The total-file cap MAX_EVENTS+7 admits513 event names although the event cap is512.",
+      "correction": "Explicitly cap eventNames.length at MAX_EVENTS before event file reads/parsing."
+    }
+  ],
+  "original_38_actual_passes_preserved": true,
+  "original_all_seven_ci_and_zero_codeql_preserved": true,
+  "delivery_held": true,
+  "local_execution": false
+}

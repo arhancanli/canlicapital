@@ -1,0 +1,199 @@
+{
+  "schema": "canli.collector-third-static-encoded-control-fix-extension.v1",
+  "observed_at": "2026-10-01T22:44:47.956811+00:00",
+  "status": "PASS_WITH_STATIC_SCOPE_LIMITS_ENCODED_CONTROL_CORRECTION_SOURCE_ACCEPTED",
+  "head": "7a405186341ebb83672df0e9d7b8118198632cfb",
+  "tree": "7bc2d52b812dd16c037a9d22e75e18b9c30a20c2",
+  "parent": "946e7d20fe08b119d9c921654a4e4c83e6927fc9",
+  "signature": "G",
+  "clean_at_observation": true,
+  "manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture/source-7a405186.json",
+    "bytes": 1770,
+    "sha256": "9ec2838eacca91debb16442995d480b9fcde37effe11908ab3323ce77885ebae"
+  },
+  "six_owned_source_pins": {
+    "scripts/datasets/filing-facts/attempt-collector.mjs": {
+      "bytes": 52508,
+      "sha256": "21a3fb735a42cb004e61bd5015d44ab305718dde8b33c81cb792a548f16693d2",
+      "frozen_git_and_working_bytes_equal": true
+    },
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs": {
+      "bytes": 39904,
+      "sha256": "6778f9cd83db32d4cd5f4bf5807ec5579c7aef88986f068bd9fdb1c9b5279799",
+      "frozen_git_and_working_bytes_equal": true
+    },
+    "scripts/datasets/filing-facts/COLLECTOR.md": {
+      "bytes": 8555,
+      "sha256": "6141bbce6a482d1e6e8b0c9f6f0b57941ec9a432fe8d79e1f0a08422f5a38555",
+      "frozen_git_and_working_bytes_equal": true
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 81860,
+      "sha256": "2cb6fb36012ef07daa29b77517f3e83c9b2ee291fefd82b6d7468601fd939388",
+      "frozen_git_and_working_bytes_equal": true
+    },
+    "docs/goal/LOG.md": {
+      "bytes": 357224,
+      "sha256": "edcb34fbaf3f581819fa09700eff735cce7c7e93fa14de8b949d6fd950c447e7",
+      "frozen_git_and_working_bytes_equal": true
+    },
+    "package.json": {
+      "bytes": 11828,
+      "sha256": "896e565ea59dabea9cc06a2c7c454ff148ea6c7284a7c692d54224c542b9eaf4",
+      "frozen_git_and_working_bytes_equal": true
+    }
+  },
+  "five_delta_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "scripts/datasets/filing-facts/COLLECTOR.md",
+    "scripts/datasets/filing-facts/attempt-collector.mjs",
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs"
+  ],
+  "package_unchanged": true,
+  "prior_goal_chronologies_and_44_test_source_prefixes_preserved": true,
+  "protected_parent_git_inventory": {
+    "base": "32785aa947df51fdc1790c414c0ae9e4cf7deaaf",
+    "files": 5712,
+    "bytes": 377535699,
+    "mode_type_object_and_size_equal": true,
+    "full_working_rehash_claimed": false
+  },
+  "original_primary_finding": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-primary-review/review-946e7d20-control-frame-bound.json",
+    "bytes": 4510,
+    "sha256": "5e8228a2fdc821a8686de4fd5221fd148249ed82648bab0c998aa900cf5c6d73"
+  },
+  "correction": {
+    "finding_id": "CC-356-CONTROL-FRAME-ENCODED-BOUND",
+    "status": "CORRECTED_IN_FROZEN_SOURCE_STATIC_ONLY",
+    "exact_module_delta_only_two_derived_cap_definitions_and_comments": true
+  },
+  "bound_proof": {
+    "accepted_error_decoded_utf8_max": 65536,
+    "json_escape_max_per_decoded_byte": 6,
+    "encoded_error_max": 393216,
+    "structural_frame_margin": 65536,
+    "control_event_cap_and_reserve": 458752,
+    "control_event_kib": 448,
+    "raw_fixture_max": 524288,
+    "base64_raw_max": 699052,
+    "raw_event_cap_unchanged": 764588,
+    "dispatch_raw_plus_eight_controls": 4434604,
+    "startup_four_controls": 1835008,
+    "initial_ledger_two_controls": 917504,
+    "ledger_dispatch_reserve_unchanged": 4194304,
+    "ledger_and_recomputed_report_cap_unchanged": 8388608,
+    "capture_cap_unchanged": 33554432,
+    "own_stdlib_arithmetic_only": [
+      {
+        "label": "ASCII",
+        "decoded_utf8_bytes": 65536,
+        "stdlib_json_error_only_bytes_without_newline": 65548,
+        "collector_executed": false
+      },
+      {
+        "label": "NUL",
+        "decoded_utf8_bytes": 65536,
+        "stdlib_json_error_only_bytes_without_newline": 393228,
+        "collector_executed": false
+      }
+    ],
+    "propagation_review": [
+      "Startup exact-input/policy/manifest capacity plus four footer/control frames uses the new derived cap.",
+      "Dispatch raw-frame plus eight controls and item/step/footer guards use the same updated symbols.",
+      "Initial/current ledger reserves include two control frames; the 4MiB dispatch ledger reservation remains unchanged.",
+      "Policy capture_limits and Journal.emit per-frame checks derive from these same constants.",
+      "Raw frame base64 plus 64KiB structural allowance remains independent of the expanded control cap.",
+      "One bounded accepted error occurs in item_end; remaining writer control identifiers, ordinals, clock reasons, timestamps and refusal texts are bounded."
+    ],
+    "filesystem_success_or_arbitrary_callback_exception_proof_claimed": false
+  },
+  "new_case_source_review": {
+    "name": "accepted64KiB ASCII and escaped-control errors finalize and recover without truncation",
+    "total_written_named_cases": 45,
+    "executed_by_peer": false,
+    "checks": [
+      "two finite 64KiB ASCII/NUL variants",
+      "bounded raw envelope",
+      "single dispatch and finalized error outcome",
+      "item and attempt error retained untruncated",
+      "item_end greater than old cap and within new cap",
+      "byte-exact base64 raw retention",
+      "known input usage2 and billed total null",
+      "byte-equal read-only recovered ledger/report"
+    ]
+  },
+  "preserved_receipts": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/static-source-extension-946e7d20.json",
+      "bytes": 7190,
+      "sha256": "3e703062586d54bb17176ef60b33d26b9309790a547024e0155fde907710081d"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/remote-log-extension-946e7d20.json",
+      "bytes": 6506,
+      "sha256": "576d40c3f80b50bc4839fea3322e619ac6512de8b1683d73a9108c78ad465079"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture/remote-946e7d20-actual-test-receipt.json",
+      "bytes": 20184,
+      "sha256": "fd3771fea3973b5ddfa21296797af0619a001ee3bb0bad988cda5e822ad278bd"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture/ci-source-fidelity-946e7d20.json",
+      "bytes": 920,
+      "sha256": "5595824aed0f26526e1a41c0480924397513a9f36aa7c24f7468f68c34e3a79c"
+    }
+  ],
+  "historical_946_extension": {
+    "all_seven_success": true,
+    "tested_merge": "e3f7760301998b4ae845a3bec113d08cfc98aebb",
+    "tested_tree_equals_frozen_946": true,
+    "paginated_open_alert_objects": 0,
+    "latest_two_languages_zero_results_and_same_tested_merge": true,
+    "old44_inside924_plus6pre_plus9notification_not_new45": true,
+    "raw_metadata_pins": [
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture/356-pr-946e-final.json",
+        "bytes": 2325,
+        "sha256": "e2f36184362e1958657d145bc6cb3ffd1995db402e8471d5eed216c70435d3e5"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture/remote-946e7d20-tested-merge.json",
+        "bytes": 2648,
+        "sha256": "2bcfce086e574526b8cf7384d00748ebbc3feaa0e00bf62e893b69a60efd4c5f"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture/remote-946e7d20-codeql-alerts.json",
+        "bytes": 4,
+        "sha256": "cf1cbb66a638b4860a516671fb74850e6ccf787fe6c4c8d29e9c04efe880bd05"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture/remote-946e7d20-codeql-analyses.json",
+        "bytes": 4749,
+        "sha256": "fff9e7f618e491aee15e52a1887db597f5f21ebf15c82689502d4c9a95e2c476"
+      }
+    ]
+  },
+  "own_metadata_extraction_error_preserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/control-fix-metadata-extraction-error-7a405186.json",
+    "bytes": 903,
+    "sha256": "2b6ebd0077e27e5e9ac99092661c00455e53b81759517765440fb993f21ea812"
+  },
+  "blocking_findings_in_this_narrow_source_delta": [],
+  "current45_remote_runtime_evidence": "separate additive retained-log extension; not static execution",
+  "remaining_delivery_gates": [
+    "final integrated signed source equivalence",
+    "complete bounded immutable archive/manifest custody",
+    "final exact-head CI and current merge-ref checks",
+    "sole primary ordinary merge"
+  ],
+  "constraints": {
+    "project_imports_tests_cli_browser_network_provider_jobs": 0,
+    "author_source_or_worktree_edits": 0,
+    "grant_cpu_resource_model_spend_claims": 0
+  },
+  "full_owner_goals": "ACTIVE; implementation does not establish measured outcomes"
+}

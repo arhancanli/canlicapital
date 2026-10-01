@@ -1,0 +1,14 @@
+{
+  "schema": "canli.peer.metadata-extraction-error.v1",
+  "observed_at": "2026-10-01T22:41:06.410834+00:00",
+  "source": "7a405186341ebb83672df0e9d7b8118198632cfb",
+  "phase": "own static receipt assembly / historical946 CodeQL metadata only",
+  "error": "TypeError: list indices must be integers or slices, not str",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 36, in <module>\n  File \"<stdin>\", line 36, in <genexpr>\nTypeError: list indices must be integers or slices, not str\n",
+  "cause": "Captured historical946 analyses are paginated nested lists; own extractor indexed them as dictionaries.",
+  "project_runtime_executed": false,
+  "project_runtime_failure_claimed": false,
+  "receipt_written_before_failure": false,
+  "author_source_edited": false,
+  "correction": "Inspect captured JSON shape and flatten pages for own metadata audit; no project rerun."
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "canli.collector-primary-static-delta.v1",
+  "observed_at": "2026-10-01T22:00:52.036743+00:00",
+  "prior_head": "244a23449d0f130274480eaf8170992c2e8a6983",
+  "head": "4fb16673ff0ffccd788e0df40c2c242b5ab79393",
+  "tree": "37572690bbbecea1adc334dd18413a741cae15aa",
+  "signature": "G",
+  "five_changed_paths": {
+    "docs/goal/LOG.md": {
+      "bytes": 354006,
+      "sha256": "d98393e8e27aefec056aedd5fa7be6eb198e94063ec5569f7d33191bde9818d9"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 78642,
+      "sha256": "6fe7c6f6ca394abc251480c26f76a01365139f849f455d1ccfb0eea70d54faf5"
+    },
+    "scripts/datasets/filing-facts/COLLECTOR.md": {
+      "bytes": 7357,
+      "sha256": "3ef49a43f218bea685a426e0c22db313576d0a42e2d876e9d0da0e454ecafa00"
+    },
+    "scripts/datasets/filing-facts/attempt-collector.mjs": {
+      "bytes": 49449,
+      "sha256": "1b15048140fadc1c1bd5dcd7a8b49f136fefd5ac64ba55a87ad1ae1473446d1c"
+    },
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs": {
+      "bytes": 35088,
+      "sha256": "96f037b223d7fdc090d2ec3421e9b810206f134f5e872796430a888e0ca9644f"
+    }
+  },
+  "package_unchanged": true,
+  "third_finding_receipt_sha256": "cd48166133325682c9485a2f41dfe00de8b425f675bf2f8cd68c8be82c1c6012",
+  "two_delta_corrections_static_consistent": {
+    "queued_dispatch": "absolute deadline and current observe result checked inside queued continuation before trusted transport/wait invocation, explicit abort checked there too",
+    "recovery_inventory": "eventNames512 cap checked immediately after directory inventory and before any event file read; six-metadata packet-null case has a distinct event cap"
+  },
+  "written_new_test_count": 40,
+  "no_actual_40_runtime_result_claimed": "Source-only delta; remote CI not inspected here",
+  "primary_P2_still_open": {
+    "id": "CC-356-EVENT-CAP-ADMISSION",
+    "prior_primary_receipt_sha256": "0a97ed68023f5dfe78dcaf94c8169431a9064d64a22880a18485b9ea24ca3bb1",
+    "finding_not_changed_by_this_delta": true,
+    "required_events": 601,
+    "cap": 512
+  },
+  "own_review_status": "HOLD_PRIMARY_EVENT_CAP_P2",
+  "reviewer_imports_tests_cli_project_jobs_provider_spend": false,
+  "full_goal_active": true
+}

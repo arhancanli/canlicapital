@@ -1,0 +1,108 @@
+{
+  "schema": "canli.collector-primary-static-correction-review.v1",
+  "observed_at": "2026-10-01T22:21:03.520756+00:00",
+  "head": "946e7d20fe08b119d9c921654a4e4c83e6927fc9",
+  "tree": "077bc285da33b14ba6577295ae9e3377c796f5cc",
+  "signature": "G",
+  "five_delta_paths": {
+    "docs/goal/LOG.md": {
+      "bytes": 355609,
+      "sha256": "e7a0c35ecfc6693742023a27fd524af6844beccebe4455509e8188d2c5684415"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 80245,
+      "sha256": "e7f62f3b2c84e071818a51204efc92e534c7326513a73b202421eb94e04bc0fb"
+    },
+    "scripts/datasets/filing-facts/COLLECTOR.md": {
+      "bytes": 8265,
+      "sha256": "6e4d3c90552f74c0f279b10d5ce865690952af5168802536653dd8eba27acaec"
+    },
+    "scripts/datasets/filing-facts/attempt-collector.mjs": {
+      "bytes": 52266,
+      "sha256": "2ee7cc00d1722f2d50dcf28095c6e31dbcd0d50aff1a46049cc1ba8dd0a65db4"
+    },
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs": {
+      "bytes": 38527,
+      "sha256": "53e616f079d81237c2d9165919a7fa953824275e2fc81fd577b9cb482407be8f"
+    }
+  },
+  "package_unchanged": true,
+  "primary_event_cap_finding_closed_static": {
+    "prior_receipt_sha256": "0a97ed68023f5dfe78dcaf94c8169431a9064d64a22880a18485b9ea24ca3bb1",
+    "conservative_bound": 616,
+    "maximum": 512,
+    "rejects_before_capture_effects": true
+  },
+  "third_post_observe_abort_correction_static_consistent": true,
+  "startup_original_input_and_initial_ledger_reservation_added": true,
+  "new_finding": {
+    "id": "CC-356-CONTROL-FRAME-ENCODED-BOUND",
+    "priority": "P2",
+    "status": "OPEN_STATIC",
+    "source": "946e7d20fe08b119d9c921654a4e4c83e6927fc9",
+    "locations": {
+      "MAX_CONTROL_EVENT_BYTES": [
+        20,
+        21,
+        22,
+        23,
+        199,
+        205,
+        505,
+        608
+      ],
+      "plannedEvents": [
+        196,
+        197,
+        204
+      ],
+      "value.error !== null": [
+        352,
+        353,
+        379
+      ],
+      "const bytes = encoded(frame)": [
+        504
+      ],
+      "finishKind": [
+        575,
+        665
+      ],
+      "status: 'error', error: last?.error": [
+        579
+      ],
+      "journal.emit('item_end'": [
+        666
+      ]
+    },
+    "cause": "envelope accepts a nonempty error whose decoded UTF-8 length is64KiB, but Journal.emit rejects any encoded non-raw frame above64KiB. finishKind copies the accepted HTTP/transport error verbatim into item_end.error; even the error-only JSON member exceeds the whole frame cap. JSON control escaping can expand the accepted64KiB string to~384KiB.",
+    "static_examples": [
+      {
+        "kind": "ASCII",
+        "decoded_error_utf8_bytes": 65536,
+        "valid_raw_envelope_bytes": 65687,
+        "minimum_error_only_json_bytes": 65549,
+        "full_control_frame_is_strictly_larger": true
+      },
+      {
+        "kind": "escaped_control",
+        "decoded_error_utf8_bytes": 65536,
+        "valid_raw_envelope_bytes": 393367,
+        "minimum_error_only_json_bytes": 393229,
+        "full_control_frame_is_strictly_larger": true
+      }
+    ],
+    "source_trace": [
+      "A one-item closed policy with one small request is admitted with ample32MiB store/8MiB ledger capacity.",
+      "A bounded valid429 fixture envelope with65,536 ASCII x error bytes or65,536 NUL bytes is returned. Both exact raw envelopes fit512KiB.",
+      "The envelope is persisted, validates, and becomes a captured terminal;353 permits the bounded error.",
+      "finishKind produces statuserror and copies last.error. item_end encoded JSON is larger than64KiB; new per-control-frame check refuses before writing, producing uncertainty. This is a collector schema/bound mismatch, not an observed disk failure."
+    ],
+    "requested_change": "Derive control-frame reserve/cap from the maximum ENCODED accepted members plus structural overhead (including worst-case JSON escaping), or explicitly restrict accepted error strings to a compatible documented encoded bound before terminal acceptance. Add bounded regression(s) at the accepted error limit including control escaping, showing a consistent final capture/replay or explicit reproducible raw refusal; no local reviewer job requested.",
+    "reviewer_execution": "No imports/tests/transport or project CLI. Examples above are stdlib JSON byte arithmetic, not an executed collector reproduction."
+  },
+  "status": "HOLD_ONE_NEW_STATIC_P2",
+  "written_tests": 44,
+  "actual_new_runtime_result_claimed": false,
+  "full_owner_goal_active": true
+}

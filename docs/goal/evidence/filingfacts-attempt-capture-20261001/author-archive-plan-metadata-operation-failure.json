@@ -1,0 +1,10 @@
+{
+  "schema": "canli.evidence-metadata-operation-failure.v1",
+  "observed_at": "2026-10-01T22:34:30.966263+00:00",
+  "operation": "archive nomination metadata only",
+  "raw_error": "KeyError: raw_log_compression",
+  "cause": "proposal does not include optional compression member on every inventory item",
+  "correction": "read optional member with .get; original41 assets and author branch remained unchanged; no archive assembly had started",
+  "collector_execution": false,
+  "ci_or_product_failure": false
+}

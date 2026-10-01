@@ -1,0 +1,105 @@
+{
+  "schema": "canli.collector-primary-static-fix-acceptance.v1",
+  "observed_at": "2026-10-01T22:41:53.651980+00:00",
+  "head": "7a405186341ebb83672df0e9d7b8118198632cfb",
+  "tree": "7bc2d52b812dd16c037a9d22e75e18b9c30a20c2",
+  "signature": "G",
+  "clean_at_observation": true,
+  "parent": "946e7d20fe08b119d9c921654a4e4c83e6927fc9",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture/source-7a405186.json",
+    "sha256": "9ec2838eacca91debb16442995d480b9fcde37effe11908ab3323ce77885ebae"
+  },
+  "six_source_pins": {
+    "scripts/datasets/filing-facts/attempt-collector.mjs": {
+      "bytes": 52508,
+      "sha256": "21a3fb735a42cb004e61bd5015d44ab305718dde8b33c81cb792a548f16693d2"
+    },
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs": {
+      "bytes": 39904,
+      "sha256": "6778f9cd83db32d4cd5f4bf5807ec5579c7aef88986f068bd9fdb1c9b5279799"
+    },
+    "scripts/datasets/filing-facts/COLLECTOR.md": {
+      "bytes": 8555,
+      "sha256": "6141bbce6a482d1e6e8b0c9f6f0b57941ec9a432fe8d79e1f0a08422f5a38555"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 81860,
+      "sha256": "2cb6fb36012ef07daa29b77517f3e83c9b2ee291fefd82b6d7468601fd939388"
+    },
+    "docs/goal/LOG.md": {
+      "bytes": 357224,
+      "sha256": "edcb34fbaf3f581819fa09700eff735cce7c7e93fa14de8b949d6fd950c447e7"
+    },
+    "package.json": {
+      "bytes": 11828,
+      "sha256": "896e565ea59dabea9cc06a2c7c454ff148ea6c7284a7c692d54224c542b9eaf4"
+    }
+  },
+  "exact_five_delta_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "scripts/datasets/filing-facts/COLLECTOR.md",
+    "scripts/datasets/filing-facts/attempt-collector.mjs",
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs"
+  ],
+  "package_unchanged": true,
+  "goal_parent_bytes_retained_as_exact_prefixes": true,
+  "base_protected_git_identities": {
+    "base": "32785aa947df51fdc1790c414c0ae9e4cf7deaaf",
+    "files": 5712,
+    "bytes": 377535699,
+    "mode_type_object_size_equal": true,
+    "whole_working_byte_hash_claimed": false
+  },
+  "finding": {
+    "id": "CC-356-CONTROL-FRAME-ENCODED-BOUND",
+    "prior_sha256": "5e8228a2fdc821a8686de4fd5221fd148249ed82648bab0c998aa900cf5c6d73",
+    "status": "CLOSED_STATIC_SOURCE",
+    "accepted_error_bytes": 65536,
+    "control_event_bytes": 458752,
+    "structural_reserve_bytes": 65536,
+    "raw_event_bytes": 764588,
+    "dispatch_reserve_bytes": 4434604,
+    "initial_control_reserve_bytes": 1835008,
+    "guards": "prepare policy/startup capture/initial ledger/new item/dispatch/footer use the updated derived bounds; Journal.emit chooses independent raw/control encoded caps",
+    "source_trace": "finishKind retains at most one accepted error in item_end.error; sixfold UTF-8 byte allowance covers JSON escaping plus structural reserve. Prior ASCII/NUL schema/bound mismatch is corrected without truncation.",
+    "stdlib_byte_examples": [
+      {
+        "kind": "ASCII",
+        "decoded_utf8_bytes": 65536,
+        "minimum_error_member_with_newline_bytes": 65549,
+        "fits_control_with_structural_reserve": true
+      },
+      {
+        "kind": "escaped_control",
+        "decoded_utf8_bytes": 65536,
+        "minimum_error_member_with_newline_bytes": 393229,
+        "fits_control_with_structural_reserve": true
+      }
+    ]
+  },
+  "regression_static_review": {
+    "cases_written": 45,
+    "new_name": "accepted64KiB ASCII and escaped-control errors finalize and recover without truncation",
+    "checks": [
+      "both accepted64KiB ASCII and NUL errors",
+      "one synthetic callback per fixture",
+      "raw byte equality",
+      "item and attempt errors unchanged",
+      "bounded encoded item-end frame",
+      "known usage2 and billed totalnull",
+      "finalized and byte-equal read-only ledger/report replay"
+    ],
+    "reviewer_execution": false
+  },
+  "status": "PASS_WITH_STATIC_SCOPE_LIMITS_NO_REMAINING_OWN_BLOCKER",
+  "scope_limits": [
+    "Frozen Git source and stdlib byte arithmetic only; no Node/import/tests/transport/project CLI/local job/grant.",
+    "Author-reported current45-case remoteCI is separate evidence; this receipt does not independently execute it.",
+    "Final archive/main integration/exact final currentCI/source extension and sole primary ordinary merge remain required.",
+    "Trusted synchronous callbacks/between-check identity races/complete latency/actual cost/source rights/provider arms/expert/indexing/strategy outcomes remain unverified."
+  ],
+  "original_findings_and_37_38_40_44_retained": true,
+  "full_owner_goal_active": true
+}

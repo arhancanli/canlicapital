@@ -5273,3 +5273,146 @@ its previous37/38/40 proof and corrected44 written cases are preserved. Fresh
 Google/Bing indexed countsnull; Sovereign/10M useful actualcanonicals/SEO/keywords/
 analyzers/design/adoption/rights-cleared expertrefinery/research/novelty/governed
 ALPHAC forwardtargets/paperthenlawfulcapital remain open.
+
+
+## Finite offline attempt collector phase, 2026-10-01T21:07:19.092455+00:00
+
+Verified actual PR353 delivery32785aa9/tree74a equal signed reviewed e3; PR352 deliveredc4c4.
+New isolated assist/filingfacts-attempt-capture-20261001 starts from actual main32785.
+Primary assignment e4588902 scopes new collector/test/COLLECTOR.md, focused root test
+registration and append-only STATUS/LOG. No source, test, network or model run yet.
+Required injected synthetic transport, exact-byte-bound finite runner policy and
+immutable pending/raw/terminal captures close interruption/retry evidence gaps.
+Recovery is read-only and never resubmits unknown work;353 accounting and351/343/V0
+remain unchanged. RemoteCI after signed source freeze is the authorized verification
+route; no local Node/import/test/CLI/browser/job/CPU grant, provider resources/holds/
+spend/expert labels/broker orders/outreach/site/npm/version change. Primary retains
+journal/MCP workflow and sole merger; third owns STATIC indexing evidence readiness.
+All four Sovereign pillars,10M actually indexed useful canonicals, quality/SEO/relevant
+intents/analyzers/design/research, legitimate API/MCP/repository adoption, rights-cleared
+real expert refinery, governed ALPHAC netforwardSharpe>2/14qualified distinct sleeves/
+realizedmaxDD<=10% and paper then lawful capital remain ACTIVE and unproved by fixtures.
+
+
+## Finite fixture collector draft complete; remote verification pending, 2026-10-01T21:35:10.644672+00:00
+
+New collector/test/COLLECTOR.md and focused/full test registration are implemented
+within the six assigned paths. Static-preservation ab2c9804 verifies all5,712
+protected tracked files/377,535,699 bytes against actual main32785;353/351/343/V0,
+journal/MCP/website/ALPHAC and every existing archive remain unchanged. There are
+37 named new adversarial cases, currently UNEXECUTED. No local Node/import/test/
+CLI/build/browser/job or CPU grant exists. Signed draft/source-bound remoteCI and
+independent static review precede delivery. Pending/raw/terminal capture, explicit
+finite retries/backoff/deadlines, Unicode/byte limits, no-resubmit read-only recovery
+and write/read/fsync/close/substitution failures are covered by planned fixtures.
+Persisted item duration remains null/reasoned because its own marker acknowledgment
+is outside its stored timestamp; observed elapsed lower bounds and deadline breaches
+are retained separately. Complete closure clock follows final checks and descriptor
+closure. No universal wall-time/latency/durability/authenticity claim. All real
+model/source-assisted execution, provider billing, resources/holds/spend, human expert
+labels, broker orders, outreach/site/npm/version changes remain unperformed. Every
+owner objective remains ACTIVE under the full Requirements/MASTER_PLAN hierarchy.
+
+
+## Collector actual37 passes; directory-descriptor correction, 2026-10-01T21:42:49.257237+00:00
+
+Original signed f78ea9c4 remoteNode22.23.3 passed all37named new cases and
+917main+6prechecks+9notification, zero failures/skips/cancellations. Raw log
+9e4aeafa/actual receipt6561fe92 are preserved. Actual CodeQLalert90
+js/file-system-race flags directory opening after a path stat at line211;
+original raw alerts8f118067 and findingcd645516 remain unchanged. Original
+software passes do not establish security acceptance; f78 delivery is held.
+Constructor now opens O_DIRECTORY/NOFOLLOW first, validates ownership/mode on
+fstat of the same descriptor, then binds the path/realpath and keeps subsequent
+identity guards. New38th test refuses public/symlink directories before capture.
+This correction is static and UNEXECUTED until its own signed-source remoteCI.
+No local project/runtime job, model/provider/resource/hold/spend/labels/order/
+outreach/site/npm/version change; all full owner goals remain ACTIVE.
+
+
+## Independent collector P2s and corrected queued admission/event cap, 2026-10-01T21:55:47.419329+00:00
+
+Signed244a actualremote38namedPASS/918+6pre+9notification/all7SUCCESS and
+zero current CodeQL objects are retained in fidelity51d585d8 (rawc2d07ecb/
+actualdc3a0f38). Independent third STATIC findingcd481661 confirms two
+P2s also present in f78: queued dispatch uses a stale remaining-time snapshot,
+and six packetless metadata files allow513events under the total-file guard.
+These are source counterexamples, not executed reproductions. Author11b8731e
+agrees independently. Original38/37passes do not establish these properties.
+Current correction passes the absolute deadline/observe function into queued
+admission and rechecks clock/abort immediately before a fixture/wait callback;
+recovery independently caps512event names before event reads. New39/40bounded
+controls use one deterministic microtask and a finite inventory facade; no
+busy loop/large-data experiment/provider/runtime job. New40 cases are UNEXECUTED
+until their signed-source remoteCI. Keep originalCodeQL90/directory fix and
+both independent finding records, source/guide/data histories untouched.
+Primary accepted the final evidence archive within existing scope, but source
+review/current CI/archive/integration/delivery remain gates. All full owner
+goals remain ACTIVE with no local job/grant/model/resource/hold/spend/labels/
+orders/outreach/site/npm/version publication or outcome claims.
+
+
+## Collector capacity and synchronous abort corrections, 2026-10-01T22:15:19.698623+00:00
+
+4fb actualremote40namedPASS/full920+6pre+9notification/all7SUCCESS/zero
+CodeQL objects and equal testedmerge11cd/tree37572690 remain preserved
+(rawd135f3dc/receiptb6a002b7). IndependentPRIMARY0a97ed68/deltad2bb9702
+finds an admitted15x8/seven-backoff plan needing601events under512cap,
+so pending512 could dispatch without space for raw513. IndependentTHIRD
+c02e5b85 finds native abort requested inside observe() can settle cancellation
+yet stillinvoke task unless settled/abort are checked after the clock returns.
+These are STATIC counterexamples, not executed exploit reproductions.
+Corrections reject conservative worst-case event plans before effects (616
+with one possible-overrun/item), recheck post-clock settlement/abort, reserve
+raw/control/footer bytes before dispatch and startup metadata capacity, and
+reserve bounded353 ledger expansion/report bytes. Known capture limits stop
+explicitly before callbacks; filesystem failure remains separately uncertain.
+New41abort/42maximum-plan/43bounded-input-footer/44bounded-ledger controls
+are UNEXECUTED until their own signed-source remoteCI. Existing37/38/40
+passes and all originalCodeQL/P2 records are retained; no old run is rewritten.
+Only assignedcollector/test/guide/append-onlySTATUS+LOG changed; package,
+353/351/343/V0/journal/MCP/site/ALPHAC and previousarchives remain unchanged.
+No localNode/import/test/CLI/browser/job/grant/model/provider/resources/holds/
+spend/experts/orders/outreach/site/npm/version change. All full owner goalsACTIVE.
+
+
+## Encoded error-frame correction, 2026-10-01T22:30:00.766247+00:00
+
+Signed946 actual existing remoteCI verifies44 namedPASS/924main+6pre+9
+notification/Node22.23.3/all7SUCCESS/zero current CodeQL objects; tested
+mergee3f77603/tree077 equals946. Raw e81a73b4/receiptfd3771fe/fidelity
+5595824a are retained. Primary5e8228a2 closes prior event admission0a97
+and raises CC-356-CONTROL-FRAME-ENCODED-BOUND: accepted64KiB error plus
+JSON overhead/escaping can exceed64KiB control-frame cap. Static examples
+are not executed collector reproductions and44 does not cover this edge.
+Control reserve/cap now includes6x64KiB accepted-error escaping plus64KiB
+of frame fields; raw-event base64 reserve independently retains64KiB of
+fields. Startup/dispatch/footer guards derive from those exact limits.
+New45 checks both64KiB ASCII and NUL-error captures, exact retained raw/
+item+attempt errors, finalized full-N/known usage and byte-equal read-only
+replay. This new case is WRITTEN/UNEXECUTED until its own signed-sourceCI.
+Original37/38/40/44, CodeQL90 and every independent P2 remain unchanged.
+No local Node/import/project/test/job/grant/CPUclaim/provider/model/resource/
+hold/spend/experts/orders/outreach/site/npm/version publication. Only three
+assigned collector sources and append-onlySTATUS/LOG change; package and
+353/351/343/V0/MCP/journal/site/ALPHAC/oldarchive bytes remain unchanged.
+Final independent review/archive/CI/primary ordinary merge stay open; all
+full Sovereign/10M actual indexing/SEO/intents/MCP/adoption/refinery/expert/
+research/ALPHAC/paper then legally governed capital goals remain ACTIVE.
+
+
+## Collector reviewed45 source and final evidence freeze, 2026-10-01T22:58:35.991164+00:00
+
+Actual journal355 is MERGED as 6fcce8413514ca7a4ee94cc8b5979dbf2f141b38 at 2026-10-01T22:57:43Z; tree equals reviewed final head.
+Integrated that actual main; all four collector product files remain exact signed7a405186 bytes.
+Both original goal suffixes/main prefix and actual protected main working bytes/modes are retained.
+Source45 remote925+6pre+9notification/Node22.23.3/all7SUCCESS/currentCodeQL0/bothlanguages
+match tested17cb/tree7bc2; primary0e42a245 and thirdb381e941/26ca18f7 accept source/evidence.
+Archive docs/goal/evidence/filingfacts-attempt-capture-20261001 has79 exact original assets plus manifest (80 files),
+7908903 original bytes before manifest; deterministic gzip preserves raw log bytes.
+Manifest SHA256 9b75df259fde60ac4ea7a65f9f0e324ece7ac6fe28102618a8185e61613760b0. All37/38/40/44/45, CodeQL90, originalP2s
+and metadata-only extraction failures remain; no older pass is relabeled as a later run.
+Exact final frozen-headCI/source/archive extensions and primary ordinary merge remain pending.
+No local project/import/test/CLI/browser/CPUgrant/job/provider/model/resources/holds/spend/
+labels/orders/outreach/site/npm/version publication. Full Sovereign/10M actual indexing/qualitySEO/
+intents/MCP/adoption/real-expert refinery/research/ALPHAC/paper then lawful capital goals ACTIVE.
