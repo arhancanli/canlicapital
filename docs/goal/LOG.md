@@ -4234,3 +4234,8 @@ head CI/recheck follows. Primary assigned independent journal review of frozen #
 ae33cebab132a02f8af6316ad28dceeaaf9aa475; isolated detached journal-peer checkout added,
 no primary edits or external requests. Tamper, selection, missing evidence, private access
 and self-attestation limits are review scope. All platform objectives stay active.
+
+
+Secondary denominator wording correction: numbers_given is a count of finite numeric
+answers on answerable items, not a rate. Clarified that count and the numbers_wrong
+denominator together. Implementation and evidence remain unchanged.
