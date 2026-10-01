@@ -1,0 +1,69 @@
+{
+  "schema": "canli.historical-probe-observer-correction.v1",
+  "initial_checkpoint": "173e7f77eece35168607d55ac259ebc248a4e94f",
+  "codeql_alerts": [
+    {
+      "number": 84,
+      "rule": "js/file-system-race",
+      "location": {
+        "path": "artifacts/mcp/journal-peer-probes-before-20261001.mjs",
+        "start_line": 117,
+        "end_line": 117,
+        "start_column": 279,
+        "end_column": 302
+      },
+      "message": {
+        "text": "The file may have changed since it was checked."
+      }
+    },
+    {
+      "number": 83,
+      "rule": "js/file-system-race",
+      "location": {
+        "path": "artifacts/mcp/journal-peer-probes.mjs",
+        "start_line": 117,
+        "end_line": 117,
+        "start_column": 279,
+        "end_column": 302
+      },
+      "message": {
+        "text": "The file may have changed since it was checked."
+      }
+    }
+  ],
+  "cause": "Original observer inspected a returned pathname with stat then read; raw historical evidence is immutable.",
+  "archives": {
+    "artifacts/mcp/journal-peer-probes-before-20261001.mjs.gz": {
+      "sha256": "9246e979dedca1d45c6fb7f6b1f0ba0d04bbe4ff675e31b46b4f6ed440cfacc1",
+      "source": "Exact immutable original internal probe, archived without alteration.",
+      "original_filename": "artifacts/mcp/journal-peer-probes-before-20261001.mjs",
+      "uncompressed_sha256": "a537c8fc80f5e854a05ed6f7424e4f0baf421756d0b0b1735b5a5a1956e5737a",
+      "encoding": "gzip"
+    },
+    "artifacts/mcp/journal-peer-probes.mjs.gz": {
+      "sha256": "06a6e1e0b5db97794144a6ac3a7f09901162ce404a71cf008c269aac93afe812",
+      "source": "Exact immutable original internal probe, archived without alteration.",
+      "original_filename": "artifacts/mcp/journal-peer-probes.mjs",
+      "uncompressed_sha256": "6f23ad36bdfd55bb763c1b4ba71f064c9c517cf71b44b4eaff7e8c81fd81d1e7",
+      "encoding": "gzip"
+    }
+  },
+  "active_runner": "artifacts/mcp/journal-peer-probes-fd-observer-20261001.mjs",
+  "active_runner_sha256": "3bfe5b6c3cc6f65d4c1be0b7a49a4aff14da67995f220aa6f2f0f968fbb29deb",
+  "correction": "Portable runner imports current repository code and uses bounded nofollow descriptor observations; original evidence hashes preserved.",
+  "product_source_changed": false,
+  "query_dismissed_or_disabled": false,
+  "rerun": {
+    "result": "pass",
+    "receipt": "artifacts/mcp/journal-peer-fd-observer-check-20261001.json",
+    "record_mutations_refused": 53,
+    "companion_mutations_refused": 6,
+    "observer_contracts": {
+      "pathname_replacement_reads_original_descriptor": true,
+      "final_symlink_refused": true,
+      "oversized_observation_refused": true
+    },
+    "nonfinite_directory_and_failed_write_probes": "pass",
+    "no_product_change": true
+  }
+}

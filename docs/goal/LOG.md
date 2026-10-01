@@ -4467,6 +4467,110 @@ Journal344 remains primary-owned and pending its independent correction recheck;
 secondary owns the later analyzer phase. All master objectives remain active.
 
 
+## 2026-10-01 11:24Z — final integrated journal repository delivery
+
+Guarded #344 squash merged74d704d4 from signed96dd15a3; exact tree488ca525 and all seven
+PR checks verified. Merged-main checks and GitHub signature verification pass. Final combined
+821+6,699 audits0/0,clean and actual engine-overlay Git-free683/416 checks pass. Independent
+peer23 focused+53 record/6 companion mutations and nonfinite/directory/failed-write probes
+pass;13 reviewed source scopes are unchanged7515..74d. Retained BEFORE probe SHA a537c8fc
+and AFTER6f23ad36 both match original receipts. Reviewer reconstruction newline failure,
+primary TAP/standard-reporter receipt mismatch and initial overlay missing dependencies are
+recorded without source/hash rewrites. Final immutable checkpoint and compressed logs are in
+artifacts/mcp/journal-final-integrated-checkpoint-20261001.json; peer sources retain internal
+checkout paths/limits. V0/legacy numbers, old financial source bindings and benchmark runs stay.
+
+#343/#345 are delivered; shared production65dad63f awaits the current publisher lock. Primary
+owns one joint publication, secondary next owns analyzers and third has a source-audited v1
+phase. Execution remains private/Unreleased. No new labels, models, indexing, adoption,
+broker or forward-strategy outcomes. All original owner objectives remain active.
+
+
+## 2026-10-01 11:41Z — shared website publication and live evidence
+
+After the scheduled publisher completed11:33:37Z, acquired the shared lock and activated
+clean production74d704d4. Established publisher11:38:22–11:41:07Z captured e369a5e0;
+landing dpl_2vT6DevMd5MooA9E2Aunn8nDragK Ready/canlicapital.com/www verified. Eight HTML,
+legacy disclosure/guide, four company admission/404, five byte-identical v0 files, exact
+source/font/sitemap22/llms and pinned15/7/6 contracts pass. Fifteen LIVE annotation cases on
+Chromium148/Python3.9 pass; earlier BUILT/DEV evidence remains separate. Synthetic draft/
+copy/download outputs only, no actual human labels or outgoing submissions.
+
+Actual HTTP audit records two raw-download header failures: JSONL and SHA256SUMS return200/
+correct bytes but lack noindex. Assigned narrow config/regressions/live fix to secondary;
+its analyzer baseline is now authorized against actual74d. Third continues strict v1 source
+work. Publisher reports916,480 sitemap URLs, IndexNow3 updated/HTTP200; no fresh actual
+indexing claim. Retained full HTTP failures and browser outputs/source hashes in publication
+receipt. Updated Linux contract74d source pin sent to lead; an initially guessed extra test
+filename was corrected to actual journal-export.test.mjs, failure recorded. Lead reports
+queued/unallocated; primary activated no resource. All original goals remain active.
+
+
+## 2026-10-01 — checkpoint probe observer corrected without evidence changes
+
+PR346 first signed173e7f77 passed six functional/scanning jobs, but aggregate CodeQL
+reported83/84 at both retained historical probe line117: stat(path) thenread(path) during
+synthetic wrong-directory observation. This was a probe readback issue, not new product code.
+Archived exact original BEFORE/AFTER sources as gzip; rawSHAa537c8fc/6f23ad36 still match
+immutable peer receipts. Kept warnings and originals in history; no query disable/dismissal.
+A separate portable current-repository runner uses bounded nofollow descriptors for readback,
+including failed-write sentinel checks. Three observer contracts pass (pathname replacement
+reads original FD, final symlink and oversized files refuse);53 record/6 companion mutations
+and actual nonfinite/directory/failed-write probes pass. This is primary observer evidence,
+separate from original secondary review. New exact-head CI is required before ordinarymerge.
+Product source remains identical to deployed74d. Header348 frozen416f6a6d is independently
+reviewed next; v1worker holds347 while correcting its own output-write diagnostic. All goals active.
+
+
+## 2026-10-01 — secondary analyzer phase opens after reviewed batch delivery
+
+Verified #344 merged11:24:29Z as74d704d4 from96dd; tree488ca525 matches reviewed
+candidate. All three code deliveries (#343/#345/#344) are closed; independent peer
+receipts and failure limits remain. Primary preserves all owner objectives and owns
+one joint batch deployment; its fresh live receipt remains pending. New isolated
+secondary checkout canlicapital-mcp-analyzers-secondary-20261001, branch
+assist/mcp-analyzers-secondary-20261001 starts from74d704d4. Assigned scope:
+/developers, /mcp-servers, /mcp-servers/validation, /mcp-servers/fundamentals,
+/mcp-servers/research. Local measurement tooling first; live baseline waits for
+primary's verified batch receipt. Use current pinned Lighthouse/axe, WCAG22 and
+Vercel interface guidelines, capture profiles/raw results/provenance, and fix only
+reproduced generator/CSS defects. No paid services/outreach/model/cloud calls,
+new indexability claims or duplicate publisher. Third owns snapshot-relative v1
+source tasks; preserve evaluation/annotation/journal/v0 bytes. Every goal active.
+
+
+## 2026-10-01 — secondary raw dataset header correction verified
+
+Primary joint batch is live from74d704d4; its retained receipt found two raw
+downloads without noindex. Independent12 fresh GETs match all deployed HTML/raw
+receipt hashes, reproduce both missing headers and preserve all five v0 files.
+Signede513e79e adds JSONL raw headers and a scoped complete dataset SHA256SUMS
+rule, with regenerated company-preview parity. Split baseline regressions7/10
+include both actual raw paths; fixed focused14 pass. First full run828/829 failed
+stale preview parity; corrected that config and retained the failure. Final
+Node22.23.2 full829+6,699 page audits0/0,indexability0conflicts and actual clean
+Git-free build pass;683 stamped pages,416 checksummed files untouched. Restored
+129 unrelated generated files only in this isolated checkout. Evidence:
+artifacts/goal/raw-dataset-noindex-quality-20261001.json. Signed PR/exact CI and
+primary independent review/deployed-header verification follow; no live fix yet.
+Five-page live Lighthouse/axe baseline is captured separately; demonstrated MCP
+font shifts, mobile targets/table and skip-focus issues are a later generator/CSS
+follow-up. All earlier owner objectives remain active; primary is sole publisher.
+
+
+## 2026-10-01 — secondary header integration after independent review
+
+Primary independently PASSES frozen #348416f6a6d:13 actual API/preview tests,
+exact two raw header changes, all other config unchanged,5v0 and6 gzip logs
+verified. Its test total is separate from secondary14 focused/829+6/full/build.
+Original frozen head has seven CI successes and0 open CodeQL alerts. Integrated
+actual main e45fe44d (#346 retained batch checkpoint) in this isolated branch,
+preserving both continuity histories and the exact three reviewed header/test
+files. All product source outside docs/artifacts remains byte-identical to416f.
+No heavy local tests repeated under the shared CPU lock; remote exact-head CI
+and primary equivalence review/ordinary merge/sole deployment follow. Dataset
+bytes and every owner goal remain intact; CSS follow-up stays separate.
+
 ## FilingFacts v1 source-audit phase started, 2026-10-01
 
 Third worker's annotation #345 is merged as45b30555; its exact candidate/main

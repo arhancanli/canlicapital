@@ -1,5 +1,55 @@
 # Current state
 
+## Live batch verified, 2026-10-01 11:41Z
+
+Goal ACTIVE, NOT ACHIEVED. Production checkout is clean at74d704d4. The established
+publisher completed11:41:07Z; dpl_2vT6DevMd5MooA9E2Aunn8nDragK is Ready and aliased
+to canlicapital.com/www. Evaluation #343 disclosure and annotation #345 browser fixes are
+live; local journal #344 is delivered in source while hosted MCP releases remain pinned.
+Eight HTML/metadata/disclosure cases, four company admission/404 cases, five exact v0 files,
+discovery/font/sitemap/llms and unchanged hosted15/7/6 tool contracts pass. Fifteen LIVE
+annotation browser cases pass on Chromium148/Python3.9 with synthetic drafts only.
+
+The live audit retains two concrete SEO findings: raw filing-facts-v0.jsonl and SHA256SUMS
+lack noindex headers. Secondary owns a narrow header fix, regressions and live recheck;
+canonical dataset/annotation/MCP pages are indexable. This is not an all-clear SEO score.
+Publisher reports916,480 sitemap URLs and IndexNow accepted3 updated URLs, not proof of
+indexing. Fresh Search Console counts remain outstanding. Full827 local checks/699 audits,
+clean+engine-overlay validation and independent journal fixes/receipts are preserved below.
+
+Secondary now measures developer/MCP analyzers against the deployed source; third continues
+strict snapshot-relative v1 tasks. Azure lead received the corrected74d finite Linux oracle
+contract and reports queued/unallocated; primary activated nothing. Execution stays private/
+Unreleased. All Sovereign,10M actual indexing, SEO/quality/keyword/adoption/research and
+governed ALPHAC objectives remain active. Evidence: artifacts/goal/joint-batch-publication-20261001.json.
+
+
+## Verified repository batch, 2026-10-01 11:24Z
+
+Goal ACTIVE, NOT ACHIEVED. Evaluation #343 merged91d15052 from61caa533; annotation
+#345 merged45b30555 from034ac4e6; journal #344 merged74d704d4 from96dd15a3 at11:24:29Z.
+Each exact candidate passed seven CI checks and its merged tree matches. Merged-main checks
+also pass. Final combined821 main+6 preverify,699 page audits0/0,execution51/51,
+validation141/141 and isolated tarball/stdio checks pass. Actual clean and current engine-overlay
+Git-free builds pass,683 stamped pages and416 checksummed files untouched in each.
+
+Both journal P2 findings are fixed and independently rechecked: nonfinite derived MinTRL
+refuses; observed private parent/file replacements refuse, including directory swaps and
+failed-write replacement preservation. Secondary23 focused+53 record/6 companion mutations
+and concrete edge probes pass. Review extends from7515 to96dd and merged74d through13
+unchanged source scopes. Same-user entirely-between-checks swaps and retained partial files
+remain explicit limits. Before/after probe sources and the caught assembly hash mismatch are
+retained without rewriting old hashes. See JOURNAL_BATCH_20261001.md and
+artifacts/mcp/journal-final-integrated-checkpoint-20261001.json.
+
+Production remains at65dad63f at this checkpoint; a scheduled hourly publisher holds the
+shared lock. Primary owns the next joint website publication and live checks. Secondary owns
+subsequent developer/MCP analyzer measurements; third owns isolated source-audited FilingFacts
+v1 work. Execution is private/Unreleased; existing hosted/npm pins stay. Human gold, fresh
+indexing, adoption, novel-method review and governed ALPHAC outcomes remain open. All four
+Sovereign pillars,10M actual indexing, SEO/quality/keywords and adoption goals remain active.
+
+
 ## Verified continuation, 2026-10-01
 
 Goal ACTIVE, NOT ACHIEVED. Recovered the owner's relevant Claude CanliCapital messages,
@@ -522,6 +572,28 @@ Signed exact-head PR update/CI/merge and live delivery are next; not yet claimed
 Journal344 remains primary-owned and pending its independent correction recheck;
 secondary owns the later analyzer phase. All master objectives remain active.
 
+
+Secondary analyzer phase (2026-10-01): reviewed code batch merged74d704d4;
+primary owns joint deployment/live verification. New assist/mcp-analyzers-secondary
+checkout owns actual developer+four MCP canonical-page measurements and demonstrated
+generator/CSS fixes. Preparing local tools; live baseline requires primary receipt.
+No measurement/new score yet. All original owner objectives and claim boundaries remain.
+
+
+Secondary raw-download correction (2026-10-01): deployed74d independently verified,
+both missing noindex headers reproduced. Signede513e79e correction preserves five
+v0 byte hashes; focused14/full829+6/6990errors0warnings/clean Git-free build pass.
+Initial preview-parity failure retained and corrected. Small PR/exact CI/primary
+review and live header verification next. Five developer/MCP pages have retained
+live Lighthouse/axe baseline; generator/CSS defects follow after this header freeze.
+All owner goals remain active; no indexing, human/model or field-performance claim.
+
+
+Secondary #348 independent review passes frozen416f; actual main e45fe44d
+now integrated with exact reviewed header/test files and both histories preserved.
+No new local heavy run; earlier full829+6/Git-free receipts stay attributed to
+the original implementation. Exact-head remote CI/primary equivalence, merge and
+sole deployment verification follow. CSS prototype separate; all goals active.
 
 ## FilingFacts v1 source-audit phase started, 2026-10-01
 

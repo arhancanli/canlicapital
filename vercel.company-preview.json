@@ -151,7 +151,16 @@
       ]
     },
     {
-      "source": "/(.*)\\.(json|md|bib|csv|tsv|parquet|txt|ots|gz|cff)",
+      "source": "/(.*)\\.(json|jsonl|md|bib|csv|tsv|parquet|txt|ots|gz|cff)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/datasets/(.*)/SHA256SUMS",
       "headers": [
         {
           "key": "X-Robots-Tag",
