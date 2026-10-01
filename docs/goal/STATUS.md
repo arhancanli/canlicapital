@@ -1138,3 +1138,42 @@ ACTIVE: fourSovereignpillars, efficient distinct MCP/API/legitimateadoption,
 rights-cleared expertrefinery, governedALPHACforwardtargets/paperthenlawfulcapital,
 10Mactuallyindexed qualitycanonicals/relevantkeywords/SEO/analyzers/design/research.
 Software checks do not establish those outcomes. Observed 2026-10-01T20:12:50.540054+00:00.
+
+
+## Finite offline attempt collector phase, 2026-10-01T21:07:19.092455+00:00
+
+Verified actual PR353 delivery32785aa9/tree74a equal signed reviewed e3; PR352 deliveredc4c4.
+New isolated assist/filingfacts-attempt-capture-20261001 starts from actual main32785.
+Primary assignment e4588902 scopes new collector/test/COLLECTOR.md, focused root test
+registration and append-only STATUS/LOG. No source, test, network or model run yet.
+Required injected synthetic transport, exact-byte-bound finite runner policy and
+immutable pending/raw/terminal captures close interruption/retry evidence gaps.
+Recovery is read-only and never resubmits unknown work;353 accounting and351/343/V0
+remain unchanged. RemoteCI after signed source freeze is the authorized verification
+route; no local Node/import/test/CLI/browser/job/CPU grant, provider resources/holds/
+spend/expert labels/broker orders/outreach/site/npm/version change. Primary retains
+journal/MCP workflow and sole merger; third owns STATIC indexing evidence readiness.
+All four Sovereign pillars,10M actually indexed useful canonicals, quality/SEO/relevant
+intents/analyzers/design/research, legitimate API/MCP/repository adoption, rights-cleared
+real expert refinery, governed ALPHAC netforwardSharpe>2/14qualified distinct sleeves/
+realizedmaxDD<=10% and paper then lawful capital remain ACTIVE and unproved by fixtures.
+
+
+## Finite fixture collector draft complete; remote verification pending, 2026-10-01T21:35:10.644672+00:00
+
+New collector/test/COLLECTOR.md and focused/full test registration are implemented
+within the six assigned paths. Static-preservation ab2c9804 verifies all5,712
+protected tracked files/377,535,699 bytes against actual main32785;353/351/343/V0,
+journal/MCP/website/ALPHAC and every existing archive remain unchanged. There are
+37 named new adversarial cases, currently UNEXECUTED. No local Node/import/test/
+CLI/build/browser/job or CPU grant exists. Signed draft/source-bound remoteCI and
+independent static review precede delivery. Pending/raw/terminal capture, explicit
+finite retries/backoff/deadlines, Unicode/byte limits, no-resubmit read-only recovery
+and write/read/fsync/close/substitution failures are covered by planned fixtures.
+Persisted item duration remains null/reasoned because its own marker acknowledgment
+is outside its stored timestamp; observed elapsed lower bounds and deadline breaches
+are retained separately. Complete closure clock follows final checks and descriptor
+closure. No universal wall-time/latency/durability/authenticity claim. All real
+model/source-assisted execution, provider billing, resources/holds/spend, human expert
+labels, broker orders, outreach/site/npm/version changes remain unperformed. Every
+owner objective remains ACTIVE under the full Requirements/MASTER_PLAN hierarchy.
