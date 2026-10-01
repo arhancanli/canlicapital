@@ -4152,3 +4152,35 @@ Evidence: artifacts/seo/mcp-findability-deployment-20261001.json (2026-10-01T08:
 No package version, human gold label, broker order, novel-method or strategy outcome claimed.
 Goal stays active. Next: independent journal accounting oracle, local file/MCP integration,
 paper reconciliation, real expert annotation and substantial MCP releases; every pillar stays.
+
+
+## 2026-10-01 — secondary Codex evaluation reliability phase
+
+Owner requested a second cooperating Codex role and goal. Primary thread 01a0f5c2 assigned
+secondary 01a0f6ba Pillar 3 evaluation reliability; journal/export/MCP integration stays with
+primary. Isolated checkout canlicapital-secondary-20261001, assist/quality-20261001, from
+18f693fa. Reproduced blank ANSWER coercing to zero, malformed numeric concatenation and
+contradictory numeric/absence acceptance. Added a failing regression first; evidence is in
+canlicapital-coordination-20261001/eval-regressions-before.txt. Plan: strict scorer and
+versioned offline raw-answer/provenance evidence with explicit missing-history limitations.
+Historical dataset/evaluation bytes stay immutable. No paid calls, human labels or Azure
+activation. Full original goal stays active; assignment receipt is primary-assignment.md.
+
+
+## 2026-10-01 — secondary evaluation reliability verified
+
+Strict FilingFacts scoring and v1 raw-answer capture/offline replay are implemented in
+assist/quality-20261001 (signed implementation 472291d3). Blank/concatenated/nonfinite or
+contradictory numeric/absence answers cannot pass. Exact dataset bytes, seeded sample,
+scorer/source hashes, observed provider/tool metadata and full coverage are retained;
+missing captures/errors remain in the selected denominator. Historical v0 bytes/stats are
+preserved and explicitly unrescorable (150 records per arm, zero raw answers). Existing
+dataset canonical discloses the limitation and links the offline guide. No model API call,
+new expert review, journal/MCP edit, package bump or deployment by this role.
+
+FilingFacts 32/32; full build passes; full verify 798 main + 6 preverify; 699 page audits,
+0 errors/warnings; actual clean Git-free production snapshot validator passes, with 416
+checksummed files untouched. Restored 645 unrelated generated files in this isolated tree.
+Two content-date bindings renewed from the signed implementation. Initial failing regression
+and verification limits retained in artifacts/goal/filingfacts-evaluation-quality-20261001.json.
+Signed PR/primary independent review next. Both session goals and every original pillar stay active.

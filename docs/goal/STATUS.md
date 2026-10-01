@@ -391,3 +391,19 @@ merging it activates v27.
 4. Engine: merge PR73; the nightly publish regenerates the audits and the health
    check should turn green on the next run. Sharpe, sleeve and drawdown goals
    remain immature (six current-epoch returns, four sleeves).
+
+
+## Secondary evaluation reliability work, 2026-10-01
+
+Owner-requested cooperating goal active in thread 01a0f6ba. Primary assigned strict
+FilingFacts scoring and offline source-bound raw-answer evidence in isolated checkout
+canlicapital-secondary-20261001, assist/quality-20261001. Failing regression captured;
+implementation/repository review pending. Primary continues journal/export/MCP work.
+Every original owner objective remains active; no model run, human review or release claim.
+
+
+Secondary verified checkpoint: FilingFacts evaluation reliability implemented at signed
+472291d3, 32/32 focused, 798 + 6 full tests, 699 audited pages without errors/warnings
+and actual clean Git-free production snapshot build pass. Historical evaluations stay
+unrescorable with unchanged raw bundle bytes. PR and independent primary review pending.
+Primary journal/MCP work, all expert annotation and longer-term owner goals remain active.
