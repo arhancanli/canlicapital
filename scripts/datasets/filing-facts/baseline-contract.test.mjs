@@ -111,6 +111,47 @@ test("existing replay retains errors, nulls, absent records and blank answers in
   assert.equal(auditBaselineFixture(ROOT, contract, capture).coverage.missing_captures, 15);
 });
 
+test("a transient dataset read cannot score a different oracle under the original contract", () => {
+  const directory = mkdtempSync(join(tmpdir(), "canli-baseline-transient-"));
+  try {
+    const script = `
+      import assert from 'node:assert/strict';
+      import fs from 'node:fs';
+      import { syncBuiltinESMExports } from 'node:module';
+      import { createHash } from 'node:crypto';
+      const api = await import(${JSON.stringify(pathToFileURL(join(ROOT, 'scripts/datasets/filing-facts/baseline-contract.mjs')).href)});
+      const root = ${JSON.stringify(ROOT)};
+      const path = ${JSON.stringify(join(ROOT, V0_DIRECTORY, 'filing-facts-v0.jsonl'))};
+      const contract = api.createBaselineContract(root);
+      const changed = fs.readFileSync(path, 'utf8').trim().split('\\n').map(JSON.parse);
+      for (const item of changed) if (item.answer.value !== null) item.answer.value += 12345;
+      const bytes = Buffer.from(changed.map((item) => JSON.stringify(item)).join('\\n') + '\\n');
+      const items = new Map(changed.map((item) => [item.id, item]));
+      const capture = { schema: 'canli.filing-facts-answer-capture.v1', purpose: api.FIXTURE_PURPOSE,
+        baseline_contract_sha256: contract.contract_sha256, provider: 'synthetic-test-fixture',
+        model: 'synthetic-test-model', arm: 'closed', recorded_at: '2026-10-01T00:00:00.000Z',
+        dataset_sha256: createHash('sha256').update(bytes).digest('hex'),
+        sampling: { method: 'stratified', seed: contract.sampling.seed,
+          per_template: 3, item_ids: contract.sampling.item_ids },
+        runs: contract.sampling.item_ids.map((id) => ({ id,
+          response_text: 'ANSWER: ' + (items.get(id).answer.value ?? 'not reported'),
+          error: null, tokens: 0, tool_calls: 0, tool_trace: [] })) };
+      const original = fs.readFileSync;
+      let datasetReads = 0;
+      fs.readFileSync = function (candidate, ...args) {
+        if (candidate === path && ++datasetReads === 2) return bytes;
+        return original.call(this, candidate, ...args);
+      };
+      syncBuiltinESMExports();
+      try { assert.throws(() => api.auditBaselineFixture(root, contract, capture), /dataset changed before fixture scoring/); }
+      finally { fs.readFileSync = original; syncBuiltinESMExports(); }
+      assert.equal(datasetReads, 2, 'second read is the scoring buffer after the original preflight');
+    `;
+    const result = spawnSync(process.execPath, ["--input-type=module", "--eval", script], { encoding: "utf8", timeout: 10000, cwd: directory });
+    assert.equal(result.status, 0, result.stderr);
+  } finally { rmSync(directory, { recursive: true, force: true }); }
+});
+
 test("closed fixtures refuse tools, assisted metadata, a changed cohort and real-run labels", () => {
   for (const mutate of [
     (capture) => { capture.tool_contract = { tools: [] }; },

@@ -837,3 +837,18 @@ Oldbaec conditional intent remains withdrawn; no localattempt/nonce or model/
 resource/hold/spend. Pipeline smoke is not ranking/expertgold, and all prior
 Sovereign/indexing/SEO/quality/keywords/analyzers/design/adoption/research/ALPHAC
 objectives remain active. Primary is sole publisher.
+
+
+## 2026-10-01 — independent fixture-buffer binding finding corrected
+
+Third static review of1bc finds P2 CC-351-FIXTURE-DATASET-PIN: fixture
+scoring accepted capture-bound bytes without comparing that exact buffer to
+the plan dataset digest. A transient swapped/restored read could otherwise
+use a different oracle under the original contract hash. Finding receipt is
+retained in coordination/filingfacts-baseline-peer/fixture-dataset-binding-finding.json.
+Add same-buffer digest guard before existing evaluateCapture and a private-process
+transient-read regression test. Ten new focused tests now; seven343 modules and
+fiveV0 files unchanged. Withdraw1bc30s grant before any localnonce/attempt; no
+result used the affected helper. Corrected frozen source/CI/peerACK/newgrant next.
+Source-assisted/measurement/model/resource/hold/spend remain unassigned/held;
+every owner objective and primary sole-publisher authority stay active.

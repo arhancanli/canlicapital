@@ -152,6 +152,7 @@ export function auditBaselineFixture(root, contract, capture) {
     throw new RangeError("fixture must retain the entire predeclared smoke cohort");
   }
   const bytes = read(root, `${V0_DIRECTORY}/filing-facts-v0.jsonl`);
+  if (sha256(bytes) !== contract.dataset.sha256) throw new RangeError("dataset changed before fixture scoring");
   const evidence = evaluateCapture(bytes, capture);
   const replay = auditEvidence(bytes, evidence);
   auditBaselineContract(root, contract);
