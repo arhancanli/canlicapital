@@ -30,7 +30,8 @@ count; corrected 332 to 336 and retained the failure in LOG. On-page and graph c
 699 pages, with zero errors/warnings and every indexable page within three static links of home.
 Eight local browser cases at 390/1440 passed HTTP, canonical, heading, font, overflow and
 JavaScript checks. Visual inspection found a footer heading clipped by a shared negative
-margin; a fix is scoped to these new pages. Final validation and publication are pending.
+margin; a fix is scoped to these new pages. Final full build/verify and the Git-free deployment validator pass. The eight browser cases
+pass again after the scoped footer fix. CI and production publication remain pending.
 
 Fresh observations: Firecrawl map sampled 120 URLs and extracted developer/annotation content.
 Direct HTTP separately confirmed those pages' metadata, 200 status and self-canonicals.

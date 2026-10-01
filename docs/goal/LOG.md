@@ -4109,3 +4109,13 @@ import name, corrected before the full run. Eight browser cases at 390/1440 pass
 font load, HTTP, overflow and JavaScript checks; visual inspection then found a clipped footer
 heading from a shared negative margin. Scoped the fix to the new pages; final checks pending.
 Actual indexing, rankings, human labels, funded outcomes and deployment are not yet claimed.
+
+
+## 2026-10-01 — findability candidate passes final local gates
+
+Full build/verify: 788 main + 6 preverify, 699 pages, zero on-page errors/warnings; 336 indexable,
+363 deliberately noindex, all indexable pages within three static links of home. The 4 new pages
+are scoped to the published discovery record for numerical claims. Intent map: 110 owners/163
+query hypotheses; 226 unassigned canonicals remain a review queue, not measured missing demand.
+Eight browser cases pass after the scoped footer fix. Actual Git-free deployment validator passes.
+CI and production remain pending. Details: FINDABILITY_20261001.md and the verification artifact.

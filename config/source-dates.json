@@ -1,13 +1,21 @@
 {
   "schema": "canli.source-dates.v1",
   "files": {
+    "config/mcp-discovery.json": {
+      "date": "2026-10-01",
+      "sha256": "c61bf69a26b4d56dd7a94ab286fd67f057c0f3fe3472e4570212cf7b977b420a"
+    },
+    "config/mcp-hosted-releases.json": {
+      "date": "2026-09-28",
+      "sha256": "0d299978c869b325b3fee569441a64995c8dc9d786b954d5acb3e9d8dc138c3c"
+    },
     "contracts/public-claims.registry.json": {
       "date": "2026-09-14",
       "sha256": "450be937d70f8f8e27890ded52e3b311ff8ddd737967c31b5f6cab8611795ff8"
     },
     "index.html": {
       "date": "2026-09-28",
-      "sha256": "ad806155780c8c533acaf4ce582e2cf335a5f12ca321da8c8ed31610518153fd"
+      "sha256": "a996d6145671cdd34b2a4d711e86c058c4a2ef28ee6dbea5241dc6e0b4bb60a3"
     },
     "js/annotate-core.js": {
       "date": "2026-09-26",
@@ -16,6 +24,14 @@
     "js/annotate.js": {
       "date": "2026-09-26",
       "sha256": "27d1642d0793ac1ca77f581c9831fa751dcec2ed4e57034e5886134d2491fb8e"
+    },
+    "mcp-released": {
+      "date": "2026-09-28",
+      "sha256": "00e1daa1e3ec58a873a8770f172975378ff78916ece93e048b0160f8310a2dc4"
+    },
+    "mcp-released/fundamentals": {
+      "date": "2026-09-28",
+      "sha256": "8251c02fcda687df8160473f677e972821ad655c79ca8d0054259745f511b2b0"
     },
     "mcp-released/fundamentals/package.json": {
       "date": "2026-09-28",
@@ -29,6 +45,10 @@
       "date": "2026-09-28",
       "sha256": "f4c195370dc26a094bea454cd190193c3613bdf267b5f49a981b740997926666"
     },
+    "mcp-released/research": {
+      "date": "2026-09-28",
+      "sha256": "86f78662115d8f9318de60e5d78795e2561b036cd3f533f26f879622add1c10e"
+    },
     "mcp-released/research/package.json": {
       "date": "2026-09-28",
       "sha256": "cce5cbbf55c530ed92bd6f1d05bbf72de6786a618cc4a5403218e40864926428"
@@ -41,9 +61,13 @@
       "date": "2026-09-28",
       "sha256": "26e1e3e0b9a56cc99c3af276e744d53168457c0d3010aa343706ce871c13b39d"
     },
+    "mcp-released/validation": {
+      "date": "2026-09-28",
+      "sha256": "52d8a92490bd1e858bbc767be164b5257c2772333b7c5878168a0b00b55ddce2"
+    },
     "measurements": {
       "date": "2026-09-26",
-      "sha256": "de369fabd43666941820f4b552d324d94b323f5601366ee6af24d03a8bfe4113"
+      "sha256": "ce4f975c894cdf37c26ac5eefe06cfe12016f533b1fc36e155866ecf7ef1190b"
     },
     "notes/deflating-a-sharpe-ratio.md": {
       "date": "2026-09-06",
@@ -71,19 +95,19 @@
     },
     "open.html": {
       "date": "2026-09-25",
-      "sha256": "0d05db4848097e7a307a614bdd52de1cd55afb6bc73c42cfccc31f1624efd79b"
+      "sha256": "af45d2ada9e581944d0aa40d7181cd09cc6feec15f3b5127cc446e6d41410955"
     },
     "performance.html": {
       "date": "2026-09-25",
-      "sha256": "e9d8c984bbba8ef5117cce627dc4713367f746c23465dd7089c069840e8aa3b4"
+      "sha256": "703ac302a6a0b5fc265db61f49017129ae20b554c5035da07c3b3e528e81c681"
     },
     "progress.html": {
-      "date": "2026-09-28",
-      "sha256": "218e603cffafbe4246c39b450e53c35d1c22ba30ce3970804ff521220ab9147d"
+      "date": "2026-10-01",
+      "sha256": "a4ca771abc61cbdbb7f46663e08641d65a134a3aa8c56fb91a209a8522500988"
     },
     "public/api/v1/index.json": {
       "date": "2026-09-20",
-      "sha256": "c64d6363123fa3d236357ad02e6fa0be076660558e8c525579af3ff895c502b8"
+      "sha256": "b1097d6ca08fe2c9a6bf8c42bfde2767943c517e2c3e6d98b825d82ef0c5c793"
     },
     "public/api/v1/openapi.json": {
       "date": "2026-09-28",
@@ -95,7 +119,7 @@
     },
     "public/glassbox": {
       "date": "2026-09-28",
-      "sha256": "1f14f20e3fd1a3382b508d9cb0b4ad7ab651ca351d5b4647039ecdb1e7880c5a"
+      "sha256": "e49fe6cd361540e6cc36d066fb8d295afb1f7529276ae46efc38d05bdea0a460"
     },
     "public/glassbox/active_ownership_13d_item4_v3_blind.json": {
       "date": "2026-09-06",
@@ -159,7 +183,7 @@
     },
     "public/glassbox/cost_coverage.json": {
       "date": "2026-09-20",
-      "sha256": "2affcc47600d41aadd14686de482f1c822ecfb826e800fa217044ca16f26c6d5"
+      "sha256": "bb3151530d485a1d3975da5b6952e87024415c3bd86a1c264a514389b8316019"
     },
     "public/glassbox/cost_model_realism.json": {
       "date": "2026-09-06",
@@ -323,7 +347,7 @@
     },
     "public/glassbox/paper_evidence_conformance.json": {
       "date": "2026-09-20",
-      "sha256": "46d107c667e96697c68e5b2b048cc0a88f24658e1fa1a5bd682ba66260a1324d"
+      "sha256": "b91166b6597f75758250e92d0e0fd8986fd57d17f8d741c34e2be76e7fd729b4"
     },
     "public/glassbox/polygon_split_crosscheck.json": {
       "date": "2026-09-06",
@@ -1067,82 +1091,82 @@
     },
     "publication/alphamax/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "961a89bb5531be855c82256547bbb98f2f667509fdae31d2e7879d8bf87fc297"
+      "sha256": "cc6a2188041b5caece3bdca2ca426861c619c8edc704657969d6f24bc725d3e3"
     },
     "publication/alphatrend/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "5c5a5dcc840c673536ef603dfd57049d3a19d6dce12b039df358855e68220f52"
+      "sha256": "1f0b88d24a686fc8dad89b60bc1128a56ba51f872f7427eab76e148131553c8d"
     },
     "publication/alphavintage/v1.0.0.html": {
       "date": "2026-09-20",
-      "sha256": "0807cf3b463a21a0307aaec86300823a772227c4a86d6df5e212985531b9e450"
+      "sha256": "9fa1836aad1ace2e3c178fae0ad812d16f75a50b051a2f61e20ea3b363d6ee81"
     },
     "publication/crypto-carry/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "1a75acf85ef2eb3d772287aec5089e2a58a269e47b94f761435bfe41be891bcb"
+      "sha256": "31f9eec3a83c98857875b2459dec29796e3663a48c4b24d00965847277be251d"
     },
     "publication/crypto-defensive/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "ba7e8d1dac2f68e94b66ac3875ef1f54fcdc2cfdd1c81667ef1a7c5f8b48f0b1"
+      "sha256": "20a2a5a7d2aab82702265a5d73a444f3aef2228cfd43175ca24b515e2615b485"
     },
     "publication/crypto-momentum/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "254f1baf9f9b85f0f35bf83bb341f212e5e7fbe2bdf72ecc39d422fa7758d6a4"
+      "sha256": "c801f2b8c9937167c3ff2b1cae07b6398ae4de390a94a79e53ec5735ad41fed4"
     },
     "publication/crypto-multifactor-engine/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "ebc87a4da1f8925b1899f692bb589b725fc955021e4904cbfbb44c4b383caa1b"
+      "sha256": "95d7f31b6c2349215c11953085a0210a54020cc5e9bfaeeeedcba328878cd03f"
     },
     "publication/crypto-reversal/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "dcc992c311dec289296432153e3b9fb2d44540d62afa0e5b3d1c32b973bb2b58"
+      "sha256": "f4ab9ee6b1ca25fde828136985b3e1dd59b8399e6d034ddb9af8aa07fd16affc"
     },
     "publication/crypto-vrp/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "b358882c1b889ee55ba3eab8a6be383a79af3cf7615fed61e7fe3807f6f434d2"
+      "sha256": "bbbe29a707bc388998802f20e5d1e321d0ca42fc0ce30d743af59773bc869020"
     },
     "publication/energy-inventory/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "feae7c354b858ed57dcdff7a5c9544aea73e85702a7530605a245a08fe3aabb1"
+      "sha256": "696c104d22534bc3fef16711e9093b66583c4e92570db8a6a5fef89391f74d3b"
     },
     "publication/equity-insider-activity/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "f85aa76ed54609db6b99f64136e1fcda06fe416be3ba773cbcd6df698d676789"
+      "sha256": "3470921d486c4acf64f2d151000de9cee902dabaa64e17063962479110787ecf"
     },
     "publication/equity-low-beta/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "dc442534151d91902d366ba3999946e6c0121f4addefabacdffb09806813927c"
+      "sha256": "53d5cdffe3d7b4989c7d73cdc0e904043586781ea8e1cbfb2b6b73b04ba62971"
     },
     "publication/equity-narrative-change/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "44648af9739b4970a7cf830fb39c67fb6cb0dff9ccb759794ce8826ec2dced4a"
+      "sha256": "bf4e0da69881998c80aca3b38aa7e881efcdc9392c9868329f40669e743aa8ee"
     },
     "publication/equity-quality/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "9d51739347a802651952c986c0843cfc235a388d813c417cf5b279e3fe78c3ec"
+      "sha256": "849b0b3923598240dfec19ea0a5f6fc3a26f6cdbaaadc73c9ef6f96c98b7bb7c"
     },
     "publication/equity-value-investment/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "b54446535df29dce67216aa185ef5562c7ae688ea143dd303cf625b4f345fff3"
+      "sha256": "274ab8bd5b3af81b81f69d7041f130de9f93c301c58ef6db4494384f24b44be8"
     },
     "publication/macro-economic-trend/v0.1.0.html": {
       "date": "2026-09-20",
-      "sha256": "391362d103250a6914da165b578f86942bf44181698be64d249d73dbf543f9a6"
+      "sha256": "666502be985cf92c28eb6fdfd32c15aaf91f16244b4634b3b2b794de12e81fcc"
     },
     "research": {
       "date": "2026-09-26",
-      "sha256": "43779f0d6b75e3f67ba518f1ded26206ebbdbaa9bdc52f0b1cf34c896f30d4f5"
+      "sha256": "c6df6a57a28c2c37289173777aa96425216e4cfa5fbe2bd67384eadd0208482b"
     },
     "research.html": {
       "date": "2026-09-27",
-      "sha256": "a02034e4248b6bfef6dbd0f3a9ae5af61cde83b7036efafc481ad0bbba97b937"
+      "sha256": "1aa57f82d659e283007b473fb99e7bcec4c5709b024f30155e93dad9cfbed9a6"
     },
     "scripts/build-annotate.mjs": {
       "date": "2026-09-26",
       "sha256": "21e1f890c8d241298df4a2ad0bba745d37a3645d289a6ff1e55dcd80483451eb"
     },
     "scripts/build-backtest-overfitting-tool.mjs": {
-      "date": "2026-09-28",
+      "date": "2026-10-01",
       "sha256": "d6c02fed3463aa3cd777002d0b618ac16156390ea9880ed9d70c297cb521e32f"
     },
     "scripts/build-breadth.mjs": {
@@ -1150,11 +1174,11 @@
       "sha256": "3fe86f3d661ffe17eea14e52632447054540061267321d600d42576207548e96"
     },
     "scripts/build-cost-coverage.mjs": {
-      "date": "2026-09-28",
+      "date": "2026-10-01",
       "sha256": "fea57165dad037b38256ce7331af3e8aa4aebdb91db9653d20de6f3de8d34ea6"
     },
     "scripts/build-dsr-tool.mjs": {
-      "date": "2026-09-28",
+      "date": "2026-10-01",
       "sha256": "3acc6d2f2cf23ec8adf50936b5c8f2397e15e1893d96f1cd5210640537d329ba"
     },
     "scripts/build-engineering.mjs": {
@@ -1162,7 +1186,7 @@
       "sha256": "aed22909b7ead2d71b65f46136e16df5b2434cc1b8d9af9bf6d34e19b91ae437"
     },
     "scripts/build-evidence-chain-tool.mjs": {
-      "date": "2026-09-28",
+      "date": "2026-10-01",
       "sha256": "494fcfc5ad83b12e80b1e3c85f3f0519547480a74b71c8761854b440d8870b4d"
     },
     "scripts/build-execution.mjs": {
@@ -1181,6 +1205,10 @@
       "date": "2026-09-26",
       "sha256": "417322ee7f74b88782994c263898c4421928c5bbfbcfc84b3f0b67032bb36699"
     },
+    "scripts/build-mcp-pages.mjs": {
+      "date": "2026-10-01",
+      "sha256": "901940eb28c3ad9dae6b3d99fa89189381560235edfe841d139c80f871f49d02"
+    },
     "scripts/build-measurements.mjs": {
       "date": "2026-09-26",
       "sha256": "85900d52f983004d09b25abe301f726a475ea741258dd6775119cba0e19a5896"
@@ -1190,7 +1218,7 @@
       "sha256": "f0f68b42601002ced1f2a813398256c8eb3ee0f839d084a7895c747f521aabb6"
     },
     "scripts/build-notes.mjs": {
-      "date": "2026-09-28",
+      "date": "2026-10-01",
       "sha256": "55f37428d831dd92b66dc8feec961f3f178b46f80d5ebc12618b3fab9ad950c5"
     },
     "scripts/build-paper-evidence.mjs": {
@@ -1198,8 +1226,8 @@
       "sha256": "055c5fe6a1bb7f00592f076b82598e2f1640e0a3f7eaeb388e786a37ae4af820"
     },
     "scripts/build-papers.mjs": {
-      "date": "2026-09-28",
-      "sha256": "cbb8c51723333fe6e98a9544b12321220e890961b2295ac306545afc4068c549"
+      "date": "2026-10-01",
+      "sha256": "f746e22644abc0413e427e2792685d0128637af25814292fcaeb72c00db0d168"
     },
     "scripts/build-review.mjs": {
       "date": "2026-09-26",
@@ -1210,15 +1238,15 @@
       "sha256": "1b903f0c1bf25ef1f171e47130a6383e43b34288dc32f45b9deac58f16e4cafd"
     },
     "scripts/build-standards-and-developers.mjs": {
-      "date": "2026-09-28",
-      "sha256": "6bc6cad8fb7b35f44929e56bdf703680af90419cdcea60d64fa1c536efc691f8"
+      "date": "2026-10-01",
+      "sha256": "e878d4b1d562be60208d8659d8925f96fabd6112a8cf4823e9bfcad472bf12da"
     },
     "scripts/build-tools-hub.mjs": {
       "date": "2026-09-16",
       "sha256": "e5da085d6ff606744025918be0f6961dca24bfb24d1c53d735d9493b1b83cc4a"
     },
     "scripts/build-trial-accounting-tool.mjs": {
-      "date": "2026-09-28",
+      "date": "2026-10-01",
       "sha256": "352cd16036d6da62274f89722aeaa438649fdf878b662a9fa14498f5c8b8b636"
     },
     "scripts/build-trials.mjs": {
@@ -1243,7 +1271,7 @@
     },
     "systems.html": {
       "date": "2026-09-25",
-      "sha256": "2f8d24776f53c4f99006c4aae752d61d37aeaa570f14df63498d74787614fbd0"
+      "sha256": "c24ddb22354c38dfdbeaaa40d0dcc4db39b4360dd3d0bca37ef47d02b7777443"
     }
   }
 }

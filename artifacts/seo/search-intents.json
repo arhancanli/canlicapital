@@ -1,10 +1,11 @@
 {
   "schema": "canli.search-intent-audit.v1",
   "measurement_status": "Editorial intent hypotheses; search volume, rankings and query coverage are not measured",
-  "canonical_owners": 104,
-  "query_hypotheses": 147,
-  "local_indexable_pages": 327,
+  "canonical_owners": 110,
+  "query_hypotheses": 163,
+  "local_indexable_pages": 336,
   "unassigned_canonicals": [
+    "https://canlicapital.com/annotate",
     "https://canlicapital.com/research/active-ownership-item4-v3-feasibility",
     "https://canlicapital.com/research/alphamax-equity-momentum-lineage",
     "https://canlicapital.com/research/alphatrend-managed-futures-lineage",
@@ -99,6 +100,7 @@
     "https://canlicapital.com/research/literature-repurchase-issuance-flow",
     "https://canlicapital.com/research/literature-spin-off-dislocation",
     "https://canlicapital.com/research/literature-stablecoin-dislocation",
+    "https://canlicapital.com/research/luck-equivalent-trials",
     "https://canlicapital.com/research/macro-economic-trend-lineage",
     "https://canlicapital.com/research/market-status-replay",
     "https://canlicapital.com/research/merger-announcement-identity-v2",
@@ -226,6 +228,7 @@
     "https://canlicapital.com/notes/deflating-a-sharpe-ratio",
     "https://canlicapital.com/notes/one-symbol",
     "https://canlicapital.com/notes/seventy-files",
+    "https://canlicapital.com/notes/the-split-that-ran-backwards",
     "https://canlicapital.com/notes/the-trade-that-lost-99-percent",
     "https://canlicapital.com/notes/what-competitive-programming-bought"
   ],
@@ -299,9 +302,7 @@
       "intent": "Integrate the validation API and MCP server",
       "queries": [
         "backtest validation api",
-        "quantitative finance mcp server",
-        "canli capital api key",
-        "canli capital mcp"
+        "canli capital api key"
       ]
     },
     {
@@ -559,6 +560,69 @@
         "backtest borrow financing assumptions",
         "market status execution replay research"
       ]
+    },
+    {
+      "path": "/mcp-servers",
+      "intent": "Choose a released Canli Capital MCP server for a finance or quantitative research task",
+      "queries": [
+        "quantitative finance mcp server",
+        "canli capital mcp",
+        "finance mcp servers"
+      ],
+      "sources": [
+        "config/mcp-hosted-releases.json",
+        "config/mcp-discovery.json"
+      ]
+    },
+    {
+      "path": "/mcp-servers/validation",
+      "intent": "Connect the backtest validation MCP server and choose its statistical evidence tools",
+      "queries": [
+        "canli validation mcp",
+        "backtest validation mcp server",
+        "deflated sharpe mcp"
+      ],
+      "source": "mcp-released/validation"
+    },
+    {
+      "path": "/mcp-servers/fundamentals",
+      "intent": "Connect the SEC fundamentals MCP server and query company facts as known by a date",
+      "queries": [
+        "canli fundamentals mcp",
+        "point in time sec fundamentals mcp",
+        "sec restatements mcp"
+      ],
+      "source": "mcp-released/fundamentals"
+    },
+    {
+      "path": "/mcp-servers/research",
+      "intent": "Connect the quant research MCP server and inspect papers, failed candidates and trial history",
+      "queries": [
+        "canli research mcp",
+        "quant research mcp server",
+        "alphac research mcp"
+      ],
+      "source": "mcp-released/research"
+    },
+    {
+      "path": "/research/filing-facts-v0",
+      "intent": "Inspect the rights-cleared FilingFacts financial-reasoning dataset, source citations and measured evaluation",
+      "queries": [
+        "canli filingfacts dataset",
+        "sec financial reasoning dataset",
+        "filingfacts benchmark"
+      ],
+      "source": "public/glassbox/datasets/filing-facts-v0.json"
+    },
+    {
+      "path": "/research/null-zoo-v0",
+      "intent": "Inspect the Null Zoo benchmark of skill-less quant searches and its measured validation behavior",
+      "queries": [
+        "canli null zoo benchmark",
+        "null zoo quant validation",
+        "quant research null benchmark"
+      ],
+      "source": "public/research/null-zoo-v0.md"
     },
     {
       "path": "/companies/0000019617",
