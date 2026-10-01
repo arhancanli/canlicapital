@@ -57,13 +57,15 @@ test("a named file is read instead of your own; a missing journal says so; conte
   await assert.rejects(run(home(), { action: "append" }), /action/);
 });
 
-test("the published schema names the validator's fields and stays small", async () => {
+test("the advertised schema names the export fields and remains bounded", async () => {
   const { z } = await import("zod");
   const json = z.toJSONSchema(journalInput, { io: "input" });
   assert.deepEqual(Object.keys(JOURNAL_JSON.properties).sort(), Object.keys(json.properties).sort());
   assert.deepEqual(JOURNAL_JSON.properties.action.enum, json.properties.action.enum);
   assert.deepEqual(JOURNAL_JSON.required, json.required);
   const chars = JOURNAL_DESCRIPTION.length + JSON.stringify(JOURNAL_JSON).length;
-  assert.ok(chars < 500, `${chars} characters`);
+  // The old 500-character head/verify shape did not include account export. This draft bound
+  // is not the original 150-token journal release target; measured token gates stay open.
+  assert.ok(chars < 1000, `${chars} characters`);
   assert.doesNotMatch(JOURNAL_DESCRIPTION, /\b(should|recommend\w*|READY|eligible|Kelly|optimal)\b/i);
 });

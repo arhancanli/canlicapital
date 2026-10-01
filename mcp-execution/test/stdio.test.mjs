@@ -26,7 +26,7 @@ const ORDER_ARGS = {
   limits: { price_collar_frac: 0.05 },
 };
 
-test("four read-only tools, the package version, and a byte-identical list on every launch", async () => {
+test("four tools, explicit journal export writes, package version and a stable tool list", async () => {
   const list = async () => {
     const client = await connect();
     try {
@@ -39,7 +39,8 @@ test("four read-only tools, the package version, and a byte-identical list on ev
   const { tools } = JSON.parse(first.json);
   assert.deepEqual(tools.map((t) => t.name), ["size_position", "check_orders", "measure_shortfall", "journal"]);
   for (const t of tools) {
-    assert.deepEqual({ ...t.annotations, title: undefined }, { title: undefined, readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false }, t.name);
+    const readsOnly = t.name !== 'journal';
+    assert.deepEqual({ ...t.annotations, title: undefined }, { title: undefined, readOnlyHint: readsOnly, destructiveHint: false, idempotentHint: readsOnly, openWorldHint: false }, t.name);
     assert.ok(t.outputSchema, `${t.name} has an output schema`);
     assert.doesNotMatch(JSON.stringify(t.outputSchema), /"additionalProperties":false/, `${t.name} publishes a closed output schema`);
   }

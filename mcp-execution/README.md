@@ -13,7 +13,7 @@ build has no broker code at all.
   market state and a kill switch. It rejects with every reason and never resizes an order.
 - `measure_shortfall` measures the cost of supplied fills: delay, execution, unfilled opportunity
   and stated fees. It runs locally; the default result is an aggregate rather than a long fill list.
-- `journal` reads a trade journal and checks it, offline.
+- `journal` checks a signed journal and exports recomputed paper evidence, offline.
 
 ## What `measure_shortfall` computes
 
@@ -94,12 +94,53 @@ append-only file of signed, hash-chained entries: what was decided, checked, sen
 filled, marked and corrected, in order. Anyone holding the file can check that no entry was changed,
 dropped, reordered or inserted, and that every entry was signed by the key named on the first line.
 `journal` with `verify` names the first line that fails, and why; `head` gives the last hash, the
-entry count and the key's fingerprint. It returns verdicts and hashes, never the entries.
+entry count and the key's fingerprint. These two actions return verdicts and hashes.
+
+The repository source also supports `export`, with the additive account profile in
+[`EXPORT.md`](https://github.com/arhancanli/canlicapital/blob/main/standards/trade-journal/EXPORT.md).
+It requires signed opening cash/positions, explicit USD fill fees and complete valuations;
+missing evidence or unresolved reconciliation refuses export. Returns, costs, turnover and
+drawdown are recomputed for inclusive `from`/`to` sequence bounds, replaying earlier holdings.
+Losses through zero and drawdown above 100% remain in the record. Trial counts stay unknown.
+
+An export returns `record` inline up to 16 KiB, or a new private `record_file` above that size.
+Large exports require private owned home/exports directories and refuse observed directory
+or filename replacements. A failed export may leave an incomplete file; its path is never
+returned as valid, and failure cleanup never removes a replacement pathname.
+Optional `sign:true` uses the matching local 0600 `CANLI_HOME/journal.key`; it is self-attestation.
+The source journal is never modified or uploaded. A `publish_url` is metadata, not a publication
+action. See [SECURITY.md](https://github.com/arhancanli/canlicapital/blob/main/mcp-execution/SECURITY.md).
+
+Run both unreleased servers from the repository checkout. With the validation server configured
+as `CANLI_LOCAL=1 node mcp/src/server.mjs`, the two MCP calls are:
+
+```json
+{"action":"export","file":"/absolute/paper-session.jsonl"}
+```
+
+Then call `validate_paper_evidence` with the returned artifact and original source:
+
+```json
+{"record_file":"/absolute/returned-export.json","journal_file":"/absolute/paper-session.jsonl"}
+```
+
+For an inline export, send its `record`, optional detached `signature`, and `journal_file`
+instead. `bindings.checked:true` and `all_match:true` mean the supplied source and claims match.
+Without the journal, a conforming shape leaves source facts/signatures unchecked. Local results
+have no stored Canli receipt. These fields are not available from the currently published npm
+validation package or hosted release until the next substantial release batch.
 
 The standard was checked with a second verifier, written in Python from the standard's text alone:
 - The two agree on all 36 named vectors, one for each way a journal can fail.
 - They agree on 1,000 journals that each had one byte flipped. Every one of those fails at the
   line holding the flipped byte.
+
+A separate Python Decimal financial reference agrees on 1,000 signed synthetic accounting
+journals (36,192 numerical comparisons, absolute tolerance 1e-12), including decimal partial
+fills, corrections, carried window state, fees, all declared frequencies and five insolvency/
+recovery cases. This is independent implementation within this repository, not external review
+or broker evidence. Reproduction instructions are in
+[`export-reference.md`](https://github.com/arhancanli/canlicapital/blob/main/scripts/research/trade-journal/export-reference.md).
 
 ## What `size_position` computes
 

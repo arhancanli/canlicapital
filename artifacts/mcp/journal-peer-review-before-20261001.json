@@ -1,0 +1,36 @@
+{
+  "schema": "canli.internal-peer-review.v1",
+  "reviewed_commit": "ae33cebab132a02f8af6316ad28dceeaaf9aa475",
+  "synthetic_only": true,
+  "model_or_broker_calls": 0,
+  "record_leaf_mutations_refused": 53,
+  "companion_mutations_refused": 6,
+  "signed_selection_clock_missing_and_self_attestation_probes": "pass",
+  "observations": {
+    "minimum_track_record": {
+      "operation_accepted": true,
+      "periods_per_year": 1e-309,
+      "observations": 1.0204383787220084,
+      "years_finite": false,
+      "years_text": "Infinity",
+      "json_years": null,
+      "own_raw_bundle_matches": false,
+      "own_json_bundle_matches": false
+    },
+    "directory_swap": {
+      "operation_accepted": true,
+      "path_advertised_under_exports": true,
+      "written_under_foreign_directory": true,
+      "final_mode": 384,
+      "data_equal": true,
+      "injected_concurrent_swap": true
+    }
+  },
+  "scope_limits": [
+    "Internal code review, not external financial or expert review",
+    "Financial numerical oracle not rerun; no independent Sharpe, MinTRL or annual-compounding implementation"
+  ],
+  "node_version": "v24.19.0",
+  "probe_sha256": "a537c8fc80f5e854a05ed6f7424e4f0baf421756d0b0b1735b5a5a1956e5737a",
+  "observed_at": "2026-10-01T10:54:48.800973+00:00"
+}

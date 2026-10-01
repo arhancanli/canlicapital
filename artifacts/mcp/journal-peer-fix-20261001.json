@@ -1,0 +1,76 @@
+{
+  "schema": "canli.journal-peer-fix-checkpoint.v1",
+  "verified_at": "2026-10-01T10:58:50.495083+00:00",
+  "base_commit": "c7a3e7ba40622654b7a38e0d99b4b1484669718a",
+  "evaluation_merge": "91d1505254dfa9b42fad29152e76cf3507924e80",
+  "reviewed_prior_commit": "ae33cebab132a02f8af6316ad28dceeaaf9aa475",
+  "findings": [
+    {
+      "id": "nonfinite-mintrl-duration",
+      "before": "A finite positive annualisation value of 1e-309 produced infinite MinTRL years and broke raw/JSON bundle self-validation.",
+      "after": "Nonfinite derived MinTRL observations/years refuse before serialization."
+    },
+    {
+      "id": "concurrent-export-location-swap",
+      "before": "A directory substitution after lstat redirected artifact creation to a foreign directory.",
+      "after": "Private owned home/exports directories, repeated device/inode/owner/mode and home entry-time checks, and opened/named file identity checks refuse observed substitutions. No failure pathname unlink can remove replacement files."
+    }
+  ],
+  "checks": {
+    "regression_before": {
+      "tests": 13,
+      "pass": 9,
+      "fail": 4
+    },
+    "focused_after": {
+      "tests": 18,
+      "pass": 18,
+      "fail": 0
+    },
+    "root_main": 814,
+    "root_preverify": 6,
+    "local_pages": 699,
+    "page_errors": 0,
+    "page_warnings": 0,
+    "execution": {
+      "tests": 51,
+      "pass": 51
+    },
+    "validation": {
+      "tests": 141,
+      "pass": 141
+    },
+    "validation_isolated_package": {
+      "pass": true,
+      "files": 35
+    },
+    "current_core_matches_saved_independent_python_cases": 1000,
+    "generated_outputs_archived_and_restored": 646
+  },
+  "source_sha256": {
+    "js/trade-journal-export-core.js": "d1ed1eacd557145dc70ea87f3326be0666fdcbce43f714d55f69e44904beabb1",
+    "js/trade-journal-export-core.test.js": "ca695f35f7122f5847a64089fbe726b44de6dcd0f23970940ab8510962f70ad7",
+    "mcp-execution/src/journal-export-file.mjs": "71c49225e7e26c7f9e0368f20a731a2dcb0ceaf87818e9e386b1ed0b998ce834",
+    "mcp-execution/test/export-file-race.test.mjs": "627a84ffe8f59d93e6d050a514295041f25476182844180c0c07c5198bbc4b71",
+    "mcp-execution/src/core/js/trade-journal-export-core.js": "d1ed1eacd557145dc70ea87f3326be0666fdcbce43f714d55f69e44904beabb1",
+    "mcp/src/local/js/trade-journal-export-core.js": "d1ed1eacd557145dc70ea87f3326be0666fdcbce43f714d55f69e44904beabb1",
+    "standards/trade-journal/EXPORT.md": "5646c3fe37f3153de156e8834f5758ea52b3d40857355e02f504ac4840d269e3"
+  },
+  "log_sha256": {
+    "/tmp/canli-journal-peer-fix-build-20261001.log": "f597975c67f50ada3bcf36271a87948b1925a906ed5a32cf800c4bc34eb2e96d",
+    "/tmp/canli-journal-peer-fix-verify-20261001.log": "9c28af8083e194a38264eca8bad851a953761e4b0d39beb17a6df79c4842bb71",
+    "/tmp/canli-journal-peer-fix-validation-20261001.log": "130019ae5523677022cf09e3a379dcab5a680dada5299f5d6e4b06e07493c5cf",
+    "/tmp/canli-journal-peer-fix-execution-final-20261001.log": "7fd4549dd24387243a0c723a96989014729ca31c3f5126c1b8134730866a7f1a",
+    "/tmp/canli-journal-peer-fix-package-20261001.log": "03eea459b275317411a7ce93eae38920b0a0e69ae4753abade0f0ac0ade825ba"
+  },
+  "limits": [
+    "Portable pathname checks detect observed swaps; they are not directory-anchored creation and cannot defend a compromised same-user process that swaps and restores entirely between checks.",
+    "Failed or partial files may remain; descriptors close and no failed path is advertised as a valid export.",
+    "The earlier Python numerical evidence remains separately bound to its original sources; current-core fixture replay passes, but fresh Python regeneration and independent Sharpe/MinTRL/annual-compounding coverage are not claimed.",
+    "Original journal150/full-seven1700 token release gates, remaining trading controls and external review remain open.",
+    "Updated exact-head CI, independent recheck and clean Git-free snapshot are pending; no new package or production publication."
+  ],
+  "model_or_broker_requests": 0,
+  "azure_resources_activated": 0,
+  "overall_owner_goal": "active"
+}

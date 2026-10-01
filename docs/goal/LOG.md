@@ -4154,6 +4154,122 @@ Goal stays active. Next: independent journal accounting oracle, local file/MCP i
 paper reconciliation, real expert annotation and substantial MCP releases; every pillar stays.
 
 
+## 2026-10-01 — journal evidence continuation phase
+
+Previous goal turn made progress: #339/#336/#337 and continuity #340 merged, with live
+production evidence. Current main reverified at ed511f1a; only dependency #338 is open.
+New isolated branch: continue/journal-evidence-20261001. Next implement source-bound journal
+export and validation recomputation before paper-broker integration. Existing generic signed
+journals verify integrity but lack mandatory opening-state/fee/valuation evidence; export must
+state its additive financial profile and refuse missing or unresolved financial evidence.
+No broker orders, new package version, human gold labels or strategy/indexing outcomes implied.
+All master objectives remain active.
+
+
+
+## 2026-10-01 — journal export accounting core checkpoint (local draft)
+
+Draft additive account profile and export/signature/binding core are present in the isolated
+journal branch. Six focused hand-accounting/adversarial tests pass: decimal partial fills,
+carried window state, fees/marks/turnover/drawdown, source/signature/claim binding and refusal
+of incomplete or unresolved evidence. Fixed bounded entry counting, hourly buckets, declared
+genesis cash-flow rejection and correction validation, including unused bad mark prices.
+The initial test run had two incorrect fixture expectations (selection field/status); corrected
+to the unchanged standard and retained this failure here. This is not the 1,000-journal
+independent Python financial oracle or an MCP integration result. Wrapper/file safeguards,
+full independent validation and release gates remain pending. No export tool release claimed.
+
+
+
+## 2026-10-01 08:38Z — verified goal checkpoint published
+
+#342 merged at 08:38:35Z as 18f693fafc9a63fee5de081b6e359f49085a6173 after all seven checks
+passed. Main now carries the live findability evidence, full goal map and pending journal/annotation
+work. Production remains clean at the tested website commit 65dad63f; #342 is documentation and
+evidence only. Goal remains active. No additional indexing, human labels or strategy outcomes.
+
+
+## 2026-10-01 — journal implementation resumed after findability delivery
+
+Previous goal turn made progress: #341/#342 merged, four new MCP canonicals verified live,
+and journal accounting draft checkpointed. Reverified clean worktrees, main 18f693fa and only
+dependency PR #338 open. Integrated latest main into the journal branch; three continuity
+conflicts resolved by retaining the latest verified main state and local journal phase/failure
+records. Backup branch records/journal-before-integration-20261001 preserves original bytes.
+Next: independent 1,000-journal financial oracle, bounded file/export helpers and local MCP
+source-validation link. Generic journal vectors and hosted release pins stay unchanged.
+No broker requests, package bump or new indexing/human/strategy outcomes claimed.
+
+
+## 2026-10-01 09:16Z — journal accounting and local MCP link verified
+
+Previous goal turn made progress: independently recomputed 1,000 signed synthetic journals
+using the separate Python integrity verifier and Decimal accounting; all 36,192 numerical
+comparisons match to absolute 1e-12 (largest error 4.547473508864641e-13). Five insolvency/
+recovery cases retain undefined subsequent returns and drawdown above 100%. Added root CI
+tests and a reproducible compressed Python reference; this is internal independent code,
+not external human review or authentic broker evidence. Root focused tests: 11/11.
+
+Implemented bounded regular-file reads with size/change checks, FIFO/device refusal, explicit
+matching private 0600 key signing, exclusive private exports above 16 KiB, and source-bound
+local validation. File/signature inputs refuse hosted and remote modes before reading or
+fetching. Execution 47/47 and validation 141/141 tests pass, including two real stdio processes
+linked by an export path. Validation isolated tarball/install/stdiod wiring passes (35 files).
+
+The first execution run had 41/43 pass: old 500-character head/verify budget and all-read-only
+annotation assumptions failed. Updated the draft bounded-shape check to 1,000 characters and
+the writing annotation explicitly; the original 150-token journal and seven-tool 1,700-token
+release targets are NOT relaxed or claimed met. Current full four-tool list: 1,758 o200k /
+1,688 cl100k; validation: 4,353 / 4,319 (working source only). Full build, CI, release docs,
+remaining broker/research/gate/receipt requirements and publication remain open. Local mode
+still returns receipt:null; no Canli receipt signature is invented. No package bump, broker
+request, actual expert gold, indexing or forward-performance result.
+
+Received the owner's Azure-credit coordination instruction through the sibling session.
+No Azure resources/jobs are activated or reserved here; notified the TraceAxiom lead thread
+01a0f6ae-ec9e-75c0-b7e9-01ba7ab69b1c and requested current balance/expiry/overage guards before
+any Canli workload. Local implementation continues; the full original goal stays active.
+
+
+## 2026-10-01 — final local journal checks and independent parallel review
+
+Journal full build/verify passes: 801 main + 6 preliminary tests, 699 page audits without
+errors/warnings; execution 47/47, validation 141/141, isolated tarball and both zero-vulnerability
+audits pass. Added record-file identity guard, full companion-field binding, selected-prefix
+clock consistency and deterministic growth/same-size race tests. Removed duplicate signature
+verification. Kept the old pre-clock and concurrent benchmarks explicitly; final 350-mark
+stdio medians after this worktree's checks are 20.44 ms export / 20.25 ms source validation.
+Other system activity is uncontrolled; these are synthetic local timings, not broker latency.
+All inputs remain visible; tool prose reduced four-tool context from 1,758 to 1,691 o200k
+(1,621 cl100k). Journal alone is 163; original 150 and complete seven-tool 1,700 release gates
+remain unmet. Saved five artifacts/mcp/journal-*20261001.json evidence files. Archived/restored
+645 generated outputs from the isolated build; sealed/generic historical vectors unchanged.
+
+Secondary #343 at 2fbb9572 had seven successful CI checks and 32 focused tests. Independent
+review reproduced sampler/canonicalizer source mutations still passing replay and closed-arm
+captures with tool calls passing; sent exact reproductions and requested source/arm consistency
+corrections. Secondary also found formatted invented-number classification omission. Merge
+is held for a new signed head and independent recheck. Requested public legacy-parser/v1
+denominator wording. No model calls or human labels occurred.
+
+Third cooperating session owns annotation intake: stale/corrupt/foreign draft recovery, exact
+packet binding, complete negative exports and keyboard behavior, in its separate worktree.
+MCP/developer analyzer work remains an active later phase. All original objectives persist.
+Azure lead reports included-credit qualification/guard context; no resource/spend reserved or
+activated by Canli. Await committed Linux contract coordination; no unapproved cash workload.
+
+
+## 2026-10-01 — signed journal implementation and clean snapshot verified
+
+Signed implementation 0f63b8d101a931538cc75c54dbb957d02a515d9d (signature G) is clean;
+tree 40e97734f0de1e71fdcf7a7e0b5e89a7145fc58f. Resumed the existing deployment-validator
+process rather than restarting it: exit 0, real Git-free VERCEL=1 build, 683 stamped pages,
+416 checksummed files untouched. Exact source, clone and log digest are recorded in
+artifacts/mcp/journal-repository-checkpoint-20261001.json. Repository PR is next; no version,
+npm or production change. Secondary #343 revised head 25bd6aef has seven successful checks;
+merge remains held for independent correction/source/arm/wording review. Third reports 23
+focused annotation tests; browser/full checks and pinned PR remain pending. All goals active.
+
 ## 2026-10-01 — secondary Codex evaluation reliability phase
 
 Owner requested a second cooperating Codex role and goal. Primary thread 01a0f5c2 assigned
@@ -4240,6 +4356,34 @@ Secondary denominator wording correction: numbers_given is a count of finite num
 answers on answerable items, not a rate. Clarified that count and the numbers_wrong
 denominator together. Implementation and evidence remain unchanged.
 
+
+## 2026-10-01 — reviewed evaluation delivery and journal peer fixes
+
+#343 merged exact61caa533 at10:33:45Z as91d15052; merged/candidate tree1d745481 matches.
+Independent34 tests, eight probe groups, seven source-comment mutations, five unchanged v0
+files and final public limitation/denominator wording passed. Initial reviewer-copy failures
+were missing public fixtures, corrected from exact Git bytes; retained logs identify the limit.
+
+Integrated91d15052 into journal as signedc7a3e7ba, preserving both LOG histories and both
+verification scopes. The whole staged merge hygiene check flagged spaces in already-merged
+raw regression logs; preserved those evidence bytes and checked the journal diff against main.
+
+Peer journal review found finite input1e-309 producing infinite MinTRL years and an export
+directory swapped after lstat redirecting creation. Retained original peer receipt and four
+failing regressions. Nonfinite derived MinTRL now refuses; private home/exports and repeated
+parent/file identity checks refuse observed swaps. No failure pathname unlink removes another
+writer's replacement file. Portable checks retain explicit same-user/partial-file limitations.
+Focused18/18 including current core's1,000-case saved Python fixture; full814+6,699 pages0/0,
+execution51/51,validation141/141 and isolated35-file package pass. Initial execution50/51
+was the existing private-directory error wording; restored that contract and final51/51 passes.
+Archived/restored646 isolated generated outputs, including historical paper-evidence vectors.
+No historical source-hash evidence was rewritten to match new code. New peer/CI/Git-free
+checks remain pending at the next signed head; no package or production change.
+
+Annotationf625bfac independently passes23 focused and10 DEV-browser cases; third's15 BUILT
+cases stay separate. Secondary reviews journal fixes before its next analyzer role. Azure lead
+was told to hold queued old0f63 workload until updated signed contract pin; no Canli activation.
+Every Sovereign/10M-indexing/SEO/adoption/ALPHAC goal remains active.
 
 ## Annotation browser intake phase, 2026-10-01
 

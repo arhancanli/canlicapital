@@ -71,6 +71,16 @@ repository for the full design.
 
 ## Tools
 
+Unreleased source adds local journal binding to `validate_paper_evidence`: run
+`CANLI_LOCAL=1 node mcp/src/server.mjs` from the repository, and send exactly one of `record`
+or `record_file`, plus `journal_file` to check source hashes, signatures and recomputed claims.
+`record_file` accepts a standard record, a `{record,signature}` envelope, or the full execution
+export bundle; companion metrics/observations are checked for full bundles. Signed records
+need the detached signature. `bindings.all_match` must be true for source validation to pass.
+Without a journal, the result explicitly reports structure-only conformance. Files and
+signatures are refused in hosted/remote mode and never uploaded. Local results have no Canli
+receipt. The current npm/hosted release retains the existing record-only API.
+
 | Tool | Calls | Key required |
 |---|---|---|
 | `get_key` | `POST /api/v1/keys` | no |
