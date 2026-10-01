@@ -876,6 +876,189 @@ contract needs no website deployment. Model/schema/measurement/source-parity
 financial gates remain held/unassigned, every full owner goal still active.
 
 
+## 2026-10-01 — delivery checkpoint closed; local journal storage started
+
+PR350 signed891d0806 ordinary merged63cea029 at16:38:29Z; reviewed and merged
+tree20d8c5f0 match. Seven exact CI checks, current-ref CodeQL0, primary94archive
+hashes and independent final52465ff6 pass. Newly assembled manifest provenance
+and initial observer diagnostics remain separate; no historical evidence rewrite.
+This is repository documentation/evidence delivery; production62d2 remains the
+verified15:45:17 website batch, with no redundant website publication.
+
+Primary starts private local journal storage in isolated
+`/Users/arhancanli/canlicapital-journal-store-20261001`, branch
+`work/journal-store-20261001`, now fast-forwarded to actual main63cea029.
+Supplied-key initialization/exclusive appends, verified chains, deterministic
+retry identity, fsync-before-success and interrupted-write refusal are the
+bounded scope. Synthetic filesystem tests and independent Python verification
+are planned; no test or latency claim yet and no local CPU lease acquired.
+Secondary owns offline15-item PR351 contract; its old baec test intent was
+withdrawn before any attempt and corrected a27 awaits fresh lead grant/CI.
+Third owns read-only corrected351 review. No broker call, model/resource/hold/
+spend, tool/schema/version change or public execution release. All four
+Sovereign pillars,10M actual indexing, source-backed quality/SEO/keywords/
+analyzers/design/adoption/novel research/expert refinery/governedALPHAC goals
+remain ACTIVE. Proof: coordination/pr-350-primary-after-language-fix/delivery.json;
+preparation: coordination/primary-paper-store-contract.json.
+Observed transition: 2026-10-01T16:44:05.889971+00:00.
+
+
+## 2026-10-01 — private journal storage draft implemented, validation pending
+
+Local new module and 15 focused test cases cover supplied-key initialization,
+exclusive appends, complete-chain/key checks, signed deterministic retry metadata,
+file/directory persistence, readback and retained uncertainty. Synthetic tests
+include short/partial writes, sync failures, real child writer contention,
+directory substitution and unrelated pathname preservation. These are written
+checks, not observed passes. No local Node/Python execution or heavy lease yet.
+Package includes its storage guide; versions/dependencies and every existing
+MCP tool/schema, shared mirror, raw dataset and public page remain unchanged.
+No broker/model/resource/hold/spend/publication, hardware durability or latency
+claim. All full owner objectives remain active. Next bounded Node check under
+lead scheduling, independent emitted-journal verification and source review.
+
+
+## 2026-10-01 — close-error correction before the first journal test
+
+Static self-review of signeda4f088e5 finds that an ambiguous descriptor close
+can be retried in finally and mask the journal uncertainty error. Withdraw
+its explicit lead grant before any attempt/nonce; original source/request/helper
+and grant remain retained. Close each descriptor once, preserve typed uncertainty
+after cleanup failure and add a sixteenth synthetic fault case covering journal,
+lock, directory and validation cleanup. No dynamic reproduction or pass yet.
+The next signed source and fresh one30s grant must replace the withdrawn pin.
+No public tool/schema/version, broker/model/resource/hold/spend or website change.
+All owner objectives remain ACTIVE. Static finding receipt:
+coordination/journal-store/a4f-close-error-static-finding.json.
+Observed: 2026-10-01T17:30:00.085133+00:00.
+
+
+## 2026-10-01 — offline baseline delivered; first journal failure retained
+
+PR351 final69d7845d ordinary merged1ed2f9cb at17:46:33Z, equal treead2005b7.
+Primary12source/31original-archive checks and independent34311a32/current7CI/
+CodeQL0 pass. Actual25baseline/eval/evidence tests and15question-only plan
+remain offline pipeline smoke; no model ranking, human gold or source-parity
+claim. No redundant website publication; production62d2 remains the live batch.
+Delivery: coordination/filingfacts-baseline/primary-final-69d7845d/delivery.json.
+
+Primary815699c6 first granted journal check actually failed at17:41:21Z:
+19registered,3packagingPASS/16storageFAIL,0.822520792s,Node22.23.2. Shared
+initialization failures mean storage fault paths have no observed PASS yet.
+OwnedPG18662ESRCH/cleanup precedes guarded release; no automatic retry.
+Raw eight files/hash manifest retained in journal-store/815699-first-actual-failure.json.
+Olda4 close-fault finding and unused withdrawn grant, missing815grantfile
+preflight refusal and later actual815 grant remain separate historical records.
+
+Integrate actual351 main, retaining its full STATUS/LOG prefix plus all own
+additive suffixes. A source correction excludes mutable directory child-link
+counts from directory identity while preserving dev/inode/owner/group/mode
+and the exactone-link file rule. Existing metadata on this machine reports
+directory nlink=children+2; the wrapped failure did not expose its immediate
+cause, so errors now retain cause for local diagnosis. New regression17
+simulates changed directory link counts; no test pass asserted yet.
+
+Independent static CC-JOURNAL-PAYLOAD-AGGREGATE-BOUND identifies potentially
+large whole-request serialization despite per-string/node caps. Count aggregate
+canonical bytes, including escaped strings/ASCII keys/punctuation, before full
+request serialization or filesystem access; regression18 uses bounded synthetic
+inputs to avoid an OOM experiment. Original arithmetic/static finding retained;
+no dynamic OOM claim. Secondary recovery semantics remain scoped static evidence,
+third reviews filesystem/provenance. Fresh signed18+3/futuregrant required.
+No tool/schema/version/hosted/core mirror/data change, broker/model/resource/
+hold/spend/publication or latency/hardware claim. All Sovereign, actual10M
+indexing, quality/SEO/keywords/design/analyzers/adoption/novelresearch/expert
+refinery and governedALPHAC/paper-then-lawful-capital objectives stay ACTIVE.
+Observed: 2026-10-01T17:59:36.756272+00:00.
+
+
+## 2026-10-01 — request scalar bounds complete the static budget correction
+
+Third source review also identifies kind/ts as unsnapshotted fields entering
+the canonical request. Require a short kind string and fixed-form timestamp
+before canonicalization; chain validation retains kind/calendar authority.
+Extend regression18 to check oversized/non-string kind/ts refuse with zero
+filesystem opens. Still18written storage cases, no test run after correction.
+Original815 actual3PASS/16FAIL, static findings and grants remain unchanged;
+fresh exact-source18+3 grant required. All full owner goals remain ACTIVE.
+
+
+## 2026-10-01 — private journal storage evidence checkpoint
+
+Signed clean source c4403ddb517f805315807c7b7c8c364fc2aa65ff passes
+21 focused cases (18 storage + 3 packaging) on Node22.23.2, with no failed
+or skipped cases. The original 815 initialization failure remains19 cases:
+3 packaging passes and16 storage failures; it did not establish execution of
+the fault paths. Descriptor-close, directory-link identity and aggregate
+payload/kind/timestamp bounds are corrected without tool registration or
+version changes. Source/recovery/raw-provenance reviews retain their scopes.
+
+The single separately granted emitted gate passes all5 sequential stages:
+three signed synthetic snapshots pass the unchanged Python verifier; five
+request/receipt/prefix bindings match stdlib recomputation, including two
+original-prefix retries after a later append. Four typed JSON alias controls
+are in-process canonical comparisons, not four tampered-file CLI runs. Actual
+Node22.23.2, Python3.12.13 and cryptography50.0.0 are recorded; five environment
+file pins provide partial environment binding. Gate interval1.174286708s ends
+after final source/environment/version observations, before terminal writing;
+preclaim admission is excluded. This is not journal latency. Cleanup/PG97486
+absence precede guarded release at19:31:17Z; no process or lease remains.
+
+Historical focused intervals remain unchanged:815 recorded0.822520792s and
+c440 recorded1.38514575s measure through cleanup/release and exclude later
+final source observations. They are not complete runner wall durations. The
+separate precision receipt preserves both originals. Initial strict-Python-
+JSON and end-timer helper findings, withdrawn preclaim requests, failed815
+job and all source/helper/raw bytes remain retained. Private grant bodies
+stay in coordination; lease hashes and process evidence are archived.
+
+PR352 source c440 has all7 CI SUCCESS, equal merge-ref tree and currentref
+CodeQL0. Remote verification854main+6pre+9notification,699 pages0/0 and
+683 stamped HTML/416 preserved checksummed files is source-bound remote
+evidence, not a new local Git-free snapshot. Evidence assembly initially
+contains98 gzip archives/1,677,607 raw bytes, each hash/decompression bound
+to its original. Final evidence commit/source equivalence/current CI/peer
+extension and ordinary repository merge remain pending. No website
+publication is needed. Hardware/power-loss, Windows/NFS, fully-between-checks
+same-user changes and authenticated key/clock/fill provenance remain outside
+these checks; no automatic lock recovery, broker replay or orders.
+
+PR353 original eb25 remote passes stay historical. Independent primary and
+third static P2 found a known attempt above an item cap hidden by missing or
+shorter item clocks. Source6ff03d94 reports that attempt separately and has
+26 written regression cases; primary static fix receipt70f926ef verifies
+six own+37 parent hashes and the exact five-path correction. Current source
+CI is successful; exact raw26, final evidence/peer extension and delivery
+remain separate pending work. No duplicate local runtime job is proposed.
+
+Every owner objective remains ACTIVE: all Sovereign pillars, actual10M
+indexed quality pages, relevant SEO/keywords/design/analyzers, differentiated
+efficient MCP/API/repository adoption, rights-cleared expert refinery, prior
+art and governed ALPHAC/paper-then-lawful-capital outcomes. No model/provider
+calls, cloud resources, financial holds/spend, human labels, outreach, hero
+publication, live orders or indexing/strategy/adoption outcome is claimed.
+Observed: 2026-10-01T19:48:45.114784+00:00.
+
+
+## 2026-10-01 — independent journal raw review and final archive freeze
+
+Third emitted-actual-review-c4403ddb receipt a67ed4e1 independently checks
+23 raw files, eleven source pins, request/prefix/typed receipt bindings and
+three canonical snapshots/five receipts. Three signature verdicts are the
+retained author runs of the separate Python implementation; the reviewer
+did not rerun project code. Lead closure162fd5b7 independently verifies
+retained stage/grant/helper/nonce evidence and fresh posthoc PG97486 absence.
+Neither receipt invents an independent launch observation or unlink timestamp.
+Final QA has100 gzip archives/1,718,904 raw bytes, each matching its original.
+All11 measured source paths remain byte-identical to c440. Evidence-only
+commit, final-head CI/peer archive extension and ordinary352 merge follow.
+PR353 corrected6ff raw26/root880 passes independently verified949cf7fc,
+with fresh currentrefCodeQL0; originaleb25/P2 and351 actual25 stay distinct.
+All full owner goals ACTIVE; no new runtime job/lease/model/resources/holds/
+spend/expert labels/orders/outreach/website publication or outcome claim.
+Observed: 2026-10-01T19:55:22.351491+00:00.
+
+
 ## 2026-10-01 — offline attempt-accounting/source-parity implementation phase
 
 Primary assignment18:17:50 is verified in coordination/primary-assignment.md.
@@ -932,3 +1115,26 @@ runtime-verified. New signedsource/peerfixACK/currentremoteCI precede delivery.
 No localNode/test/CLI/helper/job/request/grant/nonce, models/resources/holds
 /spend/humanlabels/orders/sitepublication/outreach. AllfullownergoalsACTIVE.
 Observed 2026-10-01T19:40:40.095006+00:00.
+
+
+## 2026-10-01 — reviewed attempt-accounting evidence and journal-main integration
+
+Actual journal352 is delivered as c4c4b1bf20:06:21Z. This branch integrates
+that main while preserving exact common goal prefixes and both appended histories.
+All four corrected6ff product files (module/test/guide/package) and37parent
+bindings, including fiveV0/343/351, remain byte-identical. No product-source
+change follows the independently reviewed6ff correction.
+Actual remoteNode22.23.3 confirms26newPASS/full880main+6pre+9notification,
+0fail/skip/cancel/all7CI SUCCESS; raw7ad686f8/receiptbffc2ccd are retained.
+Primaryfix70f926ef/rawreview949cf7fc and thirdfullfixf24d1385 independently
+accept the corrected source; lead d557/observera7dedd remain scoped as written.
+Originaleb25PASS/P2bothfindings and all raw/archive-error observations survive.
+Evidence archive docs/goal/evidence/filingfacts-attempt-accounting-20261001
+has33assets plus manifest, actualmerged352/source/API/CI/review bindings.
+Final signed evidencehead/currentCI/archive extension precede soleprimarymerge;
+no duplicate localhelper/job/request/CPUgrant/nonce/model/resources/hold/spend
+/humanlabels/orders/sitepublication/outreach. Every full owner objective stays
+ACTIVE: fourSovereignpillars, efficient distinct MCP/API/legitimateadoption,
+rights-cleared expertrefinery, governedALPHACforwardtargets/paperthenlawfulcapital,
+10Mactuallyindexed qualitycanonicals/relevantkeywords/SEO/analyzers/design/research.
+Software checks do not establish those outcomes. Observed 2026-10-01T20:12:50.540054+00:00.

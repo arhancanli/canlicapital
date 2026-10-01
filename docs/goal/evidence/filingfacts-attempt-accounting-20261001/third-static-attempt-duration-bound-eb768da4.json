@@ -1,0 +1,44 @@
+{
+  "schema": "canli.independent-attempt-duration-static-confirmation.v1",
+  "observed_at": "2026-10-01 19:40:22 UTC",
+  "source": "eb768da4c3e5644cd5d4b7fbf199e31116081b3b",
+  "reviewer_thread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "status": "P2_CONFIRMED_STATIC_SOURCE_ACK_HOLD",
+  "finding": "CC-353-ATTEMPT-DURATION-BOUND-VISIBILITY",
+  "origin": "PRIMARY source-only review; independently assessed from full frozen module and written ledger() fixture, without project execution.",
+  "module_sha256": "1e91aef6570471e12b404a0c0d8a64e2c1694d4daef4b35d33e15bcba67d5abd",
+  "line_start": 325,
+  "source_metadata": {
+    "path": "source-review-eb768da4.json",
+    "sha256": "fe5413e1acc73b9b062d9b0cd61891cfc335822c15005bda1dc4bb88afb1fd2d"
+  },
+  "scenario": {
+    "starting_fixture": "ledger() in frozen attempt-accounting.test.mjs",
+    "changes": {
+      "items[0].attempts[0].time.duration_ms": 30001,
+      "items[0].time.duration_ms": null,
+      "items[0].time.unavailable_reason": "item duration not captured"
+    },
+    "unchanged_bound": {
+      "attempts_per_item": 8,
+      "item_duration_ms": 30000
+    },
+    "alternative": "Keep original item duration3 and null unavailable reason; known attempt30001 still exceeds item cap30000."
+  },
+  "independent_source_reasoning": [
+    "timing at69 accepts finite30001<=86400000; item nullable duration with nonempty reason passes70-71. Other raw request/answer/usage/final-response bindings are unchanged.",
+    "Violations at325-329 only examine declared attempts, recorded ordinal, and row.time.duration_ms. The first two predicates remain false; null or3 is not greater than30000.",
+    "No branch compares row.attempts[].time.duration_ms with the declared item bound. Known overlong attempt latency and its cost remain in the normalized report, but bounds_violations omit it.",
+    "Missing item-duration coverage is already excluded from item-duration mean; it must also remain explicit as unknown budget coverage, rather than interpreting an empty violations array as verified within-bound."
+  ],
+  "resolution": "Add reported per-attempt duration violation with item and attempt identity when known duration exceeds declared item cap; retain raw ledgers, costs and unknown item duration. Cover unavailable and smaller item duration with bounded synthetic regression; document unknown time-bound coverage.",
+  "existing_source_and_evidence": "Six current and31 parent pins,5570 protected Git objects/374779574 Git blob bytes and5actualV0 working files verified by peer. Full author working-byte audit remains distinctly author evidence. Exact25remote cases match raw82be/Node22.23.3/full879+6+9; all7CI success does not cover this additional counterexample. No product execution by reviewer.",
+  "source_ack_or_grant_issued": false,
+  "duplicate_local_test_required": false,
+  "previous_351_actual25_unchanged": true,
+  "owner_master_goals": "All full owner objectives ACTIVE; primary sole merge/publisher, lead capacity.",
+  "reviewer_project_execution": false,
+  "reviewer_cpu_claim": false,
+  "reviewer_owned_source_edits": false,
+  "reviewer_model_resource_hold_spend": 0
+}
