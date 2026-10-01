@@ -173,6 +173,13 @@ Accuracy on all items rewards a model that answers "not reported" to everything,
 unanswerable items then score. The behaviour rows separate knowing that data is absent from
 declining to answer.
 
+These historical v0 records used legacy answer parsing and retain parsed answers and scores,
+but no raw model responses or scoring version. Their original scores cannot be independently
+rescored, so the effect of the parsing changes is unmeasured. The v1 runner retains raw answers
+and source bindings, with full-sample coverage and denominator rules documented in
+[offline scoring and replay](${REPO}/blob/main/scripts/datasets/filing-facts/EVALUATION.md).
+The historical dataset and evaluation files remain unchanged.
+
 ## Download
 
 | file | contents | size |

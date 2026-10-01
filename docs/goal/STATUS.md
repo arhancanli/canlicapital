@@ -408,3 +408,33 @@ merging it activates v27.
 4. Engine: merge PR73; the nightly publish regenerates the audits and the health
    check should turn green on the next run. Sharpe, sleeve and drawdown goals
    remain immature (six current-epoch returns, four sleeves).
+
+
+## Secondary evaluation reliability work, 2026-10-01
+
+Owner-requested cooperating goal active in thread 01a0f6ba. Primary assigned strict
+FilingFacts scoring and offline source-bound raw-answer evidence in isolated checkout
+canlicapital-secondary-20261001, assist/quality-20261001. Failing regression captured;
+implementation/repository review pending. Primary continues journal/export/MCP work.
+Every original owner objective remains active; no model run, human review or release claim.
+
+
+Secondary verified checkpoint: FilingFacts evaluation reliability implemented at signed
+472291d3, 32/32 focused, 798 + 6 full tests, 699 audited pages without errors/warnings
+and actual clean Git-free production snapshot build pass. Historical evaluations stay
+unrescorable with unchanged raw bundle bytes. PR and independent primary review pending.
+Primary journal/MCP work, all expert annotation and longer-term owner goals remain active.
+
+
+Secondary review correction checkpoint: bed645b8 addresses the primary findings, with34
+FilingFacts tests,800+6 full tests,699 page audits0/0 and clean Git-free production build
+passing. Revised signed PR head/CI and independent primary recheck remain pending. Prior
+verification remains history; raw v0 bytes/stats unchanged and unrescorable. All goals active.
+
+
+Secondary final documentation/review checkpoint (2026-10-01): remote #3438356eea7
+passed seven CI checks and has zero open CodeQL alerts. Primary requested exact numeric-only
+numbers_wrong denominator wording; guide corrected without source changes, awaiting final
+documentation-head CI and review. Independent peer review starts on frozen #344ae33ceba
+in a detached checkout.34focused/800+6full/clean Git-free checks remain implementation
+evidence, not deployment or authentic model/human outcomes. Every original goal remains active.
