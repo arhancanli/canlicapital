@@ -140,6 +140,10 @@ remain in the replacement directory and is not acknowledged as a successful
 destination. These are observed pathname/descriptor checks, with the same
 between-check same-user, filesystem and hardware limits described above.
 
-This is an unreleased repository feature. New adapter tests, wire behavior and
-exact source CI must pass before delivery; no new latency/token/field score or
-broker/model/indexing/expert outcome follows from this adapter.
+This is an unreleased repository feature. Implementation9e11d535 passes14 new
+synthetic adapter/wire cases and83 execution cases in remote Node22.23.3 CI.
+The separate root run passes880 main cases,6 prechecks and9 notification cases;
+all seven source checks succeed. [Pinned evidence](../artifacts/goal/journal-mcp-write-20261001.json)
+retains raw logs, original capture errors and precision corrections. These are
+software checks; no new latency/token/field score or broker/model/indexing/expert
+outcome follows from this adapter.

@@ -8,7 +8,8 @@ The first release, 0.1.0, is paper trading only. It ships when every item of its
   and fixed local signing key. Default advertised actions and hosted behavior remain
   unchanged. Typed pending/uncertainty errors return no success receipt, and exact
   retries preserve the original request and prefix. Fourteen synthetic adapter/wire
-  cases are written; runtime/CI acceptance remains pending. No version or release.
+  cases pass in remote Node22.23.3 CI at implementation9e11d535; the execution
+  suite passes83 cases. See the pinned repository evidence. The feature is Unreleased.
 
 - Private local journal storage foundation: supplied-key initialization and
   exclusive appends verify the chain, bind retry identity and request persistence
