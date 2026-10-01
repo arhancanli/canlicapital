@@ -205,12 +205,10 @@ class CaptureStore {
     if (typeof directory !== 'string' || !isAbsolute(directory)) fail('capture directory must be absolute');
     this.io = io; this.path = resolve(directory); this.expected = new Map(); this.total = 0; this.fd = undefined;
     try {
-      const entry = io.lstatSync(this.path, { bigint: true });
-      if (!entry.isDirectory() || entry.uid !== BigInt(process.getuid()) || (entry.mode & 0o7777n) !== 0o700n) fail('capture directory must be existing owned mode0700');
-      this.real = io.realpathSync(this.path);
       this.fd = io.openSync(this.path, fs.constants.O_RDONLY | fs.constants.O_DIRECTORY | fs.constants.O_NOFOLLOW | fs.constants.O_NONBLOCK);
       this.identity = io.fstatSync(this.fd, { bigint: true });
-      if (!sameIdentity(entry, this.identity)) fail('capture directory changed during open');
+      if (!this.identity.isDirectory() || this.identity.uid !== BigInt(process.getuid()) || (this.identity.mode & 0o7777n) !== 0o700n) fail('capture directory must be existing owned mode0700');
+      this.real = io.realpathSync(this.path);
       this.guard();
       if (create && io.readdirSync(this.path).length) fail('capture directory must be empty; existing captures are immutable');
     } catch (error) { this.close(); throw error; }

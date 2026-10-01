@@ -5256,3 +5256,19 @@ closure. No universal wall-time/latency/durability/authenticity claim. All real
 model/source-assisted execution, provider billing, resources/holds/spend, human expert
 labels, broker orders, outreach/site/npm/version changes remain unperformed. Every
 owner objective remains ACTIVE under the full Requirements/MASTER_PLAN hierarchy.
+
+
+## Collector actual37 passes; directory-descriptor correction, 2026-10-01T21:42:49.257237+00:00
+
+Original signed f78ea9c4 remoteNode22.23.3 passed all37named new cases and
+917main+6prechecks+9notification, zero failures/skips/cancellations. Raw log
+9e4aeafa/actual receipt6561fe92 are preserved. Actual CodeQLalert90
+js/file-system-race flags directory opening after a path stat at line211;
+original raw alerts8f118067 and findingcd645516 remain unchanged. Original
+software passes do not establish security acceptance; f78 delivery is held.
+Constructor now opens O_DIRECTORY/NOFOLLOW first, validates ownership/mode on
+fstat of the same descriptor, then binds the path/realpath and keeps subsequent
+identity guards. New38th test refuses public/symlink directories before capture.
+This correction is static and UNEXECUTED until its own signed-source remoteCI.
+No local project/runtime job, model/provider/resource/hold/spend/labels/order/
+outreach/site/npm/version change; all full owner goals remain ACTIVE.

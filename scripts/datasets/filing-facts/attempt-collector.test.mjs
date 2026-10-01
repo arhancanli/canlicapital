@@ -427,3 +427,14 @@ test('all protected V0 files remain byte-identical after collector fixtures', t 
   for (const [name, expected] of Object.entries(V0_SHA256)) assert.equal(sha256(fs.readFileSync(join(ROOT, V0_DIRECTORY, name))), expected);
   const s = setup(t); assert.equal(s.policy.inputs.baseline.sha256, sha256(BASE));
 });
+
+test('directory admission validates the opened descriptor and refuses public or symlink homes before capture', async t => {
+  const s = setup(t); let calls = 0;
+  fs.chmodSync(s.home, 0o755);
+  await assert.rejects(collect(s, runtime(() => { calls++; return response(); })), /existing owned mode0700/);
+  assert.equal(calls, 0); assert.deepEqual(fs.readdirSync(s.home), []);
+  fs.chmodSync(s.home, 0o700);
+  const alias = s.home + '-symlink'; fs.symlinkSync(s.home, alias); t.after(() => fs.rmSync(alias, { force: true }));
+  await assert.rejects(collectFixture(ROOT, s.inputs, s.policyBytes, alias, runtime(() => { calls++; return response(); })));
+  assert.equal(calls, 0); assert.deepEqual(fs.readdirSync(s.home), []);
+});
