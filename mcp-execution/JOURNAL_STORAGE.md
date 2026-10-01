@@ -1,7 +1,7 @@
 # Private local journal storage
 
-`src/journal-store.mjs` is a storage foundation for later paper workflows. It is
-not registered as an MCP tool. Supply an existing absolute local directory with
+`src/journal-store.mjs` is a storage foundation for paper workflows. Its API is
+not registered directly as an MCP tool. Supply an existing absolute local directory with
 mode `0700` and an Ed25519 private key held by the caller. It creates no directory,
 generates or stores no key, and chooses no account, limits, market or order.
 
@@ -92,3 +92,58 @@ No latency figure or 20 ms release target is claimed here. See the
 [Node 22 filesystem documentation](https://nodejs.org/docs/latest-v22.x/api/fs.html#fsfsyncsyncfd)
 for the API's scope. The journal standard's self-attested time, alternate-journal
 and fill-authenticity limits still apply.
+
+## Opt-in local MCP adapter
+
+The private repository draft can expose `initialize` and `append` on the existing
+`journal` tool. Set `CANLI_EXEC_JOURNAL_WRITE=1` when starting the local stdio
+server. Default mode advertises and accepts the existing head/verify/export
+schema. The hosted source does not register journal tools. Other flag values
+than absent, empty, `0` or `1` refuse startup.
+
+Prepare an existing owned `0700` home and a regular, owned, non-symlink `0600`
+Ed25519 PEM file named `journal.key` there. The adapter reads at most16KiB through
+the existing bounded descriptor reader. No key is generated, accepted in tool
+arguments or returned; the captured key buffer is cleared after the operation.
+Credentials for future brokers remain separate.
+
+```json
+{"action":"initialize","operation_id":"my-genesis","ts":"2026-10-01T00:00:00.000Z","payload":{}}
+```
+
+For account exports, put the supported account profile and explicit opening
+cash/positions in the initialization payload. A generic signed genesis alone
+does not establish a reconstructable account. Then append a supported journal
+kind, using the exact `entry_head` returned by the previous operation:
+
+```json
+{"action":"append","operation_id":"my-decision","ts":"2026-10-01T00:00:00.000Z","expected_head":"sha256:<64 hex characters from the receipt>","kind":"decision","payload":{"decision_id":"my-decision"}}
+```
+
+Writes use only the configured home; `file`, alternate key paths and inline
+keys are refused. The existing store remains authoritative for supported
+payloads, byte bounds, chain/key validation, concurrency and persistence.
+Keep the original operation ID, timestamp, kind, payload and expected head for
+an exact retry, including after later appends. Never update the expected head
+on that retry. Changed contents conflict instead of adding another operation.
+
+A successful result contains operation/request/entry/prefix bindings and the
+replay flag, without raw payloads or signing material. `JOURNAL_STORE_BUSY`,
+`JOURNAL_STORE_REFUSED` and `JOURNAL_STORE_UNCERTAIN` return an MCP error with a
+typed code and no success receipt. Uncertainty includes the underlying
+`journal_persistence_attempted` flag. Keep the original request and any pending
+files for manual recovery; the adapter neither removes a stale lock nor resubmits.
+
+Home identity is checked around key capture and after the store returns. An
+observed replacement after persistence returns uncertainty; a completed file may
+remain in the replacement directory and is not acknowledged as a successful
+destination. These are observed pathname/descriptor checks, with the same
+between-check same-user, filesystem and hardware limits described above.
+
+This is an unreleased repository feature. Implementation9e11d535 passes14 new
+synthetic adapter/wire cases and83 execution cases in remote Node22.23.3 CI.
+The separate root run passes880 main cases,6 prechecks and9 notification cases;
+all seven source checks succeed. [Pinned evidence](../artifacts/goal/journal-mcp-write-20261001.json)
+retains raw logs, original capture errors and precision corrections. These are
+software checks; no new latency/token/field score or broker/model/indexing/expert
+outcome follows from this adapter.

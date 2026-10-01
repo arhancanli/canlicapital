@@ -1,0 +1,29 @@
+{
+  "schema": "canli.fixture-collector-phase.v1",
+  "observed_at": "2026-10-01T21:07:19.092455+00:00",
+  "base": "32785aa947df51fdc1790c414c0ae9e4cf7deaaf",
+  "worktree": "/Users/arhancanli/canlicapital-filingfacts-attempt-capture-20261001",
+  "branch": "assist/filingfacts-attempt-capture-20261001",
+  "assignment_sha256": "e4588902320adf028790639125460bd6dc2bb0e6a5c40a8940f82b08370a5c6c",
+  "scope": [
+    "scripts/datasets/filing-facts/attempt-collector.mjs",
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs",
+    "scripts/datasets/filing-facts/COLLECTOR.md",
+    "package.json",
+    "docs/goal/STATUS.md",
+    "docs/goal/LOG.md"
+  ],
+  "runtime_started": false,
+  "provider_or_model_execution": false,
+  "all_owner_goals_active": true,
+  "design": [
+    "Required injected transport returns explicitly synthetic byte envelopes; no client, SDK, endpoint, credential or network default.",
+    "Separate exact-byte-bound policy: <=8 attempts,<=6 turns,<=30000ms item deadline, finite explicit conditional retry/backoff plan.",
+    "Existing owned private0700 capture directory; immutable exclusive0600 files, descriptor source/read/write checks, no automatic unlink or overwrite.",
+    "Bound exact baseline/question/accounting/packet/settings/price/collector bytes and all15 selected questions.",
+    "Hash-chained bounded pending/raw/terminal/item/final events: pending before dispatch, raw envelope before prompt truncation, terminal before any next attempt.",
+    "Read-only recovery replays supplied artifacts; interrupted pending/unknown attempts remain incomplete and are never resubmitted.",
+    "Absolute monotonic item deadlines include capture and waits; race abort/timeout with guarded late completions and no follow-up work. Trusted synchronous callbacks/OS suspension/between-check replacement cannot be forcibly preempted.",
+    "Reuse353 ledger audit/full-N/decimal-cost/null billing; explicitly refused Unicode/oversize/raw or filesystem uncertainty remains visible."
+  ]
+}

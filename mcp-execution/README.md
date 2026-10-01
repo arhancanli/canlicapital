@@ -105,6 +105,13 @@ The two tool-list receipts are `artifacts/goal/mcp-tool-tokens-20261001.json` an
 
 ## The trade journal
 
+The private source now has an explicit local writer opt-in. Start with
+`CANLI_EXEC_JOURNAL_WRITE=1` to enable `journal` actions `initialize` and `append`,
+using your existing private home and `journal.key`. The default head/verify/export
+schema stays unchanged. Exact retries bind the original request and expected head;
+pending or uncertain writes need manual recovery review. This records supplied
+statements and sends no orders. See [local writer setup and examples](./JOURNAL_STORAGE.md#opt-in-local-mcp-adapter).
+
 A trade journal (`canli.trade-journal.v0`, specified in `standards/trade-journal/`) is an
 append-only file of signed, hash-chained entries: what was decided, checked, sent, acknowledged,
 filled, marked and corrected, in order. Anyone holding the file can check that no entry was changed,

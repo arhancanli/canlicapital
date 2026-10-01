@@ -9,7 +9,18 @@ orders and makes no financial network requests. Documentation and icon URLs are 
 It reads `CANLI_HOME/limits.json` and `CANLI_HOME/KILL` for order checks; calls can tighten the
 configured limits. It reads a named journal or `CANLI_HOME/journal.jsonl` only for journal tools.
 Shortfall may read a named bounded orders JSON file. Its outputs disclose missing costs and
-incomplete account/market state. No tool writes limits or changes the source journal.
+incomplete account/market state. No tool writes limits. Default journal head/verify/export
+does not change the source journal.
+
+Explicit local startup with `CANLI_EXEC_JOURNAL_WRITE=1` adds `initialize` and `append`
+actions to journal. They use the existing owned `0700` home and its bounded private
+`0600` Ed25519 `journal.key`, never inline signing material or an alternate file.
+The adapter clears captured key bytes, returns only receipts and reuses the delivered
+private store's chain, retry, lock and persistence checks. Pending locks and uncertain
+writes require manual review; nothing automatically resubmits or deletes pending evidence.
+Observed home replacements around key capture or after persistence refuse success;
+already written files can remain. The same-user changes entirely between checks and
+device persistence limits remain. See `JOURNAL_STORAGE.md` for the exact boundary.
 
 Journal reads require a regular file of at most 256 MiB, and accounting exports are limited to
 100,000 entries. Reads use one descriptor, a bounded buffer and before/after metadata checks;

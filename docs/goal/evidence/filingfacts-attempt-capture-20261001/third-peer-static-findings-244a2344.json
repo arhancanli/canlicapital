@@ -1,0 +1,102 @@
+{
+  "schema": "canlicapital-filingfacts-collector-independent-static-findings-v1",
+  "observed_at_UTC": "2026-10-01 21:51:01 UTC",
+  "reviewer_thread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "status": "HOLD_TWO_INDEPENDENT_STATIC_P2_FINDINGS",
+  "scope": "Source reasoning and arithmetic traces only. No project import, test, Node, project CLI, browser, network, helper job, provider/model call or capacity claim. No owned-code edits.",
+  "source_checkout": "/Users/arhancanli/canlicapital-filingfacts-attempt-capture-20261001",
+  "frozen_head": "244a23449d0f130274480eaf8170992c2e8a6983",
+  "frozen_tree": "9f4749d61c2eece113741d877c0b27544683531b",
+  "source_file": "scripts/datasets/filing-facts/attempt-collector.mjs",
+  "frozen_module": {
+    "bytes": 48982,
+    "sha256": "c678facdd0bbf7239b4091b85b99eb5324e5061cff926df382c9977a0bad55e2",
+    "working_equal_frozen_Git_observed": true
+  },
+  "predecessor": {
+    "head": "f78ea9c40f11b89cc5d25173a57bfb76416ccb99",
+    "tree": "72bf3b547dc26fb716af81daf38facef7d350a86",
+    "module_bytes": 49115,
+    "module_sha256": "d8a8a9210cea07e85fb8ac5f5d9df59cb9438defafc1fe9771bafde234877543"
+  },
+  "unchanged_relevant_functions": [
+    {
+      "name": "boundedCall",
+      "sha256": "55a0d0574668257a1de78e7f9bb86382c69860982f960f06ad408925726eccf2",
+      "byte_equal_f78_and_244": true
+    },
+    {
+      "name": "recoverFixture",
+      "sha256": "010ff6bca9208654791e500c034525523fc64356832389951bb8d23a5f1a12e6",
+      "byte_equal_f78_and_244": true
+    }
+  ],
+  "known_directory_admission_finding": {
+    "classification": "Existing author/CodeQL90 finding, not a new independent semantic finding",
+    "f78_location": 211,
+    "244_correction_location": 208,
+    "static_delta": "Descriptor opened with O_DIRECTORY/O_NOFOLLOW before fstat ownership/mode admission and post-path identity guard. Narrow constructor correction is source-consistent; no runtime/CI approval inferred.",
+    "historical_failures_retained": true
+  },
+  "findings": [
+    {
+      "id": "CC-356-DISPATCH-DEADLINE-MICROTASK",
+      "priority": "P2",
+      "location": {
+        "file": "scripts/datasets/filing-facts/attempt-collector.mjs",
+        "line": 529,
+        "related_lines": [
+          514,
+          527,
+          602,
+          605
+        ]
+      },
+      "title": "Queued fixture invocation does not recheck the absolute monotonic deadline",
+      "trigger": "Already queued microtask work advances the injected/default monotonic clock after the scheduler's snapshot but before its queued task continuation. No timer callback or abort event has executed.",
+      "source_fact": "boundedCall accepts a numeric remaining snapshot. Its Promise.resolve().then checks only settled before task(controller.signal); it has no fresh observe/deadline check. collectFixture snapshots before constructing/scheduling the request.",
+      "static_trace": [
+        "Item starts at monotonic0 with deadline30000. Pending capture and implementation/file verification succeed.",
+        "A trusted IO hook queues microtask M during acknowledged pending/readback/verification. M will set a fixture monotonic tick to30001; it has not run yet.",
+        "Scheduler observes tick0, calls boundedCall with remaining30000, installs the timeout, and queues task microtask T behind M.",
+        "collectFixture awaits. FIFO microtasks execute M before T, so tick is now30001 while settled is stillfalse. T invokes the transport anyway because it tests only settled.",
+        "A promptly resolved fixture can win before a timer callback. Later post-terminal checks record an abort/overrun, but the late invocation has already occurred."
+      ],
+      "impact": "The collector can begin a fixture attempt after the bound absolute deadline. This concerns admission after earlier work finishes, not forcibly preempting a synchronous trusted callback; documenting non-preemption does not supply the missing admission check.",
+      "minimal_correction": "Pass a frozen absolute deadline plus the caller observe function (or an equivalent fresh admission predicate) into boundedCall and check current monotonic availability/deadline and abort inside the queued continuation immediately before task invocation. Preserve explicit timeout/aborted terminal and no follow-up semantics; do not introduce a new product/helper scope.",
+      "bounded_regression_proposal": "Private synthetic IO hook queues one queueMicrotask that advances a deterministic tick beyond the item deadline before the queued transport. Assert transport_calls0, no raw response/known usage, explicit aborted/timeout/pending outcome as defined, and read-only recovery. No real sleep, busy loop, provider or resource call required.",
+      "runtime_reproduction_performed": false
+    },
+    {
+      "id": "CC-356-RECOVERY-EVENT-BOUND",
+      "priority": "P2",
+      "location": {
+        "file": "scripts/datasets/filing-facts/attempt-collector.mjs",
+        "line": 648,
+        "related_lines": [
+          18,
+          480,
+          661,
+          662
+        ]
+      },
+      "title": "Null-packet recovery can accept513events under a documented512event cap",
+      "trigger": "Closed fixture with packets=null has six metadata files: baseline/questions/accounting/configuration/policy/manifest. A contiguous otherwise valid513event chain is below32MiB.",
+      "source_fact": "recoverFixture checks total names.length > MAX_EVENTS+7, then iterates all eventNames without an independent MAX_EVENTS check. Journal.emit refuses512+ on creation, but recovery does not use emit.",
+      "static_trace": [
+        "MAX_EVENTS=512. With packets=null the metadata count is6.",
+        "Six metadata files plus513 event files is519 names. 519 > 512+7 evaluatesfalse, so the only count guard permits it.",
+        "eventNames contains513; the loop reads, binds and replays all513 if the original inputs/chain/transitions/aggregate bytes are valid.",
+        "A policy with15items and8 explicitly planned HTTP-error attempts plus finite backoffs can generate more than512 valid interrupted transitions: each fully ended8attempt item has40 events (start, first3, seven times5, end). Twelve full items give480; the seventh raw on item13 is event513, with a pending state and no finalization. Small frames stay below32MiB.",
+        "The normal writer stops before513, but read-only recovery of an externally retained valid chain can admit that otherwise prohibited frame."
+      ],
+      "impact": "Recovery's declared finite event contract differs from creation by one event when packets are absent. No unbounded resource claim or provider/model outcome is inferred.",
+      "minimal_correction": "Independently refuse eventNames.length > MAX_EVENTS before reading any event, while retaining total file-count/aggregate-byte/name/chain checks.",
+      "bounded_regression_proposal": "Use a bounded private recovery fixture/facade exposing six expected metadata names and513 contiguous event names. Assert the specific event-count refusal before event file reads, without512 live transport calls or a large-data experiment. Cover512 admissible count separately under valid retained fixtures as appropriate.",
+      "runtime_reproduction_performed": false
+    }
+  ],
+  "runtime_evidence_boundary": "Original37 remote passes and corrected38 evidence are separate author CI observations; this receipt does not execute or certify either run. Missing new regressions are not filled by historical passes.",
+  "independent_source_review_not_human_expert_annotation": true,
+  "all_full_owner_goals": "ACTIVE"
+}

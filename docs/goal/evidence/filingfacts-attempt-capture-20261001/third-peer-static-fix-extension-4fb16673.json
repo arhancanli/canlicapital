@@ -1,0 +1,62 @@
+{
+  "schema": "canlicapital-filingfacts-collector-correction-static-extension-v1",
+  "observed_at_UTC": "2026-10-01 21:59:19 UTC",
+  "reviewer_thread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "frozen_head": "4fb16673ff0ffccd788e0df40c2c242b5ab79393",
+  "tree": "37572690bbbecea1adc334dd18413a741cae15aa",
+  "module": {
+    "path": "scripts/datasets/filing-facts/attempt-collector.mjs",
+    "bytes": 49449,
+    "sha256": "1b15048140fadc1c1bd5dcd7a8b49f136fefd5ac64ba55a87ad1ae1473446d1c"
+  },
+  "source_manifest_sha256": "eae5f917e25b50830c87ba145cd8332e5d5e8c9a1645ff9111088d40af61a341",
+  "prior_independent_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/static-findings-244a2344.json",
+    "sha256": "cd48166133325682c9485a2f41dfe00de8b425f675bf2f8cd68c8be82c1c6012",
+    "retained_unchanged": true
+  },
+  "closed_original_static_findings": [
+    {
+      "id": "CC-356-DISPATCH-DEADLINE-MICROTASK",
+      "status": "CORRECTED_IN_SOURCE_STATIC_ONLY",
+      "evidence": "Absolute deadline/observe passed to transport and wait. Queued continuation reads fresh remaining clock and refuses unavailable/expired dispatch. Newcase39 exercises one queued tick jump with transport_calls0/no raw/unknown usage; not executed by peer."
+    },
+    {
+      "id": "CC-356-RECOVERY-EVENT-BOUND",
+      "status": "CORRECTED_IN_SOURCE_STATIC_ONLY",
+      "evidence": "Actual eventNames.length>512 refused before any input/event open. Newcase40 rejects513 with0eventopens and512 crosses into bounded parsing (ENOENT after2opens), explicitly not a valid512-event replay claim."
+    }
+  ],
+  "new_finding": {
+    "id": "CC-356-QUEUED-ABORT-REENTRANCY",
+    "priority": "P2",
+    "file": "scripts/datasets/filing-facts/attempt-collector.mjs",
+    "line": 533,
+    "related_lines": [
+      521,
+      526,
+      532,
+      538
+    ],
+    "title": "A synchronous abort inside the fresh clock callback still permits queued invocation",
+    "trigger": "A trusted injected monotonic or wall callback aborts the real external AbortController during the fresh observe() at queued dispatch and returns a valid clock. Callbacks remain trusted; they need not be hostile to request cancellation.",
+    "source_fact": "The explicit-abort/settled tests precede observe(). Native abort listener synchronously calls finish, setting settled=true and resolving the aborted outcome. After observe returns a positive remaining value, execution reaches task(controller.signal) without a second settled/abort test.",
+    "static_trace": [
+      "Pending capture/verification succeeds with clock0/deadline30000 and external signal not aborted.",
+      "An IO hook queues a microtask setting armObserverAbort=true. It runs before the queued task continuation, without advancing the clock.",
+      "Inside the queued continuation, settled=false and external.aborted=false pass.",
+      "The fresh trusted observe callback sees the armed flag, calls externalController.abort(), then returns monotonic0 and a valid wall timestamp.",
+      "The already registered native abort handler executes synchronously: finish chooses aborted, marks settled=true, aborts the internal signal and resolves the outcome.",
+      "observe returns valid positive remaining; current<=0 is false, and task(controller.signal) is still invoked despite the abort outcome already winning.",
+      "The collector records an aborted attempt and ignores any later result, but transport/wait invocation has occurred after explicit cancellation."
+    ],
+    "impact": "Explicit abort cannot prevent this new dispatch; it only suppresses the returned result. This is admission after a trusted callback returns, not preemption or sandboxing of the callback.",
+    "minimal_correction": "Recheck settled and external abort immediately after observe() and before invoking task. Return undefined if abort already settled the operation; otherwise route a newly observed abort through abort(). Keep current deadline/unavailable checks and loser handling.",
+    "bounded_regression_proposal": "Private synthetic pending-close hook queues one microtask arming a monotonic callback that calls the actual AbortController.abort() once and returns0. Assert transport_calls0, aborted outcome, no raw event/known usage, and unchanged read-only recovery. No sleep/spin/provider/local execution needed.",
+    "runtime_reproduction_performed": false
+  },
+  "status": "HOLD_NEW_STATIC_ABORT_ADMISSION_P2_ORIGINAL_TWO_SOURCE_CORRECTIONS_ACCEPTED",
+  "runtime_boundary": "40 written cases and separately retained remote CI do not cover this new trace. Peer has run no Node/import/test/CLI/helper/project/browser/network job.",
+  "no_owned_source_edits": true,
+  "all_full_owner_goals": "ACTIVE"
+}

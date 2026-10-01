@@ -1,0 +1,55 @@
+{
+  "schema": "canli.collector-ci-source-fidelity.v1",
+  "observed_at": "2026-10-01T21:48:11.677620+00:00",
+  "source": "244a23449d0f130274480eaf8170992c2e8a6983",
+  "signed_source_tree": "9f4749d61c2eece113741d877c0b27544683531b",
+  "tested_merge": "b1d5c98ca3aebafe5ab6bf79f7a74b2f6db8636e",
+  "tested_merge_tree": "9f4749d61c2eece113741d877c0b27544683531b",
+  "tree_equal": true,
+  "ci_head_exact": true,
+  "all_seven_success": true,
+  "actual_remote_new_passes": 38,
+  "full_suite": "918+6pre+9notification",
+  "node": "22.23.3",
+  "codeql_paginated_alerts": [
+    []
+  ],
+  "codeql_open_objects": 0,
+  "original37_passes_and_alert90_preserved": true,
+  "independent_static_review": "pending",
+  "local_runtime": false,
+  "files": {
+    "source-244a2344.json": {
+      "bytes": 1748,
+      "sha256": "cf816c6a5dafd3f218700aef1b2484b09cab38177c29b874ec7628f3c08ada02"
+    },
+    "remote-244a2344-actual-test-receipt.json": {
+      "bytes": 17887,
+      "sha256": "dc3a0f3813981cb6baf25e02f941ff4544e18f4672173a2a6e8cef71c2a0ab34"
+    },
+    "remote-244a2344-vite.log": {
+      "bytes": 1089454,
+      "sha256": "c2d07ecb4b281a0d6e324931e6ab5a31df49d54ff1806ba635aa6deaf1368a21"
+    },
+    "356-pr-244a-final.json": {
+      "bytes": 2312,
+      "sha256": "1fdd6fbca40a99f9d7d637eb76490b705a8d5cef82c3b00d7880effd049a00b3"
+    },
+    "remote-244a2344-vite-job.json": {
+      "bytes": 3700,
+      "sha256": "26a9985b9a4f37f80eb2cae202b62c65969588f896764e2f969fb8d06912c8ed"
+    },
+    "remote-244a2344-tested-merge.json": {
+      "bytes": 120841,
+      "sha256": "a12ffad66e97304611863dd9bb6e83c701c84780fdd5557742cd58cb81d15659"
+    },
+    "remote-244a2344-codeql-alerts.json": {
+      "bytes": 4,
+      "sha256": "cf1cbb66a638b4860a516671fb74850e6ccf787fe6c4c8d29e9c04efe880bd05"
+    },
+    "remote-244a2344-codeql-analyses.json": {
+      "bytes": 2373,
+      "sha256": "5ddec7ffba76df0f958ecc6b22d3985876e6c4ddc94fc99af442d43e687c9288"
+    }
+  }
+}

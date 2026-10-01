@@ -1,0 +1,9 @@
+{
+  "schema": "canlicapital-peer-metadata-orchestration-error-v1",
+  "retained_error": "Script error: SyntaxError: Numeric separators are not allowed at the end of numeric literals",
+  "phase": "First attempt to assemble own JSON finding metadata in functions.exec",
+  "cause": "Unquoted numeric-leading property244_correction_location in JavaScript metadata object",
+  "effect": "V8 rejected script before evaluation; no tool mutation, output receipt or project execution occurred",
+  "correction": "Quoted metadata property and reran own receipt assembly; source reasoning and source byte pins unchanged",
+  "project_or_review_finding": false
+}

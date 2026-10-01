@@ -10,6 +10,7 @@
 // check_orders reads both on every call; size_position reads limits.json.
 // Journal head/verify only read. Export can create private files under exports,
 // including retained partial files on failure; it never edits the source journal.
+// Local initialize/append require CANLI_EXEC_JOURNAL_WRITE=1 and the owner's journal.key.
 import { existsSync, readFileSync, realpathSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -22,6 +23,7 @@ import { effectiveLimits } from "./core/js/pretrade-core.js";
 import { SERVER_INFO, SERVER_NAME, SERVER_VERSION } from "./info.mjs";
 import { advertised, CHECK_ORDERS_DESCRIPTION, CHECK_ORDERS_JSON, CHECK_ORDERS_OUTPUT, checkOrdersInput, limitsDigest, limitsFileSchema, parseInput, runCheckOrders } from "./check-orders.mjs";
 import { JOURNAL_DESCRIPTION, JOURNAL_JSON, JOURNAL_OUTPUT, journalInput, runJournal } from "./journal.mjs";
+import { configuredJournalWrites, isJournalWrite, JOURNAL_WRITABLE_JSON, JOURNAL_WRITABLE_OUTPUT, JOURNAL_WRITE_DESCRIPTION, JOURNAL_WRITE_INSTRUCTIONS, journalWritableInput, runJournalWrite } from "./journal-write.mjs";
 import { runSizePosition, SIZE_POSITION_DESCRIPTION, SIZE_POSITION_JSON, SIZE_POSITION_OUTPUT, sizePositionInput } from "./size-position.mjs";
 import { runShortfall, SHORTFALL_DESCRIPTION, SHORTFALL_JSON, SHORTFALL_OUTPUT, shortfallInput } from "./measure-shortfall.mjs";
 
@@ -41,11 +43,14 @@ export function configuredToolsets(value) {
   return names;
 }
 
-export function createSession({ home, toolsets, now } = {}) {
+export function createSession({ home, toolsets, now, journalWrites } = {}) {
+  const writes = journalWrites === undefined ? configuredJournalWrites(process.env.CANLI_EXEC_JOURNAL_WRITE) : journalWrites;
+  if (typeof writes !== 'boolean') throw new Error('journalWrites must be boolean');
   return {
     home: home ?? process.env.CANLI_HOME ?? join(homedir(), ".canli"),
     toolsets: toolsets ?? configuredToolsets(process.env.CANLI_EXEC_TOOLSETS),
     now: now ?? (() => new Date()),
+    journalWrites: writes,
   };
 }
 
@@ -87,6 +92,14 @@ export async function toolSizePosition(session, args) {
 }
 
 export async function toolJournal(session, args) {
+  if (isJournalWrite(args?.action)) {
+    try { return asText(runJournalWrite(args, { home: session.home, enabled: session.journalWrites })); }
+    catch (error) {
+      if (!['JOURNAL_STORE_UNCERTAIN', 'JOURNAL_STORE_BUSY', 'JOURNAL_STORE_REFUSED'].includes(error.code)) throw error;
+      return { ...asText({ action: args.action, error: { code: error.code, message: error.message,
+        ...(error.code === 'JOURNAL_STORE_UNCERTAIN' ? { journal_persistence_attempted: error.journal_persistence_attempted } : {}) } }), isError: true };
+    }
+  }
   return asText(runJournal(parseInput(journalInput, args, "journal"), { home: session.home, now: session.now }));
 }
 
@@ -108,7 +121,11 @@ export function registerTools(server, session) {
     server.registerTool("measure_shortfall", { title: "Measure execution shortfall", annotations: { title: "Measure execution shortfall", ...CHECK }, description: SHORTFALL_DESCRIPTION, inputSchema: advertised(shortfallInput, SHORTFALL_JSON), outputSchema: SHORTFALL_OUTPUT }, (args) => toolShortfall(args));
   }
   if (enabled.has("journal")) {
-    server.registerTool("journal", { title: "Trade journal", annotations: { title: "Trade journal", ...CHECK, readOnlyHint: false, idempotentHint: false }, description: JOURNAL_DESCRIPTION, inputSchema: advertised(journalInput, JOURNAL_JSON), outputSchema: JOURNAL_OUTPUT }, (args) => toolJournal(session, args));
+    const input = session.journalWrites ? journalWritableInput : journalInput;
+    const json = session.journalWrites ? JOURNAL_WRITABLE_JSON : JOURNAL_JSON;
+    const description = session.journalWrites ? JOURNAL_WRITE_DESCRIPTION : JOURNAL_DESCRIPTION;
+    const output = session.journalWrites ? JOURNAL_WRITABLE_OUTPUT : JOURNAL_OUTPUT;
+    server.registerTool("journal", { title: "Trade journal", annotations: { title: "Trade journal", ...CHECK, readOnlyHint: false, idempotentHint: false }, description, inputSchema: advertised(input, json), outputSchema: output }, (args) => toolJournal(session, args));
   }
 }
 
@@ -131,7 +148,8 @@ const isMain = (() => {
 
 if (isMain) {
   const session = createSession();
-  const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
+  const instructions = session.journalWrites ? `${SERVER_INSTRUCTIONS} ${JOURNAL_WRITE_INSTRUCTIONS}` : SERVER_INSTRUCTIONS;
+  const server = new McpServer(SERVER_INFO, { instructions });
   registerTools(server, session);
   registerResources(server, session);
   await server.connect(new StdioServerTransport());

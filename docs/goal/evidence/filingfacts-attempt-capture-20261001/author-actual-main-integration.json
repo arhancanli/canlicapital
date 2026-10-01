@@ -1,0 +1,93 @@
+{
+  "schema": "canli.collector-actual-main-integration.v1",
+  "observed_at": "2026-10-01T22:58:35.991164+00:00",
+  "source": "7a405186341ebb83672df0e9d7b8118198632cfb",
+  "source_tree": "7bc2d52b812dd16c037a9d22e75e18b9c30a20c2",
+  "actual_main": "6fcce8413514ca7a4ee94cc8b5979dbf2f141b38",
+  "actual_main_tree": "cd6883aee56c7dcffed4475e3c325a26cfbb7f00",
+  "actual_pr355": {
+    "headRefOid": "9f769d3283c00191276c399898641e86e9c931c5",
+    "mergeCommit": {
+      "oid": "6fcce8413514ca7a4ee94cc8b5979dbf2f141b38"
+    },
+    "mergedAt": "2026-10-01T22:57:43Z",
+    "state": "MERGED",
+    "url": "https://github.com/arhancanli/canlicapital/pull/355"
+  },
+  "raw_pr355_pin": {
+    "bytes": 234,
+    "sha256": "bfc4db0eebf59d69d7785ce03904ca523131785aa66e14fcf8a4b9a288177fee"
+  },
+  "four_product_files_equal_reviewed45_case_source": {
+    "scripts/datasets/filing-facts/attempt-collector.mjs": {
+      "bytes": 52508,
+      "sha256": "21a3fb735a42cb004e61bd5015d44ab305718dde8b33c81cb792a548f16693d2"
+    },
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs": {
+      "bytes": 39904,
+      "sha256": "6778f9cd83db32d4cd5f4bf5807ec5579c7aef88986f068bd9fdb1c9b5279799"
+    },
+    "scripts/datasets/filing-facts/COLLECTOR.md": {
+      "bytes": 8555,
+      "sha256": "6141bbce6a482d1e6e8b0c9f6f0b57941ec9a432fe8d79e1f0a08422f5a38555"
+    },
+    "package.json": {
+      "bytes": 11828,
+      "sha256": "896e565ea59dabea9cc06a2c7c454ff148ea6c7284a7c692d54224c542b9eaf4"
+    }
+  },
+  "goal_histories": {
+    "docs/goal/STATUS.md": {
+      "base": {
+        "bytes": 73356,
+        "sha256": "91b4afebed407c8b8bc44d28ee264dd3b8ce5d7765fd8828041a6be35ded0a11"
+      },
+      "main": {
+        "bytes": 77099,
+        "sha256": "2aef8340c68bd55b15ce1eb93c770f3b505d38ee20d2b58f85f951dc4173897c"
+      },
+      "secondary": {
+        "bytes": 81860,
+        "sha256": "2cb6fb36012ef07daa29b77517f3e83c9b2ee291fefd82b6d7468601fd939388"
+      },
+      "combined_before_final_note": {
+        "bytes": 85603,
+        "sha256": "3867c16b068ecd1002b14188067e3c9d2938e81f7139151714e508910d6e3a64"
+      },
+      "exact_main_prefix_and_secondary_suffix_preserved": true
+    },
+    "docs/goal/LOG.md": {
+      "base": {
+        "bytes": 348720,
+        "sha256": "c7f435060f609f45f7ae8446a946f2402e9d5f5845f3131487779b563b63cc2f"
+      },
+      "main": {
+        "bytes": 352463,
+        "sha256": "2be5ffdcccc7e58fa16780c804c983f891c11212d6bf7fc37536fde6c046069e"
+      },
+      "secondary": {
+        "bytes": 357224,
+        "sha256": "edcb34fbaf3f581819fa09700eff735cce7c7e93fa14de8b949d6fd950c447e7"
+      },
+      "combined_before_final_note": {
+        "bytes": 360967,
+        "sha256": "1a77750271b796ffe76f1fe78603ba85f54eeb712b733e8641aa8cf821896571"
+      },
+      "exact_main_prefix_and_secondary_suffix_preserved": true
+    }
+  },
+  "protected_actual_main_files": 5752,
+  "protected_actual_main_bytes": 377744448,
+  "actual_working_blob_bytes_and_modes_verified": true,
+  "actual_main_tree_inventory": {
+    "bytes": 649059,
+    "sha256": "7c12e540fbda0547589fd19cee9cc9f3022ad936f78b1999962ca012675134c2"
+  },
+  "conflicts": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md"
+  ],
+  "archive_assembly_not_yet_started": true,
+  "local_project_execution": false,
+  "full_owner_goals": "ACTIVE"
+}

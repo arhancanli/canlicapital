@@ -1,0 +1,153 @@
+{
+  "schema": "canli.collector-primary-static-review.v1",
+  "observed_at": "2026-10-01T21:53:11.530726+00:00",
+  "head": "244a23449d0f130274480eaf8170992c2e8a6983",
+  "tree": "9f4749d61c2eece113741d877c0b27544683531b",
+  "signature": "G",
+  "base": "32785aa947df51fdc1790c414c0ae9e4cf7deaaf",
+  "own_review_status": "HOLD_ONE_STATIC_P2",
+  "six_path_scope": {
+    "docs/goal/LOG.md": {
+      "bytes": 352534,
+      "sha256": "63e2cd650758900aa1cf08205dae89e9470277434be1ad980d6bfcbfde01271a",
+      "git_blob": "5cc0e83e942421658285765d77e9cf18b0f4c8e3"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 77170,
+      "sha256": "1a1199c76ae1a205bdeed0f5ba7296539db344ac9249dd743f6105254f8abdcf",
+      "git_blob": "041c71643948e30aba436eaf1533588f9b9e6659"
+    },
+    "package.json": {
+      "bytes": 11828,
+      "sha256": "896e565ea59dabea9cc06a2c7c454ff148ea6c7284a7c692d54224c542b9eaf4",
+      "git_blob": "1bcddb9c82ed45aeb9971de4ab720eacb8fb0eb9"
+    },
+    "scripts/datasets/filing-facts/COLLECTOR.md": {
+      "bytes": 7047,
+      "sha256": "b4cf5bdb8590b316861ff2e3e27fd6a4cbf51ea43f6e50ce642858acf0936381",
+      "git_blob": "187ee383b3b03f7fbcac739c2cd6d7a2ce3153b6"
+    },
+    "scripts/datasets/filing-facts/attempt-collector.mjs": {
+      "bytes": 48982,
+      "sha256": "c678facdd0bbf7239b4091b85b99eb5324e5061cff926df382c9977a0bad55e2",
+      "git_blob": "002c6b7ab96cfe88e176ef00c47668e20eb12880"
+    },
+    "scripts/datasets/filing-facts/attempt-collector.test.mjs": {
+      "bytes": 33049,
+      "sha256": "e1d14842054c0fd0821ec9ab0e6742937c8ddc8d71821930fb1109d1d84c40f7",
+      "git_blob": "b5fb1acd5bb028b17dabd96a47c089488617305c"
+    }
+  },
+  "protected_git_tree": {
+    "count": 5712,
+    "bytes": 377535699,
+    "mode_type_object_size_equal": true,
+    "working_bytes_not_independently_audited": true
+  },
+  "written_test_names": [
+    "separate policy binds all fifteen questions, exact inputs and unchanged source bytes",
+    "full cohort saves pending before dispatch and recovers byte-equal raw ledger/report without billing claims",
+    "partial capture keeps the full selected denominator and unknown totals",
+    "explicit429 retry preserves both identities, raw error usage and exact supplied-rate subtotal",
+    "429 and unmatched HTTP errors never create an unplanned retry",
+    "transport exception retry retains the unavailable first usage and does not zero-fill it",
+    "missing usage, price, model and response identity remain unavailable",
+    "different observed model prevents applying a supplied synthetic price",
+    "malformed raw response body is preserved with unknown answer and usage",
+    "invalid UTF-8 envelope bytes remain exact raw evidence before explicit refusal",
+    "duplicate decoded envelope members are refused after exact raw capture",
+    "unpaired callback string Unicode is refused without replacement-byte encoding",
+    "bounded envelope oversize refusal records length without invented raw bytes or digest",
+    "oversized raw response inside a bounded envelope is retained separately and refused explicitly",
+    "MCP fixture raw tool result is saved before derivation of the shorter supplied result",
+    "tool parity mismatch stays in raw evidence and refuses an accepted ledger result",
+    "conversation continuations are explicit separate turns rather than retries",
+    "absolute deadline includes pending capture work and prevents a late dispatch",
+    "timeout finalization ignores an abort-ignoring late fixture and starts no follow-up work",
+    "explicit abort during backoff keeps known429 usage and prevents resubmission",
+    "finite explicit backoff records the interval and an early injected wait is refused",
+    "capture after a successful raw response preserves usage while exposing a marker deadline breach",
+    "interruption before terminal persistence keeps pending/unknown state and recovery never dispatches",
+    "pending close failure yields no acknowledgment and dispatches no fixture",
+    "short pending write leaves a retained partial file and refuses recovery without dispatch",
+    "pending readback failure is uncertain and cannot acknowledge or dispatch",
+    "pending fsync failure is uncertain and starts no fixture",
+    "final directory close failure does not return a success receipt despite recoverable final files",
+    "directory substitution is refused and unrelated replacement files are never unlinked",
+    "private file permissions, symlinks and hard links are refused by read-only recovery",
+    "event edits, missing sequence and final report tampering are refused",
+    "policy/input changes and duplicate projection members refuse before filesystem effects",
+    "invalid limits, turn/retry identities and real source-assisted/provider labels are rejected",
+    "changed loaded collector source after callback stops terminal acknowledgment and follow-up",
+    "unavailable or backwards clocks prevent dispatch while missing wall time stays reasoned",
+    "nonempty directory and missing injected transport never overwrite or start a capture",
+    "all protected V0 files remain byte-identical after collector fixtures",
+    "directory admission validates the opened descriptor and refuses public or symlink homes before capture"
+  ],
+  "directory_correction": {
+    "prior_head": "f78ea9c40f11b89cc5d25173a57bfb76416ccb99",
+    "open_descriptor_first": true,
+    "same_fd_private_admission": true,
+    "post_open_path_and_realpath_guards": true,
+    "guide_and_package_unchanged": true,
+    "original_CodeQL90_author_receipt_preserved": true,
+    "reviewer_runtime_probe": false
+  },
+  "other_static_semantics": "Pending capture precedes dispatch, raw envelope persistence precedes UTF-8/schema/Unicode/truncation interpretation, terminal persistence precedes follow-up, immutable chain and full-selected-denominator353 audit, unknown coverage/null billing, same-FD file checks/exclusive creation/fsync/readback/close-once/no-unlink and read-only no-resubmit recovery match source and documented cooperative/trusted-runtime limits. No extra blocking finding in those scoped paths.",
+  "finding": {
+    "id": "CC-356-EVENT-CAP-ADMISSION",
+    "priority": "P2",
+    "status": "OPEN",
+    "basis": "Independent frozen-source analysis only; no project import, test, CLI, transport or mutation probe",
+    "source": "244a23449d0f130274480eaf8170992c2e8a6983",
+    "locations": {
+      "policy_admission": "attempt-collector.mjs:157-186",
+      "global_cap": "attempt-collector.mjs:480",
+      "dispatch_boundary": "attempt-collector.mjs:599-611"
+    },
+    "valid_symbolic_plan": {
+      "selected_items": 15,
+      "attempts_per_item": 8,
+      "turns_per_item": 6,
+      "item_duration_ms": 30000,
+      "all_attempt_turns": 1,
+      "later_attempt_trigger": "http_error",
+      "http_statuses": [
+        429
+      ],
+      "retry_of": "immediately preceding ordinal",
+      "same_request_raw": true,
+      "delay_ms": 1,
+      "reason": "Explicit synthetic retry",
+      "successful_fixture_return": "small valid synthetic429 envelope"
+    },
+    "event_count_proof": {
+      "per_item": {
+        "item_start": 1,
+        "pending_raw_terminal": 24,
+        "wait_wait_done": 14,
+        "item_end": 1
+      },
+      "per_item_total": 40,
+      "full_plan_plus_final": 601,
+      "capture_cap": 512,
+      "first_12_items_events": 480,
+      "item_13": {
+        "start": 481,
+        "attempt_6_terminal": 509,
+        "attempt_7_wait": 510,
+        "attempt_7_wait_done": 511,
+        "attempt_7_pending": 512,
+        "attempt_7_raw_required": 513
+      }
+    },
+    "consequence": "prepare accepts this plan. After pending512 is acknowledged, existing audit/source/file guards run and boundedCall invokes the fixture. A returned bounded raw envelope then needs raw513, but Journal.emit refuses before writing it because frames.length>=512. Known finite capacity can therefore cause an avoidable dispatch with no retained returned raw bytes; the operation becomes uncertain and recovery retains pending/unknown state. No execution or billing claim is made.",
+    "requested_change": "Reject demonstrably oversized finite plans before filesystem effects or dispatch, or reserve the mandatory remaining raw/terminal/item/final events before each dispatch and stop explicitly without sending work that cannot be captured. Add a regression for this allowed maximum retry plan and prove zero fixture calls/unchanged empty directory on admission refusal, or prove reserved termination captures on the alternative design.",
+    "other_budgets": "32MiB capture/8MiB ledger caps remain separate; this finding establishes the discrete event-cap failure without assuming response size, synchronous timing, provider behavior or a runtime measurement."
+  },
+  "author_remote_38_claim": "Reported separately by author; not a reviewer runtime pass. Own exact CI extension remains separate.",
+  "reviewer_project_execution": false,
+  "local_cpu_job_or_grant": false,
+  "model_provider_resources_holds_spend_labels_orders_publication": false,
+  "full_owner_goal": "ACTIVE"
+}
