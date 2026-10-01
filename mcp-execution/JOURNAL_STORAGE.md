@@ -59,6 +59,10 @@ journal before deciding how to recover. Do not delete a lock based solely on a
 PID, age or a failed response. This foundation supplies no recovery command,
 broker submission, truncation, automatic replay or reconciliation policy.
 Failure cleanup never unlinks a journal or an unrelated replacement lock.
+Each descriptor is closed at most once. A close error returns uncertainty and
+no acknowledgement; the descriptor may already have been closed by the system.
+There is no blind retry on its numeric descriptor. Other held descriptors still
+receive their own close attempt.
 
 The supported model is cooperating writers on a local POSIX filesystem that
 implements exclusive creation and directory `fsync`. Network filesystems and

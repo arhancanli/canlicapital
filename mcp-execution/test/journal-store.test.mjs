@@ -276,3 +276,28 @@ test('exclusive genesis creation interrupted after the syscall retains explicit 
   assert.equal(read(file).bytes.length, 0);
   assert.equal(fs.existsSync(join(dir, 'journal.append.lock')), true);
 });
+
+test('descriptor close errors preserve uncertainty and never retry an ambiguous descriptor', t => {
+  for (const target of ['journal', 'lock', 'directory', 'validation']) {
+    const s = setup(t), before = read(s.file), calls = new Map();
+    let closedFd;
+    patch({ closeSync: original => fd => {
+      calls.set(fd, (calls.get(fd) ?? 0) + 1);
+      const stat = fs.fstatSync(fd, { bigint: true });
+      const chosen = target === 'directory' ? stat.isDirectory() : target === 'lock' ?
+        stat.isFile() && stat.ino !== before.stat.ino : stat.ino === before.stat.ino;
+      original(fd);
+      if (chosen && closedFd === undefined) {
+        closedFd = fd;
+        throw new Error('synthetic close completed but reported failure');
+      }
+    } }, () => assert.throws(() => appendJournalStore(target === 'validation' ?
+      { ...s.args, expectedHead: `sha256:${'0'.repeat(64)}` } : s.args), error =>
+      isUncertain(error) && error.journal_persistence_attempted === (target !== 'validation')));
+    assert.notEqual(closedFd, undefined);
+    assert.equal(calls.get(closedFd), 1);
+    assert.equal(verifyJournal(read(s.file).bytes).entries, target === 'validation' ? 1 : 2);
+    assert.equal(fs.existsSync(s.lock), target === 'journal');
+    if (target === 'validation') assert.deepEqual(read(s.file).bytes, before.bytes);
+  }
+});

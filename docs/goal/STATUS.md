@@ -829,3 +829,18 @@ MCP tool/schema, shared mirror, raw dataset and public page remain unchanged.
 No broker/model/resource/hold/spend/publication, hardware durability or latency
 claim. All full owner objectives remain active. Next bounded Node check under
 lead scheduling, independent emitted-journal verification and source review.
+
+
+## 2026-10-01 — close-error correction before the first journal test
+
+Static self-review of signeda4f088e5 finds that an ambiguous descriptor close
+can be retried in finally and mask the journal uncertainty error. Withdraw
+its explicit lead grant before any attempt/nonce; original source/request/helper
+and grant remain retained. Close each descriptor once, preserve typed uncertainty
+after cleanup failure and add a sixteenth synthetic fault case covering journal,
+lock, directory and validation cleanup. No dynamic reproduction or pass yet.
+The next signed source and fresh one30s grant must replace the withdrawn pin.
+No public tool/schema/version, broker/model/resource/hold/spend or website change.
+All owner objectives remain ACTIVE. Static finding receipt:
+coordination/journal-store/a4f-close-error-static-finding.json.
+Observed: 2026-10-01T17:30:00.085133+00:00.

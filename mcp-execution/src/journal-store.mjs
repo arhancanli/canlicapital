@@ -123,7 +123,11 @@ function openHome(home) {
     };
     check();
     return { path, fd, check };
-  } catch (error) { closeSync(fd); throw error; }
+  } catch (error) {
+    // Opening the directory made no journal mutation; keep the validation error.
+    try { closeSync(fd); } catch { /* Never retry an ambiguously closed descriptor. */ }
+    throw error;
+  }
 }
 
 function fileGuard(home, path, fd) {
@@ -271,7 +275,9 @@ function persist(input, initialize) {
       fsyncSync(home.fd);
       if (!sameSnapshot(readback.stat, checkJournal())) throw refused('journal changed after retry readback');
     }
-    closeSync(journalFd); journalFd = undefined;
+    // A failed close may already have released/reused the descriptor. Attempt it once.
+    const closingJournal = journalFd; journalFd = undefined;
+    closeSync(closingJournal);
     release();
     return { ...result, replayed };
   } catch (error) {
@@ -284,7 +290,13 @@ function persist(input, initialize) {
     throw error;
   } finally {
     // Never unlink a journal on failure or a replaced lock pathname.
-    for (const fd of [journalFd, lockFd, home.fd]) if (fd !== undefined) closeSync(fd);
+    let closeFailed = false;
+    for (const fd of [journalFd, lockFd, home.fd]) {
+      if (fd !== undefined) {
+        try { closeSync(fd); } catch { closeFailed = true; }
+      }
+    }
+    if (closeFailed) throw uncertain(persistenceStarted);
   }
 }
 
