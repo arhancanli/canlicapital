@@ -4,7 +4,7 @@
 
 Goal ACTIVE, NOT ACHIEVED. Codex recovered the owner's Claude instructions and launched the
 goal. Worktree: `/Users/arhancanli/canlicapital-continuation-20261001`, branch
-`review/claude-seo-20261001`. The implementation started from 607e0a1c (#335); #339
+`review/claude-perf-20261001`. The implementation started from 607e0a1c (#335); #339
 merged as 37221be6 at 05:41Z after all seven Node 22/security/contract CI checks passed.
 The original expansion checkout and its existing uncommitted work are preserved.
 
@@ -19,7 +19,9 @@ The original expansion checkout and its existing uncommitted work are preserved.
   distinct declared identities, immutable source bindings and a source-backed adjudication
   export are implemented here. Accepted items retain both submitted judgments/notes. Next:
   actual independent reviewers, adjudicator and expert qualification evidence.
-- Website #336, #337 and dependency #338 are open. The production checkout remains 607e0a1c.
+- Website #336 merged as e9a410ed at 06:04Z after seven CI checks and a clean git-free deployment
+  snapshot build passed. #337 font/performance integration is local and being verified; #338
+  dependency update remains open. Production checkout is still 607e0a1c until activation.
 - Google/Bing counts, scorecards and forward-performance measurements below are historical;
   this continuation has not freshly measured search-engine indexing or forward outcomes.
 
@@ -37,7 +39,13 @@ The four-tool list is 1,636 o200k / 1,571 cl100k. A synthetic 1,000-order local-
 24.7 ms with 199 bootstrap draws; these are single-machine observations, not hosted/ranking claims.
 The new tool's original 220-token target is missed (386); the full seven-tool budget is unproven.
 
-Current phase: reviewed #336 and #337 against actual source/checks. Combined #336/#339
+Completed #336; current phase integrates #337 with main. Browser comparison: 4,670 element
+boxes unchanged across three pages at phone/desktop widths; five of six cases pixel-identical,
+mobile home has a 180-pixel paint difference. Same-font control is identical. This limitation
+is recorded in artifacts/goal/font-browser-integration-20261001.json; no all-page identity claim.
+Combined build/verify passes (786 main + 6 preverify, 695 pages, 0 errors/warnings).
+
+Prior #336 checkpoint: Combined #336/#339
 build and verify pass (786 main + 6 preverify, 695 pages, 0 errors / 0 warnings); five
 production generators pass without git using rebound source-date hashes. Updating #336 with merged
 main, preserving the union of all financial/annotation/social tests. Its metadata checks now

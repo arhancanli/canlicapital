@@ -63,7 +63,6 @@
     .offering__grid article,
     .trust-grid article,
     .paths-grid article,
-    .evidence-ledger article,
     .evidence-frontier article,
     .evidence-detail__grid article,
     .system-films__grid > article,
@@ -74,6 +73,18 @@
       animation-timeline: view();
       animation-range: entry 6% cover 24%;
       will-change: opacity, transform;
+    }
+    /* The evidence ledger's figures and labels are small and muted: half-faded they fall below
+       the 4.5:1 contrast accessibility checkers measure, so its cards lift without the fade. */
+    .evidence-ledger article {
+      animation: flow-lift linear both;
+      animation-timeline: view();
+      animation-range: entry 6% cover 24%;
+      will-change: transform;
+    }
+    @keyframes flow-lift {
+      from { transform: translate3d(0, 22px, 0); }
+      to   { transform: translate3d(0, 0, 0); }
     }
     .offering__grid article:nth-child(2),
     .trust-grid article:nth-child(2),

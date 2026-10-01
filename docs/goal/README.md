@@ -4,7 +4,7 @@ Current continuation (2026-10-01): Codex launched the goal and recovered the own
 instructions. Read MASTER_PLAN.md for the full goal structure and CLAUDE_RECOVERY_20261001.md
 for the verified stopping point. Active worktree:
 `/Users/arhancanli/canlicapital-continuation-20261001`. The MCP/annotation continuation
-merged as #339; current branch `review/claude-seo-20261001` updates the existing #336.
+merged as #339; current branch `review/claude-perf-20261001` updates the existing #337.
 STATUS's newest section supersedes the historical working-location notes below.
 
 Both origin/main's records and the differing local Claude STATUS/LOG were archived byte-for-byte

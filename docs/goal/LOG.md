@@ -4042,3 +4042,23 @@ is not yet measured and the owner resubmits the sitemap in Search Console.
 - Combined #336/#339 local build and full verify pass; on-page audit 695 pages, 0 errors / 0 warnings. Focused metadata rules 11/11. Source dates will be rebound to the actual signed source commit and checked without git before pushing.
 
 - Final combined verify: 786 main tests plus 6 preverify; all audits pass, 695 pages / 0 errors / 0 warnings. After the signed source commit, portable source-date hashes were rebuilt. Five VERCEL=1 generators ran with git unavailable: costs, standards/developers, publication wrappers, papers, method papers; all exit 0. No published checksum was changed. #336 will carry this tested integration and the corrected platform-claim boundary.
+
+## 2026-10-01 06:04Z: #336 merged; #337 font/performance integration
+
+- #336 merged as e9a410ed39f628c0504b1f56acb8f410fd94b152 after all seven checks passed. Full
+  source snapshot validation (without git, excluding private env files) built successfully;
+  679 built pages completed social tags, 416 checksummed files untouched. Cold clean-source
+  gitless generators also pass. Production activation waits for the tested performance batch.
+- #337 merged main locally with no conflict. Full build/verify passes (786 main + 6 preverify,
+  695 pages, 0 errors/warnings). Browser verification used webapp-testing with an owned strict
+  port and build marker; server stopped on completion. Three pages at widths 390/1440 preserve
+  all 4,670 measured boxes. Five of six comparisons have zero pixel differences. Mobile home
+  has 180 different pixels; the same-font control has zero. The initial hard pixel comparison
+  failed and is retained; we do not repeat the old all-pages pixel-identity claim. Font payloads
+  are 154,844/14,228/14,052 bytes, with original Inter and Chakra TTFs as the control.
+- Browser test scope: current generated pages, local requests, reduced motion, video/canvas
+  hidden for font comparison. This is font/layout evidence, not a movie/motion or fresh
+  Lighthouse score. September 28 Lighthouse medians remain dated measurements.
+- Clarified the shortfall oracle wording: tests share recorded arch starts/uniforms; the local
+  xorshift32 generator is not NumPy's generator. Equal numeric seeds across libraries do not
+  imply equal draws. No algorithm/evidence/value changed.

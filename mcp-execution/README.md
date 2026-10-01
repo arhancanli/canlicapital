@@ -65,8 +65,10 @@ If any fill fee is missing, every resampled order uses price cost excluding fees
 usable orders cannot produce an interval. This interval depends on ordering/block length and
 does not establish profitability or account for regime shifts.
 
-Three synthetic fixed-seed cases agree with arch 8.0.0 on every sampled index and on the
-cost/notional ratio-percentile interval. The fixtures are reproducible with
+Three synthetic cases agree with arch 8.0.0 on every sampled index and the cost/notional
+ratio-percentile interval when using the recorded shared random draws. The local seeded
+generator is xorshift32, distinct from NumPy/arch; equal numeric seeds across libraries do not
+imply identical draws. The fixtures are reproducible with
 `scripts/research/execution-parity/record-shortfall-arch.py`. A separate read-only local check
 compares against ALPHAC's paper-order analysis; only aggregates are published, not vendor bars
 or order rows. Paper-engine costs remain labeled as paper measurements.

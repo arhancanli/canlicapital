@@ -3,7 +3,7 @@
    Inter for text and Chakra Petch for headings. paper.css supplies the document
    shell; this file puts the company template on the shared tokens. */
 @font-face { font-family: "Inter"; src: url("/fonts/inter/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
-@font-face { font-family: "Chakra Petch"; src: url("/fonts/chakra-petch/ChakraPetch-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Chakra Petch"; src: url("/fonts/chakra-petch/ChakraPetch-Medium.woff2") format("woff2"), url("/fonts/chakra-petch/ChakraPetch-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
 html[data-page="companies"] body.paper { background: #f4f4f4; background-image: none; color: #111; --void: #f4f4f4; --void-raised: #fff; --ink: #111; --paper-tone: #343b46; --muted: #58616b; --faint: #58616b; --line: #c3c8d2; --line-strong: #87909e; --oxide: #0016cb; --signal-blue: #0016cb; --body: "Inter", "Inter Fallback", system-ui, -apple-system, sans-serif; --display: "Chakra Petch", sans-serif; --mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace; font-size: 16px; line-height: 1.6; }
 
 .company-reference { max-width: 1120px; margin: 0 auto; padding: 56px 28px 80px; color: var(--ink); font-family: var(--body); }
