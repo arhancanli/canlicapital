@@ -4040,3 +4040,5 @@ is not yet measured and the owner resubmits the sitemap in Search Console.
   measured analyzer/field outcomes and every other owner objective remain open.
 
 - Combined #336/#339 local build and full verify pass; on-page audit 695 pages, 0 errors / 0 warnings. Focused metadata rules 11/11. Source dates will be rebound to the actual signed source commit and checked without git before pushing.
+
+- Final combined verify: 786 main tests plus 6 preverify; all audits pass, 695 pages / 0 errors / 0 warnings. After the signed source commit, portable source-date hashes were rebuilt. Five VERCEL=1 generators ran with git unavailable: costs, standards/developers, publication wrappers, papers, method papers; all exit 0. No published checksum was changed. #336 will carry this tested integration and the corrected platform-claim boundary.

@@ -37,7 +37,9 @@ The four-tool list is 1,636 o200k / 1,571 cl100k. A synthetic 1,000-order local-
 24.7 ms with 199 bootstrap draws; these are single-machine observations, not hosted/ranking claims.
 The new tool's original 220-token target is missed (386); the full seven-tool budget is unproven.
 
-Current phase: reviewed #336 and #337 against actual source/checks. Updating #336 with merged
+Current phase: reviewed #336 and #337 against actual source/checks. Combined #336/#339
+build and verify pass (786 main + 6 preverify, 695 pages, 0 errors / 0 warnings); five
+production generators pass without git using rebound source-date hashes. Updating #336 with merged
 main, preserving the union of all financial/annotation/social tests. Its metadata checks now
 state the site's stricter contract accurately: Google Article fields are recommended; 110
 characters is a site budget, not a Google limit. App offers need prices; real reviews/ratings
