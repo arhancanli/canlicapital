@@ -4,10 +4,16 @@
 
 The first release, 0.1.0, is paper trading only. It ships when every item of its release bar holds.
 
+- Opt-in local `journal initialize/append` adapter uses the delivered private writer
+  and fixed local signing key. Default advertised actions and hosted behavior remain
+  unchanged. Typed pending/uncertainty errors return no success receipt, and exact
+  retries preserve the original request and prefix. Fourteen synthetic adapter/wire
+  cases are written; runtime/CI acceptance remains pending. No version or release.
+
 - Private local journal storage foundation: supplied-key initialization and
   exclusive appends verify the chain, bind retry identity and request persistence
   before success. Interrupted operations return uncertainty and retain pending
-  evidence. Not registered as a tool; see `JOURNAL_STORAGE.md`.
+  evidence. Its API is not registered directly; see `JOURNAL_STORAGE.md`.
   - 18 storage and 3 packaging cases pass. Three emitted synthetic signed snapshots
     pass the separate Python verifier; five request/receipt/prefix bindings, including
     two retries after a later append, agree with independent recomputation.

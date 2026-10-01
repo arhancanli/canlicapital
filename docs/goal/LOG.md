@@ -5217,3 +5217,31 @@ ACTIVE: fourSovereignpillars, efficient distinct MCP/API/legitimateadoption,
 rights-cleared expertrefinery, governedALPHACforwardtargets/paperthenlawfulcapital,
 10Mactuallyindexed qualitycanonicals/relevantkeywords/SEO/analyzers/design/research.
 Software checks do not establish those outcomes. Observed 2026-10-01T20:12:50.540054+00:00.
+
+
+## Private journal MCP writer adapter draft, 2026-10-01T21:28:52.478008+00:00
+
+New isolated primary work/journal-mcp-write-20261001 starts from verified actual
+main32785aa9/tree74a after PR353 delivery. Existing signed private storage352
+is reused without edits. New journal-write adapter and strict opt-in session wiring
+add local initialize/append only with CANLI_EXEC_JOURNAL_WRITE=1. Default tool
+schema/description/output/instructions, hosted source, package/version/locks and
+mirrored cores remain unchanged. Key bytes come only from the fixed private local
+journal.key; results omit keys/raw payloads. Typed busy/refusal/uncertainty errors
+return no success receipt. Home checks observe replacements before/after writing;
+interrupted or completed uncertain files remain for manual review.
+
+Fourteen synthetic adapter cases are WRITTEN ONLY, including default denial/schema
+parity, retry/original-prefix/key privacy, unsafe inputs/homes/keys, accessor/budget
+refusal, pending-lock retention, same-user directory replacement, close-once failure,
+account export/source binding and actual opt-in stdio. No local Node/import/test/CLI
+job, dependency install, CPU request/grant/nonce or model/provider/resource/hold/spend.
+Signed source/static peer/current remote CI precede delivery; no site/npm/hosted or
+version publication. All full Sovereign/10M actual indexing/qualitySEO/keywords/
+analyzers/design/adoption/rights-cleared expert/refinery/research/governedALPHAC/
+paperthenlawfulcapital goals remain ACTIVE.
+
+Third static indexing readiness762f751c/finite plan2cd22a61 verified; current
+Google/Bing indexed counts stay null. Seven source/auth/provenance/canonical/
+measurement gaps remain distinct from916480 sitemap URLs and old dated counts.
+Secondary owns the assigned synthetic-only durable attempt collector from327.
