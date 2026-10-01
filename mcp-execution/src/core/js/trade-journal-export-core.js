@@ -196,6 +196,7 @@ function exportVerifiedJournal(bytes, options, integrity) {
       sharpe = reportable ? candidate : null; sharpeReason = reportable ? null : 'observations below minimum track record';
     } catch (error) { sharpeReason = error.message; }
   } else if (!finiteReturns) sharpeReason = 'relative returns undefined after nonpositive equity';
+  if (mintrl !== null && (!Number.isFinite(mintrl.observations) || !Number.isFinite(mintrl.years))) throw new RangeError('minimum track record has nonfinite derived values');
   const turnoverAnnualised = ppy !== null && series.every(r => r.turnover !== null) ? series.reduce((s, r) => s + r.turnover, 0) / series.length * ppy : null;
   if (turnoverAnnualised !== null && !Number.isFinite(turnoverAnnualised)) throw new RangeError('annual turnover is nonfinite');
   const journalSha = sha(bytes), head = sha(Buffer.from(lines[to])), isMixed = (venues.local_sim > 0 && venues.alpaca_paper > 0) || (!totalFills && account.venue === 'mixed');

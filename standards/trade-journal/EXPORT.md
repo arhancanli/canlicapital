@@ -76,6 +76,8 @@ population skew/non-excess kurtosis, benchmark Sharpe zero, confidence 0.95. Sha
 only after the minimum observation count; irregular, constant, insufficient or nonpositive
 Sharpe samples retain a null figure. This test does not adjust for uncounted strategy selection.
 Trial counts and preregistration remain unknown/false until bound research-ledger evidence exists.
+Nonfinite derived minimum-track-record observations or years refuse the export before
+serialization; extreme declared annualisation cannot silently change infinity into JSON null.
 
 ## Output and verification
 

@@ -95,3 +95,8 @@ test('export time cannot precede the selected entries; unselected future entries
  assert.throws(()=>exportJournal(bytes,{generated_at}),/precedes a selected journal entry/);
  assert.equal(exportJournal(bytes,{to:6,generated_at}).series.length,2);
 });
+test('nonfinite derived minimum-track-record duration refuses before serialization',()=>{
+ const account={...ACCOUNT,initial_positions:[{symbol:'X',qty:1,price:100}],periods_per_year:1e-309};
+ const events=[110,115,120].map((price,i)=>['mark',{marks:{X:price},source:'synthetic overflow regression'},`2026-01-0${i+2}T00:00:00.000Z`]);
+ assert.throws(()=>exportJournal(journal(events,account),{generated_at:GENERATED}),/minimum track record.*nonfinite/);
+});

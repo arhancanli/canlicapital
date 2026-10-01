@@ -22,6 +22,15 @@ exclusive creation, mode 0600 and a private owned directory; an existing unsafe 
 refused. Exports are capped at 64 MiB. They include the source hash and selected chain range.
 The tool's write/idempotency annotations reflect this behavior.
 
+Large exports require both the home and exports directories to be private and owned by the
+current user. Directory device/inode, ownership, mode and home entry timestamps are checked
+around creation and writing; the opened file must still match its named file. Observed swaps
+refuse, including a symlink substituted after the initial check. These portable pathname
+checks are not directory-anchored creation and cannot defend a compromised same-user process
+that changes and restores paths entirely between checks. Failures close the descriptor and
+never unlink a pathname that could now belong to another writer. Failed or partial files can
+remain; they are never returned as valid exports.
+
 Signing is disabled by default. Explicit `sign:true` reads only `CANLI_HOME/journal.key`, a
 regular non-symlink file owned by the user with mode 0600 and a maximum size of 16 KiB. The
 Ed25519 public key must match journal genesis. Neither private key bytes nor raw journal entries

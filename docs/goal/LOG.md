@@ -4355,3 +4355,32 @@ and self-attestation limits are review scope. All platform objectives stay activ
 Secondary denominator wording correction: numbers_given is a count of finite numeric
 answers on answerable items, not a rate. Clarified that count and the numbers_wrong
 denominator together. Implementation and evidence remain unchanged.
+
+
+## 2026-10-01 — reviewed evaluation delivery and journal peer fixes
+
+#343 merged exact61caa533 at10:33:45Z as91d15052; merged/candidate tree1d745481 matches.
+Independent34 tests, eight probe groups, seven source-comment mutations, five unchanged v0
+files and final public limitation/denominator wording passed. Initial reviewer-copy failures
+were missing public fixtures, corrected from exact Git bytes; retained logs identify the limit.
+
+Integrated91d15052 into journal as signedc7a3e7ba, preserving both LOG histories and both
+verification scopes. The whole staged merge hygiene check flagged spaces in already-merged
+raw regression logs; preserved those evidence bytes and checked the journal diff against main.
+
+Peer journal review found finite input1e-309 producing infinite MinTRL years and an export
+directory swapped after lstat redirecting creation. Retained original peer receipt and four
+failing regressions. Nonfinite derived MinTRL now refuses; private home/exports and repeated
+parent/file identity checks refuse observed swaps. No failure pathname unlink removes another
+writer's replacement file. Portable checks retain explicit same-user/partial-file limitations.
+Focused18/18 including current core's1,000-case saved Python fixture; full814+6,699 pages0/0,
+execution51/51,validation141/141 and isolated35-file package pass. Initial execution50/51
+was the existing private-directory error wording; restored that contract and final51/51 passes.
+Archived/restored646 isolated generated outputs, including historical paper-evidence vectors.
+No historical source-hash evidence was rewritten to match new code. New peer/CI/Git-free
+checks remain pending at the next signed head; no package or production change.
+
+Annotationf625bfac independently passes23 focused and10 DEV-browser cases; third's15 BUILT
+cases stay separate. Secondary reviews journal fixes before its next analyzer role. Azure lead
+was told to hold queued old0f63 workload until updated signed contract pin; no Canli activation.
+Every Sovereign/10M-indexing/SEO/adoption/ALPHAC goal remains active.

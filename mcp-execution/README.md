@@ -104,6 +104,9 @@ drawdown are recomputed for inclusive `from`/`to` sequence bounds, replaying ear
 Losses through zero and drawdown above 100% remain in the record. Trial counts stay unknown.
 
 An export returns `record` inline up to 16 KiB, or a new private `record_file` above that size.
+Large exports require private owned home/exports directories and refuse observed directory
+or filename replacements. A failed export may leave an incomplete file; its path is never
+returned as valid, and failure cleanup never removes a replacement pathname.
 Optional `sign:true` uses the matching local 0600 `CANLI_HOME/journal.key`; it is self-attestation.
 The source journal is never modified or uploaded. A `publish_url` is metadata, not a publication
 action. See [SECURITY.md](https://github.com/arhancanli/canlicapital/blob/main/mcp-execution/SECURITY.md).

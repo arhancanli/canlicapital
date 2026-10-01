@@ -1,0 +1,34 @@
+{
+  "schema": "canli.journal-export-benchmark.v1",
+  "measured_at": "2026-10-01T11:00:49.412Z",
+  "scope": "synthetic 350-mark local stdio; 5 warmups + 20 measured runs; no broker/model API or paid workload",
+  "node": "v24.19.0",
+  "platform": "darwin",
+  "arch": "arm64",
+  "cpu": "Apple M5 Pro",
+  "observation_count": 350,
+  "journal_bytes": 108512,
+  "journal_sha256": "sha256:7e7ff731f18c4d43144652a88b7d47f5fc7c5dfa441d78ce05714ac057dd7e12",
+  "export": {
+    "runs": 20,
+    "median_ms": 17.59537499999999,
+    "p95_ms": 18.24412499999994,
+    "artifact_bytes": 31923,
+    "summary_bytes": 1478
+  },
+  "validation": {
+    "runs": 20,
+    "median_ms": 17.54775000000018,
+    "p95_ms": 18.505457999999976,
+    "response_bytes": 1909,
+    "source_bound": true,
+    "stored_receipt": false
+  },
+  "python_reference_sha256": "sha256:c2b545e00c9e7b0dad3ed03074940696913c5d6beeb3b84b338c5abf5b6309d2",
+  "measurement_context": "Post-fix local checks finished; other system activity uncontrolled. Synthetic single-machine sample, not broker latency or a cross-run improvement claim.",
+  "source_sha256": {
+    "js/trade-journal-export-core.js": "d1ed1eacd557145dc70ea87f3326be0666fdcbce43f714d55f69e44904beabb1",
+    "mcp-execution/src/journal-export-file.mjs": "71c49225e7e26c7f9e0368f20a731a2dcb0ceaf87818e9e386b1ed0b998ce834",
+    "mcp-execution/scripts/bench-journal.mjs": "539b44d57c7d6cba1fc842e6102c7f7affbbcf03aeef1158a8523847d5783e94"
+  }
+}
