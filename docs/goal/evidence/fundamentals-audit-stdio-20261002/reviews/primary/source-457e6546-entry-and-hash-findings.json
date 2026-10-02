@@ -1,0 +1,33 @@
+{
+  "schema": "canli.primary.audit-stdio.source-admission-cues.v1",
+  "observed_at": "2026-10-02T09:01:20.683047+00:00",
+  "source": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/source-457e6546.json",
+    "bytes": 2005467,
+    "sha256": "32bc1c31cd22f350d8b35c5cf2e381ed0010c19465f963be536d13e62414d881"
+  },
+  "source_module_sha256": "054fdea943d7787f26f0faf96f2d320f4112e633ac4e1af40ffdf488168446d7",
+  "static_not_executed": true,
+  "findings": [
+    {
+      "id": "CC-363-CLI-ALIAS-ENTRY",
+      "severity": "P2",
+      "location": "mcp-fundamentals/examples/audit-inputs-stdio.mjs:197",
+      "code": "pathToFileURL(resolve(process.argv[1])).href === import.meta.url",
+      "reason": "Lexical argv resolution does not normalize symbolic-link or macOS /var-/private/var aliases to the real module URL. A launch through an absolute alias can skip server construction and exit with no MCP handshake. This repeats the already discovered CLI-alias failure pattern from the earlier scorer/indexing modules.",
+      "request": "Compare actual real-file identities at CLI admission; add an actual SDK client roundtrip through an owned temporary symlink/alias and retain same native child closure/guard evidence. Pure executeAuditInputs and all protected sources stay unchanged.",
+      "runtime_claim": "STATIC source inference; no new Node/import/SDK process or reproduction was executed."
+    },
+    {
+      "id": "CC-363-EXPECTED-SHA-END",
+      "severity": "nonblocking",
+      "location": "argumentsRecord expected_reference_sha256 plus advertised input schema",
+      "reason": "JS $ can accept a64-digit hash followed by one newline. There is no explicit .length64 guard in either place. Existing strict core rejects it after decoding, so scores remain protected but typed transport EXPECTED_SHA admission is delayed/misclassified.",
+      "request": "Strict length64 and full end match before decoding, with a finite positive/malformed-hash buffer allocation oracle.",
+      "runtime_claim": "STATIC inference only; existing core guard is preserved."
+    }
+  ],
+  "scope": "Independent frozen-source review, no source edits or tests; current full source/CI gates remain open.",
+  "full_owner_hierarchy": "ACTIVE"
+}

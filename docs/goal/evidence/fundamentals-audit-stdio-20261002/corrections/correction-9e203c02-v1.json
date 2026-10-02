@@ -1,0 +1,27 @@
+{
+  "schema": "canli.fundamentals-audit-stdio.correction.v1",
+  "observed_at": "2026-10-02T09:14:12.201007+00:00",
+  "source": "9e203c025be032094351b0b9b2be1203c4f510c6",
+  "independent_PRIMARY_static_findings": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-primary-review/source-457e6546-entry-and-hash-findings.json",
+    "bytes": 2334,
+    "sha256": "cf05b9984486459a064cf1dbf43a46806b6752f397f0ffd156f6620a1f86432b"
+  },
+  "finding": "CC-363-CLI-ALIAS-ENTRY",
+  "severity": "P2",
+  "basis": "Lexical argv URL equality is unchanged from457 and can skip entry under an absolute symlink or /var-/private/var alias. STATIC inference; no own reproduction.",
+  "correction": "Realpath normalization of both CLI entry identities, read-only metadata only; pure executeAuditInputs and core stay unchanged. One actual SDK owned temporary symlink initialize/list/audit/close fixture reuses armed network/write guard, finite lifetime and actual owned PID absence.",
+  "all_prior_names_preserved": 28,
+  "new_written_cases": 29,
+  "new_head_runtime": null,
+  "prior_9e_exact_success": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-9e203c02-exact-ci.json",
+    "bytes": 11922,
+    "sha256": "2257a985c7677799489996dda5d828301e109c43283692612c3153d2e9e8766f"
+  },
+  "prior_current_source_and_CI_review_approval": null,
+  "finite_policy_core_default7_versions_deps_locks_root_verify_unchanged": true,
+  "original_943_failures_and_457_9e_successes_preserved": true,
+  "own_local_project_job_or_grant": false,
+  "full_owner_goals": "ACTIVE"
+}

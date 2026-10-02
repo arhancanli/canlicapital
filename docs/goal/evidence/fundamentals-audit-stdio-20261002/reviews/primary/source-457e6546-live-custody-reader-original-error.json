@@ -1,0 +1,13 @@
+{
+  "schema": "canli.primary.source-review.live-custody-reader-error.v1",
+  "observed_at": "2026-10-02T09:07:40.789252+00:00",
+  "source": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+  "tool_chunk": "0b6631",
+  "original_error": "Traceback (most recent call last):\n  File \"<stdin>\", line 9, in <module>\nAssertionError\n",
+  "failed_assertion": "live HEAD==457 and working tree clean",
+  "checks_before_error": "Source manifest SHA32bc1c31 verified. No source PASS receipt or root edits were created.",
+  "correction": "Inspect the current worktree read-only, then review immutable457 Git bytes separately; await author new signed frozen source for current custody.",
+  "project_execution": false,
+  "source_archive_edits": false,
+  "runtime_failure": false
+}

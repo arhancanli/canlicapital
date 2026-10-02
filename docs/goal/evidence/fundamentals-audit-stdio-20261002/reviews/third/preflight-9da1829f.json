@@ -1,0 +1,328 @@
+{
+  "schema": "canli.fundamentals-audit-stdio-peer-preflight.v1",
+  "observedAt": "2026-10-02T08:16:46.086649+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "verdict": "ASSIGNMENT_AND_BASELINE_PINNED_NO_CANDIDATE_ACCEPTANCE",
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/assignment.md",
+    "bytes": 7748,
+    "sha256": "e0dfdcd8c625ab4042193900d04244d53ca602df31fd70271382b051ad880f07"
+  },
+  "actualBase": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+  "tree": "3e8535aa04d7259d3a12bce4601a3fb5fb44aa41",
+  "soleParent": "eeb55b42c456ab0706099673d22a9a2fc0fe8fb7",
+  "closedPredecessorActualDelivery": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake-peer/actual-delivery-9da1829f.json",
+    "bytes": 37145,
+    "sha256": "1be50c191cccc7f6993b0971259465489318cc09c25ddf03a509dea2c82ae277"
+  },
+  "continuityReadCompleteBytes": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 9831,
+      "sha256": "b2206f6891f17b14af9062dc614e149b7d8cb8764c48024353d2de46bf3e91c8"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 411930,
+      "sha256": "a45ba88fcfd1a630462d5ad228d4df3825b7af14b93f2209a30c0a56401e19ae"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 4853,
+      "sha256": "82feb302a45d5c7bd7f65683f523cae6dce1fca46f03a7c83480afab39ab8982"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 756780,
+      "sha256": "f20a8f831b238c612b78b79ed03896d9890a70fababdca86c0a05491ae9fa609"
+    }
+  ],
+  "implementationOwner": "SECONDARY",
+  "reviewerScope": "Independent frozen source transport/protocol/input-outputschema/error/SDKclose/base64/capacity; separate retainedexactcurrentCI aftercapture. No duplicateimplementation.",
+  "allowedEightPaths": [
+    "mcp-fundamentals/examples/audit-inputs-stdio.mjs",
+    "mcp-fundamentals/test/audit-inputs-stdio.test.mjs",
+    "mcp-fundamentals/AUDIT_INPUTS.md",
+    "mcp-fundamentals/README.md",
+    "mcp-fundamentals/CHANGELOG.md",
+    "package.json",
+    "docs/goal/STATUS.md",
+    "docs/goal/LOG.md"
+  ],
+  "baselineSourcePins": [
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "bytes": 21663,
+      "sha256": "40ac2b1e5321cb453a71797888138f38570a4d6057d197461d681237506bff36"
+    },
+    {
+      "path": "mcp-fundamentals/src/server.mjs",
+      "bytes": 64736,
+      "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-core.test.mjs",
+      "bytes": 28084,
+      "sha256": "d818dc371dc4c6794a35cb6e5991f6b68736a5295c68a64a8c75a67cdc956a00"
+    },
+    {
+      "path": "mcp-fundamentals/test/stdio.test.mjs",
+      "bytes": 5717,
+      "sha256": "c741ddef8b10bb79d3285b7e1c46c4a6211587ccc7f7bcbefdbc3977fbe82ec9"
+    },
+    {
+      "path": "mcp-fundamentals/package.json",
+      "bytes": 1281,
+      "sha256": "9e9a28fe3f86a033f607aaec3e25adfef59d19e5879777e8c696b39d16102954"
+    },
+    {
+      "path": "mcp-fundamentals/package-lock.json",
+      "bytes": 6441,
+      "sha256": "71bd84589b12b0c9b5207a8bcefd2db6b43885c8ef60061c7748e1112f2fbe51"
+    },
+    {
+      "path": "mcp-fundamentals/server.json",
+      "bytes": 1189,
+      "sha256": "452912975a95bea9328a55b5c985d77b857163319acd6aa48dc881da0b7a63c4"
+    },
+    {
+      "path": "mcp-fundamentals/mcpb/manifest.json",
+      "bytes": 2549,
+      "sha256": "2b4e9dad2a0258179eb9283c686062b64896274de51a22a940cfc58f94b0e2bb"
+    },
+    {
+      "path": "scripts/canonical-json.mjs",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 5020,
+      "sha256": "7655f5eb2981474bec7c2d7a6210cd940d1f1a1baa813de5cc6a0eea49a6e9f1"
+    },
+    {
+      "path": "package.json",
+      "bytes": 12304,
+      "sha256": "c919f17e406db6217b0c37d133a4cb4629636670121468100c429fca2734dfe5"
+    },
+    {
+      "path": "mcp-fundamentals/AUDIT_INPUTS.md",
+      "bytes": 15167,
+      "sha256": "fb9fc52688b2bd1852165cad36865c76a1172b6d847a369f323b618841463aa0"
+    },
+    {
+      "path": "mcp-fundamentals/README.md",
+      "bytes": 12195,
+      "sha256": "4295e92285debb8980969c1455c7710ff620c17d2d279068de7c231978dca9ad"
+    },
+    {
+      "path": "mcp-fundamentals/CHANGELOG.md",
+      "bytes": 6851,
+      "sha256": "6b27b971552d5fb0475cbb4bd5e91a34fa7560be1e3fa3e6076673b0ed06d6ad"
+    }
+  ],
+  "corePriorIndependentStaticReview": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/review-317ebf77.json",
+    "bytes": 17329,
+    "sha256": "0b3b13d3acecced0755dff256c43bd576d1c44d205797b79f76f5749e6291cdb"
+  },
+  "coreNumericByteCaps": {
+    "reference": 524288,
+    "usage": 65536,
+    "settings": 4096,
+    "decodedCombinedMaximum": 593920,
+    "usageRows": 64,
+    "referenceRows": 2048,
+    "returnedVintages": 4096,
+    "JSONReport": 4194304
+  },
+  "repositoryPackagingBoundary": "Coreimports ../../scripts/canonical-json.mjs outsidepublishednpm package. Newexample repositorycheckout only; publishedseven/defaultserver/manifest/version/locks unchanged.",
+  "lockedSDKSourceCustody": [
+    {
+      "package": "@modelcontextprotocol/client",
+      "version": "2.1.0",
+      "tarball": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example/locked-client-static-source-2.1.0.tgz",
+        "bytes": 1603220,
+        "sha256": "52a76aa524e5655e12bd0859da6489a95642eb362e76e898cc57f3762ee33732"
+      },
+      "lockIntegrity": "sha512-mDVhoy5WjDb0U+4dQPzLcciC2erSex/GRVQqnoZdiuMoE3YiTZdiS7ezNcFwX4XEOWOaj7jZr0kLYnILnL8orA==",
+      "sha512MatchesFrozenPackageLock": true,
+      "networkInstallImportOrExecution": false
+    },
+    {
+      "package": "@modelcontextprotocol/server",
+      "version": "2.1.0",
+      "tarball": {
+        "path": "/Users/arhancanli/.npm/_cacache/content-v2/sha512/15/db/f0654e4dd373bbed2ba1df926a8c0aaae51d594c43c5b70bba37806006adbcaab42dac29e96cb2f9536a70602b84d7de23030d319e5395988aa17e862e51",
+        "bytes": 1523527,
+        "sha256": "2a3baf0208471577c39061b273aa571502b1b8ebb97e83e6af924085e485efc2"
+      },
+      "lockIntegrity": "sha512-FdvwZU5N03O77Suh35JqjAqq5R1ZTEPFtwu6N4BgBq28qrQtrCnpbLL5U2pwYCuE194jAw0xnlOVmIqhfoYuUQ==",
+      "sha512MatchesFrozenPackageLock": true,
+      "networkInstallImportOrExecution": false
+    },
+    {
+      "package": "@modelcontextprotocol/core",
+      "version": "2.1.0",
+      "tarball": {
+        "path": "/Users/arhancanli/.npm/_cacache/content-v2/sha512/61/d1/63e603111ebd2060d0214db4038232c788425d200518c689a12ac7943727bb646948490994a0b876b2f785142890ee3d9831f7d3d64812343d0549f2058d",
+        "bytes": 154649,
+        "sha256": "f1a20a0f9f2a93861d67f7ef1a2110c0a9f0d5338a2ba666c125caabaa4c8deb"
+      },
+      "lockIntegrity": "sha512-YdFj5gMRHr0gYNAhTbQDgjLHiEJdIAUYxomhKseUNye7ZGlISQmUoLh2sveFFCiQ7j2YMffT1kgSND0FSfIFjQ==",
+      "sha512MatchesFrozenPackageLock": true,
+      "networkInstallImportOrExecution": false
+    }
+  ],
+  "lockedSDKSourceMapPins": [
+    {
+      "package": "@modelcontextprotocol/client",
+      "sourceMap": "package/dist/index.mjs.map",
+      "sourceMapPin": {
+        "bytes": 579831,
+        "sha256": "e1e72501a55f1a4d99f920f9cac026eadced92e2d871186fd3f556dead4a8ced"
+      },
+      "sourceName": "../src/client/client.ts",
+      "sourceUTF8Pin": {
+        "bytes": 131812,
+        "sha256": "694be3b5010bf4e2a21c00fe21ccc45835a55cb29a429561fc45b4cd55005efb"
+      },
+      "sourceLines": 2629
+    },
+    {
+      "package": "@modelcontextprotocol/client",
+      "sourceMap": "package/dist/stdio.mjs.map",
+      "sourceMapPin": {
+        "bytes": 13978,
+        "sha256": "b961536b075110f07d2697836a7dc807cf75289cf0c3d0ab567331e5246ddd72"
+      },
+      "sourceName": "../src/client/stdio.ts",
+      "sourceUTF8Pin": {
+        "bytes": 10505,
+        "sha256": "c5d68c960e6cc6658bb96e1b45fd0d941771a1abbc6a5c4214afb5832d0e1550"
+      },
+      "sourceLines": 335
+    },
+    {
+      "package": "@modelcontextprotocol/server",
+      "sourceMap": "package/dist/mcp-Dw2OlZ1f.mjs.map",
+      "sourceMapPin": {
+        "bytes": 246084,
+        "sha256": "75d96d894d65713697b9bf4258a0dfa2402875fb4799068dd95a85bd3aba8778"
+      },
+      "sourceName": "../src/server/mcp.ts",
+      "sourceUTF8Pin": {
+        "bytes": 64941,
+        "sha256": "6c9cd1839bf44b9897f21fc68db793e3a6920de824d9284336a0a0c3e8010e5b"
+      },
+      "sourceLines": 1621
+    },
+    {
+      "package": "@modelcontextprotocol/server",
+      "sourceMap": "package/dist/stdio.mjs.map",
+      "sourceMapPin": {
+        "bytes": 60367,
+        "sha256": "ffaadea99d46723cc879a33aebb8764e93cab2920b1f915f1d05f7964755521a"
+      },
+      "sourceName": "../src/server/stdio.ts",
+      "sourceUTF8Pin": {
+        "bytes": 9262,
+        "sha256": "a30c46c72746ce17591aa3fefb291f990a53c8a991c35da5e879f167e92bd9d1"
+      },
+      "sourceLines": 221
+    }
+  ],
+  "sharedReadBufferSourcesSeparateAndIdentical": [
+    {
+      "package": "@modelcontextprotocol/client",
+      "sourceMap": "package/dist/src-DDAAhLnO.mjs.map",
+      "sourceMapPin": {
+        "bytes": 692715,
+        "sha256": "f67ef9dc2a8aa2f215a8a86763a7466ce36ea5e97274291bd66c04b526c94cf0"
+      },
+      "sourceName": "../../core-internal/src/shared/stdio.ts",
+      "sourceUTF8Pin": {
+        "bytes": 2055,
+        "sha256": "ccb0b3d7551f0c4306308d1e90f478beb771b8b5961dceb7070deac14313551a"
+      },
+      "sourceLines": 62
+    },
+    {
+      "package": "@modelcontextprotocol/server",
+      "sourceMap": "package/dist/src-D-y6h4N7.mjs.map",
+      "sourceMapPin": {
+        "bytes": 720463,
+        "sha256": "28ddb8536fe9a2ced6ff88c98850f8b2aeb587af52af85689f83026f9badbe6b"
+      },
+      "sourceName": "../../core-internal/src/shared/stdio.ts",
+      "sourceUTF8Pin": {
+        "bytes": 2055,
+        "sha256": "ccb0b3d7551f0c4306308d1e90f478beb771b8b5961dceb7070deac14313551a"
+      },
+      "sourceLines": 62
+    }
+  ],
+  "independentDesignReviewCuesNotFindings": [
+    {
+      "id": "TRANSPORT_FRAME_BOUNDS",
+      "basis": "Serverstdio40-54/61-68 maxBufferSize(default10MB); clientstdio117-120 counterpart/sharedReadBuffer sourceidentical.",
+      "criterion": "Finite encoded/decoded/aggregate fieldcaps plus fullUTF8JSONRPCwire budget; cap BOTHstructuredContent+escapedtextJSON/header overhead,use boundedstdio. Wholeoversizedtoolreply finiteerror,no truncation; transportframe termination distinct fromparsedtoolerror."
+    },
+    {
+      "id": "CANONICAL_BASE64_RAW_BINDINGS",
+      "basis": "Core309-329 threeowned rawbuffers+separate primitiveexpectedSHA captured beforestrictJSON parse.",
+      "criterion": "Strictcanonical alphabet/padding/decoded-length admission beforeBuffer allocation/reencodeparity; no whitespace/URLsafe/noncanonicalpadbits/sourceparse-reserialize/defaultsettings/hashcoercion. Allrawinputs unchanged, corelimits authoritative."
+    },
+    {
+      "id": "FULL_N_PROJECTIONS",
+      "basis": "Core258-296 exactperiod/unit/source/timing/missing/ambiguitynulls;327-329 fullreport content_hash/coverage.",
+      "criterion": "Defaultcompact ALLselectedrows/status/verdict/reason/nulls/period-unit-source/fullN, distinctprojectionmetadata versuscompletecorehash. Finiteevidenceview exactcorereport, raw+implementationbindings intact/callerSHAunverified. No bestrow/zero-fill/tokenorlatencyclaim."
+    },
+    {
+      "id": "SDK_HEADER_RETRY",
+      "basis": "Clientclient2317-2440/2400-2402 explicittoolDefinition bypassesHEADER_MISMATCH list/retry/cacheoutputvalidator. ColdcallTool itselfneverlists.",
+      "criterion": "ActualSDKexample/test captures exactlistedtoolDefinition/finitepolicy; meaningfulfault proves realdispatchcount where no hiddenretry intended, no textscan-only assertion."
+    },
+    {
+      "id": "SCHEMA_ERRORS_OUTSIDE_CORE_CATCH",
+      "basis": "Servermcp271-287 validatesinputbeforehandler/outputafter;326-330 formattedvalidation/createToolError echoes error.message withoutstructuredContent;351-352 skipsoutputschema forisError.",
+      "criterion": "Actualinvalidargs/unknownkey/schema tests prove claimedstable finite no-raw codes/text-structuredContent parity across protocolversuscoreerror. Corecatch alone doesnotboundprehandlererrors."
+    },
+    {
+      "id": "SDK_CLOSE_TERMINAL",
+      "basis": "Clientstdio280-319 relinquisheshandle,drains2s+TERM2s+KILL thenreturns withoutfinalclosePromiseawait; serverstdio154-184 closesonce.",
+      "criterion": "Tests ownbounded childlifetime/oneclose, actualownedexit/PIDabsence observed separately fromclosepromise. Failurecleanup leavesnohandles, no localruntime/CPU/universal20msclaim."
+    },
+    {
+      "id": "MEANINGFUL_REMOTE_TESTS",
+      "basis": "Existingci92-94 install/testfundamentals; npmtest test/*.test.mjs; rootverify lacksclientdevdep setup.",
+      "criterion": "One serialrootfocus script only/verifyunchanged. ExistingremoteMCPjob actualinitialize/listone/annotations/call/text-outputschema parity plusdefaultsevenunchanged. Sentinel dynamicallyfails realnetwork/persistentwrites+armingpositivecontrol. Newstdioactualnames distinct from36existingcorecases."
+    }
+  ],
+  "newCandidateHead": null,
+  "newCandidateSourceAccepted": false,
+  "newFixtureActualPasses": null,
+  "archiveAllocated": false,
+  "futurePinExecutionDeliveryPublicationAcceptance": false,
+  "ownMetadataRefusalsExternal": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-peer/preflight-message-length-original-error.json",
+      "bytes": 582,
+      "sha256": "413532875f4cec42b509caafe782b2891b524b990fbfb67e15ef9333e74acf94"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-peer/preflight-sdk-source-selector-original-error.json",
+      "bytes": 846,
+      "sha256": "c23e33dd8e9ad21c8aa7cf73f71d2511216fab1aae1cf64a708cf06a5de58db3"
+    }
+  ],
+  "reviewerActivity": "Read-only Git/base/assignment/lockedSDKtar+sourcemapdata/stdlibhashes andowncoordpreflight. No projectNode/import/test/CLI/browser/helper/network/API/install/CPUclaim/grant/resource/model/provider/spend/author-sourceedit/recruitment/publication.",
+  "fullOwnerHierarchy": "ACTIVE; fourSovereignpillars/10Mactualindexed usefulqualitySEOcanonicals/intents/design/analyzers/research/legitimateAPI-MCP-repositoryadoption/rights-clearedrealexpertrefinery/governedALPHAC netforwardSharpe>2,>=14economicallydistinctqualifiedsleeves/DD<=10%,paperthenlawfulcapital. Actualexpert-rights-labels-indexed-adoption-qualifiedoutcomesunknown."
+}

@@ -1,0 +1,350 @@
+{
+  "schema": "canli.third.audit-stdio.source-extension.v1",
+  "observedAt": "2026-10-02T09:26:13.734581+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "source": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+  "tree": "5ae040b8956d593d9722f6a70b4c98177ba9f24a",
+  "signature": "G",
+  "soleParent": "9e203c025be032094351b0b9b2be1203c4f510c6",
+  "actualBase": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "blockingFindings": [],
+  "sourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/source-1ff911a1.json",
+    "bytes": 2012680,
+    "sha256": "5e6090f63290efc1d3e15c3f6003ef100ee63fa657ad515f3787a2e8ed1b2ad4"
+  },
+  "priorSourceReview": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-peer/review-457e6546-source-extension.json",
+    "bytes": 16058,
+    "sha256": "3e265381132217ef9f9599a039fd3e475fd1799ecb9b204a9ce2c0b76fcf8819"
+  },
+  "assignmentContractPredecessorCorrections": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/assignment.md",
+      "bytes": 7748,
+      "sha256": "e0dfdcd8c625ab4042193900d04244d53ca602df31fd70271382b051ad880f07"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/written-contract-v1.json",
+      "bytes": 5854,
+      "sha256": "b434ca04db4bca5273e11f3e2e5911f90309fc54ccda3cc0be09e7c6959d51cf"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/source-9e203c02.json",
+      "bytes": 2010885,
+      "sha256": "0c3925ae52652d57e7dc6762681f4b318b603c6899553bad3be0ea0db742eca0"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/correction-457e6546-v1.json",
+      "bytes": 1597,
+      "sha256": "0181e784b16ecfa5500ba3c1e05cb264db83c7f29021376aa132d05513997fdd"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/correction-9e203c02-v1.json",
+      "bytes": 1633,
+      "sha256": "1c39c5733323f8011c717840a108e799d043590e080c598ce6e8a9b8c91178db"
+    }
+  ],
+  "primaryOriginalEntryFinding": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-primary-review/source-457e6546-entry-and-hash-findings.json",
+    "bytes": 2334,
+    "sha256": "cf05b9984486459a064cf1dbf43a46806b6752f397f0ffd156f6620a1f86432b"
+  },
+  "exactEightFrozenWorkingIndexGitPins": {
+    "mcp-fundamentals/examples/audit-inputs-stdio.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "ee32d9a3eb69ec0a267ba05da60c17b7f47098dd",
+      "bytes": 12955,
+      "sha256": "de1deacff44907249640e8c6dfe4a0df9ec38dc27aed4a299e8ffed0146a421c",
+      "work_index_Git_equal": true
+    },
+    "mcp-fundamentals/test/audit-inputs-stdio.test.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "66e7758081cbab8d676409c399d849993dad1680",
+      "bytes": 28081,
+      "sha256": "9ccc50acea82d7755e650c5f57a9ae249b26708bd8ce99b73bdc5547beeb38ed",
+      "work_index_Git_equal": true
+    },
+    "mcp-fundamentals/AUDIT_INPUTS.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c6840ab7dad8b06a83f32af866dd921c9f1798f4",
+      "bytes": 25853,
+      "sha256": "a9402c665324ed5cfed24a5a53011fdcd4b2a97667015fe32fd4c827eb632463",
+      "work_index_Git_equal": true
+    },
+    "mcp-fundamentals/README.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6fd7e6c11e5537c0769afdddb0e797b52d18a5a2",
+      "bytes": 12789,
+      "sha256": "1a7b88a157b6306f96dc4e190a2e3a0c5e0d9e5241fda8543a031fd9b633d51c",
+      "work_index_Git_equal": true
+    },
+    "mcp-fundamentals/CHANGELOG.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c081a2f4f6ff2e782126c7ac61160b24e5e58677",
+      "bytes": 7236,
+      "sha256": "d7bfca13d48c71b6eab06a9cd107f07b9fbacabe85e617ea56d0d457727d8df4",
+      "work_index_Git_equal": true
+    },
+    "package.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "80d45541fd0bbf06fe9cb0b11b2ed59c92ae41a3",
+      "bytes": 12427,
+      "sha256": "0e68235a01ff45d34f0fb919e47f38f845d973b8f536f8d52fd66f822b989d9f",
+      "work_index_Git_equal": true
+    },
+    "docs/goal/STATUS.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "43484cdacc818dcc411f28f70e5951ca17456c98",
+      "bytes": 135197,
+      "sha256": "9abb99d3efb964d71ec9568326b18f1a515188274adaed27bb5b599da1d74cf7",
+      "work_index_Git_equal": true
+    },
+    "docs/goal/LOG.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "333b699fea0e50455cdf0d6259d4a3339f882458",
+      "bytes": 410561,
+      "sha256": "d144e66938a246e6869ace6f1de9ddb2ae478b25869175f39ae319a92546a770",
+      "work_index_Git_equal": true
+    }
+  },
+  "fullIndexEqualsFrozenHead": true,
+  "authorWorkingObservation": {
+    "head": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+    "clean": true,
+    "authorWorktreeOrIndexMutationsByReviewer": false
+  },
+  "protectedGit": {
+    "count": 6002,
+    "bytes": 387008101,
+    "allModeTypeObjectSizeEqualActual9da": true,
+    "orderedTableSha256": "338b92696a694537926ce80d49bdd439dcb65900c441d690490fb21ae013be5c",
+    "allDeclaredSHA256InheritedFromSameImmutableObjects": true,
+    "SHA256Basis": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/source-31cf68a3-final.json",
+      "bytes": 2010219,
+      "sha256": "f3d5c33c5e1b1e594c6145bbac0254a6465440e87c70384455a520b5308e1d0c"
+    },
+    "wholeProtectedPhysicalSHA256Audit": false
+  },
+  "all20PredecessorGoalPrefixes": {
+    "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0": {
+      "docs/goal/README.md": {
+        "bytes": 5370,
+        "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+        "exactPrefix": true
+      },
+      "docs/goal/REQUIREMENTS.md": {
+        "bytes": 8398,
+        "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+        "exactPrefix": true
+      },
+      "docs/goal/STATUS.md": {
+        "bytes": 129825,
+        "sha256": "52dfb5ef742cfdc211dcd54ef3049eb3a9378b75749c736efbe69e1b25da1d4f",
+        "exactPrefix": true
+      },
+      "docs/goal/PHASES.md": {
+        "bytes": 4314,
+        "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+        "exactPrefix": true
+      },
+      "docs/goal/LOG.md": {
+        "bytes": 405189,
+        "sha256": "d6a82f0878028ed20f88ade2e57f11eff09e90fc539f24d126ea1bbd6b1e31d7",
+        "exactPrefix": true
+      }
+    },
+    "943b6924338ef06037b3dc6f77dcae716e62d666": {
+      "docs/goal/README.md": {
+        "bytes": 5370,
+        "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+        "exactPrefix": true
+      },
+      "docs/goal/REQUIREMENTS.md": {
+        "bytes": 8398,
+        "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+        "exactPrefix": true
+      },
+      "docs/goal/STATUS.md": {
+        "bytes": 131059,
+        "sha256": "f714952a2861a41d7b2cc62b5ae1f5318042a0ae2e31f75dd625face77cce593",
+        "exactPrefix": true
+      },
+      "docs/goal/PHASES.md": {
+        "bytes": 4314,
+        "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+        "exactPrefix": true
+      },
+      "docs/goal/LOG.md": {
+        "bytes": 406423,
+        "sha256": "ff633e3074965853055be8acae0758b010d31da59ec3474c844bae3930c26a22",
+        "exactPrefix": true
+      }
+    },
+    "457e65467ea8d00114b809d5b7e1665bc611a60c": {
+      "docs/goal/README.md": {
+        "bytes": 5370,
+        "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+        "exactPrefix": true
+      },
+      "docs/goal/REQUIREMENTS.md": {
+        "bytes": 8398,
+        "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+        "exactPrefix": true
+      },
+      "docs/goal/STATUS.md": {
+        "bytes": 132772,
+        "sha256": "4b4e035b9e85d40402beb94c62357ab1230ed5fcabf47501e47365189fcc31c6",
+        "exactPrefix": true
+      },
+      "docs/goal/PHASES.md": {
+        "bytes": 4314,
+        "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+        "exactPrefix": true
+      },
+      "docs/goal/LOG.md": {
+        "bytes": 408136,
+        "sha256": "ab9d70ea06d74c6c24819922163f0d3a9ce0ac8c21bfef41baef335f4e2ecf62",
+        "exactPrefix": true
+      }
+    },
+    "9e203c025be032094351b0b9b2be1203c4f510c6": {
+      "docs/goal/README.md": {
+        "bytes": 5370,
+        "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+        "exactPrefix": true
+      },
+      "docs/goal/REQUIREMENTS.md": {
+        "bytes": 8398,
+        "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+        "exactPrefix": true
+      },
+      "docs/goal/STATUS.md": {
+        "bytes": 133950,
+        "sha256": "a96a73e4adbbf07365e326d36696b60c8ad04d7f3344569ffdabb7b348131b1b",
+        "exactPrefix": true
+      },
+      "docs/goal/PHASES.md": {
+        "bytes": 4314,
+        "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+        "exactPrefix": true
+      },
+      "docs/goal/LOG.md": {
+        "bytes": 409314,
+        "sha256": "c586b75436f2128f1743dbc0c9e63b992b65f376cb6e3c0ce028296a990eec17",
+        "exactPrefix": true
+      }
+    }
+  },
+  "sourceCorrections": {
+    "CC-363-EXPECTED-SHA-END-ANCHOR": {
+      "closed": "STATIC_SOURCE_AT_9e_AND_PRESERVED_1ff",
+      "complete9eModuleEquals457PlusOnlyTwoExactLengthGuards": true,
+      "stringTypeEstablishedBeforeLengthAndRegex": true,
+      "advertisedMinMax64AndNativeLength64BeforeDecode": true,
+      "meaningfulPreallocationFixture": "LF/CR/CRLF/U+2028/U+2029/NUL/TAB and same-length trailing LF rejected; Buffer.from sentinel zero calls then restored; actual SDK refusal followed by valid recovery",
+      "reviewerExecutedCounterexample": false
+    },
+    "CC-363-CLI-ALIAS-ENTRY": {
+      "closed": "STATIC_SOURCE_AT_1ff",
+      "wholeModuleEquals9ePlusTwoImportAndEntryReplacementsOnly": true,
+      "bothLaunchIdentitiesResolvedByReadOnlyRealpath": true,
+      "metadataResolutionFailureDoesNotStartServer": true,
+      "pureExecutionAndServerFactoryByteExact9e": true,
+      "newMeaningfulSDKFixture": "audit stdio: actual SDK symlink launch initializes audits and reaps the owned child after one close",
+      "fixtureReusesArmedNoNetworkNoWriteGuard": true,
+      "fixtureChecksAllToolListFullNAuditSelectedValueAndOwnedPIDAbsence": true,
+      "clientCloseOnceInFinally": true,
+      "temporaryAliasCreatedByParentBeforeChildGuardSnapshot": true,
+      "reviewerRuntime": false
+    }
+  },
+  "fixedFinitePolicyAndPureCoreDefault7VersionsDependenciesLocksCanonicalSourceUnchanged": true,
+  "READMECHANGELOGRootPackageByteExact457": true,
+  "onlySerialFocusedRegistrationAgainstActualMain": true,
+  "rootVerifyUnchanged": true,
+  "writtenSourceTests": {
+    "count": 29,
+    "names": [
+      "audit stdio: actual SDK initialize lists exactly one annotated tool with discoverable input and output schemas",
+      "audit stdio: actual SDK symlink launch initializes audits and reaps the owned child after one close",
+      "audit stdio: actual SDK call preserves text structured schema and deterministic public JSON hashes",
+      "audit stdio: original value versus later-only counterexample uses the earlier exact accession over real stdio",
+      "audit stdio: all six outcomes remain visible with full-N null coverage on the actual client",
+      "audit stdio: explicit evidence view is the exact complete unchanged core report and all raw input bindings",
+      "audit stdio: compact projection names omissions without relabeling its digest as the complete report",
+      "audit stdio: released seven-tool server stays unchanged and never lists the example",
+      "audit stdio: no-network no-write child sentinel demonstrably refuses both prohibited operations",
+      "audit stdio: wrong reference SHA yields a safe stable tool error and subsequent valid calls still work",
+      "audit stdio: closed arguments hashes details and missing settings never coerce or invent defaults",
+      "audit stdio: hash line terminators and controls refuse before any base64 allocation and over actual stdio",
+      "audit stdio: proxy accessor inherited and unexpected symbol arguments refuse without invoking user callbacks",
+      "audit stdio: canonical base64 refuses whitespace url alphabet missing excess internal padding and nonzero pad bits",
+      "audit stdio: trailing newline and noncanonical pad bits are refused before any base64 buffer allocation",
+      "audit stdio: base64 decoded lengths are enforced even when padded encoded lengths share a bucket",
+      "audit stdio: per-input encoded limits reject before malformed JSON is decoded or parsed",
+      "audit stdio: jointly oversized individually allowed byte batches refuse before any JSON parse",
+      "audit stdio: exact maximum settings bytes remain owned and valid while next byte refuses",
+      "audit stdio: raw duplicate decoded JSON keys and private source text produce bounded non-echoing core refusals over stdio",
+      "audit stdio: raw invalid UTF8 survives base64 transport and is refused without replacement or reserialization",
+      "audit stdio: lossy raw numeric literal and nonfinite exponent retain the core precision refusals",
+      "audit stdio: source tamper with the original advertised hash cannot alter scored evidence",
+      "audit stdio: caller module hash remains unverified and absent source rights and universe coverage remain null",
+      "audit stdio: all 64 selected rows are retained when their complete compact projection fits",
+      "audit stdio: oversized valid compact output refuses the whole batch rather than selecting fewer rows",
+      "audit stdio: oversized valid complete evidence output refuses without emitting a partial report",
+      "audit stdio: documented synthetic workflow executes through the actual listed tool and preserves its counterexample",
+      "audit stdio: oversized unterminated protocol frame closes with a bounded notice and no raw echo"
+    ],
+    "all28PriorNamesPreservedInOrder": true,
+    "currentRuntimeParsedInThisSourceReceipt": false
+  },
+  "retainedSourceSemantics": "Complete protocol/schema/raw/base64/output/SDK reviews remain bound to own3e265 exact prior byte pins; pure functions unchanged except independently inspected primitive64-length guards. No full report truncation, no verified promotion, no raw error echo; output escaped result and wholeRPC caps unchanged.",
+  "rootContinuity": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 10741,
+      "sha256": "9273e8c3539a6870718e5ed26e913086d77a052af2a59122f10bde6b66bbcd85"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 436318,
+      "sha256": "2099820228ebe2425b1ef20c47302a4ea8c211bf86826b1495a45cac16846296"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 4853,
+      "sha256": "82feb302a45d5c7bd7f65683f523cae6dce1fca46f03a7c83480afab39ab8982"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 781168,
+      "sha256": "5a9aa4e501486adfdbadb9541be37a0585b4b3de2a7cbd557eeef90b4c7ee79a"
+    }
+  ],
+  "scopeLimits": [
+    "Frozen Git and finite Python stdlib metadata/source/hash reads; no Node/import/tests/CLI/SDK/browser/helper/projectjob/CPU/API/refetch/source edits.",
+    "SDK symlink and child absence cases are source-written in this receipt; actual retained 29-case CI is a separate gate.",
+    "Read-only launch realpaths do not attest whole-module provenance; signed source manifest and behavior fingerprint remain distinct.",
+    "Dynamic test guard is a finite no-network/no-write oracle, not a hostile-process sandbox; no universal shutdown/latency/budget claim.",
+    "No future head/archive/ordinary merge/delivery/site/npm/publication accepted."
+  ],
+  "archiveAllocated": false,
+  "fullOwnerHierarchy": "ACTIVE",
+  "actualIndexedExpertRightsAdoptionQualifiedOutcomes": null
+}

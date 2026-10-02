@@ -1,0 +1,73 @@
+{
+  "schema": "canli.fundamentals-audit-stdio.retained-top-level-plan-audit.v1",
+  "observed_at": "2026-10-02T09:25:03.056412+00:00",
+  "source": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+  "author_exact_ci_receipt_sha256": "0829e314da0d6b8e6721283062526de65df4e9b2b84943ae659e6cd6db1dbe63",
+  "parser": "Original bytes preserved; view removes UTCtimestamp plus one separator and ANSI only. Top-level TAP rows remain unindented; exact ordered plans/ordinals checked.",
+  "observations": [
+    {
+      "role": "root",
+      "source_original": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-root-ci-original.log",
+        "bytes": 633034,
+        "sha256": "01c2d3015c2a6c7febb0c447c67b63bafd695fd8ba5c55bcb0fce8dcb3fa402c"
+      },
+      "plans": [
+        {
+          "plan": 6,
+          "top_level_ordinals_complete": true,
+          "all_ok": true
+        },
+        {
+          "plan": 1044,
+          "top_level_ordinals_complete": true,
+          "all_ok": true
+        },
+        {
+          "plan": 9,
+          "top_level_ordinals_complete": true,
+          "all_ok": true
+        }
+      ]
+    },
+    {
+      "role": "mcp",
+      "source_original": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-mcp-ci-original.log",
+        "bytes": 185475,
+        "sha256": "d19fd35540cfdf81ed57b42dd30a2e5a2660c2a927380d3e717763398a668c63"
+      },
+      "plans": [
+        {
+          "plan": 141,
+          "top_level_ordinals_complete": true,
+          "all_ok": true
+        },
+        {
+          "plan": 1,
+          "top_level_ordinals_complete": true,
+          "all_ok": true
+        },
+        {
+          "plan": 15,
+          "top_level_ordinals_complete": true,
+          "all_ok": true
+        },
+        {
+          "plan": 97,
+          "top_level_ordinals_complete": true,
+          "all_ok": true
+        },
+        {
+          "plan": 139,
+          "top_level_ordinals_complete": true,
+          "all_ok": true
+        }
+      ]
+    }
+  ],
+  "only_existing_remote_logs_parsed": true,
+  "local_project_runtime": false,
+  "future_archive_or_head_approval": false,
+  "full_owner_goals": "ACTIVE"
+}
