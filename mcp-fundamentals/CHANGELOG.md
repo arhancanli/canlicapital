@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Add a repository-checkout `audit_inputs` stdio example over the supplied-vintage audit core.
+  Strict exact-byte inputs, full selected-row compact or complete evidence results, explicit
+  unknown outcomes and bounded refusals. The published seven-tool server stays unchanged.
+  This example requires the repository canonical helper and is not an npm-package command.
+
 ## 0.5.0
 
 - `cross_section`: one measure for up to 50 companies (tickers, CIKs or names) as filed by a date.

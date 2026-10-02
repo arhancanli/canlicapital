@@ -278,3 +278,153 @@ catalogue pins are explicitly separate from portable archive members. The final
 source/archive extension, exact new-head CI and actual repository delivery are
 separate gates whose proofs stay external. No later head or numerical outcome is
 accepted by this dated predecessor checkpoint.
+
+
+## Repository stdio MCP example (Unreleased)
+
+The separate `examples/audit-inputs-stdio.mjs` program exposes one read-only
+`audit_inputs` tool over stdin/stdout. It calls this delivered audit core unchanged.
+It requires a complete CanliCapital repository checkout: the core's canonical
+helper is in `scripts/`, outside the published npm package. It is a repository
+example, not a new published command, hosted endpoint or eighth default tool.
+
+From the repository checkout, install the existing pinned dependencies with
+`npm ci --prefix mcp-fundamentals`. A stdio client's configuration can use:
+
+```json
+{
+  "mcpServers": {
+    "canli-fundamentals-audit-example": {
+      "command": "node",
+      "args": ["/absolute/path/canlicapital/mcp-fundamentals/examples/audit-inputs-stdio.mjs"]
+    }
+  }
+}
+```
+
+Use an absolute checkout path and Node 20.10 or newer. The server's stdout contains
+only MCP protocol messages. It has no listener, fetch, cache, provider call or
+persistent write. Its local example identifier is `0.0.0`; the package release
+version remains unchanged. No network/source rights or calibration is inferred.
+
+A client first initializes and lists tools, then supplies `reference_base64`,
+`expected_reference_sha256`, `usage_base64` and `settings_base64`. Each base64
+string carries the exact original bytes, including whitespace, key ordering and
+numeric literals. The separate reference pin must come from the caller's trusted
+manifest; a matching hash alone does not authenticate source authorship. Read
+files in the client when needed. Do not parse and reserialize a source before
+encoding it, repair malformed base64, or invent omitted settings.
+
+The optional `detail` selects `compact` (default) or `evidence`. Compact retains
+every selected usage row, exact concept/unit/period, selected source identity,
+status, verdict and reason, all scalar uncertainty diagnostics and full-N
+coverage. It omits the three original-base64 blobs and four per-row vintage
+arrays, whose observed counts remain visible. `projection.omitted` names those
+omissions. `projection.core_report_content_hash` binds the complete core report;
+the compact audit has its own schema and does not pretend to be that full report.
+The outer `content_hash` binds the exact selected view. Evidence returns the
+complete core report unchanged, including exact original input bytes.
+
+Both views retain raw input SHA256/length bindings and the core's implementation
+behavior hash. Caller-declared whole-module hashes remain unverified. A separate
+adapter behavior fingerprint binds its functions, schemas and finite policy; it
+is not a verified whole-file hash. Signed repository source review remains the
+whole-file binding. JSON text and `structuredContent` represent identical data.
+No measured token saving or latency comparison is claimed from output size.
+
+| Boundary | Maximum |
+| --- | ---: |
+| Decoded reference / usage / settings | 512 KiB / 64 KiB / 4 KiB |
+| Sum of all three decoded inputs | 560 KiB |
+| Encoded input | `4 * ceil(decoded maximum / 3)` ASCII characters each |
+| SDK inbound read buffer, before JSON parsing | 1 MiB |
+| Compact / evidence structured JSON | 64 KiB / 2 MiB |
+| Compact / evidence complete tool result, including escaped text copy | 256 KiB / 6 MiB |
+| Entire outbound JSON-RPC frame, including protocol envelope | 7 MiB + 4 KiB |
+
+All encoded and decoded lengths, padding bits and the three-input aggregate are
+checked before allocating decoded buffers. The exact owned buffers then reach
+the unchanged core; its 64-row, source, Unicode, numeric and other limits still
+apply. Output caps reject the whole valid batch without dropping rows or source
+evidence. A valid large batch can exceed a view's output cap; use a smaller
+explicitly selected batch and retain that changed denominator in your own audit.
+
+Refusals use `isError: true` and a bounded JSON error with a stable code.
+`ARGUMENTS`, `EXPECTED_SHA`, `DETAIL`, `BASE64`, `INPUT_BOUND` and
+`AGGREGATE_BOUND` describe transport admission. `CORE_` codes preserve the core's
+refusal class, such as `CORE_REFERENCE_SHA`, `CORE_DUPLICATE_KEY` or
+`CORE_NUMBER_PRECISION`; `OUTPUT_BOUND` refuses complete output. Errors never
+echo raw reference, usage or settings contents. Malformed/oversized protocol
+frames can close the transport before a request ID is available; stderr uses
+only the bounded `TRANSPORT` notice. SDK tool results pass through its negotiated
+codec; neither schema validation nor error reporting requires a provider.
+
+The following synthetic workflow runs after SDK initialization. It deliberately
+uses a later value before that later filing; the result is `mismatch` against the
+original observation, not an automatic claim about global first availability.
+
+<!-- audit-stdio-workflow:start -->
+```js
+async function auditWorkflow(client, createHash) {
+  const reference = Buffer.from('{"schema":"canli.fundamentals.audit-reference.v1","companyfacts":[{"cik":123456,"facts":{"us-gaap":{"Assets":{"units":{"USD":[{"end":"2019-12-31","val":100,"accn":"0000123456-20-000001","filed":"2020-02-10","form":"10-K"},{"end":"2019-12-31","val":90,"accn":"0000123456-21-000002","filed":"2021-02-10","form":"10-K"}]}}}}}]}');
+  const usage = Buffer.from('[{"cik":"0000123456","taxonomy":"us-gaap","concept":"Assets","unit":"USD","start":null,"end":"2019-12-31","value":90,"used_on":"2020-03-01"}]');
+  const settings = Buffer.from('{"schema":"canli.fundamentals.audit-settings.v1","snapshot_captured_at":null,"capture_reason":"Synthetic snapshot only.","completeness":"partial","completeness_reason":"Only supplied observations.","implementation_source_sha256":null}');
+  // Synthetic example pin. For real supplied files, use a separately trusted pin.
+  const expected = createHash('sha256').update(reference).digest('hex');
+  await client.listTools();
+  const response = await client.callTool({ name: 'audit_inputs', arguments: {
+    reference_base64: reference.toString('base64'),
+    expected_reference_sha256: expected,
+    usage_base64: usage.toString('base64'),
+    settings_base64: settings.toString('base64'),
+    detail: 'compact',
+  } });
+  if (response.isError) throw new Error(response.structuredContent.error.code);
+  return response.structuredContent;
+}
+```
+<!-- audit-stdio-workflow:end -->
+
+To run that function, save it in a client script inside `mcp-fundamentals/`,
+then import `createHash` from `node:crypto`, `Client` from
+`@modelcontextprotocol/client`, and `StdioClientTransport` from
+`@modelcontextprotocol/client/stdio`. Create a client with a name and version,
+connect a transport using `process.execPath` and the absolute example path,
+call `auditWorkflow(client, createHash)`, and close the client once in `finally`.
+This completes that client script after the function above:
+
+```js
+import { createHash } from 'node:crypto';
+import { Client } from '@modelcontextprotocol/client';
+import { StdioClientTransport } from '@modelcontextprotocol/client/stdio';
+import { fileURLToPath } from 'node:url';
+const client = new Client({ name: 'my-local-audit', version: '1.0.0' });
+const transport = new StdioClientTransport({
+  command: process.execPath,
+  args: [fileURLToPath(new URL('./examples/audit-inputs-stdio.mjs', import.meta.url))],
+  maxBufferSize: 8 * 1024 * 1024,
+});
+try {
+  await client.connect(transport);
+  console.log(JSON.stringify(await auditWorkflow(client, createHash), null, 2));
+} finally {
+  await client.close();
+}
+```
+
+Run your saved client script with Node. The returned row selects accession
+`0000123456-20-000001`, value 100; its verdict
+is false and `later_only_value_observed` is true. Same-day, ambiguous, missing
+and unsupported rows retain null verdicts. No reviewer, source-rights, trading
+calendar, survivorship or release admission is established.
+
+The focused registration is `npm run test:fundamentals-audit-stdio` after the
+package dependencies are installed. Existing remote MCP CI discovers this test
+through `test/*.test.mjs`; root verify is unchanged. The tests exercise actual
+SDK initialize/list/call/close, exact evidence/text parity and the workflow above,
+all six full-N outcomes, strict input/output bounds and safe refusal recovery.
+An isolated preload guard denies unexpected network access and persistent file
+writes, with separate positive controls proving both denials. Every SDK child
+has a finite test deadline and an actual owned-PID absence check after one close.
+These are written fixtures until their original remote logs establish execution.
+Independent source and exact-current-CI gates precede repository delivery.

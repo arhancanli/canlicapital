@@ -12,6 +12,7 @@
   "type": "module",
   "scripts": {
     "test:expert-intake": "node --test --test-concurrency=1 scripts/datasets/filing-facts/expert-intake.test.mjs",
+    "test:fundamentals-audit-stdio": "node --test --test-concurrency=1 mcp-fundamentals/test/audit-inputs-stdio.test.mjs",
     "test:fundamentals-audit-inputs": "node --test --test-concurrency=1 mcp-fundamentals/test/audit-inputs-core.test.mjs",
     "test:indexing-evidence": "node --test --test-concurrency=1 scripts/indexing-evidence.test.mjs",
     "test:attempt-accounting": "node --test --test-concurrency=1 scripts/datasets/filing-facts/attempt-accounting.test.mjs",

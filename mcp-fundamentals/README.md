@@ -182,3 +182,14 @@ How periods are handled:
 
 Code MIT. The SEC filings and XBRL facts are U.S. government works in the public domain; Canli
 Capital's selection and derived data are CC BY 4.0 (credit "Canli Capital (canlicapital.com)").
+
+
+## Repository audit example (Unreleased)
+
+Backtest developers can call the supplied-vintage audit core through the separate
+[local stdio example](AUDIT_INPUTS.md#repository-stdio-mcp-example-unreleased).
+It reads the exact reference, usage and settings bytes supplied by the client,
+keeps every selected row, and makes missing or uncertain outcomes visible.
+The complete repository checkout and its pinned package dependencies are required.
+The canonical helper lives outside this npm package; `npx canli-fundamentals-mcp`
+and the hosted endpoint continue to expose the existing seven tools.
