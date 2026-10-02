@@ -28,6 +28,7 @@ test('the execution guide binds delivered private source and its full local impo
   assert.equal(source.hosted_endpoint, null);
   assert.equal(source.npm_install, null);
   assert.deepEqual(source.default_tools, ['size_position', 'check_orders', 'measure_shortfall', 'journal']);
+  assert.deepEqual(validateExecutionSource(JSON.parse(JSON.stringify(source))), source);
   assert.equal(EXECUTION_SOURCE_PATHS.length, 64);
   for (const path of EXECUTION_SOURCE_PATHS) {
     const text = readFileSync(join(ROOT, path), 'utf8');

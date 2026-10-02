@@ -1673,3 +1673,25 @@ are unchanged froma36d. RootREADME+appendSTATUSLOG are the only correction paths
 A new signed head and current remoteCI are required; old passing test cases do not
 establish new-head CI acceptance. No localproject runtime/job/grant/nonce/provider/
 model/resource/spend/pub occurred. Full owner hierarchyACTIVE; freshindexedcountsnull.
+
+
+## Guide currentCI accepted; public source record roundtrip aligned, 2026-10-02T03:13:02.296231+00:00
+
+Exacta103 remoteNode22.23.3 passes15newcases oncewithin940main+6pre+9notification,
+all7currentCI SUCCESS. Tested91f0287e/tree63ab equals signedG sourcea103+main64d;
+current merge-ref0openCodeQL and both currentlanguage analyses match91f/results0.
+Raw588438B SHA f07881ad and actual5e877929/currentfidelitybfbde880 are retained.
+Originala36 README count failure577110B/5d85/bdb stays separate.
+
+Third STATIC source/SEO/closure/deploy reviewa3c85376 PASS for originala36 except
+its knownfailedREADME gate; it confirms64pins/95relativeedges/defaultprivate/example/
+localvalidation/links/order. Existing portabledate metadata is stale:67execution
+inputs0valid/66missing/1changedframedbinding; actual freshcapture/Gitfree/browser/
+publication remainopen. Original metadata is preserved until an allocated build.
+Nonblocking P3 publicv1 record emitted package_version beyond its strict input
+schema. Narrow fix returns the validated source record exactly, and the existing
+first regression now requires JSON roundtrip validation. All15testnames remain;
+the changed helper/test requires new signedsource/currentremoteCI/peer extension.
+No new source/core/schema/tool/version/CSS/hero/dataset/package or browser result.
+No localproject job/import/Node/build/CLI/browser/helper/grant/nonce/model/spend/pub.
+All ownerhierarchyACTIVE/currentindexedcountsnull.

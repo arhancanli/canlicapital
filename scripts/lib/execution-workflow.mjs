@@ -123,7 +123,7 @@ export function validateExecutionSource(record, { root = ROOT, readFile = readFi
   if (pkg.name !== parsed.package || pkg.private !== true) throw new Error('Execution workflow must describe private repository source');
   const registered = [...captured.get('mcp-execution/src/server.mjs').toString('utf8').matchAll(/\bserver\.registerTool\("([a-z_]+)"/g)].map(match => match[1]);
   if (JSON.stringify(registered) !== JSON.stringify(names)) throw new Error('Execution workflow tool set differs from the reviewed source');
-  return { ...parsed, package_version: pkg.version };
+  return parsed;
 }
 
 export function executionSource(root = ROOT, { readFile = readFileSync } = {}) {
