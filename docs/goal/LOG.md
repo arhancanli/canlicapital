@@ -5834,3 +5834,23 @@ primary's lane and not preapproved. No localprojectNode/import/test/CLI/build/
 browser/helper/job/CPUgrant/lease/nonce/auth/provider/model/resource/hold/spend/
 order/site/npm/version/hero action; fullowner hierarchyACTIVE/currentindexed/
 qualified/admitted/family countsNULL. Primarysole ordinarymerger/publisher/leadCPU.
+
+
+## Secondary predecessor archive freeze, 2026-10-02T04:00:37.532296+00:00
+
+
+Signedc07f6261 has now passed all36 actual named cases once, root6+961+9 and139
+execution cases on remoteNode22.23.3, with all seven checks/currentref0/latest
+JavaScript+Python results0. Primary static28907/currentCI d73f and third static
+7a159/currentCI ea912 independently accept these exact bindings. The allocated
+32TOTAL-file predecessor archive is at`evidence/indexing-evidence-20261002/`;
+manifest SHA256`240ac243d99962066bae4668dd5ee1546a6fc8f3d747d1b1940696e60a6e045d` binds7652915
+ORIGINAL bytes and1623743 stored bytes, includingREADME+manifest.
+All original0210 failures/holds and32/34/36 source distinctions remain preserved.
+The module, all36 fixtures and package registration remain byte-exactc07. This
+new archive/documentation freeze requires its own signed-head remoteCI and both
+final source/archive/currentCI reviews before primary ordinarymerge. Final source,
+CI and actual delivery receipts stay outside the predecessor archive. Current
+Google/Bing/admitted/qualified indexing remains null; all owner goals stayACTIVE.
+
+Primary retains public workflow359, ordinarymerge/publication and leadsoleCPU. No localprojectjob/grant/auth/provider/model/resource/spend/site/npm/hero action. Original main and c07 goal chronologies remain exactprefixes.

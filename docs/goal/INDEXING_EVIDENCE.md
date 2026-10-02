@@ -223,3 +223,18 @@ remain active: the four Sovereign pillars, efficient useful MCP/API/developer
 adoption, rights-cleared expert refinery, governed ALPHAC outcomes, paper then
 lawful capital,10M actually indexed useful source-backed canonicals, relevant
 search intents/SEO/design/analyzers/graphs and independently reviewed research.
+
+
+Signedc07f6261 has now passed all36 actual named cases once, root6+961+9 and139
+execution cases on remoteNode22.23.3, with all seven checks/currentref0/latest
+JavaScript+Python results0. Primary static28907/currentCI d73f and third static
+7a159/currentCI ea912 independently accept these exact bindings. The allocated
+32TOTAL-file predecessor archive is at`evidence/indexing-evidence-20261002/`;
+manifest SHA256`240ac243d99962066bae4668dd5ee1546a6fc8f3d747d1b1940696e60a6e045d` binds7652915
+ORIGINAL bytes and1623743 stored bytes, includingREADME+manifest.
+All original0210 failures/holds and32/34/36 source distinctions remain preserved.
+The module, all36 fixtures and package registration remain byte-exactc07. This
+new archive/documentation freeze requires its own signed-head remoteCI and both
+final source/archive/currentCI reviews before primary ordinarymerge. Final source,
+CI and actual delivery receipts stay outside the predecessor archive. Current
+Google/Bing/admitted/qualified indexing remains null; all owner goals stayACTIVE.

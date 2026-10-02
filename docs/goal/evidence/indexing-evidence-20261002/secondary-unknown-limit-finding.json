@@ -1,0 +1,25 @@
+{
+  "schema": "canli.secondary.indexing-evidence.static-finding.v1",
+  "observedAt": "2026-10-02T03:28:36.164340+00:00",
+  "source": "35c2fec39c9c807e595a4607b6d3c4e1eb5e68a2",
+  "id": "CC-360-UNKNOWN-LIMIT-COMPLETENESS",
+  "severity": "P2",
+  "classification": "STATIC_COUNTEREXAMPLE_NOT_EXECUTED",
+  "path": "scripts/lib/indexing-evidence.mjs",
+  "finding": "The incomplete predicate omits rowLimit===null. A complete declared export with all totals/pages/status flags known and null rowLimit plus a reason can retain declaredCoverageComplete=true. Guide conflates unknown and unbounded interface limits; owner contract requires unknowns as null and conservative incomplete coverage. Established provider/goal counters still remain null.",
+  "counterexample": {
+    "status": "complete",
+    "rowsReported": 1,
+    "totalRows": 1,
+    "pagesCaptured": 1,
+    "totalPages": 1,
+    "rowLimit": null,
+    "limitReached": false,
+    "hasMore": false,
+    "sampling": "none",
+    "unavailableReason": "Original export row limit was not supplied."
+  },
+  "requiredChange": "Treat null rowLimit as unknown/incomplete; remove unknown/unbounded conflation and add one meaningful synthetic completeness refusal case. No provider/admission/goal promotion or old baseline changes.",
+  "earlierExactCi": "35 actual34PASS/root6+959+9/139exec/all7 remains true for its source; this new predicate requires new signed source/currentCI",
+  "projectRuntimeExecuted": false
+}

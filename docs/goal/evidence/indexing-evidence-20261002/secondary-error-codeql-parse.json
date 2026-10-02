@@ -1,0 +1,8 @@
+{
+  "observedAt": "2026-10-02T03:13:15.651714+00:00",
+  "stage": "Receipt parse after original raw capture and all named/suite/check validations",
+  "error": "KeyError: language",
+  "cause": "CodeQL analysis language is encoded in the retained environment JSON, not a top-level language field.",
+  "correction": "Parse original environment JSON without refetch/rewrite",
+  "projectExecution": false
+}

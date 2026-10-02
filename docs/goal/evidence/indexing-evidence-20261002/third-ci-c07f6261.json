@@ -1,0 +1,437 @@
+{
+  "schema": "canli.third.indexing-evidence.retained-current-ci.v1",
+  "observedAt": "2026-10-02T03:56:59.147549+00:00",
+  "source": "c07f6261443c97a0fd86131a0b5841b61a503ef4",
+  "tree": "63641977e0fe2f1761dea5085b63528bfebe1709",
+  "verdict": "PASS_EXACT_RETAINED_CURRENT_CI_WITH_FINAL_ARCHIVE_SOURCE_CI_DELIVERY_PENDING",
+  "authorExactReceipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-c07f6261-exact-ci.json",
+    "bytes": 12153,
+    "sha256": "9e13a715dfbf89884fe9487e2f7446babe695a928a8014c40b778a242ade4aa8"
+  },
+  "ownCurrentSourceReview": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/review-c07f6261.json",
+    "bytes": 4472,
+    "sha256": "7a1596b9e374e98aaa87051c5e3e0461e74fc6587783379ffc8caa88b8162832"
+  },
+  "ownSnapshot": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/source-snapshot-c07f6261.json",
+    "bytes": 7608,
+    "sha256": "a63cee7fcce2755301560e43cd7b6ef4108982ce265c68fef1904848f5a3a608"
+  },
+  "sourceTest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/source-c07f6261/scripts/indexing-evidence.test.mjs",
+    "bytes": 37639,
+    "sha256": "130c6c2c3a85017902bb778f67fd9c4b800625c8efce9c3c70ffa31644787c7f"
+  },
+  "actualNamedCases": {
+    "count": 36,
+    "eachOncePassed": true,
+    "observed": [
+      {
+        "result": "ok",
+        "number": 746,
+        "name": "index evidence: historical aggregate retains original bytes and dates without current counts"
+      },
+      {
+        "result": "ok",
+        "number": 747,
+        "name": "index evidence: caller mutation cannot alter captured bytes or the frozen report"
+      },
+      {
+        "result": "ok",
+        "number": 748,
+        "name": "index evidence: rejects changed raw bytes, wrong length and substituted original"
+      },
+      {
+        "result": "ok",
+        "number": 749,
+        "name": "index evidence: matching raw hash alone cannot validate a changed extraction"
+      },
+      {
+        "result": "ok",
+        "number": 750,
+        "name": "index evidence: exact domain and URL-prefix property bindings remain distinct"
+      },
+      {
+        "result": "ok",
+        "number": 751,
+        "name": "index evidence: wrong report, metric or provider cannot become indexing"
+      },
+      {
+        "result": "ok",
+        "number": 752,
+        "name": "index evidence: impossible calendar values and non-UTC observations are refused"
+      },
+      {
+        "result": "ok",
+        "number": 753,
+        "name": "index evidence: future data, update, observation and inconsistent windows are refused"
+      },
+      {
+        "result": "ok",
+        "number": 754,
+        "name": "index evidence: missing dates and metric values stay null with explicit reasons"
+      },
+      {
+        "result": "ok",
+        "number": 755,
+        "name": "index evidence: strict nonnegative safe counts reject coercion, fractions and unsafe values"
+      },
+      {
+        "result": "ok",
+        "number": 756,
+        "name": "index evidence: no getters, iterators, toJSON or species run at the byte boundary"
+      },
+      {
+        "result": "ok",
+        "number": 757,
+        "name": "index evidence: duplicate keys and supplied verification flags are refused"
+      },
+      {
+        "result": "ok",
+        "number": 758,
+        "name": "index evidence: malformed UTF-8 and unpaired Unicode are refused without sanitizing"
+      },
+      {
+        "result": "ok",
+        "number": 759,
+        "name": "index evidence: metadata, raw, nesting, rows, nodes and string bounds are finite"
+      },
+      {
+        "result": "ok",
+        "number": 760,
+        "name": "index evidence: manual opaque source retention never authenticates extraction or provider"
+      },
+      {
+        "result": "ok",
+        "number": 761,
+        "name": "index evidence: unavailable extraction keeps original source and refuses invented values"
+      },
+      {
+        "result": "ok",
+        "number": 762,
+        "name": "index evidence: a referenced historical workbook hash without bytes remains unavailable"
+      },
+      {
+        "result": "ok",
+        "number": 763,
+        "name": "index evidence: sitemap, eligibility, notifications and performance cannot unlock indexing"
+      },
+      {
+        "result": "ok",
+        "number": 764,
+        "name": "index evidence: selected positive URL observations cannot establish site or family coverage"
+      },
+      {
+        "result": "ok",
+        "number": 765,
+        "name": "index evidence: duplicates, alias canonicals and unknown rows remain diagnostic partial evidence"
+      },
+      {
+        "result": "ok",
+        "number": 766,
+        "name": "index evidence: foreign URLs are refused and foreign canonicals cannot become complete"
+      },
+      {
+        "result": "ok",
+        "number": 767,
+        "name": "index evidence: partial pages, row limits, unknown pagination and sampling refuse completeness"
+      },
+      {
+        "result": "ok",
+        "number": 768,
+        "name": "index evidence: an unknown export row limit cannot establish complete coverage"
+      },
+      {
+        "result": "ok",
+        "number": 769,
+        "name": "index evidence: even complete declared canonical rows keep admitted useful counts unknown"
+      },
+      {
+        "result": "ok",
+        "number": 770,
+        "name": "index evidence: unavailable reasons, metric totals and row totals cannot contradict coverage"
+      },
+      {
+        "result": "ok",
+        "number": 771,
+        "name": "index evidence: actual CLI writes one exclusive private artifact with exact original inputs"
+      },
+      {
+        "result": "ok",
+        "number": 772,
+        "name": "index evidence: actual direct and symlink CLI entries have identical refusal and report behavior"
+      },
+      {
+        "result": "ok",
+        "number": 773,
+        "name": "index evidence: actual CLI refuses existing outputs, symlink outputs and input aliases"
+      },
+      {
+        "result": "ok",
+        "number": 774,
+        "name": "index evidence: actual CLI requires explicit inputs, property, reference and output without discovery"
+      },
+      {
+        "result": "ok",
+        "number": 775,
+        "name": "index evidence: actual CLI refuses symlinks, special files and bounded oversize before reading"
+      },
+      {
+        "result": "ok",
+        "number": 776,
+        "name": "index evidence: actual CLI refuses tampered source and never echoes sensitive input on errors"
+      },
+      {
+        "result": "ok",
+        "number": 777,
+        "name": "index evidence: actual CLI has no false acknowledgment after partial write, fsync or close failure"
+      },
+      {
+        "result": "ok",
+        "number": 778,
+        "name": "index evidence: actual CLI rejects input mutation during descriptor capture"
+      },
+      {
+        "result": "ok",
+        "number": 779,
+        "name": "index evidence: reader close-after-close failure never closes a reused unrelated descriptor"
+      },
+      {
+        "result": "ok",
+        "number": 780,
+        "name": "index evidence: writer close-after-close failure never closes a reused unrelated descriptor"
+      },
+      {
+        "result": "ok",
+        "number": 781,
+        "name": "index evidence: API and actual CLI operate with network calls trapped and no credential lookup"
+      }
+    ]
+  },
+  "actualRootSuites": [
+    {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 961,
+      "pass": 961,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "allMcpSuites": [
+    {
+      "tests": 141,
+      "pass": 141,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 15,
+      "pass": 15,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 32,
+      "pass": 32,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 139,
+      "pass": 139,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "executionSuite": {
+    "tests": 139,
+    "pass": 139,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "actualNode": "22.23.3",
+  "run": 36961009688,
+  "rootJob": 110694467118,
+  "mcpJob": 110694466916,
+  "runAttempt": 1,
+  "checks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110694650081",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36961009731/job/110694466440",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36961009688/job/110694466865",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36961009688/job/110694467118",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36961009731/job/110694466188",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36961009688/job/110694466769",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36961009688/job/110694466916",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    }
+  ],
+  "capturedCurrentRefAlertObjects": 0,
+  "latestLanguages": [
+    {
+      "language": "javascript-typescript",
+      "analysisId": 1878814530,
+      "commit": "86761dfbecdab8513d1f89b96e63ecc2a142abf7",
+      "results": 0,
+      "error": ""
+    },
+    {
+      "language": "python",
+      "analysisId": 1878812486,
+      "commit": "86761dfbecdab8513d1f89b96e63ecc2a142abf7",
+      "results": 0,
+      "error": ""
+    }
+  ],
+  "testedMerge": {
+    "sha": "86761dfbecdab8513d1f89b96e63ecc2a142abf7",
+    "tree": "63641977e0fe2f1761dea5085b63528bfebe1709",
+    "parents": [
+      "64d815912c99bdb86017dbb96855d6b62ffaab1d",
+      "c07f6261443c97a0fd86131a0b5841b61a503ef4"
+    ],
+    "rawBothLogsMatch": true,
+    "treeEqualsFrozenReviewedSignedSource": true
+  },
+  "originalRawApiPins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-c07f6261-root-ci-original.log",
+      "bytes": 596472,
+      "sha256": "569ad815821b18813475a9451b6faa907a5dc57fe1bd20d5f6e5c33b95e1400c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-c07f6261-mcp-ci-original.log",
+      "bytes": 156218,
+      "sha256": "871efe8b9c157f696179608557e329ed99fa7a76c98f68b29b5a32ffc86c0b6a"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-c07f6261-checks-original.json",
+      "bytes": 1131,
+      "sha256": "7c1ceaa5ec36383ecd392599f33e9629b3a680087f80926feb415fbaa10c5276"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-c07f6261-run-original.json",
+      "bytes": 13286,
+      "sha256": "8654650caf474d5380f0762e64fd1d1234ca0678b12af165a98ed3add88eaf65"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-c07f6261-pr-original.json",
+      "bytes": 18858,
+      "sha256": "5985e6c9ce012cf70b566bcb62fe8afc7d754d9b363631476b91be8daf0dda69"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-c07f6261-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-c07f6261-codeql-analyses-original.json",
+      "bytes": 4747,
+      "sha256": "9e710d5ee7f2ca2413fb1e294a6fd341a799afdc7dc5c9871bfcadb662ea38c6"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-c07f6261-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "b8b350bc3131efd121a159ae419f073047f24dcddf34c4f9d7e916b84741c6ac"
+    }
+  ],
+  "originalFailureAndPrior32And34CiPreserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/retained-ci-ff6f80c1-and-35c2fec3.json",
+    "bytes": 30144,
+    "sha256": "ac692b27ad7c54b1992fe81ad094645f67026b5de0f5a30dce2cb826c0232329"
+  },
+  "ownPreparationErrorRetained": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/c07-ci-preparation-schema-error.json",
+    "bytes": 1524,
+    "sha256": "2875621d2dad93dd2dad5536785f82af68a11e236b4f830e294549e7f3a00b61"
+  },
+  "metadataCorrection": "Actual current author schema is exact-retained-ci.v1 with original_pins/root_suites/indexing_cases snake-case keys; own prior older-schema expectation failed before any receipt/continuity writes, then corrected without modifying any original. No project/runtime failure/refetch/rerun.",
+  "scope": "Independent finite stdlib derivation of retained author raw GitHub CI/API captures plus frozen source. No reviewer Node/import/test/CLI/project runtime/direct API/refetch/new job/lease/grant/source edits. Captured ref/language freshness refers to dated capture, not a new live query. CodeQL response arrays fewer100 rows at both endpoints; no pagination cutoff observed. No new indexed/provider/auth/performance/model/human/adoption outcome.",
+  "closedFindingsAtThisSource": {
+    "primaryCloseRetry": "staticclosed35c,preservedc07; twoactualreusecases pass here",
+    "secondaryUnknownLimit": "staticclosedc07; actualunknown-limit refusal/retention case oncepass here",
+    "thirdCliAlias": "staticclosedc07; actualdirect/alias missing/valid exact-parity case oncepass here"
+  },
+  "remainingGates": [
+    "allocated32TOTAL inclREADME/manifest,12MiB ORIGINAL inclboth evidence archive at frozen final signed head",
+    "actual main integration/protected sources/history/finalsource+archive/work/index/Git/decompress proofs",
+    "exact FINAL-head currentCI and independent extension",
+    "primary sole ordinarymerge; no indexing or website/npm publication inferred"
+  ],
+  "counts": {
+    "Google": null,
+    "Bing": null,
+    "distinctAdmittedCanonical": null,
+    "qualifiedTargetProgress": null
+  },
+  "fullGoal": "ACTIVE"
+}
