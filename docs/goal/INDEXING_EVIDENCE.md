@@ -100,7 +100,7 @@ aggregate; inspection count and declared returned-row count must match retained 
 
 Coverage describes the **declared captured report**, not independently established
 site coverage. `rowLimit` is the declared overall export limit across captured pages;
-null means unknown/unbounded by the declared interface, with an unavailable reason.
+null means unknown, requires an unavailable reason and cannot establish completeness.
 The checker itself always imposes512 rows. Contradictory totals/pages are refused.
 Declared completeness requires known equal totals/pages, no continuation or row-limit
 hit, no sampling/unknown metric or row statuses and no duplicate URLs/canonicals, canonical mismatch
@@ -154,6 +154,8 @@ Use explicit `--raw unavailable` for the unavailable-source contract. Inputs are
 read-only, bounded regular files admitted through nonblocking/no-follow descriptors.
 The reader checks descriptor identity, size and change times before/after the one
 capture. Paths must be absolute and normalized, with existing non-aliased parents.
+CLI entry identity is normalized to its real file: direct and symlink entry aliases
+perform the same argument validation and operation, including missing-argument refusal.
 The output is exclusive mode0600; existing outputs, symlinks and input aliases are
 refused. No directories are created and no failed output is unlinked. Write/fsync/
 close failure leaves uncertain output for manual inspection and produces no success
@@ -195,6 +197,24 @@ CLI close-after-close/reuse regressions are **WRITTEN**, making34 named source c
 this corrected implementation requires its own signed pin, exact remote CI and
 independent source review. The earlier32-pass run remains evidence forff6, not this
 new head, and the original0210 failures stay preserved.
+
+Signed35c2fec3 subsequently passed all34 actual named cases/root6+959+9/139
+execution/all7 on remote22.23.3. A further source audit found that a null export
+row limit could still leave declared coverage complete when other flags/totals
+were known. Null is now strictly unknown/incomplete; it never means a verified
+unbounded interface. One additional completeness/unknown-retention fixture is
+WRITTEN, making35 named cases. This small semantic correction requires a new
+signed source, exact current remote CI and independent reviews; prior34-pass
+evidence remains tied to35c2fec3.
+
+Third static review0de3 also identifiedCC-360-CLI-SYMLINK-SILENT-SKIP: comparing a
+literal entry URL to ESM's resolved target could silently skip the CLI for a symlink
+entry. The entry guard now compares normalized real-file identities. A further
+finite actual direct/alias missing-argument and exact-report parity fixture is
+WRITTEN. Both source corrections are batched into the same new freeze, with36
+named cases requiring their own exact remote CI and independent source acceptance.
+Third retained-CI reviewac692b27 independently confirms the earlier32/34 passing
+runs; that receipt does not preapprove these corrections or future source.
 
 This contract addresses the offline intake part ofCC-INDEX-INGEST-GUARD and raw
 binding requirements ofCC-INDEX-RAW-PROVENANCE. CC-INDEX-FRESH-AGGREGATE,

@@ -99,8 +99,8 @@ function cliFiles(t, value = fixture()) {
     '--property', value.input.property, '--as-of', referenceAt, '--output', outputPath];
   return { folder, metadataPath, rawPath, outputPath, args, value };
 }
-function runCli(files, { args = files.args, preload = null } = {}) {
-  return spawnSync(process.execPath, [...(preload ? ['--require', preload] : []), modulePath, ...args],
+function runCli(files, { args = files.args, preload = null, entry = modulePath } = {}) {
+  return spawnSync(process.execPath, [...(preload ? ['--require', preload] : []), entry, ...args],
     { encoding: 'utf8', timeout: 8000, maxBuffer: 16384,
       env: { ...process.env, OPENAI_API_KEY: 'DO_NOT_ECHO_SYNTHETIC_SENTINEL' } });
 }
@@ -395,6 +395,21 @@ test('index evidence: partial pages, row limits, unknown pagination and sampling
   refusal(() => check(fixture(i => { i.coverage.pagesCaptured = 2; })), 'COVERAGE');
 });
 
+test('index evidence: an unknown export row limit cannot establish complete coverage', () => {
+  refusal(() => check(fixture(input => {
+    input.coverage.rowLimit = null;
+    input.coverage.unavailableReason = 'Original export row limit was not supplied.';
+  })), 'FALSE_COMPLETENESS');
+  const report = check(fixture(input => {
+    input.coverage.rowLimit = null;
+    input.coverage.status = 'unknown';
+    input.coverage.unavailableReason = 'Original export row limit was not supplied.';
+  }));
+  assert.equal(report.declaredObservation.coverage.rowLimit, null);
+  assert.equal(report.rowSummary.declaredCoverageComplete, false);
+  unknownEstablished(report);
+});
+
 test('index evidence: even complete declared canonical rows keep admitted useful counts unknown', () => {
   const value = fixture(input => {
     urlRows(input, [inspected('/one/'), inspected('/two/')]);
@@ -436,6 +451,22 @@ test('index evidence: actual CLI writes one exclusive private artifact with exac
   assert.equal(result.stdout.includes(files.folder), false);
   assert.equal(result.stdout.includes(expectedProperty), false);
   assert.equal(result.stdout.includes('DO_NOT_ECHO_SYNTHETIC_SENTINEL'), false);
+});
+
+test('index evidence: actual direct and symlink CLI entries have identical refusal and report behavior', t => {
+  const files = cliFiles(t); const alias = join(files.folder, 'checker-alias.mjs'); fs.symlinkSync(modulePath, alias);
+  cliRefusal(runCli(files, { args: [] }), 'CLI_ARGUMENTS');
+  cliRefusal(runCli(files, { args: [], entry: alias }), 'CLI_ARGUMENTS');
+  assert.equal(fs.existsSync(files.outputPath), false);
+  const direct = runCli(files); assert.equal(direct.status, 0); assert.equal(direct.stderr, '');
+  const alternateOutput = join(files.folder, 'alias-checked.json'); const args = [...files.args];
+  args[args.indexOf('--output') + 1] = alternateOutput;
+  const throughAlias = runCli(files, { args, entry: alias });
+  assert.equal(throughAlias.status, 0); assert.equal(throughAlias.stderr, ''); assert.equal(throughAlias.stdout, direct.stdout);
+  assert.deepEqual(fs.readFileSync(alternateOutput), fs.readFileSync(files.outputPath));
+  assert.deepEqual(fs.readFileSync(files.metadataPath), files.value.metadata);
+  assert.deepEqual(fs.readFileSync(files.rawPath), files.value.raw);
+  unknownEstablished(JSON.parse(fs.readFileSync(alternateOutput)));
 });
 
 test('index evidence: actual CLI refuses existing outputs, symlink outputs and input aliases', t => {

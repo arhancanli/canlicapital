@@ -5800,3 +5800,37 @@ nonce/auth/provider/model/resources/hold/spend/order/outreach/site/npm/version/h
 Primarysole ordinarymerger/publisher/leadCPU; fulloriginal Sovereignpillars/
 10Mactualusefulsource-backedindexing/SEO/intents/design/analyzers/legitimateadoption/
 realexpertrefinery/rights/research/governedALPHAC/paperthenlawfulcapital goalsACTIVE.
+
+
+## 2026-10-02T03:35:25.996728+00:00 — secondary360 unknown-limit and symlink-entry corrections batched
+
+Exact35c2fec3 remoteCI actually passes34 named cases once/root6+959+9/execution139/
+Node22.23.3/all7/currentref0/latestJS+PY0, tested6c76eee1/tree72cb/source35+64d.
+Original595200B root SHA9a4232f8 and156228B MCP16902149; exact receipt11313B
+SHA5be28ae475db4c05034001eb86868399d7c7edc5982ceb8908425d813f96498c.
+Third ac692b27 independently parses original ff6/35 logs, merge/tree/parents/
+cases/suite/check/ref-language bindings. Old0210 30PASS2FAIL/no notifications and
+metadataerrors stay intact; original passing sources are not future-source proof.
+Third35 static0de3 closes primary close-retry/reuse P2 in source: all4 close sites
+release ownership first and both actualreuse fixtures are meaningful.
+
+Two remaining source corrections are now batched before another freeze: own
+CC-360-UNKNOWN-LIMIT-COMPLETENESS findingd5ff97f3 treats rowLimitnull strictly
+as unknown/incomplete and removes unknown/unbounded conflation; one new finite
+completeness-refusal/unknown-retention fixture. ThirdCC-360-CLI-SYMLINK-SILENT-SKIP
+0de3 identifies literalentry URL equality skipping symlink CLI silently. The
+entry guard now compares normalized real-file identities, with a new actual
+direct/alias missingargs refusal and exact validreport parity fixture. Both are
+STATIC counterexamples, not executed experiments; new36 source cases are WRITTEN
+until signed freeze/current existingremoteCI and bothsourcepeer gates. Initial
+patch preparation context error occurred before mutation, was verified and
+retained separately, then corrected from actualcontext. Package unchanged; exact
+six assigned paths/protected main and all goalprefixes remain preserved.
+
+Primary32TOTAL/12MiBORIGINAL archiveallocation7a6 remains conditional on corrected
+CI/bothpeers; no repository archive yet. Primary359 complementary review4ff75 is
+only exacta103 staticworkflow; latest9a/otherfuture source/browser/site gates are
+primary's lane and not preapproved. No localprojectNode/import/test/CLI/build/
+browser/helper/job/CPUgrant/lease/nonce/auth/provider/model/resource/hold/spend/
+order/site/npm/version/hero action; fullowner hierarchyACTIVE/currentindexed/
+qualified/admitted/family countsNULL. Primarysole ordinarymerger/publisher/leadCPU.

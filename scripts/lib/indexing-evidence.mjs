@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import * as fs from 'node:fs';
 import { dirname, isAbsolute, resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 import { TextDecoder, types } from 'node:util';
 
 // This is an offline observation contract, not a Google/Bing export adapter.
@@ -372,6 +372,7 @@ function validate(input, expectedProperty, referenceAt) {
     }
   }
   const incomplete = coverage.rowsReported === null || coverage.totalRows === null ||
+    coverage.rowLimit === null ||
     coverage.pagesCaptured === null || coverage.totalPages === null || coverage.pagesCaptured < 1 ||
     coverage.rowsReported !== coverage.totalRows || coverage.pagesCaptured !== coverage.totalPages ||
     coverage.limitReached !== false || coverage.hasMore !== false || coverage.sampling !== 'none' ||
@@ -557,7 +558,11 @@ function cli(argv) {
     currentIndexedCount: null, qualifiedTargetProgress: null }) + '\n');
 }
 
-if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) {
+let isEntry = false;
+try {
+  isEntry = !!process.argv[1] && fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url));
+} catch { /* Imported by another entry; no CLI operation. */ }
+if (isEntry) {
   try { cli(process.argv.slice(2)); }
   catch (error) {
     const code = error instanceof IndexingEvidenceError ? error.code : 'OFFLINE_REFUSAL';
