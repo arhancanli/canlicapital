@@ -4,6 +4,17 @@
 
 The first release, 0.1.0, is paper trading only. It ships when every item of its release bar holds.
 
+- Planning files use bounded nonblocking regular-file snapshots: orders JSON stays
+  capped at16MiB and limits JSON now has a1MiB cap. Unsafe files refuse before any
+  read; captured bytes and same-descriptor metadata detect ordinary concurrent
+  edits. Invalid UTF-8 refuses. Existing regular-file arithmetic, provenance,
+  optional absent limits, default tool schemas and writer behavior are preserved.
+- Metadata-only fee schedules refuse in the shared local/hosted strict input
+  contract. Explicit monetary zero and stated sell-only fees retain their meaning;
+  omitted fees keep commission unknown. No new tool, version or release is created.
+  New focused cases are written; exact signed-source remote CI and peer review are
+  required before delivery. Original STATIC findings remain retained separately.
+
 - Opt-in local `journal initialize/append` adapter uses the delivered private writer
   and fixed local signing key. Default advertised actions and hosted behavior remain
   unchanged. Typed pending/uncertainty errors return no success receipt, and exact

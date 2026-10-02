@@ -12,6 +12,27 @@ Shortfall may read a named bounded orders JSON file. Its outputs disclose missin
 incomplete account/market state. No tool writes limits. Default journal head/verify/export
 does not change the source journal.
 
+Planning-file admission opens with nonblocking read flags, then checks the opened
+descriptor for a regular file before reading. Orders JSON is capped at 16 MiB;
+`limits.json` is capped at 1 MiB. Captured size and nanosecond modification/change
+times must remain stable, and the bytes read must match the admitted size. Limits
+resource modification time comes from that same descriptor. An absent limits file
+retains the existing optional-policy behavior; an unsafe, oversized or invalid file
+refuses rather than silently running without its policy. Invalid UTF-8 is refused.
+Ordinary symlink aliases to stable regular planning files remain supported; signing
+keys and private journal writes retain their separate, stricter admission rules.
+
+These checks prevent a FIFO from waiting for a writer before type admission. They
+do not provide a universal deadline for synchronous filesystem calls, freeze a
+file, establish network-filesystem behavior or exclude every change between checks.
+The caller controls the local inputs. Software fault tests do not establish device
+or power-loss behavior.
+
+Fee schedule dates and source URLs are metadata. A supplied fee object must state
+at least one monetary field; otherwise the local and hosted input contracts refuse
+it. Omit `fees` when commission is unknown. An explicitly supplied zero remains
+zero, and a stated sell-only schedule retains zero commission on buys.
+
 Explicit local startup with `CANLI_EXEC_JOURNAL_WRITE=1` adds `initialize` and `append`
 actions to journal. They use the existing owned `0700` home and its bounded private
 `0600` Ed25519 `journal.key`, never inline signing material or an alternate file.

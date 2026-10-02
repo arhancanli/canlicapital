@@ -1337,3 +1337,39 @@ Exact final frozen-headCI/source/archive extensions and primary ordinary merge r
 No local project/import/test/CLI/browser/CPUgrant/job/provider/model/resources/holds/spend/
 labels/orders/outreach/site/npm/version publication. Full Sovereign/10M actual indexing/qualitySEO/
 intents/MCP/adoption/real-expert refinery/research/ALPHAC/paper then lawful capital goals ACTIVE.
+
+
+## Execution local-file admission correction starts, 2026-10-01T23:48:10.942484+00:00
+
+Primary accepts THIRD STATIC finding CC-EXECUTION-LOCAL-FILE-ADMISSION at
+3658d0b6, receipt54011544. Current shortfall orders_file opens blocking r before
+regular-file checks; limits.json is synchronously read without regular-file
+admission or a byte cap. No runtime reproduction is claimed. A new isolated
+primary checkout `/Users/arhancanli/canlicapital-execution-file-admission-20261002` from actual main3658 owns
+only a local snapshot helper, two reader integrations, focused regressions,
+SECURITY/Unreleased notes and append-only phase records. Tool schemas/default
+list/instructions/math/journal writer, hosted pins/versions/FilingFacts/V0 and
+all previous evidence remain protected. Nonblocking regular-file snapshots,
+finite caps and same-FD metadata will be reviewed and checked by existing remoteCI.
+No local Node/import/test/CLI/helper/build/browser/job/grant/lease is launched.
+Secondary's six-path paper example proceeds; primary paper discovery source
+remains an unsigned/unexecuted draft pending this repair. All355/356 deliveries
+remain closed; no provider/model/resources/holds/spend/experts/orders/site/npm/hero
+or indexing result is established. Every full owner pillar,10M ACTUALLY indexed
+quality canonicals/SEO/intents/design/analyzers/adoption/refinery/ALPHAC/research/
+paperthenlawfulcapital goal remainsACTIVE; fresh Google/Bing counts remainNULL.
+
+
+## Execution fee-admission scope extension, 2026-10-02T00:00:55.386177+00:00
+
+THIRD STATIC CC-EXECUTION-EMPTY-FEE-SCHEDULEab07cf78 is accepted: the
+current metadata-only fee object reaches zero commission without a supplied
+monetary amount. Primary adds only check-orders.mjs strict admission to the
+same isolated correction scope. Both local and hosted input schemas refuse
+metadata-only schedules; explicit monetary zero and intended sell-only buys
+remain valid. Math/core mirrors, public tool-field names, lean advertised
+schemas, descriptions, default tool list/instructions, writer and versions
+remain unchanged. No runtime test is claimed before exact-source remoteCI.
+The proposed local snapshot cap is1MiB for limits and the existing16MiB for
+orders, preserving the maximum escaped5000-symbol allowlist. No local project
+job/grant/provider/model/spend/publication is launched; full hierarchy ACTIVE.

@@ -1,11 +1,11 @@
 // Local-only post-trade arithmetic. No orders, broker connection, telemetry or hosted inputs.
 import { createHash } from "node:crypto";
-import { closeSync, fstatSync, openSync, readSync } from "node:fs";
 import { isAbsolute } from "node:path";
 
 import { z } from "zod";
 
 import { measureShortfall } from "./core/js/shortfall-core.js";
+import { decodeLocalJson, MAX_ORDERS_FILE_BYTES, readLocalInput } from "./local-input.mjs";
 
 const nonNeg = z.number().finite().nonnegative().max(1e12);
 const price = z.number().finite().positive().max(1e12);
@@ -45,26 +45,18 @@ export const SHORTFALL_OUTPUT = z.looseObject({ aggregate: z.unknown(), orders: 
 
 export function loadShortfallOrders(path) {
   if (!isAbsolute(path)) throw new RangeError("orders_file must be an absolute local path");
-  const limit = 16 * 1024 * 1024;
-  const fd = openSync(path, "r");
+  let bytes;
   try {
-    const stat = fstatSync(fd);
-    if (!stat.isFile() || stat.size > limit) throw new RangeError("orders_file must be a regular JSON file at most 16 MiB");
-    const buffer = Buffer.alloc(Math.min(stat.size + 1, limit + 1));
-    let size = 0;
-    while (size < buffer.length) {
-      const count = readSync(fd, buffer, size, buffer.length - size, null);
-      if (!count) break;
-      size += count;
-    }
-    if (size > stat.size) throw new RangeError("orders_file grew during the read; retry with a stable file");
-    const bytes = buffer.subarray(0, size);
-    let parsed;
-    try { parsed = JSON.parse(bytes.toString("utf8")); } catch { throw new RangeError("orders_file must contain a valid JSON array of orders"); }
-    const valid = orders.safeParse(parsed);
-    if (!valid.success) throw new RangeError(`orders_file has invalid order fields: ${valid.error.issues.map((issue) => `${issue.path.join(".")}: ${issue.message}`).join("; ")}`);
-    return { orders: valid.data, provenance: { kind: "local_json", bytes: size, sha256: createHash("sha256").update(bytes).digest("hex") } };
-  } finally { closeSync(fd); }
+    bytes = readLocalInput(path, { maxBytes: MAX_ORDERS_FILE_BYTES }).bytes;
+  } catch (error) {
+    if (/must be a regular file|exceeds/.test(error.message)) throw new RangeError("orders_file must be a regular JSON file at most 16 MiB", { cause: error });
+    throw error;
+  }
+  let parsed;
+  try { parsed = decodeLocalJson(bytes); } catch { throw new RangeError("orders_file must contain a valid JSON array of orders"); }
+  const valid = orders.safeParse(parsed);
+  if (!valid.success) throw new RangeError(`orders_file has invalid order fields: ${valid.error.issues.map((issue) => `${issue.path.join(".")}: ${issue.message}`).join("; ")}`);
+  return { orders: valid.data, provenance: { kind: "local_json", bytes: bytes.length, sha256: createHash("sha256").update(bytes).digest("hex") } };
 }
 
 export function runShortfall(args) {
