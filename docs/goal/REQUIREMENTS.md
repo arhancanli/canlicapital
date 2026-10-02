@@ -107,3 +107,8 @@ public analyzers:
 Baseline first, fixes at the generators, measured scores only, and no-publish scan options where
 offered. Every earlier objective stays in force (indexed pages, SEO, MCP quality, releases, trading,
 ALPHAC).
+
+Owner continuation (2026-10-01): recover Claude's CanliCapital sessions and MCP instructions,
+launch the goal and continue the verified unfinished work; explicitly preserve the data-annotation
+goals and complete goal hierarchy. MASTER_PLAN.md in the continuation checkout maps all
+objectives. Earlier requirements and publication authorization remain active.

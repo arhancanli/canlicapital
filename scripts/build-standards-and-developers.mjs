@@ -212,6 +212,11 @@ ${renderProductShellHeader({ active: "" })}
         ${invalid.map((v) => `<tr><td><a href="/standards/paper-evidence/v0/vectors/${esc(v.name)}.json"><code>${esc(v.name.replace("invalid-", ""))}</code></a></td><td><code>${esc(v.violates)}</code></td><td>${esc(v.why)}</td></tr>`).join("\n        ")}
       </tbody>
     </table>
+    <p class="dev-note">To create and check a record from your own supplied paper events,
+      follow the <a href="/mcp-servers/execution">local paper-trading MCP workflow</a>.
+      It connects sizing, order checks, a signed journal and full-bundle verification.
+      The example uses synthetic inputs; a valid record does not establish broker fills
+      or forward performance.</p>
   </section>
 
   <section class="dev-section">
@@ -369,6 +374,9 @@ function mcpFamilyBlock() {
     <h2>More MCP servers</h2>
     <p class="dev-note">Each server does one job with a small tool list, so the tools an assistant re-reads on every turn stay cheap. Add only the ones you need; they run side by side.</p>
 ${items.join("\n")}
+    <article class="dev-endpoint" id="mcp-execution"><h3><a href="/mcp-servers/execution">Local paper execution workflow</a></h3>
+      <p>The private, Unreleased execution source has local sizing, pre-trade cost and limit checks, shortfall measurements and signed paper journals. Supply the scenario and explicitly enable journal writes in a prepared private home. It connects to no broker and places no orders.</p>
+      <p class="dev-note"><a href="/mcp-servers/execution">Read the source-backed workflow and local setup</a>. Hosted release contracts above remain separate.</p></article>
   </section>`;
 }
 

@@ -1,5 +1,22 @@
 # Persistent CanliCapital goal
 
+Current continuation (2026-10-02): actual main64d81591 contains delivered PR358
+052c4d60 and PR35764d81591, with their reviewed trees and independent final
+source/archive/current-CI evidence. The current primary worktree is
+`/Users/arhancanli/canlicapital-paper-mcp-docs-20261001`. Its paper execution-MCP
+workflow generator draft pins 64 delivered repository inputs at64d81591 and adds
+one canonical route, crawlable incoming links, truthful private/Unreleased source
+markup and source-date inputs. Fifteen new regression cases are written, not yet
+executed; signed source, existing remote CI, independent review, browser and
+publication gates remain open. Latest website production stays62d2a195.
+Secondary owns the six-path offline indexing-evidence contract from actual64d
+under current assignment5e27; third reviews source/provenance/CI. Current indexed
+counts remain null. All four Sovereign pillars, expert refinery, governed ALPHAC,
+10M actually indexed useful canonicals, SEO/intents/design/analyzers, lawful
+execution, research and legitimate API/MCP/repository adoption remain active.
+Earlier dated continuation entries below are historical; no work is restarted.
+
+
 Current continuation (2026-10-01): Codex launched the goal and recovered the owner's Claude
 instructions. Read MASTER_PLAN.md for the full goal structure and CLAUDE_RECOVERY_20261001.md
 for the verified stopping point. Active worktree:

@@ -18,3 +18,15 @@ Phases can overlap when independent, but read STATUS before each transition and
 record why work moved. Long-lived indexing and forward-performance outcomes remain
 open after implementation phases finish. Do not mark the overall goal complete on
 code delivery alone.
+
+
+Current execution-discovery checkpoint (2026-10-02): repository PR355/356/357/358
+are delivered and private/Unreleased; the public workflow draft continues from
+combined main64d81591. Phase2/6/9 add one useful source-pinned canonical guide and
+links, with new regression/source/date/deployment-filter gates still unexecuted.
+Phase5 now has a separate six-path offline indexing-evidence intake assignment5e27;
+it cannot establish fresh provider authorship, current indexed counts or qualified
+target progress. Phase8 retains delivered offline accounting/collector evidence,
+with rights-cleared real expert labels and provider/source-assisted results open.
+Every earlier phase and owner outcome remains active. See newest STATUS/LOG for
+actual source, validation and publication receipts.

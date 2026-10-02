@@ -47,10 +47,26 @@ mcp-fundamentals/*
 !mcp-fundamentals/package.json
 !mcp-fundamentals/server.json
 !mcp-fundamentals/src
-# canli-execution-mcp is unreleased: nothing on the site imports it, and its test fixtures are large.
-mcp-execution
+# The local workflow page reads pinned execution source without importing or releasing it.
+# Include that documentation input; leave unrelated tests, fixtures and package tooling out.
+mcp-execution/*
+!mcp-execution/src
+!mcp-execution/package.json
+!mcp-execution/package-lock.json
+!mcp-execution/LICENSE
+!mcp-execution/README.md
+!mcp-execution/EXAMPLES.md
+!mcp-execution/JOURNAL_STORAGE.md
+!mcp-execution/examples
+mcp-execution/examples/*
+!mcp-execution/examples/paper-journal.mjs
+!mcp-execution/test
+mcp-execution/test/*
+!mcp-execution/test/paper-journal-example.test.mjs
 !mcp/README.md
 !mcp/package.json
+!mcp/package-lock.json
+!mcp/LICENSE
 # The hosted endpoint (api/mcp.js) imports the package's tools from mcp/src at runtime.
 !mcp/src
 deposits
