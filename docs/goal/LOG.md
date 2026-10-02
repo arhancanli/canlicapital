@@ -5902,3 +5902,111 @@ Initialreview requests sentPRIMARY/THIRD with exactwrittencontract; signedclean 
 Allfour initial gates a916/1d+7f97/5261 read/pinnedPASS on139; actual47onceROOT/root6+1044+9/MCP141+1+15+68+139/all7/Node22.23.3/tested4fc3/eeb+139/ref0/latestboth0 preserved. PRIMARY exactV2 allocation14365B SHA7b71d6a2f7adc16add93c7f216857e96cb5cf3f744ef92067295a3b05164c39b selected d0ace/db3e preview31+originalallocation=32TOTAL under12MiBORIGINAL. Installedonly docs/goal/evidence/filingfacts-expert-intake-20261002/,32files/original3103500/stored929299/manifest20133B SHA45d422ce59aa101c7b7a33af29972ea13e2580fa097d4bb44efa21a01d59ca57; allstored/original/decode/Gzipmtime0 checks pass,12cataloguefiles explicit externalnonmembers. Installationreceipt /Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/archive-installed-v2-13927e84.json SHAdbd79d45d2efeb53a9278f25fd4e73c1e146ae0d350e724b3374d2341a6ca241.
 
 Alloriginal source/products/8rawCI/4peerreviews/3readererrors/previewREADME-original+correction remainbyteexact. PRIMARYallocation reader error8b60 retainedexternal not33rdmember. Third3b and laterprivateV3362c/publicgold proposal remainunselected/external; inherited publicblankgold91c6 remainsprotected. Core/tests/package unchanged139; guide/status/log appendonly, all5eeb+139 prefixes preserved. Next signedclean finalsource/protected-main/32member manifest, existingremoteexactcurrentCI and bothsource/archive/currentCI peerextensions beforesolePRIMARYordinarymerge/actualdelivery. Earlier initialgates do not preapprovefinalhead. No localprojectNode/import/test/CLI/helperjob/CPUgrant/lease/provider/model/auth/resource/spend/orders/outreach/site/npm/version/hero. Allhuman/expertise/independence/rights/labels/currentindexing/adoption/qualifiedoutcomesnull/unestablished; allfourpillars/10Mactualindex-qualitySEO/design/analyzers/adoption/realexpertrefineryrights/novelreproduction/governedALPHAC forwardSharpe>2/14qualifieddistinctsleeves/DD<=10%/paperthenlawfulcapital remainACTIVE.
+
+
+## Source-backed paper MCP workflow discovery begins, 2026-10-01T23:35:12.773655+00:00
+
+The primary isolated checkout is `/Users/arhancanli/canlicapital-paper-mcp-docs-20261001`, branch work/paper-mcp-docs-20261001
+from actual3658d0b6/tree d6bb. Fresh GitHub metadata confirms3556fcce and3563658
+MERGED with their reviewed trees; neither implementation is restarted. Current
+assignmentd81cbc15 preserves all older assignment bytes and allocates the six-path
+offline example to secondary and STATIC release-readiness audit to third. Primary
+prepares a useful repository-only paper execution guide with pinned source facts,
+a distinct canonical intent, crawlable links, truthful release status and source dates.
+Hosted release pins/default schemas/math/storage/FilingFacts/V0/ALPHAC/hero remain
+protected. No new public deployment/indexed-page result or project runtime is
+established. Existing remote CI is available after signed source; no local project
+job/import/Node/test/build/browser/helper/grant/lease/provider/model/spend/orders.
+All four Sovereign pillars, rights-cleared actual expert refinery, governedALPHAC
+forwardtargets/paperthenlawfulcapital,10M ACTUALLY indexed quality canonicals,
+SEO/intents/design/analyzers/graph/API-MCP-repo adoption and research remainACTIVE.
+Fresh Google/Bing counts remainNULL. Phase receipt is coordination/paper-mcp-discovery/phase-start.json.
+
+
+## Combined-main paper-MCP discovery source draft, 2026-10-02T02:37:55.247481+00:00
+
+Fresh GitHub357 is MERGED01:59:46Z64d81591; main64d matches actual primary
+checkout HEAD. PR358052c and35764d are CLOSED deliveries, with original raw
+failures and independent source/archive/current-CI evidence preserved. The primary
+page checkout fast-forwarded actual64d after an exclusive original-draft backup;
+combined-main-phase-start-64d81591.json SHA c874e28bc10ee7821ead44fdde6447682daf4503b9f0660582e488380cd750f3
+records the read/backup/base transition. Both original goal chronologies remain.
+
+Draft route /mcp-servers/execution documents the private, Unreleased local source:
+64 protected delivered inputs and fixed reviewed hash-pair digest1c0be3ca, same-read
+byte inspection and full import closure; prebuild refuses drift before any generator.
+The workflow connects supplied sizing/checks, explicit opt-in journal writes and
+full-bundle record_file+journal_file validation under CANLI_LOCAL=1. Hosted contracts
+and npm versions remain separate. Developers, MCP directory/navigation, execution
+research topic, paper-evidence standard and llms.txt provide crawlable incoming links.
+The standard date now includes its actual HTML generator; source and sitemap dates
+share the existing pipeline. Narrow .vercelignore exceptions preserve all 64
+documentation inputs while keeping unrelated fixtures excluded. Fifteen meaningful
+source/tamper/closure/metadata/launch/validation/link/deployment/CLI cases are WRITTEN
+only. No local project Node/import/test/build/browser/CLI/helper job or CPU grant.
+Signed source and ordinary existing remote CI are the next validation gates, followed
+by independent source/SEO review, separately allocated browser/production checks
+and actual publication. No new page, score, indexing or release result is claimed.
+
+Secondary current assignment5e27 owns six offline indexing-evidence paths from
+actual64d; third preflightcc8 is planned review evidence only. Fresh Google/Bing
+counts and qualified distinct-canonical progress remain null. Primary keeps guide,
+reconciliation and sole merge/publication; lead owns local CPU/resource allocation.
+All four Sovereign pillars, rights-cleared actual expert refinery, governed ALPHAC
+forward/cost/risk targets, lawful capital,10M actually indexed useful canonicals,
+quality/SEO/intents/design/analyzers/graphs, research and legitimate API/MCP/repository
+adoption remain active. No spend/resource/hold/provider/model/broker/orders/hero/
+outreach/version/publication follows this draft checkpoint.
+
+
+## First guide CI retained; README sitemap count corrected, 2026-10-02T02:47:28.920225+00:00
+
+Exact sourcea36d remoteNode22.23.3 actually passes all15 new named cases once
+within940main, with6preverify passed and zero failure/skip/cancel in those suites.
+The build stamps684pages and preserves416checksummed files; indexability reports
+700pages,337indexable/listed and363noindex/withheld with0conflicts. The overall
+vite job110681334966 FAILED later at README audit because its old sitemap count
+still said336. Notification and subsequent job steps did not run; no940+6+9
+completion is claimed. Original577110B raw SHA5d85d628 and parsed receiptbdb1fc99
+remain immutable coordination/paper-mcp-discovery inputs. Other six CI checks pass.
+
+Narrow correction updates rootREADME's actual sitemap count to337 and documents
+the generated private local execution surface plus delivered example. Generator,
+source guard, 64pins, CSS,15tests, hosted/package/math/journal/dataset/hero inputs
+are unchanged froma36d. RootREADME+appendSTATUSLOG are the only correction paths.
+A new signed head and current remoteCI are required; old passing test cases do not
+establish new-head CI acceptance. No localproject runtime/job/grant/nonce/provider/
+model/resource/spend/pub occurred. Full owner hierarchyACTIVE; freshindexedcountsnull.
+
+
+## Guide currentCI accepted; public source record roundtrip aligned, 2026-10-02T03:13:02.296231+00:00
+
+Exacta103 remoteNode22.23.3 passes15newcases oncewithin940main+6pre+9notification,
+all7currentCI SUCCESS. Tested91f0287e/tree63ab equals signedG sourcea103+main64d;
+current merge-ref0openCodeQL and both currentlanguage analyses match91f/results0.
+Raw588438B SHA f07881ad and actual5e877929/currentfidelitybfbde880 are retained.
+Originala36 README count failure577110B/5d85/bdb stays separate.
+
+Third STATIC source/SEO/closure/deploy reviewa3c85376 PASS for originala36 except
+its knownfailedREADME gate; it confirms64pins/95relativeedges/defaultprivate/example/
+localvalidation/links/order. Existing portabledate metadata is stale:67execution
+inputs0valid/66missing/1changedframedbinding; actual freshcapture/Gitfree/browser/
+publication remainopen. Original metadata is preserved until an allocated build.
+Nonblocking P3 publicv1 record emitted package_version beyond its strict input
+schema. Narrow fix returns the validated source record exactly, and the existing
+first regression now requires JSON roundtrip validation. All15testnames remain;
+the changed helper/test requires new signedsource/currentremoteCI/peer extension.
+No new source/core/schema/tool/version/CSS/hero/dataset/package or browser result.
+No localproject job/import/Node/build/CLI/browser/helper/grant/nonce/model/spend/pub.
+All ownerhierarchyACTIVE/currentindexedcountsnull.
+
+
+## 2026-10-02T08:01:12.834855+00:00 — Guide359 integrates actual expert-intake362 main and corrects standards skip focus
+
+Actualmain9da1829f/tree3e853 delivers pureexpert-intake362 with47remoteROOTcases/all7 and32immutableV2archivefiles; realexpert/rights/labels remainunknown. Guide9a and alloriginal failedbrowser/capacity/helper evidence remainfrozen. This new owned integration preserves allcurrentmain featurebytes, original main+guide STATUS/LOG suffixes, three newerfocusedregistrations and originalguide guard/testregistration.
+
+Actualguide V4acabe FAILED_CLOSED on25.399491125s/exit1, sixof8ordinarycases plus2separatemodified/restoredoverflowfixtures partial; standards320 blankAssertionError has no retained precise failingfocusmeasure. All93raw24627672B/sameouter20957/known17PIDs+twoPGabsence/nonceguardrelease retained and independentlyaccepted. GitfreeUNRUN, no overallbrowserPASS/no newperformance/indexing claim.
+
+Sharedfragmenthandler onlyfocuses anchorswithskip-link class and needs a focusabletarget; standardsgenerator lackedboth. This candidate adds dev-skip skip-link and main tabindex=-1 on that route, withoutchangingglobalJS/CSS orcontent/schema/oldcanonical. This is a staticcause hypothesis until nativebrowsermeasurements. A separatefuturehelper will save actualstep/nativeTab/Enterfocus beforeassertions; oldhelper/raws are not rewritten. Newhead existingremoteCI, independent sourceextension, fresh boundedLead grant for oldfocusedbaseline/newbuild/browser/Gitfree, allgates and eventualactualpublication remainOPEN. No localprojectruntime/job/grant/provider/model/resources/spend/outreach/hero/npm/versionpublication.
+
+The fullfourpillars/10Mactuallyindexed useful distinctsource-backed qualitySEO/intents/design/3D/analyzers/legitimateAPI-MCP-repositoryadoption/rights-cleared consentingPhD-CFA-engineerexpertrefinery/novelpriorart-reproduction-externalreview/governedALPHAC netforwardSharpe>2/14distinctqualifiedsleeves/realizedDD<=10%/paperthenlawfullicensedcapital stayACTIVE; actualindexing/expert/independence/rights/labels/adoption/qualifiedoutcomesunknown. Secondary nextlane is repository-local supplied-vintage audit_inputs stdioexample over unchanged361core; primary retains guide/reconciliation/release/solemerger-publisher and soleLeadCPUauthority.

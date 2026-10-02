@@ -199,7 +199,7 @@ const STATIC_ROUTES = [
   { path: "/notes", priority: "0.9", changefreq: "weekly" },
   { path: "/developers", priority: "0.9", changefreq: "weekly" },
   { path: "/mcp-servers", priority: "0.9", changefreq: "weekly" },
-  ...['validation', 'fundamentals', 'research'].map(name => ({ path: `/mcp-servers/${name}`, priority: "0.9", changefreq: "weekly" })),
+  ...['validation', 'fundamentals', 'research', 'execution'].map(name => ({ path: `/mcp-servers/${name}`, priority: "0.9", changefreq: "weekly" })),
   { path: "/costs", priority: "0.9", changefreq: "weekly" },
   { path: "/standards/paper-evidence", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/deflated-sharpe", priority: "0.9", changefreq: "weekly" },
@@ -848,6 +848,7 @@ ${renderProductShellHeader({ active: "research" })}
 ${(HUB_ESSAYS[hub.slug] || [])
   .map((paragraph) => `      <p>${escapeHtml(paragraph)}</p>`)
   .join("\n")}
+${hub.slug === 'execution-and-market-structure' ? '      <p>Use the <a href="/mcp-servers/execution">local paper execution MCP workflow</a> to connect supplied sizing, pre-trade checks, signed journals and source-bound exports. Its repository package is private and Unreleased; synthetic statements do not establish broker fills or forward outcomes.</p>' : ''}
       <h2 class="hub__heading">The ${escapeHtml(hub.label.toLowerCase())} documents</h2>
       <ul class="research-library research-library--hub">
         ${members

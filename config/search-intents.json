@@ -375,6 +375,20 @@
       "source": "mcp-released/research"
     },
     {
+      "path": "/mcp-servers/execution",
+      "intent": "Use the private local paper execution source for supplied sizing, pre-trade checks and signed journal evidence",
+      "queries": [
+        "paper trading mcp workflow",
+        "canli execution mcp",
+        "signed trade journal mcp"
+      ],
+      "sources": [
+        "config/execution-workflow-source.json",
+        "mcp-execution/JOURNAL_STORAGE.md",
+        "standards/trade-journal/EXPORT.md"
+      ]
+    },
+    {
       "path": "/research/filing-facts-v0",
       "intent": "Inspect the rights-cleared FilingFacts financial-reasoning dataset, source citations and measured evaluation",
       "queries": [

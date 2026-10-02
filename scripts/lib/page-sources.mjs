@@ -2,6 +2,7 @@
 // files, and a generator that states dateModified in its structured data reads the same list, so the
 // two can never disagree. Moved here from build-papers.mjs unchanged on 2026-09-28.
 import { resolveLastmod } from "../lastmod.mjs";
+import { EXECUTION_SOURCE_PATHS } from './execution-workflow.mjs';
 
 // =============================================================================
 // LASTMOD SOURCES for every STATIC_ROUTES page.
@@ -90,8 +91,13 @@ export const PAGE_SOURCES = {
     'scripts/build-mcp-pages.mjs', 'config/mcp-discovery.json', 'config/mcp-hosted-releases.json',
     ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released']),
   ]])),
+  "/mcp-servers/execution": [
+    "scripts/build-mcp-pages.mjs", "scripts/lib/execution-workflow.mjs",
+    "config/execution-workflow-source.json", ...EXECUTION_SOURCE_PATHS,
+  ],
   "/costs": ["scripts/build-cost-coverage.mjs"],
   "/standards/paper-evidence": [
+    "scripts/build-standards-and-developers.mjs",
     "scripts/build-paper-evidence.mjs",
     "standards/paper-evidence/schema.json",
     "contracts/public-claims.registry.json",
