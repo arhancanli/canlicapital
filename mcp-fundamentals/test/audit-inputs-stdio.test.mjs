@@ -32,7 +32,8 @@ const argumentsFor = (f = fixture(), detail) => ({ reference_base64: encode(f.re
 function payload(response) {
   assert.equal(response.content.length, 1);
   assert.equal(response.content[0].type, 'text');
-  assert.deepEqual(JSON.parse(response.content[0].text), response.structuredContent);
+  assert.equal(response.content[0].text, JSON.stringify(response.structuredContent));
+  assert.deepEqual(JSON.parse(response.content[0].text), JSON.parse(JSON.stringify(response.structuredContent)));
   const d = response.structuredContent;
   assert.equal(AUDIT_TOOL_OUTPUT.safeParse(d).success, true);
   if (d.status === 'ok') {
@@ -158,7 +159,7 @@ test('audit stdio: explicit evidence view is the exact complete unchanged core r
   await withClient(async client => {
     const f = fixture(); const expected = auditInputs(f.reference, sha(f.reference), f.usage, f.settings);
     const d = payload(await client.callTool({ name: 'audit_inputs', arguments: argumentsFor(f, 'evidence') }));
-    assert.deepEqual(d.audit, expected); assert.equal(d.projection.complete_core_report, true);
+    assert.deepEqual(d.audit, JSON.parse(JSON.stringify(expected))); assert.equal(d.projection.complete_core_report, true);
     assert.deepEqual(d.projection.omitted, []); assert.equal(d.projection.core_report_content_hash, expected.content_hash);
     for (const key of ['reference', 'usage', 'settings']) { assert.equal(d.audit.bindings[key].original_base64, encode(f[key])); assert.equal(d.audit.bindings[key].sha256, sha(f[key])); }
   });
@@ -216,7 +217,18 @@ test('audit stdio: proxy accessor inherited and unexpected symbol arguments refu
 });
 test('audit stdio: canonical base64 refuses whitespace url alphabet missing excess internal padding and nonzero pad bits', () => {
   const args = argumentsFor();
-  for (const value of ['e30=\n', 'e30', 'e30===', 'e=30', '====', '_w==', '-w==', 'Zh==', 'Zm9=']) refused(executeAuditInputs({ ...args, settings_base64: value }), 'BASE64');
+  for (const value of ['e30=\n', 'e30\n', 'e30\r', 'e30\u2028', 'e30\u2029', 'e30', 'e30===', 'e=30', '====', '_w==', '-w==', 'Zh==', 'Zm9=']) refused(executeAuditInputs({ ...args, settings_base64: value }), 'BASE64');
+});
+test('audit stdio: trailing newline and noncanonical pad bits are refused before any base64 buffer allocation', () => {
+  const args = argumentsFor(), from = Buffer.from; let allocations = 0;
+  Buffer.from = (...values) => { allocations++; throw new Error('Unexpected base64 allocation'); };
+  try {
+    for (const bad of ['e30\n', 'Zh==', 'Zm9=']) {
+      const response = executeAuditInputs({ ...args, settings_base64: bad });
+      assert.equal(response.isError, true); assert.equal(response.structuredContent.error.code, 'BASE64');
+    }
+    assert.equal(allocations, 0);
+  } finally { Buffer.from = from; }
 });
 test('audit stdio: base64 decoded lengths are enforced even when padded encoded lengths share a bucket', () => {
   const args = argumentsFor(); const maximum = STDIO_AUDIT_LIMITS.settingsBytes;
@@ -262,9 +274,9 @@ test('audit stdio: caller module hash remains unverified and absent source right
   assert.equal(d.adapter.whole_module_sha256_verified, false); assert.equal(d.audit.established.source_rights, null); assert.equal(d.audit.established.full_universe_coverage, null);
 });
 function richFixture(vintageN) {
-  const concept = 'C' + 'x'.repeat(127), unit = 'Δ'.repeat(64);
-  const vintages = Array.from({ length: vintageN }, (_, i) => first({ accn: `0000123456-20-${String(i + 1).padStart(6, '0')}` }));
-  const f = fixture({ rows: Array.from({ length: 64 }, () => usage({ concept, unit })) });
+  const concept = 'C' + 'x'.repeat(127), unit = '界'.repeat(64), value = Number.MAX_SAFE_INTEGER;
+  const vintages = Array.from({ length: vintageN }, (_, i) => first({ val: value, form: '40-F/A', accn: `0000123456-20-${String(i + 1).padStart(6, '0')}` }));
+  const f = fixture({ rows: Array.from({ length: 64 }, () => usage({ concept, unit, value })) });
   f.reference = raw({ schema: 'canli.fundamentals.audit-reference.v1', companyfacts: [{ cik: 123456, facts: { 'us-gaap': { [concept]: { units: { [unit]: vintages } } } } }] });
   return f;
 }

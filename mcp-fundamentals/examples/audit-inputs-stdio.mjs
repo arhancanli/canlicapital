@@ -63,7 +63,7 @@ export const AUDIT_TOOL_OUTPUT = z.object({
     established: z.record(z.string(), z.unknown()),
   }).passthrough().optional(),
   content_hash: z.string().regex(/^sha256:[a-f0-9]{64}$/).optional(),
-  error: z.object({ code: z.string().regex(/^[A-Z_]{1,64}$/), message: z.string().max(160), next_step: z.string().max(256) }).passthrough().optional(),
+  error: z.object({ code: z.string().regex(/^[A-Z0-9_]{1,64}$/), message: z.string().max(160), next_step: z.string().max(256) }).passthrough().optional(),
 }).passthrough();
 const INPUT_JSON_SCHEMA = z.toJSONSchema(AUDIT_TOOL_INPUT);
 const OUTPUT_JSON_SCHEMA = z.toJSONSchema(AUDIT_TOOL_OUTPUT);
@@ -101,7 +101,9 @@ function argumentsRecord(value) {
 function base64Length(value, maximum) {
   // All three encoded/decoded lengths and their aggregate are admitted before any decode.
   if (value.length > encodedCap(maximum)) refuse('INPUT_BOUND');
-  if (value.length < 4 || value.length % 4 !== 0 || !/^[A-Za-z0-9+/]+={0,2}$/.test(value)) refuse('BASE64');
+  const matched = /^[A-Za-z0-9+/]+={0,2}$/.exec(value);
+  // JavaScript's $ can match before a final newline: require the complete string.
+  if (value.length < 4 || value.length % 4 !== 0 || !matched || matched[0].length !== value.length) refuse('BASE64');
   const padding = value.endsWith('==') ? 2 : value.endsWith('=') ? 1 : 0;
   const last = BASE64_ALPHABET.indexOf(value[value.length - padding - 1]);
   if ((padding === 2 && (last & 15) !== 0) || (padding === 1 && (last & 3) !== 0)) refuse('BASE64');
@@ -174,7 +176,7 @@ export function executeAuditInputs(value) {
     return response;
   } catch (error) {
     if (error instanceof TransportInputError) return failure(error.code);
-    if (error instanceof AuditInputsError && /^[A-Z_]{1,48}$/.test(error.code)) return failure(`CORE_${error.code}`);
+    if (error instanceof AuditInputsError && /^[A-Z0-9_]{1,48}$/.test(error.code)) return failure(`CORE_${error.code}`);
     return failure('INTERNAL');
   }
 }

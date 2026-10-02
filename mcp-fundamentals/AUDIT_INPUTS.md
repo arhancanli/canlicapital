@@ -428,3 +428,11 @@ writes, with separate positive controls proving both denials. Every SDK child
 has a finite test deadline and an actual owned-PID absence check after one close.
 These are written fixtures until their original remote logs establish execution.
 Independent source and exact-current-CI gates precede repository delivery.
+
+
+Initial remote943b reported18of26newstdio passes and eight failures. Original
+logs remain preserved. Five publicJSON prototype comparisons, stable BASE64/UTF8
+code validation and an undersized evidence-overflow fixture are corrected; full
+base64 end-match now has a before-allocation regression. The finite policy and
+complete selected-N are unchanged. Twenty-seven corrected cases await their own
+new-head remote CI and independent reviews; no local project execution occurred.
