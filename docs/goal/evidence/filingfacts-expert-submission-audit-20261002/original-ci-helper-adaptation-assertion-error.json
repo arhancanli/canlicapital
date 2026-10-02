@@ -1,0 +1,11 @@
+{
+  "schema": "expert-submission-audit-metadata-error/v1",
+  "utc": "2026-10-02T17:37:40.556029+00:00",
+  "operation": "Private metadata-only CI helper adaptation preflight",
+  "exit_code": 1,
+  "original_stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 23, in <module>\nAssertionError\n",
+  "reason": "Residual percent-encoded prior PR366 endpoint retained after slash-only replacement; assertion refused before creating or running helper",
+  "project_execution": false,
+  "source_or_test_or_CI_failure": false,
+  "action": "Preserve original; replace all exact prior PR identifiers in new private metadata helper, retain prior helper unchanged"
+}

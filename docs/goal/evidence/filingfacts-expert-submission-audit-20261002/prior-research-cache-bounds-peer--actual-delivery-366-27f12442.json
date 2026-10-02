@@ -1,0 +1,1554 @@
+{
+  "schema": "canli.third.research-cache-bounds.actual-delivery-custody.v1",
+  "observed_at_utc": "2026-10-02T17:40:11.632198+00:00",
+  "verdict": "PASS_ACTUAL_ORDINARY_MERGE_EXACT_TREE_ARCHIVE_CUSTODY_ASSIGNED_RESEARCH_CACHE_PHASE_CLOSED",
+  "reviewer_thread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "PR": 366,
+  "actual_merge": "27f12442b3277f679e3e834294312ec85a8ce51b",
+  "merged_at_utc": "2026-10-02T16:46:56Z",
+  "tree": "8d20d6897ec5e4c0b64a201abe5f78c1be0c020d",
+  "sole_parent": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+  "reviewed_signed_clean_head": "9ab47ce7dec1b3a60ad84e678be610c534c5189f",
+  "retained_tested_merge": "eb33c394dfc3991b4254485cf0c8c1a679613a65",
+  "actual_frozen_tested_entire_tree_equal": true,
+  "actual_scope": "Retained actualGitHub PR/main API originals, locally observed origin/main and immutable local Git objects independently compared; no new network/API or git fetch.",
+  "actual_GitHub_metadata_originals": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-366-actual-pr-27f12442-original.json",
+      "bytes": 19362,
+      "sha256": "0feb4a535c8022f9a4772ad36b3103b0a6be6424a808e2c0e457697a20971f05"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-366-actual-main-27f12442-original.json",
+      "bytes": 312357,
+      "sha256": "8c1ec49c65ca8a88356f2708b1db30789db483d6fcb5eef0dc2402b8c91cf491"
+    }
+  ],
+  "captured_PR_binding": {
+    "number": 366,
+    "state": "closed",
+    "merged": true,
+    "merged_at": "2026-10-02T16:46:56Z",
+    "merge_commit_sha": "27f12442b3277f679e3e834294312ec85a8ce51b",
+    "head": "9ab47ce7dec1b3a60ad84e678be610c534c5189f",
+    "base": "27441df4a465860c2a83eabd4b0503d0b95e9a99"
+  },
+  "captured_main_API_binding": {
+    "sha": "27f12442b3277f679e3e834294312ec85a8ce51b",
+    "tree": "8d20d6897ec5e4c0b64a201abe5f78c1be0c020d",
+    "parents": [
+      "27441df4a465860c2a83eabd4b0503d0b95e9a99"
+    ]
+  },
+  "local_origin_main_observed": "27f12442b3277f679e3e834294312ec85a8ce51b",
+  "author_still_frozen_G_clean_before_after": true,
+  "full_index_rows": 6235,
+  "full_index_modes_objects_equal_actual_frozen_tree": true,
+  "entire_actual_frozen_git_diff_empty": true,
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/source-9ab47ce7.json",
+    "bytes": 1870567,
+    "sha256": "793ca2d47431238f89b81fdfc1e50bca4552612ad0a027a4949b686b3208460e"
+  },
+  "all36owned_work_index_frozen_actual_Git": {
+    "docs/goal/LOG.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "dcf13fd6d33a348d2a293db0e5860e89823c3fb2",
+      "bytes": 428475,
+      "sha256": "a15f3c0e9e9c45ebae0f4760fec0485a506a54c05d0c300d86dcf2fe3d552689",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/STATUS.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "94f6b38f3a1a63476a953fab434b92ea989c1749",
+      "bytes": 153111,
+      "sha256": "15e74bdad2a06c96fcc31f61c6f30c1ee95726bf5a77cf817afe8a1a5b461147",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/README.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "86f84b171bf641a882fe5fb0106afe44967723b7",
+      "bytes": 2947,
+      "sha256": "4f3dc13f153567dfc34f51cda86c3803673d0b5863e982b8889d950b1b673327",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/allocation-primary-original.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "aec44d44e9467ff0941b065c9e4e35ff5b157b37",
+      "bytes": 16384,
+      "sha256": "679773949ed9941b2039b70d94827ab9de49879562d4324ec412e9b853a7cb43",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/assignment-27441df4.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "679e0e3a3ddf2573cdadda9f0adea9fed6c8731c",
+      "bytes": 6243,
+      "sha256": "d97b9bac43c689e5834268feb67d82cd879425de310d96a9f6c2a1cda780f27e",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/assignment-receipt-27441df4.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f63869c466de748dac54629ef991a5f653afa67c",
+      "bytes": 1059,
+      "sha256": "fb7bd77a3493cef406abe83005e33d4d0e3acfbbd67770c3980dda65c645a36b",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/capture-exact-cache-ci-v1.py": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "63b50a6bef3e321b923f99fdae876efba816a95b",
+      "bytes": 10236,
+      "sha256": "451649052cd204dbc80f1c132177653257765eccca4d6a0f49f8812e0d6a43f7",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/pr-body-b7f7f1a9-current-ci.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c22e4ae76763d83bf420e45a2293fcaa09294aa3",
+      "bytes": 1096,
+      "sha256": "9571e3bc1301c6300fdcf2affb11b3f87c8d8eeccbf39096856a72c6be5eec53",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/pr-body-b7f7f1a9.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "74bc0ed79ad8a0ddd2b6001861abf61ca8cfd0d3",
+      "bytes": 1003,
+      "sha256": "f0fed33fdeb751c549d9bfc987a266391a2a64e8f2fa4fa993a0ded529be2db3",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-checks-original.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "8b14e88b48e0e7213d1c18f7176ac2dba4d0ab18",
+      "bytes": 1131,
+      "sha256": "10a1e8e7e60771ad793cb1e4ec5ffd23423a594bd2fd7f95dcec5fdef1db5926",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-codeql-alerts-original.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-codeql-analyses-original.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "aa2893ea0a8d3efea3aaecc72606803e53386e78",
+      "bytes": 1186,
+      "sha256": "06291a7dd3c87a3c9b6ad06801adcafc540c66b002caf97d7f1bf046b835365c",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-exact-ci.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "0be69341c091d7514734a73f43466321f4208a4d",
+      "bytes": 13919,
+      "sha256": "6633a50ffdd4a0da6850f3900733722cd7a5248c4ddd51c411fecf4afe9c8d55",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-mcp-ci-original.log.gz": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f96218832be71cc83b36bac6051f44f6186619f8",
+      "bytes": 102356,
+      "sha256": "925eba26ea1f516095a1ebe1456f823fbe92500c7bf2448bb0fea034ed9d35c0",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-pr-original.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f5e8046fe75942d2ea6dd575910d35897f827ba7",
+      "bytes": 18047,
+      "sha256": "f1831745459172254f4829c9175000e56d5a9559b6e5eff6cb7badf6661c86ae",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-remote-runtime-observed.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "be7884efa612ef15a7ab4e8e581a6d29ffa55a35",
+      "bytes": 2296,
+      "sha256": "c30145ccb5ea2988149f427edb45cf479ada481856fe9eff6a8aed9b7c24484d",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-root-ci-original.log.gz": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "67a9059afdc1c86a6e9907909595ac1463dce875",
+      "bytes": 118601,
+      "sha256": "6e5c02a0847977070d91bfa3eaf9c4f82ca4caa840ef94e5e4802971ea6cd5c4",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-run-original.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c4c1c6bc0ddbbccede98e5c552efd8ce4ffc04e4",
+      "bytes": 13284,
+      "sha256": "78f8299d8e0ccd39e6edc2e9e55c361c090de1173c73f33971072a63a1ae8960",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-b7f7f1a9-tested-merge-original.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6faa363e7a2ed303bf0b3ff08f576c1fab12740b",
+      "bytes": 2648,
+      "sha256": "612dda5769bf51e96b1c7a333c52af1682217ec0945f30806b281549a378df2b",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-phase-start-27441df4.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "5430fa426a02d35479413efeb6e23da086bbad35",
+      "bytes": 4012,
+      "sha256": "3c21c492e7c8e6e975d78665fbdcf0ba67367a007ca30e7c32f42469d90232dd",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/secondary-written-preflight-27441df4.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c34261b2bab5d7e4487614d30a4d2477893a0231",
+      "bytes": 11422,
+      "sha256": "6181728e33773acc35044ccc36d598c946d409adfa237f60a8536aac4e676728",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/source-b7f7f1a9.json.gz": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "f3eb984bfb1ede8a8bba46b8cebbcedb049af042",
+      "bytes": 488600,
+      "sha256": "2ac63c69a0e6ca49cf01e9d6a47a9e554f09a0f6bcc7e51939655b45a4f4c44a",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/author/static-retention-intake-27441df4.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "193962d426ad011ecc8e57487a459f02a9eb1755",
+      "bytes": 1137,
+      "sha256": "e9bd2503c017d558de05a071af41806fef521f2695ee64ea5c0d07d082cc20fa",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/manifest.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "62c46350727816adbcbf51c6cab310747afd7539",
+      "bytes": 21022,
+      "sha256": "b60f82ce62b587a3f1d9c7b0ccbc11a581435fde39ad08b7d7a23e714752834d",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/origins/primary-365-actual-delivery-27441df4.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d5e94f45196f187c35b31e13abd7b04938f67ac3",
+      "bytes": 25554,
+      "sha256": "16c5814f8cd91cfd618f215e0898bcfb07d88cf7c04ecd0324c8d15232745305",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/origins/secondary-365-actual-delivery-27441df4.json.gz": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a816cd50c393b865aa8b8bb5f9e61579f56d0f35",
+      "bytes": 8239,
+      "sha256": "a338a2fedf4fd8fbd17387c047739491cbc38a7659365c950fee37d48599e1ae",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/origins/source-77b483e1.json.gz": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "fbd8572620d0b2109e1a1b9857606d5a39087b3f",
+      "bytes": 489229,
+      "sha256": "d2cf9ee05adaed18ad4287eb94ca4a1e6dfd91dcd1f7be4f19ea2b1c463d7d88",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/origins/third-365-actual-delivery-27441df4.json.gz": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "7476edcd7c863e60a41cefc4aee3508d1a1163fa",
+      "bytes": 7266,
+      "sha256": "084624645e4af2f16459e8254a3e8e20a9cbff1f6bc98c26f37ffa5e184009bf",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/primary/retained-ci-b7f7f1a9.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b0060e43068854b817647f9fe6d53fc4cb1ccad0",
+      "bytes": 15300,
+      "sha256": "b13c25fb866b49fa5cc98293e5918288b4b6b1bfecadd32719ac1403097de381",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/primary/source-b7f7f1a9.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "790b16055097f3c0645bfd8efc5830f75b57b04b",
+      "bytes": 9599,
+      "sha256": "b01e9bc810111d65cc189b820bafecad114911c7be86ab02ae440f606ff86837",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/third/retained-ci-b7f7f1a9.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "12fc067866dcdc154246ab055f801dbac2a6ab19",
+      "bytes": 20177,
+      "sha256": "e2d5cec875753f15fa3b33b955475a0bd23e707ceeded2df7601f7ef989aa11f",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "docs/goal/evidence/research-cache-bounds-20261002/third/review-b7f7f1a9-source.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "e3f4fc71a0e072986bd518c6350e7bd7e73cefe4",
+      "bytes": 10935,
+      "sha256": "3b3ab8dc3572110b967ff6e341e15255c1ada10bf51ac5393abad77922d361d8",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "mcp-research/README.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "be1453a81751e3bd536373f831fb0fc5d9d31a54",
+      "bytes": 8113,
+      "sha256": "a1c41ba949e7af40bf59b851a3c85f9a9394732f95821dcdc18115741eef0743",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "mcp-research/src/bounded-cache.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1f29255dc0001c66847835b7e3de592e602ef87a",
+      "bytes": 2149,
+      "sha256": "7576a26f264ba522fc6cafb49bc3141e1d2f2904031719d8e1503e6b54dbe9de",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "mcp-research/src/server.mjs": {
+      "mode": "100755",
+      "type": "blob",
+      "object": "7de5749fbb4aa322f99f84a0eabe0585b824b371",
+      "bytes": 15958,
+      "sha256": "20bf538b256372163b4bcb4f28ffe7e6de31a6ae7d6505418ecae31f18357a91",
+      "working_index_frozen_actual_Git_equal": true
+    },
+    "mcp-research/test/cache-bounds.test.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "824c3392d32aa713bd02764e33daf7581d6f1c13",
+      "bytes": 25937,
+      "sha256": "d0e6c845dac2ee4c0db573972266e19d48513dea58d552e7c97f1023b92c6420",
+      "working_index_frozen_actual_Git_equal": true
+    }
+  },
+  "protected": {
+    "rows": 6199,
+    "bytes": 394439195,
+    "actual_base_frozen_merged_mode_type_object_size_equal": true,
+    "inherited_SHA256_basis": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/source-b7f7f1a9.json",
+      "bytes": 1849180,
+      "sha256": "7fee8a30b840abfa4c42d096e5a485b68621af41c565f442c82eca1dded74e0c",
+      "inherited_identical_objects_modes_types_sizes": true,
+      "whole_protected_physical_audit": false
+    },
+    "whole_protected_physical_or_394MB_blob_rehash": false
+  },
+  "all65_original_goal_prefixes": [
+    {
+      "revision": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 129825,
+      "original_sha256": "52dfb5ef742cfdc211dcd54ef3049eb3a9378b75749c736efbe69e1b25da1d4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 405189,
+      "original_sha256": "d6a82f0878028ed20f88ade2e57f11eff09e90fc539f24d126ea1bbd6b1e31d7",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 131059,
+      "original_sha256": "f714952a2861a41d7b2cc62b5ae1f5318042a0ae2e31f75dd625face77cce593",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 406423,
+      "original_sha256": "ff633e3074965853055be8acae0758b010d31da59ec3474c844bae3930c26a22",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 132772,
+      "original_sha256": "4b4e035b9e85d40402beb94c62357ab1230ed5fcabf47501e47365189fcc31c6",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 408136,
+      "original_sha256": "ab9d70ea06d74c6c24819922163f0d3a9ce0ac8c21bfef41baef335f4e2ecf62",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 133950,
+      "original_sha256": "a96a73e4adbbf07365e326d36696b60c8ad04d7f3344569ffdabb7b348131b1b",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 409314,
+      "original_sha256": "c586b75436f2128f1743dbc0c9e63b992b65f376cb6e3c0ce028296a990eec17",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 135197,
+      "original_sha256": "9abb99d3efb964d71ec9568326b18f1a515188274adaed27bb5b599da1d74cf7",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 410561,
+      "original_sha256": "d144e66938a246e6869ace6f1de9ddb2ae478b25869175f39ae319a92546a770",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 136640,
+      "original_sha256": "c74499ccaf845e1dd435ae22646adfc0c081fb0fb993acb4f40c6334de755cad",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 412004,
+      "original_sha256": "068a590723833c9e7df1924dc536537e263a0bae4d326d567c0a99719a5704d0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 139457,
+      "original_sha256": "71bde59b4d89c755f7c30a2e7e206828b54402acfaf164140d6fe1d03a85ebcb",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 414821,
+      "original_sha256": "5a492b61516803556ebf8cf7e599b775bd0c324d2ec50e7fa02191f53377a60c",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 141798,
+      "original_sha256": "83d3efa3b065a15152d3dc4136aaf20440ad58fed3a58b7ac2b9d698ad78b99c",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 417162,
+      "original_sha256": "ae178714551ad124bcee6ebdab93c36dca0492715666f709f6defc927520e5ed",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 143436,
+      "original_sha256": "548ea9d5fad98ec18af87ef8faf04116c0c6af843e5ebc5de8a908b29d4b8146",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 418800,
+      "original_sha256": "4056e1dcb81c0fbf1005c27898e6fc10c0b8c5e546bee5c6e607a2a07bca6dae",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 144863,
+      "original_sha256": "65dba8037b22b0abedeb025ac3b865146a84591ce1a2a644a2f7ecd652bf8f76",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 420227,
+      "original_sha256": "276dc3c9b6d4b1d7cc3f49e994401fcf5b5b0bb1bca0d204f8b129ded1591082",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 147600,
+      "original_sha256": "42de48d9e5b4d98be692926918b2e8b466198c3da29fe12838d816dc1c9f3b62",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 422964,
+      "original_sha256": "552804c868c0ff824257aea49353e354488a833f31c84636c226e7c7896d60d1",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 149028,
+      "original_sha256": "d99196135b96543f1644190e60c1372fd800c06baa8b525a125c9d08556d926a",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 424392,
+      "original_sha256": "57354b1e2181444439ce02a85c721355ca7147267f2fbf81919385aec97815ba",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b7f7f1a9e6a47e742d5bff69b4a68ac86bdcabe2",
+      "path": "docs/goal/README.md",
+      "original_bytes": 5370,
+      "original_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b7f7f1a9e6a47e742d5bff69b4a68ac86bdcabe2",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8398,
+      "original_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b7f7f1a9e6a47e742d5bff69b4a68ac86bdcabe2",
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 151739,
+      "original_sha256": "4c46b2fb9794a124c19ce1ce85cbb30508cd4d15214a93d47a569c25dd06169c",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b7f7f1a9e6a47e742d5bff69b4a68ac86bdcabe2",
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 4314,
+      "original_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    },
+    {
+      "revision": "b7f7f1a9e6a47e742d5bff69b4a68ac86bdcabe2",
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 427103,
+      "original_sha256": "7ff6f129986050d76daa959ed3e712036cc302186eac81c858ffa540214dde32",
+      "final_original_prefix_equal": true,
+      "actual_merged_original_prefix_equal": true
+    }
+  ],
+  "archive": {
+    "prefix": "docs/goal/evidence/research-cache-bounds-20261002/",
+    "members_including_manifest": 30,
+    "manifest": {
+      "bytes": 21022,
+      "sha256": "b60f82ce62b587a3f1d9c7b0ccbc11a581435fde39ad08b7d7a23e714752834d",
+      "actual_frozen_work_index_equal": true
+    },
+    "literal_allocation_original": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/archive-allocation-b7f7f1a9.json",
+      "bytes": 16384,
+      "sha256": "679773949ed9941b2039b70d94827ab9de49879562d4324ec412e9b853a7cb43"
+    },
+    "files": [
+      {
+        "path": "author/assignment-27441df4.md",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 6243,
+        "original_sha256": "d97b9bac43c689e5834268feb67d82cd879425de310d96a9f6c2a1cda780f27e",
+        "stored_bytes": 6243,
+        "stored_sha256": "d97b9bac43c689e5834268feb67d82cd879425de310d96a9f6c2a1cda780f27e",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/assignment-27441df4.md",
+          "bytes": 6243,
+          "sha256": "d97b9bac43c689e5834268feb67d82cd879425de310d96a9f6c2a1cda780f27e"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/assignment-receipt-27441df4.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 1059,
+        "original_sha256": "fb7bd77a3493cef406abe83005e33d4d0e3acfbbd67770c3980dda65c645a36b",
+        "stored_bytes": 1059,
+        "stored_sha256": "fb7bd77a3493cef406abe83005e33d4d0e3acfbbd67770c3980dda65c645a36b",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/assignment-receipt-27441df4.json",
+          "bytes": 1059,
+          "sha256": "fb7bd77a3493cef406abe83005e33d4d0e3acfbbd67770c3980dda65c645a36b"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/static-retention-intake-27441df4.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 1137,
+        "original_sha256": "e9bd2503c017d558de05a071af41806fef521f2695ee64ea5c0d07d082cc20fa",
+        "stored_bytes": 1137,
+        "stored_sha256": "e9bd2503c017d558de05a071af41806fef521f2695ee64ea5c0d07d082cc20fa",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/static-retention-intake-27441df4.json",
+          "bytes": 1137,
+          "sha256": "e9bd2503c017d558de05a071af41806fef521f2695ee64ea5c0d07d082cc20fa"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-phase-start-27441df4.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 4012,
+        "original_sha256": "3c21c492e7c8e6e975d78665fbdcf0ba67367a007ca30e7c32f42469d90232dd",
+        "stored_bytes": 4012,
+        "stored_sha256": "3c21c492e7c8e6e975d78665fbdcf0ba67367a007ca30e7c32f42469d90232dd",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-phase-start-27441df4.json",
+          "bytes": 4012,
+          "sha256": "3c21c492e7c8e6e975d78665fbdcf0ba67367a007ca30e7c32f42469d90232dd"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-written-preflight-27441df4.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 11422,
+        "original_sha256": "6181728e33773acc35044ccc36d598c946d409adfa237f60a8536aac4e676728",
+        "stored_bytes": 11422,
+        "stored_sha256": "6181728e33773acc35044ccc36d598c946d409adfa237f60a8536aac4e676728",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-written-preflight-27441df4.json",
+          "bytes": 11422,
+          "sha256": "6181728e33773acc35044ccc36d598c946d409adfa237f60a8536aac4e676728"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/source-b7f7f1a9.json.gz",
+        "mode": "100644",
+        "encoding": "gzip",
+        "original_bytes": 1849180,
+        "original_sha256": "7fee8a30b840abfa4c42d096e5a485b68621af41c565f442c82eca1dded74e0c",
+        "stored_bytes": 488600,
+        "stored_sha256": "2ac63c69a0e6ca49cf01e9d6a47a9e554f09a0f6bcc7e51939655b45a4f4c44a",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/source-b7f7f1a9.json",
+          "bytes": 1849180,
+          "sha256": "7fee8a30b840abfa4c42d096e5a485b68621af41c565f442c82eca1dded74e0c"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/capture-exact-cache-ci-v1.py",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 10236,
+        "original_sha256": "451649052cd204dbc80f1c132177653257765eccca4d6a0f49f8812e0d6a43f7",
+        "stored_bytes": 10236,
+        "stored_sha256": "451649052cd204dbc80f1c132177653257765eccca4d6a0f49f8812e0d6a43f7",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/capture-exact-cache-ci-v1.py",
+          "bytes": 10236,
+          "sha256": "451649052cd204dbc80f1c132177653257765eccca4d6a0f49f8812e0d6a43f7"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/pr-body-b7f7f1a9.md",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 1003,
+        "original_sha256": "f0fed33fdeb751c549d9bfc987a266391a2a64e8f2fa4fa993a0ded529be2db3",
+        "stored_bytes": 1003,
+        "stored_sha256": "f0fed33fdeb751c549d9bfc987a266391a2a64e8f2fa4fa993a0ded529be2db3",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/pr-body-b7f7f1a9.md",
+          "bytes": 1003,
+          "sha256": "f0fed33fdeb751c549d9bfc987a266391a2a64e8f2fa4fa993a0ded529be2db3"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/pr-body-b7f7f1a9-current-ci.md",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 1096,
+        "original_sha256": "9571e3bc1301c6300fdcf2affb11b3f87c8d8eeccbf39096856a72c6be5eec53",
+        "stored_bytes": 1096,
+        "stored_sha256": "9571e3bc1301c6300fdcf2affb11b3f87c8d8eeccbf39096856a72c6be5eec53",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/pr-body-b7f7f1a9-current-ci.md",
+          "bytes": 1096,
+          "sha256": "9571e3bc1301c6300fdcf2affb11b3f87c8d8eeccbf39096856a72c6be5eec53"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-remote-runtime-observed.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 2296,
+        "original_sha256": "c30145ccb5ea2988149f427edb45cf479ada481856fe9eff6a8aed9b7c24484d",
+        "stored_bytes": 2296,
+        "stored_sha256": "c30145ccb5ea2988149f427edb45cf479ada481856fe9eff6a8aed9b7c24484d",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-remote-runtime-observed.json",
+          "bytes": 2296,
+          "sha256": "c30145ccb5ea2988149f427edb45cf479ada481856fe9eff6a8aed9b7c24484d"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-exact-ci.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 13919,
+        "original_sha256": "6633a50ffdd4a0da6850f3900733722cd7a5248c4ddd51c411fecf4afe9c8d55",
+        "stored_bytes": 13919,
+        "stored_sha256": "6633a50ffdd4a0da6850f3900733722cd7a5248c4ddd51c411fecf4afe9c8d55",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-exact-ci.json",
+          "bytes": 13919,
+          "sha256": "6633a50ffdd4a0da6850f3900733722cd7a5248c4ddd51c411fecf4afe9c8d55"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-root-ci-original.log.gz",
+        "mode": "100644",
+        "encoding": "gzip",
+        "original_bytes": 633139,
+        "original_sha256": "e05524cea763fc10b021e31197c63a9356a0d0a93027b8ac4cb39270bb1aacb4",
+        "stored_bytes": 118601,
+        "stored_sha256": "6e5c02a0847977070d91bfa3eaf9c4f82ca4caa840ef94e5e4802971ea6cd5c4",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-root-ci-original.log",
+          "bytes": 633139,
+          "sha256": "e05524cea763fc10b021e31197c63a9356a0d0a93027b8ac4cb39270bb1aacb4"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-mcp-ci-original.log.gz",
+        "mode": "100644",
+        "encoding": "gzip",
+        "original_bytes": 297573,
+        "original_sha256": "a15f08fdc0c428ecf876a9eb8f33169d9102ac5284f1255de8b5224b354d6424",
+        "stored_bytes": 102356,
+        "stored_sha256": "925eba26ea1f516095a1ebe1456f823fbe92500c7bf2448bb0fea034ed9d35c0",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-mcp-ci-original.log",
+          "bytes": 297573,
+          "sha256": "a15f08fdc0c428ecf876a9eb8f33169d9102ac5284f1255de8b5224b354d6424"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-checks-original.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 1131,
+        "original_sha256": "10a1e8e7e60771ad793cb1e4ec5ffd23423a594bd2fd7f95dcec5fdef1db5926",
+        "stored_bytes": 1131,
+        "stored_sha256": "10a1e8e7e60771ad793cb1e4ec5ffd23423a594bd2fd7f95dcec5fdef1db5926",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-checks-original.json",
+          "bytes": 1131,
+          "sha256": "10a1e8e7e60771ad793cb1e4ec5ffd23423a594bd2fd7f95dcec5fdef1db5926"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-run-original.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 13284,
+        "original_sha256": "78f8299d8e0ccd39e6edc2e9e55c361c090de1173c73f33971072a63a1ae8960",
+        "stored_bytes": 13284,
+        "stored_sha256": "78f8299d8e0ccd39e6edc2e9e55c361c090de1173c73f33971072a63a1ae8960",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-run-original.json",
+          "bytes": 13284,
+          "sha256": "78f8299d8e0ccd39e6edc2e9e55c361c090de1173c73f33971072a63a1ae8960"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-pr-original.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 18047,
+        "original_sha256": "f1831745459172254f4829c9175000e56d5a9559b6e5eff6cb7badf6661c86ae",
+        "stored_bytes": 18047,
+        "stored_sha256": "f1831745459172254f4829c9175000e56d5a9559b6e5eff6cb7badf6661c86ae",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-pr-original.json",
+          "bytes": 18047,
+          "sha256": "f1831745459172254f4829c9175000e56d5a9559b6e5eff6cb7badf6661c86ae"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-codeql-alerts-original.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 2,
+        "original_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "stored_bytes": 2,
+        "stored_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-codeql-alerts-original.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-codeql-analyses-original.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 1186,
+        "original_sha256": "06291a7dd3c87a3c9b6ad06801adcafc540c66b002caf97d7f1bf046b835365c",
+        "stored_bytes": 1186,
+        "stored_sha256": "06291a7dd3c87a3c9b6ad06801adcafc540c66b002caf97d7f1bf046b835365c",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-codeql-analyses-original.json",
+          "bytes": 1186,
+          "sha256": "06291a7dd3c87a3c9b6ad06801adcafc540c66b002caf97d7f1bf046b835365c"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "author/secondary-b7f7f1a9-tested-merge-original.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 2648,
+        "original_sha256": "612dda5769bf51e96b1c7a333c52af1682217ec0945f30806b281549a378df2b",
+        "stored_bytes": 2648,
+        "stored_sha256": "612dda5769bf51e96b1c7a333c52af1682217ec0945f30806b281549a378df2b",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-tested-merge-original.json",
+          "bytes": 2648,
+          "sha256": "612dda5769bf51e96b1c7a333c52af1682217ec0945f30806b281549a378df2b"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "origins/source-77b483e1.json.gz",
+        "mode": "100644",
+        "encoding": "gzip",
+        "original_bytes": 1856371,
+        "original_sha256": "def1be19816b9aa25c6ac83c5676f905292cb4883177633aa0b31c0e4c3b9024",
+        "stored_bytes": 489229,
+        "stored_sha256": "d2cf9ee05adaed18ad4287eb94ca4a1e6dfd91dcd1f7be4f19ea2b1c463d7d88",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/source-77b483e1.json",
+          "bytes": 1856371,
+          "sha256": "def1be19816b9aa25c6ac83c5676f905292cb4883177633aa0b31c0e4c3b9024"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "origins/secondary-365-actual-delivery-27441df4.json.gz",
+        "mode": "100644",
+        "encoding": "gzip",
+        "original_bytes": 48786,
+        "original_sha256": "7516d3e2915008571db346a630857e16c7643746b0bcae70cc55b5016b17df0a",
+        "stored_bytes": 8239,
+        "stored_sha256": "a338a2fedf4fd8fbd17387c047739491cbc38a7659365c950fee37d48599e1ae",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-365-actual-delivery-27441df4.json",
+          "bytes": 48786,
+          "sha256": "7516d3e2915008571db346a630857e16c7643746b0bcae70cc55b5016b17df0a"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "origins/primary-365-actual-delivery-27441df4.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 25554,
+        "original_sha256": "16c5814f8cd91cfd618f215e0898bcfb07d88cf7c04ecd0324c8d15232745305",
+        "stored_bytes": 25554,
+        "stored_sha256": "16c5814f8cd91cfd618f215e0898bcfb07d88cf7c04ecd0324c8d15232745305",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds-primary-review/actual-delivery-365-27441df4.json",
+          "bytes": 25554,
+          "sha256": "16c5814f8cd91cfd618f215e0898bcfb07d88cf7c04ecd0324c8d15232745305"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "origins/third-365-actual-delivery-27441df4.json.gz",
+        "mode": "100644",
+        "encoding": "gzip",
+        "original_bytes": 38928,
+        "original_sha256": "45169e22262789c91392a084f16527ed8d661734df9f9c7f50bba0e28c097df5",
+        "stored_bytes": 7266,
+        "stored_sha256": "084624645e4af2f16459e8254a3e8e20a9cbff1f6bc98c26f37ffa5e184009bf",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds-peer/actual-delivery-365-27441df4.json",
+          "bytes": 38928,
+          "sha256": "45169e22262789c91392a084f16527ed8d661734df9f9c7f50bba0e28c097df5"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "primary/source-b7f7f1a9.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 9599,
+        "original_sha256": "b01e9bc810111d65cc189b820bafecad114911c7be86ab02ae440f606ff86837",
+        "stored_bytes": 9599,
+        "stored_sha256": "b01e9bc810111d65cc189b820bafecad114911c7be86ab02ae440f606ff86837",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/source-b7f7f1a9.json",
+          "bytes": 9599,
+          "sha256": "b01e9bc810111d65cc189b820bafecad114911c7be86ab02ae440f606ff86837"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "primary/retained-ci-b7f7f1a9.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 15300,
+        "original_sha256": "b13c25fb866b49fa5cc98293e5918288b4b6b1bfecadd32719ac1403097de381",
+        "stored_bytes": 15300,
+        "stored_sha256": "b13c25fb866b49fa5cc98293e5918288b4b6b1bfecadd32719ac1403097de381",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/retained-ci-b7f7f1a9.json",
+          "bytes": 15300,
+          "sha256": "b13c25fb866b49fa5cc98293e5918288b4b6b1bfecadd32719ac1403097de381"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "third/review-b7f7f1a9-source.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 10935,
+        "original_sha256": "3b3ab8dc3572110b967ff6e341e15255c1ada10bf51ac5393abad77922d361d8",
+        "stored_bytes": 10935,
+        "stored_sha256": "3b3ab8dc3572110b967ff6e341e15255c1ada10bf51ac5393abad77922d361d8",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-peer/review-b7f7f1a9-source.json",
+          "bytes": 10935,
+          "sha256": "3b3ab8dc3572110b967ff6e341e15255c1ada10bf51ac5393abad77922d361d8"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "third/retained-ci-b7f7f1a9.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 20177,
+        "original_sha256": "e2d5cec875753f15fa3b33b955475a0bd23e707ceeded2df7601f7ef989aa11f",
+        "stored_bytes": 20177,
+        "stored_sha256": "e2d5cec875753f15fa3b33b955475a0bd23e707ceeded2df7601f7ef989aa11f",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-peer/retained-ci-b7f7f1a9.json",
+          "bytes": 20177,
+          "sha256": "e2d5cec875753f15fa3b33b955475a0bd23e707ceeded2df7601f7ef989aa11f"
+        },
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "README.md",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 2947,
+        "original_sha256": "4f3dc13f153567dfc34f51cda86c3803673d0b5863e982b8889d950b1b673327",
+        "stored_bytes": 2947,
+        "stored_sha256": "4f3dc13f153567dfc34f51cda86c3803673d0b5863e982b8889d950b1b673327",
+        "origin": null,
+        "generated": "allocated documentary status and links",
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      },
+      {
+        "path": "allocation-primary-original.json",
+        "mode": "100644",
+        "encoding": "identity",
+        "original_bytes": 16384,
+        "original_sha256": "679773949ed9941b2039b70d94827ab9de49879562d4324ec412e9b853a7cb43",
+        "stored_bytes": 16384,
+        "stored_sha256": "679773949ed9941b2039b70d94827ab9de49879562d4324ec412e9b853a7cb43",
+        "origin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/archive-allocation-b7f7f1a9.json",
+          "bytes": 16384,
+          "sha256": "679773949ed9941b2039b70d94827ab9de49879562d4324ec412e9b853a7cb43"
+        },
+        "literal_allocation": true,
+        "stored_work_index_frozen_actual_Git_mode_byte_equal": true,
+        "bounded_original_origin_verified": true
+      }
+    ],
+    "original_bytes": 4934616,
+    "stored_bytes": 1424930,
+    "gzip_mtime0_singlemember_bounded": 6,
+    "external_nonmember_pins": [
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/private-archive-preview-v1/manifest.json",
+        "bytes": 18839,
+        "sha256": "a95029801109dc38abbfeb1627133975beab25668caad4d26507419971852b3d"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/archive-proposal-b7f7f1a9-v1.json",
+        "bytes": 21014,
+        "sha256": "7f30c97761aa80810e8c2a66eb65f5331da850e488549f0996cf47bbb0c1e5a4"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/private-preview-byte-audit-b7f7f1a9-v1.json",
+        "bytes": 5383,
+        "sha256": "c141055fc2612f2db7664871024d09ac1c6e9e1c96192e7911e6558fd96a1520"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/archive-preview-b7f7f1a9-v1-byte-review.json",
+        "bytes": 11898,
+        "sha256": "43b9759d7006f06be11e2dcc55198777fd7f9b52a5e925c108e94b8195a2e16e"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/four-initial-gates-b7f7f1a9.json",
+        "bytes": 2550,
+        "sha256": "381a5afa1314580322369a55f913eebdb093164ab61b96c2cb3c9371ecf2e419"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-peer/handoff-b7f7f1a9-initial-gates.json",
+        "bytes": 3671,
+        "sha256": "83939e2aa0c19f339bd2b93179329bf380834152da3c0829e627d9cf708e17e6"
+      }
+    ],
+    "no31stmember_or_extra_authority": true
+  },
+  "all4final_gates_and_author_current_CI": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/source-9ab47ce7-final.json",
+      "bytes": 43092,
+      "sha256": "2ec79756f8a428de903f08f4781b380df636bbfda81c098b69eec3d420c42953"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/retained-ci-9ab47ce7-final.json",
+      "bytes": 17654,
+      "sha256": "01500ff4f29f348202110ad3361a01108252f236376e8ac083299090fc7ea116"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-peer/review-9ab47ce7-final-source-archive.json",
+      "bytes": 71106,
+      "sha256": "74b32bd9deacde483aeb74bfa604d3d1e2013a819339ea2d7e049830550ee3eb"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-peer/retained-ci-9ab47ce7-final.json",
+      "bytes": 36295,
+      "sha256": "12cf928a5e92dbacbcf345ae50c645ef4bf367fdf7839577e5f7c64cafd11f1e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-9ab47ce7-exact-ci.json",
+      "bytes": 13919,
+      "sha256": "840bb1fa29a8a9e1411a5c24e2a4bab560b2dba943d6a8e0fee3351743605ff8"
+    }
+  ],
+  "all8final_originals": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-9ab47ce7-root-ci-original.log",
+      "bytes": 632519,
+      "sha256": "836038652426999b84d6d12eab97146b404964d6e89d80218593cd6245ed02ba"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-9ab47ce7-mcp-ci-original.log",
+      "bytes": 298979,
+      "sha256": "9099283a064cff58a76ee3d6f2521b9d78a3caf5e12d353af5943f506c33a140"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-9ab47ce7-checks-original.json",
+      "bytes": 1131,
+      "sha256": "6718f07ab5b1a74f670b56c5f7297fdd83784575fd3931bbcbabc9ab87db4506"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-9ab47ce7-run-original.json",
+      "bytes": 13289,
+      "sha256": "a92361da56c46e51798614667943534fd48d9f191becc86c398488c92c9c744e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-9ab47ce7-pr-original.json",
+      "bytes": 18270,
+      "sha256": "c225dbab9c08fa0ae1aa82816c0ba00d82f0c07ac3972687cdfac036baff2617"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-9ab47ce7-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-9ab47ce7-codeql-analyses-original.json",
+      "bytes": 2373,
+      "sha256": "dbf99945cfa4087942063432a88aa3ab7d874e972060f7a1537269e461dca99d"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-9ab47ce7-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "708a02c465328e93b0538626d778f619e60a0304c39778c1946a4f180384f259"
+    }
+  ],
+  "remote_evidence_only": {
+    "new_same35_onceMCP": 35,
+    "new_ROOT_cases": 0,
+    "research_total": 82,
+    "ROOT_plans": [
+      6,
+      1044,
+      9
+    ],
+    "MCP_plans": [
+      141,
+      1,
+      82,
+      119,
+      139
+    ],
+    "Node_both": "v22.23.3",
+    "all7_captured_checks_success": true,
+    "final_security": "Retained captured ref/latestJS+PY0 at testedeb33,4historicalanalysisrows preserved; no fresh/global security claim."
+  },
+  "independent_primary_actual_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/actual-366-27f12442.json",
+    "bytes": 53204,
+    "sha256": "b5c2c36b184b9a7500d006c0be098f2fa29b384ec3f9d1f5e0d33ea243e4dd4e"
+  },
+  "secondary_actual_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-366-actual-delivery-27f12442.json",
+    "bytes": 52056,
+    "sha256": "e657584cc7e5076030a61719460cea60c18613913172781d0d84cb056482a965"
+  },
+  "secondary_finalgate_aggregate": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/four-final-gates-9ab47ce7.json",
+    "bytes": 3926,
+    "sha256": "2ce1ea523c52c95e62677c0d36e07e2b22b21b64716dc12bdea9b94fe69393ae"
+  },
+  "metadata_history_preserved": {
+    "PRIMARY_first_actual_custody_error_and_enum_correction": {
+      "metadata_error_preserved": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/actual-366-first-custody-metadata-error.json",
+        "bytes": 616,
+        "sha256": "ccf622e0966d5b3d66be7a6c8bddcd15736fa5383a8abd7b7ab72bfe41821643"
+      },
+      "metadata_correction": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/actual-366-custody-encoding-correction.json",
+        "bytes": 780,
+        "sha256": "1c37023eefcc3230936ba18968a825abfe1b5314dc33aac43703659de8064a8a"
+      }
+    },
+    "SECONDARY_separate_external_metadata_error": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-primary-review/retained-ci-9ab47ce7-parser-original-error.json",
+      "bytes": 831,
+      "sha256": "3c3376eb0977909b7be37e9efb7a6204d46bc5fab25cced6f2372bb7d93204ae"
+    },
+    "limits": "Reader metadata diagnostics/corrections are retained; no project failure or source/log/archive/rerun occurred."
+  },
+  "closure": "Assigned PR366 source-repository phase CLOSED on actual custody. All prior pending/source/CI/premerge/authority receipts preserved unchanged and next finite complementary role awaits exact assignment; no historical rerun.",
+  "guide359_scope": "V9 is separately PRIMARY/Lead/observer127 owned. Root continuity now records later qualified closure and current-main guide8a; no V9 runtime/source/cleanup verdict issued by this cache receipt and no duplicated project review or run.",
+  "not_performed": [
+    "Project import/Node/test/CLI/helper/npm/build/browser execution",
+    "Network/APIrefetch or git fetch",
+    "Live process/signal/guard/CPUgrant/nonce operations",
+    "Author source/archive/worktree edits",
+    "CI reruns/provider-model-resources-spend/broker orders",
+    "Merge or registry/version/site publication"
+  ],
+  "full_owner_hierarchy": "ACTIVE; full fourSovereignpillars/10Mactual useful indexed qualitySEO-intents-design-analyzers/API-MCP-repoadoption/expert-rightsrefinery/novelresearch/governedALPHAC/paperthenlawfulcapital preserved; realindexed-expert-independence-rights-labels-adoption-qualified outcomes unknown.",
+  "continuity": {
+    "README.md": {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 26976,
+      "sha256": "bd5b8a61e13af19d0a4baea1d7dad50ce425392656f8cfe260267069c5374927"
+    },
+    "REQUIREMENTS.md": {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    "STATUS.md": {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 638620,
+      "sha256": "f516e2e7110a4eeae10c3d0d819e5c64033634c4b5b184773168adb9250319aa"
+    },
+    "PHASES.md": {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 19713,
+      "sha256": "6f2ac8821556dee919b76ade8c457a5abe432ea18612cc5fc9aff6a3e6862e38"
+    },
+    "LOG.md": {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 983470,
+      "sha256": "3103a274579b40114c9eebe9cabdaf3976932e57a3ad09b34668fdae9e98e566"
+    }
+  }
+}

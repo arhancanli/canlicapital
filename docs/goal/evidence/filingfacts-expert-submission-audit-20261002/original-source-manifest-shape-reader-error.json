@@ -1,0 +1,10 @@
+{
+  "schema": "expert-submission-audit-metadata-error/v1",
+  "utc": "2026-10-02T17:31:48.569313+00:00",
+  "operation": "Read inherited source-9ab manifest preview; incorrect slice on changed dictionary",
+  "exit_code": 1,
+  "original_stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 4, in <module>\nTypeError: unhashable type: 'slice'\n",
+  "project_execution": false,
+  "source_or_test_or_CI_failure": false,
+  "action": "Preserve this original; inspect dictionary shape before corrected read; no runtime retry or project change"
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "canli.primary.expert-submission-audit.static-calibration-correction.v1",
+  "observed_at": "2026-10-02T17:54:16.836758+00:00",
+  "source": "182e2a732a26ce36bbcf6cd3825675dfdf64f0df",
+  "original_source_review_preserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-primary-review/review-182e2a73-source.json",
+    "bytes": 2876,
+    "sha256": "2d137ff5ac27d629373f6e90f2cd5539a733de1770880ce85fd411ec5ca2d85e"
+  },
+  "original_retained_CI_preserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-primary-review/retained-ci-182e2a73.json",
+    "bytes": 13221,
+    "sha256": "eada75ae3b31543fed3d126529a430a712022eea702cd7e06c9f6eed94b74f82"
+  },
+  "invalid_finding": "CC-367-DECLARED-SHA-EXACT-END",
+  "disposition": "WITHDRAWN_INVALID_STATIC_COUNTEREXAMPLE",
+  "author_correction": "Owner relayed secondary official ECMAScript CompileAssertion calibration before new source push.",
+  "official_source_url": "https://tc39.es/ecma262/multipage/text-processing.html#sec-compileassertion",
+  "official_source_read_with_web_tool": true,
+  "reason": "Assertion dollar accepts a position before a LineTerminator only when the Multiline flag is true. The original literal has no m flag and therefore requires the input end. My earlier cross-language end-anchor inference was wrong.",
+  "source_gate_for_original_182": "PASS_WITH_STATIC_SCOPE_LIMITS_NO_REMAINING_IDENTIFIED_BLOCKER",
+  "qualified_review_scope": "All six frozen Git source paths, tests, guide, 6238 index, 6232 protected inherited identities, 75 predecessor goal prefixes reviewed. No original counterexample was executed and no reproduced defect or failed project case is claimed.",
+  "explicit_length64_check": "AUTHORIZED_DEFENSIVE_CONTRACT_HARDENING_NOT_A_REPRODUCED_BUG_FIX",
+  "future_49th_calibration_case": "WRITTEN_OR_PLANNED_NOT_EXECUTED_AT_THIS_RECEIPT",
+  "new_head_source_and_current_CI": "SEPARATE_REQUIRED_GATES_NOT_PREAPPROVED",
+  "project_runtime_or_job_or_grant_or_CI_rerun": false,
+  "all_owner_goals": "ACTIVE",
+  "actual_expert_rights_labels_indexing_or_strategy_outcomes": null
+}

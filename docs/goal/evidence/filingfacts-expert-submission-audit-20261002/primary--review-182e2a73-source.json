@@ -1,0 +1,50 @@
+{
+  "schema": "canli.primary.expert-submission-audit.independent-static-source.v1",
+  "observed_at": "2026-10-02T17:47:19.108053+00:00",
+  "head": "182e2a732a26ce36bbcf6cd3825675dfdf64f0df",
+  "tree": "4f95f00dda9d656e6f68a76096874463a2176f36",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/source-182e2a73.json",
+    "bytes": 3094752,
+    "sha256": "457e43b6096d20c2af2f55eeb961d27cb8eea6758e7c0182761de5167a07c2d1"
+  },
+  "verdict": "HOLD_ONE_NARROW_DECLARATION_BOUNDARY_P2",
+  "scope": "Read-only source/tests/guide/contract/Git metadata; no project imports or runtime/reproduction",
+  "source_working_index_Git_owned_paths_verified": 6,
+  "full_index_verified": 6238,
+  "protected_Git_verified": 6232,
+  "protected_Git_bytes_inherited": 395903735,
+  "new_whole_protected_physical_audit": false,
+  "predecessor_goal_prefixes_verified": 75,
+  "case_names_written_at_this_source": 48,
+  "positive_static_observations": [
+    "same owned original bytes are hashed and parsed",
+    "preparation is recomputed from unchanged six-input intake",
+    "exact role/handle binding and full selected N survive absent and partial returns",
+    "immutable full packet rows and per-field/complete-item notes semantics preserved",
+    "all real expert/human/independence/rights/labels/admission outcomes stay null",
+    "native input and aggregate/canonical JSON report boundaries are explicit; no I/O or dispatch",
+    "old V0/browser/intake/agreement/adjudication and prior archives unchanged"
+  ],
+  "findings": [
+    {
+      "id": "CC-367-DECLARED-SHA-EXACT-END",
+      "priority": "P2",
+      "kind": "STATIC_COUNTEREXAMPLE_NOT_EXECUTED",
+      "path": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "line": 45,
+      "trigger": "auditSettings.implementation_source_sha256 = 64 lowercase hex characters followed by an escaped LF in valid JSON",
+      "flow": [
+        "parseJson accepts an in-string escaped LF as valid Unicode",
+        "auditSettings invokes sha(value) with no equality comparison",
+        "JavaScript $ accepts the position before a final line terminator; the regex alone is not exact string end",
+        "no exact length or no-newline guard occurs; malformed declaration is returned in settings and implementation"
+      ],
+      "expected": "The guide specifies lowercase64 or null; refuse malformed declaration with SHA rather than accepting65 characters.",
+      "request": "Add a primitive exact length64 check (or strict end assertion) in the shared sha helper; meaningful settings declaration end-terminator regression with valid64/null positive controls; preserve inherited source modules."
+    }
+  ],
+  "runtime_gate": "SEPARATE_EXACT_CURRENT_RETAINED_CI_REVIEW",
+  "all_owner_goals": "ACTIVE",
+  "actual_expert_rights_labels_indexing_or_strategy_outcomes": null
+}
