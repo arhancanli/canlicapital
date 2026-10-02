@@ -1,0 +1,565 @@
+{
+  "schema": "canli.secondary.fundamentals-audit-inputs.exact-retained-ci.v1",
+  "observed_at": "2026-10-02T05:11:32.970813+00:00",
+  "source": "317ebf77d2ac9a3a02bcb139920fda2fbbacfeed",
+  "tree": "9fd576100afc61a9cc3ed0cfb1374c46eaf10e93",
+  "signature": "G",
+  "base": "64a61ae81387609a58802e7c687fe2d2da2f97a2",
+  "verdict": "PASS_EXACT_CURRENT_CI_INDEPENDENT_EXTENSIONS_PENDING",
+  "root_run": 36967622819,
+  "root_job": 110714681075,
+  "mcp_job": 110714680940,
+  "tested_merge": "33fc0006b7e85e43331f5824ab45659be27e3801",
+  "tested_tree": "9fd576100afc61a9cc3ed0cfb1374c46eaf10e93",
+  "tested_parents": [
+    "64a61ae81387609a58802e7c687fe2d2da2f97a2",
+    "317ebf77d2ac9a3a02bcb139920fda2fbbacfeed"
+  ],
+  "root_suites": [
+    {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 997,
+      "pass": 997,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "mcp_suites": [
+    {
+      "tests": 141,
+      "pass": 141,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 15,
+      "pass": 15,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 68,
+      "pass": 68,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 139,
+      "pass": 139,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "audit_root_cases": [
+    {
+      "name": "audit inputs: original pre-cutoff value matches while later vintages stay diagnostic",
+      "number": 306,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: later-value counterexample is a supported mismatch without future selection",
+      "number": 307,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: latest strictly prior observation supersedes an older supplied value",
+      "number": 308,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: before-earliest future-only observation yields null verdict and selection",
+      "number": 309,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: same-day date-only filing makes an earlier selected observation diagnostic",
+      "number": 310,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: UTC used_on cannot establish intraday availability of a date-only filing",
+      "number": 311,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: conflicting latest-date accessions stay ambiguous in either source order",
+      "number": 312,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: equal values on distinct latest accessions do not invent a selected accession",
+      "number": 313,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: exact duplicates remain visible and a unique later prior filing resolves old ties",
+      "number": 314,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: all six outcomes retain the full selected-N denominator",
+      "number": 315,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: absent company taxonomy concept and empty reference never zero-fill",
+      "number": 316,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: exact units and opaque per-share conventions prohibit implicit conversion",
+      "number": 317,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: quarter YTD instant and concept aliases stay separate",
+      "number": 318,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: unsupported taxonomies and forms cannot establish periodic availability",
+      "number": 319,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: negative losses explicit zero fractions and safe edge values compare exactly",
+      "number": 320,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: nonnumeric null boolean string and nonfinite values refuse",
+      "number": 321,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: raw decimal rounding underflow and numeric-token overflow refuse",
+      "number": 322,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: malformed calendars non-UTC cutoffs and contradictory periods refuse",
+      "number": 323,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: declared capture chronology completeness and unknown reasons stay explicit",
+      "number": 324,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: CIK accession fiscal metadata and closed schemas validate without coercion",
+      "number": 325,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: duplicate escaped JSON keys malformed syntax and trailing data refuse",
+      "number": 326,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: malformed UTF8 unpaired surrogates and oversized decoded strings refuse",
+      "number": 327,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: prototype-looking concept keys remain owned and cannot supply inherited facts",
+      "number": 328,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: raw reference tampering at every byte defeats the separately supplied SHA",
+      "number": 329,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: expected hash refuses arrays objects boxed strings and uppercase without coercion",
+      "number": 330,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: byte APIs reject proxies subclasses shared storage and object getters",
+      "number": 331,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: native byte-slot copying ignores caller properties and respects view offsets",
+      "number": 332,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: byte inputs remain unchanged and all returned descendants are frozen",
+      "number": 333,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: independent raw usage settings and whole-source declarations bind exact bytes",
+      "number": 334,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: deterministic public JSON roundtrip preserves the shared canonical content hash",
+      "number": 335,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: each explicit raw byte ceiling accepts its boundary and refuses one extra byte",
+      "number": 336,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: usage and company ceilings retain every row at the accepted boundary",
+      "number": 337,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: source-row and expanded-vintage ceilings refuse aggregate overflow without truncation",
+      "number": 338,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: parser depth node and lexical bounds refuse before unsupported structure processing",
+      "number": 339,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: absent calibration rights universe and formal restatement claims stay null",
+      "number": 340,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: executable documented import example is offline and produces the literal outcome",
+      "number": 341,
+      "result": "ok"
+    }
+  ],
+  "audit_actual_root_pass": 36,
+  "audit_actual_fundamentals_pass": 36,
+  "audit_fundamentals_cases": [
+    {
+      "name": "audit inputs: original pre-cutoff value matches while later vintages stay diagnostic",
+      "number": 1,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: later-value counterexample is a supported mismatch without future selection",
+      "number": 2,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: latest strictly prior observation supersedes an older supplied value",
+      "number": 3,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: before-earliest future-only observation yields null verdict and selection",
+      "number": 4,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: same-day date-only filing makes an earlier selected observation diagnostic",
+      "number": 5,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: UTC used_on cannot establish intraday availability of a date-only filing",
+      "number": 6,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: conflicting latest-date accessions stay ambiguous in either source order",
+      "number": 7,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: equal values on distinct latest accessions do not invent a selected accession",
+      "number": 8,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: exact duplicates remain visible and a unique later prior filing resolves old ties",
+      "number": 9,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: all six outcomes retain the full selected-N denominator",
+      "number": 10,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: absent company taxonomy concept and empty reference never zero-fill",
+      "number": 11,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: exact units and opaque per-share conventions prohibit implicit conversion",
+      "number": 12,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: quarter YTD instant and concept aliases stay separate",
+      "number": 13,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: unsupported taxonomies and forms cannot establish periodic availability",
+      "number": 14,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: negative losses explicit zero fractions and safe edge values compare exactly",
+      "number": 15,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: nonnumeric null boolean string and nonfinite values refuse",
+      "number": 16,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: raw decimal rounding underflow and numeric-token overflow refuse",
+      "number": 17,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: malformed calendars non-UTC cutoffs and contradictory periods refuse",
+      "number": 18,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: declared capture chronology completeness and unknown reasons stay explicit",
+      "number": 19,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: CIK accession fiscal metadata and closed schemas validate without coercion",
+      "number": 20,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: duplicate escaped JSON keys malformed syntax and trailing data refuse",
+      "number": 21,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: malformed UTF8 unpaired surrogates and oversized decoded strings refuse",
+      "number": 22,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: prototype-looking concept keys remain owned and cannot supply inherited facts",
+      "number": 23,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: raw reference tampering at every byte defeats the separately supplied SHA",
+      "number": 24,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: expected hash refuses arrays objects boxed strings and uppercase without coercion",
+      "number": 25,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: byte APIs reject proxies subclasses shared storage and object getters",
+      "number": 26,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: native byte-slot copying ignores caller properties and respects view offsets",
+      "number": 27,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: byte inputs remain unchanged and all returned descendants are frozen",
+      "number": 28,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: independent raw usage settings and whole-source declarations bind exact bytes",
+      "number": 29,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: deterministic public JSON roundtrip preserves the shared canonical content hash",
+      "number": 30,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: each explicit raw byte ceiling accepts its boundary and refuses one extra byte",
+      "number": 31,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: usage and company ceilings retain every row at the accepted boundary",
+      "number": 32,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: source-row and expanded-vintage ceilings refuse aggregate overflow without truncation",
+      "number": 33,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: parser depth node and lexical bounds refuse before unsupported structure processing",
+      "number": 34,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: absent calibration rights universe and formal restatement claims stay null",
+      "number": 35,
+      "result": "ok"
+    },
+    {
+      "name": "audit inputs: executable documented import example is offline and produces the literal outcome",
+      "number": 36,
+      "result": "ok"
+    }
+  ],
+  "runtime": "Node v22.23.3 (existing remote CI)",
+  "checks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110714910322",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36967622779/job/110714680480",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36967622819/job/110714681075",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36967622779/job/110714680711",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36967622819/job/110714680733",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36967622819/job/110714680940",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36967622819/job/110714680923",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    }
+  ],
+  "codeql_current_ref_alerts": 0,
+  "codeql_latest_analyses": {
+    "javascript-typescript": {
+      "id": 1879081477,
+      "commit_sha": "33fc0006b7e85e43331f5824ab45659be27e3801",
+      "created_at": "2026-10-02T05:10:17Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"javascript-typescript\"}"
+    },
+    "python": {
+      "id": 1879079762,
+      "commit_sha": "33fc0006b7e85e43331f5824ab45659be27e3801",
+      "created_at": "2026-10-02T05:09:43Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"python\"}"
+    }
+  },
+  "codeql_scope": "Captured pull/361/merge ref; at most100 response rows per endpoint; complete because fewer100 returned.",
+  "original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/secondary-317ebf77-root-ci-original.log",
+      "bytes": 610928,
+      "sha256": "ee863c7019253aef6ad488d1957bc5fb8d21abef7b92a812604d01bf729a319e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/secondary-317ebf77-mcp-ci-original.log",
+      "bytes": 171442,
+      "sha256": "cd77d91e557e1b1c22870cd1f28466f7edc966a8cf3cea3dfc2c555309a4a2ad"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/secondary-317ebf77-checks-original.json",
+      "bytes": 1131,
+      "sha256": "b5259cf8ac5db7dcc2171083b52c63842256696db9fef1b3036e97543f554f0b"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/secondary-317ebf77-run-original.json",
+      "bytes": 13298,
+      "sha256": "91c8372388170f8a02232534a0d2bb0b4bc83dd257dc2ca3fd84c2106d27aa67"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/secondary-317ebf77-pr-original.json",
+      "bytes": 18745,
+      "sha256": "a5e18aaad9f16b39a762d9c84b1d39108b3f53a6852c4009688e7c08f9a8c5ba"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/secondary-317ebf77-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/secondary-317ebf77-codeql-analyses-original.json",
+      "bytes": 1186,
+      "sha256": "763be87ebd3e94cc85da96d893729be8933b8dd1ed3964223d9e056b5730f138"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/secondary-317ebf77-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "cfcacd735df33c57f46b3d6f69b89b560ce2821a0f3bf2a6be1c5e1ecbb669fa"
+    }
+  ],
+  "provider_current_indexed": null,
+  "distinct_admitted_canonical": null,
+  "qualified_progress": null,
+  "local_project_job_or_grant": false,
+  "full_owner_goal": "ACTIVE",
+  "scope": "Original ANSI logs retained byte-exact; parser view only strips timestamps/ANSI. No local project runtime or rerun. Future archive/head/integration/actual delivery requires separate verification."
+}

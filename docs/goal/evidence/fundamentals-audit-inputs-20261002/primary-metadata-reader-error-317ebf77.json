@@ -1,0 +1,6 @@
+{
+  "stage": "Independent stdlib retained-API reader after source review and raw TAP parse",
+  "error": "KeyError: 'headRefOid'",
+  "cause": "Reader used gh view keys against preserved REST API payload. Inspection confirmed REST head.sha, run.head_sha/id and Git-commit API tree.sha.",
+  "effects": "Source PASS already sealed; no CI acceptance written before correction. No source/evidence mutation, runtime/job/refetch or failed project test. Original raw APIs/logs unchanged."
+}

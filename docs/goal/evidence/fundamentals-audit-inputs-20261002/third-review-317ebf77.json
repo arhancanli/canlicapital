@@ -1,0 +1,291 @@
+{
+  "schema": "canli.third.fundamentals-audit-inputs-static-review.v1",
+  "observedAt": "2026-10-02T05:22:38.479600+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "head": "317ebf77d2ac9a3a02bcb139920fda2fbbacfeed",
+  "tree": "9fd576100afc61a9cc3ed0cfb1374c46eaf10e93",
+  "base": "64a61ae81387609a58802e7c687fe2d2da2f97a2",
+  "signature": "G",
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "blockingFindings": [],
+  "sourcePin": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/source-pin-317ebf77.json",
+    "bytes": 19553,
+    "sha256": "0111cb4bb613d926bc6e9cd60fbfd10fc0e1fc43947823d0be0d121e1e68153f"
+  },
+  "sourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/source-317ebf77.json",
+    "bytes": 2330908,
+    "sha256": "99b80a9a1452ec7f91c8b2b862e2e2c2d9d568dc87b5d9e80ca8f9b89c283075"
+  },
+  "sixPins": [
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "bytes": 21663,
+      "sha256": "40ac2b1e5321cb453a71797888138f38570a4d6057d197461d681237506bff36",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "584cdb4a1962c28744f96e8ef043906a18c408dd",
+        "bytes": 21663
+      },
+      "workingIndexGitEqual": true,
+      "independentSnapshot": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/source-317ebf77/mcp-fundamentals/src/audit-inputs-core.mjs"
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-core.test.mjs",
+      "bytes": 28084,
+      "sha256": "d818dc371dc4c6794a35cb6e5991f6b68736a5295c68a64a8c75a67cdc956a00",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2f67f29943fac9505997c34abc9149f4e51b2bf9",
+        "bytes": 28084
+      },
+      "workingIndexGitEqual": true,
+      "independentSnapshot": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/source-317ebf77/mcp-fundamentals/test/audit-inputs-core.test.mjs"
+    },
+    {
+      "path": "mcp-fundamentals/AUDIT_INPUTS.md",
+      "bytes": 14178,
+      "sha256": "62ef6d818731d6df506ce02ce3efb3977a2a28cdbd0841061ca129f1dda27f44",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6559787467208c4a464a07b8d256212d79da8c76",
+        "bytes": 14178
+      },
+      "workingIndexGitEqual": true,
+      "independentSnapshot": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/source-317ebf77/mcp-fundamentals/AUDIT_INPUTS.md"
+    },
+    {
+      "path": "package.json",
+      "bytes": 12136,
+      "sha256": "37d49958f774689796d2e65279c1e9730fcfccb410d51620a93567572c13982c",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a2764fd64018fcafacc609758dd14966ed377872",
+        "bytes": 12136
+      },
+      "workingIndexGitEqual": true,
+      "independentSnapshot": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/source-317ebf77/package.json"
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 121985,
+      "sha256": "d579fbe99405b4458cc9be0168bf28a39a476850c19a4462e8b742b3e4ee5729",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c3fbe8a1782e9bbd6e3c2932ada763db4c290cb9",
+        "bytes": 121985
+      },
+      "workingIndexGitEqual": true,
+      "independentSnapshot": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/source-317ebf77/docs/goal/STATUS.md"
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 397349,
+      "sha256": "481a396298f04324226c2155dfbb3f5148a149f9943e8a7ce9105cf4695e912d",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2a4f975ed061c6042f6cb9310f6ad14c79118cc5",
+        "bytes": 397349
+      },
+      "workingIndexGitEqual": true,
+      "independentSnapshot": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/source-317ebf77/docs/goal/LOG.md"
+    }
+  ],
+  "protectedGit": {
+    "files": 5941,
+    "bytes": 385100830,
+    "allModeTypeObjectSizeEqual": true,
+    "wholeProtectedPhysicalWorkingByteAudit": false
+  },
+  "headIndexExactAndWorkingClean": true,
+  "allFiveOriginalGoalPrefixes": [
+    {
+      "path": "docs/goal/README.md",
+      "baseBytes": 5370,
+      "baseSha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "headBytes": 5370,
+      "headSha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "originalPrefixEqual": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "baseBytes": 8398,
+      "baseSha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "headBytes": 8398,
+      "headSha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "originalPrefixEqual": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "baseBytes": 117399,
+      "baseSha256": "a2ddd2ef58e0adcbd542f87f2db2ae02b3a2cf0c4c7fe59729f9f3c02ee6f8aa",
+      "headBytes": 121985,
+      "headSha256": "d579fbe99405b4458cc9be0168bf28a39a476850c19a4462e8b742b3e4ee5729",
+      "originalPrefixEqual": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "baseBytes": 4314,
+      "baseSha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "headBytes": 4314,
+      "headSha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "originalPrefixEqual": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "baseBytes": 392763,
+      "baseSha256": "a6d70ecde91fbd4773462330636bc0fa0d71bedcc6e18917b007ca612b5650bf",
+      "headBytes": 397349,
+      "headSha256": "481a396298f04324226c2155dfbb3f5148a149f9943e8a7ce9105cf4695e912d",
+      "originalPrefixEqual": true
+    }
+  ],
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/primary-assignment.md",
+    "bytes": 41411,
+    "sha256": "6ac8cb8fc552c8a67de4ed3b9d9313ee173253bbab0ef565966723cde2122485"
+  },
+  "preflight": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/preflight-64a61ae8.json",
+    "bytes": 15920,
+    "sha256": "187d8f039f7c8007896423efe1a5b56f60aa4a999af54f0f78bcf33eae72aa08"
+  },
+  "continuityRead": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 7476,
+      "sha256": "a1db89cb41307b403a4135c138613eefac40bcd6322f1357520e36ce0dda408c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 324970,
+      "sha256": "e3932cb8fe81fcf519e2229c9f21615421b4831c850438e7d9f9d45fb43b6753"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 4487,
+      "sha256": "b0f5527af447703dd2ca09d5bf6da2f1b0139e3eb67854ffebd9f328a6b553bb"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 669820,
+      "sha256": "c56db77a0ffbc1c911fe00e26ac95fa870106f82f8fe0456586f50a35a96c103"
+    }
+  ],
+  "assessments": [
+    {
+      "topic": "Owned native raw inputs and exact reference pin",
+      "sourceLines": "30-40,310-322",
+      "finding": "Native Uint8Array/Buffer slots are copied once using captured native getters/set. Proxy/subclass/shared buffers and empty/oversized inputs refuse. The primitive lowercase expected SHA is checked against the same owned reference bytes subsequently parsed; usage/settings original bytes have separate hashes/lengths/base64. Caller getters/iteration/toJSON are not part of the capture."
+    },
+    {
+      "topic": "Strict JSON and closed schemas",
+      "sourceLines": "41-53,69-152,188-245",
+      "finding": "Fatal UTF8, paired Unicode, duplicate decoded keys, lexical/depth/node/array/string bounds, no trailing data, closed envelopes/usage fields and validated optional source metadata. Parsed dictionaries are null-prototype objects; explicit prototype-looking keys do not provide inherited facts."
+    },
+    {
+      "topic": "Numeric preservation",
+      "sourceLines": "55-68,134-142,179-186",
+      "finding": "Numbers are noncoercive and finite, magnitude<=MAX_SAFE_INTEGER, no negative zero. Raw decimal tokens must match the mathematical decimal identity of their JavaScript JSON re-emission. Accepted negative losses/zero/fractions and safe edges remain exact comparisons; rounding, underflow and excessive tokens refuse rather than alter the oracle."
+    },
+    {
+      "topic": "Complete source and period identity",
+      "sourceLines": "163-198,211-245,260-267",
+      "finding": "Exact normalized CIK/taxonomy/concept/unit/start/end; strict calendar and UTC cutoff. Instant versus duration and quarter/YTD remain separate. Unit conversion, aliases and split derivations are absent. Unsupported taxonomy/unit/forms and missing company/concept/period produce explicit unknown outcomes."
+    },
+    {
+      "topic": "Cutoff and same-day timing",
+      "sourceLines": "270-296",
+      "finding": "Only strictly earlier periodic filing dates are eligible. Same-day filings override verdict to timing_indeterminate even when a prior diagnostic selection exists. Later vintages are diagnostic only, with no future-derived selection or trading-calendar/global first-availability inference."
+    },
+    {
+      "topic": "Latest-date ambiguity and duplicates",
+      "sourceLines": "254-256,270,284-293",
+      "finding": "Accession/order sorting is presentation only. Latest-date distinct accession/form/value identities remain ambiguous; exact identity duplicates can collapse without dropping visible originals. A uniquely later prior filing may resolve an older ambiguous date. No lexical accession chronology inference."
+    },
+    {
+      "topic": "Full selected-N and honest diagnostic claims",
+      "sourceLines": "258-296,326-329",
+      "finding": "Each usage row remains in the denominator with six status counts, supported/unknown verdict counts and explicit null-selection reasons. Later-only values/changed vintages are observations about this supplied snapshot. Formal restatement cause, global availability, rights/universe/survivorship/calibration/expert/split/strategy/indexing claims remain unestablished."
+    },
+    {
+      "topic": "Finite aggregate capacity and immutability",
+      "sourceLines": "6-11,90-92,122,234,268-269,298-330",
+      "finding": "Fixed raw512KiB/usage64KiB/settings4KiB,32companies/64usage/2048source/4096combined returned vintages and parser ceilings. Aggregate includes supported and unsupported matched observations; no silent truncation or denominator shrink. Complete JSON report4MiB is checked before return, then every descendant is recursively frozen. Reviewer made no OOM/performance claim."
+    },
+    {
+      "topic": "Declared whole-module versus behavior/source bindings",
+      "sourceLines": "208,303-307,317,328; AUDIT_INPUTS157-162,233-241",
+      "finding": "Whole-module SHA remains explicitly caller-declared and unverified by the pure core, including null when absent. Independent Git snapshot binds actual whole module40ac2b1e; functions/fixed policies/native assumptions and unchanged canonical functions have a separate behavior fingerprint. Recorded canonical dependency SHA matches independently read protected88119651 bytes. No claim of runtime self-file verification or authenticated caller declaration."
+    },
+    {
+      "topic": "Inert core and protected released/default behavior",
+      "sourceLines": "1-5; package.json; AUDIT_INPUTS3-12",
+      "finding": "Only native crypto/util and existing root canonical helper are imported; no filesystem loader, callbacks, network/SDK, async provider, environment/home traversal, CLI, hosted/listed tool, server/version/schema/default instruction changes. Package change is focused registration plus insertion into existing verify; all other scripts/fields preserved."
+    },
+    {
+      "topic": "Useful documented example and meaningful fixtures",
+      "sourceLines": "AUDIT_INPUTS14-65; test1-377",
+      "finding": "Runnable synthetic import supplies four explicit native byte arguments and produces a prior100/later90 mismatch example.36 independently specified named cases include old-versus-future, ties in both orders, same-day, missing/fullN, units/quarterYTD, duplicate/raw tamper, type/getter/offset/immutability, numeric/calendar limits, exact byte/row/combined bounds, deterministic public JSON and the executable guide. Written source is reviewed; execution acceptance is in a separate retained-CI receipt."
+    }
+  ],
+  "writtenFixtureCount": 36,
+  "writtenFixtureNames": [
+    "audit inputs: original pre-cutoff value matches while later vintages stay diagnostic",
+    "audit inputs: later-value counterexample is a supported mismatch without future selection",
+    "audit inputs: latest strictly prior observation supersedes an older supplied value",
+    "audit inputs: before-earliest future-only observation yields null verdict and selection",
+    "audit inputs: same-day date-only filing makes an earlier selected observation diagnostic",
+    "audit inputs: UTC used_on cannot establish intraday availability of a date-only filing",
+    "audit inputs: conflicting latest-date accessions stay ambiguous in either source order",
+    "audit inputs: equal values on distinct latest accessions do not invent a selected accession",
+    "audit inputs: exact duplicates remain visible and a unique later prior filing resolves old ties",
+    "audit inputs: all six outcomes retain the full selected-N denominator",
+    "audit inputs: absent company taxonomy concept and empty reference never zero-fill",
+    "audit inputs: exact units and opaque per-share conventions prohibit implicit conversion",
+    "audit inputs: quarter YTD instant and concept aliases stay separate",
+    "audit inputs: unsupported taxonomies and forms cannot establish periodic availability",
+    "audit inputs: negative losses explicit zero fractions and safe edge values compare exactly",
+    "audit inputs: nonnumeric null boolean string and nonfinite values refuse",
+    "audit inputs: raw decimal rounding underflow and numeric-token overflow refuse",
+    "audit inputs: malformed calendars non-UTC cutoffs and contradictory periods refuse",
+    "audit inputs: declared capture chronology completeness and unknown reasons stay explicit",
+    "audit inputs: CIK accession fiscal metadata and closed schemas validate without coercion",
+    "audit inputs: duplicate escaped JSON keys malformed syntax and trailing data refuse",
+    "audit inputs: malformed UTF8 unpaired surrogates and oversized decoded strings refuse",
+    "audit inputs: prototype-looking concept keys remain owned and cannot supply inherited facts",
+    "audit inputs: raw reference tampering at every byte defeats the separately supplied SHA",
+    "audit inputs: expected hash refuses arrays objects boxed strings and uppercase without coercion",
+    "audit inputs: byte APIs reject proxies subclasses shared storage and object getters",
+    "audit inputs: native byte-slot copying ignores caller properties and respects view offsets",
+    "audit inputs: byte inputs remain unchanged and all returned descendants are frozen",
+    "audit inputs: independent raw usage settings and whole-source declarations bind exact bytes",
+    "audit inputs: deterministic public JSON roundtrip preserves the shared canonical content hash",
+    "audit inputs: each explicit raw byte ceiling accepts its boundary and refuses one extra byte",
+    "audit inputs: usage and company ceilings retain every row at the accepted boundary",
+    "audit inputs: source-row and expanded-vintage ceilings refuse aggregate overflow without truncation",
+    "audit inputs: parser depth node and lexical bounds refuse before unsupported structure processing",
+    "audit inputs: absent calibration rights universe and formal restatement claims stay null",
+    "audit inputs: executable documented import example is offline and produces the literal outcome"
+  ],
+  "runtimeAcceptanceSeparate": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs-peer/retained-ci-317ebf77.json",
+  "wholeSourceDeclarationNotRuntimeAuthenticated": true,
+  "noNewArchiveAuthority": true,
+  "archiveRepositoryAdditionsByReviewer": false,
+  "reviewerActivity": "Frozen Git/text/JSON/sha256 metadata and stdlib review only; no project imports/Node/tests/CLI/browser/network/API/provider/model/helper job/CPUgrant/resources/auth/key reads/spend/source edits/publication.",
+  "limits": "Source semantics and meaningful fixture review, not formal parser proof, actual SEC availability/authorship/rights, intraday calendar proof, financial strategy accuracy, release gold calibration, performance/OOM measurement or future-head acceptance. Protected audit is Git identities/modes/index and clean status, not a full repeated physical working-byte pass.",
+  "currentGoogleBingAdmittedQualified": null,
+  "fullOwnerHierarchy": "ACTIVE"
+}
