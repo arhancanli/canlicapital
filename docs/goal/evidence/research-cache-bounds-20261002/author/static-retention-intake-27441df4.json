@@ -1,0 +1,19 @@
+{
+  "schema": "canli.primary.research-cache-retention.static-intake.v1",
+  "observed_at": "2026-10-02T15:05:51.924940+00:00",
+  "actual_base": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+  "tree": "76eb55f6a34a4875a44e61c5f05b07e50dfe1a3f",
+  "source_path": "mcp-research/src/server.mjs",
+  "source_bytes": 16016,
+  "source_sha256": "4e468cd14a621a89c1171e647eb464cbef79acab9fe4435f6bc7ea845b17412c",
+  "scope": "STATIC_SOURCE_ONLY_NO_RUNTIME_COUNTEREXAMPLE_EXECUTED",
+  "finding": "createSession uses an ordinary Map; every successful distinct path writes a retained text entry without cardinality or retained UTF8 payload accounting. TTL is checked only on a queried hit, so stale entries at other paths stay resident. No process-memory, actual provider corpus size or observed production failure is inferred.",
+  "proposed_local_per_session_policy": {
+    "maximum_entries": 32,
+    "maximum_retained_text_UTF8_bytes": 8388608,
+    "existing_TTL_ms": 600000
+  },
+  "protected_delivered_response_reader_fixture32": "UNCHANGED",
+  "no_project_runtime_provider_resources_spend_or_publication": true,
+  "full_owner_hierarchy": "ACTIVE"
+}

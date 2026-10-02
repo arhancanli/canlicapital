@@ -1,0 +1,528 @@
+{
+  "schema": "canli.third.research-cache-bounds.exact-retained-current-CI.v1",
+  "observed_at": "2026-10-02T15:48:36.185655+00:00",
+  "verdict": "PASS_EXACT_RETAINED_CURRENT_CI_WITH_SCOPE_LIMITS",
+  "PR": 366,
+  "head": "b7f7f1a9e6a47e742d5bff69b4a68ac86bdcabe2",
+  "tree": "5ec17dc01be084b9571a593efdec2972c8921a15",
+  "sole_parent_and_actual_base": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+  "signature": "G",
+  "author_frozen_clean_before_after": true,
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/source-b7f7f1a9.json",
+    "bytes": 1849180,
+    "sha256": "7fee8a30b840abfa4c42d096e5a485b68621af41c565f442c82eca1dded74e0c"
+  },
+  "independent_STATIC_source_gate": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds-peer/review-b7f7f1a9-source.json",
+    "bytes": 10935,
+    "sha256": "3b3ab8dc3572110b967ff6e341e15255c1ada10bf51ac5393abad77922d361d8"
+  },
+  "author_CI_projection": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-exact-ci.json",
+    "bytes": 13919,
+    "sha256": "6633a50ffdd4a0da6850f3900733722cd7a5248c4ddd51c411fecf4afe9c8d55"
+  },
+  "original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-root-ci-original.log",
+      "bytes": 633139,
+      "sha256": "e05524cea763fc10b021e31197c63a9356a0d0a93027b8ac4cb39270bb1aacb4"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-mcp-ci-original.log",
+      "bytes": 297573,
+      "sha256": "a15f08fdc0c428ecf876a9eb8f33169d9102ac5284f1255de8b5224b354d6424"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-checks-original.json",
+      "bytes": 1131,
+      "sha256": "10a1e8e7e60771ad793cb1e4ec5ffd23423a594bd2fd7f95dcec5fdef1db5926"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-run-original.json",
+      "bytes": 13284,
+      "sha256": "78f8299d8e0ccd39e6edc2e9e55c361c090de1173c73f33971072a63a1ae8960"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-pr-original.json",
+      "bytes": 18047,
+      "sha256": "f1831745459172254f4829c9175000e56d5a9559b6e5eff6cb7badf6661c86ae"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-codeql-analyses-original.json",
+      "bytes": 1186,
+      "sha256": "06291a7dd3c87a3c9b6ad06801adcafc540c66b002caf97d7f1bf046b835365c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "612dda5769bf51e96b1c7a333c52af1682217ec0945f30806b281549a378df2b"
+    }
+  ],
+  "original_files": 8,
+  "original_bytes": 967010,
+  "independent_parser": "Python stdlib only; original bytes untouched. Normalize BOM/ANSI/timestamp+one separator space; require complete TAP13 blocks/plans/all top-level ordinals/results/seven terminal counters/durations, then frozen35 names onceMCP/0ROOT and every protected47 existing research case once.",
+  "root_complete_TAP": [
+    {
+      "counters": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 6,
+      "duration_ms": 94.407791,
+      "normalized_TAP_sha256": "5aa125696e30d65a472b1315cd3d654d60e927b9559302209bdc78e572cf4a43"
+    },
+    {
+      "counters": {
+        "tests": 1044,
+        "suites": 0,
+        "pass": 1044,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 1044,
+      "duration_ms": 105016.732646,
+      "normalized_TAP_sha256": "ef9991211a532ccd096fff36389b99787c8978891e469fe4076ef1714962e749"
+    },
+    {
+      "counters": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 9,
+      "duration_ms": 105.165826,
+      "normalized_TAP_sha256": "302a9b2d8a68cd9ac12d07ca8277f8e07aa8161d452a962667b6b27278931cea"
+    }
+  ],
+  "MCP_complete_TAP": [
+    {
+      "counters": {
+        "tests": 141,
+        "suites": 0,
+        "pass": 141,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 141,
+      "duration_ms": 1498.327124,
+      "normalized_TAP_sha256": "a4ebf4d7bdfb984d7071a389600bfad6c51e4ba00606d3f99d3f4a07298351ad"
+    },
+    {
+      "counters": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 1,
+      "duration_ms": 347.828185,
+      "normalized_TAP_sha256": "63f234d84f08229a32d705d49c503230d6b8d0b6ce9f058e3c187896c086351c"
+    },
+    {
+      "counters": {
+        "tests": 82,
+        "suites": 0,
+        "pass": 82,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 82,
+      "duration_ms": 15357.015357,
+      "normalized_TAP_sha256": "ee4debabb4a542479ca70e9ac920cb56decf95ee145903dc4d9af49a562f1970"
+    },
+    {
+      "counters": {
+        "tests": 119,
+        "suites": 0,
+        "pass": 119,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 119,
+      "duration_ms": 3455.900556,
+      "normalized_TAP_sha256": "19525e79633ac2fa66a0d488edc4979a6b57af5f9be213376d8f3a2886cd4e4d"
+    },
+    {
+      "counters": {
+        "tests": 139,
+        "suites": 0,
+        "pass": 139,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 139,
+      "duration_ms": 2583.430565,
+      "normalized_TAP_sha256": "2407e212fc5cf5aa27f3c290ec4e1fb576d5d0eca7b4cfc3f3b48b99537c1ba7"
+    }
+  ],
+  "source_case_names35": [
+    "cache Map: session shape and get set has iteration delete clear inspection stay compatible",
+    "cache cardinality: thirty-third distinct native response evicts the oldest of thirty-two",
+    "cache byte pressure: three native three-MiB papers evict before cardinality pressure",
+    "cache exact bytes: two four-MiB native bodies fill the cap and one extra byte evicts",
+    "cache exact admission: a single eight-MiB retained text is accepted",
+    "cache over admission: eight-MiB plus one byte is refused without replacing a healthy identity",
+    "cache UTF-8: three two-MiB ASCII texts retain six MiB",
+    "cache UTF-8: three two-MiB code-unit accented texts retain only two four-MiB entries",
+    "cache UTF-8: supplementary code points use four bytes and admit no ninth-MiB hit",
+    "cache LRU: a valid tool hit promotes its path before cardinality eviction",
+    "cache LRU: ordinary Map inspection does not promote a path",
+    "cache LRU: valid promotion selects deterministic eviction under byte pressure",
+    "cache expiry: a fresh hit removes an unrelated entry at the TTL boundary",
+    "cache expiry: a miss removes all unrelated stale entries before admission",
+    "cache TTL: the preceding millisecond hits and equality requires a new response",
+    "cache admission expiry: an unrelated entry expires before a new timestamp is admitted",
+    "cache age overflow: individually finite clock and timestamp cannot produce an infinite-age hit",
+    "cache rollback: future timestamps at unrelated paths are removed before a fresh return",
+    "cache clocks: NaN and both infinities return validated successes without retention or hits",
+    "cache clocks: strings null and undefined are not silently coerced into evidence",
+    "cache admission metadata: unusable timestamps cannot replace a healthy Map entry",
+    "cache mutated text: an oversized inspected entry cannot become a hit",
+    "cache mutated weights: aggregate byte pressure is remeasured before a requested hit",
+    "cache mutated timestamps: nonnumeric metadata cannot yield a coerced fresh hit",
+    "cache isolation: independent sessions retain their own values and clearing one preserves the other",
+    "cache replacement: shrinking a value releases its old weight without evicting other values",
+    "cache replacement: growing a value counts its replacement once and evicts the oldest other value",
+    "cache deletion: deleting and clearing full entries leave no phantom byte pressure",
+    "cache uncached success: nonfinite admission time still returns the complete validated result",
+    "cache concurrency: a late malformed native JSON response retains a newer healthy identity",
+    "cache concurrency: late native HTTP 404 and 500 failures retain a newer healthy identity",
+    "cache concurrency: an injected native abort and late response retain a newer healthy identity",
+    "cache concurrency: malformed-hit invalidation cannot delete a replacement admitted during validation",
+    "cache concurrency: late native body failure preserves a newer healthy result and sanitizes errors",
+    "cache compatibility: all six tool schemas and exact results survive eviction and refetch"
+  ],
+  "actual_new_cases_once_MCP": [
+    {
+      "result": "ok",
+      "number": 1,
+      "name": "cache Map: session shape and get set has iteration delete clear inspection stay compatible"
+    },
+    {
+      "result": "ok",
+      "number": 2,
+      "name": "cache cardinality: thirty-third distinct native response evicts the oldest of thirty-two"
+    },
+    {
+      "result": "ok",
+      "number": 3,
+      "name": "cache byte pressure: three native three-MiB papers evict before cardinality pressure"
+    },
+    {
+      "result": "ok",
+      "number": 4,
+      "name": "cache exact bytes: two four-MiB native bodies fill the cap and one extra byte evicts"
+    },
+    {
+      "result": "ok",
+      "number": 5,
+      "name": "cache exact admission: a single eight-MiB retained text is accepted"
+    },
+    {
+      "result": "ok",
+      "number": 6,
+      "name": "cache over admission: eight-MiB plus one byte is refused without replacing a healthy identity"
+    },
+    {
+      "result": "ok",
+      "number": 7,
+      "name": "cache UTF-8: three two-MiB ASCII texts retain six MiB"
+    },
+    {
+      "result": "ok",
+      "number": 8,
+      "name": "cache UTF-8: three two-MiB code-unit accented texts retain only two four-MiB entries"
+    },
+    {
+      "result": "ok",
+      "number": 9,
+      "name": "cache UTF-8: supplementary code points use four bytes and admit no ninth-MiB hit"
+    },
+    {
+      "result": "ok",
+      "number": 10,
+      "name": "cache LRU: a valid tool hit promotes its path before cardinality eviction"
+    },
+    {
+      "result": "ok",
+      "number": 11,
+      "name": "cache LRU: ordinary Map inspection does not promote a path"
+    },
+    {
+      "result": "ok",
+      "number": 12,
+      "name": "cache LRU: valid promotion selects deterministic eviction under byte pressure"
+    },
+    {
+      "result": "ok",
+      "number": 13,
+      "name": "cache expiry: a fresh hit removes an unrelated entry at the TTL boundary"
+    },
+    {
+      "result": "ok",
+      "number": 14,
+      "name": "cache expiry: a miss removes all unrelated stale entries before admission"
+    },
+    {
+      "result": "ok",
+      "number": 15,
+      "name": "cache TTL: the preceding millisecond hits and equality requires a new response"
+    },
+    {
+      "result": "ok",
+      "number": 16,
+      "name": "cache admission expiry: an unrelated entry expires before a new timestamp is admitted"
+    },
+    {
+      "result": "ok",
+      "number": 17,
+      "name": "cache age overflow: individually finite clock and timestamp cannot produce an infinite-age hit"
+    },
+    {
+      "result": "ok",
+      "number": 18,
+      "name": "cache rollback: future timestamps at unrelated paths are removed before a fresh return"
+    },
+    {
+      "result": "ok",
+      "number": 19,
+      "name": "cache clocks: NaN and both infinities return validated successes without retention or hits"
+    },
+    {
+      "result": "ok",
+      "number": 20,
+      "name": "cache clocks: strings null and undefined are not silently coerced into evidence"
+    },
+    {
+      "result": "ok",
+      "number": 21,
+      "name": "cache admission metadata: unusable timestamps cannot replace a healthy Map entry"
+    },
+    {
+      "result": "ok",
+      "number": 22,
+      "name": "cache mutated text: an oversized inspected entry cannot become a hit"
+    },
+    {
+      "result": "ok",
+      "number": 23,
+      "name": "cache mutated weights: aggregate byte pressure is remeasured before a requested hit"
+    },
+    {
+      "result": "ok",
+      "number": 24,
+      "name": "cache mutated timestamps: nonnumeric metadata cannot yield a coerced fresh hit"
+    },
+    {
+      "result": "ok",
+      "number": 25,
+      "name": "cache isolation: independent sessions retain their own values and clearing one preserves the other"
+    },
+    {
+      "result": "ok",
+      "number": 26,
+      "name": "cache replacement: shrinking a value releases its old weight without evicting other values"
+    },
+    {
+      "result": "ok",
+      "number": 27,
+      "name": "cache replacement: growing a value counts its replacement once and evicts the oldest other value"
+    },
+    {
+      "result": "ok",
+      "number": 28,
+      "name": "cache deletion: deleting and clearing full entries leave no phantom byte pressure"
+    },
+    {
+      "result": "ok",
+      "number": 29,
+      "name": "cache uncached success: nonfinite admission time still returns the complete validated result"
+    },
+    {
+      "result": "ok",
+      "number": 30,
+      "name": "cache concurrency: a late malformed native JSON response retains a newer healthy identity"
+    },
+    {
+      "result": "ok",
+      "number": 31,
+      "name": "cache concurrency: late native HTTP 404 and 500 failures retain a newer healthy identity"
+    },
+    {
+      "result": "ok",
+      "number": 32,
+      "name": "cache concurrency: an injected native abort and late response retain a newer healthy identity"
+    },
+    {
+      "result": "ok",
+      "number": 33,
+      "name": "cache concurrency: malformed-hit invalidation cannot delete a replacement admitted during validation"
+    },
+    {
+      "result": "ok",
+      "number": 34,
+      "name": "cache concurrency: late native body failure preserves a newer healthy result and sanitizes errors"
+    },
+    {
+      "result": "ok",
+      "number": 35,
+      "name": "cache compatibility: all six tool schemas and exact results survive eviction and refetch"
+    }
+  ],
+  "actual_new_MCP_pass": 35,
+  "actual_new_ROOT_pass": 0,
+  "protected_existing47_cases_once_in_actual82_research_suite": true,
+  "research_suite_total": 82,
+  "explicit_Node_bothjobs": "v22.23.3",
+  "existing_remote_run": 37027542454,
+  "run_attempt": 1,
+  "root_job": 110905896543,
+  "MCP_job": 110905896694,
+  "all7_captured_checks_SUCCESS": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110907137847",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37027542878/job/110906408401",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37027542878/job/110906408782",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37027542454/job/110905896520",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37027542454/job/110905896358",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37027542454/job/110905896543",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37027542454/job/110905896694",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    }
+  ],
+  "captured_tested_checkout_both_logs": "29ecad283734b1c11758f129a58d9ccd123d4885",
+  "captured_tested_tree": "5ec17dc01be084b9571a593efdec2972c8921a15",
+  "captured_tested_parents": [
+    "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+    "b7f7f1a9e6a47e742d5bff69b4a68ac86bdcabe2"
+  ],
+  "captured_PR_state": {
+    "number": 366,
+    "head": "b7f7f1a9e6a47e742d5bff69b4a68ac86bdcabe2",
+    "base": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+    "merge_ref": "29ecad283734b1c11758f129a58d9ccd123d4885",
+    "state": "open",
+    "draft": true,
+    "merged": false
+  },
+  "captured_merge_ref_alert_objects": 0,
+  "all_historical_CodeQL_rows_preserved": 2,
+  "latest_per_language": {
+    "javascript-typescript": {
+      "ref": "refs/pull/366/merge",
+      "commit_sha": "29ecad283734b1c11758f129a58d9ccd123d4885",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-02T15:34:38Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1881837883,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1881837883",
+      "sarif_id": "c65e224a-be76-11f1-9480-f0518d38ef0f",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    "python": {
+      "ref": "refs/pull/366/merge",
+      "commit_sha": "29ecad283734b1c11758f129a58d9ccd123d4885",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-02T15:34:22Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1881836223,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1881836223",
+      "sarif_id": "badf1334-be76-11f1-9e74-4eaceebb9bde",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  },
+  "earlier_partial_runtime_observation_preserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-b7f7f1a9-remote-runtime-observed.json",
+    "bytes": 2296,
+    "sha256": "c30145ccb5ea2988149f427edb45cf479ada481856fe9eff6a8aed9b7c24484d"
+  },
+  "blocking_findings": [],
+  "scope_limits": [
+    "Source-bound captured remote evidence only; no local project imports/Node/test/CLI/helper/browser/build/job/APIrefetch/CPUgrant/nonce/rerun/provider/model/spend/publication.",
+    "Static source receipt remains separate immutable evidence; no source equality substituted for actual current execution.",
+    "No repository documentary archive allocated; no newhead/finalarchive/ordinarydelivery/release/publication approval inferred.",
+    "Accepted finite injected fixtures cover documented retained UTF8 text/LRU/TTL/identity behavior; no whole-process memory/universal hard-time/hostile accessor or hosted performance claim."
+  ],
+  "all_full_owner_hierarchy": "ACTIVE; actual indexed/expert-independence-rights-labels/adoption/qualified outcomes unknown."
+}

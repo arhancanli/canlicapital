@@ -14,6 +14,7 @@ import { McpServer } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
+import { BoundedCache } from "./bounded-cache.mjs";
 
 export const SERVER_NAME = "canli-research-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
@@ -36,7 +37,6 @@ export const SERVER_INFO = Object.freeze({
 const DEFAULT_BASE = "https://canlicapital.com";
 const REQUEST_TIMEOUT_MS = 15000;
 const MAX_BYTES = 4 * 1024 * 1024;
-const CACHE_MS = 10 * 60 * 1000;
 
 // The boundary every research result carries, beside the source's own limits.
 export const RESEARCH_LIMITS = Object.freeze([
@@ -45,7 +45,7 @@ export const RESEARCH_LIMITS = Object.freeze([
 ]);
 
 export function createSession({ base, fetchImpl, now = () => Date.now() } = {}) {
-  return { base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE, fetchImpl: fetchImpl ?? fetch, now, cache: new Map() };
+  return { base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE, fetchImpl: fetchImpl ?? fetch, now, cache: new BoundedCache() };
 }
 
 function deadlineError(session, path) {
@@ -53,9 +53,8 @@ function deadlineError(session, path) {
 }
 
 async function fetchText(session, path, validate = (text) => text) {
-  const hit = session.cache.get(path);
-  const age = hit ? session.now() - hit.at : NaN;
-  if (hit && Number.isFinite(age) && age >= 0 && age < CACHE_MS) {
+  const hit = session.cache.lookup(path, session.now());
+  if (hit) {
     try {
       return validate(hit.text);
     } catch (error) {
