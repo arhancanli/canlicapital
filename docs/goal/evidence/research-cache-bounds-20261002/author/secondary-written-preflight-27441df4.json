@@ -1,0 +1,221 @@
+{
+  "schema": "canli.secondary.research-cache-bounds.written-preflight.v1",
+  "observed_at": "2026-10-02T15:28:32.593927+00:00",
+  "base": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+  "worktree": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002",
+  "ROOT_OWN5_full_read_before_freeze": {
+    "/Users/arhancanli/canlicapital-expansion-20260919": [
+      {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+        "bytes": 19331,
+        "sha256": "5f9f8a2bac3251ff0b1ee4fe00a40282c6a73559d4da54f5aeb0f0ef9a255387"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+        "bytes": 8404,
+        "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+        "bytes": 566029,
+        "sha256": "2861210f0eaf91e8dbf668cfbf05d2e4ab197e2e48df6e6f6acb5ba9f52a05a9"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+        "bytes": 11230,
+        "sha256": "d3c492a5b079846517fadb2c2da945e1708eab2d9057133c4761caed99d858cc"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+        "bytes": 910879,
+        "sha256": "0eb774dfe954d96c85b1f65b0627bf1070b51cf32d648a1c38ccc1e1a7177047"
+      }
+    ],
+    "/Users/arhancanli/canlicapital-research-cache-bounds-20261002": [
+      {
+        "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/docs/goal/README.md",
+        "bytes": 5370,
+        "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/docs/goal/REQUIREMENTS.md",
+        "bytes": 8398,
+        "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/docs/goal/STATUS.md",
+        "bytes": 150373,
+        "sha256": "d761bfa99572c227ef69279cefc3e4359fc53cd89a238ae1930e8944be077a93"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/docs/goal/PHASES.md",
+        "bytes": 4314,
+        "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/docs/goal/LOG.md",
+        "bytes": 425737,
+        "sha256": "749ba4c4cb1d4697572c9609691451b0c07507efb02461dce7c299ee29d19a38"
+      }
+    ]
+  },
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/assignment-27441df4.md",
+    "bytes": 6243,
+    "sha256": "d97b9bac43c689e5834268feb67d82cd879425de310d96a9f6c2a1cda780f27e"
+  },
+  "phase_start": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/secondary-phase-start-27441df4.json",
+    "bytes": 4012,
+    "sha256": "3c21c492e7c8e6e975d78665fbdcf0ba67367a007ca30e7c32f42469d90232dd"
+  },
+  "static_retention_intake": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/static-retention-intake-27441df4.json",
+    "bytes": 1137,
+    "sha256": "e9bd2503c017d558de05a071af41806fef521f2695ee64ea5c0d07d082cc20fa"
+  },
+  "allowed_paths": [
+    "mcp-research/src/bounded-cache.mjs",
+    "mcp-research/src/server.mjs",
+    "mcp-research/test/cache-bounds.test.mjs",
+    "mcp-research/README.md",
+    "docs/goal/STATUS.md",
+    "docs/goal/LOG.md"
+  ],
+  "changed_paths_exact": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "mcp-research/README.md",
+    "mcp-research/src/bounded-cache.mjs",
+    "mcp-research/src/server.mjs",
+    "mcp-research/test/cache-bounds.test.mjs"
+  ],
+  "written_names": [
+    "cache Map: session shape and get set has iteration delete clear inspection stay compatible",
+    "cache cardinality: thirty-third distinct native response evicts the oldest of thirty-two",
+    "cache byte pressure: three native three-MiB papers evict before cardinality pressure",
+    "cache exact bytes: two four-MiB native bodies fill the cap and one extra byte evicts",
+    "cache exact admission: a single eight-MiB retained text is accepted",
+    "cache over admission: eight-MiB plus one byte is refused without replacing a healthy identity",
+    "cache UTF-8: three two-MiB ASCII texts retain six MiB",
+    "cache UTF-8: three two-MiB code-unit accented texts retain only two four-MiB entries",
+    "cache UTF-8: supplementary code points use four bytes and admit no ninth-MiB hit",
+    "cache LRU: a valid tool hit promotes its path before cardinality eviction",
+    "cache LRU: ordinary Map inspection does not promote a path",
+    "cache LRU: valid promotion selects deterministic eviction under byte pressure",
+    "cache expiry: a fresh hit removes an unrelated entry at the TTL boundary",
+    "cache expiry: a miss removes all unrelated stale entries before admission",
+    "cache TTL: the preceding millisecond hits and equality requires a new response",
+    "cache admission expiry: an unrelated entry expires before a new timestamp is admitted",
+    "cache age overflow: individually finite clock and timestamp cannot produce an infinite-age hit",
+    "cache rollback: future timestamps at unrelated paths are removed before a fresh return",
+    "cache clocks: NaN and both infinities return validated successes without retention or hits",
+    "cache clocks: strings null and undefined are not silently coerced into evidence",
+    "cache admission metadata: unusable timestamps cannot replace a healthy Map entry",
+    "cache mutated text: an oversized inspected entry cannot become a hit",
+    "cache mutated weights: aggregate byte pressure is remeasured before a requested hit",
+    "cache mutated timestamps: nonnumeric metadata cannot yield a coerced fresh hit",
+    "cache isolation: independent sessions retain their own values and clearing one preserves the other",
+    "cache replacement: shrinking a value releases its old weight without evicting other values",
+    "cache replacement: growing a value counts its replacement once and evicts the oldest other value",
+    "cache deletion: deleting and clearing full entries leave no phantom byte pressure",
+    "cache uncached success: nonfinite admission time still returns the complete validated result",
+    "cache concurrency: a late malformed native JSON response retains a newer healthy identity",
+    "cache concurrency: late native HTTP 404 and 500 failures retain a newer healthy identity",
+    "cache concurrency: an injected native abort and late response retain a newer healthy identity",
+    "cache concurrency: malformed-hit invalidation cannot delete a replacement admitted during validation",
+    "cache concurrency: late native body failure preserves a newer healthy result and sanitizes errors",
+    "cache compatibility: all six tool schemas and exact results survive eviction and refetch"
+  ],
+  "written_cases": 35,
+  "executed_cases": null,
+  "all47_existing_research_case_files_exact": {
+    "mcp-research/src/bounded-response.mjs": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/src/bounded-response.mjs",
+      "bytes": 4088,
+      "sha256": "cfd45573e2d348e6ad4a2a967607d7d721b6d1d051cbbdc3460a9c5fca6cab67"
+    },
+    "mcp-research/test/response-bounds.test.mjs": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/test/response-bounds.test.mjs",
+      "bytes": 23322,
+      "sha256": "4d6c32095e10587d0a6bdc5ca70c381b054b0cca3371db386854e0115834eb68"
+    },
+    "mcp-research/test/tools.test.mjs": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/test/tools.test.mjs",
+      "bytes": 7209,
+      "sha256": "305f2ca5043c77f7dbb30f9350df5d6cfd6b4fe6aed35da71301655692dc3baf"
+    },
+    "mcp-research/test/stdio.test.mjs": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/test/stdio.test.mjs",
+      "bytes": 3272,
+      "sha256": "e401a3fac579ffe5809d082e72cc0027934356200eec36999b23a9379d720dac"
+    },
+    "mcp-research/test/output-schemas.test.mjs": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/test/output-schemas.test.mjs",
+      "bytes": 1136,
+      "sha256": "f6392ac5b1cc37096a543664685aa95b246cb77768fb16e99024a833ee3db9e9"
+    },
+    "mcp-research/test/packaging.test.mjs": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/test/packaging.test.mjs",
+      "bytes": 2355,
+      "sha256": "c7349dbfc66fa099685304111916ae302659931ab53ad03c3cce95cbaa102437"
+    }
+  },
+  "public_six_tool_result_suffix_exact": true,
+  "suffix_sha256": "d0aa284f04ce2b1222430ed7f2c0a1b7ded6a41e4f3e0cc1bcffeb661f4544d4",
+  "README_STATUS_LOG_original_prefixes": {
+    "mcp-research/README.md": {
+      "bytes": 5260,
+      "sha256": "006fd204fa38139f529151a72fdc5abd3e7db04c12387281ebeac9d20331c71b",
+      "exact_original_prefix": true
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 149028,
+      "sha256": "d99196135b96543f1644190e60c1372fd800c06baa8b525a125c9d08556d926a",
+      "exact_original_prefix": true
+    },
+    "docs/goal/LOG.md": {
+      "bytes": 424392,
+      "sha256": "57354b1e2181444439ce02a85c721355ca7147267f2fbf81919385aec97815ba",
+      "exact_original_prefix": true
+    }
+  },
+  "candidate_files": {
+    "mcp-research/src/bounded-cache.mjs": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/src/bounded-cache.mjs",
+      "bytes": 2149,
+      "sha256": "7576a26f264ba522fc6cafb49bc3141e1d2f2904031719d8e1503e6b54dbe9de"
+    },
+    "mcp-research/src/server.mjs": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/src/server.mjs",
+      "bytes": 15958,
+      "sha256": "20bf538b256372163b4bcb4f28ffe7e6de31a6ae7d6505418ecae31f18357a91"
+    },
+    "mcp-research/test/cache-bounds.test.mjs": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/test/cache-bounds.test.mjs",
+      "bytes": 25937,
+      "sha256": "d0e6c845dac2ee4c0db573972266e19d48513dea58d552e7c97f1023b92c6420"
+    },
+    "mcp-research/README.md": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/mcp-research/README.md",
+      "bytes": 7361,
+      "sha256": "a2de4405f868e4f5f89c6a1c5d890b096d145da050ae200445292fae5d550484"
+    },
+    "docs/goal/STATUS.md": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/docs/goal/STATUS.md",
+      "bytes": 151739,
+      "sha256": "4c46b2fb9794a124c19ce1ce85cbb30508cd4d15214a93d47a569c25dd06169c"
+    },
+    "docs/goal/LOG.md": {
+      "path": "/Users/arhancanli/canlicapital-research-cache-bounds-20261002/docs/goal/LOG.md",
+      "bytes": 427103,
+      "sha256": "7ff6f129986050d76daa959ed3e712036cc302186eac81c858ffa540214dde32"
+    }
+  },
+  "git_diff_check_passed": true,
+  "finite_fixture_payload_max_bytes": 12582912,
+  "archive_allocated": false,
+  "own_project_runtime_grant_rerun_provider_model_resources_spend_publication": false,
+  "full_owner_hierarchy": "ACTIVE",
+  "actual_indexed_expert_rights_labels_adoption_qualified_outcomes": null
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "canli.metadata-read-error-excerpt.v1",
+  "origin_tool_chunk": "9365ad",
+  "error": "json.decoder.JSONDecodeError: Extra data: line 1 column 5 (char 4)",
+  "operation": "json.loads on an e073 raw log due to unfiltered filename glob",
+  "excerpt_scope": "Known diagnostic excerpt retained after compaction; not represented as the full original traceback",
+  "mutation_or_project_runtime": false,
+  "correction": "Read only .json metadata files"
+}

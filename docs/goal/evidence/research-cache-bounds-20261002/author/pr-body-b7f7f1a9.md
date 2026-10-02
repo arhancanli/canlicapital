@@ -1,0 +1,5 @@
+Research sessions currently retain every successful distinct path. This change caps each session at 32 entries and 8 MiB of UTF-8 text, evicts the least recently used paths, and removes unrelated expired entries during cache operations. Strict finite clock metadata, remeasured mutable test-entry weights and identity-aware invalidation keep invalid hits and concurrent failures from corrupting retention.
+
+Adds 35 finite native/injected regression cases through the existing research test wildcard. The delivered response reader, 47 existing research cases and six tool schemas/result functions are preserved. Each fixture contains at most 12 MiB of synthetic payload. The limit covers retained text per session; it does not establish total process memory or hosted latency.
+
+Validation: signed clean source b7f7f1a9, allowed-path/preservation manifest and git diff --check. Existing remote CI and independent source/current-CI review are pending. Unreleased; no version, registry or site publication.

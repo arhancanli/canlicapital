@@ -6,14 +6,16 @@
   "type": "module",
   "license": "MIT",
   "bin": {
-    "canli-fundamentals-mcp": "src/server.mjs"
+    "canli-fundamentals-mcp": "src/server.mjs",
+    "canli-fundamentals-audit": "src/audit-inputs-stdio.mjs"
   },
   "engines": {
     "node": ">=20.10"
   },
   "files": [
     "src",
-    "README.md"
+    "README.md",
+    "AUDIT_INPUTS.md"
   ],
   "scripts": {
     "test": "node --test test/*.test.mjs"

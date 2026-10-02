@@ -1,0 +1,83 @@
+{
+  "schema": "canli.primary.audit-package.exact-documentary-archive-allocation.v1",
+  "observed_at": "2026-10-02T12:29:17.557788+00:00",
+  "allocator": "PRIMARY_WITH_EXISTING_OWNER_IMPLEMENTATION_AUTHORIZATION",
+  "source": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+  "tree": "4f05698be9d019f60047cb8716a450fb6e3b7ea4",
+  "verdict": "ALLOCATED_EXACT_PREFIX_AND_PINNED_ORIGINS_ONLY",
+  "repository_prefix": "docs/goal/evidence/fundamentals-audit-package-20261002/",
+  "maximum_total_files_including_README_manifest_allocation": 96,
+  "maximum_total_original_bytes_including_README_manifest_allocation": 12582912,
+  "maximum_total_stored_bytes": 4194304,
+  "accepted_private_preview": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/archive-preview-aacdf8b9-v1.json",
+    "bytes": 55930,
+    "sha256": "b792cfc10414baf07e693c28860ebc551a0d9c4dfb3ffc358951f5856a8ba145"
+  },
+  "preview_byte_audit": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/archive-preview-aacdf8b9-v1-byte-audit.json",
+    "bytes": 36071,
+    "sha256": "f7137d0835c2b772bcb76f3e3cb374b1dcb74d06ea681bff1de2bd0fe95e1939"
+  },
+  "accepted_preview_assets72": {
+    "count": 72,
+    "original_bytes": 8638865,
+    "stored_bytes": 2548203,
+    "inventory_sha256": "a0ace3c995d8ac8b8e9469ce2efad555f341f409382ab986d5403ea146b44dcc",
+    "all_rows_pinned_by_preview": true
+  },
+  "additional_exact_allowed_origins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/review-aacdf8b9-source-extension.json",
+      "bytes": 20291,
+      "sha256": "478013ade2136d9bcb6ab437a560319bc6292f7a8f4e4fee7a72c8138360cfa5"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/retained-ci-aacdf8b9-and-actual-raw-package.json",
+      "bytes": 15663,
+      "sha256": "a35fa962171a6b5aafb9aa777d688edc10816f426e4fca8e361b8937832c9f4d"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/retained-ci-aacdf8b9.json",
+      "bytes": 15729,
+      "sha256": "a4cf10bac6dc7d3e5a25b9de4a3fcfbcd7b789c200b8e5b9952079fcd0b7d59f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/artifact-custody-aacdf8b9.json",
+      "bytes": 7312,
+      "sha256": "90da94b3859840a6c843e552ebc71ec6c13d0456499c2089b55ae0cf388f288e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/four-gates-aacdf8b9.json",
+      "bytes": 2618,
+      "sha256": "921158b6593f67b207e79ba9421ae3ccacaad9f50af9ba2f38b3f7fd470c5a93"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/metadata-gate-shape-error-5bd55f-original.txt",
+      "bytes": 131,
+      "sha256": "59d194827170587203d50b68a86ddd5b2b647d46213c0ae19bbaa8eb5054fc2c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/metadata-json-shape-error-9a0dd8-original.txt",
+      "bytes": 126,
+      "sha256": "c4d1c4fd8908f0e62ba5a88eadc8320cfaac84ac89e3d47c52e96f12f807a3a0"
+    }
+  ],
+  "additional_allowed_final_files": [
+    "README.md",
+    "manifest.json",
+    "allocation-primary-original.json"
+  ],
+  "expected_total_if_all_72_plus7_extra_plus_README_manifest_allocation": 82,
+  "allowed_storage": "Exact unmodified originals or deterministic gzip-mtime0, bounded decode equals original; actual tarball remains exact original. No rewritten raw failures or source snapshots.",
+  "current_four_source_CI_gates": "PRIMARY478013ad/a35fa962; THIRDf712afc2/a4cf10ba accepted,22actualremote/all7/tar e809. Separate from future final-head approval.",
+  "author_source_changes_allowed": "Only install within exact archive prefix and append AUDIT_INPUTS.md/STATUS/LOG. All runtime sources, test, package, locks, README, CHANGELOG and all other protected bytes/modes stay frozenaacdf.",
+  "current_histories": "Preserve every prior byte/40goalprefixes; no unrelated main integration before this single evidence freeze unless actualmain changes.",
+  "assembly": "One source-equivalent evidence commit then existing exact final-head CI. Final manifest counts include itself and README/allocation. All final source/currentCI/peer/runtime/delivery receipts outside immutable archive to avoid self-reference.",
+  "external_catalogue": "Explicit uninstalled origin pins permitted, including private preview/metadata-only reader corrections; no claims these are archive members.",
+  "prohibited": "No private CPU allocations/admissions/credentials/auth/capacity records, new helpers/runtime imports/tests/npm pack/install/rerun/provider/model/resources/spend/site/version/npm publication or protected edits.",
+  "remaining_delivery_gates": "Signedclean final source/archive equivalence and actual current final-head all7CI, independent PRIMARY/THIRD final extensions then solePRIMARY ordinary squash merge and actual tree/archive custody.",
+  "no_extra_owner_permission_needed": "Reversible documentary work under existing owner authorization, no new approval request.",
+  "full_owner_hierarchy": "ACTIVE_ALL_OBJECTIVES_PRESERVED",
+  "real_outcomes": null
+}
