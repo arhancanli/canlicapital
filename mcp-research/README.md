@@ -83,3 +83,11 @@ fresh request. There are no added retries, tools, configuration options or depen
 
 This change is Unreleased. Native Response/ReadableStream fixtures exercise these boundaries
 with injected responses; their execution and release status are recorded in repository evidence.
+
+The response-bound change has32 new native-stream cases passing in the existing remote MCP
+job (47 research tests in total), with separate initial source and retained-CI reviews by both
+independent reviewers. Original source/logs/API captures and the four literal receipts are in
+[the27-member evidence archive](../docs/goal/evidence/research-response-bounds-20261002/README.md).
+Its exact PRIMARY allocation preserves twenty original assets plus four reviews and three
+documentary files. Final documentary-head verification and publication remain separate;
+these repository fixtures do not establish hosted latency, adoption or real financial outcomes.

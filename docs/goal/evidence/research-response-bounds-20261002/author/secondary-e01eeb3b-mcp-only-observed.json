@@ -1,0 +1,221 @@
+{
+  "observed_at": "2026-10-02T13:47:52.730616+00:00",
+  "source": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+  "MCP_job": 110863783937,
+  "run": 37015058189,
+  "tested_merge_observed_log": "c46ce7f7bd16e4afb798df8340a5e871dcbe2857",
+  "raw": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-mcp-ci-original.log",
+    "bytes": 284228,
+    "sha256": "a00197bdd10d9e067f875a45c0182f280935615d91cdaf363ca7a28625f389b6"
+  },
+  "new_named_research_cases_PASS": 32,
+  "research_total_PASS": 47,
+  "MCP_summaries": [
+    {
+      "tests": 141,
+      "pass": 141,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 47,
+      "pass": 47,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 119,
+      "pass": 119,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 139,
+      "pass": 139,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "cases": [
+    {
+      "name": "response bytes: exactly four MiB is accepted without response.text",
+      "result": "ok",
+      "number": 6
+    },
+    {
+      "name": "response bytes: cap plus one rejects without reading subsequent chunks",
+      "result": "ok",
+      "number": 7
+    },
+    {
+      "name": "response bytes: a supplied oversized chunk is refused before decoding",
+      "result": "ok",
+      "number": 8
+    },
+    {
+      "name": "response bytes: multibyte paper under the code-unit cap exceeds the byte cap",
+      "result": "ok",
+      "number": 9
+    },
+    {
+      "name": "response headers: absent Content-Length still counts actual bytes",
+      "result": "ok",
+      "number": 10
+    },
+    {
+      "name": "response headers: misleading small Content-Length cannot bypass the cap",
+      "result": "ok",
+      "number": 11
+    },
+    {
+      "name": "response headers: advertised oversize is rejected before the first read",
+      "result": "ok",
+      "number": 12
+    },
+    {
+      "name": "response headers: huge and zero-prefixed decimal lengths are compared safely",
+      "result": "ok",
+      "number": 13
+    },
+    {
+      "name": "response headers: unusable lengths use actual bytes and valid lengths preserve content",
+      "result": "ok",
+      "number": 14
+    },
+    {
+      "name": "response UTF-8: split multibyte code points and BOM decode as valid text",
+      "result": "ok",
+      "number": 15
+    },
+    {
+      "name": "response UTF-8: truncated code point is refused and a later healthy paper recovers",
+      "result": "ok",
+      "number": 16
+    },
+    {
+      "name": "response UTF-8: invalid byte sequence is not replaced or cached",
+      "result": "ok",
+      "number": 17
+    },
+    {
+      "name": "response streams: mid-read transport failure is sanitized and disposed once",
+      "result": "ok",
+      "number": 18
+    },
+    {
+      "name": "response streams: non-byte native stream data fails without cache admission",
+      "result": "ok",
+      "number": 19
+    },
+    {
+      "name": "response abort: an already aborted request performs no dispatch",
+      "result": "ok",
+      "number": 20
+    },
+    {
+      "name": "response abort: already aborted supplied body is cancelled without a read",
+      "result": "ok",
+      "number": 21
+    },
+    {
+      "name": "response abort: late fetch completion is cancelled without body admission",
+      "result": "ok",
+      "number": 22
+    },
+    {
+      "name": "response abort: stalled read releases once without awaiting stuck cancellation",
+      "result": "ok",
+      "number": 23
+    },
+    {
+      "name": "response deadline: a native timeout remains active through the body read",
+      "result": "ok",
+      "number": 24
+    },
+    {
+      "name": "response deadline: server fifteen-second scope refuses stalled body and cache",
+      "result": "ok",
+      "number": 25
+    },
+    {
+      "name": "response abort: queued bytes after abort are never decoded",
+      "result": "ok",
+      "number": 26
+    },
+    {
+      "name": "response abort: abort at end-of-body refuses successful completion",
+      "result": "ok",
+      "number": 27
+    },
+    {
+      "name": "response HTTP: missing paper never reads or caches its error body",
+      "result": "ok",
+      "number": 28
+    },
+    {
+      "name": "response HTTP: server error body is cancelled before reads and a healthy call recovers",
+      "result": "ok",
+      "number": 29
+    },
+    {
+      "name": "response cache: malformed JSON is not cached and a later valid response is",
+      "result": "ok",
+      "number": 30
+    },
+    {
+      "name": "response cache: late malformed concurrent completion preserves newer valid entry",
+      "result": "ok",
+      "number": 31
+    },
+    {
+      "name": "response cache: invalid cached hit is evicted without suppressing later healthy fetch",
+      "result": "ok",
+      "number": 32
+    },
+    {
+      "name": "response cache: clock rollback makes a cached entry stale",
+      "result": "ok",
+      "number": 33
+    },
+    {
+      "name": "response cache: exactly ten minutes expires while the preceding millisecond hits",
+      "result": "ok",
+      "number": 34
+    },
+    {
+      "name": "response cache: nonfinite ages never produce cache hits",
+      "result": "ok",
+      "number": 35
+    },
+    {
+      "name": "response transport: fetch rejection is sanitized with one dispatch and no retry",
+      "result": "ok",
+      "number": 36
+    },
+    {
+      "name": "response success: all six tools preserve compact shapes and exact source limits",
+      "result": "ok",
+      "number": 37
+    }
+  ],
+  "root_and_all_checks_gate": "PENDING_SEPARATE",
+  "local_project_runtime": "NONE",
+  "goal": "ACTIVE"
+}

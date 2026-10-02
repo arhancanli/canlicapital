@@ -1,0 +1,1139 @@
+{
+  "schema": "canli.primary.audit-package.actual-delivery.v1",
+  "observed_at": "2026-10-02T13:09:43.352261+00:00",
+  "verdict": "PASS_ACTUAL_ORDINARY_SQUASH_MERGE_MAIN_TREE_AND_ARCHIVE_CUSTODY",
+  "PR": 364,
+  "merged_at": "2026-10-02T13:07:29Z",
+  "merge": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+  "current_main": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+  "sole_parent": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+  "tree": "9cd7ec941ddc23b2baa7c4bb2e73e0cd873e4a25",
+  "reviewed_signed_clean_head": "7ea832445b424803c0617e96e5d82ebd214cfe63",
+  "all_fetched_Git_tree_entries_modes_objects_sizes_exact_reviewed_source": true,
+  "source_to_merge_diff_empty": true,
+  "frozen_author_worktree_G_clean_unchanged": true,
+  "branch_changed_paths": 94,
+  "full_tree_index": 6174,
+  "protected_Git_count": 6080,
+  "protected_Git_bytes": 390153335,
+  "protected_basis": "Inherited identical Git objects/modes/sizes and SHA table per final source gate; not new full physical audit.",
+  "original_goal_prefixes": 45,
+  "four_final_gates": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/final-source-archive-7ea83244.json",
+      "bytes": 7459,
+      "sha256": "7e8fda88e1b0462c1a48d5a8a5867af46051fb3bd364142388d5509a5b7f15d3"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/final-current-ci-and-tar-7ea83244.json",
+      "bytes": 16452,
+      "sha256": "ab6355fad8fd3e3f078d0bcbc1441edebbf68e494f64bc97778294e09cff0483"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/review-7ea83244-final-source-archive.json",
+      "bytes": 139349,
+      "sha256": "f3eb959a51ad7f943f0a1c2c844a51240e98b705bb64a2003f78e128b24221bb"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/retained-ci-7ea83244-final.json",
+      "bytes": 15154,
+      "sha256": "9de91e50c623a7268b375367006c259eaa681b33199ffc7af3fa06cf1e1e91ef"
+    }
+  ],
+  "actual_API_originals": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/pr364-postmerge-20261002T130759Z-original.json",
+      "bytes": 20065,
+      "sha256": "47fe73d3eefaa3e6c8829b72d7b53e27ddb61ccaa93d4ef2ff87f20f2362a3f1"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/main-postmerge-20261002T130759Z-original.json",
+      "bytes": 344,
+      "sha256": "340378ad5c64fec1c03eb51af7c751bc53d9d311c2275fe581eea3b29a9351ec"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/commit364-postmerge-20261002T130759Z-original.json",
+      "bytes": 6532,
+      "sha256": "4ccc405adbc8a622b41e2a93d0647539e7052637813b68a71fc9f5399d28f200"
+    }
+  ],
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/source-7ea83244.json",
+    "bytes": 1858148,
+    "sha256": "50eb845eb063411036ad6445f5e2ddf3abc79b3e12a2d77ae51f0729475902bf"
+  },
+  "archive_manifest": {
+    "bytes": 63539,
+    "sha256": "f6a93ee3b83c867cccb9b4c0c917282d554e4b160411b0cbf22e270ba0f511af"
+  },
+  "archive_files_including_manifest": 82,
+  "archive_original_bytes": 8773168,
+  "archive_stored_bytes": 2682506,
+  "archive_assets": [
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/assignment.md",
+      "stored": {
+        "bytes": 7530,
+        "sha256": "efecdbcff14b90f3b2dc92b275c2ae8d3783e8e1cd5f71c930a9295adce81903"
+      },
+      "original": {
+        "bytes": 7530,
+        "sha256": "efecdbcff14b90f3b2dc92b275c2ae8d3783e8e1cd5f71c930a9295adce81903"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/capture-exact-package-ci-v1.py",
+      "stored": {
+        "bytes": 12248,
+        "sha256": "252beae3c9235d181669b8f5bfc257a474cecebc04aa1f6517dbdd2fe7a9fccb"
+      },
+      "original": {
+        "bytes": 12248,
+        "sha256": "252beae3c9235d181669b8f5bfc257a474cecebc04aa1f6517dbdd2fe7a9fccb"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/capture-exact-package-ci-v2.py",
+      "stored": {
+        "bytes": 16133,
+        "sha256": "0455e2b84fa68cd0eb48343da776b6064466a109e2d33e50d759cb5a841b9706"
+      },
+      "original": {
+        "bytes": 16133,
+        "sha256": "0455e2b84fa68cd0eb48343da776b6064466a109e2d33e50d759cb5a841b9706"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/capture-exact-package-ci-v3.py",
+      "stored": {
+        "bytes": 16172,
+        "sha256": "fd879b78043dec1622f3275eaaf6878b3490ec70908d80bd0086be093dabaefd"
+      },
+      "original": {
+        "bytes": 16172,
+        "sha256": "fd879b78043dec1622f3275eaaf6878b3490ec70908d80bd0086be093dabaefd"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/failed-88c4e7f1-initial-handoff.json",
+      "stored": {
+        "bytes": 1739,
+        "sha256": "07b96b6d05206047e3c7afcbee438bc83c9ff18c8ab50fb60268acb67dd14798"
+      },
+      "original": {
+        "bytes": 1739,
+        "sha256": "07b96b6d05206047e3c7afcbee438bc83c9ff18c8ab50fb60268acb67dd14798"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/initial-import-only-contract.json",
+      "stored": {
+        "bytes": 1850,
+        "sha256": "3388d60068300e81dae74377f928083edf05ec93aa1c812e77b41b79b42c95a3"
+      },
+      "original": {
+        "bytes": 1850,
+        "sha256": "3388d60068300e81dae74377f928083edf05ec93aa1c812e77b41b79b42c95a3"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/metadata-failed-ci-parser-94e5e9-original.txt",
+      "stored": {
+        "bytes": 89,
+        "sha256": "af8b9780391490b46c4d7cfc2fb01353e84c66238202b7050f4b7779d9007400"
+      },
+      "original": {
+        "bytes": 89,
+        "sha256": "af8b9780391490b46c4d7cfc2fb01353e84c66238202b7050f4b7779d9007400"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/metadata-helper-v2-v3-end-admission-correction.json",
+      "stored": {
+        "bytes": 705,
+        "sha256": "12029d66722390856a76e70d646e8eb92cfa7e3119c68245d4a28bfbc3ee3648"
+      },
+      "original": {
+        "bytes": 705,
+        "sha256": "12029d66722390856a76e70d646e8eb92cfa7e3119c68245d4a28bfbc3ee3648"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/metadata-read-error-9365ad-excerpt.json",
+      "stored": {
+        "bytes": 460,
+        "sha256": "c9b4ef9443065a505d623d570cf11fab04acb883c0ec46d0d33fa8e5040b6ae3"
+      },
+      "original": {
+        "bytes": 460,
+        "sha256": "c9b4ef9443065a505d623d570cf11fab04acb883c0ec46d0d33fa8e5040b6ae3"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/metadata-zsh-error-01cb86-original.txt",
+      "stored": {
+        "bytes": 98,
+        "sha256": "e86f3e75d3395a860331743625e6881a118fc0731997485541dd75edcbad8c72"
+      },
+      "original": {
+        "bytes": 98,
+        "sha256": "e86f3e75d3395a860331743625e6881a118fc0731997485541dd75edcbad8c72"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/npm-network-guard-correction-88c4e7f1.json",
+      "stored": {
+        "bytes": 959,
+        "sha256": "6b6a5fcf626a1c16ed142fc98a7e57ff7b2aef297b78719913aeb1fd9e649ca3"
+      },
+      "original": {
+        "bytes": 959,
+        "sha256": "6b6a5fcf626a1c16ed142fc98a7e57ff7b2aef297b78719913aeb1fd9e649ca3"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/official-node22.23.3-test-runner-api-original.json",
+      "stored": {
+        "bytes": 56896,
+        "sha256": "d76e588142df700d6614af2cd731d107f062b81f96c853be259be0c4541352b5"
+      },
+      "original": {
+        "bytes": 56896,
+        "sha256": "d76e588142df700d6614af2cd731d107f062b81f96c853be259be0c4541352b5"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/official-node22.23.3-test-runner-test.js.txt",
+      "stored": {
+        "bytes": 40658,
+        "sha256": "efebe79e3471470f7daade809a4f83b32f737db69126381d21a23ebb392da3ab"
+      },
+      "original": {
+        "bytes": 40658,
+        "sha256": "efebe79e3471470f7daade809a4f83b32f737db69126381d21a23ebb392da3ab"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/official-npm-10.9.9-bin-links-fix-bin.js-api-original.json",
+      "stored": {
+        "bytes": 2475,
+        "sha256": "6715a227b78bc8cab3d569c65220160bd6f66a3d9284308cf7f3fbe9b34076a1"
+      },
+      "original": {
+        "bytes": 2475,
+        "sha256": "6715a227b78bc8cab3d569c65220160bd6f66a3d9284308cf7f3fbe9b34076a1"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/official-npm-10.9.9-bin-links-fix-bin.js.txt",
+      "stored": {
+        "bytes": 1160,
+        "sha256": "eed383d9cb6529244f5f5c29ee8258d141f3231b06db4a453d1181dac3f83f1b"
+      },
+      "original": {
+        "bytes": 1160,
+        "sha256": "eed383d9cb6529244f5f5c29ee8258d141f3231b06db4a453d1181dac3f83f1b"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/official-npm-10.9.9-bin-links-link-bin.js-api-original.json",
+      "stored": {
+        "bytes": 1357,
+        "sha256": "49e8c179c0e9e57994d459048e8160a31916a6a30f64aa4e8d7d978e6c4c72e7"
+      },
+      "original": {
+        "bytes": 1357,
+        "sha256": "49e8c179c0e9e57994d459048e8160a31916a6a30f64aa4e8d7d978e6c4c72e7"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/official-npm-10.9.9-bin-links-link-bin.js.txt",
+      "stored": {
+        "bytes": 343,
+        "sha256": "368a4af7bd9859eb38c2a1adddddc9d8a792849015a60c82cd7a63119dee3537"
+      },
+      "original": {
+        "bytes": 343,
+        "sha256": "368a4af7bd9859eb38c2a1adddddc9d8a792849015a60c82cd7a63119dee3537"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/official-npm-10.9.9-entry.js.txt",
+      "stored": {
+        "bytes": 3199,
+        "sha256": "1024d2511a619c857fd67f79c3fb4d509c690cf2430373953b94713f18020b26"
+      },
+      "original": {
+        "bytes": 3199,
+        "sha256": "1024d2511a619c857fd67f79c3fb4d509c690cf2430373953b94713f18020b26"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/official-npm-10.9.9-update-notifier.js.txt",
+      "stored": {
+        "bytes": 4035,
+        "sha256": "777c2519fcacf76c2e97260d1a6a8c4c9c3b2f5d33ae970e0caeb00123cabdae"
+      },
+      "original": {
+        "bytes": 4035,
+        "sha256": "777c2519fcacf76c2e97260d1a6a8c4c9c3b2f5d33ae970e0caeb00123cabdae"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/pr-364-88c4e7f1-original.json",
+      "stored": {
+        "bytes": 18969,
+        "sha256": "b6c5ad339b687e144971ae866f8265f19149b91a697fa4feceed4c7caf6fa5d2"
+      },
+      "original": {
+        "bytes": 18969,
+        "sha256": "b6c5ad339b687e144971ae866f8265f19149b91a697fa4feceed4c7caf6fa5d2"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/pr-body-88c4e7f1-initial.md",
+      "stored": {
+        "bytes": 1930,
+        "sha256": "ccff8775a5859573dad8c669b77a83186cccceb976d7e93940a2c27178f93372"
+      },
+      "original": {
+        "bytes": 1930,
+        "sha256": "ccff8775a5859573dad8c669b77a83186cccceb976d7e93940a2c27178f93372"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/pr-body-aacdf8b9.md",
+      "stored": {
+        "bytes": 1743,
+        "sha256": "32dced63a1ef738a5771493b4f44bbcaf7947eb51c947aef07317f6ce3cc9391"
+      },
+      "original": {
+        "bytes": 1743,
+        "sha256": "32dced63a1ef738a5771493b4f44bbcaf7947eb51c947aef07317f6ce3cc9391"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/pr-body-e073e704.md",
+      "stored": {
+        "bytes": 2069,
+        "sha256": "4d0f1bc4bd972dc9537aa990580218a213f8d309786a56266d319cc6995e15ba"
+      },
+      "original": {
+        "bytes": 2069,
+        "sha256": "4d0f1bc4bd972dc9537aa990580218a213f8d309786a56266d319cc6995e15ba"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/raw-installed-mode-correction-e073e704.json",
+      "stored": {
+        "bytes": 2253,
+        "sha256": "4c88b42d5a3a7e8f39a717ba0b7defcbbae152203ed99ef6d1f5696c45a2d952"
+      },
+      "original": {
+        "bytes": 2253,
+        "sha256": "4c88b42d5a3a7e8f39a717ba0b7defcbbae152203ed99ef6d1f5696c45a2d952"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-88c4e7f1-checks-original.json",
+      "stored": {
+        "bytes": 1131,
+        "sha256": "61fe174d85eb93718e6fb5734b7054a31f1dc9c283dfa52e5370101d4766bbd4"
+      },
+      "original": {
+        "bytes": 1131,
+        "sha256": "61fe174d85eb93718e6fb5734b7054a31f1dc9c283dfa52e5370101d4766bbd4"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-88c4e7f1-codeql-alerts-original.json",
+      "stored": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "original": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-88c4e7f1-codeql-analyses-original.json",
+      "stored": {
+        "bytes": 1186,
+        "sha256": "a2fbeb90db4320e77da2a8d3962f15a85ef1e27b310273357b4ef185d53df7c9"
+      },
+      "original": {
+        "bytes": 1186,
+        "sha256": "a2fbeb90db4320e77da2a8d3962f15a85ef1e27b310273357b4ef185d53df7c9"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-88c4e7f1-mcp-ci-original.log.gz",
+      "stored": {
+        "bytes": 30563,
+        "sha256": "76556ed3cac9a6ce753ced0965d05b5147a53d6359e0e386f74b2fea50fb5234"
+      },
+      "original": {
+        "bytes": 160938,
+        "sha256": "0c64af08a9879a7b42f2a63c29ded318f083747316b4933b5aec3f4ab5527a99"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-88c4e7f1-original-failed-ci.json",
+      "stored": {
+        "bytes": 9923,
+        "sha256": "3c4f989dc58eb916db3e8a4cb0eb181ebe4907cdae157eef6dad4f14be299e36"
+      },
+      "original": {
+        "bytes": 9923,
+        "sha256": "3c4f989dc58eb916db3e8a4cb0eb181ebe4907cdae157eef6dad4f14be299e36"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-88c4e7f1-pr-original.json",
+      "stored": {
+        "bytes": 19009,
+        "sha256": "dca7a017c83ee4a78b805168d03e35a4f1ae51f10c955875918206f9dbcc640e"
+      },
+      "original": {
+        "bytes": 19009,
+        "sha256": "dca7a017c83ee4a78b805168d03e35a4f1ae51f10c955875918206f9dbcc640e"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-88c4e7f1-root-ci-original.log.gz",
+      "stored": {
+        "bytes": 118762,
+        "sha256": "14f962796c57a0dc10d93ee4931b5ff1e795d7466390d292d0b555b23297688a"
+      },
+      "original": {
+        "bytes": 633027,
+        "sha256": "f1deafcab0c9f0d62a23048ead192c43df339488c9a361cba77773fd9fb08c12"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-88c4e7f1-run-original.json",
+      "stored": {
+        "bytes": 13310,
+        "sha256": "3638feb046d5429ac822139d4cfda6d558dadb7569daebfb810d7020c300981d"
+      },
+      "original": {
+        "bytes": 13310,
+        "sha256": "3638feb046d5429ac822139d4cfda6d558dadb7569daebfb810d7020c300981d"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-88c4e7f1-tested-merge-original.json",
+      "stored": {
+        "bytes": 2648,
+        "sha256": "9382fe5ba1621a2bcc7cbe5dc17287e6040cd5a63ec310c929231039575f951b"
+      },
+      "original": {
+        "bytes": 2648,
+        "sha256": "9382fe5ba1621a2bcc7cbe5dc17287e6040cd5a63ec310c929231039575f951b"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-checks-original.json",
+      "stored": {
+        "bytes": 1131,
+        "sha256": "7e4dd6a4c69e814c4f6f2afeefdff8a375a4a056286f5b2a23ca8f3c9be7c3ec"
+      },
+      "original": {
+        "bytes": 1131,
+        "sha256": "7e4dd6a4c69e814c4f6f2afeefdff8a375a4a056286f5b2a23ca8f3c9be7c3ec"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-codeql-alerts-original.json",
+      "stored": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "original": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-codeql-analyses-original.json",
+      "stored": {
+        "bytes": 3560,
+        "sha256": "c4aa718326aa9e563e4fa745f1277fc3726a5e0e2c0530ffb6729ef5fd1a2020"
+      },
+      "original": {
+        "bytes": 3560,
+        "sha256": "c4aa718326aa9e563e4fa745f1277fc3726a5e0e2c0530ffb6729ef5fd1a2020"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-exact-ci.json",
+      "stored": {
+        "bytes": 14416,
+        "sha256": "b68f6eb5c46e364caba6ba2c84cc0062a80f913e5a8010b035ffe337bfddb16c"
+      },
+      "original": {
+        "bytes": 14416,
+        "sha256": "b68f6eb5c46e364caba6ba2c84cc0062a80f913e5a8010b035ffe337bfddb16c"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-mcp-ci-original.log.gz",
+      "stored": {
+        "bytes": 96951,
+        "sha256": "62e5a4a34a42cac48f4aab4592b00567c17bd386f30fd1350c030b4074e1645b"
+      },
+      "original": {
+        "bytes": 271192,
+        "sha256": "fc4fbc276887cacfdf410ffb0a7d70176f02112d618004a20de607f2864eee28"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-package-original.tgz",
+      "stored": {
+        "bytes": 53897,
+        "sha256": "e80989d6188ee1e42bedf4e3c8d281ac518cd25c06bc1e624d9ff0fdb8b7a680"
+      },
+      "original": {
+        "bytes": 53897,
+        "sha256": "e80989d6188ee1e42bedf4e3c8d281ac518cd25c06bc1e624d9ff0fdb8b7a680"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-pr-original.json",
+      "stored": {
+        "bytes": 18824,
+        "sha256": "6ce268aa678cfb8422d1232d119dc879433d0c35132e7a6bcd8e75a0ed71644c"
+      },
+      "original": {
+        "bytes": 18824,
+        "sha256": "6ce268aa678cfb8422d1232d119dc879433d0c35132e7a6bcd8e75a0ed71644c"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-root-ci-original.log.gz",
+      "stored": {
+        "bytes": 117819,
+        "sha256": "08342dd8071e2bf472635df62958fb16bd0c8f4adb75997f843576b2142088c7"
+      },
+      "original": {
+        "bytes": 632294,
+        "sha256": "a2a89b2a1b6680c49461261cfb673f4a82ac92d15166b8d51c4c69eafc2a77d7"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-run-original.json",
+      "stored": {
+        "bytes": 13309,
+        "sha256": "7c1f5d0c48509298555443af9977e450305a961c2c5487dfef3179afddec0e9a"
+      },
+      "original": {
+        "bytes": 13309,
+        "sha256": "7c1f5d0c48509298555443af9977e450305a961c2c5487dfef3179afddec0e9a"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-aacdf8b9-tested-merge-original.json",
+      "stored": {
+        "bytes": 2648,
+        "sha256": "e128d897b4fdc46652deb2526f0362c633c3ab2fbce46d94a253b0e2fce30af3"
+      },
+      "original": {
+        "bytes": 2648,
+        "sha256": "e128d897b4fdc46652deb2526f0362c633c3ab2fbce46d94a253b0e2fce30af3"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-e073e704-checks-original.json",
+      "stored": {
+        "bytes": 1131,
+        "sha256": "ffa1c73b8a6b8dd0640f47328d8c21145d9140dded8a5fe27178fc9e1d6aa23c"
+      },
+      "original": {
+        "bytes": 1131,
+        "sha256": "ffa1c73b8a6b8dd0640f47328d8c21145d9140dded8a5fe27178fc9e1d6aa23c"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-e073e704-codeql-alerts-original.json",
+      "stored": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "original": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-e073e704-codeql-analyses-original.json",
+      "stored": {
+        "bytes": 2373,
+        "sha256": "99e57cbe9a1efbc9777a17bcf28c2a18c3e81f2a7b5b4ea6aebfee8be4e5467b"
+      },
+      "original": {
+        "bytes": 2373,
+        "sha256": "99e57cbe9a1efbc9777a17bcf28c2a18c3e81f2a7b5b4ea6aebfee8be4e5467b"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-e073e704-mcp-ci-original.log.gz",
+      "stored": {
+        "bytes": 30533,
+        "sha256": "433d544192b602eb943415b4157ce0015af6f346dd40b23318ea75616bd5c5b2"
+      },
+      "original": {
+        "bytes": 161071,
+        "sha256": "19537dea979d1e170b9e4bca05a27270afb81adc36fe57d03ddb7cdd32963e7b"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-e073e704-original-failed-ci.json",
+      "stored": {
+        "bytes": 10398,
+        "sha256": "5c3c34a33c0edf058b87b2db819bffbec446166c06bf6b866079b12c97dd77cf"
+      },
+      "original": {
+        "bytes": 10398,
+        "sha256": "5c3c34a33c0edf058b87b2db819bffbec446166c06bf6b866079b12c97dd77cf"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-e073e704-pr-original.json",
+      "stored": {
+        "bytes": 19148,
+        "sha256": "0e22596a417e3291aa680ea8c0a93d9a0a0fcdd49e8ff31d3ee15aa24dc8cae6"
+      },
+      "original": {
+        "bytes": 19148,
+        "sha256": "0e22596a417e3291aa680ea8c0a93d9a0a0fcdd49e8ff31d3ee15aa24dc8cae6"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-e073e704-root-ci-original.log.gz",
+      "stored": {
+        "bytes": 118764,
+        "sha256": "83ad86ac989aab9fdf74a9699f7d17d1658c73fa7ed0482989c048c746398806"
+      },
+      "original": {
+        "bytes": 633172,
+        "sha256": "ccc7f6e7afa8f2d77b721b4caf95771e3da1ba2f2f299a988203dfa552b75509"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-e073e704-run-original.json",
+      "stored": {
+        "bytes": 13310,
+        "sha256": "05cf288bc694ae2d484c0a9eb856b2203b006e73cf35cc9cdebad687a79d699f"
+      },
+      "original": {
+        "bytes": 13310,
+        "sha256": "05cf288bc694ae2d484c0a9eb856b2203b006e73cf35cc9cdebad687a79d699f"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/secondary-e073e704-tested-merge-original.json",
+      "stored": {
+        "bytes": 2648,
+        "sha256": "71f448bc1f877ad8f0eac971a6c2390f5edf28ce1f78b913531bb3707a4c4831"
+      },
+      "original": {
+        "bytes": 2648,
+        "sha256": "71f448bc1f877ad8f0eac971a6c2390f5edf28ce1f78b913531bb3707a4c4831"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/source-88c4e7f1.json.gz",
+      "stored": {
+        "bytes": 477962,
+        "sha256": "b920abd34205ecd61d963357dbccd213775d674e32316d8407b1e9b8790bfdf5"
+      },
+      "original": {
+        "bytes": 1803652,
+        "sha256": "21ff5ae964325ff5bec79d23c3e82e26d44d18f55458584b4be050d3f926d9c5"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/source-aacdf8b9.json.gz",
+      "stored": {
+        "bytes": 479042,
+        "sha256": "2131422ed823e28b24e593f202012a4b040c6fadfc18349ba83c650dfe970589"
+      },
+      "original": {
+        "bytes": 1807920,
+        "sha256": "21e185de2f3218001a577bc25010d81384ffa9c0996ce67c3128a577539f7a09"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/source-e073e704.json.gz",
+      "stored": {
+        "bytes": 478604,
+        "sha256": "2b25424f15dc18833b8b0360cb7c4600f08505033a4cdbfe52c8a22f107c3172"
+      },
+      "original": {
+        "bytes": 1805858,
+        "sha256": "ed1fb2c55e002d7cc6bb554f9852600bf217621e9f2b3400651df5ce2acc7edb"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/source-writing-tool-original-error.json",
+      "stored": {
+        "bytes": 551,
+        "sha256": "f66999ccff74ab7e08e0268a46b7f2017480545408fc46a320db3f6f8c9ea49d"
+      },
+      "original": {
+        "bytes": 551,
+        "sha256": "f66999ccff74ab7e08e0268a46b7f2017480545408fc46a320db3f6f8c9ea49d"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/tar-header-admission-correction-88c4e7f1.json",
+      "stored": {
+        "bytes": 721,
+        "sha256": "48991c144bde0b0b6fc0f700de45b053423f6cab209b01af0b762aa556253ea0"
+      },
+      "original": {
+        "bytes": 721,
+        "sha256": "48991c144bde0b0b6fc0f700de45b053423f6cab209b01af0b762aa556253ea0"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/e073e704-reader-original-error-row-yaml.json",
+      "stored": {
+        "bytes": 538,
+        "sha256": "f6fcfce75f3caed3ae6b96750de4ce6ed9ef7c6c82886c90167218ccc691f30c"
+      },
+      "original": {
+        "bytes": 538,
+        "sha256": "f6fcfce75f3caed3ae6b96750de4ce6ed9ef7c6c82886c90167218ccc691f30c"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/finding-88c4e7f1-tar-header-ascii-coercion.json",
+      "stored": {
+        "bytes": 3423,
+        "sha256": "d07dfb0d57a572660c1a7306d05084caeb6ee83dc306843ba13110bb9b2bacd6"
+      },
+      "original": {
+        "bytes": 3423,
+        "sha256": "d07dfb0d57a572660c1a7306d05084caeb6ee83dc306843ba13110bb9b2bacd6"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/handoff-e073e704-source-and-failed-ci.json",
+      "stored": {
+        "bytes": 4342,
+        "sha256": "0d7e4ae1ba0e0a8863f90edcd3ec5a376c807dfc6b5eed7efb9879cbe8e8c98e"
+      },
+      "original": {
+        "bytes": 4342,
+        "sha256": "0d7e4ae1ba0e0a8863f90edcd3ec5a376c807dfc6b5eed7efb9879cbe8e8c98e"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/preflight-b3b5f45b.json",
+      "stored": {
+        "bytes": 10943,
+        "sha256": "706a50436b012cc0f4dff5232279280c311125a9aa8102b4636fd94fc5d5d7a4"
+      },
+      "original": {
+        "bytes": 10943,
+        "sha256": "706a50436b012cc0f4dff5232279280c311125a9aa8102b4636fd94fc5d5d7a4"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/retained-ci-e073e704-failure.json",
+      "stored": {
+        "bytes": 14616,
+        "sha256": "cb20eac5370ccc42d8784773d73ee23f2875a7f52577829c779b64b49d94070f"
+      },
+      "original": {
+        "bytes": 14616,
+        "sha256": "cb20eac5370ccc42d8784773d73ee23f2875a7f52577829c779b64b49d94070f"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/retained-mcp-e073e704-failure.json",
+      "stored": {
+        "bytes": 14180,
+        "sha256": "f4cbef45604fe81fb221329386f8c6fdaee674e62789eadcca96f44fcb0c795e"
+      },
+      "original": {
+        "bytes": 14180,
+        "sha256": "f4cbef45604fe81fb221329386f8c6fdaee674e62789eadcca96f44fcb0c795e"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/review-88c4e7f1-source.json",
+      "stored": {
+        "bytes": 28250,
+        "sha256": "633bd3cf13b29c64355f64d681da7ccbcc108d16208d5b3c6b4ad08fd453f191"
+      },
+      "original": {
+        "bytes": 28250,
+        "sha256": "633bd3cf13b29c64355f64d681da7ccbcc108d16208d5b3c6b4ad08fd453f191"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/review-aacdf8b9-source-extension.json",
+      "stored": {
+        "bytes": 24022,
+        "sha256": "f712afc2596c7e19d3dd2a9019123888d8f767209444cacb446596eaee4a5002"
+      },
+      "original": {
+        "bytes": 24022,
+        "sha256": "f712afc2596c7e19d3dd2a9019123888d8f767209444cacb446596eaee4a5002"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/review-e073e704-source-extension.json",
+      "stored": {
+        "bytes": 23944,
+        "sha256": "2e1974f60bebf9cea74a7561854f38e072b3fd07999da0f9b2fc1620a5c9c6c5"
+      },
+      "original": {
+        "bytes": 23944,
+        "sha256": "2e1974f60bebf9cea74a7561854f38e072b3fd07999da0f9b2fc1620a5c9c6c5"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/primary/initial-prefix-shape-reader-error.json",
+      "stored": {
+        "bytes": 516,
+        "sha256": "b35339d6f9b47ba317065020261b75e0a3871f2512ad303acd719c0c6f08e1d2"
+      },
+      "original": {
+        "bytes": 516,
+        "sha256": "b35339d6f9b47ba317065020261b75e0a3871f2512ad303acd719c0c6f08e1d2"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/primary/remote-e073e704-mcp-terminal-capture.json",
+      "stored": {
+        "bytes": 585,
+        "sha256": "92b0a71861448ab9ed29b5f5406eff5268baa4e1583dcaed5cb679f456a8ee15"
+      },
+      "original": {
+        "bytes": 585,
+        "sha256": "92b0a71861448ab9ed29b5f5406eff5268baa4e1583dcaed5cb679f456a8ee15"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/primary/remote-e073e704-mcp-terminal-original.log.gz",
+      "stored": {
+        "bytes": 30533,
+        "sha256": "433d544192b602eb943415b4157ce0015af6f346dd40b23318ea75616bd5c5b2"
+      },
+      "original": {
+        "bytes": 161071,
+        "sha256": "19537dea979d1e170b9e4bca05a27270afb81adc36fe57d03ddb7cdd32963e7b"
+      },
+      "encoding": "gzip_mtime0",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/primary/retained-MCP-e073e704-package-mode-hold.json",
+      "stored": {
+        "bytes": 7260,
+        "sha256": "f335c780bf37261ab20a64059b29c315ca5f6d79078340d797f35272124a7901"
+      },
+      "original": {
+        "bytes": 7260,
+        "sha256": "f335c780bf37261ab20a64059b29c315ca5f6d79078340d797f35272124a7901"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/primary/review-88c4e7f1-source-hold.json",
+      "stored": {
+        "bytes": 18475,
+        "sha256": "8571dc901aa294dfcb8506551f7831b3bfead80c69f80024e55967f72693725c"
+      },
+      "original": {
+        "bytes": 18475,
+        "sha256": "8571dc901aa294dfcb8506551f7831b3bfead80c69f80024e55967f72693725c"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/primary/review-e073e704-source-extension.json",
+      "stored": {
+        "bytes": 17228,
+        "sha256": "01eb62840ac93741394615aaba733e4f4e9e473684b173e77d89753c220d1f19"
+      },
+      "original": {
+        "bytes": 17228,
+        "sha256": "01eb62840ac93741394615aaba733e4f4e9e473684b173e77d89753c220d1f19"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/primary/review-aacdf8b9-source-extension.json",
+      "stored": {
+        "bytes": 20291,
+        "sha256": "478013ade2136d9bcb6ab437a560319bc6292f7a8f4e4fee7a72c8138360cfa5"
+      },
+      "original": {
+        "bytes": 20291,
+        "sha256": "478013ade2136d9bcb6ab437a560319bc6292f7a8f4e4fee7a72c8138360cfa5"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/primary/retained-ci-aacdf8b9-and-actual-raw-package.json",
+      "stored": {
+        "bytes": 15663,
+        "sha256": "a35fa962171a6b5aafb9aa777d688edc10816f426e4fca8e361b8937832c9f4d"
+      },
+      "original": {
+        "bytes": 15663,
+        "sha256": "a35fa962171a6b5aafb9aa777d688edc10816f426e4fca8e361b8937832c9f4d"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/retained-ci-aacdf8b9.json",
+      "stored": {
+        "bytes": 15729,
+        "sha256": "a4cf10bac6dc7d3e5a25b9de4a3fcfbcd7b789c200b8e5b9952079fcd0b7d59f"
+      },
+      "original": {
+        "bytes": 15729,
+        "sha256": "a4cf10bac6dc7d3e5a25b9de4a3fcfbcd7b789c200b8e5b9952079fcd0b7d59f"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/third/artifact-custody-aacdf8b9.json",
+      "stored": {
+        "bytes": 7312,
+        "sha256": "90da94b3859840a6c843e552ebc71ec6c13d0456499c2089b55ae0cf388f288e"
+      },
+      "original": {
+        "bytes": 7312,
+        "sha256": "90da94b3859840a6c843e552ebc71ec6c13d0456499c2089b55ae0cf388f288e"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/four-gates-aacdf8b9.json",
+      "stored": {
+        "bytes": 2618,
+        "sha256": "921158b6593f67b207e79ba9421ae3ccacaad9f50af9ba2f38b3f7fd470c5a93"
+      },
+      "original": {
+        "bytes": 2618,
+        "sha256": "921158b6593f67b207e79ba9421ae3ccacaad9f50af9ba2f38b3f7fd470c5a93"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/metadata-gate-shape-error-5bd55f-original.txt",
+      "stored": {
+        "bytes": 131,
+        "sha256": "59d194827170587203d50b68a86ddd5b2b647d46213c0ae19bbaa8eb5054fc2c"
+      },
+      "original": {
+        "bytes": 131,
+        "sha256": "59d194827170587203d50b68a86ddd5b2b647d46213c0ae19bbaa8eb5054fc2c"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/author/metadata-json-shape-error-9a0dd8-original.txt",
+      "stored": {
+        "bytes": 126,
+        "sha256": "c4d1c4fd8908f0e62ba5a88eadc8320cfaac84ac89e3d47c52e96f12f807a3a0"
+      },
+      "original": {
+        "bytes": 126,
+        "sha256": "c4d1c4fd8908f0e62ba5a88eadc8320cfaac84ac89e3d47c52e96f12f807a3a0"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/README.md",
+      "stored": {
+        "bytes": 3535,
+        "sha256": "29e92c6d351d1da94b6aff5b35c6921a47b084533d36ba9ec8658e262a6868a2"
+      },
+      "original": {
+        "bytes": 3535,
+        "sha256": "29e92c6d351d1da94b6aff5b35c6921a47b084533d36ba9ec8658e262a6868a2"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    },
+    {
+      "path": "docs/goal/evidence/fundamentals-audit-package-20261002/allocation-primary-original.json",
+      "stored": {
+        "bytes": 5359,
+        "sha256": "cb162c1161dffe81b3faa0e8510c43013df3c7904a80d64d0f2722bdba2f73f3"
+      },
+      "original": {
+        "bytes": 5359,
+        "sha256": "cb162c1161dffe81b3faa0e8510c43013df3c7904a80d64d0f2722bdba2f73f3"
+      },
+      "encoding": "identity",
+      "merge_Git_frozen_work_exact": true
+    }
+  ],
+  "archive_external_nonmembers": 13,
+  "final_existing_remote_CI": "22 distinct new cases once MCP; root6+1044+9/fund119/ex139; all7 SUCCESS/Node22.23.3/attempt1/current capturedref0/latestJS+PY0. Retained source-bound proof; no rerun.",
+  "actual_tarball": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-7ea83244-package-original.tgz",
+    "bytes": 54394,
+    "sha256": "4ff1c7f8e329801062eb2bc024000c0b726f22546af74be1e0f2a96b4ee65a90"
+  },
+  "publication_or_version_or_registry_release": false,
+  "local_project_job_grant_runtime_rerun": false,
+  "full_owner_hierarchy": "ACTIVE_ALL_OBJECTIVES_PRESERVED",
+  "actual_indexed_expert_independence_rights_labels_adoption_qualified_outcomes": null,
+  "remaining": "Public guide359 native-focus/Git-free validation requires fresh soleLead grant, then source-date/final release/publication gates; every owner pillar remains active."
+}

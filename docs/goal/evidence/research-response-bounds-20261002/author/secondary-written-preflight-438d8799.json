@@ -1,0 +1,75 @@
+{
+  "at": "2026-10-02T13:41:51.180336+00:00",
+  "base": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+  "paths": [
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 422964,
+      "sha256": "552804c868c0ff824257aea49353e354488a833f31c84636c226e7c7896d60d1"
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 147600,
+      "sha256": "42de48d9e5b4d98be692926918b2e8b466198c3da29fe12838d816dc1c9f3b62"
+    },
+    {
+      "path": "mcp-research/README.md",
+      "bytes": 4605,
+      "sha256": "ebafd1492610069daf261a2f8f54429b9748dd04abc4de248e4218db869fa963"
+    },
+    {
+      "path": "mcp-research/src/bounded-response.mjs",
+      "bytes": 4088,
+      "sha256": "cfd45573e2d348e6ad4a2a967607d7d721b6d1d051cbbdc3460a9c5fca6cab67"
+    },
+    {
+      "path": "mcp-research/src/server.mjs",
+      "bytes": 16016,
+      "sha256": "4e468cd14a621a89c1171e647eb464cbef79acab9fe4435f6bc7ea845b17412c"
+    },
+    {
+      "path": "mcp-research/test/response-bounds.test.mjs",
+      "bytes": 23322,
+      "sha256": "4d6c32095e10587d0a6bdc5ca70c381b054b0cca3371db386854e0115834eb68"
+    }
+  ],
+  "written_named_cases": [
+    "response bytes: exactly four MiB is accepted without response.text",
+    "response bytes: cap plus one rejects without reading subsequent chunks",
+    "response bytes: a supplied oversized chunk is refused before decoding",
+    "response bytes: multibyte paper under the code-unit cap exceeds the byte cap",
+    "response headers: absent Content-Length still counts actual bytes",
+    "response headers: misleading small Content-Length cannot bypass the cap",
+    "response headers: advertised oversize is rejected before the first read",
+    "response headers: huge and zero-prefixed decimal lengths are compared safely",
+    "response headers: unusable lengths use actual bytes and valid lengths preserve content",
+    "response UTF-8: split multibyte code points and BOM decode as valid text",
+    "response UTF-8: truncated code point is refused and a later healthy paper recovers",
+    "response UTF-8: invalid byte sequence is not replaced or cached",
+    "response streams: mid-read transport failure is sanitized and disposed once",
+    "response streams: non-byte native stream data fails without cache admission",
+    "response abort: an already aborted request performs no dispatch",
+    "response abort: already aborted supplied body is cancelled without a read",
+    "response abort: late fetch completion is cancelled without body admission",
+    "response abort: stalled read releases once without awaiting stuck cancellation",
+    "response deadline: a native timeout remains active through the body read",
+    "response deadline: server fifteen-second scope refuses stalled body and cache",
+    "response abort: queued bytes after abort are never decoded",
+    "response abort: abort at end-of-body refuses successful completion",
+    "response HTTP: missing paper never reads or caches its error body",
+    "response HTTP: server error body is cancelled before reads and a healthy call recovers",
+    "response cache: malformed JSON is not cached and a later valid response is",
+    "response cache: late malformed concurrent completion preserves newer valid entry",
+    "response cache: invalid cached hit is evicted without suppressing later healthy fetch",
+    "response cache: clock rollback makes a cached entry stale",
+    "response cache: exactly ten minutes expires while the preceding millisecond hits",
+    "response cache: nonfinite ages never produce cache hits",
+    "response transport: fetch rejection is sanitized with one dispatch and no retry",
+    "response success: all six tools preserve compact shapes and exact source limits"
+  ],
+  "tests": "WRITTEN_NOT_EXECUTED",
+  "compatibility_suffix_sha256": "d0aa284f04ce2b1222430ed7f2c0a1b7ded6a41e4f3e0cc1bcffeb661f4544d4",
+  "scope_exact": true,
+  "append_prefixes_exact": true,
+  "local_project_runtime": "NONE"
+}
