@@ -12,8 +12,11 @@ The first release, 0.1.0, is paper trading only. It ships when every item of its
 - Metadata-only fee schedules refuse in the shared local/hosted strict input
   contract. Explicit monetary zero and stated sell-only fees retain their meaning;
   omitted fees keep commission unknown. No new tool, version or release is created.
-  New focused cases are written; exact signed-source remote CI and peer review are
-  required before delivery. Original STATIC findings remain retained separately.
+  At signed implementation cf907f46, 22 new cases pass within 105 execution cases
+  in remote Node22.23.3 CI, and all seven checks pass. Independent source review
+  and parsing of that CI close the original findings. The five earlier fault-harness
+  failures remain in the [retained evidence](../docs/goal/evidence/execution-file-admission-20261002/README.md).
+  Filesystem timing and power-loss behavior are not established.
 
 - Opt-in local `journal initialize/append` adapter uses the delivered private writer
   and fixed local signing key. Default advertised actions and hosted behavior remain

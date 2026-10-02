@@ -1,0 +1,1669 @@
+{
+  "schema": "canli.execution-release-static.review.v1",
+  "reviewer_role": "THIRD independent static peer",
+  "observed_at": "2026-10-01T23:53:16.473470+00:00",
+  "status": "STATIC_AUDIT_COMPLETE_SUBSTANTIAL_EXECUTION_RELEASE_HOLD",
+  "source": {
+    "repository": "/Users/arhancanli/canlicapital-filingfacts-attempt-capture-20261001",
+    "head": "3658d0b60f5b06144b267b0cddc8fde81e6af6d8",
+    "tree": "d6bb4c7a2820b29f0a7500a231b957760b17a99e",
+    "parent": "6fcce8413514ca7a4ee94cc8b5979dbf2f141b38",
+    "working_head": "c50b0d1820f81cfc5dc6a6a5bf071c72c523816b",
+    "working_status": "CLEAN",
+    "source_head_is_delivery_squash": true,
+    "signed_reviewed_ancestor": "c50b0d1820f81cfc5dc6a6a5bf071c72c523816b",
+    "full_tree_equals_reviewed_ancestor": true
+  },
+  "authority": {
+    "assignment": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-release-static-3658/assignment-d81cbc15.md",
+      "bytes": 20238,
+      "sha256": "d81cbc15f1ed7f73c16f3fc7f5fa3bfc405ed7a99fa4d66eb606f0de6a6f7133"
+    },
+    "scope": "Frozen source, written tests, docs, Git identities and retained metadata only; no project code execution.",
+    "continuity_reads": {
+      "README.md": {
+        "bytes": 5131,
+        "sha256": "66c70282e8bd809aba67d8265454441a89a54a3685347197fa0f5695d5ed1b56",
+        "read": true
+      },
+      "REQUIREMENTS.md": {
+        "bytes": 8404,
+        "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+        "read": true
+      },
+      "STATUS.md": {
+        "bytes": 203711,
+        "sha256": "6d68f78f9fc90969b3ad32296ae247f639896636496918379beec62918d5072d",
+        "read": true
+      },
+      "PHASES.md": {
+        "bytes": 4142,
+        "sha256": "addd9d23d403834a9a2e8af0b8c49cc3f84889d3974146d9eb51aae4d86849c8",
+        "read": true
+      },
+      "LOG.md": {
+        "bytes": 548561,
+        "sha256": "28460dd0f436eb986ae2b31ab696d1bf4374731647772fe2275716993a8d9508",
+        "read": true
+      }
+    },
+    "primary_owns": "ordinary merges/publication and source/financial/release integration",
+    "lead_owns": "fresh local CPU/resource allocation",
+    "future_example": "secondary six-path implementation is separate and unreviewed until actual frozen source is supplied"
+  },
+  "pinned_source_files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 5020,
+      "sha256": "7655f5eb2981474bec7c2d7a6210cd940d1f1a1baa813de5cc6a0eea49a6e9f1",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "13ea65483dbc5a68d23fa301e89a1e6c31efd7b3"
+    },
+    {
+      "path": ".github/workflows/codeql.yml",
+      "bytes": 956,
+      "sha256": "591b6f9f4da3e22290530b2bf7d370c42e913acf8286684163e6818cdc9586e7",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "da493dd56750674b7b2100aaa28fec5a954e55cf"
+    },
+    {
+      "path": ".github/workflows/mcp-fundamentals-publish.yml",
+      "bytes": 4306,
+      "sha256": "96f337c3dc12cd9141962a5a8218c16b8af1537b599935a1ce68d1cd8aee8fb2",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "8fe9cb5f05e4a69bada8cc064132ff73422611af"
+    },
+    {
+      "path": ".github/workflows/mcp-publish.yml",
+      "bytes": 3755,
+      "sha256": "e84692ff1dfc31d4961531cfa75f7b8d0e82f93eb453109fff2047f2082ee3ec",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "695c7d836da79667d63eff99eb259a1a8bcd15cb"
+    },
+    {
+      "path": ".github/workflows/mcp-research-publish.yml",
+      "bytes": 4106,
+      "sha256": "3ccc10c12400a8d83774ef4f693eb54efe8f8f98263d0053d9c2e12cc00e3dee",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "6bb3702890dd645749f15c0e366956bee5dd0b42"
+    },
+    {
+      "path": "artifacts/goal/journal-mcp-write-20261001.json",
+      "bytes": 5263,
+      "sha256": "8e9c0e5c77acff8bf14eb07216fac03906a3909cf059ccc82cbac866e5da88be",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "62b771eff7ac19907fa4024bb5707b004d47acd3"
+    },
+    {
+      "path": "artifacts/goal/mcp-tool-tokens-20261001.json",
+      "bytes": 682,
+      "sha256": "5297b21456c970b082e489e1a1193909599bdff2b14bd104fac65df1956683a5",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "40e6ccdad953c6c32d3c4c2ee0994aec1c910ef3"
+    },
+    {
+      "path": "artifacts/goal/private-journal-storage-quality-20261001.json",
+      "bytes": 56701,
+      "sha256": "b60a5c9db7146d66125eadc319ea22bce4daa064c7a9406011f84e8ba3dbb9b4",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "6300c82baa61084e99aee9a367b75a641dde2f0d"
+    },
+    {
+      "path": "artifacts/goal/shortfall-local-benchmark-20261001.json",
+      "bytes": 5664,
+      "sha256": "2f0ce43ca9c705cf4ccfb7079f4c9c1822621935f4e4613406e7f09237b0f030",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "bf74bdcef09db32b6c58e6479b7d44c45debb751"
+    },
+    {
+      "path": "artifacts/goal/shortfall-local-parity-20261001.json",
+      "bytes": 3792,
+      "sha256": "213e1cb424e0bcfe132243fec5fe6ca66044de67b01fbda5da308a581a7ae52d",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "3ada8c4f03390c99963c5a78645a2cb93ee905c0"
+    },
+    {
+      "path": "artifacts/mcp/journal-accounting-20261001.json",
+      "bytes": 3056,
+      "sha256": "d41c1206b15242e78de3402a3ec319a54f1526e27b2f1bc5d72e5605d99e4614",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "c777b27b2b9455d01b897a2b191786b376f58425"
+    },
+    {
+      "path": "artifacts/mcp/journal-tool-tokens-20261001.json",
+      "bytes": 682,
+      "sha256": "82936c2e5a1a5e354fd6ccf17868f3ada75da6250b985bb0709fcea1c88c85df",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "cbd77bf7c6ac35976bad88ff849c2733bc8599b4"
+    },
+    {
+      "path": "config/mcp-hosted-releases.json",
+      "bytes": 918,
+      "sha256": "d9aa9cb991058975619947ce4ae5faec0492aac27bc3d8691be92384039f4019",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "28e6df6fdb95ec26e7b6d995691ab8f5f3415f32"
+    },
+    {
+      "path": "docs/goal/EXECUTION_LEDGER.md",
+      "bytes": 4438,
+      "sha256": "24bff42e7296223bc50bd86dfcaf2d82fea27b97e4b7f3c81771e25f0f783e45",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "c35ae39cc77d4fa9f77ffce2a2ae2297abaa2b36"
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 362372,
+      "sha256": "b409fc86a6f545455fe531f5e38b618d7f8a62311b3396287df6680fac2da27d",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "9f002d647bf7369d84c434a68086fba902e077a8"
+    },
+    {
+      "path": "docs/goal/MASTER_PLAN.md",
+      "bytes": 10062,
+      "sha256": "dcaa9f08fcf738ddf69450e7d8c67a8d894cb0d7853fd5489c50bcc096b60ae8",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "8026dcfc82a1f3a26ae00f8cfa5529b67f317b76"
+    },
+    {
+      "path": "docs/goal/MCP_BEST_IN_CLASS_PLAN.md",
+      "bytes": 27629,
+      "sha256": "23856cb001fa6f8732711474dc20ea9bce03cb1717178eedbd6ecce4d98e8617",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "3253f7d3fce4a91bb0cda3308318b6a2446f69bf"
+    },
+    {
+      "path": "docs/goal/MCP_NEXT_MAJORS_PLAN.md",
+      "bytes": 60902,
+      "sha256": "ae051285a6b8b55939884a40d37e0a9849d28c81b1192ea165e82dffced63d0a",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "675958e52645974004f21e2a288a174d8849010c"
+    },
+    {
+      "path": "docs/goal/MCP_PLAN.md",
+      "bytes": 2652,
+      "sha256": "b8452ee7ef80f47e4fff79115856db38d2758158e49cb6342e124660d61fd98a",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "91d09df228b2b57ed572c09449b4bb1a8ae41700"
+    },
+    {
+      "path": "docs/goal/MCP_TRADING_DESIGN.md",
+      "bytes": 54923,
+      "sha256": "c418e4f12fcb74d72fe85d2542792c31a8f983e2a0de0cb5eee8a1c1e59cabd3",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "7233691e61003a220031d88754c0c280c050ecac"
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "b20188f9182e56ff92b3d3229bc6678737aa66fd"
+    },
+    {
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "8554b46c7b6e2eaf45355000e1221931282f88cd"
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "7339fd545ff6ad1f3f19390114c3ec77a9238377"
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 87008,
+      "sha256": "64b1ede55435e42ca0b0309fd0f581e78fa9ea9948846dc6ab9d56169e584afc",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "a43b8bdde5690c7fceea3176a56b8af8c8f07cd3"
+    },
+    {
+      "path": "docs/goal/VISION.md",
+      "bytes": 10046,
+      "sha256": "daa2095e7328192821acbe59806eccc2b7055ad4a59b555cb99f74c1eb3cf235",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "31451f8580d4dfc2c3893e9d30a5eee5d7fc9d15"
+    },
+    {
+      "path": "mcp-execution/CHANGELOG.md",
+      "bytes": 5538,
+      "sha256": "e0c63b23a18d22ede8e7c721be969f4d590cb4bda63e1f5f4e352fbd902a777d",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "cc4891bacf7b8fd90761c34694f2e8bd00c830c4"
+    },
+    {
+      "path": "mcp-execution/JOURNAL_STORAGE.md",
+      "bytes": 8805,
+      "sha256": "71f246c46295d9cb6b1187709ec8a00111314c012688a53226be1967b456139a",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "b4b505a02b990d1d60b4fde24f093a57ad99dc28"
+    },
+    {
+      "path": "mcp-execution/LICENSE",
+      "bytes": 1084,
+      "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "eb5330e5dce6357e4c1cb0d5c1282f5e6d40b7d4"
+    },
+    {
+      "path": "mcp-execution/README.md",
+      "bytes": 15828,
+      "sha256": "de8edfc84e5fb0dba53e9dcd9c4edde4ce2b77960ffc1c60766faf85f87657f9",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "4ab99738d5599e5dfbae80e8a73c443e2796d880"
+    },
+    {
+      "path": "mcp-execution/SECURITY.md",
+      "bytes": 4478,
+      "sha256": "1e7d9ff94f6c3dd2d17d70636c4d09fe9d51a849eb26b80a3269c6f15b49fba0",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "af54b67100eff2dfea88e4e7ac695812ab9cbffe"
+    },
+    {
+      "path": "mcp-execution/package-lock.json",
+      "bytes": 6432,
+      "sha256": "d5a090bde05ca06e6ddce7dfcd58fba07b6bab09882478103e36dcdf07758bb6",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "6fbeaafa0ea4a70ceb79a8c288f0237fbd83a530"
+    },
+    {
+      "path": "mcp-execution/package.json",
+      "bytes": 1264,
+      "sha256": "6666c31dfaa3654c1974c7cfc18c5fb24a38eb945b7965359adc1ae7d54cd4bd",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "65837bf2ab3e7d573d982a3c974722b3fa85f784"
+    },
+    {
+      "path": "mcp-execution/scripts/bench-journal.mjs",
+      "bytes": 3757,
+      "sha256": "539b44d57c7d6cba1fc842e6102c7f7affbbcf03aeef1158a8523847d5783e94",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "29e495f4f5d8b7bb320094e0eac8bdb582712d0d"
+    },
+    {
+      "path": "mcp-execution/scripts/sync-core.mjs",
+      "bytes": 1306,
+      "sha256": "3e12a34f32009f6d8e946d9cff34661395bde622b94b1153feaa634486a20f11",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "7f7613d68e9eece1e0dc06d22ccc5755c074a024"
+    },
+    {
+      "path": "mcp-execution/src/check-orders.mjs",
+      "bytes": 14104,
+      "sha256": "fce446be5b9124e2d80fe0caefa75858f8262aa6551dd10ce57e9fa333f77db3",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "505b390c7636993b9347d04cb6dc660573ba0fc4"
+    },
+    {
+      "path": "mcp-execution/src/core/js/dsr-core.js",
+      "bytes": 12452,
+      "sha256": "79ec18cc7c15e0b2ad004dd5296e83020187912aab161b68aad4784d959816d1",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "f25745d7324aefb3097a27b08c6760bb9dcc6c12"
+    },
+    {
+      "path": "mcp-execution/src/core/js/exec-cost-core.js",
+      "bytes": 6826,
+      "sha256": "c789a1889931cd6719b37d343ed1a3378b860ed804203df62bf92e47c6f017c9",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "b119fb3bf7ef780dc10f626b1cecf268c4b5d843"
+    },
+    {
+      "path": "mcp-execution/src/core/js/journal-files.js",
+      "bytes": 2109,
+      "sha256": "52a67922101613665b343c38c3f3133c50c496a0f90086ef31910b22c1e0646d",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "b7ba815a7b61a90021dcda6742e6456a57e8c998"
+    },
+    {
+      "path": "mcp-execution/src/core/js/moments-core.js",
+      "bytes": 3173,
+      "sha256": "bf0ccc0268df91fa684eb6ac34ca25bee7c90dfb2ebc1dc52fead64d354a0cb9",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "2850882609a56eadd7f6d302e31fab46a4657ec2"
+    },
+    {
+      "path": "mcp-execution/src/core/js/pretrade-core.js",
+      "bytes": 13538,
+      "sha256": "c071f407ab129882089937f226112a6166223cba2f4d42c0d90599d60a164e45",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "2789ccc3ab9f35cf58fedd0e8ef2b37fda919294"
+    },
+    {
+      "path": "mcp-execution/src/core/js/shortfall-core.js",
+      "bytes": 9441,
+      "sha256": "0be616f9be0a51d357dbe799cdbf810da67c826c4501a6f0bcdf258a035f49e0",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "98e8bd48f86828e861cf03f28c234b5b2ea5faf5"
+    },
+    {
+      "path": "mcp-execution/src/core/js/sizing-core.js",
+      "bytes": 12271,
+      "sha256": "2b51d81341614799d6ec1b9d25094644c6e4013870601ab156f4321212347a51",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "f257442bb5cfe3dcdab105ec2e294d31ffbde25f"
+    },
+    {
+      "path": "mcp-execution/src/core/js/trade-journal-core.js",
+      "bytes": 10456,
+      "sha256": "db394e2034c05f4d3d9deb34e0470da7ee8eaf239e484eeaa9f71d619a51ad94",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "52794ed8631f1094753b47e6ea26a93cd10aa1da"
+    },
+    {
+      "path": "mcp-execution/src/core/js/trade-journal-export-core.js",
+      "bytes": 25677,
+      "sha256": "d1ed1eacd557145dc70ea87f3326be0666fdcbce43f714d55f69e44904beabb1",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "488f5a1f05d208b4d766dbcad4833dd5e601f531"
+    },
+    {
+      "path": "mcp-execution/src/core/scripts/canonical-json.mjs",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "1332eb7dbb49f2aa759e095a793da309f29a8f26"
+    },
+    {
+      "path": "mcp-execution/src/hosted.mjs",
+      "bytes": 1889,
+      "sha256": "39c0d8dd9cd4c1783729f2e357eee4a2f47b9a1ce22d11d8d75d8db7222718a7",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "ba36362f6ef4c1e1af8a6898d29e9badd2cfb4be"
+    },
+    {
+      "path": "mcp-execution/src/info.mjs",
+      "bytes": 778,
+      "sha256": "5e529a47cb7218ec346af32d703be8825267e7e2d1d775d660de01c8f0dfe2d6",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "5e47ffa4de74d08efb15f32358583a81307347d8"
+    },
+    {
+      "path": "mcp-execution/src/journal-export-file.mjs",
+      "bytes": 3221,
+      "sha256": "71c49225e7e26c7f9e0368f20a731a2dcb0ceaf87818e9e386b1ed0b998ce834",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "69d9f51b86ca730432b7458d1b6ebc5e1da923e7"
+    },
+    {
+      "path": "mcp-execution/src/journal-store.mjs",
+      "bytes": 16996,
+      "sha256": "28296b91d83b76e1b8d5dddafcde3af7d15ba4a3098cd60b4e4ece304544598c",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "43dae63e95547c3cecfe4f9362d3b43547a5e356"
+    },
+    {
+      "path": "mcp-execution/src/journal-write.mjs",
+      "bytes": 6699,
+      "sha256": "c8b8bea0120082a638e2e470148fe052090c487493afd76757cba46039f1c354",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "4ea8e9ef6c1beda6605e7d764d8e42912fa52d4c"
+    },
+    {
+      "path": "mcp-execution/src/journal.mjs",
+      "bytes": 6719,
+      "sha256": "72829724fd58fb8d6c7af8dc21fde02a0f97b68a57eedd606f5ff92826957619",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "b0ce53006d8a63440f8d2a523d99f754cf3ed047"
+    },
+    {
+      "path": "mcp-execution/src/measure-shortfall.mjs",
+      "bytes": 7025,
+      "sha256": "1f866d6c2850b9d4e217bef44632f2ba3221c08318feaa1f223068dcef14b3e7",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "b84af257ff3600dbac6c3524e96e6da49dca8242"
+    },
+    {
+      "path": "mcp-execution/src/server.mjs",
+      "bytes": 10539,
+      "sha256": "c56f2918d556473b0dac3eb8553918e9eaa1e0323241fcce4d29774d25419716",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "6f8f3afe13522f2f54ae892e7799a996e20b5c79"
+    },
+    {
+      "path": "mcp-execution/src/size-position.mjs",
+      "bytes": 5542,
+      "sha256": "09e690c9f0452c039ff20fc3f2728e365e6f7ba6bcf9f2da150383654e8453f4",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "1ceead72232b31948254a1cb5db8ffeecd4e4ff0"
+    },
+    {
+      "path": "mcp-execution/test/export-file-race.test.mjs",
+      "bytes": 3272,
+      "sha256": "627a84ffe8f59d93e6d050a514295041f25476182844180c0c07c5198bbc4b71",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "f5a07e9ce44a054d971fcab36c69b03653b4d007"
+    },
+    {
+      "path": "mcp-execution/test/helpers/journal-account.mjs",
+      "bytes": 929,
+      "sha256": "04a1c448882a9f53f8eda0d42aeee1a184733057b041c4b93e9f6103acd432ff",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "750e8f992051f335d8578481ed9389c374ea1e0b"
+    },
+    {
+      "path": "mcp-execution/test/helpers/journal-store-child.mjs",
+      "bytes": 490,
+      "sha256": "820354b7660c48bd6b3fc4191129f947dfc2007ce6fc5f26dc6bd33c3a2645cb",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "44d8c11e816c9252e30b3b5474c19eee5c947d56"
+    },
+    {
+      "path": "mcp-execution/test/hosted.test.mjs",
+      "bytes": 6830,
+      "sha256": "aebae705160a049bf905e26f78d563ee19dacd3716a9aff8fa08c8f8aaf8a427",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "e5ee294603fe349151dc1c8f3601eb8cc240380f"
+    },
+    {
+      "path": "mcp-execution/test/journal-export.test.mjs",
+      "bytes": 3928,
+      "sha256": "944f749490c45c55492bc5acbaeb89598ef0860ba020c1488f120fbf54cb743c",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "10e3fd5c4000e9a9b1701470db03e05165ccfcfe"
+    },
+    {
+      "path": "mcp-execution/test/journal-link.test.mjs",
+      "bytes": 2698,
+      "sha256": "79c5a4d960244ab8f1e4d10ec3a988b36f50bdd0912197b8b2cb116787f26459",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "74e241ddfface153c7148f509d5d29c50e1ea6b7"
+    },
+    {
+      "path": "mcp-execution/test/journal-store.test.mjs",
+      "bytes": 18153,
+      "sha256": "adb301a904b7e3b013f845318c1d1f1c2e1662e8a08e42f6bb1a9246e1a9e02b",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "65ae46557341950bf396064df0bce7244477bc35"
+    },
+    {
+      "path": "mcp-execution/test/journal-write.test.mjs",
+      "bytes": 14579,
+      "sha256": "5f98d5def89e4f65188c7cdc2248b2fd3d6f2cc88fc3f22e41407d9649675790",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "d264d31d13a63021dacf7351c2d41535e0328d8b"
+    },
+    {
+      "path": "mcp-execution/test/journal.test.mjs",
+      "bytes": 4228,
+      "sha256": "4c8423f9cf64d5ea18d1dc5f8b7012c7a7af7fc81196d7c2f183d5b4e87c9af5",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "0b65057558548b7244170495771e1b75b620a311"
+    },
+    {
+      "path": "mcp-execution/test/packaging.test.mjs",
+      "bytes": 2101,
+      "sha256": "5bd629a56de55001cf3d514fe3d3830e10ca9dbdb198b1e02de58b09525e0b35",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "0284ea4cd26df3e8f7a6b5247d6c1796028ab2a9"
+    },
+    {
+      "path": "mcp-execution/test/shortfall.test.mjs",
+      "bytes": 5282,
+      "sha256": "c2efc911e46b9490bbf6cdd2759224371ce36289e9ae6f48148a9c798a160c03",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "1bdf6dfa97ddf0ca3b0e2e39dba1ce43982169ad"
+    },
+    {
+      "path": "mcp-execution/test/size.test.mjs",
+      "bytes": 4992,
+      "sha256": "1f9a5ef9e299ae6573caa58f933afbcc33143a55edce7d1984fc50a8e47de71a",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "0a78c43612c10f5d218c2a92d8efa430d8f4b4aa"
+    },
+    {
+      "path": "mcp-execution/test/stdio.test.mjs",
+      "bytes": 6105,
+      "sha256": "c25da82c8e6613a18a638f1857aeeefd50229b69cc4e5459f511fef3fcb008b5",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "360a660dd938774ce024cdbcb672a824ebc8fb50"
+    },
+    {
+      "path": "mcp-execution/test/tools.test.mjs",
+      "bytes": 14038,
+      "sha256": "30d4442861bd35e4ada0e8e5071982cdab5fd5989515da3d9ea84ea119cc6a36",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "359cc8c1b773f6f0e53fae32a0348806cb7b6e67"
+    },
+    {
+      "path": "package.json",
+      "bytes": 11828,
+      "sha256": "896e565ea59dabea9cc06a2c7c454ff148ea6c7284a7c692d54224c542b9eaf4",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "1bcddb9c82ed45aeb9971de4ab720eacb8fb0eb9"
+    },
+    {
+      "path": "scripts/bench/execution-shortfall.py",
+      "bytes": 6374,
+      "sha256": "66dcb8639c46626160035564918dcabbd1e475a57dc7aafbc8b44a0ee95cd761",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "e3c60de3112c1c7cf740bc4a0c19509ccf102f29"
+    },
+    {
+      "path": "scripts/bench/mcp-tool-tokens.py",
+      "bytes": 3095,
+      "sha256": "45928b68b38817d5c47c36e339d0aea63827028678544e2bd279f38b08f262fa",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "630cd0a0e99f7c2a1fc56d5d93dc2d73887e773b"
+    },
+    {
+      "path": "standards/trade-journal/EXPORT.md",
+      "bytes": 6920,
+      "sha256": "5646c3fe37f3153de156e8834f5758ea52b3d40857355e02f504ac4840d269e3",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "1a818c49ce67d2f2466586e0fcc3e21d8b2282b7"
+    },
+    {
+      "path": "standards/trade-journal/README.md",
+      "bytes": 6042,
+      "sha256": "20691436ff35569b58339637a84e4b5d844a119b8c80575a830aca8d8bfb1adb",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "9c724e9c1f3f186ef5d77de905adbcd01615b91c"
+    },
+    {
+      "path": "artifacts/mcp/journal-stdio-20261001.json",
+      "bytes": 1050,
+      "sha256": "67ad47d58b9f5d01cbbeb23e3bbd5cde5146ec26ded588b7be67610232b947cd",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "8259cacce90475407597e26330e39b97c7aed342"
+    },
+    {
+      "path": "artifacts/mcp/journal-stdio-concurrent-20261001.json",
+      "bytes": 1042,
+      "sha256": "f49ba77b06b2873211bfe12b1dfdd3e46ad72c7968029d78e444d64fa17a34b3",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "fa31aea1003fa6d8e811fd68eb84902d35b902d9"
+    },
+    {
+      "path": "artifacts/mcp/journal-stdio-peer-fix-20261001.json",
+      "bytes": 1450,
+      "sha256": "0cb43ffb7ff1de0cbc31edfa07ae142385b0fbd4a446598d7a04e83a508cc1e9",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "12864e77422469a69d91782e6f84cd29272aee62"
+    },
+    {
+      "path": "js/dsr-core.js",
+      "bytes": 12452,
+      "sha256": "79ec18cc7c15e0b2ad004dd5296e83020187912aab161b68aad4784d959816d1",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "f25745d7324aefb3097a27b08c6760bb9dcc6c12"
+    },
+    {
+      "path": "js/exec-cost-core.js",
+      "bytes": 6826,
+      "sha256": "c789a1889931cd6719b37d343ed1a3378b860ed804203df62bf92e47c6f017c9",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "b119fb3bf7ef780dc10f626b1cecf268c4b5d843"
+    },
+    {
+      "path": "js/journal-files.js",
+      "bytes": 2109,
+      "sha256": "52a67922101613665b343c38c3f3133c50c496a0f90086ef31910b22c1e0646d",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "b7ba815a7b61a90021dcda6742e6456a57e8c998"
+    },
+    {
+      "path": "js/moments-core.js",
+      "bytes": 3173,
+      "sha256": "bf0ccc0268df91fa684eb6ac34ca25bee7c90dfb2ebc1dc52fead64d354a0cb9",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "2850882609a56eadd7f6d302e31fab46a4657ec2"
+    },
+    {
+      "path": "js/pretrade-core.js",
+      "bytes": 13538,
+      "sha256": "c071f407ab129882089937f226112a6166223cba2f4d42c0d90599d60a164e45",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "2789ccc3ab9f35cf58fedd0e8ef2b37fda919294"
+    },
+    {
+      "path": "js/shortfall-core.js",
+      "bytes": 9441,
+      "sha256": "0be616f9be0a51d357dbe799cdbf810da67c826c4501a6f0bcdf258a035f49e0",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "98e8bd48f86828e861cf03f28c234b5b2ea5faf5"
+    },
+    {
+      "path": "js/sizing-core.js",
+      "bytes": 12271,
+      "sha256": "2b51d81341614799d6ec1b9d25094644c6e4013870601ab156f4321212347a51",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "f257442bb5cfe3dcdab105ec2e294d31ffbde25f"
+    },
+    {
+      "path": "js/trade-journal-core.js",
+      "bytes": 10456,
+      "sha256": "db394e2034c05f4d3d9deb34e0470da7ee8eaf239e484eeaa9f71d619a51ad94",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "52794ed8631f1094753b47e6ea26a93cd10aa1da"
+    },
+    {
+      "path": "js/trade-journal-export-core.js",
+      "bytes": 25677,
+      "sha256": "d1ed1eacd557145dc70ea87f3326be0666fdcbce43f714d55f69e44904beabb1",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "488f5a1f05d208b4d766dbcad4833dd5e601f531"
+    },
+    {
+      "path": "mcp-execution/test/fixtures/alphaforge-costs.json.gz",
+      "bytes": 502242,
+      "sha256": "885cf4bc79a7ac2d29926a741441455bc5b01256945ee72d18328c13f3b17dc4",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "abd7667cd53cc4a5fd1e9a4abd95f1f33f7ae7a3"
+    },
+    {
+      "path": "mcp-execution/test/fixtures/alphaforge-pretrade.json.gz",
+      "bytes": 1308558,
+      "sha256": "4fdd8444b65885ed97b851ecc29eec3021e0da61bfbd0ad1ab20b6d51a13741f",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "06d852577b28e8b77d2a9863334f9090a57d058a"
+    },
+    {
+      "path": "mcp-execution/test/fixtures/alphaforge-sizing.json.gz",
+      "bytes": 735759,
+      "sha256": "44de7f72ffe8bc2c6246d18b3543e50c38071577953fbe17b0c241852ef8f596",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "2f2f7366740f74afc58ab1545ec1127fe5e851bd"
+    },
+    {
+      "path": "mcp-execution/test/fixtures/journal-export-python.json.gz",
+      "bytes": 351003,
+      "sha256": "c2b545e00c9e7b0dad3ed03074940696913c5d6beeb3b84b338c5abf5b6309d2",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "ef7ef5fc84819142f728543af806737aeb513336"
+    },
+    {
+      "path": "mcp-execution/test/fixtures/shortfall-arch.json.gz",
+      "bytes": 91981,
+      "sha256": "084c670b3fa1d5c95220526c94c5031506c14a81377efb6995e65aecea27de52",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "9b0a5b39386ff159ec6c1c3d1027ca91f151aaac"
+    },
+    {
+      "path": "scripts/canonical-json.mjs",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "1332eb7dbb49f2aa759e095a793da309f29a8f26"
+    },
+    {
+      "path": "scripts/research/trade-journal/export-corpus.mjs",
+      "bytes": 4882,
+      "sha256": "da15414626247ffc59199e5db7b279f3a052a40d877fb4221352bf79eeebed9a",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "863fa7cb6f036a33164b4db669910e605d3b45b0"
+    },
+    {
+      "path": "scripts/research/trade-journal/recompute_export.py",
+      "bytes": 5360,
+      "sha256": "b7635808d0deaba21f157ac497fc8d466c89c83d5d60ab1a950996cd6a217ed0",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "52c816d97bcb1c53753f0b148de69e3361c9904d"
+    },
+    {
+      "path": "scripts/research/trade-journal/verify_journal.py",
+      "bytes": 8754,
+      "sha256": "15dd7edaebbfc675868e6360811bc9142ca958901471f0792f76c2beb59e2ce1",
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "a5511b0416dcced498a1cf5b4ea2b65ceeab7657"
+    },
+    {
+      "path": "js/exec-cost-core.test.js",
+      "sha256": "6ed7996a13f2655be62e088d43c9a30e3e3ca0f1920d9c0ae23fe6681a5e1e88",
+      "bytes": 5430,
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "1454276dbded7bb6215b62344db03047eae554ae"
+    }
+  ],
+  "pinned_source_file_count": 95,
+  "pin_interpretation": "95 data snapshots/hash pins, not 95 tests, not full repository working-byte audit. Focused semantic reads are listed below; retained helpers/fixtures were not run.",
+  "supporting_receipts": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-release-static-3658/phase-start-and-source-pins.json",
+      "bytes": 22512,
+      "sha256": "cf81f7054788d09f0be74cea13c94b121dde3d4b7ee0fdc8cc4427b30893e2e4"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-release-static-3658/source-mirror-and-measurement-bindings.json",
+      "bytes": 13140,
+      "sha256": "905d8223a322480c056e4b1d03466c1036e62dd5bf448e7384c52ba01a985836"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-release-static-3658/local-file-admission-finding-3658.json",
+      "bytes": 3817,
+      "sha256": "5401154466e7c6171fd0218c0f2e34400290ce2724f53ab2da481e5d00b1c1d5"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-release-static-3658/empty-fee-schedule-finding-3658.json",
+      "bytes": 4035,
+      "sha256": "ab07cf7802783d8f385cc7edb6173f4d4df892140905023aa34dff437337f198"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-release-static-3658/bounded-measurement-plan.json",
+      "bytes": 6655,
+      "sha256": "905b2dbfdf3eafe62042b7f831ecf266cb0b930053e9d90ec6830a752c09b16c"
+    }
+  ],
+  "closed_historical_review_receipts": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/actual-delivery-3658d0b6.json",
+      "bytes": 3934,
+      "sha256": "f89267d0cba86c89e4010e2e55b8c8e41828fd4026396944a0026b0f208db335"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/journal-mcp-write-peer/review-9e11d535.json",
+      "bytes": 16613,
+      "sha256": "6ab477fff2ff3b5588be28a10d33b3e0fc81c3679edb243ac0696069aeeffa30"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/journal-mcp-write-peer/final-extension-9f769d32.json",
+      "bytes": 48986,
+      "sha256": "5eb6966c72a060092837e050bab20784aee1ddf5adf61149e6d898f6dfbf4b14"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/final-static-extension-c50b0d18.json",
+      "bytes": 72192,
+      "sha256": "a13eab6e2d204033d2e321a4b1cae56e81132b4deb8235daef335bb50ba0bbc6"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/filingfacts-attempt-capture-peer/final-ci-extension-c50b0d18.json",
+      "bytes": 20748,
+      "sha256": "eabdd5dc70c9d06c36b60b3288cee10443ea68232e6b3c4d634305e4f3c42b80"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-readiness-peer/readiness-review-e3e49a1d.json",
+      "bytes": 30355,
+      "sha256": "762f751cee54877362ca9b3227db377654a8478336254870f3df2388d97109e1"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-readiness-peer/bounded-capture-plan-e3e49a1d.json",
+      "bytes": 7539,
+      "sha256": "2cd22a614445f5d584b9b544e6756ce68ef17ec18f13d274b7e9b9e1ee847cd3"
+    }
+  ],
+  "open_static_findings_at_this_head": [
+    {
+      "id": "CC-EXECUTION-LOCAL-FILE-ADMISSION",
+      "severity": "P2",
+      "scope": "current local planning tools; availability and finite release/job bounds; no order submission",
+      "title": "Shortfall and limits-file reads can block before non-regular file refusal",
+      "evidence": [
+        {
+          "path": "mcp-execution/src/measure-shortfall.mjs",
+          "line": 49,
+          "source_sha256": "1f866d6c2850b9d4e217bef44632f2ba3221c08318feaa1f223068dcef14b3e7",
+          "excerpt": "const fd = openSync(path, \"r\");",
+          "followup": "fstat and 16MiB check only occur at lines51-52, after open returns"
+        },
+        {
+          "path": "mcp-execution/src/server.mjs",
+          "line": 63,
+          "source_sha256": "c56f2918d556473b0dac3eb8553918e9eaa1e0323241fcce4d29774d25419716",
+          "excerpt": "parsed = JSON.parse(readFileSync(path, \"utf8\"));",
+          "followup": "readLimitsFile uses path-based unbounded synchronous read after existsSync; no nonblocking regular-file admission or byte cap"
+        },
+        {
+          "path": "mcp-execution/src/core/js/journal-files.js",
+          "line": 10,
+          "source_sha256": "52a67922101613665b343c38c3f3133c50c496a0f90086ef31910b22c1e0646d",
+          "excerpt": "openSync(path, constants.O_RDONLY | constants.O_NONBLOCK | (privateFile ? constants.O_NOFOLLOW : 0))",
+          "followup": "existing journal reader already provides nonblocking one-FD regular-file/size/stability checks"
+        }
+      ],
+      "static_counterexamples": [
+        {
+          "input": "measure_shortfall orders_file is an absolute named FIFO with no writer",
+          "reasoning": "openSync r on a FIFO waits for a writer before the fstat regular-file check; runShortfall runs synchronously inside the MCP handler, so other requests and in-process cancellation cannot advance",
+          "executed": false
+        },
+        {
+          "input": "CANLI_HOME/limits.json is a named FIFO with no writer",
+          "reasoning": "existsSync reports the entry present and synchronous readFileSync waits on the FIFO. check_orders, size_position and the limits resource all reach this function; a regular-file/cap guard is absent",
+          "executed": false
+        }
+      ],
+      "additional_bound_gap": "A regular limits.json is read fully before parsing/field validation. A supplied malformed or huge local file has no encoded-byte cap even though each validated allowlist is finite. This is distinct from journal-store payload/line caps.",
+      "test_source_review": "shortfall.test.mjs file controls cover stable JSON equivalence, digest, relative paths and malformed content; tools.test.mjs covers malformed/invalid limits and KILL. No FIFO/file-admission coverage is present in those frozen named tests; no test execution claimed.",
+      "requested_resolution": "Primary allocate an isolated narrow fix for bounded nonblocking one-FD regular-file snapshots and safe errors for both consumers. A supervised finite child regression for FIFO must have an outside kill deadline/process cleanup and an actual exact-head CI or fresh lead grant before local execution. Do not launch a FIFO probe in this reviewer process.",
+      "claim_limits": [
+        "Static source finding only, no runtime reproduction or fresh API.",
+        "Historical355/356 reviewed scopes and delivered trees remain closed and receipts unchanged.",
+        "No author/product edits or jobs performed."
+      ]
+    },
+    {
+      "id": "CC-EXECUTION-EMPTY-FEE-SCHEDULE",
+      "severity": "P2",
+      "title": "A date-only fee schedule silently reports zero commission",
+      "evidence": [
+        {
+          "path": "mcp-execution/src/check-orders.mjs",
+          "line": 69,
+          "sha256": "fce446be5b9124e2d80fe0caefa75858f8262aa6551dd10ce57e9fa333f77db3",
+          "description": "fees.as_of is required; all five monetary schedule fields are optional. Date/source metadata alone passes the input shape."
+        },
+        {
+          "path": "mcp-execution/src/core/js/exec-cost-core.js",
+          "line": 118,
+          "sha256": "c789a1889931cd6719b37d343ed1a3378b860ed804203df62bf92e47c6f017c9",
+          "description": "commissionUsd returns null only if the whole fees value is absent. Otherwise usd starts at0 and only provided monetary fields change it; date-only object returns0."
+        },
+        {
+          "path": "mcp-execution/src/core/js/pretrade-core.js",
+          "line": 158,
+          "sha256": "c071f407ab129882089937f226112a6166223cba2f4d42c0d90599d60a164e45",
+          "description": "Only null commission emits not_modelled. Numeric0 becomes commission_bps0 and participates in the partial total."
+        },
+        {
+          "path": "mcp-execution/src/check-orders.mjs",
+          "line": 143,
+          "sha256": "fce446be5b9124e2d80fe0caefa75858f8262aa6551dd10ce57e9fa333f77db3",
+          "description": "Description promises missing inputs are not modelled and never assumed; a date is not a commission amount."
+        }
+      ],
+      "static_counterexample": {
+        "tool": "check_orders",
+        "arguments": {
+          "asset_class": "us_equity",
+          "orders": [
+            {
+              "symbol": "TEST",
+              "side": "buy",
+              "qty": 1
+            }
+          ],
+          "market": {
+            "TEST": {
+              "price": 100,
+              "bid": 99,
+              "ask": 101,
+              "adv_usd": 100000000,
+              "daily_vol": 0.01
+            }
+          },
+          "fees": {
+            "as_of": "2026-10-01"
+          },
+          "as_of": "2026-10-01T00:00:00.000Z"
+        },
+        "source_predicted_result": "commission_bps=0, no commission not_modelled disclosure. Other missing-account checks remain their documented skipped checks; this example does not assume complete financial coverage.",
+        "executed": false
+      },
+      "requested_resolution": "Refuse an empty monetary schedule or preserve commission as null/not_modelled until a monetary schedule field is explicitly supplied. Explicit commission_bps:0 remains a supplied zero. Preserve the existing intended case where an explicitly supplied sell-only charge costs0 on buys; do not require every optional fee field or silently fill unknowns. Add date-only versus explicitly-zero controls at the shared local/hosted contract boundary.",
+      "test_source_gap": "Existing named commission test covers absent schedule, nonzero rates, minimums and explicit sell-only charges. Existing MCP fee test covers stale/source-less numeric schedules and complete omission, without a date-only negative control.",
+      "scope_limits": [
+        "Source semantics only; no module import/recompute/Node/runtime or measured financial result.",
+        "No actual live hosted request; hosted source reuses this input/core.",
+        "Historical source deliveries/receipts unchanged; primary may adjudicate in an isolated correction scope."
+      ]
+    }
+  ],
+  "no_historical_reclassification": "343/353/355/356 delivered source phases and original P2/run/error hashes remain unchanged. New release P2s do not rewrite earlier scope-limited approvals.",
+  "current_surfaces_static_not_wire_measurements": {
+    "default_local": {
+      "toolsets": [
+        "plan",
+        "journal"
+      ],
+      "tools": [
+        "size_position",
+        "check_orders",
+        "measure_shortfall",
+        "journal"
+      ],
+      "journal_actions": [
+        "head",
+        "verify",
+        "export"
+      ],
+      "write_flag": "absent/empty/0",
+      "instructions": "SERVER_INSTRUCTIONS only",
+      "list_tokens": null,
+      "instruction_tokens": null
+    },
+    "opt_in_local": {
+      "tools": [
+        "size_position",
+        "check_orders",
+        "measure_shortfall",
+        "journal"
+      ],
+      "journal_actions": [
+        "head",
+        "verify",
+        "export",
+        "initialize",
+        "append"
+      ],
+      "write_flag": "exact1 only; other values refuse startup",
+      "schema": "JOURNAL_WRITABLE_JSON oneOf original read/export branch plus two strict write branches",
+      "output": "read/export loose schema plus optional receipt/error members",
+      "instructions": "SERVER_INSTRUCTIONS + JOURNAL_WRITE_INSTRUCTIONS",
+      "list_tokens": null,
+      "instruction_tokens": null
+    },
+    "reduced_toolsets": {
+      "plan": [
+        "size_position",
+        "check_orders",
+        "measure_shortfall"
+      ],
+      "journal": [
+        "journal"
+      ],
+      "note": "Toolset selection is routing/context reduction, not a filesystem permission boundary."
+    },
+    "resources": {
+      "always_registered": [
+        "execution://journal/head",
+        "execution://limits"
+      ],
+      "disclosed": "journal path/head/key fingerprint/self-reported times and limits path/mtime/effective values/digest/KILL status",
+      "verified_head": false,
+      "tokens_if_read": null
+    },
+    "hosted_source_only": {
+      "tools": [
+        "check_orders"
+      ],
+      "account_input": "refused",
+      "journal_or_broker_reachable": false,
+      "graph": {
+        "local_modules": {
+          "mcp-execution/src/hosted.mjs": [
+            "mcp-execution/src/check-orders.mjs",
+            "mcp-execution/src/info.mjs"
+          ],
+          "mcp-execution/src/info.mjs": [],
+          "mcp-execution/src/check-orders.mjs": [
+            "mcp-execution/src/core/js/pretrade-core.js",
+            "mcp-execution/src/core/js/exec-cost-core.js",
+            "mcp-execution/src/core/scripts/canonical-json.mjs"
+          ],
+          "mcp-execution/src/core/scripts/canonical-json.mjs": [],
+          "mcp-execution/src/core/js/exec-cost-core.js": [],
+          "mcp-execution/src/core/js/pretrade-core.js": [
+            "mcp-execution/src/core/js/exec-cost-core.js"
+          ]
+        },
+        "external_modules": [
+          "node:crypto",
+          "node:fs",
+          "zod"
+        ],
+        "journal_reachable": false,
+        "node_fs_only_known_use": "info.mjs reads package.json through a fixed module-relative URL"
+      },
+      "deployed_or_registered": "not established by this audit",
+      "list_tokens": null
+    },
+    "annotations": "Planning tools readOnly/idempotent; journal conservatively readOnly=false/idempotent=false even default, because export may create a new private file. Writes remain explicit startup opt-in.",
+    "output_limits": "Open output schemas are compatibility surfaces, not proof that all required application receipt/check fields exist. Workflow must validate semantic required fields itself."
+  },
+  "workflow_privacy_limits_review": [
+    {
+      "area": "pretrade limits",
+      "evidence": [
+        "server.mjs57-91",
+        "pretrade-core.js41-57,79-92,107-154"
+      ],
+      "observed": "Numeric caps tighten via min, allowlists intersect and required flags OR. Absent limits file is permitted. Accepted rows can coexist with checks_skipped for missing account, ADV, market state or prior daily volume.",
+      "gap": "An accepted planning row is not complete guard coverage or execution permission. Future scenario needs its explicit policy/inputs and must stop on required skipped checks; the native reader P2 remains open."
+    },
+    {
+      "area": "sizing and costs",
+      "evidence": [
+        "size-position.mjs72-94",
+        "sizing-core.js108-191",
+        "exec-cost-core.js118-130"
+      ],
+      "observed": "Sizing uses caller budgets and a required position cap; gross/net require book, ADV cap needs ADV, drawdown policy can require state. No timed ladder rearm. Cost bands and partial totals remain models, not quotes.",
+      "gap": "Caller fills/prices/fees/market/as_of are declarations. No broker/calendar quote derivation or independent current-cost completeness. Date-only fee schedule P2 breaks unknown commission disclosure."
+    },
+    {
+      "area": "shortfall",
+      "evidence": [
+        "measure-shortfall.mjs10-27,46-89",
+        "shortfall-core.js65-134"
+      ],
+      "observed": "USD supplied fills, explicit fee absence null, 30% movement exclusions, unfilled horizons, duplicate/overfill/time refusal, bounded detail/exclusion lists. Up to10000 orders/5000 fills per order, core aggregate cap50000 fills and bootstrap cap5000000 sampled observations.",
+      "gap": "Single-FD raw hash binds captured bytes, not source authenticity. The file byte cap occurs after blocking open. No universal input-wire/memory/latency guarantee follows from element caps."
+    },
+    {
+      "area": "journal integrity and account export",
+      "evidence": [
+        "trade-journal-core.js71-95,127-199",
+        "trade-journal-export-core.js87-219",
+        "standards/trade-journal/EXPORT.md"
+      ],
+      "observed": "Integrity is chain/signature/key-holder order, not truthful checks/trusted time/fills. Generic config/decision/check records do not enforce a pretrade state machine. Account exports require signed opening cash/positions, matching prior orders, unique fills/explicit fees/full marks and resolved reconciliation. All bytes verified; selected prefix finances only.",
+      "gap": "Future example must construct the account profile, valid later marks and exact expected heads; a valid generic genesis or unverified head is insufficient. Trial counting, real forward evidence, full costs/intraperiod risk/source truth remain unknown."
+    },
+    {
+      "area": "writer privacy/retry/no acknowledgement",
+      "evidence": [
+        "journal-write.mjs44-105",
+        "journal-store.mjs48-128,189-322"
+      ],
+      "observed": "Existing absolute POSIX0700 home, fixed owned non-symlink0600 Ed25519 key<=16KiB; capture buffer cleared. Strict write args exclude alternate paths/keys. Payload aggregate canonical<=64KiB, final line<=64KiB, journal<=8MiB. Full chain/key verified; exact original operation/request/expected head replay returns original prefix after later entries. Partial/fsync/close errors no success; retained locks/manual recovery.",
+      "gap": "No directory-anchored atomic protection against same-user swaps entirely between checks; a post-persistence home swap can leave a complete foreign file and typed uncertainty. KeyObjects/OS memory are not globally zeroized by Buffer.fill. JS cancellation does not preempt synchronous fsync. Software checks do not certify hardware/power-loss safety."
+    },
+    {
+      "area": "read/export privacy and bounds",
+      "evidence": [
+        "journal-files.js5-27",
+        "journal.mjs87-131",
+        "journal-export-file.mjs15-52"
+      ],
+      "observed": "Journal reader<=256MiB; export<=100000 entries/64MiB, inline<=16KiB. Large exports create exclusive private files; partial files can remain, no replaced-path unlink. Read responses expose source path and chosen export can disclose proprietary observations; signing is self-attestation and publish_url only metadata.",
+      "gap": "Writer8MiB and reader256MiB are different scopes; byte caps are not measured peak-memory/latency caps. Toolsets do not hide unconditional resources. Disclosure is local-client access, not server-upload proof. No export fsync/power-loss promise."
+    },
+    {
+      "area": "test evidence precision",
+      "evidence": [
+        "test/journal-write.test.mjs",
+        "test/journal-store.test.mjs",
+        "test/shortfall.test.mjs",
+        "test/tools.test.mjs",
+        "test/packaging.test.mjs",
+        ".github/workflows/ci.yml75-97"
+      ],
+      "observed": "Written controls cover default opt-in/privacy, original retries, busy locks, swaps/close noack, synthetic export/stdio; packaging checks10 mirrors/2 pinned dependencies/no hooks/no broker host. Previously reviewed actual35514 inside83 is retained, not a new3658 run.",
+      "gap": "Existing focused negative controls do not cover either new P2. Character-size tests are not tokenizer measurements, and field/schema shape tests do not prove complete semantic workflow or broker safety."
+    }
+  ],
+  "release_gate_matrix": [
+    {
+      "gate": "Current static correctness/admission",
+      "status": "HOLD_TWO_P2",
+      "remaining": [
+        "CC-EXECUTION-LOCAL-FILE-ADMISSION",
+        "CC-EXECUTION-EMPTY-FEE-SCHEDULE"
+      ]
+    },
+    {
+      "gate": "Paper workflow example",
+      "status": "ASSIGNED_TO_SECONDARY_NOT_YET_REVIEWED",
+      "remaining": "Six-path frozen signed source, finite actual-stdio and meaningful negative controls, exact-head CI and peer source gate."
+    },
+    {
+      "gate": "Planned paper broker tools/state/reconciliation",
+      "status": "NOT_IMPLEMENTED_AT_THIS_HEAD",
+      "remaining": "place_order/cancel_order/broker_state, mandatory fresh checks/KILL per submit, parameter-bound broker idempotency, before-submit journal, ORPHAN recovery and exact venue/host boundary. The example is not these tools."
+    },
+    {
+      "gate": "Ground truth/mutation/recompute",
+      "status": "PARTIAL_HISTORICAL_EVIDENCE_CURRENT_ACCEPTANCE_STILL_OPEN",
+      "remaining": "Historical core fixtures/Python references retain exact scope; no new peer recomputation. Current financial oracle does not independently cover Sharpe/MinTRL/annual compounding or broker authenticity. Full design4.1/4.2 bars not inferred from software CI."
+    },
+    {
+      "gate": "Default/opt-in/reduced/hosted token budget",
+      "status": "OPEN_CURRENT_COUNTS_NULL",
+      "remaining": "Pin actual wire source+flags+tokenizer and consolidate version-specific budget. Planned local seven-tool1700, journal150/shortfall220 targets are not fulfilled by old four-tool counts."
+    },
+    {
+      "gate": "Latency and synchronous cancellation",
+      "status": "OPEN_CURRENT_LATENCY_NULL",
+      "remaining": "Reference100-order<=20ms and append-with-fsync p99<=20ms measurements, startup/roundtrip/cleanup and controlled workload. Old export/shortfall samples are not append or universal hosted/market latency."
+    },
+    {
+      "gate": "Privacy/threat/supply-chain release docs",
+      "status": "PARTIAL_REPOSITORY_DOCS_RELEASE_WORK_OPEN",
+      "remaining": "README first40-line same-user threat paragraph, release-ready CONTRIBUTING/security/packaged-link inventory, no future broker-secret/log/host promise before implementation and adversarial tests."
+    },
+    {
+      "gate": "Public execution delivery mechanics",
+      "status": "PRIVATE_UNRELEASED_NO_PUBLISH_THIS_PHASE",
+      "remaining": "Current package.private=true/version0.1.0; no tracked execution publisher/registry descriptor/bundle/released snapshot/API route. Registry/Trusted Publisher/account availability not queried. Primary substantial-release integration only after real gates."
+    },
+    {
+      "gate": "Owner-reserved future controls",
+      "status": "HELD_NOT_ALLOCATED_BY_AUDIT",
+      "remaining": "Real model/provider budget, paper broker account/entity, source rights/availability, experts, anchor/auth, live legal/capital decisions. Existing broad publication authorization does not certify these outcomes or authorize orders."
+    }
+  ],
+  "release_inventory": {
+    "checked_exact_paths": {
+      "mcp-execution/CONTRIBUTING.md": false,
+      "mcp-execution/server.json": false,
+      "mcp-execution/glama.json": false,
+      "mcp-execution/EXAMPLES.md": false,
+      "mcp-execution/examples/paper-journal.mjs": false,
+      "api/mcp-execution.js": false,
+      "mcp-released/execution/package.json": false,
+      ".github/workflows/mcp-execution-publish.yml": false
+    },
+    "scope": "Frozen tracked source inventory only; no registry/npm/live hosted/auth probe.",
+    "hosted_pins": "config/mcp-hosted-releases.json lists validation/research/fundamentals only.",
+    "package_files": [
+      "src",
+      "README.md",
+      "JOURNAL_STORAGE.md"
+    ],
+    "future_packaging_gap": "SECURITY/CONTRIBUTING/CHANGELOG/EXAMPLES and example dependency/doc links require an actual release-tarball inventory. No npm pack or install was performed."
+  },
+  "historical_measurements": {
+    "original_shortfall_tool_list": {
+      "receipt": "artifacts/goal/mcp-tool-tokens-20261001.json",
+      "row": {
+        "server": "execution",
+        "version": "0.1.0",
+        "tools": 4,
+        "chars": 6806,
+        "o200k_base": 1636,
+        "cl100k_base": 1571
+      },
+      "shape": "A/name-description-inputSchema only",
+      "source_label": "working",
+      "full_wire_source_hashes_in_receipt": false
+    },
+    "original_journal_export_tool_list": {
+      "receipt": "artifacts/mcp/journal-tool-tokens-20261001.json",
+      "row": {
+        "server": "execution",
+        "version": "0.1.0",
+        "tools": 4,
+        "chars": 7013,
+        "o200k_base": 1691,
+        "cl100k_base": 1621
+      },
+      "shape": "A/name-description-inputSchema only",
+      "source_label": "working",
+      "full_wire_source_hashes_in_receipt": false
+    },
+    "journal_target_and_partial_source_checkpoint": {
+      "receipt": "artifacts/mcp/journal-accounting-20261001.json",
+      "release_gates": {
+        "journal_original_o200k_target": 150,
+        "journal_measured_o200k": 163,
+        "seven_tool_original_o200k_target": 1700,
+        "four_tools_measured_o200k": 1691,
+        "seven_tool_list_complete": false,
+        "qualified_trading_release": false,
+        "version_bump": false,
+        "npm_publication": false,
+        "broker_requests": 0,
+        "expert_gold_created": 0,
+        "fresh_indexing_measured": false
+      },
+      "source_differences": [
+        {
+          "path": "js/trade-journal-export-core.js",
+          "historical_sha256": "6ae1e0f1b03462e7aa364ec624e2eaaf0c6463c46857b11c0749594fea411635",
+          "delivered_sha256": "d1ed1eacd557145dc70ea87f3326be0666fdcbce43f714d55f69e44904beabb1",
+          "status": "CHANGED_SINCE_HISTORICAL_SOURCE"
+        },
+        {
+          "path": "js/journal-files.js",
+          "historical_sha256": "52a67922101613665b343c38c3f3133c50c496a0f90086ef31910b22c1e0646d",
+          "delivered_sha256": "52a67922101613665b343c38c3f3133c50c496a0f90086ef31910b22c1e0646d",
+          "status": "EQUAL_SOURCE_ONLY"
+        },
+        {
+          "path": "scripts/research/trade-journal/export-corpus.mjs",
+          "historical_sha256": "da15414626247ffc59199e5db7b279f3a052a40d877fb4221352bf79eeebed9a",
+          "delivered_sha256": "da15414626247ffc59199e5db7b279f3a052a40d877fb4221352bf79eeebed9a",
+          "status": "EQUAL_SOURCE_ONLY"
+        },
+        {
+          "path": "scripts/research/trade-journal/recompute_export.py",
+          "historical_sha256": "b7635808d0deaba21f157ac497fc8d466c89c83d5d60ab1a950996cd6a217ed0",
+          "delivered_sha256": "b7635808d0deaba21f157ac497fc8d466c89c83d5d60ab1a950996cd6a217ed0",
+          "status": "EQUAL_SOURCE_ONLY"
+        },
+        {
+          "path": "scripts/research/trade-journal/verify_journal.py",
+          "historical_sha256": "15dd7edaebbfc675868e6360811bc9142ca958901471f0792f76c2beb59e2ce1",
+          "delivered_sha256": "15dd7edaebbfc675868e6360811bc9142ca958901471f0792f76c2beb59e2ce1",
+          "status": "EQUAL_SOURCE_ONLY"
+        },
+        {
+          "path": "mcp-execution/test/fixtures/journal-export-python.json.gz",
+          "historical_sha256": "c2b545e00c9e7b0dad3ed03074940696913c5d6beeb3b84b338c5abf5b6309d2",
+          "delivered_sha256": "c2b545e00c9e7b0dad3ed03074940696913c5d6beeb3b84b338c5abf5b6309d2",
+          "status": "EQUAL_SOURCE_ONLY"
+        },
+        {
+          "path": "standards/trade-journal/EXPORT.md",
+          "historical_sha256": "039a78dfda6087e672766c35785184344734fe8a5f526d24113be5e533bc8cac",
+          "delivered_sha256": "5646c3fe37f3153de156e8834f5758ea52b3d40857355e02f504ac4840d269e3",
+          "status": "CHANGED_SINCE_HISTORICAL_SOURCE"
+        }
+      ],
+      "limits": [
+        "Python oracle compares cash, fees, interval returns, turnover, drawdown, selected hashes/ranges and frequencies; it does not independently recompute Sharpe/MinTRL or annualised compounding.",
+        "All generic historical journal vectors, dataset bytes and website generated outputs preserved.",
+        "Source signatures are self-attestation; trial ledger, authentic broker fills, trusted time, full costs and outside review remain unproven.",
+        "Full four-pillar owner goal remains active."
+      ]
+    },
+    "shortfall_stdio": {
+      "receipt": "artifacts/goal/shortfall-local-benchmark-20261001.json",
+      "checked_at": "2026-10-01T05:28:38.414377+00:00",
+      "environment": {
+        "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+        "node": "v24.19.0",
+        "python": "3.14.5",
+        "load_average_at_start": [
+          14.46533203125,
+          13.7783203125,
+          12.966796875
+        ]
+      },
+      "scope": "local stdio tools/call, warm process, aggregate-only results, synthetic USD orders",
+      "cases": [
+        {
+          "orders": 100,
+          "input_mode": "inline",
+          "bootstrap": null,
+          "warmups": 3,
+          "runs": 30,
+          "latency_ms": {
+            "min": 0.603417,
+            "median": 0.783562,
+            "p95": 1.4054876499999998,
+            "max": 2.375292
+          },
+          "input_bytes": 23401,
+          "output_text_bytes": 1212,
+          "output_result_bytes": 2572,
+          "tokens": {
+            "o200k_base": {
+              "input": 9622,
+              "output_text": 321,
+              "output_result": 671
+            },
+            "cl100k_base": {
+              "input": 9521,
+              "output_text": 317,
+              "output_result": 670
+            }
+          },
+          "output_sha256": "e1e8c8924ffe951ab587e2ef6912ac71e25220b3e7df79680d664b8e4b1b2bdf"
+        },
+        {
+          "orders": 1000,
+          "input_mode": "inline",
+          "bootstrap": null,
+          "warmups": 3,
+          "runs": 30,
+          "latency_ms": {
+            "min": 3.422875,
+            "median": 3.9990835000000002,
+            "p95": 5.4473046499999995,
+            "max": 5.53525
+          },
+          "input_bytes": 234741,
+          "output_text_bytes": 1219,
+          "output_result_bytes": 2586,
+          "tokens": {
+            "o200k_base": {
+              "input": 96154,
+              "output_text": 325,
+              "output_result": 679
+            },
+            "cl100k_base": {
+              "input": 95153,
+              "output_text": 322,
+              "output_result": 679
+            }
+          },
+          "output_sha256": "e637b6a4b90e56a2358691f3d1d8834ade3e637f545825155b9ea56bccb85921"
+        },
+        {
+          "orders": 100,
+          "input_mode": "inline",
+          "bootstrap": {
+            "block_length": 5,
+            "resamples": 199
+          },
+          "warmups": 3,
+          "runs": 10,
+          "latency_ms": {
+            "min": 1.846458,
+            "median": 5.032375500000001,
+            "p95": 9.86371495,
+            "max": 9.878209
+          },
+          "input_bytes": 23464,
+          "output_text_bytes": 1425,
+          "output_result_bytes": 3020,
+          "tokens": {
+            "o200k_base": {
+              "input": 9640,
+              "output_text": 390,
+              "output_result": 810
+            },
+            "cl100k_base": {
+              "input": 9539,
+              "output_text": 383,
+              "output_result": 805
+            }
+          },
+          "output_sha256": "55fc6df1882625055b1931d04799c0b00abdc69b62607d27c1f8506bce984916"
+        },
+        {
+          "orders": 1000,
+          "input_mode": "inline",
+          "bootstrap": {
+            "block_length": 5,
+            "resamples": 199
+          },
+          "warmups": 3,
+          "runs": 10,
+          "latency_ms": {
+            "min": 17.475,
+            "median": 26.6097915,
+            "p95": 31.79905815,
+            "max": 32.354958
+          },
+          "input_bytes": 234804,
+          "output_text_bytes": 1436,
+          "output_result_bytes": 3042,
+          "tokens": {
+            "o200k_base": {
+              "input": 96172,
+              "output_text": 396,
+              "output_result": 822
+            },
+            "cl100k_base": {
+              "input": 95171,
+              "output_text": 390,
+              "output_result": 818
+            }
+          },
+          "output_sha256": "e1a6c7706cfee137999730574341fb00ab3c85aa785d12b2a6824444c6d06b0d"
+        },
+        {
+          "orders": 1000,
+          "input_mode": "local_file",
+          "bootstrap": null,
+          "warmups": 3,
+          "runs": 30,
+          "latency_ms": {
+            "min": 2.406958,
+            "median": 3.3090625,
+            "p95": 3.6542582999999995,
+            "max": 4.064375
+          },
+          "input_bytes": 146,
+          "output_text_bytes": 1314,
+          "output_result_bytes": 2782,
+          "tokens": {
+            "o200k_base": {
+              "input": 58,
+              "output_text": 370,
+              "output_result": 769
+            },
+            "cl100k_base": {
+              "input": 58,
+              "output_text": 366,
+              "output_result": 767
+            }
+          },
+          "output_sha256": "e76162de43d851b3d693a6fd2d41414dbde1d4a73ad8b05eb53f5f6048757c5f"
+        },
+        {
+          "orders": 1000,
+          "input_mode": "local_file",
+          "bootstrap": {
+            "block_length": 5,
+            "resamples": 199
+          },
+          "warmups": 3,
+          "runs": 10,
+          "latency_ms": {
+            "min": 20.895875,
+            "median": 24.6685625,
+            "p95": 25.76695785,
+            "max": 26.113083
+          },
+          "input_bytes": 208,
+          "output_text_bytes": 1531,
+          "output_result_bytes": 3238,
+          "tokens": {
+            "o200k_base": {
+              "input": 76,
+              "output_text": 441,
+              "output_result": 912
+            },
+            "cl100k_base": {
+              "input": 76,
+              "output_text": 434,
+              "output_result": 906
+            }
+          },
+          "output_sha256": "ebddf52d88ea1c5bafefd51cb7f6cd75ded236c23a475eabb0fb991c53253a3f"
+        }
+      ],
+      "partial_source_bindings": [
+        {
+          "path": "js/shortfall-core.js",
+          "historical_sha256": "0be616f9be0a51d357dbe799cdbf810da67c826c4501a6f0bcdf258a035f49e0",
+          "delivered_sha256": "0be616f9be0a51d357dbe799cdbf810da67c826c4501a6f0bcdf258a035f49e0",
+          "status": "EQUAL_SOURCE_ONLY"
+        },
+        {
+          "path": "mcp-execution/src/measure-shortfall.mjs",
+          "historical_sha256": "1f866d6c2850b9d4e217bef44632f2ba3221c08318feaa1f223068dcef14b3e7",
+          "delivered_sha256": "1f866d6c2850b9d4e217bef44632f2ba3221c08318feaa1f223068dcef14b3e7",
+          "status": "EQUAL_SOURCE_ONLY"
+        },
+        {
+          "path": "scripts/bench/execution-shortfall.py",
+          "historical_sha256": "66dcb8639c46626160035564918dcabbd1e475a57dc7aafbc8b44a0ee95cd761",
+          "delivered_sha256": "66dcb8639c46626160035564918dcabbd1e475a57dc7aafbc8b44a0ee95cd761",
+          "status": "EQUAL_SOURCE_ONLY"
+        }
+      ],
+      "limits": [
+        "Single machine; not hosted/network latency or an external comparative benchmark.",
+        "The input payload necessarily scales with supplied fills; tool-list and aggregate output are bounded separately.",
+        "Token counts use explicit o200k_base/cl100k_base encodings, not a universal model billing guarantee. output_result includes both text and structured content."
+      ]
+    },
+    "journal_export_post_fix_stdio": {
+      "receipt": "artifacts/mcp/journal-stdio-peer-fix-20261001.json",
+      "historical_value": {
+        "schema": "canli.journal-export-benchmark.v1",
+        "measured_at": "2026-10-01T11:00:49.412Z",
+        "scope": "synthetic 350-mark local stdio; 5 warmups + 20 measured runs; no broker/model API or paid workload",
+        "node": "v24.19.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "cpu": "Apple M5 Pro",
+        "observation_count": 350,
+        "journal_bytes": 108512,
+        "journal_sha256": "sha256:7e7ff731f18c4d43144652a88b7d47f5fc7c5dfa441d78ce05714ac057dd7e12",
+        "export": {
+          "runs": 20,
+          "median_ms": 17.59537499999999,
+          "p95_ms": 18.24412499999994,
+          "artifact_bytes": 31923,
+          "summary_bytes": 1478
+        },
+        "validation": {
+          "runs": 20,
+          "median_ms": 17.54775000000018,
+          "p95_ms": 18.505457999999976,
+          "response_bytes": 1909,
+          "source_bound": true,
+          "stored_receipt": false
+        },
+        "python_reference_sha256": "sha256:c2b545e00c9e7b0dad3ed03074940696913c5d6beeb3b84b338c5abf5b6309d2",
+        "measurement_context": "Post-fix local checks finished; other system activity uncontrolled. Synthetic single-machine sample, not broker latency or a cross-run improvement claim.",
+        "source_sha256": {
+          "js/trade-journal-export-core.js": "d1ed1eacd557145dc70ea87f3326be0666fdcbce43f714d55f69e44904beabb1",
+          "mcp-execution/src/journal-export-file.mjs": "71c49225e7e26c7f9e0368f20a731a2dcb0ceaf87818e9e386b1ed0b998ce834",
+          "mcp-execution/scripts/bench-journal.mjs": "539b44d57c7d6cba1fc842e6102c7f7affbbcf03aeef1158a8523847d5783e94"
+        }
+      },
+      "three_listed_source_hashes_equal_delivered": true,
+      "not_append_benchmark": true
+    },
+    "preserved_prior_variants": [
+      "artifacts/mcp/journal-stdio-20261001.json",
+      "artifacts/mcp/journal-stdio-concurrent-20261001.json"
+    ],
+    "measurement_helper_gaps": [
+      "mcp-tool-tokens.py35 inherits CANLI_EXEC_JOURNAL_WRITE, does not pin/record it, counts all toolsets only, and emits no source/probe/tokenizer-version/environment binding.",
+      "mcp-tool-tokens.py29-51 has no startup/read deadline, iteration/buffer cap or acknowledged process cleanup after kill; cannot be launched as the bounded future harness unchanged.",
+      "Shape A omits output schemas/annotations/server instructions/resources and model bill/cache behavior; do not substitute it for complete context or a provider invoice.",
+      "Historic per-tool697/654 is a dated design statement; character guards2800/2650 do not newly prove700/660 token limits.",
+      "Design initial local1400 was explicitly amended1700. Original hosted600/two-tools table is not reconciled with amended single check660/safe one-tool hosted source; freeze a consistent release surface/budget before comparing."
+    ],
+    "interpretation": "Historical observations and tokenizer units stay unchanged. Partial source equality is not a new head measurement, universal ranking, provider bill or cross-run improvement."
+  },
+  "current_measurements": {
+    "default_list_tokens": null,
+    "opt_in_list_tokens": null,
+    "reduced_list_tokens": null,
+    "hosted_list_tokens": null,
+    "instructions_tokens": null,
+    "response_tokens": null,
+    "startup_latency_ms": null,
+    "check_orders_latency_ms": null,
+    "append_p99_ms": null,
+    "export_latency_ms": null,
+    "peak_memory_bytes": null,
+    "provider_cost": null
+  },
+  "bounded_future_measurement_plan": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-release-static-3658/bounded-measurement-plan.json",
+    "bytes": 6655,
+    "sha256": "905b2dbfdf3eafe62042b7f831ecf266cb0b930053e9d90ec6830a752c09b16c"
+  },
+  "semantic_scope_limits": [
+    "Read-only source arithmetic/control-flow assessment and own stdlib Git/hash/JSON metadata. No reproduction, project imports/Node/test/CLI/browser/network/API/auth/export/helper/CPUjob or broker/model/provider interaction.",
+    "No secret files/credentials/key contents accessed. Public synthetic test code/fixtures were inspected/pinned as data, never executed.",
+    "No author worktree/product/source/archive edits; own coordination files and authorized append-only global continuity are the only writes.",
+    "No claim of full repository working-byte rehash, OS/hardware persistence, live hosted behavior, package publication, real model quality, human expert labels, independent outside review or strategy qualification.",
+    "Static finding at frozen head is retained even if primary later corrects it; closure needs exact new-source evidence and independent extension."
+  ],
+  "next_actions": [
+    "PRIMARY adjudicate/correct both concrete P2s in a separate isolated scope, preserve baseline receipts and obtain actual exact-head CI; no old job/lease reuse.",
+    "SECONDARY freeze the six-path supplied-synthetic paper example; THIRD then review actual signed head/limits/source, not this design prospectively.",
+    "PRIMARY consolidate substantial release contracts/packaging/docs/discoverability. Any future measurement needs fresh usable lead authorization and concrete reviewed harness."
+  ],
+  "full_owner_goal": {
+    "status": "ACTIVE_NOT_ACHIEVED",
+    "pillars": [
+      "Differentiated measured token/latency-efficient financial MCP/API fabric",
+      "Governed multiasset ALPHAC net forward Sharpe>2, >=14 qualified distinct sleeves and realized drawdown<=10% with real costs/failure history",
+      "Rights-cleared financial refinery with two independent vetted human experts/agreement/adjudication",
+      "Paper execution then legally governed entity/licensing/prime-broker real capital"
+    ],
+    "additional_outcomes": [
+      "10M ACTUALLY indexed useful distinct source-backed canonicals",
+      "Quality/SEO/relevant keywords/intents/design/graph analyzers/research",
+      "Legitimate API/MCP/repository adoption, prior-art/novelty/reproduction/external review"
+    ],
+    "fresh_google_indexed": null,
+    "fresh_bing_indexed": null,
+    "indexing_gaps_retained": 7,
+    "new_model_provider_calls": 0,
+    "new_paid_spend": 0,
+    "new_expert_labels": 0,
+    "broker_orders": 0,
+    "new_site_npm_version_publication": false
+  }
+}

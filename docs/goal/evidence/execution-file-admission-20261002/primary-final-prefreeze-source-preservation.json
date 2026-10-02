@@ -1,0 +1,64 @@
+{
+  "schema": "canli.execution-file-admission.final-prefreeze.v1",
+  "observed_at": "2026-10-02T01:01:59.952768+00:00",
+  "actual_main": "3658d0b60f5b06144b267b0cddc8fde81e6af6d8",
+  "implementation": "cf907f46e6ede3edc39fb854c75d61d9f1e3060a",
+  "six_frozen_source_test_security_files": {
+    "mcp-execution/src/local-input.mjs": {
+      "bytes": 1853,
+      "sha256": "fafeb03647cd04897fb03cf637186a91c91c9da1186414fd167bcfe9d12ad825"
+    },
+    "mcp-execution/src/server.mjs": {
+      "bytes": 10662,
+      "sha256": "4cd48c1dc40098ac049f45f3951322e3b63118605c36330c6d4874b25951c5bd"
+    },
+    "mcp-execution/src/check-orders.mjs": {
+      "bytes": 14332,
+      "sha256": "ec2e0e50e04e413fff7047b17b5d8273591e66ae5ef63ef9ec2653188f07da21"
+    },
+    "mcp-execution/src/measure-shortfall.mjs": {
+      "bytes": 6666,
+      "sha256": "74cc85b67a4c0b7a685e81979097c345f1b21fc41c2755b2a65a0303626dc9a2"
+    },
+    "mcp-execution/test/local-input.test.mjs": {
+      "bytes": 12182,
+      "sha256": "c568db60f7e86a0f19ca189b48b247a0ec4d16dd9dea2080e192f19ce2f1a37e"
+    },
+    "mcp-execution/SECURITY.md": {
+      "bytes": 5889,
+      "sha256": "18c237f7d99738b144c615f4d8550b757efec73a1966abb2548392ec1ab311e0"
+    }
+  },
+  "protected_git_identities": {
+    "count": 5831,
+    "bytes": 380878942,
+    "mode_type_blob_size_equal": true,
+    "working_whole_byte_audit": false
+  },
+  "goal_history_prefixes": {
+    "docs/goal/STATUS.md": {
+      "main_original_bytes": 87008,
+      "main_original_sha256": "64b1ede55435e42ca0b0309fd0f581e78fa9ea9948846dc6ab9d56169e584afc",
+      "implementation_bytes": 90552,
+      "implementation_sha256": "08694ee299a63bbabcfc0ac30ca2d5742cd12f6cec29b3a631ccf10d352872ca",
+      "final_bytes": 91876,
+      "final_sha256": "fd3ae43752f5905eb034100f1634af287f7ba99c31751e68617f3aa3c04fad13",
+      "original_and_implementation_prefixes_exact": true
+    },
+    "docs/goal/LOG.md": {
+      "main_original_bytes": 362372,
+      "main_original_sha256": "b409fc86a6f545455fe531f5e38b618d7f8a62311b3396287df6680fac2da27d",
+      "implementation_bytes": 365916,
+      "implementation_sha256": "3a8e914f5aa1928a84701593f4660c3a39a17a9fa16fd8a5e205228a9cccb3c3",
+      "final_bytes": 367240,
+      "final_sha256": "6c3a8546134f035c7db5bed66111c8682a21f102d7dd7288bb3f8aba06e496ff",
+      "original_and_implementation_prefixes_exact": true
+    }
+  },
+  "changelog_change": "only pinned actual CI, original failures and explicit limitations",
+  "source_peer_sha256": "e099db9cd88691ce9c549cbeb1124989b577af4bd3a43bc49b86deb2515dc4a8",
+  "retained_ci_peer_sha256": "f584e11107740764258e4ce6f26acf15a4f9cbf69a1db0ed58b19ca6dbb382c2",
+  "local_project_execution": false,
+  "final_current_ci_and_source_archive_extension": "pending separate final commit evidence",
+  "full_owner_objectives_preserved": true
+}

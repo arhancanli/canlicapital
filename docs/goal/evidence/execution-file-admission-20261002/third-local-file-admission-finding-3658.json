@@ -1,0 +1,59 @@
+{
+  "schema": "canli.execution-release-static.finding.v1",
+  "observed_at": "2026-10-01T23:38:57.375356+00:00",
+  "source_head": "3658d0b60f5b06144b267b0cddc8fde81e6af6d8",
+  "source_tree": "d6bb4c7a2820b29f0a7500a231b957760b17a99e",
+  "status": "OPEN_STATIC_RELEASE_P2",
+  "findings": [
+    {
+      "id": "CC-EXECUTION-LOCAL-FILE-ADMISSION",
+      "severity": "P2",
+      "scope": "current local planning tools; availability and finite release/job bounds; no order submission",
+      "title": "Shortfall and limits-file reads can block before non-regular file refusal",
+      "evidence": [
+        {
+          "path": "mcp-execution/src/measure-shortfall.mjs",
+          "line": 49,
+          "source_sha256": "1f866d6c2850b9d4e217bef44632f2ba3221c08318feaa1f223068dcef14b3e7",
+          "excerpt": "const fd = openSync(path, \"r\");",
+          "followup": "fstat and 16MiB check only occur at lines51-52, after open returns"
+        },
+        {
+          "path": "mcp-execution/src/server.mjs",
+          "line": 63,
+          "source_sha256": "c56f2918d556473b0dac3eb8553918e9eaa1e0323241fcce4d29774d25419716",
+          "excerpt": "parsed = JSON.parse(readFileSync(path, \"utf8\"));",
+          "followup": "readLimitsFile uses path-based unbounded synchronous read after existsSync; no nonblocking regular-file admission or byte cap"
+        },
+        {
+          "path": "mcp-execution/src/core/js/journal-files.js",
+          "line": 10,
+          "source_sha256": "52a67922101613665b343c38c3f3133c50c496a0f90086ef31910b22c1e0646d",
+          "excerpt": "openSync(path, constants.O_RDONLY | constants.O_NONBLOCK | (privateFile ? constants.O_NOFOLLOW : 0))",
+          "followup": "existing journal reader already provides nonblocking one-FD regular-file/size/stability checks"
+        }
+      ],
+      "static_counterexamples": [
+        {
+          "input": "measure_shortfall orders_file is an absolute named FIFO with no writer",
+          "reasoning": "openSync r on a FIFO waits for a writer before the fstat regular-file check; runShortfall runs synchronously inside the MCP handler, so other requests and in-process cancellation cannot advance",
+          "executed": false
+        },
+        {
+          "input": "CANLI_HOME/limits.json is a named FIFO with no writer",
+          "reasoning": "existsSync reports the entry present and synchronous readFileSync waits on the FIFO. check_orders, size_position and the limits resource all reach this function; a regular-file/cap guard is absent",
+          "executed": false
+        }
+      ],
+      "additional_bound_gap": "A regular limits.json is read fully before parsing/field validation. A supplied malformed or huge local file has no encoded-byte cap even though each validated allowlist is finite. This is distinct from journal-store payload/line caps.",
+      "test_source_review": "shortfall.test.mjs file controls cover stable JSON equivalence, digest, relative paths and malformed content; tools.test.mjs covers malformed/invalid limits and KILL. No FIFO/file-admission coverage is present in those frozen named tests; no test execution claimed.",
+      "requested_resolution": "Primary allocate an isolated narrow fix for bounded nonblocking one-FD regular-file snapshots and safe errors for both consumers. A supervised finite child regression for FIFO must have an outside kill deadline/process cleanup and an actual exact-head CI or fresh lead grant before local execution. Do not launch a FIFO probe in this reviewer process.",
+      "claim_limits": [
+        "Static source finding only, no runtime reproduction or fresh API.",
+        "Historical355/356 reviewed scopes and delivered trees remain closed and receipts unchanged.",
+        "No author/product edits or jobs performed."
+      ]
+    }
+  ],
+  "full_owner_goal": "ACTIVE"
+}
