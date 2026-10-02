@@ -448,3 +448,16 @@ in both advertised schema and native admission, before any base64 decoding.
 One added no-allocation and actual-stdio refusal/recovery regression brings the
 next written candidate to28cases; its own CI and independent reviews are pending.
 No policy, core, released tools or package versions changed.
+
+
+The exact-hash candidate9e then passed all28new fixtures within96fundamentals
+cases, root6+1044+9 and allseven remote checks. Its eight original captures and
+the prior failed and successful heads remain separate immutable evidence.
+Primary static review found the CLI entry compared lexical paths, which can
+skip startup when launched through an absolute symlink or filesystem alias.
+The entry now resolves the real paths of both launch identities, reading only
+that metadata. The pure audit function and its core remain unchanged. One new
+SDK fixture launches through an owned temporary symlink and observes initialize,
+list, call, one close and actual owned-child absence under the same finite guard.
+All28prior fixture names remain;29cases are written for the next candidate,
+whose own CI and both independent exact-head gates are pending.

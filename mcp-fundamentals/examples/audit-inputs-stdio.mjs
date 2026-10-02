@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { types } from 'node:util';
 import { createHash } from 'node:crypto';
-import { resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { realpathSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { Server } from '@modelcontextprotocol/server';
 import { StdioServerTransport } from '@modelcontextprotocol/server/stdio';
 import { z } from 'zod';
@@ -194,7 +194,13 @@ export function createAuditInputsServer() {
   return server;
 }
 
-if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
+function isDirectExecution() {
+  if (!process.argv[1]) return false;
+  // Read only the launch identities, never source data or a module hash.
+  try { return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url)); }
+  catch { return false; }
+}
+if (isDirectExecution()) {
   const server = createAuditInputsServer();
   // Pinned SDK 2.1.0 bounds its read buffer before appending/parsing a protocol frame.
   const transport = new StdioServerTransport(process.stdin, process.stdout, { maxBufferSize: STDIO_AUDIT_LIMITS.requestBufferBytes });

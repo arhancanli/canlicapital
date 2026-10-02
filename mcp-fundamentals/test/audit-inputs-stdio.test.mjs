@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtempSync, writeFileSync, readdirSync, rmSync, readFileSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, readdirSync, rmSync, readFileSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -79,11 +79,13 @@ const originalOpen = fsp.open; fsp.open = (...args) => writable(args[1]) ? deny(
 for (const name of ['write','writeSync','writev','writevSync']) { const original = fs[name]; fs[name] = (...args) => args[0] === 1 || args[0] === 2 ? original(...args) : deny(name)(); }
 syncBuiltinESMExports();
 `;
-async function withClient(fn, { released = false } = {}) {
+async function withClient(fn, { released = false, alias = false } = {}) {
   const directory = mkdtempSync(join(tmpdir(), 'canli-audit-stdio-'));
   const guard = join(directory, 'guard.mjs'); writeFileSync(guard, GUARD);
+  let entry = released ? resolve(PACKAGE_ROOT, 'src/server.mjs') : EXAMPLE;
+  if (alias) { const link = join(directory, 'audit-alias.mjs'); symlinkSync(entry, link); entry = link; }
   const expectedFiles = readdirSync(directory).sort();
-  const transport = new StdioClientTransport({ command: process.execPath, args: ['--import', guard, released ? resolve(PACKAGE_ROOT, 'src/server.mjs') : EXAMPLE], cwd: directory, stderr: 'pipe', maxBufferSize: 8 * 1024 * 1024 });
+  const transport = new StdioClientTransport({ command: process.execPath, args: ['--import', guard, entry], cwd: directory, stderr: 'pipe', maxBufferSize: 8 * 1024 * 1024 });
   const client = new Client({ name: 'audit-example-test', version: '1.0.0' });
   let stderr = ''; let deadlineExpired = false; let ownedPid = null;
   transport.stderr.on('data', b => { stderr += b.toString(); assert.ok(Buffer.byteLength(stderr) <= 8192, 'child stderr bound'); });
@@ -125,6 +127,14 @@ test('audit stdio: actual SDK initialize lists exactly one annotated tool with d
     assert.equal(client.getServerVersion().name, 'canli-fundamentals-audit-example');
     assert.match(client.getInstructions(), /every selected row/);
   });
+});
+test('audit stdio: actual SDK symlink launch initializes audits and reaps the owned child after one close', { timeout: 15000 }, async () => {
+  await withClient(async client => {
+    assert.deepEqual((await client.listTools()).tools.map(tool => tool.name), ['audit_inputs']);
+    const d = payload(await client.callTool({ name: 'audit_inputs', arguments: argumentsFor() }));
+    assert.equal(d.audit.coverage.selected_n, 1); assert.equal(d.audit.rows[0].status, 'match');
+    assert.equal(d.audit.rows[0].selected.value, 100);
+  }, { alias: true });
 });
 test('audit stdio: actual SDK call preserves text structured schema and deterministic public JSON hashes', { timeout: 15000 }, async () => {
   await withClient(async client => {
