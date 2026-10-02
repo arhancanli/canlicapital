@@ -11,7 +11,7 @@ import test from 'node:test';
 import { PAPER_LIMITS, SYNTHETIC_SCENARIO, paperJournalMain, runPaperJournal, runPaperJournalStdio } from '../examples/paper-journal.mjs';
 import { createSession, toolCheckOrders, toolJournal, toolSizePosition } from '../src/server.mjs';
 import { verifyJournal } from '../src/core/js/trade-journal-core.js';
-import { journalBindings } from '../src/core/js/trade-journal-export-core.js';
+import { journalBindings, signJournalExport } from '../src/core/js/trade-journal-export-core.js';
 
 const scenario = () => structuredClone(SYNTHETIC_SCENARIO);
 const envelope = value => ({ content: [{ type: 'text', text: JSON.stringify(value) }], structuredContent: value });
@@ -287,6 +287,59 @@ test('rehashing a changed unsigned export companion cannot bless it with the ori
   assert.equal(report.stop.code, 'MALFORMED_EXPORT'); assert.equal(report.call_count, 11);
   assert.equal(report.export, null); assert.equal(report.pending_export.dispatched, true);
   assert.equal(report.receipts.length, 6);
+});
+
+test('changing both unsigned traded notional and turnover cannot override the supplied fill', async t => {
+  const f = fixture(t);
+  const report = await runPaperJournal({ write: true, callTool: async (req, opts) => {
+    const r = await f.callTool(req, opts);
+    if (req.arguments.action !== 'export') return r;
+    const data = structuredClone(r.structuredContent); data.metrics.traded_notional_usd += 100;
+    data.series[0].turnover = data.metrics.traded_notional_usd / data.metrics.opening_equity;
+    const fields = ['record', 'journal_sha256', 'head', 'entry_range', 'metrics', 'series', 'journal_public_key', 'signature'];
+    const bytes = Buffer.from(JSON.stringify(Object.fromEntries(fields.map(k => [k, data[k]]))) + '\n');
+    data.artifact_bytes = bytes.length; data.artifact_sha256 = 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+    return envelope(data);
+  } });
+  assert.equal(report.stop.code, 'MALFORMED_EXPORT'); assert.equal(report.call_count, 11);
+  assert.equal(report.export, null); assert.equal(report.pending_export.dispatched, true);
+});
+
+test('individually bounded excessive retained planning refuses before journal dispatch and returns a report', async t => {
+  const f = fixture(t);
+  const report = await runPaperJournal({ write: true, callTool: async (req, opts) => {
+    const r = await f.callTool(req, opts);
+    if (req.name !== 'check_orders') return r;
+    const data = structuredClone(r.structuredContent); data.not_modelled = ['x'.repeat(PAPER_LIMITS.planningBytes + 1)];
+    const changed = envelope(data);
+    assert.ok(Buffer.byteLength(JSON.stringify(changed)) < PAPER_LIMITS.replyBytes);
+    return changed;
+  } });
+  assert.equal(report.stop.code, 'JSON_BOUND'); assert.equal(report.call_count, 2);
+  assert.equal(report.planning, null); assert.equal(report.requests.length, 0);
+  assert.ok(Buffer.byteLength(JSON.stringify(report)) < PAPER_LIMITS.outputBytes); noJournal(f);
+});
+
+test('a bounded large signed export refuses without losing earlier acknowledgements or pending export', async t => {
+  const f = fixture(t);
+  const report = await runPaperJournal({ write: true, callTool: async (req, opts) => {
+    const r = await f.callTool(req, opts);
+    if (req.arguments.action !== 'export') return r;
+    const data = structuredClone(r.structuredContent);
+    const fields = ['record', 'journal_sha256', 'head', 'entry_range', 'metrics', 'series', 'journal_public_key', 'signature'];
+    const original = Object.fromEntries(fields.map(k => [k, data[k]]));
+    original.record.notes += 'x'.repeat(40_000);
+    const bundle = signJournalExport(original, f.pem);
+    const bytes = Buffer.from(JSON.stringify(bundle) + '\n');
+    const changed = envelope({ ...data, ...bundle, artifact_bytes: bytes.length,
+      artifact_sha256: 'sha256:' + createHash('sha256').update(bytes).digest('hex') });
+    assert.ok(Buffer.byteLength(JSON.stringify(changed)) < PAPER_LIMITS.replyBytes);
+    return changed;
+  } });
+  assert.equal(report.stop.code, 'JSON_BOUND'); assert.equal(report.call_count, 11);
+  assert.equal(report.export, null); assert.equal(report.receipts.length, 6); assert.equal(report.requests.length, 6);
+  assert.equal(report.pending_export.dispatched, true);
+  assert.ok(Buffer.byteLength(JSON.stringify(report)) < PAPER_LIMITS.outputBytes);
 });
 
 test('the finite call cap stops before dispatching export and keeps earlier acknowledgements', async t => {

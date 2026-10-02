@@ -12,7 +12,9 @@ import { JOURNAL_WRITABLE_JSON } from '../src/journal-write.mjs';
 import { canonicalJson } from '../src/core/scripts/canonical-json.mjs';
 
 export const PAPER_LIMITS = Object.freeze({ maxCalls: 11, deadlineMs: 30_000,
-  shutdownReserveMs: 5_000, inputBytes: 32_768, replyBytes: 131_072, outputBytes: 196_608 });
+  shutdownReserveMs: 5_000, inputBytes: 32_768, replyBytes: 131_072, outputBytes: 196_608,
+  planningBytes: 16_384, exportBytes: 32_768, requestsBytes: 16_384,
+  controlsBytes: 49_152, outputReserveBytes: 16_384 });
 const HASH = /^sha256:[0-9a-f]{64}$/;
 const ID = /^[A-Za-z0-9._:-]{1,96}$/;
 const SYMBOL = /^[A-Z0-9][A-Z0-9.:-]{0,31}$/;
@@ -223,13 +225,16 @@ function exportReceipt(data, previous, scenario) {
     record.period?.frequency === 'IRREGULAR' && record.period.observation_count === 1 &&
     record.period.first_observation === scenario.mark.observed_at.slice(0, 10) &&
     record.period.last_observation === scenario.mark.observed_at.slice(0, 10), 'MALFORMED_EXPORT');
+  const suppliedNotional = scenario.fill.qty * scenario.fill.price;
+  requireThat(positive(suppliedNotional) && Math.abs(m.traded_notional_usd - suppliedNotional) <=
+    4 * Number.EPSILON * Math.max(1, Math.abs(suppliedNotional)), 'MALFORMED_EXPORT');
   const key = Buffer.from(bundle.journal_public_key ?? '', 'base64'), sig = Buffer.from(signature?.signature ?? '', 'base64');
   requireThat(key.length === 32 && key.toString('base64') === bundle.journal_public_key && sig.length === 64 &&
     sig.toString('base64') === signature.signature && signature.scheme === 'Ed25519' && signature.public_key === bundle.journal_public_key, 'MALFORMED_EXPORT');
   requireThat(verify(null, Buffer.from(canonicalJson(record)), createPublicKey({ key: Buffer.concat([Buffer.from('302a300506032b6570032100', 'hex'), key]), type: 'spki', format: 'der' }), sig), 'EXPORT_SIGNATURE');
   const artifact = Buffer.from(JSON.stringify(bundle) + '\n');
   requireThat(data.artifact_bytes === artifact.length && data.artifact_sha256 === sha(artifact), 'EXPORT_DIGEST');
-  return { artifact_bytes: data.artifact_bytes, artifact_sha256: data.artifact_sha256, ...bundle };
+  return capture({ artifact_bytes: data.artifact_bytes, artifact_sha256: data.artifact_sha256, ...bundle }, PAPER_LIMITS.exportBytes);
 }
 
 function emptyReport() {
@@ -255,14 +260,18 @@ async function workflow(callTool, value, write, control, report) {
     report.scenario_sha256 = sha(canonicalJson(scenario)); control.guard();
     const call = async (name, args, pending = null) => {
       const request = freeze(capture({ name, arguments: args }, PAPER_LIMITS.inputBytes));
-      const raw = await control.bounded(() => { const timeoutMs = Math.ceil(control.remaining());
+      const raw = await control.bounded(() => {
+        // Admit retained output before a callback, leaving room for its bounded controls.
+        capture(report, PAPER_LIMITS.outputBytes - PAPER_LIMITS.outputReserveBytes);
+        const timeoutMs = Math.ceil(control.remaining());
         control.dispatch(); if (pending) pending.dispatched = true;
         return callTool(request, { signal: control.signal, timeoutMs }); });
       const result = replyValue(raw); control.guard(); return result;
     };
     const sizing = await call('size_position', scenario.sizing);
     requireThat(Array.isArray(sizing.orders) && sizing.orders.length === 1 && sizing.orders[0]?.side === 'buy' &&
-      positive(sizing.orders[0].qty) && sizing.position_qty === sizing.orders[0].qty && HASH.test(sizing.limits_digest), 'MALFORMED_SIZING');
+      positive(sizing.orders[0].qty) && sizing.position_qty === sizing.orders[0].qty && HASH.test(sizing.limits_digest) &&
+      (sizing.binding_constraint === null || ['position_cap', 'gross_cap', 'net_cap', 'adv_participation', 'budget', 'drawdown_flat'].includes(sizing.binding_constraint)), 'MALFORMED_SIZING');
     const order = freeze({ symbol: scenario.symbol, side: 'buy', qty: sizing.orders[0].qty, type: 'market' });
     const checked = await call('check_orders', { ...scenario.check, orders: [order] });
     requireThat(JSON.stringify(checked.columns) === JSON.stringify(COLUMNS) && checked.asset_class === scenario.check.asset_class &&
@@ -272,9 +281,9 @@ async function workflow(callTool, value, write, control, report) {
     const row = Object.fromEntries(checked.columns.map((k, i) => [k, checked.rows[0][i]]));
     requireThat(row.symbol === order.symbol && row.side === order.side && row.qty === order.qty && typeof row.accepted === 'boolean' &&
       Array.isArray(row.reasons) && ['clear', 'engaged'].includes(checked.kill_switch) && typeof checked.systemic_breach === 'boolean', 'MALFORMED_CHECK');
-    report.planning = { sizing: { position_qty: sizing.position_qty, binding_constraint: sizing.binding_constraint ?? null,
+    report.planning = capture({ sizing: { position_qty: sizing.position_qty, binding_constraint: sizing.binding_constraint,
       limits_digest: sizing.limits_digest, orders: [order] }, check: { accepted: checked.accepted, rejected: checked.rejected, row,
-      limits_digest: checked.limits_digest, kill_switch: checked.kill_switch, checks_skipped: checked.checks_skipped, not_modelled: checked.not_modelled } };
+      limits_digest: checked.limits_digest, kill_switch: checked.kill_switch, checks_skipped: checked.checks_skipped, not_modelled: checked.not_modelled } }, PAPER_LIMITS.planningBytes);
     if (row.accepted !== true || row.reasons.length || checked.kill_switch !== 'clear' || checked.systemic_breach ||
       checked.accepted !== 1 || checked.rejected !== 0 || checked.checks_skipped.length) {
       report.status = 'declined'; report.stop = { code: 'PRETRADE_DECLINED', persistence: 'no journal write dispatched' }; return report;
@@ -292,6 +301,9 @@ async function workflow(callTool, value, write, control, report) {
       const args = freeze(capture({ action, operation_id: `${scenario.operation_prefix}:${kind}`, ts: scenario.ts[kind], payload,
         ...(previous ? { kind, expected_head: previous.entry_head } : {}) }, PAPER_LIMITS.inputBytes));
       const pending = { request: args, request_sha256: requestHash(args), dispatched: false };
+      capture([...report.requests, args], PAPER_LIMITS.requestsBytes);
+      capture({ requests: [...report.requests, args], receipts: report.receipts, pending_request: pending,
+        pending_export: report.pending_export }, PAPER_LIMITS.controlsBytes);
       report.requests.push(args); report.pending_request = pending;
       const data = await call('journal', args, pending);
       report.receipts.push(writeReceipt(data, args, report.receipts.length, previous)); report.pending_request = null;
@@ -315,7 +327,15 @@ async function workflow(callTool, value, write, control, report) {
   } catch (error) { return stopped(report, error); }
   finally { report.call_count = control.calls; }
 }
-function finish(report) { return freeze(capture(report, PAPER_LIMITS.outputBytes)); }
+function finish(report) {
+  try { return freeze(capture(report, PAPER_LIMITS.outputBytes)); }
+  catch {
+    // Optional bulky results can be explicitly refused; original bounded controls survive.
+    const fallback = { ...report, planning: null, export: null, omitted_fields: ['planning', 'export'] };
+    stopped(fallback, new Stop('OUTPUT_CAPACITY'));
+    return freeze(capture(fallback, PAPER_LIMITS.outputBytes));
+  }
+}
 
 /** Trusted injected interface: (immutable MCP request, {signal, timeoutMs}) => reply. */
 export async function runPaperJournal({ callTool, scenario = SYNTHETIC_SCENARIO, write = false, ...policy } = {}) {

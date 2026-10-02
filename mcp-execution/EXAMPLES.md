@@ -106,6 +106,9 @@ The export's artifact digest and public-key signature are checked. Companion
 metrics/observations must also agree with the signed record, supplied opening
 capital and sole mark; rehashing changed unsigned metrics is insufficient.
 Financial reconstruction remains the delivered export tool's work.
+Traded notional also matches the supplied fill's quantity/price, allowing four
+binary floating-point epsilons for that decimal-to-number comparison. This is
+a receipt consistency check, not another journal/account reconstruction.
 
 `requests` preserves each original write request, including its supplied timestamp,
 payload and original `expected_head`. `pending_request` distinguishes whether an
@@ -143,7 +146,15 @@ An abort-ignoring trusted callback can still have its own side effects; its pend
 request remains unknown. No universal runtime or power-loss guarantee is made.
 
 Inputs are capped at32KiB, each reply at128KiB, and the output at192KiB, with
-depth/node bounds. Journal storage retains its separate8MiB/64KiB limits. A large
+depth/node bounds. Retained planning is separately capped at16KiB and an export
+at32KiB. Original write requests together are capped at16KiB, and requests,
+receipts and pending controls at48KiB. Before each callback, aggregate output
+admission reserves16KiB for bounded progress/error controls. Unknown sizing
+constraint names refuse. A final capacity refusal returns a stopped result with
+explicitly omitted planning/export fields and all original bounded requests,
+receipts and pending controls retained; it never returns a completed result or
+silently truncates those controls.
+Journal storage retains its separate8MiB/64KiB limits. A large
 file-backed export is refused by this small example; any created export remains
 available for manual review. No alternate export path is followed automatically.
 

@@ -1429,3 +1429,29 @@ and not claimed for the new correction. New exact signed-source CI and both
 independent reviews remain open. Six assigned paths only; frozen343/351/353/
 355/356/V0/default schemas/math/storage/site/ALPHAC unchanged. The complete
 owner hierarchy remains ACTIVE; no model/broker/provider/grant/job/spend/pub/hero.
+
+
+## Paper example exact companion CI and final capacity/notional findings, 2026-10-02T00:33:46.774832+00:00
+
+Signed1ddd75ab/tree758b has29 actual new source-named passes once within112
+execution cases/remote22.23.3/zero failures skips cancellations todos. MCP and
+root jobs share testeda05cba4c, tree758b equals signedsource; all7 checks
+SUCCESS. Exact raw/source/run evidence stays immutable in coordination.
+Both independent e47 reviews corroborated own unsigned-companion source finding.
+Third's1ddd receipt10c364d9 identified supplied-notional binding still missing
+and final report-capacity refusal able to lose recovery controls. Its modeled
+129214/130050/129916-byte replies and199292-byte report are STATIC shape/byte
+arithmetic, not executed signed/tool/provider evidence; original invalid vectors
+and prior findings remain preserved. Primary b5ff577b/0e5e4b57 approves final
+archive extension at most40 TOTAL files including manifest/12MiB originals+manifest
+after source/CI/review gates. No extra repo path is added before those gates.
+Narrow correction now binds notional to supplied qty*price with four binary
+epsilons; caps retained planning16KiB/export32KiB/request-list16KiB/controls48KiB;
+admits aggregate output before dispatch with16KiB control reserve; and catches
+final capacity refusal with explicit omitted optional results while preserving
+original bounded requests/receipts/pending write/export. New meaningful notional
+rehash and individually bounded planning/valid-signed export capacity cases are
+WRITTEN. The original29 passes are not claimed for this correction.
+Six assigned paths only; protected source/math/server/schema/store/versions/site/
+FilingFacts/ALPHAC unchanged. No localruntime/Node/import/grant/job/model/provider/
+broker/resources/spend/pub/hero. Full owner hierarchy remainsACTIVE.
