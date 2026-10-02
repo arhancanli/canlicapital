@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Prepare a separate opt-in `canli-fundamentals-audit` package command with its
+  own exact canonical-helper copy and the included audit input contract. The actual
+  candidate tarball is checked for runtime source closure, bin links and complete
+  supplied-input behavior in remote CI. Package/default version and the existing
+  seven-tool command stay unchanged; npm publication remains a later release step.
+
 - Add a repository-checkout `audit_inputs` stdio example over the supplied-vintage audit core.
   Strict exact-byte inputs, full selected-row compact or complete evidence results, explicit
   unknown outcomes and bounded refusals. The published seven-tool server stays unchanged.

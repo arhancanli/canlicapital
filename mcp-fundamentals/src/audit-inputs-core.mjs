@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { TextDecoder, types } from 'node:util';
-import { canonicalJson, pythonNumber, pythonString } from '../../scripts/canonical-json.mjs';
+import { canonicalJson, pythonNumber, pythonString } from './canonical-json.mjs';
 
 // An offline prerequisite for audit_inputs. The released server never imports this core.
 export const AUDIT_INPUTS_LIMITS = Object.freeze({

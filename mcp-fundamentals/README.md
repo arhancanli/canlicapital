@@ -193,3 +193,21 @@ keeps every selected row, and makes missing or uncertain outcomes visible.
 The complete repository checkout and its pinned package dependencies are required.
 The canonical helper lives outside this npm package; `npx canli-fundamentals-mcp`
 and the hosted endpoint continue to expose the existing seven tools.
+
+
+## Opt-in package audit command (Unreleased)
+
+The next substantial fundamentals release is preparing the separate
+`canli-fundamentals-audit` command. This candidate packages its own exact canonical
+helper, supplied-input core and stdio adapter, plus [the input contract](AUDIT_INPUTS.md#portable-opt-in-package-command-unreleased).
+It requires no repository checkout. The existing repository example above remains
+unchanged; its original helper location does not describe this new packaged copy.
+
+After a reviewed candidate tarball has been placed in a private installation,
+configure an MCP client with the absolute path to
+`node_modules/.bin/canli-fundamentals-audit`, and supply the four exact input fields
+described in the contract. This command lists one `audit_inputs` tool.
+`canli-fundamentals-mcp` and hosted endpoints still list the existing seven tools.
+The new command has not been published to npm; version0.5.0 is unchanged while
+PRIMARY assembles the substantial release. Do not use a current npm download as
+evidence that this Unreleased command is available.
