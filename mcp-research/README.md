@@ -58,3 +58,28 @@ writes nothing to disk.
 - [canli-validation-mcp](https://www.npmjs.com/package/canli-validation-mcp): validate a backtest (deflated
   Sharpe, overfitting, track record, backtest length, haircut Sharpe), with signed receipts.
 - Source: [arhancanli/canlicapital](https://github.com/arhancanli/canlicapital/tree/main/mcp-research).
+
+## Unreleased: bounded response and cache admission
+
+The repository implementation accepts at most 4 MiB of response-body bytes per static file,
+counted before decoding. It reads the native response stream rather than materializing an
+unbounded response first. A usable advertised Content-Length above the cap is refused before
+any read; absent or misleading lengths still require actual byte accounting. HTTP errors are
+refused before their bodies are read. Valid UTF-8, including code points split across chunks,
+preserves the published text; invalid or truncated UTF-8 is refused rather than silently replaced.
+
+One existing 15-second request signal covers both fetch and body reads. Known failures attempt
+reader cancellation and release once; a late fetch response is discarded without reading it.
+Cancellation promises are observed without extending the request deadline. The transport may
+already have allocated an oversized supplied chunk, and JavaScript cannot preempt a blocked
+event loop or synchronous transport code. This is an accepted-body-byte bound and cooperative
+request deadline, not a total process-memory guarantee or a hosted latency measurement.
+
+Only complete, decoded successful responses enter the ten-minute session cache. JSON is parsed
+before admission; HTTP errors, overflow, abort, invalid UTF-8 and malformed JSON do not become
+cache entries. A failed concurrent response cannot evict a newer valid result. Cache ages must
+be finite, nonnegative and strictly below ten minutes, so clock rollback and expiry require a
+fresh request. There are no added retries, tools, configuration options or dependencies.
+
+This change is Unreleased. Native Response/ReadableStream fixtures exercise these boundaries
+with injected responses; their execution and release status are recorded in repository evidence.

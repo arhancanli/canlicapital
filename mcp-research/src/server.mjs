@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import { McpServer } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
+import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
 
 export const SERVER_NAME = "canli-research-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
@@ -47,32 +48,50 @@ export function createSession({ base, fetchImpl, now = () => Date.now() } = {}) 
   return { base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE, fetchImpl: fetchImpl ?? fetch, now, cache: new Map() };
 }
 
-async function fetchText(session, path) {
+function deadlineError(session, path) {
+  return new Error(path + " exceeded the request deadline at " + session.base + ". The research files are static; retry in a moment.");
+}
+
+async function fetchText(session, path, validate = (text) => text) {
   const hit = session.cache.get(path);
-  if (hit && session.now() - hit.at < CACHE_MS) return hit.text;
+  const age = hit ? session.now() - hit.at : NaN;
+  if (hit && Number.isFinite(age) && age >= 0 && age < CACHE_MS) {
+    try {
+      return validate(hit.text);
+    } catch (error) {
+      // Only evict the exact invalid hit; a newer concurrent result remains valid.
+      if (session.cache.get(path) === hit) session.cache.delete(path);
+      throw error;
+    }
+  }
   const signal = AbortSignal.timeout(REQUEST_TIMEOUT_MS);
-  let res;
   let text;
   try {
-    res = await session.fetchImpl(`${session.base}${path}`, { signal, redirect: "error" });
-    text = await res.text();
-  } catch {
-    throw new Error(`${path} ${signal.aborted ? "exceeded the request deadline" : "could not be reached"} at ${session.base}. The research files are static; retry in a moment.`);
+    text = await fetchBoundedText(session.fetchImpl, session.base + path, { signal, maxBytes: MAX_BYTES });
+  } catch (error) {
+    if (signal.aborted) throw deadlineError(session, path);
+    if (error instanceof ResponseReadError) {
+      if (error.code === "HTTP" && error.status === 404) throw new Error(path + " was not found.");
+      if (error.code === "HTTP") throw new Error(path + " returned HTTP " + error.status + ".");
+      if (error.code === "TOO_LARGE") throw new Error(path + " is larger than expected; response omitted.");
+      if (error.code === "INVALID_UTF8") throw new Error(path + " did not return valid UTF-8.");
+    }
+    throw new Error(path + " could not be reached at " + session.base + ". The research files are static; retry in a moment.");
   }
-  if (res.status === 404) throw new Error(`${path} was not found.`);
-  if (res.status >= 400) throw new Error(`${path} returned HTTP ${res.status}.`);
-  if (text.length > MAX_BYTES) throw new Error(`${path} is larger than expected; response omitted.`);
+  const value = validate(text);
+  if (signal.aborted) throw deadlineError(session, path);
   session.cache.set(path, { at: session.now(), text });
-  return text;
+  return value;
 }
 
 async function fetchJson(session, path) {
-  const text = await fetchText(session, path);
-  try {
-    return JSON.parse(text);
-  } catch {
-    throw new Error(`${path} did not return JSON.`);
-  }
+  return fetchText(session, path, (text) => {
+    try {
+      return JSON.parse(text);
+    } catch {
+      throw new Error(path + " did not return JSON.");
+    }
+  });
 }
 
 const asText = (value) => ({
