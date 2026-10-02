@@ -1,0 +1,245 @@
+{
+  "schema": "canli.paper-example.exact-remote-ci.v1",
+  "source": "b807ef1fea7f1cc72b1cbdc4d3bbdc23da9f6eed",
+  "tree": "0f98b96b9da5b611a6ac70e3db6334591ec2f38f",
+  "status": "FAILED_ORIGINAL_RETAINED",
+  "all_seven_success": false,
+  "checks": [
+    {
+      "name": "CodeQL",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/canlicapital/runs/110650451035"
+    },
+    {
+      "name": "design wrapper build and contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/36946622691/job/110650112060"
+    },
+    {
+      "name": "Key revocation PostgreSQL contract",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/36946622691/job/110650112034"
+    },
+    {
+      "name": "analyze (javascript-typescript)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/36946622710/job/110650112024"
+    },
+    {
+      "name": "MCP package and stdio contracts",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/36946622691/job/110650112002"
+    },
+    {
+      "name": "vite production build",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/36946622691/job/110650111813"
+    },
+    {
+      "name": "analyze (python)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/36946622710/job/110650111691"
+    }
+  ],
+  "jobs": {
+    "mcp": {
+      "raw_bytes": 150604,
+      "raw_sha256": "f955f563bd26bd43c5abea851f4b816eadf8e326f52b3ab75d623aab74c7b6bd",
+      "tested_merge": "449f3cb0551242a3258215ec42bb9040aef95979",
+      "node_versions": [
+        "22.23.3"
+      ],
+      "source_cases": [
+        {
+          "name": "injected delivered tools complete a bound synthetic sizing/check/journal/export roundtrip",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "actual local stdio example completes the signed synthetic roundtrip without returning the key",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "the actual repository command defaults to two read-only calls without preparing a key",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "injected default write denial performs checks and creates no journal or key",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a supplied notional limit rejects the order before any journal write or fabricated fill",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "the delivered kill switch rejects before initialization and is never removed",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "missing supplied fill fees stay unknown and stop before journal initialization",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "an absent commission schedule remains not modelled while explicit fixture fill fees are retained",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a date-only commission schedule refuses as unknown while an explicitly supplied zero remains valid",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "accessors and inline signing fields refuse before a local callback and do not echo their contents",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "text/structured reply disagreement and oversized replies stop without accepting a plan",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "pre-trade response order identity and columns must match the delivered contract",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a missing or mismatched initial request receipt retains the original request and stops progress",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "typed persistence uncertainty never retries or exposes a diagnostic key string",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a retained actual pending lock produces busy, preserves the lock, and schedules no retry",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "conflicting operation contents after a stale absent-head reply refuse without changing the existing journal",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a normal rerun detects the existing journal and never replays the scenario",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a replay acknowledgement cannot advance the example to another operation",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a changed verified head stops before export and preserves all acknowledged write receipts",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a tampered export digest is refused while its original export request remains visible",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "rehashing a changed unsigned export companion cannot bless it with the original record signature",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "changing both unsigned traded notional and turnover cannot override the supplied fill",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "individually bounded excessive retained planning refuses before journal dispatch and returns a report",
+          "passed": 0,
+          "failed": 1
+        },
+        {
+          "name": "a bounded large signed export refuses without losing earlier acknowledgements or pending export",
+          "passed": 0,
+          "failed": 1
+        },
+        {
+          "name": "the finite call cap stops before dispatching export and keeps earlier acknowledgements",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a never-resolving callback reaches the native deadline without a follow-up call",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "cancellation during a pending write retains its request and a late completion cannot change the returned result",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "pre-abort, zero deadline and invalid enlarged policies dispatch no callbacks",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "a backwards caller clock stops after its first callback",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "an abort delivered by the final dispatch clock sample prevents the callback and count",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "caller mutation during the first await cannot change the captured fixture or later write requests",
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "stdio home and command argument refusals do not create or repair local state",
+          "passed": 1,
+          "failed": 0
+        }
+      ],
+      "source_pass_count": 30,
+      "source_fail_count": 2,
+      "execution_summary": {
+        "tests": 115,
+        "pass": 113,
+        "fail": 2,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    "vite": {
+      "raw_bytes": 581630,
+      "raw_sha256": "af049cbf43bd0ed290f9a3b297f1fa428de07f396425033f59eebe0c02d4c22e",
+      "tested_merge": "449f3cb0551242a3258215ec42bb9040aef95979",
+      "node_versions": [
+        "22.23.3"
+      ]
+    }
+  },
+  "metadata_parse_error_sha256": "1a66f03cc28baca306b855f21325b6cdfa13c49df161da2797bf6810bff74845",
+  "failure_cause": "Two valid excessive-string capacity cases stop safely with JSON_STRING while expecting JSON_BOUND; size and Unicode guards combined. Split size refusal from Unicode refusal in next source.",
+  "local_project_execution": false,
+  "full_goal": "ACTIVE"
+}

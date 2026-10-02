@@ -1,0 +1,9 @@
+{
+  "schema": "canli.paper-example.static-export-companion-cue.v1",
+  "source": "e47e331e1e1ac17cb43c55a53a764c2c398d7689",
+  "kind": "source-only review cue; no local runtime",
+  "observation": "exportReceipt validates fee/fill count and signature but not closing-equity/series/cumulative/maxDD companion consistency",
+  "counterexample": "change unsigned metrics.closing_equity and recompute artifact sha; signed record unchanged, present guards could still acknowledge completed",
+  "planned_correction": "validate companion metadata against signed record, supplied opening capital and sole supplied mark; add meaningful tamper regression; reuse server financial replay",
+  "protected_math_source_edit": false
+}

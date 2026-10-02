@@ -1,0 +1,10 @@
+{
+  "schema": "canli.peer.metadata-error.v1",
+  "scope": "peer source inventory only",
+  "initial_assumption": "mcp-execution/src/core/js/journal-store.js and journal-core.js",
+  "actual_paths": "mcp-execution/src/journal-store.mjs and core/js/trade-journal-core.js",
+  "initial_result": "git show exit128 at first nonexistent journal-store.js; phase receipt/global append not reached; partial exact e39 source copies retained",
+  "product_runtime_failure": false,
+  "project_execution": false,
+  "correction": "inspect frozen ls-tree and copy actual tracked files as data"
+}

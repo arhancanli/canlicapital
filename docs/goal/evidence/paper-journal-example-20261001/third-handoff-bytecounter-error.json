@@ -1,0 +1,7 @@
+{
+  "scope": "peer metadata helper only",
+  "initial_error": "functions.exec ReferenceError: TextEncoder is not defined",
+  "effects": "No messages sent by failed call; no source or project operation",
+  "correction": "Assert ASCII and use string.length; actual two send_message_to_thread calls accepted and retained",
+  "product_failure": false
+}

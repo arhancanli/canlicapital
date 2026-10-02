@@ -1,0 +1,73 @@
+{
+  "schema": "canli.paper-example.exact-remote-ci.v1",
+  "observed_at": "2026-10-02T00:33:46.773513+00:00",
+  "source": "1ddd75ab4b3e778781ae676cee74fb6c9644913e",
+  "tree": "758b0e7d0cc28acdd1b1a2112dbba21dfe467f24",
+  "run": 36945266399,
+  "jobs": {
+    "mcp": {
+      "job": 110645825870,
+      "raw_bytes": 146655,
+      "raw_sha256": "e59de958cd946f48fdcfc8e03a30a9c26fb2f875a9e99f60bf18a2620a8ce224",
+      "tested_merge": "a05cba4cc57784c36fb9c53f948f4fe137dba559",
+      "node_versions": [
+        "22.23.3"
+      ],
+      "actual_source_named_passes": {
+        "injected delivered tools complete a bound synthetic sizing/check/journal/export roundtrip": 1,
+        "actual local stdio example completes the signed synthetic roundtrip without returning the key": 1,
+        "the actual repository command defaults to two read-only calls without preparing a key": 1,
+        "injected default write denial performs checks and creates no journal or key": 1,
+        "a supplied notional limit rejects the order before any journal write or fabricated fill": 1,
+        "the delivered kill switch rejects before initialization and is never removed": 1,
+        "missing supplied fill fees stay unknown and stop before journal initialization": 1,
+        "an absent commission schedule remains not modelled while explicit fixture fill fees are retained": 1,
+        "a date-only commission schedule refuses as unknown while an explicitly supplied zero remains valid": 1,
+        "accessors and inline signing fields refuse before a local callback and do not echo their contents": 1,
+        "text/structured reply disagreement and oversized replies stop without accepting a plan": 1,
+        "pre-trade response order identity and columns must match the delivered contract": 1,
+        "a missing or mismatched initial request receipt retains the original request and stops progress": 1,
+        "typed persistence uncertainty never retries or exposes a diagnostic key string": 1,
+        "a retained actual pending lock produces busy, preserves the lock, and schedules no retry": 1,
+        "conflicting operation contents after a stale absent-head reply refuse without changing the existing journal": 1,
+        "a normal rerun detects the existing journal and never replays the scenario": 1,
+        "a replay acknowledgement cannot advance the example to another operation": 1,
+        "a changed verified head stops before export and preserves all acknowledged write receipts": 1,
+        "a tampered export digest is refused while its original export request remains visible": 1,
+        "rehashing a changed unsigned export companion cannot bless it with the original record signature": 1,
+        "the finite call cap stops before dispatching export and keeps earlier acknowledgements": 1,
+        "a never-resolving callback reaches the native deadline without a follow-up call": 1,
+        "cancellation during a pending write retains its request and a late completion cannot change the returned result": 1,
+        "pre-abort, zero deadline and invalid enlarged policies dispatch no callbacks": 1,
+        "a backwards caller clock stops after its first callback": 1,
+        "an abort delivered by the final dispatch clock sample prevents the callback and count": 1,
+        "caller mutation during the first await cannot change the captured fixture or later write requests": 1,
+        "stdio home and command argument refusals do not create or repair local state": 1
+      },
+      "actual_source_case_count": 29,
+      "execution_summary": {
+        "tests": 112,
+        "pass": 112,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    "vite": {
+      "job": 110645825822,
+      "raw_bytes": 581121,
+      "raw_sha256": "21b2a89e7127c74d5a98b572bdadc0f2b75f952d994d4b43f8952ffa32efc357",
+      "tested_merge": "a05cba4cc57784c36fb9c53f948f4fe137dba559",
+      "node_versions": [
+        "22.23.3"
+      ]
+    }
+  },
+  "tested_merge": "a05cba4cc57784c36fb9c53f948f4fe137dba559",
+  "tested_tree": "758b0e7d0cc28acdd1b1a2112dbba21dfe467f24",
+  "source_and_job_fidelity": true,
+  "all_seven_success": true,
+  "local_project_execution": false,
+  "full_goal": "ACTIVE"
+}

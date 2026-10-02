@@ -1,0 +1,93 @@
+{
+  "schema": "canli.paper-example.exact-remote-ci.v1",
+  "observed_at": "2026-10-02T00:10:05.451364+00:00",
+  "source": "e47e331e1e1ac17cb43c55a53a764c2c398d7689",
+  "tree": "4fe13857e123acac338662baa3ac52c6d350dc3a",
+  "run": 36944164766,
+  "jobs": {
+    "mcp": {
+      "job": 110642276318,
+      "raw_bytes": 146398,
+      "raw_sha256": "03318193911477f95d7ee2d64b6bc0fa665c80d55bbbd292ef873ca0639e8472",
+      "tested_merge": "8fae4287e1c5e9201a01301e763b9c563138c621",
+      "node_versions": [
+        "22.23.3"
+      ],
+      "actual_source_named_passes": {
+        "injected delivered tools complete a bound synthetic sizing/check/journal/export roundtrip": 1,
+        "actual local stdio example completes the signed synthetic roundtrip without returning the key": 1,
+        "the actual repository command defaults to two read-only calls without preparing a key": 1,
+        "injected default write denial performs checks and creates no journal or key": 1,
+        "a supplied notional limit rejects the order before any journal write or fabricated fill": 1,
+        "the delivered kill switch rejects before initialization and is never removed": 1,
+        "missing supplied fill fees stay unknown and stop before journal initialization": 1,
+        "an absent commission schedule remains not modelled while explicit fixture fill fees are retained": 1,
+        "a date-only commission schedule refuses as unknown while an explicitly supplied zero remains valid": 1,
+        "accessors and inline signing fields refuse before a local callback and do not echo their contents": 1,
+        "text/structured reply disagreement and oversized replies stop without accepting a plan": 1,
+        "pre-trade response order identity and columns must match the delivered contract": 1,
+        "a missing or mismatched initial request receipt retains the original request and stops progress": 1,
+        "typed persistence uncertainty never retries or exposes a diagnostic key string": 1,
+        "a retained actual pending lock produces busy, preserves the lock, and schedules no retry": 1,
+        "conflicting operation contents after a stale absent-head reply refuse without changing the existing journal": 1,
+        "a normal rerun detects the existing journal and never replays the scenario": 1,
+        "a replay acknowledgement cannot advance the example to another operation": 1,
+        "a changed verified head stops before export and preserves all acknowledged write receipts": 1,
+        "a tampered export digest is refused while its original export request remains visible": 1,
+        "the finite call cap stops before dispatching export and keeps earlier acknowledgements": 1,
+        "a never-resolving callback reaches the native deadline without a follow-up call": 1,
+        "cancellation during a pending write retains its request and a late completion cannot change the returned result": 1,
+        "pre-abort, zero deadline and invalid enlarged policies dispatch no callbacks": 1,
+        "a backwards caller clock stops after its first callback": 1,
+        "an abort delivered by the final dispatch clock sample prevents the callback and count": 1,
+        "caller mutation during the first await cannot change the captured fixture or later write requests": 1,
+        "stdio home and command argument refusals do not create or repair local state": 1
+      },
+      "actual_source_case_count": 28,
+      "execution_summary": {
+        "tests": 111,
+        "pass": 111,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    },
+    "vite": {
+      "job": 110642276932,
+      "raw_bytes": 581478,
+      "raw_sha256": "119002cd09a9bd67bdd5062bbb63c2c0cc67fb6d53b0519e254d859878995280",
+      "tested_merge": "8fae4287e1c5e9201a01301e763b9c563138c621",
+      "node_versions": [
+        "22.23.3"
+      ],
+      "suite_summaries": [
+        "2026-10-02T00:05:52.7398012Z # tests 6",
+        "2026-10-02T00:05:52.7398502Z # pass 6",
+        "2026-10-02T00:05:52.7398695Z # fail 0",
+        "2026-10-02T00:05:52.7399216Z # cancelled 0",
+        "2026-10-02T00:05:52.7399654Z # skipped 0",
+        "2026-10-02T00:05:52.7400138Z # todo 0",
+        "2026-10-02T00:07:32.3673095Z # tests 925",
+        "2026-10-02T00:07:32.3673266Z # pass 925",
+        "2026-10-02T00:07:32.3673351Z # fail 0",
+        "2026-10-02T00:07:32.3673441Z # cancelled 0",
+        "2026-10-02T00:07:32.3673523Z # skipped 0",
+        "2026-10-02T00:07:32.3673610Z # todo 0",
+        "2026-10-02T00:07:43.4653939Z # tests 9",
+        "2026-10-02T00:07:43.4656177Z # pass 9",
+        "2026-10-02T00:07:43.4656553Z # fail 0",
+        "2026-10-02T00:07:43.4657077Z # cancelled 0",
+        "2026-10-02T00:07:43.4657611Z # skipped 0",
+        "2026-10-02T00:07:43.4658143Z # todo 0"
+      ]
+    }
+  },
+  "tested_merge": "8fae4287e1c5e9201a01301e763b9c563138c621",
+  "tested_tree": "4fe13857e123acac338662baa3ac52c6d350dc3a",
+  "source_and_job_fidelity": true,
+  "all_seven_success": true,
+  "merge_ref_open_codeql_alert_count": 0,
+  "local_project_execution": false,
+  "full_goal": "ACTIVE"
+}

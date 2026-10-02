@@ -1,0 +1,38 @@
+{
+  "schema": "canli.paper-example.peer.static-capacity.v1",
+  "source": "e47e331e1e1ac17cb43c55a53a764c2c398d7689",
+  "kind": "STATIC_JSON_CAPACITY_ARITHMETIC_NOT_PROJECT_RUNTIME",
+  "initial_candidate_retained": {
+    "field_lengths": [
+      64400,
+      64400,
+      64400
+    ],
+    "export_reply_bytes": 131624,
+    "export_above_reply_cap": true,
+    "result": "invalid first capacity candidate; not product/runtime failure"
+  },
+  "corrected_field_lengths": {
+    "sizing.binding_constraint": 64400,
+    "checked.not_modelled[0]": 64400,
+    "bundle.series": 64100
+  },
+  "individual_reply_bytes": {
+    "sizing": 129214,
+    "check": 130050,
+    "export": 131024
+  },
+  "reply_cap": 131072,
+  "final_report_bytes": 199872,
+  "output_cap": 196608,
+  "over_cap_bytes": 3264,
+  "meaning": "individually bounded retained fields can jointly exceed final report capacity; finish() is outside the stopped-report catch",
+  "signature_limit": "placeholder public key/signature lengths, NOT valid crypto or a runtime counterexample. Source argument assumes any valid signature over this unchanged record. Series is outside signed record and artifact hash can be recomputed.",
+  "request_hash_limit": "fixed-length hash placeholders for capacity; no actual store receipt or journal is fabricated as evidence",
+  "project_imports": false,
+  "node_execution": false,
+  "signing": false,
+  "tool_calls": 0,
+  "runtime_case_count": null,
+  "script_sha256": "020d167df23ff787e60164cf7c9ca0bf4f2e0a8d407b685941ab23d3ff79885c"
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "canli.paper-example.primary-static-finding.v1",
+  "observed_at": "2026-10-02T00:21:54.131599+00:00",
+  "source": "1ddd75ab4b3e778781ae676cee74fb6c9644913e",
+  "tree": "758b0e7d0cc28acdd1b1a2112dbba21dfe467f24",
+  "id": "CC-PAPER-EXPORT-COMPANION-CONSISTENCY",
+  "priority": "P2",
+  "status": "PARTIALLY_CORRECTED_STILL_HOLD",
+  "corrected": "closing equity/cumulative/drawdown and strict metrics/series shape now bind the signed record and opening-equity identities",
+  "remaining_counterexample": {
+    "step1": "keep original record and original signature unchanged",
+    "step2": "increase metrics.traded_notional_usd by 1000 (remains positive and finite)",
+    "step3": "set series[0].turnover to changed traded_notional_usd / unchanged opening_equity",
+    "step4": "recompute artifact bytes and sha256 for changed whole bundle",
+    "reason": "the only new turnover predicate compares two unsigned companions. The signed IRREGULAR record has turnover_annualised:null, so it does not bind traded notional or interval turnover. All current 1ddd predicates remain satisfied."
+  },
+  "requested": "Bind total traded_notional_usd to the sole supplied fill quantity and price under the existing documented numeric tolerance/finite policy, without duplicating general financial replay; regression changes both companions and rehashes artifact while preserving the original record/signature. Retain original pending export on refusal.",
+  "local_runtime_or_counterexample_execution": false,
+  "source_manifest_sha256": "b008f83b8cedcb2b93cb581172ce6613f7bd254bae461cc8e426ece30d868823",
+  "full_owner_hierarchy_preserved": true
+}

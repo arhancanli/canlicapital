@@ -1,0 +1,153 @@
+{
+  "schema": "canli.paper-journal-example.integrated-source.v1",
+  "observed_at": "2026-10-02T01:27:46.683796+00:00",
+  "source": "e567692ebc53c4e6bb49383d12a34f3807c79512",
+  "tree": "09e91333f8f58e0990fe08e5c6aedf6453096eed",
+  "signature": "G",
+  "clean": true,
+  "base": "052c4d60a7631949f2aea7c9feed640ee5e8386e",
+  "parents": [
+    "73712ef7acd5f5aaf6a4e701ee9793608efcf2f4",
+    "052c4d60a7631949f2aea7c9feed640ee5e8386e"
+  ],
+  "accepted_paper_source": "73712ef7acd5f5aaf6a4e701ee9793608efcf2f4",
+  "accepted_primary_source": "e64ac7c9a48d873a6753b8678934ab17c9d81707",
+  "actual_main_prerequisite_receipt_sha256": "145d26d94b8f9ef9ca947ca3168812e91275c59fe006c5961e53ba98af060328",
+  "delta_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "mcp-execution/EXAMPLES.md",
+    "mcp-execution/README.md",
+    "mcp-execution/examples/paper-journal.mjs",
+    "mcp-execution/test/paper-journal-example.test.mjs"
+  ],
+  "files": {
+    "docs/goal/LOG.md": {
+      "bytes": 378597,
+      "sha256": "7067face76fc85badb38db33e1783f46b3d9af1b0217e06d02ff941359f761c3",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "854e625cbb1b77202d70fe9fbe8057d8b0b027f5",
+        "bytes": 378597
+      }
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 103233,
+      "sha256": "61a1fbdc4a6e7ede4fee91b28621c637a7c0cd521622d3bec8cdfe4c4320e0c8",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "db24bb09c6aaa22db8aac2cc6b49dafc5d61a13e",
+        "bytes": 103233
+      }
+    },
+    "mcp-execution/EXAMPLES.md": {
+      "bytes": 10426,
+      "sha256": "e3f39e9764bdb50390b784c156b9aa0c1ef3daa235d7cfe95934851c8e9586ac",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fdbabf0c3d6d9be95a9ef84d3a2d9edf6fc7a696",
+        "bytes": 10426
+      }
+    },
+    "mcp-execution/README.md": {
+      "bytes": 16412,
+      "sha256": "1e32f93149208c2b46ed973fa9c5f4f3833679a87f22149e5ba9ff32f5697360",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8a78df76a67052eec4fe237d32444d8dfe662d7f",
+        "bytes": 16412
+      }
+    },
+    "mcp-execution/examples/paper-journal.mjs": {
+      "bytes": 30641,
+      "sha256": "f668f2b216694d0fdcc7b507941162198c38c7534f75a47c4d2265754e7ae724",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "eff0774d7b633247c9384ee3b045da2b9f1ffb53",
+        "bytes": 30641
+      }
+    },
+    "mcp-execution/test/paper-journal-example.test.mjs": {
+      "bytes": 27429,
+      "sha256": "46011f1ab7f74c250f01a78429d3aafefb06bcfea9976b04887cc5a2065c59f8",
+      "git": {
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ad5f6f8289c12972aba5d9c806f290783c54fa99",
+        "bytes": 27429
+      }
+    }
+  },
+  "all_four_paper_products_byte_exact_737": true,
+  "protected_latest_main_Git_files": 5863,
+  "protected_latest_main_Git_bytes": 381260660,
+  "protected_latest_main_Git_identity_sha256": "501dd426f8822207b0f2bfde4966eccad06ca22441fc90127222e14aa4c53da1",
+  "all_protected_latest_main_modes_types_blobs_sizes_equal": true,
+  "goal_histories": {
+    "docs/goal/STATUS.md": {
+      "common_base_bytes": 87008,
+      "common_base_sha256": "64b1ede55435e42ca0b0309fd0f581e78fa9ea9948846dc6ab9d56169e584afc",
+      "primary_main_bytes": 91876,
+      "primary_main_sha256": "fd3ae43752f5905eb034100f1634af287f7ba99c31751e68617f3aa3c04fad13",
+      "primary_main_prefix_preserved": true,
+      "original_secondary_suffix_bytes": 10092,
+      "original_secondary_suffix_sha256": "5f7fb3d1b37cf7bbeef97e56b02658775702876d7fdbecca71222efa3401cf9a",
+      "original_secondary_suffix_retained_exact": true
+    },
+    "docs/goal/LOG.md": {
+      "common_base_bytes": 362372,
+      "common_base_sha256": "b409fc86a6f545455fe531f5e38b618d7f8a62311b3396287df6680fac2da27d",
+      "primary_main_bytes": 367240,
+      "primary_main_sha256": "6c3a8546134f035c7db5bed66111c8682a21f102d7dd7288bb3f8aba06e496ff",
+      "primary_main_prefix_preserved": true,
+      "original_secondary_suffix_bytes": 10092,
+      "original_secondary_suffix_sha256": "5f7fb3d1b37cf7bbeef97e56b02658775702876d7fdbecca71222efa3401cf9a",
+      "original_secondary_suffix_retained_exact": true
+    }
+  },
+  "written_cases_only": [
+    "injected delivered tools complete a bound synthetic sizing/check/journal/export roundtrip",
+    "actual local stdio example completes the signed synthetic roundtrip without returning the key",
+    "the actual repository command defaults to two read-only calls without preparing a key",
+    "injected default write denial performs checks and creates no journal or key",
+    "a supplied notional limit rejects the order before any journal write or fabricated fill",
+    "the delivered kill switch rejects before initialization and is never removed",
+    "missing supplied fill fees stay unknown and stop before journal initialization",
+    "an absent commission schedule remains not modelled while explicit fixture fill fees are retained",
+    "a date-only commission schedule refuses as unknown while an explicitly supplied zero remains valid",
+    "accessors and inline signing fields refuse before a local callback and do not echo their contents",
+    "text/structured reply disagreement and oversized replies stop without accepting a plan",
+    "pre-trade response order identity and columns must match the delivered contract",
+    "a missing or mismatched initial request receipt retains the original request and stops progress",
+    "singleton-array journal hashes stop at initialization and retain the original pending request",
+    "singleton-array planning hashes refuse before journal progression",
+    "typed persistence uncertainty never retries or exposes a diagnostic key string",
+    "a retained actual pending lock produces busy, preserves the lock, and schedules no retry",
+    "conflicting operation contents after a stale absent-head reply refuse without changing the existing journal",
+    "a normal rerun detects the existing journal and never replays the scenario",
+    "a replay acknowledgement cannot advance the example to another operation",
+    "a changed verified head stops before export and preserves all acknowledged write receipts",
+    "a tampered export digest is refused while its original export request remains visible",
+    "rehashing a changed unsigned export companion cannot bless it with the original record signature",
+    "changing both unsigned traded notional and turnover cannot override the supplied fill",
+    "individually bounded excessive retained planning refuses before journal dispatch and returns a report",
+    "a bounded large signed export refuses without losing earlier acknowledgements or pending export",
+    "the finite call cap stops before dispatching export and keeps earlier acknowledgements",
+    "a never-resolving callback reaches the native deadline without a follow-up call",
+    "cancellation during a pending write retains its request and a late completion cannot change the returned result",
+    "pre-abort, zero deadline and invalid enlarged policies dispatch no callbacks",
+    "a backwards caller clock stops after its first callback",
+    "an abort delivered by the final dispatch clock sample prevents the callback and count",
+    "caller mutation during the first await cannot change the captured fixture or later write requests",
+    "stdio home and command argument refusals do not create or repair local state"
+  ],
+  "remote_ci": "pending exact integrated source",
+  "independent_extension": "pending actual integrated pin",
+  "local_project_execution": false,
+  "full_goal": "ACTIVE"
+}

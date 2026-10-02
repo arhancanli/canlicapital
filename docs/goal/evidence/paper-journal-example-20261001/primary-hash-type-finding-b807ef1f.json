@@ -1,0 +1,23 @@
+{
+  "schema": "canli.paper-example.primary-static-finding.v1",
+  "observed_at": "2026-10-02T00:37:02.536921+00:00",
+  "source": "b807ef1fea7f1cc72b1cbdc4d3bbdc23da9f6eed",
+  "tree": "0f98b96b9da5b611a6ac70e3db6334591ec2f38f",
+  "id": "CC-PAPER-HASH-TYPE-BEFORE-PROGRESS",
+  "priority": "P2",
+  "kind": "frozen source counterexample reasoning only, not runtime",
+  "counterexample": "After a genuine initialize response, replace data.entry_head with a singleton array containing the original valid sha256 string (keep action/operation/request hash/seq/prefix fields unchanged). HASH.test(array) coerces it to that valid string, so writeReceipt admits a malformed receipt. The next decision request is built with expected_head=array and is dispatched before the protected server schema rejects it. Thus malformed receipt does not stop follow-up at initialize as documented. The journal need not be modified by the peer; a fixture wrapper can express this in existing remote CI.",
+  "other_affected_guards": [
+    "sizing.limits_digest",
+    "checked.limits_digest",
+    "writeReceipt.entry_head",
+    "writeReceipt.journal_prefix_sha256"
+  ],
+  "requested": "Require typeof value===string before SHA256 regex everywhere admitted as a hash. Add meaningful singleton-array hash fault controls showing malformed initial receipt stops at call4, retains original pending request, records no accepted receipt and dispatches no decision. Also validate planning hash types before journal progression. Keep the same six paths/protected sources.",
+  "accepted_static_fix_scope_for_previous_P2s": [
+    "supplied one-fill notional comparison with finite four-epsilon policy",
+    "separate planning/export/request/control caps before progress and final fallback preserving bounded controls"
+  ],
+  "previous_capacity_runtime_proof": "new b807 remote CI remains pending; no local project execution",
+  "future_358_integration_cue": "Move example unknown-fee admission before checkOrdersInput strict parse, otherwise integrated date-only scenario yields CHECK_INPUT rather than its expected MISSING_FEE_SCHEDULE. This is compatibility with future main, not a present b807 runtime finding."
+}

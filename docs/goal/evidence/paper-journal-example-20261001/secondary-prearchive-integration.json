@@ -1,0 +1,136 @@
+{
+  "schema": "canli.paper-example.prearchive-integration.v1",
+  "observed_at": "2026-10-02T01:42:29.734718+00:00",
+  "signed_source": "e567692ebc53c4e6bb49383d12a34f3807c79512",
+  "tree": "09e91333f8f58e0990fe08e5c6aedf6453096eed",
+  "signature": "G",
+  "clean": true,
+  "actual_main": "052c4d60a7631949f2aea7c9feed640ee5e8386e",
+  "actual_main_tree": "107254ce1ae4f02b9f7cc9b11cfdc0f3419f5553",
+  "accepted_paper_source": "73712ef7acd5f5aaf6a4e701ee9793608efcf2f4",
+  "all_four_product_bytes_identical": true,
+  "protected_main_Git_files": 5863,
+  "protected_main_Git_bytes": 381260660,
+  "protected_main_Git_identity_sha256": "501dd426f8822207b0f2bfde4966eccad06ca22441fc90127222e14aa4c53da1",
+  "goal_histories": {
+    "docs/goal/STATUS.md": {
+      "common_base_bytes": 87008,
+      "common_base_sha256": "64b1ede55435e42ca0b0309fd0f581e78fa9ea9948846dc6ab9d56169e584afc",
+      "primary_main_bytes": 91876,
+      "primary_main_sha256": "fd3ae43752f5905eb034100f1634af287f7ba99c31751e68617f3aa3c04fad13",
+      "primary_main_prefix_preserved": true,
+      "original_secondary_suffix_bytes": 10092,
+      "original_secondary_suffix_sha256": "5f7fb3d1b37cf7bbeef97e56b02658775702876d7fdbecca71222efa3401cf9a",
+      "original_secondary_suffix_retained_exact": true
+    },
+    "docs/goal/LOG.md": {
+      "common_base_bytes": 362372,
+      "common_base_sha256": "b409fc86a6f545455fe531f5e38b618d7f8a62311b3396287df6680fac2da27d",
+      "primary_main_bytes": 367240,
+      "primary_main_sha256": "6c3a8546134f035c7db5bed66111c8682a21f102d7dd7288bb3f8aba06e496ff",
+      "primary_main_prefix_preserved": true,
+      "original_secondary_suffix_bytes": 10092,
+      "original_secondary_suffix_sha256": "5f7fb3d1b37cf7bbeef97e56b02658775702876d7fdbecca71222efa3401cf9a",
+      "original_secondary_suffix_retained_exact": true
+    }
+  },
+  "original_primary_737_source_sha256": "38e7bcfb9fc2add34880653df6e9663c12b3304dd6b9a6eb7b1ccfcf40918c3e",
+  "original_third_737_source_sha256": "eb2a67e323c4c9328620a8a2b78fbdd7c6e1903c28e35405ce7957af74f9126f",
+  "primary_integrated_source_sha256": "cf0cfd8ce81889d73b13c63f385ac6083eb6fb3d2a6a3a34bdb9958113f8a9df",
+  "primary_integrated_source_original": {
+    "schema": "canli.paper-journal-example.primary-integrated-source-extension.v1",
+    "observed_at": "2026-10-02T01:30:50.414118+00:00",
+    "source": "e567692ebc53c4e6bb49383d12a34f3807c79512",
+    "tree": "09e91333f8f58e0990fe08e5c6aedf6453096eed",
+    "signature": "G",
+    "clean_observed": true,
+    "actual_main": "052c4d60a7631949f2aea7c9feed640ee5e8386e",
+    "accepted_source": "73712ef7acd5f5aaf6a4e701ee9793608efcf2f4",
+    "decision": "PASS_WITH_STATIC_SCOPE_LIMITS",
+    "author_manifest_sha256": "903f324e8353a5c02ac39e05e06abfefa2709b3e70cbe6a72907e0fb91fde9b3",
+    "four_products": {
+      "mcp-execution/examples/paper-journal.mjs": {
+        "bytes": 30641,
+        "sha256": "f668f2b216694d0fdcc7b507941162198c38c7534f75a47c4d2265754e7ae724",
+        "exact_accepted737_work_git": true
+      },
+      "mcp-execution/test/paper-journal-example.test.mjs": {
+        "bytes": 27429,
+        "sha256": "46011f1ab7f74c250f01a78429d3aafefb06bcfea9976b04887cc5a2065c59f8",
+        "exact_accepted737_work_git": true
+      },
+      "mcp-execution/EXAMPLES.md": {
+        "bytes": 10426,
+        "sha256": "e3f39e9764bdb50390b784c156b9aa0c1ef3daa235d7cfe95934851c8e9586ac",
+        "exact_accepted737_work_git": true
+      },
+      "mcp-execution/README.md": {
+        "bytes": 16412,
+        "sha256": "1e32f93149208c2b46ed973fa9c5f4f3833679a87f22149e5ba9ff32f5697360",
+        "exact_accepted737_work_git": true
+      }
+    },
+    "all_protected_main_git_mode_type_blob_size_equal": true,
+    "protected_main_git_files": 5863,
+    "protected_main_git_bytes": 381260660,
+    "working_whole_byte_audit": false,
+    "six_delta_paths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-execution/EXAMPLES.md",
+      "mcp-execution/README.md",
+      "mcp-execution/examples/paper-journal.mjs",
+      "mcp-execution/test/paper-journal-example.test.mjs"
+    ],
+    "goal_histories": {
+      "docs/goal/STATUS.md": {
+        "main_prefix_bytes": 91876,
+        "main_prefix_sha256": "fd3ae43752f5905eb034100f1634af287f7ba99c31751e68617f3aa3c04fad13",
+        "original_secondary_suffix_bytes": 10092,
+        "original_secondary_suffix_sha256": "5f7fb3d1b37cf7bbeef97e56b02658775702876d7fdbecca71222efa3401cf9a",
+        "both_histories_verbatim": true,
+        "final_bytes": 103233,
+        "final_sha256": "61a1fbdc4a6e7ede4fee91b28621c637a7c0cd521622d3bec8cdfe4c4320e0c8"
+      },
+      "docs/goal/LOG.md": {
+        "main_prefix_bytes": 367240,
+        "main_prefix_sha256": "6c3a8546134f035c7db5bed66111c8682a21f102d7dd7288bb3f8aba06e496ff",
+        "original_secondary_suffix_bytes": 10092,
+        "original_secondary_suffix_sha256": "5f7fb3d1b37cf7bbeef97e56b02658775702876d7fdbecca71222efa3401cf9a",
+        "both_histories_verbatim": true,
+        "final_bytes": 378597,
+        "final_sha256": "7067face76fc85badb38db33e1783f46b3d9af1b0217e06d02ff941359f761c3"
+      }
+    },
+    "fee_compatibility": "accepted737 unknown-buy-fee check precedes protected schema parse; strict358 schema adopted via exact main identity",
+    "existing_source_acceptance": [
+      "primary38e7bcfb",
+      "third eb2a67e3"
+    ],
+    "written_example_case_count": 34,
+    "integrated_exact_runtime_current_ci": "pending actual integrated source evidence, old34/117 not relabeled",
+    "final_archive_current_head_and_delivery": "pending independent final gates",
+    "local_project_execution": false,
+    "remaining_source_blockers": [],
+    "full_owner_hierarchy_preserved": true
+  },
+  "primary_integrated_independent_ci_sha256": "aec1dcf36c39de9a9cd73e038962c83a5f99ded409ceaeece7f1f40819c01283",
+  "integrated_actual_ci_sha256": "73238d56b727e1a38ac751c2689cc95e0c8a7424b6f5556b9cf38b2e9334f6dd",
+  "actual_example_cases": 34,
+  "actual_execution_tests": 139,
+  "actual_main_tests": 925,
+  "actual_prechecks": 6,
+  "actual_notifications": 9,
+  "all_seven_success": true,
+  "tested_merge": "9c120a2c76156d8bcdd389f1b25a0b29f9d61f76",
+  "source_tree_equality": true,
+  "current_ref_codeql_alerts": 0,
+  "both_current_language_analyses_zero": true,
+  "original_failed_source_b807": "30 source passed/2 source failed;113 execution passed/2 failed, never relabeled",
+  "third_integrated_e567_extension": "ongoing; final-head source/archive/current CI both-peer acceptance remains required, no future source preapproval",
+  "archive_allocation_sha256": "6f8f0e58e0a825850f5d8c17c8d4a7cae5dac2b82047cb99531fcf51d6bdabdc",
+  "archive_max_files_including_README_manifest": 40,
+  "archive_max_original_bytes_including_README_manifest": 12582912,
+  "local_project_execution": false,
+  "full_goal": "ACTIVE"
+}

@@ -5489,3 +5489,191 @@ No local project runtime, filesystem universal-deadline/power-loss claim, financ
 network/model/provider/broker/key upload/spend/site/npm/version/hero action. Private
 Unreleased execution and every original owner goal remain unfinished/in force;
 fresh indexing, token/latency, expert/adoption/qualified-forward results stay unknown.
+
+
+## Secondary finite offline paper-journal example begins, 2026-10-01T23:31:07.173474+00:00
+
+Actual main3658d0b60f5b06144b267b0cddc8fde81e6af6d8/tree d6bb is verified,
+collector356 and writer355 are delivered with reviewed-tree identity. Historical
+343/353/collector assignments are fulfilled; their sources/evidence stay frozen.
+Current coordination primary-assignment.md SHAd81cbc15 assigns a new isolated
+assist/paper-journal-example-20261001 checkout and exactly six paths: new
+mcp-execution/examples/paper-journal.mjs, test/paper-journal-example.test.mjs,
+EXAMPLES.md, README example instructions, append-only STATUS and LOG.
+The scenario will use supplied synthetic sizing/limits/prices/fills/fees, an
+injected local MCP call interface and finite actual-stdio demonstration. Caller
+prepares home/key and explicitly enables writes. Failed checks, typed errors,
+missing/conflicting receipts, cancellation/uncertainty stop; no automatic retry.
+Source/schema/math/store/default-tool-list/locks/versions/public site/ALPHAC and
+FilingFacts343/351/353/356/V0 remain protected. Five root and worktree continuity
+files read. No Node/import/test/helper/browser/build/job is run locally; written
+tests require signed-source existing remote CI and independent review. No grant
+reused or requested; no provider/broker/model/spend/hero/publication. All full
+Sovereign pillars, real independent expert refinery, governed ALPHAC outcomes,
+10M actually indexed useful source-backed canonicals, qualitySEO/intents/design/
+analyzers, legitimate API/MCP/repository adoption and research stay ACTIVE.
+
+
+## Secondary offline paper example implementation written, 2026-10-01T23:54:03.178347+00:00
+
+The six assigned paths now contain a bounded injected local MCP runner and a
+fixed-server actual-stdio demonstration. The maximum is11 explicit tool calls;
+stdio reserves5s inside the30s nominal total for one SDK close. Both boundaries
+recheck native cancellation and observed clocks at dispatch; synchronous trusted
+code/filesystem/event-loop suspension cannot be forcibly preempted. Caller must
+prepare home/key and explicitly enable writes. Supplied synthetic fill fees are
+never inferred; missing fees, skipped/rejected checks, kill switch, malformed or
+replayed receipts, changed heads, busy/refused/uncertain writes and cancellation
+stop. Exact operation/request/expected-head and pending-write/export status are
+retained. No resubmission or lock cleanup. Export signature/artifact/head/prefix
+bindings reuse the delivered server account replay and public-key verification.
+Locked client2.1 static source revealed its HEADER_MISMATCH retry path; explicit
+delivered toolDefinition suppresses that path and implicit tool discovery.
+Written actual-stdio/CLI and meaningful fault/coverage cases await existing
+remoteCI. No local JS/import/test/helper/job or nominal passing count is claimed.
+Git whitespace check passes; 5835 protected working files/380904798 bytes
+match actual3658 Git blob/mode identities, and both original goal prefixes are
+unchanged. Source freeze, independent review, exact CI/evidence and handoff remain
+open. All full Sovereign/10M actual indexing/qualitySEO/intents/design/analyzers/
+legitimateadoption/realexpertrefinery/research/governedALPHAC/paperthenlawfulcapital
+objectives stay ACTIVE; no model/provider/broker/spend/site/version/hero action.
+
+
+## Paper example first exact remote proof and fee admission correction, 2026-10-02T00:04:46.507143+00:00
+
+Signed original e39d0a085f3ffe182f1d3f33549736d99ab85621/treebd378c3a has
+all seven successful existing CI checks. MCP job110639702429/run36943347078
+contains27 actual source-named passes exactly once within110 execution cases,
+zero failures/skips/cancellations/todos on remote Node22.23.3. Tested mergea318
+has treebd equal signed source and e39 as parent. Raw144790B SHA6c9fbb28 and
+corrected TAP-aware receipt85cdbc67 are retained in coordination; root raw
+582342B SHA35399da5439ffc08d1328a0e60b82b8607b7430a8b3c14cb8f6668c09dc301a7 is separately retained.
+The initial gh escape refusal and two missing-TAP-separator extraction receipts
+remain metadata-only failures, not runtime test failures or altered originals.
+Third's protected-server date-onlyfee source findingab07 identified an admission
+problem relevant to the reusable example: a provided buy schedule could lack a
+buy commission amount. Narrow example admission now refuses date/source-only,
+minimum-only and sell-only schedules as unknown before any callback; absent
+schedules and explicitly supplied0 remain supported. New regression is WRITTEN.
+No protected server/math/schema change or local runtime/CPUgrant/job was made.
+A new signed pin, exact remoteCI and independent review are required; original
+e39 passes are not relabeled to the correction. Six-path scope and all complete
+owner goals remain ACTIVE; no broker/provider/model/spend/hero/site/npm action.
+
+
+## Paper example exact fee-corrected CI and export companion correction, 2026-10-02T00:17:40.095659+00:00
+
+Signed e47e331e1e1ac17cb43c55a53a764c2c398d7689/tree4fe13857 has28 actual
+source-named passes once within111 execution cases, zero failure/skip/cancel/todo
+on remoteNode22.23.3. Both MCP110642276318 and root110642276932 check out
+tested8fae4287/tree4fe equal signedsource. Currentall7 success andmerge-ref
+CodeQL0 are independently retained in coordination exactCIreceiptabdd012c.
+RawMCP146398B SHA03318193 and root581478B SHA119002cd remain exact originals.
+No local reproduction or new timing/token/strategy/realexpert outcome is claimed.
+Own source-only export-companion cue identified that changing unsigned closing
+metrics and rehashing could retain an original record signature. The example
+now requires metric/sole-observation metadata to match the signed record, supplied
+opening equity/mark and the documented single-window identities. Account/fill
+financial reconstruction remains the existing server's work, with no core edit.
+Roundtrip tests now also call the delivered independent bundle binding check.
+A new rehashed-companion tamper case is WRITTEN; e47's passes are historical
+and not claimed for the new correction. New exact signed-source CI and both
+independent reviews remain open. Six assigned paths only; frozen343/351/353/
+355/356/V0/default schemas/math/storage/site/ALPHAC unchanged. The complete
+owner hierarchy remains ACTIVE; no model/broker/provider/grant/job/spend/pub/hero.
+
+
+## Paper example exact companion CI and final capacity/notional findings, 2026-10-02T00:33:46.774832+00:00
+
+Signed1ddd75ab/tree758b has29 actual new source-named passes once within112
+execution cases/remote22.23.3/zero failures skips cancellations todos. MCP and
+root jobs share testeda05cba4c, tree758b equals signedsource; all7 checks
+SUCCESS. Exact raw/source/run evidence stays immutable in coordination.
+Both independent e47 reviews corroborated own unsigned-companion source finding.
+Third's1ddd receipt10c364d9 identified supplied-notional binding still missing
+and final report-capacity refusal able to lose recovery controls. Its modeled
+129214/130050/129916-byte replies and199292-byte report are STATIC shape/byte
+arithmetic, not executed signed/tool/provider evidence; original invalid vectors
+and prior findings remain preserved. Primary b5ff577b/0e5e4b57 approves final
+archive extension at most40 TOTAL files including manifest/12MiB originals+manifest
+after source/CI/review gates. No extra repo path is added before those gates.
+Narrow correction now binds notional to supplied qty*price with four binary
+epsilons; caps retained planning16KiB/export32KiB/request-list16KiB/controls48KiB;
+admits aggregate output before dispatch with16KiB control reserve; and catches
+final capacity refusal with explicit omitted optional results while preserving
+original bounded requests/receipts/pending write/export. New meaningful notional
+rehash and individually bounded planning/valid-signed export capacity cases are
+WRITTEN. The original29 passes are not claimed for this correction.
+Six assigned paths only; protected source/math/server/schema/store/versions/site/
+FilingFacts/ALPHAC unchanged. No localruntime/Node/import/grant/job/model/provider/
+broker/resources/spend/pub/hero. Full owner hierarchy remainsACTIVE.
+
+
+## 2026-10-02T00:45:55.433113+00:00 — secondary357 malformed-hash and capacity-code correction
+
+Signed b807ef1f/tree0f98 is historical: exact existing remote run36946622691
+MCP110650112002 gives30 source passes and2 capacity-case failures within
+115 execution/113 pass/2 fail/zero skips,cancel,todo; six other checks succeed.
+Original150604-byte MCP log f955f563 and root581630-byte af049cbf stay immutable;
+exact failed receipt 618a2a82ad746159bb6609ee23a7f2236d39df44f64f1ed4c6a65180c220b322 binds tested449f3cb0 tree/parents/source.
+Both capacity cases safely refused large valid strings as JSON_STRING; the new
+source separates size JSON_BOUND from malformed Unicode JSON_STRING. Metadata
+cardinality error1a66f03cc28baca306b855f21325b6cdfa13c49df161da2797bf6810bff74845 also retained separately; anchored TAP tokens
+correct its not-ok/ok extraction without changing raw or runtime outcomes.
+Primary frozen STATIC finding56b93e65528eac3e6f3db83d42c016e213fbda2d061005d4f83b82a590eee7d0 identifies singleton-array SHA
+coercion that could progress after a malformed initialize receipt. Strict string
+hash admission now covers planning limits and journal head/prefix hashes; meaningful
+array controls require call4/pending original request/no accepted receipt/no
+decision and planning faults before journal calls. New cases remain WRITTEN
+until exact-source remote CI, with previous results kept source-specific.
+Unknown commission admission precedes protected check schema parsing for future
+primary358 integration; protected code unchanged. Six assigned paths only.
+Approved archive40 TOTAL files/12MiB including README+manifest remains gated
+on corrected source/CI/peers. No localproject Node/import/test/grant/job/model/
+provider/broker/resources/spend/pub/hero. Full owner hierarchy remainsACTIVE;
+delivered343/351/353/355/356 stay frozen.
+
+
+## 2026-10-02T01:27:46.683796+00:00 — secondary357 integrates delivered primary358
+
+Fresh GH verifies358 MERGED2026-10-02T01:24:16Z as052c4d60, sole parent3658;
+actualmain tree107254 exactly equals reviewed signedGe64. Final third eef7b825
+source/archive and32df3def exactCI accept22/105/root6+925+9/all7/zero omissions
+and26 preserved archives; original866 five fault-harness failures remain.
+One routine main merge retains all four paper product files byte-exact to accepted
+737 (primary38e7/third eb2a), all protected latestmain Git objects/modes, and
+both exact original goal suffixes after their common3658 prefixes. Newly strict
+protected fee parsing is adopted with example unknown-fee admission preceding it.
+737 actual34/117 and its raw source failures stay historical; this integrated
+source requires its own existing remote CI and independent extension. No current
+integrated runtime result is claimed before raw proof. Approved40TOTAL/12MiB
+README+manifest archive is still prepared externally. Final archive/CI/source
+gates precede primary sole ordinary357merge; no site/npm/version publication.
+No localproject Node/import/test/build/CLI/browser/helper job/CPUgrant/model/
+provider/broker/resources/spend/hero. Full owner hierarchy remainsACTIVE.
+
+
+## 2026-10-02T01:42:30.563178+00:00 — secondary357 final bounded source/evidence freeze
+
+Accepted integratede567/tree09e913 source now has34 actual source-named passes
+within139 execution, Node22.23.3, root6pre/925main/9notify/all7/zero omissions.
+Both raw jobs bind tested9c120a2c/tree09e913/sourcee567+main052; exactCI73238d56
+includes currentref0 and latest JS+PY0. Primary sourcecf0c and independent
+CIaec1 accept; corrected737 primary38e7/third eb2a source gates remain exact.
+All four product files are byte-exact to737; no code change accompanies this
+freeze. Forty TOTAL evidence files INCLUDING README+manifest now preserve old
+source/failure/findings/invalid-static-vectors/parser-errors/SDK/static proofs
+and actual integrated runtime/protected/history evidence. Originalbytes
+3244672 and storedbytes
+2060277 include README+manifest,
+inside12MiB original cap. ManifestSHA41a006759c99316dc256f9c392331de904f17a350df2527f883756ec3aa64fb1;
+identity/gzip-mtime0/work originals are checked byte-exact. Proof75d8b7e179c6ea0ae97c23eddedb69cfd8b735c37fcd663c8b8a06629899d2a3
+keeps both original goal histories and5863 latestmain Git files381260660B.
+Current final-head existingremoteCI plus both independent source/archive/current
+CI extensions remain required before primary ordinary357merge. Third e567
+source-equivalence extension was ongoing at freeze; no future approval asserted.
+Finalhead receipts stay coordination to avoid self-reference. No site/npm/version
+publication follows this private Unreleased example. No localproject Node/import/
+test/CLI/build/browser/helper job/CPUgrant/provider/model/resources/broker/spend/
+hero. Full owner hierarchy remainsACTIVE; indexed/expert/forward/adoption and
+current release efficiency measurements stay distinct open outcomes.
