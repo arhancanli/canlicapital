@@ -202,3 +202,16 @@ Written cases remain unexecuted until that actual CI evidence is captured.
 Source review and retained-current-CI review are separate independent gates;
 ordinary repository delivery and any substantial release remain separate.
 All full CanliCapital owner objectives stay active.
+
+
+## Exact source-declaration boundary
+
+Source SHA declarations require exactly64 primitive lowercase hex characters or
+`null`. A trailing LF, CR, Unicode line separator, paragraph separator or other
+extra character is refused, even when escaped within otherwise valid JSON. The
+derived report checks both its own declaration and the unchanged preparation's
+declared module SHA. The intake module itself remains byte-exact; valid six-input
+preparation is still recomputed unchanged. A named regression with valid64/null
+controls covers this boundary. The original source-review finding and prior48-case
+remote evidence remain retained separately from this correction and its new-head
+CI; this paragraph is documentation, not evidence that the regression ran.

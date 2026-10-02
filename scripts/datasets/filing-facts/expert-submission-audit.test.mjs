@@ -421,3 +421,17 @@ test('ASCII return duplication and raw-binding expansion refuse reports above6Mi
   const a = args(s); assert.equal([0, 2, 3, 5, 6, 8].reduce((total, i) => total + a[i].length, 0) + s.submissions.reduce((total, raw) => total + raw.length, 0), LIMITS.totalInputBytes);
   reject(s, 'REPORT_BOUND');
 });
+
+
+test('CC-367 exact64 declared source SHA refuses every final line terminator while valid64 and null remain unverified', () => {
+  for (const target of ['auditSettings', 'intakeSettings']) {
+    for (const suffix of ['\n', '\r', '\u2028', '\u2029', '\r\n', ' ']) {
+      const s = complete(); s[target].implementation_source_sha256 = 'a'.repeat(64) + suffix; reject(s, 'SHA');
+    }
+    for (const value of [null, 'a'.repeat(64)]) {
+      const s = complete(); s[target].implementation_source_sha256 = value; const report = run(s);
+      const binding = target === 'auditSettings' ? report.implementation : report.preparation.implementation;
+      assert.equal(binding.declared_module_sha256, value); assert.equal(binding.declared_module_sha256_verified, false); unknown(report);
+    }
+  }
+});

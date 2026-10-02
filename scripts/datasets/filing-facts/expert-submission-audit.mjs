@@ -38,7 +38,7 @@ export class ExpertSubmissionAuditError extends Error {
 function refuse(code) { throw new ExpertSubmissionAuditError(code); }
 function digest(bytes) { return createHash('sha256').update(bytes).digest('hex'); }
 function sha(value) {
-  if (typeof value !== 'string' || !/^[a-f0-9]{64}$/.test(value)) refuse('SHA'); return value;
+  if (typeof value !== 'string' || value.length !== 64 || !/^[a-f0-9]{64}$/.test(value)) refuse('SHA'); return value;
 }
 function captureBytes(value, maximum, budget) {
   if (types.isProxy(value) || !types.isUint8Array(value)) refuse('INPUT_BYTES');
@@ -303,6 +303,8 @@ export function reconcileExpertSubmissions(goldBytes, expectedGoldRawSha256, int
   let preparation;
   try { preparation = prepareExpertIntake(goldCopy, expectedGoldRawSha256, intakeCopy, inventoryCopy, evidence.copies, settingsCopy); }
   catch (error) { if (error instanceof ExpertIntakeError) refuse(`INTAKE_${error.code}`); throw error; }
+  // Preserve intake itself; refuse malformed caller source declarations in this derived report.
+  if (preparation.implementation.declared_module_sha256 !== null) sha(preparation.implementation.declared_module_sha256);
   const settings = auditSettings(parseJson(auditCopy), preparation.packet_sha256);
   const supplied = submissionInventory(parseJson(submissionsCopy), submissions.copies, preparation);
   const reconciliation = reconcileCoverage(preparation, supplied);
