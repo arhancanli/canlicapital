@@ -91,3 +91,32 @@ independent reviewers. Original source/logs/API captures and the four literal re
 Its exact PRIMARY allocation preserves twenty original assets plus four reviews and three
 documentary files. Final documentary-head verification and publication remain separate;
 these repository fixtures do not establish hosted latency, adoption or real financial outcomes.
+
+## Unreleased: bounded session cache retention
+
+The repository session cache retains at most 32 entries and 8 MiB of text measured as UTF-8
+bytes. A valid cache hit or admission moves that path to the most recent position; admission
+evicts the least recently used paths until both bounds fit. Replacement releases the old
+value's weight. Cache operations also remove unrelated entries whose age is negative,
+nonfinite or at least ten minutes. Clock values and timestamps must be finite numbers;
+strings and other unusable metadata are not coerced into fresh evidence.
+
+JSON validation still precedes admission. Failed, malformed, HTTP-error or aborted responses
+cannot remove a newer healthy concurrent result, and a validated success is returned even
+when unusable admission time prevents retention. The 4 MiB response-byte limit, strict UTF-8
+reader, cooperative 15-second request scope and all six tool outputs remain unchanged.
+
+The cache remains a Map for get, has, iteration, set, delete and clear inspection in injected
+fixtures. Inspection does not promote an entry or expire it. Normal set admission enforces
+the bounds; controlled lookups remeasure retained text before allowing a hit, so changed
+test-entry fields cannot leave stale byte accounting. Replacing the session cache, bypassing
+set with Map.prototype, or using accessor properties and mutation during an operation is
+outside the supported fixture contract. Direct field mutation can exceed a bound between
+operations; the next controlled cache operation repairs it before returning a hit.
+
+The bound covers retained text bytes per session, not JavaScript string/object overhead,
+transport allocations, parsed or returned values, the number of sessions, whole-process
+memory or hard wall time. There is no autonomous timer, configurable policy, retry or new
+dependency. Finite native/injected fixtures contain at most 12 MiB of synthetic payload per
+case; execution, independent review and release status are separate evidence gates. This
+change is Unreleased and makes no measured hosted latency, token, cost or adoption claim.
