@@ -1,6 +1,6 @@
 // Synthetic fixtures. Nothing in this file is a broker/model/latency experiment.
 import assert from 'node:assert/strict';
-import { generateKeyPairSync } from 'node:crypto';
+import { createHash, generateKeyPairSync } from 'node:crypto';
 import { chmodSync, existsSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -60,7 +60,8 @@ function roundtrip(report, home, pem) {
   assert.equal(report.export.metrics.fees_usd, 1);
   assert.equal(report.export.metrics.fill_count, 1);
   assert.equal(report.export.record.returns.sharpe_annualised, null);
-  assert.equal(journalBindings(report.export.record, bytes, report.export.signature).all_match, true);
+  const { artifact_bytes, artifact_sha256, ...bundle } = report.export;
+  assert.equal(journalBindings(report.export.record, bytes, report.export.signature, bundle).all_match, true);
   assert.ok(!JSON.stringify(report).includes(pem));
   assert.doesNotMatch(JSON.stringify(report), /BEGIN PRIVATE KEY|private_key|privatePem/);
   assert.ok(Buffer.byteLength(JSON.stringify(report)) <= PAPER_LIMITS.outputBytes);
@@ -269,6 +270,23 @@ test('a tampered export digest is refused while its original export request rema
   assert.equal(report.stop.code, 'EXPORT_DIGEST'); assert.equal(report.call_count, 11);
   assert.equal(report.export, null); assert.equal(report.pending_export.dispatched, true);
   assert.equal(report.pending_export.request.sign, true);
+});
+
+test('rehashing a changed unsigned export companion cannot bless it with the original record signature', async t => {
+  const f = fixture(t);
+  const report = await runPaperJournal({ write: true, callTool: async (req, opts) => {
+    const r = await f.callTool(req, opts);
+    if (req.arguments.action !== 'export') return r;
+    const data = structuredClone(r.structuredContent);
+    data.metrics.closing_equity += 1_000;
+    const fields = ['record', 'journal_sha256', 'head', 'entry_range', 'metrics', 'series', 'journal_public_key', 'signature'];
+    const bytes = Buffer.from(JSON.stringify(Object.fromEntries(fields.map(k => [k, data[k]]))) + '\n');
+    data.artifact_bytes = bytes.length; data.artifact_sha256 = 'sha256:' + createHash('sha256').update(bytes).digest('hex');
+    return envelope(data);
+  } });
+  assert.equal(report.stop.code, 'MALFORMED_EXPORT'); assert.equal(report.call_count, 11);
+  assert.equal(report.export, null); assert.equal(report.pending_export.dispatched, true);
+  assert.equal(report.receipts.length, 6);
 });
 
 test('the finite call cap stops before dispatching export and keeps earlier acknowledgements', async t => {

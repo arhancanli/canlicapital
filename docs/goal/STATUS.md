@@ -1407,3 +1407,25 @@ No protected server/math/schema change or local runtime/CPUgrant/job was made.
 A new signed pin, exact remoteCI and independent review are required; original
 e39 passes are not relabeled to the correction. Six-path scope and all complete
 owner goals remain ACTIVE; no broker/provider/model/spend/hero/site/npm action.
+
+
+## Paper example exact fee-corrected CI and export companion correction, 2026-10-02T00:17:40.095659+00:00
+
+Signed e47e331e1e1ac17cb43c55a53a764c2c398d7689/tree4fe13857 has28 actual
+source-named passes once within111 execution cases, zero failure/skip/cancel/todo
+on remoteNode22.23.3. Both MCP110642276318 and root110642276932 check out
+tested8fae4287/tree4fe equal signedsource. Currentall7 success andmerge-ref
+CodeQL0 are independently retained in coordination exactCIreceiptabdd012c.
+RawMCP146398B SHA03318193 and root581478B SHA119002cd remain exact originals.
+No local reproduction or new timing/token/strategy/realexpert outcome is claimed.
+Own source-only export-companion cue identified that changing unsigned closing
+metrics and rehashing could retain an original record signature. The example
+now requires metric/sole-observation metadata to match the signed record, supplied
+opening equity/mark and the documented single-window identities. Account/fill
+financial reconstruction remains the existing server's work, with no core edit.
+Roundtrip tests now also call the delivered independent bundle binding check.
+A new rehashed-companion tamper case is WRITTEN; e47's passes are historical
+and not claimed for the new correction. New exact signed-source CI and both
+independent reviews remain open. Six assigned paths only; frozen343/351/353/
+355/356/V0/default schemas/math/storage/site/ALPHAC unchanged. The complete
+owner hierarchy remains ACTIVE; no model/broker/provider/grant/job/spend/pub/hero.

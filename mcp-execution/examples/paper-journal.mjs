@@ -204,6 +204,25 @@ function exportReceipt(data, previous, scenario) {
   requireThat(Array.isArray(bindings) && bindings.length === 2 && bindings[0].path === 'journal' && bindings[0].sha256 === bundle.journal_sha256 &&
     bindings[1].path === `journal/range/0/${previous.entry_seq}` && bindings[1].sha256 === bundle.head &&
     bundle.metrics?.fill_count === 1 && bundle.metrics.fees_usd === scenario.fill.fee, 'MALFORMED_EXPORT');
+  // Companion observations are not covered by the record signature. Bind their
+  // metadata to the signed record and this sole supplied mark, not just a rehash.
+  const m = bundle.metrics, observations = bundle.series;
+  requireThat(exactKeys(m, ['opening_equity', 'closing_equity', 'fees_usd', 'traded_notional_usd', 'fill_count',
+    'cumulative_return', 'max_drawdown', 'turnover_annualised', 'undefined_returns', 'min_track_record']) &&
+    m.opening_equity === scenario.account.initial_cash && finite(m.closing_equity) && positive(m.traded_notional_usd) &&
+    m.turnover_annualised === null && m.min_track_record === null && m.undefined_returns === 0 &&
+    Array.isArray(observations) && observations.length === 1 &&
+    exactKeys(observations[0], ['seq', 'ts', 'equity', 'return', 'turnover']), 'MALFORMED_EXPORT');
+  const observation = observations[0];
+  requireThat(observation.seq === previous.entry_seq && observation.ts === scenario.mark.observed_at &&
+    observation.equity === m.closing_equity && observation.return === m.cumulative_return &&
+    observation.turnover === m.traded_notional_usd / m.opening_equity &&
+    m.cumulative_return === record.returns.cumulative && m.cumulative_return === m.closing_equity / m.opening_equity - 1 &&
+    m.max_drawdown === record.risk?.max_drawdown_realised &&
+    m.max_drawdown === Math.max(0, 1 - m.closing_equity / Math.max(m.opening_equity, m.closing_equity)) &&
+    record.period?.frequency === 'IRREGULAR' && record.period.observation_count === 1 &&
+    record.period.first_observation === scenario.mark.observed_at.slice(0, 10) &&
+    record.period.last_observation === scenario.mark.observed_at.slice(0, 10), 'MALFORMED_EXPORT');
   const key = Buffer.from(bundle.journal_public_key ?? '', 'base64'), sig = Buffer.from(signature?.signature ?? '', 'base64');
   requireThat(key.length === 32 && key.toString('base64') === bundle.journal_public_key && sig.length === 64 &&
     sig.toString('base64') === signature.signature && signature.scheme === 'Ed25519' && signature.public_key === bundle.journal_public_key, 'MALFORMED_EXPORT');

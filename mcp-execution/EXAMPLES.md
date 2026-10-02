@@ -102,8 +102,10 @@ reply, typed error or head mismatch stops the workflow. A receipt must match the
 original operation ID and canonical request hash, expected sequence and advancing
 prefix/head. A replay acknowledgement cannot advance the scenario. Verification
 and export must bind the last acknowledged head and complete journal prefix.
-The export's artifact digest and public-key signature are checked; financial
-reconstruction remains the delivered export tool's work.
+The export's artifact digest and public-key signature are checked. Companion
+metrics/observations must also agree with the signed record, supplied opening
+capital and sole mark; rehashing changed unsigned metrics is insufficient.
+Financial reconstruction remains the delivered export tool's work.
 
 `requests` preserves each original write request, including its supplied timestamp,
 payload and original `expected_head`. `pending_request` distinguishes whether an
@@ -129,6 +131,8 @@ must exceed the shutdown reserve. Cancellation reaches the call's native
 AbortSignal. The runner checks the clock again before dispatch and after capture.
 SDK connection closure is attempted once even after a failure. Failed/timed-out
 closure produces `STDIO_CLOSE_UNCERTAIN` rather than a completed workflow.
+The observed window starts when the runner function is invoked; the command's
+initial module loading and stdout delivery are outside that observed window.
 
 Timers and cancellation are cooperative. A trusted synchronous callback, blocked
 filesystem operation, event-loop stall, OS suspension or between-check replacement
