@@ -1,0 +1,29 @@
+{
+  "schema": "expert-submission-audit-actual-native-calibration/v1",
+  "utc": "2026-10-02T17:59:21.484845+00:00",
+  "source": "292c2a541ef7ce845fff21ae8dccf75e0c065755",
+  "tested_merge": "e9548113283fb7ae75a5603c56ef9bd1ba114f01",
+  "tree": "5fa763d57214918cf26e9b795a0b8c7bba97b8d4",
+  "existing_remote_run": 37043869371,
+  "root_job": 110960340473,
+  "runtime": "Node v22.23.3 (existing remote CI)",
+  "author_current_CI_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-292c2a54-exact-ci.json",
+    "bytes": 17189,
+    "sha256": "374fb8c3d1c085c3bd6c28656731e8cc67c657088627b4ce31cc82bf4e15cbe1"
+  },
+  "original_log": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-292c2a54-root-ci-original.log",
+    "bytes": 655051,
+    "sha256": "b1aed8083731b3bf25c3c7a9de1c09e16729b74c98681c959788b2ccafe2b448"
+  },
+  "new49th_case_passed_once": true,
+  "actual_diagnostic": "CC-367 calibration: original nonmultiline native SHA regex and unchanged intake refuse all six extra-character variants; original static counterexample is unsupported. Explicit length64 guard is contract hardening.",
+  "native_assertions": "Original nonmultiline regex rejects CR/LF/LS/PS/CRLF/space; unchanged intake rejects same declaration variants; explicit guard refuses each; valid64/null stay unverified",
+  "original_static_finding": "WITHDRAWN_INVALID; no original source bug or failed project fixture established",
+  "original48_then49_distinct_new_cases": 49,
+  "raw_CI_count": 8,
+  "raw_CI_bytes": 992080,
+  "own_local_project_runtime_or_grant_or_CI_rerun": false,
+  "full_goals": "ACTIVE"
+}

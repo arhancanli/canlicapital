@@ -1,0 +1,9 @@
+{
+  "schema": "canli.third.expert-submission-audit.metadata-reader-error.v1",
+  "observed_at": "2026-10-02T17:55:56.996461+00:00",
+  "phase": "ci",
+  "source": "182e2a732a26ce36bbcf6cd3825675dfdf64f0df",
+  "original_traceback": "Traceback (most recent call last):\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-peer/inspect-182e2a73-frozen-git-v2.py\", line 336, in <module>\n    result = source_gate() if PHASE == 'source' else ci_gate()\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-peer/inspect-182e2a73-frozen-git-v2.py\", line 307, in ci_gate\n    check(git('rev-parse', TESTED + '^{tree}').decode().strip() == TREE and git('rev-list', '--parents', '-n', '1', TESTED).decode().strip().split() == [TESTED, BASE, HEAD], 'actual local Git tested tree+parents')\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-peer/inspect-182e2a73-frozen-git-v2.py\", line 67, in git\n    return subprocess.run(['git', '-C', W, *args], check=True, capture_output=True).stdout\n  File \"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py\", line 528, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['git', '-C', '/Users/arhancanli/canlicapital-expert-submission-audit-20261002', 'rev-parse', '13b54b82fbce1f249f64b06be5732f70c087cb7b^{tree}']' returned non-zero exit status 128.\n",
+  "project_execution": false,
+  "scope": "Own metadata-reader failure; no project/source/runtime verdict or author mutation. Preserve before additive correction."
+}
