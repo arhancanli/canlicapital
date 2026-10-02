@@ -1,0 +1,37 @@
+{
+  "schema": "canli.fundamentals-audit-stdio.correction.v1",
+  "observed_at": "2026-10-02T09:02:09.128593+00:00",
+  "source": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+  "reported_by": "THIRD independent static943 review, cue applies to457",
+  "source_reasoning_only": "64 lowercase SHA bytes followed by a final line terminator pass the JavaScript dollar anchor and original Zod regex; all three inputs are decoded before the unchanged core returns CORE_REFERENCE_SHA. No accepted score contamination was established.",
+  "severity": "NONBLOCKING_TYPED_INPUT_CUE",
+  "correction": "Require exact length64 in both native admission and advertised Zod schema; one new regression covers LF/CR/CRLF/Unicode line separators/NUL/tab, zero Buffer allocation, actual stdio stable EXPECTED_SHA then valid recovery.",
+  "old_names_preserved": 27,
+  "new_written_cases": 28,
+  "new_head_runtime": null,
+  "current_457_retained_ci": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-457e6546-exact-ci.json",
+    "bytes": 11276,
+    "sha256": "cbe0cc02aa7e493a7d7769831be09410616d70013e58d86b1c51476c9fea55be",
+    "actual_new_mcp_pass": 27,
+    "fundamentals": 95,
+    "root": [
+      6,
+      1044,
+      9
+    ],
+    "mcp": [
+      141,
+      1,
+      15,
+      95,
+      139
+    ],
+    "checks": 7,
+    "tested_merge": "e8b436f02dc8edd2b78606a9701f085d337747e8"
+  },
+  "policy_core_default_tools_versions_locks_unchanged": true,
+  "original_943_eight_failures_preserved": true,
+  "local_project_job_or_grant": false,
+  "full_owner_goals": "ACTIVE"
+}

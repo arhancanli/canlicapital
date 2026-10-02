@@ -1,0 +1,384 @@
+{
+  "schema": "canli.third.exact-retained-head-ci.v1",
+  "observedAt": "2026-10-02T09:28:30.025907+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "verdict": "PASS_EXACT_RETAINED_SOURCE_HEAD_CI_WITH_SCOPE_LIMITS",
+  "source": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+  "tree": "5ae040b8956d593d9722f6a70b4c98177ba9f24a",
+  "sourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/source-1ff911a1.json",
+    "bytes": 2012680,
+    "sha256": "5e6090f63290efc1d3e15c3f6003ef100ee63fa657ad515f3787a2e8ed1b2ad4"
+  },
+  "independentCurrentSourceReview": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-peer/review-1ff911a1-source-extension.json",
+    "bytes": 16629,
+    "sha256": "4e271050b0e97cdcea83e8ddb9eba1cb97cd5c252c691f1cd48633077729d255"
+  },
+  "historical9eSourceScope": null,
+  "authorReceipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-exact-ci.json",
+    "bytes": 12092,
+    "sha256": "0829e314da0d6b8e6721283062526de65df4e9b2b84943ae659e6cd6db1dbe63"
+  },
+  "all8OriginalPinsIndependentlyRehashed": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-root-ci-original.log",
+      "bytes": 633034,
+      "sha256": "01c2d3015c2a6c7febb0c447c67b63bafd695fd8ba5c55bcb0fce8dcb3fa402c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-mcp-ci-original.log",
+      "bytes": 185475,
+      "sha256": "d19fd35540cfdf81ed57b42dd30a2e5a2660c2a927380d3e717763398a668c63"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-checks-original.json",
+      "bytes": 1131,
+      "sha256": "bc69fc8f6a7cf8d21708066fd07208be4783ba7c0e9c7a75b002fb8c0247973a"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-run-original.json",
+      "bytes": 13295,
+      "sha256": "026d19e5cc3e82063d15f7dedb848ddc695f217cd8a3dcce14c1f1fe0a2fe03f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-pr-original.json",
+      "bytes": 19509,
+      "sha256": "c18ceee4f3124c484498d6d219f1de2e07258bf23236bf96fcf12d3da9345f62"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-codeql-analyses-original.json",
+      "bytes": 4747,
+      "sha256": "cbc277a9d91dc3193792fa69902bdf28e483ee6d2e8ab86958ced09881b6ce5c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-1ff911a1-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "b273111c9395022525ba922e46638a66ba5e3085a665789fc17c5f4ea389df16"
+    }
+  ],
+  "originalBytes": 859841,
+  "rawParser": "Whole originals unchanged; remove ANSI/BOM/gh TAB prefix/timestamp with its single separator only. Complete top-level 1..N ordinals and all seven summary fields verified.",
+  "rawRootSuites": [
+    {
+      "tests": 6,
+      "suites": 0,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1044,
+      "suites": 0,
+      "pass": 1044,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 9,
+      "suites": 0,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "rawMCPSuites": [
+    {
+      "tests": 141,
+      "suites": 0,
+      "pass": 141,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1,
+      "suites": 0,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 15,
+      "suites": 0,
+      "pass": 15,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 97,
+      "suites": 0,
+      "pass": 97,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 139,
+      "suites": 0,
+      "pass": 139,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "distinctSourceNamedCases": 29,
+  "sourceNamedCasesExactlyOnceEachIn": "MCP_ONLY",
+  "otherJobSourceNamedCases": 0,
+  "actualNamedRows": [
+    {
+      "result": "ok",
+      "number": 37,
+      "name": "audit stdio: actual SDK initialize lists exactly one annotated tool with discoverable input and output schemas"
+    },
+    {
+      "result": "ok",
+      "number": 38,
+      "name": "audit stdio: actual SDK symlink launch initializes audits and reaps the owned child after one close"
+    },
+    {
+      "result": "ok",
+      "number": 39,
+      "name": "audit stdio: actual SDK call preserves text structured schema and deterministic public JSON hashes"
+    },
+    {
+      "result": "ok",
+      "number": 40,
+      "name": "audit stdio: original value versus later-only counterexample uses the earlier exact accession over real stdio"
+    },
+    {
+      "result": "ok",
+      "number": 41,
+      "name": "audit stdio: all six outcomes remain visible with full-N null coverage on the actual client"
+    },
+    {
+      "result": "ok",
+      "number": 42,
+      "name": "audit stdio: explicit evidence view is the exact complete unchanged core report and all raw input bindings"
+    },
+    {
+      "result": "ok",
+      "number": 43,
+      "name": "audit stdio: compact projection names omissions without relabeling its digest as the complete report"
+    },
+    {
+      "result": "ok",
+      "number": 44,
+      "name": "audit stdio: released seven-tool server stays unchanged and never lists the example"
+    },
+    {
+      "result": "ok",
+      "number": 45,
+      "name": "audit stdio: no-network no-write child sentinel demonstrably refuses both prohibited operations"
+    },
+    {
+      "result": "ok",
+      "number": 46,
+      "name": "audit stdio: wrong reference SHA yields a safe stable tool error and subsequent valid calls still work"
+    },
+    {
+      "result": "ok",
+      "number": 47,
+      "name": "audit stdio: closed arguments hashes details and missing settings never coerce or invent defaults"
+    },
+    {
+      "result": "ok",
+      "number": 48,
+      "name": "audit stdio: hash line terminators and controls refuse before any base64 allocation and over actual stdio"
+    },
+    {
+      "result": "ok",
+      "number": 49,
+      "name": "audit stdio: proxy accessor inherited and unexpected symbol arguments refuse without invoking user callbacks"
+    },
+    {
+      "result": "ok",
+      "number": 50,
+      "name": "audit stdio: canonical base64 refuses whitespace url alphabet missing excess internal padding and nonzero pad bits"
+    },
+    {
+      "result": "ok",
+      "number": 51,
+      "name": "audit stdio: trailing newline and noncanonical pad bits are refused before any base64 buffer allocation"
+    },
+    {
+      "result": "ok",
+      "number": 52,
+      "name": "audit stdio: base64 decoded lengths are enforced even when padded encoded lengths share a bucket"
+    },
+    {
+      "result": "ok",
+      "number": 53,
+      "name": "audit stdio: per-input encoded limits reject before malformed JSON is decoded or parsed"
+    },
+    {
+      "result": "ok",
+      "number": 54,
+      "name": "audit stdio: jointly oversized individually allowed byte batches refuse before any JSON parse"
+    },
+    {
+      "result": "ok",
+      "number": 55,
+      "name": "audit stdio: exact maximum settings bytes remain owned and valid while next byte refuses"
+    },
+    {
+      "result": "ok",
+      "number": 56,
+      "name": "audit stdio: raw duplicate decoded JSON keys and private source text produce bounded non-echoing core refusals over stdio"
+    },
+    {
+      "result": "ok",
+      "number": 57,
+      "name": "audit stdio: raw invalid UTF8 survives base64 transport and is refused without replacement or reserialization"
+    },
+    {
+      "result": "ok",
+      "number": 58,
+      "name": "audit stdio: lossy raw numeric literal and nonfinite exponent retain the core precision refusals"
+    },
+    {
+      "result": "ok",
+      "number": 59,
+      "name": "audit stdio: source tamper with the original advertised hash cannot alter scored evidence"
+    },
+    {
+      "result": "ok",
+      "number": 60,
+      "name": "audit stdio: caller module hash remains unverified and absent source rights and universe coverage remain null"
+    },
+    {
+      "result": "ok",
+      "number": 61,
+      "name": "audit stdio: all 64 selected rows are retained when their complete compact projection fits"
+    },
+    {
+      "result": "ok",
+      "number": 62,
+      "name": "audit stdio: oversized valid compact output refuses the whole batch rather than selecting fewer rows"
+    },
+    {
+      "result": "ok",
+      "number": 63,
+      "name": "audit stdio: oversized valid complete evidence output refuses without emitting a partial report"
+    },
+    {
+      "result": "ok",
+      "number": 64,
+      "name": "audit stdio: documented synthetic workflow executes through the actual listed tool and preserves its counterexample"
+    },
+    {
+      "result": "ok",
+      "number": 65,
+      "name": "audit stdio: oversized unterminated protocol frame closes with a bounded notice and no raw echo"
+    }
+  ],
+  "runtimeNode": "22.23.3 explicit in BOTH original logs",
+  "run": 36988805921,
+  "rootJob": 110779915907,
+  "mcpJob": 110779916018,
+  "runHeadExact": true,
+  "all7ChecksSUCCESS": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110780244911",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36988805842/job/110779915569",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36988805921/job/110779915907",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36988805842/job/110779915861",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36988805921/job/110779915934",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36988805921/job/110779916018",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36988805921/job/110779915746",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    }
+  ],
+  "testedMerge": "f13cbb45a68ae462c51e14d5bb747b1aa2afecd5",
+  "testedTree": "5ae040b8956d593d9722f6a70b4c98177ba9f24a",
+  "testedParents": [
+    "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+    "1ff911a12411da67c34f8e5b8da060843ac65d3a"
+  ],
+  "testedTreeExactlySignedFrozenSourceGit": true,
+  "rawBothLogsCheckoutFullSHAAndActualAbbreviationMatch": true,
+  "capturedPRBase": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+  "capturedMergeRefAlerts": 0,
+  "retainedAnalysisRowCount": 8,
+  "latestPerLanguage": {
+    "javascript-typescript": {
+      "id": 1879984015,
+      "ref": "refs/pull/363/merge",
+      "commit_sha": "f13cbb45a68ae462c51e14d5bb747b1aa2afecd5",
+      "created_at": "2026-10-02T09:17:57Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"javascript-typescript\"}"
+    },
+    "python": {
+      "id": 1879981268,
+      "ref": "refs/pull/363/merge",
+      "commit_sha": "f13cbb45a68ae462c51e14d5bb747b1aa2afecd5",
+      "created_at": "2026-10-02T09:17:17Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"python\"}"
+    }
+  },
+  "olderAnalysisRowsPreserved": true,
+  "original943Failed18Pass8FailExecutionUNRUNAnd45727SuccessNotRelabelled": true,
+  "symlinkAndHashRegressionActuallyPassAtThisHead": true,
+  "observationsBoundOnlyToCapturedSourceHead": true,
+  "sourceFutureHeadArchiveMergeDeliveryPublicationApproval": false,
+  "reviewerNodeImportTestSDKCLIBrowserProjectJobAPIRefetchCPUClaimGrantRerun": false,
+  "sourceOrOriginalMutation": false,
+  "archiveAllocated": false,
+  "actualIndexedExpertRightsAdoptionQualifiedOutcomes": null,
+  "fullOwnerHierarchy": "ACTIVE"
+}

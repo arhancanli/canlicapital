@@ -1,0 +1,9 @@
+{
+  "schema": "canli.fundamentals-audit-stdio-peer-metadata-error.v1",
+  "observedAt": "2026-10-02T08:16:46.086649+00:00",
+  "toolChunk": "e8479a",
+  "originalRawError": "Traceback (most recent call last): File <stdin>, line 27, in <module>; AssertionError",
+  "classification": "SDK_SOURCE_MAP_SUFFIX_SELECTOR_ASSUMPTION",
+  "actualSuffixMatches": "Client+server bundles each also embed ../../core-internal/src/shared/stdio.ts; suffix /stdio.ts selected six sources, rather than four ownedclient/server modules.",
+  "correction": "Exactfour source names/membermaps bound above, sharedReadBuffer sources retained as separatelypinned identical snapshots. Only read-only parserselection corrected. No prior PASS or receipt emitted; peerfoldercreation only beforefailure. No product/runtime/CI/source/archive change, import/install/job or rerun."
+}

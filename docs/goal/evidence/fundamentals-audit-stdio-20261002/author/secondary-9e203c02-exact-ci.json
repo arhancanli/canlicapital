@@ -1,0 +1,352 @@
+{
+  "schema": "canli.secondary.fundamentals-audit-stdio.exact-retained-ci.v1",
+  "observed_at": "2026-10-02T09:12:52.363642+00:00",
+  "source": "9e203c025be032094351b0b9b2be1203c4f510c6",
+  "tree": "8841582aa24f74db1c343392024b037e7334f585",
+  "signature": "G",
+  "base": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+  "frozen_source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/source-9e203c02.json",
+    "bytes": 2010885,
+    "sha256": "0c3925ae52652d57e7dc6762681f4b318b603c6899553bad3be0ea0db742eca0"
+  },
+  "working_tree_clean_during_metadata_capture": false,
+  "working_tree_metadata_capture_does_not_execute_source": true,
+  "verdict": "PASS_EXACT_CURRENT_CI_INDEPENDENT_EXTENSIONS_PENDING",
+  "root_run": 36987748598,
+  "root_job": 110776540357,
+  "mcp_job": 110776540519,
+  "tested_merge": "83629b3934be5a005de31ce32d5cfcbd95b36bb3",
+  "tested_tree": "8841582aa24f74db1c343392024b037e7334f585",
+  "tested_parents": [
+    "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+    "9e203c025be032094351b0b9b2be1203c4f510c6"
+  ],
+  "root_suites": [
+    {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1044,
+      "pass": 1044,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "mcp_suites": [
+    {
+      "tests": 141,
+      "pass": 141,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 15,
+      "pass": 15,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 96,
+      "pass": 96,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 139,
+      "pass": 139,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "stdio_actual_mcp_pass": 28,
+  "stdio_mcp_cases": [
+    {
+      "name": "audit stdio: actual SDK initialize lists exactly one annotated tool with discoverable input and output schemas",
+      "number": 37,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: actual SDK call preserves text structured schema and deterministic public JSON hashes",
+      "number": 38,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: original value versus later-only counterexample uses the earlier exact accession over real stdio",
+      "number": 39,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: all six outcomes remain visible with full-N null coverage on the actual client",
+      "number": 40,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: explicit evidence view is the exact complete unchanged core report and all raw input bindings",
+      "number": 41,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: compact projection names omissions without relabeling its digest as the complete report",
+      "number": 42,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: released seven-tool server stays unchanged and never lists the example",
+      "number": 43,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: no-network no-write child sentinel demonstrably refuses both prohibited operations",
+      "number": 44,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: wrong reference SHA yields a safe stable tool error and subsequent valid calls still work",
+      "number": 45,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: closed arguments hashes details and missing settings never coerce or invent defaults",
+      "number": 46,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: hash line terminators and controls refuse before any base64 allocation and over actual stdio",
+      "number": 47,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: proxy accessor inherited and unexpected symbol arguments refuse without invoking user callbacks",
+      "number": 48,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: canonical base64 refuses whitespace url alphabet missing excess internal padding and nonzero pad bits",
+      "number": 49,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: trailing newline and noncanonical pad bits are refused before any base64 buffer allocation",
+      "number": 50,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: base64 decoded lengths are enforced even when padded encoded lengths share a bucket",
+      "number": 51,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: per-input encoded limits reject before malformed JSON is decoded or parsed",
+      "number": 52,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: jointly oversized individually allowed byte batches refuse before any JSON parse",
+      "number": 53,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: exact maximum settings bytes remain owned and valid while next byte refuses",
+      "number": 54,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: raw duplicate decoded JSON keys and private source text produce bounded non-echoing core refusals over stdio",
+      "number": 55,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: raw invalid UTF8 survives base64 transport and is refused without replacement or reserialization",
+      "number": 56,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: lossy raw numeric literal and nonfinite exponent retain the core precision refusals",
+      "number": 57,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: source tamper with the original advertised hash cannot alter scored evidence",
+      "number": 58,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: caller module hash remains unverified and absent source rights and universe coverage remain null",
+      "number": 59,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: all 64 selected rows are retained when their complete compact projection fits",
+      "number": 60,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: oversized valid compact output refuses the whole batch rather than selecting fewer rows",
+      "number": 61,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: oversized valid complete evidence output refuses without emitting a partial report",
+      "number": 62,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: documented synthetic workflow executes through the actual listed tool and preserves its counterexample",
+      "number": 63,
+      "result": "ok"
+    },
+    {
+      "name": "audit stdio: oversized unterminated protocol frame closes with a bounded notice and no raw echo",
+      "number": 64,
+      "result": "ok"
+    }
+  ],
+  "stdio_actual_root_pass": 0,
+  "stdio_not_registered_in_root": true,
+  "runtime": "Node v22.23.3 (existing remote CI)",
+  "checks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110776885585",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36987748559/job/110776539710",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36987748598/job/110776540670",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36987748559/job/110776539501",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36987748598/job/110776540357",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36987748598/job/110776540184",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36987748598/job/110776540519",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    }
+  ],
+  "codeql_current_ref_alerts": 0,
+  "codeql_latest_analyses": {
+    "javascript-typescript": {
+      "id": 1879936360,
+      "commit_sha": "83629b3934be5a005de31ce32d5cfcbd95b36bb3",
+      "created_at": "2026-10-02T09:06:58Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"javascript-typescript\"}"
+    },
+    "python": {
+      "id": 1879933876,
+      "commit_sha": "83629b3934be5a005de31ce32d5cfcbd95b36bb3",
+      "created_at": "2026-10-02T09:06:24Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"python\"}"
+    }
+  },
+  "codeql_scope": "Captured pull/363/merge ref; fewer100 rows returned at each bounded endpoint. Historical rows retained; latest per language selected.",
+  "original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-9e203c02-root-ci-original.log",
+      "bytes": 632266,
+      "sha256": "54e01442b28be3f7316170a4b97b666db95c1ea59de4380dfa79882f3052bd72"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-9e203c02-mcp-ci-original.log",
+      "bytes": 183946,
+      "sha256": "bf30b5d3d595c80f4140e504e43a089a0f24e8eb8494b6a018032b7e2ffcfd6c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-9e203c02-checks-original.json",
+      "bytes": 1131,
+      "sha256": "9f70c0936123c8378b3de2b06ba13f02d1bbc8e0da6cb8e02587117cc8779479"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-9e203c02-run-original.json",
+      "bytes": 13311,
+      "sha256": "4dfa2715710b5557779a6915526e2fbde805bb8ed987042f767a57dd699a5d9f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-9e203c02-pr-original.json",
+      "bytes": 19623,
+      "sha256": "1c10877ef7669cbde6d8faac0651958680dbeca1d361259a4ce046800d9d9696"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-9e203c02-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-9e203c02-codeql-analyses-original.json",
+      "bytes": 3560,
+      "sha256": "3e1761f41f577fbc79e77be8ad814dd8de2361f96ff25b0737e4abce51258666"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-9e203c02-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "7e021a642ceedc2e718b81d90ccf7789cb6b414ba13741d79f2e0ee61d90299b"
+    }
+  ],
+  "verified_humans_expertise_independence_rights": null,
+  "provider_current_indexed": null,
+  "distinct_admitted_canonical": null,
+  "qualified_progress": null,
+  "local_project_job_or_grant": false,
+  "full_owner_goal": "ACTIVE",
+  "scope": "Byte-exact original logs/API captures for the immutable signed frozen Git source; any working changes are separate unexecuted future source; parser view only removes timestamps/ANSI. No local project runtime or CI rerun. Future head/archive/integration/actual delivery requires separate gates."
+}

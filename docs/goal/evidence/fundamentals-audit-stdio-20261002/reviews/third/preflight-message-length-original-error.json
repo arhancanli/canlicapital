@@ -1,0 +1,10 @@
+{
+  "schema": "canli.fundamentals-audit-stdio-peer-metadata-error.v1",
+  "observedAt": "2026-10-02T08:16:46.086649+00:00",
+  "originalRawError": "Script error: Error: too long 1003 at exec_main.mjs:2:29",
+  "classification": "ORCHESTRATOR_MESSAGE_SIZE_GUARD_REFUSAL_BEFORE_ANY_NESTED_TOOL_OR_IO",
+  "originalASCIIBytes": 1003,
+  "connectorMaximumUTF8Bytes": 1000,
+  "correctedASCIIBytes": 946,
+  "scope": "No nestedtool/send/receipt/source/runtime/CLI/test/job/API in refusedcall. Shorter message sent later; no productchange/rerun. External ownmetadata, no priorarchive member."
+}
