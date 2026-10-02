@@ -1,0 +1,10 @@
+{
+  "schema": "canli.primary.metadata-reader-failure.v1",
+  "observed_at": "2026-10-02T06:56:37.023946+00:00",
+  "source": "13927e84165c479905df99dd0d6a26d5b8ce8d02",
+  "original_tool_chunk": "78ae21",
+  "exit_code": 1,
+  "original_stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 34, in <module>\nAssertionError\n",
+  "correction": "The reviewer assertion omitted the actual --test-concurrency=1 argument. All five goal prefixes separately rechecked exact. Correct expected focused registration to match serial convention.",
+  "project_runtime_or_source_failure": false
+}

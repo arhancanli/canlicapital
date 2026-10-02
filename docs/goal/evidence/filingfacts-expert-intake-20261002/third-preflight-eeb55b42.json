@@ -1,0 +1,272 @@
+{
+  "schema": "canli.third.expert-review-intake.static-preflight.v1",
+  "observedAt": "2026-10-02T06:19:36.853784+00:00",
+  "base": "eeb55b42c456ab0706099673d22a9a2fc0fe8fb7",
+  "baseTree": "56a676ccf6f7918d4d033005df998f83fc6c2da6",
+  "verdict": "ASSIGNMENT_AND_DELIVERED_INTERFACES_READ_NO_FUTURE_SOURCE_ACCEPTANCE",
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/assignment.md",
+    "bytes": 8520,
+    "sha256": "b550bbf3fa750924c1d75aaa5a7cb244726e3609816ffa813d84f0295148f6b5"
+  },
+  "currentAssignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/primary-assignment.md",
+    "bytes": 50071,
+    "sha256": "642afbaf7edccce20462821be1a82f31ace05234f6d350e6af5c86dcb593bdeb",
+    "entirePrevious6acSuffixRetained": true
+  },
+  "allowedFuturePaths": [
+    "scripts/datasets/filing-facts/expert-intake.mjs",
+    "scripts/datasets/filing-facts/expert-intake.test.mjs",
+    "scripts/datasets/filing-facts/EXPERT_INTAKE.md",
+    "package.json",
+    "docs/goal/STATUS.md",
+    "docs/goal/LOG.md"
+  ],
+  "protectedDeliveredInterfaceAndV0Pins": [
+    {
+      "path": "scripts/datasets/filing-facts/gold-packet.mjs",
+      "bytes": 1663,
+      "sha256": "6a25aaf90a351ff5feab96fcd2fe162d3885ebbdb48d8a7f67ff4535f084895f"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/agreement.mjs",
+      "bytes": 6423,
+      "sha256": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/adjudicate.mjs",
+      "bytes": 4984,
+      "sha256": "2bea4f898d074f07a43813e3721b883081d8be205d0962dd2d84d7268485f4a2"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/ANNOTATION_GUIDELINES.md",
+      "bytes": 5426,
+      "sha256": "0c358e06d3e68dedb96c85be73392783a2f639a581870b4d239fa33a7e544afb"
+    },
+    {
+      "path": "js/filing-facts-packet.js",
+      "bytes": 564,
+      "sha256": "eb61ab2bf78d7047569c8cf92ea348dc5c3a9e6fe311c16a63361765b2e08bc8"
+    },
+    {
+      "path": "scripts/canonical-json.mjs",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+    },
+    {
+      "path": "public/datasets/filing-facts/v0/SHA256SUMS",
+      "bytes": 343,
+      "sha256": "b54dca812414ede42ab7258dbb83fa3c041a71a4ff5223691b3dc2c00525e1d8"
+    },
+    {
+      "path": "public/datasets/filing-facts/v0/ff-eval-closed.json",
+      "bytes": 32458,
+      "sha256": "450bff2b316adf5e8f4562d4cacdceca143c6b10ed657ecefa02af24e4c95720"
+    },
+    {
+      "path": "public/datasets/filing-facts/v0/ff-eval-mcp.json",
+      "bytes": 32324,
+      "sha256": "50a88c0c383ac492a8c1c2d489a1c5830c478a71ae7bab7660fd2878a73cb6c6"
+    },
+    {
+      "path": "public/datasets/filing-facts/v0/filing-facts-v0.jsonl",
+      "bytes": 1663084,
+      "sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d"
+    },
+    {
+      "path": "public/datasets/filing-facts/v0/gold-packet-v0.json",
+      "bytes": 28263,
+      "sha256": "91c6f960e34509653800a4cda81bd0632dd58c889ee78eb6461a985765500413"
+    }
+  ],
+  "publishedPacketBaseline": {
+    "rawBytes": 28263,
+    "rawSha256": "91c6f960e34509653800a4cda81bd0632dd58c889ee78eb6461a985765500413",
+    "items": 50,
+    "uniqueIds": 50,
+    "allJudgementsNotesBlank": true,
+    "annotatorBlank": true,
+    "templates": {
+      "change": 10,
+      "lookup": 10,
+      "net_assets": 10,
+      "ratio": 10,
+      "unanswerable": 10
+    },
+    "distinctFilingReferences": 61,
+    "filingReferences": [
+      "https://www.sec.gov/Archives/edgar/data/101382/000119312526076496/",
+      "https://www.sec.gov/Archives/edgar/data/101538/000110465926032049/",
+      "https://www.sec.gov/Archives/edgar/data/101538/000165495425004433/",
+      "https://www.sec.gov/Archives/edgar/data/1025378/000102537823000035/",
+      "https://www.sec.gov/Archives/edgar/data/1025378/000102537824000037/",
+      "https://www.sec.gov/Archives/edgar/data/1025771/000147793223002067/",
+      "https://www.sec.gov/Archives/edgar/data/110019/000011001924000003/",
+      "https://www.sec.gov/Archives/edgar/data/1156375/000115637526000009/",
+      "https://www.sec.gov/Archives/edgar/data/1156388/000095017024021829/",
+      "https://www.sec.gov/Archives/edgar/data/1156388/000095017025027520/",
+      "https://www.sec.gov/Archives/edgar/data/1205922/000156459019007458/",
+      "https://www.sec.gov/Archives/edgar/data/1210677/000095017025029067/",
+      "https://www.sec.gov/Archives/edgar/data/1210677/000119312526076740/",
+      "https://www.sec.gov/Archives/edgar/data/1227500/000095017023007069/",
+      "https://www.sec.gov/Archives/edgar/data/1227500/000095017024028081/",
+      "https://www.sec.gov/Archives/edgar/data/1227500/000156459021011800/",
+      "https://www.sec.gov/Archives/edgar/data/1261249/000155837023004386/",
+      "https://www.sec.gov/Archives/edgar/data/1285550/000119312526111231/",
+      "https://www.sec.gov/Archives/edgar/data/1360901/000136090123000005/",
+      "https://www.sec.gov/Archives/edgar/data/1360901/000136090124000007/",
+      "https://www.sec.gov/Archives/edgar/data/1411342/000162828026013279/",
+      "https://www.sec.gov/Archives/edgar/data/1437071/000143707125000007/",
+      "https://www.sec.gov/Archives/edgar/data/1478454/000115752312004886/",
+      "https://www.sec.gov/Archives/edgar/data/1495320/000149532024000026/",
+      "https://www.sec.gov/Archives/edgar/data/17313/000001731324000022/",
+      "https://www.sec.gov/Archives/edgar/data/17843/000001784325000021/",
+      "https://www.sec.gov/Archives/edgar/data/25445/000002544526000009/",
+      "https://www.sec.gov/Archives/edgar/data/275053/000162828025012082/",
+      "https://www.sec.gov/Archives/edgar/data/277509/000119312512115045/",
+      "https://www.sec.gov/Archives/edgar/data/310142/000114036123007579/",
+      "https://www.sec.gov/Archives/edgar/data/310522/000095012310018235/",
+      "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/",
+      "https://www.sec.gov/Archives/edgar/data/320121/000032012125000011/",
+      "https://www.sec.gov/Archives/edgar/data/352955/000143774926010434/",
+      "https://www.sec.gov/Archives/edgar/data/50863/000005086326000011/",
+      "https://www.sec.gov/Archives/edgar/data/59255/000110465926025847/",
+      "https://www.sec.gov/Archives/edgar/data/59527/000104746911001516/",
+      "https://www.sec.gov/Archives/edgar/data/706129/000070612925000036/",
+      "https://www.sec.gov/Archives/edgar/data/731012/000073101225000032/",
+      "https://www.sec.gov/Archives/edgar/data/731012/000073101226000009/",
+      "https://www.sec.gov/Archives/edgar/data/740260/000074026024000067/",
+      "https://www.sec.gov/Archives/edgar/data/740260/000074026025000052/",
+      "https://www.sec.gov/Archives/edgar/data/740260/000119312510035246/",
+      "https://www.sec.gov/Archives/edgar/data/748592/000114036123012418/",
+      "https://www.sec.gov/Archives/edgar/data/748592/000114036124013254/",
+      "https://www.sec.gov/Archives/edgar/data/76282/000007628225000013/",
+      "https://www.sec.gov/Archives/edgar/data/790051/000079005126000012/",
+      "https://www.sec.gov/Archives/edgar/data/798359/000079835912000073/",
+      "https://www.sec.gov/Archives/edgar/data/798941/000079894125000010/",
+      "https://www.sec.gov/Archives/edgar/data/832101/000083210126000003/",
+      "https://www.sec.gov/Archives/edgar/data/84246/000155837023002011/",
+      "https://www.sec.gov/Archives/edgar/data/84839/000008483926000008/",
+      "https://www.sec.gov/Archives/edgar/data/849399/000084939925000033/",
+      "https://www.sec.gov/Archives/edgar/data/849399/000084939926000017/",
+      "https://www.sec.gov/Archives/edgar/data/857005/000095012323011049/",
+      "https://www.sec.gov/Archives/edgar/data/857005/000095017022025211/",
+      "https://www.sec.gov/Archives/edgar/data/874015/000087401521000056/",
+      "https://www.sec.gov/Archives/edgar/data/8858/000095012310077359/",
+      "https://www.sec.gov/Archives/edgar/data/915913/000091591320000040/",
+      "https://www.sec.gov/Archives/edgar/data/915913/000091591321000018/",
+      "https://www.sec.gov/Archives/edgar/data/92521/000009252119000004/"
+    ],
+    "canonicalDataProjectionBytes": 20720,
+    "canonicalDataProjectionSha256": "15c595ed8109dd324dffeddd104d2f72154ef3710b9d64a0fb7eac7ddc95b7ee",
+    "canonicalProjectionMethod": "Stdlib data-only mirror of READ frozen packetContent sortedASCII ids/exact6fields + documented canonical ensure_ascii/sortedkeys/compact JSON. No JS/project import or helper execution; literal values are strings/string arrays."
+  },
+  "deliveredIdentityConvention": "value.trim().normalize(\"NFKC\").toLowerCase()",
+  "futureReviewPredicates": [
+    {
+      "id": "EXPERT-RAW-SAME-BUFFER",
+      "predicate": "Strict native owned bytes and separately supplied primitive expected SHA; freeze each raw input/evidence buffer once, hash SAME bytes reported; no coercion/getters/proxy/shared-storage/callback effects; independent signed module pin distinct from unverified caller-declared source SHA.",
+      "meaningfulControls": [
+        "reference-byte tamper at exact hash boundary",
+        "advertised evidence hash vs actual native bytes",
+        "post-capture mutation",
+        "wrong reviewer/source/packet evidence association"
+      ]
+    },
+    {
+      "id": "EXPERT-PACKET-COMPATIBILITY",
+      "predicate": "Exactly SAME immutable blank packet fields and canonical digest as delivered packetContent/agreement; distinct raw byte and canonical content hashes; both review-role copies retain every selected ID and source field with blank judgements/notes.",
+      "meaningfulControls": [
+        "actual published50 blank-interface compatibility",
+        "changed/completed packet refusal",
+        "raw reformat vs canonical packet distinction",
+        "missing/extra/duplicate IDs"
+      ]
+    },
+    {
+      "id": "EXPERT-ROLES-ALIASES",
+      "predicate": "Two reviewer roles and distinct adjudicator; supplied stable strings and aliases normalized with delivered trim/NFKC/lowercase identity; reject supplied cross-role collisions; missing roles yield explicit worklist and preserve fullN. Identity detection cannot verify actual human independence.",
+      "meaningfulControls": [
+        "fullwidth/case/trim/alias collisions",
+        "missing reviewer/adjudicator",
+        "same affiliation reported without invented dependence"
+      ]
+    },
+    {
+      "id": "EXPERT-QUALIFICATIONS",
+      "predicate": "Inventory task-relevant supplied qualification/evidence/who/date/method claims without upgrading a title, address/domain, evidence hash/existence or supplied verified boolean to authenticated expertise.",
+      "meaningfulControls": [
+        "PhD/CFA/synthetic credential remains declaration",
+        "missing evidence unknown",
+        "wrong subject binding refused or explicit invalid work",
+        "verified counts NULL"
+      ]
+    },
+    {
+      "id": "EXPERT-RIGHTS-COVERAGE",
+      "predicate": "Every DISTINCT packet filing/source reference has scope/coverage work, missing/contradictory/out-of-scope evidence visible, no SEC URL/V0 CC BY/card/licence declaration becomes independent clearance or blanket future training/redistribution admission.",
+      "meaningfulControls": [
+        "one missing filing among fullN",
+        "wrong packet/source binding",
+        "unknown permitted use",
+        "contradictory scope",
+        "no rights/human/release automatic admission"
+      ]
+    },
+    {
+      "id": "EXPERT-SCHEMA-UNICODE",
+      "predicate": "Closed raw JSON/native-data boundaries reject duplicate decoded keys, unknown fields, malformed UTF8/unpaired Unicode, duplicate IDs, invalid/coercive/nonfinite numbers and inconsistent references before processing.",
+      "meaningfulControls": [
+        "escaped-key duplication",
+        "strict hash/handle types",
+        "Unicode/surrogate faults",
+        "number and date boundaries"
+      ]
+    },
+    {
+      "id": "EXPERT-FINITE-AGGREGATE",
+      "predicate": "Published per-input/item/role/evidence/depth/string/output plus aggregate limits, charged before effects/return, preserve all accepted original sources and blank copies; overflows refuse without truncation.",
+      "meaningfulControls": [
+        "each ceiling boundary and +1",
+        "individually small inputs aggregate overflow",
+        "two-copy amplification",
+        "encoded-output expansion"
+      ]
+    },
+    {
+      "id": "EXPERT-COVERAGE-COUNTS",
+      "predicate": "Packet-prepared/declared-evidence-present distinct from actual admitted human/expert/rights release; full selectedN separate role and distinct-source inventory coverage; no unknown count forced to zero or fabricated completed labels.",
+      "meaningfulControls": [
+        "missing role/evidence still50selected and100planned role slots",
+        "fullN incomplete denominators",
+        "unknown verified identities/rights/independence"
+      ]
+    },
+    {
+      "id": "EXPERT-IMMUTABLE-ROUNDTRIP",
+      "predicate": "Owned deterministic immutable report and JSON/canonical digest roundtrip preserve packet/evidence/settings/source bindings and all descendants; original caller bytes unchanged.",
+      "meaningfulControls": [
+        "repeat deterministic output",
+        "JSON roundtrip same digest",
+        "caller mutation cannot alter result",
+        "nested return objects frozen or independently owned"
+      ]
+    },
+    {
+      "id": "EXPERT-PROTECTED-EXACTHEAD",
+      "predicate": "Exactly6 assigned repository paths from actualeeb; every protected main Git mode/type/blob/length and all goal prefixes exact, existing package registrations retained; signed CLEAN source and meaningful written cases distinguished from exact existing remoteCI.",
+      "meaningfulControls": [
+        "fiveV0 and agreement/adjudication/canonical pins unchanged",
+        "351/353/356/343 and all other delivered sources unchanged",
+        "no version/hosted/tool/schema/dependency/site/auth/provider changes",
+        "current-head raw names once and failure retention separate"
+      ]
+    }
+  ],
+  "futureWrittenTestsOrImplementationApproval": false,
+  "sourceAndCiGates": "Pending actual frozen contract/source; no future approval. Archive currently unallocated for this new phase.",
+  "reviewerActivity": "Read frozen Git blobs/stdlib metadata/assignment/continuity only; no projectNode/import/test/CLI/browser/helperjob/API/auth/grant/model/provider/resource/spend/source/authorbranch/archive edit or publication.",
+  "fullOwnerHierarchy": "ACTIVE",
+  "currentIndexedQualifiedAndVerifiedExpertRights": null
+}

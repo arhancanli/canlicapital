@@ -1,0 +1,11 @@
+{
+  "schema": "canli.peer-metadata-reader-error.v1",
+  "source": "13927e84165c479905df99dd0d6a26d5b8ce8d02",
+  "observedAt": "2026-10-02T06:52:01.224267+00:00",
+  "kind": "REVIEWER_CI_CHECK_LABEL_ASSUMPTION_NOT_RUNTIME_FAILURE",
+  "toolChunk": "fbd044",
+  "diagnostic": "AssertionError at metadata reader line52",
+  "incorrectExpectation": "MCP check named mcp-packages.",
+  "correction": "Use the actual original check name plus exact job link110735096103, after inspecting all7 original rows.",
+  "scope": "All8 original hashes, TAP47 names/root6+1044+9/MCP summaries/Node22.23.3/all7SUCCESS state checks had passed before this label assertion. No file/project import/test/CI rerun/source or archive change; no independent CI PASS receipt was written by failed reader."
+}
