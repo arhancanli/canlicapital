@@ -1,0 +1,508 @@
+{
+  "schema": "canli.secondary.expert-submission-audit.exact-retained-ci.v1",
+  "observed_at": "2026-10-02T17:38:46.037154+00:00",
+  "source": "182e2a732a26ce36bbcf6cd3825675dfdf64f0df",
+  "tree": "4f95f00dda9d656e6f68a76096874463a2176f36",
+  "signature": "G",
+  "base": "27f12442b3277f679e3e834294312ec85a8ce51b",
+  "frozen_source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/source-182e2a73.json",
+    "bytes": 3094752,
+    "sha256": "457e43b6096d20c2af2f55eeb961d27cb8eea6758e7c0182761de5167a07c2d1"
+  },
+  "working_tree_clean_during_metadata_capture": true,
+  "working_tree_metadata_capture_does_not_execute_source": true,
+  "verdict": "PASS_EXACT_CURRENT_CI_INDEPENDENT_EXTENSIONS_PENDING",
+  "root_run": 37041681221,
+  "root_job": 110953052297,
+  "mcp_job": 110953052553,
+  "tested_merge": "13b54b82fbce1f249f64b06be5732f70c087cb7b",
+  "tested_tree": "4f95f00dda9d656e6f68a76096874463a2176f36",
+  "tested_parents": [
+    "27f12442b3277f679e3e834294312ec85a8ce51b",
+    "182e2a732a26ce36bbcf6cd3825675dfdf64f0df"
+  ],
+  "root_suites": [
+    {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1092,
+      "pass": 1092,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "mcp_suites": [
+    {
+      "tests": 141,
+      "pass": 141,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 82,
+      "pass": 82,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 119,
+      "pass": 119,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 139,
+      "pass": 139,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "complete_TAP_plans_ordinals_and_durations": {
+    "root": [
+      {
+        "plan": 6,
+        "top_level_ordinals_exact": true,
+        "all_top_level_results_ok": true,
+        "duration_ms": 82.498573
+      },
+      {
+        "plan": 1092,
+        "top_level_ordinals_exact": true,
+        "all_top_level_results_ok": true,
+        "duration_ms": 102461.030048
+      },
+      {
+        "plan": 9,
+        "top_level_ordinals_exact": true,
+        "all_top_level_results_ok": true,
+        "duration_ms": 101.257049
+      }
+    ],
+    "mcp": [
+      {
+        "plan": 141,
+        "top_level_ordinals_exact": true,
+        "all_top_level_results_ok": true,
+        "duration_ms": 1710.618158
+      },
+      {
+        "plan": 1,
+        "top_level_ordinals_exact": true,
+        "all_top_level_results_ok": true,
+        "duration_ms": 379.126832
+      },
+      {
+        "plan": 82,
+        "top_level_ordinals_exact": true,
+        "all_top_level_results_ok": true,
+        "duration_ms": 15436.280434
+      },
+      {
+        "plan": 119,
+        "top_level_ordinals_exact": true,
+        "all_top_level_results_ok": true,
+        "duration_ms": 3587.553321
+      },
+      {
+        "plan": 139,
+        "top_level_ordinals_exact": true,
+        "all_top_level_results_ok": true,
+        "duration_ms": 2413.562627
+      }
+    ]
+  },
+  "expert_submission_actual_root_pass": 48,
+  "expert_submission_root_cases": [
+    {
+      "name": "delivered blank50 raw91c6 and packet15c595 retain100 assignments and50 missing review pairs",
+      "number": 771,
+      "result": "ok"
+    },
+    {
+      "name": "actual browser filledPacket roundtrip of delivered50 is compatible with unchanged agreement and remains fictional",
+      "number": 772,
+      "result": "ok"
+    },
+    {
+      "name": "one absent submission retains both role denominators and all selected pairs without inventing a packet",
+      "number": 773,
+      "result": "ok"
+    },
+    {
+      "name": "present blank browser exports remain distinct from absent role files and establish zero syntactic completion",
+      "number": 774,
+      "result": "ok"
+    },
+    {
+      "name": "partial judgements preserve per-field eligible missing and complete-pair coverage independently",
+      "number": 775,
+      "result": "ok"
+    },
+    {
+      "name": "notes required for no and cannot_find remain missing work while field judgements remain eligible",
+      "number": 776,
+      "result": "ok"
+    },
+    {
+      "name": "partial-field disagreements are visible before complete-item agreement without creating adjudication decisions",
+      "number": 777,
+      "result": "ok"
+    },
+    {
+      "name": "unchanged per-field Cohen kappa uses the eligible pairs and exposes null for a constant agreeing category",
+      "number": 778,
+      "result": "ok"
+    },
+    {
+      "name": "known NFKC trim and case alias collisions remain refused by unchanged intake before reconciliation",
+      "number": 779,
+      "result": "ok"
+    },
+    {
+      "name": "different handles shared employer and supplied credential claims establish no human expertise rights or independence",
+      "number": 780,
+      "result": "ok"
+    },
+    {
+      "name": "delivered browser annotator trim is accepted while exact intake and inventory declarations remain bound",
+      "number": 781,
+      "result": "ok"
+    },
+    {
+      "name": "swapped raw submissions cannot satisfy the other role even when expected raw pins are updated",
+      "number": 782,
+      "result": "ok"
+    },
+    {
+      "name": "a role inventory handle is exact and cannot substitute a supplied alias or another declared person",
+      "number": 783,
+      "result": "ok"
+    },
+    {
+      "name": "an undeclared reviewer or adjudicator cannot supply a reviewer return and duplicate roles are refused",
+      "number": 784,
+      "result": "ok"
+    },
+    {
+      "name": "all submission inventory settings row and returned packet canonical pins independently refuse a foreign packet",
+      "number": 785,
+      "result": "ok"
+    },
+    {
+      "name": "changed immutable question answer company template and filings are refused despite re-advertised raw hashes",
+      "number": 786,
+      "result": "ok"
+    },
+    {
+      "name": "missing extra duplicate and foreign immutable rows cannot shrink repair or replace the selected denominator",
+      "number": 787,
+      "result": "ok"
+    },
+    {
+      "name": "closed immutable row fields require every browser-export field and refuse hidden extra labels",
+      "number": 788,
+      "result": "ok"
+    },
+    {
+      "name": "same immutable IDs in a different raw row order remain explicitly raw-bound and compatible with gold scoring",
+      "number": 789,
+      "result": "ok"
+    },
+    {
+      "name": "schema guidelines vocabulary and packet annotator tampering are refused without browser-style sanitization",
+      "number": 790,
+      "result": "ok"
+    },
+    {
+      "name": "only exact delivered judgement choices or blank strings are accepted and notes remain strings",
+      "number": 791,
+      "result": "ok"
+    },
+    {
+      "name": "independently supplied raw SHA and exact positive safe lengths cannot be silently recomputed by the utility",
+      "number": 792,
+      "result": "ok"
+    },
+    {
+      "name": "raw array inventory count and ordering are bound independently of role presentation order",
+      "number": 793,
+      "result": "ok"
+    },
+    {
+      "name": "unknown fields in inventory rows settings and top-level schemas cannot promote verified facts",
+      "number": 794,
+      "result": "ok"
+    },
+    {
+      "name": "preparation is recomputed unchanged from captured six inputs including independently supplied gold and evidence pins",
+      "number": 795,
+      "result": "ok"
+    },
+    {
+      "name": "owned original bindings and frozen packets survive caller mutation without changing any input bytes during invocation",
+      "number": 796,
+      "result": "ok"
+    },
+    {
+      "name": "deterministic canonical report hash roundtrips while caller whole-source and dependency pins stay explicitly unverified",
+      "number": 797,
+      "result": "ok"
+    },
+    {
+      "name": "BMP supplementary control and escaped Unicode notes preserve exact bytes and canonical roundtrip",
+      "number": 798,
+      "result": "ok"
+    },
+    {
+      "name": "malformed UTF8 and unpaired raw or escaped Unicode are refused on the exact bound return bytes",
+      "number": 799,
+      "result": "ok"
+    },
+    {
+      "name": "duplicate decoded JSON members including escaped keys are refused before extracting a packet schema",
+      "number": 800,
+      "result": "ok"
+    },
+    {
+      "name": "BOM trailing data and malformed JSON refuse the whole input without returning partial coverage",
+      "number": 801,
+      "result": "ok"
+    },
+    {
+      "name": "strict JSON depth array decoded-string and numeric budgets reject bounded hostile submissions",
+      "number": 802,
+      "result": "ok"
+    },
+    {
+      "name": "byte inputs reject strings wider typed arrays proxies subclasses and shared backing without callbacks",
+      "number": 803,
+      "result": "ok"
+    },
+    {
+      "name": "submission and evidence arrays reject sparse accessor decorated subclass and proxy containers without invoking getters",
+      "number": 804,
+      "result": "ok"
+    },
+    {
+      "name": "native byte-slot capture accepts a nonshared view without consulting shadowed byte getters",
+      "number": 805,
+      "result": "ok"
+    },
+    {
+      "name": "new inventory settings and submission byte caps accept exact padded boundaries and refuse one byte over",
+      "number": 806,
+      "result": "ok"
+    },
+    {
+      "name": "exact4MiB aggregate is admitted and one extra byte refuses before parsing or derived report output",
+      "number": 807,
+      "result": "ok"
+    },
+    {
+      "name": "old gold intake evidence inventory and settings byte caps remain enforced through native copies",
+      "number": 808,
+      "result": "ok"
+    },
+    {
+      "name": "original evidence count total and complete intake aggregate caps remain independent of new4MiB policy",
+      "number": 809,
+      "result": "ok"
+    },
+    {
+      "name": "empty byte payloads and more than two supplied return buffers are refused rather than silently ignored",
+      "number": 810,
+      "result": "ok"
+    },
+    {
+      "name": "canonical Unicode output expansion above6MiB refuses the entire report while raw inputs remain within finite caps",
+      "number": 811,
+      "result": "ok"
+    },
+    {
+      "name": "reconciliation is read-only with no filesystem network or socket calls and no input mutation",
+      "number": 812,
+      "result": "ok"
+    },
+    {
+      "name": "executable synthetic guide reconciles a real browser export with missing peer and unknown expert outcomes",
+      "number": 813,
+      "result": "ok"
+    },
+    {
+      "name": "decoded judgement notes string boundary is4096 units for BMP or supplementary pairs and refuses one unit over",
+      "number": 814,
+      "result": "ok"
+    },
+    {
+      "name": "strict per-input JSON node budget refuses finite nested arrays before closed-field extraction",
+      "number": 815,
+      "result": "ok"
+    },
+    {
+      "name": "original opaque evidence wrong raw pin and source scope remain refused by unchanged intake",
+      "number": 816,
+      "result": "ok"
+    },
+    {
+      "name": "inventory and audit settings independently enforce strict raw parsing and closed schema rather than trusting packet returns",
+      "number": 817,
+      "result": "ok"
+    },
+    {
+      "name": "ASCII return duplication and raw-binding expansion refuse reports above6MiB despite exact4MiB captured inputs",
+      "number": 818,
+      "result": "ok"
+    }
+  ],
+  "existing_expert_intake_cases_preserved_and_passed_once_root": 47,
+  "research_suite_total_preserved": 82,
+  "expert_submission_actual_mcp_pass": 0,
+  "expert_submission_registered_once_root": true,
+  "runtime": "Node v22.23.3 (existing remote CI)",
+  "checks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110953437298",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681221/job/110953052297",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681221/job/110953052648",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681101/job/110953051480",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681101/job/110953051052",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681221/job/110953052553",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681221/job/110953052619",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    }
+  ],
+  "codeql_current_ref_alerts": 0,
+  "codeql_latest_analyses": {
+    "javascript-typescript": {
+      "id": 1882549560,
+      "commit_sha": "13b54b82fbce1f249f64b06be5732f70c087cb7b",
+      "created_at": "2026-10-02T17:36:39Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"javascript-typescript\"}"
+    },
+    "python": {
+      "id": 1882546355,
+      "commit_sha": "13b54b82fbce1f249f64b06be5732f70c087cb7b",
+      "created_at": "2026-10-02T17:36:07Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"python\"}"
+    }
+  },
+  "codeql_scope": "Captured pull/367/merge ref; fewer100 rows returned at each bounded endpoint. Historical rows retained; latest per language selected.",
+  "original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-root-ci-original.log",
+      "bytes": 655195,
+      "sha256": "527bd1582eb9928aa7f4a5377a2a39571ddca6a9fd632652024678765832b00e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-mcp-ci-original.log",
+      "bytes": 297586,
+      "sha256": "770da521f0cb91432c94d1c7da0d7a24fe849f63392a95c2bcd6e625a00c4d3a"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-checks-original.json",
+      "bytes": 1131,
+      "sha256": "f6364ee512a3c1e16664c7a2ac44dcc2f5c4893baca914a905f766f5a1bc78dc"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-run-original.json",
+      "bytes": 13330,
+      "sha256": "87b936e4d8fd2f74e14788a95a6cdb65b68b1c8c1e8f3f5c6b5a0d339744e9d9"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-pr-original.json",
+      "bytes": 18172,
+      "sha256": "184dc1889f675dc83bb43ae414498ac81036ea739294a563321ab42e5b4f11b4"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-codeql-analyses-original.json",
+      "bytes": 1186,
+      "sha256": "27ebf977ef7464ad79173ab73d617593aabd6cbb800759bbb7029f4f17921974"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "5b3fa6b94a99fbd301520438625fd54968894e8664bd34524729a39d12920776"
+    }
+  ],
+  "verified_humans_expertise_independence_rights": null,
+  "provider_current_indexed": null,
+  "distinct_admitted_canonical": null,
+  "qualified_progress": null,
+  "local_project_job_or_grant": false,
+  "full_owner_goal": "ACTIVE",
+  "scope": "Byte-exact original logs/API captures for the immutable signed frozen Git source; any working changes are separate unexecuted future source; parser view only removes timestamps/ANSI. No local project runtime or CI rerun. Future head/archive/integration/actual delivery requires separate gates."
+}

@@ -1,0 +1,5 @@
+The expert-intake utility prepares role packets and the annotation browser exports returns, but there is no strict reconciliation between them. This adds a pure supplied-byte audit that binds each raw return to its declared role and immutable packet, preserves all selected items, exposes missing and partial judgement coverage, and uses unchanged agreement functions for explicitly syntactic results. Human expertise, independence, rights, verified labels and admission remain unknown.
+
+The nine-input contract, finite byte/report caps and executable fictional example are documented in EXPERT_SUBMISSION_AUDIT.md. The focused test and existing verify command register 48 named fixtures covering delivered blank50/browser exports, role and packet tampering, partial fields/notes, original pins, Unicode, exact bounds and side effects.
+
+Signed clean source182e2a73 is frozen from actualmain27f12442. Existing remote CI is the first runtime; these fixtures are written, with runtime and independent source/retained-CI gates pending. No version, public dataset, website or npm release is included.

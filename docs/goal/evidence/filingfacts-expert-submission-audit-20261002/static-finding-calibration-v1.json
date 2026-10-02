@@ -1,0 +1,21 @@
+{
+  "schema": "expert-submission-audit-static-finding-calibration/v1",
+  "utc": "2026-10-02T17:53:14.888120+00:00",
+  "original_primary_finding": {
+    "path": "expert-submission-audit-primary-review/review-182e2a73-source.json",
+    "sha256": "2d137ff5ac27d629373f6e90f2cd5539a733de1770880ce85fd411ec5ca2d85e"
+  },
+  "original_correction_preflight": {
+    "path": "correction-written-preflight-v1.json",
+    "sha256": "6d9ceb5f01808481bcfc22a4997a79e3d07cb07c4331dd66401646e3bc3665c3"
+  },
+  "unpushed_correction_commit_preserved": "c448eb1f9f23ec37667f241cd178257bb75d6935",
+  "primary_authoritative_reference": "https://tc39.es/ecma262/multipage/text-processing.html#sec-compileassertion",
+  "reference_section": "22.2.2.4 CompileAssertion, Assertion::$ step6",
+  "source_inference": "Original pattern lacks multiline; original alleged final-LF admission contradicts official assertion semantics and is unsupported, not an executed failure.",
+  "guard": "Retained explicit length64 requested contract hardening and derived declaration check; old modules unchanged",
+  "regression": "49th remote case will assert original native regex rejects all six suffixes and unchanged intake SHA refusal; valid64/null controls; diagnostic preserves correction",
+  "runtime_calibration": "NOT_RUN_YET",
+  "own_local_project_job_or_grant_or_CI_rerun": false,
+  "all_goals": "ACTIVE"
+}

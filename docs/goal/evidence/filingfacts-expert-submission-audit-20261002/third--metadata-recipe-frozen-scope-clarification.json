@@ -1,0 +1,15 @@
+{
+  "schema": "canli.third.expert-submission-audit.metadata-recipe-scope-clarification.v1",
+  "observed_at": "2026-10-02T17:55:28.740385+00:00",
+  "original_unexecuted_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-peer/inspect-182e2a73.py",
+    "bytes": 25274,
+    "sha256": "f79e99e38fbfa98f42ad62ccba6df048686f7d3ce1062d22d123127a5c2cd054"
+  },
+  "corrected_frozen_Git_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-peer/inspect-182e2a73-frozen-git-v2.py",
+    "bytes": 27563,
+    "sha256": "b95724256019fde723445f657b520c6b7df961fbaa9eba04b2bbbb6fa95112e2"
+  },
+  "reason": "Author advanced from182 to separately signed292c while original182 independent review was in progress. Preserve strict current-work-v1 recipe unexecuted; original182 Git/manifest/retainedCI remain immutable. V2 records newer current work separately and validates original182 frozen Git. No author mutation, project execution or prior reader failure occurred. Native SHA calibration and corrected head remain separate pending gates."
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "expert-submission-audit-written-contract/v1",
+  "utc": "2026-10-02T17:18:23.735213+00:00",
+  "base": "27f12442b3277f679e3e834294312ec85a8ce51b",
+  "function": "reconcileExpertSubmissions",
+  "arguments": [
+    "goldBytes",
+    "expectedGoldRawSha256",
+    "intakeBytes",
+    "evidenceInventoryBytes",
+    "evidenceBuffers",
+    "intakeSettingsBytes",
+    "submissionInventoryBytes",
+    "submissionBuffers",
+    "auditSettingsBytes"
+  ],
+  "submission_inventory": {
+    "schema": "canli.filing-facts-expert-submission-inventory.v1",
+    "packet_sha256": "independently supplied canonical gold SHA",
+    "submissions": [
+      {
+        "role": "reviewer_a or reviewer_b, each at most once",
+        "declared_handle": "exact intake-declared handle and exact trimmed browser annotator",
+        "packet_sha256": "canonical gold SHA",
+        "expected_sha256": "independently supplied native raw SHA",
+        "expected_bytes": "positive safe integer exact raw length"
+      }
+    ]
+  },
+  "audit_settings": {
+    "schema": "canli.filing-facts-expert-submission-settings.v1",
+    "packet_sha256": "canonical gold SHA",
+    "implementation_source_sha256": "explicit caller declaration lowercase SHA256 or null; verified false"
+  },
+  "new_caps": {
+    "submissionBytes": 2097152,
+    "submissionInventoryBytes": 16384,
+    "auditSettingsBytes": 4096,
+    "totalInputBytes": 4194304,
+    "reportBytes": 6291456,
+    "submissions": 2,
+    "parser": "unchanged intake16depth/32768nodes/256arrayRows/4096stringUnits/128numberUnits"
+  },
+  "old_caps": "all EXPERT_INTAKE_LIMITS still enforced via unchanged preparation on owned copies",
+  "row_contract": "closed delivered filledPacket with all selected IDs exactly once, immutable fields byte/canonical-compatible gold and exact vocabulary/guidelines; row order may differ but raw pin records it; blank judgements accepted; changed/missing/extra immutable rows refused",
+  "coverage": "full selected-N for each role, all pairs and per-field eligible/missing; missing role/submission explicit; notes-required completion via unchanged missingJudgements",
+  "agreement": "unchanged agreement for two supplied compatible complete-export declarations; unchanged cohensKappa for each eligible field; clearly syntactic-only, never verified expert agreement",
+  "adjudication": "unchanged preparation blank_submission; all selected tasks with missing and differing field values; no decisions/labels",
+  "established": "all original authenticated/verified expert/independence/source-rights/completeness/labels/admission/expert-agreement/adjudication fields null",
+  "byte_contract": "owned native nonshared Buffer/Uint8Array copies and ordinary dense descriptor-checked arrays only; no paths/callbacks/coercions; original raw bindings/base64 retained, hashes/parsing same captured bytes",
+  "fingerprints": "function-source behavior, all loaded dependency behavior and captured preparation fingerprint; immutable source pins separately declared/unverified; explicit whole-module SHA verified:false",
+  "report": "deterministic deeply frozen, canonical roundtrip hash; refuse whole output above final JSON or canonical6MiB; no filesystem/network/runtime custody/authenticity claim",
+  "runtime": "WRITTEN CONTRACT ONLY; no local project runtime",
+  "dependencies": {
+    "expert-intake.mjs": {
+      "bytes": 30964,
+      "sha256": "f37ed4663a78cf819331410205f28b0671966cfe1b3c73aa0b13a46bf19b0ab4"
+    },
+    "agreement.mjs": {
+      "bytes": 6423,
+      "sha256": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6"
+    }
+  }
+}

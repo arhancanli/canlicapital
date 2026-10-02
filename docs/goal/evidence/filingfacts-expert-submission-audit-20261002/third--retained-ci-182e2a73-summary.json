@@ -1,0 +1,940 @@
+{
+  "schema": "canli.third.expert-submission-audit.independent-retained-current-ci.v1",
+  "observed_at": "2026-10-02T17:57:37.011507+00:00",
+  "verdict": "PASS_EXACT_RETAINED_CURRENT_CI",
+  "reviewer": "THIRD",
+  "source": {
+    "head": "182e2a732a26ce36bbcf6cd3825675dfdf64f0df",
+    "tree": "4f95f00dda9d656e6f68a76096874463a2176f36",
+    "sole_parent": "27f12442b3277f679e3e834294312ec85a8ce51b",
+    "signature": "G",
+    "signer": "arhancanli@icloud.com",
+    "current_author_worktree_observation": {
+      "head": "292c2a541ef7ce845fff21ae8dccf75e0c065755",
+      "tree": "5fa763d57214918cf26e9b795a0b8c7bba97b8d4",
+      "clean": true,
+      "status": "",
+      "equals_reviewed182": false,
+      "newer_source_is_outside_this_receipt": true
+    }
+  },
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/source-182e2a73.json",
+    "bytes": 3094752,
+    "sha256": "457e43b6096d20c2af2f55eeb961d27cb8eea6758e7c0182761de5167a07c2d1"
+  },
+  "author_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-exact-ci.json",
+    "bytes": 17006,
+    "sha256": "21f41d6063514203eec9b01b011296d206a0c09d2acfb883cb3c50da18d05232"
+  },
+  "author_capture_is_independent_review": false,
+  "original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-root-ci-original.log",
+      "bytes": 655195,
+      "sha256": "527bd1582eb9928aa7f4a5377a2a39571ddca6a9fd632652024678765832b00e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-mcp-ci-original.log",
+      "bytes": 297586,
+      "sha256": "770da521f0cb91432c94d1c7da0d7a24fe849f63392a95c2bcd6e625a00c4d3a"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-checks-original.json",
+      "bytes": 1131,
+      "sha256": "f6364ee512a3c1e16664c7a2ac44dcc2f5c4893baca914a905f766f5a1bc78dc"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-run-original.json",
+      "bytes": 13330,
+      "sha256": "87b936e4d8fd2f74e14788a95a6cdb65b68b1c8c1e8f3f5c6b5a0d339744e9d9"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-pr-original.json",
+      "bytes": 18172,
+      "sha256": "184dc1889f675dc83bb43ae414498ac81036ea739294a563321ab42e5b4f11b4"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-codeql-analyses-original.json",
+      "bytes": 1186,
+      "sha256": "27ebf977ef7464ad79173ab73d617593aabd6cbb800759bbb7029f4f17921974"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit/secondary-182e2a73-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "5b3fa6b94a99fbd301520438625fd54968894e8664bd34524729a39d12920776"
+    }
+  ],
+  "all8_original_bytes": 989250,
+  "metadata_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-peer/inspect-182e2a73-frozen-git-v3.py",
+    "bytes": 28832,
+    "sha256": "608ead39867b0af69774476d929e793915e13ad63364b1567b128ec2be8da79d"
+  },
+  "independently_parsed_ROOT": {
+    "job": "ROOT110953052297",
+    "Node_versions": [
+      "v22.23.3"
+    ],
+    "actual_checkout": [
+      [
+        "13b54b82",
+        "182e2a732a26ce36bbcf6cd3825675dfdf64f0df",
+        "27f12442b3277f679e3e834294312ec85a8ce51b"
+      ]
+    ],
+    "normalization": "Transient parsing view removes log timestamps/BOM/ANSI CSI only; original bytes unchanged.",
+    "normalized_log_sha256": "6028e44e43667aadaf5d3d3781e56ab9bfef3e4b9c934c74ecef24180e777d08",
+    "streams": [
+      {
+        "plan": 6,
+        "start_normalized_line": 1413,
+        "end_normalized_line": 1458,
+        "continuous_ordinals": true,
+        "all_top_results_ok": true,
+        "counters": {
+          "tests": 6,
+          "suites": 0,
+          "pass": 6,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "duration_ms": 82.498573,
+        "normalized_TAP_sha256": "f2f93959ae21497f882f59596b7386567f932dbccc1f7a98a743252b49f2a30f",
+        "named_top_results_n": 6,
+        "named_top_results_sha256": "93e9bf4f9b4b34f05b91f2cecd5f496301b84b6f94ad37b3dfb7939097e76043"
+      },
+      {
+        "plan": 1092,
+        "start_normalized_line": 1464,
+        "end_normalized_line": 8040,
+        "continuous_ordinals": true,
+        "all_top_results_ok": true,
+        "counters": {
+          "tests": 1092,
+          "suites": 0,
+          "pass": 1092,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "duration_ms": 102461.030048,
+        "normalized_TAP_sha256": "bee60bcefa54fafb581673e9707933493dbda62bec7b987d52103c3b40004cb5",
+        "named_top_results_n": 1092,
+        "named_top_results_sha256": "865c699d1419a8215800b814a70f66d2e8e2a7fbe44f9f11bff5e086d0d98587"
+      },
+      {
+        "plan": 9,
+        "start_normalized_line": 8182,
+        "end_normalized_line": 8245,
+        "continuous_ordinals": true,
+        "all_top_results_ok": true,
+        "counters": {
+          "tests": 9,
+          "suites": 0,
+          "pass": 9,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "duration_ms": 101.257049,
+        "normalized_TAP_sha256": "67f5e1672b6c0fff47bdb8bd6772dee18d705e5a65be7123ec4bfcef9503e0b3",
+        "named_top_results_n": 9,
+        "named_top_results_sha256": "83d5c4f12c03a131faceb94047789ac00034af9f8872b190ab4a0d84970f2568"
+      }
+    ]
+  },
+  "independently_parsed_MCP": {
+    "job": "MCP110953052553",
+    "Node_versions": [
+      "v22.23.3"
+    ],
+    "actual_checkout": [
+      [
+        "13b54b8",
+        "182e2a732a26ce36bbcf6cd3825675dfdf64f0df",
+        "27f12442b3277f679e3e834294312ec85a8ce51b"
+      ]
+    ],
+    "normalization": "Transient parsing view removes log timestamps/BOM/ANSI CSI only; original bytes unchanged.",
+    "normalized_log_sha256": "5b8b9c61870702a23b651911712b086add76703d0762e2728389cf2e2c97670d",
+    "streams": [
+      {
+        "plan": 141,
+        "start_normalized_line": 178,
+        "end_normalized_line": 1033,
+        "continuous_ordinals": true,
+        "all_top_results_ok": true,
+        "counters": {
+          "tests": 141,
+          "suites": 0,
+          "pass": 141,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "duration_ms": 1710.618158,
+        "normalized_TAP_sha256": "c12b683410996f5866c20bbb81afb895fb4888638a921c52282b499ab173e5f7",
+        "named_top_results_n": 141,
+        "named_top_results_sha256": "5281790af7896fbc96160bb82df585c9de47fc6d45c8e633d200003093ea8aac"
+      },
+      {
+        "plan": 1,
+        "start_normalized_line": 1042,
+        "end_normalized_line": 1057,
+        "continuous_ordinals": true,
+        "all_top_results_ok": true,
+        "counters": {
+          "tests": 1,
+          "suites": 0,
+          "pass": 1,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "duration_ms": 379.126832,
+        "normalized_TAP_sha256": "5bf77eca67239260ece24351805d3dd76e0982f94d97a20558c173ef94de2550",
+        "named_top_results_n": 1,
+        "named_top_results_sha256": "961e8b7f1148f23f2953d1283de5eed04f9d5afc6bac34c76e7ba44e4d0d41fa"
+      },
+      {
+        "plan": 82,
+        "start_normalized_line": 1083,
+        "end_normalized_line": 1584,
+        "continuous_ordinals": true,
+        "all_top_results_ok": true,
+        "counters": {
+          "tests": 82,
+          "suites": 0,
+          "pass": 82,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "duration_ms": 15436.280434,
+        "normalized_TAP_sha256": "56b883a4ff7ee91b520947347c02f681da5b78d26217bb6388d6323871c81052",
+        "named_top_results_n": 82,
+        "named_top_results_sha256": "9afa2c94813f27574e8c1a209376ff20eab8d065d4570d9493f9da7a5f108f3f"
+      },
+      {
+        "plan": 119,
+        "start_normalized_line": 1609,
+        "end_normalized_line": 2335,
+        "continuous_ordinals": true,
+        "all_top_results_ok": true,
+        "counters": {
+          "tests": 119,
+          "suites": 0,
+          "pass": 119,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "duration_ms": 3587.553321,
+        "normalized_TAP_sha256": "1957c1e58cab3ed1a232005e8a178ffe4d5161c8c50173a3e22592988374bbc1",
+        "named_top_results_n": 119,
+        "named_top_results_sha256": "50519bda28112a72b1f8f2d705a02e64696daf9dcd09c23ee3785a99b1581345"
+      },
+      {
+        "plan": 139,
+        "start_normalized_line": 2360,
+        "end_normalized_line": 3214,
+        "continuous_ordinals": true,
+        "all_top_results_ok": true,
+        "counters": {
+          "tests": 139,
+          "suites": 0,
+          "pass": 139,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "duration_ms": 2413.562627,
+        "normalized_TAP_sha256": "6256e8c6859e366a31c8ec3431a0ba6c0117cd81b4e53a80dc034f2d96554701",
+        "named_top_results_n": 139,
+        "named_top_results_sha256": "3db79afaa76fe52c8f2cda600404b2a4c9b0990b6da9b9d5c93b2fd9f6884f03"
+      }
+    ]
+  },
+  "source_named_current_case_counts": [
+    {
+      "name": "delivered blank50 raw91c6 and packet15c595 retain100 assignments and50 missing review pairs",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "actual browser filledPacket roundtrip of delivered50 is compatible with unchanged agreement and remains fictional",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "one absent submission retains both role denominators and all selected pairs without inventing a packet",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "present blank browser exports remain distinct from absent role files and establish zero syntactic completion",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "partial judgements preserve per-field eligible missing and complete-pair coverage independently",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "notes required for no and cannot_find remain missing work while field judgements remain eligible",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "partial-field disagreements are visible before complete-item agreement without creating adjudication decisions",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "unchanged per-field Cohen kappa uses the eligible pairs and exposes null for a constant agreeing category",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "known NFKC trim and case alias collisions remain refused by unchanged intake before reconciliation",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "different handles shared employer and supplied credential claims establish no human expertise rights or independence",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "delivered browser annotator trim is accepted while exact intake and inventory declarations remain bound",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "swapped raw submissions cannot satisfy the other role even when expected raw pins are updated",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "a role inventory handle is exact and cannot substitute a supplied alias or another declared person",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "an undeclared reviewer or adjudicator cannot supply a reviewer return and duplicate roles are refused",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "all submission inventory settings row and returned packet canonical pins independently refuse a foreign packet",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "changed immutable question answer company template and filings are refused despite re-advertised raw hashes",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "missing extra duplicate and foreign immutable rows cannot shrink repair or replace the selected denominator",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "closed immutable row fields require every browser-export field and refuse hidden extra labels",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "same immutable IDs in a different raw row order remain explicitly raw-bound and compatible with gold scoring",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "schema guidelines vocabulary and packet annotator tampering are refused without browser-style sanitization",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "only exact delivered judgement choices or blank strings are accepted and notes remain strings",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "independently supplied raw SHA and exact positive safe lengths cannot be silently recomputed by the utility",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "raw array inventory count and ordering are bound independently of role presentation order",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "unknown fields in inventory rows settings and top-level schemas cannot promote verified facts",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "preparation is recomputed unchanged from captured six inputs including independently supplied gold and evidence pins",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "owned original bindings and frozen packets survive caller mutation without changing any input bytes during invocation",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "deterministic canonical report hash roundtrips while caller whole-source and dependency pins stay explicitly unverified",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "BMP supplementary control and escaped Unicode notes preserve exact bytes and canonical roundtrip",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "malformed UTF8 and unpaired raw or escaped Unicode are refused on the exact bound return bytes",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "duplicate decoded JSON members including escaped keys are refused before extracting a packet schema",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "BOM trailing data and malformed JSON refuse the whole input without returning partial coverage",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "strict JSON depth array decoded-string and numeric budgets reject bounded hostile submissions",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "byte inputs reject strings wider typed arrays proxies subclasses and shared backing without callbacks",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "submission and evidence arrays reject sparse accessor decorated subclass and proxy containers without invoking getters",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "native byte-slot capture accepts a nonshared view without consulting shadowed byte getters",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "new inventory settings and submission byte caps accept exact padded boundaries and refuse one byte over",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "exact4MiB aggregate is admitted and one extra byte refuses before parsing or derived report output",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "old gold intake evidence inventory and settings byte caps remain enforced through native copies",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "original evidence count total and complete intake aggregate caps remain independent of new4MiB policy",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "empty byte payloads and more than two supplied return buffers are refused rather than silently ignored",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "canonical Unicode output expansion above6MiB refuses the entire report while raw inputs remain within finite caps",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "reconciliation is read-only with no filesystem network or socket calls and no input mutation",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "executable synthetic guide reconciles a real browser export with missing peer and unknown expert outcomes",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "decoded judgement notes string boundary is4096 units for BMP or supplementary pairs and refuses one unit over",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "strict per-input JSON node budget refuses finite nested arrays before closed-field extraction",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "original opaque evidence wrong raw pin and source scope remain refused by unchanged intake",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "inventory and audit settings independently enforce strict raw parsing and closed schema rather than trusting packet returns",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "ASCII return duplication and raw-binding expansion refuse reports above6MiB despite exact4MiB captured inputs",
+      "ROOT": 1,
+      "MCP": 0
+    }
+  ],
+  "unchanged_prior_intake_case_counts": [
+    {
+      "name": "synthetic goldPacket copies bind the existing digest and retain every immutable item and blank judgement",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "published fifty-item blank gold remains exact, prepares one hundred assignments and creates no human labels",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "missing all roles preserves both unassigned blank packets, all sources and a distinct adjudicator checklist",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "one declared reviewer and missing evidence never shrink the selected item denominator or promote coverage",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "declared PhD CFA engineering and verification provenance remain unverified despite exact supplied evidence",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "shared affiliation and declared conflicts are retained without inferring dependence or independence",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "NFKC trim and case identity collisions match agreement and refuse overlapping reviewer handles",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "aliases cannot conceal an adjudicator collision or repeat an already normalized same-role identity",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "duplicate or unknown role declarations and nonstring stable handles are refused",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "a provided verified boolean or expert flag is an unknown field and cannot override intake uncertainty",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "opaque native evidence is retained byte-for-byte including binary bytes without asserting document authenticity",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "advertised evidence hash cannot conceal different bytes or reordered buffer attachments",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "separate exact evidence length and native buffer inventory cardinality are enforced",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "evidence for another declared reviewer cannot satisfy an identity reference",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "valid identity evidence cannot be repurposed as qualification or independence evidence",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "qualification and conflict evidence must name the exact declared qualification or conflict",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "foreign packet evidence is refused even when the document bytes and own hash are valid",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "rights evidence bound to another cited source cannot clear the selected source declaration",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "source ID URL substitution and uncited source declarations are refused without dropping packet sources",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "duplicate evidence IDs qualification IDs source records and rights claim IDs refuse rather than overwrite",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "unreferenced but correctly bound evidence stays in the inventory with explicit unreferenced coverage",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "complete declared rights scope with matching synthetic bytes never becomes actual clearance or release admission",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "public-origin or licence text without use declarations remains unknown and missing evidence is visible",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "contradictory allowed and denied uses across claims are exposed mechanically while distinct restrictions stay distinct",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "requested training or redistribution outside declared scope remains uncovered or restricted",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "raw gold hash and independently supplied canonical content pin detect altered immutable questions",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "completed gold judgements notes or annotator declarations cannot be converted back into blank intake",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "unknown gold fields or a changed judgement vocabulary cannot alter the existing annotation contract",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "raw packet ordering changes its raw binding while the existing ID-sorted canonical digest stays compatible",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "intake and settings canonical packet bindings independently refuse foreign packet declarations",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "all returned bindings own their bytes and input buffers remain unchanged after immutable preparation",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "canonical report content hash is deterministic through JSON roundtrip and whole-source declarations stay unverified",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "malformed UTF8 and raw or escaped unpaired Unicode refuse without replacement-byte repair",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "duplicate decoded JSON members including escaped keys are refused before schema extraction",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "prototype-like unknown keys malformed JSON BOM and trailing syntax cannot pass a closed input schema",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "lossy numeric literals negative zero nonfinite values and coercive evidence counts are refused",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "calendar-invalid verification dates and unknown qualification use or purpose values are refused",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "byte input proxies subclasses shared backing and boxed hashes cannot execute custom conversion hooks",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "native Uint8Array subviews and poisoned own byte getters copy the actual native slots without invoking accessors",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "evidence array accessors proxies sparse entries and unexpected keys refuse without callback invocation",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "raw byte maxima accept bounded whitespace but independently reject every overlimit input",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "evidence item count per-file and aggregate byte caps refuse before a partial result can be returned",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "combined raw input budget refuses an individually bounded plan without truncating evidence",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "item source alias qualification and claim budgets refuse excess instead of silently dropping selected inputs",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "strict JSON depth array string node and numeric-token budgets are enforced independently of schema",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "canonical output expansion refuses the whole report without truncating large Unicode packet copies",
+      "ROOT": 1,
+      "MCP": 0
+    },
+    {
+      "name": "executable synthetic guide import prepares bound blank packets and leaves every verification result unknown",
+      "ROOT": 1,
+      "MCP": 0
+    }
+  ],
+  "actual_new_unique_ROOT": 48,
+  "actual_new_MCP": 0,
+  "unchanged_intake_ROOT": 47,
+  "checks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110953437298",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681221/job/110953052297",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681221/job/110953052648",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681101/job/110953051480",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681101/job/110953051052",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681221/job/110953052553",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37041681221/job/110953052619",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    }
+  ],
+  "run": {
+    "id": 37041681221,
+    "source_head": "182e2a732a26ce36bbcf6cd3825675dfdf64f0df",
+    "attempt": 1,
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "tested_commit": {
+    "sha": "13b54b82fbce1f249f64b06be5732f70c087cb7b",
+    "tree": "4f95f00dda9d656e6f68a76096874463a2176f36",
+    "parents": [
+      "27f12442b3277f679e3e834294312ec85a8ce51b",
+      "182e2a732a26ce36bbcf6cd3825675dfdf64f0df"
+    ],
+    "retained_tested_API_tree_equal_local_frozen_Git_tree": true,
+    "local_tested_object_scope": {
+      "tested_object_available": false,
+      "refetch_performed": false,
+      "scope": "Tested merge object absent locally; retained original API tree+parents and both raw checkout full source/base/tested prefixes independently parsed. API tree SHA equals independent local frozen Git tree; no fetched/tested object or local whole tested-tree diff claimed."
+    }
+  },
+  "captured_PR_state": {
+    "number": 367,
+    "draft": true,
+    "state": "open",
+    "merged": false,
+    "head": "182e2a732a26ce36bbcf6cd3825675dfdf64f0df",
+    "base": "27f12442b3277f679e3e834294312ec85a8ce51b"
+  },
+  "current_security": {
+    "alerts": 0,
+    "analyses_original_rows": 2,
+    "all_original_historical_rows_preserved": [
+      {
+        "ref": "refs/pull/367/merge",
+        "commit_sha": "13b54b82fbce1f249f64b06be5732f70c087cb7b",
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "environment": "{\"language\":\"javascript-typescript\"}",
+        "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+        "error": "",
+        "created_at": "2026-10-02T17:36:39Z",
+        "results_count": 0,
+        "rules_count": 103,
+        "id": 1882549560,
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1882549560",
+        "sarif_id": "d1d397de-be87-11f1-86b7-9c6f12873352",
+        "tool": {
+          "name": "CodeQL",
+          "guid": null,
+          "version": "2.27.1"
+        },
+        "deletable": true,
+        "warning": ""
+      },
+      {
+        "ref": "refs/pull/367/merge",
+        "commit_sha": "13b54b82fbce1f249f64b06be5732f70c087cb7b",
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "environment": "{\"language\":\"python\"}",
+        "category": ".github/workflows/codeql.yml:analyze/language:python",
+        "error": "",
+        "created_at": "2026-10-02T17:36:07Z",
+        "results_count": 0,
+        "rules_count": 50,
+        "id": 1882546355,
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1882546355",
+        "sarif_id": "bb3b01d8-be87-11f1-85fd-a162c4e29586",
+        "tool": {
+          "name": "CodeQL",
+          "guid": null,
+          "version": "2.27.1"
+        },
+        "deletable": true,
+        "warning": ""
+      }
+    ],
+    "latest_by_language": {
+      "javascript-typescript": {
+        "ref": "refs/pull/367/merge",
+        "commit_sha": "13b54b82fbce1f249f64b06be5732f70c087cb7b",
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "environment": "{\"language\":\"javascript-typescript\"}",
+        "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+        "error": "",
+        "created_at": "2026-10-02T17:36:39Z",
+        "results_count": 0,
+        "rules_count": 103,
+        "id": 1882549560,
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1882549560",
+        "sarif_id": "d1d397de-be87-11f1-86b7-9c6f12873352",
+        "tool": {
+          "name": "CodeQL",
+          "guid": null,
+          "version": "2.27.1"
+        },
+        "deletable": true,
+        "warning": ""
+      },
+      "python": {
+        "ref": "refs/pull/367/merge",
+        "commit_sha": "13b54b82fbce1f249f64b06be5732f70c087cb7b",
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "environment": "{\"language\":\"python\"}",
+        "category": ".github/workflows/codeql.yml:analyze/language:python",
+        "error": "",
+        "created_at": "2026-10-02T17:36:07Z",
+        "results_count": 0,
+        "rules_count": 50,
+        "id": 1882546355,
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1882546355",
+        "sarif_id": "bb3b01d8-be87-11f1-85fd-a162c4e29586",
+        "tool": {
+          "name": "CodeQL",
+          "guid": null,
+          "version": "2.27.1"
+        },
+        "deletable": true,
+        "warning": ""
+      }
+    },
+    "scope": "Finite retained captured pull/367/merge endpoints only; not global security proof or a newly fetched live state."
+  },
+  "findings": [],
+  "separate_static_source_gate": "Independent source receipt; passing retained tests does not establish reviewed semantics or verified real outcomes.",
+  "scope": "Independent stdlib parsing/hashes and read-only frozen local Git only. No project execution, Node/import/test/helper/job/rerun, API/refetch, CPUclaim, provider/model/spend/publication. Existing remote test evidence at exact frozen182; no futurehead/archive/ordinary delivery or verified human/expert/rights/adoption/index/qualified-outcome acceptance.",
+  "own_metadata_reader_original": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-peer/metadata-reader-error-ci-20261002T215556997773.json",
+    "bytes": 1669,
+    "sha256": "d8a3d4f9957079d27298448d5b7e0e6499b647bfd1c3c4923983646a9e704d71"
+  },
+  "reader_correction": "V2 incorrectly required the remote tested merge object already in local Git; retained API tree/parents+both checkout logs are available and sufficient for captured-CI binding. V3 records local availability and never refetches. Original failure retained; no project/source/CI failure or rerun.",
+  "full_owner_hierarchy": "ACTIVE",
+  "real_outcomes": null,
+  "full_independent_parsing_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-audit-peer/retained-ci-182e2a73.json",
+    "bytes": 277457,
+    "sha256": "6ccbaf8eec3b3ffe1ea03db604382a05161fa9045a5ece4a7149dccbf621b61f"
+  },
+  "projection_scope": "Lossless references to full independent parsing receipt; complete TAP parsing and all results were checked before this compact documentary projection. Original277457B receipt retained unchanged."
+}
