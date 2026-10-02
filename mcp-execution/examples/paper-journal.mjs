@@ -103,6 +103,8 @@ function scenarioInput(value) {
     s.check.account?.equity === s.account.initial_cash && exactKeys(s.check.account.positions, []) &&
     exactKeys(s.check.market, [s.symbol]) && s.check.market[s.symbol]?.price === s.sizing.price, 'CHECK_INPUT');
   requireThat(checkOrdersInput.safeParse({ ...s.check, orders: [{ symbol: s.symbol, side: 'buy', qty: 1, type: 'market' }] }).success, 'CHECK_INPUT');
+  // A schedule date is not a supplied commission amount. Explicit zero is valid.
+  requireThat(!s.check.fees || ['commission_bps', 'per_share_usd'].some(k => own(s.check.fees, k)), 'MISSING_FEE_SCHEDULE');
   requireThat(object(s.fill) && Object.keys(s.fill).every(k => ['qty', 'price', 'fee', 'fill_id'].includes(k)) && positive(s.fill.qty) &&
     positive(s.fill.price) && typeof s.fill.fill_id === 'string' && ID.test(s.fill.fill_id) &&
     (!own(s.fill, 'fee') || s.fill.fee === null || finite(s.fill.fee)), 'FILL_INPUT');
@@ -219,6 +221,7 @@ function emptyReport() {
 }
 function stopped(report, error) {
   report.status = 'stopped';
+  if (error instanceof Stop && error.code === 'MISSING_FEE_SCHEDULE') report.unknowns.push('supplied fee schedule amounts');
   report.stop = { code: error instanceof Stop ? error.code : 'CALL_FAILED',
     ...(error instanceof Stop && error.code === 'JOURNAL_STORE_UNCERTAIN' ? { journal_persistence_attempted: error.persistenceAttempted ?? null } : {}),
     persistence: report.pending_request?.dispatched || report.pending_export?.dispatched ?

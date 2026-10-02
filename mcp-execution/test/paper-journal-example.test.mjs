@@ -138,6 +138,19 @@ test('an absent commission schedule remains not modelled while explicit fixture 
   assert.ok(report.planning.check.not_modelled.some(v => /commission|fee/i.test(v)));
 });
 
+test('a date-only commission schedule refuses as unknown while an explicitly supplied zero remains valid', async t => {
+  const f = fixture(t);
+  for (const extra of [{}, { min_usd: 0 }, { sell_fee_rate: 0 }]) {
+    const missing = scenario(); missing.check.fees = { as_of: missing.check.fees.as_of, ...extra };
+    const refused = await runPaperJournal({ callTool: f.callTool, scenario: missing, write: true });
+    assert.equal(refused.stop.code, 'MISSING_FEE_SCHEDULE'); assert.equal(refused.call_count, 0);
+    assert.ok(refused.unknowns.includes('supplied fee schedule amounts')); noJournal(f);
+  }
+  const zero = scenario(); zero.check.fees.commission_bps = 0;
+  const report = await runPaperJournal({ callTool: f.callTool, scenario: zero, write: true });
+  roundtrip(report, f.home, f.pem); assert.equal(report.planning.check.row.commission_bps, 0);
+});
+
 test('accessors and inline signing fields refuse before a local callback and do not echo their contents', async t => {
   const f = fixture(t); let reads = 0;
   const getter = scenario(); Object.defineProperty(getter.account, 'initial_cash', { get() { reads++; return 10_000; }, enumerable: true });

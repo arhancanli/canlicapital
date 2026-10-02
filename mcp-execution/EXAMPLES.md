@@ -76,6 +76,10 @@ agree about opening equity, book and symbol price. A fill cannot exceed the size
 order. It must have an explicit finite fee; an absent/null fee stays unknown and
 stops before initialization. A missing commission schedule remains disclosed as
 not modelled by `check_orders`; it is separate from that supplied fill fee.
+A provided schedule must explicitly give a buy commission rate or per-share
+amount. A date/source, minimum alone or sell-only charge is refused as unknown
+before any call. A commission rate or per-share amount explicitly set to zero
+is valid.
 
 The runner snapshots bounded plain JSON before its first call. Accessors,
 unsupported fields, unpaired Unicode, nonfinite numbers, excessive depth or

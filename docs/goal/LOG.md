@@ -5464,3 +5464,25 @@ unchanged. Source freeze, independent review, exact CI/evidence and handoff rema
 open. All full Sovereign/10M actual indexing/qualitySEO/intents/design/analyzers/
 legitimateadoption/realexpertrefinery/research/governedALPHAC/paperthenlawfulcapital
 objectives stay ACTIVE; no model/provider/broker/spend/site/version/hero action.
+
+
+## Paper example first exact remote proof and fee admission correction, 2026-10-02T00:04:46.507143+00:00
+
+Signed original e39d0a085f3ffe182f1d3f33549736d99ab85621/treebd378c3a has
+all seven successful existing CI checks. MCP job110639702429/run36943347078
+contains27 actual source-named passes exactly once within110 execution cases,
+zero failures/skips/cancellations/todos on remote Node22.23.3. Tested mergea318
+has treebd equal signed source and e39 as parent. Raw144790B SHA6c9fbb28 and
+corrected TAP-aware receipt85cdbc67 are retained in coordination; root raw
+582342B SHA35399da5439ffc08d1328a0e60b82b8607b7430a8b3c14cb8f6668c09dc301a7 is separately retained.
+The initial gh escape refusal and two missing-TAP-separator extraction receipts
+remain metadata-only failures, not runtime test failures or altered originals.
+Third's protected-server date-onlyfee source findingab07 identified an admission
+problem relevant to the reusable example: a provided buy schedule could lack a
+buy commission amount. Narrow example admission now refuses date/source-only,
+minimum-only and sell-only schedules as unknown before any callback; absent
+schedules and explicitly supplied0 remain supported. New regression is WRITTEN.
+No protected server/math/schema change or local runtime/CPUgrant/job was made.
+A new signed pin, exact remoteCI and independent review are required; original
+e39 passes are not relabeled to the correction. Six-path scope and all complete
+owner goals remain ACTIVE; no broker/provider/model/spend/hero/site/npm action.
