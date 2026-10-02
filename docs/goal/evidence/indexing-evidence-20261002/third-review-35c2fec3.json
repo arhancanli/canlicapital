@@ -1,0 +1,130 @@
+{
+  "schema": "canli.third.indexing-evidence.static-review.v1",
+  "observedAt": "2026-10-02T03:24:48.767981+00:00",
+  "source": "35c2fec39c9c807e595a4607b6d3c4e1eb5e68a2",
+  "tree": "72cb8ba8d44eff85adbcb7fc3fab1058e97dd05c",
+  "verdict": "HOLD_ONE_ADDITIONAL_STATIC_P2",
+  "phaseSnapshot": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/phase-source-snapshot-35c2fec3.json",
+    "bytes": 18692,
+    "sha256": "b83fdf59d8f6a602d1047c22c237f9e3f57533885cc2da10b2d028b45893947f"
+  },
+  "sixFrozenSourceCopies": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/source-35c2fec3",
+  "predicates": [
+    {
+      "scope": "owned byte snapshot/hash",
+      "source": "36-46,408-420",
+      "result": "PASS_STATIC",
+      "detail": "native Buffer/Uint8Array slots only; no caller accessors/iterators/toJSON/species; copied non-shared buffers hashed before decode; exact sha+length match"
+    },
+    {
+      "scope": "closed bounded parser",
+      "source": "68-180",
+      "result": "PASS_STATIC",
+      "detail": "fatal UTF8, Unicode/duplicate keys,128KiB/2MiB/depth12/nodes16384/512 arrays/4096 stringUnits; strict counts/types and closed nested fields"
+    },
+    {
+      "scope": "property/report/metric/time",
+      "source": "183-299",
+      "result": "PASS_STATIC",
+      "detail": "explicit exact Google domain or HTTPS URL-prefix and caller UTC reference; provider/report/metric matrix; actual calendar, future/order/window refusal; unknowns retain reasons"
+    },
+    {
+      "scope": "auth/extraction/raw provenance",
+      "source": "284-309,407-460",
+      "result": "PASS_STATIC_WITH_LIMITS",
+      "detail": "authorship always self-attested/providerVerified false; only synthetic exact payload automated, manual/opaque values not verified; absent raw forces unavailable/null metrics, no URL rows"
+    },
+    {
+      "scope": "coverage/canonical/metric separation",
+      "source": "310-391,438-460",
+      "result": "PASS_STATIC_WITH_LIMITS",
+      "detail": "declared captured coverage only; partial/continuation/limit/sampling/purposive/duplicate/mismatch/unknown cannot claim complete; complete performance uses BigInt sums; diagnostic declared positive canonicals never established current/qualified coverage"
+    },
+    {
+      "scope": "CLI file/output/error handling",
+      "source": "466-558",
+      "result": "PASS_STATIC_WITH_LIMITS",
+      "detail": "explicit normalized existing paths, one nonblocking no-follow FD, regular/cap/stability, growth check, exclusive0600 output, short-write handling/fsync/close/no unlink/no echo/no credentials/network; explicit OS/race/durability limits documented"
+    },
+    {
+      "scope": "primary close-retry finding",
+      "source": "490-502,520-530",
+      "result": "CLOSED_STATIC_SOURCE",
+      "origin": "primary7a69477c",
+      "detail": "owned descriptor cleared BEFORE all four normal/finally close sites; no second close on ambiguous numericFD; existing input/write refusal retained. Two new private child fixtures close target/open foreign same FD/throw; assert one attempt/foreign still open and originals unchanged. Cases written; fresh remote CI remains separate."
+    },
+    {
+      "scope": "CLI entry parity",
+      "source": "560-567",
+      "result": "HOLD_STATIC",
+      "findingId": "CC-360-CLI-SYMLINK-SILENT-SKIP"
+    },
+    {
+      "scope": "package/protected goals/source scope",
+      "source": "phase-source-snapshot-35c2fec3.json",
+      "result": "PASS_STATIC",
+      "detail": "exact six paths;5906 protected Git mode/type/blob/length identities383394017B; original64d goal prefixes; only serial focused script and one filename in existing verify; no new source archive authorized by this review"
+    }
+  ],
+  "findings": [
+    {
+      "id": "CC-360-CLI-SYMLINK-SILENT-SKIP",
+      "severity": "P2",
+      "state": "OPEN_STATIC_SOURCE",
+      "source": "35c2fec39c9c807e595a4607b6d3c4e1eb5e68a2",
+      "location": {
+        "path": "scripts/lib/indexing-evidence.mjs",
+        "line": 560
+      },
+      "trigger": "Run Node through a normal symbolic-link entry alias whose target is indexing-evidence.mjs, with missing arguments or with the exact five otherwise-valid flags. Under normal Node ESM realpath resolution, argv[1] retains alias pathname while import.meta.url identifies target. This is a source-consistent counterexample, not a reviewer invocation.",
+      "sourceTrace": [
+        "Entry guard compares pathToFileURL(argv[1]) literally to import.meta.url without realpath normalization.",
+        "For alias vs target mismatch, guard is false; cli() and all argument/admission checks are skipped.",
+        "No alternative entry rejection or exitCode assignment exists outside the guard; module only defines exports/helpers.",
+        "The command can therefore terminate successfully with no refusal, no report and no write, rather than enforce its explicit CLI contract."
+      ],
+      "expectedBehavior": "Direct and symlink entry paths must both refuse missing flags with exit1/bounded code and, with valid flags, execute the same bounded/offline/exclusive-output contract.",
+      "limits": "No Node/import/CLI/project test execution or new job. Standard default ESM target-resolution behavior is inferred from source and existing delivered alias regression, not measured for PR360. All established indexing counts stay null.",
+      "requestedCorrection": "Normalize the invoked entry path and module target before deciding CLI entry (preserve ordinary library imports); add one meaningful finite direct+alias regression for missing flags plus valid fixture/report identity. Do not change parser/source/property/count/admission contracts.",
+      "existingControlGap": "34 named source cases include input/output symlink refusal, but no symlink of the script entry itself.",
+      "precedent": {
+        "path": "scripts/datasets/filing-facts/v1/first-later.test.mjs",
+        "base": "64d815912c99bdb86017dbb96855d6b62ffaab1d",
+        "sha256": "435a280828e5d90b1b10b544a324b1703c48206a284c8809f98daee83be9ffcf",
+        "lines": [
+          190,
+          202,
+          215
+        ],
+        "scope": "Delivered CanliCapital test explicitly treats direct/alias missing-argument and valid-command parity as CLI behavior; not a runtime test executed here."
+      }
+    }
+  ],
+  "priorPrimaryCloseRetry": "CLOSED_STATIC_SOURCE at35c; original primary discovery retained; not relabeled as independent THIRD discovery",
+  "runtime": "No reviewer execution; ff6 actual32/all7 is historical; current35c retained CI extension separate/pending",
+  "writtenCases": 34,
+  "ownMetadataLookupLimits": [
+    {
+      "lookup": "guessed delivered first-later.mjs absent; git show128. Actual test references generate.mjs/check.mjs. No source/runtime failure."
+    },
+    {
+      "lookup": "own followup metadata display assumed225 lines, actual216; IndexError retained here. Corrected finite bounds and exact216-line test read. No project runtime."
+    }
+  ],
+  "authority": {
+    "staticFrozenGitOnly": true,
+    "projectImportsNodeTestsCLIJobs": false,
+    "newNetworkApiAuthKeysCredentials": false,
+    "authorWorktreeSourceArchiveEdits": false,
+    "modelProviderResourceGrantSpendPublication": false
+  },
+  "counts": {
+    "Google": null,
+    "Bing": null,
+    "distinctAdmittedCanonical": null,
+    "qualifiedTargetProgress": null
+  },
+  "archive": "primary32TOTAL inclREADMEmanifest/12MiB ORIGINAL inclthem after correctedCI+bothpeers; no archive added/preapproved",
+  "fullGoal": "ACTIVE"
+}

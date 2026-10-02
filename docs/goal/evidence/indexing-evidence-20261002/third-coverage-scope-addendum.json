@@ -1,0 +1,66 @@
+{
+  "schema": "canli.third.indexing-evidence.static-scope-addendum.v1",
+  "observedAt": "2026-10-02T03:31:45.240650+00:00",
+  "source": "35c2fec39c9c807e595a4607b6d3c4e1eb5e68a2",
+  "priorThirdReceiptPreserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/review-35c2fec3.json",
+    "bytes": 7581,
+    "sha256": "0de3fda4d2c7098a3225d1168193be10cacd00bca9f90e73edb5b1e5a4620b8a"
+  },
+  "secondaryOriginalFinding": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-35c2fec3-unknown-limit-finding.json",
+    "bytes": 1458,
+    "sha256": "d5ff97f37dd17c56ad6d0beef3bde3202914ad6122cd13309cd6db281415e27f"
+  },
+  "authorship": "Secondary self-review discovery; THIRD independently checked exact frozen source/predicate trace only. Not independent runtime or original THIRD discovery.",
+  "verdict": "HOLD_TWO_STATIC_P2S",
+  "findingExtension": {
+    "id": "CC-360-UNKNOWN-LIMIT-COMPLETENESS",
+    "state": "OPEN_STATIC_SOURCE_CORROBORATED",
+    "trace": [
+      "count(null) explicitly permits unknown limit.",
+      "unknownReason coverage receives true for rowLimit null, but a supplied nonempty reason satisfies that check.",
+      "Totals/pages known equal, flags false, sampling none and aggregate property selection meet every other incomplete term.",
+      "The only rowLimit term tests nonnull && rowsReported>=rowLimit; null makes it false.",
+      "Complete declared captured coverage therefore remains true despite unknown rowLimit. Established/current/qualified/provider truth counters still stay null."
+    ],
+    "counterexample": {
+      "status": "complete",
+      "rowsReported": 1,
+      "totalRows": 1,
+      "pagesCaptured": 1,
+      "totalPages": 1,
+      "rowLimit": null,
+      "limitReached": false,
+      "hasMore": false,
+      "sampling": "none",
+      "unavailableReason": "Original export row limit was not supplied."
+    },
+    "requiredCorrection": "Null rowLimit must independently make coverage incomplete; guide must not conflate unknown/unbounded; one named unknown-limit completeness-refusal regression."
+  },
+  "priorScopeCorrection": "Original third PASS_STATIC_WITH_LIMITS for coverage at35c was too broad about unknowns: it covered unknown rows/metrics/continuation flags, not a verified null export-limit rejection. The original receipt is retained unchanged; this additive record accepts the concrete secondary gap and narrows that assessment.",
+  "otherOpenFinding": {
+    "id": "CC-360-CLI-SYMLINK-SILENT-SKIP",
+    "origin": "THIRD0de3",
+    "state": "OPEN_STATIC_SOURCE",
+    "note": "queued before new pin; normalize entry identity and direct/alias missing/valid parity control"
+  },
+  "alreadyClosedStatic": {
+    "id": "CC-360-CLOSE-RETRY-FD-REUSE",
+    "origin": "PRIMARY7a69477c",
+    "at": "35c2fec3"
+  },
+  "retainedCiSeparation": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/retained-ci-ff6f80c1-and-35c2fec3.json",
+    "bytes": 30144,
+    "sha256": "ac692b27ad7c54b1992fe81ad094645f67026b5de0f5a30dce2cb826c0232329"
+  },
+  "newSourceRequired": "All corrections and meaningful cases require frozen signed source, exact existing remote CI and both source peers; no future archive/source acceptance.",
+  "authority": "No project imports/Node/tests/CLI/runtime/job/network/API/auth/provider/model/grant/source edits. Own finite stdlib source/receipt parse only.",
+  "currentCounts": {
+    "Google": null,
+    "Bing": null,
+    "qualified": null
+  },
+  "fullGoal": "ACTIVE"
+}

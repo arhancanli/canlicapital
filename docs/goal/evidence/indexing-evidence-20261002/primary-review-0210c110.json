@@ -1,0 +1,112 @@
+{
+  "observed_at": "2026-10-02T03:00:07.496298+00:00",
+  "source": "0210c1108ffb6028711d21117ca493181fa33594",
+  "tree": "ed4d4c1926792e4952293b13c53bfcf6bc6a61ba",
+  "signature": "G",
+  "scope": [
+    "docs/goal/INDEXING_EVIDENCE.md",
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "package.json",
+    "scripts/indexing-evidence.test.mjs",
+    "scripts/lib/indexing-evidence.mjs"
+  ],
+  "pins": [
+    {
+      "path": "docs/goal/INDEXING_EVIDENCE.md",
+      "bytes": 12657,
+      "sha256": "7bdc2702446957a06103a7c0ce6fe7519d7149929cc8ccd227c738c5c8f3da59",
+      "retained": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-primary-review/frozen-0210c110-docs__goal__INDEXING_EVIDENCE.md"
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 384070,
+      "sha256": "0199be9dc5fb1a22bb8391b530b0d4a7f3b61e1a320aab2360aa2e3862d8b5fd",
+      "retained": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-primary-review/frozen-0210c110-docs__goal__LOG.md"
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 108706,
+      "sha256": "adaaa44f4b0c960c15527fb0dfd203045579e8b1e8748250d6017a8fbdb8793b",
+      "retained": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-primary-review/frozen-0210c110-docs__goal__STATUS.md"
+    },
+    {
+      "path": "package.json",
+      "bytes": 11964,
+      "sha256": "c13be55f63c29b77002e126bb651260a634a5e42c682e6d092cacccc4ec2de4b",
+      "retained": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-primary-review/frozen-0210c110-package.json"
+    },
+    {
+      "path": "scripts/indexing-evidence.test.mjs",
+      "bytes": 32967,
+      "sha256": "336fb3b95e9bf6f5a0e72b1025067faeca0a18ebead72389abf28cffdb486df3",
+      "retained": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-primary-review/frozen-0210c110-scripts__indexing-evidence.test.mjs"
+    },
+    {
+      "path": "scripts/lib/indexing-evidence.mjs",
+      "bytes": 28497,
+      "sha256": "4a486435d5a5349a1c3993adc932d3b19cd427c81e7379c5b0d44684b20ebe83",
+      "retained": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-primary-review/frozen-0210c110-scripts__lib__indexing-evidence.mjs"
+    }
+  ],
+  "review_type": "STATIC_SOURCE_AND_EXISTING_REMOTE_FAILURE; NO_PROJECT_IMPORT_OR_TEST_EXECUTION",
+  "status": "HOLD_P2_CLOSE_ONCE_AND_CURRENT_CI",
+  "confirmed_good_semantics": [
+    "Copies native bounded input buffers with intrinsic slots; hashes the captured raw/metadata before extraction.",
+    "Strict duplicate-key/UTF8/Unicode/depth/node/row parsing; declared property/date/report/class validation.",
+    "Exact synthetic raw payload comparison; normalized manual source values remain unverified/self-attested.",
+    "All established current/provider/admission/qualified counters are null; diagnostic rows cannot unlock target or existing guard.",
+    "Read-only nonblocking/no-follow same-FD bounded input capture; exclusive0600 output and no cleanup unlink."
+  ],
+  "findings": [
+    {
+      "id": "CC-360-CLOSE-RETRY-FD-REUSE",
+      "severity": "P2",
+      "classification": "STATIC_COUNTEREXAMPLE_NOT_EXECUTED",
+      "path": "scripts/lib/indexing-evidence.mjs",
+      "close_lines": [
+        490,
+        498,
+        517,
+        524
+      ],
+      "problem": "readInput/writeExclusive clear descriptor only after closeSync returns. If closeSync throws after closing or with ambiguous close disposition, finally retries the same numeric descriptor. A reused descriptor can belong to an unrelated file. Failure still refuses, but unrelated descriptor safety is not preserved.",
+      "counterexample_steps": [
+        "Intercept target input or output close only.",
+        "Close the target descriptor through the original close function.",
+        "Open an unrelated temporary regular file so the descriptor number is reused.",
+        "Throw a synthetic close error.",
+        "Current finally calls closeSync on that reused descriptor again."
+      ],
+      "required_change": "Clear the owned descriptor before the one close attempt. Preserve refusal/uncertain output and never unlink. Add a meaningful close-after-close/reused-FD regression for both reader and writer."
+    }
+  ],
+  "existing_remote_failure": {
+    "raw": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-primary-review/remote-0210c110-vite.log",
+    "bytes": 582015,
+    "sha256": "f1848be421177b550cba78c5c16080efd26359e1de88cce8a80e17ad937589a7",
+    "job": "110683618747",
+    "run": "36957493511",
+    "failed_names": [
+      "index evidence: duplicate keys and supplied verification flags are refused",
+      "index evidence: actual CLI rejects input mutation during descriptor capture"
+    ],
+    "actual_suite": "955PASS2FAIL of957main;6prePASS; later steps skipped",
+    "test_cues": [
+      "The source.sha256 array test mutates before fixture() overwrites sha256 with its computed valid digest; malformed bytes never reach validator. Preserve original failure and target the finished fixture.",
+      "The readSync mutation preload triggers on the first positive loader read, before target metadata descriptor admission. Bind the target descriptor and assert positive injected reads before claiming reader refusal."
+    ]
+  },
+  "archive_allocation": {
+    "proposal": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/archive-scope-proposal.json",
+    "proposal_sha256": "8a44377ade08778dea4d0cab6bf8aac60f06821bcfe9526b6b12c98006fb0448",
+    "path": "docs/goal/evidence/indexing-evidence-20261002/",
+    "max_total_files_including_readme_manifest": 32,
+    "max_original_bytes_including_readme_manifest": 12582912,
+    "authorized": true,
+    "conditions": "Evidence-only after corrected frozen source, exact current CI and both peer gates; retain original raw failures/findings, identity or gzip-mtime0 exact byte/hash/length pins. Final head/CI/delivery receipts remain external to avoid self-reference; no runtime/provider/auth/site scope expansion."
+  },
+  "local_project_execution": false,
+  "full_owner_hierarchy": "ACTIVE",
+  "established_indexing": null
+}

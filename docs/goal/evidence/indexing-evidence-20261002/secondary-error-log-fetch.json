@@ -1,0 +1,9 @@
+{
+  "observedAt": "2026-10-02T02:54:59.654056+00:00",
+  "stage": "GitHub job-log fetch before any archive write",
+  "command": "gh api repos/arhancanli/canlicapital/actions/jobs/110683618747/logs",
+  "returncode": 1,
+  "stderr": "the response contains terminal escape sequences; pass --allow-escape-sequences to output it anyway\n",
+  "correction": "Explicit gh --allow-escape-sequences; original log retained as bytes, never rendered as terminal controls",
+  "projectRuntimeExecuted": false
+}

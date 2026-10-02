@@ -1,0 +1,78 @@
+{
+  "schema": "canli.primary.indexing-evidence.close-once-static-extension.v1",
+  "observed_at": "2026-10-02T03:32:11.516379+00:00",
+  "source": "35c2fec39c9c807e595a4607b6d3c4e1eb5e68a2",
+  "tree": "72cb8ba8d44eff85adbcb7fc3fab1058e97dd05c",
+  "signature": "G",
+  "six_source_pins": [
+    {
+      "path": "scripts/lib/indexing-evidence.mjs",
+      "bytes": 28663,
+      "sha256": "aeb295c6cb201cdab1195c4a1958dcd9463f0b3303af621abb2bda0c7eadb1b5"
+    },
+    {
+      "path": "scripts/indexing-evidence.test.mjs",
+      "bytes": 35783,
+      "sha256": "1c1887cd9488b227135a7d91b98b9e8a434608341678a9eae6277172ced1665a"
+    },
+    {
+      "path": "docs/goal/INDEXING_EVIDENCE.md",
+      "bytes": 14149,
+      "sha256": "1b893ba4d82e1e8e623c57dfd72f3e1e4ee2f8670fef4407adf9d174260247ec"
+    },
+    {
+      "path": "package.json",
+      "bytes": 11964,
+      "sha256": "c13be55f63c29b77002e126bb651260a634a5e42c682e6d092cacccc4ec2de4b"
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 113732,
+      "sha256": "8c4dd693abfa7df80e09ee0e59cac9ee88152adcd5158969241304bf8fd1966b"
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 389096,
+      "sha256": "3da5aa443adbe404959a0977d9ee17f76f2499123ac5255e2760c7c6e60a4028"
+    }
+  ],
+  "CC-360-CLOSE-RETRY-FD-REUSE": "CLOSED_STATIC_SOURCE_WITH_EXACT_REMOTE_REGRESSIONS",
+  "assessment": "All four normal/finally read/write close sites release ownership before one close call. A close error refuses and leaves uncertain output, with no retry/unlink. Both native-CLI injected faults actually close target then open unrelated reused descriptor; exit oracle requires one attempt and unrelated descriptor still open, original input unchanged.",
+  "actual_named_cases": 34,
+  "root_summary": [
+    "# tests 6",
+    "# pass 6",
+    "# fail 0",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0",
+    "# tests 959",
+    "# pass 959",
+    "# fail 0",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0",
+    "# tests 9",
+    "# pass 9",
+    "# fail 0",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0"
+  ],
+  "raw_root": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-35c2fec3-root-ci-original.log",
+    "bytes": 595200,
+    "sha256": "9a4232f8ba5644745b5f46033c6d5f6ad7815c636a85e83ee0aeb1747d7cb8b8"
+  },
+  "author_ci_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence/secondary-35c2fec3-exact-ci.json",
+    "sha256": "5be28ae475db4c05034001eb86868399d7c7edc5982ceb8908425d813f96498c"
+  },
+  "overall_delivery": "HOLD_FOR_CLI_ALIAS_AND_UNKNOWN_LIMIT_SOURCE_CORRECTIONS",
+  "other_gates": "Third alias0de3 and author unknown-limit findings must be corrected and exact new source/currentCI reviewed; no future source approval.",
+  "limits": [
+    "Source/Git/hash and retained remote TAP only; no reviewer project imports/tests/CLI/job.",
+    "Current indexing/admitted/qualified counts remain null.",
+    "32TOTAL/12MiB ORIGINAL archive allocation unchanged and gated."
+  ]
+}

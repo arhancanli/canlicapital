@@ -1598,3 +1598,180 @@ publication follows this private Unreleased example. No localproject Node/import
 test/CLI/build/browser/helper job/CPUgrant/provider/model/resources/broker/spend/
 hero. Full owner hierarchy remainsACTIVE; indexed/expert/forward/adoption and
 current release efficiency measurements stay distinct open outcomes.
+
+
+## 2026-10-02T02:25:40.641464+00:00 — secondary offline indexing-evidence intake phase start
+
+Fresh GitHub357 confirms MERGED64d81591 at01:59:46Z, main64d, treef30feaa2/
+sole parent052c4d60; actual-delivery2c507 closes the preceding example lane.
+New isolated `/Users/arhancanli/canlicapital-indexing-evidence-20261002` from actual64d, branch
+assist/indexing-evidence-20261002, takes current assignment5e27's exact six paths.
+Root/worktree five goal files and actual source/PR state were read; immutable
+phase-start receipt SHAe7a1b5e308e913ece2e5d70c07b74ebde755ec4371ff767893dfebd4377f8c8f is in coordination/indexing-evidence/.
+Readiness762f and third preflightcc8 supply provenance/date/metric/coverage review
+predicates, not executed tests or provider schemas. Implement bounded offline
+raw/metadata binding, strict property/date/classification and honest incomplete/null
+claims; existing seo-inventory guard89ec, old baselines/growth goals, all site/
+runtime/dataset/journal/example/hero files stay protected. Cases remain WRITTEN
+until signed clean source and actual existing remoteCI; separate explicit archive
+allocation is required before extra repository paths. Primary remains sole
+ordinary merger/publisher and lead sole local CPU/resource allocator. No local
+Node/import/test/CLI/build/browser/helper project job, auth/provider/model/
+resource/hold/spend/order/outreach/site/npm/version/hero action. Full owner
+hierarchy stays ACTIVE: all Sovereign pillars,10M ACTUALLY indexed useful
+source-backed canonicals/SEO/intents/design/analyzers/legitimate adoption, expert
+refinery/rights/annotation/research and governed ALPHAC forward/cost/risk targets.
+Current Google/Bing/distinct admitted-useful-canonical/qualified target counts
+remain null; no new controller goal or overall completion is claimed.
+
+
+## 2026-10-02T02:49:04.702294+00:00 — secondary offline indexing-evidence implementation ready for source freeze
+
+Exact six-path source now implements owned immutable input/raw capture and SHA/length
+before parsing, finite strict duplicate-key/UTF8/Unicode/field/count/date/property
+validation, six metric classes, self-attested manual versus synthetic-only extraction,
+explicit pagination/rowlimit/completeness and distinct declared canonical diagnostics.
+All current Google/Bing/indexed/qualified-target/family/admitted counts remainnull.
+Optional explicit offline CLI uses bounded readonly regular descriptors and exclusive
+0600 output, no implicit paths/recursive directories/network/credentials; uncertain
+write/fsync/close does not acknowledge or unlink. Bounds128KiB metadata/2MiBraw/
+4MiBreport/512rows/depth12/16384nodes/4096stringunits. Meaningful tamper/null/date/
+metric/coverage/accessor/mutation/special-file/no-network/exclusive/failure cases
+are 32 named WRITTEN source cases, NOT yet executed. Source SHA
+4a486435d5a5349a1c3993adc932d3b19cd427c81e7379c5b0d44684b20ebe83; casesSHA336fb3b95e9bf6f5a0e72b1025067faeca0a18ebead72389abf28cffdb486df3.
+Static Git patch hygiene and original goal-prefix/package-only registration checks
+pass. Signed clean source, protected-main manifest, draftPR/existing remoteCI and
+both independent reviews remain next gates; additional archive paths remain
+unallocated. Old343/353/355/356/357/358 checkouts and all protected site/runtime/
+growth/baseline/guard/hero bytes stay unchanged. Primary sole merger/publisher,
+lead sole local CPU allocator; no local Node/import/test/CLI/build/browser/helper
+project job/CPUgrant/provider/model/auth/resource/hold/spend/order/pub/version.
+Full owner hierarchy remainsACTIVE; observed provider/rights/expert/research/
+forward/adoption/indexing outcomes stay separate open goals.
+
+
+## 2026-10-02T02:58:44.865866+00:00 — secondary360 first exact CI retained and fault fixtures corrected
+
+Signed0210/sourceed4d was actually tested via mergeeb8df344 (parents64d+0210,
+identicaltree), remoteNode22.23.3/run36957493511/rootjob110683618747. All32
+new cases ran once:30PASS/2FAIL; root957 has955PASS/2FAIL and6prechecks pass.
+Notification checks were NOTRUN after failure; othersix final checksSUCCESS.
+Original582015B root output SHA
+f1848be421177b550cba78c5c16080efd26359e1de88cce8a80e17ad937589a7 and
+original APIs/testedmerge are immutable coordination/indexing-evidence files;
+failedCI receipt8555B SHA762f42cdc6b8a64bbd5012cd39fa1a3d8c8500e4a08a82999bbc82181b9eb517.
+Initial metadata logfetch refused terminal escapes before a file write; its error
+is preserved separately and explicitflag captures raw bytes without rendering
+control sequences. No project/source failure was hidden by that metadata refusal.
+
+Two fault fixtures were incorrectly wired: builder re-bound the malformed hash
+after customization, and mutation preload changed the file on a module-load read
+before the intended descriptor capture. Corrections set the invalidhash AFTER
+fixture construction and target the exact metadataFD read, asserting the actual
+appended original input. Onlytest/guide and appendSTATUSLOG change; checker and
+package remain byte-exact0210. The32 cases require a new signedsource/current
+existing remoteCI; initial30 passes do not establish corrected-head validation.
+Independent source/CI reviews and separately allocated archive remain pending.
+No localproject Node/import/test/CLI/build/browser/helper/job/CPUgrant/provider/
+auth/model/resources/financialhold/spend/order/site/npm/version/hero action.
+Protected baselines/growth/guard/site/MCP/journal/dataset and all original goal
+histories remain intact. Primarysole ordinary merger/publisher, leadCPU; all
+fullowner Sovereign/10Mactualqualityindexing/SEO/intents/design/analyzers/
+legitimateadoption/refinery/realexpert/research/governedALPHAC/lawfulcapital
+goals remainACTIVE, current/qualified indexed outcomesNULL.
+
+
+## 2026-10-02T03:16:44.430526+00:00 — secondary360 single-close correction and scoped359 workflow review
+
+Correctedff6f80c1 actually passes32 new cases/root6+957+9/execution139/remote
+Node22.23.3/all7/currentmerge-ref0/latestJS+PY0. Tested e8c4d6/tree4e77 equals
+ff6+64d; exact receipt10877B SHAf96e02d04daac22089c2b1f04176a433edb37aecb25fa11d3c72bdc74f54f1c3.
+Original594417B root SHAdf05fadc and157293B MCP1f0ae3a7 stay immutable.
+Metadata CodeQL parser originally assumed top-levellanguage; that error is kept
+separately, then corrected using the exact retained environmentJSON without
+refetch/retest/rewrite. Original0210 30PASS2FAIL and logfetcherror also retained.
+
+Independent primary source review7a69477c accepted semantics but HOLDs
+CC-360-CLOSE-RETRY-FD-REUSE: a close that threw after closing could let finally
+close a reused unrelated descriptor. Both normal/finally reader and writer now
+relinquish descriptor ownership BEFORE their one close attempt. No retry or
+cleanup unlink; close uncertainty still refuses/does not acknowledge. Two added
+actualCLI regression fixtures close the owned target, open an unrelated file at
+the reused descriptor number, throw, then assert exactoneattempt/foreignstillopen/
+originalinputbytes. The34 named cases are WRITTEN for the new source until signed
+freeze/exactremoteCI; ff6 runtime is historical, not current-source acceptance.
+Primary7a6 explicitly allocates ONLY docs/goal/evidence/indexing-evidence-20261002/
+max32TOTAL files INCLUDING README+manifest and12MiB ORIGINAL INCLUDING both,
+conditional on corrected exactCI and bothsourcepeers. No archive added yet; final
+head/CI/delivery receipts stay external to avoid self-reference.
+
+Optional primary359 workflow STATIC review at exact signeda103c342/tree63ab
+passes64 delivered source rehashes/pair1c0b and10 source predicates, with no
+blocking workflow finding. Own coordination/indexing-evidence/secondary-359-
+workflow-static-a103c342.json17907B SHA4ff75d8b974681897831eaf72da98d84b40bed2a1a9a027415c5830de26239ec.
+Original reviewer preparation error searched local.mjs for an environment gate
+actually inserver.mjs; retained/corrected via exactserver/schema inspection.
+This is source/claim/workflow only, not newhead/browser/generated/runtime/publication
+acceptance. Primary retains source/site/SEO/CI/browser/Gitfree/publication gates.
+
+Existing indexed guard/baselines/growth/site/MCP/journal/datasets/hero and goal
+histories stay protected. All current/qualified/admitted/family/indexing counts
+remainnull. No localprojectNode/import/test/CLI/build/browser/helper/job/CPUgrant/
+nonce/auth/provider/model/resources/hold/spend/order/outreach/site/npm/version/hero.
+Primarysole ordinarymerger/publisher/leadCPU; fulloriginal Sovereignpillars/
+10Mactualusefulsource-backedindexing/SEO/intents/design/analyzers/legitimateadoption/
+realexpertrefinery/rights/research/governedALPHAC/paperthenlawfulcapital goalsACTIVE.
+
+
+## 2026-10-02T03:35:25.996728+00:00 — secondary360 unknown-limit and symlink-entry corrections batched
+
+Exact35c2fec3 remoteCI actually passes34 named cases once/root6+959+9/execution139/
+Node22.23.3/all7/currentref0/latestJS+PY0, tested6c76eee1/tree72cb/source35+64d.
+Original595200B root SHA9a4232f8 and156228B MCP16902149; exact receipt11313B
+SHA5be28ae475db4c05034001eb86868399d7c7edc5982ceb8908425d813f96498c.
+Third ac692b27 independently parses original ff6/35 logs, merge/tree/parents/
+cases/suite/check/ref-language bindings. Old0210 30PASS2FAIL/no notifications and
+metadataerrors stay intact; original passing sources are not future-source proof.
+Third35 static0de3 closes primary close-retry/reuse P2 in source: all4 close sites
+release ownership first and both actualreuse fixtures are meaningful.
+
+Two remaining source corrections are now batched before another freeze: own
+CC-360-UNKNOWN-LIMIT-COMPLETENESS findingd5ff97f3 treats rowLimitnull strictly
+as unknown/incomplete and removes unknown/unbounded conflation; one new finite
+completeness-refusal/unknown-retention fixture. ThirdCC-360-CLI-SYMLINK-SILENT-SKIP
+0de3 identifies literalentry URL equality skipping symlink CLI silently. The
+entry guard now compares normalized real-file identities, with a new actual
+direct/alias missingargs refusal and exact validreport parity fixture. Both are
+STATIC counterexamples, not executed experiments; new36 source cases are WRITTEN
+until signed freeze/current existingremoteCI and bothsourcepeer gates. Initial
+patch preparation context error occurred before mutation, was verified and
+retained separately, then corrected from actualcontext. Package unchanged; exact
+six assigned paths/protected main and all goalprefixes remain preserved.
+
+Primary32TOTAL/12MiBORIGINAL archiveallocation7a6 remains conditional on corrected
+CI/bothpeers; no repository archive yet. Primary359 complementary review4ff75 is
+only exacta103 staticworkflow; latest9a/otherfuture source/browser/site gates are
+primary's lane and not preapproved. No localprojectNode/import/test/CLI/build/
+browser/helper/job/CPUgrant/lease/nonce/auth/provider/model/resource/hold/spend/
+order/site/npm/version/hero action; fullowner hierarchyACTIVE/currentindexed/
+qualified/admitted/family countsNULL. Primarysole ordinarymerger/publisher/leadCPU.
+
+
+## Secondary predecessor archive freeze, 2026-10-02T04:00:37.531810+00:00
+
+
+Signedc07f6261 has now passed all36 actual named cases once, root6+961+9 and139
+execution cases on remoteNode22.23.3, with all seven checks/currentref0/latest
+JavaScript+Python results0. Primary static28907/currentCI d73f and third static
+7a159/currentCI ea912 independently accept these exact bindings. The allocated
+32TOTAL-file predecessor archive is at`evidence/indexing-evidence-20261002/`;
+manifest SHA256`240ac243d99962066bae4668dd5ee1546a6fc8f3d747d1b1940696e60a6e045d` binds7652915
+ORIGINAL bytes and1623743 stored bytes, includingREADME+manifest.
+All original0210 failures/holds and32/34/36 source distinctions remain preserved.
+The module, all36 fixtures and package registration remain byte-exactc07. This
+new archive/documentation freeze requires its own signed-head remoteCI and both
+final source/archive/currentCI reviews before primary ordinarymerge. Final source,
+CI and actual delivery receipts stay outside the predecessor archive. Current
+Google/Bing/admitted/qualified indexing remains null; all owner goals stayACTIVE.
+
+Primary retains public workflow359, ordinarymerge/publication and leadsoleCPU. No localprojectjob/grant/auth/provider/model/resource/spend/site/npm/hero action. Original main and c07 goal chronologies remain exactprefixes.

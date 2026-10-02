@@ -1,0 +1,67 @@
+{
+  "schema": "canli.primary.indexing-evidence.static-fix-extension.v1",
+  "observed_at": "2026-10-02T03:39:45.360369+00:00",
+  "source": "c07f6261443c97a0fd86131a0b5841b61a503ef4",
+  "tree": "63641977e0fe2f1761dea5085b63528bfebe1709",
+  "signature": "G",
+  "base": "64d815912c99bdb86017dbb96855d6b62ffaab1d",
+  "source_manifest_sha256": "aa0c156f6881875de92b96244e280174322044fd5fbfc8d4a86c0b078419389d",
+  "six_pins": [
+    {
+      "path": "scripts/lib/indexing-evidence.mjs",
+      "bytes": 28839,
+      "sha256": "fa96a54744989c6e63c8dc100bf96d2e4395c2fb821aeda97bb0b1ea1cef4238"
+    },
+    {
+      "path": "scripts/indexing-evidence.test.mjs",
+      "bytes": 37639,
+      "sha256": "130c6c2c3a85017902bb778f67fd9c4b800625c8efce9c3c70ffa31644787c7f"
+    },
+    {
+      "path": "docs/goal/INDEXING_EVIDENCE.md",
+      "bytes": 15549,
+      "sha256": "eb1d873140133665c38c875b4e281ac44a271da33ab19395b6da8dd2dac6eb68"
+    },
+    {
+      "path": "package.json",
+      "bytes": 11964,
+      "sha256": "c13be55f63c29b77002e126bb651260a634a5e42c682e6d092cacccc4ec2de4b"
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 116056,
+      "sha256": "652fded01bcd22f999781a263546734748e0b5bd12a862e5aa614ab8670e0e82"
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 391420,
+      "sha256": "a7b600ee29ab61ed01b2806580c0984a1f52c615593100078cf09cbe5332fc0e"
+    }
+  ],
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS_CURRENT_CI_AND_ARCHIVE_PENDING",
+  "findings": {
+    "CC-360-CLOSE-RETRY-FD-REUSE": "CLOSED_STATIC_SOURCE; four release-before-close sites remain intact, two meaningful reused-FD CLI controls retained.",
+    "CC-360-CLI-SYMLINK-SILENT-SKIP": "CLOSED_STATIC_SOURCE; both real file identities normalized; direct+symlink missing-argument refusal and exact report parity controls written.",
+    "CC-360-UNKNOWN-LIMIT-COMPLETENESS": "CLOSED_STATIC_SOURCE; null declared rowLimit is incomplete, purported complete declaration refuses and unknown/null remains disclosed."
+  },
+  "named_case_count": 36,
+  "runtime_status": "Current source 36 written; only existing exact remote CI can establish actual results. No own project execution.",
+  "protected_git": {
+    "files": 5906,
+    "blob_bytes": 383394017,
+    "mode_type_blob_length_exact": true,
+    "scope": "Git identities/lengths, not a second full protected working-byte read."
+  },
+  "owner_goal_prefixes_exact": true,
+  "blocking_static_findings": [],
+  "pending_gates": [
+    "Exact current36 source-bound CI/current7/ref0 and bothpeers.",
+    "Conditional32TOTAL/12MiB original archive and final source/currentCI extensions; actualmain integration/ordinarymerge."
+  ],
+  "scope_limits": [
+    "Offline synthetic evidence declarations do not authenticate provider/manual extraction or establish current/useful indexed counts.",
+    "Current Google/Bing/qualified/admitted target counts stay null; auth/capture/governance remains separately held.",
+    "No local project import/test/CLI/helper/job/grant/provider/auth/model/spend/sitepublication."
+  ],
+  "full_owner_hierarchy": "ACTIVE"
+}
