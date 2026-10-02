@@ -16,6 +16,7 @@ export const PAPER_LIMITS = Object.freeze({ maxCalls: 11, deadlineMs: 30_000,
   planningBytes: 16_384, exportBytes: 32_768, requestsBytes: 16_384,
   controlsBytes: 49_152, outputReserveBytes: 16_384 });
 const HASH = /^sha256:[0-9a-f]{64}$/;
+const isHash = value => typeof value === 'string' && HASH.test(value);
 const ID = /^[A-Za-z0-9._:-]{1,96}$/;
 const SYMBOL = /^[A-Z0-9][A-Z0-9.:-]{0,31}$/;
 const sha = bytes => 'sha256:' + createHash('sha256').update(bytes).digest('hex');
@@ -60,7 +61,8 @@ function capture(value, maxBytes) {
   let bytes = 0, nodes = 0;
   const charge = n => { bytes += n; requireThat(bytes <= maxBytes, 'JSON_BOUND'); };
   const string = s => {
-    requireThat(s.length <= maxBytes && !/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/u.test(s), 'JSON_STRING');
+    requireThat(s.length <= maxBytes, 'JSON_BOUND');
+    requireThat(!/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/u.test(s), 'JSON_STRING');
     charge(Buffer.byteLength(JSON.stringify(s))); return s;
   };
   function visit(v, depth) {
@@ -104,9 +106,9 @@ function scenarioInput(value) {
     (s.check.execution === undefined || s.check.execution === 'immediate') && s.check.as_of === s.ts?.check &&
     s.check.account?.equity === s.account.initial_cash && exactKeys(s.check.account.positions, []) &&
     exactKeys(s.check.market, [s.symbol]) && s.check.market[s.symbol]?.price === s.sizing.price, 'CHECK_INPUT');
-  requireThat(checkOrdersInput.safeParse({ ...s.check, orders: [{ symbol: s.symbol, side: 'buy', qty: 1, type: 'market' }] }).success, 'CHECK_INPUT');
   // A schedule date is not a supplied commission amount. Explicit zero is valid.
   requireThat(!s.check.fees || ['commission_bps', 'per_share_usd'].some(k => own(s.check.fees, k)), 'MISSING_FEE_SCHEDULE');
+  requireThat(checkOrdersInput.safeParse({ ...s.check, orders: [{ symbol: s.symbol, side: 'buy', qty: 1, type: 'market' }] }).success, 'CHECK_INPUT');
   requireThat(object(s.fill) && Object.keys(s.fill).every(k => ['qty', 'price', 'fee', 'fill_id'].includes(k)) && positive(s.fill.qty) &&
     positive(s.fill.price) && typeof s.fill.fill_id === 'string' && ID.test(s.fill.fill_id) &&
     (!own(s.fill, 'fee') || s.fill.fee === null || finite(s.fill.fee)), 'FILL_INPUT');
@@ -183,7 +185,7 @@ const requestHash = req => sha(canonicalJson({ kind: req.action === 'initialize'
   payload: req.payload, ts: req.ts, expected_head: req.expected_head ?? null }));
 function writeReceipt(data, req, seq, previous) {
   requireThat(data.action === req.action && data.operation_id === req.operation_id && data.request_sha256 === requestHash(req) &&
-    data.entry_seq === seq && HASH.test(data.entry_head) && HASH.test(data.journal_prefix_sha256) &&
+    data.entry_seq === seq && isHash(data.entry_head) && isHash(data.journal_prefix_sha256) &&
     Number.isSafeInteger(data.journal_prefix_bytes) && data.journal_prefix_bytes > (previous?.journal_prefix_bytes ?? 0) &&
     data.journal_prefix_bytes <= 8 * 1024 * 1024 && typeof data.replayed === 'boolean', 'MALFORMED_RECEIPT');
   requireThat(data.replayed === false, 'EXISTING_OPERATION');
@@ -270,13 +272,13 @@ async function workflow(callTool, value, write, control, report) {
     };
     const sizing = await call('size_position', scenario.sizing);
     requireThat(Array.isArray(sizing.orders) && sizing.orders.length === 1 && sizing.orders[0]?.side === 'buy' &&
-      positive(sizing.orders[0].qty) && sizing.position_qty === sizing.orders[0].qty && HASH.test(sizing.limits_digest) &&
+      positive(sizing.orders[0].qty) && sizing.position_qty === sizing.orders[0].qty && isHash(sizing.limits_digest) &&
       (sizing.binding_constraint === null || ['position_cap', 'gross_cap', 'net_cap', 'adv_participation', 'budget', 'drawdown_flat'].includes(sizing.binding_constraint)), 'MALFORMED_SIZING');
     const order = freeze({ symbol: scenario.symbol, side: 'buy', qty: sizing.orders[0].qty, type: 'market' });
     const checked = await call('check_orders', { ...scenario.check, orders: [order] });
     requireThat(JSON.stringify(checked.columns) === JSON.stringify(COLUMNS) && checked.asset_class === scenario.check.asset_class &&
       checked.as_of === scenario.check.as_of && Array.isArray(checked.rows) &&
-      checked.rows.length === 1 && Array.isArray(checked.rows[0]) && checked.rows[0].length === checked.columns.length && HASH.test(checked.limits_digest) &&
+      checked.rows.length === 1 && Array.isArray(checked.rows[0]) && checked.rows[0].length === checked.columns.length && isHash(checked.limits_digest) &&
       Array.isArray(checked.checks_skipped) && Array.isArray(checked.not_modelled), 'MALFORMED_CHECK');
     const row = Object.fromEntries(checked.columns.map((k, i) => [k, checked.rows[0][i]]));
     requireThat(row.symbol === order.symbol && row.side === order.side && row.qty === order.qty && typeof row.accepted === 'boolean' &&

@@ -1455,3 +1455,28 @@ WRITTEN. The original29 passes are not claimed for this correction.
 Six assigned paths only; protected source/math/server/schema/store/versions/site/
 FilingFacts/ALPHAC unchanged. No localruntime/Node/import/grant/job/model/provider/
 broker/resources/spend/pub/hero. Full owner hierarchy remainsACTIVE.
+
+
+## 2026-10-02T00:45:55.433113+00:00 — secondary357 malformed-hash and capacity-code correction
+
+Signed b807ef1f/tree0f98 is historical: exact existing remote run36946622691
+MCP110650112002 gives30 source passes and2 capacity-case failures within
+115 execution/113 pass/2 fail/zero skips,cancel,todo; six other checks succeed.
+Original150604-byte MCP log f955f563 and root581630-byte af049cbf stay immutable;
+exact failed receipt 618a2a82ad746159bb6609ee23a7f2236d39df44f64f1ed4c6a65180c220b322 binds tested449f3cb0 tree/parents/source.
+Both capacity cases safely refused large valid strings as JSON_STRING; the new
+source separates size JSON_BOUND from malformed Unicode JSON_STRING. Metadata
+cardinality error1a66f03cc28baca306b855f21325b6cdfa13c49df161da2797bf6810bff74845 also retained separately; anchored TAP tokens
+correct its not-ok/ok extraction without changing raw or runtime outcomes.
+Primary frozen STATIC finding56b93e65528eac3e6f3db83d42c016e213fbda2d061005d4f83b82a590eee7d0 identifies singleton-array SHA
+coercion that could progress after a malformed initialize receipt. Strict string
+hash admission now covers planning limits and journal head/prefix hashes; meaningful
+array controls require call4/pending original request/no accepted receipt/no
+decision and planning faults before journal calls. New cases remain WRITTEN
+until exact-source remote CI, with previous results kept source-specific.
+Unknown commission admission precedes protected check schema parsing for future
+primary358 integration; protected code unchanged. Six assigned paths only.
+Approved archive40 TOTAL files/12MiB including README+manifest remains gated
+on corrected source/CI/peers. No localproject Node/import/test/grant/job/model/
+provider/broker/resources/spend/pub/hero. Full owner hierarchy remainsACTIVE;
+delivered343/351/353/355/356 stay frozen.

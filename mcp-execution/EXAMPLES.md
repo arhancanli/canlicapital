@@ -100,8 +100,10 @@ The default/default-denied path makes two calls. A declined order creates no
 order or fill entry. A skipped pre-trade check, kill switch, rejection, malformed
 reply, typed error or head mismatch stops the workflow. A receipt must match the
 original operation ID and canonical request hash, expected sequence and advancing
-prefix/head. A replay acknowledgement cannot advance the scenario. Verification
-and export must bind the last acknowledged head and complete journal prefix.
+prefix/head. A replay acknowledgement cannot advance the scenario. Planning
+digests and journal head/prefix hashes must be strings; malformed
+array values stop the sequence before another journal call.
+Verification and export must bind the last acknowledged head and complete journal prefix.
 The export's artifact digest and public-key signature are checked. Companion
 metrics/observations must also agree with the signed record, supplied opening
 capital and sole mark; rehashing changed unsigned metrics is insufficient.
@@ -154,6 +156,7 @@ constraint names refuse. A final capacity refusal returns a stopped result with
 explicitly omitted planning/export fields and all original bounded requests,
 receipts and pending controls retained; it never returns a completed result or
 silently truncates those controls.
+Capacity refusals use `JSON_BOUND`; invalid Unicode uses `JSON_STRING`.
 Journal storage retains its separate8MiB/64KiB limits. A large
 file-backed export is refused by this small example; any created export remains
 available for manual review. No alternate export path is followed automatically.

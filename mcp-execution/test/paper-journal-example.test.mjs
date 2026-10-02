@@ -198,6 +198,43 @@ test('a missing or mismatched initial request receipt retains the original reque
   assert.equal(verifyJournal(readFileSync(join(f.home, 'journal.jsonl'))).entries, 1);
 });
 
+test('singleton-array journal hashes stop at initialization and retain the original pending request', async t => {
+  for (const field of ['entry_head', 'journal_prefix_sha256']) {
+    const f = fixture(t); let originalRequest;
+    const report = await runPaperJournal({ write: true, callTool: async (req, opts) => {
+      const r = await f.callTool(req, opts);
+      if (req.arguments.action !== 'initialize') return r;
+      originalRequest = JSON.stringify(req.arguments);
+      const data = structuredClone(r.structuredContent);
+      assert.equal(typeof data[field], 'string'); data[field] = [data[field]];
+      return envelope(data);
+    } });
+    assert.equal(report.stop.code, 'MALFORMED_RECEIPT'); assert.equal(report.call_count, 4);
+    assert.equal(report.receipts.length, 0); assert.equal(report.requests.length, 1);
+    assert.equal(JSON.stringify(report.pending_request.request), originalRequest);
+    assert.equal(report.pending_request.dispatched, true);
+    assert.deepEqual(f.calls.map(req => req.arguments.action ?? req.name), ['size_position', 'check_orders', 'head', 'initialize']);
+    assert.equal(verifyJournal(readFileSync(join(f.home, 'journal.jsonl'))).entries, 1);
+  }
+});
+
+test('singleton-array planning hashes refuse before journal progression', async t => {
+  for (const name of ['size_position', 'check_orders']) {
+    const f = fixture(t);
+    const report = await runPaperJournal({ write: true, callTool: async (req, opts) => {
+      const r = await f.callTool(req, opts);
+      if (req.name !== name) return r;
+      const data = structuredClone(r.structuredContent);
+      assert.equal(typeof data.limits_digest, 'string'); data.limits_digest = [data.limits_digest];
+      return envelope(data);
+    } });
+    assert.equal(report.stop.code, name === 'size_position' ? 'MALFORMED_SIZING' : 'MALFORMED_CHECK');
+    assert.equal(report.call_count, name === 'size_position' ? 1 : 2);
+    assert.equal(report.requests.length, 0); assert.equal(report.receipts.length, 0);
+    assert.equal(report.pending_request, null); assert.ok(f.calls.every(req => req.name !== 'journal')); noJournal(f);
+  }
+});
+
 test('typed persistence uncertainty never retries or exposes a diagnostic key string', async t => {
   const f = fixture(t);
   const report = await runPaperJournal({ write: true, callTool: async (req, opts) => {
