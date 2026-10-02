@@ -119,6 +119,8 @@ test('audit stdio: actual SDK initialize lists exactly one annotated tool with d
     assert.deepEqual(tool.annotations, { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false });
     assert.equal(tool.inputSchema.additionalProperties, false);
     assert.deepEqual(tool.inputSchema.required.sort(), ['expected_reference_sha256', 'reference_base64', 'settings_base64', 'usage_base64']);
+    assert.equal(tool.inputSchema.properties.expected_reference_sha256.minLength, 64);
+    assert.equal(tool.inputSchema.properties.expected_reference_sha256.maxLength, 64);
     assert.equal(tool.outputSchema.type, 'object');
     assert.equal(client.getServerVersion().name, 'canli-fundamentals-audit-example');
     assert.match(client.getInstructions(), /every selected row/);
@@ -208,6 +210,25 @@ test('audit stdio: closed arguments hashes details and missing settings never co
   refused(executeAuditInputs({ ...args, detail: 'best' }), 'DETAIL');
   const { settings_base64, ...missing } = args; refused(executeAuditInputs(missing), 'ARGUMENTS');
   assert.equal(AUDIT_TOOL_INPUT.safeParse({ ...args, extra: 1 }).success, false);
+});
+test('audit stdio: hash line terminators and controls refuse before any base64 allocation and over actual stdio', { timeout: 15000 }, async () => {
+  const args = argumentsFor(), from = Buffer.from; let allocations = 0;
+  const invalid = ['\n', '\r', '\r\n', '\u2028', '\u2029', '\0', '\t'].map(suffix => args.expected_reference_sha256 + suffix);
+  invalid.push(args.expected_reference_sha256.slice(0, -1) + '\n');
+  Buffer.from = (...values) => { allocations++; throw new Error('Unexpected base64 allocation'); };
+  try {
+    for (const expected_reference_sha256 of invalid) {
+      const value = { ...args, expected_reference_sha256 };
+      assert.equal(AUDIT_TOOL_INPUT.safeParse(value).success, false);
+      const response = executeAuditInputs(value);
+      assert.equal(response.isError, true); assert.equal(response.structuredContent.error.code, 'EXPECTED_SHA');
+    }
+    assert.equal(allocations, 0);
+  } finally { Buffer.from = from; }
+  await withClient(async client => {
+    refused(await client.callTool({ name: 'audit_inputs', arguments: { ...args, expected_reference_sha256: invalid[0] } }), 'EXPECTED_SHA');
+    assert.equal(payload(await client.callTool({ name: 'audit_inputs', arguments: args })).status, 'ok');
+  });
 });
 test('audit stdio: proxy accessor inherited and unexpected symbol arguments refuse without invoking user callbacks', () => {
   let calls = 0; const args = argumentsFor();

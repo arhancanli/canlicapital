@@ -28,7 +28,7 @@ const BASE64_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
 const encodedCap = bytes => Math.ceil(bytes / 3) * 4;
 export const AUDIT_TOOL_INPUT = z.object({
   reference_base64: z.string().min(4).max(encodedCap(STDIO_AUDIT_LIMITS.referenceBytes)).describe('Canonical padded base64 of the exact supplied reference JSON bytes; no fetching.'),
-  expected_reference_sha256: z.string().regex(/^[a-f0-9]{64}$/).describe('Separately supplied lowercase SHA256 of those reference bytes.'),
+  expected_reference_sha256: z.string().length(64).regex(/^[a-f0-9]{64}$/).describe('Separately supplied lowercase SHA256 of those reference bytes.'),
   usage_base64: z.string().min(4).max(encodedCap(STDIO_AUDIT_LIMITS.usageBytes)).describe('Canonical padded base64 of the complete selected usage-row JSON array.'),
   settings_base64: z.string().min(4).max(encodedCap(STDIO_AUDIT_LIMITS.settingsBytes)).describe('Canonical padded base64 of all explicit core settings; no settings defaults.'),
   detail: z.enum(['compact', 'evidence']).optional().describe('Default compact retains every selected row; evidence returns the complete core report.'),
@@ -94,7 +94,7 @@ function argumentsRecord(value) {
     result[key] = d.value;
   }
   if (INPUT_KEYS.slice(0, 4).some(k => !Object.hasOwn(result, k))) refuse('ARGUMENTS');
-  if (!/^[a-f0-9]{64}$/.test(result.expected_reference_sha256)) refuse('EXPECTED_SHA');
+  if (result.expected_reference_sha256.length !== 64 || !/^[a-f0-9]{64}$/.test(result.expected_reference_sha256)) refuse('EXPECTED_SHA');
   if (result.detail !== undefined && !['compact', 'evidence'].includes(result.detail)) refuse('DETAIL');
   return result;
 }

@@ -436,3 +436,15 @@ code validation and an undersized evidence-overflow fixture are corrected; full
 base64 end-match now has a before-allocation regression. The finite policy and
 complete selected-N are unchanged. Twenty-seven corrected cases await their own
 new-head remote CI and independent reviews; no local project execution occurred.
+
+
+Corrected signed457 subsequently passed all27new cases in the existing remote
+MCP job, within95fundamentals cases; root6+1044+9 and allseven checks passed.
+Its exact original logs/API captures and the eight initial943failures are retained.
+Independent static review also identified a trailing-line-terminator hash cue:
+the first adapter checks allowed it before the unchanged core rejected it.
+The separate expected hash now requires exactly64lowercase hexadecimal characters
+in both advertised schema and native admission, before any base64 decoding.
+One added no-allocation and actual-stdio refusal/recovery regression brings the
+next written candidate to28cases; its own CI and independent reviews are pending.
+No policy, core, released tools or package versions changed.
