@@ -1,0 +1,10 @@
+{
+  "observed_at": "2026-10-02T00:26:58.323391+00:00",
+  "error": "AssertionError: {}",
+  "stage": "metadata extraction, not a product test",
+  "original_assumption": "code-scanning analysis would have a languages array",
+  "actual_schema": "analysis category identifies language; original response keys retained",
+  "original_response_sha256": "de307b20eb80614a4db2694b0705803a9237652ffd5186c16f1719f181a9963a",
+  "correction": "derive language from category /language: and bind latest per language to tested merge/results0",
+  "project_runtime": false
+}

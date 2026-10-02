@@ -1,0 +1,250 @@
+{
+  "schema": "canli.execution-file-admission.peer-static-review.v1",
+  "observedUtc": "2026-10-02T00:59:02.171729+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "sourceHead": "cf907f46e6ede3edc39fb854c75d61d9f1e3060a",
+  "tree": "04794f3f00d2e77ce94520e73106181f210f0ca0",
+  "signature": "G",
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "blockingFindings": [],
+  "originalFindingDisposition": [
+    {
+      "id": "CC-EXECUTION-LOCAL-FILE-ADMISSION",
+      "status": "CLOSED_STATIC_SOURCE",
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-release-static-3658/local-file-admission-finding-3658.json",
+        "bytes": 3817,
+        "sha256": "5401154466e7c6171fd0218c0f2e34400290ce2724f53ab2da481e5d00b1c1d5"
+      },
+      "reason": "Nonblocking open precedes regular-file admission; the same opened descriptor is capped and read with before/after metadata and length checks. Limits use this bounded capture rather than unbounded readFileSync or prior existsSync."
+    },
+    {
+      "id": "CC-EXECUTION-EMPTY-FEE-SCHEDULE",
+      "status": "CLOSED_STATIC_SOURCE",
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-release-static-3658/empty-fee-schedule-finding-3658.json",
+        "bytes": 4035,
+        "sha256": "ab07cf7802783d8f385cc7edb6173f4d4df892140905023aa34dff437337f198"
+      },
+      "reason": "The shared strict local/hosted fee object requires at least one present monetary field. Metadata alone refuses, absence remains unknown, and numeric zero/minimum/sell-only schedules retain their stated semantics."
+    }
+  ],
+  "staticAssessments": [
+    {
+      "paths": [
+        "mcp-execution/src/local-input.mjs"
+      ],
+      "lines": [
+        7,
+        33
+      ],
+      "assessment": "maxBytes must be a safe integer in 1..16MiB; O_RDONLY|O_NONBLOCK opens before fstat; nonregular input refuses before any read, oversized regular input before allocation/read. Buffer is declared size+one byte, reads stop at that finite length or EOF, and returned length must equal original size. Same-FD BigInt size/mtimeNs/ctimeNs checks refuse observed growth/shrink/ordinary edits; finally invokes close once, and a close failure prevents a returned success. Only open ENOENT retains its original code."
+    },
+    {
+      "paths": [
+        "mcp-execution/src/local-input.mjs"
+      ],
+      "lines": [
+        36,
+        39
+      ],
+      "assessment": "Fatal UTF-8 decode and JSON parse emit a generic syntax diagnostic without raw parser contents. This is syntax-error privacy, not a promise that local paths, schema field names, or intentional report provenance are hidden."
+    },
+    {
+      "paths": [
+        "mcp-execution/src/server.mjs"
+      ],
+      "lines": [
+        58,
+        71
+      ],
+      "assessment": "Each planning tool/resource captures limits with the 1MiB helper. An absent open ENOENT remains optional; type/cap/unstable/parse/strict-schema errors refuse rather than running with an empty policy. Modification metadata comes from the exact opened snapshot, not a second named-file stat."
+    },
+    {
+      "paths": [
+        "mcp-execution/src/measure-shortfall.mjs"
+      ],
+      "lines": [
+        46,
+        59
+      ],
+      "assessment": "Absolute local orders path remains required; the 16MiB helper returns exact captured bytes. Orders schema then validates before arithmetic, and provenance byte count/SHA256 uses those captured bytes. Inline scoring/core accounting is byte-unchanged."
+    },
+    {
+      "paths": [
+        "mcp-execution/src/check-orders.mjs"
+      ],
+      "lines": [
+        65,
+        95
+      ],
+      "assessment": "Both local and hosted strict inputs share the monetary-field refine after numeric/closed validation. The test uses undefined presence rather than truthiness, admitting explicitly supplied zero. Monetary minimum/sell-only statements are preserved, and omitted commission stays null with its omission explanation."
+    },
+    {
+      "paths": [
+        "mcp-execution/src/server.mjs",
+        "mcp-execution/src/check-orders.mjs",
+        "mcp-execution/src/measure-shortfall.mjs"
+      ],
+      "assessment": "Delivered instruction line, tool/resource registry, advertised lean schema/description/output spans are byte-identical to 3658 at the pinned markers in the separate CI/source receipt. Strict fee admission deliberately tightens metadata-only inputs. Opt-in writer/key/privacy, hosted routing, core mirrors, package/locks/version remain protected Git identities. No current token/latency measurement is inferred."
+    },
+    {
+      "paths": [
+        "mcp-execution/test/local-input.test.mjs"
+      ],
+      "assessment": "Twelve literal plus five finite consumer and five finite mutation cases give22 distinct names. FIFO consumers include shortfall/limits/check/size/resource and use an independent parent spawn deadline4s/SIGKILL, with mkfifo bounded2s. Mutation harness loads the implementation before interception, captures only its actual input FD, asserts positive injected reads, observes refusal and exactly one close. Stable provenance/arithmetic, caps, UTF-8/diagnostic, ordinary symlink, directory/device and local/hosted fee semantics cases are meaningful in source."
+    },
+    {
+      "paths": [
+        "mcp-execution/SECURITY.md",
+        "mcp-execution/CHANGELOG.md"
+      ],
+      "assessment": "Docs keep ordinary stable regular symlink aliases supported and private journal/key admission separate. They explicitly limit synchronous filesystem timing/change detection/device/power-loss claims. Unreleased wording introduces no tool/version/package release and retains exact-source peer/CI gates."
+    }
+  ],
+  "sourcePin": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-peer/source-pin-cf907f46.json",
+    "bytes": 4716,
+    "sha256": "6eb9c42726ad493cdeb2810601cc200d8f09806b567217ee47bf369325a6b312"
+  },
+  "sourceFiles": [
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 365916,
+      "sha256": "3a8e914f5aa1928a84701593f4660c3a39a17a9fa16fd8a5e205228a9cccb3c3",
+      "blob": "4213d15b3ee5de70e36b0c71159d3bde5faf1a6e"
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 90552,
+      "sha256": "08694ee299a63bbabcfc0ac30ca2d5742cd12f6cec29b3a631ccf10d352872ca",
+      "blob": "747c12c417bf7fe23dfd6a8279c7472f7df828c7"
+    },
+    {
+      "path": "mcp-execution/CHANGELOG.md",
+      "bytes": 6352,
+      "sha256": "0487831a3a11033808ee190e946c01658741c35a2994815a7ff21ecf83ffa616",
+      "blob": "4677421d6b55ed132fda0c9cc459749dfe74136c"
+    },
+    {
+      "path": "mcp-execution/SECURITY.md",
+      "bytes": 5889,
+      "sha256": "18c237f7d99738b144c615f4d8550b757efec73a1966abb2548392ec1ab311e0",
+      "blob": "fe5fe187fbc81433287a5d3e43d0e77582a1fcc3"
+    },
+    {
+      "path": "mcp-execution/src/check-orders.mjs",
+      "bytes": 14332,
+      "sha256": "ec2e0e50e04e413fff7047b17b5d8273591e66ae5ef63ef9ec2653188f07da21",
+      "blob": "b2573449746a546458c95932fca5e1d216c4366f"
+    },
+    {
+      "path": "mcp-execution/src/local-input.mjs",
+      "bytes": 1853,
+      "sha256": "fafeb03647cd04897fb03cf637186a91c91c9da1186414fd167bcfe9d12ad825",
+      "blob": "c8b5a634796e667ef7a63b97db20d2790e67360e"
+    },
+    {
+      "path": "mcp-execution/src/measure-shortfall.mjs",
+      "bytes": 6666,
+      "sha256": "74cc85b67a4c0b7a685e81979097c345f1b21fc41c2755b2a65a0303626dc9a2",
+      "blob": "77550e98793385d243914f53132598378b6c3c3e"
+    },
+    {
+      "path": "mcp-execution/src/server.mjs",
+      "bytes": 10662,
+      "sha256": "4cd48c1dc40098ac049f45f3951322e3b63118605c36330c6d4874b25951c5bd",
+      "blob": "435d9ba68be994d12ed73fca8c340ecb10874f76"
+    },
+    {
+      "path": "mcp-execution/test/local-input.test.mjs",
+      "bytes": 12182,
+      "sha256": "c568db60f7e86a0f19ca189b48b247a0ec4d16dd9dea2080e192f19ce2f1a37e",
+      "blob": "487f5e0cf46189ae88e6f5dce0b81fa0e774d036"
+    }
+  ],
+  "protectedGitIdentities": {
+    "count": 5831,
+    "bytes": 380878942,
+    "allModeTypeBlobSizeEqual": true,
+    "workingWholeByteAudit": false
+  },
+  "originalGoalPrefixes": [
+    {
+      "path": "docs/goal/STATUS.md",
+      "originalBytes": 87008,
+      "originalSha256": "64b1ede55435e42ca0b0309fd0f581e78fa9ea9948846dc6ab9d56169e584afc",
+      "appendedBytes": 3544
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "originalBytes": 362372,
+      "originalSha256": "b409fc86a6f545455fe531f5e38b618d7f8a62311b3396287df6680fac2da27d",
+      "appendedBytes": 3544
+    }
+  ],
+  "assignmentSha256": "17476a5a853dfda16298024fa2f85d89e858a9becc5b61bfa393f6d22851a72c",
+  "continuity": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 6177,
+      "sha256": "f6c2f2cb0f56e8c667f606022d72aa7302cac8ef600ddcecee0cb86f245d27e1"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 230501,
+      "sha256": "8302df68d183ab700a62c5ade3cb8add0007a0499192a5050c2601cfd4d2b9c6"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 4142,
+      "sha256": "addd9d23d403834a9a2e8af0b8c49cc3f84889d3974146d9eb51aae4d86849c8"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 575351,
+      "sha256": "1146f679f9075eab8743932ef035d273a6103b4c1a3405a12535261621966f8f"
+    }
+  ],
+  "remoteEvidenceDistinct": {
+    "receipt": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-peer/retained-ci-cf907f46.json",
+      "bytes": 10809,
+      "sha256": "f584e11107740764258e4ce6f26acf15a4f9cbf69a1db0ed58b19ca6dbb382c2"
+    },
+    "sourceNamedPasses": 22,
+    "execution": 105,
+    "root": [
+      6,
+      925,
+      9
+    ],
+    "remoteNode": "22.23.3",
+    "sevenChecks": "SUCCESS",
+    "testedMerge": "af37ac655f579bf0216d6bba33460eca46ac9769",
+    "testedTreeEqualsSource": true,
+    "original866": {
+      "tests": 105,
+      "pass": 100,
+      "fail": 5,
+      "faultHarnessCauseRetained": true,
+      "sixProductDocsByteEqualCorrected": true
+    }
+  },
+  "limits": [
+    "This reviewer read frozen Git/source/test/doc bytes and used own finite stdlib metadata parsing; no project imports/Node/tests/CLI/browser/provider/API/key/auth/job/grant/product edits were executed.",
+    "One descriptor binds captured bytes/metadata, not a frozen or directory-anchored pathname. Ordinary aliases are intentional. Same-user changes entirely between observations, network filesystem/device behavior, arbitrary synchronous stalls, hardware persistence and universal timing are not established.",
+    "Remote synthetic tests establish their captured Linux/Node22.23.3 observations, not global filesystem or financial/broker correctness.",
+    "Protected identity comparison is Git mode/type/blob/size, not a repeated whole-working-tree byte audit. Source-head clean status is the separately timestamped observation.",
+    "No future final evidence-only source/archive/current CI/ordinary merge/publication is accepted by this implementation-head review. Primary remains sole merger/publisher; full goals remain active."
+  ],
+  "nextGates": [
+    "Primary final evidence-only frozen source/archive and exact-head CI extension before its ordinary merge.",
+    "Secondary PR357 integrating358 must preserve unknown-fee admission before the stricter protected check schema; current737 review is distinct."
+  ]
+}

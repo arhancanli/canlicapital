@@ -1,0 +1,271 @@
+{
+  "schema": "canli.execution-file-admission.peer-retained-ci.v1",
+  "observedUtc": "2026-10-02T00:57:31.367319+00:00",
+  "sourceHead": "cf907f46e6ede3edc39fb854c75d61d9f1e3060a",
+  "sourceTree": "04794f3f00d2e77ce94520e73106181f210f0ca0",
+  "verdict": "PASS_RETAINED_EXACT_CI_WITH_SCOPE_LIMITS",
+  "sourceNamedTests": {
+    "count": 22,
+    "eachOncePassed": true,
+    "names": [
+      "regular planning snapshots keep captured bytes and mtime from one descriptor",
+      "absent limits stay absent and stable limits retain their supplied fields",
+      "the finite limits cap admits the maximum escaped symbol allowlist",
+      "oversized limits refuse instead of falling back to an empty policy",
+      "oversized orders refuse before decoding or scoring",
+      "stable orders preserve inline arithmetic and exact-byte provenance",
+      "ordinary symlink aliases still read a stable regular target",
+      "directory and device inputs refuse as non-regular files",
+      "invalid UTF-8 refuses and parser diagnostics do not echo private file content",
+      "metadata-only fees refuse in both local and hosted input contracts",
+      "omitted commission stays unknown while an explicit zero is measured as zero",
+      "a stated sell-only fee retains zero buy commission and the supplied sell charge",
+      "FIFO without a writer refuses under an external child deadline: shortfall",
+      "FIFO without a writer refuses under an external child deadline: limits",
+      "FIFO without a writer refuses under an external child deadline: check_orders",
+      "FIFO without a writer refuses under an external child deadline: size_position",
+      "FIFO without a writer refuses under an external child deadline: limits-resource",
+      "unstable input refuses and closes its descriptor once: short-read",
+      "unstable input refuses and closes its descriptor once: grow",
+      "unstable input refuses and closes its descriptor once: shrink",
+      "unstable input refuses and closes its descriptor once: same-length-edit",
+      "unstable input refuses and closes its descriptor once: read-error"
+    ]
+  },
+  "executionSummary": {
+    "tests": 105,
+    "pass": 105,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "rootSummaries": [
+    {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 925,
+      "pass": 925,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "remoteNode": "22.23.3",
+  "testedMerge": "af37ac655f579bf0216d6bba33460eca46ac9769",
+  "testedMergeParents": [
+    "3658d0b60f5b06144b267b0cddc8fde81e6af6d8",
+    "cf907f46e6ede3edc39fb854c75d61d9f1e3060a"
+  ],
+  "testedTreeEqualsSignedSource": true,
+  "ciRun": 36945160653,
+  "sevenChecks": [
+    {
+      "name": "analyze (javascript-typescript)",
+      "conclusion": "SUCCESS",
+      "status": "COMPLETED",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36945160651/job/110645483957"
+    },
+    {
+      "name": "vite production build",
+      "conclusion": "SUCCESS",
+      "status": "COMPLETED",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36945160653/job/110645484990"
+    },
+    {
+      "name": "analyze (python)",
+      "conclusion": "SUCCESS",
+      "status": "COMPLETED",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36945160651/job/110645483724"
+    },
+    {
+      "name": "design wrapper build and contracts",
+      "conclusion": "SUCCESS",
+      "status": "COMPLETED",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36945160653/job/110645484908"
+    },
+    {
+      "name": "MCP package and stdio contracts",
+      "conclusion": "SUCCESS",
+      "status": "COMPLETED",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36945160653/job/110645485045"
+    },
+    {
+      "name": "Key revocation PostgreSQL contract",
+      "conclusion": "SUCCESS",
+      "status": "COMPLETED",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/36945160653/job/110645485061"
+    },
+    {
+      "name": "CodeQL",
+      "conclusion": "SUCCESS",
+      "status": "COMPLETED",
+      "detailsUrl": "https://github.com/arhancanli/canlicapital/runs/110645706368"
+    }
+  ],
+  "retainedCaptureUtc": "2026-10-02T00:26:58.323391+00:00",
+  "freshReviewerApiQuery": false,
+  "currentRefAlertsInRetainedCapture": 0,
+  "latestCapturedCodeqlLanguages": {
+    "javascript-typescript": {
+      "id": 1878184113,
+      "commit_sha": "af37ac655f579bf0216d6bba33460eca46ac9769",
+      "results_count": 0,
+      "created_at": "2026-10-02T00:17:39Z",
+      "error": "",
+      "warning": ""
+    },
+    "python": {
+      "id": 1878183062,
+      "commit_sha": "af37ac655f579bf0216d6bba33460eca46ac9769",
+      "results_count": 0,
+      "created_at": "2026-10-02T00:17:22Z",
+      "error": "",
+      "warning": ""
+    }
+  },
+  "original866Summary": {
+    "tests": 105,
+    "pass": 100,
+    "fail": 5,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "original866FiveFailures": [
+    {
+      "status": "not ok",
+      "ordinal": 63,
+      "name": "unstable input refuses and closes its descriptor once: short-read"
+    },
+    {
+      "status": "not ok",
+      "ordinal": 64,
+      "name": "unstable input refuses and closes its descriptor once: grow"
+    },
+    {
+      "status": "not ok",
+      "ordinal": 65,
+      "name": "unstable input refuses and closes its descriptor once: shrink"
+    },
+    {
+      "status": "not ok",
+      "ordinal": 66,
+      "name": "unstable input refuses and closes its descriptor once: same-length-edit"
+    },
+    {
+      "status": "not ok",
+      "ordinal": 67,
+      "name": "unstable input refuses and closes its descriptor once: read-error"
+    }
+  ],
+  "productEqualityToOriginal866": {
+    "mcp-execution/CHANGELOG.md": "0487831a3a11033808ee190e946c01658741c35a2994815a7ff21ecf83ffa616",
+    "mcp-execution/SECURITY.md": "18c237f7d99738b144c615f4d8550b757efec73a1966abb2548392ec1ab311e0",
+    "mcp-execution/src/check-orders.mjs": "ec2e0e50e04e413fff7047b17b5d8273591e66ae5ef63ef9ec2653188f07da21",
+    "mcp-execution/src/local-input.mjs": "fafeb03647cd04897fb03cf637186a91c91c9da1186414fd167bcfe9d12ad825",
+    "mcp-execution/src/measure-shortfall.mjs": "74cc85b67a4c0b7a685e81979097c345f1b21fc41c2755b2a65a0303626dc9a2",
+    "mcp-execution/src/server.mjs": "4cd48c1dc40098ac049f45f3951322e3b63118605c36330c6d4874b25951c5bd"
+  },
+  "defaultAdvertisedSourceEquality": {
+    "mcp-execution/src/server.mjs": {
+      "marker": "const CHECK =",
+      "bytes": 3706,
+      "sha256": "9dcf920ba8d2600029b24ab04c727138e060b51e19b0a46eeb4323ca92feb6c0",
+      "equalsDeliveredSource": true
+    },
+    "mcp-execution/src/check-orders.mjs": {
+      "marker": "// What clients are shown:",
+      "bytes": 9798,
+      "sha256": "3c3cfb8048337061e3914cd88ca8b57f88722a0d2be734f28c020a7aca8281d5",
+      "equalsDeliveredSource": true
+    },
+    "mcp-execution/src/measure-shortfall.mjs": {
+      "marker": "const number =",
+      "bytes": 1745,
+      "sha256": "d30da62a58acb05fc73ad7272d311e4232619858f4f559a182f096bf410df7dd",
+      "equalsDeliveredSource": true
+    },
+    "instructionsLine": {
+      "bytes": 658,
+      "sha256": "cb8868ac6e3d72669906d7a03b918ec238af5ea6a5ef6294d880c99c032d791e"
+    }
+  },
+  "assets": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/cf907f46-exact-remote-ci.json",
+      "bytes": 3647,
+      "sha256": "50e0f5eac9837a1817e182623b343d36e7b67b06bc9971d21f7065863d13f7ca"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/remote-cf907f46-mcp.log",
+      "bytes": 284107,
+      "sha256": "f4ba14293ceff22702705f08b57e87f038a8774bae4d0f828e5f17ce5a6485e7"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/remote-cf907f46-vite.log",
+      "bytes": 1096159,
+      "sha256": "5444e4d484d586712c2b897f5452f7f0897e78cb3abb17ef75365670bc84db89"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/cf907f46-tested-merge.json",
+      "bytes": 2648,
+      "sha256": "3e36f554d117cb6238ff1dd613a92df58bf5c8a49bfad0ea9c6641ed105a676f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/cf907f46-ci-run.json",
+      "bytes": 13302,
+      "sha256": "c633346dd041cec786069e3887e032884dc5db64c4a0b7bb195d57c82ad2fc5b"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/pr-358-current-20261002T002007Z.json",
+      "bytes": 2265,
+      "sha256": "52b882b114425ea86b094ca1c0219bb1ba00cc67ab0a21daadaaef64f0e4dce8"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/cf907f46-codeql-current-ref.json",
+      "bytes": 4,
+      "sha256": "cf1cbb66a638b4860a516671fb74850e6ccf787fe6c4c8d29e9c04efe880bd05"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/cf907f46-codeql-analyses.json",
+      "bytes": 2373,
+      "sha256": "de307b20eb80614a4db2694b0705803a9237652ffd5186c16f1719f181a9963a"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/remote-86653770-mcp-original.log",
+      "bytes": 305301,
+      "sha256": "07d961889289a06fa60507a573b2f10ed4ba4c64406e9a32d6e9932df5555024"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-primary/original-86653770-failure-cause-and-correction.json",
+      "bytes": 835,
+      "sha256": "8d5915ff53e399b5fbb7ace8e59d304ea5803417842ff6516e34763fa511b03a"
+    }
+  ],
+  "parser": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/execution-file-admission-peer/parse-retained-cf907f46.py",
+    "sha256": "1723467fd07b5c4c4245930b66379d9fdcebec614fcda518b50c5df29024e66c"
+  },
+  "limits": [
+    "No project runtime/tests/imports/Node/browser/new job/grant/provider/signing were executed by this reviewer.",
+    "CI is remote synthetic Linux/Node22.23.3 evidence; filesystem guarantees beyond the documented observations are not established.",
+    "Raw API captures are independently parsed and hash-bound; reviewer did not make a fresh authenticated/network query.",
+    "No final evidence-only head/archive/ordinary merge or publication is accepted by this implementation-head receipt."
+  ]
+}

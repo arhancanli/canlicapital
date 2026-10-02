@@ -5418,6 +5418,79 @@ labels/orders/outreach/site/npm/version publication. Full Sovereign/10M actual i
 intents/MCP/adoption/real-expert refinery/research/ALPHAC/paper then lawful capital goals ACTIVE.
 
 
+## Execution local-file admission correction starts, 2026-10-01T23:48:10.942484+00:00
+
+Primary accepts THIRD STATIC finding CC-EXECUTION-LOCAL-FILE-ADMISSION at
+3658d0b6, receipt54011544. Current shortfall orders_file opens blocking r before
+regular-file checks; limits.json is synchronously read without regular-file
+admission or a byte cap. No runtime reproduction is claimed. A new isolated
+primary checkout `/Users/arhancanli/canlicapital-execution-file-admission-20261002` from actual main3658 owns
+only a local snapshot helper, two reader integrations, focused regressions,
+SECURITY/Unreleased notes and append-only phase records. Tool schemas/default
+list/instructions/math/journal writer, hosted pins/versions/FilingFacts/V0 and
+all previous evidence remain protected. Nonblocking regular-file snapshots,
+finite caps and same-FD metadata will be reviewed and checked by existing remoteCI.
+No local Node/import/test/CLI/helper/build/browser/job/grant/lease is launched.
+Secondary's six-path paper example proceeds; primary paper discovery source
+remains an unsigned/unexecuted draft pending this repair. All355/356 deliveries
+remain closed; no provider/model/resources/holds/spend/experts/orders/site/npm/hero
+or indexing result is established. Every full owner pillar,10M ACTUALLY indexed
+quality canonicals/SEO/intents/design/analyzers/adoption/refinery/ALPHAC/research/
+paperthenlawfulcapital goal remainsACTIVE; fresh Google/Bing counts remainNULL.
+
+
+## Execution fee-admission scope extension, 2026-10-02T00:00:55.386177+00:00
+
+THIRD STATIC CC-EXECUTION-EMPTY-FEE-SCHEDULEab07cf78 is accepted: the
+current metadata-only fee object reaches zero commission without a supplied
+monetary amount. Primary adds only check-orders.mjs strict admission to the
+same isolated correction scope. Both local and hosted input schemas refuse
+metadata-only schedules; explicit monetary zero and intended sell-only buys
+remain valid. Math/core mirrors, public tool-field names, lean advertised
+schemas, descriptions, default tool list/instructions, writer and versions
+remain unchanged. No runtime test is claimed before exact-source remoteCI.
+The proposed local snapshot cap is1MiB for limits and the existing16MiB for
+orders, preserving the maximum escaped5000-symbol allowlist. No local project
+job/grant/provider/model/spend/publication is launched; full hierarchy ACTIVE.
+
+
+## Execution input fault-fixture correction, 2026-10-02T00:15:43.983050+00:00
+
+PR358 original signed86653770 retains its actual MCP105 cases:100 PASS/5 FAIL,
+including all five externally bounded FIFO consumers and fee controls passing.
+Raw305301B SHA07d96188 and the full original failure extraction remain unchanged.
+The five fault adapters intercepted Node ESM loader reads because installation
+preceded implementation import; growth/shrink/edit counters ran before the
+intended input FD. The narrow correction imports first, restricts read faults
+to that descriptor, and asserts the injected read occurred. All product reader,
+fee/schema/math/default-surface sources stay byte-identical. New-source remote
+CI remains required; no local Node/import/test/CLI/job/lease or provider/model/
+spend/order/publication action occurs. Secondary357e47 has28 actual new remote
+passes, but independent review and export-companion correction remain open.
+All four Sovereign pillars,10M actually indexed quality canonicals,SEO/intents/
+design/analyzers/adoption,real-expert refinery/research/governedALPHAC and paper
+then lawful capital objectives remain unfinished and preserved.
+
+
+## Execution planning input final evidence freeze, 2026-10-02T01:01:59.225138+00:00
+
+Signed implementationcf907f46/tree04794 has22 actual new remote cases within105
+execution/Node22.23.3; root6+925+9/all7 current checks and captured refCodeQL0 pass.
+Independent source e099db9c and separate retained-CI f584e111 close nonblocking
+file-admission and metadata-only-fee findings within their stated scopes. Original
+866105=100PASS/5 fault-harnessFAIL is retained with its raw log and correction;
+corrected tests load the implementation before interception and bind only its FD.
+This final archive/doc change preserves code, tests, SECURITY, core, packages,
+versions and all other protected Git identities. CHANGELOG now pins actual evidence;
+append-only original goal prefixes stay exact. Bounded archive includes prior source/
+failure/static/CI originals and final peer records. Its final exact-head remoteCI
+and independent source/archive extension remain required before ordinary merge.
+No local project runtime, filesystem universal-deadline/power-loss claim, financial
+network/model/provider/broker/key upload/spend/site/npm/version/hero action. Private
+Unreleased execution and every original owner goal remain unfinished/in force;
+fresh indexing, token/latency, expert/adoption/qualified-forward results stay unknown.
+
+
 ## Secondary finite offline paper-journal example begins, 2026-10-01T23:31:07.173474+00:00
 
 Actual main3658d0b60f5b06144b267b0cddc8fde81e6af6d8/tree d6bb is verified,
@@ -5559,3 +5632,22 @@ Approved archive40 TOTAL files/12MiB including README+manifest remains gated
 on corrected source/CI/peers. No localproject Node/import/test/grant/job/model/
 provider/broker/resources/spend/pub/hero. Full owner hierarchy remainsACTIVE;
 delivered343/351/353/355/356 stay frozen.
+
+
+## 2026-10-02T01:27:46.683796+00:00 — secondary357 integrates delivered primary358
+
+Fresh GH verifies358 MERGED2026-10-02T01:24:16Z as052c4d60, sole parent3658;
+actualmain tree107254 exactly equals reviewed signedGe64. Final third eef7b825
+source/archive and32df3def exactCI accept22/105/root6+925+9/all7/zero omissions
+and26 preserved archives; original866 five fault-harness failures remain.
+One routine main merge retains all four paper product files byte-exact to accepted
+737 (primary38e7/third eb2a), all protected latestmain Git objects/modes, and
+both exact original goal suffixes after their common3658 prefixes. Newly strict
+protected fee parsing is adopted with example unknown-fee admission preceding it.
+737 actual34/117 and its raw source failures stay historical; this integrated
+source requires its own existing remote CI and independent extension. No current
+integrated runtime result is claimed before raw proof. Approved40TOTAL/12MiB
+README+manifest archive is still prepared externally. Final archive/CI/source
+gates precede primary sole ordinary357merge; no site/npm/version publication.
+No localproject Node/import/test/build/CLI/browser/helper job/CPUgrant/model/
+provider/broker/resources/spend/hero. Full owner hierarchy remainsACTIVE.

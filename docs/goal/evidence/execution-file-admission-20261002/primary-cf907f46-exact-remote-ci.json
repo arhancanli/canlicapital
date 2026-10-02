@@ -1,0 +1,90 @@
+{
+  "schema": "canli.execution-file-admission.exact-ci.v1",
+  "observed_at": "2026-10-02T00:26:58.323391+00:00",
+  "source": "cf907f46e6ede3edc39fb854c75d61d9f1e3060a",
+  "tree": "04794f3f00d2e77ce94520e73106181f210f0ca0",
+  "run": 36945160653,
+  "mcp_job": 110645485045,
+  "vite_job": 110645484990,
+  "tested_merge": "af37ac655f579bf0216d6bba33460eca46ac9769",
+  "tested_tree_equals_signed_source": true,
+  "remote_node": "22.23.3",
+  "source_named_pass_count": 22,
+  "source_named_passes": {
+    "regular planning snapshots keep captured bytes and mtime from one descriptor": 1,
+    "absent limits stay absent and stable limits retain their supplied fields": 1,
+    "the finite limits cap admits the maximum escaped symbol allowlist": 1,
+    "oversized limits refuse instead of falling back to an empty policy": 1,
+    "oversized orders refuse before decoding or scoring": 1,
+    "stable orders preserve inline arithmetic and exact-byte provenance": 1,
+    "ordinary symlink aliases still read a stable regular target": 1,
+    "directory and device inputs refuse as non-regular files": 1,
+    "invalid UTF-8 refuses and parser diagnostics do not echo private file content": 1,
+    "metadata-only fees refuse in both local and hosted input contracts": 1,
+    "omitted commission stays unknown while an explicit zero is measured as zero": 1,
+    "a stated sell-only fee retains zero buy commission and the supplied sell charge": 1,
+    "FIFO without a writer refuses under an external child deadline: shortfall": 1,
+    "FIFO without a writer refuses under an external child deadline: limits": 1,
+    "FIFO without a writer refuses under an external child deadline: check_orders": 1,
+    "FIFO without a writer refuses under an external child deadline: size_position": 1,
+    "FIFO without a writer refuses under an external child deadline: limits-resource": 1,
+    "unstable input refuses and closes its descriptor once: short-read": 1,
+    "unstable input refuses and closes its descriptor once: grow": 1,
+    "unstable input refuses and closes its descriptor once: shrink": 1,
+    "unstable input refuses and closes its descriptor once: same-length-edit": 1,
+    "unstable input refuses and closes its descriptor once: read-error": 1
+  },
+  "execution_summary": {
+    "tests": 105,
+    "pass": 105,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "root_suite": {
+    "main": 925,
+    "preverify": 6,
+    "notifications": 9,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "all_seven_success": true,
+  "merge_ref_open_codeql_alerts": 0,
+  "latest_codeql_languages": {
+    "javascript-typescript": {
+      "analysis_id": 1878184113,
+      "commit_sha": "af37ac655f579bf0216d6bba33460eca46ac9769",
+      "results_count": 0,
+      "created_at": "2026-10-02T00:17:39Z",
+      "error": ""
+    },
+    "python": {
+      "analysis_id": 1878183062,
+      "commit_sha": "af37ac655f579bf0216d6bba33460eca46ac9769",
+      "results_count": 0,
+      "created_at": "2026-10-02T00:17:22Z",
+      "error": ""
+    }
+  },
+  "raws": {
+    "remote-cf907f46-mcp.log": {
+      "bytes": 284107,
+      "sha256": "f4ba14293ceff22702705f08b57e87f038a8774bae4d0f828e5f17ce5a6485e7"
+    },
+    "remote-cf907f46-vite.log": {
+      "bytes": 1096159,
+      "sha256": "5444e4d484d586712c2b897f5452f7f0897e78cb3abb17ef75365670bc84db89"
+    }
+  },
+  "original_866_failure_retained": {
+    "tests": 105,
+    "pass": 100,
+    "fail": 5,
+    "raw_sha256": "07d961889289a06fa60507a573b2f10ed4ba4c64406e9a32d6e9932df5555024"
+  },
+  "metadata_schema_assumption_error_retained": true,
+  "local_project_execution": false,
+  "peer_review": "pending"
+}

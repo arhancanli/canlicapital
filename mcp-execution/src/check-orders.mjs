@@ -74,7 +74,7 @@ const baseInput = {
     sell_fee_per_share: nonNeg.optional(),
     source_url: z.string().url().max(500).optional(),
     as_of: isoTime,
-  }).strict().optional(),
+  }).strict().refine(fees => ["commission_bps", "per_share_usd", "min_usd", "sell_fee_rate", "sell_fee_per_share"].some(key => fees[key] !== undefined), "fees needs at least one monetary schedule field; omit fees when commission is unknown").optional(),
   execution: z.enum(["immediate", "at_open"]).optional(),
   holding_days: nonNeg.optional(),
   borrow_annual_rate: nonNeg.optional(),
