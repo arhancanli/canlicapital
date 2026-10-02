@@ -1,0 +1,151 @@
+{
+  "schema": "canli.paper-example.peer.static-fix-extension.v1",
+  "observed_at": "2026-10-02T00:44:18.159232+00:00",
+  "head": "b807ef1fea7f1cc72b1cbdc4d3bbdc23da9f6eed",
+  "tree": "0f98b96b9da5b611a6ac70e3db6334591ec2f38f",
+  "signature": "G",
+  "source_pins": {
+    "docs/goal/LOG.md": {
+      "bytes": 370614,
+      "sha256": "faa54eeb4b1935880c20440e26e379424ad6b6901c5779c52ebd4a4121ad5b3f",
+      "git_blob": "b524257e6cf1c353c1b1c5754f7dfa5796ec2a4e"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 95250,
+      "sha256": "c3e7d8ea3a254d37726e70144546907e52005a9f3e5a1e05311626060d727bde",
+      "git_blob": "91affa7834a2d588d241ac535c3f4895cb52c09c"
+    },
+    "mcp-execution/EXAMPLES.md": {
+      "bytes": 10219,
+      "sha256": "1a2205f6ccae81af7acbcb2680e077866d130f5be08cd9fe2c2490aaeed989c4",
+      "git_blob": "937bbed6fbd72f600f036a9869ee2062e1ad7850"
+    },
+    "mcp-execution/README.md": {
+      "bytes": 16412,
+      "sha256": "1e32f93149208c2b46ed973fa9c5f4f3833679a87f22149e5ba9ff32f5697360",
+      "git_blob": "8a78df76a67052eec4fe237d32444d8dfe662d7f"
+    },
+    "mcp-execution/examples/paper-journal.mjs": {
+      "bytes": 30553,
+      "sha256": "370e7379589e668187f8759ffe9047b19f978c9ab6bbdf3deb18c8281d7b1968",
+      "git_blob": "949eed9f39ac7872952dab9e70a2ef9e976a1d2d"
+    },
+    "mcp-execution/test/paper-journal-example.test.mjs": {
+      "bytes": 25299,
+      "sha256": "01a38c8151b37f704f2cd687c6c4534b4f8736d48a23c43f19338ca8b25b542b",
+      "git_blob": "392296c959c76b04db9c7009ef4692993824574b"
+    }
+  },
+  "status": "OWN_TWO_P2S_CLOSED_STATIC_SOURCE_PRIMARY_TYPED_HASH_HOLD_REMAINS",
+  "previous_findings_sha256": "10c364d9b163b0dd113f2672f5dd829691f9fb374990bd618e2d028c7e32391c",
+  "closure": {
+    "CC-357-EXPORT-TRADED-NOTIONAL-BINDING": {
+      "status": "CLOSED_STATIC_SOURCE",
+      "check": "finite positive supplied qty*price; current traded amount differs no more than4*Number.EPSILON*max(1,abs(supplied amount)); paired old1002.5->1 witness refuses",
+      "comparison": "bounded IEEE-754 consistency check, not cash/fill replay or independent financial evidence",
+      "meaningful_written_case": "changing both unsigned traded notional and turnover cannot override the supplied fill"
+    },
+    "CC-357-FINAL-REPORT-CAPACITY": {
+      "status": "CLOSED_STATIC_SOURCE",
+      "retained_bytes": {
+        "planning": 16384,
+        "export": 32768,
+        "request_list": 16384,
+        "controls": 49152,
+        "aggregate_progress_reserve": 16384,
+        "output": 196608
+      },
+      "conservative_components_plus_reserved_controls_bytes": 114688,
+      "before_callback": "aggregate capture<=output-reserve, then fresh remaining/dispatch guard; pending dispatch only after admission",
+      "requests_and_controls": "check original next request list and controls before adding pending request or invoking callback",
+      "output": "finish catches final capture refusal, explicitly omits optional planning/export, calls stopped OUTPUT_CAPACITY and returns cloned/frozen core requests/receipts/pending controls",
+      "old_capacity_vectors": "invalidated by bounded known sizing constraint,16KiB planning and32KiB export retention; no former crypto/runtime claim rewritten",
+      "meaningful_written_cases": [
+        "individually bounded excessive retained planning refuses before journal dispatch and returns a report",
+        "a bounded large signed export refuses without losing earlier acknowledgements or pending export"
+      ],
+      "test_semantics": "planning oversized within128KiB raw reply refuses at call2 before writes; correctly re-signed40k note/export rehashed within128KiB refuses at call11 with six requests/receipts and dispatched pending export retained",
+      "source_limits": "byte admission is separate from node/depth admission; final fallback omits bulky results, simple original request/control schemas stay bounded. No universal sync memory/clock/preemption guarantee."
+    }
+  },
+  "remaining_primary_P2": {
+    "receipt_path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example-primary-review/hash-type-finding-b807ef1f.json",
+    "sha256": "56b93e65528eac3e6f3db83d42c016e213fbda2d061005d4f83b82a590eee7d0",
+    "id": "CC-PAPER-HASH-TYPE-BEFORE-PROGRESS",
+    "independently_confirmed_source": "RegExp.test singleton array coerces [sha] to sha; sizing/check/entry/prefix admission lacks typeof string. Array entry_head can be recorded and dispatched as next expected_head before server refuses. No local runtime or new discovery claim."
+  },
+  "future358_integration_cue": "example missing-fee admission must precede newly strict protected checkOrdersInput parsing, preserving MISSING_FEE_SCHEDULE/unknowns; future source needs own pin",
+  "archive_SCOPE_APPROVED": {
+    "assignment_sha256": "17476a5a853dfda16298024fa2f85d89e858a9becc5b61bfa393f6d22851a72c",
+    "primary_original_review_sha256": "b5ff577ba85e87dd4e53c88beaade648754a4b84fce5ed6d9b71ecef75afa45b",
+    "primary_actual_message_receipt_sha256": "0e5e4b572bcc51abdf824dc32219aad1ef256c432d94f9b8ee7d5f01ecb2f1b3",
+    "max_TOTAL_files_including_README_manifest": 40,
+    "max_ORIGINAL_bytes_including_README_manifest": 12582912,
+    "root": "docs/goal/evidence/paper-journal-example-20261001/",
+    "source_CI_peer_gates_required": true,
+    "final_CI_may_remain_coordination": "avoid self-referential/future proof",
+    "no_new_product_job_resource_or_publication_authority": true
+  },
+  "source_named_cases_WRITTEN": [
+    "injected delivered tools complete a bound synthetic sizing/check/journal/export roundtrip",
+    "actual local stdio example completes the signed synthetic roundtrip without returning the key",
+    "the actual repository command defaults to two read-only calls without preparing a key",
+    "injected default write denial performs checks and creates no journal or key",
+    "a supplied notional limit rejects the order before any journal write or fabricated fill",
+    "the delivered kill switch rejects before initialization and is never removed",
+    "missing supplied fill fees stay unknown and stop before journal initialization",
+    "an absent commission schedule remains not modelled while explicit fixture fill fees are retained",
+    "a date-only commission schedule refuses as unknown while an explicitly supplied zero remains valid",
+    "accessors and inline signing fields refuse before a local callback and do not echo their contents",
+    "text/structured reply disagreement and oversized replies stop without accepting a plan",
+    "pre-trade response order identity and columns must match the delivered contract",
+    "a missing or mismatched initial request receipt retains the original request and stops progress",
+    "typed persistence uncertainty never retries or exposes a diagnostic key string",
+    "a retained actual pending lock produces busy, preserves the lock, and schedules no retry",
+    "conflicting operation contents after a stale absent-head reply refuse without changing the existing journal",
+    "a normal rerun detects the existing journal and never replays the scenario",
+    "a replay acknowledgement cannot advance the example to another operation",
+    "a changed verified head stops before export and preserves all acknowledged write receipts",
+    "a tampered export digest is refused while its original export request remains visible",
+    "rehashing a changed unsigned export companion cannot bless it with the original record signature",
+    "changing both unsigned traded notional and turnover cannot override the supplied fill",
+    "individually bounded excessive retained planning refuses before journal dispatch and returns a report",
+    "a bounded large signed export refuses without losing earlier acknowledgements or pending export",
+    "the finite call cap stops before dispatching export and keeps earlier acknowledgements",
+    "a never-resolving callback reaches the native deadline without a follow-up call",
+    "cancellation during a pending write retains its request and a late completion cannot change the returned result",
+    "pre-abort, zero deadline and invalid enlarged policies dispatch no callbacks",
+    "a backwards caller clock stops after its first callback",
+    "an abort delivered by the final dispatch clock sample prevents the callback and count",
+    "caller mutation during the first await cannot change the captured fixture or later write requests",
+    "stdio home and command argument refusals do not create or repair local state"
+  ],
+  "source_named_case_count_WRITTEN": 32,
+  "runtime_acceptance": "b807 retained exact CI pending; original1ddd29 actual results separate",
+  "reviewer_project_execution": false,
+  "original_e47_and1ddd_receipts_unchanged": true,
+  "global_continuity_pins": {
+    "README.md": {
+      "bytes": 5864,
+      "sha256": "24e5dd61e0c64b86612f2ee3df19d31e2dff35c6f230365d3107b43199168653"
+    },
+    "REQUIREMENTS.md": {
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    "STATUS.md": {
+      "bytes": 225625,
+      "sha256": "bed42b6054fcfd272c1705a9c5e4646eb96d813be2f8cc19f970a05de602e1d3"
+    },
+    "PHASES.md": {
+      "bytes": 4142,
+      "sha256": "addd9d23d403834a9a2e8af0b8c49cc3f84889d3974146d9eb51aae4d86849c8"
+    },
+    "LOG.md": {
+      "bytes": 570475,
+      "sha256": "c0febcda912e61b559e2315d1728a9561a9a7786ff5535a1acb9c7283642b258"
+    }
+  },
+  "next_assigned_lane": "STATIC358 cf907f46 per17476; secondary continues typed-hash correction",
+  "full_owner_hierarchy": "ACTIVE; measurements/indexing/release/financial/expert/adoption outcomes unclaimed"
+}

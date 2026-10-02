@@ -1,0 +1,277 @@
+{
+  "schema": "canli.paper-journal-example.peer-static-review.v1",
+  "observedUtc": "2026-10-02T01:10:29.435073+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "sourceHead": "73712ef7acd5f5aaf6a4e701ee9793608efcf2f4",
+  "sourceTree": "f026f4b6a8e4caab4453c76b8c80d9d0c0ed79fa",
+  "signature": "G",
+  "actualCleanObservation": true,
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "blockingFindings": [],
+  "closedFindings": [
+    {
+      "id": "CC-357-EXPORT-TRADED-NOTIONAL-BINDING",
+      "status": "CLOSED_STATIC_SOURCE",
+      "origin": "Third10c364 independent static counterexample, corroborated primary df20",
+      "reason": "Inherited b807 corrected supplied fill qty*price binding and documented four-epsilon comparison remain byte-exact in737; unsigned traded-notional/turnover rehash cannot override supplied fill."
+    },
+    {
+      "id": "CC-357-FINAL-REPORT-CAPACITY",
+      "status": "CLOSED_STATIC_SOURCE",
+      "origin": "Third10c364 static capacity arithmetic; placeholders were not crypto/runtime probes",
+      "reason": "Inherited planning16KiB/export32KiB/request-list16KiB/controls48KiB, before-callback aggregate check with16KiB reserve and explicit finish fallback preserve original bounded requests/receipts/pending controls. Sizes/nodes refuse before effects when observed; optional bulky planning/export omissions are explicit and stop completion."
+    },
+    {
+      "id": "CC-PAPER-HASH-TYPE-BEFORE-PROGRESS",
+      "status": "CLOSED_STATIC_SOURCE",
+      "origin": "Primary56b93, independently source-confirmed by third atb807; no claim of independent discovery",
+      "reason": "isHash now requires primitive string before regex, used at both planning digest and both receipt head/prefix admission sites. The only remaining HASH.test is inside this typed helper. Verification/export/request hash identities use strict equality against generated or admitted primitive hashes."
+    }
+  ],
+  "currentNarrowChanges": [
+    {
+      "path": "mcp-execution/examples/paper-journal.mjs",
+      "lines": [
+        18,
+        19,
+        64,
+        65,
+        110,
+        111,
+        188,
+        275,
+        281
+      ],
+      "assessment": "Primitive hash guard prevents singleton-array coercion from acknowledging a malformed init or dispatching its decision follow-up; both plan digests refuse before journal progression. Excessive string length is JSON_BOUND; malformed surrogate Unicode remains JSON_STRING. Unknown buy-fee admission precedes protected checkOrdersInput parsing, preserving its stop classification after future358 stricter fee schema integration."
+    },
+    {
+      "path": "mcp-execution/test/paper-journal-example.test.mjs",
+      "assessment": "Two new meaningful named tests independently exercise entry_head/prefix SHA arrays after actual delivered initialization and both planning tools. Init faults stopcall4 with original dispatched pending request,zero receipts,no decision; plan faults stopcall1/2 with zero journal effects. The original planning/export capacity cases, including retained acknowledgement/pending assertions, are byte-exact tob807 and now actually pass in the separate exact737 remote receipt."
+    },
+    {
+      "path": "mcp-execution/EXAMPLES.md",
+      "assessment": "Docs explicitly require primitive hashes and distinguish capacity JSON_BOUND from invalid-Unicode JSON_STRING. Earlier synthetic/self-attestation/cooperative timing/signing/key/manual recovery/nonretry/no startup or output-in-deadline guarantee limits remain."
+    }
+  ],
+  "fullInheritedReview": {
+    "receipts": [
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example-peer/review-1ddd75ab.json",
+        "bytes": 20233,
+        "sha256": "1d625a657c4851e1f9265a6428bd5a50f5a49d312899e643783940ed796bcd7b"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example-peer/static-fix-extension-b807ef1f.json",
+        "bytes": 9671,
+        "sha256": "d1d41fc488627ba5f2625a9720c0bc1310d2070f17643b092580740102ca1a0e"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example-peer/findings-1ddd75ab.json",
+        "bytes": 6517,
+        "sha256": "10c364d9b163b0dd113f2672f5dd829691f9fb374990bd618e2d028c7e32391c"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example-primary-review/hash-type-finding-b807ef1f.json",
+        "bytes": 2177,
+        "sha256": "56b93e65528eac3e6f3db83d42c016e213fbda2d061005d4f83b82a590eee7d0"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example-primary-review/review-73712ef7.json",
+        "bytes": 3476,
+        "sha256": "38e7bcfb9fc2add34880653df6e9663c12b3304dd6b9a6eb7b1ccfcf40918c3e"
+      }
+    ],
+    "assessment": "Original1ddd full runner/test/docs review and b807 narrow extension remain scope-specific and immutable. Default write denial/preparedhome/key,11calls/25swork+5soneclose, frozen supplied scenario/original operation/request/expectedhead/sequence/prefix, typed errors/no retry/late result gates/SDK2.1 explicit toolDefinition no hidden header retry/manual uncertainty and signed standard record plus companion consistency retain their inherited assessment. Protected math/store/server/hosted/version/core mirrors are unchanged by these six example paths. This is a finite trusted-callback synthetic repository example, not a broker or sandbox.",
+    "inheritedCorrectedBlocksByteEqualB807": [
+      {
+        "startMarker": "function exportReceipt",
+        "stopMarker": "function emptyReport",
+        "bytes": 4651,
+        "sha256": "8df5645f6c3453a43febbc628fdc59d4ed52f97a849d521299af45fe2ac26b29",
+        "byteEqualB807": true
+      },
+      {
+        "startMarker": "function finish",
+        "stopMarker": "/** Trusted injected interface",
+        "bytes": 425,
+        "sha256": "8e1cab8f7629fc7303cf94a86cd510ae936002f36a9f1fb5378d4066786a29c0",
+        "byteEqualB807": true
+      }
+    ],
+    "capacityTestBodiesByteEqualB807": [
+      "individually bounded excessive retained planning refuses before journal dispatch and returns a report",
+      "a bounded large signed export refuses without losing earlier acknowledgements or pending export"
+    ]
+  },
+  "sourcePin": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example-peer/source-pin-73712ef7.json",
+    "bytes": 4366,
+    "sha256": "8a09f0e8968765f9c610867a75f5c6b831e7bad2fc4e443cfd48c3882053a1ed"
+  },
+  "sixSourcePins": [
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 372464,
+      "sha256": "134e64a53ec27c6199c45de583dd3e1b99dbe1f8ab3a28a06e825f9389b36ef4",
+      "blob": "0cf714f911341d2663e1e4314cde87cbbccf79b0"
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 97100,
+      "sha256": "d5e48d7008c62dd31c577ff016eda2822d9b0a0568b1f84208d72481a8881373",
+      "blob": "9138b232c538c44cd117832020f89f3779a0955d"
+    },
+    {
+      "path": "mcp-execution/EXAMPLES.md",
+      "bytes": 10426,
+      "sha256": "e3f39e9764bdb50390b784c156b9aa0c1ef3daa235d7cfe95934851c8e9586ac",
+      "blob": "fdbabf0c3d6d9be95a9ef84d3a2d9edf6fc7a696"
+    },
+    {
+      "path": "mcp-execution/README.md",
+      "bytes": 16412,
+      "sha256": "1e32f93149208c2b46ed973fa9c5f4f3833679a87f22149e5ba9ff32f5697360",
+      "blob": "8a78df76a67052eec4fe237d32444d8dfe662d7f"
+    },
+    {
+      "path": "mcp-execution/examples/paper-journal.mjs",
+      "bytes": 30641,
+      "sha256": "f668f2b216694d0fdcc7b507941162198c38c7534f75a47c4d2265754e7ae724",
+      "blob": "eff0774d7b633247c9384ee3b045da2b9f1ffb53"
+    },
+    {
+      "path": "mcp-execution/test/paper-journal-example.test.mjs",
+      "bytes": 27429,
+      "sha256": "46011f1ab7f74c250f01a78429d3aafefb06bcfea9976b04887cc5a2065c59f8",
+      "blob": "ad5f6f8289c12972aba5d9c806f290783c54fa99"
+    }
+  ],
+  "deltaVsB807": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "mcp-execution/EXAMPLES.md",
+    "mcp-execution/examples/paper-journal.mjs",
+    "mcp-execution/test/paper-journal-example.test.mjs"
+  ],
+  "protectedGitIdentities": {
+    "count": 5835,
+    "bytes": 380904798,
+    "modeTypeBlobSizeEqual": true,
+    "workingFullByteAudit": false
+  },
+  "goalPrefixes": [
+    {
+      "path": "docs/goal/STATUS.md",
+      "baseSha256": "64b1ede55435e42ca0b0309fd0f581e78fa9ea9948846dc6ab9d56169e584afc",
+      "previousSha256": "c3e7d8ea3a254d37726e70144546907e52005a9f3e5a1e05311626060d727bde",
+      "baseBytes": 87008,
+      "previousBytes": 95250,
+      "currentBytes": 97100,
+      "bothPrefixesPreserved": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "baseSha256": "b409fc86a6f545455fe531f5e38b618d7f8a62311b3396287df6680fac2da27d",
+      "previousSha256": "faa54eeb4b1935880c20440e26e379424ad6b6901c5779c52ebd4a4121ad5b3f",
+      "baseBytes": 362372,
+      "previousBytes": 370614,
+      "currentBytes": 372464,
+      "bothPrefixesPreserved": true
+    }
+  ],
+  "continuity": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 6177,
+      "sha256": "f6c2f2cb0f56e8c667f606022d72aa7302cac8ef600ddcecee0cb86f245d27e1"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 234465,
+      "sha256": "323a84f2cae558d41244f1891bf380a3a65ee10ec7fb7e3816d987de22d86af0"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 4142,
+      "sha256": "addd9d23d403834a9a2e8af0b8c49cc3f84889d3974146d9eb51aae4d86849c8"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 579315,
+      "sha256": "42f336a6c3c9df5982f56148e0bd3d2ab21afa851f721c204cbd602351d336b3"
+    }
+  ],
+  "assignment": {
+    "bytes": 22880,
+    "sha256": "17476a5a853dfda16298024fa2f85d89e858a9becc5b61bfa393f6d22851a72c"
+  },
+  "exactRemoteEvidenceSeparate": {
+    "receipt": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example-peer/retained-ci-73712ef7.json",
+      "bytes": 13268,
+      "sha256": "5ff6df1b74952f65166eb81ffbb2108c72c2bb54dd8fe0d3f8ec56545549995d"
+    },
+    "actualCurrentNamedPasses": 34,
+    "actualExecution": 117,
+    "actualRoot": [
+      6,
+      925,
+      9
+    ],
+    "remoteNode": "22.23.3",
+    "sevenChecks": "SUCCESS",
+    "testedMerge": "1778fd2413efa074db1ee00ea884cb72b19e2f8d",
+    "testedTreeEqualsCurrentSource": true,
+    "capturedCurrentRefAlerts": 0,
+    "latestCapturedBothLanguageAnalysesZero": true,
+    "historical1ddd": {
+      "actualNamed": 29,
+      "execution": 112
+    },
+    "historicalB807": {
+      "actualNamedPassed": 30,
+      "actualNamedFailed": 2,
+      "executionPassed": 113,
+      "executionFailed": 2,
+      "entireRawAndOriginalAssertionsKept": true,
+      "failedLaterRetentionAssertionsNotRetrospectivelyPassing": true
+    }
+  },
+  "archivePreparationSeparate": {
+    "receipt": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example-peer/archive-preparation-73712ef7.json",
+      "bytes": 22665,
+      "sha256": "6f06315e910ddf79154dd128088d03c9ae0c7cd7a98db2f6cbb3b946f41d77c7"
+    },
+    "status": "APPROVED_ALLOCATION_PREPARATION_BYTE_PROOF_ONLY_FINAL_GATES_OPEN",
+    "originalPrimaryAuthority": "17476a5a853dfda16298024fa2f85d89e858a9becc5b61bfa393f6d22851a72c",
+    "currentPlanSha256": "cb4af67b8b50e27b65a8d4dbde1c3b03744035cd84b78745291bc1b420db2f08",
+    "preparedFilesIncludingReadme": 33,
+    "preparedOriginalBytes": 3015324,
+    "preparedStoredBytes": 1956274,
+    "plannedFinalIncludingReadmeManifestAndTwoPeersMainIntegration": 37,
+    "reservedActual358IntegrationSlots": 3,
+    "maximumTotal": 40,
+    "maximumOriginalBytesIncludingReadmeManifest": 12582912,
+    "futureFinalByteBudgetUnverified": true,
+    "originalStoredGzipDecodedAndProspectiveBlobProof": "PASS",
+    "finalRepositoryArchiveNotYetAdded": true
+  },
+  "scopeLimits": [
+    "Static frozen Git/module/test/docs plus own finite stdlib metadata/hash/gzip parsing only. No project import/Node/test/CLI/browser/helper/provider/key/auth/new network/job/grant/product/source/archive mutation by reviewer.",
+    "Captured remote synthetic Linux/Node22.23.3 actual source tests remain separate evidence. They do not establish hard OS wall time, startup/stdout inclusion, timer/filesystem preemption, SDK child absence, hardware persistence or broker truth.",
+    "Signatures self-attest a caller-declared key/record/clock; strict companion identity checking does not duplicate protected general cash replay or authenticate complete real fills/costs.",
+    "Protected equality is5835 Git mode/type/blob/size identities380904798B; whole-working-byte audit is author evidence, not independently rerun.",
+    "Repository-only private Unreleased example; no website/npm/version/provider/model/broker/spend/indexing/humanexpert/adoption/ALPHAC result is established. Full hierarchy remains active."
+  ],
+  "nextGates": [
+    "Secondary may prepare the previously approved bounded archive after both current source/CI peer gates; future final bytes/source/CI are not preapproved.",
+    "If primary358 actually merges, preserve its protected source and union both original goal histories, then sign/hash new integrated source and bind actual existing remote CI.",
+    "Final frozen archive work/index/Git/gzip/count/original-byte/manifest and final exacthead currentCI extension before primary sole ordinary merge; finalhead proofs stay external to avoid self-reference."
+  ]
+}

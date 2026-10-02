@@ -1,0 +1,92 @@
+{
+  "schema": "canli.paper-example.primary-static-review.v1",
+  "observed_at": "2026-10-02T00:19:29.867145+00:00",
+  "source": "e47e331e1e1ac17cb43c55a53a764c2c398d7689",
+  "tree": "4fe13857e123acac338662baa3ac52c6d350dc3a",
+  "signature": "G",
+  "author_worktree_clean_observed": true,
+  "source_manifest_sha256": "a06648602c0ff8232e1ba599ba6a7280363e42b5628a50692879f26d08361f68",
+  "six_source_pins": {
+    "docs/goal/LOG.md": {
+      "bytes": 367271,
+      "sha256": "2f62d5ce5842cfd8833da449738e4acd775a8e46eef94bc70e01b8cb348931f1"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 91907,
+      "sha256": "d0695d84104f95bdaadf0d8763f99e8d3ca5eb66a9af5653a59bcba26f3b17f7"
+    },
+    "mcp-execution/EXAMPLES.md": {
+      "bytes": 9109,
+      "sha256": "63fda70804fa1cdd75b5793f6dc00f751d1359233b685498f301a8032036d8af"
+    },
+    "mcp-execution/README.md": {
+      "bytes": 16412,
+      "sha256": "1e32f93149208c2b46ed973fa9c5f4f3833679a87f22149e5ba9ff32f5697360"
+    },
+    "mcp-execution/examples/paper-journal.mjs": {
+      "bytes": 27464,
+      "sha256": "e19629b4b6d7bfcb333074ddeef0f8a19c2868353abd97f8e2781d4f9e341afb"
+    },
+    "mcp-execution/test/paper-journal-example.test.mjs": {
+      "bytes": 20824,
+      "sha256": "f366ed4b4a9474b8d4fc847330ae90cd83214eb2ab4bf39df91b3f018909862d"
+    }
+  },
+  "delta_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "mcp-execution/EXAMPLES.md",
+    "mcp-execution/README.md",
+    "mcp-execution/examples/paper-journal.mjs",
+    "mcp-execution/test/paper-journal-example.test.mjs"
+  ],
+  "protected_Git_object_and_mode_diff_empty": true,
+  "both_goal_history_prefixes": {
+    "docs/goal/STATUS.md": true,
+    "docs/goal/LOG.md": true
+  },
+  "review_scope": [
+    "runner363 lines",
+    "all28 written test bodies",
+    "EXAMPLES.md",
+    "README-only example addition",
+    "delivered source export signing/financial metadata sections as data"
+  ],
+  "scoped_static_controls": [
+    "injected trusted transport and fixed local stdio",
+    "plain immutable bounded input capture",
+    "native signal and absolute-clock checks in queued dispatch",
+    "11 explicit calls and explicit SDK toolDefinition",
+    "write-disabled default and caller-prepared private home/key",
+    "exact original operation/request/expected-head/sequence receipts",
+    "no automatic retry/resubmit/manual lock cleanup",
+    "typed persistence uncertainty and no diagnostic echo",
+    "pending write/export retained on transport failure",
+    "self-attestation and cooperative timing limitations documented"
+  ],
+  "findings": [
+    {
+      "id": "CC-PAPER-EXPORT-COMPANION-CONSISTENCY",
+      "priority": "P2",
+      "status": "HOLD",
+      "source_lines": [
+        197,
+        213,
+        218,
+        221,
+        288
+      ],
+      "corroborates_author_cue_sha256": "9f1ab07ccc9aa4e7f79f6aec70d3138ee92c0125fc79c5dfe6a9a69b76147b26",
+      "evidence": "exportReceipt signature covers canonical record only. Metrics closing_equity/cumulative/max_drawdown and series are returned companions; only fees_usd/fill_count checked. Artifact digest is caller recomputable and not a signature. A changed closing_equity with correctly recalculated artifact bytes/hash leaves the original record signature valid and all present predicates satisfied.",
+      "requested": "Refuse altered/missing/nonfinite or inconsistent companion metadata against signed record and this single supplied account/fill/mark scope. Strict known field/observation shape or existing independent full-bundle replay; retain original pending export on refusal. Add actual remote tamper controls with recomputed artifact digests, not stale-digest-only cases. No protected math changes."
+    }
+  ],
+  "additional_review_cue_not_reproduced": {
+    "topic": "aggregate final output budget",
+    "observation": "finish(report) is outside runPaperJournal error handler; no per-component retained-output reservation is explicit",
+    "request": "Check bounded oversized retained planning/export responses cannot cause output capture to reject the whole promise and erase the pending receipt; add a finite regression if the concern reproduces. This is a review cue, not an observed runtime finding."
+  },
+  "local_project_execution": false,
+  "current_runtime_acceptance": "e47 original28 CI is historical baseline; corrected next source requires own exact CI",
+  "decision": "HOLD companion correction; no additional independently demonstrated blocking finding"
+}

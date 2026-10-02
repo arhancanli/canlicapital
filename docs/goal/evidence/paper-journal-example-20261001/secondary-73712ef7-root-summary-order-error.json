@@ -1,0 +1,8 @@
+{
+  "schema": "canli.paper-example.metadata-error.v1",
+  "source": "73712ef7acd5f5aaf6a4e701ee9793608efcf2f4",
+  "original_error": "AssertionError: root summary expected stream order925,6,9; actual preserved log stream has6,925,9",
+  "effects": "Root raw log and seven-success check metadata captured; exact aggregate receipt not written and messages not sent before refusal",
+  "correction": "Preserve actual stream order; verify three source-specific suites by size and zero omitted outcomes, rather than require an incorrect order",
+  "product_failure": false
+}

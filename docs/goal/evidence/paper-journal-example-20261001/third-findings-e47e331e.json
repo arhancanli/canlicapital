@@ -1,0 +1,94 @@
+{
+  "schema": "canli.paper-journal-example.peer.static-findings.v1",
+  "observed_at": "2026-10-02T00:17:52.189285+00:00",
+  "head": "e47e331e1e1ac17cb43c55a53a764c2c398d7689",
+  "tree": "4fe13857e123acac338662baa3ac52c6d350dc3a",
+  "status": "HOLD_FOR_NARROW_SOURCE_CORRECTIONS",
+  "source_pin": {
+    "bytes": 27464,
+    "sha256": "e19629b4b6d7bfcb333074ddeef0f8a19c2868353abd97f8e2781d4f9e341afb",
+    "git_blob": "fe55d276031ac09ebdb12baf3f2e71e54146cc42"
+  },
+  "findings": [
+    {
+      "id": "CC-357-EXPORT-COMPANION-BINDING",
+      "severity": "P2",
+      "origin": "secondary self-review cue, independently confirmed source semantics by third; not independent discovery",
+      "original_cue_sha256": "9f1ab07ccc9aa4e7f79f6aec70d3138ee92c0125fc79c5dfe6a9a69b76147b26",
+      "lines": [
+        192,
+        203,
+        207,
+        211,
+        213,
+        297
+      ],
+      "observation": "Signature verifies canonical record only. The artifact digest is recomputable; closing_equity/cumulative_return/max_drawdown/series companions are returned but not bound to signed period/returns/risk or this sole supplied mark. Mutating closing_equity and recomputing artifact bytes/hash can preserve current checks. Source-only counterexample, NOT executed.",
+      "requested_change": "Reject inconsistent or malformed financial companion fields against signed record, fixed scenario and supported sole-observation profile before acknowledging completed. Reuse delivered financial semantics, retain export request and six earlier receipts on failure. Include companion tamper with recomputed artifact digest and original valid signature."
+    },
+    {
+      "id": "CC-357-FINAL-REPORT-CAPACITY",
+      "severity": "P2",
+      "origin": "third static serialization/guard analysis",
+      "lines": [
+        15,
+        167,
+        238,
+        259,
+        297,
+        302,
+        310,
+        349
+      ],
+      "scope": "injected local call interface malformed/large success replies; no real server or model probe",
+      "observation": "Individually bounded replies can accumulate through sizing.binding_constraint, check.not_modelled and exported series beyond final192KiB. finish(report) runs outside both entrypoint stopped-report catches, so final JSON_BOUND rejects after six acknowledged writes and prevents the promised original-request/receipt report from being returned.",
+      "capacity_receipt_sha256": "f3ac294b7d531da830492b5c911b41533a446a477d5cdcbd357ad739a112859b",
+      "capacity_arithmetic": {
+        "schema": "canli.paper-example.peer.static-capacity.v1",
+        "source": "e47e331e1e1ac17cb43c55a53a764c2c398d7689",
+        "kind": "STATIC_JSON_CAPACITY_ARITHMETIC_NOT_PROJECT_RUNTIME",
+        "initial_candidate_retained": {
+          "field_lengths": [
+            64400,
+            64400,
+            64400
+          ],
+          "export_reply_bytes": 131624,
+          "export_above_reply_cap": true,
+          "result": "invalid first capacity candidate; not product/runtime failure"
+        },
+        "corrected_field_lengths": {
+          "sizing.binding_constraint": 64400,
+          "checked.not_modelled[0]": 64400,
+          "bundle.series": 64100
+        },
+        "individual_reply_bytes": {
+          "sizing": 129214,
+          "check": 130050,
+          "export": 131024
+        },
+        "reply_cap": 131072,
+        "final_report_bytes": 199872,
+        "output_cap": 196608,
+        "over_cap_bytes": 3264,
+        "meaning": "individually bounded retained fields can jointly exceed final report capacity; finish() is outside the stopped-report catch",
+        "signature_limit": "placeholder public key/signature lengths, NOT valid crypto or a runtime counterexample. Source argument assumes any valid signature over this unchanged record. Series is outside signed record and artifact hash can be recomputed.",
+        "request_hash_limit": "fixed-length hash placeholders for capacity; no actual store receipt or journal is fabricated as evidence",
+        "project_imports": false,
+        "node_execution": false,
+        "signing": false,
+        "tool_calls": 0,
+        "runtime_case_count": null,
+        "script_sha256": "020d167df23ff787e60164cf7c9ca0bf4f2e0a8d407b685941ab23d3ff79885c"
+      },
+      "requested_change": "Bound/validate retained reply fields and aggregate final report budget before known oversized results advance writes; catch any final capacity refusal with a bounded diagnostic retaining original write requests/receipts and pending export for manual review. Never silently claim completed or lose earlier acknowledgements. Add a meaningful bounded regression, remote CI only."
+    }
+  ],
+  "fee_delta": "CLOSED_STATIC_SOURCE for provided buy schedule lacking commission_bps/per_share_usd; explicit zero and absent disclosed schedule retained",
+  "runtime_evidence": "e39/e47 author remote receipts distinct; peer raw parsing pending, no local execution",
+  "no_other_blocker_claim": "remaining review/CI completion still pending; future correction not preapproved",
+  "project_imports": false,
+  "project_runtime": false,
+  "local_job_or_grant": false,
+  "full_goal": "ACTIVE"
+}

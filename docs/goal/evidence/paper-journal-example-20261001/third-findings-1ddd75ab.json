@@ -1,0 +1,114 @@
+{
+  "schema": "canli.paper-example.peer.static-findings.v1",
+  "observed_at": "2026-10-02T00:23:27.073846+00:00",
+  "source": "1ddd75ab4b3e778781ae676cee74fb6c9644913e",
+  "tree": "758b0e7d0cc28acdd1b1a2112dbba21dfe467f24",
+  "source_pins": {
+    "docs/goal/LOG.md": {
+      "bytes": 368785,
+      "sha256": "32300d51bfdc6de9ea6437edb44d58f52e694e3737278a09deeffd96c1508896",
+      "git_blob": "e505671555881402977fe0bf3ee2ea9060d3be60"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 93421,
+      "sha256": "9e1262ddae7c55c6edfe037b2f7661c6a23cd5c372bf98ac9fee40fd10d03bb5",
+      "git_blob": "37bd871d3adac9ed05716ee4dd4261f52ae9c642"
+    },
+    "mcp-execution/EXAMPLES.md": {
+      "bytes": 9427,
+      "sha256": "a685928926514d6998a037a2441550995ecae850af82a38801d1cae639d02054",
+      "git_blob": "09734218f7188eb687fba3b68190d663f1cb97f9"
+    },
+    "mcp-execution/README.md": {
+      "bytes": 16412,
+      "sha256": "1e32f93149208c2b46ed973fa9c5f4f3833679a87f22149e5ba9ff32f5697360",
+      "git_blob": "8a78df76a67052eec4fe237d32444d8dfe662d7f"
+    },
+    "mcp-execution/examples/paper-journal.mjs": {
+      "bytes": 29162,
+      "sha256": "62f955a51cdf5eed13ad38056af6fa77cb77859a81a2eb3221a4b3f4408dad72",
+      "git_blob": "147a79f5254466173fc565db141178d3d400f7cd"
+    },
+    "mcp-execution/test/paper-journal-example.test.mjs": {
+      "bytes": 21961,
+      "sha256": "c07df9e681c52620d518f0678149f48cdc89f471d01264b32b99faeb4c9f7cae",
+      "git_blob": "0f4b58dd8988b592e07b4463f212e45d7111932a"
+    }
+  },
+  "status": "HOLD_TWO_SOURCE_GAPS",
+  "historical_e47_findings_sha256": "5c9a6ba6b3cc9dabf3860c6aa8599378e9a1261280d259803334691d346bd6e8",
+  "closed_scope": "1ddd now refuses isolated closing-equity tampering and requires exact sole-observation shape. Original e47 capacity vector is superseded by this record-notes vector. Full source is not preapproved.",
+  "findings": [
+    {
+      "id": "CC-357-EXPORT-TRADED-NOTIONAL-BINDING",
+      "severity": "P2",
+      "kind": "third source reasoning, NOT executed",
+      "lines": [
+        219,
+        212
+      ],
+      "counterexample": "Starting from the genuine default export, change metrics.traded_notional_usd from1002.5 to1, set series[0].turnover=1/10000, and recompute artifact_bytes/artifact_sha256. Record and original valid signature stay byte-unchanged. Positive notional and the unsigned notional/opening turnover identity both pass; no check ties either amount to supplied fill qty10/price100.25. Runner can still return completed with incorrect turnover/traded amount.",
+      "requested_change": "Bind traded notional to the sole supplied fill with the delivered decimal/precision semantics, or omit unsupported companion claims. Add paired tamper+artifact rehash with original valid signature and retained six receipts/pending export. Do not change protected financial replay."
+    },
+    {
+      "id": "CC-357-FINAL-REPORT-CAPACITY",
+      "severity": "P2",
+      "kind": "third STATIC byte-capacity arithmetic with valid-signature length premise; NOT project runtime",
+      "lines": [
+        318,
+        326,
+        365,
+        275,
+        277
+      ],
+      "capacity_model_sha256": "c30b642692c8083f0ad58d103876c08d95fff391908e4fc2934befe5d37a8583",
+      "capacity_model": {
+        "schema": "canli.paper-example.peer.static-capacity.v1",
+        "source": "1ddd75ab4b3e778781ae676cee74fb6c9644913e",
+        "kind": "STATIC_JSON_CAPACITY_ARITHMETIC_NOT_PROJECT_RUNTIME",
+        "initial_candidate_retained": {
+          "field_lengths": [
+            64400,
+            64400,
+            64400
+          ],
+          "export_reply_bytes": 131624,
+          "export_above_reply_cap": true,
+          "result": "invalid first capacity candidate; not product/runtime failure"
+        },
+        "corrected_field_lengths": {
+          "sizing.binding_constraint": 64400,
+          "checked.not_modelled[0]": 64400,
+          "bundle.record.notes": 63000
+        },
+        "individual_reply_bytes": {
+          "sizing": 129214,
+          "check": 130050,
+          "export": 129916
+        },
+        "reply_cap": 131072,
+        "final_report_bytes": 199292,
+        "output_cap": 196608,
+        "over_cap_bytes": 2684,
+        "meaning": "individually bounded retained fields can jointly exceed final report capacity; finish() is outside the stopped-report catch",
+        "signature_limit": "placeholder public key/signature lengths, NOT valid crypto or a runtime counterexample. Source argument assumes a valid Ed25519 signature over this bounded record including notes; no unbounded series premise or missing companion metadata. The record is not tied to a genesis key by these runner checks; callback can supply a valid key/signature. This is capacity reasoning only.",
+        "request_hash_limit": "fixed-length hash placeholders for capacity; no actual store receipt or journal is fabricated as evidence",
+        "project_imports": false,
+        "node_execution": false,
+        "signing": false,
+        "tool_calls": 0,
+        "runtime_case_count": null,
+        "script_sha256": "0e93a09b46392c10e21ae13854c92e33ab65e86ea30f35e717eb4c1b64213772"
+      },
+      "counterexample_scope": "Injected interface can return source-admitted sizing.binding_constraint64400chars, check.not_modelled[0]64400chars and a correctly signed minimal record.notes63000chars with the required current one-observation metrics/series. All three replies are below128KiB; retained final report199292B exceeds192KiB by2684. No signature is generated/verified in this peer model; hash/key/signature placeholders are length data, not receipts or runtime evidence.",
+      "impact": "finish() is outside stopped-report catches; JSON_BOUND can reject entrypoint after acknowledged writes without returning original requests/receipts for manual review. Source-admitted oversized metadata is enough; this is not a real-server/provider experiment.",
+      "requested_change": "Bound retained metadata/record fields and aggregate output capacity, and preserve core request/receipt/pending state on any final refusal. Add bounded malformed/aggregate-result regression through existing remote CI only."
+    }
+  ],
+  "fee_fix": "CLOSED_STATIC_SOURCE; explicit0/absent schedule retained",
+  "runtime_evidence": "e39 27/110 and e47 28/111 distinct author remote captures; new29 cases remain WRITTEN until exact source CI",
+  "project_execution": false,
+  "signing_or_keys_read": false,
+  "source_edits": false,
+  "full_goal": "ACTIVE"
+}
