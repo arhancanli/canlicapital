@@ -215,3 +215,14 @@ preparation is still recomputed unchanged. A named regression with valid64/null
 controls covers this boundary. The original source-review finding and prior48-case
 remote evidence remain retained separately from this correction and its new-head
 CI; this paragraph is documentation, not evidence that the regression ran.
+
+
+Review calibration: the original newline-admission finding was source reasoning,
+not an executed failure. ECMAScript CompileAssertion for `$` permits a position
+before a line terminator only with the multiline flag. The original SHA pattern
+has no such flag, so that counterexample is unsupported by the standard. The new
+named fixture checks the original native no-multiline pattern and unchanged
+intake refusal as well as the explicit length64 contract guard. Its actual remote
+result must remain separate from the written finding and correction. Original
+receipts and earlier wording are preserved rather than rewritten. See the
+[ECMAScript assertion rules](https://tc39.es/ecma262/multipage/text-processing.html#sec-compileassertion).

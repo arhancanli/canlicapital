@@ -423,10 +423,14 @@ test('ASCII return duplication and raw-binding expansion refuse reports above6Mi
 });
 
 
-test('CC-367 exact64 declared source SHA refuses every final line terminator while valid64 and null remain unverified', () => {
+test('CC-367 exact64 declared source SHA refuses every final line terminator while valid64 and null remain unverified', t => {
   for (const target of ['auditSettings', 'intakeSettings']) {
     for (const suffix of ['\n', '\r', '\u2028', '\u2029', '\r\n', ' ']) {
-      const s = complete(); s[target].implementation_source_sha256 = 'a'.repeat(64) + suffix; reject(s, 'SHA');
+      const s = complete(); s[target].implementation_source_sha256 = 'a'.repeat(64) + suffix;
+      assert.equal(/^[a-f0-9]{64}$/.test('a'.repeat(64) + suffix), false, 'Original nonmultiline native regex already refuses extra characters');
+      if (target === 'intakeSettings') assert.throws(() => prepareExpertIntake(...args(s).slice(0, 6)), e => e instanceof ExpertIntakeError && e.code === 'SHA');
+      assert.throws(() => run(s), e => e instanceof ExpertSubmissionAuditError &&
+        (e.code === 'SHA' || (target === 'intakeSettings' && e.code === 'INTAKE_SHA')));
     }
     for (const value of [null, 'a'.repeat(64)]) {
       const s = complete(); s[target].implementation_source_sha256 = value; const report = run(s);
@@ -434,4 +438,5 @@ test('CC-367 exact64 declared source SHA refuses every final line terminator whi
       assert.equal(binding.declared_module_sha256, value); assert.equal(binding.declared_module_sha256_verified, false); unknown(report);
     }
   }
+  t.diagnostic('CC-367 calibration: original nonmultiline native SHA regex and unchanged intake refuse all six extra-character variants; original static counterexample is unsupported. Explicit length64 guard is contract hardening.');
 });
