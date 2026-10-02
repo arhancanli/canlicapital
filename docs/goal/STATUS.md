@@ -1373,3 +1373,21 @@ remain unchanged. No runtime test is claimed before exact-source remoteCI.
 The proposed local snapshot cap is1MiB for limits and the existing16MiB for
 orders, preserving the maximum escaped5000-symbol allowlist. No local project
 job/grant/provider/model/spend/publication is launched; full hierarchy ACTIVE.
+
+
+## Execution input fault-fixture correction, 2026-10-02T00:15:43.983050+00:00
+
+PR358 original signed86653770 retains its actual MCP105 cases:100 PASS/5 FAIL,
+including all five externally bounded FIFO consumers and fee controls passing.
+Raw305301B SHA07d96188 and the full original failure extraction remain unchanged.
+The five fault adapters intercepted Node ESM loader reads because installation
+preceded implementation import; growth/shrink/edit counters ran before the
+intended input FD. The narrow correction imports first, restricts read faults
+to that descriptor, and asserts the injected read occurred. All product reader,
+fee/schema/math/default-surface sources stay byte-identical. New-source remote
+CI remains required; no local Node/import/test/CLI/job/lease or provider/model/
+spend/order/publication action occurs. Secondary357e47 has28 actual new remote
+passes, but independent review and export-companion correction remain open.
+All four Sovereign pillars,10M actually indexed quality canonicals,SEO/intents/
+design/analyzers/adoption,real-expert refinery/research/governedALPHAC and paper
+then lawful capital objectives remain unfinished and preserved.

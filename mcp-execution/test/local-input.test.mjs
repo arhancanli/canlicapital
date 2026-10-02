@@ -129,6 +129,8 @@ for (const change of ['short-read', 'grow', 'shrink', 'same-length-edit', 'read-
       import fs from 'node:fs';
       import { syncBuiltinESMExports } from 'node:module';
       const [file, change] = process.argv.slice(1);
+      // Load the implementation before injecting faults; module-source reads are not test inputs.
+      const { readLocalInput } = await import(${JSON.stringify(inputUrl)});
       const read = fs.readSync, close = fs.closeSync, open = fs.openSync;
       let reads = 0, closes = 0, readerFd;
       fs.openSync = (path, ...args) => {
@@ -138,6 +140,7 @@ for (const change of ['short-read', 'grow', 'shrink', 'same-length-edit', 'read-
       };
       fs.closeSync = fd => { if (fd === readerFd) closes++; return close(fd); };
       fs.readSync = (fd, buffer, offset, length, position) => {
+        if (fd !== readerFd) return read(fd, buffer, offset, length, position);
         reads++;
         if (change === 'read-error') throw new Error('injected read refusal');
         if (change === 'short-read') return reads === 1 ? read(fd, buffer, offset, 1, position) : 0;
@@ -150,13 +153,12 @@ for (const change of ['short-read', 'grow', 'shrink', 'same-length-edit', 'read-
         return count;
       };
       syncBuiltinESMExports();
-      const { readLocalInput } = await import(${JSON.stringify(inputUrl)});
       let refused = false;
       try { readLocalInput(file, { maxBytes: 1024 }); }
       catch (error) { refused = /changed while being read|injected read refusal/.test(error.message); }
-      process.stdout.write(JSON.stringify({ refused, closes }));
+      process.stdout.write(JSON.stringify({ refused, closes, reads }));
     `, [file, change]);
-    assert.equal(result.refused, true); assert.equal(result.closes, 1);
+    assert.ok(result.reads > 0); assert.equal(result.refused, true); assert.equal(result.closes, 1);
   });
 }
 
