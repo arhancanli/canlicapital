@@ -587,3 +587,42 @@ Actual source rights, complete universe coverage, human expertise/independence,
 labels, indexing, adoption and qualified financial outcomes remain unknown. Package
 preparation is distinct from a version bump, hosted activation or npm publication;
 PRIMARY retains those release steps.
+
+
+Initial package candidate88c4e7f1 failed its first remote MCP setup: all20new
+cases were hook failures, with0new passes; the97prior fundamentals cases passed,
+root6+1044+9 passed, execution139 was unrun, and six of seven checks passed.
+The armed npm network sentinel recorded a caught request even though `npm pack`
+exited0. No tarball admission or packaged SDK behavior is claimed from that run.
+All original logs/API captures and the failed signed source remain preserved.
+
+The source-supported diagnosis is npm's optional update notifier: the deliberately
+minimal subprocess environment omitted CI, and official bundled npm10.9.9 source
+checks the notifier opt-out or CI detection before starting its background request.
+The denied operation has no captured call-site stack, so this remains a diagnosis
+to verify on the corrected head. The fixture now supplies CI=true and explicit
+`--update-notifier=false --audit=false --fund=false` alongside offline/ignore-scripts.
+The network sentinel stays armed; another denied attempt still fails the setup.
+
+The first actual-tarball fixture also emits one bounded
+`CANLI_AUDIT_PACKAGE_TARBALL` diagnostic: original gzip bytes as canonical base64,
+compressed length/SHA256, each regular member's path/mode/length/SHA256 and the
+explicit sole dependency-link disclosure. Its360KiB record cap contains the
+existing256KiB compressed tarball cap. Independent reviewers can recover the
+actual original artifact from retained CI, bounded-decode it and compare every
+member with the signed source. This records an actual candidate artifact, not a
+published package, and contains no credentials or private capacity records.
+All20fixture names and existing runtime input/output/lifecycle limits are retained;
+new-head remote CI and both independent gates remain required.
+
+
+Independent source review of initial88 also found P2
+`CC-364-TAR-HEADER-ASCII-COERCION`: Node Buffer ASCII conversion can clear a raw
+header byte's high bit, admitting a different byte sequence under the expected
+path or numeric value. That counterexample was source reasoning, not a reviewer
+execution. The parser now rejects every non-ASCII byte in each admitted header
+text/numeric field before conversion. A21st actual-tar fixture mutates name, mode,
+size, checksum, type and prefix bytes with valid recomputed checksum/gzip, and
+requires refusal before any fixture file appears. The original20names are intact.
+Runtime policy/schema/core/defaultseven are unchanged. Corrected21-case remote
+evidence and independent final reviews remain pending.

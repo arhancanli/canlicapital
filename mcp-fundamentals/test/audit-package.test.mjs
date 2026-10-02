@@ -92,7 +92,10 @@ function tarEntries(compressed) {
   const bytes = gunzipSync(compressed, { maxOutputLength: PACKAGE_LIMITS.expanded });
   assert.equal(bytes.length % 512, 0, 'TAR_ALIGNMENT');
   const entries = new Map();
-  const field = b => b.subarray(0, b.indexOf(0) < 0 ? b.length : b.indexOf(0)).toString('ascii');
+  const field = b => {
+    assert.ok(b.every(unit => unit <= 0x7f), 'TAR_ASCII');
+    return b.subarray(0, b.indexOf(0) < 0 ? b.length : b.indexOf(0)).toString('ascii');
+  };
   const octal = b => { const s = field(b).trim(); assert.match(s, /^[0-7]+$/, 'TAR_NUMBER'); return Number.parseInt(s, 8); };
   let offset = 0, ended = false;
   while (offset + 512 <= bytes.length) {
@@ -165,8 +168,8 @@ async function npmPack(directory) {
   writeFileSync(networkGuard, GUARD.slice(0, writeGuardStart) + 'syncBuiltinESMExports();\n');
   const userConfig = join(directory, 'npm-user.conf'), globalConfig = join(directory, 'npm-global.conf');
   writeFileSync(userConfig, ''); writeFileSync(globalConfig, '');
-  const args = ['pack', '--offline', '--ignore-scripts', '--json', '--cache', cache, '--pack-destination', output, '--userconfig', userConfig, '--globalconfig', globalConfig];
-  const child = spawn('npm', args, { cwd: PACKAGE_ROOT, env: { PATH: process.env.PATH, NODE_OPTIONS: '--import=' + JSON.stringify(networkGuard) }, stdio: ['ignore', 'pipe', 'pipe'] });
+  const args = ['pack', '--offline', '--ignore-scripts', '--update-notifier=false', '--audit=false', '--fund=false', '--json', '--cache', cache, '--pack-destination', output, '--userconfig', userConfig, '--globalconfig', globalConfig];
+  const child = spawn('npm', args, { cwd: PACKAGE_ROOT, env: { PATH: process.env.PATH, CI: 'true', NODE_OPTIONS: '--import=' + JSON.stringify(networkGuard) }, stdio: ['ignore', 'pipe', 'pipe'] });
   let stdout = '', stderr = '', expired = false, overflow = false, outputBytes = 0;
   for (const [stream, append] of [[child.stdout, b => { stdout += b; }], [child.stderr, b => { stderr += b; }]]) {
     stream.on('data', b => {
@@ -267,7 +270,7 @@ async function withPackedClient(fn, { defaultServer = false } = {}) {
 }
 const cloneEntries = () => new Map([...packed.entries].map(([p, row]) => [p, { mode: row.mode, bytes: Buffer.from(row.bytes) }]));
 
-test('audit package: actual offline no-script tarball admits exact files modes shebang bins contract and pinned closure', () => {
+test('audit package: actual offline no-script tarball admits exact files modes shebang bins contract and pinned closure', t => {
   assert.deepEqual(auditPackage(packed.entries), packed.packageJson);
   assert.equal(packed.record.files.length, FILES.length);
   for (const row of packed.record.files) {
@@ -275,8 +278,22 @@ test('audit package: actual offline no-script tarball admits exact files modes s
     assert.ok(actual); assert.equal(row.size, actual.bytes.length); assert.equal(row.mode, actual.mode);
   }
   assert.ok(packed.args.includes('--offline') && packed.args.includes('--ignore-scripts'));
+  assert.ok(packed.args.includes('--update-notifier=false'));
   for (const [path, row] of packed.entries) assert.deepEqual(row.bytes, readFileSync(join(PACKAGE_ROOT, path.slice('package/'.length))));
   assert.doesNotMatch([...packed.entries.keys()].join('\n'), /(?:\.git|node_modules|test\/|examples\/|package-lock|\.env|coordination|credential)/);
+  // Bounded actual original bytes allow independent stdlib custody checks from retained CI.
+  const proof = {
+    schema: 'canli.fundamentals.audit-package-artifact.v1',
+    name: packed.packageJson.name, version: packed.packageJson.version, bins: packed.packageJson.bin,
+    npm_offline_ignore_scripts_update_notifier_disabled: true,
+    compressed_bytes: packed.compressed.length, compressed_sha256: sha(packed.compressed),
+    original_gzip_base64: packed.compressed.toString('base64'),
+    files: [...packed.entries].map(([path, row]) => ({ path, mode: row.mode, bytes: row.bytes.length, sha256: sha(row.bytes) })),
+    sole_dependency_link: 'Existing remote CI SDK server/core2.1.0 and Zod4.6.5 node_modules; no repository runtime source link or install.',
+  };
+  const text = JSON.stringify(proof);
+  assert.ok(Buffer.byteLength(text) <= 360 * 1024, 'TAR_PROOF_BOUND');
+  t.diagnostic('CANLI_AUDIT_PACKAGE_TARBALL ' + text);
 });
 test('audit package: canonical bytes and import-only core prove distinct old new whole hashes without changing functions', () => {
   const core = packed.entries.get('package/src/audit-inputs-core.mjs').bytes.toString();
@@ -311,6 +328,19 @@ test('audit package: gzip corruption compressed capacity and traversal path refu
   assert.throws(() => tarEntries(Buffer.alloc(PACKAGE_LIMITS.compressed + 1)), /TAR_BOUND/);
   const bytes = gunzipSync(packed.compressed); Buffer.from('package/../private').copy(bytes, 0); bytes.fill(0, 18, 100);
   assert.throws(() => tarEntries(gzipSync(bytes)), /TAR_PATH/);
+});
+test('audit package: raw high-bit name prefix type numeric and checksum headers refuse before decoding or fixture writes', () => {
+  const beforeFiles = readdirSync(ownedDirectory).sort();
+  for (const index of [0, 100, 124, 148, 156, 345]) {
+    const bytes = gunzipSync(packed.compressed);
+    if (index !== 148) bytes[index] |= 0x80;
+    bytes.fill(32, 148, 156);
+    const sum = bytes.subarray(0, 512).reduce((n, b) => n + b, 0);
+    Buffer.from(sum.toString(8).padStart(6, '0') + '\0 ').copy(bytes, 148);
+    if (index === 148) bytes[index] |= 0x80;
+    assert.throws(() => tarEntries(gzipSync(bytes)), /TAR_ASCII/);
+  }
+  assert.deepEqual(readdirSync(ownedDirectory).sort(), beforeFiles);
 });
 test('audit package: installed-bin-style symlink actually initializes exactly one annotated SDK tool with bounded schemas', { timeout: 20000 }, async () => {
   await withPackedClient(async client => {
