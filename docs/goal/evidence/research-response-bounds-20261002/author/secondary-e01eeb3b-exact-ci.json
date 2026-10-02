@@ -1,0 +1,372 @@
+{
+  "schema": "canli.secondary.research-response-bounds.exact-retained-ci.v1",
+  "observed_at": "2026-10-02T13:49:41.762216+00:00",
+  "source": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+  "tree": "3ae6c1d28c55d65ca9ec1f9d186aa6b2b8b78464",
+  "signature": "G",
+  "base": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+  "frozen_source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/source-e01eeb3b.json",
+    "bytes": 1835757,
+    "sha256": "335d1f4f367485f2ac902ef3ee183714439d88895bee366cc865ca79f7d9f269"
+  },
+  "working_tree_clean_during_metadata_capture": true,
+  "working_tree_metadata_capture_does_not_execute_source": true,
+  "verdict": "PASS_EXACT_CURRENT_CI_INDEPENDENT_EXTENSIONS_PENDING",
+  "root_run": 37015058189,
+  "root_job": 110863783508,
+  "mcp_job": 110863783937,
+  "tested_merge": "c46ce7f7bd16e4afb798df8340a5e871dcbe2857",
+  "tested_tree": "3ae6c1d28c55d65ca9ec1f9d186aa6b2b8b78464",
+  "tested_parents": [
+    "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+    "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa"
+  ],
+  "root_suites": [
+    {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1044,
+      "pass": 1044,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "mcp_suites": [
+    {
+      "tests": 141,
+      "pass": 141,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 47,
+      "pass": 47,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 119,
+      "pass": 119,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "tests": 139,
+      "pass": 139,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  ],
+  "research_actual_mcp_pass": 32,
+  "research_mcp_cases": [
+    {
+      "name": "response bytes: exactly four MiB is accepted without response.text",
+      "number": 6,
+      "result": "ok"
+    },
+    {
+      "name": "response bytes: cap plus one rejects without reading subsequent chunks",
+      "number": 7,
+      "result": "ok"
+    },
+    {
+      "name": "response bytes: a supplied oversized chunk is refused before decoding",
+      "number": 8,
+      "result": "ok"
+    },
+    {
+      "name": "response bytes: multibyte paper under the code-unit cap exceeds the byte cap",
+      "number": 9,
+      "result": "ok"
+    },
+    {
+      "name": "response headers: absent Content-Length still counts actual bytes",
+      "number": 10,
+      "result": "ok"
+    },
+    {
+      "name": "response headers: misleading small Content-Length cannot bypass the cap",
+      "number": 11,
+      "result": "ok"
+    },
+    {
+      "name": "response headers: advertised oversize is rejected before the first read",
+      "number": 12,
+      "result": "ok"
+    },
+    {
+      "name": "response headers: huge and zero-prefixed decimal lengths are compared safely",
+      "number": 13,
+      "result": "ok"
+    },
+    {
+      "name": "response headers: unusable lengths use actual bytes and valid lengths preserve content",
+      "number": 14,
+      "result": "ok"
+    },
+    {
+      "name": "response UTF-8: split multibyte code points and BOM decode as valid text",
+      "number": 15,
+      "result": "ok"
+    },
+    {
+      "name": "response UTF-8: truncated code point is refused and a later healthy paper recovers",
+      "number": 16,
+      "result": "ok"
+    },
+    {
+      "name": "response UTF-8: invalid byte sequence is not replaced or cached",
+      "number": 17,
+      "result": "ok"
+    },
+    {
+      "name": "response streams: mid-read transport failure is sanitized and disposed once",
+      "number": 18,
+      "result": "ok"
+    },
+    {
+      "name": "response streams: non-byte native stream data fails without cache admission",
+      "number": 19,
+      "result": "ok"
+    },
+    {
+      "name": "response abort: an already aborted request performs no dispatch",
+      "number": 20,
+      "result": "ok"
+    },
+    {
+      "name": "response abort: already aborted supplied body is cancelled without a read",
+      "number": 21,
+      "result": "ok"
+    },
+    {
+      "name": "response abort: late fetch completion is cancelled without body admission",
+      "number": 22,
+      "result": "ok"
+    },
+    {
+      "name": "response abort: stalled read releases once without awaiting stuck cancellation",
+      "number": 23,
+      "result": "ok"
+    },
+    {
+      "name": "response deadline: a native timeout remains active through the body read",
+      "number": 24,
+      "result": "ok"
+    },
+    {
+      "name": "response deadline: server fifteen-second scope refuses stalled body and cache",
+      "number": 25,
+      "result": "ok"
+    },
+    {
+      "name": "response abort: queued bytes after abort are never decoded",
+      "number": 26,
+      "result": "ok"
+    },
+    {
+      "name": "response abort: abort at end-of-body refuses successful completion",
+      "number": 27,
+      "result": "ok"
+    },
+    {
+      "name": "response HTTP: missing paper never reads or caches its error body",
+      "number": 28,
+      "result": "ok"
+    },
+    {
+      "name": "response HTTP: server error body is cancelled before reads and a healthy call recovers",
+      "number": 29,
+      "result": "ok"
+    },
+    {
+      "name": "response cache: malformed JSON is not cached and a later valid response is",
+      "number": 30,
+      "result": "ok"
+    },
+    {
+      "name": "response cache: late malformed concurrent completion preserves newer valid entry",
+      "number": 31,
+      "result": "ok"
+    },
+    {
+      "name": "response cache: invalid cached hit is evicted without suppressing later healthy fetch",
+      "number": 32,
+      "result": "ok"
+    },
+    {
+      "name": "response cache: clock rollback makes a cached entry stale",
+      "number": 33,
+      "result": "ok"
+    },
+    {
+      "name": "response cache: exactly ten minutes expires while the preceding millisecond hits",
+      "number": 34,
+      "result": "ok"
+    },
+    {
+      "name": "response cache: nonfinite ages never produce cache hits",
+      "number": 35,
+      "result": "ok"
+    },
+    {
+      "name": "response transport: fetch rejection is sanitized with one dispatch and no retry",
+      "number": 36,
+      "result": "ok"
+    },
+    {
+      "name": "response success: all six tools preserve compact shapes and exact source limits",
+      "number": 37,
+      "result": "ok"
+    }
+  ],
+  "research_actual_root_pass": 0,
+  "research_not_registered_in_root": true,
+  "runtime": "Node v22.23.3 (existing remote CI)",
+  "checks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110864176617",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015058189/job/110863784011",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015057888/job/110863782635",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015058189/job/110863783508",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015057888/job/110863782470",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015058189/job/110863783937",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015058189/job/110863783900",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    }
+  ],
+  "codeql_current_ref_alerts": 0,
+  "codeql_latest_analyses": {
+    "javascript-typescript": {
+      "id": 1881178602,
+      "commit_sha": "c46ce7f7bd16e4afb798df8340a5e871dcbe2857",
+      "created_at": "2026-10-02T13:46:35Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"javascript-typescript\"}"
+    },
+    "python": {
+      "id": 1881174914,
+      "commit_sha": "c46ce7f7bd16e4afb798df8340a5e871dcbe2857",
+      "created_at": "2026-10-02T13:45:59Z",
+      "results_count": 0,
+      "error": "",
+      "environment": "{\"language\":\"python\"}"
+    }
+  },
+  "codeql_scope": "Captured pull/365/merge ref; fewer100 rows returned at each bounded endpoint. Historical rows retained; latest per language selected.",
+  "original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-root-ci-original.log",
+      "bytes": 633116,
+      "sha256": "2caa89d15112b4fc7cf905f31231cdc303c376416c50fdf124aeb8da7f62043a"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-mcp-ci-original.log",
+      "bytes": 284228,
+      "sha256": "a00197bdd10d9e067f875a45c0182f280935615d91cdaf363ca7a28625f389b6"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-checks-original.json",
+      "bytes": 1131,
+      "sha256": "538187a463384ed7438c03306ca4c458618eeb3e5df625ccc8ced4e2050ff9c5"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-run-original.json",
+      "bytes": 13314,
+      "sha256": "42c91e1d83afe4a4b84fbfd3cd70f06eb0e421a7f78f15cb74b1fb04fe6ea6a6"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-pr-original.json",
+      "bytes": 18706,
+      "sha256": "fb5b2c9e776bef4c0bc9662a1cdc4d874d58c342e4f5d4c8b7b51d8f25ed746f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-codeql-analyses-original.json",
+      "bytes": 1186,
+      "sha256": "cd68f45f4fe40b5d5a182ad228c9a36f5e1315a6cd626b4e0e8f27bf963a7778"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "a80fd5146b7ed13abf6d9a1f316cd1e3127f8b90698b89e37e32c9525f5c2a42"
+    }
+  ],
+  "verified_humans_expertise_independence_rights": null,
+  "provider_current_indexed": null,
+  "distinct_admitted_canonical": null,
+  "qualified_progress": null,
+  "local_project_job_or_grant": false,
+  "full_owner_goal": "ACTIVE",
+  "scope": "Byte-exact original logs/API captures for the immutable signed frozen Git source; any working changes are separate unexecuted future source; parser view only removes timestamps/ANSI. No local project runtime or CI rerun. Future head/archive/integration/actual delivery requires separate gates."
+}

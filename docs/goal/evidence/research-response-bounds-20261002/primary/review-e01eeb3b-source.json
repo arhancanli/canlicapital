@@ -1,0 +1,164 @@
+{
+  "schema": "canli.primary.research-response-bounds.source-review.v1",
+  "observed_at": "2026-10-02T14:07:25.111177+00:00",
+  "verdict": "PASS_WITH_STATIC_BYTE_DEADLINE_CLEANUP_CACHE_SCOPE_LIMITS",
+  "source": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+  "tree": "3ae6c1d28c55d65ca9ec1f9d186aa6b2b8b78464",
+  "base": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+  "signature": "G",
+  "author_worktree_clean": true,
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/source-e01eeb3b.json",
+    "bytes": 1835757,
+    "sha256": "335d1f4f367485f2ac902ef3ee183714439d88895bee366cc865ca79f7d9f269"
+  },
+  "owned_paths": {
+    "docs/goal/LOG.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6f58ce4c0c9f753313e5dfe7bed6a5624adcf8d8",
+      "bytes": 422964,
+      "sha256": "552804c868c0ff824257aea49353e354488a833f31c84636c226e7c7896d60d1",
+      "working_index_Git_equal": true
+    },
+    "docs/goal/STATUS.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "d9e7971c230586dd3414e5bd77a715ac2cd79d8b",
+      "bytes": 147600,
+      "sha256": "42de48d9e5b4d98be692926918b2e8b466198c3da29fe12838d816dc1c9f3b62",
+      "working_index_Git_equal": true
+    },
+    "mcp-research/README.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "10326ea4948a8b720161b96ef9b237b97c2d168f",
+      "bytes": 4605,
+      "sha256": "ebafd1492610069daf261a2f8f54429b9748dd04abc4de248e4218db869fa963",
+      "working_index_Git_equal": true
+    },
+    "mcp-research/src/bounded-response.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "4937514a4e6475fc91f391cf857d9472e971004b",
+      "bytes": 4088,
+      "sha256": "cfd45573e2d348e6ad4a2a967607d7d721b6d1d051cbbdc3460a9c5fca6cab67",
+      "working_index_Git_equal": true
+    },
+    "mcp-research/src/server.mjs": {
+      "mode": "100755",
+      "type": "blob",
+      "object": "d6119824432865f7937d6e4fdec62a99f9bb0e50",
+      "bytes": 16016,
+      "sha256": "4e468cd14a621a89c1171e647eb464cbef79acab9fe4435f6bc7ea845b17412c",
+      "working_index_Git_equal": true
+    },
+    "mcp-research/test/response-bounds.test.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "56a843405732fff2ef108a22653bcd1c8e836990",
+      "bytes": 23322,
+      "sha256": "4d6c32095e10587d0a6bdc5ca70c381b054b0cca3371db386854e0115834eb68",
+      "working_index_Git_equal": true
+    }
+  },
+  "full_tree_index_equal": 6176,
+  "protected_Git_count": 6170,
+  "protected_Git_bytes": 392981940,
+  "protected_Git_SHA256_basis": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/source-7ea83244.json",
+    "bytes": 1858148,
+    "sha256": "50eb845eb063411036ad6445f5e2ddf3abc79b3e12a2d77ae51f0729475902bf",
+    "inherited_identical_Git_objects_modes_sizes": true,
+    "whole_protected_physical_audit": false
+  },
+  "protected_identity_modes_objects_sizes_and_inherited_SHA_exact": true,
+  "whole_protected_physical_audit": false,
+  "prior_goal_prefixes": 50,
+  "metadata_instructions_constants_createSession_prefix_exact_base": true,
+  "full_tool_function_schema_description_default6_result_suffix_exact_base_sha256": "d0aa284f04ce2b1222430ed7f2c0a1b7ded6a41e4f3e0cc1bcffeb661f4544d4",
+  "README_STATUS_LOG_append_only": true,
+  "all_old_research_fixtures_versions_dependencies_packages_hosted_site_archives_exact_base": true,
+  "new_fixture_names_WRITTEN": [
+    "response bytes: exactly four MiB is accepted without response.text",
+    "response bytes: cap plus one rejects without reading subsequent chunks",
+    "response bytes: a supplied oversized chunk is refused before decoding",
+    "response bytes: multibyte paper under the code-unit cap exceeds the byte cap",
+    "response headers: absent Content-Length still counts actual bytes",
+    "response headers: misleading small Content-Length cannot bypass the cap",
+    "response headers: advertised oversize is rejected before the first read",
+    "response headers: huge and zero-prefixed decimal lengths are compared safely",
+    "response headers: unusable lengths use actual bytes and valid lengths preserve content",
+    "response UTF-8: split multibyte code points and BOM decode as valid text",
+    "response UTF-8: truncated code point is refused and a later healthy paper recovers",
+    "response UTF-8: invalid byte sequence is not replaced or cached",
+    "response streams: mid-read transport failure is sanitized and disposed once",
+    "response streams: non-byte native stream data fails without cache admission",
+    "response abort: an already aborted request performs no dispatch",
+    "response abort: already aborted supplied body is cancelled without a read",
+    "response abort: late fetch completion is cancelled without body admission",
+    "response abort: stalled read releases once without awaiting stuck cancellation",
+    "response deadline: a native timeout remains active through the body read",
+    "response deadline: server fifteen-second scope refuses stalled body and cache",
+    "response abort: queued bytes after abort are never decoded",
+    "response abort: abort at end-of-body refuses successful completion",
+    "response HTTP: missing paper never reads or caches its error body",
+    "response HTTP: server error body is cancelled before reads and a healthy call recovers",
+    "response cache: malformed JSON is not cached and a later valid response is",
+    "response cache: late malformed concurrent completion preserves newer valid entry",
+    "response cache: invalid cached hit is evicted without suppressing later healthy fetch",
+    "response cache: clock rollback makes a cached entry stale",
+    "response cache: exactly ten minutes expires while the preceding millisecond hits",
+    "response cache: nonfinite ages never produce cache hits",
+    "response transport: fetch rejection is sanitized with one dispatch and no retry",
+    "response success: all six tools preserve compact shapes and exact source limits"
+  ],
+  "manual_review": [
+    {
+      "area": "Received-byte bound",
+      "finding": "Native Uint8Array byteLength checked against remaining4MiB before decoding; Content-Length advisory early refusal and actual stream count. Single chunk may already be allocated by transport.",
+      "verdict": "PASS_STATIC"
+    },
+    {
+      "area": "UTF8",
+      "finding": "Fatal streaming TextDecoder preserves split code points/BOM-compatible text; final decode refuses truncated sequences and no unbounded response.text fallback.",
+      "verdict": "PASS_STATIC"
+    },
+    {
+      "area": "Deadline/late completion",
+      "finding": "One native15s signal shared across fetch and body; abort checked before dispatch/read, after awaits, final decode and cache admission. Pending rejection observed; late fetch response disposed without reading. Cooperative timer, not an absolute hard deadline during a blocked event loop.",
+      "verdict": "PASS_STATIC_WITH_DOCUMENTED_LIMITS"
+    },
+    {
+      "area": "Owned reader cleanup",
+      "finding": "One finally disposal; failure cancel rejection observed without waiting; one release attempt. getReader failure cannot dispose a reader it never acquired. Late response uses separately owned reader.",
+      "verdict": "PASS_STATIC_WITH_TRUSTED_NATIVE_LIMITS"
+    },
+    {
+      "area": "JSON/cache",
+      "finding": "JSON parses before new entry admission; invalid hit eviction requires object identity. Concurrent malformed completion has no cache write or deletion. Nonfinite/negative/expired cache ages force fetch; successful response shapes/tool suffix unchanged.",
+      "verdict": "PASS_STATIC"
+    },
+    {
+      "area": "Error/HTTP/no retry",
+      "finding": "HTTP>=400 checked before read; source-scoped sanitized stable errors, source limits and native redirect:error retained; fetch dispatched once with no internal retry.",
+      "verdict": "PASS_STATIC"
+    },
+    {
+      "area": "Fixture quality",
+      "finding": "32 distinct source registrations include native Response/ReadableStream delegates, exact4MiB/+1/multibyte, header, UTF8, failure/abort/late/native15s, cache/concurrency/rollback and all six successful tools. Existing research fixtures exact base; runtime proof separate.",
+      "verdict": "PASS_STATIC"
+    }
+  ],
+  "blocking_findings": [],
+  "scope_limits": [
+    "Reviewer did not import or run project code. New runtime/current-CI gate is separate.",
+    "Bounds apply to accepted body bytes; transport buffers, empty/fragmented chunk overhead, synchronous injected code and blocked event-loop time are not bounded process-memory or hard wall-time claims.",
+    "No request/session cache architecture, global hosted latency, model/adoption/indexing/expert/ALPHAC outcome claim.",
+    "Future documentary archive and final head/current CI/merge/publication require separate gates."
+  ],
+  "own_local_project_job_grant_runtime_or_API_refetch": false,
+  "archive_allocation": false,
+  "full_owner_hierarchy": "ACTIVE_ALL_OBJECTIVES_PRESERVED",
+  "real_outcomes": null
+}

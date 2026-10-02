@@ -1,0 +1,536 @@
+{
+  "schema": "canli.third.research-response-bounds.frozen-source-review.v1",
+  "observed_at": "2026-10-02T14:15:26.900584+00:00",
+  "verdict": "PASS_WITH_STATIC_SOURCE_PROTOCOL_SCOPE_LIMITS",
+  "PR": 365,
+  "head": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+  "tree": "3ae6c1d28c55d65ca9ec1f9d186aa6b2b8b78464",
+  "sole_parent_actual_base": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+  "signature": "G",
+  "worktree": "/Users/arhancanli/canlicapital-research-response-bounds-20261002",
+  "working_clean_before_after": true,
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/source-e01eeb3b.json",
+    "bytes": 1835757,
+    "sha256": "335d1f4f367485f2ac902ef3ee183714439d88895bee366cc865ca79f7d9f269"
+  },
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/assignment-438d8799.md",
+    "bytes": 6840,
+    "sha256": "f886d70db94e64ce6ed4781b85404d8313ad957bbbae605b188a926d7c0f9ff2"
+  },
+  "changed_paths": [
+    {
+      "path": "docs/goal/LOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "6f58ce4c0c9f753313e5dfe7bed6a5624adcf8d8",
+      "bytes": 422964,
+      "sha256": "552804c868c0ff824257aea49353e354488a833f31c84636c226e7c7896d60d1",
+      "working_index_frozen_Git_equal": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "d9e7971c230586dd3414e5bd77a715ac2cd79d8b",
+      "bytes": 147600,
+      "sha256": "42de48d9e5b4d98be692926918b2e8b466198c3da29fe12838d816dc1c9f3b62",
+      "working_index_frozen_Git_equal": true
+    },
+    {
+      "path": "mcp-research/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "10326ea4948a8b720161b96ef9b237b97c2d168f",
+      "bytes": 4605,
+      "sha256": "ebafd1492610069daf261a2f8f54429b9748dd04abc4de248e4218db869fa963",
+      "working_index_frozen_Git_equal": true
+    },
+    {
+      "path": "mcp-research/src/bounded-response.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "4937514a4e6475fc91f391cf857d9472e971004b",
+      "bytes": 4088,
+      "sha256": "cfd45573e2d348e6ad4a2a967607d7d721b6d1d051cbbdc3460a9c5fca6cab67",
+      "working_index_frozen_Git_equal": true
+    },
+    {
+      "path": "mcp-research/src/server.mjs",
+      "mode": "100755",
+      "type": "blob",
+      "object": "d6119824432865f7937d6e4fdec62a99f9bb0e50",
+      "bytes": 16016,
+      "sha256": "4e468cd14a621a89c1171e647eb464cbef79acab9fe4435f6bc7ea845b17412c",
+      "working_index_frozen_Git_equal": true
+    },
+    {
+      "path": "mcp-research/test/response-bounds.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "56a843405732fff2ef108a22653bcd1c8e836990",
+      "bytes": 23322,
+      "sha256": "4d6c32095e10587d0a6bdc5ca70c381b054b0cca3371db386854e0115834eb68",
+      "working_index_frozen_Git_equal": true
+    }
+  ],
+  "full_index_entries": 6176,
+  "full_index_equal_frozen_tree": true,
+  "protected_Git_count": 6170,
+  "protected_Git_bytes": 392981940,
+  "protected_basis": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/source-7ea83244.json",
+    "bytes": 1858148,
+    "sha256": "50eb845eb063411036ad6445f5e2ddf3abc79b3e12a2d77ae51f0729475902bf",
+    "method": "Independent Git objects/modes/types/sizes comparison plus inherited prior source SHA table equality; no new whole protected physical audit."
+  },
+  "protected_Git_metadata_identity": true,
+  "original_goal_prefixes": [
+    {
+      "head": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 129825,
+      "sha256": "52dfb5ef742cfdc211dcd54ef3049eb3a9378b75749c736efbe69e1b25da1d4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/LOG.md",
+      "bytes": 405189,
+      "sha256": "d6a82f0878028ed20f88ade2e57f11eff09e90fc539f24d126ea1bbd6b1e31d7",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 131059,
+      "sha256": "f714952a2861a41d7b2cc62b5ae1f5318042a0ae2e31f75dd625face77cce593",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/LOG.md",
+      "bytes": 406423,
+      "sha256": "ff633e3074965853055be8acae0758b010d31da59ec3474c844bae3930c26a22",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 132772,
+      "sha256": "4b4e035b9e85d40402beb94c62357ab1230ed5fcabf47501e47365189fcc31c6",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/LOG.md",
+      "bytes": 408136,
+      "sha256": "ab9d70ea06d74c6c24819922163f0d3a9ce0ac8c21bfef41baef335f4e2ecf62",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 133950,
+      "sha256": "a96a73e4adbbf07365e326d36696b60c8ad04d7f3344569ffdabb7b348131b1b",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/LOG.md",
+      "bytes": 409314,
+      "sha256": "c586b75436f2128f1743dbc0c9e63b992b65f376cb6e3c0ce028296a990eec17",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 135197,
+      "sha256": "9abb99d3efb964d71ec9568326b18f1a515188274adaed27bb5b599da1d74cf7",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/LOG.md",
+      "bytes": 410561,
+      "sha256": "d144e66938a246e6869ace6f1de9ddb2ae478b25869175f39ae319a92546a770",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 136640,
+      "sha256": "c74499ccaf845e1dd435ae22646adfc0c081fb0fb993acb4f40c6334de755cad",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/LOG.md",
+      "bytes": 412004,
+      "sha256": "068a590723833c9e7df1924dc536537e263a0bae4d326d567c0a99719a5704d0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 139457,
+      "sha256": "71bde59b4d89c755f7c30a2e7e206828b54402acfaf164140d6fe1d03a85ebcb",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+      "path": "docs/goal/LOG.md",
+      "bytes": 414821,
+      "sha256": "5a492b61516803556ebf8cf7e599b775bd0c324d2ec50e7fa02191f53377a60c",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 141798,
+      "sha256": "83d3efa3b065a15152d3dc4136aaf20440ad58fed3a58b7ac2b9d698ad78b99c",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+      "path": "docs/goal/LOG.md",
+      "bytes": 417162,
+      "sha256": "ae178714551ad124bcee6ebdab93c36dca0492715666f709f6defc927520e5ed",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 143436,
+      "sha256": "548ea9d5fad98ec18af87ef8faf04116c0c6af843e5ebc5de8a908b29d4b8146",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+      "path": "docs/goal/LOG.md",
+      "bytes": 418800,
+      "sha256": "4056e1dcb81c0fbf1005c27898e6fc10c0b8c5e546bee5c6e607a2a07bca6dae",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 144863,
+      "sha256": "65dba8037b22b0abedeb025ac3b865146a84591ce1a2a644a2f7ecd652bf8f76",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_original_prefix": true
+    },
+    {
+      "head": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+      "path": "docs/goal/LOG.md",
+      "bytes": 420227,
+      "sha256": "276dc3c9b6d4b1d7cc3f49e994401fcf5b5b0bb1bca0d204f8b129ded1591082",
+      "exact_original_prefix": true
+    }
+  ],
+  "append_only_README_STATUS_LOG": true,
+  "six_tool_metadata_instructions_schemas_descriptions_output_functions_entry_suffix_byte_exact": true,
+  "compatibility_suffix_sha256": "d0aa284f04ce2b1222430ed7f2c0a1b7ded6a41e4f3e0cc1bcffeb661f4544d4",
+  "written_names": [
+    "response bytes: exactly four MiB is accepted without response.text",
+    "response bytes: cap plus one rejects without reading subsequent chunks",
+    "response bytes: a supplied oversized chunk is refused before decoding",
+    "response bytes: multibyte paper under the code-unit cap exceeds the byte cap",
+    "response headers: absent Content-Length still counts actual bytes",
+    "response headers: misleading small Content-Length cannot bypass the cap",
+    "response headers: advertised oversize is rejected before the first read",
+    "response headers: huge and zero-prefixed decimal lengths are compared safely",
+    "response headers: unusable lengths use actual bytes and valid lengths preserve content",
+    "response UTF-8: split multibyte code points and BOM decode as valid text",
+    "response UTF-8: truncated code point is refused and a later healthy paper recovers",
+    "response UTF-8: invalid byte sequence is not replaced or cached",
+    "response streams: mid-read transport failure is sanitized and disposed once",
+    "response streams: non-byte native stream data fails without cache admission",
+    "response abort: an already aborted request performs no dispatch",
+    "response abort: already aborted supplied body is cancelled without a read",
+    "response abort: late fetch completion is cancelled without body admission",
+    "response abort: stalled read releases once without awaiting stuck cancellation",
+    "response deadline: a native timeout remains active through the body read",
+    "response deadline: server fifteen-second scope refuses stalled body and cache",
+    "response abort: queued bytes after abort are never decoded",
+    "response abort: abort at end-of-body refuses successful completion",
+    "response HTTP: missing paper never reads or caches its error body",
+    "response HTTP: server error body is cancelled before reads and a healthy call recovers",
+    "response cache: malformed JSON is not cached and a later valid response is",
+    "response cache: late malformed concurrent completion preserves newer valid entry",
+    "response cache: invalid cached hit is evicted without suppressing later healthy fetch",
+    "response cache: clock rollback makes a cached entry stale",
+    "response cache: exactly ten minutes expires while the preceding millisecond hits",
+    "response cache: nonfinite ages never produce cache hits",
+    "response transport: fetch rejection is sanitized with one dispatch and no retry",
+    "response success: all six tools preserve compact shapes and exact source limits"
+  ],
+  "written_cases": 32,
+  "semantic_observations": [
+    {
+      "boundary": "accepted body bytes",
+      "evidence": "bounded-response.mjs:72-126; server.mjs:37-39,70",
+      "finding": "4 MiB is accounted with Uint8Array.byteLength before each decode; excess chunk is refused before decoding or a subsequent read. No response.text fallback; transport-owned supplied allocation is explicitly outside the accepted-byte bound."
+    },
+    {
+      "boundary": "HTTP and advertised length",
+      "evidence": "bounded-response.mjs:65-87",
+      "finding": "HTTP status >=400 and usable oversized decimal Content-Length refuse before reader.read. Decimal string comparison avoids number overflow; absent/misleading/unusable lengths still encounter actual byte accounting."
+    },
+    {
+      "boundary": "UTF-8",
+      "evidence": "bounded-response.mjs:88-118; test:174-204",
+      "finding": "Fatal incremental TextDecoder preserves split valid UTF-8/BOM behavior and refuses malformed bytes or incomplete final code points; failures do not return text."
+    },
+    {
+      "boundary": "abort and shared request timeout",
+      "evidence": "bounded-response.mjs:11-42,95-98,118,128-137; server.mjs:67-82; tests:234-348",
+      "finding": "One existing15s AbortSignal is passed to fetch and every read wait. Abort is checked before dispatch/read and after read progress; late fetch responses are disposed without reading. Already-aborted, pending read, late fetch, queued bytes and end-of-body fixtures address distinct progress paths."
+    },
+    {
+      "boundary": "reader ownership",
+      "evidence": "bounded-response.mjs:44-63,123-125",
+      "finding": "Each acquired reader has one finally close path; known failure attempts cancel once and release once. Cancellation rejection is observed without awaiting a possibly stuck promise; late fetch cleanup also uses one reader disposal path. Failed release and trusted transport/event-loop limitations are disclosed, not universal cleanup/time promises."
+    },
+    {
+      "boundary": "cache admission",
+      "evidence": "server.mjs:55-94; tests:369-412",
+      "finding": "JSON validation precedes fresh cache.set, so malformed JSON cannot pollute the cache or delete a concurrently completed good fresh response. An invalid existing cache hit is evicted only if the same object is still current."
+    },
+    {
+      "boundary": "cache clocks",
+      "evidence": "server.mjs:56-58; tests:414-443",
+      "finding": "A cache hit requires finite age >=0 and <600000ms; rollback, exact TTL expiry and nonfinite ages force refresh. No new cache architecture/deduplication/retry is introduced."
+    },
+    {
+      "boundary": "six tool protocol and claim surfaces",
+      "evidence": "server.mjs:97-284; README appended section; test:456-515",
+      "finding": "All successful tool functions, inputs/outputs, descriptions, registrations, instructions, constants and metadata remain byte-exact. Source limits and structuredContent are preserved; changed refusal behavior is confined to transport decoding and cache admission."
+    },
+    {
+      "boundary": "meaningful written test cases",
+      "evidence": "response-bounds.test.mjs:95-515",
+      "finding": "All32 distinct source names cover native Response/ReadableStream exact/excess bytes, multibyte/body/header conditions, UTF-8, disposal, HTTP errors, malformed-then-healthy/concurrent JSON, cache clocks, no hidden requests and all six compact results. Test source was reviewed, not executed by this reviewer; actual remote execution is a separate receipt."
+    }
+  ],
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "current_CI_gate": "Separate retained-originals parse required; no execution accepted by source-only receipt.",
+  "scope_limits": [
+    "No local project imports/tests/Node/CLI/browser/build/helper/runtime/network/API/refetch/CPU grant or publication.",
+    "Native trusted transport may have allocated a supplied chunk; no total process-memory or universal wall-time/hostile-transport proof.",
+    "Default six tools, versions/dependencies/locks/old fixtures/hosted/site/archive bytes unchanged by protected Git identity; registry/site release is separate.",
+    "No archive allocation or future head/integration/actual delivery approval."
+  ],
+  "all_full_owner_objectives": "ACTIVE; real indexed/expert/rights/adoption/qualified outcomes unknown."
+}

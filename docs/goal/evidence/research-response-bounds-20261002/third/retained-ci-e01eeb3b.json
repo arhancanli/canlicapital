@@ -1,0 +1,484 @@
+{
+  "schema": "canli.third.research-response-bounds.retained-current-ci.v1",
+  "observed_at": "2026-10-02T14:17:28.888223+00:00",
+  "verdict": "PASS_EXACT_RETAINED_CURRENT_CI_WITH_SCOPE_LIMITS",
+  "PR": 365,
+  "source": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+  "tree": "3ae6c1d28c55d65ca9ec1f9d186aa6b2b8b78464",
+  "actual_base": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+  "source_review": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds-peer/review-e01eeb3b-source.json",
+    "bytes": 23297,
+    "sha256": "8884d6b11888aaab4e9c9324ebc6d414d67b706fe3039ee67c996f35221a5f7e"
+  },
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/source-e01eeb3b.json",
+    "bytes": 1835757,
+    "sha256": "335d1f4f367485f2ac902ef3ee183714439d88895bee366cc865ca79f7d9f269"
+  },
+  "author_CI_projection": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-exact-ci.json",
+    "bytes": 11732,
+    "sha256": "ee08222e483f928653b272a7acee15bd9c08ec10d086d79907f30a88f2282d66"
+  },
+  "all_original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-root-ci-original.log",
+      "bytes": 633116,
+      "sha256": "2caa89d15112b4fc7cf905f31231cdc303c376416c50fdf124aeb8da7f62043a"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-mcp-ci-original.log",
+      "bytes": 284228,
+      "sha256": "a00197bdd10d9e067f875a45c0182f280935615d91cdaf363ca7a28625f389b6"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-checks-original.json",
+      "bytes": 1131,
+      "sha256": "538187a463384ed7438c03306ca4c458618eeb3e5df625ccc8ced4e2050ff9c5"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-run-original.json",
+      "bytes": 13314,
+      "sha256": "42c91e1d83afe4a4b84fbfd3cd70f06eb0e421a7f78f15cb74b1fb04fe6ea6a6"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-pr-original.json",
+      "bytes": 18706,
+      "sha256": "fb5b2c9e776bef4c0bc9662a1cdc4d874d58c342e4f5d4c8b7b51d8f25ed746f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-codeql-analyses-original.json",
+      "bytes": 1186,
+      "sha256": "cd68f45f4fe40b5d5a182ad228c9a36f5e1315a6cd626b4e0e8f27bf963a7778"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/secondary-e01eeb3b-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "a80fd5146b7ed13abf6d9a1f316cd1e3127f8b90698b89e37e32c9525f5c2a42"
+    }
+  ],
+  "original_files": 8,
+  "original_bytes": 954331,
+  "parser": "Independent stdlib parser; original bytes unchanged; view removes BOM/ANSI CSI/timestamp+one separator space only. Requires each full TAP13 block, complete top-level plan/ordinals, all7 terminal counters and final duration.",
+  "root_suites": [
+    {
+      "plan": 6,
+      "top_level_ordinals_complete": true,
+      "all_top_level_results_ok": true,
+      "all_seven_counters": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 95.063027,
+      "normalized_TAP_sha256": "9925cb8119c8dbc51cbc31de64f74e3a6c8cbc409b945af2cae9eae4bf17477d"
+    },
+    {
+      "plan": 1044,
+      "top_level_ordinals_complete": true,
+      "all_top_level_results_ok": true,
+      "all_seven_counters": {
+        "tests": 1044,
+        "suites": 0,
+        "pass": 1044,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 105887.07333,
+      "normalized_TAP_sha256": "7c8cf3f986841fad570aaf100231e67fe1476676643039a37b3ee4a5552cc967"
+    },
+    {
+      "plan": 9,
+      "top_level_ordinals_complete": true,
+      "all_top_level_results_ok": true,
+      "all_seven_counters": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 108.374375,
+      "normalized_TAP_sha256": "c9f34b59b651c103ff933f4370327533302afad9792132707171d4b63d85d683"
+    }
+  ],
+  "mcp_suites": [
+    {
+      "plan": 141,
+      "top_level_ordinals_complete": true,
+      "all_top_level_results_ok": true,
+      "all_seven_counters": {
+        "tests": 141,
+        "suites": 0,
+        "pass": 141,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 2598.925386,
+      "normalized_TAP_sha256": "9f04a182d7a331772c8c7ef207c6f553dd58e6c44b3c037f70d777de9033cdfd"
+    },
+    {
+      "plan": 1,
+      "top_level_ordinals_complete": true,
+      "all_top_level_results_ok": true,
+      "all_seven_counters": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 603.563155,
+      "normalized_TAP_sha256": "b5e9832b33fe7103fff6a6f541a065021b5c6b5356360633710c822a9819d6f1"
+    },
+    {
+      "plan": 47,
+      "top_level_ordinals_complete": true,
+      "all_top_level_results_ok": true,
+      "all_seven_counters": {
+        "tests": 47,
+        "suites": 0,
+        "pass": 47,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 15406.233233,
+      "normalized_TAP_sha256": "4b09051e8999b360e79c7f59e42f5b2e38f47812afc722796ca4d0988d1ee74b"
+    },
+    {
+      "plan": 119,
+      "top_level_ordinals_complete": true,
+      "all_top_level_results_ok": true,
+      "all_seven_counters": {
+        "tests": 119,
+        "suites": 0,
+        "pass": 119,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 5782.553754,
+      "normalized_TAP_sha256": "61678400c191f7705e7727780ae252b46ee4628ff60b8e1df9ecb3ca03cb5a7e"
+    },
+    {
+      "plan": 139,
+      "top_level_ordinals_complete": true,
+      "all_top_level_results_ok": true,
+      "all_seven_counters": {
+        "tests": 139,
+        "suites": 0,
+        "pass": 139,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 4362.596765,
+      "normalized_TAP_sha256": "52219cddb1c93f2a339b6defa171103f485252758a52f62a1878ac753367e853"
+    }
+  ],
+  "actual_new_cases_once_MCP": [
+    {
+      "result": "ok",
+      "number": 6,
+      "name": "response bytes: exactly four MiB is accepted without response.text"
+    },
+    {
+      "result": "ok",
+      "number": 7,
+      "name": "response bytes: cap plus one rejects without reading subsequent chunks"
+    },
+    {
+      "result": "ok",
+      "number": 8,
+      "name": "response bytes: a supplied oversized chunk is refused before decoding"
+    },
+    {
+      "result": "ok",
+      "number": 9,
+      "name": "response bytes: multibyte paper under the code-unit cap exceeds the byte cap"
+    },
+    {
+      "result": "ok",
+      "number": 10,
+      "name": "response headers: absent Content-Length still counts actual bytes"
+    },
+    {
+      "result": "ok",
+      "number": 11,
+      "name": "response headers: misleading small Content-Length cannot bypass the cap"
+    },
+    {
+      "result": "ok",
+      "number": 12,
+      "name": "response headers: advertised oversize is rejected before the first read"
+    },
+    {
+      "result": "ok",
+      "number": 13,
+      "name": "response headers: huge and zero-prefixed decimal lengths are compared safely"
+    },
+    {
+      "result": "ok",
+      "number": 14,
+      "name": "response headers: unusable lengths use actual bytes and valid lengths preserve content"
+    },
+    {
+      "result": "ok",
+      "number": 15,
+      "name": "response UTF-8: split multibyte code points and BOM decode as valid text"
+    },
+    {
+      "result": "ok",
+      "number": 16,
+      "name": "response UTF-8: truncated code point is refused and a later healthy paper recovers"
+    },
+    {
+      "result": "ok",
+      "number": 17,
+      "name": "response UTF-8: invalid byte sequence is not replaced or cached"
+    },
+    {
+      "result": "ok",
+      "number": 18,
+      "name": "response streams: mid-read transport failure is sanitized and disposed once"
+    },
+    {
+      "result": "ok",
+      "number": 19,
+      "name": "response streams: non-byte native stream data fails without cache admission"
+    },
+    {
+      "result": "ok",
+      "number": 20,
+      "name": "response abort: an already aborted request performs no dispatch"
+    },
+    {
+      "result": "ok",
+      "number": 21,
+      "name": "response abort: already aborted supplied body is cancelled without a read"
+    },
+    {
+      "result": "ok",
+      "number": 22,
+      "name": "response abort: late fetch completion is cancelled without body admission"
+    },
+    {
+      "result": "ok",
+      "number": 23,
+      "name": "response abort: stalled read releases once without awaiting stuck cancellation"
+    },
+    {
+      "result": "ok",
+      "number": 24,
+      "name": "response deadline: a native timeout remains active through the body read"
+    },
+    {
+      "result": "ok",
+      "number": 25,
+      "name": "response deadline: server fifteen-second scope refuses stalled body and cache"
+    },
+    {
+      "result": "ok",
+      "number": 26,
+      "name": "response abort: queued bytes after abort are never decoded"
+    },
+    {
+      "result": "ok",
+      "number": 27,
+      "name": "response abort: abort at end-of-body refuses successful completion"
+    },
+    {
+      "result": "ok",
+      "number": 28,
+      "name": "response HTTP: missing paper never reads or caches its error body"
+    },
+    {
+      "result": "ok",
+      "number": 29,
+      "name": "response HTTP: server error body is cancelled before reads and a healthy call recovers"
+    },
+    {
+      "result": "ok",
+      "number": 30,
+      "name": "response cache: malformed JSON is not cached and a later valid response is"
+    },
+    {
+      "result": "ok",
+      "number": 31,
+      "name": "response cache: late malformed concurrent completion preserves newer valid entry"
+    },
+    {
+      "result": "ok",
+      "number": 32,
+      "name": "response cache: invalid cached hit is evicted without suppressing later healthy fetch"
+    },
+    {
+      "result": "ok",
+      "number": 33,
+      "name": "response cache: clock rollback makes a cached entry stale"
+    },
+    {
+      "result": "ok",
+      "number": 34,
+      "name": "response cache: exactly ten minutes expires while the preceding millisecond hits"
+    },
+    {
+      "result": "ok",
+      "number": 35,
+      "name": "response cache: nonfinite ages never produce cache hits"
+    },
+    {
+      "result": "ok",
+      "number": 36,
+      "name": "response transport: fetch rejection is sanitized with one dispatch and no retry"
+    },
+    {
+      "result": "ok",
+      "number": 37,
+      "name": "response success: all six tools preserve compact shapes and exact source limits"
+    }
+  ],
+  "actual_new_MCP_pass": 32,
+  "actual_new_ROOT_pass": 0,
+  "research_suite_total": 47,
+  "Node_actual_both_jobs": "v22.23.3",
+  "root_run": 37015058189,
+  "root_job": 110863783508,
+  "mcp_job": 110863783937,
+  "run_attempt": 1,
+  "captured_all_seven_checks_SUCCESS": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110864176617",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015058189/job/110863784011",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015057888/job/110863782635",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015058189/job/110863783508",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015057888/job/110863782470",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015058189/job/110863783937",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37015058189/job/110863783900",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    }
+  ],
+  "captured_tested_checkout_both_logs": "c46ce7f7bd16e4afb798df8340a5e871dcbe2857",
+  "captured_tested_tree": "3ae6c1d28c55d65ca9ec1f9d186aa6b2b8b78464",
+  "captured_tested_parents": [
+    "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+    "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa"
+  ],
+  "captured_tested_tree_equals_frozen_local_Git_tree": true,
+  "captured_PR": {
+    "number": 365,
+    "head": "e01eeb3b49bd310a9e9b83c75ea1fef6da20c8aa",
+    "base": "438d87995fd968ba0ac08f0c4c0354c58fd166c8",
+    "merge_ref_commit": "c46ce7f7bd16e4afb798df8340a5e871dcbe2857",
+    "state": "open",
+    "draft": true,
+    "merged": false
+  },
+  "captured_pull_ref_alerts": [],
+  "all_historical_CodeQL_analyses_preserved_count": 2,
+  "latest_per_language": {
+    "javascript-typescript": {
+      "ref": "refs/pull/365/merge",
+      "commit_sha": "c46ce7f7bd16e4afb798df8340a5e871dcbe2857",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-02T13:46:35Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1881178602,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1881178602",
+      "sarif_id": "aeb96fe6-be67-11f1-9690-2d0d0e1ae8f1",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    "python": {
+      "ref": "refs/pull/365/merge",
+      "commit_sha": "c46ce7f7bd16e4afb798df8340a5e871dcbe2857",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-02T13:45:59Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1881174914,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1881174914",
+      "sarif_id": "996401ec-be67-11f1-87d7-adc976c8dd7e",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  },
+  "blocking_findings": [],
+  "scope_limits": [
+    "Retained source-bound remote CI evidence only; no API refetch, local project import/test/runtime/helper/grant/rerun or publication.",
+    "The actual executed fixtures establish their injected/native transport boundary; no universal memory/time/hostile transport/hosted latency guarantee.",
+    "No archive allocation, future head/integration/delivery/registry/site release approval."
+  ],
+  "all_full_owner_objectives": "ACTIVE; actual indexed/expert-rights/adoption/qualified outcomes unknown."
+}
