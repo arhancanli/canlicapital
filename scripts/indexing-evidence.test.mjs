@@ -112,6 +112,30 @@ function cliRefusal(result, code) {
   assert.equal(result.stderr.includes('DO_NOT_ECHO_SYNTHETIC_SENTINEL'), false);
 }
 
+function closeAfterReuse(t, target) {
+  const files = cliFiles(t); const preload = join(files.folder, 'close-reuse.cjs');
+  const foreignPath = join(files.folder, 'unrelated.txt'); const oraclePath = join(files.folder, 'close-oracle.json');
+  const foreignBytes = Buffer.from('Unrelated fixture file; the checker must not close its reused descriptor.');
+  fs.writeFileSync(foreignPath, foreignBytes);
+  const targetPath = target === 'input' ? files.metadataPath : files.outputPath;
+  fs.writeFileSync(preload, `const fs = require('node:fs'); const { syncBuiltinESMExports } = require('node:module');
+const targetPath = ${JSON.stringify(targetPath)}; const foreignPath = ${JSON.stringify(foreignPath)};
+const open = fs.openSync; const close = fs.closeSync; let targetFd; let foreignFd; let targetCloseCalls = 0; let injected = false;
+fs.openSync = (...args) => { const fd = open(...args); if (args[0] === targetPath) targetFd = fd; return fd; };
+fs.closeSync = fd => { if (fd === targetFd) { targetCloseCalls++; if (!injected) { injected = true; close(fd); foreignFd = open(foreignPath, fs.constants.O_RDONLY); throw Error('synthetic close after descriptor reuse'); } } return close(fd); };
+process.on('exit', () => { let foreignStillOpen = false; try { foreignStillOpen = fs.fstatSync(foreignFd).ino === fs.statSync(foreignPath).ino; } catch {}
+fs.writeFileSync(${JSON.stringify(oraclePath)}, JSON.stringify({ injected, reusedSameNumber: foreignFd === targetFd, targetCloseCalls, foreignStillOpen }));
+if (foreignStillOpen) close(foreignFd); }); syncBuiltinESMExports();`);
+  cliRefusal(runCli(files, { preload }), target === 'input' ? 'INPUT_FILE' : 'OUTPUT_UNCERTAIN');
+  assert.deepEqual(JSON.parse(fs.readFileSync(oraclePath)), {
+    injected: true, reusedSameNumber: true, targetCloseCalls: 1, foreignStillOpen: true,
+  });
+  assert.deepEqual(fs.readFileSync(files.metadataPath), files.value.metadata);
+  assert.deepEqual(fs.readFileSync(files.rawPath), files.value.raw);
+  assert.deepEqual(fs.readFileSync(foreignPath), foreignBytes);
+  assert.equal(fs.existsSync(files.outputPath), target === 'output');
+}
+
 test('index evidence: historical aggregate retains original bytes and dates without current counts', () => {
   const value = fixture(); const report = check(value);
   assert.equal(report.declaredObservation.metrics.indexed, 262);
@@ -482,6 +506,14 @@ const read = fs.readSync; let changed = false; fs.readSync = (...args) => { cons
   cliRefusal(runCli(files, { preload }), 'INPUT_CHANGED'); assert.equal(fs.existsSync(files.outputPath), false);
   assert.deepEqual(fs.readFileSync(files.metadataPath), Buffer.concat([files.value.metadata, Buffer.from(' ')]));
   assert.deepEqual(fs.readFileSync(files.rawPath), files.value.raw);
+});
+
+test('index evidence: reader close-after-close failure never closes a reused unrelated descriptor', t => {
+  closeAfterReuse(t, 'input');
+});
+
+test('index evidence: writer close-after-close failure never closes a reused unrelated descriptor', t => {
+  closeAfterReuse(t, 'output');
 });
 
 test('index evidence: API and actual CLI operate with network calls trapped and no credential lookup', t => {

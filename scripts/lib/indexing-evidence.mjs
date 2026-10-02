@@ -487,15 +487,18 @@ function readInput(path, maximum) {
     const after = fs.fstatSync(descriptor, { bigint: true });
     if (before.dev !== after.dev || before.ino !== after.ino || before.size !== after.size ||
         before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs) refuse('INPUT_CHANGED');
-    fs.closeSync(descriptor);
+    const closing = descriptor;
     descriptor = undefined;
+    fs.closeSync(closing);
     return bytes;
   } catch (error) {
     if (error instanceof IndexingEvidenceError) throw error;
     refuse('INPUT_FILE');
   } finally {
     if (descriptor !== undefined) {
-      try { fs.closeSync(descriptor); } catch { /* Failure is already a refusal, never an acknowledgment. */ }
+      const closing = descriptor;
+      descriptor = undefined;
+      try { fs.closeSync(closing); } catch { /* One attempt; close disposition is unknown. */ }
     }
   }
 }
@@ -514,14 +517,17 @@ function writeExclusive(path, bytes) {
       written += amount;
     }
     fs.fsyncSync(descriptor);
-    fs.closeSync(descriptor);
+    const closing = descriptor;
     descriptor = undefined;
+    fs.closeSync(closing);
   } catch (error) {
     if (error instanceof IndexingEvidenceError) throw error;
     refuse(created ? 'OUTPUT_UNCERTAIN' : (error.code === 'EEXIST' ? 'OUTPUT_EXISTS' : 'OUTPUT_FILE'));
   } finally {
     if (descriptor !== undefined) {
-      try { fs.closeSync(descriptor); } catch { /* Leave uncertain output for manual inspection. */ }
+      const closing = descriptor;
+      descriptor = undefined;
+      try { fs.closeSync(closing); } catch { /* One attempt; never reclose a reused number. */ }
     }
     // Never unlink: a failed write may have left bytes or a substituted pathname.
   }

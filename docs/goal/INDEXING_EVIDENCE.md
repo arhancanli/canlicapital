@@ -157,7 +157,10 @@ capture. Paths must be absolute and normalized, with existing non-aliased parent
 The output is exclusive mode0600; existing outputs, symlinks and input aliases are
 refused. No directories are created and no failed output is unlinked. Write/fsync/
 close failure leaves uncertain output for manual inspection and produces no success
-receipt. Terminal output contains only a report digest/length and unknown-count
+receipt. Descriptor ownership is relinquished before its single close attempt;
+an ambiguous close is never retried on a potentially reused descriptor number.
+An unsuccessful close may leave a descriptor open until process termination.
+Terminal output contains only a report digest/length and unknown-count
 receipt, or a refusal code; it does not echo input content, property/filter/path
 strings or credentials. The private artifact intentionally retains the explicitly
 supplied original reports. No tokens, cookies, credentials, browser sessions,
@@ -182,6 +185,16 @@ descriptor capture. Corrections target those fixtures while preserving checker
 code. Corrected-head existing remote CI and independent source reviews remain
 required; earlier passes do not establish the new head. No local project job or
 inherited capacity grant accompanies this phase.
+
+Corrected signedff6f80c1 subsequently passed all32 actual new cases within957 root
+cases, plus6 prechecks,9 notifications and139 execution cases, with all seven checks
+passing. Primary static review7a69477c foundCC-360-CLOSE-RETRY-FD-REUSE: an ambiguous
+close could have retried a descriptor number reused by an unrelated file. Both
+read/write paths now relinquish ownership before one close attempt. Two new actual
+CLI close-after-close/reuse regressions are **WRITTEN**, making34 named source cases;
+this corrected implementation requires its own signed pin, exact remote CI and
+independent source review. The earlier32-pass run remains evidence forff6, not this
+new head, and the original0210 failures stay preserved.
 
 This contract addresses the offline intake part ofCC-INDEX-INGEST-GUARD and raw
 binding requirements ofCC-INDEX-RAW-PROVENANCE. CC-INDEX-FRESH-AGGREGATE,

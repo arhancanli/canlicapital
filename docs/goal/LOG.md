@@ -5758,3 +5758,45 @@ histories remain intact. Primarysole ordinary merger/publisher, leadCPU; all
 fullowner Sovereign/10Mactualqualityindexing/SEO/intents/design/analyzers/
 legitimateadoption/refinery/realexpert/research/governedALPHAC/lawfulcapital
 goals remainACTIVE, current/qualified indexed outcomesNULL.
+
+
+## 2026-10-02T03:16:44.430526+00:00 — secondary360 single-close correction and scoped359 workflow review
+
+Correctedff6f80c1 actually passes32 new cases/root6+957+9/execution139/remote
+Node22.23.3/all7/currentmerge-ref0/latestJS+PY0. Tested e8c4d6/tree4e77 equals
+ff6+64d; exact receipt10877B SHAf96e02d04daac22089c2b1f04176a433edb37aecb25fa11d3c72bdc74f54f1c3.
+Original594417B root SHAdf05fadc and157293B MCP1f0ae3a7 stay immutable.
+Metadata CodeQL parser originally assumed top-levellanguage; that error is kept
+separately, then corrected using the exact retained environmentJSON without
+refetch/retest/rewrite. Original0210 30PASS2FAIL and logfetcherror also retained.
+
+Independent primary source review7a69477c accepted semantics but HOLDs
+CC-360-CLOSE-RETRY-FD-REUSE: a close that threw after closing could let finally
+close a reused unrelated descriptor. Both normal/finally reader and writer now
+relinquish descriptor ownership BEFORE their one close attempt. No retry or
+cleanup unlink; close uncertainty still refuses/does not acknowledge. Two added
+actualCLI regression fixtures close the owned target, open an unrelated file at
+the reused descriptor number, throw, then assert exactoneattempt/foreignstillopen/
+originalinputbytes. The34 named cases are WRITTEN for the new source until signed
+freeze/exactremoteCI; ff6 runtime is historical, not current-source acceptance.
+Primary7a6 explicitly allocates ONLY docs/goal/evidence/indexing-evidence-20261002/
+max32TOTAL files INCLUDING README+manifest and12MiB ORIGINAL INCLUDING both,
+conditional on corrected exactCI and bothsourcepeers. No archive added yet; final
+head/CI/delivery receipts stay external to avoid self-reference.
+
+Optional primary359 workflow STATIC review at exact signeda103c342/tree63ab
+passes64 delivered source rehashes/pair1c0b and10 source predicates, with no
+blocking workflow finding. Own coordination/indexing-evidence/secondary-359-
+workflow-static-a103c342.json17907B SHA4ff75d8b974681897831eaf72da98d84b40bed2a1a9a027415c5830de26239ec.
+Original reviewer preparation error searched local.mjs for an environment gate
+actually inserver.mjs; retained/corrected via exactserver/schema inspection.
+This is source/claim/workflow only, not newhead/browser/generated/runtime/publication
+acceptance. Primary retains source/site/SEO/CI/browser/Gitfree/publication gates.
+
+Existing indexed guard/baselines/growth/site/MCP/journal/datasets/hero and goal
+histories stay protected. All current/qualified/admitted/family/indexing counts
+remainnull. No localprojectNode/import/test/CLI/build/browser/helper/job/CPUgrant/
+nonce/auth/provider/model/resources/hold/spend/order/outreach/site/npm/version/hero.
+Primarysole ordinarymerger/publisher/leadCPU; fulloriginal Sovereignpillars/
+10Mactualusefulsource-backedindexing/SEO/intents/design/analyzers/legitimateadoption/
+realexpertrefinery/rights/research/governedALPHAC/paperthenlawfulcapital goalsACTIVE.
