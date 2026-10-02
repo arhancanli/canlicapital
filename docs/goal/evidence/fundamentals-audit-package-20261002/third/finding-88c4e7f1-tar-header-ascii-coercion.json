@@ -1,0 +1,42 @@
+{
+  "author_or_archive_edits": false,
+  "exact_decoder": "const field = b => b.subarray(0, b.indexOf(0) < 0 ? b.length : b.indexOf(0)).toString('ascii');",
+  "extra_archive_allocation": false,
+  "finding_id": "CC-364-TAR-HEADER-ASCII-COERCION",
+  "full_owner_hierarchy": "ACTIVE",
+  "impact": "Actual tarball path/membership custody is not bound to exact admitted raw header text. No source content or checker/pin rewrite is needed for the isolated parser+audit counterexample. This is a finite metadata-admission issue, not a claim of outside execution or successful malicious installation.",
+  "independence": "Independent reviewer source/arithmetic counterexample; no Node, pack, test, parser runtime, SDK, CLI, helper, browser, projectjob or network executed by reviewer. No claim of a runtime reproduction.",
+  "lines": {
+    "checksum": 115,
+    "decoded_path_admission": 107,
+    "field_decoder": 95,
+    "fixture_write_after_parser": 201,
+    "name_prefix_read": 105
+  },
+  "observed_at": "2026-10-02T11:28:10.793099+00:00",
+  "requested_narrow_correction": "Reject non-ASCII bytes in admitted tar text/numeric fields before ASCII conversion, or use a strict decoder whose exact bytes cannot coerce to the allowed ASCII fields. Add a finite actual-tar header mutation regression with recomputed checksum/gzip that refuses before fixture writes/SDK launch. Keep all fixed runtime/helper/schema/policy/functions/default7 untouched; batch with the already owned npm optional-check fixture correction within the existing12-path scope.",
+  "runtime_hold_distinct": "Original MCP raw0c64af08 reports all20 new hookFailed before artifact/SDK. That original failed runtime is a separate HOLD and remains immutable; this finding does not relabel any case as passed.",
+  "schema": "canli.third.frozen-static-finding.v1",
+  "severity": "P2",
+  "source": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+  "source_counterexample_not_executed": [
+    "Take an otherwise admitted actual packed tar buffer. Its regular file names begin with literal ASCII package/.",
+    "Change the first name byte p (0x70) in one tar header to 0xf0. Keep all file data, modes, declared bins and source content hashes unchanged.",
+    "Recompute that header checksum with bytes148..155 treated as spaces, serialize its valid octal value, and recompress with a valid gzip CRC.",
+    "Buffer ASCII decoding clears the high bit; field() sees p again. The existing path regex, complete membership, source pins and bin audit then see the original expected pathname rather than the altered raw pathname.",
+    "The custom fixture writes the normalized Map path, masking the changed member name. A normal installation consumes the actual tar member name, so this checker can report correct member/bin/source custody for differing raw archive metadata."
+  ],
+  "source_file": {
+    "Git_blob": "48ead8a0209b790d45d3f122f94ecc58261a412a",
+    "bytes": 33019,
+    "path": "mcp-fundamentals/test/audit-package.test.mjs",
+    "sha256": "25f002faf3235ad3dc9cbf8df7b7c81721a15491dc16bea0ba0d535630089e60"
+  },
+  "source_manifest": {
+    "bytes": 1803652,
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/source-88c4e7f1.json",
+    "sha256": "21ff5ae964325ff5bec79d23c3e82e26d44d18f55458584b4be050d3f926d9c5"
+  },
+  "tree": "28c8322054b4ee1af66c191c863424ce56f5689b",
+  "verdict": "HOLD_STATIC_PACKAGE_HEADER_ADMISSION"
+}

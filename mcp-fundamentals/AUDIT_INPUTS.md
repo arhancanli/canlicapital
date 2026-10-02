@@ -665,3 +665,24 @@ This directly checks command execution in the Git-free fixture. Existing fullN,
 nulls, fingerprints, input/output bounds, hidden-retry refusal, one-close deadline
 and actual PID-absence checks remain required. No hostile-process sandbox,
 published package, install, or universal wall-clock guarantee is claimed.
+
+
+At immutable candidate aacdf8b9/tree4f05698b, the existing remote Node22.23.3 run
+passed all22 new names once in the MCP job,119 total fundamentals cases, root
+6+1044+9 and execution139; all seven checks passed. PRIMARY and THIRD separately
+accepted both exact source and retained current CI. The actual53897B candidate
+tarball e80989d6 and all eight frozen member bytes/raw modes were independently
+recovered and checked. This is supplied-input fixture evidence; package publication,
+real source rights, expert labels and forward strategy outcomes remain separate.
+
+The exact82-file evidence archive is
+docs/goal/evidence/fundamentals-audit-package-20261002/.
+Its allocation-primary-original.json retains PRIMARY's written bounded
+scope. The archive preserves original88 and e073 setup failures, header finding,
+corrections, metadata-reader diagnostics, helper versions, three source snapshots,
+all raw CI/API captures, actual candidate tarball and independent reviews. Its
+manifest separates original/stored hashes, ten mtime0 gzip records and explicit
+external nonmembers. The final documentary candidate changes only this archive
+and append-only contract/goal notes; runtime, tests, package metadata, versions and
+default seven-tool behavior stay byte-identical to aacdf8b9. Final-head remote CI
+and both final review extensions are still required before PRIMARY ordinary merge.

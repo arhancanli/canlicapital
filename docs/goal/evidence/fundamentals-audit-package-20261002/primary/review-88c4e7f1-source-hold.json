@@ -1,0 +1,409 @@
+{
+  "schema": "canli.primary.audit-package.frozen-static-source-review.v1",
+  "observed_at": "2026-10-02T11:31:12.619617+00:00",
+  "verdict": "HOLD_TAR_HEADER_ADMISSION_AND_FAILED_CURRENT_CI",
+  "source": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+  "tree": "28c8322054b4ee1af66c191c863424ce56f5689b",
+  "parent": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+  "signature": "G",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/source-88c4e7f1.json",
+    "bytes": 1803652,
+    "sha256": "21ff5ae964325ff5bec79d23c3e82e26d44d18f55458584b4be050d3f926d9c5"
+  },
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/assignment.md",
+    "bytes": 7530,
+    "sha256": "efecdbcff14b90f3b2dc92b275c2ae8d3783e8e1cd5f71c930a9295adce81903"
+  },
+  "frozen_changed_12": {
+    "docs/goal/LOG.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b18a55f144b7088a48b7c6687c48b8cf346572f3",
+      "bytes": 414821,
+      "sha256": "5a492b61516803556ebf8cf7e599b775bd0c324d2ec50e7fa02191f53377a60c",
+      "working_equals_frozen_Git": false
+    },
+    "docs/goal/STATUS.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "74c84c36a5091a73a9d996c92dbcec9ba236cde6",
+      "bytes": 139457,
+      "sha256": "71bde59b4d89c755f7c30a2e7e206828b54402acfaf164140d6fe1d03a85ebcb",
+      "working_equals_frozen_Git": false
+    },
+    "mcp-fundamentals/AUDIT_INPUTS.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "38eaa7df44821244f638128ea1719b9d61aacb16",
+      "bytes": 33633,
+      "sha256": "f23d92d5d2a2c8db9d0a27cf46e46aa16859dfa9aea8e6b7fb89d20f7f0b6e7a",
+      "working_equals_frozen_Git": false
+    },
+    "mcp-fundamentals/CHANGELOG.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6760d3c46be5c381a406887f3caa2bd34cb4e7a1",
+      "bytes": 7647,
+      "sha256": "bbc7aad30c8f02a52b3083eaba104e932275f6fcf201c355a863f39593a1850a",
+      "working_equals_frozen_Git": true
+    },
+    "mcp-fundamentals/README.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "a4ae35d9b6b6c0efe7e01b8851e11379b510ec7e",
+      "bytes": 13866,
+      "sha256": "ea2d9d029a2551f183027bdca564acf8d6e0c20139f251bbc2c1c31a0296990c",
+      "working_equals_frozen_Git": true
+    },
+    "mcp-fundamentals/package-lock.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1f091d39ae6afef458d738d5e687922fe4b9706c",
+      "bytes": 6507,
+      "sha256": "22a97b5418f41335e202160809937ce5f435fb139dc97547db6602a438c96624",
+      "working_equals_frozen_Git": true
+    },
+    "mcp-fundamentals/package.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "b94c59476fd41175baee7d79d67f40138486cce3",
+      "bytes": 1366,
+      "sha256": "4e9a4eb7d0938b16c76d222146df8ca38a00c7ff7e460a43dd07117c615044e1",
+      "working_equals_frozen_Git": true
+    },
+    "mcp-fundamentals/src/audit-inputs-core.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c772372609b7f37bb04c747898d168b64458e377",
+      "bytes": 21651,
+      "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+      "working_equals_frozen_Git": true
+    },
+    "mcp-fundamentals/src/audit-inputs-stdio.mjs": {
+      "mode": "100755",
+      "type": "blob",
+      "object": "8ed08fc03502f68d56184da953efb294deec45bc",
+      "bytes": 12929,
+      "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+      "working_equals_frozen_Git": true
+    },
+    "mcp-fundamentals/src/canonical-json.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "working_equals_frozen_Git": true
+    },
+    "mcp-fundamentals/test/audit-package.test.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "48ead8a0209b790d45d3f122f94ecc58261a412a",
+      "bytes": 33019,
+      "sha256": "25f002faf3235ad3dc9cbf8df7b7c81721a15491dc16bea0ba0d535630089e60",
+      "working_equals_frozen_Git": false
+    },
+    "package.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6a75a8654d2b3f6496590cb0f36208b97a29c92d",
+      "bytes": 12547,
+      "sha256": "c577c1da51be7680a25019ca65d99efb6fc75414a8faede862974732abd1adfa",
+      "working_equals_frozen_Git": true
+    }
+  },
+  "actual_full_index_matches_frozen_Git": true,
+  "working_status_at_review_end": " M docs/goal/LOG.md\n M docs/goal/STATUS.md\n M mcp-fundamentals/AUDIT_INPUTS.md\n M mcp-fundamentals/test/audit-package.test.mjs\n",
+  "protected_Git_count": 6080,
+  "protected_Git_bytes": 390153335,
+  "protected_basis": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/source-7d72f9fd.json",
+    "bytes": 2043419,
+    "sha256": "31f14566251b39d284950e1ea86fac74b84ffd8228f15f39715bb28137542627"
+  },
+  "protected_scope": "All actual candidate/base object identities, mode/type/size plus independently retained inherited SHA256 table verified. No whole physical 390MB re-read.",
+  "all_30_original_goal_prefixes": [
+    {
+      "commit": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_prefix": true
+    },
+    {
+      "commit": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 129825,
+      "sha256": "52dfb5ef742cfdc211dcd54ef3049eb3a9378b75749c736efbe69e1b25da1d4f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+      "path": "docs/goal/LOG.md",
+      "bytes": 405189,
+      "sha256": "d6a82f0878028ed20f88ade2e57f11eff09e90fc539f24d126ea1bbd6b1e31d7",
+      "exact_prefix": true
+    },
+    {
+      "commit": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_prefix": true
+    },
+    {
+      "commit": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 131059,
+      "sha256": "f714952a2861a41d7b2cc62b5ae1f5318042a0ae2e31f75dd625face77cce593",
+      "exact_prefix": true
+    },
+    {
+      "commit": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "943b6924338ef06037b3dc6f77dcae716e62d666",
+      "path": "docs/goal/LOG.md",
+      "bytes": 406423,
+      "sha256": "ff633e3074965853055be8acae0758b010d31da59ec3474c844bae3930c26a22",
+      "exact_prefix": true
+    },
+    {
+      "commit": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_prefix": true
+    },
+    {
+      "commit": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 132772,
+      "sha256": "4b4e035b9e85d40402beb94c62357ab1230ed5fcabf47501e47365189fcc31c6",
+      "exact_prefix": true
+    },
+    {
+      "commit": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+      "path": "docs/goal/LOG.md",
+      "bytes": 408136,
+      "sha256": "ab9d70ea06d74c6c24819922163f0d3a9ce0ac8c21bfef41baef335f4e2ecf62",
+      "exact_prefix": true
+    },
+    {
+      "commit": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_prefix": true
+    },
+    {
+      "commit": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 133950,
+      "sha256": "a96a73e4adbbf07365e326d36696b60c8ad04d7f3344569ffdabb7b348131b1b",
+      "exact_prefix": true
+    },
+    {
+      "commit": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "9e203c025be032094351b0b9b2be1203c4f510c6",
+      "path": "docs/goal/LOG.md",
+      "bytes": 409314,
+      "sha256": "c586b75436f2128f1743dbc0c9e63b992b65f376cb6e3c0ce028296a990eec17",
+      "exact_prefix": true
+    },
+    {
+      "commit": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_prefix": true
+    },
+    {
+      "commit": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 135197,
+      "sha256": "9abb99d3efb964d71ec9568326b18f1a515188274adaed27bb5b599da1d74cf7",
+      "exact_prefix": true
+    },
+    {
+      "commit": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+      "path": "docs/goal/LOG.md",
+      "bytes": 410561,
+      "sha256": "d144e66938a246e6869ace6f1de9ddb2ae478b25869175f39ae319a92546a770",
+      "exact_prefix": true
+    },
+    {
+      "commit": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/README.md",
+      "bytes": 5370,
+      "sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "exact_prefix": true
+    },
+    {
+      "commit": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8398,
+      "sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/STATUS.md",
+      "bytes": 136640,
+      "sha256": "c74499ccaf845e1dd435ae22646adfc0c081fb0fb993acb4f40c6334de755cad",
+      "exact_prefix": true
+    },
+    {
+      "commit": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/PHASES.md",
+      "bytes": 4314,
+      "sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "exact_prefix": true
+    },
+    {
+      "commit": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "docs/goal/LOG.md",
+      "bytes": 412004,
+      "sha256": "068a590723833c9e7df1924dc536537e263a0bae4d326d567c0a99719a5704d0",
+      "exact_prefix": true
+    }
+  ],
+  "source_contract": {
+    "canonical_exact_root": true,
+    "core_only_import_change": true,
+    "core_functions_limits_scoring_raw_binding_caller_hash_exact": true,
+    "adapter_reverses_exact_original_two_imports_four_descriptors": true,
+    "protocol_0_0_0_schemas_caps_functions_errors_realpath_unchanged": true,
+    "default7_version_0_5_0_dependency_integrities_original_examples_tests_protected": true,
+    "root_only_one_focused_serial_registration_verify_unchanged": true,
+    "README_AUDIT_goals_append_only_released_changelog_history_exact": true
+  },
+  "written_20_cases": [
+    "audit package: actual offline no-script tarball admits exact files modes shebang bins contract and pinned closure",
+    "audit package: canonical bytes and import-only core prove distinct old new whole hashes without changing functions",
+    "audit package: missing canonical helper refuses before any package source import",
+    "audit package: changed canonical helper bytes refuse the independently pinned source audit",
+    "audit package: relative import escaping the tarball refuses source closure even if a repository exists elsewhere",
+    "audit package: changed declared bin and additional private member both refuse the complete package audit",
+    "audit package: gzip corruption compressed capacity and traversal path refuse before unpack writes",
+    "audit package: installed-bin-style symlink actually initializes exactly one annotated SDK tool with bounded schemas",
+    "audit package: actual compact and evidence outputs fingerprints hashes and exact raw bindings match delivered repository behavior",
+    "audit package: all six outcome rows retain full selected N and unknown verdicts through the actual packed command",
+    "audit package: wrong reference SHA returns a bounded non-echoing refusal and a valid next call recovers",
+    "audit package: hash terminator controls refuse strict SHA admission over actual SDK then recover",
+    "audit package: noncanonical base64 padding alphabet and newline refuse without raw echo then recover",
+    "audit package: oversized individually valid inputs refuse aggregate admission and all 64 selected rows still recover intact",
+    "audit package: supplied whole module hash stays unverified and source rights and full universe remain unknown",
+    "audit package: callback failure still closes the SDK child once and observes actual PID absence",
+    "audit package: armed pre-import child sentinel positively blocks network and file writes including caught attempts",
+    "audit package: actual default command in the same tarball still lists exactly the protected seven tools",
+    "audit package: included self-contained synthetic client workflow executes against the packed command",
+    "audit package: oversized unterminated protocol frame exits with bounded notice no raw echo and actual owned PID absence"
+  ],
+  "blocking": [
+    {
+      "id": "CC-364-TAR-HEADER-ASCII-COERCION",
+      "scope": "STATIC_NOT_EXECUTED",
+      "first_receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/finding-88c4e7f1-tar-header-ascii-coercion.json",
+        "bytes": 3423,
+        "sha256": "d07dfb0d57a572660c1a7306d05084caeb6ee83dc306843ba13110bb9b2bacd6"
+      },
+      "lines": "test/audit-package.test.mjs:95-108",
+      "reason": "Buffer.toString('ascii') clears the top bit. A raw package/ name byte p0x70 changed to0xf0, with recomputed checksum, is decoded back to original ASCII name; known membership/closure checks then audit normalized metadata instead of refusing the changed raw name. Numeric/header fields use the same decoder.",
+      "required": "Admit strict raw ASCII header/path/numeric bytes before decoding, preserve no-normalization rules and add checksum-valid high-bit actual-tar metadata regression before fixture writes."
+    },
+    {
+      "id": "CC-364-NPM-PACK-FORBIDDEN-NETWORK",
+      "scope": "INDEPENDENT_RETAINED_RAW_CORROBORATION_OF_AUTHOR_FAILURE",
+      "raw": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-mcp-ci-original.log",
+        "bytes": 160938,
+        "sha256": "0c64af08a9879a7b42f2a63c29ded318f083747316b4933b5aec3f4ab5527a99"
+      },
+      "actual_named_new_pass": 0,
+      "actual_named_new_hookFailed": 20,
+      "reason": "Armed npm child sentinel logged DENIED_OPERATION:request. npm exit0 was correctly refused; all20 current new cases fail their before hook. No actual tarball/SDK success established.",
+      "required": "Correct explicit optional npm CLI network-check policy, retain strict sentinel and original failure, then signed new source and existing exact new-head remote CI."
+    }
+  ],
+  "static_package_guard_cleanup_scope": "Source limits/CRC/bounds/path/type/mode/pin/membership checks, sole dependency link, no Git/root scripts, pre-import no-network/no-write positive controls, counted SDK calls, one close timer and observed owned PID absence reviewed. This source pass does not supply runtime closure, hostile filesystem/sandbox, uncatchable deadline or universal reaping guarantees. Failure uncertainty cannot be reported as successful absence.",
+  "original_metadata_reader_error": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/initial-prefix-shape-reader-error.json",
+    "bytes": 516,
+    "sha256": "b35339d6f9b47ba317065020261b75e0a3871f2512ad303acd719c0c6f08e1d2"
+  },
+  "runtime_or_pack_import_job_API_refetch_grant_nonce_spend_publication_by_reviewer": false,
+  "archive_allocation": false,
+  "required_next": "Narrow assigned-path source correction + new signed clean freeze, PRIMARY/THIRD source delta and separate exact corrected remote CI gates. No merge/publication authorized by this review.",
+  "full_owner_hierarchy": "ACTIVE",
+  "indexed_expert_rights_labels_adoption_qualified_outcomes": null
+}

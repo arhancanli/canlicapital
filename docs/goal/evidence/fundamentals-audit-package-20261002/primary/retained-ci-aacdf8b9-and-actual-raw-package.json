@@ -1,0 +1,458 @@
+{
+  "schema": "canli.primary.audit-package.exact-retained-current-ci-and-raw-artifact-review.v1",
+  "observed_at": "2026-10-02T12:18:15.952823+00:00",
+  "verdict": "PASS_WITH_RETAINED_CI_ARTIFACT_SCOPE_LIMITS",
+  "source": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+  "tree": "4f05698be9d019f60047cb8716a450fb6e3b7ea4",
+  "base": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+  "tested_merge": "5ed286ccd2efe59be45803321e623f29ce3a3dd6",
+  "tested_parents": [
+    "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+    "aacdf8b964f1c6a9651d452ba0e76ffc627237b1"
+  ],
+  "author_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-exact-ci.json",
+    "bytes": 14416,
+    "sha256": "b68f6eb5c46e364caba6ba2c84cc0062a80f913e5a8010b035ffe337bfddb16c"
+  },
+  "source_gate": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/review-aacdf8b9-source-extension.json",
+    "bytes": 20291,
+    "sha256": "478013ade2136d9bcb6ab437a560319bc6292f7a8f4e4fee7a72c8138360cfa5"
+  },
+  "originals": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-root-ci-original.log",
+      "bytes": 632294,
+      "sha256": "a2a89b2a1b6680c49461261cfb673f4a82ac92d15166b8d51c4c69eafc2a77d7"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-mcp-ci-original.log",
+      "bytes": 271192,
+      "sha256": "fc4fbc276887cacfdf410ffb0a7d70176f02112d618004a20de607f2864eee28"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-checks-original.json",
+      "bytes": 1131,
+      "sha256": "7e4dd6a4c69e814c4f6f2afeefdff8a375a4a056286f5b2a23ca8f3c9be7c3ec"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-run-original.json",
+      "bytes": 13309,
+      "sha256": "7c1f5d0c48509298555443af9977e450305a961c2c5487dfef3179afddec0e9a"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-pr-original.json",
+      "bytes": 18824,
+      "sha256": "6ce268aa678cfb8422d1232d119dc879433d0c35132e7a6bcd8e75a0ed71644c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-codeql-analyses-original.json",
+      "bytes": 3560,
+      "sha256": "c4aa718326aa9e563e4fa745f1277fc3726a5e0e2c0530ffb6729ef5fd1a2020"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "e128d897b4fdc46652deb2526f0362c633c3ab2fbce46d94a253b0e2fce30af3"
+    }
+  ],
+  "original_bytes": 942960,
+  "TAP_method": "Independent timestamp/ANSI parser; complete TAP13 starts/plans/continuous top ordinals/seven counters/final duration. Source-derived22distinctnames onceMCP only; unmodified originals.",
+  "root_suites": [
+    {
+      "plan": 6,
+      "counters": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 69.474857
+    },
+    {
+      "plan": 1044,
+      "counters": {
+        "tests": 1044,
+        "suites": 0,
+        "pass": 1044,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 86213.55796
+    },
+    {
+      "plan": 9,
+      "counters": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 84.075579
+    }
+  ],
+  "mcp_suites": [
+    {
+      "plan": 141,
+      "counters": {
+        "tests": 141,
+        "suites": 0,
+        "pass": 141,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 2480.79532
+    },
+    {
+      "plan": 1,
+      "counters": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 581.224019
+    },
+    {
+      "plan": 15,
+      "counters": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 1034.714693
+    },
+    {
+      "plan": 119,
+      "counters": {
+        "tests": 119,
+        "suites": 0,
+        "pass": 119,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 5294.259276
+    },
+    {
+      "plan": 139,
+      "counters": {
+        "tests": 139,
+        "suites": 0,
+        "pass": 139,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "duration_ms": 4215.070368
+    }
+  ],
+  "source_cases": [
+    {
+      "result": "ok",
+      "number": 66,
+      "name": "audit package: actual offline no-script tarball admits exact files modes shebang bins contract and pinned closure"
+    },
+    {
+      "result": "ok",
+      "number": 67,
+      "name": "audit package: raw archive modes stay distinct from explicit owned bin-link executable normalization"
+    },
+    {
+      "result": "ok",
+      "number": 68,
+      "name": "audit package: canonical bytes and import-only core prove distinct old new whole hashes without changing functions"
+    },
+    {
+      "result": "ok",
+      "number": 69,
+      "name": "audit package: missing canonical helper refuses before any package source import"
+    },
+    {
+      "result": "ok",
+      "number": 70,
+      "name": "audit package: changed canonical helper bytes refuse the independently pinned source audit"
+    },
+    {
+      "result": "ok",
+      "number": 71,
+      "name": "audit package: relative import escaping the tarball refuses source closure even if a repository exists elsewhere"
+    },
+    {
+      "result": "ok",
+      "number": 72,
+      "name": "audit package: changed declared bin and additional private member both refuse the complete package audit"
+    },
+    {
+      "result": "ok",
+      "number": 73,
+      "name": "audit package: gzip corruption compressed capacity and traversal path refuse before unpack writes"
+    },
+    {
+      "result": "ok",
+      "number": 74,
+      "name": "audit package: raw high-bit name prefix type numeric and checksum headers refuse before decoding or fixture writes"
+    },
+    {
+      "result": "ok",
+      "number": 75,
+      "name": "audit package: installed-bin-style symlink actually initializes exactly one annotated SDK tool with bounded schemas"
+    },
+    {
+      "result": "ok",
+      "number": 76,
+      "name": "audit package: actual compact and evidence outputs fingerprints hashes and exact raw bindings match delivered repository behavior"
+    },
+    {
+      "result": "ok",
+      "number": 77,
+      "name": "audit package: all six outcome rows retain full selected N and unknown verdicts through the actual packed command"
+    },
+    {
+      "result": "ok",
+      "number": 78,
+      "name": "audit package: wrong reference SHA returns a bounded non-echoing refusal and a valid next call recovers"
+    },
+    {
+      "result": "ok",
+      "number": 79,
+      "name": "audit package: hash terminator controls refuse strict SHA admission over actual SDK then recover"
+    },
+    {
+      "result": "ok",
+      "number": 80,
+      "name": "audit package: noncanonical base64 padding alphabet and newline refuse without raw echo then recover"
+    },
+    {
+      "result": "ok",
+      "number": 81,
+      "name": "audit package: oversized individually valid inputs refuse aggregate admission and all 64 selected rows still recover intact"
+    },
+    {
+      "result": "ok",
+      "number": 82,
+      "name": "audit package: supplied whole module hash stays unverified and source rights and full universe remain unknown"
+    },
+    {
+      "result": "ok",
+      "number": 83,
+      "name": "audit package: callback failure still closes the SDK child once and observes actual PID absence"
+    },
+    {
+      "result": "ok",
+      "number": 84,
+      "name": "audit package: armed pre-import child sentinel positively blocks network and file writes including caught attempts"
+    },
+    {
+      "result": "ok",
+      "number": 85,
+      "name": "audit package: actual default command in the same tarball still lists exactly the protected seven tools"
+    },
+    {
+      "result": "ok",
+      "number": 86,
+      "name": "audit package: included self-contained synthetic client workflow executes against the packed command"
+    },
+    {
+      "result": "ok",
+      "number": 87,
+      "name": "audit package: oversized unterminated protocol frame exits with bounded notice no raw echo and actual owned PID absence"
+    }
+  ],
+  "actual_package_cases22_pass_onceMCP_notROOT": true,
+  "remote_Node": "22.23.3",
+  "current_checks_all7": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110829982963",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37004563783/job/110829706015",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37004563783/job/110829706180",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37004563783/job/110829706159",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37004563783/job/110829705835",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37004563784/job/110829694396",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37004563784/job/110829694577",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    }
+  ],
+  "run_attempt": 1,
+  "captured_pullref_open_alerts": 0,
+  "latest_codeql": {
+    "javascript-typescript": {
+      "id": 1880659796,
+      "commit_sha": "5ed286ccd2efe59be45803321e623f29ce3a3dd6",
+      "created_at": "2026-10-02T12:06:25Z",
+      "results_count": 0,
+      "error": "",
+      "ref": "refs/pull/364/merge"
+    },
+    "python": {
+      "id": 1880656005,
+      "commit_sha": "5ed286ccd2efe59be45803321e623f29ce3a3dd6",
+      "created_at": "2026-10-02T12:05:35Z",
+      "results_count": 0,
+      "error": "",
+      "ref": "refs/pull/364/merge"
+    }
+  },
+  "raw_artifact": {
+    "compressed_bytes": 53897,
+    "sha256": "e80989d6188ee1e42bedf4e3c8d281ac518cd25c06bc1e624d9ff0fdb8b7a680",
+    "expanded_bytes": 171520,
+    "original_retained_tgz_equals_log_canonicalbase64": true,
+    "bounded_gzip_CRC_eof_single_member_no_trailing_data": true,
+    "bounded_raw_ascii_octal_checksum_path_unique_regular_only_end_checked": true,
+    "all8_member_bytes_modes_match_actual_frozenGit": [
+      {
+        "path": "package/LICENSE",
+        "mode": 420,
+        "bytes": 1084,
+        "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26"
+      },
+      {
+        "path": "package/package.json",
+        "mode": 420,
+        "bytes": 1366,
+        "sha256": "4e9a4eb7d0938b16c76d222146df8ca38a00c7ff7e460a43dd07117c615044e1"
+      },
+      {
+        "path": "package/AUDIT_INPUTS.md",
+        "mode": 420,
+        "bytes": 38809,
+        "sha256": "da1b0e84da6c9ef47f2a90a67b52a5b004136da043d5c1db71a9e2144d19183c"
+      },
+      {
+        "path": "package/README.md",
+        "mode": 420,
+        "bytes": 13866,
+        "sha256": "ea2d9d029a2551f183027bdca564acf8d6e0c20139f251bbc2c1c31a0296990c"
+      },
+      {
+        "path": "package/src/audit-inputs-core.mjs",
+        "mode": 420,
+        "bytes": 21651,
+        "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059"
+      },
+      {
+        "path": "package/src/audit-inputs-stdio.mjs",
+        "mode": 493,
+        "bytes": 12929,
+        "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0"
+      },
+      {
+        "path": "package/src/canonical-json.mjs",
+        "mode": 420,
+        "bytes": 9481,
+        "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+      },
+      {
+        "path": "package/src/server.mjs",
+        "mode": 420,
+        "bytes": 64736,
+        "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"
+      }
+    ],
+    "raw_diagnostic": {
+      "bytes": 73267,
+      "sha256": "0a51c82b3f7955200000b78f14c6377b185d804366cc98a294954ba5a0611a0b",
+      "admission": "RAW_CAPTURED_NOT_ADMITTED"
+    },
+    "admitted_diagnostic": {
+      "bytes": 2043,
+      "sha256": "83bd2fc39028a50dc9962a2c95b3639a1a43c3f9e24ac827389d94206ad096c3",
+      "admission": "ADMITTED"
+    },
+    "same_gzip_and_member_pins_bound": true,
+    "installed_fixture_bins": [
+      {
+        "name": "canli-fundamentals-mcp",
+        "path": "src/server.mjs",
+        "raw_tar_mode": 420,
+        "installed_fixture_mode": 493,
+        "owned_fixture_only": true
+      },
+      {
+        "name": "canli-fundamentals-audit",
+        "path": "src/audit-inputs-stdio.mjs",
+        "raw_tar_mode": 493,
+        "installed_fixture_mode": 493,
+        "owned_fixture_only": true
+      }
+    ],
+    "direct_bin": "Direct owned .bin symlink and existing shebang; NODE_OPTIONS pre-import guard.",
+    "sole_dependency_link": "Existing remote CI SDK server/core2.1.0 and Zod4.6.5 node_modules; no repository runtime source link or install.",
+    "actual_install_registry_publish_claim": false
+  },
+  "scope_limits": [
+    "Existing remote CI is the actual runtime; reviewer ran no project imports/test/pack/install/helper/browser/build/job/lease.",
+    "Retained CI tests assert bounded synthetic SDK workflows, armed positive guard controls, hidden retry refusal, oneclose and observed ownPIDabsence; no hostile-process or hard universal timeout assurance.",
+    "Raw archive source modes remain separate from explicitly normalized owned temporary fixture modes. No actual npm install or published package is established.",
+    "Captured ref CodeQL and laboratory fixtures do not establish actual indexing, rights, expert/adoption/ALPHAC outcomes."
+  ],
+  "prior88_e073_failed_originals_and_reviews": "Preserved separately, not relabelled.",
+  "blocking_findings": [],
+  "reviewer_project_runtime_API_refetch_job_grant_nonce_or_source_edits": false,
+  "archive_allocation": null,
+  "remaining": [
+    "THIRD current source/CI",
+    "Explicit archive allocation and final extensions if requested",
+    "PRIMARY ordinary merge and actualcustody"
+  ],
+  "full_owner_hierarchy": "ACTIVE",
+  "actual_indexed_expert_rights_labels_adoption_qualified_outcomes": null
+}

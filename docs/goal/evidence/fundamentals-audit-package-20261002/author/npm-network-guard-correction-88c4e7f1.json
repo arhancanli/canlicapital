@@ -1,0 +1,16 @@
+{
+  "schema": "canli.secondary.audit-package.npm-guard-correction.v1",
+  "observed_at": "2026-10-02T11:27:40.536348+00:00",
+  "failed_source": "88c4e7f18c4490f9dc993fdccc6a56d5c70b90c6",
+  "failed_source_manifest_sha256": "21ff5ae964325ff5bec79d23c3e82e26d44d18f55458584b4be050d3f926d9c5",
+  "failed_ci_receipt_sha256": "3c4f989dc58eb916db3e8a4cb0eb181ebe4907cdae157eef6dad4f14be299e36",
+  "new_cases_original_pass": 0,
+  "new_cases_original_hook_fail": 20,
+  "originals_unchanged": true,
+  "diagnosis": "Inference from minimal environment and official npm notifier opt-out/CI source; denied request has no recorded call-site stack.",
+  "correction": "Explicit optional-check opt-outs and CI environment; retain armed network sentinel. Add bounded actual artifact diagnostic for independent custody.",
+  "old_new_twenty_test_names_unchanged": true,
+  "product_behavior_or_limits_changed": false,
+  "next_runtime_passes": null,
+  "full_owner_goal": "ACTIVE"
+}

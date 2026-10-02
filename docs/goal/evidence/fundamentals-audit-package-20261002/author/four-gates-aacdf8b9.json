@@ -1,0 +1,51 @@
+{
+  "schema": "canli.fundamentals.audit-package.four-independent-gates.v1",
+  "observed_at": "2026-10-02T12:24:36.351877+00:00",
+  "source": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+  "tree": "4f05698be9d019f60047cb8716a450fb6e3b7ea4",
+  "source_manifest_sha256": "21e185de2f3218001a577bc25010d81384ffa9c0996ce67c3128a577539f7a09",
+  "author_current_CI_sha256": "b68f6eb5c46e364caba6ba2c84cc0062a80f913e5a8010b035ffe337bfddb16c",
+  "four_gates": [
+    {
+      "reviewer": "PRIMARY",
+      "kind": "source",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/review-aacdf8b9-source-extension.json",
+      "bytes": 20291,
+      "sha256": "478013ade2136d9bcb6ab437a560319bc6292f7a8f4e4fee7a72c8138360cfa5",
+      "verdict": "PASS_WITH_STATIC_SOURCE_PACKAGE_SCOPE_LIMITS"
+    },
+    {
+      "reviewer": "PRIMARY",
+      "kind": "current_ci",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/retained-ci-aacdf8b9-and-actual-raw-package.json",
+      "bytes": 15663,
+      "sha256": "a35fa962171a6b5aafb9aa777d688edc10816f426e4fca8e361b8937832c9f4d",
+      "verdict": "PASS_WITH_RETAINED_CI_ARTIFACT_SCOPE_LIMITS"
+    },
+    {
+      "reviewer": "THIRD",
+      "kind": "source",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/review-aacdf8b9-source-extension.json",
+      "bytes": 24022,
+      "sha256": "f712afc2596c7e19d3dd2a9019123888d8f767209444cacb446596eaee4a5002",
+      "verdict": "PASS_WITH_STATIC_SOURCE_PACKAGE_SCOPE_LIMITS"
+    },
+    {
+      "reviewer": "THIRD",
+      "kind": "current_ci",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/retained-ci-aacdf8b9.json",
+      "bytes": 15729,
+      "sha256": "a4cf10bac6dc7d3e5a25b9de4a3fcfbcd7b789c200b8e5b9952079fcd0b7d59f",
+      "verdict": "PASS_EXACT_RETAINED_CURRENT_CI_AND_ACTUAL_PACKAGE_CUSTODY_WITH_SCOPE_LIMITS"
+    }
+  ],
+  "all_four_read_full_decoded_hashed_current_source_matched": true,
+  "verdict": "PASS_SCOPED_SOURCE_AND_CURRENT_CI_ONLY",
+  "actual_new_cases_once_MCP": 22,
+  "original_tarball_sha256": "e80989d6188ee1e42bedf4e3c8d281ac518cd25c06bc1e624d9ff0fdb8b7a680",
+  "archive_allocated": false,
+  "final_head_review_or_actual_delivery": false,
+  "own_local_project_job_or_CPU_grant": null,
+  "full_owner_hierarchy": "ACTIVE",
+  "metadata_parser_original_error_preserved": "metadata-gate-shape-error-5bd55f-original.txt; corrected by reading independent nested counters schema, no API refetch or project execution"
+}

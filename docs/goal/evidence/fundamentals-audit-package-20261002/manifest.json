@@ -1,0 +1,1622 @@
+{
+  "schema": "canli.fundamentals.audit-package.documentary-manifest.v1",
+  "observed_at": "2026-10-02T12:35:08.953831+00:00",
+  "source": "aacdf8b964f1c6a9651d452ba0e76ffc627237b1",
+  "tree": "4f05698be9d019f60047cb8716a450fb6e3b7ea4",
+  "prefix": "docs/goal/evidence/fundamentals-audit-package-20261002",
+  "allocation_received": true,
+  "not_installed_in_repository": false,
+  "maximum_total_files": 96,
+  "maximum_original_bytes_including_manifest": 12582912,
+  "maximum_stored_bytes": 4194304,
+  "mandatory_gates": [
+    {
+      "reviewer": "PRIMARY",
+      "kind": "source",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/review-aacdf8b9-source-extension.json",
+      "bytes": 20291,
+      "sha256": "478013ade2136d9bcb6ab437a560319bc6292f7a8f4e4fee7a72c8138360cfa5",
+      "verdict": "PASS_WITH_STATIC_SOURCE_PACKAGE_SCOPE_LIMITS"
+    },
+    {
+      "reviewer": "PRIMARY",
+      "kind": "current_ci",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/retained-ci-aacdf8b9-and-actual-raw-package.json",
+      "bytes": 15663,
+      "sha256": "a35fa962171a6b5aafb9aa777d688edc10816f426e4fca8e361b8937832c9f4d",
+      "verdict": "PASS_WITH_RETAINED_CI_ARTIFACT_SCOPE_LIMITS"
+    },
+    {
+      "reviewer": "THIRD",
+      "kind": "source",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/review-aacdf8b9-source-extension.json",
+      "bytes": 24022,
+      "sha256": "f712afc2596c7e19d3dd2a9019123888d8f767209444cacb446596eaee4a5002",
+      "verdict": "PASS_WITH_STATIC_SOURCE_PACKAGE_SCOPE_LIMITS"
+    },
+    {
+      "reviewer": "THIRD",
+      "kind": "current_ci",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/retained-ci-aacdf8b9.json",
+      "bytes": 15729,
+      "sha256": "a4cf10bac6dc7d3e5a25b9de4a3fcfbcd7b789c200b8e5b9952079fcd0b7d59f",
+      "verdict": "PASS_EXACT_RETAINED_CURRENT_CI_AND_ACTUAL_PACKAGE_CUSTODY_WITH_SCOPE_LIMITS"
+    }
+  ],
+  "assets": [
+    {
+      "path": "author/assignment.md",
+      "original": {
+        "bytes": 7530,
+        "sha256": "efecdbcff14b90f3b2dc92b275c2ae8d3783e8e1cd5f71c930a9295adce81903"
+      },
+      "stored": {
+        "bytes": 7530,
+        "sha256": "efecdbcff14b90f3b2dc92b275c2ae8d3783e8e1cd5f71c930a9295adce81903"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/assignment.md",
+        "bytes": 7530,
+        "sha256": "efecdbcff14b90f3b2dc92b275c2ae8d3783e8e1cd5f71c930a9295adce81903"
+      }
+    },
+    {
+      "path": "author/capture-exact-package-ci-v1.py",
+      "original": {
+        "bytes": 12248,
+        "sha256": "252beae3c9235d181669b8f5bfc257a474cecebc04aa1f6517dbdd2fe7a9fccb"
+      },
+      "stored": {
+        "bytes": 12248,
+        "sha256": "252beae3c9235d181669b8f5bfc257a474cecebc04aa1f6517dbdd2fe7a9fccb"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/capture-exact-package-ci-v1.py",
+        "bytes": 12248,
+        "sha256": "252beae3c9235d181669b8f5bfc257a474cecebc04aa1f6517dbdd2fe7a9fccb"
+      }
+    },
+    {
+      "path": "author/capture-exact-package-ci-v2.py",
+      "original": {
+        "bytes": 16133,
+        "sha256": "0455e2b84fa68cd0eb48343da776b6064466a109e2d33e50d759cb5a841b9706"
+      },
+      "stored": {
+        "bytes": 16133,
+        "sha256": "0455e2b84fa68cd0eb48343da776b6064466a109e2d33e50d759cb5a841b9706"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/capture-exact-package-ci-v2.py",
+        "bytes": 16133,
+        "sha256": "0455e2b84fa68cd0eb48343da776b6064466a109e2d33e50d759cb5a841b9706"
+      }
+    },
+    {
+      "path": "author/capture-exact-package-ci-v3.py",
+      "original": {
+        "bytes": 16172,
+        "sha256": "fd879b78043dec1622f3275eaaf6878b3490ec70908d80bd0086be093dabaefd"
+      },
+      "stored": {
+        "bytes": 16172,
+        "sha256": "fd879b78043dec1622f3275eaaf6878b3490ec70908d80bd0086be093dabaefd"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/capture-exact-package-ci-v3.py",
+        "bytes": 16172,
+        "sha256": "fd879b78043dec1622f3275eaaf6878b3490ec70908d80bd0086be093dabaefd"
+      }
+    },
+    {
+      "path": "author/failed-88c4e7f1-initial-handoff.json",
+      "original": {
+        "bytes": 1739,
+        "sha256": "07b96b6d05206047e3c7afcbee438bc83c9ff18c8ab50fb60268acb67dd14798"
+      },
+      "stored": {
+        "bytes": 1739,
+        "sha256": "07b96b6d05206047e3c7afcbee438bc83c9ff18c8ab50fb60268acb67dd14798"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/failed-88c4e7f1-initial-handoff.json",
+        "bytes": 1739,
+        "sha256": "07b96b6d05206047e3c7afcbee438bc83c9ff18c8ab50fb60268acb67dd14798"
+      }
+    },
+    {
+      "path": "author/initial-import-only-contract.json",
+      "original": {
+        "bytes": 1850,
+        "sha256": "3388d60068300e81dae74377f928083edf05ec93aa1c812e77b41b79b42c95a3"
+      },
+      "stored": {
+        "bytes": 1850,
+        "sha256": "3388d60068300e81dae74377f928083edf05ec93aa1c812e77b41b79b42c95a3"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/initial-import-only-contract.json",
+        "bytes": 1850,
+        "sha256": "3388d60068300e81dae74377f928083edf05ec93aa1c812e77b41b79b42c95a3"
+      }
+    },
+    {
+      "path": "author/metadata-failed-ci-parser-94e5e9-original.txt",
+      "original": {
+        "bytes": 89,
+        "sha256": "af8b9780391490b46c4d7cfc2fb01353e84c66238202b7050f4b7779d9007400"
+      },
+      "stored": {
+        "bytes": 89,
+        "sha256": "af8b9780391490b46c4d7cfc2fb01353e84c66238202b7050f4b7779d9007400"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/metadata-failed-ci-parser-94e5e9-original.txt",
+        "bytes": 89,
+        "sha256": "af8b9780391490b46c4d7cfc2fb01353e84c66238202b7050f4b7779d9007400"
+      }
+    },
+    {
+      "path": "author/metadata-helper-v2-v3-end-admission-correction.json",
+      "original": {
+        "bytes": 705,
+        "sha256": "12029d66722390856a76e70d646e8eb92cfa7e3119c68245d4a28bfbc3ee3648"
+      },
+      "stored": {
+        "bytes": 705,
+        "sha256": "12029d66722390856a76e70d646e8eb92cfa7e3119c68245d4a28bfbc3ee3648"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/metadata-helper-v2-v3-end-admission-correction.json",
+        "bytes": 705,
+        "sha256": "12029d66722390856a76e70d646e8eb92cfa7e3119c68245d4a28bfbc3ee3648"
+      }
+    },
+    {
+      "path": "author/metadata-read-error-9365ad-excerpt.json",
+      "original": {
+        "bytes": 460,
+        "sha256": "c9b4ef9443065a505d623d570cf11fab04acb883c0ec46d0d33fa8e5040b6ae3"
+      },
+      "stored": {
+        "bytes": 460,
+        "sha256": "c9b4ef9443065a505d623d570cf11fab04acb883c0ec46d0d33fa8e5040b6ae3"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/metadata-read-error-9365ad-excerpt.json",
+        "bytes": 460,
+        "sha256": "c9b4ef9443065a505d623d570cf11fab04acb883c0ec46d0d33fa8e5040b6ae3"
+      }
+    },
+    {
+      "path": "author/metadata-zsh-error-01cb86-original.txt",
+      "original": {
+        "bytes": 98,
+        "sha256": "e86f3e75d3395a860331743625e6881a118fc0731997485541dd75edcbad8c72"
+      },
+      "stored": {
+        "bytes": 98,
+        "sha256": "e86f3e75d3395a860331743625e6881a118fc0731997485541dd75edcbad8c72"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/metadata-zsh-error-01cb86-original.txt",
+        "bytes": 98,
+        "sha256": "e86f3e75d3395a860331743625e6881a118fc0731997485541dd75edcbad8c72"
+      }
+    },
+    {
+      "path": "author/npm-network-guard-correction-88c4e7f1.json",
+      "original": {
+        "bytes": 959,
+        "sha256": "6b6a5fcf626a1c16ed142fc98a7e57ff7b2aef297b78719913aeb1fd9e649ca3"
+      },
+      "stored": {
+        "bytes": 959,
+        "sha256": "6b6a5fcf626a1c16ed142fc98a7e57ff7b2aef297b78719913aeb1fd9e649ca3"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/npm-network-guard-correction-88c4e7f1.json",
+        "bytes": 959,
+        "sha256": "6b6a5fcf626a1c16ed142fc98a7e57ff7b2aef297b78719913aeb1fd9e649ca3"
+      }
+    },
+    {
+      "path": "author/official-node22.23.3-test-runner-api-original.json",
+      "original": {
+        "bytes": 56896,
+        "sha256": "d76e588142df700d6614af2cd731d107f062b81f96c853be259be0c4541352b5"
+      },
+      "stored": {
+        "bytes": 56896,
+        "sha256": "d76e588142df700d6614af2cd731d107f062b81f96c853be259be0c4541352b5"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-node22.23.3-test-runner-api-original.json",
+        "bytes": 56896,
+        "sha256": "d76e588142df700d6614af2cd731d107f062b81f96c853be259be0c4541352b5"
+      }
+    },
+    {
+      "path": "author/official-node22.23.3-test-runner-test.js.txt",
+      "original": {
+        "bytes": 40658,
+        "sha256": "efebe79e3471470f7daade809a4f83b32f737db69126381d21a23ebb392da3ab"
+      },
+      "stored": {
+        "bytes": 40658,
+        "sha256": "efebe79e3471470f7daade809a4f83b32f737db69126381d21a23ebb392da3ab"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-node22.23.3-test-runner-test.js.txt",
+        "bytes": 40658,
+        "sha256": "efebe79e3471470f7daade809a4f83b32f737db69126381d21a23ebb392da3ab"
+      }
+    },
+    {
+      "path": "author/official-npm-10.9.9-bin-links-fix-bin.js-api-original.json",
+      "original": {
+        "bytes": 2475,
+        "sha256": "6715a227b78bc8cab3d569c65220160bd6f66a3d9284308cf7f3fbe9b34076a1"
+      },
+      "stored": {
+        "bytes": 2475,
+        "sha256": "6715a227b78bc8cab3d569c65220160bd6f66a3d9284308cf7f3fbe9b34076a1"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-npm-10.9.9-bin-links-fix-bin.js-api-original.json",
+        "bytes": 2475,
+        "sha256": "6715a227b78bc8cab3d569c65220160bd6f66a3d9284308cf7f3fbe9b34076a1"
+      }
+    },
+    {
+      "path": "author/official-npm-10.9.9-bin-links-fix-bin.js.txt",
+      "original": {
+        "bytes": 1160,
+        "sha256": "eed383d9cb6529244f5f5c29ee8258d141f3231b06db4a453d1181dac3f83f1b"
+      },
+      "stored": {
+        "bytes": 1160,
+        "sha256": "eed383d9cb6529244f5f5c29ee8258d141f3231b06db4a453d1181dac3f83f1b"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-npm-10.9.9-bin-links-fix-bin.js.txt",
+        "bytes": 1160,
+        "sha256": "eed383d9cb6529244f5f5c29ee8258d141f3231b06db4a453d1181dac3f83f1b"
+      }
+    },
+    {
+      "path": "author/official-npm-10.9.9-bin-links-link-bin.js-api-original.json",
+      "original": {
+        "bytes": 1357,
+        "sha256": "49e8c179c0e9e57994d459048e8160a31916a6a30f64aa4e8d7d978e6c4c72e7"
+      },
+      "stored": {
+        "bytes": 1357,
+        "sha256": "49e8c179c0e9e57994d459048e8160a31916a6a30f64aa4e8d7d978e6c4c72e7"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-npm-10.9.9-bin-links-link-bin.js-api-original.json",
+        "bytes": 1357,
+        "sha256": "49e8c179c0e9e57994d459048e8160a31916a6a30f64aa4e8d7d978e6c4c72e7"
+      }
+    },
+    {
+      "path": "author/official-npm-10.9.9-bin-links-link-bin.js.txt",
+      "original": {
+        "bytes": 343,
+        "sha256": "368a4af7bd9859eb38c2a1adddddc9d8a792849015a60c82cd7a63119dee3537"
+      },
+      "stored": {
+        "bytes": 343,
+        "sha256": "368a4af7bd9859eb38c2a1adddddc9d8a792849015a60c82cd7a63119dee3537"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-npm-10.9.9-bin-links-link-bin.js.txt",
+        "bytes": 343,
+        "sha256": "368a4af7bd9859eb38c2a1adddddc9d8a792849015a60c82cd7a63119dee3537"
+      }
+    },
+    {
+      "path": "author/official-npm-10.9.9-entry.js.txt",
+      "original": {
+        "bytes": 3199,
+        "sha256": "1024d2511a619c857fd67f79c3fb4d509c690cf2430373953b94713f18020b26"
+      },
+      "stored": {
+        "bytes": 3199,
+        "sha256": "1024d2511a619c857fd67f79c3fb4d509c690cf2430373953b94713f18020b26"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-npm-10.9.9-entry.js.txt",
+        "bytes": 3199,
+        "sha256": "1024d2511a619c857fd67f79c3fb4d509c690cf2430373953b94713f18020b26"
+      }
+    },
+    {
+      "path": "author/official-npm-10.9.9-update-notifier.js.txt",
+      "original": {
+        "bytes": 4035,
+        "sha256": "777c2519fcacf76c2e97260d1a6a8c4c9c3b2f5d33ae970e0caeb00123cabdae"
+      },
+      "stored": {
+        "bytes": 4035,
+        "sha256": "777c2519fcacf76c2e97260d1a6a8c4c9c3b2f5d33ae970e0caeb00123cabdae"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-npm-10.9.9-update-notifier.js.txt",
+        "bytes": 4035,
+        "sha256": "777c2519fcacf76c2e97260d1a6a8c4c9c3b2f5d33ae970e0caeb00123cabdae"
+      }
+    },
+    {
+      "path": "author/pr-364-88c4e7f1-original.json",
+      "original": {
+        "bytes": 18969,
+        "sha256": "b6c5ad339b687e144971ae866f8265f19149b91a697fa4feceed4c7caf6fa5d2"
+      },
+      "stored": {
+        "bytes": 18969,
+        "sha256": "b6c5ad339b687e144971ae866f8265f19149b91a697fa4feceed4c7caf6fa5d2"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/pr-364-88c4e7f1-original.json",
+        "bytes": 18969,
+        "sha256": "b6c5ad339b687e144971ae866f8265f19149b91a697fa4feceed4c7caf6fa5d2"
+      }
+    },
+    {
+      "path": "author/pr-body-88c4e7f1-initial.md",
+      "original": {
+        "bytes": 1930,
+        "sha256": "ccff8775a5859573dad8c669b77a83186cccceb976d7e93940a2c27178f93372"
+      },
+      "stored": {
+        "bytes": 1930,
+        "sha256": "ccff8775a5859573dad8c669b77a83186cccceb976d7e93940a2c27178f93372"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/pr-body-88c4e7f1-initial.md",
+        "bytes": 1930,
+        "sha256": "ccff8775a5859573dad8c669b77a83186cccceb976d7e93940a2c27178f93372"
+      }
+    },
+    {
+      "path": "author/pr-body-aacdf8b9.md",
+      "original": {
+        "bytes": 1743,
+        "sha256": "32dced63a1ef738a5771493b4f44bbcaf7947eb51c947aef07317f6ce3cc9391"
+      },
+      "stored": {
+        "bytes": 1743,
+        "sha256": "32dced63a1ef738a5771493b4f44bbcaf7947eb51c947aef07317f6ce3cc9391"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/pr-body-aacdf8b9.md",
+        "bytes": 1743,
+        "sha256": "32dced63a1ef738a5771493b4f44bbcaf7947eb51c947aef07317f6ce3cc9391"
+      }
+    },
+    {
+      "path": "author/pr-body-e073e704.md",
+      "original": {
+        "bytes": 2069,
+        "sha256": "4d0f1bc4bd972dc9537aa990580218a213f8d309786a56266d319cc6995e15ba"
+      },
+      "stored": {
+        "bytes": 2069,
+        "sha256": "4d0f1bc4bd972dc9537aa990580218a213f8d309786a56266d319cc6995e15ba"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/pr-body-e073e704.md",
+        "bytes": 2069,
+        "sha256": "4d0f1bc4bd972dc9537aa990580218a213f8d309786a56266d319cc6995e15ba"
+      }
+    },
+    {
+      "path": "author/raw-installed-mode-correction-e073e704.json",
+      "original": {
+        "bytes": 2253,
+        "sha256": "4c88b42d5a3a7e8f39a717ba0b7defcbbae152203ed99ef6d1f5696c45a2d952"
+      },
+      "stored": {
+        "bytes": 2253,
+        "sha256": "4c88b42d5a3a7e8f39a717ba0b7defcbbae152203ed99ef6d1f5696c45a2d952"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/raw-installed-mode-correction-e073e704.json",
+        "bytes": 2253,
+        "sha256": "4c88b42d5a3a7e8f39a717ba0b7defcbbae152203ed99ef6d1f5696c45a2d952"
+      }
+    },
+    {
+      "path": "author/secondary-88c4e7f1-checks-original.json",
+      "original": {
+        "bytes": 1131,
+        "sha256": "61fe174d85eb93718e6fb5734b7054a31f1dc9c283dfa52e5370101d4766bbd4"
+      },
+      "stored": {
+        "bytes": 1131,
+        "sha256": "61fe174d85eb93718e6fb5734b7054a31f1dc9c283dfa52e5370101d4766bbd4"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-checks-original.json",
+        "bytes": 1131,
+        "sha256": "61fe174d85eb93718e6fb5734b7054a31f1dc9c283dfa52e5370101d4766bbd4"
+      }
+    },
+    {
+      "path": "author/secondary-88c4e7f1-codeql-alerts-original.json",
+      "original": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "stored": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-codeql-alerts-original.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "path": "author/secondary-88c4e7f1-codeql-analyses-original.json",
+      "original": {
+        "bytes": 1186,
+        "sha256": "a2fbeb90db4320e77da2a8d3962f15a85ef1e27b310273357b4ef185d53df7c9"
+      },
+      "stored": {
+        "bytes": 1186,
+        "sha256": "a2fbeb90db4320e77da2a8d3962f15a85ef1e27b310273357b4ef185d53df7c9"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-codeql-analyses-original.json",
+        "bytes": 1186,
+        "sha256": "a2fbeb90db4320e77da2a8d3962f15a85ef1e27b310273357b4ef185d53df7c9"
+      }
+    },
+    {
+      "path": "author/secondary-88c4e7f1-mcp-ci-original.log.gz",
+      "original": {
+        "bytes": 160938,
+        "sha256": "0c64af08a9879a7b42f2a63c29ded318f083747316b4933b5aec3f4ab5527a99"
+      },
+      "stored": {
+        "bytes": 30563,
+        "sha256": "76556ed3cac9a6ce753ced0965d05b5147a53d6359e0e386f74b2fea50fb5234"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-mcp-ci-original.log",
+        "bytes": 160938,
+        "sha256": "0c64af08a9879a7b42f2a63c29ded318f083747316b4933b5aec3f4ab5527a99"
+      }
+    },
+    {
+      "path": "author/secondary-88c4e7f1-original-failed-ci.json",
+      "original": {
+        "bytes": 9923,
+        "sha256": "3c4f989dc58eb916db3e8a4cb0eb181ebe4907cdae157eef6dad4f14be299e36"
+      },
+      "stored": {
+        "bytes": 9923,
+        "sha256": "3c4f989dc58eb916db3e8a4cb0eb181ebe4907cdae157eef6dad4f14be299e36"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-original-failed-ci.json",
+        "bytes": 9923,
+        "sha256": "3c4f989dc58eb916db3e8a4cb0eb181ebe4907cdae157eef6dad4f14be299e36"
+      }
+    },
+    {
+      "path": "author/secondary-88c4e7f1-pr-original.json",
+      "original": {
+        "bytes": 19009,
+        "sha256": "dca7a017c83ee4a78b805168d03e35a4f1ae51f10c955875918206f9dbcc640e"
+      },
+      "stored": {
+        "bytes": 19009,
+        "sha256": "dca7a017c83ee4a78b805168d03e35a4f1ae51f10c955875918206f9dbcc640e"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-pr-original.json",
+        "bytes": 19009,
+        "sha256": "dca7a017c83ee4a78b805168d03e35a4f1ae51f10c955875918206f9dbcc640e"
+      }
+    },
+    {
+      "path": "author/secondary-88c4e7f1-root-ci-original.log.gz",
+      "original": {
+        "bytes": 633027,
+        "sha256": "f1deafcab0c9f0d62a23048ead192c43df339488c9a361cba77773fd9fb08c12"
+      },
+      "stored": {
+        "bytes": 118762,
+        "sha256": "14f962796c57a0dc10d93ee4931b5ff1e795d7466390d292d0b555b23297688a"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-root-ci-original.log",
+        "bytes": 633027,
+        "sha256": "f1deafcab0c9f0d62a23048ead192c43df339488c9a361cba77773fd9fb08c12"
+      }
+    },
+    {
+      "path": "author/secondary-88c4e7f1-run-original.json",
+      "original": {
+        "bytes": 13310,
+        "sha256": "3638feb046d5429ac822139d4cfda6d558dadb7569daebfb810d7020c300981d"
+      },
+      "stored": {
+        "bytes": 13310,
+        "sha256": "3638feb046d5429ac822139d4cfda6d558dadb7569daebfb810d7020c300981d"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-run-original.json",
+        "bytes": 13310,
+        "sha256": "3638feb046d5429ac822139d4cfda6d558dadb7569daebfb810d7020c300981d"
+      }
+    },
+    {
+      "path": "author/secondary-88c4e7f1-tested-merge-original.json",
+      "original": {
+        "bytes": 2648,
+        "sha256": "9382fe5ba1621a2bcc7cbe5dc17287e6040cd5a63ec310c929231039575f951b"
+      },
+      "stored": {
+        "bytes": 2648,
+        "sha256": "9382fe5ba1621a2bcc7cbe5dc17287e6040cd5a63ec310c929231039575f951b"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-88c4e7f1-tested-merge-original.json",
+        "bytes": 2648,
+        "sha256": "9382fe5ba1621a2bcc7cbe5dc17287e6040cd5a63ec310c929231039575f951b"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-checks-original.json",
+      "original": {
+        "bytes": 1131,
+        "sha256": "7e4dd6a4c69e814c4f6f2afeefdff8a375a4a056286f5b2a23ca8f3c9be7c3ec"
+      },
+      "stored": {
+        "bytes": 1131,
+        "sha256": "7e4dd6a4c69e814c4f6f2afeefdff8a375a4a056286f5b2a23ca8f3c9be7c3ec"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-checks-original.json",
+        "bytes": 1131,
+        "sha256": "7e4dd6a4c69e814c4f6f2afeefdff8a375a4a056286f5b2a23ca8f3c9be7c3ec"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-codeql-alerts-original.json",
+      "original": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "stored": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-codeql-alerts-original.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-codeql-analyses-original.json",
+      "original": {
+        "bytes": 3560,
+        "sha256": "c4aa718326aa9e563e4fa745f1277fc3726a5e0e2c0530ffb6729ef5fd1a2020"
+      },
+      "stored": {
+        "bytes": 3560,
+        "sha256": "c4aa718326aa9e563e4fa745f1277fc3726a5e0e2c0530ffb6729ef5fd1a2020"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-codeql-analyses-original.json",
+        "bytes": 3560,
+        "sha256": "c4aa718326aa9e563e4fa745f1277fc3726a5e0e2c0530ffb6729ef5fd1a2020"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-exact-ci.json",
+      "original": {
+        "bytes": 14416,
+        "sha256": "b68f6eb5c46e364caba6ba2c84cc0062a80f913e5a8010b035ffe337bfddb16c"
+      },
+      "stored": {
+        "bytes": 14416,
+        "sha256": "b68f6eb5c46e364caba6ba2c84cc0062a80f913e5a8010b035ffe337bfddb16c"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-exact-ci.json",
+        "bytes": 14416,
+        "sha256": "b68f6eb5c46e364caba6ba2c84cc0062a80f913e5a8010b035ffe337bfddb16c"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-mcp-ci-original.log.gz",
+      "original": {
+        "bytes": 271192,
+        "sha256": "fc4fbc276887cacfdf410ffb0a7d70176f02112d618004a20de607f2864eee28"
+      },
+      "stored": {
+        "bytes": 96951,
+        "sha256": "62e5a4a34a42cac48f4aab4592b00567c17bd386f30fd1350c030b4074e1645b"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-mcp-ci-original.log",
+        "bytes": 271192,
+        "sha256": "fc4fbc276887cacfdf410ffb0a7d70176f02112d618004a20de607f2864eee28"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-package-original.tgz",
+      "original": {
+        "bytes": 53897,
+        "sha256": "e80989d6188ee1e42bedf4e3c8d281ac518cd25c06bc1e624d9ff0fdb8b7a680"
+      },
+      "stored": {
+        "bytes": 53897,
+        "sha256": "e80989d6188ee1e42bedf4e3c8d281ac518cd25c06bc1e624d9ff0fdb8b7a680"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-package-original.tgz",
+        "bytes": 53897,
+        "sha256": "e80989d6188ee1e42bedf4e3c8d281ac518cd25c06bc1e624d9ff0fdb8b7a680"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-pr-original.json",
+      "original": {
+        "bytes": 18824,
+        "sha256": "6ce268aa678cfb8422d1232d119dc879433d0c35132e7a6bcd8e75a0ed71644c"
+      },
+      "stored": {
+        "bytes": 18824,
+        "sha256": "6ce268aa678cfb8422d1232d119dc879433d0c35132e7a6bcd8e75a0ed71644c"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-pr-original.json",
+        "bytes": 18824,
+        "sha256": "6ce268aa678cfb8422d1232d119dc879433d0c35132e7a6bcd8e75a0ed71644c"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-root-ci-original.log.gz",
+      "original": {
+        "bytes": 632294,
+        "sha256": "a2a89b2a1b6680c49461261cfb673f4a82ac92d15166b8d51c4c69eafc2a77d7"
+      },
+      "stored": {
+        "bytes": 117819,
+        "sha256": "08342dd8071e2bf472635df62958fb16bd0c8f4adb75997f843576b2142088c7"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-root-ci-original.log",
+        "bytes": 632294,
+        "sha256": "a2a89b2a1b6680c49461261cfb673f4a82ac92d15166b8d51c4c69eafc2a77d7"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-run-original.json",
+      "original": {
+        "bytes": 13309,
+        "sha256": "7c1f5d0c48509298555443af9977e450305a961c2c5487dfef3179afddec0e9a"
+      },
+      "stored": {
+        "bytes": 13309,
+        "sha256": "7c1f5d0c48509298555443af9977e450305a961c2c5487dfef3179afddec0e9a"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-run-original.json",
+        "bytes": 13309,
+        "sha256": "7c1f5d0c48509298555443af9977e450305a961c2c5487dfef3179afddec0e9a"
+      }
+    },
+    {
+      "path": "author/secondary-aacdf8b9-tested-merge-original.json",
+      "original": {
+        "bytes": 2648,
+        "sha256": "e128d897b4fdc46652deb2526f0362c633c3ab2fbce46d94a253b0e2fce30af3"
+      },
+      "stored": {
+        "bytes": 2648,
+        "sha256": "e128d897b4fdc46652deb2526f0362c633c3ab2fbce46d94a253b0e2fce30af3"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-aacdf8b9-tested-merge-original.json",
+        "bytes": 2648,
+        "sha256": "e128d897b4fdc46652deb2526f0362c633c3ab2fbce46d94a253b0e2fce30af3"
+      }
+    },
+    {
+      "path": "author/secondary-e073e704-checks-original.json",
+      "original": {
+        "bytes": 1131,
+        "sha256": "ffa1c73b8a6b8dd0640f47328d8c21145d9140dded8a5fe27178fc9e1d6aa23c"
+      },
+      "stored": {
+        "bytes": 1131,
+        "sha256": "ffa1c73b8a6b8dd0640f47328d8c21145d9140dded8a5fe27178fc9e1d6aa23c"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-checks-original.json",
+        "bytes": 1131,
+        "sha256": "ffa1c73b8a6b8dd0640f47328d8c21145d9140dded8a5fe27178fc9e1d6aa23c"
+      }
+    },
+    {
+      "path": "author/secondary-e073e704-codeql-alerts-original.json",
+      "original": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "stored": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-codeql-alerts-original.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "path": "author/secondary-e073e704-codeql-analyses-original.json",
+      "original": {
+        "bytes": 2373,
+        "sha256": "99e57cbe9a1efbc9777a17bcf28c2a18c3e81f2a7b5b4ea6aebfee8be4e5467b"
+      },
+      "stored": {
+        "bytes": 2373,
+        "sha256": "99e57cbe9a1efbc9777a17bcf28c2a18c3e81f2a7b5b4ea6aebfee8be4e5467b"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-codeql-analyses-original.json",
+        "bytes": 2373,
+        "sha256": "99e57cbe9a1efbc9777a17bcf28c2a18c3e81f2a7b5b4ea6aebfee8be4e5467b"
+      }
+    },
+    {
+      "path": "author/secondary-e073e704-mcp-ci-original.log.gz",
+      "original": {
+        "bytes": 161071,
+        "sha256": "19537dea979d1e170b9e4bca05a27270afb81adc36fe57d03ddb7cdd32963e7b"
+      },
+      "stored": {
+        "bytes": 30533,
+        "sha256": "433d544192b602eb943415b4157ce0015af6f346dd40b23318ea75616bd5c5b2"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-mcp-ci-original.log",
+        "bytes": 161071,
+        "sha256": "19537dea979d1e170b9e4bca05a27270afb81adc36fe57d03ddb7cdd32963e7b"
+      }
+    },
+    {
+      "path": "author/secondary-e073e704-original-failed-ci.json",
+      "original": {
+        "bytes": 10398,
+        "sha256": "5c3c34a33c0edf058b87b2db819bffbec446166c06bf6b866079b12c97dd77cf"
+      },
+      "stored": {
+        "bytes": 10398,
+        "sha256": "5c3c34a33c0edf058b87b2db819bffbec446166c06bf6b866079b12c97dd77cf"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-original-failed-ci.json",
+        "bytes": 10398,
+        "sha256": "5c3c34a33c0edf058b87b2db819bffbec446166c06bf6b866079b12c97dd77cf"
+      }
+    },
+    {
+      "path": "author/secondary-e073e704-pr-original.json",
+      "original": {
+        "bytes": 19148,
+        "sha256": "0e22596a417e3291aa680ea8c0a93d9a0a0fcdd49e8ff31d3ee15aa24dc8cae6"
+      },
+      "stored": {
+        "bytes": 19148,
+        "sha256": "0e22596a417e3291aa680ea8c0a93d9a0a0fcdd49e8ff31d3ee15aa24dc8cae6"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-pr-original.json",
+        "bytes": 19148,
+        "sha256": "0e22596a417e3291aa680ea8c0a93d9a0a0fcdd49e8ff31d3ee15aa24dc8cae6"
+      }
+    },
+    {
+      "path": "author/secondary-e073e704-root-ci-original.log.gz",
+      "original": {
+        "bytes": 633172,
+        "sha256": "ccc7f6e7afa8f2d77b721b4caf95771e3da1ba2f2f299a988203dfa552b75509"
+      },
+      "stored": {
+        "bytes": 118764,
+        "sha256": "83ad86ac989aab9fdf74a9699f7d17d1658c73fa7ed0482989c048c746398806"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-root-ci-original.log",
+        "bytes": 633172,
+        "sha256": "ccc7f6e7afa8f2d77b721b4caf95771e3da1ba2f2f299a988203dfa552b75509"
+      }
+    },
+    {
+      "path": "author/secondary-e073e704-run-original.json",
+      "original": {
+        "bytes": 13310,
+        "sha256": "05cf288bc694ae2d484c0a9eb856b2203b006e73cf35cc9cdebad687a79d699f"
+      },
+      "stored": {
+        "bytes": 13310,
+        "sha256": "05cf288bc694ae2d484c0a9eb856b2203b006e73cf35cc9cdebad687a79d699f"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-run-original.json",
+        "bytes": 13310,
+        "sha256": "05cf288bc694ae2d484c0a9eb856b2203b006e73cf35cc9cdebad687a79d699f"
+      }
+    },
+    {
+      "path": "author/secondary-e073e704-tested-merge-original.json",
+      "original": {
+        "bytes": 2648,
+        "sha256": "71f448bc1f877ad8f0eac971a6c2390f5edf28ce1f78b913531bb3707a4c4831"
+      },
+      "stored": {
+        "bytes": 2648,
+        "sha256": "71f448bc1f877ad8f0eac971a6c2390f5edf28ce1f78b913531bb3707a4c4831"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-tested-merge-original.json",
+        "bytes": 2648,
+        "sha256": "71f448bc1f877ad8f0eac971a6c2390f5edf28ce1f78b913531bb3707a4c4831"
+      }
+    },
+    {
+      "path": "author/source-88c4e7f1.json.gz",
+      "original": {
+        "bytes": 1803652,
+        "sha256": "21ff5ae964325ff5bec79d23c3e82e26d44d18f55458584b4be050d3f926d9c5"
+      },
+      "stored": {
+        "bytes": 477962,
+        "sha256": "b920abd34205ecd61d963357dbccd213775d674e32316d8407b1e9b8790bfdf5"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/source-88c4e7f1.json",
+        "bytes": 1803652,
+        "sha256": "21ff5ae964325ff5bec79d23c3e82e26d44d18f55458584b4be050d3f926d9c5"
+      }
+    },
+    {
+      "path": "author/source-aacdf8b9.json.gz",
+      "original": {
+        "bytes": 1807920,
+        "sha256": "21e185de2f3218001a577bc25010d81384ffa9c0996ce67c3128a577539f7a09"
+      },
+      "stored": {
+        "bytes": 479042,
+        "sha256": "2131422ed823e28b24e593f202012a4b040c6fadfc18349ba83c650dfe970589"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/source-aacdf8b9.json",
+        "bytes": 1807920,
+        "sha256": "21e185de2f3218001a577bc25010d81384ffa9c0996ce67c3128a577539f7a09"
+      }
+    },
+    {
+      "path": "author/source-e073e704.json.gz",
+      "original": {
+        "bytes": 1805858,
+        "sha256": "ed1fb2c55e002d7cc6bb554f9852600bf217621e9f2b3400651df5ce2acc7edb"
+      },
+      "stored": {
+        "bytes": 478604,
+        "sha256": "2b25424f15dc18833b8b0360cb7c4600f08505033a4cdbfe52c8a22f107c3172"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/source-e073e704.json",
+        "bytes": 1805858,
+        "sha256": "ed1fb2c55e002d7cc6bb554f9852600bf217621e9f2b3400651df5ce2acc7edb"
+      }
+    },
+    {
+      "path": "author/source-writing-tool-original-error.json",
+      "original": {
+        "bytes": 551,
+        "sha256": "f66999ccff74ab7e08e0268a46b7f2017480545408fc46a320db3f6f8c9ea49d"
+      },
+      "stored": {
+        "bytes": 551,
+        "sha256": "f66999ccff74ab7e08e0268a46b7f2017480545408fc46a320db3f6f8c9ea49d"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/source-writing-tool-original-error.json",
+        "bytes": 551,
+        "sha256": "f66999ccff74ab7e08e0268a46b7f2017480545408fc46a320db3f6f8c9ea49d"
+      }
+    },
+    {
+      "path": "author/tar-header-admission-correction-88c4e7f1.json",
+      "original": {
+        "bytes": 721,
+        "sha256": "48991c144bde0b0b6fc0f700de45b053423f6cab209b01af0b762aa556253ea0"
+      },
+      "stored": {
+        "bytes": 721,
+        "sha256": "48991c144bde0b0b6fc0f700de45b053423f6cab209b01af0b762aa556253ea0"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/tar-header-admission-correction-88c4e7f1.json",
+        "bytes": 721,
+        "sha256": "48991c144bde0b0b6fc0f700de45b053423f6cab209b01af0b762aa556253ea0"
+      }
+    },
+    {
+      "path": "third/e073e704-reader-original-error-row-yaml.json",
+      "original": {
+        "bytes": 538,
+        "sha256": "f6fcfce75f3caed3ae6b96750de4ce6ed9ef7c6c82886c90167218ccc691f30c"
+      },
+      "stored": {
+        "bytes": 538,
+        "sha256": "f6fcfce75f3caed3ae6b96750de4ce6ed9ef7c6c82886c90167218ccc691f30c"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/e073e704-reader-original-error-row-yaml.json",
+        "bytes": 538,
+        "sha256": "f6fcfce75f3caed3ae6b96750de4ce6ed9ef7c6c82886c90167218ccc691f30c"
+      }
+    },
+    {
+      "path": "third/finding-88c4e7f1-tar-header-ascii-coercion.json",
+      "original": {
+        "bytes": 3423,
+        "sha256": "d07dfb0d57a572660c1a7306d05084caeb6ee83dc306843ba13110bb9b2bacd6"
+      },
+      "stored": {
+        "bytes": 3423,
+        "sha256": "d07dfb0d57a572660c1a7306d05084caeb6ee83dc306843ba13110bb9b2bacd6"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/finding-88c4e7f1-tar-header-ascii-coercion.json",
+        "bytes": 3423,
+        "sha256": "d07dfb0d57a572660c1a7306d05084caeb6ee83dc306843ba13110bb9b2bacd6"
+      }
+    },
+    {
+      "path": "third/handoff-e073e704-source-and-failed-ci.json",
+      "original": {
+        "bytes": 4342,
+        "sha256": "0d7e4ae1ba0e0a8863f90edcd3ec5a376c807dfc6b5eed7efb9879cbe8e8c98e"
+      },
+      "stored": {
+        "bytes": 4342,
+        "sha256": "0d7e4ae1ba0e0a8863f90edcd3ec5a376c807dfc6b5eed7efb9879cbe8e8c98e"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/handoff-e073e704-source-and-failed-ci.json",
+        "bytes": 4342,
+        "sha256": "0d7e4ae1ba0e0a8863f90edcd3ec5a376c807dfc6b5eed7efb9879cbe8e8c98e"
+      }
+    },
+    {
+      "path": "third/preflight-b3b5f45b.json",
+      "original": {
+        "bytes": 10943,
+        "sha256": "706a50436b012cc0f4dff5232279280c311125a9aa8102b4636fd94fc5d5d7a4"
+      },
+      "stored": {
+        "bytes": 10943,
+        "sha256": "706a50436b012cc0f4dff5232279280c311125a9aa8102b4636fd94fc5d5d7a4"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/preflight-b3b5f45b.json",
+        "bytes": 10943,
+        "sha256": "706a50436b012cc0f4dff5232279280c311125a9aa8102b4636fd94fc5d5d7a4"
+      }
+    },
+    {
+      "path": "third/retained-ci-e073e704-failure.json",
+      "original": {
+        "bytes": 14616,
+        "sha256": "cb20eac5370ccc42d8784773d73ee23f2875a7f52577829c779b64b49d94070f"
+      },
+      "stored": {
+        "bytes": 14616,
+        "sha256": "cb20eac5370ccc42d8784773d73ee23f2875a7f52577829c779b64b49d94070f"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/retained-ci-e073e704-failure.json",
+        "bytes": 14616,
+        "sha256": "cb20eac5370ccc42d8784773d73ee23f2875a7f52577829c779b64b49d94070f"
+      }
+    },
+    {
+      "path": "third/retained-mcp-e073e704-failure.json",
+      "original": {
+        "bytes": 14180,
+        "sha256": "f4cbef45604fe81fb221329386f8c6fdaee674e62789eadcca96f44fcb0c795e"
+      },
+      "stored": {
+        "bytes": 14180,
+        "sha256": "f4cbef45604fe81fb221329386f8c6fdaee674e62789eadcca96f44fcb0c795e"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/retained-mcp-e073e704-failure.json",
+        "bytes": 14180,
+        "sha256": "f4cbef45604fe81fb221329386f8c6fdaee674e62789eadcca96f44fcb0c795e"
+      }
+    },
+    {
+      "path": "third/review-88c4e7f1-source.json",
+      "original": {
+        "bytes": 28250,
+        "sha256": "633bd3cf13b29c64355f64d681da7ccbcc108d16208d5b3c6b4ad08fd453f191"
+      },
+      "stored": {
+        "bytes": 28250,
+        "sha256": "633bd3cf13b29c64355f64d681da7ccbcc108d16208d5b3c6b4ad08fd453f191"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/review-88c4e7f1-source.json",
+        "bytes": 28250,
+        "sha256": "633bd3cf13b29c64355f64d681da7ccbcc108d16208d5b3c6b4ad08fd453f191"
+      }
+    },
+    {
+      "path": "third/review-aacdf8b9-source-extension.json",
+      "original": {
+        "bytes": 24022,
+        "sha256": "f712afc2596c7e19d3dd2a9019123888d8f767209444cacb446596eaee4a5002"
+      },
+      "stored": {
+        "bytes": 24022,
+        "sha256": "f712afc2596c7e19d3dd2a9019123888d8f767209444cacb446596eaee4a5002"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/review-aacdf8b9-source-extension.json",
+        "bytes": 24022,
+        "sha256": "f712afc2596c7e19d3dd2a9019123888d8f767209444cacb446596eaee4a5002"
+      }
+    },
+    {
+      "path": "third/review-e073e704-source-extension.json",
+      "original": {
+        "bytes": 23944,
+        "sha256": "2e1974f60bebf9cea74a7561854f38e072b3fd07999da0f9b2fc1620a5c9c6c5"
+      },
+      "stored": {
+        "bytes": 23944,
+        "sha256": "2e1974f60bebf9cea74a7561854f38e072b3fd07999da0f9b2fc1620a5c9c6c5"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/review-e073e704-source-extension.json",
+        "bytes": 23944,
+        "sha256": "2e1974f60bebf9cea74a7561854f38e072b3fd07999da0f9b2fc1620a5c9c6c5"
+      }
+    },
+    {
+      "path": "primary/initial-prefix-shape-reader-error.json",
+      "original": {
+        "bytes": 516,
+        "sha256": "b35339d6f9b47ba317065020261b75e0a3871f2512ad303acd719c0c6f08e1d2"
+      },
+      "stored": {
+        "bytes": 516,
+        "sha256": "b35339d6f9b47ba317065020261b75e0a3871f2512ad303acd719c0c6f08e1d2"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/initial-prefix-shape-reader-error.json",
+        "bytes": 516,
+        "sha256": "b35339d6f9b47ba317065020261b75e0a3871f2512ad303acd719c0c6f08e1d2"
+      }
+    },
+    {
+      "path": "primary/remote-e073e704-mcp-terminal-capture.json",
+      "original": {
+        "bytes": 585,
+        "sha256": "92b0a71861448ab9ed29b5f5406eff5268baa4e1583dcaed5cb679f456a8ee15"
+      },
+      "stored": {
+        "bytes": 585,
+        "sha256": "92b0a71861448ab9ed29b5f5406eff5268baa4e1583dcaed5cb679f456a8ee15"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/remote-e073e704-mcp-terminal-capture.json",
+        "bytes": 585,
+        "sha256": "92b0a71861448ab9ed29b5f5406eff5268baa4e1583dcaed5cb679f456a8ee15"
+      }
+    },
+    {
+      "path": "primary/remote-e073e704-mcp-terminal-original.log.gz",
+      "original": {
+        "bytes": 161071,
+        "sha256": "19537dea979d1e170b9e4bca05a27270afb81adc36fe57d03ddb7cdd32963e7b"
+      },
+      "stored": {
+        "bytes": 30533,
+        "sha256": "433d544192b602eb943415b4157ce0015af6f346dd40b23318ea75616bd5c5b2"
+      },
+      "encoding": "gzip_mtime0",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/remote-e073e704-mcp-terminal-original.log",
+        "bytes": 161071,
+        "sha256": "19537dea979d1e170b9e4bca05a27270afb81adc36fe57d03ddb7cdd32963e7b"
+      }
+    },
+    {
+      "path": "primary/retained-MCP-e073e704-package-mode-hold.json",
+      "original": {
+        "bytes": 7260,
+        "sha256": "f335c780bf37261ab20a64059b29c315ca5f6d79078340d797f35272124a7901"
+      },
+      "stored": {
+        "bytes": 7260,
+        "sha256": "f335c780bf37261ab20a64059b29c315ca5f6d79078340d797f35272124a7901"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/retained-MCP-e073e704-package-mode-hold.json",
+        "bytes": 7260,
+        "sha256": "f335c780bf37261ab20a64059b29c315ca5f6d79078340d797f35272124a7901"
+      }
+    },
+    {
+      "path": "primary/review-88c4e7f1-source-hold.json",
+      "original": {
+        "bytes": 18475,
+        "sha256": "8571dc901aa294dfcb8506551f7831b3bfead80c69f80024e55967f72693725c"
+      },
+      "stored": {
+        "bytes": 18475,
+        "sha256": "8571dc901aa294dfcb8506551f7831b3bfead80c69f80024e55967f72693725c"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/review-88c4e7f1-source-hold.json",
+        "bytes": 18475,
+        "sha256": "8571dc901aa294dfcb8506551f7831b3bfead80c69f80024e55967f72693725c"
+      }
+    },
+    {
+      "path": "primary/review-e073e704-source-extension.json",
+      "original": {
+        "bytes": 17228,
+        "sha256": "01eb62840ac93741394615aaba733e4f4e9e473684b173e77d89753c220d1f19"
+      },
+      "stored": {
+        "bytes": 17228,
+        "sha256": "01eb62840ac93741394615aaba733e4f4e9e473684b173e77d89753c220d1f19"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/review-e073e704-source-extension.json",
+        "bytes": 17228,
+        "sha256": "01eb62840ac93741394615aaba733e4f4e9e473684b173e77d89753c220d1f19"
+      }
+    },
+    {
+      "path": "primary/review-aacdf8b9-source-extension.json",
+      "original": {
+        "bytes": 20291,
+        "sha256": "478013ade2136d9bcb6ab437a560319bc6292f7a8f4e4fee7a72c8138360cfa5"
+      },
+      "stored": {
+        "bytes": 20291,
+        "sha256": "478013ade2136d9bcb6ab437a560319bc6292f7a8f4e4fee7a72c8138360cfa5"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/review-aacdf8b9-source-extension.json",
+        "bytes": 20291,
+        "sha256": "478013ade2136d9bcb6ab437a560319bc6292f7a8f4e4fee7a72c8138360cfa5"
+      }
+    },
+    {
+      "path": "primary/retained-ci-aacdf8b9-and-actual-raw-package.json",
+      "original": {
+        "bytes": 15663,
+        "sha256": "a35fa962171a6b5aafb9aa777d688edc10816f426e4fca8e361b8937832c9f4d"
+      },
+      "stored": {
+        "bytes": 15663,
+        "sha256": "a35fa962171a6b5aafb9aa777d688edc10816f426e4fca8e361b8937832c9f4d"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/retained-ci-aacdf8b9-and-actual-raw-package.json",
+        "bytes": 15663,
+        "sha256": "a35fa962171a6b5aafb9aa777d688edc10816f426e4fca8e361b8937832c9f4d"
+      }
+    },
+    {
+      "path": "third/retained-ci-aacdf8b9.json",
+      "original": {
+        "bytes": 15729,
+        "sha256": "a4cf10bac6dc7d3e5a25b9de4a3fcfbcd7b789c200b8e5b9952079fcd0b7d59f"
+      },
+      "stored": {
+        "bytes": 15729,
+        "sha256": "a4cf10bac6dc7d3e5a25b9de4a3fcfbcd7b789c200b8e5b9952079fcd0b7d59f"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/retained-ci-aacdf8b9.json",
+        "bytes": 15729,
+        "sha256": "a4cf10bac6dc7d3e5a25b9de4a3fcfbcd7b789c200b8e5b9952079fcd0b7d59f"
+      }
+    },
+    {
+      "path": "third/artifact-custody-aacdf8b9.json",
+      "original": {
+        "bytes": 7312,
+        "sha256": "90da94b3859840a6c843e552ebc71ec6c13d0456499c2089b55ae0cf388f288e"
+      },
+      "stored": {
+        "bytes": 7312,
+        "sha256": "90da94b3859840a6c843e552ebc71ec6c13d0456499c2089b55ae0cf388f288e"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-peer/artifact-custody-aacdf8b9.json",
+        "bytes": 7312,
+        "sha256": "90da94b3859840a6c843e552ebc71ec6c13d0456499c2089b55ae0cf388f288e"
+      }
+    },
+    {
+      "path": "author/four-gates-aacdf8b9.json",
+      "original": {
+        "bytes": 2618,
+        "sha256": "921158b6593f67b207e79ba9421ae3ccacaad9f50af9ba2f38b3f7fd470c5a93"
+      },
+      "stored": {
+        "bytes": 2618,
+        "sha256": "921158b6593f67b207e79ba9421ae3ccacaad9f50af9ba2f38b3f7fd470c5a93"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/four-gates-aacdf8b9.json",
+        "bytes": 2618,
+        "sha256": "921158b6593f67b207e79ba9421ae3ccacaad9f50af9ba2f38b3f7fd470c5a93"
+      }
+    },
+    {
+      "path": "author/metadata-gate-shape-error-5bd55f-original.txt",
+      "original": {
+        "bytes": 131,
+        "sha256": "59d194827170587203d50b68a86ddd5b2b647d46213c0ae19bbaa8eb5054fc2c"
+      },
+      "stored": {
+        "bytes": 131,
+        "sha256": "59d194827170587203d50b68a86ddd5b2b647d46213c0ae19bbaa8eb5054fc2c"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/metadata-gate-shape-error-5bd55f-original.txt",
+        "bytes": 131,
+        "sha256": "59d194827170587203d50b68a86ddd5b2b647d46213c0ae19bbaa8eb5054fc2c"
+      }
+    },
+    {
+      "path": "author/metadata-json-shape-error-9a0dd8-original.txt",
+      "original": {
+        "bytes": 126,
+        "sha256": "c4d1c4fd8908f0e62ba5a88eadc8320cfaac84ac89e3d47c52e96f12f807a3a0"
+      },
+      "stored": {
+        "bytes": 126,
+        "sha256": "c4d1c4fd8908f0e62ba5a88eadc8320cfaac84ac89e3d47c52e96f12f807a3a0"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_retained_file",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/metadata-json-shape-error-9a0dd8-original.txt",
+        "bytes": 126,
+        "sha256": "c4d1c4fd8908f0e62ba5a88eadc8320cfaac84ac89e3d47c52e96f12f807a3a0"
+      }
+    },
+    {
+      "path": "README.md",
+      "original": {
+        "bytes": 3535,
+        "sha256": "29e92c6d351d1da94b6aff5b35c6921a47b084533d36ba9ec8658e262a6868a2"
+      },
+      "stored": {
+        "bytes": 3535,
+        "sha256": "29e92c6d351d1da94b6aff5b35c6921a47b084533d36ba9ec8658e262a6868a2"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "generated_documentary_readme"
+      }
+    },
+    {
+      "path": "allocation-primary-original.json",
+      "original": {
+        "bytes": 5359,
+        "sha256": "cb162c1161dffe81b3faa0e8510c43013df3c7904a80d64d0f2722bdba2f73f3"
+      },
+      "stored": {
+        "bytes": 5359,
+        "sha256": "cb162c1161dffe81b3faa0e8510c43013df3c7904a80d64d0f2722bdba2f73f3"
+      },
+      "encoding": "identity",
+      "origin": {
+        "kind": "immutable_PRIMARY_documentary_allocation",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/archive-allocation-aacdf8b9.json",
+        "bytes": 5359,
+        "sha256": "cb162c1161dffe81b3faa0e8510c43013df3c7904a80d64d0f2722bdba2f73f3"
+      }
+    }
+  ],
+  "external_nonmember_catalogue": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/source-7d72f9fd.json",
+      "bytes": 2043419,
+      "sha256": "31f14566251b39d284950e1ea86fac74b84ffd8228f15f39715bb28137542627",
+      "archive_member": false
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/secondary-363-actual-delivery-b3b5f45b.json",
+      "bytes": 74133,
+      "sha256": "1fd268d539bd52c46956af678654c2eee0369a4d700f5282dc55a42ce3275ef7",
+      "archive_member": false
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-fundamentals-audit-package-20261002/docs/goal/evidence/fundamentals-audit-stdio-20261002/manifest.json",
+      "bytes": 59102,
+      "sha256": "0e56ae076f0adf0324a045156932e6d21288a986cb695ed4d22f402f55a61219",
+      "archive_member": false
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/archive-inventory-aacdf8b9-draft.json",
+      "bytes": 35467,
+      "sha256": "a0ace3c995d8ac8b8e9469ce2efad555f341f409382ab986d5403ea146b44dcc",
+      "archive_member": false
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/archive-preview-aacdf8b9-v1.json",
+      "bytes": 55930,
+      "sha256": "b792cfc10414baf07e693c28860ebc551a0d9c4dfb3ffc358951f5856a8ba145",
+      "archive_member": false
+    },
+    {
+      "kind": "immutable_delivered_Git_blob",
+      "commit": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "scripts/canonical-json.mjs",
+      "mode": "100644",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "archive_member": false
+    },
+    {
+      "kind": "immutable_delivered_Git_blob",
+      "commit": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "mode": "100644",
+      "object": "584cdb4a1962c28744f96e8ef043906a18c408dd",
+      "bytes": 21663,
+      "sha256": "40ac2b1e5321cb453a71797888138f38570a4d6057d197461d681237506bff36",
+      "archive_member": false
+    },
+    {
+      "kind": "immutable_delivered_Git_blob",
+      "commit": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "mcp-fundamentals/examples/audit-inputs-stdio.mjs",
+      "mode": "100644",
+      "object": "ee32d9a3eb69ec0a267ba05da60c17b7f47098dd",
+      "bytes": 12955,
+      "sha256": "de1deacff44907249640e8c6dfe4a0df9ec38dc27aed4a299e8ffed0146a421c",
+      "archive_member": false
+    },
+    {
+      "kind": "immutable_delivered_Git_blob",
+      "commit": "b3b5f45b0f176288e65a37bf580be6a0d649e23c",
+      "path": "mcp-fundamentals/src/server.mjs",
+      "mode": "100644",
+      "object": "0c373d5e5b2d6712cda9b3a7acec6d0177c1e423",
+      "bytes": 64736,
+      "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+      "archive_member": false
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/archive-proposal-aacdf8b9-v1.json",
+      "bytes": 6735,
+      "sha256": "93e1f1f8dedb75f837cf45085784ade1bdfa41e5f1abebd946ee3200d85dc1f4",
+      "archive_member": false
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/archive-preview-aacdf8b9-v2/manifest.json",
+      "bytes": 61052,
+      "sha256": "67c48f7dfb5d192f7c9944275e1e0344c71f47b0141d3f43a7bdf0787a3a8ce5",
+      "archive_member": false
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/metadata-message-length-error-09f010-original.txt",
+      "bytes": 88,
+      "sha256": "16b9f46e759b5fcfc0695e5bf2097dc3db7a036e1dd52c0a90e196eee31996b5",
+      "archive_member": false
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/archive-preview-aacdf8b9-v1-byte-audit.json",
+      "bytes": 36071,
+      "sha256": "f7137d0835c2b772bcb76f3e3cb374b1dcb74d06ea681bff1de2bd0fe95e1939",
+      "archive_member": false
+    }
+  ],
+  "asset_count": 81,
+  "asset_original_bytes": 8709629,
+  "asset_stored_bytes": 2618967,
+  "gzip_members": 10,
+  "manifest_excludes_own_hash": true,
+  "final_source_archive_CI_reviews_external": true,
+  "full_owner_hierarchy": "ACTIVE",
+  "private_capacity_auth_records": false,
+  "allocation_authority": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/archive-allocation-aacdf8b9.json",
+    "bytes": 5359,
+    "sha256": "cb162c1161dffe81b3faa0e8510c43013df3c7904a80d64d0f2722bdba2f73f3"
+  },
+  "accepted_preview": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/archive-preview-aacdf8b9-v1.json",
+    "bytes": 55930,
+    "sha256": "b792cfc10414baf07e693c28860ebc551a0d9c4dfb3ffc358951f5856a8ba145"
+  },
+  "earlier_81_preview": "Private unallocated proposal retained externally; authoritative72+7+3 allocation yields82 files.",
+  "exact_total_files_including_manifest": 82,
+  "manifest_bytes": 63539,
+  "original_bytes_including_manifest": 8773168,
+  "stored_bytes_including_manifest": 2682506
+}

@@ -1,0 +1,7 @@
+{
+  "schema": "canli.primary.audit-package.metadata-reader-error.v1",
+  "observed_at": "2026-10-02T11:31:08.448034+00:00",
+  "error": "KeyError: 0 at all_predecessor_goal_prefixes[0]; actual shape is a commit-keyed dictionary of path-keyed descriptors.",
+  "scope": "Metadata display only. Script stopped before raw-log reader. No candidate source/test/import/pack/project job/write/review verdict executed.",
+  "correction": "Iterate actual commit/path dictionaries and independently compare original Git bytes."
+}
