@@ -1,7 +1,7 @@
 import test, { before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, readdirSync, rmSync, symlinkSync, chmodSync, existsSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, readdirSync, rmSync, symlinkSync, chmodSync, statSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname, posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,6 +22,10 @@ const SOURCE_PINS = Object.freeze({
 const FILES = Object.freeze([
   'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/package.json', ...Object.keys(SOURCE_PINS),
 ].sort());
+// Raw tar modes follow the frozen Git files, independently of bin-link installation.
+const RAW_MODES = Object.freeze(Object.fromEntries(FILES.map(path => [
+  path, path === 'package/src/audit-inputs-stdio.mjs' ? 0o755 : 0o644,
+])));
 const PACKAGE_LIMITS = Object.freeze({ compressed: 256 * 1024, expanded: 2 * 1024 * 1024, members: 32, npmOutput: 64 * 1024, npmMs: 20000, childMs: 10000, closeMs: 3000, reapMs: 2500 });
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const raw = value => Buffer.from(JSON.stringify(value));
@@ -127,7 +131,7 @@ function auditPackage(entries) {
   assert.deepEqual([...entries.keys()].sort(), FILES, 'PACKAGE_MEMBERS');
   const bare = new Set(['@modelcontextprotocol/server', '@modelcontextprotocol/server/stdio', 'zod']);
   for (const [path, row] of entries) {
-    assert.equal(row.mode, ['package/src/server.mjs', 'package/src/audit-inputs-stdio.mjs'].includes(path) ? 0o755 : 0o644, 'PACKAGE_MODE');
+    assert.equal(row.mode, RAW_MODES[path], 'PACKAGE_MODE:' + path);
     if (!path.endsWith('.mjs')) continue;
     const source = row.bytes.toString('utf8');
     assert.doesNotMatch(source, /\bimport\s*\(/, 'DYNAMIC_IMPORT');
@@ -194,10 +198,23 @@ async function npmPack(directory) {
 }
 let packed = null, ownedDirectory = null;
 const cleanup = [];
-before(async () => {
+before(async t => {
   ownedDirectory = mkdtempSync(join(tmpdir(), 'canli-audit-package-'));
   const artifact = await npmPack(ownedDirectory);
-  const entries = tarEntries(artifact.compressed), packageJson = auditPackage(entries);
+  const entries = tarEntries(artifact.compressed);
+  // Capture actual raw bytes and decoded modes before package admission or fixture writes.
+  const rawProof = {
+    schema: 'canli.fundamentals.audit-package-raw-artifact.v1',
+    admission: 'RAW_CAPTURED_NOT_ADMITTED',
+    npm_offline_ignore_scripts_update_notifier_disabled: true,
+    compressed_bytes: artifact.compressed.length, compressed_sha256: sha(artifact.compressed),
+    original_gzip_base64: artifact.compressed.toString('base64'),
+    files: [...entries].map(([path, row]) => ({ path, mode: row.mode, bytes: row.bytes.length, sha256: sha(row.bytes) })),
+  };
+  const rawText = JSON.stringify(rawProof);
+  assert.ok(Buffer.byteLength(rawText) <= 360 * 1024, 'TAR_PROOF_BOUND');
+  t.diagnostic('CANLI_AUDIT_PACKAGE_TARBALL_RAW ' + rawText);
+  const packageJson = auditPackage(entries);
   const nodeModules = join(ownedDirectory, 'fixture', 'node_modules'); mkdirSync(nodeModules, { recursive: true });
   const packageRoot = join(nodeModules, packageJson.name); mkdirSync(packageRoot);
   for (const [path, row] of entries) {
@@ -210,11 +227,21 @@ before(async () => {
     assert.equal(JSON.parse(readFileSync(join(dependencyRoot, name, 'package.json'))).version, version);
   symlinkSync(dependencyRoot, join(packageRoot, 'node_modules'), 'dir');
   const binRoot = join(nodeModules, '.bin'); mkdirSync(binRoot);
-  for (const [name, path] of Object.entries(packageJson.bin)) symlinkSync('../' + packageJson.name + '/' + path, join(binRoot, name));
+  const installedBins = [];
+  for (const [name, path] of Object.entries(packageJson.bin)) {
+    const target = join(packageRoot, path), rawMode = entries.get('package/' + path).mode;
+    symlinkSync('../' + packageJson.name + '/' + path, join(binRoot, name));
+    // Model npm bin-links' executable normalization only in this owned fixture.
+    // The original tar record and protected repository file are never chmodded.
+    if (rawMode !== 0o755) chmodSync(target, 0o755);
+    const installedMode = statSync(target).mode & 0o777;
+    assert.equal(installedMode, 0o755);
+    installedBins.push({ name, path, raw_tar_mode: rawMode, installed_fixture_mode: installedMode, owned_fixture_only: true });
+  }
   assert.equal(existsSync(join(ownedDirectory, 'fixture', '.git')), false);
   assert.equal(existsSync(join(ownedDirectory, 'fixture', 'scripts')), false);
   assert.equal(existsSync(join(packageRoot, 'scripts')), false);
-  packed = { ...artifact, entries, packageJson, packageRoot, binRoot, dependencyRoot };
+  packed = { ...artifact, entries, packageJson, packageRoot, binRoot, dependencyRoot, installedBins, rawProof };
 }, { timeout: 30000 });
 after(() => {
   if (ownedDirectory) rmSync(ownedDirectory, { recursive: true, force: true });
@@ -225,7 +252,7 @@ async function withPackedClient(fn, { defaultServer = false } = {}) {
   const guard = join(directory, 'guard.mjs'); writeFileSync(guard, GUARD);
   const entry = join(packed.binRoot, defaultServer ? 'canli-fundamentals-mcp' : 'canli-fundamentals-audit');
   const beforeFiles = readdirSync(directory).sort();
-  const transport = new StdioClientTransport({ command: process.execPath, args: ['--import', guard, entry], cwd: directory, stderr: 'pipe', maxBufferSize: 8 * 1024 * 1024, env: { PATH: process.env.PATH, CANLI_DATA_CACHE: '' } });
+  const transport = new StdioClientTransport({ command: entry, args: [], cwd: directory, stderr: 'pipe', maxBufferSize: 8 * 1024 * 1024, env: { PATH: process.env.PATH, NODE_OPTIONS: '--import=' + JSON.stringify(guard), CANLI_DATA_CACHE: '' } });
   let dispatches = 0, calls = 0;
   const send = transport.send.bind(transport);
   transport.send = message => { if (message.method === 'tools/call') dispatches++; return send(message); };
@@ -281,19 +308,41 @@ test('audit package: actual offline no-script tarball admits exact files modes s
   assert.ok(packed.args.includes('--update-notifier=false'));
   for (const [path, row] of packed.entries) assert.deepEqual(row.bytes, readFileSync(join(PACKAGE_ROOT, path.slice('package/'.length))));
   assert.doesNotMatch([...packed.entries.keys()].join('\n'), /(?:\.git|node_modules|test\/|examples\/|package-lock|\.env|coordination|credential)/);
-  // Bounded actual original bytes allow independent stdlib custody checks from retained CI.
+  // Admission is separate from the original raw diagnostic, including installed bin modes.
   const proof = {
-    schema: 'canli.fundamentals.audit-package-artifact.v1',
+    schema: 'canli.fundamentals.audit-package-artifact.v2',
+    admission: 'ADMITTED',
     name: packed.packageJson.name, version: packed.packageJson.version, bins: packed.packageJson.bin,
     npm_offline_ignore_scripts_update_notifier_disabled: true,
     compressed_bytes: packed.compressed.length, compressed_sha256: sha(packed.compressed),
-    original_gzip_base64: packed.compressed.toString('base64'),
     files: [...packed.entries].map(([path, row]) => ({ path, mode: row.mode, bytes: row.bytes.length, sha256: sha(row.bytes) })),
+    installed_bins: packed.installedBins,
+    SDK_command: 'Direct owned .bin symlink and existing shebang; NODE_OPTIONS pre-import guard.',
     sole_dependency_link: 'Existing remote CI SDK server/core2.1.0 and Zod4.6.5 node_modules; no repository runtime source link or install.',
   };
   const text = JSON.stringify(proof);
   assert.ok(Buffer.byteLength(text) <= 360 * 1024, 'TAR_PROOF_BOUND');
   t.diagnostic('CANLI_AUDIT_PACKAGE_TARBALL ' + text);
+});
+test('audit package: raw archive modes stay distinct from explicit owned bin-link executable normalization', () => {
+  const beforeFiles = readdirSync(ownedDirectory).sort();
+  for (const path of ['package/src/server.mjs', 'package/src/audit-inputs-stdio.mjs', 'package/src/canonical-json.mjs']) {
+    const entries = cloneEntries();
+    entries.get(path).mode = RAW_MODES[path] === 0o644 ? 0o755 : 0o644;
+    assert.throws(() => auditPackage(entries), /PACKAGE_MODE/);
+  }
+  assert.deepEqual(readdirSync(ownedDirectory).sort(), beforeFiles);
+  assert.deepEqual(packed.installedBins, [
+    { name: 'canli-fundamentals-mcp', path: 'src/server.mjs', raw_tar_mode: 0o644, installed_fixture_mode: 0o755, owned_fixture_only: true },
+    { name: 'canli-fundamentals-audit', path: 'src/audit-inputs-stdio.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
+  ]);
+  for (const row of packed.installedBins) {
+    const path = 'package/' + row.path;
+    assert.equal(packed.entries.get(path).mode, RAW_MODES[path]);
+    assert.equal(statSync(join(packed.packageRoot, row.path)).mode & 0o777, 0o755);
+    assert.equal(sha(readFileSync(join(packed.packageRoot, row.path))), SOURCE_PINS[path]);
+    assert.equal(sha(readFileSync(join(PACKAGE_ROOT, row.path))), SOURCE_PINS[path]);
+  }
 });
 test('audit package: canonical bytes and import-only core prove distinct old new whole hashes without changing functions', () => {
   const core = packed.entries.get('package/src/audit-inputs-core.mjs').bytes.toString();

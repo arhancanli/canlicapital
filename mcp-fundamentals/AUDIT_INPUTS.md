@@ -626,3 +626,42 @@ size, checksum, type and prefix bytes with valid recomputed checksum/gzip, and
 requires refusal before any fixture file appears. The original20names are intact.
 Runtime policy/schema/core/defaultseven are unchanged. Corrected21-case remote
 evidence and independent final reviews remain pending.
+
+
+Corrected candidate e073e704 also failed remote package setup. All21 new cases
+were hook failures with0 new passes;97 prior fundamentals cases and root
+6+1044+9 passed, execution139 remained unrun, and six of seven checks passed.
+The original YAML block reports PACKAGE_MODE actual0644 versus expected0755
+without naming the member. The protected default server has frozen Git mode
+100644; attributing that unnamed failure to it is a source-supported inference.
+There was no denied network marker in this log. All8 original captures832855B
+and the failed receipt5c3c34a3 remain retained, alongside the initial88 failure.
+
+Raw archive permission admission now follows the frozen source: default
+src/server.mjs0644, opt-in src/audit-inputs-stdio.mjs0755, all other admitted
+members0644. npm10.9.9 bin-links source separately makes installed bin targets
+executable. This test models that step only for the owned temporary default
+server copy, choosing0755; it does not run npm install or chmod repository files.
+The original tar bytes and decoded modes remain intact. An added22nd fixture
+rejects altered modes before writes and checks the disclosed raw/installed modes
+and unchanged bytes. All21 prior names are preserved;22 cases are WRITTEN until
+the new head's actual remote CI passes.
+
+The before hook records a bounded CANLI_AUDIT_PACKAGE_TARBALL_RAW diagnostic
+after strict bounded tar decoding but BEFORE package source/mode admission or
+fixture writes. It marks RAW_CAPTURED_NOT_ADMITTED and retains the original
+gzip as canonical base64, compressed length/SHA256 and decoded member pins.
+A separate CANLI_AUDIT_PACKAGE_TARBALL v2 record marks ADMITTED only after the
+package fixture passes, binds the same original gzip SHA and member pins, and
+discloses the owned fixture bin permission normalization and sole existing SDK
+dependency link. A raw record alone establishes neither admission nor SDK behavior.
+Both records keep the360KiB record bound and256KiB compressed tarball cap.
+
+SDK fixtures now execute the owned .bin symlink directly through its existing
+shebang, with the unchanged no-network/no-write guard supplied through
+NODE_OPTIONS before imports. The default command's temporary target alone is
+normalized to0755; the opt-in target is already executable in the raw tar contract.
+This directly checks command execution in the Git-free fixture. Existing fullN,
+nulls, fingerprints, input/output bounds, hidden-retry refusal, one-close deadline
+and actual PID-absence checks remain required. No hostile-process sandbox,
+published package, install, or universal wall-clock guarantee is claimed.
