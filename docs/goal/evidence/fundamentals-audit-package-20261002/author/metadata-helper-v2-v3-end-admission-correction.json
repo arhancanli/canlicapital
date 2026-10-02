@@ -1,0 +1,10 @@
+{
+  "schema": "canli.package-custody-helper-source-correction.v1",
+  "observed_at": "2026-10-02T12:08:59.826317+00:00",
+  "v1_preserved_uninvoked_sha256": "252beae3c9235d181669b8f5bfc257a474cecebc04aa1f6517dbdd2fe7a9fccb",
+  "v2_preserved_uninvoked_sha256": "0455e2b84fa68cd0eb48343da776b6064466a109e2d33e50d759cb5a841b9706",
+  "v3_sha256": "fd879b78043dec1622f3275eaaf6878b3490ec70908d80bd0086be093dabaefd",
+  "reason": "Before any invocation, V2 source review found no mandatory ended flag after independent raw-header loop. V3 explicitly requires two-block all-zero tar end; no failed API/runtime capture or project execution occurred.",
+  "AST_only": true,
+  "project_runtime_or_local_grant": false
+}

@@ -475,3 +475,214 @@ archive, new-headCI and independent extensions remain separate pending gates.
 Repository-only Unreleased scope, finite caps, selected-N and unknowns are unchanged;
 actual source rights, human expertise/labels, indexing and strategy outcomes remain
 unverified. No local project runtime or publication occurred.
+
+
+## Portable opt-in package command (Unreleased)
+
+PR363's repository example was delivered as b3b5f45b with29actual remote cases,
+all seven checks and79 preserved evidence files. Its earlier pending records above
+remain historical. This separate candidate prepares `canli-fundamentals-audit` for
+the next substantial fundamentals release; it is not currently published to npm.
+The default command and hosted server continue to expose seven tools.
+
+The actual candidate tarball includes `src/audit-inputs-stdio.mjs`,
+`src/audit-inputs-core.mjs`, `src/canonical-json.mjs` and this contract. No repository
+`../../scripts` import is required by that command. The canonical file is an exact
+9481-byte copy of the protected root helper, SHA256
+`881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b`.
+Core whole-source SHA changes from
+`40ac2b1e5321cb453a71797888138f38570a4d6057d197461d681237506bff36` to
+`e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059`
+solely because its canonical import becomes `./canonical-json.mjs`. Its function
+bodies, limits, scoring, raw bindings and declared-source-hash semantics stay exact.
+
+The original repository adapter is still SHA256
+`de1deacff44907249640e8c6dfe4a0df9ec38dc27aed4a299e8ffed0146a421c`.
+The packaged adapter is separately bound as SHA256
+`537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0`: two
+local import paths, the descriptive comment/tool description, server name/title
+and introductory instruction identify the opt-in command. Its protocol identifier
+version remains0.0.0, distinct from package0.5.0. All fingerprinted functions,
+schemas, capacity limits, error text and CLI realpath identity remain exact.
+The behavior fingerprint is not a whole-module hash or authentication of a caller
+supplied module hash. Inherited errors retain their previous contract wording;
+this same AUDIT_INPUTS.md is now included in the artifact.
+
+Once the independently reviewed candidate tarball has been installed privately,
+use its absolute bin path in the MCP client configuration:
+
+```json
+{
+  "mcpServers": {
+    "fundamentals-audit": {
+      "command": "/absolute/private-install/node_modules/.bin/canli-fundamentals-audit",
+      "args": []
+    }
+  }
+}
+```
+
+Node and the existing pinned SDK dependencies are required. No data-fetching,
+listening network server or persistent source storage is needed for this command.
+Supply canonical padded base64 for the exact reference, usage and explicit settings
+bytes, plus a separate exact64-character lowercase reference SHA256. Detail defaults
+to the complete-row compact view; `evidence` returns the exact complete core report
+within its separate fixed cap. Every selected row and null outcome stays visible.
+Input/refusal/projection/whole-output policies in this contract also apply here.
+
+The following self-contained function takes an initialized SDK client and Node's
+`createHash`, uses only synthetic supplied bytes, and deliberately compares a later
+value90 with the earlier eligible100. It works with the packaged command's listed
+`audit_inputs` tool; it does not require repository modules or downloaded facts.
+
+<!-- audit-package-workflow:start -->
+```js
+async function packageAuditWorkflow(client, createHash) {
+  const reference = Buffer.from('{"schema":"canli.fundamentals.audit-reference.v1","companyfacts":[{"cik":123456,"facts":{"us-gaap":{"Assets":{"units":{"USD":[{"end":"2019-12-31","val":100,"accn":"0000123456-20-000001","filed":"2020-02-10","form":"10-K"},{"end":"2019-12-31","val":90,"accn":"0000123456-21-000002","filed":"2021-02-10","form":"10-K"}]}}}}}]}');
+  const usage = Buffer.from('[{"cik":"0000123456","taxonomy":"us-gaap","concept":"Assets","unit":"USD","start":null,"end":"2019-12-31","value":90,"used_on":"2020-03-01"}]');
+  const settings = Buffer.from('{"schema":"canli.fundamentals.audit-settings.v1","snapshot_captured_at":null,"capture_reason":"Synthetic snapshot only.","completeness":"partial","completeness_reason":"Only supplied observations.","implementation_source_sha256":null}');
+  // Synthetic example pin. For real supplied files, use a separately trusted pin.
+  const expected = createHash('sha256').update(reference).digest('hex');
+  await client.listTools();
+  const response = await client.callTool({ name: 'audit_inputs', arguments: {
+    reference_base64: reference.toString('base64'),
+    expected_reference_sha256: expected,
+    usage_base64: usage.toString('base64'),
+    settings_base64: settings.toString('base64'),
+    detail: 'compact',
+  } });
+  if (response.isError) throw new Error(response.structuredContent.error.code);
+  return response.structuredContent;
+}
+```
+<!-- audit-package-workflow:end -->
+
+Packaging verification is first run by existing remote CI. It performs exactly one
+`npm pack --offline --ignore-scripts` with an owned destination/cache and empty
+explicit npm configurations; an armed network sentinel covers that npm child.
+Its independently checked actual tarball is bounded to256KiB compressed/2MiB
+expanded/32members before fixture writes, with regular files, safe unique paths,
+checksums, complete exact membership, bin modes/shebang and pinned source closure.
+Missing or changed canonical bytes, outside runtime imports, changed declared bins
+or extra private files fail the packaging audit. This custody check does not
+authenticate an actor who rewrites the checker and its pins.
+
+The temporary SDK fixture has no Git checkout/root scripts and launches the actual
+packed command through an installed-bin-style owned symlink. The sole declared
+external link is to the CI job's already installed exact SDK2.1.0/Zod4.6.5
+dependencies, never to repository runtime source. No dependency installation or
+registry call occurs in this packaging test. Parent fixture/cache writes are
+separate from the audit child's no-network/no-write sentinel. Positive controls
+prove the child guard refuses even caught fetch and file-write attempts.
+
+The npm child has a20s deadline and combined64KiB output cap. Each SDK child has a
+10s lifetime timer, one close invocation with a3s wait bound, followed by observed
+owned PID absence within2.5s. Calls are counted against actual tools/call dispatches
+so an implicit SDK retry fails the fixture. Failures are preserved, including
+callback and protocol faults. These observations are not a hostile-process sandbox
+or universal real-time/reaping guarantee. Written fixtures and source proof are
+not reported as passed until exact remote logs and both independent reviews exist.
+
+Actual source rights, complete universe coverage, human expertise/independence,
+labels, indexing, adoption and qualified financial outcomes remain unknown. Package
+preparation is distinct from a version bump, hosted activation or npm publication;
+PRIMARY retains those release steps.
+
+
+Initial package candidate88c4e7f1 failed its first remote MCP setup: all20new
+cases were hook failures, with0new passes; the97prior fundamentals cases passed,
+root6+1044+9 passed, execution139 was unrun, and six of seven checks passed.
+The armed npm network sentinel recorded a caught request even though `npm pack`
+exited0. No tarball admission or packaged SDK behavior is claimed from that run.
+All original logs/API captures and the failed signed source remain preserved.
+
+The source-supported diagnosis is npm's optional update notifier: the deliberately
+minimal subprocess environment omitted CI, and official bundled npm10.9.9 source
+checks the notifier opt-out or CI detection before starting its background request.
+The denied operation has no captured call-site stack, so this remains a diagnosis
+to verify on the corrected head. The fixture now supplies CI=true and explicit
+`--update-notifier=false --audit=false --fund=false` alongside offline/ignore-scripts.
+The network sentinel stays armed; another denied attempt still fails the setup.
+
+The first actual-tarball fixture also emits one bounded
+`CANLI_AUDIT_PACKAGE_TARBALL` diagnostic: original gzip bytes as canonical base64,
+compressed length/SHA256, each regular member's path/mode/length/SHA256 and the
+explicit sole dependency-link disclosure. Its360KiB record cap contains the
+existing256KiB compressed tarball cap. Independent reviewers can recover the
+actual original artifact from retained CI, bounded-decode it and compare every
+member with the signed source. This records an actual candidate artifact, not a
+published package, and contains no credentials or private capacity records.
+All20fixture names and existing runtime input/output/lifecycle limits are retained;
+new-head remote CI and both independent gates remain required.
+
+
+Independent source review of initial88 also found P2
+`CC-364-TAR-HEADER-ASCII-COERCION`: Node Buffer ASCII conversion can clear a raw
+header byte's high bit, admitting a different byte sequence under the expected
+path or numeric value. That counterexample was source reasoning, not a reviewer
+execution. The parser now rejects every non-ASCII byte in each admitted header
+text/numeric field before conversion. A21st actual-tar fixture mutates name, mode,
+size, checksum, type and prefix bytes with valid recomputed checksum/gzip, and
+requires refusal before any fixture file appears. The original20names are intact.
+Runtime policy/schema/core/defaultseven are unchanged. Corrected21-case remote
+evidence and independent final reviews remain pending.
+
+
+Corrected candidate e073e704 also failed remote package setup. All21 new cases
+were hook failures with0 new passes;97 prior fundamentals cases and root
+6+1044+9 passed, execution139 remained unrun, and six of seven checks passed.
+The original YAML block reports PACKAGE_MODE actual0644 versus expected0755
+without naming the member. The protected default server has frozen Git mode
+100644; attributing that unnamed failure to it is a source-supported inference.
+There was no denied network marker in this log. All8 original captures832855B
+and the failed receipt5c3c34a3 remain retained, alongside the initial88 failure.
+
+Raw archive permission admission now follows the frozen source: default
+src/server.mjs0644, opt-in src/audit-inputs-stdio.mjs0755, all other admitted
+members0644. npm10.9.9 bin-links source separately makes installed bin targets
+executable. This test models that step only for the owned temporary default
+server copy, choosing0755; it does not run npm install or chmod repository files.
+The original tar bytes and decoded modes remain intact. An added22nd fixture
+rejects altered modes before writes and checks the disclosed raw/installed modes
+and unchanged bytes. All21 prior names are preserved;22 cases are WRITTEN until
+the new head's actual remote CI passes.
+
+The before hook records a bounded CANLI_AUDIT_PACKAGE_TARBALL_RAW diagnostic
+after strict bounded tar decoding but BEFORE package source/mode admission or
+fixture writes. It marks RAW_CAPTURED_NOT_ADMITTED and retains the original
+gzip as canonical base64, compressed length/SHA256 and decoded member pins.
+A separate CANLI_AUDIT_PACKAGE_TARBALL v2 record marks ADMITTED only after the
+package fixture passes, binds the same original gzip SHA and member pins, and
+discloses the owned fixture bin permission normalization and sole existing SDK
+dependency link. A raw record alone establishes neither admission nor SDK behavior.
+Both records keep the360KiB record bound and256KiB compressed tarball cap.
+
+SDK fixtures now execute the owned .bin symlink directly through its existing
+shebang, with the unchanged no-network/no-write guard supplied through
+NODE_OPTIONS before imports. The default command's temporary target alone is
+normalized to0755; the opt-in target is already executable in the raw tar contract.
+This directly checks command execution in the Git-free fixture. Existing fullN,
+nulls, fingerprints, input/output bounds, hidden-retry refusal, one-close deadline
+and actual PID-absence checks remain required. No hostile-process sandbox,
+published package, install, or universal wall-clock guarantee is claimed.
+
+
+At immutable candidate aacdf8b9/tree4f05698b, the existing remote Node22.23.3 run
+passed all22 new names once in the MCP job,119 total fundamentals cases, root
+6+1044+9 and execution139; all seven checks passed. PRIMARY and THIRD separately
+accepted both exact source and retained current CI. The actual53897B candidate
+tarball e80989d6 and all eight frozen member bytes/raw modes were independently
+recovered and checked. This is supplied-input fixture evidence; package publication,
+real source rights, expert labels and forward strategy outcomes remain separate.
+
+The exact82-file evidence archive is
+docs/goal/evidence/fundamentals-audit-package-20261002/.
+Its allocation-primary-original.json retains PRIMARY's written bounded
+scope. The archive preserves original88 and e073 setup failures, header finding,
+corrections, metadata-reader diagnostics, helper versions, three source snapshots,
+all raw CI/API captures, actual candidate tarball and independent reviews. Its
+manifest separates original/stored hashes, ten mtime0 gzip records and explicit
+external nonmembers. The final documentary candidate changes only this archive
+and append-only contract/goal notes; runtime, tests, package metadata, versions and
+default seven-tool behavior stay byte-identical to aacdf8b9. Final-head remote CI
+and both final review extensions are still required before PRIMARY ordinary merge.

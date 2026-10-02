@@ -1,0 +1,50 @@
+{
+  "schema": "canli.fundamentals.audit-package.raw-installed-mode-correction.v1",
+  "observed_at": "2026-10-02T12:02:06.557846+00:00",
+  "failed_source": "e073e70495f0839dbd82e9acae29192c179ba8e0",
+  "failed_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/secondary-e073e704-original-failed-ci.json",
+    "bytes": 10398,
+    "sha256": "5c3c34a33c0edf058b87b2db819bffbec446166c06bf6b866079b12c97dd77cf"
+  },
+  "primary_mode_cue": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package-primary-review/e073-package-mode-failure-queues.json",
+    "bytes": 3158,
+    "sha256": "73c3558a15f343a905f3e1e52a10750fd4ce5cb1c40c72e8784972ac439e8730"
+  },
+  "source_basis": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-npm-10.9.9-bin-links-fix-bin.js.txt",
+      "bytes": 1160,
+      "sha256": "eed383d9cb6529244f5f5c29ee8258d141f3231b06db4a453d1181dac3f83f1b"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-npm-10.9.9-bin-links-link-bin.js.txt",
+      "bytes": 343,
+      "sha256": "368a4af7bd9859eb38c2a1adddddc9d8a792849015a60c82cd7a63119dee3537"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-package/official-node22.23.3-test-runner-test.js.txt",
+      "bytes": 40658,
+      "sha256": "efebe79e3471470f7daade809a4f83b32f737db69126381d21a23ebb392da3ab"
+    }
+  ],
+  "raw_modes": {
+    "package/src/server.mjs": "0644",
+    "package/src/audit-inputs-stdio.mjs": "0755",
+    "other_admitted_regular_members": "0644"
+  },
+  "installed_fixture_default_mode": "0755; owned temporary copy only, no actual install",
+  "direct_SDK_command": "Owned .bin/shebang with NODE_OPTIONS unchanged pre-import guard",
+  "new_named_cases_written": 22,
+  "runtime_verified": false,
+  "source_paths_corrected": [
+    "mcp-fundamentals/test/audit-package.test.mjs",
+    "mcp-fundamentals/AUDIT_INPUTS.md",
+    "docs/goal/STATUS.md",
+    "docs/goal/LOG.md"
+  ],
+  "protected_default_or_runtime_source_chmod_or_edit": false,
+  "all_prior_failures_preserved": true,
+  "full_owner_goal": "ACTIVE"
+}

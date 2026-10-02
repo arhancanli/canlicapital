@@ -1,0 +1,9 @@
+{
+  "schema": "canli.secondary.source-writing-tool-failure.v1",
+  "observed_at": "2026-10-02T11:05:13.009982+00:00",
+  "original_output": "Script error:\nSyntaxError: missing ) after argument list",
+  "cause": "Literal Markdown fence in JavaScript String.raw patch argument terminated the orchestration string. Compilation failed before apply_patch or any project execution.",
+  "source_mutation_from_failed_call": false,
+  "project_runtime": false,
+  "correction": "Split patches and encode fence in regex as hex escapes; original error retained."
+}
