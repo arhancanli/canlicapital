@@ -11,7 +11,7 @@
 // Journal head/verify only read. Export can create private files under exports,
 // including retained partial files on failure; it never edits the source journal.
 // Local initialize/append require CANLI_EXEC_JOURNAL_WRITE=1 and the owner's journal.key.
-import { existsSync, readFileSync, realpathSync, statSync } from "node:fs";
+import { existsSync, realpathSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -26,6 +26,7 @@ import { JOURNAL_DESCRIPTION, JOURNAL_JSON, JOURNAL_OUTPUT, journalInput, runJou
 import { configuredJournalWrites, isJournalWrite, JOURNAL_WRITABLE_JSON, JOURNAL_WRITABLE_OUTPUT, JOURNAL_WRITE_DESCRIPTION, JOURNAL_WRITE_INSTRUCTIONS, journalWritableInput, runJournalWrite } from "./journal-write.mjs";
 import { runSizePosition, SIZE_POSITION_DESCRIPTION, SIZE_POSITION_JSON, SIZE_POSITION_OUTPUT, sizePositionInput } from "./size-position.mjs";
 import { runShortfall, SHORTFALL_DESCRIPTION, SHORTFALL_JSON, SHORTFALL_OUTPUT, shortfallInput } from "./measure-shortfall.mjs";
+import { decodeLocalJson, MAX_LIMITS_BYTES, readLocalInput } from "./local-input.mjs";
 
 // Sent once in initialize; byte-stable across runs (a test pins it).
 export const SERVER_INSTRUCTIONS = "Plans and checks supplied orders. size_position turns a stated budget into a position within caps; check_orders estimates costs and checks limits, market state and kill switch, rejecting with every reason and never resizing. measure_shortfall decomposes supplied fills; missing fees stay unknown. Limits come from the trader's file and calls can only tighten them. journal export needs account.v0 opening cash/positions, fees and marks; validate the record with CANLI_LOCAL=1 and journal_file. Every number comes from supplied inputs; omissions are listed. Signing is self-attestation. Nothing here is investment advice.";
@@ -57,16 +58,17 @@ export function createSession({ home, toolsets, now, journalWrites } = {}) {
 /** The trader's limits file, read fresh: {} when there is none; an unreadable or invalid file refuses. */
 export function readLimitsFile(session) {
   const path = join(session.home, "limits.json");
-  if (!existsSync(path)) return { path: null, limits: {} };
-  let parsed;
+  let parsed, captured;
   try {
-    parsed = JSON.parse(readFileSync(path, "utf8"));
+    captured = readLocalInput(path, { maxBytes: MAX_LIMITS_BYTES });
+    parsed = decodeLocalJson(captured.bytes);
   } catch (error) {
+    if (error.code === "ENOENT") return { path: null, limits: {} };
     throw new Error(`the limits file ${path} could not be read as JSON (${error.message}); checks refuse rather than run without it`);
   }
   const valid = limitsFileSchema.safeParse(parsed);
   if (!valid.success) throw new Error(`the limits file ${path} is not valid (${valid.error.issues.map((i) => `${i.path.join(".") || "file"}: ${i.message}`).join("; ")}); checks refuse rather than run without it`);
-  return { path, limits: valid.data, mtime: statSync(path).mtime.toISOString() };
+  return { path, limits: valid.data, mtime: captured.mtime };
 }
 
 export function killState(session) {

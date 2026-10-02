@@ -4,6 +4,20 @@
 
 The first release, 0.1.0, is paper trading only. It ships when every item of its release bar holds.
 
+- Planning files use bounded nonblocking regular-file snapshots: orders JSON stays
+  capped at16MiB and limits JSON now has a1MiB cap. Unsafe files refuse before any
+  read; captured bytes and same-descriptor metadata detect ordinary concurrent
+  edits. Invalid UTF-8 refuses. Existing regular-file arithmetic, provenance,
+  optional absent limits, default tool schemas and writer behavior are preserved.
+- Metadata-only fee schedules refuse in the shared local/hosted strict input
+  contract. Explicit monetary zero and stated sell-only fees retain their meaning;
+  omitted fees keep commission unknown. No new tool, version or release is created.
+  At signed implementation cf907f46, 22 new cases pass within 105 execution cases
+  in remote Node22.23.3 CI, and all seven checks pass. Independent source review
+  and parsing of that CI close the original findings. The five earlier fault-harness
+  failures remain in the [retained evidence](../docs/goal/evidence/execution-file-admission-20261002/README.md).
+  Filesystem timing and power-loss behavior are not established.
+
 - Opt-in local `journal initialize/append` adapter uses the delivered private writer
   and fixed local signing key. Default advertised actions and hosted behavior remain
   unchanged. Typed pending/uncertainty errors return no success receipt, and exact

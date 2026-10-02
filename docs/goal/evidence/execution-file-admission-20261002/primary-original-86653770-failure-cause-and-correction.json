@@ -1,0 +1,18 @@
+{
+  "schema": "canli.execution-file-admission.original-remote-failure.v1",
+  "observed_at": "2026-10-02T00:15:43.983050+00:00",
+  "source": "866537704ef55b7a6b5b2d477bb0ada1af362a37",
+  "raw_sha256": "07d961889289a06fa60507a573b2f10ed4ba4c64406e9a32d6e9932df5555024",
+  "remote_execution": {
+    "tests": 105,
+    "pass": 100,
+    "fail": 5,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "cause": "fault adapter was installed before importing the implementation; it intercepted the ESM loader read and consumed mutation counters before the intended input descriptor",
+  "correction": "import before adapter installation; restrict read adapter to captured input FD; assert injected reads occurred",
+  "product_source_unchanged": true,
+  "local_project_execution": false,
+  "correction_test_result": "pending exact new-source remote CI"
+}

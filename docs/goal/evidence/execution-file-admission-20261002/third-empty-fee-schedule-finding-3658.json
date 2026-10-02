@@ -1,0 +1,84 @@
+{
+  "schema": "canli.execution-release-static.finding.v1",
+  "observed_at": "2026-10-01T23:47:18.795636+00:00",
+  "source_head": "3658d0b60f5b06144b267b0cddc8fde81e6af6d8",
+  "source_tree": "d6bb4c7a2820b29f0a7500a231b957760b17a99e",
+  "status": "OPEN_STATIC_RELEASE_P2_REQUIRES_PRIMARY_DISPOSITION",
+  "finding": {
+    "id": "CC-EXECUTION-EMPTY-FEE-SCHEDULE",
+    "severity": "P2",
+    "title": "A date-only fee schedule silently reports zero commission",
+    "evidence": [
+      {
+        "path": "mcp-execution/src/check-orders.mjs",
+        "line": 69,
+        "sha256": "fce446be5b9124e2d80fe0caefa75858f8262aa6551dd10ce57e9fa333f77db3",
+        "description": "fees.as_of is required; all five monetary schedule fields are optional. Date/source metadata alone passes the input shape."
+      },
+      {
+        "path": "mcp-execution/src/core/js/exec-cost-core.js",
+        "line": 118,
+        "sha256": "c789a1889931cd6719b37d343ed1a3378b860ed804203df62bf92e47c6f017c9",
+        "description": "commissionUsd returns null only if the whole fees value is absent. Otherwise usd starts at0 and only provided monetary fields change it; date-only object returns0."
+      },
+      {
+        "path": "mcp-execution/src/core/js/pretrade-core.js",
+        "line": 158,
+        "sha256": "c071f407ab129882089937f226112a6166223cba2f4d42c0d90599d60a164e45",
+        "description": "Only null commission emits not_modelled. Numeric0 becomes commission_bps0 and participates in the partial total."
+      },
+      {
+        "path": "mcp-execution/src/check-orders.mjs",
+        "line": 143,
+        "sha256": "fce446be5b9124e2d80fe0caefa75858f8262aa6551dd10ce57e9fa333f77db3",
+        "description": "Description promises missing inputs are not modelled and never assumed; a date is not a commission amount."
+      }
+    ],
+    "static_counterexample": {
+      "tool": "check_orders",
+      "arguments": {
+        "asset_class": "us_equity",
+        "orders": [
+          {
+            "symbol": "TEST",
+            "side": "buy",
+            "qty": 1
+          }
+        ],
+        "market": {
+          "TEST": {
+            "price": 100,
+            "bid": 99,
+            "ask": 101,
+            "adv_usd": 100000000,
+            "daily_vol": 0.01
+          }
+        },
+        "fees": {
+          "as_of": "2026-10-01"
+        },
+        "as_of": "2026-10-01T00:00:00.000Z"
+      },
+      "source_predicted_result": "commission_bps=0, no commission not_modelled disclosure. Other missing-account checks remain their documented skipped checks; this example does not assume complete financial coverage.",
+      "executed": false
+    },
+    "requested_resolution": "Refuse an empty monetary schedule or preserve commission as null/not_modelled until a monetary schedule field is explicitly supplied. Explicit commission_bps:0 remains a supplied zero. Preserve the existing intended case where an explicitly supplied sell-only charge costs0 on buys; do not require every optional fee field or silently fill unknowns. Add date-only versus explicitly-zero controls at the shared local/hosted contract boundary.",
+    "test_source_gap": "Existing named commission test covers absent schedule, nonzero rates, minimums and explicit sell-only charges. Existing MCP fee test covers stale/source-less numeric schedules and complete omission, without a date-only negative control.",
+    "scope_limits": [
+      "Source semantics only; no module import/recompute/Node/runtime or measured financial result.",
+      "No actual live hosted request; hosted source reuses this input/core.",
+      "Historical source deliveries/receipts unchanged; primary may adjudicate in an isolated correction scope."
+    ]
+  },
+  "additional_source_files": [
+    {
+      "path": "js/exec-cost-core.test.js",
+      "sha256": "6ed7996a13f2655be62e088d43c9a30e3e3ca0f1920d9c0ae23fe6681a5e1e88",
+      "bytes": 5430,
+      "mode": "100644",
+      "git_type": "blob",
+      "git_object": "1454276dbded7bb6215b62344db03047eae554ae"
+    }
+  ],
+  "full_owner_goal": "ACTIVE"
+}

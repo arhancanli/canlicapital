@@ -1,0 +1,116 @@
+{
+  "source": "866537704ef55b7a6b5b2d477bb0ada1af362a37",
+  "observed_execution_tests": 105,
+  "observed_pass": 100,
+  "observed_fail": 5,
+  "failures": [
+    {
+      "tap": "not ok 63 - unstable input refuses and closes its descriptor once: short-read",
+      "error_excerpt": [
+        "  error: |-",
+        "    file:///home/runner/work/canlicapital/canlicapital/mcp-execution/src/local-input.mjs:1",
+        "    /",
+        "    ^",
+        "    ",
+        "    SyntaxError: Invalid regular expression: missing /",
+        "        at compileSourceTextModule (node:internal/modules/esm/utils:346:16)",
+        "        at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:110:18)",
+        "        at #translate (node:internal/modules/esm/loader:559:20)",
+        "        at afterLoad (node:internal/modules/esm/loader:612:29)",
+        "        at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:617:12)",
+        "        at #createModuleJob (node:internal/modules/esm/loader:640:36)"
+      ],
+      "assertion_stack": [
+        "  location: '/home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:126:3'",
+        "    child (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:32:10)",
+        "    TestContext.<anonymous> (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:128:20)"
+      ]
+    },
+    {
+      "tap": "not ok 64 - unstable input refuses and closes its descriptor once: grow",
+      "error_excerpt": [
+        "  error: |-",
+        "    Expected values to be strictly equal:",
+        "    ",
+        "    false !== true",
+        "    ",
+        "  code: 'ERR_ASSERTION'",
+        "  name: 'AssertionError'",
+        "  expected: true",
+        "  actual: false",
+        "  operator: 'strictEqual'",
+        "  stack: |-",
+        "    TestContext.<anonymous> (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:159:12)"
+      ],
+      "assertion_stack": [
+        "  location: '/home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:126:3'",
+        "    TestContext.<anonymous> (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:159:12)"
+      ]
+    },
+    {
+      "tap": "not ok 65 - unstable input refuses and closes its descriptor once: shrink",
+      "error_excerpt": [
+        "  error: |-",
+        "    Expected values to be strictly equal:",
+        "    ",
+        "    false !== true",
+        "    ",
+        "  code: 'ERR_ASSERTION'",
+        "  name: 'AssertionError'",
+        "  expected: true",
+        "  actual: false",
+        "  operator: 'strictEqual'",
+        "  stack: |-",
+        "    TestContext.<anonymous> (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:159:12)"
+      ],
+      "assertion_stack": [
+        "  location: '/home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:126:3'",
+        "    TestContext.<anonymous> (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:159:12)"
+      ]
+    },
+    {
+      "tap": "not ok 66 - unstable input refuses and closes its descriptor once: same-length-edit",
+      "error_excerpt": [
+        "  error: |-",
+        "    Expected values to be strictly equal:",
+        "    ",
+        "    false !== true",
+        "    ",
+        "  code: 'ERR_ASSERTION'",
+        "  name: 'AssertionError'",
+        "  expected: true",
+        "  actual: false",
+        "  operator: 'strictEqual'",
+        "  stack: |-",
+        "    TestContext.<anonymous> (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:159:12)"
+      ],
+      "assertion_stack": [
+        "  location: '/home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:126:3'",
+        "    TestContext.<anonymous> (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:159:12)"
+      ]
+    },
+    {
+      "tap": "not ok 67 - unstable input refuses and closes its descriptor once: read-error",
+      "error_excerpt": [
+        "  error: |-",
+        "    file:///home/runner/work/canlicapital/canlicapital/mcp-execution/[eval1]:15",
+        "            if (change === 'read-error') throw new Error('injected read refusal');",
+        "                                               ^",
+        "    ",
+        "    Error: injected read refusal",
+        "        at fs.readSync (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/[eval1]:15:44)",
+        "        at tryReadSync (node:fs:416:20)",
+        "        at Object.readFileSync (node:fs:462:19)",
+        "        at getSourceSync (node:internal/modules/esm/load:45:17)",
+        "        at defaultLoadSync (node:internal/modules/esm/load:161:34)",
+        "        at ModuleLoader.load (node:internal/modules/esm/loader:831:12)"
+      ],
+      "assertion_stack": [
+        "  location: '/home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:126:3'",
+        "    child (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:32:10)",
+        "    TestContext.<anonymous> (file:///home/runner/work/canlicapital/canlicapital/mcp-execution/test/local-input.test.mjs:128:20)"
+      ]
+    }
+  ],
+  "no_product_runtime_locally": true
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "canli.execution-file-admission.source.v1",
+  "observed_at": "2026-10-02T00:16:25.364372+00:00",
+  "source": "cf907f46e6ede3edc39fb854c75d61d9f1e3060a",
+  "tree": "04794f3f00d2e77ce94520e73106181f210f0ca0",
+  "signature": "G",
+  "clean": true,
+  "delta_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "mcp-execution/CHANGELOG.md",
+    "mcp-execution/SECURITY.md",
+    "mcp-execution/src/check-orders.mjs",
+    "mcp-execution/src/local-input.mjs",
+    "mcp-execution/src/measure-shortfall.mjs",
+    "mcp-execution/src/server.mjs",
+    "mcp-execution/test/local-input.test.mjs"
+  ],
+  "files": {
+    "docs/goal/LOG.md": {
+      "bytes": 365916,
+      "sha256": "3a8e914f5aa1928a84701593f4660c3a39a17a9fa16fd8a5e205228a9cccb3c3"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 90552,
+      "sha256": "08694ee299a63bbabcfc0ac30ca2d5742cd12f6cec29b3a631ccf10d352872ca"
+    },
+    "mcp-execution/CHANGELOG.md": {
+      "bytes": 6352,
+      "sha256": "0487831a3a11033808ee190e946c01658741c35a2994815a7ff21ecf83ffa616"
+    },
+    "mcp-execution/SECURITY.md": {
+      "bytes": 5889,
+      "sha256": "18c237f7d99738b144c615f4d8550b757efec73a1966abb2548392ec1ab311e0"
+    },
+    "mcp-execution/src/check-orders.mjs": {
+      "bytes": 14332,
+      "sha256": "ec2e0e50e04e413fff7047b17b5d8273591e66ae5ef63ef9ec2653188f07da21"
+    },
+    "mcp-execution/src/local-input.mjs": {
+      "bytes": 1853,
+      "sha256": "fafeb03647cd04897fb03cf637186a91c91c9da1186414fd167bcfe9d12ad825"
+    },
+    "mcp-execution/src/measure-shortfall.mjs": {
+      "bytes": 6666,
+      "sha256": "74cc85b67a4c0b7a685e81979097c345f1b21fc41c2755b2a65a0303626dc9a2"
+    },
+    "mcp-execution/src/server.mjs": {
+      "bytes": 10662,
+      "sha256": "4cd48c1dc40098ac049f45f3951322e3b63118605c36330c6d4874b25951c5bd"
+    },
+    "mcp-execution/test/local-input.test.mjs": {
+      "bytes": 12182,
+      "sha256": "c568db60f7e86a0f19ca189b48b247a0ec4d16dd9dea2080e192f19ce2f1a37e"
+    }
+  },
+  "product_equivalence_to_86653770": {
+    "mcp-execution/CHANGELOG.md": true,
+    "mcp-execution/SECURITY.md": true,
+    "mcp-execution/src/check-orders.mjs": true,
+    "mcp-execution/src/local-input.mjs": true,
+    "mcp-execution/src/measure-shortfall.mjs": true,
+    "mcp-execution/src/server.mjs": true
+  },
+  "remote_ci": "pending exact cf907f46",
+  "local_project_execution": false,
+  "original_failure_preserved": {
+    "raw_sha256": "07d961889289a06fa60507a573b2f10ed4ba4c64406e9a32d6e9932df5555024",
+    "tests": 105,
+    "pass": 100,
+    "fail": 5
+  },
+  "full_owner_hierarchy_preserved": true
+}
