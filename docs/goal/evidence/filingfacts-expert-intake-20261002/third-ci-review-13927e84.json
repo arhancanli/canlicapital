@@ -1,0 +1,583 @@
+{
+  "schema": "canli.expert-intake-peer-exact-retained-ci.v1",
+  "observedAt": "2026-10-02T06:54:18.361796+00:00",
+  "source": "13927e84165c479905df99dd0d6a26d5b8ce8d02",
+  "tree": "0a5e807c3ef2f955b3964e1e9d8b9f980f3f3dd6",
+  "base": "eeb55b42c456ab0706099673d22a9a2fc0fe8fb7",
+  "verdict": "PASS_EXACT_RETAINED_CI_WITH_SCOPE_LIMITS",
+  "blockingFindings": [],
+  "authorReceipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/secondary-13927e84-exact-ci.json",
+    "bytes": 14646,
+    "sha256": "3bc88d61b78e84702fe67de51dca59443e9cef1da3f4d88c21b744dc39c2b839"
+  },
+  "originalPins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/secondary-13927e84-root-ci-original.log",
+      "bytes": 633101,
+      "sha256": "f12cc4ae8c626f53a587718f8c76057f8b21f58f0034658df5a7b04ac32145ee"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/secondary-13927e84-mcp-ci-original.log",
+      "bytes": 172614,
+      "sha256": "75b03f4c355dad52ef49be5ac8c9889f354bf59ab5e873298f9385a970d114f7"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/secondary-13927e84-checks-original.json",
+      "bytes": 1131,
+      "sha256": "5e00e5e873a07bafae5b87325b0d300f128c6c4f51248c61b00e93ea7050f4e3"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/secondary-13927e84-run-original.json",
+      "bytes": 13312,
+      "sha256": "1167c94947046a66c9c8b0bce380f1da3c116ca1a581f4efaebd7cefc0c3a444"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/secondary-13927e84-pr-original.json",
+      "bytes": 18066,
+      "sha256": "09413d7568cc7caab7c7704c19b7b097c620bc89e5ce49ada4e94e5324386bb1"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/secondary-13927e84-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/secondary-13927e84-codeql-analyses-original.json",
+      "bytes": 1186,
+      "sha256": "d758fcdefaa48fb454cef8a99e8c0f3bfdc28b63889272ba5ea6f21fe94449d4"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/secondary-13927e84-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "a5a4b1d165367d64dc163303008dcad823836e2317ec4838a506f6e7eb6a3e79"
+    }
+  ],
+  "originalTotalBytes": 842060,
+  "rootSuites": [
+    {
+      "summary": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "actualResultRows": 6
+    },
+    {
+      "summary": {
+        "tests": 1044,
+        "pass": 1044,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "actualResultRows": 1044
+    },
+    {
+      "summary": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "actualResultRows": 9
+    }
+  ],
+  "mcpSuites": [
+    {
+      "summary": {
+        "tests": 141,
+        "pass": 141,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "actualResultRows": 141
+    },
+    {
+      "summary": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "actualResultRows": 1
+    },
+    {
+      "summary": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "actualResultRows": 15
+    },
+    {
+      "summary": {
+        "tests": 68,
+        "pass": 68,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "actualResultRows": 68
+    },
+    {
+      "summary": {
+        "tests": 139,
+        "pass": 139,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "actualResultRows": 139
+    }
+  ],
+  "rootActualResultRows": 1059,
+  "mcpActualResultRows": 364,
+  "sourceNamedExpertCases": [
+    {
+      "name": "synthetic goldPacket copies bind the existing digest and retain every immutable item and blank judgement",
+      "number": 724,
+      "result": "ok"
+    },
+    {
+      "name": "published fifty-item blank gold remains exact, prepares one hundred assignments and creates no human labels",
+      "number": 725,
+      "result": "ok"
+    },
+    {
+      "name": "missing all roles preserves both unassigned blank packets, all sources and a distinct adjudicator checklist",
+      "number": 726,
+      "result": "ok"
+    },
+    {
+      "name": "one declared reviewer and missing evidence never shrink the selected item denominator or promote coverage",
+      "number": 727,
+      "result": "ok"
+    },
+    {
+      "name": "declared PhD CFA engineering and verification provenance remain unverified despite exact supplied evidence",
+      "number": 728,
+      "result": "ok"
+    },
+    {
+      "name": "shared affiliation and declared conflicts are retained without inferring dependence or independence",
+      "number": 729,
+      "result": "ok"
+    },
+    {
+      "name": "NFKC trim and case identity collisions match agreement and refuse overlapping reviewer handles",
+      "number": 730,
+      "result": "ok"
+    },
+    {
+      "name": "aliases cannot conceal an adjudicator collision or repeat an already normalized same-role identity",
+      "number": 731,
+      "result": "ok"
+    },
+    {
+      "name": "duplicate or unknown role declarations and nonstring stable handles are refused",
+      "number": 732,
+      "result": "ok"
+    },
+    {
+      "name": "a provided verified boolean or expert flag is an unknown field and cannot override intake uncertainty",
+      "number": 733,
+      "result": "ok"
+    },
+    {
+      "name": "opaque native evidence is retained byte-for-byte including binary bytes without asserting document authenticity",
+      "number": 734,
+      "result": "ok"
+    },
+    {
+      "name": "advertised evidence hash cannot conceal different bytes or reordered buffer attachments",
+      "number": 735,
+      "result": "ok"
+    },
+    {
+      "name": "separate exact evidence length and native buffer inventory cardinality are enforced",
+      "number": 736,
+      "result": "ok"
+    },
+    {
+      "name": "evidence for another declared reviewer cannot satisfy an identity reference",
+      "number": 737,
+      "result": "ok"
+    },
+    {
+      "name": "valid identity evidence cannot be repurposed as qualification or independence evidence",
+      "number": 738,
+      "result": "ok"
+    },
+    {
+      "name": "qualification and conflict evidence must name the exact declared qualification or conflict",
+      "number": 739,
+      "result": "ok"
+    },
+    {
+      "name": "foreign packet evidence is refused even when the document bytes and own hash are valid",
+      "number": 740,
+      "result": "ok"
+    },
+    {
+      "name": "rights evidence bound to another cited source cannot clear the selected source declaration",
+      "number": 741,
+      "result": "ok"
+    },
+    {
+      "name": "source ID URL substitution and uncited source declarations are refused without dropping packet sources",
+      "number": 742,
+      "result": "ok"
+    },
+    {
+      "name": "duplicate evidence IDs qualification IDs source records and rights claim IDs refuse rather than overwrite",
+      "number": 743,
+      "result": "ok"
+    },
+    {
+      "name": "unreferenced but correctly bound evidence stays in the inventory with explicit unreferenced coverage",
+      "number": 744,
+      "result": "ok"
+    },
+    {
+      "name": "complete declared rights scope with matching synthetic bytes never becomes actual clearance or release admission",
+      "number": 745,
+      "result": "ok"
+    },
+    {
+      "name": "public-origin or licence text without use declarations remains unknown and missing evidence is visible",
+      "number": 746,
+      "result": "ok"
+    },
+    {
+      "name": "contradictory allowed and denied uses across claims are exposed mechanically while distinct restrictions stay distinct",
+      "number": 747,
+      "result": "ok"
+    },
+    {
+      "name": "requested training or redistribution outside declared scope remains uncovered or restricted",
+      "number": 748,
+      "result": "ok"
+    },
+    {
+      "name": "raw gold hash and independently supplied canonical content pin detect altered immutable questions",
+      "number": 749,
+      "result": "ok"
+    },
+    {
+      "name": "completed gold judgements notes or annotator declarations cannot be converted back into blank intake",
+      "number": 750,
+      "result": "ok"
+    },
+    {
+      "name": "unknown gold fields or a changed judgement vocabulary cannot alter the existing annotation contract",
+      "number": 751,
+      "result": "ok"
+    },
+    {
+      "name": "raw packet ordering changes its raw binding while the existing ID-sorted canonical digest stays compatible",
+      "number": 752,
+      "result": "ok"
+    },
+    {
+      "name": "intake and settings canonical packet bindings independently refuse foreign packet declarations",
+      "number": 753,
+      "result": "ok"
+    },
+    {
+      "name": "all returned bindings own their bytes and input buffers remain unchanged after immutable preparation",
+      "number": 754,
+      "result": "ok"
+    },
+    {
+      "name": "canonical report content hash is deterministic through JSON roundtrip and whole-source declarations stay unverified",
+      "number": 755,
+      "result": "ok"
+    },
+    {
+      "name": "malformed UTF8 and raw or escaped unpaired Unicode refuse without replacement-byte repair",
+      "number": 756,
+      "result": "ok"
+    },
+    {
+      "name": "duplicate decoded JSON members including escaped keys are refused before schema extraction",
+      "number": 757,
+      "result": "ok"
+    },
+    {
+      "name": "prototype-like unknown keys malformed JSON BOM and trailing syntax cannot pass a closed input schema",
+      "number": 758,
+      "result": "ok"
+    },
+    {
+      "name": "lossy numeric literals negative zero nonfinite values and coercive evidence counts are refused",
+      "number": 759,
+      "result": "ok"
+    },
+    {
+      "name": "calendar-invalid verification dates and unknown qualification use or purpose values are refused",
+      "number": 760,
+      "result": "ok"
+    },
+    {
+      "name": "byte input proxies subclasses shared backing and boxed hashes cannot execute custom conversion hooks",
+      "number": 761,
+      "result": "ok"
+    },
+    {
+      "name": "native Uint8Array subviews and poisoned own byte getters copy the actual native slots without invoking accessors",
+      "number": 762,
+      "result": "ok"
+    },
+    {
+      "name": "evidence array accessors proxies sparse entries and unexpected keys refuse without callback invocation",
+      "number": 763,
+      "result": "ok"
+    },
+    {
+      "name": "raw byte maxima accept bounded whitespace but independently reject every overlimit input",
+      "number": 764,
+      "result": "ok"
+    },
+    {
+      "name": "evidence item count per-file and aggregate byte caps refuse before a partial result can be returned",
+      "number": 765,
+      "result": "ok"
+    },
+    {
+      "name": "combined raw input budget refuses an individually bounded plan without truncating evidence",
+      "number": 766,
+      "result": "ok"
+    },
+    {
+      "name": "item source alias qualification and claim budgets refuse excess instead of silently dropping selected inputs",
+      "number": 767,
+      "result": "ok"
+    },
+    {
+      "name": "strict JSON depth array string node and numeric-token budgets are enforced independently of schema",
+      "number": 768,
+      "result": "ok"
+    },
+    {
+      "name": "canonical output expansion refuses the whole report without truncating large Unicode packet copies",
+      "number": 769,
+      "result": "ok"
+    },
+    {
+      "name": "executable synthetic guide import prepares bound blank packets and leaves every verification result unknown",
+      "number": 770,
+      "result": "ok"
+    }
+  ],
+  "expertRootPassedOnce": 47,
+  "expertMcpPassClaim": null,
+  "expertRegistration": "ROOT verify only; all47 source-named cases appear exactly once in main1044 and are absent in MCP job.",
+  "nodeObservedInBothRawLogs": {
+    "root": [
+      "v22.23.3"
+    ],
+    "mcp": [
+      "v22.23.3"
+    ]
+  },
+  "all7CapturedChecks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/runs/110735379356",
+      "name": "CodeQL",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36974436994/job/110735096035",
+      "name": "analyze (javascript-typescript)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36974436961/job/110735096370",
+      "name": "vite production build",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36974436994/job/110735096197",
+      "name": "analyze (python)",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36974436961/job/110735096262",
+      "name": "design wrapper build and contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36974436961/job/110735096103",
+      "name": "MCP package and stdio contracts",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/36974436961/job/110735096254",
+      "name": "Key revocation PostgreSQL contract",
+      "state": "SUCCESS"
+    }
+  ],
+  "rootCheckMatchedByExactJobLink": {
+    "bucket": "pass",
+    "link": "https://github.com/arhancanli/canlicapital/actions/runs/36974436961/job/110735096370",
+    "name": "vite production build",
+    "state": "SUCCESS"
+  },
+  "mcpCheckMatchedByExactJobLink": {
+    "bucket": "pass",
+    "link": "https://github.com/arhancanli/canlicapital/actions/runs/36974436961/job/110735096103",
+    "name": "MCP package and stdio contracts",
+    "state": "SUCCESS"
+  },
+  "rootRun": {
+    "id": 36974436961,
+    "head_sha": "13927e84165c479905df99dd0d6a26d5b8ce8d02",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "rootJob": 110735096370,
+  "mcpJob": 110735096103,
+  "capturedDraftPrHeadBaseAndMergeBindingsVerified": true,
+  "testedMerge": "4fc3de54d0f226183a43ed789fe1cac0fab69c4f",
+  "testedParents": [
+    "eeb55b42c456ab0706099673d22a9a2fc0fe8fb7",
+    "13927e84165c479905df99dd0d6a26d5b8ce8d02"
+  ],
+  "testedTreeEqualsReviewedSignedHead": true,
+  "authorCheckoutStillFrozenCleanHead": true,
+  "capturedRefCodeqlOpenAlerts": 0,
+  "allCapturedCodeqlAnalysisRows": [
+    {
+      "ref": "refs/pull/362/merge",
+      "commit_sha": "4fc3de54d0f226183a43ed789fe1cac0fab69c4f",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-02T06:38:42Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1879356169,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1879356169",
+      "sarif_id": "e8496ca2-be2b-11f1-9ee0-5b5e854f5925",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    {
+      "ref": "refs/pull/362/merge",
+      "commit_sha": "4fc3de54d0f226183a43ed789fe1cac0fab69c4f",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-02T06:38:33Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1879355721,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1879355721",
+      "sarif_id": "e298ccc6-be2b-11f1-9957-44737ecfc152",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  ],
+  "latestPerLanguage": {
+    "javascript-typescript": {
+      "ref": "refs/pull/362/merge",
+      "commit_sha": "4fc3de54d0f226183a43ed789fe1cac0fab69c4f",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-02T06:38:42Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1879356169,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1879356169",
+      "sarif_id": "e8496ca2-be2b-11f1-9ee0-5b5e854f5925",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    "python": {
+      "ref": "refs/pull/362/merge",
+      "commit_sha": "4fc3de54d0f226183a43ed789fe1cac0fab69c4f",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-02T06:38:33Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1879355721,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1879355721",
+      "sarif_id": "e298ccc6-be2b-11f1-9957-44737ecfc152",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  },
+  "codeqlScope": "Author captured pull/362/merge context;2analysis rows<100, allrows retained/latest selected. No reviewer API/refetch or later live query.",
+  "sourceReviewSeparate": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake-peer/review-13927e84.json",
+    "bytes": 18841,
+    "sha256": "7f97c2471358c74af1121ac82ca1ccfd9cd058aea39011f2eaf0d2637f374a1d"
+  },
+  "metadataReaderErrorRetained": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake-peer/retained-ci-13927e84-check-label-error.json",
+    "bytes": 774,
+    "sha256": "e382f3ef365753831dbc482b0d21352322c93e4c2e99c8c30c5f31a330ab067f"
+  },
+  "metadataReaderErrorPrecision": "Failed reader assumed abbreviated root name vite and MCP name mcp-packages; original rows use vite production build and MCP package and stdio contracts. Initial error receipt described only MCP assumption; both precise labels plus exact job URLs are checked here. This was a metadata assertion failure, not project/remote runtime failure; originals unchanged and no independent PASS receipt existed until correction.",
+  "archiveAllocatedForPhase": false,
+  "futureFinalHeadIntegrationArchiveDeliveryApproval": false,
+  "reviewerActivity": "Finite Python stdlib original-byte hash/JSON/TAP parsing and frozen Git metadata only; no projectNode/import/test/CLI/browser/helper job/new CI/rerun/directAPI/auth/private capacity/CPU grant/provider/model/resource/spend/source or archive edits/publication.",
+  "limits": [
+    "STATIC source7f97c247 separate from this retained remote execution proof.",
+    "47 actual distinct expert fixtures pass once in ROOT only; no47-case MCP claim or written-stage relabel.",
+    "Captured checks/CodeQL are dated captures, not future/current-live guarantees.",
+    "No source authenticity/human/expertise/independence/rights/indexing/adoption/strategy outcomes established."
+  ],
+  "fullOwnerHierarchy": "ACTIVE; all four Sovereign pillars,10M actually indexed useful qualitySEO canonicals/design/analyzers/research/adoption,rights-cleared expert refinery,governed ALPHAC Sharpe>2/14 distinct qualified sleeves/DD<=10%,paper then lawful capital preserved."
+}
