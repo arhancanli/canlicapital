@@ -1,0 +1,23 @@
+{
+  "schema": "canli.fundamentals-audit-stdio.metadata-error.v1",
+  "observed_at": "2026-10-02T08:59:54.853141+00:00",
+  "command": [
+    "gh",
+    "run",
+    "list",
+    "--repo",
+    "arhancanli/canlicapital",
+    "--commit",
+    "457e65467ea8d00114b809d5b7e1665bc611a60c",
+    "--limit",
+    "8",
+    "--json",
+    "databaseId,name,headSha,status,conclusion,url"
+  ],
+  "exit_code": 1,
+  "original_exception": "subprocess.CalledProcessError",
+  "stderr_not_captured_in_initial_tool_result": true,
+  "current_PR_seven_success_checks_already_observed": true,
+  "not_project_or_CI_failure": true,
+  "not_rerun": true
+}

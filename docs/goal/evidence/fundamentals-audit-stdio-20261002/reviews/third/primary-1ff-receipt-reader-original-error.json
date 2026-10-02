@@ -1,0 +1,16 @@
+{
+  "schema": "canli.third.metadata-reader-error.v1",
+  "observedAt": "2026-10-02T09:39:29.106461+00:00",
+  "originalToolChunk": "aadf99",
+  "exitCode": 1,
+  "originalTraceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 6, in <module>\nKeyError: 'verdict'\n",
+  "input": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-primary-review/review-1ff911a1-source.json",
+    "bytes": 9420,
+    "sha256": "cb714b411f4cb1821135cd1740a66f1f387e3edce09abf409ec6dacee57ad032"
+  },
+  "fileHashAndSourcePassedBeforeFailure": true,
+  "error": "Reader assumed generic verdict key before inspecting this extension schema. Hash/file bytes matched; no project runtime or source failure.",
+  "sourceOrReceiptRewriteNodeImportRuntimeRerunAPI": false,
+  "priorRelayLimit": "Earlier relay agreed with owner-stated source outcome and matched pin; corrected reader will inspect actual review extension fields and send schema correction separately."
+}

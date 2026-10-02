@@ -1,0 +1,34 @@
+{
+  "schema": "canli.third.primary-source-ack-reader-correction.v1",
+  "observedAt": "2026-10-02T09:40:29.556626+00:00",
+  "source": "1ff911a12411da67c34f8e5b8da060843ac65d3a",
+  "verdict": "PRIMARY_AND_THIRD_STATIC_SOURCE_PINS_AGREE",
+  "actualVerdictField": "source_verdict",
+  "primarySourceReceipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-primary-review/review-1ff911a1-source.json",
+    "bytes": 9420,
+    "sha256": "cb714b411f4cb1821135cd1740a66f1f387e3edce09abf409ec6dacee57ad032"
+  },
+  "ownSourceReceipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-peer/review-1ff911a1-source-extension.json",
+    "bytes": 16629,
+    "sha256": "4e271050b0e97cdcea83e8ddb9eba1cb97cd5c252c691f1cd48633077729d255"
+  },
+  "ownSeparateCIReceipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-peer/retained-ci-1ff911a1.json",
+    "bytes": 13066,
+    "sha256": "67feb1072c7b6ee498c07440d665abd90cf8fe63ed92f65f2d3faa4009d276a9"
+  },
+  "originalReaderError": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-peer/primary-1ff-receipt-reader-original-error.json",
+    "bytes": 992,
+    "sha256": "7ce55902f63f43b9dc9e50886b31fd8d73bf1d4553a9069dcfb36b689ff6f17d"
+  },
+  "exactEightPinIdentitiesSHABytesAndModesAgree": true,
+  "same6002ProtectedGit387008101BNoPhysicalAudit20PrefixesPackageAnd29SourceNames": true,
+  "bothFindingsStaticClosedAtTheirRespective9eAnd1ffHeads": true,
+  "primaryCurrentCIStatus": "Separate independently parsing gate according to owner; no approval inferred from source receipt.",
+  "reviewerProjectRuntimeAPIRefetchSourceOrReceiptRewrite": false,
+  "allOwnerGoals": "ACTIVE",
+  "actualIndexedExpertRightsAdoptionQualified": null
+}

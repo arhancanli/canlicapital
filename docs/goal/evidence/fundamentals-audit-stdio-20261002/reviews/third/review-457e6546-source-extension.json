@@ -1,0 +1,284 @@
+{
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "observedAt": "2026-10-02T09:08:17.362081+00:00",
+  "authority": "Frozen Git and Python stdlib source/metadata/hash/TAP reads only, own immutable coordination evidence. No project Node/import/test/CLI/SDK/client/provider/browser/CPU/localjob/grant/network/API/source edits/archive/publication.",
+  "fullOwnerHierarchy": "ACTIVE",
+  "actualIndexedExpertRightsAdoptionQualifiedOutcomes": null,
+  "schema": "canli.third.audit-stdio.corrected-static-source-review.v1",
+  "source": "457e65467ea8d00114b809d5b7e1665bc611a60c",
+  "tree": "449dd33de0c42c80f4673aaf5097fab1317ee72a",
+  "signature": "G",
+  "soleParent": "943b6924338ef06037b3dc6f77dcae716e62d666",
+  "actualBase": "9da1829fa4a1ccc3d7d9a87ad16c8b89f8a6dde0",
+  "sourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/source-457e6546.json",
+    "bytes": 2005467,
+    "sha256": "32bc1c31cd22f350d8b35c5cf2e381ed0010c19465f963be536d13e62414d881"
+  },
+  "initialSourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/source-943b6924.json",
+    "bytes": 2004619,
+    "sha256": "ad251cce989822b1bda4ebf58fbb53a8986566d3aafa1bf3fe490021c9378c8e"
+  },
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/assignment.md",
+    "bytes": 7748,
+    "sha256": "e0dfdcd8c625ab4042193900d04244d53ca602df31fd70271382b051ad880f07"
+  },
+  "writtenContract": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/written-contract-v1.json",
+    "bytes": 5854,
+    "sha256": "b434ca04db4bca5273e11f3e2e5911f90309fc54ccda3cc0be09e7c6959d51cf"
+  },
+  "originalFailedSourceReview": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio-peer/review-943b6924-source-and-failed-ci.json",
+    "bytes": 16695,
+    "sha256": "c6fcd61661d8e47cb8961d7b778096037d2639f70d6683a5a8d53304ee613020"
+  },
+  "correctionReceipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-stdio/correction-943b6924-v1.json",
+    "bytes": 2111,
+    "sha256": "0bcd0f6557bc53baf2c5c9ff65aee20b471e3c9c91dffc661b10dbc23b590508"
+  },
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS_NONBLOCKING_SHA_SHAPE_CUE",
+  "blockingFindings": [],
+  "nonblockingCues": [
+    {
+      "id": "CC-363-EXPECTED-SHA-END-ANCHOR",
+      "severity": "P3_NONBLOCKING_INPUT_CONTRACT",
+      "sourceLines": [
+        31,
+        97
+      ],
+      "counterexample": "actual64lowercaseSHA + final LF/CR/U+2028/U+2029 is not an exact64-character hash but JS$ guards admit it to decoded/core byte admission. Unchanged core rejects mismatched SHA at317; no oracle/score acceptance.",
+      "runtimeCounterexampleExecutedByReviewer": false,
+      "suggestedCorrection": "Require length64 in both advertised schema and native gate, plus meaningful pre-allocation controls.",
+      "ownerAcceptedFutureCorrection": "Secondary ACK; no future source acceptance."
+    }
+  ],
+  "exactEightFrozenPins": {
+    "mcp-fundamentals/examples/audit-inputs-stdio.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "9d86ef71a0eeacb77d295056a1267a059dcd8c7e",
+      "bytes": 12687,
+      "sha256": "054fdea943d7787f26f0faf96f2d320f4112e633ac4e1af40ffdf488168446d7",
+      "work_index_Git_equal": true
+    },
+    "mcp-fundamentals/test/audit-inputs-stdio.test.mjs": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "18cb0c0fcf7dc27d13fb759ed1eb7bcc613a2e06",
+      "bytes": 25957,
+      "sha256": "71f0f1be27957ec18fe513e40adf3273df7c05e0752da95f9f57721ef358c416",
+      "work_index_Git_equal": true
+    },
+    "mcp-fundamentals/AUDIT_INPUTS.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "dfba280f74ac61756e2a31ffcc49228e58936b7a",
+      "bytes": 24231,
+      "sha256": "c4a646fd17942bf25544c16b30d2d7f9a6dd935961f3d1718b86dd045ced71f1",
+      "work_index_Git_equal": true
+    },
+    "mcp-fundamentals/README.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "6fd7e6c11e5537c0769afdddb0e797b52d18a5a2",
+      "bytes": 12789,
+      "sha256": "1a7b88a157b6306f96dc4e190a2e3a0c5e0d9e5241fda8543a031fd9b633d51c",
+      "work_index_Git_equal": true
+    },
+    "mcp-fundamentals/CHANGELOG.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "c081a2f4f6ff2e782126c7ac61160b24e5e58677",
+      "bytes": 7236,
+      "sha256": "d7bfca13d48c71b6eab06a9cd107f07b9fbacabe85e617ea56d0d457727d8df4",
+      "work_index_Git_equal": true
+    },
+    "package.json": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "80d45541fd0bbf06fe9cb0b11b2ed59c92ae41a3",
+      "bytes": 12427,
+      "sha256": "0e68235a01ff45d34f0fb919e47f38f845d973b8f536f8d52fd66f822b989d9f",
+      "work_index_Git_equal": true
+    },
+    "docs/goal/STATUS.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "79b9ede02ac65b6e2d6b2e2f328e43bd84691669",
+      "bytes": 132772,
+      "sha256": "4b4e035b9e85d40402beb94c62357ab1230ed5fcabf47501e47365189fcc31c6",
+      "work_index_Git_equal": true
+    },
+    "docs/goal/LOG.md": {
+      "mode": "100644",
+      "type": "blob",
+      "object": "2e33bfd1325b4de97a8fe44235bae387a276d60a",
+      "bytes": 408136,
+      "sha256": "ab9d70ea06d74c6c24819922163f0d3a9ce0ac8c21bfef41baef335f4e2ecf62",
+      "work_index_Git_equal": true
+    }
+  },
+  "protectedGit": {
+    "count": 6002,
+    "bytes": 387008101,
+    "modeTypeObjectSizeExactAgainst9da": true,
+    "allDeclaredShaInheritedFromExactSameImmutableObjects": true,
+    "SHA256Basis": {
+      "manifest_path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-review-intake/source-31cf68a3-final.json",
+      "sha256": "f3d5c33c5e1b1e594c6145bbac0254a6465440e87c70384455a520b5308e1d0c",
+      "exact_immutable_Git_objects_inherited": true,
+      "whole_protected_physical_audit": false
+    },
+    "wholeProtectedPhysicalSHAAudit": false
+  },
+  "metadataAuditProof": {
+    "originalToolOutput": "SOURCE_EXTENSION_PASS457 /8vsbase/5vspredecessor/6002Git387008101B + inheritedSHA/5base+5parentprefixes",
+    "allDeclaredSHAInheritedMappingChecks": 6002,
+    "newVs943Paths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-fundamentals/AUDIT_INPUTS.md",
+      "mcp-fundamentals/examples/audit-inputs-stdio.mjs",
+      "mcp-fundamentals/test/audit-inputs-stdio.test.mjs"
+    ],
+    "coreDefaultServerLocksPackageRootVerifyVersionUnchanged": true
+  },
+  "sourceCorrections": {
+    "wholeModuleEquals943PlusThreeDeclaredEdits": true,
+    "base64EndAdmission": "Complete regex matched length equals whole string before padding/decoded arithmetic/Buffer allocations; last pad bits and exact reencoding checks retained.",
+    "typedCodes": "Advertised code permits uppercase letters/digits/underscore; controlled CORE_UTF8 preserved.",
+    "finitePolicyUnchanged": {
+      "referenceBytes": 524288,
+      "usageBytes": 65536,
+      "settingsBytes": 4096,
+      "aggregateBytes": 573440,
+      "requestBufferBytes": 1048576,
+      "compactContentBytes": 65536,
+      "evidenceContentBytes": 2097152,
+      "compactResultBytes": 262144,
+      "evidenceResultBytes": 6291456,
+      "responseFrameBytes": 7344128
+    }
+  },
+  "reviewedSemantics": [
+    "Native own string descriptor snapshot rejects proxy/accessor/inherited/symbol/unknown-key arguments before callbacks; fields are closed and settings have no core default.",
+    "Allthree strict ASCII/padding/decoded lengths and aggregate precede decoded allocations. Separate native buffers are passed synchronously to unchanged auditInputs40ac; exactraw and expectedpin remain distinct from source authentication.",
+    "Compact removes only declared original-base64/vintage arrays and original content_hash, retains fullN rows/scalar uncertainty/coverage/rawSHA+length/implementation; viewhash distinct from complete corehash. Evidence preserves the entire unchanged core report.",
+    "Whole selected content, text+structured result and finalRPC-frame caps are checked; overflowing views refuse the whole batch. No silent truncation or denominator change.",
+    "One low-level Server tools/list/call uses explicit manual input/error validation and controlled code-only refusals. No high-level SDK pre-handler rawerror echo. Negotiated object-shaped projectCallToolResult keeps object/text projection unchanged; transport onerror uses fixednotice.",
+    "No API call imports the released seven-tool server, performs file/network/persistent writes, or authenticates source/expert/rights/indexing/strategy outcomes. Repository-only canonical dependency and unchanged version/locks/npm/default surface are documented."
+  ],
+  "lockedSDKCustody": [
+    {
+      "package": "@modelcontextprotocol/client",
+      "version": "2.1.0",
+      "tarball": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example/locked-client-static-source-2.1.0.tgz",
+        "bytes": 1603220,
+        "sha256": "52a76aa524e5655e12bd0859da6489a95642eb362e76e898cc57f3762ee33732"
+      },
+      "lockIntegrity": "sha512-mDVhoy5WjDb0U+4dQPzLcciC2erSex/GRVQqnoZdiuMoE3YiTZdiS7ezNcFwX4XEOWOaj7jZr0kLYnILnL8orA==",
+      "sha512MatchesFrozenPackageLock": true,
+      "networkInstallImportOrExecution": false
+    },
+    {
+      "package": "@modelcontextprotocol/server",
+      "version": "2.1.0",
+      "tarball": {
+        "path": "/Users/arhancanli/.npm/_cacache/content-v2/sha512/15/db/f0654e4dd373bbed2ba1df926a8c0aaae51d594c43c5b70bba37806006adbcaab42dac29e96cb2f9536a70602b84d7de23030d319e5395988aa17e862e51",
+        "bytes": 1523527,
+        "sha256": "2a3baf0208471577c39061b273aa571502b1b8ebb97e83e6af924085e485efc2"
+      },
+      "lockIntegrity": "sha512-FdvwZU5N03O77Suh35JqjAqq5R1ZTEPFtwu6N4BgBq28qrQtrCnpbLL5U2pwYCuE194jAw0xnlOVmIqhfoYuUQ==",
+      "sha512MatchesFrozenPackageLock": true,
+      "networkInstallImportOrExecution": false
+    },
+    {
+      "package": "@modelcontextprotocol/core",
+      "version": "2.1.0",
+      "tarball": {
+        "path": "/Users/arhancanli/.npm/_cacache/content-v2/sha512/61/d1/63e603111ebd2060d0214db4038232c788425d200518c689a12ac7943727bb646948490994a0b876b2f785142890ee3d9831f7d3d64812343d0549f2058d",
+        "bytes": 154649,
+        "sha256": "f1a20a0f9f2a93861d67f7ef1a2110c0a9f0d5338a2ba666c125caabaa4c8deb"
+      },
+      "lockIntegrity": "sha512-YdFj5gMRHr0gYNAhTbQDgjLHiEJdIAUYxomhKseUNye7ZGlISQmUoLh2sveFFCiQ7j2YMffT1kgSND0FSfIFjQ==",
+      "sha512MatchesFrozenPackageLock": true,
+      "networkInstallImportOrExecution": false
+    }
+  ],
+  "additionalSDKSourcePins": [
+    {
+      "tarMap": "package/dist/mcp-Dw2OlZ1f.mjs.map",
+      "sourceName": "../src/server/server.ts",
+      "bytes": 64182,
+      "sha256": "4c2c5191aecfcea1214a42c2c116b00cf454faa316fabce6ca6e39176b099e69",
+      "readScope": "Lines992-1011 negotiated projection delegates to exact wire codec."
+    },
+    {
+      "tarMap": "package/dist/src-D-y6h4N7.mjs.map",
+      "sourceName": "../../core-internal/src/wire/rev2025-11-25/codec.ts",
+      "bytes": 8412,
+      "sha256": "cb92552379680e1994d692d8e26b0add54d86cd74ddfcc0ab07adf81d721262d",
+      "readScope": "Lines91-107 object-shaped structured result identity; no nonobject wrapper introduced."
+    }
+  ],
+  "sourceWrittenTests": {
+    "count": 27,
+    "names": [
+      "audit stdio: actual SDK initialize lists exactly one annotated tool with discoverable input and output schemas",
+      "audit stdio: actual SDK call preserves text structured schema and deterministic public JSON hashes",
+      "audit stdio: original value versus later-only counterexample uses the earlier exact accession over real stdio",
+      "audit stdio: all six outcomes remain visible with full-N null coverage on the actual client",
+      "audit stdio: explicit evidence view is the exact complete unchanged core report and all raw input bindings",
+      "audit stdio: compact projection names omissions without relabeling its digest as the complete report",
+      "audit stdio: released seven-tool server stays unchanged and never lists the example",
+      "audit stdio: no-network no-write child sentinel demonstrably refuses both prohibited operations",
+      "audit stdio: wrong reference SHA yields a safe stable tool error and subsequent valid calls still work",
+      "audit stdio: closed arguments hashes details and missing settings never coerce or invent defaults",
+      "audit stdio: proxy accessor inherited and unexpected symbol arguments refuse without invoking user callbacks",
+      "audit stdio: canonical base64 refuses whitespace url alphabet missing excess internal padding and nonzero pad bits",
+      "audit stdio: trailing newline and noncanonical pad bits are refused before any base64 buffer allocation",
+      "audit stdio: base64 decoded lengths are enforced even when padded encoded lengths share a bucket",
+      "audit stdio: per-input encoded limits reject before malformed JSON is decoded or parsed",
+      "audit stdio: jointly oversized individually allowed byte batches refuse before any JSON parse",
+      "audit stdio: exact maximum settings bytes remain owned and valid while next byte refuses",
+      "audit stdio: raw duplicate decoded JSON keys and private source text produce bounded non-echoing core refusals over stdio",
+      "audit stdio: raw invalid UTF8 survives base64 transport and is refused without replacement or reserialization",
+      "audit stdio: lossy raw numeric literal and nonfinite exponent retain the core precision refusals",
+      "audit stdio: source tamper with the original advertised hash cannot alter scored evidence",
+      "audit stdio: caller module hash remains unverified and absent source rights and universe coverage remain null",
+      "audit stdio: all 64 selected rows are retained when their complete compact projection fits",
+      "audit stdio: oversized valid compact output refuses the whole batch rather than selecting fewer rows",
+      "audit stdio: oversized valid complete evidence output refuses without emitting a partial report",
+      "audit stdio: documented synthetic workflow executes through the actual listed tool and preserves its counterexample",
+      "audit stdio: oversized unterminated protocol frame closes with a bounded notice and no raw echo"
+    ],
+    "newMeaningfulBeforeDecodeGuard": "Buffer.from interceptor is installed only after module import/fixture capture, throws on any allocation; three malformed canonical strings must yield BASE64 with0calls, restored in finally.",
+    "publicJSONCorrection": "Text exact JSON.stringify structuredContent and JSON-normalized deep-equality; original wholecontenthash/corehash/rawbyte SHA+base64 parity remain asserted.",
+    "strongValidEvidenceFixture": "64 selected rows/64 admitted periodic max-safe integer vintages, C+127ascii concept,64three-byte UTF8 unit and40-F/A; unchanged core64/4096/4MiB caps stay in force; testasserts original2MiB threshold before requesting whole refusal.",
+    "childGuards": "Actual SDK initialize/list/call/close; dynamic no-network/no-write preload positive denial controls, oneclose and ownedPID ESRCH after boundedwait; completed checks are source/retainedremote evidence, not a universal lifecycle/time guarantee.",
+    "reviewerExecution": false
+  },
+  "historyDocsPackage": {
+    "allFiveBasePrefixesAndFive943PrefixesPreserved": true,
+    "guideBaseAnd943AppendOnly": true,
+    "READMEAndCHANGELOGExactly943": true,
+    "priorChangelogReleasesExact": true,
+    "rootPackageExactly943AndOnlyOneSerialFocusAddedAgainst9da": true,
+    "rootVerifyExactly9da": true
+  },
+  "authorWorkingObservation": {
+    "head": "9e203c025be032094351b0b9b2be1203c4f510c6",
+    "status": "",
+    "eightWorkSHAExactIfAt457Clean": [],
+    "frozenGitReviewIndependentOfFutureWorkingChanges": true
+  },
+  "current457RemoteCIParsedInThisSourceReceipt": false,
+  "futureCorrectionApproval": false,
+  "archiveAllocated": false,
+  "sourceNoNewNodeRuntimeClaim": true
+}

@@ -461,17 +461,3 @@ SDK fixture launches through an owned temporary symlink and observes initialize,
 list, call, one close and actual owned-child absence under the same finite guard.
 All28prior fixture names remain;29cases are written for the next candidate,
 whose own CI and both independent exact-head gates are pending.
-
-
-Initial signed1ff passed all29new cases once in MCP, within97fundamentals,
-root6+1044+9 and execution139, with allseven checks on remoteNode22.23.3.
-Both independent source and retained-CI gates passed. The immutable evidence
-archive is [fundamentals-audit-stdio-20261002](../docs/goal/evidence/fundamentals-audit-stdio-20261002/README.md),
-allocated by PRIMARY as exactly79members. It preserves initial943eightfailures,
-separate45727/9e28/1ff29successes,32rawcaptures,foursources,fixes andreviews.
-Its README is the unchanged historical preview snapshot; the finalized manifest
-and allocation original record installed membership and authority. Final source,
-archive, new-headCI and independent extensions remain separate pending gates.
-Repository-only Unreleased scope, finite caps, selected-N and unknowns are unchanged;
-actual source rights, human expertise/labels, indexing and strategy outcomes remain
-unverified. No local project runtime or publication occurred.
