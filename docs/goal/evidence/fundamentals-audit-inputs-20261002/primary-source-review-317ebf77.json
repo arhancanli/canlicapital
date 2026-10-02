@@ -1,0 +1,178 @@
+{
+  "schema": "canli.primary.fundamentals-audit-inputs-static-review.v1",
+  "observed_at": "2026-10-02T05:21:28.160314+00:00",
+  "source": "317ebf77d2ac9a3a02bcb139920fda2fbbacfeed",
+  "base": "64a61ae81387609a58802e7c687fe2d2da2f97a2",
+  "tree": "9fd576100afc61a9cc3ed0cfb1374c46eaf10e93",
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "blocking_findings": [],
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-inputs/source-317ebf77.json",
+    "bytes": 2330908,
+    "sha256": "99b80a9a1452ec7f91c8b2b862e2e2c2d9d568dc87b5d9e80ca8f9b89c283075"
+  },
+  "changed_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "mcp-fundamentals/AUDIT_INPUTS.md",
+    "mcp-fundamentals/src/audit-inputs-core.mjs",
+    "mcp-fundamentals/test/audit-inputs-core.test.mjs",
+    "package.json"
+  ],
+  "changed_pins": [
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "584cdb4a1962c28744f96e8ef043906a18c408dd",
+      "bytes": 21663,
+      "sha256": "40ac2b1e5321cb453a71797888138f38570a4d6057d197461d681237506bff36",
+      "working_index_git_equal": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-core.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "2f67f29943fac9505997c34abc9149f4e51b2bf9",
+      "bytes": 28084,
+      "sha256": "d818dc371dc4c6794a35cb6e5991f6b68736a5295c68a64a8c75a67cdc956a00",
+      "working_index_git_equal": true
+    },
+    {
+      "path": "mcp-fundamentals/AUDIT_INPUTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "6559787467208c4a464a07b8d256212d79da8c76",
+      "bytes": 14178,
+      "sha256": "62ef6d818731d6df506ce02ce3efb3977a2a28cdbd0841061ca129f1dda27f44",
+      "working_index_git_equal": true
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "a2764fd64018fcafacc609758dd14966ed377872",
+      "bytes": 12136,
+      "sha256": "37d49958f774689796d2e65279c1e9730fcfccb410d51620a93567572c13982c",
+      "working_index_git_equal": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c3fbe8a1782e9bbd6e3c2932ada763db4c290cb9",
+      "bytes": 121985,
+      "sha256": "d579fbe99405b4458cc9be0168bf28a39a476850c19a4462e8b742b3e4ee5729",
+      "working_index_git_equal": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "2a4f975ed061c6042f6cb9310f6ad14c79118cc5",
+      "bytes": 397349,
+      "sha256": "481a396298f04324226c2155dfbb3f5148a149f9943e8a7ce9105cf4695e912d",
+      "working_index_git_equal": true
+    }
+  ],
+  "protected_git_files": 5941,
+  "protected_git_bytes": 385100830,
+  "protected_scope": "All outside-six Git mode/type/object/size exact plus clean status and changed-file work/index/Git byte checks; not another whole-protected physical working-byte audit.",
+  "goal_prefixes": [
+    {
+      "path": "docs/goal/README.md",
+      "base_prefix_bytes": 5370,
+      "base_prefix_sha256": "1929504c9ab66b24520430eff9039b85e9e2dd907c963c5e6d06ec4be9fb4af0",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "base_prefix_bytes": 8398,
+      "base_prefix_sha256": "f5e54195502a4b4d3aa0263c59f111e6382d7129feef6c1fa8179472f013fa5f",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "base_prefix_bytes": 117399,
+      "base_prefix_sha256": "a2ddd2ef58e0adcbd542f87f2db2ae02b3a2cf0c4c7fe59729f9f3c02ee6f8aa",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "base_prefix_bytes": 4314,
+      "base_prefix_sha256": "05145bf087cf31eee8829778a1ed17b3915d96adae0ed9fa6452785b7e39ba4f",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "base_prefix_bytes": 392763,
+      "base_prefix_sha256": "a6d70ecde91fbd4773462330636bc0fa0d71bedcc6e18917b007ca612b5650bf",
+      "prefix_exact": true
+    }
+  ],
+  "package_focus_only": true,
+  "canonical_pin": {
+    "bytes": 9481,
+    "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+  },
+  "criteria_assessed": [
+    "Reference digest checked on exact owned copied bytes before parsing; native-only intrinsics exclude proxy/subclass/shared-buffer inputs without coercion.",
+    "Usage/settings exact original buffers separately retained; closed/duplicate-key/null-prototype parser and finite UTF8/Unicode/depth/node/token limits assessed.",
+    "Explicit calendar/date/UTC cutoff validation; strictly earlier periodic rows only selected; same-day date-only timing keeps verdict null even with older selected diagnostic.",
+    "Exact CIK/taxonomy/concept/unit/start/end matching; no implicit aliases, unit conversion, quarter/YTD subtraction or split adjustment.",
+    "Latest earlier-date distinct accession/form/value ties stay ambiguous; duplicate identity visible and later prior-date unique observations resolve older ties.",
+    "Unsupported forms excluded from periodic selection but retained; missing company/concept/unit/period remains unknown without zero filling.",
+    "Future-only value and changed-value diagnostics remain supplied-snapshot observations, not authenticated availability, formal restatement or causal proof.",
+    "Every selected usage row retains full-N status and null verdict; global/universe/rights/calibration/strategy assumptions remain null.",
+    "512KiB/64KiB/4KiB input,64usage/2048source/4096returned and4MiBreport limits fixed; aggregate overflow refuses the batch rather than truncates coverage.",
+    "Noncoercive bounded finite numerical domain, negative-zero and changed decimal roundtrip refusal; no arithmetic tolerance invented.",
+    "Caller whole-module SHA explicitly unverified; behavior fingerprint is not complete executing-source authentication. Independent full source/canonical byte pins are separate.",
+    "Frozen report and exact raw base64 bind caller-buffer mutations; shared canonical hash evaluated before return and public-roundtrip fixtures meaningful.",
+    "No local filesystem/network/clock/provider/server registration effects in new core; released server/package/version and every outside-six protected Git identity unchanged.",
+    "Written36 fixtures include cutoff/value/ambiguity/denominator/tamper/parser/prototype/native-slot/boundary/guide-execution counterexamples; actual runtime is independently retained CI, not this source review."
+  ],
+  "fixture_names": [
+    "audit inputs: original pre-cutoff value matches while later vintages stay diagnostic",
+    "audit inputs: later-value counterexample is a supported mismatch without future selection",
+    "audit inputs: latest strictly prior observation supersedes an older supplied value",
+    "audit inputs: before-earliest future-only observation yields null verdict and selection",
+    "audit inputs: same-day date-only filing makes an earlier selected observation diagnostic",
+    "audit inputs: UTC used_on cannot establish intraday availability of a date-only filing",
+    "audit inputs: conflicting latest-date accessions stay ambiguous in either source order",
+    "audit inputs: equal values on distinct latest accessions do not invent a selected accession",
+    "audit inputs: exact duplicates remain visible and a unique later prior filing resolves old ties",
+    "audit inputs: all six outcomes retain the full selected-N denominator",
+    "audit inputs: absent company taxonomy concept and empty reference never zero-fill",
+    "audit inputs: exact units and opaque per-share conventions prohibit implicit conversion",
+    "audit inputs: quarter YTD instant and concept aliases stay separate",
+    "audit inputs: unsupported taxonomies and forms cannot establish periodic availability",
+    "audit inputs: negative losses explicit zero fractions and safe edge values compare exactly",
+    "audit inputs: nonnumeric null boolean string and nonfinite values refuse",
+    "audit inputs: raw decimal rounding underflow and numeric-token overflow refuse",
+    "audit inputs: malformed calendars non-UTC cutoffs and contradictory periods refuse",
+    "audit inputs: declared capture chronology completeness and unknown reasons stay explicit",
+    "audit inputs: CIK accession fiscal metadata and closed schemas validate without coercion",
+    "audit inputs: duplicate escaped JSON keys malformed syntax and trailing data refuse",
+    "audit inputs: malformed UTF8 unpaired surrogates and oversized decoded strings refuse",
+    "audit inputs: prototype-looking concept keys remain owned and cannot supply inherited facts",
+    "audit inputs: raw reference tampering at every byte defeats the separately supplied SHA",
+    "audit inputs: expected hash refuses arrays objects boxed strings and uppercase without coercion",
+    "audit inputs: byte APIs reject proxies subclasses shared storage and object getters",
+    "audit inputs: native byte-slot copying ignores caller properties and respects view offsets",
+    "audit inputs: byte inputs remain unchanged and all returned descendants are frozen",
+    "audit inputs: independent raw usage settings and whole-source declarations bind exact bytes",
+    "audit inputs: deterministic public JSON roundtrip preserves the shared canonical content hash",
+    "audit inputs: each explicit raw byte ceiling accepts its boundary and refuses one extra byte",
+    "audit inputs: usage and company ceilings retain every row at the accepted boundary",
+    "audit inputs: source-row and expanded-vintage ceilings refuse aggregate overflow without truncation",
+    "audit inputs: parser depth node and lexical bounds refuse before unsupported structure processing",
+    "audit inputs: absent calibration rights universe and formal restatement claims stay null",
+    "audit inputs: executable documented import example is offline and produces the literal outcome"
+  ],
+  "runtime_executed_by_primary": false,
+  "scope_limits": [
+    "Static code/fixture/document review only; no project import/Node/test/helper/CLI/network-provider job.",
+    "No release recall/false-positive, rights/completeness, global or intraday availability, expert/strategy/indexing claim.",
+    "No future modified/integrated source accepted."
+  ]
+}

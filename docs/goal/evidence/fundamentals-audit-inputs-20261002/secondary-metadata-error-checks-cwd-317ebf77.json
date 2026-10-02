@@ -1,0 +1,16 @@
+{
+  "observedAt": "2026-10-02T05:11:12.905840+00:00",
+  "command": [
+    "gh",
+    "pr",
+    "checks",
+    "361",
+    "--json",
+    "name,state,link,bucket"
+  ],
+  "cwd": "/Users/arhancanli",
+  "exit_code": 1,
+  "output": "failed to run git: fatal: not a git repository (or any of the parent directories): .git\n",
+  "cause": "Missing explicit repository on gh pr metadata read; no project execution or CI failure. Corrected read uses --repo arhancanli/canlicapital.",
+  "originalsUnchanged": true
+}

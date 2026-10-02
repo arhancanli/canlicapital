@@ -1,0 +1,327 @@
+{
+  "schema": "canli.third.supplied-vintage-fundamentals-preflight.v1",
+  "observedAt": "2026-10-02T04:47:46.597763+00:00",
+  "status": "STATIC_REVIEW_PREFLIGHT_ONLY_FUTURE_IMPLEMENTATION_UNREVIEWED",
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/primary-assignment.md",
+    "bytes": 41411,
+    "sha256": "6ac8cb8fc552c8a67de4ed3b9d9313ee173253bbab0ef565966723cde2122485"
+  },
+  "assignedImplementationOwner": "SECONDARY01a0f6ba",
+  "reviewer": "THIRD01a0f6dd",
+  "base": "64a61ae81387609a58802e7c687fe2d2da2f97a2",
+  "baseTree": "9923fb5cc87568f320673abd1f9898af8f249c17",
+  "baseDeliveryProof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/indexing-evidence-intake-peer/actual-delivery-64a61ae8.json",
+    "bytes": 7673,
+    "sha256": "e40ae5dcb46ed7477029fc1ee2fec6494361bf16100be7692fb2a4138446db2a"
+  },
+  "sixAllowedPaths": [
+    "mcp-fundamentals/src/audit-inputs-core.mjs",
+    "mcp-fundamentals/test/audit-inputs-core.test.mjs",
+    "mcp-fundamentals/AUDIT_INPUTS.md",
+    "package.json",
+    "docs/goal/STATUS.md",
+    "docs/goal/LOG.md"
+  ],
+  "threeNewPathsAbsentInActualBase": true,
+  "fullBaseGitFiles": 5944,
+  "fullBaseGitBytes": 385622956,
+  "expectedProtectedOutsideSix": {
+    "files": 5941,
+    "bytes": 385100830,
+    "proofScope": "Exact frozen base Git mode/type/blob/size metadata; no author implementation/protected working-byte audit or future equality claimed"
+  },
+  "fundamentals18ProtectedBasePins": [
+    {
+      "path": "mcp-fundamentals/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "6c890b9640e4df2bb56bb155eb0b66977982e9ab",
+      "bytes": 6851,
+      "sha256": "6b27b971552d5fb0475cbb4bd5e91a34fa7560be1e3fa3e6076673b0ed06d6ad"
+    },
+    {
+      "path": "mcp-fundamentals/CITATION.cff",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c288aaff974581e509e7640476dba42b8737d83c",
+      "bytes": 1057,
+      "sha256": "22262aeb427277849a6d25c1aef275ec0127a26aa9f091cf6e74c12e59535627"
+    },
+    {
+      "path": "mcp-fundamentals/CONTRIBUTING.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "7c5a964fde19b9a7bb2dbcd9ea1da00b3a8eb5da",
+      "bytes": 3021,
+      "sha256": "fcc2c29126227bd81ece06efb0eaa8263ea899ff9c62da683877c26b3d2f8fe9"
+    },
+    {
+      "path": "mcp-fundamentals/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "object": "eb5330e5dce6357e4c1cb0d5c1282f5e6d40b7d4",
+      "bytes": 1084,
+      "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26"
+    },
+    {
+      "path": "mcp-fundamentals/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "942fd263ccb5b7ccce07e28adc133ad76fc38683",
+      "bytes": 12195,
+      "sha256": "4295e92285debb8980969c1455c7710ff620c17d2d279068de7c231978dca9ad"
+    },
+    {
+      "path": "mcp-fundamentals/SECURITY.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "32f99960cace90437e3c6de07d47ec00010be196",
+      "bytes": 3090,
+      "sha256": "4f11005dae0e39c8684ad1e550d41c0c56761ae0866c1854bc21e7048cb7c53f"
+    },
+    {
+      "path": "mcp-fundamentals/mcpb/build.sh",
+      "mode": "100755",
+      "type": "blob",
+      "object": "37c06c3703efd1a1d34e2537575683ea827cf104",
+      "bytes": 1334,
+      "sha256": "a890e78cc0c40594dd1fcfb3b30bb09ca9ac9da6b5b123af2db5d30b3e8fb98d"
+    },
+    {
+      "path": "mcp-fundamentals/mcpb/icon.png",
+      "mode": "100644",
+      "type": "blob",
+      "object": "a6b80f6fc9c8d7d9427459e3285bdbd7951889b2",
+      "bytes": 71885,
+      "sha256": "c81810c2997b598a733c31eae7278e721bfb770c138cd14feda5ef2dbd0f3196"
+    },
+    {
+      "path": "mcp-fundamentals/mcpb/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "aca282f19a04e524064339f87a789e745699f87c",
+      "bytes": 2549,
+      "sha256": "2b4e9dad2a0258179eb9283c686062b64896274de51a22a940cfc58f94b0e2bb"
+    },
+    {
+      "path": "mcp-fundamentals/package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "4374077d03fceaa67babfc3a663f50de52d9a240",
+      "bytes": 6441,
+      "sha256": "71bd84589b12b0c9b5207a8bcefd2db6b43885c8ef60061c7748e1112f2fbe51"
+    },
+    {
+      "path": "mcp-fundamentals/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "21fd32bcef697b62e7ddd62f90e91612aa6bd545",
+      "bytes": 1281,
+      "sha256": "9e9a28fe3f86a033f607aaec3e25adfef59d19e5879777e8c696b39d16102954"
+    },
+    {
+      "path": "mcp-fundamentals/server.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "e03dd9e8e12602355e45f3c2b6cd7020fcdb82e4",
+      "bytes": 1189,
+      "sha256": "452912975a95bea9328a55b5c985d77b857163319acd6aa48dc881da0b7a63c4"
+    },
+    {
+      "path": "mcp-fundamentals/smithery.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "object": "913daa11988e20f12aed93f123f8dac6d11c95df",
+      "bytes": 985,
+      "sha256": "1a147c4b5d5da1c85e3b33522a42da654dc3b06e12606fe842f0a8e54c7bf07c"
+    },
+    {
+      "path": "mcp-fundamentals/src/server.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "0c373d5e5b2d6712cda9b3a7acec6d0177c1e423",
+      "bytes": 64736,
+      "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"
+    },
+    {
+      "path": "mcp-fundamentals/test/fixture.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c4f37c50f714248e72576a71db54f84bdddfa0dc",
+      "bytes": 10543,
+      "sha256": "f37eb7e54befad852531abb477549e7a43b5275b86c82b3aaba0821af72a10c3"
+    },
+    {
+      "path": "mcp-fundamentals/test/packaging.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ed60a3619ce9b339051abae58260fa821b7952f4",
+      "bytes": 2355,
+      "sha256": "c7349dbfc66fa099685304111916ae302659931ab53ad03c3cce95cbaa102437"
+    },
+    {
+      "path": "mcp-fundamentals/test/stdio.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "22aec128bc516109603673f09ff717fed100bdbd",
+      "bytes": 5717,
+      "sha256": "c741ddef8b10bb79d3285b7e1c46c4a6211587ccc7f7bcbefdbc3977fbe82ec9"
+    },
+    {
+      "path": "mcp-fundamentals/test/tools.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "f70e79d7fa29cdeed87bb11918870d67bd5f6bc9",
+      "bytes": 27734,
+      "sha256": "f490c15781b5f0e1af81d295044c645ca2dda4f4035ce059db2b015bb9925dd3"
+    }
+  ],
+  "otherReadProtectedSourcePins": [
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c9da827cc05f633ffe3478f6ee392c0bc80447ea",
+      "bytes": 994,
+      "sha256": "bf219f75e95cd459028ecaa5056360378989b82a99f366d9f98d467eb7185728"
+    },
+    {
+      "path": "docs/goal/MCP_NEXT_MAJORS_PLAN.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "675958e52645974004f21e2a288a174d8849010c",
+      "bytes": 60902,
+      "sha256": "ae051285a6b8b55939884a40d37e0a9849d28c81b1192ea165e82dffced63d0a"
+    },
+    {
+      "path": "scripts/canonical-json.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/evidence.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c283cbc158f7017db36647ea834d50993d399319",
+      "bytes": 8838,
+      "sha256": "e6aea6e8a12b14525fb6bcacfc9081e73a86555d091edebc55e9027fa8789de5"
+    },
+    {
+      "path": "mcp-execution/src/core/js/trade-journal-core.js",
+      "mode": "100644",
+      "type": "blob",
+      "object": "52794ed8631f1094753b47e6ea26a93cd10aa1da",
+      "bytes": 10456,
+      "sha256": "db394e2034c05f4d3d9deb34e0470da7ee8eaf239e484eeaa9f71d619a51ad94"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "b1ed4d4057973290930b6156386645681fdad3f7",
+      "bytes": 11964,
+      "sha256": "c13be55f63c29b77002e126bb651260a634a5e42c682e6d092cacccc4ec2de4b"
+    }
+  ],
+  "baseRelease": {
+    "packageVersion": "0.5.0",
+    "newMcpToolListed": false,
+    "futureMajorItem8": "docs/goal/MCP_NEXT_MAJORS_PLAN.md379-397 is a future broader tool/release plan; current6ac supplied-only core narrows first prerequisite and explicitly holds universe/restatement/split/globalavailability/release outcomes"
+  },
+  "legacyCodeCues": {
+    "baseServer368": "Existing byFiling sorts date then accession; do not treat that tie-break as proved chronology in new supplied-only audit. Old server stays protected.",
+    "baseServer32": "Existing instructions mention next trading day; supplied-only core has no trading-calendar evidence and must retain same-day uncertainty. Old schema/instructions stay protected.",
+    "fixture8": "Base synthetic companyfacts vintages carry start/end/val/accn/fy/fp/form/filed and taxonomy/unit identities; new core must document its exact supported supplied-reference schema.",
+    "canonical": "Protected scripts/canonical-json.mjs uses deterministic site canonical convention; validate/copy inputs before passing owned supported values to it. Reuse does not authorize editing the canonical helper."
+  },
+  "independentPreflightCriteria": [
+    {
+      "id": "SAME_OWNED_REFERENCE",
+      "scope": "Match raw byte length/hash on exactly the bounded owned copy used to parse and audit; reject foreign/coercive hash types, Buffer/typed-array traps, shared backing and caller mutations. Do not read a second reference/oracle under the original hash.",
+      "counterexample": "ExpectedSHA as singleton array; or caller alters the original Uint8Array after capture. Neither can change or authorize the bound reference."
+    },
+    {
+      "id": "SUPPLIED_CUTOFF_TIMING",
+      "scope": "Only supplied matching vintages filed strictly before the cutoff date can prove date-only pre-cutoff eligibility. Same-day date-only filing stays intraday indeterminate; no trading calendar or global first-ever availability inferred.",
+      "counterexample": "A supplied period first appears filed2025-05-01; used_on2025-04-30 with value seen only in2026-05-01. Selected value must not fall forward to the2026 vintage."
+    },
+    {
+      "id": "TIED_VINTAGES_AMBIGUOUS",
+      "scope": "Distinct contradictory values on the latest eligible filing date need explicit ambiguity handling; lexical accession ordering or source row order cannot prove chronology. Identical duplicate evidence and contradictions require documented policies.",
+      "counterexample": "Same complete period/concept/unit tuple and filed date, different accession/value; reordering the supplied vintages cannot invent a latest proven value."
+    },
+    {
+      "id": "EXACT_PERIOD_AND_UNIT",
+      "scope": "Match CIK/taxonomy/concept/unit/start/end, retain instant-vs-duration and quarter-vs-YTD distinctions. Missing value differs from wrong value. Do not silently merge concept aliases or derive scale/split/quarter corrections.",
+      "counterexample": "Sameend USD quarter and six-month YTD rows; USD/shares vs USD; changed concept with same displayed value. Only supported exact identities can yield a value verdict."
+    },
+    {
+      "id": "NUMERIC_AND_CALENDAR_DOMAIN",
+      "scope": "Validate actual calendar dates and finite noncoercive numeric values. Negative losses and explicit zero are legitimate supplied values under the declared supported domain. Unsafe integral/overflow/precision cases need rejection or explicit unsupported coverage, not rounded equality.",
+      "counterexample": "raw9007199254740993 vs usage9007199254740992, nonfinite exponent1e309, date2025-02-30, numeric string and negative zero; classification and binding must follow documented finite policy."
+    },
+    {
+      "id": "STRICT_JSON_AND_FINITE_CAPACITY",
+      "scope": "Duplicate raw JSON keys, malformed UTF8/Unicode and prototype/accessor/coercion paths refuse. Bound raw reference, rows, depth, strings, candidate vintages and complete report before meaningful computation; avoid an accepted input whose worst-case output cannot preserve fullN.",
+      "counterexample": "Every row individually fits but combined eligible-vintage expansion exceeds report cap; no silently truncated candidates or dropped denominator."
+    },
+    {
+      "id": "FULL_SELECTED_N",
+      "scope": "Every supplied usage row remains represented in coverage accounting, including missing/ambiguous/unsupported source. Source capture time/completeness/rights/authorship remain declared; no full-universe/survivorship/expert calibration result.",
+      "counterexample": "One matched, one future-only, one missingconcept and one unsupportedunit; totalselectedN stays4 with explicit null reasons, rather than reporting100percent agreement on the matched row."
+    },
+    {
+      "id": "SEPARATE_EXACT_BINDINGS",
+      "scope": "Reference bytes, owned usage rows, settings and implementation need separately reproducible bindings. Reuse protected canonical convention only after bounded validation/copy; document the exact implementation-byte origin and any declaration limits.",
+      "counterexample": "No-op/comment source-byte mutation, settings mutation, raw byte mutation and usage value mutation each defeats its corresponding binding; JSON roundtrip retains report and hashes."
+    },
+    {
+      "id": "INERT_CORE_AND_PROTECTED_RELEASE",
+      "scope": "New supplied-only pure core/import example; no server/bootstrap import, filesystemCLI/persistentledger/network/SDK/defaulttool/version/release change. Rootpackage only focus+existingverify insertion. Actual source/currentCI/protected-main and append-history checks required after signed freeze.",
+      "counterexample": "Invoking a documented import example must not instantiate the existing fetching server or touch credentials, user directories, hosted schemas or released snapshots."
+    }
+  ],
+  "caseStatus": "Required future fixture semantics only, no reviewer tests written/run and no new source accepted",
+  "nextAcceptance": [
+    "author signed clean source manifest and exact named fixtures",
+    "independent frozen source/negative binding/protected main/default release/goal-prefix review",
+    "exact current existing remoteCI first runtime and retainedraw derivation",
+    "separately allocated evidence archive/finalsource/currentCI/primaryordinarydelivery if proposed"
+  ],
+  "futureArchiveAuthority": "NONE allocated for this new phase; private coordination only until explicit primary allocation, no extra repository paths",
+  "continuityRead": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 7017,
+      "sha256": "977bae93e75f6b04d4c62a43d1f6d0ce90dc64fe951e84e3f4f82eda4b75e662"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 308327,
+      "sha256": "005c8f9385173bca063bb487d9097fdf7c1638adad5e2e2829cd1681757a9734"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 4395,
+      "sha256": "1882f775760699b74d9183bacbf42a2839db61c0e2ccf93474ca37bb0f891ea9"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 653177,
+      "sha256": "058a436869454d73d2af1c5345bb240f7b0954a71b11088c4799b8341e75dd99"
+    }
+  ],
+  "reviewerActivity": "Finite frozen Git/stdlib metadata and source reading only, own preflight JSON; no project imports/Node/tests/CLI/browser/helpers/jobs/grants/directnetwork/API/source/model/provider/auth/keys/resource/spend/pub",
+  "currentGoogleBingAdmittedQualified": null,
+  "fullOwnerHierarchy": "ACTIVE"
+}
