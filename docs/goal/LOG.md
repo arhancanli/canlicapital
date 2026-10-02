@@ -5732,3 +5732,23 @@ forward/cost/risk targets, lawful capital,10M actually indexed useful canonicals
 quality/SEO/intents/design/analyzers/graphs, research and legitimate API/MCP/repository
 adoption remain active. No spend/resource/hold/provider/model/broker/orders/hero/
 outreach/version/publication follows this draft checkpoint.
+
+
+## First guide CI retained; README sitemap count corrected, 2026-10-02T02:47:28.920225+00:00
+
+Exact sourcea36d remoteNode22.23.3 actually passes all15 new named cases once
+within940main, with6preverify passed and zero failure/skip/cancel in those suites.
+The build stamps684pages and preserves416checksummed files; indexability reports
+700pages,337indexable/listed and363noindex/withheld with0conflicts. The overall
+vite job110681334966 FAILED later at README audit because its old sitemap count
+still said336. Notification and subsequent job steps did not run; no940+6+9
+completion is claimed. Original577110B raw SHA5d85d628 and parsed receiptbdb1fc99
+remain immutable coordination/paper-mcp-discovery inputs. Other six CI checks pass.
+
+Narrow correction updates rootREADME's actual sitemap count to337 and documents
+the generated private local execution surface plus delivered example. Generator,
+source guard, 64pins, CSS,15tests, hosted/package/math/journal/dataset/hero inputs
+are unchanged froma36d. RootREADME+appendSTATUSLOG are the only correction paths.
+A new signed head and current remoteCI are required; old passing test cases do not
+establish new-head CI acceptance. No localproject runtime/job/grant/nonce/provider/
+model/resource/spend/pub occurred. Full owner hierarchyACTIVE; freshindexedcountsnull.
