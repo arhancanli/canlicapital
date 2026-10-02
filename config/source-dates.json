@@ -1,6 +1,10 @@
 {
   "schema": "canli.source-dates.v1",
   "files": {
+    "config/execution-workflow-source.json": {
+      "date": "2026-10-02",
+      "sha256": "a60f2afd1fec717a5d16cf85cbc5d07bf807bd3a86aa1f442e38501d662e245f"
+    },
     "config/mcp-discovery.json": {
       "date": "2026-10-01",
       "sha256": "c61bf69a26b4d56dd7a94ab286fd67f057c0f3fe3472e4570212cf7b977b420a"
@@ -14,7 +18,7 @@
       "sha256": "450be937d70f8f8e27890ded52e3b311ff8ddd737967c31b5f6cab8611795ff8"
     },
     "index.html": {
-      "date": "2026-09-28",
+      "date": "2026-10-01",
       "sha256": "a996d6145671cdd34b2a4d711e86c058c4a2ef28ee6dbea5241dc6e0b4bb60a3"
     },
     "js/annotate-core.js": {
@@ -28,6 +32,118 @@
     "js/filing-facts-packet.js": {
       "date": "2026-10-01",
       "sha256": "edc24aa7d113fecf7c23e8398bd67a5085aa098f92cb2095444ada8ed45a7221"
+    },
+    "mcp-execution/EXAMPLES.md": {
+      "date": "2026-10-02",
+      "sha256": "47737aa71c72ab68060d2dd5ec93263e0d925699708956b9cdd72790c991faa0"
+    },
+    "mcp-execution/JOURNAL_STORAGE.md": {
+      "date": "2026-10-02",
+      "sha256": "42391381552e411df449b7e9bad936da30432d97dc58fe7fac2e0838e7aa9593"
+    },
+    "mcp-execution/LICENSE": {
+      "date": "2026-09-28",
+      "sha256": "a035b16e17a55a7dbf352ff68daf048b789ac1d91bd979a7c1ab3112d05a40d7"
+    },
+    "mcp-execution/README.md": {
+      "date": "2026-10-02",
+      "sha256": "69ef5b557a50e37b8f2810e515ccfba3079ed05a96df635ac8e44d598be6b5b1"
+    },
+    "mcp-execution/examples/paper-journal.mjs": {
+      "date": "2026-10-02",
+      "sha256": "79a39839154fe3e5641a449ed1988b5e76cce1c3a6db13caca2742fc6b3f1d2e"
+    },
+    "mcp-execution/package-lock.json": {
+      "date": "2026-09-28",
+      "sha256": "a9e0616bb2aded941cd8d6fa20e455b4f473020617ebed7c78ccb1c62a795a16"
+    },
+    "mcp-execution/package.json": {
+      "date": "2026-10-02",
+      "sha256": "6af87ea5625d930c1ceb27c16c0aa2f9a78830056330ce72634ff58ab2165a22"
+    },
+    "mcp-execution/src/check-orders.mjs": {
+      "date": "2026-10-02",
+      "sha256": "3dcf1c79df5d4eca3e5b4a00bccb7476b878ab3238f4a0f34d00c44c8f19fd88"
+    },
+    "mcp-execution/src/core/js/dsr-core.js": {
+      "date": "2026-10-01",
+      "sha256": "7b654d60070fc53e11e71341f3737e902a87cc0d22f39ccda8e9491e69ae65a3"
+    },
+    "mcp-execution/src/core/js/exec-cost-core.js": {
+      "date": "2026-09-28",
+      "sha256": "a629709f918daac69a2e6987a52720a7d3d2bb4742bbb8202ad81b0890e71b9d"
+    },
+    "mcp-execution/src/core/js/journal-files.js": {
+      "date": "2026-10-01",
+      "sha256": "1240cea054d798898fcb0dc1f86025e20d4f35ae285ace265ea00d327dad92dc"
+    },
+    "mcp-execution/src/core/js/moments-core.js": {
+      "date": "2026-10-01",
+      "sha256": "6d6f86b630667a6fa0343ca9a74ef6cc1c91d4b549d60987aa0b229f2e6fe187"
+    },
+    "mcp-execution/src/core/js/pretrade-core.js": {
+      "date": "2026-09-28",
+      "sha256": "eed0d4853c9662aef8d723cc27ec3d2faeff84ac54c61b904ad71cb2a42d7ed1"
+    },
+    "mcp-execution/src/core/js/shortfall-core.js": {
+      "date": "2026-10-01",
+      "sha256": "cf166d97060777c0fdb5269ff594a7464ae84a4e9738065743e59c4fecabe219"
+    },
+    "mcp-execution/src/core/js/sizing-core.js": {
+      "date": "2026-09-28",
+      "sha256": "5872beb29f7eb7dfc3d98c1486d92056cebc77696c43dacc004e8e6aa4b80d9e"
+    },
+    "mcp-execution/src/core/js/trade-journal-core.js": {
+      "date": "2026-09-28",
+      "sha256": "8bade9eccd143eec71ed994e1fded63c3b936f4aea392b58fc809c4d2101c3ca"
+    },
+    "mcp-execution/src/core/js/trade-journal-export-core.js": {
+      "date": "2026-10-01",
+      "sha256": "5c5888541fce56f544a26240ce6330d48d9b6df04a102353a563fd1e672e45b8"
+    },
+    "mcp-execution/src/core/scripts/canonical-json.mjs": {
+      "date": "2026-09-28",
+      "sha256": "788fa1e0be21079c65d7cf629187a50af4ca3ff53985d6fc367fa7a6d4637440"
+    },
+    "mcp-execution/src/info.mjs": {
+      "date": "2026-09-28",
+      "sha256": "ed0cfdfec323b0c1641c746c3dafb6dc56b32529eadd4730506d402c1cb7ad71"
+    },
+    "mcp-execution/src/journal-export-file.mjs": {
+      "date": "2026-10-01",
+      "sha256": "8c678fa6130b6a88b266740c615de07e86c748f2bc7c2f70468a9755922aaf21"
+    },
+    "mcp-execution/src/journal-store.mjs": {
+      "date": "2026-10-02",
+      "sha256": "b7243ea7a84313035211fb49a3c9d1cd1c2ceceb5313fafb5fa8b0b6b6a77640"
+    },
+    "mcp-execution/src/journal-write.mjs": {
+      "date": "2026-10-02",
+      "sha256": "fd8a6339e4dcf65024520f70ba8e8ff0faf12d6e078a1854eb4954d4bb6a9a25"
+    },
+    "mcp-execution/src/journal.mjs": {
+      "date": "2026-10-01",
+      "sha256": "92eb8420cb8af21d8b3aac7f319a0559978422e655e2a2a10e124da96aabee3a"
+    },
+    "mcp-execution/src/local-input.mjs": {
+      "date": "2026-10-02",
+      "sha256": "0bfdcccff11e3956cbe8fde89aa9417f19301138ac452eac7a8c8f96a12703f4"
+    },
+    "mcp-execution/src/measure-shortfall.mjs": {
+      "date": "2026-10-02",
+      "sha256": "bada5c26d7a94ed103c17bad739b62f2768f42ac3cace1838428ec536031cd1a"
+    },
+    "mcp-execution/src/server.mjs": {
+      "date": "2026-10-02",
+      "sha256": "5c242f5168ad66715ac71e3f2330f78491be696cef4d71d8aa7cc6775838facd"
+    },
+    "mcp-execution/src/size-position.mjs": {
+      "date": "2026-09-28",
+      "sha256": "a82d975e42289f47edca65f75019846321af5facffa8fec7ab3f9d3e0428cacd"
+    },
+    "mcp-execution/test/paper-journal-example.test.mjs": {
+      "date": "2026-10-02",
+      "sha256": "9327a9f602f665f06f154cec4df09ef2e5601158e885961967e7c5ffdd552f56"
     },
     "mcp-released": {
       "date": "2026-09-28",
@@ -69,6 +185,146 @@
       "date": "2026-09-28",
       "sha256": "52d8a92490bd1e858bbc767be164b5257c2772333b7c5878168a0b00b55ddce2"
     },
+    "mcp/LICENSE": {
+      "date": "2026-09-20",
+      "sha256": "a035b16e17a55a7dbf352ff68daf048b789ac1d91bd979a7c1ab3112d05a40d7"
+    },
+    "mcp/package-lock.json": {
+      "date": "2026-09-28",
+      "sha256": "3e161de5d2941624e0c279dc5c767c1da85423e2eaade200012794ef3ab78811"
+    },
+    "mcp/package.json": {
+      "date": "2026-09-28",
+      "sha256": "b97ef41fedc57174b44daa9b91e26f464672788fea84ccfebee32806d54c7c5f"
+    },
+    "mcp/src/journal-evidence.mjs": {
+      "date": "2026-10-01",
+      "sha256": "a7d96414bcc4823f4d99be5661e8a08de6b759691173800a27d4d1fea1dd959a"
+    },
+    "mcp/src/local.mjs": {
+      "date": "2026-09-28",
+      "sha256": "25f880c9ad4d639dff0d5cf32d104d0d84b78a4ce20dc095c8d306406856cdcc"
+    },
+    "mcp/src/local/api/_lib/limits.js": {
+      "date": "2026-09-26",
+      "sha256": "609ba36a61d5e5b20f83a275313e6a47d3796ada55f7dfb7185b0755ad1f32e6"
+    },
+    "mcp/src/local/js/breadth-core.js": {
+      "date": "2026-09-28",
+      "sha256": "86ff29d131d159005f43449da79d1697a2fe5cf6fc161241dc045b83b16fe577"
+    },
+    "mcp/src/local/js/dsr-core.js": {
+      "date": "2026-09-26",
+      "sha256": "7b654d60070fc53e11e71341f3737e902a87cc0d22f39ccda8e9491e69ae65a3"
+    },
+    "mcp/src/local/js/haircut-core.js": {
+      "date": "2026-09-26",
+      "sha256": "8941aaceea7e3372b26aaca0f90d31d2c580de0951a60f6aed4743463273ab95"
+    },
+    "mcp/src/local/js/journal-files.js": {
+      "date": "2026-10-01",
+      "sha256": "1240cea054d798898fcb0dc1f86025e20d4f35ae285ace265ea00d327dad92dc"
+    },
+    "mcp/src/local/js/luck-core.js": {
+      "date": "2026-09-26",
+      "sha256": "8088223b251ee9adfb8249b9edfb1ddc82563ec0183aac1e34eacab74593fe38"
+    },
+    "mcp/src/local/js/moments-core.js": {
+      "date": "2026-09-28",
+      "sha256": "6d6f86b630667a6fa0343ca9a74ef6cc1c91d4b549d60987aa0b229f2e6fe187"
+    },
+    "mcp/src/local/js/paper-evidence-core.js": {
+      "date": "2026-09-25",
+      "sha256": "610d10ab56fcadfc88e037fb7957f75d60fecdb1521e8097c511f8a93dc558f1"
+    },
+    "mcp/src/local/js/pbo-core.js": {
+      "date": "2026-09-25",
+      "sha256": "6d2bd0f110ac8ae09c470be349d551f546028cba1336c4f7beaf93e6b1c35ee1"
+    },
+    "mcp/src/local/js/receipt-statement.js": {
+      "date": "2026-09-26",
+      "sha256": "1dac0ea2fbbfa370c6d19978ddb8fc78e2620820abd2c5431832948ead7922ed"
+    },
+    "mcp/src/local/js/selection-risk-core.js": {
+      "date": "2026-09-25",
+      "sha256": "3a293cdddcc01d300084a98c855c5f48c2b29a445d453e54514a4bfa5f6a4aa3"
+    },
+    "mcp/src/local/js/snooping-core.js": {
+      "date": "2026-09-28",
+      "sha256": "f4d981b26be11c607701aeeaa7b298e7b245d787c2ede14519b6ef5160d69e99"
+    },
+    "mcp/src/local/js/student-t.js": {
+      "date": "2026-09-26",
+      "sha256": "5390e09aa06f3d448ebb40f702817b35daaeda04b09391497e25c9fe19a97799"
+    },
+    "mcp/src/local/js/trade-journal-core.js": {
+      "date": "2026-10-01",
+      "sha256": "8bade9eccd143eec71ed994e1fded63c3b936f4aea392b58fc809c4d2101c3ca"
+    },
+    "mcp/src/local/js/trade-journal-export-core.js": {
+      "date": "2026-10-01",
+      "sha256": "5c5888541fce56f544a26240ce6330d48d9b6df04a102353a563fd1e672e45b8"
+    },
+    "mcp/src/local/js/validate/backtest-length.js": {
+      "date": "2026-09-26",
+      "sha256": "ee30201721541b76830b393bfed3e9c70ebc51ca3d2b89529d9936369233fc90"
+    },
+    "mcp/src/local/js/validate/breadth.js": {
+      "date": "2026-09-28",
+      "sha256": "5ead900230caa8341a05c4ba6ae5e64c7f7ee45c59234e97e5dc2d5e75449948"
+    },
+    "mcp/src/local/js/validate/deflated-sharpe.js": {
+      "date": "2026-09-25",
+      "sha256": "9dcc4ca6a3f3ae3ef7776723a15be2988c69baa176dca625c8d0915fa10e71cd"
+    },
+    "mcp/src/local/js/validate/haircut-sharpe.js": {
+      "date": "2026-09-28",
+      "sha256": "2e1e2999ebb8139c464a3451953f5c6bb5a1c8e43b9a87433fcfb4d9933b723d"
+    },
+    "mcp/src/local/js/validate/luck-trials.js": {
+      "date": "2026-09-26",
+      "sha256": "b416fd0d99ba7ae68ce46b1d72485c8b438a5d99a48ae5209bc23137e5cc6b59"
+    },
+    "mcp/src/local/js/validate/overfitting.js": {
+      "date": "2026-09-28",
+      "sha256": "385c967869a75fdbc3d6c73ad949c3718af67b565f4f6b69cdf1cd9475c4bf36"
+    },
+    "mcp/src/local/js/validate/paper-evidence.js": {
+      "date": "2026-09-25",
+      "sha256": "b9da10a0cc6eb207b93cd98b9b2419480a90bfe05dfe8fd3c74de8787ed487e5"
+    },
+    "mcp/src/local/js/validate/reality-check.js": {
+      "date": "2026-09-28",
+      "sha256": "886e709ad25fb51ddfe84cbfe8f25693b998c3255c4f6f2c2c10afdacfe1a0fa"
+    },
+    "mcp/src/local/js/validate/track-record.js": {
+      "date": "2026-09-26",
+      "sha256": "03470ad9ac01df0c4ddd870ef592a73c07dba2cea2398147d2222bff008fc97a"
+    },
+    "mcp/src/local/scripts/canonical-json.mjs": {
+      "date": "2026-09-28",
+      "sha256": "788fa1e0be21079c65d7cf629187a50af4ca3ff53985d6fc367fa7a6d4637440"
+    },
+    "mcp/src/local/standards/paper-evidence/schema.json": {
+      "date": "2026-09-25",
+      "sha256": "c87af3108b9dcdf5a6866a2f96a08a6e3f96b59290ba18d7e6c07e6046f49658"
+    },
+    "mcp/src/receipt-keys.json": {
+      "date": "2026-09-26",
+      "sha256": "feedf7f9e662c54b16c00e0717cfda50c17cc4addb6761e218b16dc4b1e481b8"
+    },
+    "mcp/src/schemas.mjs": {
+      "date": "2026-10-01",
+      "sha256": "3c89d81a1367027dc298a943b085641e5c095e0650d08064e27005950a776001"
+    },
+    "mcp/src/series-file.mjs": {
+      "date": "2026-09-27",
+      "sha256": "fd37ad6f037dd022e61200a7d4c185bfecb5fea50c0efdccc38e47ad1c47bb74"
+    },
+    "mcp/src/server.mjs": {
+      "date": "2026-10-01",
+      "sha256": "369c781d70224bbeda8bb45654633e280cb38a2dfb386e29cf7f52a929495f56"
+    },
     "measurements": {
       "date": "2026-09-26",
       "sha256": "ce4f975c894cdf37c26ac5eefe06cfe12016f533b1fc36e155866ecf7ef1190b"
@@ -98,11 +354,11 @@
       "sha256": "93276434ea31910c177ee1ba6e3ecbf489f0ff5daea402dee999af2c57ac00ce"
     },
     "open.html": {
-      "date": "2026-09-25",
+      "date": "2026-10-01",
       "sha256": "af45d2ada9e581944d0aa40d7181cd09cc6feec15f3b5127cc446e6d41410955"
     },
     "performance.html": {
-      "date": "2026-09-25",
+      "date": "2026-10-01",
       "sha256": "703ac302a6a0b5fc265db61f49017129ae20b554c5035da07c3b3e528e81c681"
     },
     "progress.html": {
@@ -1162,7 +1418,7 @@
       "sha256": "c0dd87cfb2ad0d82c5e6520af9bea138dd6c392a1d85c08f781e8265e2242aa4"
     },
     "research.html": {
-      "date": "2026-09-27",
+      "date": "2026-10-01",
       "sha256": "1aa57f82d659e283007b473fb99e7bcec4c5709b024f30155e93dad9cfbed9a6"
     },
     "scripts/build-annotate.mjs": {
@@ -1210,8 +1466,8 @@
       "sha256": "417322ee7f74b88782994c263898c4421928c5bbfbcfc84b3f0b67032bb36699"
     },
     "scripts/build-mcp-pages.mjs": {
-      "date": "2026-10-01",
-      "sha256": "95042678eb80f8761d0c4e7dc5bed1b6ab59c9188e5fb262652a34fbe0547872"
+      "date": "2026-10-02",
+      "sha256": "4ce7dd6ab4719778e8912ae65d81b1be7abc9f2c684ba3a23d4f073b47729a55"
     },
     "scripts/build-measurements.mjs": {
       "date": "2026-09-26",
@@ -1230,8 +1486,8 @@
       "sha256": "055c5fe6a1bb7f00592f076b82598e2f1640e0a3f7eaeb388e786a37ae4af820"
     },
     "scripts/build-papers.mjs": {
-      "date": "2026-10-01",
-      "sha256": "f746e22644abc0413e427e2792685d0128637af25814292fcaeb72c00db0d168"
+      "date": "2026-10-02",
+      "sha256": "7ec709caf6d353b6c07c7ad9ded88bb2c89c671b88205a23e30994d0636377bd"
     },
     "scripts/build-review.mjs": {
       "date": "2026-09-26",
@@ -1242,8 +1498,8 @@
       "sha256": "1b903f0c1bf25ef1f171e47130a6383e43b34288dc32f45b9deac58f16e4cafd"
     },
     "scripts/build-standards-and-developers.mjs": {
-      "date": "2026-10-01",
-      "sha256": "e878d4b1d562be60208d8659d8925f96fabd6112a8cf4823e9bfcad472bf12da"
+      "date": "2026-10-02",
+      "sha256": "c4d717cdbb30766f72d2f1ca220c5a51c3e3c701a1971b299c7c6ba534254af2"
     },
     "scripts/build-tools-hub.mjs": {
       "date": "2026-09-16",
@@ -1265,6 +1521,10 @@
       "date": "2026-09-28",
       "sha256": "788fa1e0be21079c65d7cf629187a50af4ca3ff53985d6fc367fa7a6d4637440"
     },
+    "scripts/lib/execution-workflow.mjs": {
+      "date": "2026-10-02",
+      "sha256": "8eb822885b1675c52241d701b51a4d4be49e127a31741694eef005eb75d2c3b8"
+    },
     "standards/paper-evidence/schema.json": {
       "date": "2026-09-06",
       "sha256": "c87af3108b9dcdf5a6866a2f96a08a6e3f96b59290ba18d7e6c07e6046f49658"
@@ -1273,12 +1533,16 @@
       "date": "2026-09-06",
       "sha256": "f9adcfa66bfa296b3a1d13cc57fbc2b255bb91af3b6455e95277473eb6672809"
     },
+    "standards/trade-journal/EXPORT.md": {
+      "date": "2026-10-01",
+      "sha256": "af75f2a9ec4e45e396f00f291d8549843b1b688e3b18e2c90e3e155fdc70c824"
+    },
     "standards/validation-api/vectors.json": {
       "date": "2026-09-06",
       "sha256": "e946fdd7e5d13a00e8c646e1b9e2ccbc8fe5b70a280f39826a87460d5f1c39a8"
     },
     "systems.html": {
-      "date": "2026-09-25",
+      "date": "2026-10-01",
       "sha256": "c24ddb22354c38dfdbeaaa40d0dcc4db39b4360dd3d0bca37ef47d02b7777443"
     }
   }

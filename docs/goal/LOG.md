@@ -5998,3 +5998,139 @@ SECONDARY 2026-10-02T17:53:14.888120+00:00: CC-367 original STATIC counterexampl
 
 
 Initial49-case validation and evidence, 2026-10-02T18:21:23.844051+00:00: signed292/tree5fa7 passes49unique newcases onceROOT/0MCP+47unchangedintake/root6+1093+9/MCP141+1+82+119+139/all7/Node22.23.3 with fullplans/allfail-cancel-skip-todo0. Both independent current source and retainedCI gatesPASS. The literal63-file evidence archive follows PRIMARY14916B9b721b5f allocation of exactV2proposal055ba903; manifest40887B1da07b8227bcc1d0bd8cf80249d0ea914c5fcf64f291f5e569b45e167ea23d1d binds original11431132/stored3173124/10mtime0 single-member gzip and11externalnonmembers. Original182/48CI/staticHOLD2d137/withdrawal6001/intermediatec448/metadata errors and actual native49 calibration stay intact. Source/test/package292 bytes/modes exact; guide/goals appendonly. New signed documentaryhead/currentCI/allfour finalpeer sourcearchive-CI extensions and PRIMARYsolemerge/actualcustody still required. No localprojectjob-grant-rerun-model-spend-pub; allfullgoalsACTIVE/real expert-rights-labels/indexing-adoption-qualifiedoutcomesunknown.
+
+
+## Source-backed paper MCP workflow discovery begins, 2026-10-01T23:35:12.773655+00:00
+
+The primary isolated checkout is `/Users/arhancanli/canlicapital-paper-mcp-docs-20261001`, branch work/paper-mcp-docs-20261001
+from actual3658d0b6/tree d6bb. Fresh GitHub metadata confirms3556fcce and3563658
+MERGED with their reviewed trees; neither implementation is restarted. Current
+assignmentd81cbc15 preserves all older assignment bytes and allocates the six-path
+offline example to secondary and STATIC release-readiness audit to third. Primary
+prepares a useful repository-only paper execution guide with pinned source facts,
+a distinct canonical intent, crawlable links, truthful release status and source dates.
+Hosted release pins/default schemas/math/storage/FilingFacts/V0/ALPHAC/hero remain
+protected. No new public deployment/indexed-page result or project runtime is
+established. Existing remote CI is available after signed source; no local project
+job/import/Node/test/build/browser/helper/grant/lease/provider/model/spend/orders.
+All four Sovereign pillars, rights-cleared actual expert refinery, governedALPHAC
+forwardtargets/paperthenlawfulcapital,10M ACTUALLY indexed quality canonicals,
+SEO/intents/design/analyzers/graph/API-MCP-repo adoption and research remainACTIVE.
+Fresh Google/Bing counts remainNULL. Phase receipt is coordination/paper-mcp-discovery/phase-start.json.
+
+
+## Combined-main paper-MCP discovery source draft, 2026-10-02T02:37:55.247481+00:00
+
+Fresh GitHub357 is MERGED01:59:46Z64d81591; main64d matches actual primary
+checkout HEAD. PR358052c and35764d are CLOSED deliveries, with original raw
+failures and independent source/archive/current-CI evidence preserved. The primary
+page checkout fast-forwarded actual64d after an exclusive original-draft backup;
+combined-main-phase-start-64d81591.json SHA c874e28bc10ee7821ead44fdde6447682daf4503b9f0660582e488380cd750f3
+records the read/backup/base transition. Both original goal chronologies remain.
+
+Draft route /mcp-servers/execution documents the private, Unreleased local source:
+64 protected delivered inputs and fixed reviewed hash-pair digest1c0be3ca, same-read
+byte inspection and full import closure; prebuild refuses drift before any generator.
+The workflow connects supplied sizing/checks, explicit opt-in journal writes and
+full-bundle record_file+journal_file validation under CANLI_LOCAL=1. Hosted contracts
+and npm versions remain separate. Developers, MCP directory/navigation, execution
+research topic, paper-evidence standard and llms.txt provide crawlable incoming links.
+The standard date now includes its actual HTML generator; source and sitemap dates
+share the existing pipeline. Narrow .vercelignore exceptions preserve all 64
+documentation inputs while keeping unrelated fixtures excluded. Fifteen meaningful
+source/tamper/closure/metadata/launch/validation/link/deployment/CLI cases are WRITTEN
+only. No local project Node/import/test/build/browser/CLI/helper job or CPU grant.
+Signed source and ordinary existing remote CI are the next validation gates, followed
+by independent source/SEO review, separately allocated browser/production checks
+and actual publication. No new page, score, indexing or release result is claimed.
+
+Secondary current assignment5e27 owns six offline indexing-evidence paths from
+actual64d; third preflightcc8 is planned review evidence only. Fresh Google/Bing
+counts and qualified distinct-canonical progress remain null. Primary keeps guide,
+reconciliation and sole merge/publication; lead owns local CPU/resource allocation.
+All four Sovereign pillars, rights-cleared actual expert refinery, governed ALPHAC
+forward/cost/risk targets, lawful capital,10M actually indexed useful canonicals,
+quality/SEO/intents/design/analyzers/graphs, research and legitimate API/MCP/repository
+adoption remain active. No spend/resource/hold/provider/model/broker/orders/hero/
+outreach/version/publication follows this draft checkpoint.
+
+
+## First guide CI retained; README sitemap count corrected, 2026-10-02T02:47:28.920225+00:00
+
+Exact sourcea36d remoteNode22.23.3 actually passes all15 new named cases once
+within940main, with6preverify passed and zero failure/skip/cancel in those suites.
+The build stamps684pages and preserves416checksummed files; indexability reports
+700pages,337indexable/listed and363noindex/withheld with0conflicts. The overall
+vite job110681334966 FAILED later at README audit because its old sitemap count
+still said336. Notification and subsequent job steps did not run; no940+6+9
+completion is claimed. Original577110B raw SHA5d85d628 and parsed receiptbdb1fc99
+remain immutable coordination/paper-mcp-discovery inputs. Other six CI checks pass.
+
+Narrow correction updates rootREADME's actual sitemap count to337 and documents
+the generated private local execution surface plus delivered example. Generator,
+source guard, 64pins, CSS,15tests, hosted/package/math/journal/dataset/hero inputs
+are unchanged froma36d. RootREADME+appendSTATUSLOG are the only correction paths.
+A new signed head and current remoteCI are required; old passing test cases do not
+establish new-head CI acceptance. No localproject runtime/job/grant/nonce/provider/
+model/resource/spend/pub occurred. Full owner hierarchyACTIVE; freshindexedcountsnull.
+
+
+## Guide currentCI accepted; public source record roundtrip aligned, 2026-10-02T03:13:02.296231+00:00
+
+Exacta103 remoteNode22.23.3 passes15newcases oncewithin940main+6pre+9notification,
+all7currentCI SUCCESS. Tested91f0287e/tree63ab equals signedG sourcea103+main64d;
+current merge-ref0openCodeQL and both currentlanguage analyses match91f/results0.
+Raw588438B SHA f07881ad and actual5e877929/currentfidelitybfbde880 are retained.
+Originala36 README count failure577110B/5d85/bdb stays separate.
+
+Third STATIC source/SEO/closure/deploy reviewa3c85376 PASS for originala36 except
+its knownfailedREADME gate; it confirms64pins/95relativeedges/defaultprivate/example/
+localvalidation/links/order. Existing portabledate metadata is stale:67execution
+inputs0valid/66missing/1changedframedbinding; actual freshcapture/Gitfree/browser/
+publication remainopen. Original metadata is preserved until an allocated build.
+Nonblocking P3 publicv1 record emitted package_version beyond its strict input
+schema. Narrow fix returns the validated source record exactly, and the existing
+first regression now requires JSON roundtrip validation. All15testnames remain;
+the changed helper/test requires new signedsource/currentremoteCI/peer extension.
+No new source/core/schema/tool/version/CSS/hero/dataset/package or browser result.
+No localproject job/import/Node/build/CLI/browser/helper/grant/nonce/model/spend/pub.
+All ownerhierarchyACTIVE/currentindexedcountsnull.
+
+
+## 2026-10-02T08:01:12.834855+00:00 — Guide359 integrates actual expert-intake362 main and corrects standards skip focus
+
+Actualmain9da1829f/tree3e853 delivers pureexpert-intake362 with47remoteROOTcases/all7 and32immutableV2archivefiles; realexpert/rights/labels remainunknown. Guide9a and alloriginal failedbrowser/capacity/helper evidence remainfrozen. This new owned integration preserves allcurrentmain featurebytes, original main+guide STATUS/LOG suffixes, three newerfocusedregistrations and originalguide guard/testregistration.
+
+Actualguide V4acabe FAILED_CLOSED on25.399491125s/exit1, sixof8ordinarycases plus2separatemodified/restoredoverflowfixtures partial; standards320 blankAssertionError has no retained precise failingfocusmeasure. All93raw24627672B/sameouter20957/known17PIDs+twoPGabsence/nonceguardrelease retained and independentlyaccepted. GitfreeUNRUN, no overallbrowserPASS/no newperformance/indexing claim.
+
+Sharedfragmenthandler onlyfocuses anchorswithskip-link class and needs a focusabletarget; standardsgenerator lackedboth. This candidate adds dev-skip skip-link and main tabindex=-1 on that route, withoutchangingglobalJS/CSS orcontent/schema/oldcanonical. This is a staticcause hypothesis until nativebrowsermeasurements. A separatefuturehelper will save actualstep/nativeTab/Enterfocus beforeassertions; oldhelper/raws are not rewritten. Newhead existingremoteCI, independent sourceextension, fresh boundedLead grant for oldfocusedbaseline/newbuild/browser/Gitfree, allgates and eventualactualpublication remainOPEN. No localprojectruntime/job/grant/provider/model/resources/spend/outreach/hero/npm/versionpublication.
+
+The fullfourpillars/10Mactuallyindexed useful distinctsource-backed qualitySEO/intents/design/3D/analyzers/legitimateAPI-MCP-repositoryadoption/rights-cleared consentingPhD-CFA-engineerexpertrefinery/novelpriorart-reproduction-externalreview/governedALPHAC netforwardSharpe>2/14distinctqualifiedsleeves/realizedDD<=10%/paperthenlawfullicensedcapital stayACTIVE; actualindexing/expert/independence/rights/labels/adoption/qualifiedoutcomesunknown. Secondary nextlane is repository-local supplied-vintage audit_inputs stdioexample over unchanged361core; primary retains guide/reconciliation/release/solemerger-publisher and soleLeadCPUauthority.
+
+
+## 2026-10-02T10:51:34.030462+00:00 — Guide source-equivalent actualmain363 integration
+
+Actualmainb3b5 closes363 at10:31:11Z/tree3e9; exact79archive and default7/stdiosource preserved. Incoming main has no intersection with64documentedruntime/67executionpage sources. Public guide products retain accepted827 skip-link correction and15 written cases. Current integrated-source runtime/sourcepeer gates remain pending; old82715actualall7 is retained separately, not relabeled. V7/827request withdrawn unclaimed0attempts for sourcefreshness; no local Node/import/test/build/browser/helper/CPUclaim/provider/spend/publication. Both original main and PRIMARY goal-history suffixes retained verbatim. Everyfullownerpillar/10Mactual-indexing-qualitySEO-design-analyzers/adoption/refinery-rights/novelresearch/governedALPHAC goal remainsACTIVE/outcomesunknown.
+
+
+## 2026-10-02T17:24:51.325012+00:00 — Current-main paper MCP discovery integration and measured portable dates
+
+Actual main27f12442 delivers research cache366 after364438d/36527441; all completed roles and archives remain frozen. This owned continuation integrates current main with original main+guide STATUS/LOG histories preserved verbatim and both package registrations retained. Documented64runtime and67execution-page input bytes remain exactly acceptedae236.
+
+Fresh V9 was actually ONE consumed grantfbd5 on isolatedae: SAMEouter5868 exit0 with complete original28117B stdout919bbc, PASS_RELEASED105.039242708s afterterminal-receiptack/cleanup0.09055625s.235 knownPID/start/UID identities/two privatePG absent before ownnonce46f4 release16:56:25.593651; Lead6019B4dd2 independently qualifies PASS_CLOSED. Eight actual native route-width cases and two separate120px restoredfixtures PASS onChromium148/axe4.13, no violations/pageerrors; snapshot Node22.23.2 Gitfreevalidator/buildPASS684socialpages/416checksums/64pins. PRIMARY viewed saved correctedstandards320 mainfocus, ordinarytable andfixturewrapper darkinset focus pixels; externaldeveloperfont fallback/incompletechecks/nohumanWCAG-field-indexing limits retained. OriginalV8FAILED/losthistoricalinventoryUNKNOWN and nine newfaultspecsWRITTEN_UNRUN remain separate. First stdout-format truncation and lowercase-status reader metadata error97886 are retained; full ORIGINAL samehandle CommandExecution eventffbec recovered read-only, no rerun or provisionaldisk passupgrade.
+
+Only69 verified guide-source date records from the allocated actualcapture are installed; all unrelated existingdate records are preserved. Full capture386, generatedHTML and directory bindings remain in their original measuredsnapshot; measurements directory cannot be copied wholesale into unbuilt author source. This JSON source-authoring transition executes no Node/import/tests/build/browser/helper job. New integrated signedsource/currentremoteCI/both source-equivalence and currentCI reviews, finalproductionoverlay/publication/liveverification remain separate gates. Every fourSovereignpillars/10MACTUALLYindexed useful qualitySEO-intents-design-analyzers/API-MCP-repoadoption/expert-rightsrefinery/novelresearch/governedALPHAC-forwardtargets/paperthenlawfulcapital objective remainsACTIVE; actualoutcomesunknown. SECONDARY six-path supplied expert-submission audit rolef046 fromactual27f is complementary; no provider-model-resource-hold-spend-orders-outreach-hero/npm-versionpublication.
+
+
+## 2026-10-02T19:09:04.143872+00:00 — Current-main367 paper MCP guide integration
+
+Actualmain882886a6 closes supplied expert-submission audit367 with49distinctactualcases/all7 and exact63archive, fulltreeequalreviewed7b. This owned integration preserves everyincoming protected file and artifact, the entire main goal prefix plus the complete original8a guide suffix, and both package registrations. All64documentedruntime and67execution-page source bytes/modes remain exactly accepted8a/ae and measured V9; selected69portable date records remain exactly8a. No source/server/schema/default/hostedversion change.
+
+V9 actual native8route-width cases+2separate restoredfixtures, Gitawarebuild/Gitfree684socialpages/416checksumfiles and knownscope closure remain unchanged reviewed evidence, with blockedexternalfonts/incompletechecks/nohumanWCAG-field-indexing limits. Newintegratedsource currentremoteCI/source-equivalence gates and corrected finite publicengine overlay/helperreviews/freshLead allocation remain required before ordinaryguide delivery/publication. OriginalV8FAILED/lostinventoryUNKNOWN and all oldfailures/calibration/withdrawals remain intact. No local Node/import/tests/build/browser/helperjob/grant/nonce/model/provider/resources/spend/orders/outreach/hero/npm-registrypublication bythis source phase. EveryfourSovereignpillar/10MACTUALLYindexed useful source-backed qualitySEO-intents-design3D-analyzers/legitimateAPI-MCP-repoadoption/rights-cleared independentrealexpertrefinery/novelpriorart-reproduction-externalreview/governedALPHAC netforwardSharpe>2-14qualifiedsleeves-realizedDD<=10% afteractualcosts/paperthenlawfulcapital goal staysACTIVE, realoutcomesunknown.
+
+
+## 2026-10-02T21:59:47.163113+00:00 — V11 retained upload PASS; five portable regular date corrections
+
+Original SAME76745 exit0/PASS_RELEASED is now independently closed by Lead637d/658 and observer e087:75.00513575s total,0.047216708s cleanup,219 saved identities/privatePG94690 absent before exact fdfb release. Both actual Git-aware build/Git-freevalidator passed;684socialpages/416 checksumfiles/64runtimepins retained. Original59086-byte root/NULa996/0644 restored before upload admission; dist and captureddates remain separate. THIRD retained input/date parity128764Be6be8ba7/2577B13da verifies all69 accepted regular bindings and selected1,471,147 nativebytes;5 additional original regular date fields were stale against actual committer history. Only index/open/performance/research/systems dates change to2026-10-01; all386SHAfields/other381records/runtime-page-source bytes remain exact2435. The50 engine/generated runtime binding changes are excluded from this author edit. New signedhead/currentCI/source-date extension and ordinarymerge remain separate; no duplicate local build/browser or old receipt rewrite.
+
+Publication component499d/19715Ba833 STATIC accepted; written parent-controller56eeb2dd/child e807cdb1 remain UNRUN and independently reviewed, with actualM delivery pending. Their2435 candidate constants require an explicitly reviewed metadata-only update after this date-correction head. Fresh exactLead publisherallocation/10nativefragment actualresults/guardbootstrap/ownedlocks/Ready-live target/source gates still open; no oldV11grant transfer. Entire Sovereign/realexpert-rights-refinery/novelresearch/governedALPHAC/paper-lawfulcapital/10M ACTUALLYindexed usefulcanonicals-qualitySEO-intents-design-analyzers/API-MCP-repoadoption hierarchy ACTIVE, actualoutcomesunknown/null; closed355/356/357/367 and immutablearchives preserved.
