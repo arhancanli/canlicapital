@@ -1,0 +1,5 @@
+Research sessions now retain at most 32 entries and 8 MiB of UTF-8 text, with deterministic least recently used eviction and ten-minute expiry across unrelated paths. Strict clock evidence, remeasured mutable test-entry weights and identity-aware invalidation preserve validated successes and healthy concurrent results. The limit covers retained text per session, not total process memory or hosted latency.
+
+Validation on signed clean b7f7f1a9: all seven existing remote checks pass. All 35 distinct new cache cases pass once in the MCP job, bringing research to 82 cases; root remains 6+1044+9, fundamentals 119 and execution 139. Full TAP plans, counters, ordinals, durations, Node 22.23.3, tested-tree equality and current scoped security captures are retained. Both independent source/current-CI reviews remain pending. Each fixture has at most 12 MiB of synthetic payload.
+
+The delivered response reader, 47 existing research cases and six tool schemas/results are preserved. Unreleased; evidence archive, final review/delivery and version/registry/site publication remain separate gates.

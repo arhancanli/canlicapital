@@ -1,0 +1,173 @@
+{
+  "schema": "canli.primary.research-cache-bounds.source-review.v1",
+  "observedAtUtc": "2026-10-02T15:41:39.944986+00:00",
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "source": "b7f7f1a9e6a47e742d5bff69b4a68ac86bdcabe2",
+  "tree": "5ec17dc01be084b9571a593efdec2972c8921a15",
+  "base": "27441df4a465860c2a83eabd4b0503d0b95e9a99",
+  "sourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/source-b7f7f1a9.json",
+    "bytes": 1849180,
+    "sha256": "7fee8a30b840abfa4c42d096e5a485b68621af41c565f442c82eca1dded74e0c"
+  },
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-cache-bounds/assignment-27441df4.md",
+    "bytes": 6243,
+    "sha256": "d97b9bac43c689e5834268feb67d82cd879425de310d96a9f6c2a1cda780f27e"
+  },
+  "changed": [
+    {
+      "path": "docs/goal/LOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "522f4b19e720d972414a168a92de31b98aca6c0b",
+      "bytes": 427103,
+      "sha256": "7ff6f129986050d76daa959ed3e712036cc302186eac81c858ffa540214dde32",
+      "workIndexGitEqual": true,
+      "workingMode": 420
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "4dbc3ed53b87971a24c6f959b8f6dd7f93cfb4c5",
+      "bytes": 151739,
+      "sha256": "4c46b2fb9794a124c19ce1ce85cbb30508cd4d15214a93d47a569c25dd06169c",
+      "workIndexGitEqual": true,
+      "workingMode": 420
+    },
+    {
+      "path": "mcp-research/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "2065f9ec8821e8aea2efc70c2db720c6e4756685",
+      "bytes": 7361,
+      "sha256": "a2de4405f868e4f5f89c6a1c5d890b096d145da050ae200445292fae5d550484",
+      "workIndexGitEqual": true,
+      "workingMode": 420
+    },
+    {
+      "path": "mcp-research/src/bounded-cache.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1f29255dc0001c66847835b7e3de592e602ef87a",
+      "bytes": 2149,
+      "sha256": "7576a26f264ba522fc6cafb49bc3141e1d2f2904031719d8e1503e6b54dbe9de",
+      "workIndexGitEqual": true,
+      "workingMode": 420
+    },
+    {
+      "path": "mcp-research/src/server.mjs",
+      "mode": "100755",
+      "type": "blob",
+      "object": "7de5749fbb4aa322f99f84a0eabe0585b824b371",
+      "bytes": 15958,
+      "sha256": "20bf538b256372163b4bcb4f28ffe7e6de31a6ae7d6505418ecae31f18357a91",
+      "workIndexGitEqual": true,
+      "workingMode": 493
+    },
+    {
+      "path": "mcp-research/test/cache-bounds.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "824c3392d32aa713bd02764e33daf7581d6f1c13",
+      "bytes": 25937,
+      "sha256": "d0e6c845dac2ee4c0db573972266e19d48513dea58d552e7c97f1023b92c6420",
+      "workIndexGitEqual": true,
+      "workingMode": 420
+    }
+  ],
+  "fullIndexGitRows": 6205,
+  "protectedGitRows": 6199,
+  "protectedGitBytes": 394439195,
+  "protectedIdentityEqualBase": true,
+  "inheritedSHA256Basis": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/research-response-bounds/source-77b483e1.json",
+    "bytes": 1856371,
+    "sha256": "def1be19816b9aa25c6ac83c5676f905292cb4883177633aa0b31c0e4c3b9024",
+    "actual_base_entire_tree_equal_prior_source": true,
+    "inherited_identical_objects_modes_types_sizes": true,
+    "whole_protected_physical_audit": false
+  },
+  "newWholeProtectedPhysicalAudit": false,
+  "fiveOriginalGoalPrefixes": 60,
+  "README_STATUS_LOG_appendOnly": true,
+  "default6SuffixSha256": "d0aa284f04ce2b1222430ed7f2c0a1b7ded6a41e4f3e0cc1bcffeb661f4544d4",
+  "delivered32ResponseHelperAndAll47ExistingTestFilesBytesModesPreserved": true,
+  "writtenDistinctNames": [
+    "cache Map: session shape and get set has iteration delete clear inspection stay compatible",
+    "cache cardinality: thirty-third distinct native response evicts the oldest of thirty-two",
+    "cache byte pressure: three native three-MiB papers evict before cardinality pressure",
+    "cache exact bytes: two four-MiB native bodies fill the cap and one extra byte evicts",
+    "cache exact admission: a single eight-MiB retained text is accepted",
+    "cache over admission: eight-MiB plus one byte is refused without replacing a healthy identity",
+    "cache UTF-8: three two-MiB ASCII texts retain six MiB",
+    "cache UTF-8: three two-MiB code-unit accented texts retain only two four-MiB entries",
+    "cache UTF-8: supplementary code points use four bytes and admit no ninth-MiB hit",
+    "cache LRU: a valid tool hit promotes its path before cardinality eviction",
+    "cache LRU: ordinary Map inspection does not promote a path",
+    "cache LRU: valid promotion selects deterministic eviction under byte pressure",
+    "cache expiry: a fresh hit removes an unrelated entry at the TTL boundary",
+    "cache expiry: a miss removes all unrelated stale entries before admission",
+    "cache TTL: the preceding millisecond hits and equality requires a new response",
+    "cache admission expiry: an unrelated entry expires before a new timestamp is admitted",
+    "cache age overflow: individually finite clock and timestamp cannot produce an infinite-age hit",
+    "cache rollback: future timestamps at unrelated paths are removed before a fresh return",
+    "cache clocks: NaN and both infinities return validated successes without retention or hits",
+    "cache clocks: strings null and undefined are not silently coerced into evidence",
+    "cache admission metadata: unusable timestamps cannot replace a healthy Map entry",
+    "cache mutated text: an oversized inspected entry cannot become a hit",
+    "cache mutated weights: aggregate byte pressure is remeasured before a requested hit",
+    "cache mutated timestamps: nonnumeric metadata cannot yield a coerced fresh hit",
+    "cache isolation: independent sessions retain their own values and clearing one preserves the other",
+    "cache replacement: shrinking a value releases its old weight without evicting other values",
+    "cache replacement: growing a value counts its replacement once and evicts the oldest other value",
+    "cache deletion: deleting and clearing full entries leave no phantom byte pressure",
+    "cache uncached success: nonfinite admission time still returns the complete validated result",
+    "cache concurrency: a late malformed native JSON response retains a newer healthy identity",
+    "cache concurrency: late native HTTP 404 and 500 failures retain a newer healthy identity",
+    "cache concurrency: an injected native abort and late response retain a newer healthy identity",
+    "cache concurrency: malformed-hit invalidation cannot delete a replacement admitted during validation",
+    "cache concurrency: late native body failure preserves a newer healthy result and sanitizes errors",
+    "cache compatibility: all six tool schemas and exact results survive eviction and refetch"
+  ],
+  "staticChecks": [
+    {
+      "area": "capacity",
+      "finding": "Set and controlled lookup remeasure string UTF8 weights; sweep removes unusable/stale/rollback/overflow entries. Admission refuses >8MiB entries, subtracts a replaced value once, evicts oldest until size<=32 and retained text<=8MiB."
+    },
+    {
+      "area": "LRU",
+      "finding": "Controlled lookup/admission promotes by delete/set order; ordinary Map reads retain inspection semantics. Both byte/cardinality eviction are deterministic."
+    },
+    {
+      "area": "time",
+      "finding": "Finite numeric now/at only; finite nonnegative age<600000 for hits. TTL equality, rollback/nonfinite and invalid-cache metadata are refused."
+    },
+    {
+      "area": "concurrency",
+      "finding": "Native errors never admit text; malformed cache-hit deletion remains same-object guarded. New successful validated results survive late malformed/HTTP/abort/read failure paths in the written native fixtures."
+    },
+    {
+      "area": "compatibility",
+      "finding": "Delivered bounded response reader, request15s transport scope,4MiB byte admission, all six schemas/metadata/instructions/result bodies and package/lock/workflow/site/archive paths retain base Git identities."
+    }
+  ],
+  "independentNegativeReasoning": [
+    "Exact8MiB entry has no empty-cache eviction loop;8MiB+1 admission is null-weight/refused. Replacement count is reduced once before admission; empty0byte text still consumes an entry.",
+    "Finite clock subtraction overflow is null-weight, and stale/unrelated future entries cannot bypass sweep before controlled hits.",
+    "Pending failed native fetch cannot delete a later admitted successful object; malformed-hit rejection compares original identity before deletion."
+  ],
+  "findings": [],
+  "limits": [
+    "STATIC source/control-flow review and Git metadata/declared SHA inheritance, no imports or tests/network/Node/job/execution. Current CI gate remains separate.",
+    "Supported injected plain mutable cache-entry fields are remeasured at controlled operations. Map.prototype bypass, replacement cache, accessors/mutation during operation are explicitly outside the fixture contract.",
+    "Retained UTF8 text8MiB/32entries per session is not process memory, JS/object/key overhead, parsed/output allocation, number of sessions or hard walltime.",
+    "Successful concurrent source revisions retain completion-order cache behavior; no remote-source freshness/rights/hosted latency/adoption/indexing outcome is established."
+  ],
+  "futureArchiveReleasePublicationApproval": false,
+  "currentCIReview": null,
+  "ownLocalProjectJob": false,
+  "fullOwnerHierarchy": "ACTIVE",
+  "actualIndexedExpertRightsLabelsAdoptionQualifiedOutcomes": null
+}

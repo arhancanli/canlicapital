@@ -120,3 +120,13 @@ memory or hard wall time. There is no autonomous timer, configurable policy, ret
 dependency. Finite native/injected fixtures contain at most 12 MiB of synthetic payload per
 case; execution, independent review and release status are separate evidence gates. This
 change is Unreleased and makes no measured hosted latency, token, cost or adoption claim.
+
+
+The cache-retention change has35 distinct new cases passing once in the existing remote
+MCP job (82 research cases total), with separate source and retained-CI reviews by both
+independent reviewers. The fixtures include fresh retained hits and refetch after capacity
+eviction. Original source/intake/logs/API captures, four literal review receipts and prior
+actual-delivery custody are in [the30-member evidence archive](../docs/goal/evidence/research-cache-bounds-20261002/README.md).
+Its exact PRIMARY allocation includes23 origin assets, four initial reviews and three
+documentary files. Final documentary-head verification and publication remain separate;
+these fixtures do not establish hosted latency, adoption, indexing or financial outcomes.
