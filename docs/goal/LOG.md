@@ -5727,3 +5727,34 @@ lead sole local CPU allocator; no local Node/import/test/CLI/build/browser/helpe
 project job/CPUgrant/provider/model/auth/resource/hold/spend/order/pub/version.
 Full owner hierarchy remainsACTIVE; observed provider/rights/expert/research/
 forward/adoption/indexing outcomes stay separate open goals.
+
+
+## 2026-10-02T02:58:44.865866+00:00 — secondary360 first exact CI retained and fault fixtures corrected
+
+Signed0210/sourceed4d was actually tested via mergeeb8df344 (parents64d+0210,
+identicaltree), remoteNode22.23.3/run36957493511/rootjob110683618747. All32
+new cases ran once:30PASS/2FAIL; root957 has955PASS/2FAIL and6prechecks pass.
+Notification checks were NOTRUN after failure; othersix final checksSUCCESS.
+Original582015B root output SHA
+f1848be421177b550cba78c5c16080efd26359e1de88cce8a80e17ad937589a7 and
+original APIs/testedmerge are immutable coordination/indexing-evidence files;
+failedCI receipt8555B SHA762f42cdc6b8a64bbd5012cd39fa1a3d8c8500e4a08a82999bbc82181b9eb517.
+Initial metadata logfetch refused terminal escapes before a file write; its error
+is preserved separately and explicitflag captures raw bytes without rendering
+control sequences. No project/source failure was hidden by that metadata refusal.
+
+Two fault fixtures were incorrectly wired: builder re-bound the malformed hash
+after customization, and mutation preload changed the file on a module-load read
+before the intended descriptor capture. Corrections set the invalidhash AFTER
+fixture construction and target the exact metadataFD read, asserting the actual
+appended original input. Onlytest/guide and appendSTATUSLOG change; checker and
+package remain byte-exact0210. The32 cases require a new signedsource/current
+existing remoteCI; initial30 passes do not establish corrected-head validation.
+Independent source/CI reviews and separately allocated archive remain pending.
+No localproject Node/import/test/CLI/build/browser/helper/job/CPUgrant/provider/
+auth/model/resources/financialhold/spend/order/site/npm/version/hero action.
+Protected baselines/growth/guard/site/MCP/journal/dataset and all original goal
+histories remain intact. Primarysole ordinary merger/publisher, leadCPU; all
+fullowner Sovereign/10Mactualqualityindexing/SEO/intents/design/analyzers/
+legitimateadoption/refinery/realexpert/research/governedALPHAC/lawfulcapital
+goals remainACTIVE, current/qualified indexed outcomesNULL.

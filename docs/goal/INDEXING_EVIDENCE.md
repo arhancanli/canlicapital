@@ -172,9 +172,16 @@ remain separately allocated work.
 
 Meaningful synthetic API and actual CLI fault cases are registered under
 `npm run test:indexing-evidence` and the existing`npm run verify`. They remain
-**WRITTEN, not executed**, at this implementation checkpoint; exact signed-source
-existing remote CI and independent source reviews establish validation later. No
-local project job or inherited capacity grant accompanies this phase.
+**32 named source cases** at the first signed0210c110 checkpoint. Its first remote
+Node22.23.3 run executed all32:30 passed and2 fault-fixture assertions failed within
+957 root cases (955 passed/2 failed) plus6 prechecks. Notification checks did not
+run after the failure; the other six CI checks passed. The original failed output
+is retained byte-exact. One fixture had overwritten its malformed hash during
+construction; the other intercepted a module-load read before the intended input
+descriptor capture. Corrections target those fixtures while preserving checker
+code. Corrected-head existing remote CI and independent source reviews remain
+required; earlier passes do not establish the new head. No local project job or
+inherited capacity grant accompanies this phase.
 
 This contract addresses the offline intake part ofCC-INDEX-INGEST-GUARD and raw
 binding requirements ofCC-INDEX-RAW-PROVENANCE. CC-INDEX-FRESH-AGGREGATE,

@@ -238,7 +238,8 @@ test('index evidence: duplicate keys and supplied verification flags are refused
   refusal(() => checkIndexingEvidence(duplicate, value.raw, expectedProperty, referenceAt), 'DUPLICATE_KEY');
   refusal(() => check(fixture(i => { i.providerVerified = true; })), 'FIELDS');
   refusal(() => check(fixture(i => { i.capture.authorship = 'independently_verified'; })), 'AUTHORSHIP');
-  refusal(() => check(fixture(i => { i.source.sha256 = []; })), 'HASH');
+  const invalidHash = fixture(); invalidHash.input.source.sha256 = [];
+  refusal(() => check({ input: invalidHash.input, raw: invalidHash.raw }), 'HASH');
 });
 
 test('index evidence: malformed UTF-8 and unpaired Unicode are refused without sanitizing', () => {
@@ -475,8 +476,11 @@ syncBuiltinESMExports();`;
 test('index evidence: actual CLI rejects input mutation during descriptor capture', t => {
   const files = cliFiles(t); const preload = join(files.folder, 'mutate.cjs');
   fs.writeFileSync(preload, `const fs = require('node:fs'); const { syncBuiltinESMExports } = require('node:module');
-const read = fs.readSync; let changed = false; fs.readSync = (...args) => { const result = read(...args); if (!changed && result > 0) { changed = true; fs.appendFileSync(${JSON.stringify(files.metadataPath)}, ' '); } return result; }; syncBuiltinESMExports();`);
+const metadataPath = ${JSON.stringify(files.metadataPath)}; const open = fs.openSync; let metadataFd;
+fs.openSync = (...args) => { const fd = open(...args); if (args[0] === metadataPath) metadataFd = fd; return fd; };
+const read = fs.readSync; let changed = false; fs.readSync = (...args) => { const result = read(...args); if (args[0] === metadataFd && !changed && result > 0) { changed = true; fs.appendFileSync(metadataPath, ' '); } return result; }; syncBuiltinESMExports();`);
   cliRefusal(runCli(files, { preload }), 'INPUT_CHANGED'); assert.equal(fs.existsSync(files.outputPath), false);
+  assert.deepEqual(fs.readFileSync(files.metadataPath), Buffer.concat([files.value.metadata, Buffer.from(' ')]));
   assert.deepEqual(fs.readFileSync(files.rawPath), files.value.raw);
 });
 
