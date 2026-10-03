@@ -136,6 +136,28 @@ function injected({ connect, call, close } = {}) {
   };
   return { effects, operations };
 }
+function syntheticSdk(beforeWrite = async () => {}) {
+  const effects = { starts: 0, writes: 0, transportCloses: 0, clientCloses: 0 };
+  class StdioClientTransport {
+    constructor(parameters) { assert.equal(parameters.command, process.execPath); assert.deepEqual(parameters.args, [SERVER]); assert.equal(parameters.maxBufferSize, 524288); this.stderr = { on() {} }; }
+    start() { effects.starts++; return Promise.resolve(); }
+    send() { effects.writes++; return Promise.resolve(); }
+    close() { effects.transportCloses++; return Promise.resolve(); }
+  }
+  class Client {
+    constructor(identity, options) { assert.deepEqual(options.versionNegotiation, { mode: 'legacy' }); assert.equal(options.inputRequired.autoFulfill, false); }
+    async connect(transport) { this.transport = transport; await transport.start(); }
+    async callTool(request, options) {
+      assert.deepEqual(options.toolDefinition, AUDIT_TOOL);
+      await beforeWrite(); // Model pinned SDK's queued schema/send-options work.
+      await this.transport.send({ method: 'tools/call', params: request });
+      const result = clone(executeAuditInputs(request.arguments)); delete result.resultType;
+      return result; // Exact legacy complete-return shape, not a live SDK entry.
+    }
+    close() { effects.clientCloses++; return this.transport.close(); }
+  }
+  return { effects, sdkModules: { Client, StdioClientTransport } };
+}
 function run(f = fixture(), options = {}, control = injected()) {
   return runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { ...options, operations: control.operations });
 }
@@ -168,7 +190,11 @@ async function actualEntry(entry, paths, nonce) {
   let output = '', writes = 0;
   process.argv = [process.execPath, entry, ...argsFor(paths)];
   process.stdout.write = function (chunk, encoding, callback) {
-    output += Buffer.isBuffer(chunk) ? chunk.toString() : chunk; writes++;
+    const text = Buffer.isBuffer(chunk) ? chunk.toString() : chunk;
+    // Node's test runner can write reporting/IPC frames while entry awaits its
+    // child. Observe only this CLI terminal; preserve every native runner frame.
+    if (typeof text !== 'string' || !text.startsWith('{"schema":"canli.fundamentals.audit-client-result.v1",')) return priorWrite.call(this, chunk, encoding, callback);
+    output += text; writes++;
     assert.ok(Buffer.byteLength(output) <= 524288);
     if (typeof encoding === 'function') encoding(); else callback?.(); return true;
   };
@@ -390,6 +416,21 @@ test('audit client: synchronous connect acknowledgement exhausting work prevents
 });
 test('audit client: preceding acknowledgement microtask is observed before the next audit effect', async () => {
   let time = 0; const control = injected({ connect: () => Promise.resolve().then(() => { time = 15001; }) }); refused(await run(fixture(), { now: () => time }, control), 'WORK_DEADLINE', control, 0); assert.equal(control.effects.close, 1);
+});
+test('audit client: native synthetic SDK positive send reaches the fixed adapter with one write and one close', async () => {
+  const f = fixture(), control = syntheticSdk(), before = launches;
+  const result = await runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { root: ROOT, sdkModules: control.sdkModules });
+  assert.equal(result.report.status, 'ok'); assert.equal(launches, before);
+  assert.deepEqual(control.effects, { starts: 1, writes: 1, transportCloses: 1, clientCloses: 1 });
+  assert.equal(result.report.lifecycle.owned_child_absent, true); assert.equal(result.report.lifecycle.closure_evidence, 'no_child_started');
+});
+test('audit client: native synthetic queued SDK compilation cannot write after the absolute deadline', async () => {
+  let time = 0;
+  const f = fixture(), control = syntheticSdk(async () => { await Promise.resolve(); time = 15001; }), before = launches;
+  const result = await runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { root: ROOT, sdkModules: control.sdkModules, now: () => time });
+  refused(result, 'WORK_DEADLINE'); assert.equal(launches, before);
+  assert.deepEqual(control.effects, { starts: 1, writes: 0, transportCloses: 1, clientCloses: 1 });
+  assert.equal(result.report.lifecycle.audit_calls, 1); // API admission; no wire dispatch.
 });
 test('audit client: reentrant abort during connect prevents follow-up and closes once', async () => {
   const abort = new AbortController(); const control = injected({ connect: () => abort.abort() }); refused(await run(fixture(), { signal: abort.signal }, control), 'ABORTED', control, 0); assert.equal(control.effects.close, 1);

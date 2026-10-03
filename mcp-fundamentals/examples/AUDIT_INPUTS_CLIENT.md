@@ -96,6 +96,11 @@ proof of an external process. The built-in SDK adapter captures its actual child
 object and observes that same child's exit/close. It may retain a known owned PID
 on refusal when absence cannot be established.
 
+The runner also accepts trusted `sdkModules` containing synthetic `Client` and
+`StdioClientTransport` classes for native boundary tests. Those classes pass through
+the same built-in adapter's send/close wrappers, with no real client import or child.
+This is JavaScript dependency injection, not a CLI option or source authority.
+
 ## Admission and lifecycle bounds
 
 | Boundary | Limit |
@@ -124,7 +129,8 @@ caller byte-length getter.
 
 The aggregate clock begins before input capture. Work checks run after capture,
 after synchronous callbacks/acknowledgements and again after queued work immediately
-before connect and call dispatch. A deadline or external abort prevents the next
+before connect and call dispatch, including the actual SDK transport write after
+schema compilation and queued continuations. A deadline or external abort prevents the next
 effect. Late results never upgrade a refusal. Close is memoized, has a separate
 five-second reserve, and final encoding is admitted against that reserve and the
 twenty-second total. Report timing fields ending in `before_encoding_ms` are samples
@@ -201,8 +207,16 @@ byte-for-byte unchanged; the existing Fundamentals wildcard in MCP CI includes
 this test. All earlier tests, core, stdio source, default tools, package members,
 versions, dependencies and locks remain unchanged.
 
-At the initial source freeze, all 50 new named cases are **WRITTEN_UNRUN**. The
-first runtime is the ordinary new-head remote CI. Forty-seven native/injected
+At the original source freeze, all 50 named cases were **WRITTEN_UNRUN**. Its first
+remote MCP result failed the symlink-entry observer: unconditional stdout capture
+also retained Node runner frames, leaving only 42 source names observable (41 pass,
+one fail); eight missing named outcomes remain unknown in that original log. The
+original source and failure are preserved. The corrected observer delegates every
+nonterminal runner frame. Two new native synthetic SDK cases exercise the fresh
+transport-write clock with positive dispatch and late queued-work refusal.
+
+At the corrected source freeze, all 52 named cases remain pending the exact new
+remote CI; old outcomes are not relabeled. Forty-nine native/injected
 cases exercise admission, exact bytes, full selected coverage/nulls, filesystem
 faults/reused FD, rehashed response tampering, output/stderr bounds, queued and
 reentrant deadline/abort behavior, late results and uncertain closure. Three SDK

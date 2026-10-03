@@ -284,17 +284,27 @@ function canonicalRoot(root, fs = nativeFs) {
   } catch (error) { if (error instanceof AuditClientError) throw error; refuse('ROOT'); }
 }
 
-function sdkOperations(root, boundary, stderr, fail) {
+function sdkOperations(root, boundary, stderr, fail, sdkModules) {
   let transport, client, processObject, ownedPid = null, exited = false, closed = false;
   let exitPromise = Promise.resolve();
   let closePromise;
   return {
     ownedPid() { return ownedPid; },
     async connect(options) {
-      const [{ Client }, { StdioClientTransport }] = await Promise.all([import('@modelcontextprotocol/client'), import('@modelcontextprotocol/client/stdio')]);
+      // Optional trusted native classes let boundary faults use this SAME adapter
+      // without importing a client SDK or starting any child. CLI never supplies them.
+      const modules = sdkModules ?? await Promise.all([import('@modelcontextprotocol/client'), import('@modelcontextprotocol/client/stdio')]).then(([a, b]) => ({ Client: a.Client, StdioClientTransport: b.StdioClientTransport }));
+      const { Client, StdioClientTransport } = modules;
+      if (typeof Client !== 'function' || typeof StdioClientTransport !== 'function') refuse('OPERATIONS');
       boundary(); if (closed) refuse('ABORTED');
       client = new Client({ name: 'canli-offline-audit-client', version: '0.0.0' }, { capabilities: {}, versionNegotiation: { mode: 'legacy' }, inputRequired: { autoFulfill: false } });
       transport = new StdioClientTransport({ command: process.execPath, args: [resolve(root, 'mcp-fundamentals/src/audit-inputs-stdio.mjs')], cwd: root, stderr: 'pipe', maxBufferSize: AUDIT_CLIENT_LIMITS.response });
+      const send = transport.send.bind(transport);
+      transport.send = (message, options) => {
+        try { boundary(); if (closed) refuse('ABORTED'); }
+        catch (error) { return Promise.reject(error); } // Preserve SDK send's Promise contract.
+        return send(message, options); // Reobserve AFTER SDK compilation/queued continuations.
+      };
       const originalClose = transport.close.bind(transport); let transportClosing;
       transport.close = () => { closed = true; return transportClosing ??= originalClose(); };
       const clientClose = client.close.bind(client); let clientClosing;
@@ -341,7 +351,7 @@ function sdkOperations(root, boundary, stderr, fail) {
   };
 }
 
-async function workflow(capture, expected, { operations, root, now = () => performance.now(), signal } = {}) {
+async function workflow(capture, expected, { operations, sdkModules, root, now = () => performance.now(), signal } = {}) {
   // Primitive expected hash is checked before ANY supplied clock/capture/transport callback.
   try { expectedSha(expected); } catch (error) { return terminalRefusal(errorCode(error, 'EXPECTED_SHA')); }
   let started, previous, workEnd, closeStart, firstFailure, artifact, prepared, ops;
@@ -394,7 +404,7 @@ async function workflow(capture, expected, { operations, root, now = () => perfo
     workBoundary();
     const bytes = capture(workBoundary); workBoundary();
     prepared = prepare(bytes, expected); workBoundary();
-    ops = operations ?? sdkOperations(canonicalRoot(root), workBoundary, stderr, fail);
+    ops = operations ?? sdkOperations(canonicalRoot(root), workBoundary, stderr, fail, sdkModules);
     if (!ops || ['connect', 'callTool', 'close'].some(key => typeof ops[key] !== 'function')) refuse('OPERATIONS');
     await workCall(options => { connectAttempts++; return ops.connect({ ...options, onStderr: stderr }); }, 'CONNECT');
     const reply = await workCall(options => { auditCalls++; return ops.callTool(prepared.request, { ...options, toolDefinition: AUDIT_TOOL }); }, 'CALL');
