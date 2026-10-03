@@ -134,15 +134,18 @@ def audit_page(
 
     assert hero.is_visible()
     # Display uses CSS uppercase; test the accessible wording, not its casing.
-    assert "built to run." in hero.inner_text().casefold() and "question." in hero.inner_text().casefold()
+    assert "quant research." in hero.inner_text().casefold() and "proved in the open." in hero.inner_text().casefold()
+    # The first paragraph a reader meets says what Canli Capital is (config/home-answers.json).
+    assert page.locator(".cinema-hero .hero__lead").inner_text().startswith("Canli Capital is ")
     assert page.get_by_role("link", name="Explore the strategies").is_visible()
     assert page.get_by_role("link", name="Get a free API key").first.is_visible()
     assert page.locator('.cinema-hero__art img').evaluate("img => img.complete && img.naturalWidth > 0")
     # The complete records now live in explicit, native evidence disclosures.
     # Open them as a reader would; keep all prior data/functionality assertions.
+    # Some ship open (#evidence-details, the claim limits); open the rest as a reader would.
     for disclosure in page.locator('.deep-record').all():
-        assert disclosure.get_attribute('open') is None
-        disclosure.locator(':scope > summary').click()
+        if disclosure.get_attribute('open') is None:
+            disclosure.locator(':scope > summary').click()
         assert disclosure.get_attribute('open') is not None
     assert page.locator('#developer-api a[href="/developers#quickstart"]').count() == 1
     assert page.locator(".live-console").is_visible()
@@ -162,7 +165,10 @@ def audit_page(
     assert page.locator("#hero-record-basis").inner_text() == "Observed paper"
     assert page.locator("#hero-broker-execution").inner_text() == f"{reconciled_sleeves} Alpaca paper sleeves"
     assert page.locator("#hero-paper-since").inner_text().startswith("Since ")
-    assert page.locator("#hero-grade").inner_text().startswith("Self-grade ")
+    current_sleeves = claims_by_id["sleeves.current"]["value"]
+    target_sleeves = claims_by_id["sleeves.target"]["value"]
+    assert page.locator("#hero-strategies").inner_text() == f"{current_sleeves} running · goal {target_sleeves}"
+    assert "C+" not in page.locator("main").inner_text(), "the homepage states its status in words, never as a letter grade"
     assert page.locator("#objective-forward-sharpe").get_attribute("data-claim-maturity") == "planned"
     assert page.locator("#model-p95-drawdown").get_attribute("data-claim-maturity") == "model_estimated"
     assert page.locator("#correlation-reading").get_attribute("data-claim-maturity") == "simulated"
@@ -171,11 +177,16 @@ def audit_page(
     assert "Pending" not in page.locator("#evidence-forward-window").inner_text()
     assert "gross" in page.locator("#evidence-gross-range").inner_text()
     assert page.locator("[data-broker-state='pass']").count() == reconciled_sleeves
-    assert "forward goals open" in page.locator("#evidence-validation-label").inner_text()
+    forward_status = str(claims_by_id["forward.validation-status"]["value"])
+    expected_label = (
+        "Broker check passed · goals not met yet" if "NOT_YET" in forward_status
+        else forward_status.lower().replace("_", " ").capitalize()
+    )
+    assert page.locator("#evidence-validation-label").inner_text() == expected_label
     assert page.locator("#core-trial-count").inner_text() != "Pending"
     assert page.locator("#core-signed-count").inner_text() != "Pending"
     unresolved = page.locator(
-        "#hero-record-basis, #hero-broker-execution, #hero-paper-since, #hero-grade, "
+        "#hero-record-basis, #hero-broker-execution, #hero-paper-since, #hero-strategies, #metric-record-days, "
         "#evidence-observations, #evidence-accounts, #evidence-positions, #evidence-status, "
         "#objective-forward-sharpe, #objective-max-drawdown, #model-expected-drawdown, "
         "#model-p95-drawdown, #current-sleeve-count, #target-sleeve-count, #correlation-reading"
@@ -191,8 +202,10 @@ def audit_page(
         assert visual_box and visual_box["width"] >= width * .9, "opening artwork must span the composition"
 
     initial_path = page.locator("#equity-path").get_attribute("d")
-    page.get_by_role("button", name="Forge").click()
-    assert page.get_by_role("button", name="Forge").get_attribute("aria-pressed") == "true"
+    # The console's own curve button: the sleeve atlas above it has an AlphaForge button too.
+    forge_curve = page.locator('.live-console [data-curve-key="alphaforge"]')
+    forge_curve.click()
+    assert forge_curve.get_attribute("aria-pressed") == "true"
     assert page.locator("#chart-title").text_content() == "AlphaForge paper equity curve"
     assert page.locator("#equity-path").get_attribute("d") != initial_path
     assert "curve=alphaforge" in page.url

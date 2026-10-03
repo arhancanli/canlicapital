@@ -21,6 +21,7 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { curveStatistics } from "../js/curve-stats.js";
 import { formatCompactCurrency } from "../js/format.js";
+import { goalsRemainOpen, humanizeStatus, recordDays, strategiesText, validationLabel, validationReason } from "../js/home-status.js";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -134,7 +135,7 @@ export function heroFallbacks(claimsPayload, chainPayload, brokerPayload, extra 
     "hero-broker-execution":
       `${integer.format(Number(value("broker.reconciled-alpaca-sleeves")))} Alpaca paper sleeves`,
     "hero-paper-since": `Since ${fullDate.format(firstMark)}`,
-    "hero-grade": `Self-grade ${value("validation.internal-grade")}`,
+    "hero-strategies": strategiesText(value("sleeves.current"), value("sleeves.target")),
     // The rest of the page carried the same placeholders below the fold. Same
     // rule, same source: whatever JavaScript is about to render, rendered here.
     "console-book":
@@ -154,7 +155,7 @@ export function heroFallbacks(claimsPayload, chainPayload, brokerPayload, extra 
     } : {}),
     ...(curveDate(curve[0]) ? { "chart-start": curveDate(curve[0]) } : {}),
     ...(curveDate(curve.at(-1)) ? { "chart-end": curveDate(curve.at(-1)) } : {}),
-    "metric-grade": String(value("validation.internal-grade")),
+    "metric-record-days": recordDays(value("forward.live-days")),
     "evidence-observations": integer.format(Number(value("forward.return-observations"))),
     "evidence-accounts": `${integer.format(Number(value("broker.reconciled-alpaca-sleeves")))} / paper`,
     "evidence-positions":
@@ -185,10 +186,11 @@ export function heroFallbacks(claimsPayload, chainPayload, brokerPayload, extra 
     } : {}),
     "evidence-forward-window":
       `${shortDate.format(firstMark)} to ${shortDate.format(new Date(`${value("forward.last-mark")}T00:00:00Z`))}`,
-    "evidence-validation-label":
-      value("broker.reconciliation-passes") === true
-        ? `Broker pass / forward goals open / ${value("validation.internal-grade")}`
-        : String(value("forward.validation-status")),
+    "evidence-validation-label": validationLabel(
+      value("broker.reconciliation-passes") === true,
+      goalsRemainOpen(value("forward.validation-status")),
+      humanizeStatus(value("forward.validation-status")),
+    ),
     ...(extra.grossRange ? { "evidence-gross-range": extra.grossRange } : {}),
     ...(extra.chainHead ? { "evidence-chain-head": extra.chainHead } : {}),
     ...(extra.slippageState ? {
@@ -203,9 +205,12 @@ export function heroFallbacks(claimsPayload, chainPayload, brokerPayload, extra 
     "evidence-forward-days":
       `${integer.format(Number(value("forward.live-days")))} paper-trading days, ` +
       `${integer.format(Number(value("forward.return-observations")))} return observations.`,
-    "evidence-validation-reason": value("broker.reconciliation-passes") === true
-      ? "Broker reconciliation passes. The forward record is still too young to establish the performance objectives."
-      : "The public contract and broker reconciliation are being checked.",
+    "evidence-validation-reason": validationReason(
+      value("broker.reconciliation-passes") === true,
+      goalsRemainOpen(value("forward.validation-status")),
+      value("objective.forward-sharpe"),
+      value("forward.return-observations"),
+    ),
     ...(extra.netRange ? { "evidence-net-range": extra.netRange } : {}),
     ...(composite ? {
       "chart-title": `${composite.name} paper equity curve`,
