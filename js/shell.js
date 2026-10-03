@@ -166,7 +166,7 @@ function buildFooter() {
 
     <div class="footer__wordmark display-xl" aria-hidden="true" data-brand>Canli Capital</div>
 
-    <p class="footer__tagline label" data-tagline>A quant fund proving itself in public before it asks you to trust it.</p>
+    <p class="footer__tagline label" data-tagline>An open quant research lab, proving itself in public before it asks anyone to trust it.</p>
 
     <p class="footer__colophon mono-label">
       &copy; 2026 <span data-brand>Canli Capital</span>. Built in Dubai. Type set in

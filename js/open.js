@@ -98,6 +98,15 @@ function normalizeText(s) {
 // Set the text of every [data-<ns>="<key>"] hook. If the value is null /
 // undefined / NaN we leave the reserved "--" placeholder in the markup intact
 // (honesty: omit, never invent).
+// The deflation result in words, read from the artifact's own pass flag. The page used to show the
+// engine's internal letter grade here, which a reader could not interpret; "Failed" says what
+// happened. No flag means nothing is shown (setHook leaves the reserved "--").
+function deflationVerdict(verdict) {
+  if (verdict?.pass === true) return "Passed";
+  if (verdict?.pass === false) return "Failed";
+  return null;
+}
+
 function setHook(ns, key, value) {
   const sel = `[data-${ns}="${key}"]`;
   if (value === null || value === undefined || value === "") return;
@@ -563,7 +572,7 @@ function bindDeflation(d) {
   prepGauge("pbo", pbo, pboGate, pboPass, pboPass ? "UNDER GATE" : "OVER GATE");
 
   const v = d.verdict || {};
-  setHook("df", "grade", v.gauntlet_grade);
+  setHook("df", "verdict", deflationVerdict(v));
   setHook("df", "outcome", v.outcome);
   setHook("df", "reason", v.reason);
 
@@ -1044,7 +1053,7 @@ function bindHeroKpis(kill, deflation, track) {
     setHook("kpi", "killed", kill.killed_count);
     setHook("kpi", "survived", kill.survived_count);
   }
-  if (deflation && deflation.verdict) setHook("kpi", "grade", deflation.verdict.gauntlet_grade);
+  if (deflation && deflation.verdict) setHook("kpi", "deflation", deflationVerdict(deflation.verdict));
   if (track && Number.isFinite(track.live_days_accrued)) {
     const days = track.live_days_accrued;
     $$('[data-kpi="liveDays"]').forEach((n) => {
