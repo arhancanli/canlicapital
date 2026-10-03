@@ -152,6 +152,24 @@ export function readSeriesFile(path, column) {
   return { values: picked.values, column: picked.index + 1, skipped };
 }
 
+// One series plus, when the file has one, its ISO date column (YYYY-MM-DD, optionally with a time),
+// so a summary can name the day a drawdown began instead of a row number. Dates are the only
+// non-numeric cells that ever leave this module, and only when every cell of the column is an ISO
+// date: a strict shape that cannot carry anything else from the file into the conversation.
+const ISO_DATE = /^(\d{4}-\d{2}-\d{2})(?:[ T][0-9:.]+(?:Z|[+-]\d{2}:?\d{2})?)?$/;
+
+export function readSeriesWithDates(path, column) {
+  const series = readSeriesFile(path, column);
+  const table = parseTable(readText(path), path);
+  if (!table.rows.length || typeof table.rows[0][0] === "number") return { ...series, dates: null };
+  const width = table.rows[0].length;
+  for (let j = 0; j < width; j += 1) {
+    const cells = table.rows.map((row) => String(row[j]).trim());
+    if (cells.every((cell) => ISO_DATE.test(cell))) return { ...series, dates: cells.map((cell) => cell.slice(0, 10)), date_column: j + 1 };
+  }
+  return { ...series, dates: null };
+}
+
 // Every numeric column is one variant; rows are periods. An incomplete column is refused.
 export function readMatrixFile(path) {
   const table = parseTable(readText(path), path);

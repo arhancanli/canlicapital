@@ -33,6 +33,10 @@ export const LOCAL_FILES = [
   "js/validate/luck-trials.js",
   "js/snooping-core.js",
   "js/validate/reality-check.js",
+  "js/backtest-core.js",
+  "js/series-summary-core.js",
+  "js/stress-core.js",
+  "js/feasibility-core.js",
   "api/_lib/limits.js",
   "standards/paper-evidence/schema.json",
 ];

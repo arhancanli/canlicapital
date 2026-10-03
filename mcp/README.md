@@ -137,6 +137,49 @@ original SEC response and the record's own boundary sentence: these are accounti
 reported to the SEC, not market prices, returns or a recommendation. Companies and concepts
 outside the current release return an error with the available concepts listed.
 
+## The lab: backtest, summarize, stress, check feasibility
+
+Four tools compute in the server process itself, on your machine or on the hosted endpoint, with
+nothing sent to the API and no receipt stored. Each result names the SHA-256 of exactly the numbers
+it was computed from, and states what it does not establish.
+
+- **`backtest_strategy`** runs a rule over every parameter set in a grid, on your prices:
+  `sma_cross` (fast, slow), `momentum` (lookback, skip), `mean_reversion` (window, entry_z),
+  `breakout` (lookback) or `buy_and_hold`, long-only or with `allow_short`, after a cost per unit
+  of turnover. The position held over each period is decided from closes up to the one before it,
+  so no rule can see the future (a test changes later prices and checks that no earlier position
+  moves). It then validates the best variant with the number of variants **this call ran**, not a
+  number someone declared: the deflated Sharpe ratio across the grid's measured Sharpe dispersion,
+  the CSCV probability of backtest overfitting on every variant's returns, the probabilistic Sharpe
+  and the minimum track record, next to buy and hold over the same window. At most 200 variants and
+  20,000 prices per call. No code is ever run: a strategy is a family plus numbers.
+- **`summarize_series`** reads a long price or return series and states it in about a hundred words,
+  plus a field for every figure: growth, volatility, Sharpe and drift t-statistic, the worst
+  drawdown with its dates and recovery, trend, the volatility regime (terciles of its own 21-period
+  volatility), tails, jumps (beyond six robust standard deviations), autocorrelation, stale data and,
+  with a benchmark, correlation and beta. A five-year daily series is about 1,260 numbers; the
+  summary is a paragraph.
+- **`stress_test`** resamples a strategy's returns with a stationary block bootstrap (seeded, so a run
+  reproduces exactly) and reports how often the drawdown limit breaks and the Sharpe turns negative,
+  then applies four named scenarios with their rules stated: a crash at the equity high (default the
+  larger of 20% and three times the worst period), volatility multiplied, the worst stretch lived
+  twice, and positions stuck for several periods after the worst one. The fragility share is the part
+  of resampled histories that break the drawdown limit or lose money on a risk-adjusted basis.
+  Generative models are not used: trained on one series they memorize it or invent dynamics nobody
+  can check.
+- **`check_feasibility`** checks a plan against a real broker before it trades: the broker's published
+  order-rate limit against the rebalance's burst of orders (Alpaca 200 a minute, Interactive Brokers
+  about 50 a second), the minimum order (Alpaca 1 USD notional), US day-trading rules as they stand
+  in 2026 (FINRA retired the pattern day trader rule and its 25,000 USD minimum on 4 June 2026; firms
+  may phase in its replacement until 20 October 2027), T+1 settlement in cash accounts, each order's
+  share of daily volume, square-root market impact (coefficient Y, default 1) with every copy of the
+  same strategy counted, and the capital at which costs and impact eat the expected gross return.
+  Every broker fact carries the date it was checked and its source.
+
+On your own machine, `prices_file`, `series_file` and `returns_file` take a CSV or JSON path instead
+of the numbers. Only numbers are read, plus an ISO date column when the file has one, so results can
+name the day a drawdown began.
+
 ## Auditing a backtest in one call
 
 `audit_backtest` takes one strategy's return series, the number of variants tried and their Sharpe
@@ -157,11 +200,18 @@ took three audit questions from 4 of 9 to 8 of 9 answered correctly on gpt-5.4-m
 
 ## Prompts, resources and structured results
 
-Clients that show MCP prompts offer two guided workflows: `validate_backtest` (deflated Sharpe, then
-overfitting, then the track record needed, reported with what each number does not establish) and
-`track_record_needed`. Two resources can be read: `canli://limits`, the boundary sentences every
-result carries, and `canli://sources`, the papers behind each validator and how each is checked
-against them. Every tool result carries its envelope both as text and as `structuredContent`.
+Clients that show MCP prompts offer six guided workflows: `validate_backtest` (deflated Sharpe, then
+overfitting, then the track record needed, reported with what each number does not establish),
+`track_record_needed`, `backtest_and_validate`, `stress_my_strategy`, `production_check` and
+`summarize_market_series`. Resources: `canli://limits`, the boundary sentences every result carries;
+`canli://sources`, the papers behind each validator and how each is checked against them;
+`canli://strategy-spec`, the JSON Schema of every strategy family and its parameters; and
+`canli://openapi`, the API's OpenAPI 3.1 document. Two resource templates are for writing code
+against the tools: `canli://schemas/{tool}` returns a tool's exact input and output JSON Schema, and
+`canli://examples/{language}/{tool}` a working call in `python`, `javascript` or `curl` (both
+variables complete). A test compiles every generated Python and JavaScript example and checks that
+every example's arguments are valid input. Every tool result carries its envelope both as text and
+as `structuredContent`.
 
 ## Compact context (0.3.0)
 
@@ -193,7 +243,7 @@ an array of objects.
 | `CANLI_API_BASE` | `https://canlicapital.com` | Where the API lives. Point it at a preview deployment for testing. |
 | `CANLI_KEY` | unset | A key already issued from `POST /api/v1/keys`. When set, `get_key` sends no request and reports the key is already configured; every other tool sends it as `Authorization: Bearer <key>`. |
 | `CANLI_FULL_ENVELOPE` | unset | `1` or `true` returns each validation's full API envelope instead of the compact result (below). |
-| `CANLI_TOOLSETS` | all | Which tools to list: a comma-separated choice of `validate`, `receipts`, `company` and `status`, or `all`. An unknown name is refused at startup. See "Toolsets" below. |
+| `CANLI_TOOLSETS` | all | Which tools to list: a comma-separated choice of `validate`, `receipts`, `company`, `status` and `lab`, or `all`. An unknown name is refused at startup. See "Toolsets" below. |
 | `CANLI_LOCAL` | unset | `1` or `true` runs the eight validators on this machine (private local mode, below): no key, no network, no receipt. |
 
 If `CANLI_KEY` is not set and local mode is off, call `get_key` once per session before the validators. The key it
@@ -348,7 +398,7 @@ On a breadth result this is about half the text. Set `CANLI_FULL_ENVELOPE=1` to 
 ## Toolsets (tokens)
 
 A client sends the model the whole tool list on every turn, and it is most of each turn's prompt:
-a validation result is a few hundred tokens, the list of all fifteen tools several thousand. A
+a validation result is a few hundred tokens, the list of all nineteen tools several thousand. A
 client that needs one kind of tool can list only that kind, with `CANLI_TOOLSETS` (stdio) or
 `?toolsets=` (hosted endpoint). The default is every tool.
 
@@ -358,17 +408,19 @@ client that needs one kind of tool can list only that kind, with `CANLI_TOOLSETS
 | `receipts` | `get_receipt`, `verify_receipt` |
 | `company` | `company_financial_history` |
 | `status` | `service_status` |
+| `lab` | `backtest_strategy`, `summarize_series`, `stress_test`, `check_feasibility` |
 
 Measured with `bench/tool_list_tokens.py` (tokenizer: tiktoken `o200k_base`; other models'
 tokenizers give different absolute counts), in the shape an OpenAI-style client sends the list:
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| `all` | 15 | 4,194 | 100% |
-| `validate` | 11 | 3,526 | 84% |
-| `receipts` | 2 | 312 | 7% |
-| `company` | 1 | 273 | 7% |
-| `status` | 1 | 89 | 2% |
+| `all` | 19 | 5,946 | 100% |
+| `validate` | 11 | 3,685 | 62% |
+| `receipts` | 2 | 312 | 5% |
+| `company` | 1 | 273 | 5% |
+| `status` | 1 | 89 | 1% |
+| `lab` | 4 | 1,595 | 27% |
 
 Providers cache a tool list that is identical from turn to turn and bill the cached part at a
 fraction of the price (`test/tool-list-stable.test.mjs` keeps each list byte-stable); a smaller list
