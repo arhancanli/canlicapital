@@ -11,17 +11,19 @@ import { pathToFileURL } from "node:url";
 import { McpServer } from "@modelcontextprotocol/server";
 import { z } from "zod";
 import { computeLocally } from "./local.mjs";
+import { validateLocalJournalEvidence } from "./journal-evidence.mjs";
 import { readMatrixFile, readSeriesFile } from "./series-file.mjs";
+import { LAB_TOOLS, labToolSpecs, registerCodeResources, registerLabPrompts } from "./lab.mjs";
 import { verifyReceipt } from "./local/js/receipt-statement.js";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
-import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
+import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, paperEvidenceToolShape, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
 
 export const DEFAULT_BASE = "https://canlicapital.com";
 export const SERVER_NAME = "canlicapital-validation-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 // Sent once in initialize; clients such as Claude Code put it in the system prompt, so the model
 // knows the first call to make even when tool definitions are deferred. Byte-stable across runs.
-export const SERVER_INSTRUCTIONS = "Checks whether a backtest's result is real. For one strategy's returns, call audit_backtest, pointing returns_file at the backtest's CSV instead of pasting long series. For a Sharpe found by a search, validate_deflated_sharpe needs how many independent variants were tried and how their Sharpes spread; with every variant's returns, validate_overfitting gives the probability of backtest overfitting. Set CANLI_LOCAL=1 to compute on this machine with no network. Every result says what it does not establish; quote those limits with the number.";
+export const SERVER_INSTRUCTIONS = "Checks whether a backtest's result is real. For one strategy's returns, call audit_backtest, pointing returns_file at the backtest's CSV instead of pasting long series. For a Sharpe found by a search, validate_deflated_sharpe needs how many independent variants were tried and how their Sharpes spread; with every variant's returns, validate_overfitting gives the probability of backtest overfitting. To test a rule on prices, backtest_strategy runs a whole parameter grid and validates the best with the count actually run; summarize_series reads a long series in a hundred words; stress_test and check_feasibility ask whether it survives bad markets and a real broker. Set CANLI_LOCAL=1 to compute on this machine with no network. Every result says what it does not establish; quote those limits with the number.";
 
 // How the server introduces itself in initialize: a readable title, the page that documents it
 // and its icon, so clients and directories that read serverInfo show more than a package name.
@@ -70,6 +72,7 @@ export const TOOLSETS = Object.freeze({
   receipts: Object.freeze(["get_receipt", "verify_receipt"]),
   company: Object.freeze(["company_financial_history"]),
   status: Object.freeze(["service_status"]),
+  lab: Object.freeze([...LAB_TOOLS]),
 });
 
 // CANLI_TOOLSETS=validate,company (or ?toolsets= on the hosted endpoint): a comma-separated list of
@@ -276,8 +279,9 @@ export async function toolValidateRealityCheck(session, args) {
 
 export async function toolValidatePaperEvidence(session, args) {
   const body = parseOrThrow(paperEvidenceInput, args, "validate_paper_evidence");
-  if (session.local) { const local = computeLocally("validate_paper_evidence", body); return validationText(session, local); }
-  const response = await validateRemote(session, "validate_paper_evidence", "/api/v1/validate/paper-evidence", body);
+  if ((body.record_file || body.journal_file || body.signature) && (session.hosted || !session.local)) throw new Error('validate_paper_evidence: local evidence requires the stdio server with CANLI_LOCAL=1; files and signatures are never uploaded');
+  if (session.local) return validationText(session, validateLocalJournalEvidence(body));
+  const response = await validateRemote(session, "validate_paper_evidence", "/api/v1/validate/paper-evidence", { record: body.record });
   return validationText(session, response);
 }
 
@@ -545,9 +549,16 @@ export async function toolCompanyFinancialHistory(session, args) {
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, openWorldHint: true };
 const WRITES_RECEIPT = { readOnlyHint: false, destructiveHint: false, openWorldHint: true };
 
+// Registers the enabled tools and returns what it registered, by name: { description, inputSchema,
+// outputSchema }, which the code-generation resources (canli://schemas/{tool}) serve.
 export function registerTools(server, session) {
   const enabled = new Set((session.toolsets ?? Object.keys(TOOLSETS)).flatMap((name) => TOOLSETS[name]));
-  const register = (name, ...rest) => { if (enabled.has(name)) server.registerTool(name, ...rest); };
+  const catalog = {};
+  const register = (name, config, handler) => {
+    if (!enabled.has(name)) return;
+    server.registerTool(name, config, handler);
+    catalog[name] = { description: config.description, inputSchema: config.inputSchema, outputSchema: config.outputSchema };
+  };
   register(
     "get_key",
     { title: "Get a free validation key", annotations: { title: "Get a free validation key", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true }, description: TOOL_DESCRIPTIONS.get_key, inputSchema: getKeyInput, outputSchema: keyOutput },
@@ -570,7 +581,7 @@ export function registerTools(server, session) {
   );
   register(
     "validate_paper_evidence",
-    { title: "Validate paper evidence", annotations: { title: "Validate paper evidence", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_paper_evidence, inputSchema: paperEvidenceInput, outputSchema: validationOutput },
+    { title: "Validate paper evidence", annotations: { title: "Validate paper evidence", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.validate_paper_evidence, inputSchema: paperEvidenceToolShape, outputSchema: validationOutput },
     (args) => toolValidatePaperEvidence(session, args),
   );
   register(
@@ -623,6 +634,8 @@ export function registerTools(server, session) {
     { title: "Company financial history (SEC)", annotations: { title: "Company financial history (SEC)", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.company_financial_history, inputSchema: companyHistoryToolShape, outputSchema: companyHistoryOutput },
     (args) => toolCompanyFinancialHistory(session, args),
   );
+  for (const [name, config, handler] of labToolSpecs(session)) register(name, config, handler);
+  return catalog;
 }
 
 // Guided workflows a user can pick in a client that shows MCP prompts. Arguments are strings, as
@@ -722,9 +735,11 @@ export function registerResources(server) {
 
 // Everything the server exposes: the npm package and the hosted endpoint both call this.
 export function registerAll(server, session) {
-  registerTools(server, session);
+  const catalog = registerTools(server, session);
   registerPrompts(server);
+  registerLabPrompts(server);
   registerResources(server);
+  registerCodeResources(server, session, catalog);
 }
 
 export function createServer(session = createSession()) {

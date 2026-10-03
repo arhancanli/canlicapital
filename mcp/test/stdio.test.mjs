@@ -75,10 +75,14 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   const names = tools.map((tool) => tool.name).sort();
   assert.deepEqual(names, [
     "audit_backtest",
+    "backtest_strategy",
+    "check_feasibility",
     "company_financial_history",
     "get_key",
     "get_receipt",
     "service_status",
+    "stress_test",
+    "summarize_series",
     "validate_backtest_length",
     "validate_breadth",
     "validate_deflated_sharpe",
@@ -93,15 +97,17 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   for (const tool of tools) {
     assert.ok(tool.description && tool.description.length > 0, `${tool.name} has no description`);
   }
-  // Tool annotations as a client receives them: every tool has a title and reaches the API; reads
-  // are read-only; validations store a receipt and get_key creates a key; nothing is destructive.
-  const readOnly = new Set(["get_receipt", "service_status", "company_financial_history", "verify_receipt"]);
+  // Tool annotations as a client receives them: every tool has a title; reads are read-only;
+  // validations store a receipt and get_key creates a key; nothing is destructive. The lab tools
+  // compute in this process, so they are read-only and do not reach the outside world.
+  const lab = new Set(["backtest_strategy", "summarize_series", "stress_test", "check_feasibility"]);
+  const readOnly = new Set(["get_receipt", "service_status", "company_financial_history", "verify_receipt", ...lab]);
   for (const tool of tools) {
     const a = tool.annotations ?? {};
     assert.ok(a.title, `${tool.name} has no annotation title`);
     assert.equal(a.readOnlyHint, readOnly.has(tool.name), `${tool.name} readOnlyHint`);
     assert.equal(a.destructiveHint, false, `${tool.name} destructiveHint`);
-    assert.equal(a.openWorldHint, true, `${tool.name} openWorldHint`);
+    assert.equal(a.openWorldHint, !lab.has(tool.name), `${tool.name} openWorldHint`);
   }
 
   const result = await client.callTool({ name: "service_status", arguments: {} });
@@ -112,13 +118,13 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
 
   // Guided prompts and reference resources, as a client lists and reads them.
   const { prompts } = await client.listPrompts();
-  assert.deepEqual(prompts.map((p) => p.name).sort(), ["track_record_needed", "validate_backtest"]);
+  assert.deepEqual(prompts.map((p) => p.name).sort(), ["backtest_and_validate", "production_check", "stress_my_strategy", "summarize_market_series", "track_record_needed", "validate_backtest"]);
   const guided = await client.getPrompt({ name: "validate_backtest", arguments: { strategy: "12-1 momentum on US equities", variants_tried: "40" } });
   const guidance = guided.messages[0].content.text;
   for (const tool of ["validate_deflated_sharpe", "validate_overfitting", "validate_track_record"]) assert.match(guidance, new RegExp(tool));
   assert.match(guidance, /40/);
   const { resources } = await client.listResources();
-  assert.deepEqual(resources.map((r) => r.uri).sort(), ["canli://limits", "canli://sources"]);
+  assert.deepEqual(resources.map((r) => r.uri).sort(), ["canli://limits", "canli://openapi", "canli://sources", "canli://strategy-spec"]);
   const limits = await client.readResource({ uri: "canli://limits" });
   assert.match(limits.contents[0].text, /not a forecast/);
   const sources = await client.readResource({ uri: "canli://sources" });

@@ -25,8 +25,9 @@
 //   * KEY ORDER -- recursively sorted, matching `sort_keys=True`. This is the one
 //     the missing copy got wrong.
 //   * SEPARATORS -- "," and ":" with no spaces, matching `separators=(",", ":")`.
-//   * NON-ASCII -- escaped to \uXXXX, matching Python's default `ensure_ascii=True`.
-//     JS `JSON.stringify` emits raw UTF-8 instead. For a pure-ASCII document the
+//   * NON-ASCII -- escaped to \uXXXX, matching Python's default `ensure_ascii=True`,
+//     which escapes everything outside printable ASCII: DEL (U+007F) as well as
+//     U+0080 and above. JS `JSON.stringify` emits raw characters instead. For a pure-ASCII document the
 //     two settings emit IDENTICAL bytes, so this divergence stays invisible until
 //     the first accented character -- which is exactly how "Lopez de Prado" in one
 //     contract halted the nightly for three nights.
@@ -98,10 +99,13 @@ export function pythonNumber(value) {
   return `${mantissa}e${sign}${magnitude}`;
 }
 
-// Every code unit above ASCII. Written as an escape range rather than as literal
-// characters so the source file itself stays ASCII -- a file about non-ASCII
-// escaping is the worst possible place to smuggle in a stray accented byte.
-const NON_ASCII = /[\u0080-\uffff]/g;
+// Every code unit Python's ensure_ascii escapes beyond what JSON.stringify already
+// does: DEL (U+007F) and everything above ASCII. DEL was missing until 2026-09-28,
+// when the trade-journal differential test found it; no published artifact held it.
+// Written as an escape range rather than as literal characters so the source file
+// itself stays ASCII -- a file about non-ASCII escaping is the worst possible place
+// to smuggle in a stray accented byte.
+const NON_ASCII = /[\u007f-\uffff]/g;
 
 /** Escape a string the way Python's `json.dumps(ensure_ascii=True)` does. */
 export function pythonString(value) {

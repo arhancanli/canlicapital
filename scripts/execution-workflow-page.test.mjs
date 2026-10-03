@@ -23,13 +23,13 @@ const unescape = text => text.replaceAll('&quot;', '"').replaceAll('&#39;', "'")
 test('the execution guide binds delivered private source and its full local import closure', () => {
   const source = executionSource();
   assert.equal(source.source_commit, EXECUTION_SOURCE_COMMIT);
-  assert.equal(source.source_commit, '64d815912c99bdb86017dbb96855d6b62ffaab1d');
+  assert.equal(source.source_commit, '1c6668d3f1636563523f3a31ce524484ba463703');
   assert.equal(source.release_status, 'private_unreleased');
   assert.equal(source.hosted_endpoint, null);
   assert.equal(source.npm_install, null);
   assert.deepEqual(source.default_tools, ['size_position', 'check_orders', 'measure_shortfall', 'journal']);
   assert.deepEqual(validateExecutionSource(JSON.parse(JSON.stringify(source))), source);
-  assert.equal(EXECUTION_SOURCE_PATHS.length, 64);
+  assert.equal(EXECUTION_SOURCE_PATHS.length, 70);
   for (const path of EXECUTION_SOURCE_PATHS) {
     const text = readFileSync(join(ROOT, path), 'utf8');
     if (!/\.(?:mjs|js)$/.test(path)) continue;
@@ -54,7 +54,7 @@ test('missing, added or wrongly typed source pins refuse instead of reducing the
   }
 });
 
-test('each of the 64 bound source mutations is independently refused from the captured bytes', () => {
+test('each of the 70 bound source mutations is independently refused from the captured bytes', () => {
   const originals = sourceBytes();
   for (const changed of EXECUTION_SOURCE_PATHS) {
     const reader = path => {
@@ -202,7 +202,7 @@ test('the actual source-check entry works through a path alias and refuses unrel
   const alias = join(dir, basename(helper)); symlinkSync(helper, alias);
   const checked = spawnSync(process.execPath, [alias, '--check'], { cwd: ROOT, encoding: 'utf8', timeout: 5000 });
   assert.equal(checked.status, 0, checked.stderr);
-  assert.equal(JSON.parse(checked.stdout).source_files, 64);
+  assert.equal(JSON.parse(checked.stdout).source_files, 70);
   assert.equal(JSON.parse(checked.stdout).source_commit, EXECUTION_SOURCE_COMMIT);
   const refused = spawnSync(process.execPath, [helper, '--publish'], { cwd: ROOT, encoding: 'utf8', timeout: 5000 });
   assert.equal(refused.status, 1);

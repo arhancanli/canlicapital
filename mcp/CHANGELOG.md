@@ -1,6 +1,27 @@
 # Changelog
 
-## Unreleased
+## 0.11.0 (2026-10-03)
+
+- The lab: four tools that compute in the server process, on stdio and on the hosted endpoint,
+  with no API call and no receipt. `backtest_strategy` runs a rule (`sma_cross`, `momentum`,
+  `mean_reversion`, `breakout`, `buy_and_hold`) over every parameter set in a grid on the caller's
+  prices, with no look-ahead by construction, and validates the best variant with the number of
+  variants the call actually ran: deflated Sharpe across the grid's measured dispersion, CSCV
+  overfitting probability on every variant's returns, probabilistic Sharpe, minimum track record,
+  and buy and hold beside it. `summarize_series` states a long price or return series in about a
+  hundred words plus fields (dated drawdowns, trend, volatility regime, tails, jumps, stale data).
+  `stress_test` runs seeded block-bootstrap histories and four named scenarios and reports a
+  fragility share. `check_feasibility` checks a plan against broker order-rate and minimum-order
+  limits (Alpaca, Interactive Brokers), the 2026 FINRA intraday margin change that retired the
+  pattern day trader rule, T+1 settlement, participation, square-root market impact with copies of
+  the same strategy crowding the book, and capacity. A new `lab` toolset lists them; the full tool
+  list measures 5,946 o200k tokens (lab 1,595).
+- Code-generation resources: `canli://schemas/{tool}` (each tool's exact input and output JSON
+  Schema), `canli://examples/{language}/{tool}` (a working Python, JavaScript or curl call; both
+  variables complete), `canli://strategy-spec` and `canli://openapi`. Four guided prompts:
+  `backtest_and_validate`, `stress_my_strategy`, `production_check`, `summarize_market_series`.
+- Files read by the local server may carry an ISO date column; its dates label results. Dates are
+  the only non-numeric cells ever read, and only when every cell of the column is an ISO date.
 
 - Local `validate_paper_evidence` accepts a record/export file and its signed source journal;
   verifies full-file/range hashes, optional detached self-signature and recomputed claims.
