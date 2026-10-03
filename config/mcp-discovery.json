@@ -4,38 +4,129 @@
     {
       "id": "validation",
       "title": "Backtest validation MCP server",
-      "heading": "Check the research behind a backtest",
-      "summary": "Test selection bias, overfitting and track-record maturity from an AI assistant. Inspect the inputs, calculation limits and reproducible validation receipts.",
-      "purpose": "Use this server when you have strategy returns or summary statistics and need to assess the evidence behind a reported result. Deflated Sharpe accounts for the declared search size; CSCV uses the full matrix of tried variants; minimum track record length asks how much evidence an observed Sharpe needs. The server also checks paper-record disclosures and portfolio breadth.",
-      "workflow": ["Count all variants tried, including failures. Keep the observation frequency and cost assumptions with your returns.", "Choose the test that matches your inputs. Send every variant to CSCV or the data-snooping tests; send summary statistics or one return series to deflated Sharpe.", "Inspect the result and its limitations. A remote validation returns a receipt that can be retrieved and reproduced from the named source core."],
-      "example": {"name":"validate_deflated_sharpe","arguments":{"observed_sharpe_annualized":1.5,"observations":1260,"periods_per_year":252,"skew":-0.3,"non_excess_kurtosis":4,"effective_independent_trials":20,"cross_trial_sharpe_sd_annualized":0.5}},
+      "heading": "Check whether a backtest is real",
+      "summary": "Is my backtest real or luck? Ask from any AI assistant: deflated Sharpe, overfitting probability and the track record needed, plus grid backtests, stress tests and broker checks.",
+      "purpose": "Use it when you have a strategy's returns, or just its summary statistics, and want to know whether the result could be luck. The deflated Sharpe ratio counts how many versions you tried. The overfitting check (CSCV) compares every version's returns. The minimum track record says how long a live record must run. It can also backtest a rule over a grid of settings, stress the returns against crashes and check a trading plan against a broker's limits.",
+      "workflow": [
+        "Count all variants tried, including failures. Keep the observation frequency and cost assumptions with your returns.",
+        "Choose the test that matches your inputs. Send every variant to CSCV or the data-snooping tests; send summary statistics or one return series to deflated Sharpe.",
+        "Inspect the result and its limitations. A remote validation returns a receipt that can be retrieved and reproduced from the named source core."
+      ],
+      "example": {
+        "name": "validate_deflated_sharpe",
+        "arguments": {
+          "observed_sharpe_annualized": 1.5,
+          "observations": 1260,
+          "periods_per_year": 252,
+          "skew": -0.3,
+          "non_excess_kurtosis": 4,
+          "effective_independent_trials": 20,
+          "cross_trial_sharpe_sd_annualized": 0.5
+        }
+      },
       "example_note": "Illustrative statistics for a five-year daily record after twenty declared independent trials. Supply your measured statistics and justified search count; this example is not a strategy result.",
-      "limits": "The tests evaluate exactly the submitted inputs. They cannot establish clean source data, absence of lookahead, complete costs, live profitability or investment suitability. A signed receipt authenticates the service's calculation, not the financial outcome. Local mode is available in the npm package; remote validations store receipts and use the disclosed free-key quotas.",
-      "related": [{"path":"/how-to-validate-a-backtest","label":"Backtest validation guide"},{"path":"/tools/deflated-sharpe","label":"Deflated Sharpe calculator"},{"path":"/standards/paper-evidence","label":"Paper evidence standard"}]
+      "limits": "The tests check exactly the numbers you send. They cannot tell whether your data is clean, free of look-ahead or fully costed, or whether the strategy will make money. A signed receipt proves the calculation, not the outcome. Run the npm package in local mode to keep everything on your machine; hosted checks store a receipt under the free-key quotas.",
+      "related": [
+        {
+          "path": "/how-to-validate-a-backtest",
+          "label": "Backtest validation guide"
+        },
+        {
+          "path": "/tools/deflated-sharpe",
+          "label": "Deflated Sharpe calculator"
+        },
+        {
+          "path": "/standards/paper-evidence",
+          "label": "Paper evidence standard"
+        }
+      ]
     },
     {
       "id": "fundamentals",
       "title": "SEC fundamentals MCP server",
-      "heading": "Read company fundamentals as known then",
-      "summary": "Query SEC fundamentals as filed by a date, follow restatements and compare company vintages. Every value retains its reporting period and source filing.",
+      "heading": "Company financials as they were known then",
+      "summary": "What did a company report, and when? Financials from SEC filings as they stood on a date, with later restatements flagged and each value tied to its filing.",
       "purpose": "Use this server to construct a point-in-time company comparison or inspect how a financial measure changed across filings. Resolve a company by name, ticker or SEC CIK, then ask what had been reported by your decision date. Plain measure names follow the supported XBRL tags; the returned value names the tag actually selected.",
-      "workflow": ["Resolve the company and inspect its available concepts. A ticker can change owners; read the resolution metadata before combining records.", "Ask known_as_of for a decision date, or history for first-reported, latest or as-of values. Keep period ends, units, filed dates and accession numbers with the values.", "Use vintages and restatements to inspect revisions. Use cross_section for up to fifty companies, comparing fiscal period ends before treating them as peers."],
-      "example": {"name":"known_as_of","arguments":{"company":"AAPL","as_of":"2020-12-31","concepts":["revenue","net_income"],"periods":"annual"}},
+      "workflow": [
+        "Resolve the company and inspect its available concepts. A ticker can change owners; read the resolution metadata before combining records.",
+        "Ask known_as_of for a decision date, or history for first-reported, latest or as-of values. Keep period ends, units, filed dates and accession numbers with the values.",
+        "Use vintages and restatements to inspect revisions. Use cross_section for up to fifty companies, comparing fiscal period ends before treating them as peers."
+      ],
+      "example": {
+        "name": "known_as_of",
+        "arguments": {
+          "company": "AAPL",
+          "as_of": "2020-12-31",
+          "concepts": [
+            "revenue",
+            "net_income"
+          ],
+          "periods": "annual"
+        }
+      },
       "example_note": "Read Apple's annual revenue and net income from filings available by the stated decision date. The result describes the retained SEC snapshot; missing periods remain missing.",
       "limits": "Coverage is limited to the retained company reference and its SEC snapshots. Filed dates provide filing-date causality, not an intraday information clock. Fiscal calendars differ, later restatements can have several causes, and accounting values are not market prices or strategy returns. The server does not route orders.",
-      "related": [{"path":"/companies","label":"SEC company reference"},{"path":"/companies/0000320193","label":"Apple source filings and financial history"},{"path":"/research/filing-facts-v0","label":"FilingFacts dataset and evaluation"},{"path":"/annotate","label":"Review questions against SEC evidence"}]
+      "related": [
+        {
+          "path": "/companies",
+          "label": "SEC company reference"
+        },
+        {
+          "path": "/companies/0000320193",
+          "label": "Apple source filings and financial history"
+        },
+        {
+          "path": "/research/filing-facts-v0",
+          "label": "FilingFacts dataset and evaluation"
+        },
+        {
+          "path": "/annotate",
+          "label": "Review questions against SEC evidence"
+        }
+      ]
     },
     {
       "id": "research",
       "title": "Quant research MCP server",
       "heading": "Read the papers, failures and paper record",
-      "summary": "Search Canli Capital's quant research, inspect killed candidates and trial counts, and read the published paper record with its stated evidence limits.",
+      "summary": "What has been tested here, and what failed? Search Canli Capital's research papers, the strategies it killed and how many trials each search used.",
       "purpose": "Use this server to inspect the research record behind ALPHAC. Search paper titles and summaries, browse topic indexes, and read a paper or one section without sending the entire library to an assistant. The trial ledger provides search context; the paper record and verification-chain head provide the current published evidence.",
-      "workflow": ["Search by a mechanism or browse list_topics. Include feasibility work and killed candidates when checking how a mechanism was investigated.", "Read the returned paper slug with get_paper. Request a section and set max_chars when you need a bounded excerpt; follow the paper's own sources and limitations.", "Check trial_ledger before interpreting a result, then inspect live_record and chain_head. Distinguish current paper observations from mature, funded or independently reviewed performance."],
-      "example": {"name":"search_research","arguments":{"query":"momentum","limit":5}},
+      "workflow": [
+        "Search by a mechanism or browse list_topics. Include feasibility work and killed candidates when checking how a mechanism was investigated.",
+        "Read the returned paper slug with get_paper. Request a section and set max_chars when you need a bounded excerpt; follow the paper's own sources and limitations.",
+        "Check trial_ledger before interpreting a result, then inspect live_record and chain_head. Distinguish current paper observations from mature, funded or independently reviewed performance."
+      ],
+      "example": {
+        "name": "search_research",
+        "arguments": {
+          "query": "momentum",
+          "limit": 5
+        }
+      },
       "example_note": "Find up to five published papers matching momentum, then read a returned slug with get_paper. Search results reflect this project's research record, not the entire academic literature.",
       "limits": "The server reads public Canli Capital documents and caches them for the session. A paper can describe a failed, corrected or incomplete investigation. Paper execution does not establish funded results. A tamper-evident publication chain does not establish completeness of the research search or independent review.",
-      "related": [{"path":"/research","label":"Research library and topic hubs"},{"path":"/trials","label":"Published trial packets"},{"path":"/performance","label":"Paper performance and evidence limits"},{"path":"/verify","label":"Verify published artifact hashes"},{"path":"/research/null-zoo-v0","label":"Null Zoo benchmark and research methods"}]
+      "related": [
+        {
+          "path": "/research",
+          "label": "Research library and topic hubs"
+        },
+        {
+          "path": "/trials",
+          "label": "Published trial packets"
+        },
+        {
+          "path": "/performance",
+          "label": "Paper performance and evidence limits"
+        },
+        {
+          "path": "/verify",
+          "label": "Verify published artifact hashes"
+        },
+        {
+          "path": "/research/null-zoo-v0",
+          "label": "Null Zoo benchmark and research methods"
+        }
+      ]
     }
   ]
 }
