@@ -299,12 +299,18 @@ function sdkOperations(root, boundary, stderr, fail, sdkModules) {
       boundary(); if (closed) refuse('ABORTED');
       client = new Client({ name: 'canli-offline-audit-client', version: '0.0.0' }, { capabilities: {}, versionNegotiation: { mode: 'legacy' }, inputRequired: { autoFulfill: false } });
       transport = new StdioClientTransport({ command: process.execPath, args: [resolve(root, 'mcp-fundamentals/src/audit-inputs-stdio.mjs')], cwd: root, stderr: 'pipe', maxBufferSize: AUDIT_CLIENT_LIMITS.response });
-      const send = transport.send.bind(transport);
-      transport.send = (message, options) => {
-        try { boundary(); if (closed) refuse('ABORTED'); }
-        catch (error) { return Promise.reject(error); } // Preserve SDK send's Promise contract.
-        return send(message, options); // Reobserve AFTER SDK compilation/queued continuations.
-      };
+      // Exact locked legacy serializer and Promise/drain contract, owned here so
+      // synchronous serialization cannot exhaust the clock before an unguarded write.
+      transport.send = message => new Promise(resolveSend => {
+        boundary(); if (closed || exited) refuse('ABORTED');
+        const stdin = processObject?.stdin;
+        if (!stdin || transport._process !== processObject) refuse('CALL');
+        const frame = JSON.stringify(message) + '\n';
+        if (Buffer.byteLength(frame) > AUDIT_CLIENT_LIMITS.request) refuse('INPUT_BOUND');
+        boundary(); if (closed || exited) refuse('ABORTED');
+        if (stdin.write(frame)) resolveSend();
+        else stdin.once('drain', resolveSend);
+      });
       const originalClose = transport.close.bind(transport); let transportClosing;
       transport.close = () => { closed = true; return transportClosing ??= originalClose(); };
       const clientClose = client.close.bind(client); let clientClosing;

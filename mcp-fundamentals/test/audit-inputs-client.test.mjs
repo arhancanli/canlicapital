@@ -11,6 +11,7 @@ import dns from 'node:dns';
 import cp from 'node:child_process';
 import { syncBuiltinESMExports } from 'node:module';
 import { createHash } from 'node:crypto';
+import { EventEmitter } from 'node:events';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -136,13 +137,28 @@ function injected({ connect, call, close } = {}) {
   };
   return { effects, operations };
 }
-function syntheticSdk(beforeWrite = async () => {}) {
+function syntheticSdk(beforeWrite = async () => {}, { serialize = message => message, backpressure = false, writeError = false } = {}) {
   const effects = { starts: 0, writes: 0, transportCloses: 0, clientCloses: 0 };
+  const frames = []; let serializations = 0, drainListeners = 0, drains = 0;
   class StdioClientTransport {
     constructor(parameters) { assert.equal(parameters.command, process.execPath); assert.deepEqual(parameters.args, [SERVER]); assert.equal(parameters.maxBufferSize, 524288); this.stderr = { on() {} }; }
-    start() { effects.starts++; return Promise.resolve(); }
-    send() { effects.writes++; return Promise.resolve(); }
-    close() { effects.transportCloses++; return Promise.resolve(); }
+    start() {
+      effects.starts++; this._process = new EventEmitter();
+      const stdin = this._process.stdin = new EventEmitter();
+      stdin.write = frame => {
+        effects.writes++; frames.push(frame);
+        if (writeError) throw new Error('SYNTHETIC_PRIVATE_WRITE_ERROR');
+        if (backpressure) {
+          queueMicrotask(() => { assert.equal(stdin.listenerCount('drain'), 1); drains++; stdin.emit('drain'); });
+          return false;
+        }
+        return true;
+      };
+      stdin.on('newListener', name => { if (name === 'drain') drainListeners++; });
+      return Promise.resolve();
+    }
+    send() { assert.fail('Owned adapter must serialize and guard the native writer itself'); }
+    close() { effects.transportCloses++; this._process?.emit('close'); this._process = undefined; return Promise.resolve(); }
   }
   class Client {
     constructor(identity, options) { assert.deepEqual(options.versionNegotiation, { mode: 'legacy' }); assert.equal(options.inputRequired.autoFulfill, false); }
@@ -150,13 +166,14 @@ function syntheticSdk(beforeWrite = async () => {}) {
     async callTool(request, options) {
       assert.deepEqual(options.toolDefinition, AUDIT_TOOL);
       await beforeWrite(); // Model pinned SDK's queued schema/send-options work.
-      await this.transport.send({ method: 'tools/call', params: request });
+      const message = { jsonrpc: '2.0', id: 1, method: 'tools/call', params: request };
+      await this.transport.send({ toJSON: () => { serializations++; return serialize(message, this.transport); } });
       const result = clone(executeAuditInputs(request.arguments)); delete result.resultType;
       return result; // Exact legacy complete-return shape, not a live SDK entry.
     }
     close() { effects.clientCloses++; return this.transport.close(); }
   }
-  return { effects, sdkModules: { Client, StdioClientTransport } };
+  return { effects, frames, serialized: () => serializations, drainCounts: () => ({ listeners: drainListeners, emissions: drains }), sdkModules: { Client, StdioClientTransport } };
 }
 function run(f = fixture(), options = {}, control = injected()) {
   return runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { ...options, operations: control.operations });
@@ -422,7 +439,9 @@ test('audit client: native synthetic SDK positive send reaches the fixed adapter
   const result = await runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { root: ROOT, sdkModules: control.sdkModules });
   assert.equal(result.report.status, 'ok'); assert.equal(launches, before);
   assert.deepEqual(control.effects, { starts: 1, writes: 1, transportCloses: 1, clientCloses: 1 });
-  assert.equal(result.report.lifecycle.owned_child_absent, true); assert.equal(result.report.lifecycle.closure_evidence, 'no_child_started');
+  assert.equal(result.report.lifecycle.owned_child_absent, true); assert.equal(result.report.lifecycle.closure_evidence, 'same_owned_child_exit_or_close'); // Synthetic object, no real child.
+  assert.deepEqual(control.frames, [JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'audit_inputs', arguments: requestFor(f) } }) + '\n']);
+  assert.equal(control.serialized(), 1);
 });
 test('audit client: native synthetic queued SDK compilation cannot write after the absolute deadline', async () => {
   let time = 0;
@@ -431,6 +450,45 @@ test('audit client: native synthetic queued SDK compilation cannot write after t
   refused(result, 'WORK_DEADLINE'); assert.equal(launches, before);
   assert.deepEqual(control.effects, { starts: 1, writes: 0, transportCloses: 1, clientCloses: 1 });
   assert.equal(result.report.lifecycle.audit_calls, 1); // API admission; no wire dispatch.
+});
+test('audit client: native serializer crossing the absolute deadline refuses before any stdin write', async () => {
+  let time = 0; const before = launches, f = fixture();
+  const control = syntheticSdk(async () => { time = 14999.5; }, { serialize: message => { time += 1; return message; } });
+  const result = await runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { root: ROOT, sdkModules: control.sdkModules, now: () => time });
+  refused(result, 'WORK_DEADLINE'); assert.equal(control.serialized(), 1); assert.deepEqual(control.frames, []);
+  assert.deepEqual(control.effects, { starts: 1, writes: 0, transportCloses: 1, clientCloses: 1 }); assert.equal(launches, before);
+  assert.equal(result.report.lifecycle.audit_calls, 1); assert.equal(result.report.lifecycle.owned_child_absent, true);
+});
+test('audit client: reentrant abort during native serialization refuses before any stdin write', async () => {
+  const abort = new AbortController(), before = launches, f = fixture();
+  const control = syntheticSdk(undefined, { serialize: message => { abort.abort(); return message; } });
+  const result = await runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { root: ROOT, sdkModules: control.sdkModules, signal: abort.signal });
+  refused(result, 'ABORTED'); assert.equal(control.serialized(), 1); assert.deepEqual(control.frames, []);
+  assert.deepEqual(control.effects, { starts: 1, writes: 0, transportCloses: 1, clientCloses: 1 }); assert.equal(launches, before);
+});
+test('audit client: serialized legacy frame exact cap writes once and one byte overflow never writes', async () => {
+  const f = fixture(), before = launches;
+  for (const overflow of [0, 1]) {
+    const control = syntheticSdk(undefined, { serialize: () => ({ padding: 'x'.repeat(AUDIT_CLIENT_LIMITS.request - 15 + overflow) }) });
+    const result = await runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { root: ROOT, sdkModules: control.sdkModules });
+    if (overflow) { refused(result, 'INPUT_BOUND'); assert.deepEqual(control.frames, []); }
+    else { assert.equal(result.report.status, 'ok'); assert.equal(control.frames.length, 1); assert.equal(Buffer.byteLength(control.frames[0]), AUDIT_CLIENT_LIMITS.request); }
+    assert.equal(control.serialized(), 1); assert.deepEqual(control.effects, { starts: 1, writes: overflow ? 0 : 1, transportCloses: 1, clientCloses: 1 });
+  }
+  assert.equal(launches, before);
+});
+test('audit client: native write backpressure awaits one drain without sending a second frame', async () => {
+  const before = launches, f = fixture(), control = syntheticSdk(undefined, { backpressure: true });
+  const result = await runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { root: ROOT, sdkModules: control.sdkModules });
+  assert.equal(result.report.status, 'ok'); assert.equal(control.frames.length, 1); assert.equal(control.serialized(), 1);
+  assert.deepEqual(control.drainCounts(), { listeners: 1, emissions: 1 });
+  assert.deepEqual(control.effects, { starts: 1, writes: 1, transportCloses: 1, clientCloses: 1 }); assert.equal(launches, before);
+});
+test('audit client: throwing native stdin writer rejects its Promise without retry or diagnostic echo', async () => {
+  const before = launches, f = fixture(), control = syntheticSdk(undefined, { writeError: true });
+  const result = await runAuditInputsClient(f.reference, sha(f.reference), f.usage, f.settings, { root: ROOT, sdkModules: control.sdkModules });
+  refused(result, 'CALL'); assert.equal(result.encoded.includes('SYNTHETIC_PRIVATE_WRITE_ERROR'), false);
+  assert.deepEqual(control.effects, { starts: 1, writes: 1, transportCloses: 1, clientCloses: 1 }); assert.equal(launches, before);
 });
 test('audit client: reentrant abort during connect prevents follow-up and closes once', async () => {
   const abort = new AbortController(); const control = injected({ connect: () => abort.abort() }); refused(await run(fixture(), { signal: abort.signal }, control), 'ABORTED', control, 0); assert.equal(control.effects.close, 1);

@@ -129,9 +129,13 @@ caller byte-length getter.
 
 The aggregate clock begins before input capture. Work checks run after capture,
 after synchronous callbacks/acknowledgements and again after queued work immediately
-before connect and call dispatch, including the actual SDK transport write after
-schema compilation and queued continuations. A deadline or external abort prevents the next
-effect. Late results never upgrade a refusal. Close is memoized, has a separate
+before connect and call dispatch. The fixed legacy adapter serializes the exact
+locked `JSON.stringify(message) + "\n"` frame, admits its UTF8 size, then checks the
+same absolute clock, sticky failure, abort and closed/exit state immediately before
+its owned child's `stdin.write`. Serialization time is included in that last check.
+The write still returns a Promise and resolves on the one drain when backpressured.
+A deadline or external abort prevents the next effect. Late results never upgrade
+a refusal. Close is memoized, has a separate
 five-second reserve, and final encoding is admitted against that reserve and the
 twenty-second total. Report timing fields ending in `before_encoding_ms` are samples
 before terminal serialization; successful `encoding_budget_checked` also requires
@@ -212,14 +216,20 @@ remote MCP result failed the symlink-entry observer: unconditional stdout captur
 also retained Node runner frames, leaving only 42 source names observable (41 pass,
 one fail); eight missing named outcomes remain unknown in that original log. The
 original source and failure are preserved. The corrected observer delegates every
-nonterminal runner frame. Two new native synthetic SDK cases exercise the fresh
-transport-write clock with positive dispatch and late queued-work refusal.
+nonterminal runner frame. The intermediate 52-case source added send-entry clock
+controls, but its check preceded the SDK serializer and still left a write boundary
+gap. Its source finding remains preserved even if its remote cases pass.
 
-At the corrected source freeze, all 52 named cases remain pending the exact new
-remote CI; old outcomes are not relabeled. Forty-nine native/injected
+At this correction's source freeze, all 57 named cases remain pending its exact new
+remote CI; old outcomes are not relabeled. Fifty-four native/injected
 cases exercise admission, exact bytes, full selected coverage/nulls, filesystem
 faults/reused FD, rehashed response tampering, output/stderr bounds, queued and
-reentrant deadline/abort behavior, late results and uncertain closure. Three SDK
+reentrant deadline/abort behavior, late results and uncertain closure. Synthetic
+classes pass through the actual owned writer with a byte-exact positive frame,
+serialization crossing 14999.5ms to 15000.5ms, reentrant abort during serialization,
+exact-cap/overflow, one drain and a throwing native writer. These classes start no
+OS process, and their object-close events establish only their synthetic lifecycle.
+Three SDK
 entries cover actual direct and own-symlink CLI entry parity plus tool refusal.
 Direct entry is exercised by the real module's top-level entry with controlled
 `process.argv` in the test process; it creates no extra CLI wrapper process. Each
