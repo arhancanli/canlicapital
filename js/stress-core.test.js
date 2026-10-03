@@ -57,7 +57,7 @@ test("the default crash is at least a 20% loss and three times the worst period"
   const rough = gaussianReturns(300, 5, 0.03);
   const worst = Math.min(...rough);
   const roughOut = stressTest({ returns: rough, paths: 100 });
-  assert.match(roughOut.scenarios[0].rule, new RegExp(`losing ${(3 * worst * 100).toFixed(1).replace("-", "-")}%`));
+  assert.match(roughOut.scenarios[0].rule, new RegExp(`losing ${(3 * worst * 100).toFixed(1)}%`));
 });
 
 test("inputs are bounded and explained", () => {

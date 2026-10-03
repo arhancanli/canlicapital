@@ -163,7 +163,7 @@ export function exampleCode(language, tool) {
       "",
       'const client = new Client({ name: "example", version: "1.0.0" });',
       'await client.connect(new StdioClientTransport({ command: "npx", args: ["-y", "canli-validation-mcp"], env: { ...process.env, CANLI_LOCAL: "1" } }));',
-      `const result = await client.callTool({ name: "${tool}", arguments: ${json.replace(/\n/g, "\n")} });`,
+      `const result = await client.callTool({ name: "${tool}", arguments: ${json} });`,
       "console.log(result.structuredContent);",
       "await client.close();",
       "",
