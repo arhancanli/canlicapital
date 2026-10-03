@@ -1,0 +1,35 @@
+--- a/scripts/datasets/filing-facts/expert-submission-cli.test.mjs
++++ b/scripts/datasets/filing-facts/expert-submission-cli.test.mjs
+@@ -618,14 +618,24 @@
+ });
+ 
+ test('post-write output pathname replacement refuses even when saved FD readback bytes still match', async t => {
+-  const f = files(t), displaced = join(f.root, 'retained-original-report.json'); let swapped = false;
+-  const io = instrument({ readSync(event, native) { const count = native();
+-    if (event.path === f.out && !swapped) { swapped = true; fs.renameSync(f.out, displaced);
+-      fs.writeFileSync(f.out, 'SYNTHETIC replacement', { flag: 'wx', mode: 0o600 }); }
+-    return count;
+-  } });
+-  refused(await main(f.argv, io), 'CLI_OUTPUT_CHANGED'); assert.equal(swapped, true);
+-  assert.equal(snapshot(f.out).toString(), 'SYNTHETIC replacement'); assert.ok(snapshot(displaced).length > 0);
++  const f = files(t), displaced = join(f.root, 'retained-original-report.json');
++  let readback = false, observedFD = false, swapped = false;
++  const io = instrument({
++    readSync(event, native) { if (event.path === f.out) readback = true; return native(); },
++    fstatSync(event, native) { const st = native(); if (event.path === f.out && readback) observedFD = true; return st; },
++    lstatSync(event, native) {
++      // Rename only after final same-FD readback observation, so this fault actually reaches the postpath guard.
++      if (event.path === f.out && observedFD && !swapped) {
++        swapped = true; fs.renameSync(f.out, displaced);
++        fs.writeFileSync(f.out, 'SYNTHETIC replacement', { flag: 'wx', mode: 0o600 });
++      }
++      return native();
++    },
++  });
++  refused(await main(f.argv, io), 'CLI_OUTPUT_CHANGED');
++  assert.equal(readback, true); assert.equal(observedFD, true); assert.equal(swapped, true);
++  assert.equal(snapshot(f.out).toString(), 'SYNTHETIC replacement');
++  assert.deepEqual(snapshot(displaced), Buffer.from(JSON.stringify(reconcileExpertSubmissions(...coreArgs(f.s))) + '\n'));
+ });
+ 
+ test('output-parent identity replacement after exclusive create retains original private file and refuses', async t => {
