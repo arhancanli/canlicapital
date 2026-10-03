@@ -3,11 +3,36 @@ Allow: /
 Disallow: /company-data/
 
 # Every page here is meant to be readable by people and by machines. Nothing is
-# gated, nothing is cloaked, and no crawler is singled out for different content.
+# gated, nothing is cloaked, and no crawler is served different content.
 # /company-data/ holds the raw JSON and SEC snapshots behind each company page. They
-# stay public and linked for people, the API and the MCP servers; search crawlers
-# skip them because every one is served noindex and the pages that cite them are
-# what a search should find.
+# stay public and linked for people, the API and the MCP servers. General search
+# crawlers skip them because every one is served noindex and the pages that cite
+# them are what a search should find; skipping them keeps crawl time on those pages.
+
+# Answer engines, and the fetchers that open a page when a person asks an assistant
+# to, read everything, the raw company data included, so an answer can quote a
+# filing's exact figure from its source. Each has its own group because a crawler
+# obeys only the most specific group that names it.
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
 
 Sitemap: https://canlicapital.com/sitemap.xml
 
@@ -19,3 +44,7 @@ Sitemap: https://canlicapital.com/sitemap.xml
 # The same corpus in full, in one file, for models that would rather read than
 # crawl: every research document, including every failed one.
 # https://canlicapital.com/llms-full.txt
+#
+# Who runs this site and what it is, in machine-readable form:
+# https://canlicapital.com/ai.txt
+# https://canlicapital.com/identity.json

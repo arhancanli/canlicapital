@@ -70,11 +70,10 @@ const say = (s = "") => lines.push(s);
 
 say("# Canli Capital");
 say();
-say(
-  "> A public research and verification platform for systematic trading. You can inspect a live " +
-  "paper-traded portfolio, trace every decision to its evidence, and reproduce selected research " +
-  "yourself. Built and maintained by Arhan Canli.",
-);
+// The summary is the homepage's definition and opening answer (config/home-answers.json), so a
+// model reading this file and a person reading the homepage are told the same thing.
+const homeAnswers = read("config/home-answers.json");
+say(`> ${homeAnswers.definition} ${homeAnswers.answer} Built and maintained by Arhan Canli.`);
 say();
 say("## Claim boundary: read this before summarising anything on this site");
 say();

@@ -12,7 +12,7 @@ export const FLAGSHIP = "ALPHAC"; // the flagship combined book (three sleeves s
 // one-line description (the same line that lives in the JSON-LD `slogan` field on
 // every page), reused here so the footer never carries a marketing slogan. Bound
 // to every [data-tagline] node by main.js; never hardcode it in markup.
-export const TAGLINE = "A quant fund proving itself in public before it asks you to trust it.";
+export const TAGLINE = "An open quant research lab, proving itself in public before it asks anyone to trust it.";
 
 // Where the access form posts. Configure for production. When left null the
 // form simulates a successful submission locally (no network call).
