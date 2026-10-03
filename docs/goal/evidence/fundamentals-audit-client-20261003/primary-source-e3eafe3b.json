@@ -1,0 +1,301 @@
+{
+  "schema": "canlicapital.primary.fundamentals-audit-client.e3eafe-narrow-source-review.v1",
+  "utc": "2026-10-03T13:07:37.604287+00:00",
+  "disposition": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "findings": [],
+  "source": {
+    "head": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+    "tree": "fcd0274793a7dbc91b14ae6e47798f05013b518a",
+    "sole_parent": "8a93d9e6ebf13c17e7b6d3a8e6eac8407e177bfe",
+    "actual_base": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+    "signature_observed": "G",
+    "CLEAN_work_index_frozen_Git_observed": {
+      "head": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+      "porcelain": "",
+      "all6work_index_source_equal": true
+    },
+    "manifest": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/source-e3eafe3b-v1.json",
+      "bytes": 2816613,
+      "sha256": "18aa9f280235bcabd1aa4ab581b61f6928dee48fbde25f4db3fff366da49754c"
+    }
+  },
+  "exact_independent_scope_proof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/independent-scope-e3eafe3b-narrow-v1.json",
+    "bytes": 9686,
+    "sha256": "791f8df2c743e34492a567fa330359510094568701080e25c6f4314fd866e69f"
+  },
+  "selected_physical_and_single_send_block_proof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/e3eafe3b-selected-physical-and-single-send-block-proof-v1.json",
+    "bytes": 7544,
+    "sha256": "14231c8bd54374888aca4b5aef078923938b1ae56221d787ae60826e97d785d9"
+  },
+  "exact_literal_parent_patch": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/frozen-8a93d9e6-to-e3eafe3b-literal-parent.patch.txt",
+    "bytes": 25348,
+    "sha256": "cf10bf62af42084e451302c5bdbe94aa02ee03185d1bcedbb62bbe05124a206f"
+  },
+  "verified_scope": {
+    "exact5parent_delta_and6base_paths": true,
+    "full6436_work_index_Git_entries": true,
+    "all6430_inherited_Git_identities_404202276bytes": true,
+    "whole_physical_audit": false,
+    "25selected_physical_pins_current_bytes": 1107783,
+    "all15_entire_base_acff_8a93_goal_prefixes": true,
+    "parent_package_exact_125B_focus_recovers_actualbase_rootverify_exact": true,
+    "default7_core_schema_math_stdio_canonical_locks_deps_versions_source_modes_and_all_old_tests": "protected unchanged Git identities",
+    "archive_allocated": false
+  },
+  "closed_findings": [
+    {
+      "id": "CC-371-NATIVE-WIRE-SEND-ABSOLUTE-DEADLINE",
+      "priority": "P2",
+      "disposition": "CLOSED_STATIC_AT_EXACT_E3EAFE3B",
+      "runtime_reproduction_by_reviewer": false,
+      "source_file": "mcp-fundamentals/examples/audit-inputs-client.mjs",
+      "lines": [
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312
+      ],
+      "evidence": "Owned transport.send uses new Promise. After initial same-clock/closed/exit and fixed processObject stdin identity admission, exact locked JSON.stringify(message)+newline serializes, native UTF8 bytes are admitted to1MiB, then SAME workBoundary checks absolute clock/sticky failure/abort and closed/exit again immediately before stdin.write. There is no further delegation to an SDK serializer between that last boundary and the native write. Original14999.5+1ms schedule now reaches the after-serialization guard before its wire effect.",
+      "qualification": "Cooperative observations over trusted native synchronous code, not universal preemption, hostile mutable methods, global process idle or latency benchmarking. Late results remain unable to upgrade refusal.",
+      "original_SOURCE_HOLD_receipts_immutable": [
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/review-acffb57b-original-source-v1.json",
+          "bytes": 11066,
+          "sha256": "18068054aa9cead77524976aff76a10ccefc87cefc5a85260de56d4ba63eaf51"
+        },
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/review-8a93d9e6-narrow-source-delta-v1.json",
+          "bytes": 13414,
+          "sha256": "505479eb3b48f503268f7178f720171486f0c69b0ee5226de2336622dd12b58b"
+        }
+      ]
+    },
+    {
+      "id": "KNOWN_ORIGINAL_GLOBAL_STDOUT_OBSERVER_FAILURE",
+      "disposition": "8A93_STATIC_CORRECTION_CARRIED_UNCHANGED",
+      "evidence": "Exact terminal-schema capture delegates unrelated NodeIPC/report writes; inherited original50test bodies all text-exact and current observer is unchanged by this delta. Original missing outcomes not reclassified."
+    }
+  ],
+  "native_protocol_and_lifecycle_static_checks": [
+    {
+      "area": "Locked wire bytes",
+      "source_lines": [
+        308
+      ],
+      "SDK_member": "package/dist/src-DDAAhLnO.mjs",
+      "SDK_lines": [
+        6750,
+        6751
+      ],
+      "result": "Exact JSON.stringify(message)+newline preserved. No new protocol mode/retry/list/discovery/child."
+    },
+    {
+      "area": "Promise and drain",
+      "source_lines": [
+        304,
+        311,
+        312
+      ],
+      "SDK_member": "package/dist/stdio.mjs",
+      "SDK_lines": [
+        206,
+        207,
+        209,
+        210,
+        211
+      ],
+      "result": "Synchronous admission/serializer/writer failures reject Promise via executor. True write resolves once; backpressure installs one drain handler and does not issue a second write. No arbitrary diagnostics echoed by outer refusal."
+    },
+    {
+      "area": "Owned process closure",
+      "source_lines": [
+        306,
+        307,
+        310,
+        314,
+        315,
+        317,
+        323,
+        326,
+        328,
+        350,
+        352,
+        353,
+        354
+      ],
+      "result": "Fixed captured process object ownership admission remains; closed/exited state checked after serializer; existing memoized same-child close/exit evidence is unchanged. Synthetic object events establish only synthetic lifecycle;3actualSDKchild entries are separate written integration controls."
+    },
+    {
+      "area": "Protected original semantics",
+      "result": "Apart from the one send block, entire client source is byte-identical to8a93. Admission, prepared request byte/hash bindings, exact toolDefinition second options, complete-selectedN/null/source-authority conventions,15+5/20 observation, output encoding and CLI are carried only through identical bytes."
+    }
+  ],
+  "written_native_regressions_read": [
+    {
+      "source_lines": [
+        437,
+        443,
+        444
+      ],
+      "name": "audit client: native synthetic SDK positive send reaches the fixed adapter with one write and one close",
+      "assertions": "one serialization, exact JSONRPC byte frame,one native write/one memoized transport+client close,no additional SDK child"
+    },
+    {
+      "source_lines": [
+        454,
+        456,
+        458,
+        459,
+        460
+      ],
+      "name": "audit client: native serializer crossing the absolute deadline refuses before any stdin write",
+      "assertions": "14999.5+1ms inside native JSON serialization;WORK_DEADLINE;one serializer,empty frames/zero writes,oneclose,no child increment"
+    },
+    {
+      "source_lines": [
+        462,
+        464,
+        466,
+        467
+      ],
+      "name": "audit client: reentrant abort during native serialization refuses before any stdin write",
+      "assertions": "serializer calls original signal.abort;ABORTED;empty frames/zero writes,oneclose"
+    },
+    {
+      "source_lines": [
+        469,
+        471,
+        472,
+        474,
+        475,
+        476
+      ],
+      "name": "audit client: serialized legacy frame exact cap writes once and one byte overflow never writes",
+      "assertions": "1MiB exact UTF8 frame equality positive and+1refusal before writer;oneclose per finite branch"
+    },
+    {
+      "source_lines": [
+        480,
+        483,
+        484,
+        485
+      ],
+      "name": "audit client: native write backpressure awaits one drain without sending a second frame",
+      "assertions": "one write/one serialization/one drain listener+emission,oneclose"
+    },
+    {
+      "source_lines": [
+        487,
+        490,
+        491
+      ],
+      "name": "audit client: throwing native stdin writer rejects its Promise without retry or diagnostic echo",
+      "assertions": "one attempted writer effect,finite CALL refusal/no secret echo/no retry,oneclose"
+    }
+  ],
+  "source_case_bound": {
+    "57_unique_names_exact_manifest": true,
+    "all50_original_top_level_test_bodies_text_exact": true,
+    "all52_previous_names_preserved": true,
+    "three_actual_SDK_entries_unchanged": true,
+    "native_injected_written": 54,
+    "reviewer_executed": 0,
+    "no_source_review_runtime_pass_claim": true
+  },
+  "guide_consistency": {
+    "file": "mcp-fundamentals/examples/AUDIT_INPUTS_CLIENT.md",
+    "lines": [
+      132,
+      133,
+      134,
+      135,
+      136,
+      140,
+      142,
+      143,
+      219,
+      220,
+      221,
+      223,
+      230,
+      231,
+      242,
+      243
+    ],
+    "result": "Post-serialization write boundary documented; source-stage/runtime distinctions and priorHOLD retained, trusted synchronous/cooperative limits explicit, synthetic lifecycle does not claim a real OS child."
+  },
+  "frozen_exact_snapshots": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/frozen-e3eafe3b-client-source.mjs.txt",
+      "bytes": 32588,
+      "sha256": "60f20a7297bbb463139a829bc4d14e35f108d650faa4488faa91525a2d9e4195"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/frozen-e3eafe3b-client-test.mjs.txt",
+      "bytes": 48164,
+      "sha256": "285cb42d1f6652bccbffdfd9a0c39e510729320126d2c23aba99c9dfe7ff02a0"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/frozen-e3eafe3b-guide.md.txt",
+      "bytes": 14776,
+      "sha256": "ffc961e43b9b7efd3450de6c0e3f9248ced29a5373207e9f42defc80886b11a7"
+    }
+  ],
+  "locked_SDK_readonly_member_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/sdk-locked2.1-stdio.mjs.txt",
+      "bytes": 6153,
+      "sha256": "89b2fb52b95d4b2ba79f1bd4e022282d9654177e4ee06ee904efeb8764d59b5c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/sdk-locked2.1-src-DDAAhLnO.mjs.txt",
+      "bytes": 305070,
+      "sha256": "743dee8114f52b5e7df4690770453f6655502cf729380757a392b1ff2ddb070d"
+    }
+  ],
+  "prior_reference_pins_fullread_preserved": {
+    "original_PRIMARY_source_review": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/review-acffb57b-original-source-v1.json",
+      "bytes": 11066,
+      "sha256": "18068054aa9cead77524976aff76a10ccefc87cefc5a85260de56d4ba63eaf51"
+    },
+    "8a93_PRIMARY_narrow_HOLD_review": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/review-8a93d9e6-narrow-source-delta-v1.json",
+      "bytes": 13414,
+      "sha256": "505479eb3b48f503268f7178f720171486f0c69b0ee5226de2336622dd12b58b"
+    },
+    "original_THIRD_review": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-peer/review-acffb57b-source-v1.json",
+      "bytes": 67019,
+      "sha256": "ab3864b60bdf5b506422ce2c144e95c6bce83a9aaed3e2e046c73003e69fed5f"
+    },
+    "historical_8a93_green_CI_source_held": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/author-8a93d9e6-historical-retained-ci-v1.json",
+      "bytes": 22125,
+      "sha256": "b539f5b2abeacd232ac48af9af8b3f62835aa72292b57b7459aba598b7e6efc6"
+    },
+    "retained_metadata_only_reader_stop": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/retained-ci-audit-reader-stop-20261003T125037772683Z.json",
+      "bytes": 793,
+      "sha256": "6b4c73e7eaed77431d490c8b4cee921efd5fd2c458096a0eac1c18f53d2b0c4c"
+    }
+  },
+  "historical_CI_qualification": "acff42retained41PASS1FAIL/eightUNKNOWN and8a93author52green/SOURCE_HOLD are preserved stage evidence, not independent currentCI ACKs. e3 exact retainedCI is a separate gate being reviewed.",
+  "reviewer_actions": {
+    "project_import_Node_tests_CLI_helper_build_browser_GET_processprobe_job_grant": 0,
+    "API_refetch": 0,
+    "author_source_or_archive_mutation": 0,
+    "private_stdlib_metadata_reads_Git_and_receipts": true
+  },
+  "next_gate": "Separate exact e3 retained-currentCI PRIMARY and THIRD gates; peer SOURCE completion. Any documentary archive requires later explicit literal allocation; future final heads/merge/delivery/publication not approved by this receipt.",
+  "owner_hierarchy": "Entire hierarchy ACTIVE/outcomesunknown/null; PRIMARY sole ordinary merge/pub, Lead sole localCPU,127 policy unchanged; closed lanes remain closed."
+}

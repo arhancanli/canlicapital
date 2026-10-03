@@ -1,0 +1,674 @@
+{
+  "schema": "canli.secondary.fundamentals-audit-client.author-retained-ci.v1",
+  "utc": "2026-10-03T13:02:26.357380+00:00",
+  "source": {
+    "head": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+    "tree": "fcd0274793a7dbc91b14ae6e47798f05013b518a",
+    "signature": "G"
+  },
+  "original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-first-checks-api-original.json",
+      "bytes": 24372,
+      "sha256": "913933e931dbf7a42c275a07c7ee7a09c58971b362e421a5fbf5ce5f7a541662"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-first-runs-api-original.json",
+      "bytes": 26612,
+      "sha256": "b93fb60ead8f8b509fd323c308677bcfbca6d6eda3cacdd1c1398975f383f39a"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-first-pull-api-original.json",
+      "bytes": 17908,
+      "sha256": "e81a2308d9b85c31a0ecd0227aeb6dba1cacf61020db15442702abc4b95d9218"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-run-original.json",
+      "bytes": 13284,
+      "sha256": "055cbacd5270e8081b23c334fb71352160c358e2003a878be49a7a0fa1fcf370"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-jobs-original.json",
+      "bytes": 13319,
+      "sha256": "ec6ec7289ed02c5ff0260ad68eb80cef5fe6eeca98f14868ef935b967355460d"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-tested-Git-original.json",
+      "bytes": 2648,
+      "sha256": "9b581a9aa654987081f357510f86e4edc72a9251e199f4293c56d970bd476cf7"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-merge-ref-original.json",
+      "bytes": 357,
+      "sha256": "642eae58139ffb8bdd0ae900b1a9a788c7e7870ea18451ec8296f9e9356080f3"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-codeql-original.json",
+      "bytes": 3560,
+      "sha256": "272e7c10a78e19ca2e218543e77d9e6886e37b0652704de11febb7d1aef6cf3b"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-root-raw-original.log",
+      "bytes": 697176,
+      "sha256": "ca439fb2ac91e006d59c0f3c1656c3bed2d374beb0283fd48e9fbaa94b12c388"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-mcp-raw-original.log",
+      "bytes": 322563,
+      "sha256": "5678e9c0bc99668e0ba5701f35f2f0e45c1a4b7cb6cfb7031d1a6be61706e267"
+    }
+  ],
+  "total_original_bytes": 1121801,
+  "capture_command_bindings": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-root-raw-capture-command-original.json",
+      "bytes": 763,
+      "sha256": "b593cb2b9663bdda5d0b3e93ff8e35c2561acd8de21cf8181194f780994c26ee"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-mcp-raw-capture-command-original.json",
+      "bytes": 761,
+      "sha256": "3ad568ce151b65a640c7640181a0e7f61be181d807e52a4477ee4fbc3c217ab3"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-alerts-capture-command-original.json",
+      "bytes": 799,
+      "sha256": "a7698840498b03c6ef666f87e546a5bfa8988a67f42fa5967fb9f5a62de338a0"
+    }
+  ],
+  "exact_run": {
+    "id": 37124487278,
+    "attempt": 1,
+    "root_job": 111206924919,
+    "mcp_job": 111206925087,
+    "tested": "a16408486d01c456a8701c82c246a701fcd0ba85",
+    "tree": "fcd0274793a7dbc91b14ae6e47798f05013b518a",
+    "parents": [
+      "6551d99672b4aa6b7629f487986a163bf7d845e4",
+      "e3eafe3b70b92d6f84267b35cb15633766fbbcf1"
+    ]
+  },
+  "seven_checks": [
+    {
+      "name": "CodeQL",
+      "id": 111207048357,
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/runs/111207048357"
+    },
+    {
+      "name": "analyze (python)",
+      "id": 111206925115,
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487275/job/111206925115"
+    },
+    {
+      "name": "Key revocation PostgreSQL contract",
+      "id": 111206925109,
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487278/job/111206925109"
+    },
+    {
+      "name": "MCP package and stdio contracts",
+      "id": 111206925087,
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487278/job/111206925087"
+    },
+    {
+      "name": "design wrapper build and contracts",
+      "id": 111206925075,
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487278/job/111206925075"
+    },
+    {
+      "name": "analyze (javascript-typescript)",
+      "id": 111206924978,
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487275/job/111206924978"
+    },
+    {
+      "name": "vite production build",
+      "id": 111206924919,
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487278/job/111206924919"
+    }
+  ],
+  "all_eight_complete_TAP_proofs": [
+    {
+      "job": "root",
+      "plan": 6,
+      "counters": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 80.949069
+      },
+      "all_top_names_results_ordinals_YAML_durations_types_checked": true,
+      "top_outcomes_sha256": "b4a4255d5ce916fe935cef71996edbcde46154077d3aae69b91f216f7a69a450",
+      "nested_count": 0,
+      "nested_all_pass": true,
+      "nested_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "job": "root",
+      "plan": 1185,
+      "counters": {
+        "tests": 1185,
+        "suites": 0,
+        "pass": 1185,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 109803.799361
+      },
+      "all_top_names_results_ordinals_YAML_durations_types_checked": true,
+      "top_outcomes_sha256": "55ac26d2745ba2907d21b7c1019c981ff05e5db26cc1a88cb7f6fb3814d33abc",
+      "nested_count": 0,
+      "nested_all_pass": true,
+      "nested_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "job": "root",
+      "plan": 9,
+      "counters": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 100.281661
+      },
+      "all_top_names_results_ordinals_YAML_durations_types_checked": true,
+      "top_outcomes_sha256": "dbbe9673458c70bc0d561adf4b558123fbfb0b7c8259ca9032136ca38a70862d",
+      "nested_count": 0,
+      "nested_all_pass": true,
+      "nested_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "job": "mcp",
+      "plan": 141,
+      "counters": {
+        "tests": 141,
+        "suites": 0,
+        "pass": 141,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 2609.151989
+      },
+      "all_top_names_results_ordinals_YAML_durations_types_checked": true,
+      "top_outcomes_sha256": "ac6f3744f10ab03a26e0fd8c897a9baed29d6a1fd2394fc5170b4693123624dd",
+      "nested_count": 0,
+      "nested_all_pass": true,
+      "nested_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "job": "mcp",
+      "plan": 1,
+      "counters": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 606.770379
+      },
+      "all_top_names_results_ordinals_YAML_durations_types_checked": true,
+      "top_outcomes_sha256": "2a82bedf1e6a908b30e7f711a6be99ae4711e5820555f05da75dacb8937df597",
+      "nested_count": 0,
+      "nested_all_pass": true,
+      "nested_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "job": "mcp",
+      "plan": 82,
+      "counters": {
+        "tests": 82,
+        "suites": 0,
+        "pass": 82,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 15617.364676
+      },
+      "all_top_names_results_ordinals_YAML_durations_types_checked": true,
+      "top_outcomes_sha256": "e784d3f15d4a4f8081a99400d6bfff971e9971350e8645b8010b8162824fa36c",
+      "nested_count": 0,
+      "nested_all_pass": true,
+      "nested_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "job": "mcp",
+      "plan": 176,
+      "counters": {
+        "tests": 176,
+        "suites": 0,
+        "pass": 176,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 6362.863865
+      },
+      "all_top_names_results_ordinals_YAML_durations_types_checked": true,
+      "top_outcomes_sha256": "f473684cb1559f33d116a462a12c96438d682b145b917a390863349eb8637d04",
+      "nested_count": 0,
+      "nested_all_pass": true,
+      "nested_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "job": "mcp",
+      "plan": 139,
+      "counters": {
+        "tests": 139,
+        "suites": 0,
+        "pass": 139,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 4393.091997
+      },
+      "all_top_names_results_ordinals_YAML_durations_types_checked": true,
+      "top_outcomes_sha256": "114e4b007d1994310231b899737d538e83317bfba8d18e69864125f90b2c8ab8",
+      "nested_count": 0,
+      "nested_all_pass": true,
+      "nested_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "source_cases": {
+    "count": 57,
+    "all_once_MCP_zero_ROOT": true,
+    "actual_outcomes": [
+      {
+        "ordinal": 1,
+        "name": "audit client: native network/write/command denial is active before imports with owned fixture allowance",
+        "duration_ms": 2.759158,
+        "type": "test"
+      },
+      {
+        "ordinal": 2,
+        "name": "audit client: native full selected denominator and six statuses preserve exact whitespace bindings and nulls",
+        "duration_ms": 44.844209,
+        "type": "test"
+      },
+      {
+        "ordinal": 3,
+        "name": "audit client: every selected row remains present at the 64-row boundary",
+        "duration_ms": 75.260173,
+        "type": "test"
+      },
+      {
+        "ordinal": 4,
+        "name": "audit client: same-day timing retains an older selected diagnostic and null verdict",
+        "duration_ms": 5.445768,
+        "type": "test"
+      },
+      {
+        "ordinal": 5,
+        "name": "audit client: primitive SHA type/length/case is required before clock or transport callbacks",
+        "duration_ms": 0.843145,
+        "type": "test"
+      },
+      {
+        "ordinal": 6,
+        "name": "audit client: separately supplied SHA mismatch stops before connect with no repaired input",
+        "duration_ms": 0.800495,
+        "type": "test"
+      },
+      {
+        "ordinal": 7,
+        "name": "audit client: input native slots ignore own byteLength getters and preserve original bytes",
+        "duration_ms": 4.71801,
+        "type": "test"
+      },
+      {
+        "ordinal": 8,
+        "name": "audit client: proxy/shared/subclass and ordinary objects refuse before transport",
+        "duration_ms": 0.887319,
+        "type": "test"
+      },
+      {
+        "ordinal": 9,
+        "name": "audit client: each native per-input +1 cap refuses before dispatch",
+        "duration_ms": 1.359917,
+        "type": "test"
+      },
+      {
+        "ordinal": 10,
+        "name": "audit client: admitted positive aggregate equality preserves original padded bytes",
+        "duration_ms": 56.437504,
+        "type": "test"
+      },
+      {
+        "ordinal": 11,
+        "name": "audit client: individually admitted aggregate +1 refuses before copy/base64/dispatch",
+        "duration_ms": 1.42039,
+        "type": "test"
+      },
+      {
+        "ordinal": 12,
+        "name": "audit client: FD sizes and aggregate are admitted before any payload read",
+        "duration_ms": 3.285177,
+        "type": "test"
+      },
+      {
+        "ordinal": 13,
+        "name": "audit client: native FD individual +1 admission refuses before any payload read",
+        "duration_ms": 1.834299,
+        "type": "test"
+      },
+      {
+        "ordinal": 14,
+        "name": "audit client: FD positive control uses bounded short chunks and exactly one overflow probe per file",
+        "duration_ms": 1.842113,
+        "type": "test"
+      },
+      {
+        "ordinal": 15,
+        "name": "audit client: native symlink input is refused without reading its payload",
+        "duration_ms": 0.849177,
+        "type": "test"
+      },
+      {
+        "ordinal": 16,
+        "name": "audit client: nonregular FD admission refuses before payload allocation/read",
+        "duration_ms": 0.921001,
+        "type": "test"
+      },
+      {
+        "ordinal": 17,
+        "name": "audit client: target short read refuses after positive FD admission",
+        "duration_ms": 4.574551,
+        "type": "test"
+      },
+      {
+        "ordinal": 18,
+        "name": "audit client: target one-byte overflow refuses without dispatch",
+        "duration_ms": 0.900433,
+        "type": "test"
+      },
+      {
+        "ordinal": 19,
+        "name": "audit client: same target FD metadata mutation refuses with an asserted read effect",
+        "duration_ms": 0.932904,
+        "type": "test"
+      },
+      {
+        "ordinal": 20,
+        "name": "audit client: close-after-close error never retries a reused foreign descriptor",
+        "duration_ms": 4.117952,
+        "type": "test"
+      },
+      {
+        "ordinal": 21,
+        "name": "audit client: capture refusal still closes each owned FD once and retains close uncertainty",
+        "duration_ms": 1.015449,
+        "type": "test"
+      },
+      {
+        "ordinal": 22,
+        "name": "audit client: duplicate-key raw JSON is refused rather than repaired before dispatch",
+        "duration_ms": 0.461628,
+        "type": "test"
+      },
+      {
+        "ordinal": 23,
+        "name": "audit client: malformed UTF8 is refused without replacement or transport",
+        "duration_ms": 0.395283,
+        "type": "test"
+      },
+      {
+        "ordinal": 24,
+        "name": "audit client: strict CLI grammar refuses duplicates/missing/unknown/relative/control options with no effects",
+        "duration_ms": 3.524997,
+        "type": "test"
+      },
+      {
+        "ordinal": 25,
+        "name": "audit client: explicit root must resolve to this repository rather than a caller-selected command",
+        "duration_ms": 1.580021,
+        "type": "test"
+      },
+      {
+        "ordinal": 26,
+        "name": "audit client: isError stops after the sole audit and emits no arbitrary server error",
+        "duration_ms": 6.000951,
+        "type": "test"
+      },
+      {
+        "ordinal": 27,
+        "name": "audit client: missing complete/structured/text tool fields refuse after exactly one call",
+        "duration_ms": 19.024247,
+        "type": "test"
+      },
+      {
+        "ordinal": 28,
+        "name": "audit client: text/structured divergence and duplicate text keys refuse without retry",
+        "duration_ms": 8.727107,
+        "type": "test"
+      },
+      {
+        "ordinal": 29,
+        "name": "audit client: altered artifact hash refuses and does not authenticate omitted core evidence",
+        "duration_ms": 4.669749,
+        "type": "test"
+      },
+      {
+        "ordinal": 30,
+        "name": "audit client: rehashed reference/usage/settings binding tamper refuses against exact request bytes",
+        "duration_ms": 11.077295,
+        "type": "test"
+      },
+      {
+        "ordinal": 31,
+        "name": "audit client: rehashed selected usage identity/order or denominator tamper refuses",
+        "duration_ms": 25.58464,
+        "type": "test"
+      },
+      {
+        "ordinal": 32,
+        "name": "audit client: rehashed null timing/rights/source-verification promotion refuses",
+        "duration_ms": 30.036169,
+        "type": "test"
+      },
+      {
+        "ordinal": 33,
+        "name": "audit client: oversized retained result is refused without echo or provisional artifact",
+        "duration_ms": 0.733489,
+        "type": "test"
+      },
+      {
+        "ordinal": 34,
+        "name": "audit client: response accessors/proxies are rejected without invoking caller getters",
+        "duration_ms": 1.178727,
+        "type": "test"
+      },
+      {
+        "ordinal": 35,
+        "name": "audit client: stderr exact-cap positive control is drained and never echoed",
+        "duration_ms": 3.990693,
+        "type": "test"
+      },
+      {
+        "ordinal": 36,
+        "name": "audit client: stderr overflow stops before the sole audit and closes once",
+        "duration_ms": 2.121864,
+        "type": "test"
+      },
+      {
+        "ordinal": 37,
+        "name": "audit client: queued work before connect dispatch is reobserved and cannot launch",
+        "duration_ms": 0.683916,
+        "type": "test"
+      },
+      {
+        "ordinal": 38,
+        "name": "audit client: synchronous connect acknowledgement exhausting work prevents audit dispatch",
+        "duration_ms": 0.567558,
+        "type": "test"
+      },
+      {
+        "ordinal": 39,
+        "name": "audit client: preceding acknowledgement microtask is observed before the next audit effect",
+        "duration_ms": 0.698383,
+        "type": "test"
+      },
+      {
+        "ordinal": 40,
+        "name": "audit client: native synthetic SDK positive send reaches the fixed adapter with one write and one close",
+        "duration_ms": 5.119815,
+        "type": "test"
+      },
+      {
+        "ordinal": 41,
+        "name": "audit client: native synthetic queued SDK compilation cannot write after the absolute deadline",
+        "duration_ms": 0.970053,
+        "type": "test"
+      },
+      {
+        "ordinal": 42,
+        "name": "audit client: native serializer crossing the absolute deadline refuses before any stdin write",
+        "duration_ms": 1.026681,
+        "type": "test"
+      },
+      {
+        "ordinal": 43,
+        "name": "audit client: reentrant abort during native serialization refuses before any stdin write",
+        "duration_ms": 1.034745,
+        "type": "test"
+      },
+      {
+        "ordinal": 44,
+        "name": "audit client: serialized legacy frame exact cap writes once and one byte overflow never writes",
+        "duration_ms": 15.127511,
+        "type": "test"
+      },
+      {
+        "ordinal": 45,
+        "name": "audit client: native write backpressure awaits one drain without sending a second frame",
+        "duration_ms": 5.565313,
+        "type": "test"
+      },
+      {
+        "ordinal": 46,
+        "name": "audit client: throwing native stdin writer rejects its Promise without retry or diagnostic echo",
+        "duration_ms": 0.916843,
+        "type": "test"
+      },
+      {
+        "ordinal": 47,
+        "name": "audit client: reentrant abort during connect prevents follow-up and closes once",
+        "duration_ms": 0.546117,
+        "type": "test"
+      },
+      {
+        "ordinal": 48,
+        "name": "audit client: late call completion after abort cannot upgrade refusal or retry",
+        "duration_ms": 89.196376,
+        "type": "test"
+      },
+      {
+        "ordinal": 49,
+        "name": "audit client: thrown protocol error is finite no-echo refusal with no hidden retry",
+        "duration_ms": 0.932794,
+        "type": "test"
+      },
+      {
+        "ordinal": 50,
+        "name": "audit client: a null SDK PID or uncertain close acknowledgement is not absence evidence",
+        "duration_ms": 9.268353,
+        "type": "test"
+      },
+      {
+        "ordinal": 51,
+        "name": "audit client: rejected close retains known PID and never publishes the validated artifact",
+        "duration_ms": 5.964012,
+        "type": "test"
+      },
+      {
+        "ordinal": 52,
+        "name": "audit client: synchronous close exceeding the reserve is reobserved and refused",
+        "duration_ms": 6.1438,
+        "type": "test"
+      },
+      {
+        "ordinal": 53,
+        "name": "audit client: final encoding exceeding the close reserve cannot publish success",
+        "duration_ms": 3.38864,
+        "type": "test"
+      },
+      {
+        "ordinal": 54,
+        "name": "audit client: backwards/nonfinite clock is refused without dispatch or raw diagnostics",
+        "duration_ms": 0.48908,
+        "type": "test"
+      },
+      {
+        "ordinal": 55,
+        "name": "audit client: actual guarded SDK direct CLI roundtrip matches delivered compact executor and closes its only child",
+        "duration_ms": 522.371392,
+        "type": "test"
+      },
+      {
+        "ordinal": 56,
+        "name": "audit client: actual guarded SDK symlink CLI has exact direct artifact parity and closes its only child",
+        "duration_ms": 388.713216,
+        "type": "test"
+      },
+      {
+        "ordinal": 57,
+        "name": "audit client: actual guarded SDK tool refusal still performs one call and confirms its owned child absent",
+        "duration_ms": 330.996134,
+        "type": "test"
+      }
+    ]
+  },
+  "node": "22.23.3",
+  "postbuild_guard_once_each": [
+    "standards/paper-evidence.html: generated skip link and focus target verified",
+    "dist/standards/paper-evidence.html: generated skip link and focus target verified"
+  ],
+  "captured_current_ref_open_alerts": 0,
+  "latest_languages": [
+    {
+      "language": "javascript-typescript",
+      "id": 1885941858,
+      "tested": "a16408486d01c456a8701c82c246a701fcd0ba85",
+      "results": 0,
+      "error": ""
+    },
+    {
+      "language": "python",
+      "id": 1885940005,
+      "tested": "a16408486d01c456a8701c82c246a701fcd0ba85",
+      "results": 0,
+      "error": ""
+    }
+  ],
+  "source_disposition": "SEPARATE; exact independent SOURCE gates required",
+  "claim": "AUTHOR_EXACT_RETAINED_REMOTE_CI_ONLY_NOT_PEER_ACK",
+  "actions": {
+    "project_execution": false,
+    "SDK_import": false,
+    "new_CI_job_or_retry": false,
+    "metadata_only_saved_read_Git": true
+  },
+  "archive_allocation": null,
+  "owner_hierarchy": "ACTIVE; real outcomes unknown/null; PRIMARY solemergepub/Lead soleCPU/127policy"
+}

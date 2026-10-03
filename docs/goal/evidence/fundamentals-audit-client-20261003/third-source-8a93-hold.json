@@ -1,0 +1,1738 @@
+{
+  "schema": "canli.third.pr371.narrow-corrected-frozen-source-extension.v1",
+  "utc": "2026-10-03T12:44:43.242233+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "verdict": "HOLD_WITH_NARROW_STATIC_SOURCE_SCOPE_LIMITS",
+  "source": "8a93d9e6ebf13c17e7b6d3a8e6eac8407e177bfe",
+  "tree": "1d36777f4c2048f6cb7329d99474a3712bdd887f",
+  "soleParent": "acffb57bfad142c186e7690f65ce02c14ad79149",
+  "actualBase": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+  "sourceSignatureIndependentlyVerified": "G",
+  "sourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/source-8a93d9e6-v1.json",
+    "bytes": 2812376,
+    "sha256": "8094adf289ea3b347f3849a5445c140076315ca7c21aa8cff5b242624def3f24",
+    "physicalMode": "0600",
+    "regularSameFDStableFullread": true
+  },
+  "originalSourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/source-acffb57b-v1.json",
+    "bytes": 2808406,
+    "sha256": "5c5442b2f42dee4a28cb81ab0420fcd733681863a6c2588643840467c3495d6f",
+    "physicalMode": "0600",
+    "regularSameFDStableFullread": true
+  },
+  "originalIndependentSourceHOLD": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-peer/review-acffb57b-source-v1.json",
+    "bytes": 67019,
+    "sha256": "ab3864b60bdf5b506422ce2c144e95c6bce83a9aaed3e2e046c73003e69fed5f",
+    "physicalMode": "0600",
+    "regularSameFDStableFullread": true
+  },
+  "originalPrimarySourceHOLD": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/review-acffb57b-original-source-v1.json",
+    "bytes": 11066,
+    "sha256": "18068054aa9cead77524976aff76a10ccefc87cefc5a85260de56d4ba63eaf51",
+    "physicalMode": "0600",
+    "regularSameFDStableFullread": true
+  },
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/assignment-6551d996-primary-v1.md",
+    "bytes": 18154,
+    "sha256": "22ae289a2a3c43f899d400230faf297125d319a0fc59246696d7268891295ff8",
+    "physicalMode": "0600",
+    "regularSameFDStableFullread": true
+  },
+  "sourceBasis": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/source-basis-6551d996-primary-v1.json",
+    "bytes": 18724,
+    "sha256": "c16dc0dce1ddb1c02bb38d02b0e6f7b4006f1d08da2694d7eabfdb615a8d062b",
+    "physicalMode": "0600",
+    "regularSameFDStableFullread": true
+  },
+  "metadataRecipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-peer/inspect-8a93d9e6-source-extension-metadata-v1.py",
+    "bytes": 29052,
+    "sha256": "7a819703a47b9743e15792a826f3717010542e74b1ce144d01d7f0ab2cee25bd",
+    "physicalMode": "0644",
+    "regularSameFDStableFullread": true
+  },
+  "extensionOnly": "Exact parent delta and unchanged source/provenance carry; no repeated project semantic execution or author helper execution.",
+  "findings": [
+    {
+      "id": "CC-371-SDK-SEND-ABSOLUTE-DEADLINE",
+      "priority": "P2",
+      "disposition": "PARTIAL_FIX_QUEUED_SEND_ADMISSION_CLOSED_STATIC_FINAL_SERIALIZATION_WRITE_GAP_OPEN_AT_8A93",
+      "corroboratingOriginalPrimaryID": "CC-371-NATIVE-WIRE-SEND-ABSOLUTE-DEADLINE",
+      "originalPrimaryReceipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/review-acffb57b-original-source-v1.json",
+        "bytes": 11066,
+        "sha256": "18068054aa9cead77524976aff76a10ccefc87cefc5a85260de56d4ba63eaf51",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "currentSource": {
+        "path": "mcp-fundamentals/examples/audit-inputs-client.mjs",
+        "lines": [
+          302,
+          303,
+          304,
+          305,
+          306,
+          367,
+          370
+        ]
+      },
+      "lockedSDKSource": [
+        {
+          "member": "package/dist/stdio.mjs",
+          "lines": [
+            206,
+            207,
+            208,
+            209,
+            210,
+            211
+          ]
+        },
+        {
+          "member": "package/dist/src-DDAAhLnO.mjs",
+          "lines": [
+            6750,
+            6751
+          ]
+        }
+      ],
+      "problem": "The new wrapper reobserves at entry to transport.send, then delegates to the unchanged locked serializer. That serializer constructs the entire outbound JSON string and unconditionally calls stdin.write. The original absolute clock/abort/closed state is not reobserved between serialization and the native wire effect.",
+      "finiteStaticSchedule": {
+        "lastWrapperClock": "15000ms minus epsilon, with signal un-aborted and closed false",
+        "boundedSynchronousSerialization": "takes delta > epsilon for an admitted nonempty bounded outgoing JSON frame",
+        "followingEffect": "locked SDK performs stdin.write after the absolute 15000ms deadline before any queued timer can execute",
+        "lateObservation": "post-callback/work/report checks can refuse later but cannot retract that write",
+        "precision": "Source-level ordering counterexample only; epsilon/delta are symbolic, not observed durations or a claim of remote deadline overrun."
+      },
+      "newControlsScope": "The positive and queued-negative synthetic cases use a send stub that increments writes immediately and has no serializer. They meaningfully cover the queued-before-send correction, but do not cover a serialization step that crosses the deadline after send-wrapper admission.",
+      "originalThirdInstructionPrecision": "The original THIRD requested a guard before delegating the write. At8a that closes only the queued/compile portion. The more precise original PRIMARY explicitly required post-serialization native-write admission and warned that wrapping send before the locked serializer leaves this interval open. Both literal original receipts remain unchanged.",
+      "requiredNarrowCorrection": "In the owned client adapter, retain the pinned wire representation and Promise/cancellation/backpressure/one-close contracts, but reobserve the same absolute clock plus abort/closed/first-failure after bounded outbound serialization and immediately before the actual owned native write. Add native synthetic positive and zero-write controls for expiry during serialization; keep all original source cases and at most3 actual SDK child entries. Update guide transport-write wording to the exact implemented boundary.",
+      "runtimeReproducedByReviewer": false,
+      "runtimeCIClaim": null
+    }
+  ],
+  "closedStaticSourcePortions": [
+    {
+      "id": "CC-371-TEST-STDOUT-OBSERVER-DEMULTIPLEX",
+      "disposition": "CLOSED_STATIC_AT_8A93",
+      "proof": "Only the exact owned terminal-schema JSON prefix is captured. Every other original stdout chunk delegates through priorWrite.call(this,chunk,encoding,callback), preserving receiver, arguments and callback. All three actual SDK case bodies and their bounded one-terminal/parity/known-child-absence assertions otherwise remain exact.",
+      "runtimeValidation": "Separate new-head retained CI required; original42 names41PASS1FAIL/eightUNKNOWN preserved."
+    },
+    {
+      "id": "CC-371-SDK-SEND-ABSOLUTE-DEADLINE",
+      "portion": "SDK queued continuation before transport.send",
+      "disposition": "CLOSED_STATIC_PORTION_AT_8A93",
+      "proof": "Same adapter wraps its send with a fresh workBoundary after SDK schema compilation/queued continuations; rejects through Promise.reject on expiry/abort/closed. Positive synthetic write1 and late queued zero-write cases are meaningful WRITTEN source controls.",
+      "fullFinding": "REMAINS_OPEN: final locked serialization-to-native-write boundary described in findings."
+    }
+  ],
+  "additionalFindings": [],
+  "literalParentDelta": {
+    "pin": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/acffb57b-to-corrected-source-delta-v1.patch",
+      "bytes": 20109,
+      "sha256": "9d39e475bdbe94a7735f5f2248fb41f09ee6887bc0ca873b3822247aa2b4c254",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    "independentlyEqualsAllFrozenGitDiffBytes": true,
+    "paths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-fundamentals/examples/AUDIT_INPUTS_CLIENT.md",
+      "mcp-fundamentals/examples/audit-inputs-client.mjs",
+      "mcp-fundamentals/test/audit-inputs-client.test.mjs"
+    ],
+    "packageExactParent": true
+  },
+  "sourceGitIndex": {
+    "baseEntries": 6433,
+    "fullEntries": 6436,
+    "fullIndexEntries": 6436,
+    "allManifestRowsMatchedActualGit": true,
+    "allIndexEntriesExactSourceModeOID": true,
+    "sourceNULTable": {
+      "entries": 6436,
+      "bytes": 700192,
+      "sha256": "19accd8bce5e1ef80a32f24ad065b1bd1dac0ae3bffe76271de19cd75fb48073"
+    },
+    "baseNULTable": {
+      "entries": 6433,
+      "bytes": 699883,
+      "sha256": "6fdc9296b7fc929e3190463ea9d618ecbd1efc4000848bd3dfb7eeec9150083f"
+    },
+    "actualBaseDeltaExactlySix": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-fundamentals/examples/AUDIT_INPUTS_CLIENT.md",
+      "mcp-fundamentals/examples/audit-inputs-client.mjs",
+      "mcp-fundamentals/test/audit-inputs-client.test.mjs",
+      "package.json"
+    ],
+    "allOwnedWorkIndexGitPins": [
+      {
+        "path": "mcp-fundamentals/examples/audit-inputs-client.mjs",
+        "frozenGit": {
+          "path": "mcp-fundamentals/examples/audit-inputs-client.mjs",
+          "mode": "100644",
+          "kind": "blob",
+          "oid": "87ed1421fd2aa3e495d8be405c1b3ad56c8564ea",
+          "bytes": 32224,
+          "sha256": "b819dae6b7dbec58cdd4056bab1c1a85a693f6268faf770554fd880db07c60b5"
+        },
+        "indexEqualFrozen": true,
+        "working": {
+          "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/examples/audit-inputs-client.mjs",
+          "bytes": 32224,
+          "sha256": "b819dae6b7dbec58cdd4056bab1c1a85a693f6268faf770554fd880db07c60b5",
+          "physicalMode": "0644",
+          "regularSameFDStableFullread": true
+        },
+        "workIndexFrozenEqual": true
+      },
+      {
+        "path": "mcp-fundamentals/test/audit-inputs-client.test.mjs",
+        "frozenGit": {
+          "path": "mcp-fundamentals/test/audit-inputs-client.test.mjs",
+          "mode": "100644",
+          "kind": "blob",
+          "oid": "77096d38ae0e14c0fb2e48161e0bd854f13604cf",
+          "bytes": 43044,
+          "sha256": "b95f4ef1af021a8df1684d32bb56b02c65e8b1c92b2370a638a29ec5edf3f621"
+        },
+        "indexEqualFrozen": true,
+        "working": {
+          "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/test/audit-inputs-client.test.mjs",
+          "bytes": 43044,
+          "sha256": "b95f4ef1af021a8df1684d32bb56b02c65e8b1c92b2370a638a29ec5edf3f621",
+          "physicalMode": "0644",
+          "regularSameFDStableFullread": true
+        },
+        "workIndexFrozenEqual": true
+      },
+      {
+        "path": "mcp-fundamentals/examples/AUDIT_INPUTS_CLIENT.md",
+        "frozenGit": {
+          "path": "mcp-fundamentals/examples/AUDIT_INPUTS_CLIENT.md",
+          "mode": "100644",
+          "kind": "blob",
+          "oid": "bf529c29bfda95ab542a8fb4b7ebf3750e7d4933",
+          "bytes": 14057,
+          "sha256": "95231a9cfce9dc88d03e5cdc35ecb34955c6d607104708468af69c28a6dc86d7"
+        },
+        "indexEqualFrozen": true,
+        "working": {
+          "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/examples/AUDIT_INPUTS_CLIENT.md",
+          "bytes": 14057,
+          "sha256": "95231a9cfce9dc88d03e5cdc35ecb34955c6d607104708468af69c28a6dc86d7",
+          "physicalMode": "0644",
+          "regularSameFDStableFullread": true
+        },
+        "workIndexFrozenEqual": true
+      },
+      {
+        "path": "package.json",
+        "frozenGit": {
+          "path": "package.json",
+          "mode": "100644",
+          "kind": "blob",
+          "oid": "499578207c63d84cb2a55d2aab3ff7b097748288",
+          "bytes": 13579,
+          "sha256": "f5d3f48713b9139d2a35628da81abc6201b0a2a7ca7f160b1f983ccb29b49ac3"
+        },
+        "indexEqualFrozen": true,
+        "working": {
+          "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/package.json",
+          "bytes": 13579,
+          "sha256": "f5d3f48713b9139d2a35628da81abc6201b0a2a7ca7f160b1f983ccb29b49ac3",
+          "physicalMode": "0644",
+          "regularSameFDStableFullread": true
+        },
+        "workIndexFrozenEqual": true
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "frozenGit": {
+          "path": "docs/goal/STATUS.md",
+          "mode": "100644",
+          "kind": "blob",
+          "oid": "6ace43d309a15f31231fbe5cecdeeedccd7f3581",
+          "bytes": 205834,
+          "sha256": "d86a9f9226dfa3c0869d1e73a2d3a5f9aa15809b7ca513f4c583ce20a1db1919"
+        },
+        "indexEqualFrozen": true,
+        "working": {
+          "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/docs/goal/STATUS.md",
+          "bytes": 205834,
+          "sha256": "d86a9f9226dfa3c0869d1e73a2d3a5f9aa15809b7ca513f4c583ce20a1db1919",
+          "physicalMode": "0644",
+          "regularSameFDStableFullread": true
+        },
+        "workIndexFrozenEqual": true
+      },
+      {
+        "path": "docs/goal/LOG.md",
+        "frozenGit": {
+          "path": "docs/goal/LOG.md",
+          "mode": "100644",
+          "kind": "blob",
+          "oid": "777d6f99e43c4df5731ead07d2bc5526d8fe6a7b",
+          "bytes": 481198,
+          "sha256": "39b2d4c7b7cd0411a46e1116f59c672e115f350eee1d877407ff080624245a3b"
+        },
+        "indexEqualFrozen": true,
+        "working": {
+          "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/docs/goal/LOG.md",
+          "bytes": 481198,
+          "sha256": "39b2d4c7b7cd0411a46e1116f59c672e115f350eee1d877407ff080624245a3b",
+          "physicalMode": "0644",
+          "regularSameFDStableFullread": true
+        },
+        "workIndexFrozenEqual": true
+      }
+    ]
+  },
+  "inheritedProtectedGit": {
+    "entries": 6430,
+    "bytes": 404202276,
+    "allBaseParentCurrentModeTypeOIDSizeIdentitiesExact": true,
+    "allLiteralManifestRowsExact": true,
+    "wholePhysicalAudit": false
+  },
+  "selectedPhysicalPinsFullread": [
+    {
+      "path": "package.json",
+      "baseGit": {
+        "bytes": 13454,
+        "sha256": "b7ffd28c826bd396a0f5e64a196b7a92fc07517455cb8c0aa4483cd08c021845",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 13579,
+        "sha256": "f5d3f48713b9139d2a35628da81abc6201b0a2a7ca7f160b1f983ccb29b49ac3",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/package.json",
+        "bytes": 13579,
+        "sha256": "f5d3f48713b9139d2a35628da81abc6201b0a2a7ca7f160b1f983ccb29b49ac3",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "package-lock.json",
+      "baseGit": {
+        "bytes": 37957,
+        "sha256": "fe442d2f36df95cff3ae0993f843a89b85d3ee3f3454a0e00141139da0be8743",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 37957,
+        "sha256": "fe442d2f36df95cff3ae0993f843a89b85d3ee3f3454a0e00141139da0be8743",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/package-lock.json",
+        "bytes": 37957,
+        "sha256": "fe442d2f36df95cff3ae0993f843a89b85d3ee3f3454a0e00141139da0be8743",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "baseGit": {
+        "bytes": 5020,
+        "sha256": "7655f5eb2981474bec7c2d7a6210cd940d1f1a1baa813de5cc6a0eea49a6e9f1",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 5020,
+        "sha256": "7655f5eb2981474bec7c2d7a6210cd940d1f1a1baa813de5cc6a0eea49a6e9f1",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/.github/workflows/ci.yml",
+        "bytes": 5020,
+        "sha256": "7655f5eb2981474bec7c2d7a6210cd940d1f1a1baa813de5cc6a0eea49a6e9f1",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/package.json",
+      "baseGit": {
+        "bytes": 1366,
+        "sha256": "4e9a4eb7d0938b16c76d222146df8ca38a00c7ff7e460a43dd07117c615044e1",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 1366,
+        "sha256": "4e9a4eb7d0938b16c76d222146df8ca38a00c7ff7e460a43dd07117c615044e1",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/package.json",
+        "bytes": 1366,
+        "sha256": "4e9a4eb7d0938b16c76d222146df8ca38a00c7ff7e460a43dd07117c615044e1",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/package-lock.json",
+      "baseGit": {
+        "bytes": 6507,
+        "sha256": "22a97b5418f41335e202160809937ce5f435fb139dc97547db6602a438c96624",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 6507,
+        "sha256": "22a97b5418f41335e202160809937ce5f435fb139dc97547db6602a438c96624",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/package-lock.json",
+        "bytes": 6507,
+        "sha256": "22a97b5418f41335e202160809937ce5f435fb139dc97547db6602a438c96624",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/src/server.mjs",
+      "baseGit": {
+        "bytes": 64736,
+        "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 64736,
+        "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/src/server.mjs",
+        "bytes": 64736,
+        "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "baseGit": {
+        "bytes": 21651,
+        "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 21651,
+        "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/src/audit-inputs-core.mjs",
+        "bytes": 21651,
+        "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-stdio.mjs",
+      "baseGit": {
+        "bytes": 12929,
+        "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+        "mode": "100755"
+      },
+      "frozenGit": {
+        "bytes": 12929,
+        "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+        "mode": "100755"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/src/audit-inputs-stdio.mjs",
+        "bytes": 12929,
+        "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+        "physicalMode": "0755",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/src/canonical-json.mjs",
+      "baseGit": {
+        "bytes": 9481,
+        "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 9481,
+        "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/src/canonical-json.mjs",
+        "bytes": 9481,
+        "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/examples/audit-inputs-stdio.mjs",
+      "baseGit": {
+        "bytes": 12955,
+        "sha256": "de1deacff44907249640e8c6dfe4a0df9ec38dc27aed4a299e8ffed0146a421c",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 12955,
+        "sha256": "de1deacff44907249640e8c6dfe4a0df9ec38dc27aed4a299e8ffed0146a421c",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/examples/audit-inputs-stdio.mjs",
+        "bytes": 12955,
+        "sha256": "de1deacff44907249640e8c6dfe4a0df9ec38dc27aed4a299e8ffed0146a421c",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-core.test.mjs",
+      "baseGit": {
+        "bytes": 28084,
+        "sha256": "d818dc371dc4c6794a35cb6e5991f6b68736a5295c68a64a8c75a67cdc956a00",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 28084,
+        "sha256": "d818dc371dc4c6794a35cb6e5991f6b68736a5295c68a64a8c75a67cdc956a00",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/test/audit-inputs-core.test.mjs",
+        "bytes": 28084,
+        "sha256": "d818dc371dc4c6794a35cb6e5991f6b68736a5295c68a64a8c75a67cdc956a00",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-stdio.test.mjs",
+      "baseGit": {
+        "bytes": 28081,
+        "sha256": "9ccc50acea82d7755e650c5f57a9ae249b26708bd8ce99b73bdc5547beeb38ed",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 28081,
+        "sha256": "9ccc50acea82d7755e650c5f57a9ae249b26708bd8ce99b73bdc5547beeb38ed",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/test/audit-inputs-stdio.test.mjs",
+        "bytes": 28081,
+        "sha256": "9ccc50acea82d7755e650c5f57a9ae249b26708bd8ce99b73bdc5547beeb38ed",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-package.test.mjs",
+      "baseGit": {
+        "bytes": 37815,
+        "sha256": "497fce560d1e276cfe683b13b7c7cee0f8ef67af7c9d518ebd4779d177451e0d",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 37815,
+        "sha256": "497fce560d1e276cfe683b13b7c7cee0f8ef67af7c9d518ebd4779d177451e0d",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/test/audit-package.test.mjs",
+        "bytes": 37815,
+        "sha256": "497fce560d1e276cfe683b13b7c7cee0f8ef67af7c9d518ebd4779d177451e0d",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/AUDIT_INPUTS.md",
+      "baseGit": {
+        "bytes": 40194,
+        "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 40194,
+        "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/AUDIT_INPUTS.md",
+        "bytes": 40194,
+        "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/README.md",
+      "baseGit": {
+        "bytes": 13866,
+        "sha256": "ea2d9d029a2551f183027bdca564acf8d6e0c20139f251bbc2c1c31a0296990c",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 13866,
+        "sha256": "ea2d9d029a2551f183027bdca564acf8d6e0c20139f251bbc2c1c31a0296990c",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/README.md",
+        "bytes": 13866,
+        "sha256": "ea2d9d029a2551f183027bdca564acf8d6e0c20139f251bbc2c1c31a0296990c",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/CHANGELOG.md",
+      "baseGit": {
+        "bytes": 7647,
+        "sha256": "bbc7aad30c8f02a52b3083eaba104e932275f6fcf201c355a863f39593a1850a",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 7647,
+        "sha256": "bbc7aad30c8f02a52b3083eaba104e932275f6fcf201c355a863f39593a1850a",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/CHANGELOG.md",
+        "bytes": 7647,
+        "sha256": "bbc7aad30c8f02a52b3083eaba104e932275f6fcf201c355a863f39593a1850a",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-fundamentals/LICENSE",
+      "baseGit": {
+        "bytes": 1084,
+        "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 1084,
+        "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-fundamentals/LICENSE",
+        "bytes": 1084,
+        "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "mcp-execution/examples/paper-journal.mjs",
+      "baseGit": {
+        "bytes": 30641,
+        "sha256": "f668f2b216694d0fdcc7b507941162198c38c7534f75a47c4d2265754e7ae724",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 30641,
+        "sha256": "f668f2b216694d0fdcc7b507941162198c38c7534f75a47c4d2265754e7ae724",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/mcp-execution/examples/paper-journal.mjs",
+        "bytes": 30641,
+        "sha256": "f668f2b216694d0fdcc7b507941162198c38c7534f75a47c4d2265754e7ae724",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "docs/goal/MASTER_PLAN.md",
+      "baseGit": {
+        "bytes": 10062,
+        "sha256": "dcaa9f08fcf738ddf69450e7d8c67a8d894cb0d7853fd5489c50bcc096b60ae8",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 10062,
+        "sha256": "dcaa9f08fcf738ddf69450e7d8c67a8d894cb0d7853fd5489c50bcc096b60ae8",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/docs/goal/MASTER_PLAN.md",
+        "bytes": 10062,
+        "sha256": "dcaa9f08fcf738ddf69450e7d8c67a8d894cb0d7853fd5489c50bcc096b60ae8",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "docs/goal/VISION.md",
+      "baseGit": {
+        "bytes": 10046,
+        "sha256": "daa2095e7328192821acbe59806eccc2b7055ad4a59b555cb99f74c1eb3cf235",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 10046,
+        "sha256": "daa2095e7328192821acbe59806eccc2b7055ad4a59b555cb99f74c1eb3cf235",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/docs/goal/VISION.md",
+        "bytes": 10046,
+        "sha256": "daa2095e7328192821acbe59806eccc2b7055ad4a59b555cb99f74c1eb3cf235",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "docs/goal/README.md",
+      "baseGit": {
+        "bytes": 6899,
+        "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 6899,
+        "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/docs/goal/README.md",
+        "bytes": 6899,
+        "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "baseGit": {
+        "bytes": 8758,
+        "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 8758,
+        "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/docs/goal/REQUIREMENTS.md",
+        "bytes": 8758,
+        "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "baseGit": {
+        "bytes": 199977,
+        "sha256": "7a17d960a31e2a631ae4fa107120e5ab8f136d21c1f5ee592914cba749ddebc1",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 205834,
+        "sha256": "d86a9f9226dfa3c0869d1e73a2d3a5f9aa15809b7ca513f4c583ce20a1db1919",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/docs/goal/STATUS.md",
+        "bytes": 205834,
+        "sha256": "d86a9f9226dfa3c0869d1e73a2d3a5f9aa15809b7ca513f4c583ce20a1db1919",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "baseGit": {
+        "bytes": 5455,
+        "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 5455,
+        "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/docs/goal/PHASES.md",
+        "bytes": 5455,
+        "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "baseGit": {
+        "bytes": 475341,
+        "sha256": "d4525432fd0bfac9ec52a6163a5938812fab70f5ce38070c714f9a4dc3f630c2",
+        "mode": "100644"
+      },
+      "frozenGit": {
+        "bytes": 481198,
+        "sha256": "39b2d4c7b7cd0411a46e1116f59c672e115f350eee1d877407ff080624245a3b",
+        "mode": "100644"
+      },
+      "working": {
+        "path": "/Users/arhancanli/canlicapital-fundamentals-audit-client-20261003/docs/goal/LOG.md",
+        "bytes": 481198,
+        "sha256": "39b2d4c7b7cd0411a46e1116f59c672e115f350eee1d877407ff080624245a3b",
+        "physicalMode": "0644",
+        "regularSameFDStableFullread": true
+      },
+      "selectedWorkIndexGitEqual": true
+    }
+  ],
+  "wholeGoalPrefixes": [
+    {
+      "basis": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+      "path": "docs/goal/README.md",
+      "prefix_bytes": 6899,
+      "prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "whole_prefix_exact": true,
+      "appended_bytes": 0,
+      "sourceBytes": 6899,
+      "sourceSHA256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "independentlyWholePrefixVerified": true
+    },
+    {
+      "basis": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "prefix_bytes": 8758,
+      "prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "whole_prefix_exact": true,
+      "appended_bytes": 0,
+      "sourceBytes": 8758,
+      "sourceSHA256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "independentlyWholePrefixVerified": true
+    },
+    {
+      "basis": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+      "path": "docs/goal/STATUS.md",
+      "prefix_bytes": 199977,
+      "prefix_sha256": "7a17d960a31e2a631ae4fa107120e5ab8f136d21c1f5ee592914cba749ddebc1",
+      "whole_prefix_exact": true,
+      "appended_bytes": 5857,
+      "sourceBytes": 205834,
+      "sourceSHA256": "d86a9f9226dfa3c0869d1e73a2d3a5f9aa15809b7ca513f4c583ce20a1db1919",
+      "independentlyWholePrefixVerified": true
+    },
+    {
+      "basis": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+      "path": "docs/goal/PHASES.md",
+      "prefix_bytes": 5455,
+      "prefix_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "whole_prefix_exact": true,
+      "appended_bytes": 0,
+      "sourceBytes": 5455,
+      "sourceSHA256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "independentlyWholePrefixVerified": true
+    },
+    {
+      "basis": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+      "path": "docs/goal/LOG.md",
+      "prefix_bytes": 475341,
+      "prefix_sha256": "d4525432fd0bfac9ec52a6163a5938812fab70f5ce38070c714f9a4dc3f630c2",
+      "whole_prefix_exact": true,
+      "appended_bytes": 5857,
+      "sourceBytes": 481198,
+      "sourceSHA256": "39b2d4c7b7cd0411a46e1116f59c672e115f350eee1d877407ff080624245a3b",
+      "independentlyWholePrefixVerified": true
+    },
+    {
+      "basis": "acffb57bfad142c186e7690f65ce02c14ad79149",
+      "path": "docs/goal/README.md",
+      "prefix_bytes": 6899,
+      "prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "whole_prefix_exact": true,
+      "appended_bytes": 0,
+      "sourceBytes": 6899,
+      "sourceSHA256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "independentlyWholePrefixVerified": true
+    },
+    {
+      "basis": "acffb57bfad142c186e7690f65ce02c14ad79149",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "prefix_bytes": 8758,
+      "prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "whole_prefix_exact": true,
+      "appended_bytes": 0,
+      "sourceBytes": 8758,
+      "sourceSHA256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "independentlyWholePrefixVerified": true
+    },
+    {
+      "basis": "acffb57bfad142c186e7690f65ce02c14ad79149",
+      "path": "docs/goal/STATUS.md",
+      "prefix_bytes": 203900,
+      "prefix_sha256": "0e10ff2013b5b6ceb1ed6b3a9c97d311842eff98958ed64ac8d12b57fd804764",
+      "whole_prefix_exact": true,
+      "appended_bytes": 1934,
+      "sourceBytes": 205834,
+      "sourceSHA256": "d86a9f9226dfa3c0869d1e73a2d3a5f9aa15809b7ca513f4c583ce20a1db1919",
+      "independentlyWholePrefixVerified": true
+    },
+    {
+      "basis": "acffb57bfad142c186e7690f65ce02c14ad79149",
+      "path": "docs/goal/PHASES.md",
+      "prefix_bytes": 5455,
+      "prefix_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "whole_prefix_exact": true,
+      "appended_bytes": 0,
+      "sourceBytes": 5455,
+      "sourceSHA256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "independentlyWholePrefixVerified": true
+    },
+    {
+      "basis": "acffb57bfad142c186e7690f65ce02c14ad79149",
+      "path": "docs/goal/LOG.md",
+      "prefix_bytes": 479264,
+      "prefix_sha256": "cea5c2d5d02d3ce63fdf1bff392b64bbf2c6517e4b46af068f5268373d8a535a",
+      "whole_prefix_exact": true,
+      "appended_bytes": 1934,
+      "sourceBytes": 481198,
+      "sourceSHA256": "39b2d4c7b7cd0411a46e1116f59c672e115f350eee1d877407ff080624245a3b",
+      "independentlyWholePrefixVerified": true
+    }
+  ],
+  "package": {
+    "parentWholeBytesExact": true,
+    "oneFocusInsertionBytes": 125,
+    "oneInsertionDeleteRecoversActualBaseWholeBytes": true,
+    "rootVerifyWholeStringExact": true,
+    "noDefault7VersionDepsLocksBinModePackageMemberChange": true
+  },
+  "localImportClosureBaseParentCurrentExact": [
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-stdio.mjs",
+      "mode": "100755",
+      "kind": "blob",
+      "oid": "8ed08fc03502f68d56184da953efb294deec45bc",
+      "bytes": 12929,
+      "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+      "baseParentCurrentBytesModesExact": true,
+      "fullreadTextOnly": true
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "mode": "100644",
+      "kind": "blob",
+      "oid": "c772372609b7f37bb04c747898d168b64458e377",
+      "bytes": 21651,
+      "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+      "baseParentCurrentBytesModesExact": true,
+      "fullreadTextOnly": true
+    },
+    {
+      "path": "mcp-fundamentals/src/canonical-json.mjs",
+      "mode": "100644",
+      "kind": "blob",
+      "oid": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "baseParentCurrentBytesModesExact": true,
+      "fullreadTextOnly": true
+    }
+  ],
+  "SDKCachedSource": {
+    "tar": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-example/locked-client-static-source-2.1.0.tgz",
+      "bytes": 1603220,
+      "sha256": "52a76aa524e5655e12bd0859da6489a95642eb362e76e898cc57f3762ee33732",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    },
+    "SHA512MatchesProtectedLock": true,
+    "members": [
+      {
+        "tar_member": "package/dist/index.mjs",
+        "bytes": 253623,
+        "sha256": "f1f174a3f4902e6489078c9f5dd800e9da9d358d68099adebc965cdb275a0c4f",
+        "text_read_only": true,
+        "independentlyFullreadHashed": true
+      },
+      {
+        "tar_member": "package/dist/stdio.mjs",
+        "bytes": 6153,
+        "sha256": "89b2fb52b95d4b2ba79f1bd4e022282d9654177e4ee06ee904efeb8764d59b5c",
+        "text_read_only": true,
+        "independentlyFullreadHashed": true
+      },
+      {
+        "tar_member": "package/dist/src-DDAAhLnO.mjs",
+        "bytes": 305070,
+        "sha256": "743dee8114f52b5e7df4690770453f6655502cf729380757a392b1ff2ddb070d",
+        "text_read_only": true,
+        "independentlyFullreadHashed": true
+      }
+    ],
+    "clientVersion": "2.1.0",
+    "lazyImports": [
+      "@modelcontextprotocol/client",
+      "@modelcontextprotocol/client/stdio"
+    ],
+    "legacyNoProbeAndExactSecondToolDefinitionNoHeaderRetryCarried": true,
+    "readOnlyTarMembersToMemoryNoInstallOrImport": true
+  },
+  "narrowTextVerification": {
+    "module": {
+      "originalLines": 499,
+      "currentLines": 509,
+      "revertingOnlyReviewedSDKInjectionSendWrapperAndCallsiteRecoversEntireOriginalModuleBytes": true
+    },
+    "test": {
+      "originalLines": 442,
+      "currentLines": 483,
+      "revertingOnlyStdoutDemultiplexAndRemovingOneSyntheticHelperTwoControlsRecoversWholeOriginalTestBytes": true,
+      "original50NamesInExactOrderPreserved": true,
+      "newNames": [
+        "audit client: native synthetic SDK positive send reaches the fixed adapter with one write and one close",
+        "audit client: native synthetic queued SDK compilation cannot write after the absolute deadline"
+      ]
+    },
+    "guide": {
+      "originalLines": 222,
+      "currentLines": 236,
+      "literalDeltaFullread": true,
+      "wordingLimit": "Actual SDK transport-write guarantee is still too broad while the final serialization-to-write P2 remains open."
+    },
+    "allOtherNativeInputOutputSchemasCapsNullsSourceAuthorityCoreProtocolDefaultToolsAndClosureCodeExactOriginal": true,
+    "sdkModulesTrustedJSInjectionOnlyNoCLIOption": true,
+    "newNativeSyntheticCasesDoNotImportSDKOrStartActualChild": true
+  },
+  "writtenCaseInventory": {
+    "count": 52,
+    "nativeInjected": 49,
+    "plannedActualSDKEntries": 3,
+    "status": "WRITTEN_UNRUN_AT_CORRECTED_FREEZE_NOT_INDEPENDENTLY_EXECUTED",
+    "cases": [
+      {
+        "ordinal": 1,
+        "name": "audit client: native network/write/command denial is active before imports with owned fixture allowance",
+        "sourceLine": 214,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 2,
+        "name": "audit client: native full selected denominator and six statuses preserve exact whitespace bindings and nulls",
+        "sourceLine": 219,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 3,
+        "name": "audit client: every selected row remains present at the 64-row boundary",
+        "sourceLine": 230,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 4,
+        "name": "audit client: same-day timing retains an older selected diagnostic and null verdict",
+        "sourceLine": 235,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 5,
+        "name": "audit client: primitive SHA type/length/case is required before clock or transport callbacks",
+        "sourceLine": 241,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 6,
+        "name": "audit client: separately supplied SHA mismatch stops before connect with no repaired input",
+        "sourceLine": 248,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 7,
+        "name": "audit client: input native slots ignore own byteLength getters and preserve original bytes",
+        "sourceLine": 253,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 8,
+        "name": "audit client: proxy/shared/subclass and ordinary objects refuse before transport",
+        "sourceLine": 258,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 9,
+        "name": "audit client: each native per-input +1 cap refuses before dispatch",
+        "sourceLine": 266,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 10,
+        "name": "audit client: admitted positive aggregate equality preserves original padded bytes",
+        "sourceLine": 272,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 11,
+        "name": "audit client: individually admitted aggregate +1 refuses before copy/base64/dispatch",
+        "sourceLine": 277,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 12,
+        "name": "audit client: FD sizes and aggregate are admitted before any payload read",
+        "sourceLine": 280,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 13,
+        "name": "audit client: native FD individual +1 admission refuses before any payload read",
+        "sourceLine": 286,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 14,
+        "name": "audit client: FD positive control uses bounded short chunks and exactly one overflow probe per file",
+        "sourceLine": 293,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 15,
+        "name": "audit client: native symlink input is refused without reading its payload",
+        "sourceLine": 302,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 16,
+        "name": "audit client: nonregular FD admission refuses before payload allocation/read",
+        "sourceLine": 307,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 17,
+        "name": "audit client: target short read refuses after positive FD admission",
+        "sourceLine": 312,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 18,
+        "name": "audit client: target one-byte overflow refuses without dispatch",
+        "sourceLine": 317,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 19,
+        "name": "audit client: same target FD metadata mutation refuses with an asserted read effect",
+        "sourceLine": 322,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 20,
+        "name": "audit client: close-after-close error never retries a reused foreign descriptor",
+        "sourceLine": 327,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 21,
+        "name": "audit client: capture refusal still closes each owned FD once and retains close uncertainty",
+        "sourceLine": 337,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 22,
+        "name": "audit client: duplicate-key raw JSON is refused rather than repaired before dispatch",
+        "sourceLine": 344,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 23,
+        "name": "audit client: malformed UTF8 is refused without replacement or transport",
+        "sourceLine": 347,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 24,
+        "name": "audit client: strict CLI grammar refuses duplicates/missing/unknown/relative/control options with no effects",
+        "sourceLine": 350,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 25,
+        "name": "audit client: explicit root must resolve to this repository rather than a caller-selected command",
+        "sourceLine": 357,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 26,
+        "name": "audit client: isError stops after the sole audit and emits no arbitrary server error",
+        "sourceLine": 360,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 27,
+        "name": "audit client: missing complete/structured/text tool fields refuse after exactly one call",
+        "sourceLine": 363,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 28,
+        "name": "audit client: text/structured divergence and duplicate text keys refuse without retry",
+        "sourceLine": 368,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 29,
+        "name": "audit client: altered artifact hash refuses and does not authenticate omitted core evidence",
+        "sourceLine": 373,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 30,
+        "name": "audit client: rehashed reference/usage/settings binding tamper refuses against exact request bytes",
+        "sourceLine": 376,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 31,
+        "name": "audit client: rehashed selected usage identity/order or denominator tamper refuses",
+        "sourceLine": 381,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 32,
+        "name": "audit client: rehashed null timing/rights/source-verification promotion refuses",
+        "sourceLine": 387,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 33,
+        "name": "audit client: oversized retained result is refused without echo or provisional artifact",
+        "sourceLine": 392,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 34,
+        "name": "audit client: response accessors/proxies are rejected without invoking caller getters",
+        "sourceLine": 395,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 35,
+        "name": "audit client: stderr exact-cap positive control is drained and never echoed",
+        "sourceLine": 402,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 36,
+        "name": "audit client: stderr overflow stops before the sole audit and closes once",
+        "sourceLine": 406,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 37,
+        "name": "audit client: queued work before connect dispatch is reobserved and cannot launch",
+        "sourceLine": 409,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 38,
+        "name": "audit client: synchronous connect acknowledgement exhausting work prevents audit dispatch",
+        "sourceLine": 414,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 39,
+        "name": "audit client: preceding acknowledgement microtask is observed before the next audit effect",
+        "sourceLine": 417,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 40,
+        "name": "audit client: native synthetic SDK positive send reaches the fixed adapter with one write and one close",
+        "sourceLine": 420,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 41,
+        "name": "audit client: native synthetic queued SDK compilation cannot write after the absolute deadline",
+        "sourceLine": 427,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 42,
+        "name": "audit client: reentrant abort during connect prevents follow-up and closes once",
+        "sourceLine": 435,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 43,
+        "name": "audit client: late call completion after abort cannot upgrade refusal or retry",
+        "sourceLine": 438,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 44,
+        "name": "audit client: thrown protocol error is finite no-echo refusal with no hidden retry",
+        "sourceLine": 444,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 45,
+        "name": "audit client: a null SDK PID or uncertain close acknowledgement is not absence evidence",
+        "sourceLine": 447,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 46,
+        "name": "audit client: rejected close retains known PID and never publishes the validated artifact",
+        "sourceLine": 450,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 47,
+        "name": "audit client: synchronous close exceeding the reserve is reobserved and refused",
+        "sourceLine": 454,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 48,
+        "name": "audit client: final encoding exceeding the close reserve cannot publish success",
+        "sourceLine": 457,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 49,
+        "name": "audit client: backwards/nonfinite clock is refused without dispatch or raw diagnostics",
+        "sourceLine": 463,
+        "plannedType": "native/injected"
+      },
+      {
+        "ordinal": 50,
+        "name": "audit client: actual guarded SDK direct CLI roundtrip matches delivered compact executor and closes its only child",
+        "sourceLine": 468,
+        "plannedType": "SDK entry"
+      },
+      {
+        "ordinal": 51,
+        "name": "audit client: actual guarded SDK symlink CLI has exact direct artifact parity and closes its only child",
+        "sourceLine": 474,
+        "plannedType": "SDK entry"
+      },
+      {
+        "ordinal": 52,
+        "name": "audit client: actual guarded SDK tool refusal still performs one call and confirms its owned child absent",
+        "sourceLine": 479,
+        "plannedType": "SDK entry"
+      }
+    ]
+  },
+  "originalFailureCustody": {
+    "analysis": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/initial-acffb57b-failure-analysis-v1.json",
+      "bytes": 9259,
+      "sha256": "2305bdd7eabe6f94f89224aaa8cc1ec0de32be8ab672a682424d4ef96e3ec745",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    "rawOriginals": [
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/acffb57b-mcp-raw-original-v2.log",
+        "bytes": 257178,
+        "sha256": "1751397d119bc846d2fd26b3298ed95f2f4e1f51e64828619d839a040948a7f6",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/acffb57b-root-raw-original-v2.log",
+        "bytes": 698140,
+        "sha256": "b234a7312609cbef276f828b080a89870e483c7d90a50dc5a517f9eebe4d8a78",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      }
+    ],
+    "original42NamedOutcomesIndependentlyExtracted": [
+      {
+        "name": "audit client: native network/write/command denial is active before imports with owned fixture allowance",
+        "status": "ok",
+        "ordinal": 1,
+        "rawLine": 1611
+      },
+      {
+        "name": "audit client: native full selected denominator and six statuses preserve exact whitespace bindings and nulls",
+        "status": "ok",
+        "ordinal": 2,
+        "rawLine": 1617
+      },
+      {
+        "name": "audit client: every selected row remains present at the 64-row boundary",
+        "status": "ok",
+        "ordinal": 3,
+        "rawLine": 1623
+      },
+      {
+        "name": "audit client: same-day timing retains an older selected diagnostic and null verdict",
+        "status": "ok",
+        "ordinal": 4,
+        "rawLine": 1629
+      },
+      {
+        "name": "audit client: primitive SHA type/length/case is required before clock or transport callbacks",
+        "status": "ok",
+        "ordinal": 5,
+        "rawLine": 1635
+      },
+      {
+        "name": "audit client: separately supplied SHA mismatch stops before connect with no repaired input",
+        "status": "ok",
+        "ordinal": 6,
+        "rawLine": 1641
+      },
+      {
+        "name": "audit client: input native slots ignore own byteLength getters and preserve original bytes",
+        "status": "ok",
+        "ordinal": 7,
+        "rawLine": 1647
+      },
+      {
+        "name": "audit client: proxy/shared/subclass and ordinary objects refuse before transport",
+        "status": "ok",
+        "ordinal": 8,
+        "rawLine": 1653
+      },
+      {
+        "name": "audit client: each native per-input +1 cap refuses before dispatch",
+        "status": "ok",
+        "ordinal": 9,
+        "rawLine": 1659
+      },
+      {
+        "name": "audit client: admitted positive aggregate equality preserves original padded bytes",
+        "status": "ok",
+        "ordinal": 10,
+        "rawLine": 1665
+      },
+      {
+        "name": "audit client: individually admitted aggregate +1 refuses before copy/base64/dispatch",
+        "status": "ok",
+        "ordinal": 11,
+        "rawLine": 1671
+      },
+      {
+        "name": "audit client: FD sizes and aggregate are admitted before any payload read",
+        "status": "ok",
+        "ordinal": 12,
+        "rawLine": 1677
+      },
+      {
+        "name": "audit client: native FD individual +1 admission refuses before any payload read",
+        "status": "ok",
+        "ordinal": 13,
+        "rawLine": 1683
+      },
+      {
+        "name": "audit client: FD positive control uses bounded short chunks and exactly one overflow probe per file",
+        "status": "ok",
+        "ordinal": 14,
+        "rawLine": 1689
+      },
+      {
+        "name": "audit client: native symlink input is refused without reading its payload",
+        "status": "ok",
+        "ordinal": 15,
+        "rawLine": 1695
+      },
+      {
+        "name": "audit client: nonregular FD admission refuses before payload allocation/read",
+        "status": "ok",
+        "ordinal": 16,
+        "rawLine": 1701
+      },
+      {
+        "name": "audit client: target short read refuses after positive FD admission",
+        "status": "ok",
+        "ordinal": 17,
+        "rawLine": 1707
+      },
+      {
+        "name": "audit client: target one-byte overflow refuses without dispatch",
+        "status": "ok",
+        "ordinal": 18,
+        "rawLine": 1713
+      },
+      {
+        "name": "audit client: same target FD metadata mutation refuses with an asserted read effect",
+        "status": "ok",
+        "ordinal": 19,
+        "rawLine": 1719
+      },
+      {
+        "name": "audit client: close-after-close error never retries a reused foreign descriptor",
+        "status": "ok",
+        "ordinal": 20,
+        "rawLine": 1725
+      },
+      {
+        "name": "audit client: capture refusal still closes each owned FD once and retains close uncertainty",
+        "status": "ok",
+        "ordinal": 21,
+        "rawLine": 1731
+      },
+      {
+        "name": "audit client: duplicate-key raw JSON is refused rather than repaired before dispatch",
+        "status": "ok",
+        "ordinal": 22,
+        "rawLine": 1737
+      },
+      {
+        "name": "audit client: malformed UTF8 is refused without replacement or transport",
+        "status": "ok",
+        "ordinal": 23,
+        "rawLine": 1743
+      },
+      {
+        "name": "audit client: strict CLI grammar refuses duplicates/missing/unknown/relative/control options with no effects",
+        "status": "ok",
+        "ordinal": 24,
+        "rawLine": 1749
+      },
+      {
+        "name": "audit client: explicit root must resolve to this repository rather than a caller-selected command",
+        "status": "ok",
+        "ordinal": 25,
+        "rawLine": 1755
+      },
+      {
+        "name": "audit client: isError stops after the sole audit and emits no arbitrary server error",
+        "status": "ok",
+        "ordinal": 26,
+        "rawLine": 1761
+      },
+      {
+        "name": "audit client: missing complete/structured/text tool fields refuse after exactly one call",
+        "status": "ok",
+        "ordinal": 27,
+        "rawLine": 1767
+      },
+      {
+        "name": "audit client: text/structured divergence and duplicate text keys refuse without retry",
+        "status": "ok",
+        "ordinal": 28,
+        "rawLine": 1773
+      },
+      {
+        "name": "audit client: altered artifact hash refuses and does not authenticate omitted core evidence",
+        "status": "ok",
+        "ordinal": 29,
+        "rawLine": 1779
+      },
+      {
+        "name": "audit client: rehashed reference/usage/settings binding tamper refuses against exact request bytes",
+        "status": "ok",
+        "ordinal": 30,
+        "rawLine": 1785
+      },
+      {
+        "name": "audit client: rehashed selected usage identity/order or denominator tamper refuses",
+        "status": "ok",
+        "ordinal": 31,
+        "rawLine": 1791
+      },
+      {
+        "name": "audit client: rehashed null timing/rights/source-verification promotion refuses",
+        "status": "ok",
+        "ordinal": 32,
+        "rawLine": 1797
+      },
+      {
+        "name": "audit client: oversized retained result is refused without echo or provisional artifact",
+        "status": "ok",
+        "ordinal": 33,
+        "rawLine": 1803
+      },
+      {
+        "name": "audit client: response accessors/proxies are rejected without invoking caller getters",
+        "status": "ok",
+        "ordinal": 34,
+        "rawLine": 1809
+      },
+      {
+        "name": "audit client: stderr exact-cap positive control is drained and never echoed",
+        "status": "ok",
+        "ordinal": 35,
+        "rawLine": 1815
+      },
+      {
+        "name": "audit client: stderr overflow stops before the sole audit and closes once",
+        "status": "ok",
+        "ordinal": 36,
+        "rawLine": 1821
+      },
+      {
+        "name": "audit client: queued work before connect dispatch is reobserved and cannot launch",
+        "status": "ok",
+        "ordinal": 37,
+        "rawLine": 1827
+      },
+      {
+        "name": "audit client: synchronous connect acknowledgement exhausting work prevents audit dispatch",
+        "status": "ok",
+        "ordinal": 38,
+        "rawLine": 1833
+      },
+      {
+        "name": "audit client: preceding acknowledgement microtask is observed before the next audit effect",
+        "status": "ok",
+        "ordinal": 39,
+        "rawLine": 1839
+      },
+      {
+        "name": "audit client: reentrant abort during connect prevents follow-up and closes once",
+        "status": "ok",
+        "ordinal": 40,
+        "rawLine": 1845
+      },
+      {
+        "name": "audit client: actual guarded SDK symlink CLI has exact direct artifact parity and closes its only child",
+        "status": "not ok",
+        "ordinal": 41,
+        "rawLine": 1851
+      },
+      {
+        "name": "audit client: actual guarded SDK tool refusal still performs one call and confirms its owned child absent",
+        "status": "ok",
+        "ordinal": 42,
+        "rawLine": 1874
+      }
+    ],
+    "counts": {
+      "retainedNames": 42,
+      "pass": 41,
+      "fail": 1,
+      "missingUnknown": 8
+    },
+    "missingOriginalNamesRemainUnknown": [
+      "audit client: late call completion after abort cannot upgrade refusal or retry",
+      "audit client: thrown protocol error is finite no-echo refusal with no hidden retry",
+      "audit client: a null SDK PID or uncertain close acknowledgement is not absence evidence",
+      "audit client: rejected close retains known PID and never publishes the validated artifact",
+      "audit client: synchronous close exceeding the reserve is reobserved and refused",
+      "audit client: final encoding exceeding the close reserve cannot publish success",
+      "audit client: backwards/nonfinite clock is refused without dispatch or raw diagnostics",
+      "audit client: actual guarded SDK direct CLI roundtrip matches delivered compact executor and closes its only child"
+    ],
+    "oldOutcomesNotRelabeledNewSource": true
+  },
+  "currentCI": {
+    "verdict": null,
+    "sourceGateDoesNotSubstituteForCI": true,
+    "requestStatus": "Separate retained-currentCI gate after author captures complete underlying originals"
+  },
+  "liveObservation": {
+    "headBefore": "8a93d9e6ebf13c17e7b6d3a8e6eac8407e177bfe",
+    "headAfter": "8a93d9e6ebf13c17e7b6d3a8e6eac8407e177bfe",
+    "porcelainBefore": "",
+    "porcelainAfter": "",
+    "cleanAtBothMetadataObservations": true
+  },
+  "ROOTFiveContinuityFullyRead": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 71156,
+      "sha256": "7a00cf4da0ca43a95df34b0d311184bef434bfcaa078d6d73edc99e3633e7256",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1090794,
+      "sha256": "46a9c9b3667d2636491f74eae138b7d514cb99931004162c0714bd8bda3d79dc",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 79158,
+      "sha256": "37d5d1e9414a2f49c5156969fefcb6e905e666850f2632ba5cd96a81711431f6",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1435644,
+      "sha256": "0ddd403ee2df3b810a7bdb11d52c9b6ac538de5152b29ee6ab4c4aec682b12bc",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    }
+  ],
+  "effects": {
+    "ownPrivateMetadataRecipeAndReceiptOnly": true,
+    "readOnlyLocalGitAndCachedText": true,
+    "projectSourceEdits": false,
+    "archiveEdits": false,
+    "projectImportsEvaluationTestsCLIHelpersBuildBrowserGET": false,
+    "APIRefetchProcessProbeJobGrantProviderModelResourcesSpendPublication": false
+  },
+  "scopeLimits": [
+    "Source-only event ordering; no native timing probe or observed deadline-overrun claim.",
+    "Inherited exact-byte semantic review carries only the unchanged sections; no new core/source-authentication or universal hostile-preemption/PIDABA/descendant guarantee.",
+    "Current remote CI is separate. No archive allocation or future head/merge/delivery/publisher acceptance."
+  ],
+  "ownerHierarchy": {
+    "allFullGoals": "ACTIVE",
+    "realIndexedExpertRightsLabelsAdoptionQualifiedStrategyOutcomes": null,
+    "primarySoleMergePublication": true,
+    "leadSoleCPU": true,
+    "observer127PolicyRoleUnchanged": true
+  }
+}

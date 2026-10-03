@@ -1,0 +1,20 @@
+{
+  "schema": "canlicapital.primary.metadata-reader-correction.v1",
+  "observed_at": "2026-10-03T10:59:40.803121+00:00",
+  "failed_command": [
+    "git",
+    "--no-optional-locks",
+    "-C",
+    "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003",
+    "show",
+    "6551d99672b4aa6b7629f487986a163bf7d845e4:MASTER_PLAN.md"
+  ],
+  "exit_code": 128,
+  "original_tool_error": "subprocess.CalledProcessError: Command git show 6551d99672b4aa6b7629f487986a163bf7d845e4:MASTER_PLAN.md returned non-zero exit status 128.",
+  "scope": "source-basis metadata writer assumed repository-root MASTER_PLAN; actual exact Git paths discovered read-only below. No project import/runtime/test, product failure or source edit. Fresh-main captures already retained unchanged.",
+  "actual_paths": [
+    "docs/IMMERSION_VISION.md",
+    "docs/goal/MASTER_PLAN.md",
+    "docs/goal/VISION.md"
+  ]
+}
