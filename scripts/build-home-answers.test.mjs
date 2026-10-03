@@ -10,7 +10,16 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const config = JSON.parse(readFileSync(resolve(ROOT, "config", "home-answers.json"), "utf8"));
 const page = readFileSync(resolve(ROOT, "index.html"), "utf8");
 const clone = () => structuredClone(config);
-const text = (html) => html.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+// Visible text of a fragment, for comparing two renderings of the same words. Tags are stripped
+// until none remain (one pass can leave a tag assembled from the pieces of two), and &amp; is
+// decoded last, so "&amp;quot;" stays the five characters it encodes.
+function stripTags(html) {
+  let previous;
+  let out = html;
+  do { previous = out; out = out.replace(/<[^>]*>/g, ""); } while (out !== previous);
+  return out;
+}
+const text = (html) => stripTags(html).replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 const region = (html, [start, end]) => html.slice(html.indexOf(start) + start.length, html.indexOf(end));
 
 test("the committed homepage is what the generator writes", () => {
