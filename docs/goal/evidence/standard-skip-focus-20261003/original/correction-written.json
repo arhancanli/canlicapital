@@ -1,0 +1,70 @@
+{
+  "schema": "canli.primary.pr368.codeql91-correction-written.v1",
+  "utc": "2026-10-03T03:01:56.029553+00:00",
+  "original_signed_head": "4166b968edfa106bea879fed675bf86b19c0220a",
+  "original_source": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/source-4166b968-standard-skip-focus.json",
+    "bytes": 2196728,
+    "sha256": "cbf80509d02c374860b7895165859f223d22c139c9d4208486c35ee042e2f9b3"
+  },
+  "original_codeql_alerts": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-alerts-original.json",
+    "bytes": 6215,
+    "sha256": "811a5a386fb76b736194376b6c1b0ad3443c09800b4548e65fe83ef111e2a3a4"
+  },
+  "original_codeql_annotations": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-annotations-original.json",
+    "bytes": 567,
+    "sha256": "907f5bd96b9ef373baa60d0b8a1181245e18230c0ccf8cb4eb2848df51e27292"
+  },
+  "original_final_status": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-final-status-original.json",
+    "bytes": 2267,
+    "sha256": "15d049029e37fffd9bc398edae51edc93856f49e3dd2dc5c55e434c94dea4ff2"
+  },
+  "original_vite_raw": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-vite-raw-original.log",
+    "bytes": 665441,
+    "sha256": "c07c405806e72add5b4d7de776899e6c29553008a21e1223ff1c46d3b6aed8d4"
+  },
+  "original_mcp_raw": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-mcp-raw-original.log",
+    "bytes": 299029,
+    "sha256": "6800d9466c3a5dfaf1c4dff3fee17ab87d46b09c87e79135a51d6ae6e281e4e0"
+  },
+  "original_runtime": {
+    "new_source_named_cases": 8,
+    "new_cases_passed_once_root": 8,
+    "new_cases_in_mcp": 0,
+    "root_tap_suites": [
+      6,
+      1116,
+      9
+    ],
+    "mcp_tap_suites": [
+      141,
+      1,
+      82,
+      119,
+      139
+    ],
+    "node": "22.23.3",
+    "source_and_dist_postbuild_guard": true,
+    "all_seven": false,
+    "checks_success": 6,
+    "checks_failure": 1,
+    "codeql_open_alerts": [
+      91
+    ]
+  },
+  "static_counterexample_unexecuted": "Deleting <!-- ignored -->, <script>ignored</script>, or <style>ignored</style> from <ma[ignored span]in id=\"content\" tabindex=\"-1\"> synthesizes a main token; no old counterexample runtime has been claimed.",
+  "correction": "Equal-length whitespace masking preserves ignored span boundaries without deleting/joining adjacent text.",
+  "additional_regression": "standard focus guard cannot join text across ignored spans into a main target",
+  "corrected_source_named_cases_written": 9,
+  "corrected_runtime": "UNRUN pending existing signed-new-head remote CI",
+  "same_frozen_html_and_package_as_original": true,
+  "original_v6_and_row41_preserved": true,
+  "remote_loss_cause": "UNPROVEN",
+  "no_local_project_runtime_grant_or_publication": true,
+  "full_owner_hierarchy": "ACTIVE"
+}

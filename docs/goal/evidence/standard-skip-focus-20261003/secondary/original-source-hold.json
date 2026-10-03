@@ -1,0 +1,95 @@
+{
+  "schema": "canli.secondary.standard-skip-focus-original-source-review.v1",
+  "utc": "2026-10-03T03:00:54.393282+00:00",
+  "head": "4166b968edfa106bea879fed675bf86b19c0220a",
+  "tree": "e48932ae3336790cee73b5c8388c4f6feb0aafcf",
+  "sole_parent": "27d7bd860ee903fac20cc6ad187535110a8cd198",
+  "signature": "G",
+  "manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/source-4166b968-standard-skip-focus.json",
+    "bytes": 2196728,
+    "sha256": "cbf80509d02c374860b7895165859f223d22c139c9d4208486c35ee042e2f9b3"
+  },
+  "source_basis": "Full frozen Git bytes for all six paths, complete new guard3955/test6696, old/new test and package/HTML diffs. Current working edits are not this reviewed candidate. No project import, helper execution, test, browser, GET, network, runtime or grant.",
+  "pins": {
+    "docs/goal/LOG.md": {
+      "bytes": 452753,
+      "sha256": "e9dc62006b159c1af78ad93bd303391f1fe6a1229d508ba16932fa1de215ce50"
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 177389,
+      "sha256": "a11f93f89012a2fb5d98c0bc37c20968fe4603692ec4bfccba17bd8ac1d3eba7"
+    },
+    "package.json": {
+      "bytes": 12997,
+      "sha256": "541e36346355a00782be006b0474d76907143c96c01fff1fba4a1f352abff5e0"
+    },
+    "scripts/skip-link-tabindex.test.mjs": {
+      "bytes": 6696,
+      "sha256": "e2aa01fc08a5651779b85487fc4db94d5da391052c52be9b2b1a87ade7ba3a4f"
+    },
+    "scripts/verify-standard-skip-focus.mjs": {
+      "bytes": 3955,
+      "sha256": "d47cc08bddb0577ca7bfc1ee5cffc0ede38b3223ee834be26c4f4df1dad716e7"
+    },
+    "standards/paper-evidence.html": {
+      "bytes": 25126,
+      "sha256": "2895268225749f1a5e798da302fe0400f5642330aebe1ed77b6671f8928d24f7"
+    }
+  },
+  "goal_prefixes": "All five original goal bytes/prefixes exact; STATUS/LOG append only.",
+  "package": "Exactly append final source/dist guard after all existing postbuild stages; all other package members/commands/defaults unchanged.",
+  "mirror": "Exactly dev-skip adds skip-link and unique main#content adds tabindex=-1; all other HTML bytes exact.",
+  "source_controls": [
+    {
+      "control": "Generated-template token parser",
+      "finding": "Case-folded tag/attribute names, unique main id=content, exact tabindex=-1, unique dev-skip anchor additionally carrying skip-link and href=#content; duplicate attributes refused. Static generated-template subset only."
+    },
+    {
+      "control": "Finite reader",
+      "finding": "FD-first O_RDONLY+NOFOLLOW+NONBLOCK; regular size<=2MiB before fixed2MiB+overflow allocation/read; same descriptor dev/ino/size/mtime/ctime and exact read-size equality; fatal UTF8; ownership cleared before sole finally close. No retry of ambiguous fd."
+    },
+    {
+      "control": "Source and final dist gate",
+      "finding": "Entry guard verifies both literal source and dist standard HTML at end of existing postbuild chain; no source generator or unrelated stage modification."
+    },
+    {
+      "control": "Written tests",
+      "finding": "Seven literal new cases plus added standard page loop=8. Positives/old missing tabindex/wrong target/class/duplicates/comment/script exclusion/UTF8 size/read tests meaningful; previous page loop body exact, previous PAGES entries preserved, class detector now supports multiple classes. No runtime asserted."
+    }
+  ],
+  "findings": [
+    {
+      "id": "PR368_ORIGINAL_CODEQL91_TAG_JOIN",
+      "priority": "P2",
+      "state": "HOLD_SOURCE_AND_ORIGINAL_REMOTE_CHECK",
+      "already_reported_by_primary": true,
+      "location": "scripts/verify-standard-skip-focus.mjs:17",
+      "source_counterexample": "A split <ma<!--fragment-->in id=\"content\" tabindex=\"-1\"> becomes literal <main...> when the comment is removed with an empty string. A matching normal dev-skip/skip-link anchor can then satisfy the parser even though no original literal main opening tag existed. No execution of this counterexample.",
+      "correction_required": "Preserve separation of ignored spans, with bounded regression; independently review a new immutable signed delta. No suppression or historical result rewrite."
+    }
+  ],
+  "additional_original_narrow_findings": [],
+  "retained_original_codeql": {
+    "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-alerts-original.json": {
+      "bytes": 6215,
+      "sha256": "811a5a386fb76b736194376b6c1b0ad3443c09800b4548e65fe83ef111e2a3a4"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-annotations-original.json": {
+      "bytes": 567,
+      "sha256": "907f5bd96b9ef373baa60d0b8a1181245e18230c0ccf8cb4eb2848df51e27292"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-check-original.json": {
+      "bytes": 2948,
+      "sha256": "240e2cd9b0cb3c7f2e4aa9293f04ae2b771c2c5ce86b3cff99796df51e76b87a"
+    }
+  },
+  "verdict": "HOLD_KNOWN_CODEQL91_SOURCE_FINDING; remaining narrow source controls consistent",
+  "scope_limits": [
+    "Not a general HTML5 parser, browser/focus/WCAG proof or source of remote attribute loss.",
+    "Existing actual V6 original EXIT1/TARGET_FRAGMENT and row41 closure immutable.",
+    "Broader protected-tree/date/deploy review remains THIRD scope; manifest reported identities not claimed as own physical reread.",
+    "No future candidate, runtime, grant, capacity, publication or publisher acknowledgement."
+  ],
+  "full_owner_hierarchy": "ACTIVE"
+}

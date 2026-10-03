@@ -1,0 +1,16 @@
+{
+  "schema": "canli.primary.pr368.log-capture-metadata-refusal.v1",
+  "utc": "2026-10-03T02:56:45.334822+00:00",
+  "argv": [
+    "gh",
+    "api",
+    "repos/arhancanli/canlicapital/actions/jobs/111111723986/logs"
+  ],
+  "exit_code": 1,
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr": "the response contains terminal escape sequences; pass --allow-escape-sequences to output it anyway\n",
+  "first_named_log_is_empty_refused_capture": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-mcp-original.log",
+  "project_runtime_retry": false,
+  "correction": "explicit --allow-escape-sequences for retained original logs; stdout captured privately, never printed as terminal control"
+}

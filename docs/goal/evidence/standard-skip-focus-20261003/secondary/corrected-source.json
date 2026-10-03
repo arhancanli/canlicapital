@@ -1,0 +1,139 @@
+{
+  "schema": "canli.secondary.standard-skip-focus.corrected-source-extension.v1",
+  "utc": "2026-10-03T03:10:22.715042+00:00",
+  "head": "76633be4f37422932f14af850d415f509ae01f8f",
+  "tree": "3b67480ab6a6c68e10e2ff26de76f2b01a691d6b",
+  "parent_original": "4166b968edfa106bea879fed675bf86b19c0220a",
+  "base_actual": "27d7bd860ee903fac20cc6ad187535110a8cd198",
+  "signature": "G",
+  "current_clean": true,
+  "manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/source-76633be4-standard-skip-focus.json",
+    "bytes": 2198590,
+    "sha256": "5104e5f0a978b2411e48fbbda1844dde5140676a6710f0c9fd36c6a1d9c3edca"
+  },
+  "prior_original_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-publication-secondary-peer/review-pr368-4166b968-original-source-v1.json",
+    "bytes": 5519,
+    "sha256": "ccc51d8b3b245ec58c985db1d00af82eead1713432348f8e07c145c333ddd70d",
+    "immutable_original_HOLD_retained": true
+  },
+  "exact_delta_paths": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "scripts/skip-link-tabindex.test.mjs",
+    "scripts/verify-standard-skip-focus.mjs"
+  ],
+  "scope_pins": {
+    "docs/goal/LOG.md": {
+      "bytes": 455433,
+      "sha256": "3efa9b1bac70983fc180b242702beb3720d9a2b1bbc363260472a816ac877cb8",
+      "current_work_index_git_exact": true
+    },
+    "docs/goal/STATUS.md": {
+      "bytes": 180069,
+      "sha256": "88fec4850e20462666356fa2c80d50b79fcbd18a9df6388a405ecc7cfd5d8930",
+      "current_work_index_git_exact": true
+    },
+    "package.json": {
+      "bytes": 12997,
+      "sha256": "541e36346355a00782be006b0474d76907143c96c01fff1fba4a1f352abff5e0",
+      "current_work_index_git_exact": true
+    },
+    "scripts/skip-link-tabindex.test.mjs": {
+      "bytes": 7168,
+      "sha256": "f52573577455fd23b1143b3be05f149fb9cf788cc90fe5d32f59c2ea83a060e5",
+      "current_work_index_git_exact": true
+    },
+    "scripts/verify-standard-skip-focus.mjs": {
+      "bytes": 4070,
+      "sha256": "1f95d3013734446ad6eccd1542ecac84050d27c65cd801fd28eb4902a758fdac",
+      "current_work_index_git_exact": true
+    },
+    "standards/paper-evidence.html": {
+      "bytes": 25126,
+      "sha256": "2895268225749f1a5e798da302fe0400f5642330aebe1ed77b6671f8928d24f7",
+      "current_work_index_git_exact": true
+    }
+  },
+  "ten_goal_prefixes": {
+    "27d7bd86:docs/goal/README.md": {
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "prefix_exact": true
+    },
+    "4166b968:docs/goal/README.md": {
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "prefix_exact": true
+    },
+    "27d7bd86:docs/goal/REQUIREMENTS.md": {
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "prefix_exact": true
+    },
+    "4166b968:docs/goal/REQUIREMENTS.md": {
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "prefix_exact": true
+    },
+    "27d7bd86:docs/goal/STATUS.md": {
+      "bytes": 173616,
+      "sha256": "1bce699f5561f7471cecfb5bbe64469f91b2bd0a6faccd991787d17973a3d762",
+      "prefix_exact": true
+    },
+    "4166b968:docs/goal/STATUS.md": {
+      "bytes": 177389,
+      "sha256": "a11f93f89012a2fb5d98c0bc37c20968fe4603692ec4bfccba17bd8ac1d3eba7",
+      "prefix_exact": true
+    },
+    "27d7bd86:docs/goal/PHASES.md": {
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "prefix_exact": true
+    },
+    "4166b968:docs/goal/PHASES.md": {
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "prefix_exact": true
+    },
+    "27d7bd86:docs/goal/LOG.md": {
+      "bytes": 448980,
+      "sha256": "aeecaa4ce727138d61663503b554d1f2b4787d2054e8670f8f69c0970ab0694d",
+      "prefix_exact": true
+    },
+    "4166b968:docs/goal/LOG.md": {
+      "bytes": 452753,
+      "sha256": "e9dc62006b159c1af78ad93bd303391f1fe6a1229d508ba16932fa1de215ce50",
+      "prefix_exact": true
+    }
+  },
+  "static_dispositions": [
+    {
+      "id": "PR368_ORIGINAL_CODEQL91_TAG_JOIN",
+      "state": "CLOSED_STATIC_SOURCE_AT_76633BE4",
+      "evidence": "Entire current guard equals original frozen3955B guard with only equal-length whitespace replacement and explanation comment. Each matched ignored span becomes exactly its original UTF16 length of spaces, so surviving nonwhitespace fragments never become adjacent. No old code/source or raw CodeQL result modified.",
+      "limit": "Fresh current CodeQL check and live/browser/build proof remain separate; this is no security-check runtime acknowledgement."
+    },
+    {
+      "control": "Ninth regression",
+      "evidence": "Exactly one new case; split <main across a comment, script and style span each expects TARGET_ID refusal; ordinary comment before whole standard remains positive. Entire previous test source equals new source after removing that exact block. Original eight cases and all previous page tests preserved.",
+      "runtime": "9_WRITTEN_UNRUN_CURRENT_PIN"
+    },
+    {
+      "control": "Protected source controls",
+      "evidence": "Package, two-attribute standard mirror, generator and all remaining original guard/reader bytes unchanged. FD-first regular2MiB, bounded overflow read, strict UTF8, sameFD stability and ownership-before-oneclose carry unchanged original scoped disposition. No repeated helper/source-wide audit or project execution."
+    }
+  ],
+  "findings": [],
+  "verdict": "PASS_WITH_NARROW_STATIC_SCOPE_LIMITS",
+  "limits": [
+    "Only frozen76633be4 source delta, no future-head or runtime/publisher ACK.",
+    "Original4166 source/CCC staticHOLD and original CodeQL91 failed checks/annotations/API evidence immutable.",
+    "Original V6 actual EXIT1/TARGET_FRAGMENT,row41 qualifiedclosure and pipelinefalse retained; remote attribute loss cause remains unproven.",
+    "Static generated-template contract is not HTML5/browser/focus/WCAG proof.",
+    "CurrentCI/sourcearchive/ordinarymerge/builtfocus/publisher/live/currentindexing remain separate.",
+    "No own import/test/GET/browser/helper/job/grant/provider/model/spend or publication."
+  ],
+  "full_owner_hierarchy": "ACTIVE"
+}
