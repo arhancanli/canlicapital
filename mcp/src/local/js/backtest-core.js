@@ -17,7 +17,6 @@
 
 import { calculateDsr, minimumTrackRecordLength, probabilisticSharpe } from "./dsr-core.js";
 import { finiteNumbers, perPeriodMoments } from "./moments-core.js";
-import { pboCscv } from "./pbo-core.js";
 
 export const BACKTEST_LIMITS = Object.freeze({
   max_prices: 20000,
@@ -295,6 +294,82 @@ export function cscvSplits(rows) {
   return splits >= 2 ? splits : 0;
 }
 
+// CSCV (Bailey, Borwein, Lopez de Prado and Zhu 2017) over every variant's returns, computed from
+// per-block sums: the Sharpe ratio of a union of blocks follows from the blocks' sums and sums of
+// squares, so each split costs blocks x variants instead of rows x variants. It follows pbo-core.js's
+// conventions exactly (contiguous blocks of floor(rows / splits), population standard deviation,
+// zero variance never best and ranked worst, the first of tied in-sample bests, average ranks out of
+// sample) and always evaluates every combination; js/backtest-core.test.js checks it returns the
+// same probability as pbo-core.js's exhaustive path. With 16 blocks that is 12,870 splits.
+function averageRanks(values) {
+  const order = values.map((v, i) => [v, i]).sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0));
+  const ranks = new Array(values.length);
+  let i = 0;
+  while (i < order.length) {
+    let j = i;
+    while (j + 1 < order.length && order[j + 1][0] === order[i][0]) j += 1;
+    const rank = (i + j + 2) / 2;
+    for (let m = i; m <= j; m += 1) ranks[order[m][1]] = rank;
+    i = j + 1;
+  }
+  return ranks;
+}
+
+export function fastCscv(columns, nSplits) {
+  const k = columns.length;
+  const n = columns[0].length;
+  if (k < 2) throw new RangeError("CSCV needs at least 2 variants");
+  if (!Number.isInteger(nSplits) || nSplits < 2 || nSplits % 2) throw new RangeError("CSCV needs an even number of blocks, at least 2");
+  const len = Math.floor(n / nSplits);
+  if (len < 1) throw new RangeError("Too few periods for that many blocks");
+  const s1 = new Float64Array(nSplits * k);
+  const s2 = new Float64Array(nSplits * k);
+  for (let j = 0; j < k; j += 1) {
+    const col = columns[j];
+    for (let b = 0; b < nSplits; b += 1) {
+      let a = 0;
+      let q = 0;
+      for (let t = b * len; t < (b + 1) * len; t += 1) { a += col[t]; q += col[t] * col[t]; }
+      s1[b * k + j] = a;
+      s2[b * k + j] = q;
+    }
+  }
+  const half = nSplits / 2;
+  const sharpe = (blocks) => {
+    const count = blocks.length * len;
+    const out = new Array(k);
+    for (let j = 0; j < k; j += 1) {
+      let a = 0;
+      let q = 0;
+      for (const b of blocks) { a += s1[b * k + j]; q += s2[b * k + j]; }
+      const mean = a / count;
+      const variance = q / count - mean * mean;
+      out[j] = variance > 0 ? mean / Math.sqrt(variance) : Number.NEGATIVE_INFINITY;
+    }
+    return out;
+  };
+  const idx = Array.from({ length: half }, (_, i) => i);
+  let combinations = 0;
+  let overfit = 0;
+  for (;;) {
+    const inSample = new Set(idx);
+    const outOfSample = [];
+    for (let b = 0; b < nSplits; b += 1) if (!inSample.has(b)) outOfSample.push(b);
+    const srIs = sharpe(idx);
+    let best = 0;
+    for (let j = 1; j < k; j += 1) if (srIs[j] > srIs[best]) best = j;
+    const omega = averageRanks(sharpe(outOfSample))[best] / (k + 1);
+    if (Math.log(omega / (1 - omega)) <= 0) overfit += 1;
+    combinations += 1;
+    let i = half - 1;
+    while (i >= 0 && idx[i] === nSplits - half + i) i -= 1;
+    if (i < 0) break;
+    idx[i] += 1;
+    for (let j = i + 1; j < half; j += 1) idx[j] = idx[j - 1] + 1;
+  }
+  return { pbo: overfit / combinations, n_combinations: combinations, exhaustive: true, block_length: len };
+}
+
 export function runBacktest({ prices, family, grid = {}, periods_per_year: ppy = 252, cost_bps: costBps = 5, allow_short: allowShort = false, dates }) {
   const p = checkPrices(prices);
   if (!(Number(ppy) > 0 && Number(ppy) <= 100000)) throw new RangeError("periods_per_year must be above 0");
@@ -351,9 +426,8 @@ export function runBacktest({ prices, family, grid = {}, periods_per_year: ppy =
   if (runs.length >= 2) {
     const splits = cscvSplits(evaluated);
     if (splits) {
-      const matrix = Array.from({ length: evaluated }, (_, t) => runs.map((r) => r.sim.returns[t]));
       try {
-        const pbo = pboCscv(matrix, { nSplits: splits, maxCombinations: 2000, seed: 42 });
+        const pbo = fastCscv(runs.map((r) => r.sim.returns), splits);
         validation.overfitting = { probability: Number(pbo.pbo.toFixed(4)), splits, combinations: pbo.n_combinations, exhaustive: pbo.exhaustive };
       } catch (error) { validation.overfitting = { not_run: error.message }; }
     } else {

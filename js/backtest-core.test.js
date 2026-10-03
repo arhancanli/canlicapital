@@ -1,9 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { performance as perf } from "node:perf_hooks";
+const performance_now = () => perf.now();
 
 import { calculateDsr } from "./dsr-core.js";
 import { perPeriodMoments } from "./moments-core.js";
-import { BACKTEST_LIMITS, cscvSplits, expandGrid, performance, positionsFor, runBacktest, simulate } from "./backtest-core.js";
+import { BACKTEST_LIMITS, cscvSplits, expandGrid, fastCscv, performance, positionsFor, runBacktest, simulate } from "./backtest-core.js";
+import { pboCscv } from "./pbo-core.js";
 import { makeRandom } from "./selection-risk-core.js";
 
 // A seeded random walk with drift, long enough for every family's warm-up.
@@ -141,4 +144,30 @@ test("CSCV block count is the largest even number up to 16 with blocks of at lea
 test("a run is deterministic: the same inputs give byte-identical output", () => {
   const args = { prices: walk(800, 21), family: "mean_reversion", grid: { window: [10, 20, 40], entry_z: [1, 1.5, 2] }, allow_short: true };
   assert.equal(JSON.stringify(runBacktest(args)), JSON.stringify(runBacktest(args)));
+});
+
+test("the fast CSCV returns exactly the shared validator's exhaustive probability", () => {
+  const next = makeRandom(99);
+  for (const [rows, configs, splits] of [[64, 6, 8], [300, 12, 12], [1200, 25, 16], [97, 4, 10]]) {
+    // Variants with a common factor, some duplicated and one constant, to exercise ties and zero variance.
+    const common = Array.from({ length: rows }, () => (next() - 0.5) / 50);
+    const columns = Array.from({ length: configs }, (_, j) => Float64Array.from(common, (c) => (j === 1 ? 0 : c * (0.5 + (j % 3)) + (next() - 0.5) / 100)));
+    columns[configs - 1] = Float64Array.from(columns[2]);
+    const matrix = Array.from({ length: rows }, (_, t) => columns.map((col) => col[t]));
+    const shared = pboCscv(matrix, { nSplits: splits, maxCombinations: 20000 });
+    const fast = fastCscv(columns, splits);
+    assert.equal(shared.exhaustive, true);
+    assert.equal(fast.n_combinations, shared.n_combinations, `${rows}x${configs}/${splits}`);
+    assert.equal(fast.pbo, shared.pbo, `${rows}x${configs}/${splits}`);
+  }
+});
+
+test("the worst case (20,000 prices, 200 variants) finishes well inside the hosted endpoint's 10 seconds", () => {
+  const prices = walk(20000, 17);
+  const started = performance_now();
+  const out = runBacktest({ prices, family: "momentum", grid: { lookback: Array.from({ length: 20 }, (_, i) => 10 + i * 10), skip: [0, 1, 2, 3, 4, 5, 10, 15, 20, 25] } });
+  const seconds = (performance_now() - started) / 1000;
+  assert.equal(out.variants.count, 200);
+  assert.equal(out.validation.overfitting.combinations, 12870);
+  assert.ok(seconds < 5, `${seconds.toFixed(2)} s`);
 });
