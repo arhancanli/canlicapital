@@ -1,0 +1,15 @@
+{
+  "schema": "canli.secondary.retained-ci.metadata-reader-refusal.v1",
+  "utc": "2026-10-03T03:03:14.035695+00:00",
+  "original_request": [
+    "gh",
+    "api",
+    "repos/arhancanli/canlicapital/actions/jobs/111112851014/logs"
+  ],
+  "gh_returncode": 1,
+  "original_error": "the response contains terminal escape sequences; pass --allow-escape-sequences to output it anyway\n",
+  "root_raw_saved_by_first_request": false,
+  "mcp_request_reached": false,
+  "source_or_project_runtime_failure": false,
+  "correction": "Use explicit gh --allow-escape-sequences, capture original bytes to private files, never render raw control text."
+}

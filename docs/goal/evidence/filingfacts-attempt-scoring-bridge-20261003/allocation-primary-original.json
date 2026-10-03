@@ -1,0 +1,609 @@
+{
+  "schema": "canli.primary.attempt-scoring.exact-documentary-allocation.v1",
+  "utc": "2026-10-03T04:07:57.534727+00:00",
+  "authority": "Existing owner implementation/publication authorization and accepted secondary attempt-scoring role. This allocates documentary paths only, not local runtime, provider/model execution, capacity or publication.",
+  "proposal": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/archive-proposal-5d3ab942-v1.json",
+    "bytes": 31586,
+    "sha256": "040b71689fc02be551766cbd4f925285544a093d7107041c17b9f2d7d2fafb78"
+  },
+  "private_byte_audit": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/primary-archive-preview-byte-audit-5d3ab942-v1.json",
+    "bytes": 22153,
+    "sha256": "d6201b430c2e2c2f6747b91e9eb6d12ec366da055a919e6701f8e2d011ad9eb0"
+  },
+  "source_head": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+  "source_tree": "73880eb2ba087e45a42550edfa400a18c9b376ed",
+  "prefix": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/",
+  "verdict": "EXACT_BOUNDED_DOCUMENTARY_SCOPE_ALLOCATED",
+  "initial_four_gates": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/primary-source-review-5d3ab942-v1.json",
+      "bytes": 11265,
+      "sha256": "349e1d7220e29d3a3428d0d10d2bb31832d6e79b0a4786f91df523929350057a",
+      "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "findings": [],
+      "full_read_hash": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/primary-retained-ci-review-5d3ab942-v1.json",
+      "bytes": 18647,
+      "sha256": "afc08ea76d4f0ebace109b03b5ee9845456dbbf301a0b246672963b2fed2586e",
+      "verdict": "PASS_EXACT_RETAINED_CURRENT_CI",
+      "findings": [],
+      "full_read_hash": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge-peer/review-5d3ab942-source.json",
+      "bytes": 23451,
+      "sha256": "027ac6831b6f7ffadc172be65ed27a65c895c2140b711ad0eca6cc559f1f332b",
+      "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "findings": [],
+      "full_read_hash": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge-peer/retained-ci-5d3ab942.json",
+      "bytes": 24142,
+      "sha256": "24d833d901dd24b45af9ab992b0565f9ba3fc286737e8c8bd3a2d24e0d4b5756",
+      "verdict": "PASS_EXACT_RETAINED_REMOTE_CI",
+      "findings": [],
+      "full_read_hash": true
+    }
+  ],
+  "initial_exact_members": [
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/assignment-original-118bfb54.md",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/next-assignment-attempt-scoring-bridge-20261003.md",
+        "bytes": 7963,
+        "sha256": "118bfb5437071a0614bf83f777a35f46ed48f3d869b64e0a00bf15097d4dbe85"
+      },
+      "stored": {
+        "bytes": 7963,
+        "sha256": "118bfb5437071a0614bf83f777a35f46ed48f3d869b64e0a00bf15097d4dbe85",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/package-registration-correction-18aa6035.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/next-assignment-attempt-scoring-bridge-package-registration-correction-v1.json",
+        "bytes": 1559,
+        "sha256": "18aa60355081cf435bde1710cdacdbe28231b0d0f41fb6fe6675a4dc65396126"
+      },
+      "stored": {
+        "bytes": 1559,
+        "sha256": "18aa60355081cf435bde1710cdacdbe28231b0d0f41fb6fe6675a4dc65396126",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/native-contract-before-implementation.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/phase-start-native-contract-v1.json",
+        "bytes": 2744,
+        "sha256": "ba0eb5444171b6d7689277757c1f562ef3b6ee43dee7574ffd57fb321a3db3e4"
+      },
+      "stored": {
+        "bytes": 2744,
+        "sha256": "ba0eb5444171b6d7689277757c1f562ef3b6ee43dee7574ffd57fb321a3db3e4",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/source-5d3ab942.json.gz",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/source-5d3ab942.json",
+        "bytes": 1240572,
+        "sha256": "f643c10158b46ed758748a91ef7d9329f8eb603e24820681f547aa417b8f1635"
+      },
+      "stored": {
+        "bytes": 244060,
+        "sha256": "0fd233c0129afa7647421bb69fe33f98f9a0676cf480a8766b0e62c522ad5ef0",
+        "mode": "100644",
+        "encoding": "gzip-single-member-mtime0"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/author-exact-ci-5d3ab942.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/exact-remote-ci-5d3ab942.json",
+        "bytes": 15642,
+        "sha256": "c27fd1c311327f3825c0019593264ba6e18048004386e8fc2734d7d15d24206a"
+      },
+      "stored": {
+        "bytes": 15642,
+        "sha256": "c27fd1c311327f3825c0019593264ba6e18048004386e8fc2734d7d15d24206a",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-alerts-original.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-alerts-original.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "stored": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-analyses-original.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-analyses-original.json",
+        "bytes": 1186,
+        "sha256": "66985c8af5650086a6029de70e84aa29407809048766f703714f63780cb27880"
+      },
+      "stored": {
+        "bytes": 1186,
+        "sha256": "66985c8af5650086a6029de70e84aa29407809048766f703714f63780cb27880",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-checks-original.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-checks-original.json",
+        "bytes": 24337,
+        "sha256": "4c1053d5340528e77cce645bedce1faf025b8207750c7a64b8b00ee98872384e"
+      },
+      "stored": {
+        "bytes": 24337,
+        "sha256": "4c1053d5340528e77cce645bedce1faf025b8207750c7a64b8b00ee98872384e",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-ci-run-original.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-ci-run-original.json",
+        "bytes": 13276,
+        "sha256": "35975a3de0e81ab9f5faa13c3bf6b096ef16586b0e7f77dc76368796b207b4e7"
+      },
+      "stored": {
+        "bytes": 13276,
+        "sha256": "35975a3de0e81ab9f5faa13c3bf6b096ef16586b0e7f77dc76368796b207b4e7",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-codeql-run-original.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-codeql-run-original.json",
+        "bytes": 13283,
+        "sha256": "dcfd0c3d85f3638bbf6f8e0db058fec444ad80bc7056c97d7ec314c17ad7070c"
+      },
+      "stored": {
+        "bytes": 13283,
+        "sha256": "dcfd0c3d85f3638bbf6f8e0db058fec444ad80bc7056c97d7ec314c17ad7070c",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-mcp-original.log.gz",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-mcp-original.log",
+        "bytes": 298748,
+        "sha256": "a246c7a388b7b2155d4f3ed9b286d798424094771c7dc31438bbfd6eafb960b8"
+      },
+      "stored": {
+        "bytes": 103410,
+        "sha256": "3ab363021017e3a41dc88168f869380449ececb691a954f88578e4a885b1fd70",
+        "mode": "100644",
+        "encoding": "gzip-single-member-mtime0"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-merge-ref-original.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-merge-ref-original.json",
+        "bytes": 357,
+        "sha256": "594496ae86203ecbd86e05cea848d0bbfed8c9037307765eab1d0bf5259863a3"
+      },
+      "stored": {
+        "bytes": 357,
+        "sha256": "594496ae86203ecbd86e05cea848d0bbfed8c9037307765eab1d0bf5259863a3",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-pull-original.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-pull-original.json",
+        "bytes": 18208,
+        "sha256": "6f78bdf1bbb59fb970f7220f8aa0b6c57095100b47f427adb877514777ad183c"
+      },
+      "stored": {
+        "bytes": 18208,
+        "sha256": "6f78bdf1bbb59fb970f7220f8aa0b6c57095100b47f427adb877514777ad183c",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-root-original.log.gz",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-root-original.log",
+        "bytes": 676614,
+        "sha256": "d40c21ea3bda6a9b0e01c156890f8925467be84d0a6d506421824c6b9d804a70"
+      },
+      "stored": {
+        "bytes": 126510,
+        "sha256": "90c4b051f1648994967c29f386e6ec9127394352ef229745c4f98599b8b4d3ef",
+        "mode": "100644",
+        "encoding": "gzip-single-member-mtime0"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/remote-5d3ab942-tested-merge-original.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-tested-merge-original.json",
+        "bytes": 2648,
+        "sha256": "c428d4fbff42ee73b5f207c0730a7be3adfffea06a1c05326019b0e5d4be4d50"
+      },
+      "stored": {
+        "bytes": 2648,
+        "sha256": "c428d4fbff42ee73b5f207c0730a7be3adfffea06a1c05326019b0e5d4be4d50",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/first-gh-log-escape-refusal-5d3ab942.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/first-gh-log-escape-refusal-5d3ab942.json",
+        "bytes": 636,
+        "sha256": "9ce38793c87e27a185aba2354e193ac64dbbed0a9d36c7e72307f79c967bf5cc"
+      },
+      "stored": {
+        "bytes": 636,
+        "sha256": "9ce38793c87e27a185aba2354e193ac64dbbed0a9d36c7e72307f79c967bf5cc",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/primary-source-5d3ab942.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/primary-source-review-5d3ab942-v1.json",
+        "bytes": 11265,
+        "sha256": "349e1d7220e29d3a3428d0d10d2bb31832d6e79b0a4786f91df523929350057a"
+      },
+      "stored": {
+        "bytes": 11265,
+        "sha256": "349e1d7220e29d3a3428d0d10d2bb31832d6e79b0a4786f91df523929350057a",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/primary-retained-ci-5d3ab942.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/primary-retained-ci-review-5d3ab942-v1.json",
+        "bytes": 18647,
+        "sha256": "afc08ea76d4f0ebace109b03b5ee9845456dbbf301a0b246672963b2fed2586e"
+      },
+      "stored": {
+        "bytes": 18647,
+        "sha256": "afc08ea76d4f0ebace109b03b5ee9845456dbbf301a0b246672963b2fed2586e",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/third-source-5d3ab942.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge-peer/review-5d3ab942-source.json",
+        "bytes": 23451,
+        "sha256": "027ac6831b6f7ffadc172be65ed27a65c895c2140b711ad0eca6cc559f1f332b"
+      },
+      "stored": {
+        "bytes": 23451,
+        "sha256": "027ac6831b6f7ffadc172be65ed27a65c895c2140b711ad0eca6cc559f1f332b",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/third-retained-ci-5d3ab942.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge-peer/retained-ci-5d3ab942.json",
+        "bytes": 24142,
+        "sha256": "24d833d901dd24b45af9ab992b0565f9ba3fc286737e8c8bd3a2d24e0d4b5756"
+      },
+      "stored": {
+        "bytes": 24142,
+        "sha256": "24d833d901dd24b45af9ab992b0565f9ba3fc286737e8c8bd3a2d24e0d4b5756",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/third-initial-two-gates-handoff.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge-peer/handoff-5d3ab942-initial-source-and-retained-ci.json",
+        "bytes": 3187,
+        "sha256": "9b7ad5f25187f5e1d9d10d825dc7a1b0d1ee88915ad5aec719d23ebb91916103"
+      },
+      "stored": {
+        "bytes": 3187,
+        "sha256": "9b7ad5f25187f5e1d9d10d825dc7a1b0d1ee88915ad5aec719d23ebb91916103",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/initial-four-gates-intake.json",
+      "origin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/initial-four-gates-intake-5d3ab942-v1.json",
+        "bytes": 4488,
+        "sha256": "e70b470ddefed5760577cb01c982ada6193d967c1a6d898e87bfe3abf77ec1da"
+      },
+      "stored": {
+        "bytes": 4488,
+        "sha256": "e70b470ddefed5760577cb01c982ada6193d967c1a6d898e87bfe3abf77ec1da",
+        "mode": "100644",
+        "encoding": "identity"
+      }
+    }
+  ],
+  "conditional_future_exact_members": [
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/actual-pr368-primary-delivery.json",
+      "maximum_original_bytes": 65536,
+      "maximum_stored_bytes": 65536,
+      "encoding": "identity",
+      "admission": "Exact PRIMARY authoritative ACTUAL ordinary merge receipt; no candidate main claim.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/actual-pr368-secondary-custody.json",
+      "maximum_original_bytes": 65536,
+      "maximum_stored_bytes": 65536,
+      "encoding": "identity",
+      "admission": "Own read-only actual delivery Git/tree/parent/diff custody; no project job.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-source.json.gz",
+      "maximum_original_bytes": 2097152,
+      "maximum_stored_bytes": 393216,
+      "encoding": "gzip-single-member-mtime0",
+      "admission": "Exact signed CLEAN ONE ACTUAL368 main integration manifest; all three 5d3 products exact, main protected identities/package/history union.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-author-exact-ci.json",
+      "maximum_original_bytes": 65536,
+      "maximum_stored_bytes": 65536,
+      "encoding": "identity",
+      "admission": "Captured and parsed existing new-head remote CI for actual integrated source; no nominal old count relabel.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-root-original.log.gz",
+      "maximum_original_bytes": 2097152,
+      "maximum_stored_bytes": 262144,
+      "encoding": "gzip-single-member-mtime0",
+      "admission": "Original integrated ROOT log.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-mcp-original.log.gz",
+      "maximum_original_bytes": 1048576,
+      "maximum_stored_bytes": 262144,
+      "encoding": "gzip-single-member-mtime0",
+      "admission": "Original integrated MCP log.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-pull-original.json",
+      "maximum_original_bytes": 32768,
+      "maximum_stored_bytes": 32768,
+      "encoding": "identity",
+      "admission": "Exact integrated head/base captured pull.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-ci-run-original.json",
+      "maximum_original_bytes": 32768,
+      "maximum_stored_bytes": 32768,
+      "encoding": "identity",
+      "admission": "Exact current integrated workflow run and attempt.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-codeql-run-original.json",
+      "maximum_original_bytes": 32768,
+      "maximum_stored_bytes": 32768,
+      "encoding": "identity",
+      "admission": "Exact current integrated CodeQL workflow run and attempt.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-checks-original.json",
+      "maximum_original_bytes": 65536,
+      "maximum_stored_bytes": 65536,
+      "encoding": "identity",
+      "admission": "All seven exact integrated-head checks.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-merge-ref-original.json",
+      "maximum_original_bytes": 4096,
+      "maximum_stored_bytes": 4096,
+      "encoding": "identity",
+      "admission": "Captured integrated pull merge ref.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-tested-merge-original.json",
+      "maximum_original_bytes": 16384,
+      "maximum_stored_bytes": 16384,
+      "encoding": "identity",
+      "admission": "Exact tested integrated merge tree and parents.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-analyses-original.json",
+      "maximum_original_bytes": 32768,
+      "maximum_stored_bytes": 32768,
+      "encoding": "identity",
+      "admission": "Current ref exact latest JS/PY and retained older analyses.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/integrated-alerts-original.json",
+      "maximum_original_bytes": 16384,
+      "maximum_stored_bytes": 16384,
+      "encoding": "identity",
+      "admission": "Captured integrated current-ref alert objects, including empty response.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/primary-integrated-source.json",
+      "maximum_original_bytes": 98304,
+      "maximum_stored_bytes": 98304,
+      "encoding": "identity",
+      "admission": "Separate PRIMARY current integrated source/history/protected/product gate.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/primary-integrated-retained-ci.json",
+      "maximum_original_bytes": 98304,
+      "maximum_stored_bytes": 98304,
+      "encoding": "identity",
+      "admission": "Separate PRIMARY exact integrated retained-CI gate.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/third-integrated-source.json",
+      "maximum_original_bytes": 98304,
+      "maximum_stored_bytes": 98304,
+      "encoding": "identity",
+      "admission": "Separate THIRD current integrated source/history/protected/product gate.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/third-integrated-retained-ci.json",
+      "maximum_original_bytes": 98304,
+      "maximum_stored_bytes": 98304,
+      "encoding": "identity",
+      "admission": "Separate THIRD exact integrated retained-CI gate.",
+      "origin": null,
+      "original_sha256": null,
+      "stored_sha256": null,
+      "state": "CONDITIONAL_DOCUMENTARY_SLOT_ONLY_NO_FUTURE_HEAD_OR_PASS_ACK"
+    }
+  ],
+  "document_exact_members": [
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/allocation-primary-original.json",
+      "maximum_original_bytes": 32768,
+      "maximum_stored_bytes": 32768,
+      "encoding": "identity",
+      "admission": "Exact separate PRIMARY documentary scope allocation, inspected to exclude private capacity/auth records; absent until issued."
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/README.md",
+      "maximum_original_bytes": 32768,
+      "maximum_stored_bytes": 32768,
+      "encoding": "identity",
+      "admission": "Current truthful stage/history/null/outcome boundaries; full actual integrated claims only after independent gates."
+    },
+    {
+      "member": "docs/goal/evidence/filingfacts-attempt-scoring-bridge-20261003/manifest.json",
+      "maximum_original_bytes": 131072,
+      "maximum_stored_bytes": 131072,
+      "encoding": "identity",
+      "admission": "Lowercase exact-path manifest of the other42 members with complete original/stored sizes/hash/encoding/mode. Manifest self-size is charged to global cap, no recursive selfhash."
+    }
+  ],
+  "maximum_total_files": 43,
+  "maximum_original_bytes_including_readme_allocation_manifest": 12582912,
+  "maximum_stored_bytes_including_readme_allocation_manifest": 4194304,
+  "calculated_original_ceiling": 8665739,
+  "calculated_stored_ceiling": 2598409,
+  "known_original_bytes": 2402955,
+  "known_stored_bytes": 661001,
+  "known_exact_members": 22,
+  "repository_extension": "Only the named approved archive prefix plus append-only existing bridge guide/docs-goal STATUS and LOG. Runtime core/test remain exact5d3; package changes only the separately assigned main integration union. No extra AUTHORITY member, code snapshot, executable source copy or path.",
+  "prerequisites": [
+    "ACTUAL PR368 ordinary delivery must be established before the assigned ONE main integration; candidate heads are not delivered main.",
+    "Freeze a signed CLEAN source-equivalent integration preserving all three5d3 product bytes/modes, all incoming PR368 protected source/archive identities, package union, and both entire original chronology suffixes/prefixes.",
+    "Capture exact automatic new-head CI without project rerun and retain separate independent PRIMARY and THIRD source/current-CI gates at that integration before completing future documentary slots.",
+    "Fully read and hash every literal origin and stored byte before copying; reject any changed/missing origin, member cap excess, unsupported member or private controls/authentication/capacity record. No automatic expansion or substitute.",
+    "For gzip require one complete member, mtime0, no filename/header extras, CRC/end validation and no unused/trailing/unconsumed bytes; decode bounded by the admitted original size and compare byte-for-byte with literal origin.",
+    "Future member pins remain NULL until actual immutable receipts/raw captures exist and are independently reviewed. This allocation is no future source/head/CI PASS.",
+    "Generated lowercase manifest.json binds every other actual member with complete path/origin/original and stored byte lengths/SHA256/mode/encoding. Its own bytes count toward global caps without recursive selfhash. README preserves historical failures/calibration/unknowns and states exact current stage; no runtime/human/provider/field-indexing/adoption outcome claim.",
+    "After documentary freeze require new signed CLEAN final head, exact full protected/index/prefix/archive proof, new automatic exact-head CI, and four separate final source/archive/current-CI peer extensions. All final proof files remain EXTERNAL to the archive; PRIMARY alone ordinary merges and verifies actual delivery."
+  ],
+  "privacy_exclusions": "Private capacity grants/nonces/auth/credentials/ENGINE_STATE/process inventories/publisher records/coordination delivery controls/Codex private conversations; real provider/model/raw human datasets/billing/rights/strategy/indexing claims.",
+  "no_local_project_runtime_or_grant": true,
+  "no_site_registry_version_publication": true,
+  "full_owner_hierarchy": "ACTIVE; all financialMCP/API-efficiency-adoption, realexpert-rights-refinery, novelresearch, governedALPHAC forwardSharpe>2/14distinctqualifiedsleeves/actualDD<=10%aftercosts, privatepaperthenlawfulcapital,10MACTUALLYindexed useful source-backedqualitySEO-intents-design3D-analyzers goals retained; realoutcomesunknown/null."
+}

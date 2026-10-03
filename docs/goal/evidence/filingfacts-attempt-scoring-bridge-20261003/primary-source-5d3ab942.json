@@ -1,0 +1,190 @@
+{
+  "schema": "canli.primary.pr369.initial-frozen-source-review.v1",
+  "utc": "2026-10-03T03:13:56.871851+00:00",
+  "head": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+  "tree": "73880eb2ba087e45a42550edfa400a18c9b376ed",
+  "base": "27d7bd860ee903fac20cc6ad187535110a8cd198",
+  "signature": "G",
+  "clean": true,
+  "author_source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/source-5d3ab942.json",
+    "bytes": 1240572,
+    "sha256": "f643c10158b46ed758748a91ef7d9329f8eb603e24820681f547aa417b8f1635"
+  },
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "findings": [],
+  "six_source_pins": [
+    {
+      "path": "scripts/datasets/filing-facts/attempt-scoring.mjs",
+      "bytes": 21727,
+      "sha256": "c8a0dd8b9a609ee3f53eaba4e27cebf217901c826c08f2e91cc09e50ce6c67a0",
+      "mode": "100644",
+      "type": "blob",
+      "object": "0c3414cf57d4f60902729ddffd69a2dd278690fa",
+      "working_index_Git_equal": true,
+      "same_fd_stable": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/attempt-scoring.test.mjs",
+      "bytes": 35520,
+      "sha256": "c6f7e56a10b5c29e0a20bff75a59989ee989bd2b437213f65ba8f5b18f06e433",
+      "mode": "100644",
+      "type": "blob",
+      "object": "f5752b2115c858eccc43aa91b40231e97c1d1480",
+      "working_index_Git_equal": true,
+      "same_fd_stable": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/ATTEMPT_SCORING.md",
+      "bytes": 7622,
+      "sha256": "79990996a43d6e8a3ab187a0af563a84840c524716ad124516043adfb06c6a7c",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1f92209f774e992a01c6e0c1f1fd78a3801d58ee",
+      "working_index_Git_equal": true,
+      "same_fd_stable": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 13124,
+      "sha256": "c30e56f325312fa09575c5867f9a8d63f52fa0aa4b03819f90c5d66594cbb5db",
+      "mode": "100644",
+      "type": "blob",
+      "object": "8dc70a348c7ee9faea228637c156c301596efecb",
+      "working_index_Git_equal": true,
+      "same_fd_stable": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 177033,
+      "sha256": "8f9e039f77e7f6d37dad5f7534dce9e183df73cc6cbfff71fab58686fe4ae552",
+      "mode": "100644",
+      "type": "blob",
+      "object": "94e8947c28c625e5456d079faae535b0f2450486",
+      "working_index_Git_equal": true,
+      "same_fd_stable": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 452397,
+      "sha256": "9a1827ad5f191c46253b2985dacc11eba58842d59f1eda1198b6aa034e2e9ccb",
+      "mode": "100644",
+      "type": "blob",
+      "object": "2d3632158847b4fcf896e908e324a89c6771975b",
+      "working_index_Git_equal": true,
+      "same_fd_stable": true
+    }
+  ],
+  "full_index_entries": 6307,
+  "protected_Git_identity_count": 6301,
+  "protected_Git_bytes": 399213113,
+  "all_protected_inherited_Git_modes_types_objects_sizes_exact": true,
+  "whole_protected_physical_reaudit": false,
+  "all_five_goal_prefixes": [
+    {
+      "path": "docs/goal/README.md",
+      "base_bytes": 6899,
+      "base_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "base_bytes": 8758,
+      "base_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "base_bytes": 173616,
+      "base_sha256": "1bce699f5561f7471cecfb5bbe64469f91b2bd0a6faccd991787d17973a3d762",
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "base_bytes": 5455,
+      "base_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "base_bytes": 448980,
+      "base_sha256": "aeecaa4ce727138d61663503b554d1f2b4787d2054e8670f8f69c0970ab0694d",
+      "entire_prefix_preserved": true
+    }
+  ],
+  "package_exact_focused_and_one_adjacent_verify_only": true,
+  "reviewed_semantics": [
+    {
+      "source": "attempt-scoring.mjs:60-91",
+      "result": "Closed data-object member descriptors and native intrinsic byte slots reject proxy/getter/shared/forged inputs. Every field and aggregate is admitted before owned copies; packets must be null. No transport callback or writer is exposed."
+    },
+    {
+      "source": "attempt-scoring.mjs:94-190",
+      "result": "Fatal UTF-8, duplicate members, surrogate, finite numeric, depth/node admission and exact Python-compatible canonical escape accounting bound the new inputs and derived artifact; reservations include both fixed-width hashes and newline."
+    },
+    {
+      "source": "attempt-scoring.mjs:192-223,283-294",
+      "result": "The new dataset/source reader opens one nonblocking nofollow FD, admits regular/size before allocation, loops bounded reads plus one overflow observation, checks same FD metadata and relinquishes before one close. Whole original scorer/helper closure plus module/guide are captured on load and checked at entry and after scoring."
+    },
+    {
+      "source": "attempt-scoring.mjs:233-275",
+      "result": "Synthetic-software-fixture/closed/provider-model-only admission, zero tool traces, exact question envelopes and held nested context/tool metadata. The SAME owned dataset buffer is hashed before parsing; fixed seed20261001/15items/3perfive templates and item/question/expected/cited bindings are checked."
+    },
+    {
+      "source": "attempt-scoring.mjs:294-343; inherited attempt-accounting.mjs:284-306",
+      "result": "Only completed items with all declared positions and no pending records score. The inherited auditor enforces named final successful raw response is maximum ordinal and matches declared final count. Missing/error/aborted/notstarted/incomplete/pending remain false/null scored rows in the full15 denominator; earlier answers are never selected."
+    },
+    {
+      "source": "attempt-scoring.mjs:316-359; inherited eval.mjs:56-73",
+      "result": "Unchanged scoreAnswer/behaviour preserve unit/malformed/abstention/invention semantics, twelve answerable/three unanswerable full denominators, and numbers_wrong null when no numbers. The complete unchanged accounting companion is included and hash-bound; unknown usage/latency/prices/billing remain null with known partial subtotals."
+    },
+    {
+      "source": "attempt-scoring.mjs:351-361",
+      "result": "Replay owns input/artifact bytes, strict-parses, recomputes full artifact and canonical equality; rehashing score/status/measurement/source/input fields cannot make them match recomputation."
+    }
+  ],
+  "meaningful_written_test_names": [
+    "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows",
+    "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour",
+    "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero",
+    "earlier correct final wrong and earlier wrong final correct each score only the named last attempt",
+    "raw429 followed by an explicit retry preserves failed usage costs and retry accounting",
+    "missing error aborted not-started incomplete and pending records all remain denominator failures",
+    "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows",
+    "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused",
+    "all missing captures preserve full cohort and unavailable usage latency price and billing",
+    "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring",
+    "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers",
+    "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay",
+    "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator",
+    "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring",
+    "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture",
+    "baseline expected sample question projection accounting and raw answer binding tampering are refused",
+    "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository",
+    "transient same-length scoring read swap cannot hash one dataset and parse another",
+    "post-load comment changes in every scoring helper and the whole new module or guide are refused",
+    "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck",
+    "rehashed row score status measurement implementation and input tampering are rejected by full replay",
+    "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks",
+    "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks",
+    "oversized native fields are refused before any source open or owned allocation",
+    "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused",
+    "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding",
+    "settings raw request response and replay artifact each enforce their separate finite byte caps",
+    "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring",
+    "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring",
+    "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only"
+  ],
+  "source_test_count": 30,
+  "tests_reviewed_as_source": "All21727Bmodule+35520Btest+7622Bguide fully read. Thirty cases cover delivered collector/recovery without resubmit, all statuses/final ordering, raw429/null measurements, same-buffer swaps, postload/during-scoring comment edits, raw/Unicode/caps, close-FD-reuse and armed positive network/process controls. No cases executed by reviewer.",
+  "scope_limits": [
+    "Static review only; separate independent retained-current-CI gate required.",
+    "Synthetic source/data declarations are not provider/model execution or verified source completeness/rights/human labels/authentic billing.",
+    "Trusted private checkout/runtime. Same-FD identity checks do not exclude entirely-between-checks same-user ABA, hostile parent directories, altered JS runtime, or universal wall time.",
+    "Inherited baseline/accounting readers and source-input behavior remain unchanged; artifact1MiB cap does not claim all intermediate encoding or every bounded raw input fits.",
+    "No archive allocation, final-head/ordinary merge, browser/live publication or actual indexing/adoption/qualified finance outcome acknowledged."
+  ],
+  "reviewer_project_execution": false,
+  "reviewer_get_network_or_provider_calls": false,
+  "full_owner_hierarchy": "ACTIVE"
+}

@@ -1,0 +1,313 @@
+{
+  "schema": "canli.secondary.attempt-scoring.exact-remote-ci.v1",
+  "utc": "2026-10-03T03:06:18.824553+00:00",
+  "head": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+  "source_tree": "73880eb2ba087e45a42550edfa400a18c9b376ed",
+  "source_manifest_sha256": "f643c10158b46ed758748a91ef7d9329f8eb603e24820681f547aa417b8f1635",
+  "source_signature": "G",
+  "source_clean": true,
+  "PR": 369,
+  "run": 37091573337,
+  "codeql_run": 37091573326,
+  "tested_merge": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693",
+  "tested_tree_equal_signed_source": true,
+  "parents": [
+    "27d7bd860ee903fac20cc6ad187535110a8cd198",
+    "5d3ab942e24c8432b7952d7856a5ee568886be70"
+  ],
+  "originals": {
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-alerts-original.json": {
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-analyses-original.json": {
+      "bytes": 1186,
+      "sha256": "66985c8af5650086a6029de70e84aa29407809048766f703714f63780cb27880"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-checks-original.json": {
+      "bytes": 24337,
+      "sha256": "4c1053d5340528e77cce645bedce1faf025b8207750c7a64b8b00ee98872384e"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-ci-run-original.json": {
+      "bytes": 13276,
+      "sha256": "35975a3de0e81ab9f5faa13c3bf6b096ef16586b0e7f77dc76368796b207b4e7"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-codeql-run-original.json": {
+      "bytes": 13283,
+      "sha256": "dcfd0c3d85f3638bbf6f8e0db058fec444ad80bc7056c97d7ec314c17ad7070c"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-mcp-original.log": {
+      "bytes": 298748,
+      "sha256": "a246c7a388b7b2155d4f3ed9b286d798424094771c7dc31438bbfd6eafb960b8"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-merge-ref-original.json": {
+      "bytes": 357,
+      "sha256": "594496ae86203ecbd86e05cea848d0bbfed8c9037307765eab1d0bf5259863a3"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-pull-original.json": {
+      "bytes": 18208,
+      "sha256": "6f78bdf1bbb59fb970f7220f8aa0b6c57095100b47f427adb877514777ad183c"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-root-original.log": {
+      "bytes": 676614,
+      "sha256": "d40c21ea3bda6a9b0e01c156890f8925467be84d0a6d506421824c6b9d804a70"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-tested-merge-original.json": {
+      "bytes": 2648,
+      "sha256": "c428d4fbff42ee73b5f207c0730a7be3adfffea06a1c05326019b0e5d4be4d50"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/first-gh-log-escape-refusal-5d3ab942.json": {
+      "bytes": 636,
+      "sha256": "9ce38793c87e27a185aba2354e193ac64dbbed0a9d36c7e72307f79c967bf5cc"
+    }
+  },
+  "parsed": {
+    "root": {
+      "bytes": 676614,
+      "sha256": "d40c21ea3bda6a9b0e01c156890f8925467be84d0a6d506421824c6b9d804a70",
+      "TAP": {
+        "tests": [
+          6,
+          1138,
+          9
+        ],
+        "pass": [
+          6,
+          1138,
+          9
+        ],
+        "fail": [
+          0,
+          0,
+          0
+        ],
+        "cancelled": [
+          0,
+          0,
+          0
+        ],
+        "skipped": [
+          0,
+          0,
+          0
+        ]
+      },
+      "new_source_names_PASS_counts": {
+        "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows": 1,
+        "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour": 1,
+        "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero": 1,
+        "earlier correct final wrong and earlier wrong final correct each score only the named last attempt": 1,
+        "raw429 followed by an explicit retry preserves failed usage costs and retry accounting": 1,
+        "missing error aborted not-started incomplete and pending records all remain denominator failures": 1,
+        "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows": 1,
+        "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused": 1,
+        "all missing captures preserve full cohort and unavailable usage latency price and billing": 1,
+        "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring": 1,
+        "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers": 1,
+        "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay": 1,
+        "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator": 1,
+        "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring": 1,
+        "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture": 1,
+        "baseline expected sample question projection accounting and raw answer binding tampering are refused": 1,
+        "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository": 1,
+        "transient same-length scoring read swap cannot hash one dataset and parse another": 1,
+        "post-load comment changes in every scoring helper and the whole new module or guide are refused": 1,
+        "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck": 1,
+        "rehashed row score status measurement implementation and input tampering are rejected by full replay": 1,
+        "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks": 1,
+        "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks": 1,
+        "oversized native fields are refused before any source open or owned allocation": 1,
+        "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused": 1,
+        "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding": 1,
+        "settings raw request response and replay artifact each enforce their separate finite byte caps": 1,
+        "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring": 1,
+        "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring": 1,
+        "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only": 1
+      },
+      "source_names_runtime_count": 30,
+      "Node": "22.23.3",
+      "tested_sha_in_original_checkout_log": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693"
+    },
+    "mcp": {
+      "bytes": 298748,
+      "sha256": "a246c7a388b7b2155d4f3ed9b286d798424094771c7dc31438bbfd6eafb960b8",
+      "TAP": {
+        "tests": [
+          141,
+          1,
+          82,
+          119,
+          139
+        ],
+        "pass": [
+          141,
+          1,
+          82,
+          119,
+          139
+        ],
+        "fail": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cancelled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "skipped": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "new_source_names_PASS_counts": {
+        "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows": 0,
+        "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour": 0,
+        "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero": 0,
+        "earlier correct final wrong and earlier wrong final correct each score only the named last attempt": 0,
+        "raw429 followed by an explicit retry preserves failed usage costs and retry accounting": 0,
+        "missing error aborted not-started incomplete and pending records all remain denominator failures": 0,
+        "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows": 0,
+        "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused": 0,
+        "all missing captures preserve full cohort and unavailable usage latency price and billing": 0,
+        "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring": 0,
+        "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers": 0,
+        "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay": 0,
+        "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator": 0,
+        "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring": 0,
+        "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture": 0,
+        "baseline expected sample question projection accounting and raw answer binding tampering are refused": 0,
+        "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository": 0,
+        "transient same-length scoring read swap cannot hash one dataset and parse another": 0,
+        "post-load comment changes in every scoring helper and the whole new module or guide are refused": 0,
+        "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck": 0,
+        "rehashed row score status measurement implementation and input tampering are rejected by full replay": 0,
+        "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks": 0,
+        "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks": 0,
+        "oversized native fields are refused before any source open or owned allocation": 0,
+        "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused": 0,
+        "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding": 0,
+        "settings raw request response and replay artifact each enforce their separate finite byte caps": 0,
+        "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring": 0,
+        "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring": 0,
+        "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only": 0
+      },
+      "source_names_runtime_count": 0,
+      "Node": "22.23.3",
+      "tested_sha_in_original_checkout_log": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693"
+    }
+  },
+  "checks": [
+    {
+      "id": 111113028353,
+      "name": "CodeQL",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "conclusion": "success",
+      "completed_at": "2026-10-03T02:58:34Z"
+    },
+    {
+      "id": 111112851227,
+      "name": "Key revocation PostgreSQL contract",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "conclusion": "success",
+      "completed_at": "2026-10-03T02:58:02Z"
+    },
+    {
+      "id": 111112851208,
+      "name": "design wrapper build and contracts",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "conclusion": "success",
+      "completed_at": "2026-10-03T02:57:46Z"
+    },
+    {
+      "id": 111112851159,
+      "name": "MCP package and stdio contracts",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "conclusion": "success",
+      "completed_at": "2026-10-03T02:58:28Z"
+    },
+    {
+      "id": 111112851014,
+      "name": "vite production build",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "conclusion": "success",
+      "completed_at": "2026-10-03T03:00:28Z"
+    },
+    {
+      "id": 111112850908,
+      "name": "analyze (javascript-typescript)",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "conclusion": "success",
+      "completed_at": "2026-10-03T02:59:20Z"
+    },
+    {
+      "id": 111112850755,
+      "name": "analyze (python)",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "conclusion": "success",
+      "completed_at": "2026-10-03T02:58:42Z"
+    }
+  ],
+  "current_ref_open_alerts": 0,
+  "latest_current_ref_languages": [
+    {
+      "ref": "refs/pull/369/merge",
+      "commit_sha": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-03T02:59:11Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1884786803,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1884786803",
+      "sarif_id": "6827a93e-bed6-11f1-85a3-873dfe938da1",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    {
+      "ref": "refs/pull/369/merge",
+      "commit_sha": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-03T02:58:33Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1884785766,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1884785766",
+      "sarif_id": "518a40d8-bed6-11f1-989e-5bd55c2a0873",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  ],
+  "verdict": "PASS_EXACT_RETAINED_REMOTE_CI",
+  "scope": [
+    "All30 unique source-named bridge cases pass once in ROOT1138; zero new bridge cases in MCP. Root6/1138/9, MCP141/1/82/119/139.",
+    "Original first gh log terminal-escape refusal retained as metadata-reader error, no project failure or runtime rerun. Raw control bytes only saved privately.",
+    "First runtime was existing exact-new-head remote CI; no local project Node/import/test/build/helper job or CPU grant.",
+    "Independent source/currentCI gates remain separate, no archive allocation or future-head/delivery/publication acknowledgement.",
+    "Synthetic software fixture results, no model baseline/rights/expert/currentindexing/adoption/strategy outcome claim."
+  ],
+  "full_owner_hierarchy": "ACTIVE"
+}
