@@ -62,6 +62,7 @@ function terminal(result) {
 }
 
 function run(files, { args = files.args, entry = ENTRY, fault = null, replay = false } = {}) {
+  if (fault) { files.proofOrdinal = (files.proofOrdinal ?? 0) + 1; files.proof = join(files.folder, `fault-proof-${files.proofOrdinal}.json`); }
   const argv = fault ? ['--import', 'data:text/javascript,' + encodeURIComponent(preload(files, fault, replay)), entry, ...args] : [entry, ...args];
   return terminal(child.spawnSync(process.execPath, argv, { encoding: 'utf8', timeout: 12000, killSignal: 'SIGKILL',
     maxBuffer: 8192, env: { PATH: process.env.PATH } }));
@@ -86,12 +87,30 @@ function refusal(result, code) {
   assert.ok(!result.stderr.includes('PRIVATE_BODY_SENTINEL'));
 }
 
+// Test observations use the same admitted FD for metadata and bytes, including mode preservation checks.
+function fileSnapshot(path) {
+  let fd = fs.openSync(path, fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW | fs.constants.O_NONBLOCK);
+  try {
+    const before = fs.fstatSync(fd, { bigint: true });
+    assert.ok(before.isFile() && before.size >= 0n && before.size <= 10n * 1024n * 1024n);
+    const bytes = Buffer.alloc(Number(before.size)); let offset = 0;
+    while (offset < bytes.length) {
+      const count = fs.readSync(fd, bytes, offset, Math.min(65536, bytes.length - offset), offset);
+      assert.ok(Number.isSafeInteger(count) && count > 0 && count <= Math.min(65536, bytes.length - offset));
+      offset += count;
+    }
+    assert.equal(fs.readSync(fd, Buffer.alloc(1), 0, 1, bytes.length), 0);
+    const after = fs.fstatSync(fd, { bigint: true });
+    for (const key of ['dev', 'ino', 'mode', 'size', 'mtimeNs', 'ctimeNs']) assert.equal(after[key], before[key]);
+    return { bytes, mode: Number(after.mode) };
+  } finally { const owned = fd; fd = undefined; fs.closeSync(owned); }
+}
 function snapshot(files) {
-  return files.paths.map(path => ({ bytes: fs.readFileSync(path), mode: fs.statSync(path).mode }));
+  return files.paths.map(fileSnapshot);
 }
 function unchanged(files, before) {
   files.paths.forEach((path, i) => {
-    assert.deepEqual(fs.readFileSync(path), before[i].bytes); assert.equal(fs.statSync(path).mode, before[i].mode);
+    const after = fileSnapshot(path); assert.deepEqual(after.bytes, before[i].bytes); assert.equal(after.mode, before[i].mode);
   });
 }
 const readProof = files => JSON.parse(fs.readFileSync(files.proof));
@@ -233,7 +252,20 @@ process.on('exit', () => {
     try { trace.foreignFDStillOpen = original.fstatSync(foreign).isFile(); } catch { trace.foreignFDStillOpen = false; }
   }
   trace.outputCreated = outputCreated;
-  original.writeFileSync(c.proof, JSON.stringify(trace), { mode: 0o600 });
+  // A saved convenience writer can still call patched fs methods internally. The separate
+  // observer uses only captured native primitives, so replay's armed write denial stays intact.
+  const body = Buffer.from(JSON.stringify(trace)); if (body.length > 4096) throw Error('observer bound');
+  let proofFD = original.openSync(c.proof, fs.constants.O_WRONLY | fs.constants.O_CREAT | fs.constants.O_EXCL |
+    fs.constants.O_NOFOLLOW | fs.constants.O_NONBLOCK, 0o600);
+  try {
+    let offset = 0;
+    while (offset < body.length) {
+      const count = original.writeSync(proofFD, body, offset, body.length - offset, offset);
+      if (!Number.isSafeInteger(count) || count <= 0 || count > body.length - offset) throw Error('observer write');
+      offset += count;
+    }
+    original.fsyncSync(proofFD);
+  } finally { const owned = proofFD; proofFD = undefined; original.closeSync(owned); }
   if (foreign !== undefined && trace.foreignFDStillOpen) original.closeSync(foreign);
 });
 `;
@@ -250,14 +282,14 @@ function copiedRoot(t) {
 
 test('attempt scoring CLI: actual score and replay preserve exact core bytes fifteen rows and unknown measurements', t => {
   const files = fixture(t), before = snapshot(files), expected = scoreAttemptLedger(ROOT, nativeInputs(files));
-  const scored = success(run(files)); assert.deepEqual(fs.readFileSync(files.output), expected.artifact_bytes);
+  const scored = success(run(files)), artifactBefore = fileSnapshot(files.output);
+  assert.deepEqual(artifactBefore.bytes, expected.artifact_bytes);
   assert.equal(scored.artifact_sha256, expected.artifact.artifact_sha256); assert.equal(scored.artifact_file_sha256, sha256(expected.artifact_bytes));
-  assert.equal(fs.statSync(files.output).mode & 0o777, 0o600); assert.equal(expected.artifact.rows.length, 15);
+  assert.equal(artifactBefore.mode & 0o777, 0o600); assert.equal(expected.artifact.rows.length, 15);
   assert.equal(expected.artifact.measurement_sha256, sha256(canonicalJson(expected.artifact.measurement)));
   assert.ok(JSON.stringify(expected.artifact.measurement).includes('null'));
-  const artifactBefore = fs.readFileSync(files.output);
   const replay = success(run(files, { args: ['replay', ...files.args.slice(1)] }), 'replay');
-  assert.equal(replay.artifact_sha256, scored.artifact_sha256); assert.deepEqual(fs.readFileSync(files.output), artifactBefore);
+  assert.equal(replay.artifact_sha256, scored.artifact_sha256); assert.deepEqual(fileSnapshot(files.output), artifactBefore);
   unchanged(files, before);
 });
 
@@ -406,14 +438,14 @@ test('attempt scoring CLI: rehashed edited artifact is refused by full real repl
 
 test('attempt scoring CLI: existing output bytes and mode are preserved with no successful acknowledgment', t => {
   const files = fixture(t); fs.writeFileSync(files.output, 'original private artifact', { mode: 0o640 });
-  const before = fs.readFileSync(files.output), mode = fs.statSync(files.output).mode;
-  refusal(run(files), 'CLI_OUTPUT'); assert.deepEqual(fs.readFileSync(files.output), before); assert.equal(fs.statSync(files.output).mode, mode);
+  const before = fileSnapshot(files.output);
+  refusal(run(files), 'CLI_OUTPUT'); assert.deepEqual(fileSnapshot(files.output), before);
 });
 
 test('attempt scoring CLI: output symlink is refused and its target bytes and mode remain intact', t => {
-  const files = fixture(t); fs.symlinkSync(files.foreign, files.output); const before = fs.readFileSync(files.foreign), mode = fs.statSync(files.foreign).mode;
+  const files = fixture(t); fs.symlinkSync(files.foreign, files.output); const before = fileSnapshot(files.foreign);
   refusal(run(files), 'CLI_OUTPUT'); assert.ok(fs.lstatSync(files.output).isSymbolicLink());
-  assert.deepEqual(fs.readFileSync(files.foreign), before); assert.equal(fs.statSync(files.foreign).mode, mode);
+  assert.deepEqual(fileSnapshot(files.foreign), before);
 });
 
 test('attempt scoring CLI: public output parent is refused after valid computation with no chmod or artifact', t => {
