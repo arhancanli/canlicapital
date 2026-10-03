@@ -7,7 +7,7 @@ import { z } from 'zod';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const EXECUTION_ROUTE = '/mcp-servers/execution';
-export const EXECUTION_SOURCE_COMMIT = '64d815912c99bdb86017dbb96855d6b62ffaab1d';
+export const EXECUTION_SOURCE_COMMIT = '5b237747413f19454f0abbc1bd24d987cb92cbee';
 export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'mcp-execution/EXAMPLES.md',
   'mcp-execution/JOURNAL_STORAGE.md',
@@ -41,10 +41,14 @@ export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'mcp/package-lock.json',
   'mcp/package.json',
   'mcp/src/journal-evidence.mjs',
+  'mcp/src/lab-schemas.mjs',
+  'mcp/src/lab.mjs',
   'mcp/src/local.mjs',
   'mcp/src/local/api/_lib/limits.js',
+  'mcp/src/local/js/backtest-core.js',
   'mcp/src/local/js/breadth-core.js',
   'mcp/src/local/js/dsr-core.js',
+  'mcp/src/local/js/feasibility-core.js',
   'mcp/src/local/js/haircut-core.js',
   'mcp/src/local/js/journal-files.js',
   'mcp/src/local/js/luck-core.js',
@@ -53,7 +57,9 @@ export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'mcp/src/local/js/pbo-core.js',
   'mcp/src/local/js/receipt-statement.js',
   'mcp/src/local/js/selection-risk-core.js',
+  'mcp/src/local/js/series-summary-core.js',
   'mcp/src/local/js/snooping-core.js',
+  'mcp/src/local/js/stress-core.js',
   'mcp/src/local/js/student-t.js',
   'mcp/src/local/js/trade-journal-core.js',
   'mcp/src/local/js/trade-journal-export-core.js',
@@ -75,7 +81,7 @@ export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'standards/trade-journal/EXPORT.md',
 ]);
 // A changed file plus a rehashed editable config cannot retain the old source claim.
-const REVIEWED_HASH_PAIRS = '1c0be3ca05768d74c709e04abcb4c4a1993433b56a89a6047221c700061d4797';
+const REVIEWED_HASH_PAIRS = '6215d844c6d4a9def01b180e2e30d6def4e76d1c2ba676888dea8d7157ad68f1';
 const names = ['size_position', 'check_orders', 'measure_shortfall', 'journal'];
 const recordSchema = z.object({
   schema: z.literal('canli.execution-workflow-source.v1'),
