@@ -1,0 +1,782 @@
+{
+  "schema": "canli.secondary.attempt-scoring.integrated-exact-remote-ci.v1",
+  "utc": "2026-10-03T04:52:59.251814+00:00",
+  "verdict": "PASS_EXACT_RETAINED_INTEGRATED_CURRENT_CI",
+  "findings": [],
+  "head": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+  "source_tree": "0bda7a0a6e0141ebd0514117ab1d046e126e1826",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/source-c40b3ce6-integrated.json",
+    "bytes": 1272412,
+    "sha256": "a13cfe81a2612a3ad416932d9b026ffe8bf451fb194b887b4b0e237bac36fa60"
+  },
+  "source_signature": "G",
+  "source_clean": true,
+  "PR": 369,
+  "run": 37097388999,
+  "codeql_run": 37097388973,
+  "run_attempt": 1,
+  "root_job": 111129994327,
+  "mcp_job": 111129994203,
+  "tested_merge": "80bcf35536b889ef62343afcf16c8159bbd89006",
+  "tested_tree_equal_signed_source": true,
+  "parents": [
+    "5b8a148c19782637e4aedc9e5e4a0a5f81b823ee",
+    "c40b3ce6659c4f7726c64a76a0361d6c735b979f"
+  ],
+  "originals": {
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-checks-original.json": {
+      "bytes": 24337,
+      "sha256": "ef908f619534cd23df17f7d671784b51003404945568e87520cb34021e84956c"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-ci-run-original.json": {
+      "bytes": 13287,
+      "sha256": "808e035ebbbe75c959cf8643b3074cde2e0a3eea0059937c9121fb9985bb1ffd"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-codeql-run-original.json": {
+      "bytes": 13294,
+      "sha256": "060c90aa2508e0ea1e57f77f984e6e63e1110e894211a04b186fcac86534f0c4"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-pull-original.json": {
+      "bytes": 18209,
+      "sha256": "db81f16a0125f1de825d914a86c98f428e1fc0b7dcc1e548dbff60a267e9a12e"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-merge-ref-original.json": {
+      "bytes": 357,
+      "sha256": "9f683525f3001607b2273b2ad94cd504098a100d3c0628113a18c957dc66a744"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-tested-merge-original.json": {
+      "bytes": 2648,
+      "sha256": "61e7d07e185d759e9e76c61e935fc140b3b2c33ca78cb42bfda59900f6a02a56"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-analyses-original.json": {
+      "bytes": 2373,
+      "sha256": "c7dccfd8b2cf7918845d98063854064fac5f5ef9b48fa58ae92843909d8efdc5"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-alerts-original.json": {
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-root-original.log": {
+      "bytes": 679479,
+      "sha256": "5157b591817839196227caef6da2acfc7f21624ca433d52af213fa3915f28279"
+    },
+    "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-mcp-original.log": {
+      "bytes": 297580,
+      "sha256": "bfe8c6bbd26676311df6366ecbd3c52944582707ea79d6bd1607438c3d75de0a"
+    }
+  },
+  "original_count": 10,
+  "own_metadata_name_discovery_original": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/capture-audit-c40b3ce6-metadata-stop-original-v1.json",
+    "bytes": 3126,
+    "sha256": "4e448f1834df10a66b6467bb2da236148c7330464fd681c984440461a8cc4a13"
+  },
+  "own_metadata_name_discovery_correction": "Original literal-only discovery counted8 direct guard cases and omitted the preserved PAGES template case. Exact first page literal and unchanged template bind ninth name; all10 originals reused byteexact; no API refetch/raw rewrite/project rerun.",
+  "metadata_network_refetches_this_audit": 0,
+  "checks": [
+    {
+      "id": 111130169204,
+      "name": "CodeQL",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/runs/111130169204",
+      "completed_at": "2026-10-03T04:42:48Z"
+    },
+    {
+      "id": 111129994333,
+      "name": "analyze (javascript-typescript)",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388973/job/111129994333",
+      "completed_at": "2026-10-03T04:43:33Z"
+    },
+    {
+      "id": 111129994327,
+      "name": "vite production build",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388999/job/111129994327",
+      "completed_at": "2026-10-03T04:44:39Z"
+    },
+    {
+      "id": 111129994269,
+      "name": "Key revocation PostgreSQL contract",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388999/job/111129994269",
+      "completed_at": "2026-10-03T04:42:19Z"
+    },
+    {
+      "id": 111129994255,
+      "name": "design wrapper build and contracts",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388999/job/111129994255",
+      "completed_at": "2026-10-03T04:42:01Z"
+    },
+    {
+      "id": 111129994238,
+      "name": "analyze (python)",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388973/job/111129994238",
+      "completed_at": "2026-10-03T04:42:55Z"
+    },
+    {
+      "id": 111129994203,
+      "name": "MCP package and stdio contracts",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388999/job/111129994203",
+      "completed_at": "2026-10-03T04:42:25Z"
+    }
+  ],
+  "parsed": {
+    "root": {
+      "TAP_suites": [
+        {
+          "raw_start_line": 1407,
+          "raw_plan_line": 1444,
+          "raw_final_line": 1452,
+          "plan": 6,
+          "counters": {
+            "tests": 6,
+            "suites": 0,
+            "pass": 6,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "continuous_ordinals": true,
+          "all_names_and_top_YAML_durations_bound": true,
+          "complete_parsed_result_rows_sha256": "ae0474a11e3995cf1b38a29f9cee169b1a395e3dc3da6637e35324b9af20f1d6",
+          "top_duration_min_ms": 0.188284,
+          "top_duration_max_ms": 6.445144,
+          "final_duration_ms": 82.919421
+        },
+        {
+          "raw_start_line": 1458,
+          "raw_plan_line": 8357,
+          "raw_final_line": 8365,
+          "plan": 1147,
+          "counters": {
+            "tests": 1147,
+            "suites": 0,
+            "pass": 1147,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "continuous_ordinals": true,
+          "all_names_and_top_YAML_durations_bound": true,
+          "complete_parsed_result_rows_sha256": "f47d5151faa0e2a0aacfb969bf63c62f8ec23d438e88fdb665f42ca1b6b85528",
+          "top_duration_min_ms": 0.13773,
+          "top_duration_max_ms": 10346.634094,
+          "final_duration_ms": 105419.535471
+        },
+        {
+          "raw_start_line": 8507,
+          "raw_plan_line": 8562,
+          "raw_final_line": 8570,
+          "plan": 9,
+          "counters": {
+            "tests": 9,
+            "suites": 0,
+            "pass": 9,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "continuous_ordinals": true,
+          "all_names_and_top_YAML_durations_bound": true,
+          "complete_parsed_result_rows_sha256": "04dcc2ac6ee1953041c93fe6649697b1d06398e1583d481cbe96e26752d45b00",
+          "top_duration_min_ms": 0.166293,
+          "top_duration_max_ms": 15.623685,
+          "final_duration_ms": 103.549666
+        }
+      ],
+      "Node": "22.23.3",
+      "tested_sha": "80bcf35536b889ef62343afcf16c8159bbd89006"
+    },
+    "mcp": {
+      "TAP_suites": [
+        {
+          "raw_start_line": 178,
+          "raw_plan_line": 1025,
+          "raw_final_line": 1033,
+          "plan": 141,
+          "counters": {
+            "tests": 141,
+            "suites": 0,
+            "pass": 141,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "continuous_ordinals": true,
+          "all_names_and_top_YAML_durations_bound": true,
+          "complete_parsed_result_rows_sha256": "baabb331d9d8844b7a1c083370d0aed3a4bee46db78d90f4132d28a9d5ee89e2",
+          "top_duration_min_ms": 0.065373,
+          "top_duration_max_ms": 570.102662,
+          "final_duration_ms": 1641.14399
+        },
+        {
+          "raw_start_line": 1042,
+          "raw_plan_line": 1049,
+          "raw_final_line": 1057,
+          "plan": 1,
+          "counters": {
+            "tests": 1,
+            "suites": 0,
+            "pass": 1,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "continuous_ordinals": true,
+          "all_names_and_top_YAML_durations_bound": true,
+          "complete_parsed_result_rows_sha256": "fb29a29817ab7810630f17de1029af44067e9231bd3d34570695c02ae4103758",
+          "top_duration_min_ms": 277.864878,
+          "top_duration_max_ms": 277.864878,
+          "final_duration_ms": 403.978129
+        },
+        {
+          "raw_start_line": 1083,
+          "raw_plan_line": 1576,
+          "raw_final_line": 1584,
+          "plan": 82,
+          "counters": {
+            "tests": 82,
+            "suites": 0,
+            "pass": 82,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "continuous_ordinals": true,
+          "all_names_and_top_YAML_durations_bound": true,
+          "complete_parsed_result_rows_sha256": "992af6ab077938b79edfdb3c648ff9091feade2de5693d1011b923efcacc2445",
+          "top_duration_min_ms": 0.092565,
+          "top_duration_max_ms": 15000.687649,
+          "final_duration_ms": 15424.521453
+        },
+        {
+          "raw_start_line": 1609,
+          "raw_plan_line": 2327,
+          "raw_final_line": 2335,
+          "plan": 119,
+          "counters": {
+            "tests": 119,
+            "suites": 0,
+            "pass": 119,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "continuous_ordinals": true,
+          "all_names_and_top_YAML_durations_bound": true,
+          "complete_parsed_result_rows_sha256": "5b9d81002e16392b22bfbec01c8fe5149d5da6e7b0d2c8d9324282b95257dff9",
+          "top_duration_min_ms": 0.128907,
+          "top_duration_max_ms": 540.892375,
+          "final_duration_ms": 3539.170085
+        },
+        {
+          "raw_start_line": 2360,
+          "raw_plan_line": 3206,
+          "raw_final_line": 3214,
+          "plan": 139,
+          "counters": {
+            "tests": 139,
+            "suites": 0,
+            "pass": 139,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "continuous_ordinals": true,
+          "all_names_and_top_YAML_durations_bound": true,
+          "complete_parsed_result_rows_sha256": "71852094c40aed63542a853112b65e9c93fcefae1d3c998ee67d495e2fe2de22",
+          "top_duration_min_ms": 0.212683,
+          "top_duration_max_ms": 506.491857,
+          "final_duration_ms": 2729.583092
+        }
+      ],
+      "Node": "22.23.3",
+      "tested_sha": "80bcf35536b889ef62343afcf16c8159bbd89006"
+    }
+  },
+  "thirty_bridge_and_nine_incoming_guard_names_once_root_zero_mcp": [
+    {
+      "name": "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows",
+      "root_pass": {
+        "ordinal": 699,
+        "name": "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows",
+        "duration_ms": 936.034417,
+        "raw_line": 5661
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour",
+      "root_pass": {
+        "ordinal": 700,
+        "name": "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour",
+        "duration_ms": 171.172126,
+        "raw_line": 5667
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero",
+      "root_pass": {
+        "ordinal": 701,
+        "name": "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero",
+        "duration_ms": 182.326932,
+        "raw_line": 5673
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "earlier correct final wrong and earlier wrong final correct each score only the named last attempt",
+      "root_pass": {
+        "ordinal": 702,
+        "name": "earlier correct final wrong and earlier wrong final correct each score only the named last attempt",
+        "duration_ms": 349.30955,
+        "raw_line": 5679
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "raw429 followed by an explicit retry preserves failed usage costs and retry accounting",
+      "root_pass": {
+        "ordinal": 703,
+        "name": "raw429 followed by an explicit retry preserves failed usage costs and retry accounting",
+        "duration_ms": 161.389738,
+        "raw_line": 5685
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "missing error aborted not-started incomplete and pending records all remain denominator failures",
+      "root_pass": {
+        "ordinal": 704,
+        "name": "missing error aborted not-started incomplete and pending records all remain denominator failures",
+        "duration_ms": 175.653075,
+        "raw_line": 5691
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows",
+      "root_pass": {
+        "ordinal": 705,
+        "name": "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows",
+        "duration_ms": 331.398442,
+        "raw_line": 5697
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused",
+      "root_pass": {
+        "ordinal": 706,
+        "name": "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused",
+        "duration_ms": 301.433182,
+        "raw_line": 5703
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "all missing captures preserve full cohort and unavailable usage latency price and billing",
+      "root_pass": {
+        "ordinal": 707,
+        "name": "all missing captures preserve full cohort and unavailable usage latency price and billing",
+        "duration_ms": 152.28681,
+        "raw_line": 5709
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring",
+      "root_pass": {
+        "ordinal": 708,
+        "name": "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring",
+        "duration_ms": 318.492049,
+        "raw_line": 5715
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers",
+      "root_pass": {
+        "ordinal": 709,
+        "name": "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers",
+        "duration_ms": 230.462851,
+        "raw_line": 5721
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay",
+      "root_pass": {
+        "ordinal": 710,
+        "name": "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay",
+        "duration_ms": 8254.231915,
+        "raw_line": 5727
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator",
+      "root_pass": {
+        "ordinal": 711,
+        "name": "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator",
+        "duration_ms": 1401.576087,
+        "raw_line": 5733
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring",
+      "root_pass": {
+        "ordinal": 712,
+        "name": "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring",
+        "duration_ms": 218.682354,
+        "raw_line": 5739
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture",
+      "root_pass": {
+        "ordinal": 713,
+        "name": "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture",
+        "duration_ms": 17.080219,
+        "raw_line": 5745
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "baseline expected sample question projection accounting and raw answer binding tampering are refused",
+      "root_pass": {
+        "ordinal": 714,
+        "name": "baseline expected sample question projection accounting and raw answer binding tampering are refused",
+        "duration_ms": 217.826771,
+        "raw_line": 5751
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository",
+      "root_pass": {
+        "ordinal": 715,
+        "name": "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository",
+        "duration_ms": 16.051625,
+        "raw_line": 5757
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "transient same-length scoring read swap cannot hash one dataset and parse another",
+      "root_pass": {
+        "ordinal": 716,
+        "name": "transient same-length scoring read swap cannot hash one dataset and parse another",
+        "duration_ms": 17.594187,
+        "raw_line": 5763
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "post-load comment changes in every scoring helper and the whole new module or guide are refused",
+      "root_pass": {
+        "ordinal": 717,
+        "name": "post-load comment changes in every scoring helper and the whole new module or guide are refused",
+        "duration_ms": 231.195458,
+        "raw_line": 5769
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck",
+      "root_pass": {
+        "ordinal": 718,
+        "name": "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck",
+        "duration_ms": 258.573659,
+        "raw_line": 5775
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "rehashed row score status measurement implementation and input tampering are rejected by full replay",
+      "root_pass": {
+        "ordinal": 719,
+        "name": "rehashed row score status measurement implementation and input tampering are rejected by full replay",
+        "duration_ms": 1604.485259,
+        "raw_line": 5781
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks",
+      "root_pass": {
+        "ordinal": 720,
+        "name": "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks",
+        "duration_ms": 1.09495,
+        "raw_line": 5787
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks",
+      "root_pass": {
+        "ordinal": 721,
+        "name": "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks",
+        "duration_ms": 226.271324,
+        "raw_line": 5793
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "oversized native fields are refused before any source open or owned allocation",
+      "root_pass": {
+        "ordinal": 722,
+        "name": "oversized native fields are refused before any source open or owned allocation",
+        "duration_ms": 1.150734,
+        "raw_line": 5799
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused",
+      "root_pass": {
+        "ordinal": 723,
+        "name": "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused",
+        "duration_ms": 18.349467,
+        "raw_line": 5805
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding",
+      "root_pass": {
+        "ordinal": 724,
+        "name": "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding",
+        "duration_ms": 1631.7435,
+        "raw_line": 5811
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "settings raw request response and replay artifact each enforce their separate finite byte caps",
+      "root_pass": {
+        "ordinal": 725,
+        "name": "settings raw request response and replay artifact each enforce their separate finite byte caps",
+        "duration_ms": 9.499633,
+        "raw_line": 5817
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring",
+      "root_pass": {
+        "ordinal": 726,
+        "name": "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring",
+        "duration_ms": 22.089389,
+        "raw_line": 5823
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring",
+      "root_pass": {
+        "ordinal": 727,
+        "name": "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring",
+        "duration_ms": 18.371515,
+        "raw_line": 5829
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only",
+      "root_pass": {
+        "ordinal": 728,
+        "name": "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only",
+        "duration_ms": 524.414993,
+        "raw_line": 5835
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "standard focus guard admits the generated mirror and reordered multi-class attributes",
+      "root_pass": {
+        "ordinal": 1075,
+        "name": "standard focus guard admits the generated mirror and reordered multi-class attributes",
+        "duration_ms": 5.302495,
+        "raw_line": 7918
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "standard focus guard refuses the old committed and captured-live missing tabindex shape",
+      "root_pass": {
+        "ordinal": 1076,
+        "name": "standard focus guard refuses the old committed and captured-live missing tabindex shape",
+        "duration_ms": 0.470865,
+        "raw_line": 7924
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "standard focus guard refuses a missing shared-handler class or wrong fragment",
+      "root_pass": {
+        "ordinal": 1077,
+        "name": "standard focus guard refuses a missing shared-handler class or wrong fragment",
+        "duration_ms": 0.376658,
+        "raw_line": 7930
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "standard focus guard refuses duplicate target IDs, attributes and skip controls",
+      "root_pass": {
+        "ordinal": 1078,
+        "name": "standard focus guard refuses duplicate target IDs, attributes and skip controls",
+        "duration_ms": 0.25553,
+        "raw_line": 7936
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "standard focus guard does not accept targets or skip controls inside comments or script examples",
+      "root_pass": {
+        "ordinal": 1079,
+        "name": "standard focus guard does not accept targets or skip controls inside comments or script examples",
+        "duration_ms": 0.304743,
+        "raw_line": 7942
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "standard focus guard cannot join text across ignored spans into a main target",
+      "root_pass": {
+        "ordinal": 1080,
+        "name": "standard focus guard cannot join text across ignored spans into a main target",
+        "duration_ms": 0.328087,
+        "raw_line": 7948
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "standard focus guard bounds UTF-8 bytes before tag inspection",
+      "root_pass": {
+        "ordinal": 1081,
+        "name": "standard focus guard bounds UTF-8 bytes before tag inspection",
+        "duration_ms": 1.513494,
+        "raw_line": 7954
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "standard focus reader admits exact owned bytes and refuses oversized or invalid UTF-8 input",
+      "root_pass": {
+        "ordinal": 1082,
+        "name": "standard focus reader admits exact owned bytes and refuses oversized or invalid UTF-8 input",
+        "duration_ms": 3.605235,
+        "raw_line": 7960
+      },
+      "mcp_count": 0
+    },
+    {
+      "name": "standards/paper-evidence.html: every skip-link target is focusable (tabindex=\"-1\")",
+      "root_pass": {
+        "ordinal": 1083,
+        "name": "standards/paper-evidence.html: every skip-link target is focusable (tabindex=\"-1\")",
+        "duration_ms": 0.896805,
+        "raw_line": 7966
+      },
+      "mcp_count": 0
+    }
+  ],
+  "both_postbuild_guards_once": [
+    {
+      "directory": "standards",
+      "raw_line": 1158,
+      "text": "standards/paper-evidence.html: generated skip link and focus target verified"
+    },
+    {
+      "directory": "dist/standards",
+      "raw_line": 1159,
+      "text": "dist/standards/paper-evidence.html: generated skip link and focus target verified"
+    }
+  ],
+  "current_ref_open_alerts": 0,
+  "latest_current_ref_languages": [
+    {
+      "ref": "refs/pull/369/merge",
+      "commit_sha": "80bcf35536b889ef62343afcf16c8159bbd89006",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-03T04:43:25Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1884994998,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1884994998",
+      "sarif_id": "f7ea84e8-bee4-11f1-8d7d-50e9342153bc",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    {
+      "ref": "refs/pull/369/merge",
+      "commit_sha": "80bcf35536b889ef62343afcf16c8159bbd89006",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-03T04:42:47Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1884993735,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1884993735",
+      "sarif_id": "e154309e-bee4-11f1-9cb0-fe866f225201",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  ],
+  "older_analyses_preserved_count": 2,
+  "historical_initial_5d3_ci_not_relabelled": true,
+  "scope": "Captured completed existing automatic integrated-head CI; full8 native TAP plans, continuous top ordinals, every top duration/counter/final duration, unchanged frozen source-named cases. No project rerun/local Node/import/test/build/helper/browser/GET/job/grant/provider/model/spend/publication. Separate four integrated peers required before documentary future slots. No model/human/indexing/adoption/strategy outcome.",
+  "archive_allocation": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/archive-allocation-5d3ab942-primary-v1.json",
+    "bytes": 28924,
+    "sha256": "81d31fdc50efa9e4133ec58ce05ba4d66a9e5d0ce846294d5675d12eb3f93fe5"
+  },
+  "full_owner_hierarchy": "ACTIVE"
+}

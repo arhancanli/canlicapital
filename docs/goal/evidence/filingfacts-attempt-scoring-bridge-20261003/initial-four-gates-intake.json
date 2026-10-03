@@ -1,0 +1,112 @@
+{
+  "schema": "canli.secondary.attempt-scoring.initial-four-gates-intake.v1",
+  "utc": "2026-10-03T03:47:23.598189+00:00",
+  "head": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+  "tree": "73880eb2ba087e45a42550edfa400a18c9b376ed",
+  "base": "27d7bd860ee903fac20cc6ad187535110a8cd198",
+  "signature": "G",
+  "clean": true,
+  "gates": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/primary-source-review-5d3ab942-v1.json",
+      "bytes": 11265,
+      "sha256": "349e1d7220e29d3a3428d0d10d2bb31832d6e79b0a4786f91df523929350057a",
+      "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "findings": [],
+      "full_read_hash": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/primary-retained-ci-review-5d3ab942-v1.json",
+      "bytes": 18647,
+      "sha256": "afc08ea76d4f0ebace109b03b5ee9845456dbbf301a0b246672963b2fed2586e",
+      "verdict": "PASS_EXACT_RETAINED_CURRENT_CI",
+      "findings": [],
+      "full_read_hash": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge-peer/review-5d3ab942-source.json",
+      "bytes": 23451,
+      "sha256": "027ac6831b6f7ffadc172be65ed27a65c895c2140b711ad0eca6cc559f1f332b",
+      "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "findings": [],
+      "full_read_hash": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge-peer/retained-ci-5d3ab942.json",
+      "bytes": 24142,
+      "sha256": "24d833d901dd24b45af9ab992b0565f9ba3fc286737e8c8bd3a2d24e0d4b5756",
+      "verdict": "PASS_EXACT_RETAINED_REMOTE_CI",
+      "findings": [],
+      "full_read_hash": true
+    }
+  ],
+  "all_four_initial_source_and_current_ci_gates": "PASS_SEPARATE",
+  "continuity_before_new_archive_proposal_phase": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 53651,
+      "sha256": "374f1f4b3675b42bd4b43ffaf665eccc1aa313588f7174a85500b7bade18e192",
+      "full_read": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "full_read": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 963720,
+      "sha256": "3bdb48df4df0ad9159095859cffc90e5f2c7bb2b1be3128b5daab711a6abdcde",
+      "full_read": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 61653,
+      "sha256": "f15017cad00d3e45025e6887346c4099d6db017cf212f8139f07436e324f4f65",
+      "full_read": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1308570,
+      "sha256": "2752cfd115d559a2b09265abd65a9b9c5c10a97ce59722de1e2d16fc86023054",
+      "full_read": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-bridge-20261003/docs/goal/README.md",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "full_read": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-bridge-20261003/docs/goal/REQUIREMENTS.md",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "full_read": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-bridge-20261003/docs/goal/STATUS.md",
+      "bytes": 177033,
+      "sha256": "8f9e039f77e7f6d37dad5f7534dce9e183df73cc6cbfff71fab58686fe4ae552",
+      "full_read": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-bridge-20261003/docs/goal/PHASES.md",
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "full_read": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-bridge-20261003/docs/goal/LOG.md",
+      "bytes": 452397,
+      "sha256": "9a1827ad5f191c46253b2985dacc11eba58842d59f1eda1198b6aa034e2e9ccb",
+      "full_read": true
+    }
+  ],
+  "archive_allocation": null,
+  "repository_archive_edits": 0,
+  "main_integration": "WAIT_ACTUAL_PRIMARY_PR368_DELIVERY",
+  "future_head_or_archive_or_CI_or_merge_approval": false,
+  "full_owner_hierarchy": "ACTIVE",
+  "project_runtime_executions": 0
+}

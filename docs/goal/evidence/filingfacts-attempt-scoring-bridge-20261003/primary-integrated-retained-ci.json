@@ -1,0 +1,672 @@
+{
+  "schema": "canli.primary.pr369.integrated-retained-current-ci-review.v1",
+  "utc": "2026-10-03T04:59:20.512163+00:00",
+  "verdict": "PASS_EXACT_RETAINED_INTEGRATED_CURRENT_CI_WITH_SCOPE_LIMITS",
+  "findings": [],
+  "head": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+  "source_tree": "0bda7a0a6e0141ebd0514117ab1d046e126e1826",
+  "author_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/exact-remote-ci-c40b3ce6-integrated.json",
+    "bytes": 29950,
+    "sha256": "5fc0e0437a58b2bdc87571e9ca4a35d378ce4dc8e77d593f1773c653c8cd3ac8"
+  },
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/source-c40b3ce6-integrated.json",
+    "bytes": 1272412,
+    "sha256": "a13cfe81a2612a3ad416932d9b026ffe8bf451fb194b887b4b0e237bac36fa60"
+  },
+  "method": "Independently fully read/rehashed all ten literal retained originals; parsed all eight TAP blocks including complete top plans, dense ordinals, every top YAML duration, nested outcomes, all seven counters and final durations. Derived 30 literal bridge names, eight literal guard names plus one source PAGES/template expansion from frozen Git. Parsed saved run/checks/ref/tested merge/CodeQL records without API refetch or project execution.",
+  "all_originals": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-checks-original.json",
+      "bytes": 24337,
+      "sha256": "ef908f619534cd23df17f7d671784b51003404945568e87520cb34021e84956c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-ci-run-original.json",
+      "bytes": 13287,
+      "sha256": "808e035ebbbe75c959cf8643b3074cde2e0a3eea0059937c9121fb9985bb1ffd"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-codeql-run-original.json",
+      "bytes": 13294,
+      "sha256": "060c90aa2508e0ea1e57f77f984e6e63e1110e894211a04b186fcac86534f0c4"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-pull-original.json",
+      "bytes": 18209,
+      "sha256": "db81f16a0125f1de825d914a86c98f428e1fc0b7dcc1e548dbff60a267e9a12e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-merge-ref-original.json",
+      "bytes": 357,
+      "sha256": "9f683525f3001607b2273b2ad94cd504098a100d3c0628113a18c957dc66a744"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "61e7d07e185d759e9e76c61e935fc140b3b2c33ca78cb42bfda59900f6a02a56"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-analyses-original.json",
+      "bytes": 2373,
+      "sha256": "c7dccfd8b2cf7918845d98063854064fac5f5ef9b48fa58ae92843909d8efdc5"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-root-original.log",
+      "bytes": 679479,
+      "sha256": "5157b591817839196227caef6da2acfc7f21624ca433d52af213fa3915f28279"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-c40b3ce6-mcp-original.log",
+      "bytes": 297580,
+      "sha256": "bfe8c6bbd26676311df6366ecbd3c52944582707ea79d6bd1607438c3d75de0a"
+    }
+  ],
+  "original_count": 10,
+  "original_bytes": 1051566,
+  "run": 37097388999,
+  "run_attempt": 1,
+  "codeql_run": 37097388973,
+  "root_job": 111129994327,
+  "mcp_job": 111129994203,
+  "literal_tested_merge": "80bcf35536b889ef62343afcf16c8159bbd89006",
+  "tree_equal_frozen_source": true,
+  "tested_parents": [
+    "5b8a148c19782637e4aedc9e5e4a0a5f81b823ee",
+    "c40b3ce6659c4f7726c64a76a0361d6c735b979f"
+  ],
+  "actual_Node_in_both_jobs": "22.23.3",
+  "ROOT_full_TAP": [
+    {
+      "top_plan": 6,
+      "top_outcomes": 6,
+      "all_outcomes": 6,
+      "counters": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "final_duration_ms": 82.919421,
+      "all_top_YAML_durations_verified": true
+    },
+    {
+      "top_plan": 1147,
+      "top_outcomes": 1147,
+      "all_outcomes": 1147,
+      "counters": {
+        "tests": 1147,
+        "suites": 0,
+        "pass": 1147,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "final_duration_ms": 105419.535471,
+      "all_top_YAML_durations_verified": true
+    },
+    {
+      "top_plan": 9,
+      "top_outcomes": 9,
+      "all_outcomes": 9,
+      "counters": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "final_duration_ms": 103.549666,
+      "all_top_YAML_durations_verified": true
+    }
+  ],
+  "MCP_full_TAP": [
+    {
+      "top_plan": 141,
+      "top_outcomes": 141,
+      "all_outcomes": 141,
+      "counters": {
+        "tests": 141,
+        "suites": 0,
+        "pass": 141,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "final_duration_ms": 1641.14399,
+      "all_top_YAML_durations_verified": true
+    },
+    {
+      "top_plan": 1,
+      "top_outcomes": 1,
+      "all_outcomes": 1,
+      "counters": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "final_duration_ms": 403.978129,
+      "all_top_YAML_durations_verified": true
+    },
+    {
+      "top_plan": 82,
+      "top_outcomes": 82,
+      "all_outcomes": 82,
+      "counters": {
+        "tests": 82,
+        "suites": 0,
+        "pass": 82,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "final_duration_ms": 15424.521453,
+      "all_top_YAML_durations_verified": true
+    },
+    {
+      "top_plan": 119,
+      "top_outcomes": 119,
+      "all_outcomes": 119,
+      "counters": {
+        "tests": 119,
+        "suites": 0,
+        "pass": 119,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "final_duration_ms": 3539.170085,
+      "all_top_YAML_durations_verified": true
+    },
+    {
+      "top_plan": 139,
+      "top_outcomes": 139,
+      "all_outcomes": 139,
+      "counters": {
+        "tests": 139,
+        "suites": 0,
+        "pass": 139,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "final_duration_ms": 2729.583092,
+      "all_top_YAML_durations_verified": true
+    }
+  ],
+  "all_8_plans_dense_top_ordinals_nested_outcomes_all_top_durations_all_counters_final_durations_verified": true,
+  "source_named_case_rows": [
+    {
+      "group": "bridge",
+      "ordinal": 699,
+      "name": "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows",
+      "duration_ms": 936.034417,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 700,
+      "name": "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour",
+      "duration_ms": 171.172126,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 701,
+      "name": "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero",
+      "duration_ms": 182.326932,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 702,
+      "name": "earlier correct final wrong and earlier wrong final correct each score only the named last attempt",
+      "duration_ms": 349.30955,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 703,
+      "name": "raw429 followed by an explicit retry preserves failed usage costs and retry accounting",
+      "duration_ms": 161.389738,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 704,
+      "name": "missing error aborted not-started incomplete and pending records all remain denominator failures",
+      "duration_ms": 175.653075,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 705,
+      "name": "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows",
+      "duration_ms": 331.398442,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 706,
+      "name": "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused",
+      "duration_ms": 301.433182,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 707,
+      "name": "all missing captures preserve full cohort and unavailable usage latency price and billing",
+      "duration_ms": 152.28681,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 708,
+      "name": "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring",
+      "duration_ms": 318.492049,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 709,
+      "name": "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers",
+      "duration_ms": 230.462851,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 710,
+      "name": "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay",
+      "duration_ms": 8254.231915,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 711,
+      "name": "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator",
+      "duration_ms": 1401.576087,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 712,
+      "name": "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring",
+      "duration_ms": 218.682354,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 713,
+      "name": "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture",
+      "duration_ms": 17.080219,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 714,
+      "name": "baseline expected sample question projection accounting and raw answer binding tampering are refused",
+      "duration_ms": 217.826771,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 715,
+      "name": "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository",
+      "duration_ms": 16.051625,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 716,
+      "name": "transient same-length scoring read swap cannot hash one dataset and parse another",
+      "duration_ms": 17.594187,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 717,
+      "name": "post-load comment changes in every scoring helper and the whole new module or guide are refused",
+      "duration_ms": 231.195458,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 718,
+      "name": "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck",
+      "duration_ms": 258.573659,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 719,
+      "name": "rehashed row score status measurement implementation and input tampering are rejected by full replay",
+      "duration_ms": 1604.485259,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 720,
+      "name": "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks",
+      "duration_ms": 1.09495,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 721,
+      "name": "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks",
+      "duration_ms": 226.271324,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 722,
+      "name": "oversized native fields are refused before any source open or owned allocation",
+      "duration_ms": 1.150734,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 723,
+      "name": "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused",
+      "duration_ms": 18.349467,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 724,
+      "name": "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding",
+      "duration_ms": 1631.7435,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 725,
+      "name": "settings raw request response and replay artifact each enforce their separate finite byte caps",
+      "duration_ms": 9.499633,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 726,
+      "name": "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring",
+      "duration_ms": 22.089389,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 727,
+      "name": "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring",
+      "duration_ms": 18.371515,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "bridge",
+      "ordinal": 728,
+      "name": "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only",
+      "duration_ms": 524.414993,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "incoming_standard_guard",
+      "ordinal": 1075,
+      "name": "standard focus guard admits the generated mirror and reordered multi-class attributes",
+      "duration_ms": 5.302495,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "incoming_standard_guard",
+      "ordinal": 1076,
+      "name": "standard focus guard refuses the old committed and captured-live missing tabindex shape",
+      "duration_ms": 0.470865,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "incoming_standard_guard",
+      "ordinal": 1077,
+      "name": "standard focus guard refuses a missing shared-handler class or wrong fragment",
+      "duration_ms": 0.376658,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "incoming_standard_guard",
+      "ordinal": 1078,
+      "name": "standard focus guard refuses duplicate target IDs, attributes and skip controls",
+      "duration_ms": 0.25553,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "incoming_standard_guard",
+      "ordinal": 1079,
+      "name": "standard focus guard does not accept targets or skip controls inside comments or script examples",
+      "duration_ms": 0.304743,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "incoming_standard_guard",
+      "ordinal": 1080,
+      "name": "standard focus guard cannot join text across ignored spans into a main target",
+      "duration_ms": 0.328087,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "incoming_standard_guard",
+      "ordinal": 1081,
+      "name": "standard focus guard bounds UTF-8 bytes before tag inspection",
+      "duration_ms": 1.513494,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "incoming_standard_guard",
+      "ordinal": 1082,
+      "name": "standard focus reader admits exact owned bytes and refuses oversized or invalid UTF-8 input",
+      "duration_ms": 3.605235,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    },
+    {
+      "group": "incoming_standard_guard",
+      "ordinal": 1083,
+      "name": "standards/paper-evidence.html: every skip-link target is focusable (tabindex=\"-1\")",
+      "duration_ms": 0.896805,
+      "passed": true,
+      "ROOT_occurrences": 1,
+      "MCP_occurrences": 0
+    }
+  ],
+  "bridge_once_ROOT": 30,
+  "incoming_guard_once_ROOT": 9,
+  "all39_names_MCP_count": 0,
+  "guard_discovery": "Eight direct literal source calls plus ONE added standard PAGES expansion through exact unchanged template; not nine direct calls.",
+  "postbuild_guard_lines": [
+    "standards/paper-evidence.html: generated skip link and focus target verified",
+    "dist/standards/paper-evidence.html: generated skip link and focus target verified"
+  ],
+  "both_source_and_dist_guards_once": true,
+  "seven_current_original_checks": [
+    {
+      "id": 111130169204,
+      "name": "CodeQL",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/runs/111130169204"
+    },
+    {
+      "id": 111129994333,
+      "name": "analyze (javascript-typescript)",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388973/job/111129994333"
+    },
+    {
+      "id": 111129994327,
+      "name": "vite production build",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388999/job/111129994327"
+    },
+    {
+      "id": 111129994269,
+      "name": "Key revocation PostgreSQL contract",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388999/job/111129994269"
+    },
+    {
+      "id": 111129994255,
+      "name": "design wrapper build and contracts",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388999/job/111129994255"
+    },
+    {
+      "id": 111129994238,
+      "name": "analyze (python)",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388973/job/111129994238"
+    },
+    {
+      "id": 111129994203,
+      "name": "MCP package and stdio contracts",
+      "head_sha": "c40b3ce6659c4f7726c64a76a0361d6c735b979f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37097388999/job/111129994203"
+    }
+  ],
+  "captured_current_ref_open_alert_objects": 0,
+  "latest_current_ref_languages": [
+    {
+      "language": "javascript-typescript",
+      "commit_sha": "80bcf35536b889ef62343afcf16c8159bbd89006",
+      "results_count": 0,
+      "error": "",
+      "id": 1884994998,
+      "created_at": "2026-10-03T04:43:25Z"
+    },
+    {
+      "language": "python",
+      "commit_sha": "80bcf35536b889ef62343afcf16c8159bbd89006",
+      "results_count": 0,
+      "error": "",
+      "id": 1884993735,
+      "created_at": "2026-10-03T04:42:47Z"
+    }
+  ],
+  "older_analyses_preserved": 2,
+  "author_metadata_name_discovery_error_retained": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/capture-audit-c40b3ce6-metadata-stop-original-v1.json",
+    "bytes": 3126,
+    "sha256": "4e448f1834df10a66b6467bb2da236148c7330464fd681c984440461a8cc4a13"
+  },
+  "source_static_extension_separate": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/primary-integrated-source-review-c40b3ce6-v1.json",
+    "bytes": 28983,
+    "sha256": "e7e0666ed1cdd40c7fe12451ffbc2978d2adc42b78374b9e5fb65f625e419e32"
+  },
+  "reviewer_import_test_runtime_network_refetch": false,
+  "limits": "Exact completed existing automatic integrated CI only. Initial5d3 1138 proof remains historical; actual1147 is read from completed full TAP. No local Node/helper/build/browser/test, workflow rerun, new source/date/current production/nativefocus/live/field/indexing/provider-model/human-rights-label/adoption/strategy result or publisher authority.",
+  "subsequent_gates": "THIRD independent integrated source/currentCI and all four gates precede allocated conditional archive assembly; final documentary source/archive/currentCI gates and sole primary merge/actual custody remain separate.",
+  "full_owner_hierarchy": "ACTIVE"
+}

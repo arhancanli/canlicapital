@@ -1,0 +1,384 @@
+{
+  "schema": "canli.primary.pr369.initial-retained-ci-review.v1",
+  "utc": "2026-10-03T03:21:07.630656+00:00",
+  "verdict": "PASS_EXACT_RETAINED_CURRENT_CI",
+  "findings": [],
+  "head": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+  "source_tree": "73880eb2ba087e45a42550edfa400a18c9b376ed",
+  "author_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/exact-remote-ci-5d3ab942.json",
+    "bytes": 15642,
+    "sha256": "c27fd1c311327f3825c0019593264ba6e18048004386e8fc2734d7d15d24206a"
+  },
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/source-5d3ab942.json",
+    "bytes": 1240572,
+    "sha256": "f643c10158b46ed758748a91ef7d9329f8eb603e24820681f547aa417b8f1635"
+  },
+  "all_originals": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-analyses-original.json",
+      "bytes": 1186,
+      "sha256": "66985c8af5650086a6029de70e84aa29407809048766f703714f63780cb27880",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-checks-original.json",
+      "bytes": 24337,
+      "sha256": "4c1053d5340528e77cce645bedce1faf025b8207750c7a64b8b00ee98872384e",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-ci-run-original.json",
+      "bytes": 13276,
+      "sha256": "35975a3de0e81ab9f5faa13c3bf6b096ef16586b0e7f77dc76368796b207b4e7",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-codeql-run-original.json",
+      "bytes": 13283,
+      "sha256": "dcfd0c3d85f3638bbf6f8e0db058fec444ad80bc7056c97d7ec314c17ad7070c",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-mcp-original.log",
+      "bytes": 298748,
+      "sha256": "a246c7a388b7b2155d4f3ed9b286d798424094771c7dc31438bbfd6eafb960b8",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-merge-ref-original.json",
+      "bytes": 357,
+      "sha256": "594496ae86203ecbd86e05cea848d0bbfed8c9037307765eab1d0bf5259863a3",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-pull-original.json",
+      "bytes": 18208,
+      "sha256": "6f78bdf1bbb59fb970f7220f8aa0b6c57095100b47f427adb877514777ad183c",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-root-original.log",
+      "bytes": 676614,
+      "sha256": "d40c21ea3bda6a9b0e01c156890f8925467be84d0a6d506421824c6b9d804a70",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/remote-5d3ab942-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "c428d4fbff42ee73b5f207c0730a7be3adfffea06a1c05326019b0e5d4be4d50",
+      "same_fd_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/first-gh-log-escape-refusal-5d3ab942.json",
+      "bytes": 636,
+      "sha256": "9ce38793c87e27a185aba2354e193ac64dbbed0a9d36c7e72307f79c967bf5cc",
+      "same_fd_stable": true
+    }
+  ],
+  "all_original_files": 11,
+  "parsed_independently_from_full_raw": {
+    "root": {
+      "suites": [
+        {
+          "plan": 6,
+          "counters": {
+            "tests": 6,
+            "suites": 0,
+            "pass": 6,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "duration_ms": 74.264107,
+          "all_success_ordinals_exact_1_to_plan": true,
+          "top_success_lines_sha256": "cc71377435f298db0ebb93852ca26694eea52c13ff2e88c2437cb610df53e9d3"
+        },
+        {
+          "plan": 1138,
+          "counters": {
+            "tests": 1138,
+            "suites": 0,
+            "pass": 1138,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "duration_ms": 100657.274325,
+          "all_success_ordinals_exact_1_to_plan": true,
+          "top_success_lines_sha256": "c97a836f8537f82b662c7f2889f0d32e1342d04aa201bcb019a7d88f70615914"
+        },
+        {
+          "plan": 9,
+          "counters": {
+            "tests": 9,
+            "suites": 0,
+            "pass": 9,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "duration_ms": 89.503433,
+          "all_success_ordinals_exact_1_to_plan": true,
+          "top_success_lines_sha256": "04f1b4ed419e4e69640eeb12ae4bfb7b6a6c2dc1b10459680354bdf91de66639"
+        }
+      ],
+      "source_named_success_counts": {
+        "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows": 1,
+        "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour": 1,
+        "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero": 1,
+        "earlier correct final wrong and earlier wrong final correct each score only the named last attempt": 1,
+        "raw429 followed by an explicit retry preserves failed usage costs and retry accounting": 1,
+        "missing error aborted not-started incomplete and pending records all remain denominator failures": 1,
+        "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows": 1,
+        "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused": 1,
+        "all missing captures preserve full cohort and unavailable usage latency price and billing": 1,
+        "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring": 1,
+        "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers": 1,
+        "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay": 1,
+        "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator": 1,
+        "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring": 1,
+        "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture": 1,
+        "baseline expected sample question projection accounting and raw answer binding tampering are refused": 1,
+        "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository": 1,
+        "transient same-length scoring read swap cannot hash one dataset and parse another": 1,
+        "post-load comment changes in every scoring helper and the whole new module or guide are refused": 1,
+        "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck": 1,
+        "rehashed row score status measurement implementation and input tampering are rejected by full replay": 1,
+        "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks": 1,
+        "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks": 1,
+        "oversized native fields are refused before any source open or owned allocation": 1,
+        "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused": 1,
+        "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding": 1,
+        "settings raw request response and replay artifact each enforce their separate finite byte caps": 1,
+        "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring": 1,
+        "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring": 1,
+        "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only": 1
+      },
+      "new_cases": 30,
+      "Node": [
+        "22.23.3"
+      ],
+      "literal_checkout_sha": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693"
+    },
+    "mcp": {
+      "suites": [
+        {
+          "plan": 141,
+          "counters": {
+            "tests": 141,
+            "suites": 0,
+            "pass": 141,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "duration_ms": 2889.05279,
+          "all_success_ordinals_exact_1_to_plan": true,
+          "top_success_lines_sha256": "7aa403fc57ebec7fe47ef78b2593f2f859d81f5314428ac642bdc3f1867295ff"
+        },
+        {
+          "plan": 1,
+          "counters": {
+            "tests": 1,
+            "suites": 0,
+            "pass": 1,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "duration_ms": 602.882675,
+          "all_success_ordinals_exact_1_to_plan": true,
+          "top_success_lines_sha256": "f4e0e26eba2091682d005c7e724ed9017bd6b3a0042ba09d5b8cd49ee5f56d30"
+        },
+        {
+          "plan": 82,
+          "counters": {
+            "tests": 82,
+            "suites": 0,
+            "pass": 82,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "duration_ms": 15607.712858,
+          "all_success_ordinals_exact_1_to_plan": true,
+          "top_success_lines_sha256": "fbeac4e8fc88bed5fdc17edb66a7aad4c1581ff7f5235be633e567472f2597af"
+        },
+        {
+          "plan": 119,
+          "counters": {
+            "tests": 119,
+            "suites": 0,
+            "pass": 119,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "duration_ms": 5596.60885,
+          "all_success_ordinals_exact_1_to_plan": true,
+          "top_success_lines_sha256": "4cf4f709eb4d4bc2863dd4b76e67fdd78ef2e9996c409dd74ebe362bd81fcf27"
+        },
+        {
+          "plan": 139,
+          "counters": {
+            "tests": 139,
+            "suites": 0,
+            "pass": 139,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "duration_ms": 4446.959619,
+          "all_success_ordinals_exact_1_to_plan": true,
+          "top_success_lines_sha256": "c21eea78744ff6c444b226fe0a3ad0fc49bc29c006307aa8c156228288aebf70"
+        }
+      ],
+      "source_named_success_counts": {
+        "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows": 0,
+        "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour": 0,
+        "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero": 0,
+        "earlier correct final wrong and earlier wrong final correct each score only the named last attempt": 0,
+        "raw429 followed by an explicit retry preserves failed usage costs and retry accounting": 0,
+        "missing error aborted not-started incomplete and pending records all remain denominator failures": 0,
+        "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows": 0,
+        "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused": 0,
+        "all missing captures preserve full cohort and unavailable usage latency price and billing": 0,
+        "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring": 0,
+        "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers": 0,
+        "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay": 0,
+        "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator": 0,
+        "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring": 0,
+        "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture": 0,
+        "baseline expected sample question projection accounting and raw answer binding tampering are refused": 0,
+        "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository": 0,
+        "transient same-length scoring read swap cannot hash one dataset and parse another": 0,
+        "post-load comment changes in every scoring helper and the whole new module or guide are refused": 0,
+        "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck": 0,
+        "rehashed row score status measurement implementation and input tampering are rejected by full replay": 0,
+        "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks": 0,
+        "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks": 0,
+        "oversized native fields are refused before any source open or owned allocation": 0,
+        "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused": 0,
+        "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding": 0,
+        "settings raw request response and replay artifact each enforce their separate finite byte caps": 0,
+        "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring": 0,
+        "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring": 0,
+        "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only": 0
+      },
+      "new_cases": 0,
+      "Node": [
+        "22.23.3"
+      ],
+      "literal_checkout_sha": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693"
+    }
+  },
+  "run": 37091573337,
+  "run_attempt": 1,
+  "codeql_run": 37091573326,
+  "literal_tested_merge": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693",
+  "tree_equal_frozen_source": true,
+  "parents": [
+    "27d7bd860ee903fac20cc6ad187535110a8cd198",
+    "5d3ab942e24c8432b7952d7856a5ee568886be70"
+  ],
+  "seven_original_checks": [
+    {
+      "name": "CodeQL",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "status": "completed",
+      "conclusion": "success",
+      "id": 111113028353,
+      "url": "https://github.com/arhancanli/canlicapital/runs/111113028353"
+    },
+    {
+      "name": "Key revocation PostgreSQL contract",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "status": "completed",
+      "conclusion": "success",
+      "id": 111112851227,
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/37091573337/job/111112851227"
+    },
+    {
+      "name": "design wrapper build and contracts",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "status": "completed",
+      "conclusion": "success",
+      "id": 111112851208,
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/37091573337/job/111112851208"
+    },
+    {
+      "name": "MCP package and stdio contracts",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "status": "completed",
+      "conclusion": "success",
+      "id": 111112851159,
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/37091573337/job/111112851159"
+    },
+    {
+      "name": "vite production build",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "status": "completed",
+      "conclusion": "success",
+      "id": 111112851014,
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/37091573337/job/111112851014"
+    },
+    {
+      "name": "analyze (javascript-typescript)",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "status": "completed",
+      "conclusion": "success",
+      "id": 111112850908,
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/37091573326/job/111112850908"
+    },
+    {
+      "name": "analyze (python)",
+      "head_sha": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+      "status": "completed",
+      "conclusion": "success",
+      "id": 111112850755,
+      "url": "https://github.com/arhancanli/canlicapital/actions/runs/37091573326/job/111112850755"
+    }
+  ],
+  "captured_current_ref_open_alert_objects": 0,
+  "latest_current_ref_languages": [
+    {
+      "id": 1884786803,
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "commit_sha": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693",
+      "results_count": 0,
+      "error": ""
+    },
+    {
+      "id": 1884785766,
+      "environment": "{\"language\":\"python\"}",
+      "commit_sha": "01740e47e0d6fbdf3bf1ddc7894817d3be9ab693",
+      "results_count": 0,
+      "error": ""
+    }
+  ],
+  "original_escape_refusal_retained": true,
+  "source_static_review_separate": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/primary-source-review-5d3ab942-v1.json",
+  "reviewer_import_test_runtime_network_refetch": false,
+  "limits": [
+    "Thirty unique source cases pass onceROOT, zeroMCP; full ROOT6/1138/9 and MCP141/1/82/119/139 plans/ordinals/counters/finaldurations parsed independently from literal originals.",
+    "Retained API/ref scope and tested-source epoch only; no current-global alert claim, future head, archive allocation, ordinary merge or publisher/live acknowledgement.",
+    "Remote synthetic software fixtures, not actual model/provider/billing/expert/rights/indexing/adoption/strategy outcome evidence."
+  ],
+  "full_owner_hierarchy": "ACTIVE"
+}

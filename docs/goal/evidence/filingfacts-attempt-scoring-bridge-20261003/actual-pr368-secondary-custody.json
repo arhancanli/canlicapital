@@ -1,0 +1,510 @@
+{
+  "schema": "canli.secondary.pr368.actual-delivery-custody.v1",
+  "utc": "2026-10-03T04:34:52.028418+00:00",
+  "reviewer": "SECONDARY",
+  "verdict": "PASS_ACTUAL_ORDINARY_DELIVERY_GIT_TREE_AND_ARCHIVE_CUSTODY",
+  "findings": [],
+  "primary_actual_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-actual-delivery-5b8a148c-v1.json",
+    "bytes": 43616,
+    "sha256": "59e7a463e3a44fc4561b5da0a724972bf6062e15fdbc483c747bc6b3a1e6c8d4"
+  },
+  "actual_head": "5b8a148c19782637e4aedc9e5e4a0a5f81b823ee",
+  "actual_tree": "59a0927fa2b1e7b6a7043bbc8f7614bd2dde7f05",
+  "sole_parent": "27d7bd860ee903fac20cc6ad187535110a8cd198",
+  "merged_at": "2026-10-03T04:30:24Z",
+  "reviewed_signed_head": "988381a54e4e73e598507685b575b4f17ef4250e",
+  "fresh_own_API_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/actual368-pull-secondary-fresh-original-v1.json",
+      "bytes": 19775,
+      "sha256": "9734c8184ace54b882cb9364bc9042cfb8e7cc62cb426475cac73efb8492666f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/actual368-main-secondary-fresh-original-v1.json",
+      "bytes": 8385,
+      "sha256": "b8361845fe6712add192b104178df0407aa4936e64e08300cdd3ee00ff5a695b"
+    }
+  ],
+  "primary_API_pins_fullread_hashed": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-actual-merged-pull-original.json",
+      "bytes": 19775,
+      "sha256": "9734c8184ace54b882cb9364bc9042cfb8e7cc62cb426475cac73efb8492666f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-actual-merged-commit-original.json",
+      "bytes": 5740,
+      "sha256": "5ff14a77ffb11c519a04f977e6df60e41f7006743e89b99a1c94a9bfb96553c9"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-actual-main-original.json",
+      "bytes": 8385,
+      "sha256": "b8361845fe6712add192b104178df0407aa4936e64e08300cdd3ee00ff5a695b"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-actual-fetch-original.json",
+      "bytes": 267,
+      "sha256": "de20672d851ac811004271be1790082f2bbbbafe27c9466aefb0a181e6abbab2"
+    }
+  ],
+  "own_fetch": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge/actual368-secondary-fetch-original-v1.json",
+    "bytes": 304,
+    "sha256": "4b12517393f754232f4acec869f059f223695f92e59b30bcf7c89a8a7c1f3ead"
+  },
+  "API_commit_verification": {
+    "verified": true,
+    "reason": "valid",
+    "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqwITgCRC1aQ7uu5UhlAAAnDMQAB+XKC93gXvXuMr5ZzTZPZSq\neCxlJf0h6zYJW3ggNwutJdH/ZNZrHUPRCUY6LUctWH/obq3O4y9sU+jmeWDd5hez\nW8aC6VHB55E28T4J2SD21jyJfML+7YbgI+rIdI52/RX/odezsU5fs7JsMsgFr8np\nCyRvZ8qVJYxKZ4R5OXo5XhJ0YndWOVPtqmqXm5bv15lbmqLt+4tUYgXtsd28DC4j\ngxjcry/dKmrc+y0qEBm/sCJ3NmagS8cdB0tCgk+PkwxlrNdcThr78BJqzVpWTL+3\nErTQGK/qka032E5D2Ep8UOM7c7f3LmULqFqh0vYqeCOM1mo4BnjANdp9sAy3nOhd\nQNYgVkbD3NtQ/i+Rs14Hz+eq6imbc7tJbVyOwf8HQjHUd9M26qrN/CtmLkeITH0a\naQyO855eGrzWSVhx1KEUJ1CFHY+PU0AXsmj6ePQvu90s5ivrDZ5JpECi+EoKhL6y\nlF4a+ropKJPp/bG0z+JMx7lmYca3BcHUA1WDulE3Y1JG7MtCr7hT1mfZu+ve0z6D\ntX4m+TeNt7czaRsBNZu5N5S8I0N3w8snpZQVzxbQWqcDzJhD6mspFnK5z1hHPmUi\n/K/SZ5Z84z9/yAbRN6D9iKr8VisMcXTolIL7PTXJZ2MiHzUF/E2hdQxbZAYZafHe\nKtmeKyFCTn6PzXcANjB4\n=5u8d\n-----END PGP SIGNATURE-----\n",
+    "payload": "tree 59a0927fa2b1e7b6a7043bbc8f7614bd2dde7f05\nparent 27d7bd860ee903fac20cc6ad187535110a8cd198\nauthor Arhan Canli <arhancanli8@gmail.com> 1791001823 +0400\ncommitter GitHub <noreply@github.com> 1791001823 +0400\n\nfix: preserve standards skip-link focus through build\n\nThe standards page committed a skip link without the shared `skip-link` class and a `main#content` without `tabindex=\"-1\"`. Align that mirror with the generator and verify both source and built output at the end of postbuild, so those attributes cannot drift silently.\n\nThe bounded guard uses strict UTF-8 and a stable file descriptor. Ignored comment/script/style spans retain their width, preventing surrounding text from becoming a fabricated tag. Nine meaningful cases cover the original missing attributes, duplicate targets/controls, ignored spans, malformed or oversized input, and the standards page's focusable target.\n\nValidation on final signed `988381a54e4e73e598507685b575b4f17ef4250e`: all seven checks pass; all nine cases pass once in ROOT, with suites 6 + 1117 + 9 and MCP suites 141 + 1 + 82 + 119 + 139 on Node 22.23.3. The source and dist guards each pass once. Tested merge `11a009d30fdb5e5add5195b93d98a4c85fe73f37` has the exact candidate tree. The captured current-ref CodeQL alert list is empty and both latest language analyses report zero results.\n\n[The 40-file evidence manifest](https://github.com/arhancanli/canlicapital/blob/988381a54e4e73e598507685b575b4f17ef4250e/docs/goal/evidence/standard-skip-focus-20261003/manifest.json) preserves the original CodeQL 91 finding, correction, raw CI and independent source/CI reviews. Code snapshots are exact text artifacts. Final-head review receipts stay outside that frozen archive.\n\nThe cause of the earlier live attribute loss remains unproven. This verifies template/build behavior; production publication and browser focus verification remain separate. No generator, server, schema, data, journal, dependency, lock, version or unrelated product change.",
+    "verified_at": "2026-10-03T04:30:24Z"
+  },
+  "local_actual_signature_observation": {
+    "status": "N",
+    "stderr": "error: cannot run gpg: No such file or directory\n",
+    "qualified": "Local PGP verifier unavailable for GitHub squash signature; no local-G claim. Actual metadata/tree/parents independently bind saved API and Git. Previously accepted author988 SSH G source remains separate."
+  },
+  "full_Git_identity_count": 6345,
+  "all_actual_reviewed_Git_mode_type_blob_size_identities_equal": true,
+  "entire_actual_reviewed_diff_empty": true,
+  "actual_archive": {
+    "files": 40,
+    "manifest": {
+      "path": "docs/goal/evidence/standard-skip-focus-20261003/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "302a21b75f8eaae6167ee7196621a0ea6ea8828d",
+      "bytes": 21328,
+      "sha256": "1323ba4b79fc9cc0643afaf9a4d2a86435d4bba2b49affbd33ba9dd56e113a6a",
+      "actual_reviewed_Git_bytes_and_mode_exact": true
+    },
+    "all_stored_Git_bytes_modes_equal_accepted_reviewed": true,
+    "rows": [
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/README.md",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "90b6eb78ad364ccef5dbf77695a6f4f05754d503",
+        "bytes": 2393,
+        "sha256": "10a2e320627fc47c56003090352ef5a60f8852e11459db49ac1a32b5f3d94a9f",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/allocation-primary-original.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b5638832262314a63940796d709c0f7aebe31c31",
+        "bytes": 22240,
+        "sha256": "dfbd8475ed8dbcfc7e56939a14509fd99378d3118e518232861dd04aff5087af",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/author-exact-ci.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "265de2e118b6a9e34a9717934b53cc00fdbd1a1b",
+        "bytes": 12874,
+        "sha256": "d7108e0b77713ff460182193e68cde5dfaaee9db1683257a8330825316808ea8",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/check-runs.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ddf4b65dbd2e69d7753888a0230c68359d8da745",
+        "bytes": 24330,
+        "sha256": "b2449fef14b0ba4f2729a1ebc3b2b00cc03c7c76b67a045b63423379aa52530c",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/codeql-alerts.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/codeql-analyses.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "94103276f52dfcdcf5a83cc835b2e7ad902a2806",
+        "bytes": 2373,
+        "sha256": "c43a74d909b65c3ac3cf56f47a2ebd4c98e8195315249db40772ddd9b74eb411",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/codeql-run.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "946c5fa7371feda86508059bb1e42988d56fb03c",
+        "bytes": 13288,
+        "sha256": "57aab086c9c212c5f4949b7820ffcf605fb8a4f96e9fba028d52ca983489c43a",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/guard-source.mjs.txt",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "569aae10aea6ac403f9d4b257beea74ef7858f87",
+        "bytes": 4070,
+        "sha256": "1f95d3013734446ad6eccd1542ecac84050d27c65cd801fd28eb4902a758fdac",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/jobs.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "148af2c4957c12fda2fec00314c91a3529bf661c",
+        "bytes": 13295,
+        "sha256": "7cd684d0a0d6c7199794801a4f76d84ea3816b4d742cf463c42747427e3e5790",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/mcp-ci.log.gz",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a650503294d463c80e248c3bfe4075cb049e4934",
+        "bytes": 103351,
+        "sha256": "b9114b7f88b79b93e7fd5f4a9fc938bbc2b4b2fd2e86134b59229fd43f40f90a",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/merge-ref.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ad1f14facdcafbfacacba0d43f962842c8cc140a",
+        "bytes": 357,
+        "sha256": "72468b8ba831ef65985cd8da5b6fbaa77f719050efd1de5d8bb9b0ae8b808c85",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/pull.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "c96bbaa26f395021781eb859552bee7dfbe59e4c",
+        "bytes": 18947,
+        "sha256": "14f5bb5a9bfd94bf7366d2d2045b1997ec1018205fab33742aa6e1de28f4750c",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/root-ci.log.gz",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0a42ec23516bc5278646f9cfbd05cda2bde6be08",
+        "bytes": 124989,
+        "sha256": "b91502e1933cae24bf392f4673cc1f3fa45e6c6f5f63f14f25d47b0b252266f2",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/run.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0ffe266f1afb9e92c73777f90fb9a9923a52a6da",
+        "bytes": 13281,
+        "sha256": "30d3a67b885d89e0b0c6794289c65b6589b07ff99ec07daaeaa5837acf76c992",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/source-76633be4.json.gz",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0eda7f1708a04d5aad27065be67f94fc5146f970",
+        "bytes": 497760,
+        "sha256": "51d6060f2cc2d4c33f26f591d3706e5501c9904ff0230fe1b88101862be98a24",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/test-source.mjs.txt",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "48045e2b98403afb6dcb196ab4904a3d08d7b337",
+        "bytes": 7168,
+        "sha256": "f52573577455fd23b1143b3be05f149fb9cf788cc90fe5d32f59c2ea83a060e5",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/corrected/tested-merge.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f74b0d246e16367536a9ba6c881f4fd2544a15c8",
+        "bytes": 2648,
+        "sha256": "7841bfe2a27e7135d29691c76c04fcd0c15a316d75ca7efaf499dee3d885d604",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/manifest.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "302a21b75f8eaae6167ee7196621a0ea6ea8828d",
+        "bytes": 21328,
+        "sha256": "1323ba4b79fc9cc0643afaf9a4d2a86435d4bba2b49affbd33ba9dd56e113a6a",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/metadata/audit-retained-ci-v2.py.txt",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "be8913ea91bdb19c30c0ab43805f49dec7c6fe66",
+        "bytes": 8966,
+        "sha256": "6d91c0beefd11ab5d10701abcfcb8d000ec3578bf7f92cb987eb4bf1f00a0fec",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/metadata/capture-ci-v1.py.txt",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e743232e9041d3790fc32b90fd8badbbc2bd639f",
+        "bytes": 5016,
+        "sha256": "ea32dc25224822f735e858936c4e3ede3445b74652fcfaf6c1fe191641957f32",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/metadata/language-parser-error.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "0a0f2cab281fd34ff2af39ec0befe3e3c8b30bfb",
+        "bytes": 1044,
+        "sha256": "fdf63746d4fdcbb3a4d76fac4768219d72868f2d18464d8a46f9c8034327bcc7",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/metadata/log-escape-refusal.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "efc6d37757facab743bddb81199d2ca0a4f858f0",
+        "bytes": 792,
+        "sha256": "26a9d4feb364a2aa353417cc5b5136d472c8f15b1189ab11204d0e96ffcf7c06",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/metadata/post-push-assertion.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4a1c50a657cbbf1f83f03b711b4a64e3a60021e3",
+        "bytes": 803,
+        "sha256": "9eec96653930212ec32ffc3d914ec32ef50d3422121a7824e5b8d02d02369e4f",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/checks.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "734322763c6621ba199d840d9740e89acffe9dc2",
+        "bytes": 2267,
+        "sha256": "15d049029e37fffd9bc398edae51edc93856f49e3dd2dc5c55e434c94dea4ff2",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/codeql-analyses.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "9fb721ef0a4dfdcc13ad3cbc35399207107f1f9b",
+        "bytes": 1186,
+        "sha256": "dcebff18514b1534ea43d85586bbd761ab5aff9b9974711d178e31a04bff62c7",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/codeql-annotations.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "e25691466a4d53ab50c9d6d202bbb62265fadb9b",
+        "bytes": 567,
+        "sha256": "907f5bd96b9ef373baa60d0b8a1181245e18230c0ccf8cb4eb2848df51e27292",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/codeql91-alert.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "14d67dca533839a393af7633d7b1090ad4e57808",
+        "bytes": 6215,
+        "sha256": "811a5a386fb76b736194376b6c1b0ad3443c09800b4548e65fe83ef111e2a3a4",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/correction-written.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "cd4a2e4de131ba79a95ad67e9be316887834f1b5",
+        "bytes": 3054,
+        "sha256": "10581d0b95b2a946d45a9290f8f8d983028faef7195f2a3f14228a6643cfd498",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/guard-source.mjs.txt",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "af14f4bd94898801400b1f9239875eb2200a98bf",
+        "bytes": 3955,
+        "sha256": "d47cc08bddb0577ca7bfc1ee5cffc0ede38b3223ee834be26c4f4df1dad716e7",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/mcp-ci.log.gz",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "3e43bb46fc3ec6fede1fc224790dfd802b0693e9",
+        "bytes": 103204,
+        "sha256": "5e1713a2f8d33118c4e0bded49ea21be41aef182bc1f74e0cb9aab9bac8a1005",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/root-ci.log.gz",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "31a1ee11637262623a95cf29c496af2bcd4db861",
+        "bytes": 124957,
+        "sha256": "bed901c8d796f1ea96520391ef9da51d44f88569662f2cd0dd4b844801eb5bd5",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/run.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "fb8a881899b274868af788ca4761a15a40f45253",
+        "bytes": 13279,
+        "sha256": "978729892da6f5b819c9f7de576a84ede254a8f782a42b684cbf8484ac7ea789",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/source-4166b968.json.gz",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5b8f084d1a5e3c08f3b3148234e0195ca7137f8b",
+        "bytes": 497493,
+        "sha256": "93b1d6371831096ebdc7deee9e667863269c7a568e670321dee2f0938d0cf28d",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/original/tested-merge.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "5962e04b6301ba867905ba59684789443a3343ba",
+        "bytes": 2648,
+        "sha256": "ab2f04e8eb6001a7079a3e44fd5a483e6036213184617572222ee6b6fcf016a2",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/secondary/corrected-retained-ci.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4380d037a445e76b587f356f68e4520634d2f705",
+        "bytes": 21769,
+        "sha256": "ae824c6b6a5b0714657f7a54d42eb777dfe65333bcb0de7776061729867755de",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/secondary/corrected-source.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "324395bacbab936b36fd6f24916e983d50d43e3a",
+        "bytes": 6320,
+        "sha256": "29b50f030355297575b8e412e62d1cf0953b04cdde8d2b8119c6b33bdc0714fe",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/secondary/original-source-hold.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "8cbdbedff362fbec9c67d8b89d6cc489fb00b143",
+        "bytes": 5519,
+        "sha256": "ccc51d8b3b245ec58c985db1d00af82eead1713432348f8e07c145c333ddd70d",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/third/corrected-retained-ci.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "a4c46f8ac99f5a11d51c3ad2392f2c56f6a93987",
+        "bytes": 21312,
+        "sha256": "1786954c1a9b2593a95bb76707cace13ebc00937957a7fc3ca04b6b8ed6b6f87",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/third/corrected-source.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "f2b6a8f80d7e6dfe26b1d5266f0ddb2ee6d6c44b",
+        "bytes": 13540,
+        "sha256": "bff8c059d11150c5f143e720b7f3fc1583c3d21253065a1fe1c855c859045a26",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      },
+      {
+        "path": "docs/goal/evidence/standard-skip-focus-20261003/third/original-source-hold.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "4df67917758d2d266cf1c0782d57d5027fd5b108",
+        "bytes": 16175,
+        "sha256": "2928366170c1c8c9d1ed03b913fddcd766a1ce62c2989a005cc4319adc829529",
+        "actual_reviewed_Git_bytes_and_mode_exact": true
+      }
+    ],
+    "gzip_origin_reaudits": 0,
+    "qualification": "Accepted final source/archive proof a23bedc8 applies to exact tree; this custody binds all actual40 Git bytes/modes and does not rerun immutable decoder/origin reviews."
+  },
+  "actual_goal_whole_files": [
+    {
+      "path": "docs/goal/README.md",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "actual_reviewed_whole_file_exact": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "actual_reviewed_whole_file_exact": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "bytes": 181808,
+      "sha256": "15122bd6c6ed4ce8f52fb6a1107aa91c1505b82e9b8c6d55839ad5377c7f447c",
+      "actual_reviewed_whole_file_exact": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "actual_reviewed_whole_file_exact": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "bytes": 457172,
+      "sha256": "2cf5dba2cbad678a724d6a76e57a974d703bd2e71bd26c0322a03961bff8843d",
+      "actual_reviewed_whole_file_exact": true
+    }
+  ],
+  "four_final_gates": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-four-final-gates-988381a5-v1.json",
+    "bytes": 2373,
+    "sha256": "69cc8a1cbca0c87248c55e285dd5495952cda00d36d77281082355b736b42c77"
+  },
+  "source_CI_bindings_custody_only": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/source-988381a5-standard-skip-focus-final.json",
+      "bytes": 2171530,
+      "sha256": "811adb8b9a83c685c8e4c34eb32de11ae57950be325b2f6d2cda4e482327a835"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-988381a5-exact-ci-v1.json",
+      "bytes": 12863,
+      "sha256": "8dce5ea049a28e4f8a6ac772aff633af52d7477377d910fe87b2dd255476fd4e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-four-final-gates-988381a5-v1.json",
+      "bytes": 2373,
+      "sha256": "69cc8a1cbca0c87248c55e285dd5495952cda00d36d77281082355b736b42c77"
+    }
+  ],
+  "own_bridge_before_integration": {
+    "head": "5d3ab942e24c8432b7952d7856a5ee568886be70",
+    "clean": true,
+    "integration_performed": false
+  },
+  "scope": "Actual repository custody only; no project import/test/helper/Node/build/browser/GET/provider/model/spend/site/npm/publication. Remote attribute-loss cause UNPROVEN; pipeline/indexing/browser outcomes not inferred. ONE assigned actual-main bridge integration next.",
+  "full_owner_hierarchy": "ACTIVE",
+  "whole_protected_physical_reaudit": false
+}

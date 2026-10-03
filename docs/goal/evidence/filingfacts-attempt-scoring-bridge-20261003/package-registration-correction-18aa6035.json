@@ -1,0 +1,25 @@
+{
+  "schema": "canli.primary.attempt-scoring-assignment.package-registration-correction.v1",
+  "utc": "2026-10-03T02:21:48.304439+00:00",
+  "original_assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/next-assignment-attempt-scoring-bridge-20261003.md",
+    "bytes": 7963,
+    "sha256": "118bfb5437071a0614bf83f777a35f46ed48f3d869b64e0a00bf15097d4dbe85",
+    "preserved_unchanged": true
+  },
+  "observed_package": {
+    "path": "/Users/arhancanli/canlicapital-paper-mcp-guide-focus-20261002/package.json",
+    "bytes": 12950,
+    "sha256": "a85752a22f68bfd7ddc168242b23e7f2c2f3bf6cae956df58ce11228a20e634d",
+    "verify_explicit_test_list": true
+  },
+  "correction": "Original assignment incorrectly said the root verify command already uses a FilingFacts wildcard. Actual root verify explicitly lists named test files. This is an additive correction; the original and all other source/acceptance boundaries stay intact.",
+  "authorized_package_scope": [
+    "Add the focused attempt-scoring test registration.",
+    "Add exactly scripts/datasets/filing-facts/attempt-scoring.test.mjs once to the existing root verify node --test invocation, adjacent to the existing attempt-accounting test. Preserve every prior command, test path, order and default."
+  ],
+  "exact_repository_path_count": 6,
+  "runtime_authority": "Existing new-head remote CI only after signed clean freeze; no local project runtime or CPU grant.",
+  "all_other_assignment_boundaries_preserved": true,
+  "full_owner_hierarchy": "ACTIVE"
+}
