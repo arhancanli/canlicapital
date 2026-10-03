@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.11.0 (2026-10-03)
 
 - The lab: four tools that compute in the server process, on stdio and on the hosted endpoint,
   with no API call and no receipt. `backtest_strategy` runs a rule (`sma_cross`, `momentum`,
