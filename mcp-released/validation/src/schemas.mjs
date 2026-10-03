@@ -144,11 +144,17 @@ export const realityCheckInput = realityCheckToolShape.refine((v) => (v.matrix =
 // checks that a record object was sent; canlicapital.com runs the real conformance check.
 // ---------------------------------------------------------------------------------------------
 
-export const paperEvidenceInput = z
+export const paperEvidenceToolShape = z
   .object({
-    record: z.record(z.string(), z.unknown()).describe(d.record),
+    record: z.record(z.string(), z.unknown()).optional().describe(d.record),
+    record_file: z.string().min(1).max(1000).optional().describe("Local record or export-bundle JSON path; requires CANLI_LOCAL=1."),
+    journal_file: z.string().min(1).max(1000).optional().describe("Local signed journal to recompute and bind; requires CANLI_LOCAL=1."),
+    signature: z.object({ scheme: z.literal("Ed25519"), public_key: z.string().max(64), signature: z.string().max(128) }).strict().optional().describe("Detached record signature for a signed inline record; requires journal_file."),
   })
   .strict();
+export const paperEvidenceInput = paperEvidenceToolShape
+  .refine(v => (v.record === undefined) !== (v.record_file === undefined), "Send exactly one of record or record_file")
+  .refine(v => v.signature === undefined || v.journal_file !== undefined, "Detached signature requires journal_file");
 
 // ---------------------------------------------------------------------------------------------
 // validate_breadth
@@ -331,7 +337,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   audit_backtest: `One-call audit of a strategy's returns: deflated Sharpe, minimum track record and, with every variant's returns, the probability of backtest overfitting, each the matching validator's result with its own receipt. Point returns_file at the backtest's CSV or JSON instead of pasting long series. Prefer it to calling the validators one by one; one validation per check. ${LIMITS_SENTENCES.notAdmission}`,
   validate_overfitting: `Probability of backtest overfitting (0 to 1) by CSCV: how often the in-sample best variant falls below the out-of-sample median. Needs every variant's returns (periods by variants); with summary statistics only, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
   validate_reality_check: `Data-snooping tests on every variant a search tried: Hansen's SPA p-value that the best beat the benchmark only by luck, White's Reality Check, and the variants Romano-Wolf StepM finds better. Send all variants tried, not only the winners. ${LIMITS_SENTENCES.notAdmission}`,
-  validate_paper_evidence: `Whether a paper or simulated performance record meets canli.paper-evidence.v0, with a JSON pointer per failure. Checks structure and required disclosures, not whether the returns are good. ${LIMITS_SENTENCES.scope}`,
+  validate_paper_evidence: `Checks paper-evidence.v0 structure and disclosures. With CANLI_LOCAL=1, record_file reads an export bundle and journal_file verifies signatures, source hashes and recomputed claims. Without a journal, source facts and signatures are unchecked. Local files are never uploaded. ${LIMITS_SENTENCES.scope}`,
   validate_backtest_length: `Minimum backtest length (years) before the best of N independent trials is not expected to reach a target Sharpe by luck; with backtest_years, the most trials those years allow. For planning a search; once it has a result, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
   validate_luck_trials: `How many skill-less strategies a search would need for its best to reach this Sharpe by luck (Monte Carlo), and with a trial count, the chance it did. States luck as the best of N random tries; for the probability the Sharpe is real, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
   validate_haircut_sharpe: `Haircut Sharpe for multiple testing (Harvey and Liu 2015): the Sharpe a single test would have needed, by Bonferroni and independent tests, and with the other tests' Sharpes, Holm and BHY. For the probability the Sharpe is real, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,

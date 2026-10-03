@@ -68,10 +68,14 @@ test("tools/list exposes exactly the npm package's tools", async () => {
     const { json } = await rpc(url, "tools/list", {});
     assert.deepEqual(json.result.tools.map((t) => t.name).sort(), [
       "audit_backtest",
+      "backtest_strategy",
+      "check_feasibility",
       "company_financial_history",
       "get_key",
       "get_receipt",
       "service_status",
+      "stress_test",
+      "summarize_series",
       "validate_backtest_length",
       "validate_breadth",
       "validate_deflated_sharpe",
@@ -92,6 +96,22 @@ test("without a caller key a validation runs under the shared key", async () => 
     assert.ok(json.result, JSON.stringify(json));
     assert.ok(api.calls.length >= 1);
     assert.ok(api.calls.every((c) => c.authorization === `Bearer ${SHARED_KEY}`));
+  });
+});
+
+test("the lab computes on the hosted endpoint itself: no API call, and files are refused", async () => {
+  await withServer({ CANLI_REMOTE_MCP_KEY: SHARED_KEY }, async (url, api) => {
+    const before = api.calls.length;
+    const prices = Array.from({ length: 400 }, (_, i) => 100 * Math.exp(0.0004 * i + 0.02 * Math.sin(i / 9)));
+    const { json } = await rpc(url, "tools/call", { name: "backtest_strategy", arguments: { family: "sma_cross", grid: { fast: [5, 10], slow: [40, 80] }, prices } });
+    assert.equal(json.result.isError, undefined, JSON.stringify(json).slice(0, 300));
+    assert.equal(json.result.structuredContent.variants.count, 4);
+    assert.equal(json.result.structuredContent.validation.trials_counted, 4);
+    assert.equal(api.calls.length, before, "the lab never calls the validation API");
+    const file = await rpc(url, "tools/call", { name: "stress_test", arguments: { returns_file: "/etc/passwd" } });
+    assert.equal(file.json.result.isError, true);
+    assert.match(file.json.result.content[0].text, /hosted endpoint cannot read files on your machine/);
+    assert.doesNotMatch(file.json.result.content[0].text, /root:/);
   });
 });
 
@@ -142,9 +162,11 @@ test("GET is refused: the endpoint is stateless and has no server stream", async
 test("the hosted endpoint serves the same prompts and resources as the package", async () => {
   await withServer({ CANLI_REMOTE_MCP_KEY: SHARED_KEY }, async (url) => {
     const prompts = await rpc(url, "prompts/list", {});
-    assert.deepEqual(prompts.json.result.prompts.map((p) => p.name).sort(), ["track_record_needed", "validate_backtest"]);
+    assert.deepEqual(prompts.json.result.prompts.map((p) => p.name).sort(), ["backtest_and_validate", "production_check", "stress_my_strategy", "summarize_market_series", "track_record_needed", "validate_backtest"]);
     const resources = await rpc(url, "resources/list", {});
-    assert.deepEqual(resources.json.result.resources.map((r) => r.uri).sort(), ["canli://limits", "canli://sources"]);
+    assert.deepEqual(resources.json.result.resources.map((r) => r.uri).sort(), ["canli://limits", "canli://openapi", "canli://sources", "canli://strategy-spec"]);
+    const templates = await rpc(url, "resources/templates/list", {});
+    assert.deepEqual(templates.json.result.resourceTemplates.map((r) => r.uriTemplate).sort(), ["canli://examples/{language}/{tool}", "canli://schemas/{tool}"]);
   });
 });
 
@@ -154,7 +176,7 @@ test("?toolsets= lists only those tools; an unknown toolset is a 400, and the de
   t.after(() => { if (saved === undefined) delete process.env.CANLI_TOOLSETS; else process.env.CANLI_TOOLSETS = saved; });
   await withServer({ CANLI_TOOLSETS: "status" }, async (url) => {
     const all = await rpc(url, "tools/list", {});
-    assert.equal(all.json.result.tools.length, 15, "the server's own CANLI_TOOLSETS is ignored");
+    assert.equal(all.json.result.tools.length, 19, "the server's own CANLI_TOOLSETS is ignored");
     const company = await rpc(`${url}?toolsets=company`, "tools/list", {});
     assert.deepEqual(company.json.result.tools.map((t) => t.name), ["company_financial_history"]);
     const two = await rpc(`${url}?toolsets=receipts,company`, "tools/list", {});
