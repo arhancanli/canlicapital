@@ -17,7 +17,7 @@ import tiktoken
 
 SERVER = pathlib.Path(__file__).resolve().parent.parent / "src" / "server.mjs"
 ENC = tiktoken.get_encoding("o200k_base")
-TOOLSETS = ["all", "validate", "receipts", "company", "status"]
+TOOLSETS = ["all", "validate", "receipts", "company", "status", "lab"]
 
 
 def tool_list(toolsets):

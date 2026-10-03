@@ -2,6 +2,7 @@ import { curveStatistics } from "./curve-stats.js";
 import { formatCompactCurrency } from "./format.js";
 import { prepareFilmPoster } from "./film-poster.js";
 import { enhanceCommandCopy } from "./command-copy.js";
+import { goalsRemainOpen as goalsOpen, humanizeStatus, recordDays, strategiesText, validationLabel, validationReason } from "./home-status.js";
 
 enhanceCommandCopy();
 
@@ -54,13 +55,6 @@ function formatDecimalPercent(value) {
   return `${Math.abs(number * 100).toFixed(2)}%`;
 }
 
-function humanizeStatus(value) {
-  return String(value || "Not available")
-    .toLowerCase()
-    .replaceAll("_", " ")
-    .replace(/^./, (character) => character.toUpperCase());
-}
-
 function setClaimText(elementId, claim, value) {
   const element = byId(elementId);
   if (!element) return;
@@ -84,7 +78,6 @@ function hydrateClaimContract(payload) {
   const liveDays = get("forward.live-days");
   const observations = get("forward.return-observations");
   const forwardValidation = get("forward.validation-status");
-  const internalGrade = get("validation.internal-grade");
   const brokerSleeves = get("broker.reconciled-alpaca-sleeves");
   const brokerPasses = get("broker.reconciliation-passes");
   const brokerPositions = get("broker.open-positions");
@@ -114,8 +107,12 @@ function hydrateClaimContract(payload) {
     firstMark,
     Number.isNaN(paperStart.valueOf()) ? "Date unavailable" : `Since ${fullDate.format(paperStart)}`,
   );
-  setClaimText("hero-grade", internalGrade, `Self-grade ${internalGrade.value}`);
-  setClaimText("metric-grade", internalGrade, internalGrade.value);
+  setClaimText(
+    "hero-strategies",
+    currentSleeves,
+    strategiesText(currentSleeves.value, targetSleeves.value),
+  );
+  setClaimText("metric-record-days", liveDays, recordDays(liveDays.value));
   setClaimText("evidence-observations", observations, integer.format(Number(observations.value)));
   setClaimText(
     "evidence-accounts",
@@ -156,21 +153,17 @@ function hydrateClaimContract(payload) {
   setClaimText("core-sleeve-count", currentSleeves, integer.format(Number(currentSleeves.value)));
 
   const validation = document.querySelector(".validation-callout");
-  const goalsRemainOpen = String(forwardValidation.value).includes("NOT_YET");
+  const goalsRemainOpen = goalsOpen(forwardValidation.value);
   validation.dataset.validationState = brokerPasses.value === true ? (goalsRemainOpen ? "open" : "pass") : "fail";
   setClaimText(
     "evidence-validation-label",
     forwardValidation,
-    brokerPasses.value === true && goalsRemainOpen
-      ? `Broker pass / forward goals open / ${internalGrade.value}`
-      : humanizeStatus(forwardValidation.value),
+    validationLabel(brokerPasses.value === true, goalsRemainOpen, humanizeStatus(forwardValidation.value)),
   );
   setClaimText(
     "evidence-validation-reason",
     forwardValidation,
-    brokerPasses.value === true
-      ? "Broker reconciliation passes. The forward record is still too young to establish the performance objectives."
-      : "Broker reconciliation is open, so the public status remains fail-closed.",
+    validationReason(brokerPasses.value === true, goalsRemainOpen, forwardSharpe.value, observations.value),
   );
 
   const header = document.querySelector(".header-status");

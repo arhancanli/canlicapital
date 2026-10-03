@@ -1,0 +1,118 @@
+{
+  "schema": "canli.home-answers.v1",
+  "purpose": "The homepage's opening answer, its comparison table and its FAQ. scripts/build-home-answers.mjs writes all three into index.html and builds the FAQPage JSON-LD from the same entries, so the markup can never say something the page does not.",
+  "reviewed": "2026-10-03",
+  "definition": "Canli Capital is an open research lab for quantitative finance that tests whether trading backtests are real or luck.",
+  "answer": "Its free validators run in Claude, Cursor and any MCP client or over an API, and API results carry a signed receipt anyone can recompute. It also serves SEC-traced company financials and trades its own strategies on paper, in public.",
+  "comparison": {
+    "id": "compare",
+    "eyebrow": "How it compares",
+    "title": "Canli Capital, QuantConnect and QuantStats",
+    "intro": "They answer different questions. QuantConnect runs your strategy, QuantStats reports on its returns, and Canli Capital checks whether the result could be luck. Many people use more than one.",
+    "caption": "What each tool does, checked against its own documentation and source code",
+    "columns": ["Canli Capital", "QuantConnect", "QuantStats"],
+    "rows": [
+      {
+        "question": "What it is",
+        "cells": [
+          "Free validators for backtest results, with SEC-traced company data and a public paper-trading record",
+          "A cloud platform and open-source engine (LEAN) that runs strategy code for backtests and live trading",
+          "An open-source Python library that turns a returns series into performance reports"
+        ]
+      },
+      {
+        "question": "Runs your strategy code",
+        "cells": ["No. You bring the returns your backtest produced", "Yes", "No. You bring a returns series"]
+      },
+      {
+        "question": "Corrects the Sharpe ratio for how many variants you tried (deflated Sharpe ratio)",
+        "cells": ["Yes", "No. It reports a probabilistic Sharpe ratio: the chance the Sharpe ratio is above 1", "No. It offers a probabilistic Sharpe ratio"]
+      },
+      {
+        "question": "Probability that the backtest is overfit (CSCV)",
+        "cells": ["Yes", "No. Teams can instead require backtests to end months before today", "No"]
+      },
+      {
+        "question": "Minimum track record length",
+        "cells": ["Yes", "No", "No"]
+      },
+      {
+        "question": "Use it from an AI assistant (MCP)",
+        "cells": ["Yes. A hosted URL with nothing to install, or an npm package", "Yes. An official MCP server for its cloud API", "No official server"]
+      },
+      {
+        "question": "Results anyone can recheck later",
+        "cells": ["Yes. API results carry an Ed25519-signed receipt you can verify offline", "No", "No"]
+      },
+      {
+        "question": "Price",
+        "cells": ["Free. MIT-licensed code, CC BY 4.0 data", "Free plan and paid plans", "Free. Apache 2.0 license"]
+      }
+    ],
+    "checked": "2026-10-03",
+    "sources": [
+      { "label": "QuantConnect backtest results", "url": "https://www.quantconnect.com/docs/v2/cloud-platform/backtesting/results" },
+      { "label": "QuantConnect pricing", "url": "https://www.quantconnect.com/pricing/" },
+      { "label": "LEAN statistics source", "url": "https://github.com/QuantConnect/Lean/blob/master/Common/Statistics/Statistics.cs" },
+      { "label": "QuantConnect MCP server", "url": "https://github.com/QuantConnect/mcp-server" },
+      { "label": "QuantStats statistics source", "url": "https://github.com/ranaroussi/quantstats/blob/main/quantstats/stats.py" }
+    ]
+  },
+  "faq": [
+    {
+      "question": "What is Canli Capital?",
+      "answer": "Canli Capital is an open research lab for quantitative finance that tests whether trading backtests are real or luck. It publishes free validators, company financials traced to SEC filings, open datasets and its own paper-trading record, failures included.",
+      "link": { "href": "/open", "text": "See what stays open." }
+    },
+    {
+      "question": "How do I check whether my backtest is overfit?",
+      "answer": "Send the returns your backtest produced to the validators. The deflated Sharpe ratio corrects for how many variants you tried, the probability of backtest overfitting compares those variants with each other, and the minimum track record length says how much history the Sharpe ratio needs.",
+      "link": { "href": "/how-to-validate-a-backtest", "text": "Read the step-by-step guide." }
+    },
+    {
+      "question": "How do I use it from Claude, Cursor or another AI assistant?",
+      "answer": "Add the hosted MCP server at https://canlicapital.com/mcp, which needs no install and no sign-up, or run npx -y canli-validation-mcp on your own machine. Your assistant can then call each validator by name.",
+      "link": { "href": "/developers#ai-assistant", "text": "Follow the setup guide." }
+    },
+    {
+      "question": "Is it free?",
+      "answer": "Yes. The validators, the API key and the MCP servers are free, with fair-use limits on the hosted API. The code is MIT-licensed, the published data is CC BY 4.0, and no paid plan is offered.",
+      "link": { "href": "/developers#quickstart", "text": "Get a free API key." }
+    },
+    {
+      "question": "Does my data leave my computer?",
+      "answer": "Only if you use the hosted API. Run the npm server with CANLI_LOCAL=1 and every calculation happens on your machine, with nothing about your returns sent anywhere.",
+      "link": { "href": "/developers#ai-assistant", "text": "See the local mode setup." }
+    },
+    {
+      "question": "How is this different from QuantConnect or QuantStats?",
+      "answer": "QuantConnect runs your strategy code and QuantStats reports on a returns series. Canli Capital checks whether the result survives the number of variants you tried and how likely the backtest is to be overfit, and signs each API result so anyone can recheck it.",
+      "link": { "href": "#compare", "text": "See the side-by-side comparison." }
+    },
+    {
+      "question": "Where do the company financials come from?",
+      "answer": "From the companies' own filings with the US Securities and Exchange Commission. Each figure names the filing it came from, with its accession number, so you can check it at the source.",
+      "link": { "href": "/companies", "text": "Browse the company pages." }
+    },
+    {
+      "question": "Are these strategies trading real capital?",
+      "answer": "The published strategy record is paper execution, not funded trading. Three sleeves use Alpaca paper accounts; AlphaForge uses local simulated fills from live exchange books. Paper results do not establish executable future returns.",
+      "link": { "href": "/performance", "text": "Inspect the record and its basis." }
+    },
+    {
+      "question": "What does “glassbox” mean here?",
+      "answer": "You can inspect the research, strategy rules, paper observations, failed work and corrections. The public record is self-published; transparency is not the same as an independent audit.",
+      "link": { "href": "/verify", "text": "See how to verify the evidence." }
+    },
+    {
+      "question": "What can I do with an API key?",
+      "answer": "Submit your own research inputs to the validation tools and inspect their calculation receipts. The developer page includes key generation and Python, JavaScript and curl examples. A validation result is not an endorsement of a strategy.",
+      "link": { "href": "/developers#quickstart", "text": "Start with the developer quickstart." }
+    },
+    {
+      "question": "Can I invest or copy the trades?",
+      "answer": "Canli Capital is a research project, not a fund or investment adviser. This site does not offer managed capital or copy-trading.",
+      "link": { "href": "/open", "text": "Read the project's boundaries." }
+    }
+  ]
+}

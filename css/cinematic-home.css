@@ -196,6 +196,28 @@
 .home-questions details[open] summary::after { content: "−"; }
 .home-questions details p { margin: 0 30px 28px 0; color: var(--cin-gray); font-size: .87rem; line-height: 1.8; }
 .home-questions details a { color: var(--cin-blue); text-decoration: underline; }
+/* How it compares: a real table, scrolled inside its own focusable region on narrow screens so the
+   page itself never scrolls sideways. The Canli Capital column carries a quiet tint, not a badge. */
+.home-compare { padding: var(--cin-section-space) var(--cin-gutter) 0; background: var(--cin-white); color: var(--cin-ink); }
+.home-compare__heading { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 10vw; align-items: end; margin-bottom: 44px; }
+.home-compare__heading .eyebrow { grid-column: 1 / -1; margin: 0; color: var(--cin-gray); }
+.home-compare h2 { font-size: clamp(2.4rem, 3.6vw, 4.4rem); line-height: 1; letter-spacing: -.045em; margin: 0; text-transform: uppercase; }
+.home-compare__heading > p:last-child { margin: 0; max-width: 52ch; color: var(--cin-gray); font-size: .9rem; line-height: 1.75; }
+.home-compare__scroll { overflow-x: auto; border-top: 1px solid var(--cin-ink); }
+.home-compare__scroll:focus-visible { outline: 3px solid var(--cin-copper); outline-offset: 4px; }
+.home-compare__table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: .84rem; line-height: 1.6; }
+.home-compare__table caption { caption-side: bottom; text-align: left; padding: 16px 0 0; color: var(--cin-gray); font: 400 .66rem/1.5 var(--cin-data); letter-spacing: .08em; text-transform: uppercase; }
+.home-compare__table th, .home-compare__table td { padding: 18px 20px 18px 0; text-align: left; vertical-align: top; border-bottom: 1px solid var(--cin-day-rule); }
+.home-compare__table thead th { font: 400 .66rem/1.5 var(--cin-data); letter-spacing: .1em; text-transform: uppercase; color: var(--cin-gray); padding-top: 14px; padding-bottom: 14px; }
+.home-compare__table tbody th { width: 24%; font-weight: 500; }
+/* The question column stays put while a narrow screen scrolls the answers sideways. */
+.home-compare__table tbody th, .home-compare__table thead th:first-child { position: sticky; left: 0; z-index: 1; background: var(--cin-white); }
+.home-compare__table td:nth-of-type(1), .home-compare__table thead th:nth-of-type(2) { background: color-mix(in srgb, var(--cin-blue) 7%, transparent); padding-left: 16px; }
+.home-compare__table thead th:nth-of-type(2) { color: var(--cin-blue); }
+.home-compare__table td { color: var(--cin-text-muted, var(--cin-gray)); }
+.home-compare__table td:nth-of-type(1) { color: var(--cin-ink); }
+.home-compare__sources { margin: 28px 0 0; padding-bottom: 8px; max-width: 90ch; color: var(--cin-gray); font-size: .78rem; line-height: 1.7; }
+.home-compare__sources a { color: var(--cin-blue); text-decoration: underline; text-underline-offset: 3px; }
 .cinema-home .access { display: grid; grid-template-columns: 1fr 1fr; gap: 45px 10vw; padding: var(--cin-section-space) var(--cin-gutter); background: var(--cin-blue); }
 .cinema-home .access > div:first-child { grid-column: 1 / -1; }
 .cinema-home .access h2 { max-width: 12ch; font-size: clamp(4rem, 8vw, 10rem); text-transform: uppercase; line-height: .95; }
@@ -284,6 +306,9 @@
   .cinema-home .trust-grid { grid-template-columns: 1fr; }
   .cinema-home .trust-grid article, .cinema-home .trust-grid article:nth-child(even) { padding: 28px 0; border-left: 0; min-height: 240px; }
   .home-questions { grid-template-columns: 1fr; gap: 40px; }
+  .home-compare__heading { grid-template-columns: 1fr; margin-bottom: 32px; }
+  .home-compare h2 { font-size: 9.5vw; }
+  .home-compare__table tbody th { width: 34vw; min-width: 34vw; padding-right: 14px; }
   .home-questions h2 { font-size: 10.5vw; }
   .cinema-home .access { grid-template-columns: 1fr; gap: 35px; }
   .cinema-home .access h2 { font-size: 13vw; }

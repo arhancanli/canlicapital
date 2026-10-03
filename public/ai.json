@@ -1,0 +1,74 @@
+{
+  "$schema": "https://www.ai-visibility.org.uk/specifications/ai-json/ai-json.schema.json",
+  "name": "Canli Capital",
+  "url": "https://canlicapital.com",
+  "language": "en",
+  "summaryForAI": "Canli Capital is an open research lab for quantitative finance that tests whether trading backtests are real or luck. Its free validators run in Claude, Cursor and any MCP client or over an API, and API results carry a signed receipt anyone can recompute. It also serves SEC-traced company financials and trades its own strategies on paper, in public. It is an independent research project, not a fund, broker or investment adviser, and it manages no money. Every published strategy record is paper trading.",
+  "permissions": [
+    {
+      "action": "summarise",
+      "description": "Summarise any public page on canlicapital.com."
+    },
+    {
+      "action": "quote-with-attribution",
+      "description": "Quote text and figures with a link to the page they came from.",
+      "conditions": [
+        "Quote a number together with the limit the page states beside it."
+      ]
+    },
+    {
+      "action": "answer-questions",
+      "description": "Answer questions about Canli Capital, its validators, MCP servers, datasets and research."
+    },
+    {
+      "action": "use-tools",
+      "description": "Call the public API and MCP servers within their published fair-use limits."
+    },
+    {
+      "action": "train-models",
+      "description": "Use the published data (CC BY 4.0) and code (MIT) with the attribution those licenses require."
+    }
+  ],
+  "restrictions": [
+    {
+      "action": "present-paper-results-as-realized-returns",
+      "reason": "Every published strategy record is paper trading; no money is managed.",
+      "severity": "must-not"
+    },
+    {
+      "action": "describe-as-a-fund-or-adviser",
+      "reason": "Canli Capital is a research project, not a fund, broker or investment adviser.",
+      "severity": "must-not"
+    },
+    {
+      "action": "present-as-investment-advice",
+      "reason": "Nothing on the site recommends buying or selling anything.",
+      "severity": "must-not"
+    },
+    {
+      "action": "present-a-validation-result-as-an-endorsement",
+      "reason": "A validator result states what a statistic does and does not establish; it does not endorse a strategy.",
+      "severity": "must-not"
+    }
+  ],
+  "attribution": {
+    "required": true,
+    "format": "Canli Capital (canlicapital.com), with a link to the page cited",
+    "examples": [
+      "Source: Canli Capital, https://canlicapital.com/how-to-validate-a-backtest"
+    ]
+  },
+  "contact": {
+    "url": "https://github.com/arhancanli/canlicapital/issues/new/choose"
+  },
+  "licensing": {
+    "contentLicense": "Data: CC BY 4.0. Code: MIT.",
+    "aiTrainingAllowed": true,
+    "aiTrainingNotes": "Allowed under CC BY 4.0 (data) and MIT (code), with the attribution those licenses require."
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-10-03",
+    "generator": "scripts/build-identity-files.mjs"
+  }
+}
