@@ -1,0 +1,1369 @@
+{
+  "schema": "canli.secondary.expert-submission-cli.integrated-current-retained-CI.v1",
+  "utc": "2026-10-03T18:40:10.932847+00:00",
+  "author_disposition": "PASS_EXACT_RETAINED_CURRENT_CI_PENDING_SEPARATE_PEER_GATES",
+  "head": "bcb89bb117747a744b83113867fa56f645601f31",
+  "tree": "7809b54355373bc552ab5425fd7af278e4684724",
+  "actual_base": "ce0c68ca30964a081490ee8c2c6a2f0057471f27",
+  "source": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/source-bcb89bb1-actual-main-integration-v1.json",
+    "bytes": 1499119,
+    "sha256": "1c7b94499d86227cf036c14613129511c81fa6bd51a0934aaa6d0bab5d36d972"
+  },
+  "source_frozen_signature": "G",
+  "source_clean": true,
+  "run_id": 37144260887,
+  "run_attempt": 1,
+  "ROOT_job": 111264855548,
+  "MCP_job": 111264855659,
+  "CodeQL_run": 37144260919,
+  "original_pins": [
+    {
+      "kind": "checks",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-checks-original-v1.json",
+      "bytes": 1635,
+      "sha256": "8a2bb84b3aa8aa39942767b84cabe91b31f03a8f0e0bfb639796f971e27fa4f8"
+    },
+    {
+      "kind": "run",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-run-original-v1.json",
+      "bytes": 13283,
+      "sha256": "6b57c56f4d6ecf2bdda33f65bc4a35fa1d8d0d84afcc1c1dac1c2c7f47759ccd"
+    },
+    {
+      "kind": "jobs",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-jobs-original-v1.json",
+      "bytes": 13303,
+      "sha256": "7a3eae90b959e826c9870c5e46f12d72d9b4f243e6eda46b58855cd662c14370"
+    },
+    {
+      "kind": "pull",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-pull-original-v1.json",
+      "bytes": 17914,
+      "sha256": "8db5fb48e87a80c069c39b0a25c7c50b71c49c80a6b8d629a7d319f9704c186e"
+    },
+    {
+      "kind": "codeql-run",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-codeql-run-original-v1.json",
+      "bytes": 13290,
+      "sha256": "4187b6a04950b6e1cbbe129c0d18587ccddc4102b9a23ed60471ac44804b9452"
+    },
+    {
+      "kind": "analyses",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-analyses-original-v1.json",
+      "bytes": 2373,
+      "sha256": "3899eab9ead81e5aa1a9f60ebec17e2daaab0a465353daa01a2a24b88e5a08a1"
+    },
+    {
+      "kind": "open-alerts",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-open-alerts-original-v1.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "kind": "main",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-main-original-v1.json",
+      "bytes": 344,
+      "sha256": "fe0d6289345abc2c95755a692b3d84e10674db78dfd9059fae541398a9e89050"
+    },
+    {
+      "kind": "root",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-root-original-v1.log",
+      "bytes": 742506,
+      "sha256": "d569916862c0b0b4efb21157aa94d60bd4ef81f61924a66f9bf2aeffcb4cca0d"
+    },
+    {
+      "kind": "mcp",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-mcp-original-v1.log",
+      "bytes": 325903,
+      "sha256": "a62e4d2658d13d410faefac0087104a6609cd1caf1194fd3388aff7646987a98"
+    },
+    {
+      "kind": "tested-Git",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-tested-Git-original-v1.json",
+      "bytes": 2648,
+      "sha256": "8db51d7e527e1718185903640096056643172f745fc35769bf6a62c9e8200aba"
+    }
+  ],
+  "originals_count": 11,
+  "originals_bytes": 1133201,
+  "capture_command_bindings": [
+    {
+      "kind": "checks",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-checks-capture-command-original-v1.json",
+      "bytes": 822,
+      "sha256": "03e9ac798d1489602a80429ca3251926efc641a5b7cd7b643264793c88b82f95",
+      "argv": [
+        "gh",
+        "pr",
+        "checks",
+        "374",
+        "--repo",
+        "arhancanli/canlicapital",
+        "--json",
+        "name,state,bucket,link,startedAt,completedAt"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-checks-original-v1.json",
+        "bytes": 1635,
+        "sha256": "8a2bb84b3aa8aa39942767b84cabe91b31f03a8f0e0bfb639796f971e27fa4f8"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-checks-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "run",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-run-capture-command-original-v1.json",
+      "bytes": 776,
+      "sha256": "64f91ca9fb6ba7985a37acd04eba02570550caee554088defa7aa346ad0da9f2",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/runs/37144260887"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-run-original-v1.json",
+        "bytes": 13283,
+        "sha256": "6b57c56f4d6ecf2bdda33f65bc4a35fa1d8d0d84afcc1c1dac1c2c7f47759ccd"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-run-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "jobs",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-jobs-capture-command-original-v1.json",
+      "bytes": 796,
+      "sha256": "331d6669de8a111a32a3b1d6580934fab088361f6beb3ff1a49f366351c17f3e",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/runs/37144260887/jobs?per_page=100"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-jobs-original-v1.json",
+        "bytes": 13303,
+        "sha256": "7a3eae90b959e826c9870c5e46f12d72d9b4f243e6eda46b58855cd662c14370"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-jobs-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "pull",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-pull-capture-command-original-v1.json",
+      "bytes": 763,
+      "sha256": "400b94895f9c4b9f7d5dfc8774820d0067bf07cc8c955fcbf7c355f24dd7cbe4",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/pulls/374"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-pull-original-v1.json",
+        "bytes": 17914,
+        "sha256": "8db5fb48e87a80c069c39b0a25c7c50b71c49c80a6b8d629a7d319f9704c186e"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-pull-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "codeql-run",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-codeql-run-capture-command-original-v1.json",
+      "bytes": 790,
+      "sha256": "e3df0df3f9c3b0705a6a0dda7320986fed6352dfdf565d17865ded8e580fb244",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/runs/37144260919"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-codeql-run-original-v1.json",
+        "bytes": 13290,
+        "sha256": "4187b6a04950b6e1cbbe129c0d18587ccddc4102b9a23ed60471ac44804b9452"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-codeql-run-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "analyses",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-analyses-capture-command-original-v1.json",
+      "bytes": 820,
+      "sha256": "036162a8fedb0e43f175f366b3e7653bb6e9af5b89960f207e30832f3914f0ee",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/code-scanning/analyses?ref=refs/pull/374/merge&per_page=100"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-analyses-original-v1.json",
+        "bytes": 2373,
+        "sha256": "3899eab9ead81e5aa1a9f60ebec17e2daaab0a465353daa01a2a24b88e5a08a1"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-analyses-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "open-alerts",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-open-alerts-capture-command-original-v1.json",
+      "bytes": 832,
+      "sha256": "e5d7579abb2c601203220a338c9ad8846c6babe8b2a8885399ef519baa8ce200",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/code-scanning/alerts?ref=refs/pull/374/merge&state=open&per_page=100"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-open-alerts-original-v1.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-open-alerts-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "main",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-main-capture-command-original-v1.json",
+      "bytes": 770,
+      "sha256": "0e61884d18d48fa6fede7fcc9322dfecf144695f48a122829e4f9b3f70c32ef0",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/git/ref/heads/main"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-main-original-v1.json",
+        "bytes": 344,
+        "sha256": "fe0d6289345abc2c95755a692b3d84e10674db78dfd9059fae541398a9e89050"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-main-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "root",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-root-capture-command-original-v1.json",
+      "bytes": 784,
+      "sha256": "ce7b25655b99e10adcde605604091c5d1e12480c7b7a7e7b338afaf6ef812d8f",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111264855548/logs"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-root-original-v1.log",
+        "bytes": 742506,
+        "sha256": "d569916862c0b0b4efb21157aa94d60bd4ef81f61924a66f9bf2aeffcb4cca0d"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-root-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "mcp",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-mcp-capture-command-original-v1.json",
+      "bytes": 782,
+      "sha256": "c05b6e58a1fec5b1865af21deedea6dafbbb65923806b87ee2a3e97fbb4eb9aa",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111264855659/logs"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-mcp-original-v1.log",
+        "bytes": 325903,
+        "sha256": "a62e4d2658d13d410faefac0087104a6609cd1caf1194fd3388aff7646987a98"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-mcp-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "kind": "tested-Git",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-tested-Git-capture-command-original-v1.json",
+      "bytes": 785,
+      "sha256": "64aa31a997f6953648c453f1a5be8e0b26f4686ec71cea67354cf548c7ebb274",
+      "argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/git/commits/e6abbe9d803771fc034843b7031742a7dbe30e4d"
+      ],
+      "captured_stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-tested-Git-original-v1.json",
+        "bytes": 2648,
+        "sha256": "8db51d7e527e1718185903640096056643172f745fc35769bf6a62c9e8200aba"
+      },
+      "captured_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/remote-bcb89bb1-tested-Git-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "complete_catalog": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/bcb89bb1-complete-current-TAP-catalog-v1.json",
+    "bytes": 728673,
+    "sha256": "618675469d826947201f87445aea8a6fd18bf8f4350f1091f16a0396874881ee"
+  },
+  "actual_new_cases": {
+    "pass": 60,
+    "fail": 0,
+    "unknown": 0
+  },
+  "new_cases_onceROOT_0MCP": [
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 935,
+      "name": "two absent reviewer files retain full selected-N and explicit missing roles in the exact private API report",
+      "result": "ok",
+      "result_line": 7080,
+      "duration_ms_literal": "44.280387",
+      "duration_line": 7082,
+      "type": "test",
+      "type_line": 7083
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 936,
+      "name": "one supplied reviewer retains the absent-role denominator and private original return binding",
+      "result": "ok",
+      "result_line": 7086,
+      "duration_ms_literal": "22.619518",
+      "duration_line": 7088,
+      "type": "test",
+      "type_line": 7089
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 937,
+      "name": "two blank exports stay present-but-incomplete instead of becoming absent files or verified agreement",
+      "result": "ok",
+      "result_line": 7092,
+      "duration_ms_literal": "20.98235",
+      "duration_line": 7094,
+      "type": "test",
+      "type_line": 7095
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 938,
+      "name": "partial judgements missing notes and disagreements survive with all three selected pairs and no adjudication",
+      "result": "ok",
+      "result_line": 7098,
+      "duration_ms_literal": "21.033393",
+      "duration_line": 7100,
+      "type": "test",
+      "type_line": 7101
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 939,
+      "name": "complete fictional agreement preserves exact full-N and every unknown human expert independence and rights outcome",
+      "result": "ok",
+      "result_line": 7104,
+      "duration_ms_literal": "23.525301",
+      "duration_line": 7106,
+      "type": "test",
+      "type_line": 7107
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 940,
+      "name": "all original descriptors close before one lazy core load and one nine-buffer reconciliation call",
+      "result": "ok",
+      "result_line": 7110,
+      "duration_ms_literal": "31.570368",
+      "duration_line": 7112,
+      "type": "test",
+      "type_line": 7113
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 941,
+      "name": "expected gold hash requires a primitive exact lowercase64 before any filesystem operation",
+      "result": "ok",
+      "result_line": 7116,
+      "duration_ms_literal": "20.643387",
+      "duration_line": 7118,
+      "type": "test",
+      "type_line": 7119
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 942,
+      "name": "unknown duplicate missing-value scalar flags positional extras and accessor argv refuse before native IO",
+      "result": "ok",
+      "result_line": 7122,
+      "duration_ms_literal": "4.733266",
+      "duration_line": 7124,
+      "type": "test",
+      "type_line": 7125
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 943,
+      "name": "relative unnormalized control oversized and unpaired-surrogate paths refuse before native IO",
+      "result": "ok",
+      "result_line": 7128,
+      "duration_ms_literal": "2.93307",
+      "duration_line": 7130,
+      "type": "test",
+      "type_line": 7131
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 944,
+      "name": "duplicate input or output paths are rejected before opening any descriptor",
+      "result": "ok",
+      "result_line": 7134,
+      "duration_ms_literal": "1.768033",
+      "duration_line": 7136,
+      "type": "test",
+      "type_line": 7137
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 945,
+      "name": "caller raw gold mismatch refuses unchanged reconciliation without creating output or echoing supplied values",
+      "result": "ok",
+      "result_line": 7140,
+      "duration_ms_literal": "1.757373",
+      "duration_line": 7142,
+      "type": "test",
+      "type_line": 7143
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 946,
+      "name": "rehashed changed immutable return fields still refuse through the delivered packet contract",
+      "result": "ok",
+      "result_line": 7146,
+      "duration_ms_literal": "4.021083",
+      "duration_line": 7148,
+      "type": "test",
+      "type_line": 7149
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 947,
+      "name": "swapped file order cannot silently repair submission inventory bindings or declared roles",
+      "result": "ok",
+      "result_line": 7152,
+      "duration_ms_literal": "4.491428",
+      "duration_line": 7154,
+      "type": "test",
+      "type_line": 7155
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 948,
+      "name": "opaque evidence order and raw pins remain exact even though the CLI never interprets document contents",
+      "result": "ok",
+      "result_line": 7158,
+      "duration_ms_literal": "3.902604",
+      "duration_line": 7160,
+      "type": "test",
+      "type_line": 7161
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 949,
+      "name": "invalid UTF8 duplicate JSON keys trailing JSON and unpaired escaped Unicode refuse inherited semantics",
+      "result": "ok",
+      "result_line": 7164,
+      "duration_ms_literal": "12.966164",
+      "duration_line": 7166,
+      "type": "test",
+      "type_line": 7167
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 950,
+      "name": "direct actual command produces one bounded non-echo private report identical to the API",
+      "result": "ok",
+      "result_line": 7170,
+      "duration_ms_literal": "74.356002",
+      "duration_line": 7172,
+      "type": "test",
+      "type_line": 7173
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 951,
+      "name": "actual owned symlink command resolves both realpaths and saves the same direct-command report",
+      "result": "ok",
+      "result_line": 7176,
+      "duration_ms_literal": "75.754417",
+      "duration_line": 7178,
+      "type": "test",
+      "type_line": 7179
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 952,
+      "name": "actual direct command with missing arguments refuses rather than silently skipping the entry",
+      "result": "ok",
+      "result_line": 7182,
+      "duration_ms_literal": "38.476954",
+      "duration_line": 7184,
+      "type": "test",
+      "type_line": 7185
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 953,
+      "name": "ordinary library import dispatches nothing and subsequent actual entry stdout failure cannot claim saved success",
+      "result": "ok",
+      "result_line": 7188,
+      "duration_ms_literal": "66.573115",
+      "duration_line": 7190,
+      "type": "test",
+      "type_line": 7191
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 954,
+      "name": "exact64 evidence and2 submissions admit72 inputs before first payload read and retain all inventory order",
+      "result": "ok",
+      "result_line": 7194,
+      "duration_ms_literal": "41.357058",
+      "duration_line": 7196,
+      "type": "test",
+      "type_line": 7197
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 955,
+      "name": "sixty-fifth evidence and third submission refuse count before any input open",
+      "result": "ok",
+      "result_line": 7200,
+      "duration_ms_literal": "1.634503",
+      "duration_line": 7202,
+      "type": "test",
+      "type_line": 7203
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 956,
+      "name": "every individual file cap-plus-one refuses before payload read core load or output creation",
+      "result": "ok",
+      "result_line": 7206,
+      "duration_ms_literal": "9.818594",
+      "duration_line": 7208,
+      "type": "test",
+      "type_line": 7209
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 957,
+      "name": "all evidence cap exactly256KiB reaches the bounded read but cap-plus-one refuses before any read",
+      "result": "ok",
+      "result_line": 7212,
+      "duration_ms_literal": "4.225103",
+      "duration_line": 7214,
+      "type": "test",
+      "type_line": 7215
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 958,
+      "name": "intake-prefix768KiB boundary includes all four original documents and evidence before any payload read",
+      "result": "ok",
+      "result_line": 7218,
+      "duration_ms_literal": "3.847107",
+      "duration_line": 7220,
+      "type": "test",
+      "type_line": 7221
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 959,
+      "name": "all-input4MiB boundary counts both individually bounded submissions and all six metadata files",
+      "result": "ok",
+      "result_line": 7224,
+      "duration_ms_literal": "3.055539",
+      "duration_line": 7226,
+      "type": "test",
+      "type_line": 7227
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 960,
+      "name": "an empty physical file refuses with no payload read despite empty optional file arrays being valid",
+      "result": "ok",
+      "result_line": 7230,
+      "duration_ms_literal": "1.073816",
+      "duration_line": 7232,
+      "type": "test",
+      "type_line": 7233
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 961,
+      "name": "input symlink and real directory refuse FD-first no-follow admission without following contents",
+      "result": "ok",
+      "result_line": 7236,
+      "duration_ms_literal": "1.556939",
+      "duration_line": 7238,
+      "type": "test",
+      "type_line": 7239
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 962,
+      "name": "synthetic FIFO socket device and unknown-owned types refuse before body allocation with nonblocking flags",
+      "result": "ok",
+      "result_line": 7242,
+      "duration_ms_literal": "4.395041",
+      "duration_line": 7244,
+      "type": "test",
+      "type_line": 7245
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 963,
+      "name": "hard-linked input and existing output inode aliases refuse without reading or creating an output",
+      "result": "ok",
+      "result_line": 7248,
+      "duration_ms_literal": "1.584049",
+      "duration_line": 7250,
+      "type": "test",
+      "type_line": 7251
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 964,
+      "name": "existing output file symlink and directory are retained unchanged with no core call",
+      "result": "ok",
+      "result_line": 7254,
+      "duration_ms_literal": "3.829675",
+      "duration_line": 7256,
+      "type": "test",
+      "type_line": 7257
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 965,
+      "name": "nonprivate missing and symlinked output parents refuse without mkdir chmod or input body reads",
+      "result": "ok",
+      "result_line": 7260,
+      "duration_ms_literal": "3.899666",
+      "duration_line": 7262,
+      "type": "test",
+      "type_line": 7263
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 966,
+      "name": "noncanonical symlink input parent is refused before payload reads even with a regular endpoint FD",
+      "result": "ok",
+      "result_line": 7266,
+      "duration_ms_literal": "1.650574",
+      "duration_line": 7268,
+      "type": "test",
+      "type_line": 7269
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 967,
+      "name": "real short reads and writes advance exactly while original buffers and readback remain byte-exact",
+      "result": "ok",
+      "result_line": 7272,
+      "duration_ms_literal": "43.497274",
+      "duration_line": 7274,
+      "type": "test",
+      "type_line": 7275
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 968,
+      "name": "zero negative fractional oversized and thrown native read counts never dispatch the core",
+      "result": "ok",
+      "result_line": 7278,
+      "duration_ms_literal": "10.682728",
+      "duration_line": 7280,
+      "type": "test",
+      "type_line": 7281
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 969,
+      "name": "the one overflow byte detects growth and is never silently included in a successful raw binding",
+      "result": "ok",
+      "result_line": 7284,
+      "duration_ms_literal": "1.495033",
+      "duration_line": 7286,
+      "type": "test",
+      "type_line": 7287
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 970,
+      "name": "actual truncation during the admitted read refuses short-read uncertainty and closes all held inputs",
+      "result": "ok",
+      "result_line": 7290,
+      "duration_ms_literal": "1.387201",
+      "duration_line": 7292,
+      "type": "test",
+      "type_line": 7293
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 971,
+      "name": "same-FD size mtime and ctime changes after capture refuse before core import",
+      "result": "ok",
+      "result_line": 7296,
+      "duration_ms_literal": "3.815489",
+      "duration_line": 7298,
+      "type": "test",
+      "type_line": 7299
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 972,
+      "name": "replacing the input path after opening its original FD refuses postpath identity before core",
+      "result": "ok",
+      "result_line": 7302,
+      "duration_ms_literal": "1.452343",
+      "duration_line": 7304,
+      "type": "test",
+      "type_line": 7305
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 973,
+      "name": "an earlier captured file changed during a later read is caught by the final whole-inventory observation",
+      "result": "ok",
+      "result_line": 7308,
+      "duration_ms_literal": "1.590291",
+      "duration_line": 7310,
+      "type": "test",
+      "type_line": 7311
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 974,
+      "name": "source import failure happens after input release and never creates output or echoes exception details",
+      "result": "ok",
+      "result_line": 7314,
+      "duration_ms_literal": "2.371898",
+      "duration_line": 7316,
+      "type": "test",
+      "type_line": 7317
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 975,
+      "name": "core refusal is called once with captured bytes and cannot create or retry an output",
+      "result": "ok",
+      "result_line": 7320,
+      "duration_ms_literal": "5.666646",
+      "duration_line": 7322,
+      "type": "test",
+      "type_line": 7323
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 976,
+      "name": "serialized core-report cap includes all JSON overhead and refuses before output creation",
+      "result": "ok",
+      "result_line": 7326,
+      "duration_ms_literal": "32.409482",
+      "duration_line": 7328,
+      "type": "test",
+      "type_line": 7329
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 977,
+      "name": "exact6MiB serialized report admits exactly one additional newline and byte-identical native readback",
+      "result": "ok",
+      "result_line": 7332,
+      "duration_ms_literal": "96.603936",
+      "duration_line": 7334,
+      "type": "test",
+      "type_line": 7335
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 978,
+      "name": "uncertain native output creation and existing-name race refuse without overwrite or auto-cleanup",
+      "result": "ok",
+      "result_line": 7338,
+      "duration_ms_literal": "8.995156",
+      "duration_line": 7340,
+      "type": "test",
+      "type_line": 7341
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 979,
+      "name": "zero negative noninteger oversized and throwing write counts retain the created private file and refuse",
+      "result": "ok",
+      "result_line": 7344,
+      "duration_ms_literal": "55.602559",
+      "duration_line": 7346,
+      "type": "test",
+      "type_line": 7347
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 980,
+      "name": "write failure after real partial progress retains exactly those private bytes without unlink or retry",
+      "result": "ok",
+      "result_line": 7350,
+      "duration_ms_literal": "21.637675",
+      "duration_line": 7352,
+      "type": "test",
+      "type_line": 7353
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 981,
+      "name": "file fsync failure retains complete private output but forbids directory fsync and terminal success",
+      "result": "ok",
+      "result_line": 7356,
+      "duration_ms_literal": "11.525202",
+      "duration_line": 7358,
+      "type": "test",
+      "type_line": 7359
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 982,
+      "name": "directory fsync failure after known file close retains output and forbids successful terminal status",
+      "result": "ok",
+      "result_line": 7362,
+      "duration_ms_literal": "16.122972",
+      "duration_line": 7364,
+      "type": "test",
+      "type_line": 7365
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 983,
+      "name": "readback byte corruption zero count and overflow refuse with complete private file retained",
+      "result": "ok",
+      "result_line": 7368,
+      "duration_ms_literal": "22.849629",
+      "duration_line": 7370,
+      "type": "test",
+      "type_line": 7371
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 984,
+      "name": "native write size and post-readback FD changes refuse output certainty without deleting the file",
+      "result": "ok",
+      "result_line": 7374,
+      "duration_ms_literal": "15.751196",
+      "duration_line": 7376,
+      "type": "test",
+      "type_line": 7377
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 985,
+      "name": "post-write output pathname replacement refuses even when saved FD readback bytes still match",
+      "result": "ok",
+      "result_line": 7380,
+      "duration_ms_literal": "17.453932",
+      "duration_line": 7382,
+      "type": "test",
+      "type_line": 7383
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 986,
+      "name": "output-parent identity replacement after exclusive create retains original private file and refuses",
+      "result": "ok",
+      "result_line": 7386,
+      "duration_ms_literal": "7.969339",
+      "duration_line": 7388,
+      "type": "test",
+      "type_line": 7389
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 987,
+      "name": "output parent losing privacy before completion prevents success and retains the uncommitted report",
+      "result": "ok",
+      "result_line": 7392,
+      "duration_ms_literal": "8.570532",
+      "duration_line": 7394,
+      "type": "test",
+      "type_line": 7395
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 988,
+      "name": "input close after actual release and FD reuse is attempted once while foreign FD remains open and core stays unloaded",
+      "result": "ok",
+      "result_line": 7398,
+      "duration_ms_literal": "2.474292",
+      "duration_line": 7400,
+      "type": "test",
+      "type_line": 7401
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 989,
+      "name": "output close after actual release and FD reuse retains complete report and never closes the foreign FD",
+      "result": "ok",
+      "result_line": 7404,
+      "duration_ms_literal": "17.355644",
+      "duration_line": 7406,
+      "type": "test",
+      "type_line": 7407
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 990,
+      "name": "parent close after actual release and FD reuse refuses success without a foreign second close",
+      "result": "ok",
+      "result_line": 7410,
+      "duration_ms_literal": "21.764892",
+      "duration_line": 7412,
+      "type": "test",
+      "type_line": 7413
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 991,
+      "name": "close throwing before release remains uncertain and is never retried while other owned inputs are released",
+      "result": "ok",
+      "result_line": 7416,
+      "duration_ms_literal": "2.281403",
+      "duration_line": 7418,
+      "type": "test",
+      "type_line": 7419
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 992,
+      "name": "first read refusal stays sticky when cleanup close also throws after releasing its descriptor",
+      "result": "ok",
+      "result_line": 7422,
+      "duration_ms_literal": "1.645104",
+      "duration_line": 7424,
+      "type": "test",
+      "type_line": 7425
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 993,
+      "name": "private output flush readback file close directory flush and directory close occur in required order",
+      "result": "ok",
+      "result_line": 7428,
+      "duration_ms_literal": "17.399987",
+      "duration_line": 7430,
+      "type": "test",
+      "type_line": 7431
+    },
+    {
+      "channel": "ROOT",
+      "program": 1,
+      "ordinal": 994,
+      "name": "filesystem effect guard permits only the explicit exclusive private output and no hidden shared helper mutation",
+      "result": "ok",
+      "result_line": 7434,
+      "duration_ms_literal": "17.932693",
+      "duration_line": 7436,
+      "type": "test",
+      "type_line": 7437
+    }
+  ],
+  "full_program_summaries": {
+    "ROOT": [
+      {
+        "start_line": 1409,
+        "counters": {
+          "tests": 6,
+          "suites": 0,
+          "pass": 6,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "nested_outcomes": [],
+        "plan": 6,
+        "plan_line": 1446,
+        "final_duration_ms_literal": "94.273431",
+        "end_line": 1454
+      },
+      {
+        "start_line": 1460,
+        "counters": {
+          "tests": 1292,
+          "suites": 0,
+          "pass": 1292,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "nested_outcomes": [],
+        "plan": 1292,
+        "plan_line": 9229,
+        "final_duration_ms_literal": "111505.700048",
+        "end_line": 9237
+      },
+      {
+        "start_line": 9379,
+        "counters": {
+          "tests": 9,
+          "suites": 0,
+          "pass": 9,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "nested_outcomes": [],
+        "plan": 9,
+        "plan_line": 9434,
+        "final_duration_ms_literal": "103.363427",
+        "end_line": 9442
+      }
+    ],
+    "MCP": [
+      {
+        "start_line": 196,
+        "counters": {
+          "tests": 149,
+          "suites": 0,
+          "pass": 149,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "nested_outcomes": [],
+        "plan": 149,
+        "plan_line": 1091,
+        "final_duration_ms_literal": "3896.113252",
+        "end_line": 1099
+      },
+      {
+        "start_line": 1108,
+        "counters": {
+          "tests": 1,
+          "suites": 0,
+          "pass": 1,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "nested_outcomes": [],
+        "plan": 1,
+        "plan_line": 1115,
+        "final_duration_ms_literal": "650.063272",
+        "end_line": 1123
+      },
+      {
+        "start_line": 1149,
+        "counters": {
+          "tests": 82,
+          "suites": 0,
+          "pass": 82,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "nested_outcomes": [],
+        "plan": 82,
+        "plan_line": 1642,
+        "final_duration_ms_literal": "15656.436521",
+        "end_line": 1650
+      },
+      {
+        "start_line": 1675,
+        "counters": {
+          "tests": 176,
+          "suites": 0,
+          "pass": 176,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "nested_outcomes": [],
+        "plan": 176,
+        "plan_line": 2735,
+        "final_duration_ms_literal": "6340.792791",
+        "end_line": 2743
+      },
+      {
+        "start_line": 2768,
+        "counters": {
+          "tests": 139,
+          "suites": 0,
+          "pass": 139,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "nested_outcomes": [],
+        "plan": 139,
+        "plan_line": 3614,
+        "final_duration_ms_literal": "4399.840714",
+        "end_line": 3622
+      }
+    ]
+  },
+  "all8_plans_dense_ordinals_every_top_name_type_YAMLduration_seven_counters_finaldurations_checked": true,
+  "top_outcomes": 1854,
+  "nested_outcomes": 0,
+  "Node": "22.23.3",
+  "all7_successful_checks": [
+    {
+      "bucket": "pass",
+      "completedAt": "2026-10-03T18:29:09Z",
+      "link": "https://github.com/arhancanli/canlicapital/runs/111265154018",
+      "name": "CodeQL",
+      "startedAt": "2026-10-03T18:29:06Z",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "completedAt": "2026-10-03T18:29:15Z",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37144260919/job/111264855335",
+      "name": "analyze (python)",
+      "startedAt": "2026-10-03T18:28:06Z",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "completedAt": "2026-10-03T18:27:44Z",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37144260887/job/111264855581",
+      "name": "design wrapper build and contracts",
+      "startedAt": "2026-10-03T18:27:31Z",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "completedAt": "2026-10-03T18:28:24Z",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37144260887/job/111264855659",
+      "name": "MCP package and stdio contracts",
+      "startedAt": "2026-10-03T18:27:31Z",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "completedAt": "2026-10-03T18:29:23Z",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37144260919/job/111264855468",
+      "name": "analyze (javascript-typescript)",
+      "startedAt": "2026-10-03T18:27:30Z",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "completedAt": "2026-10-03T18:30:24Z",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37144260887/job/111264855548",
+      "name": "vite production build",
+      "startedAt": "2026-10-03T18:27:30Z",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "completedAt": "2026-10-03T18:28:07Z",
+      "link": "https://github.com/arhancanli/canlicapital/actions/runs/37144260887/job/111264855727",
+      "name": "Key revocation PostgreSQL contract",
+      "startedAt": "2026-10-03T18:27:30Z",
+      "state": "SUCCESS"
+    }
+  ],
+  "tested_merge": {
+    "sha": "e6abbe9d803771fc034843b7031742a7dbe30e4d",
+    "tree": "7809b54355373bc552ab5425fd7af278e4684724",
+    "ordered_parents": [
+      "ce0c68ca30964a081490ee8c2c6a2f0057471f27",
+      "bcb89bb117747a744b83113867fa56f645601f31"
+    ],
+    "tree_equals_frozen_source": true,
+    "same_exact_checkout_seen_in_both_raws": true
+  },
+  "captured_scoped_alerts_n": 0,
+  "latest_both_languages": [
+    {
+      "ref": "refs/pull/374/merge",
+      "commit_sha": "e6abbe9d803771fc034843b7031742a7dbe30e4d",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-03T18:29:15Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1886617338,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1886617338",
+      "sarif_id": "563d5f7a-bf58-11f1-9f9a-f87d2183372f",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    {
+      "ref": "refs/pull/374/merge",
+      "commit_sha": "e6abbe9d803771fc034843b7031742a7dbe30e4d",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-03T18:29:07Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1886617083,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1886617083",
+      "sarif_id": "512f4e08-bf58-11f1-9925-c38d069af7c6",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  ],
+  "historical_analyses_retained_n": 2,
+  "both_postbuild_guards_once": [
+    {
+      "line": 1160,
+      "text": "2026-10-03T18:27:59.8747608Z standards/paper-evidence.html: generated skip link and focus target verified"
+    },
+    {
+      "line": 1161,
+      "text": "2026-10-03T18:27:59.8764989Z dist/standards/paper-evidence.html: generated skip link and focus target verified"
+    }
+  ],
+  "catalog_selector_addendum": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/bcb89bb1-catalog-postbuild-selector-addendum-v1.json",
+    "bytes": 1160,
+    "sha256": "16901581bee4e1c53aa798c67208b494db7fcb0356567d24269dde00ff4716e9"
+  },
+  "original_7bb_actual": {
+    "new_cases": {
+      "pass": 59,
+      "fail": 1,
+      "unknown": 0
+    },
+    "ROOT_final9": "UNRUN",
+    "failure_analysis": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli/initial-7bb9c8ce-remote-ci-failure-analysis-v1.json",
+      "bytes": 18257,
+      "sha256": "bfddbc7e90f628703e9e7cdc2a9e6529a74af0d057e56e2d657597515e06ae1b"
+    }
+  },
+  "d862_corrected_CI": "NOT_ENTERED due fresh-main conflict; no failed/corrected runtime relabelled",
+  "all60_case_bodies_and_three_products_exact_accepted_d862": true,
+  "reviewer_currentCI_gates": "PRIMARY/THIRD separate requested after this actual underlying capture",
+  "archive_allocation": null,
+  "local_project_execution": false,
+  "workflow_manual_rerun": false,
+  "scope_limits": [
+    "Captured successful source-time remote run only; no actual merge, publication or future head/job ACK.",
+    "Inherited currentmain ROOT/MCP totals are parsed from new raw logs; old1245/141 totals are retained as history.",
+    "No whole407MB physical audit or authenticated source/human/rights/indexing/adoption/qualified strategy outcome is inferred."
+  ],
+  "owner_hierarchy": "ACTIVE; actual outcomes unknown/null; PRIMARYsoleordinarymergepub/LeadsoleCPU/127policy"
+}
