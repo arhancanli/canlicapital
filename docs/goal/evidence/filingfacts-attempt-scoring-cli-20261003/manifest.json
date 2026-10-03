@@ -1,0 +1,646 @@
+{
+  "schema": "canli.pr370.offline-attempt-scoring-cli.documentary-manifest.v1",
+  "source": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+  "source_tree": "50c535a10ea0898e04b9bee8c3597e395d18fda3",
+  "actual_base": "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+  "proposal": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1.json",
+    "bytes": 42415,
+    "sha256": "cd55e9471fb0ec65554927e2b1d1514dc000f999aa2b6b96975d980c81310e9f"
+  },
+  "literal_allocation": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-allocation-e35ecc77-primary-v1.json",
+    "bytes": 51854,
+    "sha256": "a7b7ee1039d2ffe94a2018703464bdff3e355644f23352f1f8bbfedcff044689"
+  },
+  "initial_four_gate_originals": [
+    {
+      "role": "PRIMARY",
+      "gate": "SOURCE",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-e35ecc77-narrow-extension-v1.json",
+      "bytes": 17123,
+      "sha256": "3e63358016e6d0c4bdc13ab667605cdcbd52446242fa2743b06b652aa5b78bea",
+      "disposition": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "fullread": true
+    },
+    {
+      "role": "PRIMARY",
+      "gate": "CI",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-retained-ci-e35ecc77-v1.json",
+      "bytes": 40274,
+      "sha256": "6a726b7e8a4bd93dee5be3f4f3f7caec861106b83b6c6c1007cd22191deee37a",
+      "disposition": "PASS_EXACT_RETAINED_CURRENT_CI",
+      "fullread": true
+    },
+    {
+      "role": "THIRD",
+      "gate": "SOURCE",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/review-e35ecc77-source-extension.json",
+      "bytes": 19688,
+      "sha256": "6832c840ef4ef6f2c77566ff33154f9a6173252d00d218a439db40e71b9fbdbd",
+      "disposition": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "fullread": true
+    },
+    {
+      "role": "THIRD",
+      "gate": "CI",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/retained-ci-e35ecc77.json",
+      "bytes": 58713,
+      "sha256": "92a17262b36e25b397712496185ef0d9beae89ee1eff877db850046b36e00c65",
+      "disposition": "PASS_WITH_RETAINED_CURRENT_CI_SCOPE_LIMITS",
+      "fullread": true
+    }
+  ],
+  "exact_member_count": 39,
+  "rows": [
+    {
+      "name": "source-ecaf7454.json.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-ecaf7454.json",
+        "bytes": 1271322,
+        "sha256": "72fbf55f08fe8dd939e8c1f7a1609efc80b3e4b68ae83037689c2e16cdd59f95"
+      },
+      "original_bytes": 1271322,
+      "original_sha256": "72fbf55f08fe8dd939e8c1f7a1609efc80b3e4b68ae83037689c2e16cdd59f95",
+      "stored_bytes": 250249,
+      "stored_sha256": "2471937392ab3cd28375e390b9e9c837063e7e3569c172216eefe238d11ae7cd",
+      "encoding": "gzip-single-member-mtime0"
+    },
+    {
+      "name": "source-e35ecc77.json.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-e35ecc77.json",
+        "bytes": 1363911,
+        "sha256": "790d66590498e23620e45b51f00a967178ecf00f52daeedaddabd6d8d5287fc6"
+      },
+      "original_bytes": 1363911,
+      "original_sha256": "790d66590498e23620e45b51f00a967178ecf00f52daeedaddabd6d8d5287fc6",
+      "stored_bytes": 251507,
+      "stored_sha256": "e823eae2a1ab704d09624edd3124d11d4b26367c55f856b7cc13b3fd851b055b",
+      "encoding": "gzip-single-member-mtime0"
+    },
+    {
+      "name": "ecaf7454-to-e35ecc77-exact.patch.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/ecaf7454-to-e35ecc77-exact.patch",
+        "bytes": 15930,
+        "sha256": "4fd48ee8bdec05cfe7e0d15e09b45623dfcf0f8fc32bf69cf99a2b6e61a24d23"
+      },
+      "original_bytes": 15930,
+      "original_sha256": "4fd48ee8bdec05cfe7e0d15e09b45623dfcf0f8fc32bf69cf99a2b6e61a24d23",
+      "stored_bytes": 15930,
+      "stored_sha256": "4fd48ee8bdec05cfe7e0d15e09b45623dfcf0f8fc32bf69cf99a2b6e61a24d23",
+      "encoding": "identity"
+    },
+    {
+      "name": "ecaf7454-root-raw.log.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-root-stdout-original-v1.log",
+        "bytes": 757912,
+        "sha256": "cbff2df7137e16e779f85f5f4d30778f9a26ec38bb5c4848ebfa2758287c85e2"
+      },
+      "original_bytes": 757912,
+      "original_sha256": "cbff2df7137e16e779f85f5f4d30778f9a26ec38bb5c4848ebfa2758287c85e2",
+      "stored_bytes": 131945,
+      "stored_sha256": "14cd0876e1f828873f88b64f25716806e1677efad428afb0dd0f136c8c3edfbc",
+      "encoding": "gzip-single-member-mtime0"
+    },
+    {
+      "name": "ecaf7454-mcp-raw.log.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-mcp-stdout-original-v1.log",
+        "bytes": 298665,
+        "sha256": "85971a078b6ed0fe3f6867ab8535560696928fb8e2b8d1b62bb81e113a84abe3"
+      },
+      "original_bytes": 298665,
+      "original_sha256": "85971a078b6ed0fe3f6867ab8535560696928fb8e2b8d1b62bb81e113a84abe3",
+      "stored_bytes": 103265,
+      "stored_sha256": "d703e63204726215d0a12aa3802d7ad8ce79a4fe5ed04371115c18d088e9e017",
+      "encoding": "gzip-single-member-mtime0"
+    },
+    {
+      "name": "ecaf7454-ci-run-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-ci-run-stdout-original-v1.json",
+        "bytes": 13266,
+        "sha256": "f6b738e1c8da7fcecab6c5d9e97d50623069c452f72c492d91474ef5859f71d9"
+      },
+      "original_bytes": 13266,
+      "original_sha256": "f6b738e1c8da7fcecab6c5d9e97d50623069c452f72c492d91474ef5859f71d9",
+      "stored_bytes": 13266,
+      "stored_sha256": "f6b738e1c8da7fcecab6c5d9e97d50623069c452f72c492d91474ef5859f71d9",
+      "encoding": "identity"
+    },
+    {
+      "name": "ecaf7454-codeql-run-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-codeql-run-stdout-original-v1.json",
+        "bytes": 13273,
+        "sha256": "30eb5f212146cb14b7368fa1c3853f63ad5d87fb142979744345923f9e44b116"
+      },
+      "original_bytes": 13273,
+      "original_sha256": "30eb5f212146cb14b7368fa1c3853f63ad5d87fb142979744345923f9e44b116",
+      "stored_bytes": 13273,
+      "stored_sha256": "30eb5f212146cb14b7368fa1c3853f63ad5d87fb142979744345923f9e44b116",
+      "encoding": "identity"
+    },
+    {
+      "name": "ecaf7454-alerts-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-alerts-stdout-original-v1.json",
+        "bytes": 14434,
+        "sha256": "349bdc5f0b381dc9e7ecd153705576ee0a32f0adb899fd928550f063f26bf8c3"
+      },
+      "original_bytes": 14434,
+      "original_sha256": "349bdc5f0b381dc9e7ecd153705576ee0a32f0adb899fd928550f063f26bf8c3",
+      "stored_bytes": 14434,
+      "stored_sha256": "349bdc5f0b381dc9e7ecd153705576ee0a32f0adb899fd928550f063f26bf8c3",
+      "encoding": "identity"
+    },
+    {
+      "name": "ecaf7454-analyses-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-analyses-stdout-original-v1.json",
+        "bytes": 1186,
+        "sha256": "e208469fa0506cddd05e7c1541d6c186779b5d0aaacf9a7d2e09e7839321537a"
+      },
+      "original_bytes": 1186,
+      "original_sha256": "e208469fa0506cddd05e7c1541d6c186779b5d0aaacf9a7d2e09e7839321537a",
+      "stored_bytes": 1186,
+      "stored_sha256": "e208469fa0506cddd05e7c1541d6c186779b5d0aaacf9a7d2e09e7839321537a",
+      "encoding": "identity"
+    },
+    {
+      "name": "e35ecc77-root-raw.log.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-root-stdout-original-v1.log",
+        "bytes": 696457,
+        "sha256": "dde7b4fb6c4e90722ce0b7ded6c68b1c1d76aa8fcf2dbd6adc909bc9640117e5"
+      },
+      "original_bytes": 696457,
+      "original_sha256": "dde7b4fb6c4e90722ce0b7ded6c68b1c1d76aa8fcf2dbd6adc909bc9640117e5",
+      "stored_bytes": 130170,
+      "stored_sha256": "5496915cf0b03fc2cd415ac665d357b91544e844500e5cd19ab81e7b5efa9f05",
+      "encoding": "gzip-single-member-mtime0"
+    },
+    {
+      "name": "e35ecc77-mcp-raw.log.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-mcp-stdout-original-v1.log",
+        "bytes": 298546,
+        "sha256": "1f866fc377a73a482ad7bbcc695aa48194150a76d99528d7247e2febbd2d66b9"
+      },
+      "original_bytes": 298546,
+      "original_sha256": "1f866fc377a73a482ad7bbcc695aa48194150a76d99528d7247e2febbd2d66b9",
+      "stored_bytes": 103192,
+      "stored_sha256": "b20e0721d6601819a1fcff2a1bf97b1b0712cf3060ff5c7e2d9c49c41c4072e7",
+      "encoding": "gzip-single-member-mtime0"
+    },
+    {
+      "name": "e35ecc77-ci-run-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-ci-run-stdout-original-v1.json",
+        "bytes": 13275,
+        "sha256": "2544dfbd9f54b1fba9abd98652d866a27f61632bf72b84034a7f2a4781054739"
+      },
+      "original_bytes": 13275,
+      "original_sha256": "2544dfbd9f54b1fba9abd98652d866a27f61632bf72b84034a7f2a4781054739",
+      "stored_bytes": 13275,
+      "stored_sha256": "2544dfbd9f54b1fba9abd98652d866a27f61632bf72b84034a7f2a4781054739",
+      "encoding": "identity"
+    },
+    {
+      "name": "e35ecc77-codeql-run-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-codeql-run-stdout-original-v1.json",
+        "bytes": 13282,
+        "sha256": "427d285a3074b2b651205d375e5aa9eb1da5d28c0e2f4123793dc3df2f6e1987"
+      },
+      "original_bytes": 13282,
+      "original_sha256": "427d285a3074b2b651205d375e5aa9eb1da5d28c0e2f4123793dc3df2f6e1987",
+      "stored_bytes": 13282,
+      "stored_sha256": "427d285a3074b2b651205d375e5aa9eb1da5d28c0e2f4123793dc3df2f6e1987",
+      "encoding": "identity"
+    },
+    {
+      "name": "e35ecc77-alerts-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-alerts-stdout-original-v1.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "original_bytes": 2,
+      "original_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "stored_bytes": 2,
+      "stored_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "encoding": "identity"
+    },
+    {
+      "name": "e35ecc77-analyses-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-analyses-stdout-original-v1.json",
+        "bytes": 2373,
+        "sha256": "b8dcd4aba58a8be7bc683b0cb84ead83e185fe2c2264f5aee6ece9234f715850"
+      },
+      "original_bytes": 2373,
+      "original_sha256": "b8dcd4aba58a8be7bc683b0cb84ead83e185fe2c2264f5aee6ece9234f715850",
+      "stored_bytes": 2373,
+      "stored_sha256": "b8dcd4aba58a8be7bc683b0cb84ead83e185fe2c2264f5aee6ece9234f715850",
+      "encoding": "identity"
+    },
+    {
+      "name": "e35ecc77-checks-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-checks-stdout-original-v1.json",
+        "bytes": 24330,
+        "sha256": "24cd09d21d2f6462b9c4c5dbfb19e09cac57dcae56ed4a9bf3ff9c38bec00f25"
+      },
+      "original_bytes": 24330,
+      "original_sha256": "24cd09d21d2f6462b9c4c5dbfb19e09cac57dcae56ed4a9bf3ff9c38bec00f25",
+      "stored_bytes": 24330,
+      "stored_sha256": "24cd09d21d2f6462b9c4c5dbfb19e09cac57dcae56ed4a9bf3ff9c38bec00f25",
+      "encoding": "identity"
+    },
+    {
+      "name": "e35ecc77-pull-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-pull-stdout-original-v1.json",
+        "bytes": 17979,
+        "sha256": "6bcad98b66f0d9b839bdbcd08dd5b9f50ce581841be96579ac56da7b6461de64"
+      },
+      "original_bytes": 17979,
+      "original_sha256": "6bcad98b66f0d9b839bdbcd08dd5b9f50ce581841be96579ac56da7b6461de64",
+      "stored_bytes": 17979,
+      "stored_sha256": "6bcad98b66f0d9b839bdbcd08dd5b9f50ce581841be96579ac56da7b6461de64",
+      "encoding": "identity"
+    },
+    {
+      "name": "e35ecc77-merge-ref-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-merge-ref-stdout-original-v1.json",
+        "bytes": 357,
+        "sha256": "765da71137880f2ec193c15e8424c300410d283765ae88039e6fce33f0f64f9e"
+      },
+      "original_bytes": 357,
+      "original_sha256": "765da71137880f2ec193c15e8424c300410d283765ae88039e6fce33f0f64f9e",
+      "stored_bytes": 357,
+      "stored_sha256": "765da71137880f2ec193c15e8424c300410d283765ae88039e6fce33f0f64f9e",
+      "encoding": "identity"
+    },
+    {
+      "name": "e35ecc77-tested-merge-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-tested-merge-stdout-original-v1.json",
+        "bytes": 2648,
+        "sha256": "65e9d5c08e86b7454f21095c9399a3bdb4c08136200a71230adfbe25f809e057"
+      },
+      "original_bytes": 2648,
+      "original_sha256": "65e9d5c08e86b7454f21095c9399a3bdb4c08136200a71230adfbe25f809e057",
+      "stored_bytes": 2648,
+      "stored_sha256": "65e9d5c08e86b7454f21095c9399a3bdb4c08136200a71230adfbe25f809e057",
+      "encoding": "identity"
+    },
+    {
+      "name": "ecaf7454-checks-original.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/initial-ci-state-ecaf7454-stdout-original-v1.json",
+        "bytes": 24469,
+        "sha256": "e12be9120bce8600a76d2c48fdee0a7dba6d5d698658e4b8a558d2749bd79db4"
+      },
+      "original_bytes": 24469,
+      "original_sha256": "e12be9120bce8600a76d2c48fdee0a7dba6d5d698658e4b8a558d2749bd79db4",
+      "stored_bytes": 24469,
+      "stored_sha256": "e12be9120bce8600a76d2c48fdee0a7dba6d5d698658e4b8a558d2749bd79db4",
+      "encoding": "identity"
+    },
+    {
+      "name": "ecaf7454-first-failure-retained.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/first-remote-failure-ecaf7454-retained-v1.json",
+        "bytes": 15542,
+        "sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e"
+      },
+      "original_bytes": 15542,
+      "original_sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e",
+      "stored_bytes": 15542,
+      "stored_sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e",
+      "encoding": "identity"
+    },
+    {
+      "name": "e35ecc77-author-exact-ci.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/exact-remote-ci-e35ecc77-v1.json",
+        "bytes": 47061,
+        "sha256": "bde91c2bf881d5cec2cac44f2ed1ce84585e6c21349692a51e4ab359a5475c9e"
+      },
+      "original_bytes": 47061,
+      "original_sha256": "bde91c2bf881d5cec2cac44f2ed1ce84585e6c21349692a51e4ab359a5475c9e",
+      "stored_bytes": 47061,
+      "stored_sha256": "bde91c2bf881d5cec2cac44f2ed1ce84585e6c21349692a51e4ab359a5475c9e",
+      "encoding": "identity"
+    },
+    {
+      "name": "primary-source-ecaf7454-HOLD.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-review-ecaf7454-v1.json",
+        "bytes": 24542,
+        "sha256": "11dc5c8c03f47c3b9d8f87b8fd18684921ee5779ca0da89c23f8e67f971fa046"
+      },
+      "original_bytes": 24542,
+      "original_sha256": "11dc5c8c03f47c3b9d8f87b8fd18684921ee5779ca0da89c23f8e67f971fa046",
+      "stored_bytes": 24542,
+      "stored_sha256": "11dc5c8c03f47c3b9d8f87b8fd18684921ee5779ca0da89c23f8e67f971fa046",
+      "encoding": "identity"
+    },
+    {
+      "name": "status-command-first-metadata-error.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-command-original-v1.json",
+        "bytes": 689,
+        "sha256": "0677f617d8fb61d20c14ccf86171a5f1d523975b4678f47848ce9ab5490b0662"
+      },
+      "original_bytes": 689,
+      "original_sha256": "0677f617d8fb61d20c14ccf86171a5f1d523975b4678f47848ce9ab5490b0662",
+      "stored_bytes": 689,
+      "stored_sha256": "0677f617d8fb61d20c14ccf86171a5f1d523975b4678f47848ce9ab5490b0662",
+      "encoding": "identity"
+    },
+    {
+      "name": "status-command-first-metadata-error-stderr.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-stderr-original-v1.txt",
+        "bytes": 89,
+        "sha256": "a7a472003aa6ca1dcdf1faef90a35616606ffe4574fe62c5493a243f265be582"
+      },
+      "original_bytes": 89,
+      "original_sha256": "a7a472003aa6ca1dcdf1faef90a35616606ffe4574fe62c5493a243f265be582",
+      "stored_bytes": 89,
+      "stored_sha256": "a7a472003aa6ca1dcdf1faef90a35616606ffe4574fe62c5493a243f265be582",
+      "encoding": "identity"
+    },
+    {
+      "name": "source-e35ecc77-table-shape-addendum.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-e35ecc77-table-shape-addendum-v1.json",
+        "bytes": 711,
+        "sha256": "cddf5301825b75cbf4e3ce89fa32fc3935d7ef3f21ca180ac06e1df9c688b441"
+      },
+      "original_bytes": 711,
+      "original_sha256": "cddf5301825b75cbf4e3ce89fa32fc3935d7ef3f21ca180ac06e1df9c688b441",
+      "stored_bytes": 711,
+      "stored_sha256": "cddf5301825b75cbf4e3ce89fa32fc3935d7ef3f21ca180ac06e1df9c688b441",
+      "encoding": "identity"
+    },
+    {
+      "name": "primary-source-e35ecc77.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-e35ecc77-narrow-extension-v1.json",
+        "bytes": 17123,
+        "sha256": "3e63358016e6d0c4bdc13ab667605cdcbd52446242fa2743b06b652aa5b78bea"
+      },
+      "original_bytes": 17123,
+      "original_sha256": "3e63358016e6d0c4bdc13ab667605cdcbd52446242fa2743b06b652aa5b78bea",
+      "stored_bytes": 17123,
+      "stored_sha256": "3e63358016e6d0c4bdc13ab667605cdcbd52446242fa2743b06b652aa5b78bea",
+      "encoding": "identity"
+    },
+    {
+      "name": "primary-ci-e35ecc77.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-retained-ci-e35ecc77-v1.json",
+        "bytes": 40274,
+        "sha256": "6a726b7e8a4bd93dee5be3f4f3f7caec861106b83b6c6c1007cd22191deee37a"
+      },
+      "original_bytes": 40274,
+      "original_sha256": "6a726b7e8a4bd93dee5be3f4f3f7caec861106b83b6c6c1007cd22191deee37a",
+      "stored_bytes": 40274,
+      "stored_sha256": "6a726b7e8a4bd93dee5be3f4f3f7caec861106b83b6c6c1007cd22191deee37a",
+      "encoding": "identity"
+    },
+    {
+      "name": "third-source-ecaf7454-HOLD.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/review-ecaf7454-source.json",
+        "bytes": 65452,
+        "sha256": "6f189ca7a15840d8d7f0e084b7d7656cf5ac1b60f4f1584fe930e66f9b3dbdab"
+      },
+      "original_bytes": 65452,
+      "original_sha256": "6f189ca7a15840d8d7f0e084b7d7656cf5ac1b60f4f1584fe930e66f9b3dbdab",
+      "stored_bytes": 65452,
+      "stored_sha256": "6f189ca7a15840d8d7f0e084b7d7656cf5ac1b60f4f1584fe930e66f9b3dbdab",
+      "encoding": "identity"
+    },
+    {
+      "name": "third-source-e35ecc77.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/review-e35ecc77-source-extension.json",
+        "bytes": 19688,
+        "sha256": "6832c840ef4ef6f2c77566ff33154f9a6173252d00d218a439db40e71b9fbdbd"
+      },
+      "original_bytes": 19688,
+      "original_sha256": "6832c840ef4ef6f2c77566ff33154f9a6173252d00d218a439db40e71b9fbdbd",
+      "stored_bytes": 19688,
+      "stored_sha256": "6832c840ef4ef6f2c77566ff33154f9a6173252d00d218a439db40e71b9fbdbd",
+      "encoding": "identity"
+    },
+    {
+      "name": "third-ci-e35ecc77.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/retained-ci-e35ecc77.json",
+        "bytes": 58713,
+        "sha256": "92a17262b36e25b397712496185ef0d9beae89ee1eff877db850046b36e00c65"
+      },
+      "original_bytes": 58713,
+      "original_sha256": "92a17262b36e25b397712496185ef0d9beae89ee1eff877db850046b36e00c65",
+      "stored_bytes": 58713,
+      "stored_sha256": "92a17262b36e25b397712496185ef0d9beae89ee1eff877db850046b36e00c65",
+      "encoding": "identity"
+    },
+    {
+      "name": "third-ci-command-shape-error-original.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/e35ecc77-retained-ci-v1-command-shape-error.json",
+        "bytes": 1756,
+        "sha256": "fc3c9d8488af5cf5eeb424bf31eee8ee9b1e6ba53c590fd0edb4a5b105cf8adb"
+      },
+      "original_bytes": 1756,
+      "original_sha256": "fc3c9d8488af5cf5eeb424bf31eee8ee9b1e6ba53c590fd0edb4a5b105cf8adb",
+      "stored_bytes": 1756,
+      "stored_sha256": "fc3c9d8488af5cf5eeb424bf31eee8ee9b1e6ba53c590fd0edb4a5b105cf8adb",
+      "encoding": "identity"
+    },
+    {
+      "name": "CLI-original.mjs.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "Git",
+        "repository": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003",
+        "commit": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+        "path": "scripts/datasets/filing-facts/attempt-scoring-cli.mjs",
+        "bytes": 12759,
+        "sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437"
+      },
+      "original_bytes": 12759,
+      "original_sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437",
+      "stored_bytes": 12759,
+      "stored_sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437",
+      "encoding": "identity"
+    },
+    {
+      "name": "test-original.mjs.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "Git",
+        "repository": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003",
+        "commit": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+        "path": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs",
+        "bytes": 36708,
+        "sha256": "809adb004f1640b21970db627b12bb675d036efae7339c82f7d6a9ce88c5908c"
+      },
+      "original_bytes": 36708,
+      "original_sha256": "809adb004f1640b21970db627b12bb675d036efae7339c82f7d6a9ce88c5908c",
+      "stored_bytes": 36708,
+      "stored_sha256": "809adb004f1640b21970db627b12bb675d036efae7339c82f7d6a9ce88c5908c",
+      "encoding": "identity"
+    },
+    {
+      "name": "test-corrected.mjs.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "Git",
+        "repository": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003",
+        "commit": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+        "path": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs",
+        "bytes": 38497,
+        "sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234"
+      },
+      "original_bytes": 38497,
+      "original_sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234",
+      "stored_bytes": 38497,
+      "stored_sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234",
+      "encoding": "identity"
+    },
+    {
+      "name": "ATTEMPT_SCORING_CLI.md.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "Git",
+        "repository": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003",
+        "commit": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+        "path": "scripts/datasets/filing-facts/ATTEMPT_SCORING_CLI.md",
+        "bytes": 9165,
+        "sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236"
+      },
+      "original_bytes": 9165,
+      "original_sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236",
+      "stored_bytes": 9165,
+      "stored_sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236",
+      "encoding": "identity"
+    },
+    {
+      "name": "README.md",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-README-e35ecc77-proposed-v1.md",
+        "bytes": 2633,
+        "sha256": "10f12d36a260c97adf1e22c5d09a689bbfa657d9b82e58b49fce6d9d8dd3c6f6"
+      },
+      "original_bytes": 2633,
+      "original_sha256": "10f12d36a260c97adf1e22c5d09a689bbfa657d9b82e58b49fce6d9d8dd3c6f6",
+      "stored_bytes": 2633,
+      "stored_sha256": "10f12d36a260c97adf1e22c5d09a689bbfa657d9b82e58b49fce6d9d8dd3c6f6",
+      "encoding": "identity"
+    },
+    {
+      "name": "literal-allocation.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-allocation-e35ecc77-primary-v1.json",
+        "bytes": 51854,
+        "sha256": "a7b7ee1039d2ffe94a2018703464bdff3e355644f23352f1f8bbfedcff044689"
+      },
+      "original_bytes": 51854,
+      "original_sha256": "a7b7ee1039d2ffe94a2018703464bdff3e355644f23352f1f8bbfedcff044689",
+      "stored_bytes": 51854,
+      "stored_sha256": "a7b7ee1039d2ffe94a2018703464bdff3e355644f23352f1f8bbfedcff044689",
+      "encoding": "identity"
+    }
+  ],
+  "self": {
+    "name": "manifest.json",
+    "mode": "100644",
+    "bytes": 28084,
+    "own_hash_omitted_to_avoid_self_reference": true
+  },
+  "total_original_bytes": 5314957,
+  "total_stored_bytes": 1598472,
+  "gzip_members": 6,
+  "full_owner_hierarchy": "ACTIVE",
+  "final_proofs": "external; initial source/currentCI acceptance does not preapprove final documentary head or delivery"
+}

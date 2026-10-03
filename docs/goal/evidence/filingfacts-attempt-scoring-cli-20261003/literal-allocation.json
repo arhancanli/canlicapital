@@ -1,0 +1,1046 @@
+{
+  "schema": "canli.primary.pr370.exact-documentary-archive-allocation.v1",
+  "utc": "2026-10-03T08:58:35.907554+00:00",
+  "allocator": "PRIMARY",
+  "disposition": "ALLOCATED_EXACT_DOCUMENTARY_MEMBERS_ONLY",
+  "proposal": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1.json",
+    "bytes": 42415,
+    "sha256": "cd55e9471fb0ec65554927e2b1d1514dc000f999aa2b6b96975d980c81310e9f"
+  },
+  "independent_byte_audit_external_nonmember": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-archive-proposal-e35ecc77-byte-audit-v1.json",
+    "bytes": 73180,
+    "sha256": "3921f96948fce671566fc06b35fc81fdcec20e76dd5bf6a85ee0b06192a922a3"
+  },
+  "accepted_source": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+  "accepted_tree": "50c535a10ea0898e04b9bee8c3597e395d18fda3",
+  "source_parent_original": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+  "actual_base": "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-e35ecc77.json",
+    "bytes": 1363911,
+    "sha256": "790d66590498e23620e45b51f00a967178ecf00f52daeedaddabd6d8d5287fc6"
+  },
+  "observed_author_checkout": "SIGNED_G_CLEAN_E35_ARCHIVE_PREFIX_ABSENT",
+  "existing_four_current_gates_intake": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/four-current-gates-e35ecc77-intake-v1.json",
+    "bytes": 4795,
+    "sha256": "116a4ce6fb4a9b83df1f8ad983c7899ff8701a00bed338d27f6f8bbe762c56e5"
+  },
+  "accepted_four_gate_originals": [
+    {
+      "role": "PRIMARY",
+      "gate": "SOURCE",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-e35ecc77-narrow-extension-v1.json",
+      "bytes": 17123,
+      "sha256": "3e63358016e6d0c4bdc13ab667605cdcbd52446242fa2743b06b652aa5b78bea",
+      "disposition": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "fullread": true
+    },
+    {
+      "role": "PRIMARY",
+      "gate": "CI",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-retained-ci-e35ecc77-v1.json",
+      "bytes": 40274,
+      "sha256": "6a726b7e8a4bd93dee5be3f4f3f7caec861106b83b6c6c1007cd22191deee37a",
+      "disposition": "PASS_EXACT_RETAINED_CURRENT_CI",
+      "fullread": true
+    },
+    {
+      "role": "THIRD",
+      "gate": "SOURCE",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/review-e35ecc77-source-extension.json",
+      "bytes": 19688,
+      "sha256": "6832c840ef4ef6f2c77566ff33154f9a6173252d00d218a439db40e71b9fbdbd",
+      "disposition": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "fullread": true
+    },
+    {
+      "role": "THIRD",
+      "gate": "CI",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/retained-ci-e35ecc77.json",
+      "bytes": 58713,
+      "sha256": "92a17262b36e25b397712496185ef0d9beae89ee1eff877db850046b36e00c65",
+      "disposition": "PASS_WITH_RETAINED_CURRENT_CI_SCOPE_LIMITS",
+      "fullread": true
+    }
+  ],
+  "prefix": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/",
+  "exact_member_count": 39,
+  "exact_names": [
+    "source-ecaf7454.json.gz",
+    "source-e35ecc77.json.gz",
+    "ecaf7454-to-e35ecc77-exact.patch.txt",
+    "ecaf7454-root-raw.log.gz",
+    "ecaf7454-mcp-raw.log.gz",
+    "ecaf7454-ci-run-raw.json",
+    "ecaf7454-codeql-run-raw.json",
+    "ecaf7454-alerts-raw.json",
+    "ecaf7454-analyses-raw.json",
+    "e35ecc77-root-raw.log.gz",
+    "e35ecc77-mcp-raw.log.gz",
+    "e35ecc77-ci-run-raw.json",
+    "e35ecc77-codeql-run-raw.json",
+    "e35ecc77-alerts-raw.json",
+    "e35ecc77-analyses-raw.json",
+    "e35ecc77-checks-raw.json",
+    "e35ecc77-pull-raw.json",
+    "e35ecc77-merge-ref-raw.json",
+    "e35ecc77-tested-merge-raw.json",
+    "ecaf7454-checks-original.json",
+    "ecaf7454-first-failure-retained.json",
+    "e35ecc77-author-exact-ci.json",
+    "primary-source-ecaf7454-HOLD.json",
+    "status-command-first-metadata-error.json",
+    "status-command-first-metadata-error-stderr.txt",
+    "source-e35ecc77-table-shape-addendum.json",
+    "primary-source-e35ecc77.json",
+    "primary-ci-e35ecc77.json",
+    "third-source-ecaf7454-HOLD.json",
+    "third-source-e35ecc77.json",
+    "third-ci-e35ecc77.json",
+    "third-ci-command-shape-error-original.json",
+    "CLI-original.mjs.txt",
+    "test-original.mjs.txt",
+    "test-corrected.mjs.txt",
+    "ATTEMPT_SCORING_CLI.md.txt",
+    "README.md",
+    "literal-allocation.json",
+    "manifest.json"
+  ],
+  "exact_paths": [
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/source-ecaf7454.json.gz",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/source-e35ecc77.json.gz",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-to-e35ecc77-exact.patch.txt",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-root-raw.log.gz",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-mcp-raw.log.gz",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-ci-run-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-codeql-run-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-alerts-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-analyses-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-root-raw.log.gz",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-mcp-raw.log.gz",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-ci-run-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-codeql-run-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-alerts-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-analyses-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-checks-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-pull-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-merge-ref-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-tested-merge-raw.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-checks-original.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-first-failure-retained.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-author-exact-ci.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/primary-source-ecaf7454-HOLD.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/status-command-first-metadata-error.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/status-command-first-metadata-error-stderr.txt",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/source-e35ecc77-table-shape-addendum.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/primary-source-e35ecc77.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/primary-ci-e35ecc77.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/third-source-ecaf7454-HOLD.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/third-source-e35ecc77.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/third-ci-e35ecc77.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/third-ci-command-shape-error-original.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/CLI-original.mjs.txt",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/test-original.mjs.txt",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/test-corrected.mjs.txt",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ATTEMPT_SCORING_CLI.md.txt",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/README.md",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/literal-allocation.json",
+    "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/manifest.json"
+  ],
+  "immutable_pinned_members": [
+    {
+      "name": "source-ecaf7454.json.gz",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/source-ecaf7454.json.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-ecaf7454.json",
+        "bytes": 1271322,
+        "sha256": "72fbf55f08fe8dd939e8c1f7a1609efc80b3e4b68ae83037689c2e16cdd59f95"
+      },
+      "encoding": "gzip-single-member-mtime0",
+      "stored": {
+        "bytes": 250249,
+        "sha256": "2471937392ab3cd28375e390b9e9c837063e7e3569c172216eefe238d11ae7cd"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/source-ecaf7454.json.gz",
+        "bytes": 250249,
+        "sha256": "2471937392ab3cd28375e390b9e9c837063e7e3569c172216eefe238d11ae7cd"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "source-e35ecc77.json.gz",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/source-e35ecc77.json.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-e35ecc77.json",
+        "bytes": 1363911,
+        "sha256": "790d66590498e23620e45b51f00a967178ecf00f52daeedaddabd6d8d5287fc6"
+      },
+      "encoding": "gzip-single-member-mtime0",
+      "stored": {
+        "bytes": 251507,
+        "sha256": "e823eae2a1ab704d09624edd3124d11d4b26367c55f856b7cc13b3fd851b055b"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/source-e35ecc77.json.gz",
+        "bytes": 251507,
+        "sha256": "e823eae2a1ab704d09624edd3124d11d4b26367c55f856b7cc13b3fd851b055b"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ecaf7454-to-e35ecc77-exact.patch.txt",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-to-e35ecc77-exact.patch.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/ecaf7454-to-e35ecc77-exact.patch",
+        "bytes": 15930,
+        "sha256": "4fd48ee8bdec05cfe7e0d15e09b45623dfcf0f8fc32bf69cf99a2b6e61a24d23"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 15930,
+        "sha256": "4fd48ee8bdec05cfe7e0d15e09b45623dfcf0f8fc32bf69cf99a2b6e61a24d23"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ecaf7454-to-e35ecc77-exact.patch.txt",
+        "bytes": 15930,
+        "sha256": "4fd48ee8bdec05cfe7e0d15e09b45623dfcf0f8fc32bf69cf99a2b6e61a24d23"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ecaf7454-root-raw.log.gz",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-root-raw.log.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-root-stdout-original-v1.log",
+        "bytes": 757912,
+        "sha256": "cbff2df7137e16e779f85f5f4d30778f9a26ec38bb5c4848ebfa2758287c85e2"
+      },
+      "encoding": "gzip-single-member-mtime0",
+      "stored": {
+        "bytes": 131945,
+        "sha256": "14cd0876e1f828873f88b64f25716806e1677efad428afb0dd0f136c8c3edfbc"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ecaf7454-root-raw.log.gz",
+        "bytes": 131945,
+        "sha256": "14cd0876e1f828873f88b64f25716806e1677efad428afb0dd0f136c8c3edfbc"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ecaf7454-mcp-raw.log.gz",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-mcp-raw.log.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-mcp-stdout-original-v1.log",
+        "bytes": 298665,
+        "sha256": "85971a078b6ed0fe3f6867ab8535560696928fb8e2b8d1b62bb81e113a84abe3"
+      },
+      "encoding": "gzip-single-member-mtime0",
+      "stored": {
+        "bytes": 103265,
+        "sha256": "d703e63204726215d0a12aa3802d7ad8ce79a4fe5ed04371115c18d088e9e017"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ecaf7454-mcp-raw.log.gz",
+        "bytes": 103265,
+        "sha256": "d703e63204726215d0a12aa3802d7ad8ce79a4fe5ed04371115c18d088e9e017"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ecaf7454-ci-run-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-ci-run-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-ci-run-stdout-original-v1.json",
+        "bytes": 13266,
+        "sha256": "f6b738e1c8da7fcecab6c5d9e97d50623069c452f72c492d91474ef5859f71d9"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 13266,
+        "sha256": "f6b738e1c8da7fcecab6c5d9e97d50623069c452f72c492d91474ef5859f71d9"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ecaf7454-ci-run-raw.json",
+        "bytes": 13266,
+        "sha256": "f6b738e1c8da7fcecab6c5d9e97d50623069c452f72c492d91474ef5859f71d9"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ecaf7454-codeql-run-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-codeql-run-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-codeql-run-stdout-original-v1.json",
+        "bytes": 13273,
+        "sha256": "30eb5f212146cb14b7368fa1c3853f63ad5d87fb142979744345923f9e44b116"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 13273,
+        "sha256": "30eb5f212146cb14b7368fa1c3853f63ad5d87fb142979744345923f9e44b116"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ecaf7454-codeql-run-raw.json",
+        "bytes": 13273,
+        "sha256": "30eb5f212146cb14b7368fa1c3853f63ad5d87fb142979744345923f9e44b116"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ecaf7454-alerts-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-alerts-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-alerts-stdout-original-v1.json",
+        "bytes": 14434,
+        "sha256": "349bdc5f0b381dc9e7ecd153705576ee0a32f0adb899fd928550f063f26bf8c3"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 14434,
+        "sha256": "349bdc5f0b381dc9e7ecd153705576ee0a32f0adb899fd928550f063f26bf8c3"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ecaf7454-alerts-raw.json",
+        "bytes": 14434,
+        "sha256": "349bdc5f0b381dc9e7ecd153705576ee0a32f0adb899fd928550f063f26bf8c3"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ecaf7454-analyses-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-analyses-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-ecaf7454-analyses-stdout-original-v1.json",
+        "bytes": 1186,
+        "sha256": "e208469fa0506cddd05e7c1541d6c186779b5d0aaacf9a7d2e09e7839321537a"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 1186,
+        "sha256": "e208469fa0506cddd05e7c1541d6c186779b5d0aaacf9a7d2e09e7839321537a"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ecaf7454-analyses-raw.json",
+        "bytes": 1186,
+        "sha256": "e208469fa0506cddd05e7c1541d6c186779b5d0aaacf9a7d2e09e7839321537a"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-root-raw.log.gz",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-root-raw.log.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-root-stdout-original-v1.log",
+        "bytes": 696457,
+        "sha256": "dde7b4fb6c4e90722ce0b7ded6c68b1c1d76aa8fcf2dbd6adc909bc9640117e5"
+      },
+      "encoding": "gzip-single-member-mtime0",
+      "stored": {
+        "bytes": 130170,
+        "sha256": "5496915cf0b03fc2cd415ac665d357b91544e844500e5cd19ab81e7b5efa9f05"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-root-raw.log.gz",
+        "bytes": 130170,
+        "sha256": "5496915cf0b03fc2cd415ac665d357b91544e844500e5cd19ab81e7b5efa9f05"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-mcp-raw.log.gz",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-mcp-raw.log.gz",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-mcp-stdout-original-v1.log",
+        "bytes": 298546,
+        "sha256": "1f866fc377a73a482ad7bbcc695aa48194150a76d99528d7247e2febbd2d66b9"
+      },
+      "encoding": "gzip-single-member-mtime0",
+      "stored": {
+        "bytes": 103192,
+        "sha256": "b20e0721d6601819a1fcff2a1bf97b1b0712cf3060ff5c7e2d9c49c41c4072e7"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-mcp-raw.log.gz",
+        "bytes": 103192,
+        "sha256": "b20e0721d6601819a1fcff2a1bf97b1b0712cf3060ff5c7e2d9c49c41c4072e7"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-ci-run-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-ci-run-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-ci-run-stdout-original-v1.json",
+        "bytes": 13275,
+        "sha256": "2544dfbd9f54b1fba9abd98652d866a27f61632bf72b84034a7f2a4781054739"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 13275,
+        "sha256": "2544dfbd9f54b1fba9abd98652d866a27f61632bf72b84034a7f2a4781054739"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-ci-run-raw.json",
+        "bytes": 13275,
+        "sha256": "2544dfbd9f54b1fba9abd98652d866a27f61632bf72b84034a7f2a4781054739"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-codeql-run-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-codeql-run-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-codeql-run-stdout-original-v1.json",
+        "bytes": 13282,
+        "sha256": "427d285a3074b2b651205d375e5aa9eb1da5d28c0e2f4123793dc3df2f6e1987"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 13282,
+        "sha256": "427d285a3074b2b651205d375e5aa9eb1da5d28c0e2f4123793dc3df2f6e1987"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-codeql-run-raw.json",
+        "bytes": 13282,
+        "sha256": "427d285a3074b2b651205d375e5aa9eb1da5d28c0e2f4123793dc3df2f6e1987"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-alerts-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-alerts-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-alerts-stdout-original-v1.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-alerts-raw.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-analyses-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-analyses-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-analyses-stdout-original-v1.json",
+        "bytes": 2373,
+        "sha256": "b8dcd4aba58a8be7bc683b0cb84ead83e185fe2c2264f5aee6ece9234f715850"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 2373,
+        "sha256": "b8dcd4aba58a8be7bc683b0cb84ead83e185fe2c2264f5aee6ece9234f715850"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-analyses-raw.json",
+        "bytes": 2373,
+        "sha256": "b8dcd4aba58a8be7bc683b0cb84ead83e185fe2c2264f5aee6ece9234f715850"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-checks-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-checks-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-checks-stdout-original-v1.json",
+        "bytes": 24330,
+        "sha256": "24cd09d21d2f6462b9c4c5dbfb19e09cac57dcae56ed4a9bf3ff9c38bec00f25"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 24330,
+        "sha256": "24cd09d21d2f6462b9c4c5dbfb19e09cac57dcae56ed4a9bf3ff9c38bec00f25"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-checks-raw.json",
+        "bytes": 24330,
+        "sha256": "24cd09d21d2f6462b9c4c5dbfb19e09cac57dcae56ed4a9bf3ff9c38bec00f25"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-pull-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-pull-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-pull-stdout-original-v1.json",
+        "bytes": 17979,
+        "sha256": "6bcad98b66f0d9b839bdbcd08dd5b9f50ce581841be96579ac56da7b6461de64"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 17979,
+        "sha256": "6bcad98b66f0d9b839bdbcd08dd5b9f50ce581841be96579ac56da7b6461de64"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-pull-raw.json",
+        "bytes": 17979,
+        "sha256": "6bcad98b66f0d9b839bdbcd08dd5b9f50ce581841be96579ac56da7b6461de64"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-merge-ref-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-merge-ref-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-merge-ref-stdout-original-v1.json",
+        "bytes": 357,
+        "sha256": "765da71137880f2ec193c15e8424c300410d283765ae88039e6fce33f0f64f9e"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 357,
+        "sha256": "765da71137880f2ec193c15e8424c300410d283765ae88039e6fce33f0f64f9e"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-merge-ref-raw.json",
+        "bytes": 357,
+        "sha256": "765da71137880f2ec193c15e8424c300410d283765ae88039e6fce33f0f64f9e"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-tested-merge-raw.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-tested-merge-raw.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-tested-merge-stdout-original-v1.json",
+        "bytes": 2648,
+        "sha256": "65e9d5c08e86b7454f21095c9399a3bdb4c08136200a71230adfbe25f809e057"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 2648,
+        "sha256": "65e9d5c08e86b7454f21095c9399a3bdb4c08136200a71230adfbe25f809e057"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-tested-merge-raw.json",
+        "bytes": 2648,
+        "sha256": "65e9d5c08e86b7454f21095c9399a3bdb4c08136200a71230adfbe25f809e057"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ecaf7454-checks-original.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-checks-original.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/initial-ci-state-ecaf7454-stdout-original-v1.json",
+        "bytes": 24469,
+        "sha256": "e12be9120bce8600a76d2c48fdee0a7dba6d5d698658e4b8a558d2749bd79db4"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 24469,
+        "sha256": "e12be9120bce8600a76d2c48fdee0a7dba6d5d698658e4b8a558d2749bd79db4"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ecaf7454-checks-original.json",
+        "bytes": 24469,
+        "sha256": "e12be9120bce8600a76d2c48fdee0a7dba6d5d698658e4b8a558d2749bd79db4"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ecaf7454-first-failure-retained.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ecaf7454-first-failure-retained.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/first-remote-failure-ecaf7454-retained-v1.json",
+        "bytes": 15542,
+        "sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 15542,
+        "sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ecaf7454-first-failure-retained.json",
+        "bytes": 15542,
+        "sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "e35ecc77-author-exact-ci.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/e35ecc77-author-exact-ci.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/exact-remote-ci-e35ecc77-v1.json",
+        "bytes": 47061,
+        "sha256": "bde91c2bf881d5cec2cac44f2ed1ce84585e6c21349692a51e4ab359a5475c9e"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 47061,
+        "sha256": "bde91c2bf881d5cec2cac44f2ed1ce84585e6c21349692a51e4ab359a5475c9e"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/e35ecc77-author-exact-ci.json",
+        "bytes": 47061,
+        "sha256": "bde91c2bf881d5cec2cac44f2ed1ce84585e6c21349692a51e4ab359a5475c9e"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "primary-source-ecaf7454-HOLD.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/primary-source-ecaf7454-HOLD.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-review-ecaf7454-v1.json",
+        "bytes": 24542,
+        "sha256": "11dc5c8c03f47c3b9d8f87b8fd18684921ee5779ca0da89c23f8e67f971fa046"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 24542,
+        "sha256": "11dc5c8c03f47c3b9d8f87b8fd18684921ee5779ca0da89c23f8e67f971fa046"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/primary-source-ecaf7454-HOLD.json",
+        "bytes": 24542,
+        "sha256": "11dc5c8c03f47c3b9d8f87b8fd18684921ee5779ca0da89c23f8e67f971fa046"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "status-command-first-metadata-error.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/status-command-first-metadata-error.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-command-original-v1.json",
+        "bytes": 689,
+        "sha256": "0677f617d8fb61d20c14ccf86171a5f1d523975b4678f47848ce9ab5490b0662"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 689,
+        "sha256": "0677f617d8fb61d20c14ccf86171a5f1d523975b4678f47848ce9ab5490b0662"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/status-command-first-metadata-error.json",
+        "bytes": 689,
+        "sha256": "0677f617d8fb61d20c14ccf86171a5f1d523975b4678f47848ce9ab5490b0662"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "status-command-first-metadata-error-stderr.txt",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/status-command-first-metadata-error-stderr.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-stderr-original-v1.txt",
+        "bytes": 89,
+        "sha256": "a7a472003aa6ca1dcdf1faef90a35616606ffe4574fe62c5493a243f265be582"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 89,
+        "sha256": "a7a472003aa6ca1dcdf1faef90a35616606ffe4574fe62c5493a243f265be582"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/status-command-first-metadata-error-stderr.txt",
+        "bytes": 89,
+        "sha256": "a7a472003aa6ca1dcdf1faef90a35616606ffe4574fe62c5493a243f265be582"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "source-e35ecc77-table-shape-addendum.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/source-e35ecc77-table-shape-addendum.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-e35ecc77-table-shape-addendum-v1.json",
+        "bytes": 711,
+        "sha256": "cddf5301825b75cbf4e3ce89fa32fc3935d7ef3f21ca180ac06e1df9c688b441"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 711,
+        "sha256": "cddf5301825b75cbf4e3ce89fa32fc3935d7ef3f21ca180ac06e1df9c688b441"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/source-e35ecc77-table-shape-addendum.json",
+        "bytes": 711,
+        "sha256": "cddf5301825b75cbf4e3ce89fa32fc3935d7ef3f21ca180ac06e1df9c688b441"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "primary-source-e35ecc77.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/primary-source-e35ecc77.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-e35ecc77-narrow-extension-v1.json",
+        "bytes": 17123,
+        "sha256": "3e63358016e6d0c4bdc13ab667605cdcbd52446242fa2743b06b652aa5b78bea"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 17123,
+        "sha256": "3e63358016e6d0c4bdc13ab667605cdcbd52446242fa2743b06b652aa5b78bea"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/primary-source-e35ecc77.json",
+        "bytes": 17123,
+        "sha256": "3e63358016e6d0c4bdc13ab667605cdcbd52446242fa2743b06b652aa5b78bea"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "primary-ci-e35ecc77.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/primary-ci-e35ecc77.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-retained-ci-e35ecc77-v1.json",
+        "bytes": 40274,
+        "sha256": "6a726b7e8a4bd93dee5be3f4f3f7caec861106b83b6c6c1007cd22191deee37a"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 40274,
+        "sha256": "6a726b7e8a4bd93dee5be3f4f3f7caec861106b83b6c6c1007cd22191deee37a"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/primary-ci-e35ecc77.json",
+        "bytes": 40274,
+        "sha256": "6a726b7e8a4bd93dee5be3f4f3f7caec861106b83b6c6c1007cd22191deee37a"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "third-source-ecaf7454-HOLD.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/third-source-ecaf7454-HOLD.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/review-ecaf7454-source.json",
+        "bytes": 65452,
+        "sha256": "6f189ca7a15840d8d7f0e084b7d7656cf5ac1b60f4f1584fe930e66f9b3dbdab"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 65452,
+        "sha256": "6f189ca7a15840d8d7f0e084b7d7656cf5ac1b60f4f1584fe930e66f9b3dbdab"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/third-source-ecaf7454-HOLD.json",
+        "bytes": 65452,
+        "sha256": "6f189ca7a15840d8d7f0e084b7d7656cf5ac1b60f4f1584fe930e66f9b3dbdab"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "third-source-e35ecc77.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/third-source-e35ecc77.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/review-e35ecc77-source-extension.json",
+        "bytes": 19688,
+        "sha256": "6832c840ef4ef6f2c77566ff33154f9a6173252d00d218a439db40e71b9fbdbd"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 19688,
+        "sha256": "6832c840ef4ef6f2c77566ff33154f9a6173252d00d218a439db40e71b9fbdbd"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/third-source-e35ecc77.json",
+        "bytes": 19688,
+        "sha256": "6832c840ef4ef6f2c77566ff33154f9a6173252d00d218a439db40e71b9fbdbd"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "third-ci-e35ecc77.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/third-ci-e35ecc77.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/retained-ci-e35ecc77.json",
+        "bytes": 58713,
+        "sha256": "92a17262b36e25b397712496185ef0d9beae89ee1eff877db850046b36e00c65"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 58713,
+        "sha256": "92a17262b36e25b397712496185ef0d9beae89ee1eff877db850046b36e00c65"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/third-ci-e35ecc77.json",
+        "bytes": 58713,
+        "sha256": "92a17262b36e25b397712496185ef0d9beae89ee1eff877db850046b36e00c65"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "third-ci-command-shape-error-original.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/third-ci-command-shape-error-original.json",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/e35ecc77-retained-ci-v1-command-shape-error.json",
+        "bytes": 1756,
+        "sha256": "fc3c9d8488af5cf5eeb424bf31eee8ee9b1e6ba53c590fd0edb4a5b105cf8adb"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 1756,
+        "sha256": "fc3c9d8488af5cf5eeb424bf31eee8ee9b1e6ba53c590fd0edb4a5b105cf8adb"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/third-ci-command-shape-error-original.json",
+        "bytes": 1756,
+        "sha256": "fc3c9d8488af5cf5eeb424bf31eee8ee9b1e6ba53c590fd0edb4a5b105cf8adb"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "CLI-original.mjs.txt",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/CLI-original.mjs.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "Git",
+        "repository": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003",
+        "commit": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+        "path": "scripts/datasets/filing-facts/attempt-scoring-cli.mjs",
+        "bytes": 12759,
+        "sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 12759,
+        "sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/CLI-original.mjs.txt",
+        "bytes": 12759,
+        "sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "test-original.mjs.txt",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/test-original.mjs.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "Git",
+        "repository": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003",
+        "commit": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+        "path": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs",
+        "bytes": 36708,
+        "sha256": "809adb004f1640b21970db627b12bb675d036efae7339c82f7d6a9ce88c5908c"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 36708,
+        "sha256": "809adb004f1640b21970db627b12bb675d036efae7339c82f7d6a9ce88c5908c"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/test-original.mjs.txt",
+        "bytes": 36708,
+        "sha256": "809adb004f1640b21970db627b12bb675d036efae7339c82f7d6a9ce88c5908c"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "test-corrected.mjs.txt",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/test-corrected.mjs.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "Git",
+        "repository": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003",
+        "commit": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+        "path": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs",
+        "bytes": 38497,
+        "sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 38497,
+        "sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/test-corrected.mjs.txt",
+        "bytes": 38497,
+        "sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "ATTEMPT_SCORING_CLI.md.txt",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/ATTEMPT_SCORING_CLI.md.txt",
+      "mode": "100644",
+      "origin": {
+        "kind": "Git",
+        "repository": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003",
+        "commit": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+        "path": "scripts/datasets/filing-facts/ATTEMPT_SCORING_CLI.md",
+        "bytes": 9165,
+        "sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 9165,
+        "sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/ATTEMPT_SCORING_CLI.md.txt",
+        "bytes": 9165,
+        "sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236"
+      },
+      "immutable_original_and_stored_bytes": true
+    },
+    {
+      "name": "README.md",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/README.md",
+      "mode": "100644",
+      "origin": {
+        "kind": "filesystem",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-README-e35ecc77-proposed-v1.md",
+        "bytes": 2633,
+        "sha256": "10f12d36a260c97adf1e22c5d09a689bbfa657d9b82e58b49fce6d9d8dd3c6f6"
+      },
+      "encoding": "identity",
+      "stored": {
+        "bytes": 2633,
+        "sha256": "10f12d36a260c97adf1e22c5d09a689bbfa657d9b82e58b49fce6d9d8dd3c6f6"
+      },
+      "prepared_stored_file": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/archive-proposal-e35ecc77-v1-storage/README.md",
+        "bytes": 2633,
+        "sha256": "10f12d36a260c97adf1e22c5d09a689bbfa657d9b82e58b49fce6d9d8dd3c6f6"
+      },
+      "immutable_original_and_stored_bytes": true
+    }
+  ],
+  "only_two_additional_members": [
+    {
+      "name": "literal-allocation.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/literal-allocation.json",
+      "mode": "100644",
+      "encoding": "identity",
+      "origin": "The exact full bytes of THIS PRIMARY allocation file supplied with its external bytes/SHA256 relay. Copy verbatim; do not replace with another authority/summary/generated record.",
+      "maximum_original_and_stored_bytes": 65536,
+      "own_self_SHA256": "Not self-embedded; exact external supplied pin must be bound in manifest."
+    },
+    {
+      "name": "manifest.json",
+      "relative_path": "docs/goal/evidence/filingfacts-attempt-scoring-cli-20261003/manifest.json",
+      "mode": "100644",
+      "encoding": "identity",
+      "maximum_original_and_stored_bytes": 65536,
+      "requirements": [
+        "Lowercase filename. Bind exact frozen e35 source/tree, proposal and actual literal allocation; retain initial four accepted gates as initial gates.",
+        "Exactly38 member rows for all37 immutable assets plus literal-allocation.json; each row binds target name/mode, original origin/bytes/SHA256, stored bytes/SHA256 and exact encoding.",
+        "Manifest itself is the39th member. Charge its actual bytes to both original/stored totals; omit a self-referential own hash.",
+        "Preserve six bounded single-member mtime0gzip stored bytes exactly, with decoded original pins; preserve all other31 identity assets and four text-document snapshot suffixes.",
+        "No unpinned extra member. Any external nonmember catalogue is descriptive, never archive or runtime authority; final proof receipts stay external."
+      ]
+    }
+  ],
+  "limits": {
+    "exact_files_including_README_literal_allocation_manifest": 39,
+    "original_bytes_including_all39_max": 8388608,
+    "stored_bytes_including_all39_max": 2097152,
+    "known37_original_bytes": 5235019,
+    "known37_stored_bytes": 1518534,
+    "two_reserved_max_bytes_each": 65536,
+    "upper_original_with_both_reserves": 5366091,
+    "upper_stored_with_both_reserves": 1649606,
+    "all_members_Git_mode": "100644",
+    "six_gzip_encoding": "gzip-single-member-mtime0",
+    "remaining_encoding": "identity"
+  },
+  "scope_extension": {
+    "repository_additions": "ONLY the exact39 allocated archive paths. Existing six-path implementation scope remains as previously assigned.",
+    "documentary_parent_delta": "ONLY39 archive paths plus append-only docs/goal/STATUS.md and docs/goal/LOG.md, preserving each entire accepted e35 prefix and existing main/secondary histories.",
+    "frozen_products": [
+      "scripts/datasets/filing-facts/attempt-scoring-cli.mjs",
+      "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs",
+      "scripts/datasets/filing-facts/ATTEMPT_SCORING_CLI.md",
+      "package.json"
+    ],
+    "product_and_registration_rule": "All four exact accepted e35 bytes/modes remain fixed; no guide or package append/rewrite in this documentary phase.",
+    "protected_rule": "All other actual8a6 inherited Git identities and modes remain protected; accepted five goal-prefix and package-recovery evidence carries only unchanged bytes.",
+    "originals": "All37 selected original origins and prepared stored assets remain immutable. Original ecaf SOURCE HOLDs/33PASS5FAIL/test-onlyCodeQL4 and metadata errors remain historical, unaltered.",
+    "copy_condition": "Before repository copies, author fullreads/hashes every selected origin and prepared stored file, rechecks all six bounded single-member mtime0 decodes and all actual allocation bytes; after staging and signing compare work/index/Git modes and bytes for all39.",
+    "excluded_members": "Private auth/capacity/control/nonce/preentry/relay records; any other source/product/helper/site path; an extra AUTHORITY file or40th member.",
+    "generated_docs": "README is an exact pinned2633B member. Only manifest is generated under the rules above; allocation is a literal copy."
+  },
+  "authority_boundary": "This is written evidence-path allocation within existing routine implementation authorization. It is not a local CPU/job/runtime/network/CLI/deployment/publication grant.",
+  "future_required_gates": [
+    "One signed G/CLEAN documentary head preserving frozen e35 products and histories.",
+    "Separate exact FINAL source/archive and retained-current-CI gates from PRIMARY and THIRD, against that new head and existing automatic new-head CI retained originals.",
+    "All four final gates, fresh actual head/base checks, unchanged-head ready handoff, PRIMARY-only ordinary merge, then independent actual source/tree/archive custody.",
+    "Final source/CI/peer/ready/merge/custody receipts remain external. This allocation approves no future head/CI/delivery or publication outcome."
+  ],
+  "repository_archive_installed_by_allocator": false,
+  "own_source_or_archive_edit": false,
+  "own_project_import_Node_CLI_test_helper_build_browser_GET_process_probe_job_grant_API_refetch": false,
+  "provider_model_spend_site_registry_version_publication_authority": false,
+  "full_owner_hierarchy": "ACTIVE",
+  "ordinary_merger_publisher": "PRIMARY",
+  "sole_local_CPU_allocator": "Lead",
+  "third_and_127_roles": "Existing independent review and policy roles unchanged."
+}

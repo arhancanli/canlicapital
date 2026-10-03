@@ -1,0 +1,1623 @@
+{
+  "schema": "canli.third.attempt-scoring-cli.independent-retained-current-ci.v1",
+  "utc": "2026-10-03T08:35:49.888115+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "verdict": "PASS_WITH_RETAINED_CURRENT_CI_SCOPE_LIMITS",
+  "findings": [],
+  "source": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+  "sourceTree": "50c535a10ea0898e04b9bee8c3597e395d18fda3",
+  "soleSourceParent": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+  "actualBase": "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+  "testedMerge": "b84def39fe210f7b885dd824ffa682fa37706639",
+  "testedTree": "50c535a10ea0898e04b9bee8c3597e395d18fda3",
+  "testedParents": [
+    "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+    "e35ecc77757fa99f81ac7916edaf30044db1044f"
+  ],
+  "scope": "Independent saved-originals gate only. All ten success raw/API originals were fullread and hashed, logs fully parsed in memory, and captures bound to original commands. No project execution, API refetch, archive, future-head, actual delivery, merge or publication approval.",
+  "authorReceiptComparedNotUsedAsIndependentEvidence": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/exact-remote-ci-e35ecc77-v1.json",
+    "bytes": 47061,
+    "sha256": "bde91c2bf881d5cec2cac44f2ed1ce84585e6c21349692a51e4ab359a5475c9e"
+  },
+  "sourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-e35ecc77.json",
+    "bytes": 1363911,
+    "sha256": "790d66590498e23620e45b51f00a967178ecf00f52daeedaddabd6d8d5287fc6"
+  },
+  "separateSourceExtension": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/review-e35ecc77-source-extension.json",
+    "bytes": 19688,
+    "sha256": "6832c840ef4ef6f2c77566ff33154f9a6173252d00d218a439db40e71b9fbdbd"
+  },
+  "metadataRecipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/inspect-e35ecc77-retained-ci-metadata-v2.py",
+    "bytes": 22845,
+    "sha256": "8d1264ddd397fd72bbac1232907d5b552f250b1a7c48f90205a14c2ffb64f4ea"
+  },
+  "allTenOriginals": [
+    {
+      "label": "checks",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-checks-stdout-original-v1.json",
+      "bytes": 24330,
+      "sha256": "24cd09d21d2f6462b9c4c5dbfb19e09cac57dcae56ed4a9bf3ff9c38bec00f25",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    },
+    {
+      "label": "ci-run",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-ci-run-stdout-original-v1.json",
+      "bytes": 13275,
+      "sha256": "2544dfbd9f54b1fba9abd98652d866a27f61632bf72b84034a7f2a4781054739",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    },
+    {
+      "label": "codeql-run",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-codeql-run-stdout-original-v1.json",
+      "bytes": 13282,
+      "sha256": "427d285a3074b2b651205d375e5aa9eb1da5d28c0e2f4123793dc3df2f6e1987",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    },
+    {
+      "label": "pull",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-pull-stdout-original-v1.json",
+      "bytes": 17979,
+      "sha256": "6bcad98b66f0d9b839bdbcd08dd5b9f50ce581841be96579ac56da7b6461de64",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    },
+    {
+      "label": "merge-ref",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-merge-ref-stdout-original-v1.json",
+      "bytes": 357,
+      "sha256": "765da71137880f2ec193c15e8424c300410d283765ae88039e6fce33f0f64f9e",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    },
+    {
+      "label": "tested-merge",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-tested-merge-stdout-original-v1.json",
+      "bytes": 2648,
+      "sha256": "65e9d5c08e86b7454f21095c9399a3bdb4c08136200a71230adfbe25f809e057",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    },
+    {
+      "label": "analyses",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-analyses-stdout-original-v1.json",
+      "bytes": 2373,
+      "sha256": "b8dcd4aba58a8be7bc683b0cb84ead83e185fe2c2264f5aee6ece9234f715850",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    },
+    {
+      "label": "alerts",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-alerts-stdout-original-v1.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    },
+    {
+      "label": "root",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-root-stdout-original-v1.log",
+      "bytes": 696457,
+      "sha256": "dde7b4fb6c4e90722ce0b7ded6c68b1c1d76aa8fcf2dbd6adc909bc9640117e5",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    },
+    {
+      "label": "mcp",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-mcp-stdout-original-v1.log",
+      "bytes": 298546,
+      "sha256": "1f866fc377a73a482ad7bbcc695aa48194150a76d99528d7247e2febbd2d66b9",
+      "physicalMode": "0600",
+      "sameFDRegularStableFullread": true
+    }
+  ],
+  "originalCount": 10,
+  "totalSuccessOriginalBytes": 1069249,
+  "captureCommandsIndependentlyBound": [
+    {
+      "label": "checks",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-checks-command-original-v1.json",
+        "bytes": 776,
+        "sha256": "a454c84211fec2c8968002cf75e5ed34c69fac7dab6304b6dce1196fccdeac57"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/commits/e35ecc77757fa99f81ac7916edaf30044db1044f/check-runs?per_page=100"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-checks-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "ci-run",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-ci-run-command-original-v1.json",
+        "bytes": 728,
+        "sha256": "a3cf959387fe235b1ee16f2ae57473d006310efa3f245db6ff928fec25dbd18b"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/runs/37108818343"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-ci-run-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "codeql-run",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-codeql-run-command-original-v1.json",
+        "bytes": 736,
+        "sha256": "6a9bba7dc19b92162ff2fddb0be7757eb340de370028a182455ec6ce7f2981c3"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/runs/37108818346"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-codeql-run-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "pull",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-pull-command-original-v1.json",
+        "bytes": 709,
+        "sha256": "bd2f3158f63ee53c676b5fb40df4c23f899f5e8dbf7ca4a2d4f0cd454edb81f5"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/pulls/370"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-pull-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "merge-ref",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-merge-ref-command-original-v1.json",
+        "bytes": 730,
+        "sha256": "6ffa8e9f0f13bf3ff026a49eaede07bb889f98d6d5f917e7b309e2a0f3d00460"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/git/ref/pull/370/merge"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-merge-ref-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "tested-merge",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-tested-merge-command-original-v1.json",
+        "bytes": 767,
+        "sha256": "041a271290c1bb86a5cafbc929201573652f9704009487929469eb89cee4235e"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/git/commits/b84def39fe210f7b885dd824ffa682fa37706639"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-tested-merge-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "analyses",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-analyses-command-original-v1.json",
+        "bytes": 766,
+        "sha256": "8684545e89504cce5251d517e21df7281a86eacf5d515de3e359528861e70b8c"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/code-scanning/analyses?ref=refs/pull/370/merge&per_page=100"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-analyses-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "alerts",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-alerts-command-original-v1.json",
+        "bytes": 768,
+        "sha256": "3b2d7074ef55b4024c265b3f553ccd2080eebb0c3ed88f9ae0be6a99eb182980"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/code-scanning/alerts?ref=refs/pull/370/merge&state=open&per_page=100"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-alerts-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "root",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-root-command-original-v1.json",
+        "bytes": 730,
+        "sha256": "1a15d07badfbb58e9cd9d7c67fa356cf0265a31c6faf2eec697a0188b383b231"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111162541581/logs"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-root-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "mcp",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-mcp-command-original-v1.json",
+        "bytes": 728,
+        "sha256": "cb20ae44a66ec2e6c6c8e02cc699080303b200dd6e5919e77c35140dcf01ba9c"
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111162541580/logs"
+      ],
+      "exitCode": 0,
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-mcp-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "ROOTCompleteTAPAudit": {
+    "nodeSetupVersions": [
+      "v22.23.3"
+    ],
+    "setupCacheVersion": "22.23.3",
+    "originalCheckoutSha": "b84def39fe210f7b885dd824ffa682fa37706639",
+    "completePlanCount": 3,
+    "plans": [
+      {
+        "plan": 6,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 6,
+          "suites": 0,
+          "pass": 6,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 84.330013,
+        "completeOrderedResultAndDurationSha256": "4da7ede31f8678d8fd7f357b0d9e198c73935d8233fb9b3301c9b68791815db4",
+        "everyTopOutcomeAndDurationIndependentlyParsed": true,
+        "firstOrdinal": 1,
+        "lastOrdinal": 6
+      },
+      {
+        "plan": 1185,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 1185,
+          "suites": 0,
+          "pass": 1185,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 109402.40198,
+        "completeOrderedResultAndDurationSha256": "d17c35e7da8562caffc064a5812fd6658fa2308f64e848aa56e085ace2c2a035",
+        "everyTopOutcomeAndDurationIndependentlyParsed": true,
+        "firstOrdinal": 1,
+        "lastOrdinal": 1185
+      },
+      {
+        "plan": 9,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 9,
+          "suites": 0,
+          "pass": 9,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 113.410342,
+        "completeOrderedResultAndDurationSha256": "cb38e7fdbf679d7c81e8b1814d3b4252a39427a51be19e0eb19ca35f5a401792",
+        "everyTopOutcomeAndDurationIndependentlyParsed": true,
+        "firstOrdinal": 1,
+        "lastOrdinal": 9
+      }
+    ],
+    "nestedOutcomeScan": {
+      "allOriginalLinesInspected": 8835,
+      "observedNestedOutcomes": 0,
+      "nestedFailuresSkippedTodo": 0,
+      "completeObservedNestedRowsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "MCPCompleteTAPAudit": {
+    "nodeSetupVersions": [
+      "v22.23.3"
+    ],
+    "setupCacheVersion": "22.23.3",
+    "originalCheckoutSha": "b84def39fe210f7b885dd824ffa682fa37706639",
+    "completePlanCount": 5,
+    "plans": [
+      {
+        "plan": 141,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 141,
+          "suites": 0,
+          "pass": 141,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 2455.832941,
+        "completeOrderedResultAndDurationSha256": "d15e6204570d3580e8effe2faf26a66af52ddf4e1c243e787d4c745beed40f23",
+        "everyTopOutcomeAndDurationIndependentlyParsed": true,
+        "firstOrdinal": 1,
+        "lastOrdinal": 141
+      },
+      {
+        "plan": 1,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 1,
+          "suites": 0,
+          "pass": 1,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 557.428071,
+        "completeOrderedResultAndDurationSha256": "94996f3955d02e98bc07e5455859d10aa31a74c120f8f20c83f6177f426cf378",
+        "everyTopOutcomeAndDurationIndependentlyParsed": true,
+        "firstOrdinal": 1,
+        "lastOrdinal": 1
+      },
+      {
+        "plan": 82,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 82,
+          "suites": 0,
+          "pass": 82,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 15627.938763,
+        "completeOrderedResultAndDurationSha256": "3d170b0f7ffb36bf609574ea4cdd76fe93d4f147493ff556e8b47016fd490194",
+        "everyTopOutcomeAndDurationIndependentlyParsed": true,
+        "firstOrdinal": 1,
+        "lastOrdinal": 82
+      },
+      {
+        "plan": 119,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 119,
+          "suites": 0,
+          "pass": 119,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 5345.607694,
+        "completeOrderedResultAndDurationSha256": "0af5e5b754f9d08660d186c6c36075a857f4505db29c42f922f1ad00e4061ade",
+        "everyTopOutcomeAndDurationIndependentlyParsed": true,
+        "firstOrdinal": 1,
+        "lastOrdinal": 119
+      },
+      {
+        "plan": 139,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 139,
+          "suites": 0,
+          "pass": 139,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 4026.643592,
+        "completeOrderedResultAndDurationSha256": "4a2b4f96f4bfd3d1dd4a39eb0d35bf85122bcabe34cc4f0c51e08fed2f90fa0e",
+        "everyTopOutcomeAndDurationIndependentlyParsed": true,
+        "firstOrdinal": 1,
+        "lastOrdinal": 139
+      }
+    ],
+    "nestedOutcomeScan": {
+      "allOriginalLinesInspected": 3264,
+      "observedNestedOutcomes": 0,
+      "nestedFailuresSkippedTodo": 0,
+      "completeObservedNestedRowsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "allEightPlansDenseOrdinalsEveryTopDurationSevenCountersFinalDurationParsed": true,
+  "allNestedOutcomesScanned": {
+    "ROOT": 0,
+    "MCP": 0,
+    "notOkSkippedTodo": 0
+  },
+  "sourceTestPinsIndependentlyRehashedFrozenGit": [
+    {
+      "path": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs",
+      "bytes": 38497,
+      "sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/attempt-scoring.test.mjs",
+      "bytes": 35520,
+      "sha256": "c6f7e56a10b5c29e0a20bff75a59989ee989bd2b437213f65ba8f5b18f06e433"
+    },
+    {
+      "path": "scripts/skip-link-tabindex.test.mjs",
+      "bytes": 7168,
+      "sha256": "f52573577455fd23b1143b3be05f149fb9cf788cc90fe5d32f59c2ea83a060e5"
+    }
+  ],
+  "namedCasesIndependentAudit": {
+    "actualNewCLI": 38,
+    "inheritedScoringCore": 30,
+    "inheritedStandardGuard": 9,
+    "ROOTOccurrencePerName": 1,
+    "MCPOccurrencePerName": 0,
+    "all77Distinct": true,
+    "guardDiscovery": "Eight frozen literal test names plus exactly one supplied standards/paper-evidence PAGES template expansion, without evaluating project JS.",
+    "selectedActualRows": [
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 1,
+        "name": "attempt scoring CLI: actual score and replay preserve exact core bytes fifteen rows and unknown measurements",
+        "ROOTTopOrdinal": 699,
+        "ROOTRawLine": 5659,
+        "outcome": "ok",
+        "duration_ms": 1201.113071,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 2,
+        "name": "attempt scoring CLI: ordinary and owned symlink entries have equal missing argument refusal and valid bytes",
+        "ROOTTopOrdinal": 700,
+        "ROOTRawLine": 5665,
+        "outcome": "ok",
+        "duration_ms": 1346.685075,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 3,
+        "name": "attempt scoring CLI: an import defines main without invoking a command or writing an artifact",
+        "ROOTTopOrdinal": 701,
+        "ROOTRawLine": 5671,
+        "outcome": "ok",
+        "duration_ms": 106.533079,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 4,
+        "name": "attempt scoring CLI: missing extra and unknown positional commands refuse before supplied effects",
+        "ROOTTopOrdinal": 702,
+        "ROOTRawLine": 5677,
+        "outcome": "ok",
+        "duration_ms": 289.445267,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 5,
+        "name": "attempt scoring CLI: relative unbounded aliased and control-character paths refuse before capture",
+        "ROOTTopOrdinal": 703,
+        "ROOTRawLine": 5683,
+        "outcome": "ok",
+        "duration_ms": 312.51058,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 6,
+        "name": "attempt scoring CLI: every input size admission precedes all payload reads on sparse oversized files",
+        "ROOTTopOrdinal": 704,
+        "ROOTRawLine": 5689,
+        "outcome": "ok",
+        "duration_ms": 730.363952,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 7,
+        "name": "attempt scoring CLI: replay admits all five files before reading and refuses oversized artifact without writes",
+        "ROOTTopOrdinal": 705,
+        "ROOTRawLine": 5695,
+        "outcome": "ok",
+        "duration_ms": 675.581088,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 8,
+        "name": "attempt scoring CLI: exact individual ceilings and aggregate-safe input bytes have a real successful control",
+        "ROOTTopOrdinal": 706,
+        "ROOTRawLine": 5701,
+        "outcome": "ok",
+        "duration_ms": 1046.00355,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 9,
+        "name": "attempt scoring CLI: bounded short reads complete original bytes after all four and five admissions",
+        "ROOTTopOrdinal": 707,
+        "ROOTRawLine": 5707,
+        "outcome": "ok",
+        "duration_ms": 1329.784464,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 10,
+        "name": "attempt scoring CLI: zero short read refuses without creating output and the target fault is reached",
+        "ROOTTopOrdinal": 708,
+        "ROOTRawLine": 5713,
+        "outcome": "ok",
+        "duration_ms": 192.071348,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 11,
+        "name": "attempt scoring CLI: one overflow read detects input growth before scoring",
+        "ROOTTopOrdinal": 709,
+        "ROOTRawLine": 5719,
+        "outcome": "ok",
+        "duration_ms": 211.557966,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 12,
+        "name": "attempt scoring CLI: truncation refuses on the admitted target descriptor",
+        "ROOTTopOrdinal": 710,
+        "ROOTRawLine": 5725,
+        "outcome": "ok",
+        "duration_ms": 226.468908,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 13,
+        "name": "attempt scoring CLI: same descriptor metadata mutation refuses with a positive payload read",
+        "ROOTTopOrdinal": 711,
+        "ROOTRawLine": 5731,
+        "outcome": "ok",
+        "duration_ms": 192.680589,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 14,
+        "name": "attempt scoring CLI: earlier input changes during later capture cannot escape the final all-FD recheck",
+        "ROOTTopOrdinal": 712,
+        "ROOTRawLine": 5737,
+        "outcome": "ok",
+        "duration_ms": 214.448085,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 15,
+        "name": "attempt scoring CLI: invalid UTF8 duplicate members and contradictory closed-arm JSON fail through the real core",
+        "ROOTTopOrdinal": 713,
+        "ROOTRawLine": 5743,
+        "outcome": "ok",
+        "duration_ms": 757.771739,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 16,
+        "name": "attempt scoring CLI: changed scoring source fails real replay after a valid alternate-root control",
+        "ROOTTopOrdinal": 714,
+        "ROOTRawLine": 5749,
+        "outcome": "ok",
+        "duration_ms": 1160.772213,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 17,
+        "name": "attempt scoring CLI: same-length dataset tampering fails real replay and inherited same-buffer binding",
+        "ROOTTopOrdinal": 715,
+        "ROOTRawLine": 5755,
+        "outcome": "ok",
+        "duration_ms": 674.400771,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 18,
+        "name": "attempt scoring CLI: rehashed edited artifact is refused by full real replay without overwriting it",
+        "ROOTTopOrdinal": 716,
+        "ROOTRawLine": 5761,
+        "outcome": "ok",
+        "duration_ms": 1359.390227,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 19,
+        "name": "attempt scoring CLI: existing output bytes and mode are preserved with no successful acknowledgment",
+        "ROOTTopOrdinal": 717,
+        "ROOTRawLine": 5767,
+        "outcome": "ok",
+        "duration_ms": 460.458929,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 20,
+        "name": "attempt scoring CLI: output symlink is refused and its target bytes and mode remain intact",
+        "ROOTTopOrdinal": 718,
+        "ROOTRawLine": 5773,
+        "outcome": "ok",
+        "duration_ms": 500.590344,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 21,
+        "name": "attempt scoring CLI: public output parent is refused after valid computation with no chmod or artifact",
+        "ROOTTopOrdinal": 719,
+        "ROOTRawLine": 5779,
+        "outcome": "ok",
+        "duration_ms": 546.415683,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 22,
+        "name": "attempt scoring CLI: foreign owner of the admitted parent descriptor refuses before creation",
+        "ROOTTopOrdinal": 720,
+        "ROOTRawLine": 5785,
+        "outcome": "ok",
+        "duration_ms": 532.027968,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 23,
+        "name": "attempt scoring CLI: symlink and nonregular supplied inputs are rejected before payload reads",
+        "ROOTTopOrdinal": 721,
+        "ROOTRawLine": 5791,
+        "outcome": "ok",
+        "duration_ms": 318.267977,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 24,
+        "name": "attempt scoring CLI: FIFO input and output refusal return actual bounded terminals without opening a stream",
+        "ROOTTopOrdinal": 722,
+        "ROOTRawLine": 5797,
+        "outcome": "ok",
+        "duration_ms": 616.078932,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 25,
+        "name": "attempt scoring CLI: short writes complete exact bytes with file and directory durability positive controls",
+        "ROOTTopOrdinal": 723,
+        "ROOTRawLine": 5803,
+        "outcome": "ok",
+        "duration_ms": 800.148323,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 26,
+        "name": "attempt scoring CLI: zero write retains the exclusively created empty output and never unlinks or retries",
+        "ROOTTopOrdinal": 724,
+        "ROOTRawLine": 5809,
+        "outcome": "ok",
+        "duration_ms": 534.011732,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 27,
+        "name": "attempt scoring CLI: partial write failure retains the exact partial file with original inputs unchanged",
+        "ROOTTopOrdinal": 725,
+        "ROOTRawLine": 5815,
+        "outcome": "ok",
+        "duration_ms": 819.429656,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 28,
+        "name": "attempt scoring CLI: file fsync failure leaves created bytes retained and does not acknowledge or unlink",
+        "ROOTTopOrdinal": 726,
+        "ROOTRawLine": 5821,
+        "outcome": "ok",
+        "duration_ms": 822.929845,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 29,
+        "name": "attempt scoring CLI: mismatching same-FD readback fails before success while retaining the explicit file",
+        "ROOTTopOrdinal": 727,
+        "ROOTRawLine": 5827,
+        "outcome": "ok",
+        "duration_ms": 873.073385,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 30,
+        "name": "attempt scoring CLI: parent path identity uncertainty after creation retains an empty artifact",
+        "ROOTTopOrdinal": 728,
+        "ROOTRawLine": 5833,
+        "outcome": "ok",
+        "duration_ms": 508.082054,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 31,
+        "name": "attempt scoring CLI: directory fsync failure cannot acknowledge a fully saved but uncertain entry",
+        "ROOTTopOrdinal": 729,
+        "ROOTRawLine": 5839,
+        "outcome": "ok",
+        "duration_ms": 760.924321,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 32,
+        "name": "attempt scoring CLI: same-size mutation after readback fails the final named file time guard",
+        "ROOTTopOrdinal": 730,
+        "ROOTRawLine": 5845,
+        "outcome": "ok",
+        "duration_ms": 768.176924,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 33,
+        "name": "attempt scoring CLI: reader close-after-close failure never retries or closes the proven reused foreign FD",
+        "ROOTTopOrdinal": 731,
+        "ROOTRawLine": 5851,
+        "outcome": "ok",
+        "duration_ms": 168.399469,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 34,
+        "name": "attempt scoring CLI: writer close-after-close failure retains bytes and the foreign reused FD without false success",
+        "ROOTTopOrdinal": 732,
+        "ROOTRawLine": 5857,
+        "outcome": "ok",
+        "duration_ms": 733.50976,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 35,
+        "name": "attempt scoring CLI: directory close ambiguity also releases numeric ownership before its sole attempt",
+        "ROOTTopOrdinal": 733,
+        "ROOTRawLine": 5863,
+        "outcome": "ok",
+        "duration_ms": 617.607383,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 36,
+        "name": "attempt scoring CLI: replay reaches armed write denial but performs no filesystem writes or replacements",
+        "ROOTTopOrdinal": 734,
+        "ROOTRawLine": 5869,
+        "outcome": "ok",
+        "duration_ms": 894.596385,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 37,
+        "name": "attempt scoring CLI: real score and replay do not invoke positively armed network or subprocess functions",
+        "ROOTTopOrdinal": 735,
+        "ROOTRawLine": 5875,
+        "outcome": "ok",
+        "duration_ms": 1033.641145,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "newCLI",
+        "sourceOrdinal": 38,
+        "name": "attempt scoring CLI: core encoded artifact capacity refusal precedes creating the requested output",
+        "ROOTTopOrdinal": 736,
+        "ROOTRawLine": 5881,
+        "outcome": "ok",
+        "duration_ms": 559.051125,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 1,
+        "name": "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows",
+        "ROOTTopOrdinal": 737,
+        "ROOTRawLine": 5887,
+        "outcome": "ok",
+        "duration_ms": 1005.762771,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 2,
+        "name": "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour",
+        "ROOTTopOrdinal": 738,
+        "ROOTRawLine": 5893,
+        "outcome": "ok",
+        "duration_ms": 204.207248,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 3,
+        "name": "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero",
+        "ROOTTopOrdinal": 739,
+        "ROOTRawLine": 5899,
+        "outcome": "ok",
+        "duration_ms": 237.955149,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 4,
+        "name": "earlier correct final wrong and earlier wrong final correct each score only the named last attempt",
+        "ROOTTopOrdinal": 740,
+        "ROOTRawLine": 5905,
+        "outcome": "ok",
+        "duration_ms": 468.536628,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 5,
+        "name": "raw429 followed by an explicit retry preserves failed usage costs and retry accounting",
+        "ROOTTopOrdinal": 741,
+        "ROOTRawLine": 5911,
+        "outcome": "ok",
+        "duration_ms": 176.693625,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 6,
+        "name": "missing error aborted not-started incomplete and pending records all remain denominator failures",
+        "ROOTTopOrdinal": 742,
+        "ROOTRawLine": 5917,
+        "outcome": "ok",
+        "duration_ms": 256.406789,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 7,
+        "name": "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows",
+        "ROOTTopOrdinal": 743,
+        "ROOTRawLine": 5923,
+        "outcome": "ok",
+        "duration_ms": 426.885023,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 8,
+        "name": "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused",
+        "ROOTTopOrdinal": 744,
+        "ROOTRawLine": 5929,
+        "outcome": "ok",
+        "duration_ms": 386.840942,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 9,
+        "name": "all missing captures preserve full cohort and unavailable usage latency price and billing",
+        "ROOTTopOrdinal": 745,
+        "ROOTRawLine": 5935,
+        "outcome": "ok",
+        "duration_ms": 184.938859,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 10,
+        "name": "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring",
+        "ROOTTopOrdinal": 746,
+        "ROOTRawLine": 5941,
+        "outcome": "ok",
+        "duration_ms": 461.976933,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 11,
+        "name": "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers",
+        "ROOTTopOrdinal": 747,
+        "ROOTRawLine": 5947,
+        "outcome": "ok",
+        "duration_ms": 202.880029,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 12,
+        "name": "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay",
+        "ROOTTopOrdinal": 748,
+        "ROOTRawLine": 5953,
+        "outcome": "ok",
+        "duration_ms": 8105.624247,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 13,
+        "name": "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator",
+        "ROOTTopOrdinal": 749,
+        "ROOTRawLine": 5959,
+        "outcome": "ok",
+        "duration_ms": 1304.350917,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 14,
+        "name": "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring",
+        "ROOTTopOrdinal": 750,
+        "ROOTRawLine": 5965,
+        "outcome": "ok",
+        "duration_ms": 228.040153,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 15,
+        "name": "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture",
+        "ROOTTopOrdinal": 751,
+        "ROOTRawLine": 5971,
+        "outcome": "ok",
+        "duration_ms": 8.633687,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 16,
+        "name": "baseline expected sample question projection accounting and raw answer binding tampering are refused",
+        "ROOTTopOrdinal": 752,
+        "ROOTRawLine": 5977,
+        "outcome": "ok",
+        "duration_ms": 228.812239,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 17,
+        "name": "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository",
+        "ROOTTopOrdinal": 753,
+        "ROOTRawLine": 5983,
+        "outcome": "ok",
+        "duration_ms": 17.013967,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 18,
+        "name": "transient same-length scoring read swap cannot hash one dataset and parse another",
+        "ROOTTopOrdinal": 754,
+        "ROOTRawLine": 5989,
+        "outcome": "ok",
+        "duration_ms": 52.07723,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 19,
+        "name": "post-load comment changes in every scoring helper and the whole new module or guide are refused",
+        "ROOTTopOrdinal": 755,
+        "ROOTRawLine": 5995,
+        "outcome": "ok",
+        "duration_ms": 214.82418,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 20,
+        "name": "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck",
+        "ROOTTopOrdinal": 756,
+        "ROOTRawLine": 6001,
+        "outcome": "ok",
+        "duration_ms": 188.775942,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 21,
+        "name": "rehashed row score status measurement implementation and input tampering are rejected by full replay",
+        "ROOTTopOrdinal": 757,
+        "ROOTRawLine": 6007,
+        "outcome": "ok",
+        "duration_ms": 1690.042668,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 22,
+        "name": "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks",
+        "ROOTTopOrdinal": 758,
+        "ROOTRawLine": 6013,
+        "outcome": "ok",
+        "duration_ms": 0.745776,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 23,
+        "name": "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks",
+        "ROOTTopOrdinal": 759,
+        "ROOTRawLine": 6019,
+        "outcome": "ok",
+        "duration_ms": 234.612564,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 24,
+        "name": "oversized native fields are refused before any source open or owned allocation",
+        "ROOTTopOrdinal": 760,
+        "ROOTRawLine": 6025,
+        "outcome": "ok",
+        "duration_ms": 1.679032,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 25,
+        "name": "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused",
+        "ROOTTopOrdinal": 761,
+        "ROOTRawLine": 6031,
+        "outcome": "ok",
+        "duration_ms": 22.228635,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 26,
+        "name": "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding",
+        "ROOTTopOrdinal": 762,
+        "ROOTRawLine": 6037,
+        "outcome": "ok",
+        "duration_ms": 1536.876901,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 27,
+        "name": "settings raw request response and replay artifact each enforce their separate finite byte caps",
+        "ROOTTopOrdinal": 763,
+        "ROOTRawLine": 6043,
+        "outcome": "ok",
+        "duration_ms": 7.462515,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 28,
+        "name": "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring",
+        "ROOTTopOrdinal": 764,
+        "ROOTRawLine": 6049,
+        "outcome": "ok",
+        "duration_ms": 13.001498,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 29,
+        "name": "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring",
+        "ROOTTopOrdinal": 765,
+        "ROOTRawLine": 6055,
+        "outcome": "ok",
+        "duration_ms": 11.145946,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedScoringCore",
+        "sourceOrdinal": 30,
+        "name": "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only",
+        "ROOTTopOrdinal": 766,
+        "ROOTRawLine": 6061,
+        "outcome": "ok",
+        "duration_ms": 408.495164,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedStandardGuard",
+        "sourceOrdinal": 1,
+        "name": "standard focus guard admits the generated mirror and reordered multi-class attributes",
+        "ROOTTopOrdinal": 1113,
+        "ROOTRawLine": 8144,
+        "outcome": "ok",
+        "duration_ms": 4.866239,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedStandardGuard",
+        "sourceOrdinal": 2,
+        "name": "standard focus guard refuses the old committed and captured-live missing tabindex shape",
+        "ROOTTopOrdinal": 1114,
+        "ROOTRawLine": 8150,
+        "outcome": "ok",
+        "duration_ms": 0.483535,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedStandardGuard",
+        "sourceOrdinal": 3,
+        "name": "standard focus guard refuses a missing shared-handler class or wrong fragment",
+        "ROOTTopOrdinal": 1115,
+        "ROOTRawLine": 8156,
+        "outcome": "ok",
+        "duration_ms": 0.410398,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedStandardGuard",
+        "sourceOrdinal": 4,
+        "name": "standard focus guard refuses duplicate target IDs, attributes and skip controls",
+        "ROOTTopOrdinal": 1116,
+        "ROOTRawLine": 8162,
+        "outcome": "ok",
+        "duration_ms": 0.260047,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedStandardGuard",
+        "sourceOrdinal": 5,
+        "name": "standard focus guard does not accept targets or skip controls inside comments or script examples",
+        "ROOTTopOrdinal": 1117,
+        "ROOTRawLine": 8168,
+        "outcome": "ok",
+        "duration_ms": 0.300082,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedStandardGuard",
+        "sourceOrdinal": 6,
+        "name": "standard focus guard cannot join text across ignored spans into a main target",
+        "ROOTTopOrdinal": 1118,
+        "ROOTRawLine": 8174,
+        "outcome": "ok",
+        "duration_ms": 0.35241,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedStandardGuard",
+        "sourceOrdinal": 7,
+        "name": "standard focus guard bounds UTF-8 bytes before tag inspection",
+        "ROOTTopOrdinal": 1119,
+        "ROOTRawLine": 8180,
+        "outcome": "ok",
+        "duration_ms": 1.633648,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedStandardGuard",
+        "sourceOrdinal": 8,
+        "name": "standard focus reader admits exact owned bytes and refuses oversized or invalid UTF-8 input",
+        "ROOTTopOrdinal": 1120,
+        "ROOTRawLine": 8186,
+        "outcome": "ok",
+        "duration_ms": 3.742285,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      },
+      {
+        "group": "inheritedStandardGuard",
+        "sourceOrdinal": 9,
+        "name": "standards/paper-evidence.html: every skip-link target is focusable (tabindex=\"-1\")",
+        "ROOTTopOrdinal": 1121,
+        "ROOTRawLine": 8192,
+        "outcome": "ok",
+        "duration_ms": 1.139192,
+        "ROOTOccurrences": 1,
+        "MCPOccurrences": 0
+      }
+    ]
+  },
+  "countsPrecision": {
+    "ROOTPlans": [
+      6,
+      1185,
+      9
+    ],
+    "MCPPlans": [
+      141,
+      1,
+      82,
+      119,
+      139
+    ],
+    "newCLIOnly38": true,
+    "allTestFailureCancelledSkippedTodoCounters": 0,
+    "oldOriginal33Pass5FailRetained": true
+  },
+  "bothPostbuildGuardsExactlyOnce": [
+    {
+      "message": "standards/paper-evidence.html: generated skip link and focus target verified",
+      "rawROOTLine": 1156,
+      "exactlyOnce": true
+    },
+    {
+      "message": "dist/standards/paper-evidence.html: generated skip link and focus target verified",
+      "rawROOTLine": 1157,
+      "exactlyOnce": true
+    }
+  ],
+  "remoteNode": "22.23.3",
+  "run": 37108818343,
+  "CodeQLRun": 37108818346,
+  "runAttempt": 1,
+  "ROOTJob": 111162541581,
+  "MCPJob": 111162541580,
+  "allSevenExactCurrentChecks": [
+    {
+      "id": 111162727707,
+      "name": "CodeQL",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/runs/111162727707",
+      "completed_at": "2026-10-03T08:11:48Z"
+    },
+    {
+      "id": 111162541581,
+      "name": "vite production build",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818343/job/111162541581",
+      "completed_at": "2026-10-03T08:13:53Z"
+    },
+    {
+      "id": 111162541580,
+      "name": "MCP package and stdio contracts",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818343/job/111162541580",
+      "completed_at": "2026-10-03T08:11:31Z"
+    },
+    {
+      "id": 111162541520,
+      "name": "Key revocation PostgreSQL contract",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818343/job/111162541520",
+      "completed_at": "2026-10-03T08:11:21Z"
+    },
+    {
+      "id": 111162541478,
+      "name": "analyze (python)",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818346/job/111162541478",
+      "completed_at": "2026-10-03T08:11:56Z"
+    },
+    {
+      "id": 111162541447,
+      "name": "design wrapper build and contracts",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818343/job/111162541447",
+      "completed_at": "2026-10-03T08:11:00Z"
+    },
+    {
+      "id": 111162541409,
+      "name": "analyze (javascript-typescript)",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818346/job/111162541409",
+      "completed_at": "2026-10-03T08:12:20Z"
+    }
+  ],
+  "capturedPR": {
+    "number": 370,
+    "state": "open",
+    "draft": true,
+    "head": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+    "base": "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+    "merged": false,
+    "capturedMergeRef": "refs/pull/370/merge",
+    "capturedMergeRefSHA": "b84def39fe210f7b885dd824ffa682fa37706639"
+  },
+  "sourceTestTreeEquality": {
+    "frozenGitSourceSignature": "G",
+    "frozenGitTree": "50c535a10ea0898e04b9bee8c3597e395d18fda3",
+    "retainedTestedGitAPITree": "50c535a10ea0898e04b9bee8c3597e395d18fda3",
+    "retainedROOTAndMCPCheckout": "b84def39fe210f7b885dd824ffa682fa37706639",
+    "testedAPIParents": [
+      "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+      "e35ecc77757fa99f81ac7916edaf30044db1044f"
+    ],
+    "testedAPIVerification": "verified valid",
+    "equalTree": true
+  },
+  "capturedCodeQL": {
+    "openAlertCountForExactPullRef": 0,
+    "capturedQuery": {
+      "ref": [
+        "refs/pull/370/merge"
+      ],
+      "state": [
+        "open"
+      ],
+      "per_page": [
+        "100"
+      ]
+    },
+    "latestPerLanguage": [
+      {
+        "language": "javascript-typescript",
+        "id": 1885384105,
+        "ref": "refs/pull/370/merge",
+        "commit_sha": "b84def39fe210f7b885dd824ffa682fa37706639",
+        "created_at": "2026-10-03T08:12:12Z",
+        "results_count": 0,
+        "error": "",
+        "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript"
+      },
+      {
+        "language": "python",
+        "id": 1885383171,
+        "ref": "refs/pull/370/merge",
+        "commit_sha": "b84def39fe210f7b885dd824ffa682fa37706639",
+        "created_at": "2026-10-03T08:11:47Z",
+        "results_count": 0,
+        "error": "",
+        "category": ".github/workflows/codeql.yml:analyze/language:python"
+      }
+    ],
+    "allFourOriginalAnalysisRowsPreserved": true,
+    "historicalRows": [
+      {
+        "language": "javascript-typescript",
+        "id": 1885342178,
+        "commit_sha": "644719ebc06e4d2b27dfac2bc61c552878d19c67",
+        "results_count": 4,
+        "error": "",
+        "created_at": "2026-10-03T07:48:46Z"
+      },
+      {
+        "language": "python",
+        "id": 1885341057,
+        "commit_sha": "644719ebc06e4d2b27dfac2bc61c552878d19c67",
+        "results_count": 0,
+        "error": "",
+        "created_at": "2026-10-03T07:48:05Z"
+      }
+    ],
+    "qualification": "Zero results/open alerts at these captured current pull-ref analyses; not a universal security or future-state claim."
+  },
+  "ownMetadataCorrection": {
+    "originalExecutedRecipe": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/inspect-e35ecc77-retained-ci-metadata-v1.py",
+      "bytes": 22148,
+      "sha256": "6af885b8accba3e8a00b34663edae95df5bbb54a945f44cfd94b11919bce1641"
+    },
+    "preservedOriginalError": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/e35ecc77-retained-ci-v1-command-shape-error.json",
+      "bytes": 1756,
+      "sha256": "fc3c9d8488af5cf5eeb424bf31eee8ee9b1e6ba53c590fd0edb4a5b105cf8adb"
+    },
+    "correction": "Exact saved gh api actions/jobs/<job>/logs URLs are bound instead of assuming a gh run view --job option. No raw/source rewrite, API refetch or project/runtime retry."
+  },
+  "originalsAndMetadataErrorsPreserved": {
+    "oldFailedAuthorReceipt": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/first-remote-failure-ecaf7454-retained-v1.json",
+      "bytes": 15542,
+      "sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e"
+    },
+    "oldIndependentSourceHOLD": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/review-ecaf7454-source.json",
+      "bytes": 65452,
+      "sha256": "6f189ca7a15840d8d7f0e084b7d7656cf5ac1b60f4f1584fe930e66f9b3dbdab"
+    },
+    "firstCurrentChecksMetadataError": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-command-original-v1.json",
+      "bytes": 689,
+      "sha256": "0677f617d8fb61d20c14ccf86171a5f1d523975b4678f47848ce9ab5490b0662"
+    },
+    "firstCurrentChecksEmptyStdout": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-stdout-original-v1.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "firstCurrentChecksStderr": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-stderr-original-v1.txt",
+      "bytes": 89,
+      "sha256": "a7a472003aa6ca1dcdf1faef90a35616606ffe4574fe62c5493a243f265be582"
+    },
+    "reason": "An initial metadata command failed; corrected capture reads the same automatic run. This is not a project runtime retry or an old failed CI relabeling.",
+    "rawRewrites": false,
+    "workflowRerun": false
+  },
+  "scopeLimits": [
+    "Successful native fixtures establish the named assertions only within captured CI.",
+    "No hostile filesystem isolation, universal crash/durability/time budget, model/provider/rights/expert/indexing/strategy outcome or public release claim.",
+    "All later documentaryhead/source/archive/currentCI/merge/actualcustody gates remain separate."
+  ],
+  "effects": {
+    "ownStdlibMetadataReadonlyGitPrivateReceipt": true,
+    "targetProjectSourceArchiveEdit": false,
+    "projectImportNodeTestsCLIHelperBuildBrowserGET": false,
+    "APIRefetchProcessProbeProjectJobGrant": false,
+    "providerModelResourceSpendPublication": false
+  },
+  "fullOwnerHierarchy": "ACTIVE; all Sovereign pillars, financial MCP/API efficiency and legitimate adoption, expert/right-cleared independent labels and refinery, novel research, governed ALPHAC/paper then lawful capital, 10M actually indexed quality canonicals/SEO/keywords/design/3D/analyzers remain open; actual outcomes unknown/null. PRIMARY alone merges/publishes; Lead alone allocates CPU."
+}
