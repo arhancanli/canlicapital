@@ -1,0 +1,1513 @@
+{
+  "schema": "canli.third.pr371.independent-current-retained-ci.v1",
+  "utc": "2026-10-03T13:17:38.197247+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "verdict": "PASS_WITH_RETAINED_CURRENT_CI_SCOPE_LIMITS",
+  "findings": [],
+  "source": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+  "sourceTree": "fcd0274793a7dbc91b14ae6e47798f05013b518a",
+  "soleSourceParent": "8a93d9e6ebf13c17e7b6d3a8e6eac8407e177bfe",
+  "actualBase": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+  "testedMerge": "a16408486d01c456a8701c82c246a701fcd0ba85",
+  "testedTree": "fcd0274793a7dbc91b14ae6e47798f05013b518a",
+  "testedParents": [
+    "6551d99672b4aa6b7629f487986a163bf7d845e4",
+    "e3eafe3b70b92d6f84267b35cb15633766fbbcf1"
+  ],
+  "authorReceiptComparedNotUsedAsIndependentACK": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/author-e3eafe3b-exact-current-retained-ci-v1.json",
+    "bytes": 23257,
+    "sha256": "d725d40b40b9034382535c04dd64ff92605ff1e96c661a56fda6e0244668cb05",
+    "physicalMode": "0600",
+    "regularSameFDStableFullread": true
+  },
+  "sourceManifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/source-e3eafe3b-v1.json",
+    "bytes": 2816613,
+    "sha256": "18aa9f280235bcabd1aa4ab581b61f6928dee48fbde25f4db3fff366da49754c",
+    "physicalMode": "0600",
+    "regularSameFDStableFullread": true
+  },
+  "separateIndependentSourceExtension": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-peer/review-e3eafe3b-serialized-wire-source-extension-v1.json",
+    "bytes": 62522,
+    "sha256": "6a714be6a5cb6ce0d554a077203aada4f8c1df94929a9f5575af967869adddeb",
+    "physicalMode": "0600",
+    "regularSameFDStableFullread": true
+  },
+  "ownMetadataRecipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-peer/inspect-e3eafe3b-current-retained-ci-v1.py",
+    "bytes": 24836,
+    "sha256": "9c1d26ad5a99c9ff0456da0c2a7c17c3110e0271b97e1b44c5234ad95d118b9c",
+    "physicalMode": "0644",
+    "regularSameFDStableFullread": true
+  },
+  "allElevenSuccessfulLiteralOriginalPinsFullread": [
+    {
+      "label": "checks",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-first-checks-api-original.json",
+      "bytes": 24372,
+      "sha256": "913933e931dbf7a42c275a07c7ee7a09c58971b362e421a5fbf5ce5f7a541662",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "runs",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-first-runs-api-original.json",
+      "bytes": 26612,
+      "sha256": "b93fb60ead8f8b509fd323c308677bcfbca6d6eda3cacdd1c1398975f383f39a",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "pull",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-first-pull-api-original.json",
+      "bytes": 17908,
+      "sha256": "e81a2308d9b85c31a0ecd0227aeb6dba1cacf61020db15442702abc4b95d9218",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "run",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-run-original.json",
+      "bytes": 13284,
+      "sha256": "055cbacd5270e8081b23c334fb71352160c358e2003a878be49a7a0fa1fcf370",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "jobs",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-jobs-original.json",
+      "bytes": 13319,
+      "sha256": "ec6ec7289ed02c5ff0260ad68eb80cef5fe6eeca98f14868ef935b967355460d",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "tested",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-tested-Git-original.json",
+      "bytes": 2648,
+      "sha256": "9b581a9aa654987081f357510f86e4edc72a9251e199f4293c56d970bd476cf7",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "ref",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-merge-ref-original.json",
+      "bytes": 357,
+      "sha256": "642eae58139ffb8bdd0ae900b1a9a788c7e7870ea18451ec8296f9e9356080f3",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "analyses",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-codeql-original.json",
+      "bytes": 3560,
+      "sha256": "272e7c10a78e19ca2e218543e77d9e6886e37b0652704de11febb7d1aef6cf3b",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "alerts",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "root",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-root-raw-original.log",
+      "bytes": 697176,
+      "sha256": "ca439fb2ac91e006d59c0f3c1656c3bed2d374beb0283fd48e9fbaa94b12c388",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "label": "mcp",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-mcp-raw-original.log",
+      "bytes": 322563,
+      "sha256": "5678e9c0bc99668e0ba5701f35f2f0e45c1a4b7cb6cfb7031d1a6be61706e267",
+      "physicalMode": "0600",
+      "regularSameFDStableFullread": true
+    }
+  ],
+  "originalCount": 11,
+  "totalSuccessOriginalBytes": 1121801,
+  "threeCaptureCommandBindingsIndependentlyRead": [
+    {
+      "label": "root",
+      "commandPin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-root-raw-capture-command-original.json",
+        "bytes": 763,
+        "sha256": "b593cb2b9663bdda5d0b3e93ff8e35c2561acd8de21cf8181194f780994c26ee",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111206924919/logs"
+      ],
+      "exit": 0,
+      "started": "2026-10-03T13:01:17.253633+00:00",
+      "completed": "2026-10-03T13:01:20.250603+00:00",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-root-raw-original.log",
+        "bytes": 697176,
+        "sha256": "ca439fb2ac91e006d59c0f3c1656c3bed2d374beb0283fd48e9fbaa94b12c388",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-root-raw-stderr-original.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "reviewerDidNotExecuteCaptureCommand": true
+    },
+    {
+      "label": "mcp",
+      "commandPin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-mcp-raw-capture-command-original.json",
+        "bytes": 761,
+        "sha256": "3ad568ce151b65a640c7640181a0e7f61be181d807e52a4477ee4fbc3c217ab3",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111206925087/logs"
+      ],
+      "exit": 0,
+      "started": "2026-10-03T13:01:17.866680+00:00",
+      "completed": "2026-10-03T13:01:20.463718+00:00",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-mcp-raw-original.log",
+        "bytes": 322563,
+        "sha256": "5678e9c0bc99668e0ba5701f35f2f0e45c1a4b7cb6cfb7031d1a6be61706e267",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-mcp-raw-stderr-original.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "reviewerDidNotExecuteCaptureCommand": true
+    },
+    {
+      "label": "alerts",
+      "commandPin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-alerts-capture-command-original.json",
+        "bytes": 799,
+        "sha256": "a7698840498b03c6ef666f87e546a5bfa8988a67f42fa5967fb9f5a62de338a0",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/code-scanning/alerts?ref=refs%2Fpull%2F371%2Fmerge&state=open&per_page=100"
+      ],
+      "exit": 0,
+      "started": "2026-10-03T13:01:19.172470+00:00",
+      "completed": "2026-10-03T13:01:19.755963+00:00",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-alerts-original.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/e3eafe3b-current-alerts-stderr-original.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "reviewerDidNotExecuteCaptureCommand": true
+    }
+  ],
+  "ROOTCompleteTAPAudit": {
+    "plans": [
+      {
+        "plan": 6,
+        "firstOrdinal": 1,
+        "lastOrdinal": 6,
+        "startRawLine": 1416,
+        "planRawLine": 1453,
+        "allDenseTopOrdinalsNamesPass": true,
+        "everyTopYAMLDurationTypeAndClosureChecked": true,
+        "allSevenCounters": {
+          "tests": 6,
+          "suites": 0,
+          "pass": 6,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "final_duration_ms": 80.949069,
+        "finalDurationRawLine": 1461,
+        "orderedWholeOutcomeDurationRowsSHA256": "a20e22a8ecdd589ef85f039f08e7fd1f50c20eca7c9b8453c7b071b5d6381e01"
+      },
+      {
+        "plan": 1185,
+        "firstOrdinal": 1,
+        "lastOrdinal": 1185,
+        "startRawLine": 1467,
+        "planRawLine": 8594,
+        "allDenseTopOrdinalsNamesPass": true,
+        "everyTopYAMLDurationTypeAndClosureChecked": true,
+        "allSevenCounters": {
+          "tests": 1185,
+          "suites": 0,
+          "pass": 1185,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "final_duration_ms": 109803.799361,
+        "finalDurationRawLine": 8602,
+        "orderedWholeOutcomeDurationRowsSHA256": "0518a691a2565f7f5dd5974a2a794174474fbd4737a42d3fd582e942637c8225"
+      },
+      {
+        "plan": 9,
+        "firstOrdinal": 1,
+        "lastOrdinal": 9,
+        "startRawLine": 8744,
+        "planRawLine": 8799,
+        "allDenseTopOrdinalsNamesPass": true,
+        "everyTopYAMLDurationTypeAndClosureChecked": true,
+        "allSevenCounters": {
+          "tests": 9,
+          "suites": 0,
+          "pass": 9,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "final_duration_ms": 100.281661,
+        "finalDurationRawLine": 8807,
+        "orderedWholeOutcomeDurationRowsSHA256": "8e344d4f273f747b9c9a98490477f4897efa43b2041316aaf4b464eec9938b25"
+      }
+    ],
+    "completePlanCount": 3,
+    "allOriginalLinesInspected": 8846,
+    "nestedOutcomeCount": 0,
+    "nestedFailuresCancelledSkippedTodo": 0,
+    "allObservedNestedRowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "nodeVersions": [
+      "v22.23.3"
+    ],
+    "nodeCacheVersion": "22.23.3",
+    "checkoutSHA": "a16408486d01c456a8701c82c246a701fcd0ba85"
+  },
+  "MCPCompleteTAPAudit": {
+    "plans": [
+      {
+        "plan": 141,
+        "firstOrdinal": 1,
+        "lastOrdinal": 141,
+        "startRawLine": 195,
+        "planRawLine": 1042,
+        "allDenseTopOrdinalsNamesPass": true,
+        "everyTopYAMLDurationTypeAndClosureChecked": true,
+        "allSevenCounters": {
+          "tests": 141,
+          "suites": 0,
+          "pass": 141,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "final_duration_ms": 2609.151989,
+        "finalDurationRawLine": 1050,
+        "orderedWholeOutcomeDurationRowsSHA256": "556523054033452f4bb7fd69f176200530c46971e9b1f2c403a69f80943a6966"
+      },
+      {
+        "plan": 1,
+        "firstOrdinal": 1,
+        "lastOrdinal": 1,
+        "startRawLine": 1059,
+        "planRawLine": 1066,
+        "allDenseTopOrdinalsNamesPass": true,
+        "everyTopYAMLDurationTypeAndClosureChecked": true,
+        "allSevenCounters": {
+          "tests": 1,
+          "suites": 0,
+          "pass": 1,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "final_duration_ms": 606.770379,
+        "finalDurationRawLine": 1074,
+        "orderedWholeOutcomeDurationRowsSHA256": "cdbf6a7d3091190ec7cc4bd002c6ca5dc04a4c8a7c8c58c4ba142f110c3c9474"
+      },
+      {
+        "plan": 82,
+        "firstOrdinal": 1,
+        "lastOrdinal": 82,
+        "startRawLine": 1100,
+        "planRawLine": 1593,
+        "allDenseTopOrdinalsNamesPass": true,
+        "everyTopYAMLDurationTypeAndClosureChecked": true,
+        "allSevenCounters": {
+          "tests": 82,
+          "suites": 0,
+          "pass": 82,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "final_duration_ms": 15617.364676,
+        "finalDurationRawLine": 1601,
+        "orderedWholeOutcomeDurationRowsSHA256": "e287531fecf3b57f287e23d43085da03d107827c6d19f3212595a5b38427f3cc"
+      },
+      {
+        "plan": 176,
+        "firstOrdinal": 1,
+        "lastOrdinal": 176,
+        "startRawLine": 1626,
+        "planRawLine": 2686,
+        "allDenseTopOrdinalsNamesPass": true,
+        "everyTopYAMLDurationTypeAndClosureChecked": true,
+        "allSevenCounters": {
+          "tests": 176,
+          "suites": 0,
+          "pass": 176,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "final_duration_ms": 6362.863865,
+        "finalDurationRawLine": 2694,
+        "orderedWholeOutcomeDurationRowsSHA256": "574f81d8764e47d1950115a70aee32b8fc1fc7548a98ad38918103c606aca2de"
+      },
+      {
+        "plan": 139,
+        "firstOrdinal": 1,
+        "lastOrdinal": 139,
+        "startRawLine": 2719,
+        "planRawLine": 3565,
+        "allDenseTopOrdinalsNamesPass": true,
+        "everyTopYAMLDurationTypeAndClosureChecked": true,
+        "allSevenCounters": {
+          "tests": 139,
+          "suites": 0,
+          "pass": 139,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "final_duration_ms": 4393.091997,
+        "finalDurationRawLine": 3573,
+        "orderedWholeOutcomeDurationRowsSHA256": "0207ffdd28288c5dced11a1c52a01c1d7bf304c447bbb16e5869fb96085577b2"
+      }
+    ],
+    "completePlanCount": 5,
+    "allOriginalLinesInspected": 3608,
+    "nestedOutcomeCount": 0,
+    "nestedFailuresCancelledSkippedTodo": 0,
+    "allObservedNestedRowsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "nodeVersions": [
+      "v22.23.3"
+    ],
+    "nodeCacheVersion": "22.23.3",
+    "checkoutSHA": "a16408486d01c456a8701c82c246a701fcd0ba85"
+  },
+  "allEightCompletePlansDenseOrdinalsEveryTopYAMLDurationTypeSevenCountersFinalDurationParsed": true,
+  "allNestedOutcomesScanned": {
+    "ROOT": 0,
+    "MCP": 0,
+    "notOkSkipTodo": 0
+  },
+  "sourceCaseInventory": {
+    "sourceTest": {
+      "path": "mcp-fundamentals/test/audit-inputs-client.test.mjs",
+      "bytes": 48164,
+      "sha256": "285cb42d1f6652bccbffdfd9a0c39e510729320126d2c23aba99c9dfe7ff02a0"
+    },
+    "exactFrozenNames": 57,
+    "actualUniqueOnceMCP": 57,
+    "ROOTOccurrencesEach": 0,
+    "all57Pass": true,
+    "fundamentalsPlan": 176,
+    "54NativeInjectedPlus3SDKEntries": true,
+    "allSelectedActualRows": [
+      {
+        "sourceOrdinal": 1,
+        "name": "audit client: native network/write/command denial is active before imports with owned fixture allowance",
+        "MCPFundamentalsOrdinal": 1,
+        "MCPRawLine": 1628,
+        "status": "ok",
+        "duration_ms": 2.759158,
+        "durationRawLine": 1630,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 2,
+        "name": "audit client: native full selected denominator and six statuses preserve exact whitespace bindings and nulls",
+        "MCPFundamentalsOrdinal": 2,
+        "MCPRawLine": 1634,
+        "status": "ok",
+        "duration_ms": 44.844209,
+        "durationRawLine": 1636,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 3,
+        "name": "audit client: every selected row remains present at the 64-row boundary",
+        "MCPFundamentalsOrdinal": 3,
+        "MCPRawLine": 1640,
+        "status": "ok",
+        "duration_ms": 75.260173,
+        "durationRawLine": 1642,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 4,
+        "name": "audit client: same-day timing retains an older selected diagnostic and null verdict",
+        "MCPFundamentalsOrdinal": 4,
+        "MCPRawLine": 1646,
+        "status": "ok",
+        "duration_ms": 5.445768,
+        "durationRawLine": 1648,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 5,
+        "name": "audit client: primitive SHA type/length/case is required before clock or transport callbacks",
+        "MCPFundamentalsOrdinal": 5,
+        "MCPRawLine": 1652,
+        "status": "ok",
+        "duration_ms": 0.843145,
+        "durationRawLine": 1654,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 6,
+        "name": "audit client: separately supplied SHA mismatch stops before connect with no repaired input",
+        "MCPFundamentalsOrdinal": 6,
+        "MCPRawLine": 1658,
+        "status": "ok",
+        "duration_ms": 0.800495,
+        "durationRawLine": 1660,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 7,
+        "name": "audit client: input native slots ignore own byteLength getters and preserve original bytes",
+        "MCPFundamentalsOrdinal": 7,
+        "MCPRawLine": 1664,
+        "status": "ok",
+        "duration_ms": 4.71801,
+        "durationRawLine": 1666,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 8,
+        "name": "audit client: proxy/shared/subclass and ordinary objects refuse before transport",
+        "MCPFundamentalsOrdinal": 8,
+        "MCPRawLine": 1670,
+        "status": "ok",
+        "duration_ms": 0.887319,
+        "durationRawLine": 1672,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 9,
+        "name": "audit client: each native per-input +1 cap refuses before dispatch",
+        "MCPFundamentalsOrdinal": 9,
+        "MCPRawLine": 1676,
+        "status": "ok",
+        "duration_ms": 1.359917,
+        "durationRawLine": 1678,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 10,
+        "name": "audit client: admitted positive aggregate equality preserves original padded bytes",
+        "MCPFundamentalsOrdinal": 10,
+        "MCPRawLine": 1682,
+        "status": "ok",
+        "duration_ms": 56.437504,
+        "durationRawLine": 1684,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 11,
+        "name": "audit client: individually admitted aggregate +1 refuses before copy/base64/dispatch",
+        "MCPFundamentalsOrdinal": 11,
+        "MCPRawLine": 1688,
+        "status": "ok",
+        "duration_ms": 1.42039,
+        "durationRawLine": 1690,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 12,
+        "name": "audit client: FD sizes and aggregate are admitted before any payload read",
+        "MCPFundamentalsOrdinal": 12,
+        "MCPRawLine": 1694,
+        "status": "ok",
+        "duration_ms": 3.285177,
+        "durationRawLine": 1696,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 13,
+        "name": "audit client: native FD individual +1 admission refuses before any payload read",
+        "MCPFundamentalsOrdinal": 13,
+        "MCPRawLine": 1700,
+        "status": "ok",
+        "duration_ms": 1.834299,
+        "durationRawLine": 1702,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 14,
+        "name": "audit client: FD positive control uses bounded short chunks and exactly one overflow probe per file",
+        "MCPFundamentalsOrdinal": 14,
+        "MCPRawLine": 1706,
+        "status": "ok",
+        "duration_ms": 1.842113,
+        "durationRawLine": 1708,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 15,
+        "name": "audit client: native symlink input is refused without reading its payload",
+        "MCPFundamentalsOrdinal": 15,
+        "MCPRawLine": 1712,
+        "status": "ok",
+        "duration_ms": 0.849177,
+        "durationRawLine": 1714,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 16,
+        "name": "audit client: nonregular FD admission refuses before payload allocation/read",
+        "MCPFundamentalsOrdinal": 16,
+        "MCPRawLine": 1718,
+        "status": "ok",
+        "duration_ms": 0.921001,
+        "durationRawLine": 1720,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 17,
+        "name": "audit client: target short read refuses after positive FD admission",
+        "MCPFundamentalsOrdinal": 17,
+        "MCPRawLine": 1724,
+        "status": "ok",
+        "duration_ms": 4.574551,
+        "durationRawLine": 1726,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 18,
+        "name": "audit client: target one-byte overflow refuses without dispatch",
+        "MCPFundamentalsOrdinal": 18,
+        "MCPRawLine": 1730,
+        "status": "ok",
+        "duration_ms": 0.900433,
+        "durationRawLine": 1732,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 19,
+        "name": "audit client: same target FD metadata mutation refuses with an asserted read effect",
+        "MCPFundamentalsOrdinal": 19,
+        "MCPRawLine": 1736,
+        "status": "ok",
+        "duration_ms": 0.932904,
+        "durationRawLine": 1738,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 20,
+        "name": "audit client: close-after-close error never retries a reused foreign descriptor",
+        "MCPFundamentalsOrdinal": 20,
+        "MCPRawLine": 1742,
+        "status": "ok",
+        "duration_ms": 4.117952,
+        "durationRawLine": 1744,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 21,
+        "name": "audit client: capture refusal still closes each owned FD once and retains close uncertainty",
+        "MCPFundamentalsOrdinal": 21,
+        "MCPRawLine": 1748,
+        "status": "ok",
+        "duration_ms": 1.015449,
+        "durationRawLine": 1750,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 22,
+        "name": "audit client: duplicate-key raw JSON is refused rather than repaired before dispatch",
+        "MCPFundamentalsOrdinal": 22,
+        "MCPRawLine": 1754,
+        "status": "ok",
+        "duration_ms": 0.461628,
+        "durationRawLine": 1756,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 23,
+        "name": "audit client: malformed UTF8 is refused without replacement or transport",
+        "MCPFundamentalsOrdinal": 23,
+        "MCPRawLine": 1760,
+        "status": "ok",
+        "duration_ms": 0.395283,
+        "durationRawLine": 1762,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 24,
+        "name": "audit client: strict CLI grammar refuses duplicates/missing/unknown/relative/control options with no effects",
+        "MCPFundamentalsOrdinal": 24,
+        "MCPRawLine": 1766,
+        "status": "ok",
+        "duration_ms": 3.524997,
+        "durationRawLine": 1768,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 25,
+        "name": "audit client: explicit root must resolve to this repository rather than a caller-selected command",
+        "MCPFundamentalsOrdinal": 25,
+        "MCPRawLine": 1772,
+        "status": "ok",
+        "duration_ms": 1.580021,
+        "durationRawLine": 1774,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 26,
+        "name": "audit client: isError stops after the sole audit and emits no arbitrary server error",
+        "MCPFundamentalsOrdinal": 26,
+        "MCPRawLine": 1778,
+        "status": "ok",
+        "duration_ms": 6.000951,
+        "durationRawLine": 1780,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 27,
+        "name": "audit client: missing complete/structured/text tool fields refuse after exactly one call",
+        "MCPFundamentalsOrdinal": 27,
+        "MCPRawLine": 1784,
+        "status": "ok",
+        "duration_ms": 19.024247,
+        "durationRawLine": 1786,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 28,
+        "name": "audit client: text/structured divergence and duplicate text keys refuse without retry",
+        "MCPFundamentalsOrdinal": 28,
+        "MCPRawLine": 1790,
+        "status": "ok",
+        "duration_ms": 8.727107,
+        "durationRawLine": 1792,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 29,
+        "name": "audit client: altered artifact hash refuses and does not authenticate omitted core evidence",
+        "MCPFundamentalsOrdinal": 29,
+        "MCPRawLine": 1796,
+        "status": "ok",
+        "duration_ms": 4.669749,
+        "durationRawLine": 1798,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 30,
+        "name": "audit client: rehashed reference/usage/settings binding tamper refuses against exact request bytes",
+        "MCPFundamentalsOrdinal": 30,
+        "MCPRawLine": 1802,
+        "status": "ok",
+        "duration_ms": 11.077295,
+        "durationRawLine": 1804,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 31,
+        "name": "audit client: rehashed selected usage identity/order or denominator tamper refuses",
+        "MCPFundamentalsOrdinal": 31,
+        "MCPRawLine": 1808,
+        "status": "ok",
+        "duration_ms": 25.58464,
+        "durationRawLine": 1810,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 32,
+        "name": "audit client: rehashed null timing/rights/source-verification promotion refuses",
+        "MCPFundamentalsOrdinal": 32,
+        "MCPRawLine": 1814,
+        "status": "ok",
+        "duration_ms": 30.036169,
+        "durationRawLine": 1816,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 33,
+        "name": "audit client: oversized retained result is refused without echo or provisional artifact",
+        "MCPFundamentalsOrdinal": 33,
+        "MCPRawLine": 1820,
+        "status": "ok",
+        "duration_ms": 0.733489,
+        "durationRawLine": 1822,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 34,
+        "name": "audit client: response accessors/proxies are rejected without invoking caller getters",
+        "MCPFundamentalsOrdinal": 34,
+        "MCPRawLine": 1826,
+        "status": "ok",
+        "duration_ms": 1.178727,
+        "durationRawLine": 1828,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 35,
+        "name": "audit client: stderr exact-cap positive control is drained and never echoed",
+        "MCPFundamentalsOrdinal": 35,
+        "MCPRawLine": 1832,
+        "status": "ok",
+        "duration_ms": 3.990693,
+        "durationRawLine": 1834,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 36,
+        "name": "audit client: stderr overflow stops before the sole audit and closes once",
+        "MCPFundamentalsOrdinal": 36,
+        "MCPRawLine": 1838,
+        "status": "ok",
+        "duration_ms": 2.121864,
+        "durationRawLine": 1840,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 37,
+        "name": "audit client: queued work before connect dispatch is reobserved and cannot launch",
+        "MCPFundamentalsOrdinal": 37,
+        "MCPRawLine": 1844,
+        "status": "ok",
+        "duration_ms": 0.683916,
+        "durationRawLine": 1846,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 38,
+        "name": "audit client: synchronous connect acknowledgement exhausting work prevents audit dispatch",
+        "MCPFundamentalsOrdinal": 38,
+        "MCPRawLine": 1850,
+        "status": "ok",
+        "duration_ms": 0.567558,
+        "durationRawLine": 1852,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 39,
+        "name": "audit client: preceding acknowledgement microtask is observed before the next audit effect",
+        "MCPFundamentalsOrdinal": 39,
+        "MCPRawLine": 1856,
+        "status": "ok",
+        "duration_ms": 0.698383,
+        "durationRawLine": 1858,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 40,
+        "name": "audit client: native synthetic SDK positive send reaches the fixed adapter with one write and one close",
+        "MCPFundamentalsOrdinal": 40,
+        "MCPRawLine": 1862,
+        "status": "ok",
+        "duration_ms": 5.119815,
+        "durationRawLine": 1864,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 41,
+        "name": "audit client: native synthetic queued SDK compilation cannot write after the absolute deadline",
+        "MCPFundamentalsOrdinal": 41,
+        "MCPRawLine": 1868,
+        "status": "ok",
+        "duration_ms": 0.970053,
+        "durationRawLine": 1870,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 42,
+        "name": "audit client: native serializer crossing the absolute deadline refuses before any stdin write",
+        "MCPFundamentalsOrdinal": 42,
+        "MCPRawLine": 1874,
+        "status": "ok",
+        "duration_ms": 1.026681,
+        "durationRawLine": 1876,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 43,
+        "name": "audit client: reentrant abort during native serialization refuses before any stdin write",
+        "MCPFundamentalsOrdinal": 43,
+        "MCPRawLine": 1880,
+        "status": "ok",
+        "duration_ms": 1.034745,
+        "durationRawLine": 1882,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 44,
+        "name": "audit client: serialized legacy frame exact cap writes once and one byte overflow never writes",
+        "MCPFundamentalsOrdinal": 44,
+        "MCPRawLine": 1886,
+        "status": "ok",
+        "duration_ms": 15.127511,
+        "durationRawLine": 1888,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 45,
+        "name": "audit client: native write backpressure awaits one drain without sending a second frame",
+        "MCPFundamentalsOrdinal": 45,
+        "MCPRawLine": 1892,
+        "status": "ok",
+        "duration_ms": 5.565313,
+        "durationRawLine": 1894,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 46,
+        "name": "audit client: throwing native stdin writer rejects its Promise without retry or diagnostic echo",
+        "MCPFundamentalsOrdinal": 46,
+        "MCPRawLine": 1898,
+        "status": "ok",
+        "duration_ms": 0.916843,
+        "durationRawLine": 1900,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 47,
+        "name": "audit client: reentrant abort during connect prevents follow-up and closes once",
+        "MCPFundamentalsOrdinal": 47,
+        "MCPRawLine": 1904,
+        "status": "ok",
+        "duration_ms": 0.546117,
+        "durationRawLine": 1906,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 48,
+        "name": "audit client: late call completion after abort cannot upgrade refusal or retry",
+        "MCPFundamentalsOrdinal": 48,
+        "MCPRawLine": 1910,
+        "status": "ok",
+        "duration_ms": 89.196376,
+        "durationRawLine": 1912,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 49,
+        "name": "audit client: thrown protocol error is finite no-echo refusal with no hidden retry",
+        "MCPFundamentalsOrdinal": 49,
+        "MCPRawLine": 1916,
+        "status": "ok",
+        "duration_ms": 0.932794,
+        "durationRawLine": 1918,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 50,
+        "name": "audit client: a null SDK PID or uncertain close acknowledgement is not absence evidence",
+        "MCPFundamentalsOrdinal": 50,
+        "MCPRawLine": 1922,
+        "status": "ok",
+        "duration_ms": 9.268353,
+        "durationRawLine": 1924,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 51,
+        "name": "audit client: rejected close retains known PID and never publishes the validated artifact",
+        "MCPFundamentalsOrdinal": 51,
+        "MCPRawLine": 1928,
+        "status": "ok",
+        "duration_ms": 5.964012,
+        "durationRawLine": 1930,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 52,
+        "name": "audit client: synchronous close exceeding the reserve is reobserved and refused",
+        "MCPFundamentalsOrdinal": 52,
+        "MCPRawLine": 1934,
+        "status": "ok",
+        "duration_ms": 6.1438,
+        "durationRawLine": 1936,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 53,
+        "name": "audit client: final encoding exceeding the close reserve cannot publish success",
+        "MCPFundamentalsOrdinal": 53,
+        "MCPRawLine": 1940,
+        "status": "ok",
+        "duration_ms": 3.38864,
+        "durationRawLine": 1942,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 54,
+        "name": "audit client: backwards/nonfinite clock is refused without dispatch or raw diagnostics",
+        "MCPFundamentalsOrdinal": 54,
+        "MCPRawLine": 1946,
+        "status": "ok",
+        "duration_ms": 0.48908,
+        "durationRawLine": 1948,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "native/injected"
+      },
+      {
+        "sourceOrdinal": 55,
+        "name": "audit client: actual guarded SDK direct CLI roundtrip matches delivered compact executor and closes its only child",
+        "MCPFundamentalsOrdinal": 55,
+        "MCPRawLine": 1952,
+        "status": "ok",
+        "duration_ms": 522.371392,
+        "durationRawLine": 1954,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "actual SDK entry"
+      },
+      {
+        "sourceOrdinal": 56,
+        "name": "audit client: actual guarded SDK symlink CLI has exact direct artifact parity and closes its only child",
+        "MCPFundamentalsOrdinal": 56,
+        "MCPRawLine": 1958,
+        "status": "ok",
+        "duration_ms": 388.713216,
+        "durationRawLine": 1960,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "actual SDK entry"
+      },
+      {
+        "sourceOrdinal": 57,
+        "name": "audit client: actual guarded SDK tool refusal still performs one call and confirms its owned child absent",
+        "MCPFundamentalsOrdinal": 57,
+        "MCPRawLine": 1964,
+        "status": "ok",
+        "duration_ms": 330.996134,
+        "durationRawLine": 1966,
+        "YAMLType": "test",
+        "MCPOccurrences": 1,
+        "ROOTOccurrences": 0,
+        "plannedType": "actual SDK entry"
+      }
+    ],
+    "noFakeDuplicateCaseExpansion": true
+  },
+  "countsPrecision": {
+    "ROOTPlans": [
+      6,
+      1185,
+      9
+    ],
+    "MCPPlans": [
+      141,
+      1,
+      82,
+      176,
+      139
+    ],
+    "allTestFailCancelledSkippedTodoCounters": 0,
+    "executionPlan": 139,
+    "original50PreservedBySourceReceipt": true,
+    "originalAcff42Retained41Pass1Fail8Unknown": true,
+    "8a93Historical52GreenSourceHOLDDistinctFromThis57CurrentSourceCIPASS": true
+  },
+  "bothPostbuildGuardsExactlyOnce": [
+    {
+      "message": "standards/paper-evidence.html: generated skip link and focus target verified",
+      "ROOTRawLine": 1167,
+      "exactlyOnce": true
+    },
+    {
+      "message": "dist/standards/paper-evidence.html: generated skip link and focus target verified",
+      "ROOTRawLine": 1168,
+      "exactlyOnce": true
+    }
+  ],
+  "remoteNode": "22.23.3",
+  "run": 37124487278,
+  "CodeQLRun": 37124487275,
+  "runAttempt": 1,
+  "ROOTJob": 111206924919,
+  "MCPJob": 111206925087,
+  "allSevenExactHeadCurrentChecks": [
+    {
+      "id": 111207048357,
+      "name": "CodeQL",
+      "head_sha": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/runs/111207048357",
+      "completed_at": "2026-10-03T12:56:57Z"
+    },
+    {
+      "id": 111206925115,
+      "name": "analyze (python)",
+      "head_sha": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487275/job/111206925115",
+      "completed_at": "2026-10-03T12:57:03Z"
+    },
+    {
+      "id": 111206925109,
+      "name": "Key revocation PostgreSQL contract",
+      "head_sha": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487278/job/111206925109",
+      "completed_at": "2026-10-03T12:56:41Z"
+    },
+    {
+      "id": 111206925087,
+      "name": "MCP package and stdio contracts",
+      "head_sha": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487278/job/111206925087",
+      "completed_at": "2026-10-03T12:56:58Z"
+    },
+    {
+      "id": 111206925075,
+      "name": "design wrapper build and contracts",
+      "head_sha": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487278/job/111206925075",
+      "completed_at": "2026-10-03T12:56:23Z"
+    },
+    {
+      "id": 111206924978,
+      "name": "analyze (javascript-typescript)",
+      "head_sha": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487275/job/111206924978",
+      "completed_at": "2026-10-03T12:58:04Z"
+    },
+    {
+      "id": 111206924919,
+      "name": "vite production build",
+      "head_sha": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37124487278/job/111206924919",
+      "completed_at": "2026-10-03T12:59:06Z"
+    }
+  ],
+  "allFourCIJobsAndStepsCompletedSuccess": true,
+  "capturedPR": {
+    "number": 371,
+    "head": "e3eafe3b70b92d6f84267b35cb15633766fbbcf1",
+    "base": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "capturedMergeRef": "refs/pull/371/merge",
+    "capturedMergeSHA": "a16408486d01c456a8701c82c246a701fcd0ba85"
+  },
+  "sourceTestTreeEquality": {
+    "sourceGitTree": "fcd0274793a7dbc91b14ae6e47798f05013b518a",
+    "sourceGitSignature": "G",
+    "sourceGitSoleParent": "8a93d9e6ebf13c17e7b6d3a8e6eac8407e177bfe",
+    "testedAPICommit": "a16408486d01c456a8701c82c246a701fcd0ba85",
+    "testedAPITree": "fcd0274793a7dbc91b14ae6e47798f05013b518a",
+    "testedAPIParents": [
+      "6551d99672b4aa6b7629f487986a163bf7d845e4",
+      "e3eafe3b70b92d6f84267b35cb15633766fbbcf1"
+    ],
+    "testedAPIValidSignature": true,
+    "ROOTAndMCPRawCheckout": "a16408486d01c456a8701c82c246a701fcd0ba85",
+    "equalTree": true,
+    "capturedGitAPIOnlyNoRefetch": true
+  },
+  "capturedCodeQL": {
+    "exactRefOpenAlerts": 0,
+    "capturedQuery": {
+      "ref": [
+        "refs/pull/371/merge"
+      ],
+      "state": [
+        "open"
+      ],
+      "per_page": [
+        "100"
+      ]
+    },
+    "latestPerLanguage": [
+      {
+        "language": "javascript-typescript",
+        "id": 1885941858,
+        "ref": "refs/pull/371/merge",
+        "commit_sha": "a16408486d01c456a8701c82c246a701fcd0ba85",
+        "created_at": "2026-10-03T12:57:55Z",
+        "results_count": 0,
+        "error": "",
+        "warning": ""
+      },
+      {
+        "language": "python",
+        "id": 1885940005,
+        "ref": "refs/pull/371/merge",
+        "commit_sha": "a16408486d01c456a8701c82c246a701fcd0ba85",
+        "created_at": "2026-10-03T12:56:55Z",
+        "results_count": 0,
+        "error": "",
+        "warning": ""
+      }
+    ],
+    "allSixAnalysisRowsPreserved": true,
+    "fourHistoricalRows": [
+      {
+        "id": 1885879705,
+        "commit_sha": "16c4f85430d085b84ab89face75026e68f6f1c1a",
+        "created_at": "2026-10-03T12:26:31Z",
+        "results_count": 0,
+        "error": "",
+        "environment": "{\"language\":\"javascript-typescript\"}"
+      },
+      {
+        "id": 1885878964,
+        "commit_sha": "16c4f85430d085b84ab89face75026e68f6f1c1a",
+        "created_at": "2026-10-03T12:26:08Z",
+        "results_count": 0,
+        "error": "",
+        "environment": "{\"language\":\"python\"}"
+      },
+      {
+        "id": 1885829595,
+        "commit_sha": "34980fd5dccef6e985e0f00f900788790a1bd96c",
+        "created_at": "2026-10-03T11:59:30Z",
+        "results_count": 0,
+        "error": "",
+        "environment": "{\"language\":\"javascript-typescript\"}"
+      },
+      {
+        "id": 1885827727,
+        "commit_sha": "34980fd5dccef6e985e0f00f900788790a1bd96c",
+        "created_at": "2026-10-03T11:58:33Z",
+        "results_count": 0,
+        "error": "",
+        "environment": "{\"language\":\"python\"}"
+      }
+    ],
+    "qualification": "Zero results/open alerts at these captured current-ref analyses only; not a universal security or future-state guarantee."
+  },
+  "literalOldStagesAndMetadataErrorsPreserved": [
+    {
+      "manifestField": "historical_8a93_green_CI_source_held",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/author-8a93d9e6-historical-retained-ci-v1.json",
+        "bytes": 22125,
+        "sha256": "b539f5b2abeacd232ac48af9af8b3f62835aa72292b57b7459aba598b7e6efc6",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "unchangedLiteralOriginal": true
+    },
+    {
+      "manifestField": "original_PRIMARY_source_review",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/review-acffb57b-original-source-v1.json",
+        "bytes": 11066,
+        "sha256": "18068054aa9cead77524976aff76a10ccefc87cefc5a85260de56d4ba63eaf51",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "unchangedLiteralOriginal": true
+    },
+    {
+      "manifestField": "8a93_PRIMARY_narrow_HOLD_review",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/review-8a93d9e6-narrow-source-delta-v1.json",
+        "bytes": 13414,
+        "sha256": "505479eb3b48f503268f7178f720171486f0c69b0ee5226de2336622dd12b58b",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "unchangedLiteralOriginal": true
+    },
+    {
+      "manifestField": "original_THIRD_review",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-peer/review-acffb57b-source-v1.json",
+        "bytes": 67019,
+        "sha256": "ab3864b60bdf5b506422ce2c144e95c6bce83a9aaed3e2e046c73003e69fed5f",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "unchangedLiteralOriginal": true
+    },
+    {
+      "manifestField": "retained_metadata_only_reader_stop",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/retained-ci-audit-reader-stop-20261003T125037772683Z.json",
+        "bytes": 793,
+        "sha256": "6b4c73e7eaed77431d490c8b4cee921efd5fd2c458096a0eac1c18f53d2b0c4c",
+        "physicalMode": "0600",
+        "regularSameFDStableFullread": true
+      },
+      "unchangedLiteralOriginal": true
+    }
+  ],
+  "scope": "Independent saved byte/raw-TAP/API gate for exact e3 source. Source P2 closure is in a separate immutable source receipt. No project execution/refetch/old CI relabeling.",
+  "scopeLimits": [
+    "57 source-named fixture assertions passed in the captured remote CI; no universal native timing or hostile-isolation guarantee.",
+    "No archive allocation/future documentaryhead/currentCI/delivery/publisher approval.",
+    "No actual indexing/expert-rights-labels/adoption/source-authentication/qualifiedstrategy outcome established."
+  ],
+  "ROOTFiveContinuityFullyRead": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 71156,
+      "sha256": "7a00cf4da0ca43a95df34b0d311184bef434bfcaa078d6d73edc99e3633e7256",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1102684,
+      "sha256": "c1c3322c2b57b8d366c6dc5e6c070126be64252b15dea2ca21d85fd65e9e4a3e",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 79158,
+      "sha256": "37d5d1e9414a2f49c5156969fefcb6e905e666850f2632ba5cd96a81711431f6",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1447534,
+      "sha256": "4159f4b35cd2fe071b8cf7b5c09bd90535a5e855699f0eab9737b12aaa9a14fe",
+      "physicalMode": "0644",
+      "regularSameFDStableFullread": true
+    }
+  ],
+  "effects": {
+    "ownStdlibMetadataPrivateReceiptReadonlyGitSavedBytesOnly": true,
+    "projectImportNodeTestCLIHelperBuildBrowserGETProcessProbe": false,
+    "APIRefetchJobGrant": false,
+    "sourceArchiveEditProviderModelResourcesSpendMergePublication": false
+  },
+  "ownerHierarchy": {
+    "allFullGoals": "ACTIVE",
+    "realIndexedExpertRightsLabelsAdoptionQualifiedStrategyOutcomes": null,
+    "primarySoleMergePublication": true,
+    "leadSoleCPU": true,
+    "observer127PolicyUnchanged": true
+  }
+}

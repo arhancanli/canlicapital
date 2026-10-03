@@ -1,0 +1,198 @@
+{
+  "schema": "canlicapital.primary.fundamentals-audit-client.original-source-review.v1",
+  "utc": "2026-10-03T12:25:38.847305+00:00",
+  "disposition": "HOLD_ONE_NATIVE_SEND_P2_AND_KNOWN_TEST_OBSERVER_FAILURE",
+  "source": {
+    "head": "acffb57bfad142c186e7690f65ce02c14ad79149",
+    "tree": "df608fbe09d3ae18f1f0288873cb11c327e409d7",
+    "sole_parent": "6551d99672b4aa6b7629f487986a163bf7d845e4",
+    "signature_observed": "G",
+    "manifest": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/source-acffb57b-v1.json",
+      "bytes": 2808406,
+      "sha256": "5c5442b2f42dee4a28cb81ab0420fcd733681863a6c2588643840467c3495d6f"
+    },
+    "reviewed_exact_frozen_Git_not_evolving_working_bytes": true,
+    "frozen_source_snapshots": [
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/frozen-acffb57b-client-source.mjs.txt",
+        "bytes": 31424,
+        "sha256": "c0a6ede29db31d47a44bef36140205a7efb250fbe6342bd83eff2ac9bc006be7"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/frozen-acffb57b-client-test.mjs.txt",
+        "bytes": 39939,
+        "sha256": "aa552d1fc08ad18dc117540d8269a8356aa0094063822c89fe801efd675bca8d"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/frozen-acffb57b-guide.md.txt",
+        "bytes": 13074,
+        "sha256": "1d8db2e236aad8db3a80571527dd642e6355389e3244466f8fc1e148e98b2d1d"
+      }
+    ]
+  },
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/assignment-6551d996-primary-v1.md",
+    "bytes": 18154,
+    "sha256": "22ae289a2a3c43f899d400230faf297125d319a0fc59246696d7268891295ff8"
+  },
+  "source_basis": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/source-basis-6551d996-primary-v1.json",
+    "bytes": 18724,
+    "sha256": "c16dc0dce1ddb1c02bb38d02b0e6f7b4006f1d08da2694d7eabfdb615a8d062b"
+  },
+  "independent_scope_proof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/original-acffb57b-independent-scope-checks-v1.json",
+    "bytes": 3613,
+    "sha256": "7c8974ccf27fd98e855184f342c8e4f472ebb011d9b2bcace84edb49f4436380"
+  },
+  "scope_acceptance": {
+    "exact6paths": true,
+    "full6436_source_Git_entries": true,
+    "current_index_matched_original_during_scope_observation": true,
+    "inherited6430_Git_identities_404202276bytes": true,
+    "whole_physical_audit": false,
+    "complete_base5goal_prefixes": true,
+    "one_literal_root_focused_script_recovers_original_package": true,
+    "rootverify_defaults_subpackage_versions_dependencies_locks_package_modes_and_old_tests_unchanged": true,
+    "no_archive_path_allocated": true,
+    "50_literal_source_names_unique_exact_manifest": true,
+    "new_three_SDK_entries_written_not_peer_executed": true
+  },
+  "semantic_static_acceptance": [
+    {
+      "area": "Input admission",
+      "criteria": "All native slot/FD sizes and 560KiB aggregate before payload allocation/read/copy/base64; nofollow/nonblocking regular FD, bounded short reads and one-byte probe, same-FD postread stats, FD relinquished before one close. Expected reference SHA and exact original byte hash mismatch precede transport."
+    },
+    {
+      "area": "Content contract",
+      "criteria": "Fixed compact audit_inputs; exact byte bindings/selected N/usage order/six statuses/null conventions and canonical artifact hash; complete_core_report false, no authentication of omitted evidence or financial correctness of an untrusted replacement server. Protected core owns math."
+    },
+    {
+      "area": "Source authority",
+      "criteria": "Literal declared_module_sha256_verified false, no invented runtime_identity_verified field, behavior fingerprints diagnostic; authoritative external whole-source/import identities separate."
+    },
+    {
+      "area": "Lifecycle",
+      "criteria": "Explicit locked legacy negotiation excludes probe sibling; exact toolDefinition second options arg; outer queued/synchronous checks and no retry, pinned child object captured before SDK clears it, exit/close evidence instead of PID-null. Native final send gap is the finding below."
+    },
+    {
+      "area": "Finite result closure",
+      "criteria": "No raw path/input/SDK stack/stderr echo; bounded getter-free reply graph and final encoding budget observation; sticky error/refusal and unknown closure cannot publish artifact. Cooperative native limitations explicit."
+    }
+  ],
+  "findings": [
+    {
+      "id": "CC-371-NATIVE-WIRE-SEND-ABSOLUTE-DEADLINE",
+      "priority": "P2",
+      "disposition": "OPEN_STATIC_AT_ORIGINAL_ACFF",
+      "runtime_reproduction": "UNEXECUTED_BY_REVIEWER",
+      "scope": "Owned built-in SDK stdio send boundary; not a provider/network/controller/grant finding. Author has already announced a native send correction; acceptance of that future source remains separate.",
+      "source_locations": [
+        {
+          "file": "mcp-fundamentals/examples/audit-inputs-client.mjs",
+          "lines": [
+            320,
+            322,
+            323,
+            324,
+            366,
+            367,
+            374,
+            400
+          ]
+        },
+        {
+          "locked_sdk_member": "package/dist/index.mjs",
+          "lines": [
+            4185,
+            4195,
+            4198
+          ]
+        },
+        {
+          "locked_sdk_member": "package/dist/src-DDAAhLnO.mjs",
+          "lines": [
+            6221,
+            6223,
+            6224,
+            6750,
+            6751
+          ]
+        },
+        {
+          "locked_sdk_member": "package/dist/stdio.mjs",
+          "lines": [
+            206,
+            207,
+            208,
+            209,
+            210,
+            211
+          ]
+        }
+      ],
+      "evidence": "Original sdkOperations checks before client.connect/callTool, then delegates to the SDK. The SDK has compilation and async request continuations before transport.send, and send serializes the JSON before its unconditional stdin.write. No owned absolute-clock/signal/closed-state guard exists at that final write in this original source. SDK relative timers cannot preempt queued microtasks or synchronous serialization.",
+      "qualified_scope_of_existing_checks": "workCall has a post-callback check and its abort signal can catch synchronous compilation exhaustion before a later request continuation. That helps but does not cover every later SDK continuation or the serialization-to-stdin.write boundary. The finding does not claim that compilation always causes late dispatch.",
+      "finite_static_counterexample": {
+        "deadline_ms": 15000,
+        "last_admitted_observation_ms": 14999.5,
+        "bounded_remaining_synchronous_serialization_ms": 1,
+        "wire_write_time_ms": 15000.5,
+        "result": "The stdio send executes its native stdin.write after the work deadline before a queued timer/post-send observation can run. Any later workflow refusal cannot retract the dispatch. Numbers describe a source-level schedule, not measured runtime."
+      },
+      "required_narrow_correction": "In the owned client only, bind its fixed transport send to the same absolute clock/signal/closed state; admit/serialize the bounded outgoing frame, then reobserve immediately before the actual native stdin.write. Guarding transport.send before delegating to the original serializer alone leaves the serialization interval open. Preserve pinned legacy wire shape, one child/call, memoized owned close and SDK dependencies. Add finite injected no-write-at-deadline/abort positive and negative controls without extra SDK-child launches.",
+      "future_source_ACK": "Exact newly signed helper/test/guide delta required; no acceptance of evolving working bytes."
+    }
+  ],
+  "known_author_observer_failure": {
+    "author_analysis_fullread": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/initial-acffb57b-failure-analysis-v1.json",
+      "bytes": 9259,
+      "sha256": "2305bdd7eabe6f94f89224aaa8cc1ec0de32be8ab672a682424d4ef96e3ec745"
+    },
+    "source_location": "new test lines166-178 globally intercept process.stdout.write across awaited entry and count all writes as example output",
+    "scope": "Author-observed first remote own-symlink test expected1 versus5 writes and missing retained names. Fix must capture only the exact terminal schema JSON and delegate unrelated Node test runner/IPC writes. This is preserved as a known test defect, not an additional independent runtime finding.",
+    "author_reported_counts_only": {
+      "written_names": 50,
+      "retained_named_outcomes": 42,
+      "named_passes": 41,
+      "named_failures": 1,
+      "unretained_named_outcomes": 8,
+      "fundamentals_total": 161,
+      "fundamentals_passes": 160,
+      "fundamentals_failures": 1
+    },
+    "separate_independent_retained_CI_gate": "NOT_PERFORMED_OR_PASSED_BY_THIS_SOURCE_RECEIPT"
+  },
+  "locked_SDK_exact_member_text_fullread_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/sdk-locked2.1-index.mjs.txt",
+      "bytes": 253623,
+      "sha256": "f1f174a3f4902e6489078c9f5dd800e9da9d358d68099adebc965cdb275a0c4f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/sdk-locked2.1-src-DDAAhLnO.mjs.txt",
+      "bytes": 305070,
+      "sha256": "743dee8114f52b5e7df4690770453f6655502cf729380757a392b1ff2ddb070d"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/sdk-locked2.1-stdio.mjs.txt",
+      "bytes": 6153,
+      "sha256": "89b2fb52b95d4b2ba79f1bd4e022282d9654177e4ee06ee904efeb8764d59b5c"
+    }
+  ],
+  "metadata_reader_error_preserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-primary-review/original-scope-reader-working-snapshot-assumption-error-v1.json",
+    "bytes": 1535,
+    "sha256": "706223b718dd610f9a15ff5fbfffef80380c78f2f7db07ab4d46ccaddd026497"
+  },
+  "reviewer_actions": {
+    "project_JS_import_execution_tests_helpers_CLI": 0,
+    "API_refetch_GET_processprobe_job_grant": 0,
+    "source_or_author_worktree_edits": 0,
+    "reads": "immutable Git source, private snapshots, source/assignment/author-analysis JSON and cached exact SDK member bytes only"
+  },
+  "required_next_gate": "Author batch correction under same six paths, signed CLEAN new source; narrow source extension and separate exact new-head existingremoteCI peer gates. Original source/raw/failures and this receipt immutable. No futurehead/archive/merge/publication authority.",
+  "all_owner_hierarchy": "ACTIVE; actual outcomes unknown/null; PRIMARY sole ordinary merge/publication, Lead sole localCPU,127 policy"
+}
