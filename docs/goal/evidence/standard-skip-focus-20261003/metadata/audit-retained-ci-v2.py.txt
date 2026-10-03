@@ -1,0 +1,147 @@
+"""Audit retained CI bytes only; no network or repository imports/execution."""
+from pathlib import Path
+import datetime
+import hashlib
+import json
+import os
+import re
+
+HERE = Path(__file__).resolve().parent
+HEAD = '76633be4f37422932f14af850d415f509ae01f8f'
+BASE = '27d7bd860ee903fac20cc6ad187535110a8cd198'
+PREFIX = 'pr368-76633be4-'
+PINS = {}
+
+def read(name, parse=True):
+    path = HERE / (PREFIX + name)
+    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW)
+    try:
+        before = os.fstat(fd)
+        with os.fdopen(fd, 'rb', closefd=False) as stream:
+            data = stream.read(8 * 1024 * 1024 + 1)
+        after = os.fstat(fd)
+        assert len(data) <= 8 * 1024 * 1024
+        assert (before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns, before.st_ctime_ns) == (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+        assert len(data) == after.st_size
+    finally:
+        os.close(fd)
+    PINS[name] = {'path': str(path), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+    return json.loads(data) if parse else data
+
+def save(name, obj):
+    data = (json.dumps(obj, indent=2) + '\n').encode()
+    path = HERE / (PREFIX + name)
+    with path.open('xb') as stream:
+        stream.write(data); stream.flush(); os.fsync(stream.fileno())
+    assert path.read_bytes() == data
+    return {'path': str(path), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+
+def tap(raw):
+    clean = re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]', '', raw.decode('utf-8'))
+    lines = [re.sub(r'^\d{4}-\d\d-\d\dT\S+Z ?', '', line) for line in clean.splitlines()]
+    suites = []
+    active = None
+    for number, line in enumerate(lines, 1):
+        if line == 'TAP version 13':
+            assert active is None
+            active = {'start_line': number, 'cases': [], 'counters': {}, 'plan': None}
+        if active is None:
+            continue
+        result = re.fullmatch(r'(ok|not ok) (\d+) - (.+)', line)
+        if result:
+            assert result[1] == 'ok'
+            active['cases'].append({'ordinal': int(result[2]), 'name': result[3], 'status': result[1], 'line': number})
+        plan = re.fullmatch(r'1\.\.(\d+)', line)
+        if plan:
+            assert active['plan'] is None
+            active['plan'] = int(plan[1])
+        counter = re.fullmatch(r'# (tests|suites|pass|fail|cancelled|skipped|todo) (\d+)', line)
+        if counter:
+            assert counter[1] not in active['counters']
+            active['counters'][counter[1]] = int(counter[2])
+        duration = re.fullmatch(r'# duration_ms ([0-9.]+)', line)
+        if duration:
+            active['duration_ms'] = float(duration[1]); active['end_line'] = number
+            n = active['plan']; assert n is not None
+            assert [case['ordinal'] for case in active['cases']] == list(range(1, n + 1))
+            assert active['counters']['tests'] == n and active['counters']['pass'] == n
+            assert all(active['counters'][key] == 0 for key in ('fail', 'cancelled', 'skipped', 'todo'))
+            assert active['duration_ms'] > 0
+            suites.append(active); active = None
+    assert active is None
+    return suites, lines
+
+checks = read('check-runs-original.json')
+run = read('run-original.json'); codeql = read('codeql-run-original.json')
+jobs = read('jobs-original.json'); pull = read('pull-original.json')
+ref = read('merge-ref-original.json'); merge = read('tested-merge-original.json')
+alerts = read('codeql-alerts-original.json'); analyses = read('codeql-analyses-original.json')
+root_raw = read('vite-raw-original.log', False); mcp_raw = read('mcp-raw-original.log', False)
+tested = ref['object']['sha']
+tree = '3b67480ab6a6c68e10e2ff26de76f2b01a691d6b'
+assert merge['sha'] == tested and merge['tree']['sha'] == tree
+assert [row['sha'] for row in merge['parents']] == [BASE, HEAD]
+assert pull['head']['sha'] == HEAD and pull['base']['sha'] == BASE and pull['merge_commit_sha'] == tested
+assert checks['total_count'] == len(checks['check_runs']) == 7
+assert len({row['name'] for row in checks['check_runs']}) == 7
+assert all(row['head_sha'] == HEAD and row['status'] == 'completed' and row['conclusion'] == 'success' for row in checks['check_runs'])
+for value in (run, codeql):
+    assert value['head_sha'] == HEAD and value['run_attempt'] == 1
+    assert value['status'] == 'completed' and value['conclusion'] == 'success'
+for name, job_id in (('vite production build', 111114003796), ('MCP package and stdio contracts', 111114003854)):
+    job = next(row for row in jobs['jobs'] if row['id'] == job_id)
+    assert job['run_id'] == run['id'] and job['conclusion'] == 'success'
+    check = next(row for row in checks['check_runs'] if row['name'] == name)
+    assert check['details_url'].endswith('/runs/' + str(run['id']) + '/job/' + str(job_id))
+root_suites, root_lines = tap(root_raw); mcp_suites, mcp_lines = tap(mcp_raw)
+assert [suite['plan'] for suite in root_suites] == [6, 1117, 9]
+assert [suite['plan'] for suite in mcp_suites] == [141, 1, 82, 119, 139]
+for lines in (root_lines, mcp_lines):
+    position = next(i for i, line in enumerate(lines) if line == '[command]/usr/bin/git log -1 --format=%H')
+    assert lines[position + 1] == tested
+    assert 'node: v22.23.3' in lines
+for line in ('standards/paper-evidence.html: generated skip link and focus target verified', 'dist/standards/paper-evidence.html: generated skip link and focus target verified'):
+    assert root_lines.count(line) == 1
+source_path = HERE / 'source-76633be4-standard-skip-focus.json'
+source_bytes = source_path.read_bytes(); source = json.loads(source_bytes)
+assert source['head'] == HEAD and source['tree'] == tree
+names = source['additional_written_source_named_cases']; assert len(names) == len(set(names)) == 9
+root_cases = [case for suite in root_suites for case in suite['cases']]
+mcp_cases = [case for suite in mcp_suites for case in suite['cases']]
+named = []
+for name in names:
+    matches = [case for case in root_cases if case['name'] == name]
+    assert len(matches) == 1 and not any(case['name'] == name for case in mcp_cases)
+    named.append(matches[0])
+assert alerts == []
+latest = {}
+for row in analyses:
+    language = json.loads(row['environment'])['language']
+    if language not in latest or row['created_at'] > latest[language]['created_at']:
+        latest[language] = row
+for language in ('javascript-typescript', 'python'):
+    row = latest[language]
+    assert row['ref'] == 'refs/pull/368/merge' and row['commit_sha'] == tested
+    assert row['results_count'] == 0 and not row['error']
+receipt = {
+    'schema': 'canli.primary.pr368.corrected-current-retained-ci.v1',
+    'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    'verdict': 'PASS_AUTHOR_EXACT_RETAINED_CURRENT_CI', 'head': HEAD, 'tree': tree,
+    'tested_merge': tested, 'tested_parents': [BASE, HEAD],
+    'source_manifest': {'path': str(source_path), 'bytes': len(source_bytes), 'sha256': hashlib.sha256(source_bytes).hexdigest()},
+    'original_pins': PINS,
+    'ci_run': {'id': run['id'], 'attempt': run['run_attempt'], 'head': run['head_sha'], 'conclusion': run['conclusion']},
+    'codeql_run': {'id': codeql['id'], 'attempt': codeql['run_attempt'], 'head': codeql['head_sha'], 'conclusion': codeql['conclusion']},
+    'checks': [{key: row[key] for key in ('id', 'name', 'head_sha', 'status', 'conclusion', 'details_url')} for row in checks['check_runs']],
+    'root_suites': [{key: value for key, value in suite.items() if key != 'cases'} for suite in root_suites],
+    'mcp_suites': [{key: value for key, value in suite.items() if key != 'cases'} for suite in mcp_suites],
+    'candidate_cases_once_root': named, 'candidate_cases_mcp': 0, 'node': '22.23.3',
+    'source_and_dist_postbuild_guard_each_once_pass': True,
+    'captured_current_ref_alerts': 0, 'latest_current_language_analyses': latest,
+    'historical_analyses_preserved': True,
+    'capture_metadata_error': {'path': str(HERE / 'pr368-76633be4-language-parser-error-original.json'), 'scope': 'KeyError: language lives in environment JSON, not tool.name. All originals were already captured; this audit reads them without refetch or project re-execution.'},
+    'independent_source_reviews': {'secondary': '29b50f030355297575b8e412e62d1cf0953b04cdde8d2b8119c6b33bdc0714fe', 'third': 'bff8c059d11150c5f143e720b7f3fc1583c3d21253065a1fe1c855c859045a26'},
+    'limits': 'Author CI custody only. Both independent current-CI gates, final source/archive/head review, merge, fresh source-date/browser/production/live verification remain separate. Remote attribute-loss cause is UNPROVEN. No browser/WCAG/indexing or full-goal outcome claim.',
+    'full_owner_hierarchy': 'ACTIVE', 'project_runtime_reruns': 0,
+}
+print(json.dumps({'receipt': save('exact-ci-v1.json', receipt), 'root': [suite['plan'] for suite in root_suites], 'mcp': [suite['plan'] for suite in mcp_suites], 'new_cases': len(named), 'tested': tested, 'all_seven_success': True}))

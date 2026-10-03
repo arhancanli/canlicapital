@@ -1,0 +1,293 @@
+{
+  "schema": "canli.third.pr368.frozen-4166-source-review.v1",
+  "utc": "2026-10-03T03:03:52.619283+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "verdict": "HOLD_SOURCE_AT_FROZEN_4166; CODEQL91_AND_STATIC_SYNTHETIC_TARGET_FINDING",
+  "head": "4166b968edfa106bea879fed675bf86b19c0220a",
+  "tree": "e48932ae3336790cee73b5c8388c4f6feb0aafcf",
+  "soleParent": "27d7bd860ee903fac20cc6ad187535110a8cd198",
+  "scope": "Six original frozen Git paths, source manifest/protected inherited identity basis, existing test preservation, reader/static-template/postbuild contract. Author working corrections are not reviewed as this frozen source.",
+  "method": "Read-only Git metadata and frozen blob reads; SHA/JSON/string/diff verification by stdlib-only metadata recipe. No JS import, fixture execution, Node/test/build/browser/helper/GET/project runtime.",
+  "metadataRecipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery-peer/inspect-pr368-4166b968-source-metadata.py",
+    "bytes": 16574,
+    "sha256": "0be194aeacd9ea71c816564529f95648c9871db5cc391fe8c517e4dc6de0f929"
+  },
+  "manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/source-4166b968-standard-skip-focus.json",
+    "bytes": 2196728,
+    "sha256": "cbf80509d02c374860b7895165859f223d22c139c9d4208486c35ee042e2f9b3"
+  },
+  "phaseContract": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/standard-skip-focus-phase-contract-v1.json",
+    "bytes": 2246,
+    "sha256": "f2a050f12d59b7d20254bedba93933555106aed89008c00f831dc80b9f604b18"
+  },
+  "frozenScope": {
+    "exactSixPaths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "package.json",
+      "scripts/skip-link-tabindex.test.mjs",
+      "scripts/verify-standard-skip-focus.mjs",
+      "standards/paper-evidence.html"
+    ],
+    "rehashedOwnedGitRows": [
+      {
+        "path": "docs/goal/LOG.md",
+        "mode": "100644",
+        "type": "blob",
+        "object": "abf117554f01ec6b4bfe20a08bd66b5e77e3aedd",
+        "bytes": 452753,
+        "sha256": "e9dc62006b159c1af78ad93bd303391f1fe6a1229d508ba16932fa1de215ce50",
+        "independentlyRehashedFrozenGitBytes": true
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "mode": "100644",
+        "type": "blob",
+        "object": "4c62c3e6d98f1f3b5ebeb5077ce12fee01f345ac",
+        "bytes": 177389,
+        "sha256": "a11f93f89012a2fb5d98c0bc37c20968fe4603692ec4bfccba17bd8ac1d3eba7",
+        "independentlyRehashedFrozenGitBytes": true
+      },
+      {
+        "path": "package.json",
+        "mode": "100644",
+        "type": "blob",
+        "object": "2769118888c80a7d95cfa670f66bd17f35006aae",
+        "bytes": 12997,
+        "sha256": "541e36346355a00782be006b0474d76907143c96c01fff1fba4a1f352abff5e0",
+        "independentlyRehashedFrozenGitBytes": true
+      },
+      {
+        "path": "scripts/skip-link-tabindex.test.mjs",
+        "mode": "100644",
+        "type": "blob",
+        "object": "553e1f327c24abac8851e8671bc3c7d3c7885331",
+        "bytes": 6696,
+        "sha256": "e2aa01fc08a5651779b85487fc4db94d5da391052c52be9b2b1a87ade7ba3a4f",
+        "independentlyRehashedFrozenGitBytes": true
+      },
+      {
+        "path": "scripts/verify-standard-skip-focus.mjs",
+        "mode": "100644",
+        "type": "blob",
+        "object": "af14f4bd94898801400b1f9239875eb2200a98bf",
+        "bytes": 3955,
+        "sha256": "d47cc08bddb0577ca7bfc1ee5cffc0ede38b3223ee834be26c4f4df1dad716e7",
+        "independentlyRehashedFrozenGitBytes": true
+      },
+      {
+        "path": "standards/paper-evidence.html",
+        "mode": "100644",
+        "type": "blob",
+        "object": "e02e51dc7bb6df96971f3bfebd6af6407ee89635",
+        "bytes": 25126,
+        "sha256": "2895268225749f1a5e798da302fe0400f5642330aebe1ed77b6671f8928d24f7",
+        "independentlyRehashedFrozenGitBytes": true
+      }
+    ],
+    "fullTreeFiles": 6305,
+    "fullDeclaredTreeIdentitiesChecked": true,
+    "protectedInheritedGitFiles": 6299,
+    "protectedInheritedBytes": 399185603,
+    "protectedTableMetadataBytes": 1553572,
+    "protectedTableMetadataSha256": "9990a4198c157936a2932fc7541a1ce2f43a1b7439e40e271e2c5d495b5ab01e",
+    "inheritedShaBasis": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/source-a78fba65-five-original-date-extension.json",
+      "bytes": 2224191,
+      "sha256": "7db3a2fa86cf61b9a899603d1b64b70396631f8942a6327154cbdab347ca98ed"
+    },
+    "inheritedShaBasisFullTreeEqualsActualBase": true,
+    "wholeProtectedPhysicalOrBlobContentReaudit": false,
+    "signatureDeclaredByManifest": "G",
+    "signedCommitHeaderPresent": true,
+    "newGpgRuntimeVerification": false,
+    "liveWorkingOrIndexEqualityNotReclaimedAfterCorrectionStarted": true,
+    "fiveBaseGoalPrefixes": [
+      {
+        "path": "docs/goal/README.md",
+        "baseBytes": 6899,
+        "baseSha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "fullBasePrefixPreserved": true,
+        "appendBytes": 0
+      },
+      {
+        "path": "docs/goal/REQUIREMENTS.md",
+        "baseBytes": 8758,
+        "baseSha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "fullBasePrefixPreserved": true,
+        "appendBytes": 0
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "baseBytes": 173616,
+        "baseSha256": "1bce699f5561f7471cecfb5bbe64469f91b2bd0a6faccd991787d17973a3d762",
+        "fullBasePrefixPreserved": true,
+        "appendBytes": 3773
+      },
+      {
+        "path": "docs/goal/PHASES.md",
+        "baseBytes": 5455,
+        "baseSha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+        "fullBasePrefixPreserved": true,
+        "appendBytes": 0
+      },
+      {
+        "path": "docs/goal/LOG.md",
+        "baseBytes": 448980,
+        "baseSha256": "aeecaa4ce727138d61663503b554d1f2b4787d2054e8670f8f69c0970ab0694d",
+        "fullBasePrefixPreserved": true,
+        "appendBytes": 3773
+      }
+    ]
+  },
+  "acceptedWithinSpecifiedScope": {
+    "committedStandard": "Exactly two literal attribute substitutions; main tabindex=-1 and shared skip-link class now align with the already-correct protected generator. No other HTML bytes changed.",
+    "package": {
+      "onlyPostbuildAppended": true,
+      "priorPostbuildPrefix": "node scripts/stamp-social-meta.mjs && node scripts/build-company-assets.mjs && node scripts/prepare-company-preview-output.mjs && node scripts/prepare-company-production-output.mjs",
+      "currentPostbuild": "node scripts/stamp-social-meta.mjs && node scripts/build-company-assets.mjs && node scripts/prepare-company-preview-output.mjs && node scripts/prepare-company-production-output.mjs && node scripts/verify-standard-skip-focus.mjs",
+      "prebuildRootVerifyOtherScriptsDefaultsVersionsDependenciesUnchanged": true
+    },
+    "reader": {
+      "sourceLines": [
+        55,
+        78
+      ],
+      "fdFirst": "openSync O_RDONLY plus supported O_NOFOLLOW/O_NONBLOCK, then same-FD fstat regular/cap admission.",
+      "bounds": "2MiB bytes, cap+1 fixed allocation and positive finite read loop; oversized read refused before fatal UTF8 decode.",
+      "stability": "SameFD dev/ino/size/mtimeMs/ctimeMs and bytes==finalsize are compared; no universal hostileABA claim.",
+      "close": "Finally takes owned FD, clears fd before one closeSync. No close retry, path unlink or positive result after close error.",
+      "runtimeFaultProof": "Not supplied by static receipt; written reader case covers exact bytes, size and malformed UTF8 only."
+    },
+    "staticTargetChecks": "Exact one id=content belonging to main with tabindex=-1, one dev-skip anchor with skip-link token and href=#content, duplicate attributes refused, string type/UTF8 byte cap before opening-tag scan. Generated-template syntax only, not HTML5/CSS/browser/WCAG proof.",
+    "postbuildInvocation": "Appended after all existing postbuild commands. Normal declared node launch checks both ROOT/standards/paper-evidence.html and ROOT/dist/standards/paper-evidence.html; failure throws/nonzero rather than admitting a failed check.",
+    "existingTests": {
+      "oldPageListAndOrderPreserved": true,
+      "oldDynamicTestLoopAndFocusableTargetFunctionExact": true,
+      "skipLinkTargetsChange": "Anchors and multi-class token matching replace old single-class expression; the supplied non-skip prefix control guards against accidental label match.",
+      "additionalWrittenCount": 8,
+      "additionalNames": [
+        "standard focus guard admits the generated mirror and reordered multi-class attributes",
+        "standard focus guard refuses the old committed and captured-live missing tabindex shape",
+        "standard focus guard refuses a missing shared-handler class or wrong fragment",
+        "standard focus guard refuses duplicate target IDs, attributes and skip controls",
+        "standard focus guard does not accept targets or skip controls inside comments or script examples",
+        "standard focus guard bounds UTF-8 bytes before tag inspection",
+        "standard focus reader admits exact owned bytes and refuses oversized or invalid UTF-8 input",
+        "standards/paper-evidence.html: every skip-link target is focusable (tabindex=\"-1\")"
+      ],
+      "reviewerExecuted": 0,
+      "actualFocusedPassCountVerifiedInThisReceipt": null
+    }
+  },
+  "findings": [
+    {
+      "id": "CC-368-IGNORED-SPAN-DELETION-SYNTHETIC-TARGET",
+      "severity": "P2",
+      "status": "OPEN_AT_FROZEN_4166",
+      "file": "scripts/verify-standard-skip-focus.mjs",
+      "line": 17,
+      "code": "  const markup = html.replace(/<!--[\\s\\S]*?-->|<(script|style)\\b[^>]*>[\\s\\S]*?<\\/\\1\\s*>/gi, \"\");",
+      "independentStaticCounterexample": "<a class=\"dev-skip skip-link\" href=\"#content\">Skip</a><main id=\"con<!--x-->tent\" tabindex=\"-1\"></main>",
+      "predictedLiteralAfterEmptyRemoval": "<a class=\"dev-skip skip-link\" href=\"#content\">Skip</a><main id=\"content\" tabindex=\"-1\"></main>",
+      "reason": "Deletion joins surrounding characters and changes a non-content quoted id into content. The new tag scan therefore sees the exact target and skip predicates and can admit a synthetic target not literally declared by the input. This is a static transformation proof, not an executed JS/browser fixture or arbitrary HTML5 accessibility claim.",
+      "secondStaticShape": "<mai<!--x-->n id=\"content\" tabindex=\"-1\"></main> similarly joins into a main opening tag.",
+      "executedCounterexample": false,
+      "remoteCodeQL": {
+        "alert": 91,
+        "rule": "js/incomplete-multi-character-sanitization",
+        "originalCheckConclusion": "failure",
+        "originalArtifacts": {
+          "check": {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-check-original.json",
+            "bytes": 2948,
+            "sha256": "240e2cd9b0cb3c7f2e4aa9293f04ae2b771c2c5ce86b3cff99796df51e76b87a"
+          },
+          "annotations": {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-annotations-original.json",
+            "bytes": 567,
+            "sha256": "907f5bd96b9ef373baa60d0b8a1181245e18230c0ccf8cb4eb2848df51e27292"
+          },
+          "alerts": {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-alerts-original.json",
+            "bytes": 6215,
+            "sha256": "811a5a386fb76b736194376b6c1b0ad3443c09800b4548e65fe83ef111e2a3a4"
+          }
+        }
+      },
+      "ownerProposedCorrection": "Equal-length whitespace for every ignored span plus a meaningful split-tag refusal case; review exact future frozen source/delta and separate current CI, not evolving working files.",
+      "futureCorrectionAcceptance": false
+    }
+  ],
+  "additionalBlockingFindingsUnderSpecifiedOwnTemplateScope": [],
+  "retainedSecurityGateOnly": {
+    "pins": {
+      "check": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-check-original.json",
+        "bytes": 2948,
+        "sha256": "240e2cd9b0cb3c7f2e4aa9293f04ae2b771c2c5ce86b3cff99796df51e76b87a"
+      },
+      "annotations": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-annotations-original.json",
+        "bytes": 567,
+        "sha256": "907f5bd96b9ef373baa60d0b8a1181245e18230c0ccf8cb4eb2848df51e27292"
+      },
+      "alerts": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-4166b968-first-codeql-alerts-original.json",
+        "bytes": 6215,
+        "sha256": "811a5a386fb76b736194376b6c1b0ad3443c09800b4548e65fe83ef111e2a3a4"
+      }
+    },
+    "fullCurrentCiTAPAndAllChecksGate": "NOT_REVIEWED_HERE; no successful complete original/current CI or new-source result asserted."
+  },
+  "priorV6DiagnosisPreserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery-peer/diagnosis-v6-eac42e-standard-target-attributes.json",
+    "bytes": 25040,
+    "sha256": "2d495c88e15eb6e06b28bebc0c3a494793691d0e29c3f594208eb41ac79658d4"
+  },
+  "originalObservedV6Failure": "Original eac42e EXIT1/200 saved response lacks main tabindex. Generator/accepted9be were already correct; delivery loss cause remains UNPROVEN. Old83442 wrongroute and row41 failure remain separate retained evidence.",
+  "limits": [
+    "Guard parser is an ordinary generated-template opening-tag contract, not entity/tree/hidden-CSS/native keyboard/arbitraryHTML5 verification.",
+    "No runtime filesystem fault/close/PID/hostileABA/OS flag portability guarantee is created by static control review.",
+    "Normal declared npm postbuild launch is reviewed; arbitrary alias/symlink CLI entry behavior is not claimed.",
+    "The frozen source gate is HOLD. Any correction needs a new signed head, exact diff and separate retained current CI. No merge/publisher/GET/allocation approval."
+  ],
+  "effects": {
+    "projectImportsFixtureNodeTestsBuildBrowserHelperGETJobs": 0,
+    "authorWorktreeSourceArchiveEdits": 0,
+    "grantsLeaseProcessProbesResourcesProviderModelSpendPublication": 0
+  },
+  "continuityFiveFullRead": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 53651,
+      "sha256": "374f1f4b3675b42bd4b43ffaf665eccc1aa313588f7174a85500b7bade18e192"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 948151,
+      "sha256": "fbfbad937352901d5f061eca47120eb5c9f8b245124c1a46eb97e4db6a09582d"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 61653,
+      "sha256": "f15017cad00d3e45025e6887346c4099d6db017cf212f8139f07436e324f4f65"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1293001,
+      "sha256": "d1f0a8f35bfb805b9193b8757ec645e542bbcac531b0d19dfd5d13c9f245d2dd"
+    }
+  ],
+  "allOwnerGoals": "ACTIVE",
+  "fullOwnerHierarchy": "Four Sovereign pillars; differentiated efficient financial MCP/API and legitimate developer/repository adoption; consenting rights-cleared independently vetted actual expert double annotation/agreement/adjudication/refinery; novel prior art/reproduction/external review; governed ALPHAC netforward Sharpe>2,>=14 economically distinct qualified sleeves,realizedDD<=10% after actual costs; paper then lawful licensed capital;10M ACTUALLY indexed useful distinct source-backed canonicals,qualitySEO,relevantintents,design3D,analyzers. Real indexed/expert/rights/labels/adoption/qualifiedstrategy outcomes unknown/null.",
+  "realOutcomes": "UNKNOWN_NULL"
+}
