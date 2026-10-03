@@ -1,0 +1,1169 @@
+{
+  "schema": "canli.primary.pr370.current-retained-ci-independent-review.v1",
+  "utc": "2026-10-03T08:29:23.459099+00:00",
+  "reviewer": "PRIMARY",
+  "scope": "INDEPENDENT_SAVED_RAW_LOG_AND_API_GATE_ONLY",
+  "disposition": "PASS_EXACT_RETAINED_CURRENT_CI",
+  "findings": [],
+  "head": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+  "tree": "50c535a10ea0898e04b9bee8c3597e395d18fda3",
+  "actual_base": "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+  "tested_merge": "b84def39fe210f7b885dd824ffa682fa37706639",
+  "tested_parents": [
+    "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+    "e35ecc77757fa99f81ac7916edaf30044db1044f"
+  ],
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-e35ecc77.json",
+    "bytes": 1363911,
+    "sha256": "790d66590498e23620e45b51f00a967178ecf00f52daeedaddabd6d8d5287fc6"
+  },
+  "separate_source_gate": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-e35ecc77-narrow-extension-v1.json",
+    "bytes": 17123,
+    "sha256": "3e63358016e6d0c4bdc13ab667605cdcbd52446242fa2743b06b652aa5b78bea"
+  },
+  "author_CI_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/exact-remote-ci-e35ecc77-v1.json",
+    "bytes": 47061,
+    "sha256": "bde91c2bf881d5cec2cac44f2ed1ce84585e6c21349692a51e4ab359a5475c9e"
+  },
+  "original_success_raw_API_count": 10,
+  "original_success_raw_API_bytes": 1069249,
+  "original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-checks-stdout-original-v1.json",
+      "bytes": 24330,
+      "sha256": "24cd09d21d2f6462b9c4c5dbfb19e09cac57dcae56ed4a9bf3ff9c38bec00f25"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-ci-run-stdout-original-v1.json",
+      "bytes": 13275,
+      "sha256": "2544dfbd9f54b1fba9abd98652d866a27f61632bf72b84034a7f2a4781054739"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-codeql-run-stdout-original-v1.json",
+      "bytes": 13282,
+      "sha256": "427d285a3074b2b651205d375e5aa9eb1da5d28c0e2f4123793dc3df2f6e1987"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-pull-stdout-original-v1.json",
+      "bytes": 17979,
+      "sha256": "6bcad98b66f0d9b839bdbcd08dd5b9f50ce581841be96579ac56da7b6461de64"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-merge-ref-stdout-original-v1.json",
+      "bytes": 357,
+      "sha256": "765da71137880f2ec193c15e8424c300410d283765ae88039e6fce33f0f64f9e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-tested-merge-stdout-original-v1.json",
+      "bytes": 2648,
+      "sha256": "65e9d5c08e86b7454f21095c9399a3bdb4c08136200a71230adfbe25f809e057"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-analyses-stdout-original-v1.json",
+      "bytes": 2373,
+      "sha256": "b8dcd4aba58a8be7bc683b0cb84ead83e185fe2c2264f5aee6ece9234f715850"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-alerts-stdout-original-v1.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-root-stdout-original-v1.log",
+      "bytes": 696457,
+      "sha256": "dde7b4fb6c4e90722ce0b7ded6c68b1c1d76aa8fcf2dbd6adc909bc9640117e5"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-mcp-stdout-original-v1.log",
+      "bytes": 298546,
+      "sha256": "1f866fc377a73a482ad7bbcc695aa48194150a76d99528d7247e2febbd2d66b9"
+    }
+  ],
+  "additional_capture_command_bindings": [
+    {
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-root-command-original-v1.json",
+        "bytes": 730,
+        "sha256": "1a15d07badfbb58e9cd9d7c67fa356cf0265a31c6faf2eec697a0188b383b231"
+      },
+      "exact_job_or_ref_endpoint": "actions/jobs/111162541581/logs",
+      "empty_original_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-root-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-mcp-command-original-v1.json",
+        "bytes": 728,
+        "sha256": "cb20ae44a66ec2e6c6c8e02cc699080303b200dd6e5919e77c35140dcf01ba9c"
+      },
+      "exact_job_or_ref_endpoint": "actions/jobs/111162541580/logs",
+      "empty_original_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-mcp-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-alerts-command-original-v1.json",
+        "bytes": 768,
+        "sha256": "3b2d7074ef55b4024c265b3f553ccd2080eebb0c3ed88f9ae0be6a99eb182980"
+      },
+      "exact_job_or_ref_endpoint": "code-scanning/alerts?ref=refs/pull/370/merge&state=open&per_page=100",
+      "empty_original_stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-alerts-stderr-original-v1.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "all7_completed_success_exact_head": [
+    {
+      "id": 111162727707,
+      "name": "CodeQL",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/runs/111162727707"
+    },
+    {
+      "id": 111162541581,
+      "name": "vite production build",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818343/job/111162541581"
+    },
+    {
+      "id": 111162541580,
+      "name": "MCP package and stdio contracts",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818343/job/111162541580"
+    },
+    {
+      "id": 111162541520,
+      "name": "Key revocation PostgreSQL contract",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818343/job/111162541520"
+    },
+    {
+      "id": 111162541478,
+      "name": "analyze (python)",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818346/job/111162541478"
+    },
+    {
+      "id": 111162541447,
+      "name": "design wrapper build and contracts",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818343/job/111162541447"
+    },
+    {
+      "id": 111162541409,
+      "name": "analyze (javascript-typescript)",
+      "head_sha": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37108818346/job/111162541409"
+    }
+  ],
+  "workflow_run": 37108818343,
+  "codeql_run": 37108818346,
+  "run_attempt": 1,
+  "root_job": 111162541581,
+  "mcp_job": 111162541580,
+  "ROOT_TAP": [
+    {
+      "raw_start_line": 1405,
+      "raw_plan_line": 1442,
+      "raw_final_line": 1450,
+      "plan": 6,
+      "counters": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "dense_ordinals": true,
+      "every_top_subtest_name_and_YAML_duration_checked": true,
+      "nested_outcomes": 0,
+      "nested_outcomes_all_pass": true,
+      "final_duration_ms": 84.330013,
+      "top_result_table_sha256": "aaa14160ce58c739074c7825db8fbe8b208abb0d180a0e9eb26f16e1ab1a5706"
+    },
+    {
+      "raw_start_line": 1456,
+      "raw_plan_line": 8583,
+      "raw_final_line": 8591,
+      "plan": 1185,
+      "counters": {
+        "tests": 1185,
+        "suites": 0,
+        "pass": 1185,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "dense_ordinals": true,
+      "every_top_subtest_name_and_YAML_duration_checked": true,
+      "nested_outcomes": 0,
+      "nested_outcomes_all_pass": true,
+      "final_duration_ms": 109402.40198,
+      "top_result_table_sha256": "28a7bfd517d1dce3b2d42ec391dddc81d8b03a737f0337f3d6c077819c132386"
+    },
+    {
+      "raw_start_line": 8733,
+      "raw_plan_line": 8788,
+      "raw_final_line": 8796,
+      "plan": 9,
+      "counters": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "dense_ordinals": true,
+      "every_top_subtest_name_and_YAML_duration_checked": true,
+      "nested_outcomes": 0,
+      "nested_outcomes_all_pass": true,
+      "final_duration_ms": 113.410342,
+      "top_result_table_sha256": "aa709f1eea95d2de8936e9dbf5005215ad3ac2452f9fd0f3ed7a4b8b3f012e98"
+    }
+  ],
+  "MCP_TAP": [
+    {
+      "raw_start_line": 193,
+      "raw_plan_line": 1040,
+      "raw_final_line": 1048,
+      "plan": 141,
+      "counters": {
+        "tests": 141,
+        "suites": 0,
+        "pass": 141,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "dense_ordinals": true,
+      "every_top_subtest_name_and_YAML_duration_checked": true,
+      "nested_outcomes": 0,
+      "nested_outcomes_all_pass": true,
+      "final_duration_ms": 2455.832941,
+      "top_result_table_sha256": "c8d2087d74792703ed62302c705e7b024ed84e50b34388001144989dca5f82d1"
+    },
+    {
+      "raw_start_line": 1057,
+      "raw_plan_line": 1064,
+      "raw_final_line": 1072,
+      "plan": 1,
+      "counters": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "dense_ordinals": true,
+      "every_top_subtest_name_and_YAML_duration_checked": true,
+      "nested_outcomes": 0,
+      "nested_outcomes_all_pass": true,
+      "final_duration_ms": 557.428071,
+      "top_result_table_sha256": "b1f8cc8242a219428916e48bee0a82a65e7955be11889d2c93b0333140e0091b"
+    },
+    {
+      "raw_start_line": 1098,
+      "raw_plan_line": 1591,
+      "raw_final_line": 1599,
+      "plan": 82,
+      "counters": {
+        "tests": 82,
+        "suites": 0,
+        "pass": 82,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "dense_ordinals": true,
+      "every_top_subtest_name_and_YAML_duration_checked": true,
+      "nested_outcomes": 0,
+      "nested_outcomes_all_pass": true,
+      "final_duration_ms": 15627.938763,
+      "top_result_table_sha256": "58800dcf75fd3a70ed33cee6216e91dc27d5cef8a3b302ceb91418002c67dfe6"
+    },
+    {
+      "raw_start_line": 1624,
+      "raw_plan_line": 2342,
+      "raw_final_line": 2350,
+      "plan": 119,
+      "counters": {
+        "tests": 119,
+        "suites": 0,
+        "pass": 119,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "dense_ordinals": true,
+      "every_top_subtest_name_and_YAML_duration_checked": true,
+      "nested_outcomes": 0,
+      "nested_outcomes_all_pass": true,
+      "final_duration_ms": 5345.607694,
+      "top_result_table_sha256": "0beb8a3c2a78bc1429ad83bb16989f35c256cdd23635fd4da5c515c3f188a841"
+    },
+    {
+      "raw_start_line": 2375,
+      "raw_plan_line": 3221,
+      "raw_final_line": 3229,
+      "plan": 139,
+      "counters": {
+        "tests": 139,
+        "suites": 0,
+        "pass": 139,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "dense_ordinals": true,
+      "every_top_subtest_name_and_YAML_duration_checked": true,
+      "nested_outcomes": 0,
+      "nested_outcomes_all_pass": true,
+      "final_duration_ms": 4026.643592,
+      "top_result_table_sha256": "1f90d17b0a36d7b9c08d325587aff60f3aad95eb16e456927863013b8a5f9ac4"
+    }
+  ],
+  "source_test_pins": [
+    {
+      "path": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs",
+      "bytes": 38497,
+      "sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/attempt-scoring.test.mjs",
+      "bytes": 35520,
+      "sha256": "c6f7e56a10b5c29e0a20bff75a59989ee989bd2b437213f65ba8f5b18f06e433"
+    },
+    {
+      "path": "scripts/skip-link-tabindex.test.mjs",
+      "bytes": 7168,
+      "sha256": "f52573577455fd23b1143b3be05f149fb9cf788cc90fe5d32f59c2ea83a060e5"
+    }
+  ],
+  "named_source_case_matches_once_ROOT_zero_MCP": [
+    {
+      "group": "newCLI",
+      "ordinal": 699,
+      "name": "attempt scoring CLI: actual score and replay preserve exact core bytes fifteen rows and unknown measurements",
+      "duration_ms": 1201.113071,
+      "raw_line": 5659,
+      "YAML_final_line": 5663,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 700,
+      "name": "attempt scoring CLI: ordinary and owned symlink entries have equal missing argument refusal and valid bytes",
+      "duration_ms": 1346.685075,
+      "raw_line": 5665,
+      "YAML_final_line": 5669,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 701,
+      "name": "attempt scoring CLI: an import defines main without invoking a command or writing an artifact",
+      "duration_ms": 106.533079,
+      "raw_line": 5671,
+      "YAML_final_line": 5675,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 702,
+      "name": "attempt scoring CLI: missing extra and unknown positional commands refuse before supplied effects",
+      "duration_ms": 289.445267,
+      "raw_line": 5677,
+      "YAML_final_line": 5681,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 703,
+      "name": "attempt scoring CLI: relative unbounded aliased and control-character paths refuse before capture",
+      "duration_ms": 312.51058,
+      "raw_line": 5683,
+      "YAML_final_line": 5687,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 704,
+      "name": "attempt scoring CLI: every input size admission precedes all payload reads on sparse oversized files",
+      "duration_ms": 730.363952,
+      "raw_line": 5689,
+      "YAML_final_line": 5693,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 705,
+      "name": "attempt scoring CLI: replay admits all five files before reading and refuses oversized artifact without writes",
+      "duration_ms": 675.581088,
+      "raw_line": 5695,
+      "YAML_final_line": 5699,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 706,
+      "name": "attempt scoring CLI: exact individual ceilings and aggregate-safe input bytes have a real successful control",
+      "duration_ms": 1046.00355,
+      "raw_line": 5701,
+      "YAML_final_line": 5705,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 707,
+      "name": "attempt scoring CLI: bounded short reads complete original bytes after all four and five admissions",
+      "duration_ms": 1329.784464,
+      "raw_line": 5707,
+      "YAML_final_line": 5711,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 708,
+      "name": "attempt scoring CLI: zero short read refuses without creating output and the target fault is reached",
+      "duration_ms": 192.071348,
+      "raw_line": 5713,
+      "YAML_final_line": 5717,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 709,
+      "name": "attempt scoring CLI: one overflow read detects input growth before scoring",
+      "duration_ms": 211.557966,
+      "raw_line": 5719,
+      "YAML_final_line": 5723,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 710,
+      "name": "attempt scoring CLI: truncation refuses on the admitted target descriptor",
+      "duration_ms": 226.468908,
+      "raw_line": 5725,
+      "YAML_final_line": 5729,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 711,
+      "name": "attempt scoring CLI: same descriptor metadata mutation refuses with a positive payload read",
+      "duration_ms": 192.680589,
+      "raw_line": 5731,
+      "YAML_final_line": 5735,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 712,
+      "name": "attempt scoring CLI: earlier input changes during later capture cannot escape the final all-FD recheck",
+      "duration_ms": 214.448085,
+      "raw_line": 5737,
+      "YAML_final_line": 5741,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 713,
+      "name": "attempt scoring CLI: invalid UTF8 duplicate members and contradictory closed-arm JSON fail through the real core",
+      "duration_ms": 757.771739,
+      "raw_line": 5743,
+      "YAML_final_line": 5747,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 714,
+      "name": "attempt scoring CLI: changed scoring source fails real replay after a valid alternate-root control",
+      "duration_ms": 1160.772213,
+      "raw_line": 5749,
+      "YAML_final_line": 5753,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 715,
+      "name": "attempt scoring CLI: same-length dataset tampering fails real replay and inherited same-buffer binding",
+      "duration_ms": 674.400771,
+      "raw_line": 5755,
+      "YAML_final_line": 5759,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 716,
+      "name": "attempt scoring CLI: rehashed edited artifact is refused by full real replay without overwriting it",
+      "duration_ms": 1359.390227,
+      "raw_line": 5761,
+      "YAML_final_line": 5765,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 717,
+      "name": "attempt scoring CLI: existing output bytes and mode are preserved with no successful acknowledgment",
+      "duration_ms": 460.458929,
+      "raw_line": 5767,
+      "YAML_final_line": 5771,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 718,
+      "name": "attempt scoring CLI: output symlink is refused and its target bytes and mode remain intact",
+      "duration_ms": 500.590344,
+      "raw_line": 5773,
+      "YAML_final_line": 5777,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 719,
+      "name": "attempt scoring CLI: public output parent is refused after valid computation with no chmod or artifact",
+      "duration_ms": 546.415683,
+      "raw_line": 5779,
+      "YAML_final_line": 5783,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 720,
+      "name": "attempt scoring CLI: foreign owner of the admitted parent descriptor refuses before creation",
+      "duration_ms": 532.027968,
+      "raw_line": 5785,
+      "YAML_final_line": 5789,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 721,
+      "name": "attempt scoring CLI: symlink and nonregular supplied inputs are rejected before payload reads",
+      "duration_ms": 318.267977,
+      "raw_line": 5791,
+      "YAML_final_line": 5795,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 722,
+      "name": "attempt scoring CLI: FIFO input and output refusal return actual bounded terminals without opening a stream",
+      "duration_ms": 616.078932,
+      "raw_line": 5797,
+      "YAML_final_line": 5801,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 723,
+      "name": "attempt scoring CLI: short writes complete exact bytes with file and directory durability positive controls",
+      "duration_ms": 800.148323,
+      "raw_line": 5803,
+      "YAML_final_line": 5807,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 724,
+      "name": "attempt scoring CLI: zero write retains the exclusively created empty output and never unlinks or retries",
+      "duration_ms": 534.011732,
+      "raw_line": 5809,
+      "YAML_final_line": 5813,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 725,
+      "name": "attempt scoring CLI: partial write failure retains the exact partial file with original inputs unchanged",
+      "duration_ms": 819.429656,
+      "raw_line": 5815,
+      "YAML_final_line": 5819,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 726,
+      "name": "attempt scoring CLI: file fsync failure leaves created bytes retained and does not acknowledge or unlink",
+      "duration_ms": 822.929845,
+      "raw_line": 5821,
+      "YAML_final_line": 5825,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 727,
+      "name": "attempt scoring CLI: mismatching same-FD readback fails before success while retaining the explicit file",
+      "duration_ms": 873.073385,
+      "raw_line": 5827,
+      "YAML_final_line": 5831,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 728,
+      "name": "attempt scoring CLI: parent path identity uncertainty after creation retains an empty artifact",
+      "duration_ms": 508.082054,
+      "raw_line": 5833,
+      "YAML_final_line": 5837,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 729,
+      "name": "attempt scoring CLI: directory fsync failure cannot acknowledge a fully saved but uncertain entry",
+      "duration_ms": 760.924321,
+      "raw_line": 5839,
+      "YAML_final_line": 5843,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 730,
+      "name": "attempt scoring CLI: same-size mutation after readback fails the final named file time guard",
+      "duration_ms": 768.176924,
+      "raw_line": 5845,
+      "YAML_final_line": 5849,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 731,
+      "name": "attempt scoring CLI: reader close-after-close failure never retries or closes the proven reused foreign FD",
+      "duration_ms": 168.399469,
+      "raw_line": 5851,
+      "YAML_final_line": 5855,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 732,
+      "name": "attempt scoring CLI: writer close-after-close failure retains bytes and the foreign reused FD without false success",
+      "duration_ms": 733.50976,
+      "raw_line": 5857,
+      "YAML_final_line": 5861,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 733,
+      "name": "attempt scoring CLI: directory close ambiguity also releases numeric ownership before its sole attempt",
+      "duration_ms": 617.607383,
+      "raw_line": 5863,
+      "YAML_final_line": 5867,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 734,
+      "name": "attempt scoring CLI: replay reaches armed write denial but performs no filesystem writes or replacements",
+      "duration_ms": 894.596385,
+      "raw_line": 5869,
+      "YAML_final_line": 5873,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 735,
+      "name": "attempt scoring CLI: real score and replay do not invoke positively armed network or subprocess functions",
+      "duration_ms": 1033.641145,
+      "raw_line": 5875,
+      "YAML_final_line": 5879,
+      "MCP_count": 0
+    },
+    {
+      "group": "newCLI",
+      "ordinal": 736,
+      "name": "attempt scoring CLI: core encoded artifact capacity refusal precedes creating the requested output",
+      "duration_ms": 559.051125,
+      "raw_line": 5881,
+      "YAML_final_line": 5885,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 737,
+      "name": "full correct fixed cohort retains exact accounting companion and deterministically replays fifteen rows",
+      "duration_ms": 1005.762771,
+      "raw_line": 5887,
+      "YAML_final_line": 5891,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 738,
+      "name": "mixed wrong units abstention malformed answers and formatted numeric invention preserve original scorer behaviour",
+      "duration_ms": 204.207248,
+      "raw_line": 5893,
+      "YAML_final_line": 5897,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 739,
+      "name": "all abstentions keep full answerable denominators and numbers_wrong null rather than invented zero",
+      "duration_ms": 237.955149,
+      "raw_line": 5899,
+      "YAML_final_line": 5903,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 740,
+      "name": "earlier correct final wrong and earlier wrong final correct each score only the named last attempt",
+      "duration_ms": 468.536628,
+      "raw_line": 5905,
+      "YAML_final_line": 5909,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 741,
+      "name": "raw429 followed by an explicit retry preserves failed usage costs and retry accounting",
+      "duration_ms": 176.693625,
+      "raw_line": 5911,
+      "YAML_final_line": 5915,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 742,
+      "name": "missing error aborted not-started incomplete and pending records all remain denominator failures",
+      "duration_ms": 256.406789,
+      "raw_line": 5917,
+      "YAML_final_line": 5921,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 743,
+      "name": "completed labels with undeclared or missing earlier attempt positions become explicit incomplete rows",
+      "duration_ms": 426.885023,
+      "raw_line": 5923,
+      "YAML_final_line": 5927,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 744,
+      "name": "blank or missing ANSWER markers stay denominator failures and absent final raw bindings are refused",
+      "duration_ms": 386.840942,
+      "raw_line": 5929,
+      "YAML_final_line": 5933,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 745,
+      "name": "all missing captures preserve full cohort and unavailable usage latency price and billing",
+      "duration_ms": 184.938859,
+      "raw_line": 5935,
+      "YAML_final_line": 5939,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 746,
+      "name": "incomplete usage and clocks retain nulls with labeled known subtotals without affecting valid final scoring",
+      "duration_ms": 461.976933,
+      "raw_line": 5941,
+      "YAML_final_line": 5945,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 747,
+      "name": "malformed retained raw error responses preserve unavailable measurements and cannot become scored answers",
+      "duration_ms": 202.880029,
+      "raw_line": 5947,
+      "YAML_final_line": 5951,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 748,
+      "name": "delivered collector completes actual synthetic capture and read-only recovery then scoring and replay",
+      "duration_ms": 8105.624247,
+      "raw_line": 5953,
+      "YAML_final_line": 5957,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 749,
+      "name": "collector interruption after raw persistence recovers pending without resubmission and keeps full denominator",
+      "duration_ms": 1304.350917,
+      "raw_line": 5959,
+      "YAML_final_line": 5963,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 750,
+      "name": "non-synthetic purposes arms providers observed models packets and tool traces are refused before scoring",
+      "duration_ms": 228.040153,
+      "raw_line": 5965,
+      "YAML_final_line": 5969,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 751,
+      "name": "source context hidden request fields response metadata and settings metadata cannot enter a closed fixture",
+      "duration_ms": 8.633687,
+      "raw_line": 5971,
+      "YAML_final_line": 5975,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 752,
+      "name": "baseline expected sample question projection accounting and raw answer binding tampering are refused",
+      "duration_ms": 228.812239,
+      "raw_line": 5977,
+      "YAML_final_line": 5981,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 753,
+      "name": "physically changed dataset bytes fail same-buffer binding before scoring without touching the repository",
+      "duration_ms": 17.013967,
+      "raw_line": 5983,
+      "YAML_final_line": 5987,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 754,
+      "name": "transient same-length scoring read swap cannot hash one dataset and parse another",
+      "duration_ms": 52.07723,
+      "raw_line": 5989,
+      "YAML_final_line": 5993,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 755,
+      "name": "post-load comment changes in every scoring helper and the whole new module or guide are refused",
+      "duration_ms": 214.82418,
+      "raw_line": 5995,
+      "YAML_final_line": 5999,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 756,
+      "name": "whole-module comment mutation during captured dataset read is caught by post-scoring source recheck",
+      "duration_ms": 188.775942,
+      "raw_line": 6001,
+      "YAML_final_line": 6005,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 757,
+      "name": "rehashed row score status measurement implementation and input tampering are rejected by full replay",
+      "duration_ms": 1690.042668,
+      "raw_line": 6007,
+      "YAML_final_line": 6011,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 758,
+      "name": "native input admission refuses parsed strings shared arrays proxies getters and unknown members without invoking hooks",
+      "duration_ms": 0.745776,
+      "raw_line": 6013,
+      "YAML_final_line": 6017,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 759,
+      "name": "intrinsic byte views ignore hostile own length getters and input copies precede source filesystem callbacks",
+      "duration_ms": 234.612564,
+      "raw_line": 6019,
+      "YAML_final_line": 6023,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 760,
+      "name": "oversized native fields are refused before any source open or owned allocation",
+      "duration_ms": 1.679032,
+      "raw_line": 6025,
+      "YAML_final_line": 6029,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 761,
+      "name": "invalid UTF8 duplicate members lone surrogates nonfinite JSON and excessive nesting are refused",
+      "duration_ms": 22.228635,
+      "raw_line": 6031,
+      "YAML_final_line": 6035,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 762,
+      "name": "bounded raw ASCII NUL BMP and astral answers reserve full canonical expansion before derived encoding",
+      "duration_ms": 1536.876901,
+      "raw_line": 6037,
+      "YAML_final_line": 6041,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 763,
+      "name": "settings raw request response and replay artifact each enforce their separate finite byte caps",
+      "duration_ms": 7.462515,
+      "raw_line": 6043,
+      "YAML_final_line": 6047,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 764,
+      "name": "one-descriptor nonblocking read refuses symlink nonregular oversize and changed metadata before scoring",
+      "duration_ms": 13.001498,
+      "raw_line": 6049,
+      "YAML_final_line": 6053,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 765,
+      "name": "close-after-close failure does not retry a reused unrelated descriptor or acknowledge scoring",
+      "duration_ms": 11.145946,
+      "raw_line": 6055,
+      "YAML_final_line": 6059,
+      "MCP_count": 0
+    },
+    {
+      "group": "inheritedCore",
+      "ordinal": 766,
+      "name": "network process and credential positive guards stay untouched by scorer replay and root dataset reads stay read-only",
+      "duration_ms": 408.495164,
+      "raw_line": 6061,
+      "YAML_final_line": 6065,
+      "MCP_count": 0
+    },
+    {
+      "group": "incomingGuard",
+      "ordinal": 1113,
+      "name": "standard focus guard admits the generated mirror and reordered multi-class attributes",
+      "duration_ms": 4.866239,
+      "raw_line": 8144,
+      "YAML_final_line": 8148,
+      "MCP_count": 0
+    },
+    {
+      "group": "incomingGuard",
+      "ordinal": 1114,
+      "name": "standard focus guard refuses the old committed and captured-live missing tabindex shape",
+      "duration_ms": 0.483535,
+      "raw_line": 8150,
+      "YAML_final_line": 8154,
+      "MCP_count": 0
+    },
+    {
+      "group": "incomingGuard",
+      "ordinal": 1115,
+      "name": "standard focus guard refuses a missing shared-handler class or wrong fragment",
+      "duration_ms": 0.410398,
+      "raw_line": 8156,
+      "YAML_final_line": 8160,
+      "MCP_count": 0
+    },
+    {
+      "group": "incomingGuard",
+      "ordinal": 1116,
+      "name": "standard focus guard refuses duplicate target IDs, attributes and skip controls",
+      "duration_ms": 0.260047,
+      "raw_line": 8162,
+      "YAML_final_line": 8166,
+      "MCP_count": 0
+    },
+    {
+      "group": "incomingGuard",
+      "ordinal": 1117,
+      "name": "standard focus guard does not accept targets or skip controls inside comments or script examples",
+      "duration_ms": 0.300082,
+      "raw_line": 8168,
+      "YAML_final_line": 8172,
+      "MCP_count": 0
+    },
+    {
+      "group": "incomingGuard",
+      "ordinal": 1118,
+      "name": "standard focus guard cannot join text across ignored spans into a main target",
+      "duration_ms": 0.35241,
+      "raw_line": 8174,
+      "YAML_final_line": 8178,
+      "MCP_count": 0
+    },
+    {
+      "group": "incomingGuard",
+      "ordinal": 1119,
+      "name": "standard focus guard bounds UTF-8 bytes before tag inspection",
+      "duration_ms": 1.633648,
+      "raw_line": 8180,
+      "YAML_final_line": 8184,
+      "MCP_count": 0
+    },
+    {
+      "group": "incomingGuard",
+      "ordinal": 1120,
+      "name": "standard focus reader admits exact owned bytes and refuses oversized or invalid UTF-8 input",
+      "duration_ms": 3.742285,
+      "raw_line": 8186,
+      "YAML_final_line": 8190,
+      "MCP_count": 0
+    },
+    {
+      "group": "incomingGuard",
+      "ordinal": 1121,
+      "name": "standards/paper-evidence.html: every skip-link target is focusable (tabindex=\"-1\")",
+      "duration_ms": 1.139192,
+      "raw_line": 8192,
+      "YAML_final_line": 8196,
+      "MCP_count": 0
+    }
+  ],
+  "counts": {
+    "newCLI": 38,
+    "inheritedCore": 30,
+    "incomingGuard": 9
+  },
+  "postbuild_guards": [
+    {
+      "text": "standards/paper-evidence.html: generated skip link and focus target verified",
+      "raw_line": 1156
+    },
+    {
+      "text": "dist/standards/paper-evidence.html: generated skip link and focus target verified",
+      "raw_line": 1157
+    }
+  ],
+  "Node": "22.23.3",
+  "both_job_full_checkout_hash_and_merge_context_exact": true,
+  "captured_current_ref_open_alerts": 0,
+  "scoped_ref": "refs/pull/370/merge",
+  "latest_language_analyses_exact_tested_merge": [
+    {
+      "ref": "refs/pull/370/merge",
+      "commit_sha": "b84def39fe210f7b885dd824ffa682fa37706639",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-03T08:12:12Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1885384105,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1885384105",
+      "sarif_id": "22711cdc-bf02-11f1-9414-4a58f686c6d1",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    {
+      "ref": "refs/pull/370/merge",
+      "commit_sha": "b84def39fe210f7b885dd824ffa682fa37706639",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-03T08:11:47Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1885383171,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1885383171",
+      "sarif_id": "137af478-bf02-11f1-8e9a-8a6eaddf57d0",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  ],
+  "older_analyses_preserved_count": 2,
+  "original_ecaf_33PASS5FAIL_CodeQL4_preserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/first-remote-failure-ecaf7454-retained-v1.json",
+    "bytes": 15542,
+    "sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e"
+  },
+  "initial_status_metadata_error_preserved": {
+    "record": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-command-original-v1.json",
+      "bytes": 689,
+      "sha256": "0677f617d8fb61d20c14ccf86171a5f1d523975b4678f47848ce9ab5490b0662"
+    },
+    "exit_code": 1,
+    "streams": [
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-stdout-original-v1.json",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/current-e35ecc77-checks-first-stderr-original-v1.txt",
+        "bytes": 89,
+        "sha256": "a7a472003aa6ca1dcdf1faef90a35616606ffe4574fe62c5493a243f265be582"
+      }
+    ]
+  },
+  "independent_method": "Full10 literal bytes SHA verified; only timestamps/BOM/ANSI stripped in derived in-memory lines. Independently parsed all8 complete TAP segments/dense top ordinals/subtest names/every top YAML duration/nested outcomes/seven counters/final durations; matched38+30+8literal+ONEnewstandard PAGES template from frozen source. Independent captured API checks/run/head/tested Git tree/parents/currentref/latest language binding; retained capture commands bind root/MCP job IDs and alert query. No run of author capture program, API refetch or project code.",
+  "new_runtime_or_workflow_rerun": false,
+  "project_import_Node_test_CLI_helper_build_browser_GET_process_probe_job_grant": false,
+  "API_refetch_source_raw_rewrite_archive_write": false,
+  "provider_model_spend_publication": false,
+  "future_head_archive_merge_publication_approval": false,
+  "full_owner_hierarchy": "ACTIVE"
+}

@@ -1,0 +1,13 @@
+# Offline attempt-scoring CLI evidence
+
+This archive records the saved synthetic-ledger CLI source and its existing remote CI. It preserves the original failed source epoch and both original reviewer HOLDs alongside the corrected source and four separate current source/CI gates. The scoring core, artifact schema, measurement companion, dataset and default tool surfaces remain unchanged.
+
+Original signed source `ecaf7454` had 33 passing and five failing CLI cases. The five write-denial cases stopped at an ENOBUFS terminal assertion; later assertions did not run. Original CodeQL aggregate failure had four test snapshot race alerts. The observer delegation diagnosis is qualified source reasoning, with no independent local reproduction. Original raw logs, alerts and holds are preserved.
+
+Corrected signed source `e35ecc77757fa99f81ac7916edaf30044db1044f`, tree `50c535a10ea0898e04b9bee8c3597e395d18fda3`, changes only the test and appended goal records. Its 38 CLI cases pass once in ROOT and zero times in MCP, within ROOT 6 + 1185 + 9 on Node 22.23.3. MCP plans are 141 + 1 + 82 + 119 + 139. All seven checks succeed; both current CodeQL languages have zero results and the captured current ref has zero open alerts. Tested merge `b84def39fe210f7b885dd824ffa682fa37706639` has this exact tree and parents actual `8a6fc297` plus `e35ecc77`. Both postbuild guards pass once. PRIMARY and THIRD each supplied separate source and saved-originals CI gates; these are software reviews.
+
+The lowercase manifest binds each original origin, stored bytes, mode and encoding. Six gzip members are bounded single members with mtime zero and exact recovered originals. Four code/guide snapshots are plain text documents. Source-manifest shape qualifications and original metadata-reader errors remain explicit. All other originals remain immutable in their original custody.
+
+This is an Unreleased, offline software-fixture utility. Native fixtures support the captured assertions within CI and a trusted local filesystem scope. Model/provider authenticity, human expert labels, indexing, adoption, financial outcomes, hostile-process isolation and power-loss behavior remain unknown or outside this evidence. No collector, provider call or execution arm is enabled. All owner objectives remain active.
+
+The later documentary head, its final source/archive and current-CI reviews, ordinary PRIMARY merge and actual delivery proofs stay outside this frozen archive. This avoids self-reference. Archive allocation provides evidence-path authority only; PRIMARY retains ordinary merge/publication and Lead retains local capacity allocation.

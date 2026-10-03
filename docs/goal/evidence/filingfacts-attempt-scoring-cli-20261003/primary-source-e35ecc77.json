@@ -1,0 +1,323 @@
+{
+  "schema": "canli.primary.pr370.test-correction-narrow-source-extension.v1",
+  "utc": "2026-10-03T08:23:24.772087+00:00",
+  "reviewer": "PRIMARY",
+  "scope": "NARROW_STATIC_SOURCE_DELTA_ONLY",
+  "disposition": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "findings": [],
+  "source": "e35ecc77757fa99f81ac7916edaf30044db1044f",
+  "tree": "50c535a10ea0898e04b9bee8c3597e395d18fda3",
+  "parent_original": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+  "actual_base": "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+  "signature": "G",
+  "current_checkout_G_CLEAN": true,
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-e35ecc77.json",
+    "bytes": 1363911,
+    "sha256": "790d66590498e23620e45b51f00a967178ecf00f52daeedaddabd6d8d5287fc6"
+  },
+  "literal_fullread_patch": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/ecaf7454-to-e35ecc77-exact.patch",
+    "bytes": 15930,
+    "sha256": "4fd48ee8bdec05cfe7e0d15e09b45623dfcf0f8fc32bf69cf99a2b6e61a24d23",
+    "exact_actual_Git_diff_bytes": true
+  },
+  "original_source_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-review-ecaf7454-v1.json",
+    "bytes": 24542,
+    "sha256": "11dc5c8c03f47c3b9d8f87b8fd18684921ee5779ca0da89c23f8e67f971fa046"
+  },
+  "original_preservation_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-preservation-ecaf7454-v1.json",
+    "bytes": 28260,
+    "sha256": "a9be2703db310d9caf00c47827c471d6667d60836126345de44a3bde767c80de"
+  },
+  "original_failed_CI_author_record_only": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/first-remote-failure-ecaf7454-retained-v1.json",
+    "bytes": 15542,
+    "sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e"
+  },
+  "parent_delta_exact_three": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs"
+  ],
+  "six_work_index_Git_pins": [
+    {
+      "path": "docs/goal/LOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "c964b3ab542315da43dab5e41bf3d2f8983022e6",
+      "bytes": 473129,
+      "sha256": "c7201a69ea8abb87306c75bacc5e72008f3a3d2771f2470221ce7d2f5ba13d85",
+      "work_index_frozen_Git_exact": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "31ee2e9069c84f0c671f1add5da84d82616ef912",
+      "bytes": 197765,
+      "sha256": "e23f86cd7619104245e2f24759debd611818b628474219b4c351c6cb0058fc5b",
+      "work_index_frozen_Git_exact": true
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "13fb5181a55e2049046d7e81fa918d1d2689bdd3",
+      "bytes": 13454,
+      "sha256": "b7ffd28c826bd396a0f5e64a196b7a92fc07517455cb8c0aa4483cd08c021845",
+      "work_index_frozen_Git_exact": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/ATTEMPT_SCORING_CLI.md",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "b0c1127ecd1de910578e088adb07b8a0d07a8d18",
+      "bytes": 9165,
+      "sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236",
+      "work_index_frozen_Git_exact": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/attempt-scoring-cli.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "948afcf713408e7cdb0e604c0515aa19e68e989d",
+      "bytes": 12759,
+      "sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437",
+      "work_index_frozen_Git_exact": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "blob": "4f88f1bb009f3f67ccc642f23d0d2e801692ed5b",
+      "bytes": 38497,
+      "sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234",
+      "work_index_frozen_Git_exact": true
+    }
+  ],
+  "full_source_index_count": 6394,
+  "all_index_modes_blobs_equal_source": true,
+  "protected_inherited_Git_count": 6388,
+  "protected_inherited_Git_bytes": 402543383,
+  "protected_mode_type_blob_size_all_exact_actual_base": true,
+  "whole_protected_physical_reaudit": false,
+  "carried_exact_protected26_source_pins": {
+    "witness": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-preservation-ecaf7454-v1.json",
+      "bytes": 28260,
+      "sha256": "a9be2703db310d9caf00c47827c471d6667d60836126345de44a3bde767c80de"
+    },
+    "every_source_mode_type_blob_size_unchanged": true,
+    "new_physical_read_claim": false
+  },
+  "original_CLI_guide_package_bytes_modes_exact": [
+    "scripts/datasets/filing-facts/attempt-scoring-cli.mjs",
+    "scripts/datasets/filing-facts/ATTEMPT_SCORING_CLI.md",
+    "package.json"
+  ],
+  "package_three_registrations_recovery": "Exact original bytes recovery carried by byte-identical package; no new registration or command change.",
+  "five_whole_base_and_original_goal_prefixes": [
+    {
+      "path": "docs/goal/README.md",
+      "base_bytes": 6899,
+      "base_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "original_ecaf_bytes": 6899,
+      "original_ecaf_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "current_bytes": 6899,
+      "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "whole_base_and_original_prefixes_preserved": true,
+      "narrow_append_bytes": 0
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "base_bytes": 8758,
+      "base_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "original_ecaf_bytes": 8758,
+      "original_ecaf_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "current_bytes": 8758,
+      "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "whole_base_and_original_prefixes_preserved": true,
+      "narrow_append_bytes": 0
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "base_bytes": 190234,
+      "base_sha256": "f448c9e342d90976b3e6e96c7324c6d735ffcd3cf9286b9fb814df65e932b03c",
+      "original_ecaf_bytes": 195514,
+      "original_ecaf_sha256": "0e5c53bc4db7a728edc4ced5a47da1c4dd8a26ba9d122d0fe409e96d525bfdcc",
+      "current_bytes": 197765,
+      "current_sha256": "e23f86cd7619104245e2f24759debd611818b628474219b4c351c6cb0058fc5b",
+      "whole_base_and_original_prefixes_preserved": true,
+      "narrow_append_bytes": 2251
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "base_bytes": 5455,
+      "base_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "original_ecaf_bytes": 5455,
+      "original_ecaf_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "current_bytes": 5455,
+      "current_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "whole_base_and_original_prefixes_preserved": true,
+      "narrow_append_bytes": 0
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "base_bytes": 465598,
+      "base_sha256": "a72d9551a149dad9a8ae023c2e0f0cfa62dd8cffb1f44a292116a509d6e35eff",
+      "original_ecaf_bytes": 470878,
+      "original_ecaf_sha256": "76de06bc051c199d3417d6662e742f9024e18b2f205b18ec11f451ca6f14614e",
+      "current_bytes": 473129,
+      "current_sha256": "c7201a69ea8abb87306c75bacc5e72008f3a3d2771f2470221ce7d2f5ba13d85",
+      "whole_base_and_original_prefixes_preserved": true,
+      "narrow_append_bytes": 2251
+    }
+  ],
+  "written_case_count": 38,
+  "same38_names_order_exact": true,
+  "case_names": [
+    "attempt scoring CLI: actual score and replay preserve exact core bytes fifteen rows and unknown measurements",
+    "attempt scoring CLI: ordinary and owned symlink entries have equal missing argument refusal and valid bytes",
+    "attempt scoring CLI: an import defines main without invoking a command or writing an artifact",
+    "attempt scoring CLI: missing extra and unknown positional commands refuse before supplied effects",
+    "attempt scoring CLI: relative unbounded aliased and control-character paths refuse before capture",
+    "attempt scoring CLI: every input size admission precedes all payload reads on sparse oversized files",
+    "attempt scoring CLI: replay admits all five files before reading and refuses oversized artifact without writes",
+    "attempt scoring CLI: exact individual ceilings and aggregate-safe input bytes have a real successful control",
+    "attempt scoring CLI: bounded short reads complete original bytes after all four and five admissions",
+    "attempt scoring CLI: zero short read refuses without creating output and the target fault is reached",
+    "attempt scoring CLI: one overflow read detects input growth before scoring",
+    "attempt scoring CLI: truncation refuses on the admitted target descriptor",
+    "attempt scoring CLI: same descriptor metadata mutation refuses with a positive payload read",
+    "attempt scoring CLI: earlier input changes during later capture cannot escape the final all-FD recheck",
+    "attempt scoring CLI: invalid UTF8 duplicate members and contradictory closed-arm JSON fail through the real core",
+    "attempt scoring CLI: changed scoring source fails real replay after a valid alternate-root control",
+    "attempt scoring CLI: same-length dataset tampering fails real replay and inherited same-buffer binding",
+    "attempt scoring CLI: rehashed edited artifact is refused by full real replay without overwriting it",
+    "attempt scoring CLI: existing output bytes and mode are preserved with no successful acknowledgment",
+    "attempt scoring CLI: output symlink is refused and its target bytes and mode remain intact",
+    "attempt scoring CLI: public output parent is refused after valid computation with no chmod or artifact",
+    "attempt scoring CLI: foreign owner of the admitted parent descriptor refuses before creation",
+    "attempt scoring CLI: symlink and nonregular supplied inputs are rejected before payload reads",
+    "attempt scoring CLI: FIFO input and output refusal return actual bounded terminals without opening a stream",
+    "attempt scoring CLI: short writes complete exact bytes with file and directory durability positive controls",
+    "attempt scoring CLI: zero write retains the exclusively created empty output and never unlinks or retries",
+    "attempt scoring CLI: partial write failure retains the exact partial file with original inputs unchanged",
+    "attempt scoring CLI: file fsync failure leaves created bytes retained and does not acknowledge or unlink",
+    "attempt scoring CLI: mismatching same-FD readback fails before success while retaining the explicit file",
+    "attempt scoring CLI: parent path identity uncertainty after creation retains an empty artifact",
+    "attempt scoring CLI: directory fsync failure cannot acknowledge a fully saved but uncertain entry",
+    "attempt scoring CLI: same-size mutation after readback fails the final named file time guard",
+    "attempt scoring CLI: reader close-after-close failure never retries or closes the proven reused foreign FD",
+    "attempt scoring CLI: writer close-after-close failure retains bytes and the foreign reused FD without false success",
+    "attempt scoring CLI: directory close ambiguity also releases numeric ownership before its sole attempt",
+    "attempt scoring CLI: replay reaches armed write denial but performs no filesystem writes or replacements",
+    "attempt scoring CLI: real score and replay do not invoke positively armed network or subprocess functions",
+    "attempt scoring CLI: core encoded artifact capacity refusal precedes creating the requested output"
+  ],
+  "static_delta_review": [
+    {
+      "subject": "Native observer isolation",
+      "source_lines": "252-271",
+      "disposition": "CLOSED_STATIC_AT_E35",
+      "reason": "Distinct owned per-child proof ordinal; exclusively created no-follow/nonblocking0600 path. Observer uses captured native open/write/fsync/close, finite4096byte body, positive short-write accounting and ownership-clear-before-sole-close. No captured convenience writer call remains. Product denial activation/counters remain intact; proof output is separate test-only capability."
+    },
+    {
+      "subject": "Same-FD snapshots",
+      "source_lines": "90-108",
+      "disposition": "CORRECTED_SOURCE_FLOW_ONLY",
+      "reason": "Open no-follow/nonblocking read FD first, regular0..10MiB admission before buffer, finite short reads plus one overflow byte, same-FD dev/inode/mode/size/nanosecond times, ownership relinquished before one close. Returned bytes and mode share one admitted descriptor."
+    },
+    {
+      "subject": "Four flagged flows",
+      "source_lines": "282-294,441-449",
+      "disposition": "CORRECTED_SOURCE_FLOW_ONLY",
+      "reason": "Replay before/after and existing-output/symlink-target preservation assertions now consume returned same-FD byte+mode snapshots. Positive equality and refusal/permission checks remain. This does not independently establish zero CodeQL alerts or new runtime passes."
+    },
+    {
+      "subject": "Controls and registration",
+      "disposition": "PASS_STATIC",
+      "reason": "38 names/order exact; target-fault callbacks, positive denial, child12s/maxBuffer8192, CLI stdout4096/stderr1024/native bounds unchanged. CLI/guide/package/inherited30 and all protected actual-main files retain original bytes/modes. Only test+appendSTATUSLOG change."
+    }
+  ],
+  "metadata_qualifications": {
+    "e35_table_shape": "Current manifest uses unique list[path+identity]; normalized all6394 rows to path-key dictionary and matched actual Git. Original ecaf dictionary remains immutable.",
+    "original_stop": {
+      "session": 78673,
+      "terminal_chunk": "8293e1",
+      "exit_code": 1,
+      "exception": "AssertionError",
+      "cause": "metadata auditor directly compared actual dictionary to e35 list without normalization",
+      "project_failure": false,
+      "corrected_without_project_execution": true
+    },
+    "goal_prefix_counters": "Inherited five_original_goal_prefixes stays historical ecaf witness; current goal_original_prefixes and actual Git independently establish current bytes/hashes."
+  },
+  "continuity_fullread": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 64564,
+      "sha256": "7ae2b3e5db7cae2ffa6a4de383a8460c58e319e5a11e8e436e9cef3ad1dd0a13"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1038017,
+      "sha256": "95a6588e7c2938d034234b32cd8275d0b7ccd0ffbeb14db0c433a070e621328d"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 72566,
+      "sha256": "b40ba6d9ccae09a65d8ba74582f0ebe13d261a718c62528f2be7f308e58f8995"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1382867,
+      "sha256": "128a4c3d989c272c5b99423c579920013014147b08defb3a7e335bf3b7b4c124"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/README.md",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/REQUIREMENTS.md",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/STATUS.md",
+      "bytes": 197765,
+      "sha256": "e23f86cd7619104245e2f24759debd611818b628474219b4c351c6cb0058fc5b"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/PHASES.md",
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/LOG.md",
+      "bytes": 473129,
+      "sha256": "c7201a69ea8abb87306c75bacc5e72008f3a3d2771f2470221ce7d2f5ba13d85"
+    }
+  ],
+  "current_retained_CI_gate_performed": false,
+  "current_runtime_result": "NOT_ASSESSED_BY_SOURCE_EXTENSION",
+  "old_ecaf_HOLD_33PASS5FAIL_CodeQL4_originals_preserved": true,
+  "own_project_import_Node_test_CLI_helper_build_browser_GET_process_probe_job_grant": false,
+  "API_refetch_workflow_retry": false,
+  "repo_source_archive_edits": false,
+  "archive_allocation": null,
+  "provider_model_spend_publication": false,
+  "future_head_CI_merge_publication_approval": false,
+  "full_owner_hierarchy": "ACTIVE",
+  "sole_ordinary_merger_publisher": "PRIMARY",
+  "sole_local_CPU_allocator": "Lead"
+}

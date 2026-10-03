@@ -1,0 +1,38 @@
+{
+  "schema": "canli.third.pr370.own-metadata-recipe-error.v1",
+  "utc": "2026-10-03T08:35:07.787281+00:00",
+  "recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli-peer/inspect-e35ecc77-retained-ci-metadata-v1.py",
+    "bytes": 22148,
+    "sha256": "6af885b8accba3e8a00b34663edae95df5bbb54a945f44cfd94b11919bce1641"
+  },
+  "actualRecipeExitCode": 1,
+  "error": "AssertionError at line230: assumed --job CLI option in saved ROOT/MCP capture commands; actual captured command format differs.",
+  "capturedCommands": [
+    {
+      "label": "root",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-root-command-original-v1.json",
+      "bytes": 730,
+      "sha256": "1a15d07badfbb58e9cd9d7c67fa356cf0265a31c6faf2eec697a0188b383b231",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111162541581/logs"
+      ]
+    },
+    {
+      "label": "mcp",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/remote-e35ecc77-mcp-command-original-v1.json",
+      "bytes": 728,
+      "sha256": "cb20ae44a66ec2e6c6c8e02cc699080303b200dd6e5919e77c35140dcf01ba9c",
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111162541580/logs"
+      ]
+    }
+  ],
+  "qualification": "Own metadata assertion only. Earlier full TAP/source-name/check/run predicates passed; no complete CI receipt issued yet. No project or source failure, source/raw rewrite, project execution, API refetch or workflow rerun. Original executed recipe remains immutable; corrective new recipe required."
+}

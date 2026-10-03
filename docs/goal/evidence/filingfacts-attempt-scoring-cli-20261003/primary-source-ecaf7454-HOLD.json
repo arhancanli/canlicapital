@@ -1,0 +1,416 @@
+{
+  "schema": "canli.primary.attempt-scoring-cli.frozen-source-review.v1",
+  "utc": "2026-10-03T08:13:29.937788+00:00",
+  "reviewer_role": "PRIMARY independent STATIC SOURCE gate",
+  "source": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+  "tree": "b929d5bae4452ea012889fb271ed0c657bd433f6",
+  "sole_actual_parent": "8a6fc297cf82e503ec76746ab6bfb2ed8e4ac759",
+  "signature": "G",
+  "disposition": "HOLD_FOR_KNOWN_TEST_HARNESS_CORRECTIONS",
+  "gate_completed": true,
+  "product_contract_disposition": "PASS_WITH_STATIC_SCOPE_LIMITS_NO_ADDITIONAL_FINDINGS",
+  "additional_independent_product_findings": [],
+  "scope": "Frozen Git ecaf7454 only: six assigned paths, adapter contract, all 38 written test controls, guide, package recovery, protected Git identities and goal prefixes. No review of changing working test bytes or future corrected source.",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-ecaf7454.json",
+    "bytes": 1271322,
+    "sha256": "72fbf55f08fe8dd939e8c1f7a1609efc80b3e4b68ae83037689c2e16cdd59f95",
+    "fullread": true
+  },
+  "assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/assignment-8a6fc297-primary-v1.md",
+    "bytes": 11225,
+    "sha256": "5316f647ebb011558b16a315310bf9955367fe5c5c248f31bfb03de623e5ef3c",
+    "fullread": true
+  },
+  "source_basis": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/source-basis-8a6fc297-primary-v1.json",
+    "bytes": 10614,
+    "sha256": "1bb96926a2b80f5ffadc82b59f59a0d5fbdb164ad08034d35392c9c1a4ed6f74",
+    "fullread": true
+  },
+  "independent_preservation_audit": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/primary-source-preservation-ecaf7454-v1.json",
+    "bytes": 28260,
+    "sha256": "a9be2703db310d9caf00c47827c471d6667d60836126345de44a3bde767c80de"
+  },
+  "actual_preservation": {
+    "frozen_source_paths": [
+      {
+        "path": "docs/goal/LOG.md",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "d1c5f5fb4e61afdd571c2710a1a06d96eedbe45f",
+        "bytes": 470878,
+        "sha256": "76de06bc051c199d3417d6662e742f9024e18b2f205b18ec11f451ca6f14614e",
+        "working_sha256": "76de06bc051c199d3417d6662e742f9024e18b2f205b18ec11f451ca6f14614e",
+        "index_sha256": "76de06bc051c199d3417d6662e742f9024e18b2f205b18ec11f451ca6f14614e",
+        "working_permissions": "0o644",
+        "working_regular": true,
+        "source_index_working_exact": true
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "2f21987c5d0a90b49961d6edecc47655e2bf5235",
+        "bytes": 195514,
+        "sha256": "0e5c53bc4db7a728edc4ced5a47da1c4dd8a26ba9d122d0fe409e96d525bfdcc",
+        "working_sha256": "0e5c53bc4db7a728edc4ced5a47da1c4dd8a26ba9d122d0fe409e96d525bfdcc",
+        "index_sha256": "0e5c53bc4db7a728edc4ced5a47da1c4dd8a26ba9d122d0fe409e96d525bfdcc",
+        "working_permissions": "0o644",
+        "working_regular": true,
+        "source_index_working_exact": true
+      },
+      {
+        "path": "package.json",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "13fb5181a55e2049046d7e81fa918d1d2689bdd3",
+        "bytes": 13454,
+        "sha256": "b7ffd28c826bd396a0f5e64a196b7a92fc07517455cb8c0aa4483cd08c021845",
+        "working_sha256": "b7ffd28c826bd396a0f5e64a196b7a92fc07517455cb8c0aa4483cd08c021845",
+        "index_sha256": "b7ffd28c826bd396a0f5e64a196b7a92fc07517455cb8c0aa4483cd08c021845",
+        "working_permissions": "0o644",
+        "working_regular": true,
+        "source_index_working_exact": true
+      },
+      {
+        "path": "scripts/datasets/filing-facts/ATTEMPT_SCORING_CLI.md",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "b0c1127ecd1de910578e088adb07b8a0d07a8d18",
+        "bytes": 9165,
+        "sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236",
+        "working_sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236",
+        "index_sha256": "1f05dd7c4cb742044ea1c48f5110c192e1fd811eae66c6d117dfdc395247d236",
+        "working_permissions": "0o644",
+        "working_regular": true,
+        "source_index_working_exact": true
+      },
+      {
+        "path": "scripts/datasets/filing-facts/attempt-scoring-cli.mjs",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "948afcf713408e7cdb0e604c0515aa19e68e989d",
+        "bytes": 12759,
+        "sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437",
+        "working_sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437",
+        "index_sha256": "3e1864e4857b56810dd6df670a2f6c50784a20609d118a47af097e2febac3437",
+        "working_permissions": "0o644",
+        "working_regular": true,
+        "source_index_working_exact": true
+      },
+      {
+        "path": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs",
+        "mode": "100644",
+        "type": "blob",
+        "blob": "ea3486ef40f7f8763eacb131b23c1e2087b7efb5",
+        "bytes": 36708,
+        "sha256": "809adb004f1640b21970db627b12bb675d036efae7339c82f7d6a9ce88c5908c",
+        "working_sha256": "e1a959d05d2081ee6dfa62a45b78db83d43fceeb512b092cb168b208889ca234",
+        "index_sha256": "809adb004f1640b21970db627b12bb675d036efae7339c82f7d6a9ce88c5908c",
+        "working_permissions": "0o644",
+        "working_regular": true,
+        "source_index_working_exact": false
+      }
+    ],
+    "full_source_index_entries": 6394,
+    "frozen_source_index_mode_blob_exact": true,
+    "protected_inherited_Git_count": 6388,
+    "protected_inherited_Git_bytes": 402543383,
+    "all_protected_mode_type_blob_size_exact": true,
+    "selected26_protected_physical_read_hash_mode_index_source_exact": true,
+    "V0_selected_file_count": 5,
+    "whole_402MB_physical_audit": false,
+    "five_goal_prefixes": [
+      {
+        "path": "docs/goal/README.md",
+        "before_bytes": 6899,
+        "before_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "after_bytes": 6899,
+        "after_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "append_bytes": 0,
+        "whole_original_prefix_preserved": true
+      },
+      {
+        "path": "docs/goal/REQUIREMENTS.md",
+        "before_bytes": 8758,
+        "before_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "after_bytes": 8758,
+        "after_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "append_bytes": 0,
+        "whole_original_prefix_preserved": true
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "before_bytes": 190234,
+        "before_sha256": "f448c9e342d90976b3e6e96c7324c6d735ffcd3cf9286b9fb814df65e932b03c",
+        "after_bytes": 195514,
+        "after_sha256": "0e5c53bc4db7a728edc4ced5a47da1c4dd8a26ba9d122d0fe409e96d525bfdcc",
+        "append_bytes": 5280,
+        "whole_original_prefix_preserved": true
+      },
+      {
+        "path": "docs/goal/PHASES.md",
+        "before_bytes": 5455,
+        "before_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+        "after_bytes": 5455,
+        "after_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+        "append_bytes": 0,
+        "whole_original_prefix_preserved": true
+      },
+      {
+        "path": "docs/goal/LOG.md",
+        "before_bytes": 465598,
+        "before_sha256": "a72d9551a149dad9a8ae023c2e0f0cfa62dd8cffb1f44a292116a509d6e35eff",
+        "after_bytes": 470878,
+        "after_sha256": "76de06bc051c199d3417d6662e742f9024e18b2f205b18ec11f451ca6f14614e",
+        "append_bytes": 5280,
+        "whole_original_prefix_preserved": true
+      }
+    ],
+    "package_three_registration_recovery": {
+      "exactly_three_assigned_registrations": true,
+      "previous_every_command_path_order_default_recovered_exact_bytes": true,
+      "before_bytes": 13171,
+      "before_sha256": "367fd132648572dfc127f21cf946dbd9ae9d823db3b93ab7649f3859680285d6",
+      "after_bytes": 13454,
+      "after_sha256": "b7ffd28c826bd396a0f5e64a196b7a92fc07517455cb8c0aa4483cd08c021845",
+      "new_test_registration_once_in_verify_adjacent_to_prior_scoring": true
+    }
+  },
+  "checkout_qualification": {
+    "clean_original_pin_observed_before_author_correction": true,
+    "current_author_working_test_changes_observed": {
+      "head_before": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+      "head_after": "ecaf74544e9c9c24f94bf91a273ae0e813f3e644",
+      "status_before": " M scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs\n",
+      "status_after": " M scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs\n",
+      "clean_frozen_current": false
+    },
+    "current_working_test_changes_reviewed_or_approved": false,
+    "signed_frozen_Git_is_review_subject": true
+  },
+  "static_reasoning": [
+    {
+      "subject": "Arguments, entry and effects",
+      "module_lines": "21-38,195-206,229-241",
+      "conclusion": "Only seven own data string arguments, score/replay and bounded normalized absolute paths. Canonical root is admitted before lazy core import. Ordinary/owned-symlink entry resolves both identities; import-only does not invoke main. No provider, source-packet, collector, transport or retry options; inputs always packets:null. Static code uses only native filesystem, digest/path/util operations and unchanged core."
+    },
+    {
+      "subject": "All supplied bytes admitted before payload reads",
+      "module_lines": "68-115",
+      "conclusion": "Four/five FDs admitted once with no-follow/nonblocking flags, regular type and exact inherited individual caps. Device/inode duplicates refuse. Summed declared sizes are checked before the first readBytes allocation. Positive short-read loops and one overflow byte, same-FD size/identity/nanosecond-time checks, then final all-FD plus named-path checks catch observed changes across capture. Score individual sum8.75MiB and replay9.75MiB are below aggregate9/10MiB; no invented reachable aggregate fault."
+    },
+    {
+      "subject": "Close ownership and sticky errors",
+      "module_lines": "41-47,55-65,112-115,168-179",
+      "conclusion": "Numeric ownership becomes undefined before each single close attempt. Existing failures are retained; cleanup never retries a descriptor which a throwing close may have closed/reused. This applies to root, every input, new artifact and parent."
+    },
+    {
+      "subject": "Explicit output and durable acknowledgment",
+      "module_lines": "118-180,208-212",
+      "conclusion": "Scoring and bounded summary precede output creation. Open parent FD first, admit current UID and0700 plus exact identity; exclusive regular0600 singly linked empty output only. Positive bounded short-write loop, file fsync, full same-FD exact readback plus metadata, file close, directory fsync, parent close and final entry checks precede success. Failures retain the explicit empty/partial/full path without unlink, replacement, chmod, retry or another output."
+    },
+    {
+      "subject": "Original artifact bytes and replay",
+      "module_lines": "183-215",
+      "protected_core_lines": "283-351",
+      "conclusion": "Adapter passes original native captured buffers to unchanged core, writes exact returned artifact_bytes, keeps all15 rows/final-attempt selection/full measurement companion and inherited unknown/null coverage. Replay receives all five captured documents and never calls writeArtifact. Summary distinguishes core artifact digest from exact file-byte digest and marks synthetic/closed/no model-baseline/no execution authorization."
+    },
+    {
+      "subject": "Bounded non-echoing acknowledgment",
+      "module_lines": "183-191,213-241",
+      "conclusion": "Fixed primitive summary is bounded4096bytes, fixed allowlisted errors are bounded1024bytes, no raw paths/prompts/answers/stacks. Direct entry performs positive short stdout/stderr writes and exit1 on stdio failure. Consumers require both complete summary and exit0; a failed stdout write cannot retract a partial stream."
+    },
+    {
+      "subject": "Test positive controls and scoped written coverage",
+      "test_lines": "47-99,101-240,251-541",
+      "conclusion": "All38 distinct named cases read in frozen Git, not executed by reviewer. Actual bounded CLI children/owned terminal absence oracles, actual alternate-root/core/data/rehashed-artifact replay, descriptor-targeted growth/truncation/metadata/short-read/readback/write/fsync faults, root/paths/alias/import refusals, private/exclusive outputs, and close-after-close foreign-FD-reuse assertions have substantive controls. Preload imports actual core before binding faults, and network/subprocess/write denial has explicit activation. Retention assertions in the five failed write-denial cases cannot be promoted to runtime proof."
+    },
+    {
+      "subject": "Documentation and registration",
+      "guide_lines": "1-169",
+      "conclusion": "Guide matches native caps, fullN/null/historical-schema binding, private local filesystem scope, retained uncertainty and Unreleased software-fixture interpretation. Package removals exactly recover original bytes: two new command keys and one immediately adjacent verify path only. Every inherited command/path/order/default and old30 core cases remain byte-exact."
+    }
+  ],
+  "known_original_test_holds": [
+    {
+      "id": "AUTHOR_REPORTED_EXIT_OBSERVER_WRITE_DENIAL_FAILURE",
+      "scope": "Test harness only",
+      "source_location": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs:112-113,130-139,180-199,231-237",
+      "static_observation": "Exit observer calls captured high-level original.writeFileSync after native fs open/write surfaces have been replaced by denial. A saved convenience wrapper is not an explicit captured-primitive observer; isolated primitive proof output is absent from frozen source.",
+      "runtime_cause_qualification": "Author reports all five write-denial children ENOBUFS and later assertions unreached; native wrapper delegation/cause is source inference, not a reviewer-run reproduction or independently parsed CI conclusion.",
+      "correction_boundary": "Freeze observer writing through captured native open/write/fsync/close, preserving product guards, caps and positive denial. Review exact test-only delta and separate new-head retained CI."
+    },
+    {
+      "id": "AUTHOR_REPORTED_CODEQL_92_95_TEST_SNAPSHOTS",
+      "scope": "Test snapshot paths only",
+      "source_location": "scripts/datasets/filing-facts/attempt-scoring-cli.test.mjs:89-95,258-260,407-416",
+      "static_observation": "Original snapshot/preservation assertions use separate named readFileSync/statSync operations; they do not bind the compared content and metadata to one admitted descriptor.",
+      "runtime_cause_qualification": "Four js/file-system-race alerts92-95 are author-reported in pinned failure record; this review did not refetch/parse raw CodeQL or claim a product filesystem defect.",
+      "correction_boundary": "FD-first same-descriptor bounded test snapshots; retain original alerts and verify corrected exact source/current CI separately."
+    }
+  ],
+  "author_reported_validation_record_only": {
+    "receipt": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-cli/first-remote-failure-ecaf7454-retained-v1.json",
+      "bytes": 15542,
+      "sha256": "3e5797a19a896044843dff1d10c0aabd87364f423087c1e7d381a0e5a040915e"
+    },
+    "declared_new_cases": 38,
+    "author_reported_pass": 33,
+    "author_reported_fail": 5,
+    "author_reported_main_total": 1185,
+    "author_reported_main_pass": 1180,
+    "author_reported_main_fail": 5,
+    "author_reported_notification_suite": "NOTRUN",
+    "author_reported_new_test_CodeQL_alerts": [
+      92,
+      93,
+      94,
+      95
+    ],
+    "independent_raw_CI_gate_performed": false,
+    "raw_files_read_or_API_refetched_by_this_review": false
+  },
+  "written_case_count": 38,
+  "source_case_names": [
+    "attempt scoring CLI: actual score and replay preserve exact core bytes fifteen rows and unknown measurements",
+    "attempt scoring CLI: ordinary and owned symlink entries have equal missing argument refusal and valid bytes",
+    "attempt scoring CLI: an import defines main without invoking a command or writing an artifact",
+    "attempt scoring CLI: missing extra and unknown positional commands refuse before supplied effects",
+    "attempt scoring CLI: relative unbounded aliased and control-character paths refuse before capture",
+    "attempt scoring CLI: every input size admission precedes all payload reads on sparse oversized files",
+    "attempt scoring CLI: replay admits all five files before reading and refuses oversized artifact without writes",
+    "attempt scoring CLI: exact individual ceilings and aggregate-safe input bytes have a real successful control",
+    "attempt scoring CLI: bounded short reads complete original bytes after all four and five admissions",
+    "attempt scoring CLI: zero short read refuses without creating output and the target fault is reached",
+    "attempt scoring CLI: one overflow read detects input growth before scoring",
+    "attempt scoring CLI: truncation refuses on the admitted target descriptor",
+    "attempt scoring CLI: same descriptor metadata mutation refuses with a positive payload read",
+    "attempt scoring CLI: earlier input changes during later capture cannot escape the final all-FD recheck",
+    "attempt scoring CLI: invalid UTF8 duplicate members and contradictory closed-arm JSON fail through the real core",
+    "attempt scoring CLI: changed scoring source fails real replay after a valid alternate-root control",
+    "attempt scoring CLI: same-length dataset tampering fails real replay and inherited same-buffer binding",
+    "attempt scoring CLI: rehashed edited artifact is refused by full real replay without overwriting it",
+    "attempt scoring CLI: existing output bytes and mode are preserved with no successful acknowledgment",
+    "attempt scoring CLI: output symlink is refused and its target bytes and mode remain intact",
+    "attempt scoring CLI: public output parent is refused after valid computation with no chmod or artifact",
+    "attempt scoring CLI: foreign owner of the admitted parent descriptor refuses before creation",
+    "attempt scoring CLI: symlink and nonregular supplied inputs are rejected before payload reads",
+    "attempt scoring CLI: FIFO input and output refusal return actual bounded terminals without opening a stream",
+    "attempt scoring CLI: short writes complete exact bytes with file and directory durability positive controls",
+    "attempt scoring CLI: zero write retains the exclusively created empty output and never unlinks or retries",
+    "attempt scoring CLI: partial write failure retains the exact partial file with original inputs unchanged",
+    "attempt scoring CLI: file fsync failure leaves created bytes retained and does not acknowledge or unlink",
+    "attempt scoring CLI: mismatching same-FD readback fails before success while retaining the explicit file",
+    "attempt scoring CLI: parent path identity uncertainty after creation retains an empty artifact",
+    "attempt scoring CLI: directory fsync failure cannot acknowledge a fully saved but uncertain entry",
+    "attempt scoring CLI: same-size mutation after readback fails the final named file time guard",
+    "attempt scoring CLI: reader close-after-close failure never retries or closes the proven reused foreign FD",
+    "attempt scoring CLI: writer close-after-close failure retains bytes and the foreign reused FD without false success",
+    "attempt scoring CLI: directory close ambiguity also releases numeric ownership before its sole attempt",
+    "attempt scoring CLI: replay reaches armed write denial but performs no filesystem writes or replacements",
+    "attempt scoring CLI: real score and replay do not invoke positively armed network or subprocess functions",
+    "attempt scoring CLI: core encoded artifact capacity refusal precedes creating the requested output"
+  ],
+  "own_test_execution": false,
+  "limits": [
+    "Trusted local caller/filesystem and observed identities; no hostile-process/ABA or power-loss claim.",
+    "Unchanged core source/dataset read contract and bounds are preserved, not enlarged by this adapter.",
+    "Written controls and source inspection do not establish remote runtime pass, real provider/model results, billing, expert gold/rights, actual indexing/adoption or qualified strategy.",
+    "Signed ecaf source stays historical: changing working test bytes and any future signed head require their own exact delta gate."
+  ],
+  "continuity_fullread": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 64564,
+      "sha256": "7ae2b3e5db7cae2ffa6a4de383a8460c58e319e5a11e8e436e9cef3ad1dd0a13",
+      "fullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "fullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1032189,
+      "sha256": "6809c0a1047bfcce046ae66ff1917d86002dde7b0921ec4329787006c0b8c97b",
+      "fullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 72566,
+      "sha256": "b40ba6d9ccae09a65d8ba74582f0ebe13d261a718c62528f2be7f308e58f8995",
+      "fullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1377039,
+      "sha256": "138493a03a47992f72cee26d74b65b13200cc199a33871b41a801e9ac1a6e538",
+      "fullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/README.md",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "fullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/REQUIREMENTS.md",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "fullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/STATUS.md",
+      "bytes": 195514,
+      "sha256": "0e5c53bc4db7a728edc4ced5a47da1c4dd8a26ba9d122d0fe409e96d525bfdcc",
+      "fullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/PHASES.md",
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "fullread": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-attempt-scoring-cli-20261003/docs/goal/LOG.md",
+      "bytes": 470878,
+      "sha256": "76de06bc051c199d3417d6662e742f9024e18b2f205b18ec11f451ca6f14614e",
+      "fullread": true
+    }
+  ],
+  "metadata_reader_errors": [
+    {
+      "tool_chunk": "d865aa",
+      "exit_code": 1,
+      "exception": "TypeError: unhashable type: 'slice'",
+      "trigger": "display-only full_source_Git_identity_table[:2] assumed a list instead of dictionary",
+      "correction": "chunk 8a713c inspected dictionary.items(); this audit compares the entire actual 6394-entry dictionary",
+      "project_failure": false
+    },
+    {
+      "original_command_session": 89051,
+      "terminal_chunk": "6c5067",
+      "exit_code": 1,
+      "exception": "KeyError: 'base_full_NUL_tree_sha256'",
+      "trigger": "source-basis field is named base_full_NUL_Git_tree_sha256, distinct from author manifest field base_full_NUL_tree_sha256",
+      "correction": "both exact fields are independently compared to actual Git NUL bytes in this audit",
+      "project_failure": false
+    }
+  ],
+  "author_source_edits": false,
+  "archive_allocation_or_repo_writes": false,
+  "project_import_Node_test_CLI_helper_build_browser_GET_process_probe_job_grant": false,
+  "API_refetch_or_workflow_retry": false,
+  "provider_model_spend_publication": false,
+  "future_source_archive_CI_merge_publication_approval": false,
+  "full_owner_hierarchy": "ACTIVE",
+  "sole_ordinary_merger_and_publisher": "PRIMARY",
+  "sole_local_capacity_allocator": "Lead"
+}
