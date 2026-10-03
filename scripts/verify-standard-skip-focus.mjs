@@ -14,7 +14,9 @@ function refuse(code) {
 function openingTags(html) {
   // Our generated page has ordinary HTML attributes. Ignore comments and raw
   // script/style bodies so an example cannot stand in for a document target.
-  const markup = html.replace(/<!--[\s\S]*?-->|<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, "");
+  // Preserve their span: deleting it can join text into a different tag.
+  const markup = html.replace(/<!--[\s\S]*?-->|<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi,
+    (ignored) => " ".repeat(ignored.length));
   const tags = [];
   for (const match of markup.matchAll(/<([a-z][\w:-]*)\b((?:"[^"]*"|'[^']*'|[^'">])*)>/gi)) {
     const text = match[2].replace(/\/\s*$/, "");

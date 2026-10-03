@@ -97,6 +97,14 @@ test("standard focus guard does not accept targets or skip controls inside comme
     { route: "/standards/paper-evidence", target: "content", tabindex: "-1" });
 });
 
+test("standard focus guard cannot join text across ignored spans into a main target", () => {
+  for (const span of ["<!-- ignored -->", "<script>ignored</script>", "<style>ignored</style>"]) {
+    assert.throws(() => assertStandardSkipFocus(STANDARD.replace("<main", `<ma${span}in`)), /TARGET_ID/);
+  }
+  assert.deepEqual(assertStandardSkipFocus(`<!-- ordinary comment -->${STANDARD}`),
+    { route: "/standards/paper-evidence", target: "content", tabindex: "-1" });
+});
+
 test("standard focus guard bounds UTF-8 bytes before tag inspection", () => {
   assert.throws(() => assertStandardSkipFocus(null), /INPUT_TYPE/);
   assert.throws(() => assertStandardSkipFocus(STANDARD + "\u20ac".repeat(700000)), /INPUT_BYTES/);
