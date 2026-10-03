@@ -1,0 +1,561 @@
+{
+  "schema": "canli.third.pr368.corrected-retained-current-ci.v1",
+  "utc": "2026-10-03T03:46:00.813614+00:00",
+  "reviewerThread": "01a0f6dd-2bbf-7d00-8853-1732594b4a20",
+  "verdict": "PASS_EXACT_RETAINED_REMOTE_CI",
+  "head": "76633be4f37422932f14af850d415f509ae01f8f",
+  "tree": "3b67480ab6a6c68e10e2ff26de76f2b01a691d6b",
+  "sourceSoleParent": "4166b968edfa106bea879fed675bf86b19c0220a",
+  "actualBase": "27d7bd860ee903fac20cc6ad187535110a8cd198",
+  "testedMerge": "1745cbab5ab5537ca0e857c69d4a710bb226b732",
+  "testedParents": [
+    "27d7bd860ee903fac20cc6ad187535110a8cd198",
+    "76633be4f37422932f14af850d415f509ae01f8f"
+  ],
+  "authorReceipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-exact-ci-v1.json",
+    "bytes": 12874,
+    "sha256": "d7108e0b77713ff460182193e68cde5dfaaee9db1683257a8330825316808ea8"
+  },
+  "manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/source-76633be4-standard-skip-focus.json",
+    "bytes": 2198590,
+    "sha256": "5104e5f0a978b2411e48fbbda1844dde5140676a6710f0c9fd36c6a1d9c3edca"
+  },
+  "separateOwnSourceReceipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery-peer/review-pr368-76633be4-source-extension.json",
+    "bytes": 13540,
+    "sha256": "bff8c059d11150c5f143e720b7f3fc1583c3d21253065a1fe1c855c859045a26"
+  },
+  "metadataRecipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery-peer/inspect-pr368-76633be4-current-ci-metadata.py",
+    "bytes": 17167,
+    "sha256": "a2ff719c4dba218b019798505eb4337fbfafa199cf65dc203aac8ae08e2e9d9e"
+  },
+  "literalStdlibMetadataParserOrigin": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/attempt-scoring-bridge-peer/inspect-5d3ab942-retained-ci-metadata.py",
+    "bytes": 15336,
+    "sha256": "eb392022f9af4ffcce97784c05ce8ccd9985c44dc40c5af8a4671a983e1e6a3f"
+  },
+  "method": "All eleven literal successful CI/API/log originals fully read and rehashed. Independent full eight TAP plans, continuous ordinals, every per-test duration and seven counters; original job/check/run/pull/ref/commit/CodeQL fields independently parsed. Author pass summary is not substituted for this evidence.",
+  "literalOriginals": [
+    {
+      "label": "check-runs-original.json",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-check-runs-original.json",
+      "bytes": 24330,
+      "sha256": "b2449fef14b0ba4f2729a1ebc3b2b00cc03c7c76b67a045b63423379aa52530c"
+    },
+    {
+      "label": "run-original.json",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-run-original.json",
+      "bytes": 13281,
+      "sha256": "30d3a67b885d89e0b0c6794289c65b6589b07ff99ec07daaeaa5837acf76c992"
+    },
+    {
+      "label": "codeql-run-original.json",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-codeql-run-original.json",
+      "bytes": 13288,
+      "sha256": "57aab086c9c212c5f4949b7820ffcf605fb8a4f96e9fba028d52ca983489c43a"
+    },
+    {
+      "label": "jobs-original.json",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-jobs-original.json",
+      "bytes": 13295,
+      "sha256": "7cd684d0a0d6c7199794801a4f76d84ea3816b4d742cf463c42747427e3e5790"
+    },
+    {
+      "label": "pull-original.json",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-pull-original.json",
+      "bytes": 18947,
+      "sha256": "14f5bb5a9bfd94bf7366d2d2045b1997ec1018205fab33742aa6e1de28f4750c"
+    },
+    {
+      "label": "merge-ref-original.json",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-merge-ref-original.json",
+      "bytes": 357,
+      "sha256": "72468b8ba831ef65985cd8da5b6fbaa77f719050efd1de5d8bb9b0ae8b808c85"
+    },
+    {
+      "label": "tested-merge-original.json",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "7841bfe2a27e7135d29691c76c04fcd0c15a316d75ca7efaf499dee3d885d604"
+    },
+    {
+      "label": "codeql-alerts-original.json",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "label": "codeql-analyses-original.json",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-codeql-analyses-original.json",
+      "bytes": 2373,
+      "sha256": "c43a74d909b65c3ac3cf56f47a2ebd4c98e8195315249db40772ddd9b74eb411"
+    },
+    {
+      "label": "vite-raw-original.log",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-vite-raw-original.log",
+      "bytes": 666062,
+      "sha256": "e332ece83aa110e62bec6802dbcacaf72dcb6ee3e2e95f2df6d55430eccb53d0"
+    },
+    {
+      "label": "mcp-raw-original.log",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-mcp-raw-original.log",
+      "bytes": 298667,
+      "sha256": "f76b3afb3dd94fdaa0ec29253f7c2495f861fdee202ceec38397c0849ebc26c0"
+    }
+  ],
+  "literalOriginalCount": 11,
+  "literalOriginalBytes": 1053250,
+  "ROOT": {
+    "nodeSetupVersions": [
+      "v22.23.3"
+    ],
+    "setupCacheVersion": "22.23.3",
+    "originalCheckoutSha": "1745cbab5ab5537ca0e857c69d4a710bb226b732",
+    "completePlanCount": 3,
+    "plans": [
+      {
+        "plan": 6,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 6,
+          "suites": 0,
+          "pass": 6,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 85.484378,
+        "completeOrderedResultAndDurationSha256": "d5642af51f360309925ca06d995d9761d5a15a429a27e18475f3e75d6c6ad5c2"
+      },
+      {
+        "plan": 1117,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 1117,
+          "suites": 0,
+          "pass": 1117,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 103205.244522,
+        "completeOrderedResultAndDurationSha256": "39a49b63458e9e4ab9c4ebef4bba46ae64b14a6c487fc31fdbf0660cedd86a23"
+      },
+      {
+        "plan": 9,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 9,
+          "suites": 0,
+          "pass": 9,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 98.93337,
+        "completeOrderedResultAndDurationSha256": "ea4f7703636b46c992dc5737225c7c0e5932973b46bf3dcd0382dc4ca8c829b7"
+      }
+    ]
+  },
+  "MCP": {
+    "nodeSetupVersions": [
+      "v22.23.3"
+    ],
+    "setupCacheVersion": "22.23.3",
+    "originalCheckoutSha": "1745cbab5ab5537ca0e857c69d4a710bb226b732",
+    "completePlanCount": 5,
+    "plans": [
+      {
+        "plan": 141,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 141,
+          "suites": 0,
+          "pass": 141,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 2740.138228,
+        "completeOrderedResultAndDurationSha256": "cfa2b4d7793c375f95272c78a847616ae36f969169145b338c5014b6857376aa"
+      },
+      {
+        "plan": 1,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 1,
+          "suites": 0,
+          "pass": 1,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 644.977197,
+        "completeOrderedResultAndDurationSha256": "be13a6b570e556164cc0025b374610ff82cfe42b390fc369f7e21fed84272dad"
+      },
+      {
+        "plan": 82,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 82,
+          "suites": 0,
+          "pass": 82,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 15626.017143,
+        "completeOrderedResultAndDurationSha256": "190ceefe1eafbff44755b2c82a58a199bbdd87c43bd9a09bd3ea8cda4433faef"
+      },
+      {
+        "plan": 119,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 119,
+          "suites": 0,
+          "pass": 119,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 5601.21762,
+        "completeOrderedResultAndDurationSha256": "2f1d46052cf2a79e049ed1e02902b00e2ab395c913fde23f3c0817f435cd63b8"
+      },
+      {
+        "plan": 139,
+        "continuousOrdinals": true,
+        "allSevenCounters": {
+          "tests": 139,
+          "suites": 0,
+          "pass": 139,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "todo": 0
+        },
+        "allPerTestDurationsFinite": true,
+        "final_duration_ms": 4616.065484,
+        "completeOrderedResultAndDurationSha256": "c17dfc513d3aca79c1e94ba54b24f7701df047df7f1217c61748aeded58d5b55"
+      }
+    ]
+  },
+  "sourceNamedCaseMatches": [
+    {
+      "sourceName": "standard focus guard admits the generated mirror and reordered multi-class attributes",
+      "ROOTPassCount": 1,
+      "MCPPassCount": 0,
+      "rootMain1117Ordinal": 1045,
+      "duration_ms": 4.98092
+    },
+    {
+      "sourceName": "standard focus guard refuses the old committed and captured-live missing tabindex shape",
+      "ROOTPassCount": 1,
+      "MCPPassCount": 0,
+      "rootMain1117Ordinal": 1046,
+      "duration_ms": 0.471451
+    },
+    {
+      "sourceName": "standard focus guard refuses a missing shared-handler class or wrong fragment",
+      "ROOTPassCount": 1,
+      "MCPPassCount": 0,
+      "rootMain1117Ordinal": 1047,
+      "duration_ms": 0.324226
+    },
+    {
+      "sourceName": "standard focus guard refuses duplicate target IDs, attributes and skip controls",
+      "ROOTPassCount": 1,
+      "MCPPassCount": 0,
+      "rootMain1117Ordinal": 1048,
+      "duration_ms": 0.28288
+    },
+    {
+      "sourceName": "standard focus guard does not accept targets or skip controls inside comments or script examples",
+      "ROOTPassCount": 1,
+      "MCPPassCount": 0,
+      "rootMain1117Ordinal": 1049,
+      "duration_ms": 0.295362
+    },
+    {
+      "sourceName": "standard focus guard cannot join text across ignored spans into a main target",
+      "ROOTPassCount": 1,
+      "MCPPassCount": 0,
+      "rootMain1117Ordinal": 1050,
+      "duration_ms": 0.314649
+    },
+    {
+      "sourceName": "standard focus guard bounds UTF-8 bytes before tag inspection",
+      "ROOTPassCount": 1,
+      "MCPPassCount": 0,
+      "rootMain1117Ordinal": 1051,
+      "duration_ms": 1.544198
+    },
+    {
+      "sourceName": "standard focus reader admits exact owned bytes and refuses oversized or invalid UTF-8 input",
+      "ROOTPassCount": 1,
+      "MCPPassCount": 0,
+      "rootMain1117Ordinal": 1052,
+      "duration_ms": 3.294128
+    },
+    {
+      "sourceName": "standards/paper-evidence.html: every skip-link target is focusable (tabindex=\"-1\")",
+      "ROOTPassCount": 1,
+      "MCPPassCount": 0,
+      "rootMain1117Ordinal": 1053,
+      "duration_ms": 0.849578
+    }
+  ],
+  "actualDistinctCurrentCandidateCases": 9,
+  "newROOTPasses": 9,
+  "newMCPPasses": 0,
+  "actualRemoteNode": "22.23.3",
+  "sourceAndDistFinalPostbuildGuard": {
+    "commandBoundToFrozenPackage": true,
+    "eachMessageOccursExactlyOnce": true,
+    "originalMessages": [
+      "standards/paper-evidence.html: generated skip link and focus target verified",
+      "dist/standards/paper-evidence.html: generated skip link and focus target verified"
+    ],
+    "sourceShapeThenGeneratedDistShape": true,
+    "scope": "Actual retained ordinary CI postbuild static template guard, no browser/CSS/keyboard or deployed markup proof."
+  },
+  "runs": [
+    {
+      "id": 37091961012,
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 37091961024,
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "allSevenCurrentHeadChecks": [
+    {
+      "id": 111114126532,
+      "name": "CodeQL",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/runs/111114126532",
+      "completed_at": "2026-10-03T03:04:58Z"
+    },
+    {
+      "id": 111114003854,
+      "name": "MCP package and stdio contracts",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961012/job/111114003854",
+      "completed_at": "2026-10-03T03:05:06Z"
+    },
+    {
+      "id": 111114003810,
+      "name": "Key revocation PostgreSQL contract",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961012/job/111114003810",
+      "completed_at": "2026-10-03T03:04:50Z"
+    },
+    {
+      "id": 111114003796,
+      "name": "vite production build",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961012/job/111114003796",
+      "completed_at": "2026-10-03T03:06:59Z"
+    },
+    {
+      "id": 111114003623,
+      "name": "design wrapper build and contracts",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961012/job/111114003623",
+      "completed_at": "2026-10-03T03:04:36Z"
+    },
+    {
+      "id": 111114003554,
+      "name": "analyze (javascript-typescript)",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961024/job/111114003554",
+      "completed_at": "2026-10-03T03:06:14Z"
+    },
+    {
+      "id": 111114003347,
+      "name": "analyze (python)",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961024/job/111114003347",
+      "completed_at": "2026-10-03T03:05:03Z"
+    }
+  ],
+  "allFourCIRunJobs": [
+    {
+      "id": 111114003623,
+      "name": "design wrapper build and contracts",
+      "run_id": 37091961012,
+      "run_attempt": 1,
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 111114003796,
+      "name": "vite production build",
+      "run_id": 37091961012,
+      "run_attempt": 1,
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 111114003810,
+      "name": "Key revocation PostgreSQL contract",
+      "run_id": 37091961012,
+      "run_attempt": 1,
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 111114003854,
+      "name": "MCP package and stdio contracts",
+      "run_id": 37091961012,
+      "run_attempt": 1,
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "capturedPull": {
+    "number": 368,
+    "state": "open",
+    "draft": true,
+    "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+    "base_sha": "27d7bd860ee903fac20cc6ad187535110a8cd198",
+    "merged": false
+  },
+  "testedTreeEqualOwnFrozenGitSource": true,
+  "capturedRefSecurity": {
+    "ref": "refs/pull/368/merge",
+    "sha": "1745cbab5ab5537ca0e857c69d4a710bb226b732",
+    "retainedAlertResponse": [],
+    "retainedAnalysisRowCount": 4,
+    "latestPerLanguage": [
+      {
+        "language": "javascript-typescript",
+        "id": 1884799993,
+        "ref": "refs/pull/368/merge",
+        "commit_sha": "1745cbab5ab5537ca0e857c69d4a710bb226b732",
+        "created_at": "2026-10-03T03:06:05Z",
+        "results_count": 0,
+        "error": "",
+        "warning": ""
+      },
+      {
+        "language": "python",
+        "id": 1884797624,
+        "ref": "refs/pull/368/merge",
+        "commit_sha": "1745cbab5ab5537ca0e857c69d4a710bb226b732",
+        "created_at": "2026-10-03T03:04:56Z",
+        "results_count": 0,
+        "error": "",
+        "warning": ""
+      }
+    ],
+    "historicalRawAnalysisRowsRetained": true,
+    "scope": "Retained checkpoint only; no new API query or blanket security guarantee."
+  },
+  "historicalOriginalHoldAndCodeQL91": {
+    "originalReceipt": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery-peer/review-pr368-4166b968-frozen-source-hold.json",
+      "bytes": 16175,
+      "sha256": "2928366170c1c8c9d1ed03b913fddcd766a1ce62c2989a005cc4319adc829529"
+    },
+    "originalHead": "4166b968edfa106bea879fed675bf86b19c0220a",
+    "rewritten": false,
+    "originalEightCasesAndAggregateSecurityFailureRemainHistorical": true,
+    "currentMaskCorrection": "Separate bff8 source receipt closes the static finding; current nine cases and current CodeQL are measured here, never relabelled from original."
+  },
+  "originalCaptureMetadataError": {
+    "pin": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-language-parser-error-original.json",
+      "bytes": 1044,
+      "sha256": "fdf63746d4fdcbb3a4d76fac4768219d72868f2d18464d8a46f9c8034327bcc7"
+    },
+    "scope": "KeyError: language lives in environment JSON, not tool.name. All originals were already captured; this audit reads them without refetch or project re-execution.",
+    "projectFailure": false,
+    "runtimeOrLogRerun": false
+  },
+  "findings": [],
+  "effects": {
+    "projectImportsTestsFixtures": 0,
+    "NodeBuildBrowserHelperJobs": 0,
+    "APIRefetchGET": 0,
+    "authorSourceRawArchiveEdits": 0,
+    "leasesResourcesModelSpendPublication": 0
+  },
+  "limits": [
+    "Only corrected766 frozen head accepted, no archive allocation/future-head/ordinary merge/production publisher approval.",
+    "No actual browser/native focus/HTML5/WCAG/CSS/indexing proof; source/dist postbuild acceptance is a static template contract.",
+    "Remote attribute-loss cause remains UNPROVEN; saved V6 HTTP200/TARGET_FRAGMENT and qualified failed closure remain historical.",
+    "Nine unique current cases contain the prior eight plus one source regression; do not sum historical and current into seventeen independent cases.",
+    "PRIMARY sole ordinary merger/publisher; LEAD alone assigns any future project runtime."
+  ],
+  "continuityFiveFullRead": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 53651,
+      "sha256": "374f1f4b3675b42bd4b43ffaf665eccc1aa313588f7174a85500b7bade18e192"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 963720,
+      "sha256": "3bdb48df4df0ad9159095859cffc90e5f2c7bb2b1be3128b5daab711a6abdcde"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 61653,
+      "sha256": "f15017cad00d3e45025e6887346c4099d6db017cf212f8139f07436e324f4f65"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1308570,
+      "sha256": "2752cfd115d559a2b09265abd65a9b9c5c10a97ce59722de1e2d16fc86023054"
+    }
+  ],
+  "fullOwnerHierarchy": "ACTIVE; four Sovereign pillars, differentiated financial MCP/API and legitimate adoption, consenting independent rights-cleared expert double annotation/refinery, novel research, governed ALPHAC forward targets, paper then lawful capital,10M actually indexed useful maintained source-backed qualitySEO/intents/design/analyzers retained.",
+  "realOutcomes": "Unknown/null."
+}

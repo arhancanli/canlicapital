@@ -1,0 +1,384 @@
+{
+  "schema": "canli.primary.pr368.corrected-current-retained-ci.v1",
+  "utc": "2026-10-03T03:32:24.437238+00:00",
+  "verdict": "PASS_AUTHOR_EXACT_RETAINED_CURRENT_CI",
+  "head": "76633be4f37422932f14af850d415f509ae01f8f",
+  "tree": "3b67480ab6a6c68e10e2ff26de76f2b01a691d6b",
+  "tested_merge": "1745cbab5ab5537ca0e857c69d4a710bb226b732",
+  "tested_parents": [
+    "27d7bd860ee903fac20cc6ad187535110a8cd198",
+    "76633be4f37422932f14af850d415f509ae01f8f"
+  ],
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/source-76633be4-standard-skip-focus.json",
+    "bytes": 2198590,
+    "sha256": "5104e5f0a978b2411e48fbbda1844dde5140676a6710f0c9fd36c6a1d9c3edca"
+  },
+  "original_pins": {
+    "check-runs-original.json": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-check-runs-original.json",
+      "bytes": 24330,
+      "sha256": "b2449fef14b0ba4f2729a1ebc3b2b00cc03c7c76b67a045b63423379aa52530c"
+    },
+    "run-original.json": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-run-original.json",
+      "bytes": 13281,
+      "sha256": "30d3a67b885d89e0b0c6794289c65b6589b07ff99ec07daaeaa5837acf76c992"
+    },
+    "codeql-run-original.json": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-codeql-run-original.json",
+      "bytes": 13288,
+      "sha256": "57aab086c9c212c5f4949b7820ffcf605fb8a4f96e9fba028d52ca983489c43a"
+    },
+    "jobs-original.json": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-jobs-original.json",
+      "bytes": 13295,
+      "sha256": "7cd684d0a0d6c7199794801a4f76d84ea3816b4d742cf463c42747427e3e5790"
+    },
+    "pull-original.json": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-pull-original.json",
+      "bytes": 18947,
+      "sha256": "14f5bb5a9bfd94bf7366d2d2045b1997ec1018205fab33742aa6e1de28f4750c"
+    },
+    "merge-ref-original.json": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-merge-ref-original.json",
+      "bytes": 357,
+      "sha256": "72468b8ba831ef65985cd8da5b6fbaa77f719050efd1de5d8bb9b0ae8b808c85"
+    },
+    "tested-merge-original.json": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-tested-merge-original.json",
+      "bytes": 2648,
+      "sha256": "7841bfe2a27e7135d29691c76c04fcd0c15a316d75ca7efaf499dee3d885d604"
+    },
+    "codeql-alerts-original.json": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-codeql-alerts-original.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "codeql-analyses-original.json": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-codeql-analyses-original.json",
+      "bytes": 2373,
+      "sha256": "c43a74d909b65c3ac3cf56f47a2ebd4c98e8195315249db40772ddd9b74eb411"
+    },
+    "vite-raw-original.log": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-vite-raw-original.log",
+      "bytes": 666062,
+      "sha256": "e332ece83aa110e62bec6802dbcacaf72dcb6ee3e2e95f2df6d55430eccb53d0"
+    },
+    "mcp-raw-original.log": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-mcp-raw-original.log",
+      "bytes": 298667,
+      "sha256": "f76b3afb3dd94fdaa0ec29253f7c2495f861fdee202ceec38397c0849ebc26c0"
+    }
+  },
+  "ci_run": {
+    "id": 37091961012,
+    "attempt": 1,
+    "head": "76633be4f37422932f14af850d415f509ae01f8f",
+    "conclusion": "success"
+  },
+  "codeql_run": {
+    "id": 37091961024,
+    "attempt": 1,
+    "head": "76633be4f37422932f14af850d415f509ae01f8f",
+    "conclusion": "success"
+  },
+  "checks": [
+    {
+      "id": 111114126532,
+      "name": "CodeQL",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/runs/111114126532"
+    },
+    {
+      "id": 111114003854,
+      "name": "MCP package and stdio contracts",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961012/job/111114003854"
+    },
+    {
+      "id": 111114003810,
+      "name": "Key revocation PostgreSQL contract",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961012/job/111114003810"
+    },
+    {
+      "id": 111114003796,
+      "name": "vite production build",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961012/job/111114003796"
+    },
+    {
+      "id": 111114003623,
+      "name": "design wrapper build and contracts",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961012/job/111114003623"
+    },
+    {
+      "id": 111114003554,
+      "name": "analyze (javascript-typescript)",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961024/job/111114003554"
+    },
+    {
+      "id": 111114003347,
+      "name": "analyze (python)",
+      "head_sha": "76633be4f37422932f14af850d415f509ae01f8f",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37091961024/job/111114003347"
+    }
+  ],
+  "root_suites": [
+    {
+      "start_line": 1408,
+      "counters": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 6,
+      "duration_ms": 85.484378,
+      "end_line": 1453
+    },
+    {
+      "start_line": 1459,
+      "counters": {
+        "tests": 1117,
+        "suites": 0,
+        "pass": 1117,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 1117,
+      "duration_ms": 103205.244522,
+      "end_line": 8186
+    },
+    {
+      "start_line": 8328,
+      "counters": {
+        "tests": 9,
+        "suites": 0,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 9,
+      "duration_ms": 98.93337,
+      "end_line": 8391
+    }
+  ],
+  "mcp_suites": [
+    {
+      "start_line": 195,
+      "counters": {
+        "tests": 141,
+        "suites": 0,
+        "pass": 141,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 141,
+      "duration_ms": 2740.138228,
+      "end_line": 1050
+    },
+    {
+      "start_line": 1059,
+      "counters": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 1,
+      "duration_ms": 644.977197,
+      "end_line": 1074
+    },
+    {
+      "start_line": 1100,
+      "counters": {
+        "tests": 82,
+        "suites": 0,
+        "pass": 82,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 82,
+      "duration_ms": 15626.017143,
+      "end_line": 1601
+    },
+    {
+      "start_line": 1626,
+      "counters": {
+        "tests": 119,
+        "suites": 0,
+        "pass": 119,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 119,
+      "duration_ms": 5601.21762,
+      "end_line": 2352
+    },
+    {
+      "start_line": 2377,
+      "counters": {
+        "tests": 139,
+        "suites": 0,
+        "pass": 139,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "plan": 139,
+      "duration_ms": 4616.065484,
+      "end_line": 3231
+    }
+  ],
+  "candidate_cases_once_root": [
+    {
+      "ordinal": 1045,
+      "name": "standard focus guard admits the generated mirror and reordered multi-class attributes",
+      "status": "ok",
+      "line": 7739
+    },
+    {
+      "ordinal": 1046,
+      "name": "standard focus guard refuses the old committed and captured-live missing tabindex shape",
+      "status": "ok",
+      "line": 7745
+    },
+    {
+      "ordinal": 1047,
+      "name": "standard focus guard refuses a missing shared-handler class or wrong fragment",
+      "status": "ok",
+      "line": 7751
+    },
+    {
+      "ordinal": 1048,
+      "name": "standard focus guard refuses duplicate target IDs, attributes and skip controls",
+      "status": "ok",
+      "line": 7757
+    },
+    {
+      "ordinal": 1049,
+      "name": "standard focus guard does not accept targets or skip controls inside comments or script examples",
+      "status": "ok",
+      "line": 7763
+    },
+    {
+      "ordinal": 1050,
+      "name": "standard focus guard cannot join text across ignored spans into a main target",
+      "status": "ok",
+      "line": 7769
+    },
+    {
+      "ordinal": 1051,
+      "name": "standard focus guard bounds UTF-8 bytes before tag inspection",
+      "status": "ok",
+      "line": 7775
+    },
+    {
+      "ordinal": 1052,
+      "name": "standard focus reader admits exact owned bytes and refuses oversized or invalid UTF-8 input",
+      "status": "ok",
+      "line": 7781
+    },
+    {
+      "ordinal": 1053,
+      "name": "standards/paper-evidence.html: every skip-link target is focusable (tabindex=\"-1\")",
+      "status": "ok",
+      "line": 7787
+    }
+  ],
+  "candidate_cases_mcp": 0,
+  "node": "22.23.3",
+  "source_and_dist_postbuild_guard_each_once_pass": true,
+  "captured_current_ref_alerts": 0,
+  "latest_current_language_analyses": {
+    "javascript-typescript": {
+      "ref": "refs/pull/368/merge",
+      "commit_sha": "1745cbab5ab5537ca0e857c69d4a710bb226b732",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-03T03:06:05Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1884799993,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1884799993",
+      "sarif_id": "5f1e4928-bed7-11f1-9f11-5af5e77869f8",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    "python": {
+      "ref": "refs/pull/368/merge",
+      "commit_sha": "1745cbab5ab5537ca0e857c69d4a710bb226b732",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-03T03:04:56Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1884797624,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1884797624",
+      "sarif_id": "35bdcb94-bed7-11f1-9275-04e8712535b6",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  },
+  "historical_analyses_preserved": true,
+  "capture_metadata_error": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-mcp-discovery/pr368-76633be4-language-parser-error-original.json",
+    "scope": "KeyError: language lives in environment JSON, not tool.name. All originals were already captured; this audit reads them without refetch or project re-execution."
+  },
+  "independent_source_reviews": {
+    "secondary": "29b50f030355297575b8e412e62d1cf0953b04cdde8d2b8119c6b33bdc0714fe",
+    "third": "bff8c059d11150c5f143e720b7f3fc1583c3d21253065a1fe1c855c859045a26"
+  },
+  "limits": "Author CI custody only. Both independent current-CI gates, final source/archive/head review, merge, fresh source-date/browser/production/live verification remain separate. Remote attribute-loss cause is UNPROVEN. No browser/WCAG/indexing or full-goal outcome claim.",
+  "full_owner_hierarchy": "ACTIVE",
+  "project_runtime_reruns": 0
+}
