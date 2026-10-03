@@ -1,0 +1,21 @@
+{
+  "schema": "canli.secondary.initial-GH-escape-refusal-byte-qualification.v1",
+  "utc": "2026-10-03T12:29:24.628566+00:00",
+  "original_wrong_relay_count": 94,
+  "actual_original_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/acffb57b-mcp-raw-stderr-original.txt",
+      "bytes": 99,
+      "sha256": "8b6407b2fdbca54bf3d53fb93e79a3560dbe59567fa5044cfee4bed1b5b6e467",
+      "actual_GH_message": "the response contains terminal escape sequences; pass --allow-escape-sequences to output it anyway\n"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client/acffb57b-root-raw-stderr-original.txt",
+      "bytes": 99,
+      "sha256": "8b6407b2fdbca54bf3d53fb93e79a3560dbe59567fa5044cfee4bed1b5b6e467",
+      "actual_GH_message": "the response contains terminal escape sequences; pass --allow-escape-sequences to output it anyway\n"
+    }
+  ],
+  "qualification": "Prior94B wording was a metadata byte-count assumption; exact originals are pinned here. Empty stdout/actual GH refusal preserved; same completed job capture with explicit flag is archival only, not CI or project rerun. No source or current verdict changed.",
+  "no_project_runtime": true
+}
