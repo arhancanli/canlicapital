@@ -48,7 +48,7 @@ from actual search-engine indexing.
 
 ## Verification
 
-Node 22.23.2 `npm run build` and `npm run verify` passed. The latter ran 1,303 tests
+Node 22.23.2 `npm run build` and `npm run verify` passed. The latter ran 1,304 tests
 and six preverify cases, followed by writing, publication, source, SEO, link,
 indexability, numerical and search-intent audits. All 30,281 visible numerals trace
 to published artifacts. On-page checks report zero errors and warnings. Every
@@ -133,3 +133,13 @@ markup dependencies. A portable archive regression verifies that generated
 timestamp changes reject stale byte bindings while preserving the committed
 markup date. Earlier CI findings and their corrections are retained in the
 goal log and the original [CI run](https://github.com/arhancanli/canlicapital/actions/runs/37185202197).
+
+
+## Current main and code-scanning corrections
+
+The redesign integrates merged prerequisites #375 and #379 from current main.
+Incoming MCP implementation, configuration and computation cores are preserved.
+The integrated build, 1,304 tests plus six preverify cases, and complete browser
+suite passed. Seven generator/test code-scanning findings are addressed with
+complete escaping, parsed heading text, stable style removal and anchored test
+host matches. Final current-head checks are linked from PR #380.

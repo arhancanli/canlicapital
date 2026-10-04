@@ -40,7 +40,7 @@ async function withPage(baseUrl, run) {
     const context = await browser.newContext();
     // The page loads Google Fonts over the network; abort them so the test is fast and does not
     // depend on outbound network access this sandbox may not have.
-    await context.route(/fonts\.(googleapis|gstatic)\.com/, (route) => route.abort());
+    await context.route(/^https:\/\/fonts\.(googleapis|gstatic)\.com\//, (route) => route.abort());
     // The Copy button uses navigator.clipboard.writeText, which Chromium refuses without an
     // explicit grant even on a same-origin page under test.
     await context.grantPermissions(["clipboard-write"]);
@@ -64,7 +64,7 @@ test("generated code examples and tables remain keyboard-scrollable without Java
   const browser = await chromium.launch();
   try {
     const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
-    await context.route(/fonts\.(googleapis|gstatic)\.com/, route => route.abort());
+    await context.route(/^https:\/\/fonts\.(googleapis|gstatic)\.com\//, route => route.abort());
     const page = await context.newPage();
     await page.goto(baseUrl, { waitUntil: "load" });
     for (const region of await page.locator("pre.dev-code, table.dev-table").all()) {

@@ -519,9 +519,9 @@ function citationKey(slug) {
 }
 
 function bibtexValue(value) {
-  return value
-    .replace(/\\/g, "\\textbackslash{}")
-    .replace(/([{}%&#_$])/g, "\\$1");
+  return value.replace(/[\\{}%&#_$]/g, character =>
+    character === "\\" ? "\\textbackslash{}" : "\\" + character,
+  );
 }
 
 // Values run from "**Key:**" to the next "**Key:**" or the end of the line, so a

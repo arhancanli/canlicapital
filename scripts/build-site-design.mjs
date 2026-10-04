@@ -24,7 +24,11 @@ export function applySiteDesign(html, path) {
   next = next.replace(/<link\b[^>]*href="(?:\/?(?:\.\.\/|\.\/)*css\/)[^"]+"[^>]*>\s*/g, '');
   next = next.replace(/<noscript>\s*<link\b[^>]*href="https:\/\/fonts\.googleapis\.com[^>]*>\s*<\/noscript>\s*/g, '');
   next = next.replace(/<link\b[^>]*href="https:\/\/fonts\.googleapis\.com[^>]*>\s*/g, '');
-  next = next.replace(/<style\b[^>]*>[\s\S]*?<\/style>\s*/g, '');
+  let beforeStyleRemoval;
+  do {
+    beforeStyleRemoval = next;
+    next = next.replace(/<style\b[^>]*>[\s\S]*?<\/style>\s*/gi, '');
+  } while (next !== beforeStyleRemoval);
   // The legacy release pass inserts its theme just before </head>. Remove the
   // whole retired region, including insertion whitespace, so a full rebuild
   // preserves the bytes used by the deployment source-date manifest.

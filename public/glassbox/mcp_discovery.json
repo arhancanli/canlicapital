@@ -43,12 +43,12 @@
       ],
       "dir": "mcp",
       "package": "canli-validation-mcp",
-      "version": "0.11.0",
-      "commit": "1c6668d3f1636563523f3a31ce524484ba463703",
-      "tag": "mcp-v0.11.0",
+      "version": "0.12.0",
+      "commit": "5c0926b814389ca72195bb616f9281f317861e4c",
+      "tag": "mcp-v0.12.0",
       "route": "/mcp-servers/validation",
       "endpoint": "/mcp",
-      "tool_count": 19,
+      "tool_count": 17,
       "tools": [
         {
           "name": "get_key",
@@ -103,12 +103,7 @@
         {
           "name": "audit_backtest",
           "title": "Audit a backtest",
-          "description": "One-call audit of a strategy's returns: deflated Sharpe, minimum track record and, with every variant's returns, the probability of backtest overfitting, each the matching validator's result with its own receipt. Point returns_file at the backtest's CSV or JSON instead of pasting long series. Prefer it to calling the validators one by one; one validation per check. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
-        },
-        {
-          "name": "get_receipt",
-          "title": "Get a receipt",
-          "description": "Fetch a stored verdict by receipt id to re-read it. No key; verify_receipt checks it is genuine. The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json."
+          "description": "One-call audit of a strategy's returns. Headline: one test whose false-positive rate was measured on nine return shapes (Hansen's SPA with variants). Then deflated Sharpe, minimum track record and, with variants, overfitting and out-of-sample decay, each with its receipt, plus fix_next. Send every variant tried (variants_file) so trials are counted; point returns_file at a CSV instead of pasting. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
         },
         {
           "name": "verify_receipt",
@@ -119,11 +114,6 @@
           "name": "service_status",
           "title": "Service status",
           "description": "Whether the validation API is up, with its quotas; check after a timeout before resubmitting. No key. This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built."
-        },
-        {
-          "name": "company_financial_history",
-          "title": "Company financial history (SEC)",
-          "description": "SEC-reported financial history for one company in the canlicapital.com reference, by cik or ticker: without a concept, the histories available; with one, observations newest first with accession, form, filed date and unit, plus the source's SHA-256. For point-in-time values use canli-fundamentals-mcp. Public company accounting reference, not market prices, returns, an investment recommendation, or ALPHAC performance. Validate a separately constructed return series with the validation API; accounting values are not returns."
         },
         {
           "name": "backtest_strategy",

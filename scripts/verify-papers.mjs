@@ -18,6 +18,7 @@ import { IMMUTABLE_PAPER_SHORT_TITLES } from "./paper-presentation.mjs";
 import { normalizeEditableCopy } from "./editable-copy.mjs";
 import { canonicalJson as canonicalJsonShared } from "./canonical-json.mjs";
 import { imageProse } from './lib/image-prose.mjs';
+import { htmlText } from './lib/html-text.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -663,10 +664,10 @@ if (existsSync(founderFile)) {
   const prose = imageProse(founderHtml)
     .replaceAll(forwardReport.generated_at, " ")
     .replaceAll(snapshotTimestamp, " ")
-    .replace(/<script[\s\S]*?<\/script>/g, " ")
-    .replace(/<head>[\s\S]*?<\/head>/g, " ")
-    .replace(/<svg[\s\S]*?<\/svg>/g, " ")
-    .replace(/<pre[\s\S]*?<\/pre>/g, " ");
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<head>[\s\S]*?<\/head>/gi, " ")
+    .replace(/<svg[\s\S]*?<\/svg>/gi, " ")
+    .replace(/<pre[\s\S]*?<\/pre>/gi, " ");
   const datesRemoved = prose.replace(/\b\d{4}-\d{2}-\d{2}\b/g, (d) =>
     renderings.has(d) ? " " : ` UNTRACEABLE_DATE_${d} `,
   );
@@ -1490,7 +1491,7 @@ for (const page of pages) {
     const h1 = (html.match(/<h1 class="paper__title">([\s\S]*?)<\/h1>/) || [])[1];
     check(h1 !== undefined, `${slug} has no paper title heading`);
     if (h1 !== undefined) {
-      const h1Text = h1.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+      const h1Text = htmlText(h1).replace(/\s+/g, " ").trim();
       check(
         h1Text === realTitle,
         `${slug} presents "${h1Text}" as its name but the document is called "${realTitle}". ` +

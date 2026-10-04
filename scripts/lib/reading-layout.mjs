@@ -1,4 +1,5 @@
 // Pure reading/navigation transforms shared by normal and standalone generators.
+import { htmlText, escapeHtml } from './html-text.mjs';
 export const stripReader=html=>html.replace(/ data-reader="[^"]*"/,'').replace(/\n<link rel="stylesheet" href="\/css\/reader-experience.css" \/>/,'').replace(/\n<script type="module" src="\/js\/reader-experience.js"><\/script>/,'').replace(/<!-- reader-index:start -->[\s\S]*?<!-- reader-index:end -->/,'').replace(/ id="reader-section-\d+" data-reader-anchor="true"/g,'').replace(/ tabindex="0" data-reader-focus="true"/g,'').replace(/<dd class="reader-definition-note">(<small>[\s\S]*?<\/small>)<\/dd>/g,'$1');
 
 export function applyReaderPresentation(source,{file,family}) {
@@ -11,8 +12,8 @@ export function applyReaderPresentation(source,{file,family}) {
  let body=match[1].replace(/<h2\b([^>]*)>([\s\S]*?)<\/h2>/g,(all,attrs,label)=>{
   n++;let id=attrs.match(/\bid="([^"]+)"/)?.[1];
   if(!id){id=`reader-section-${n}`;attrs+=` id="${id}" data-reader-anchor="true"`;}
-  const text=label.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
-  if(text)links.push(`<a href="#${id}">${text}</a>`);
+  const text=htmlText(label).replace(/\s+/g,' ').trim();
+  if(text)links.push(`<a href="#${escapeHtml(id)}">${escapeHtml(text)}</a>`);
   return `<h2${attrs}>${label}</h2>`;
  });
  body=body.replace(/<(pre|table)\b([^>]*)>/g,(all,tag,attrs)=>/\btabindex=/.test(attrs)?all:`<${tag}${attrs} tabindex="0" data-reader-focus="true">`);
