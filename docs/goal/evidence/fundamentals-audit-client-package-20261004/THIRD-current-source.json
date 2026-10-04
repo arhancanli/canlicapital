@@ -1,0 +1,673 @@
+{
+  "schema": "canli.third.pr388.narrow-corrected-SOURCE-extension.v1",
+  "sealed_at_utc": "2026-10-04T19:32:16.588423+00:00",
+  "reviewer": "THIRD independent complementary source reviewer",
+  "gate": "NARROW_SOURCE_ONLY",
+  "verdict": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "findings": [],
+  "subject": {
+    "pr": 388,
+    "head": "0c0de2628c6380316eea9aa17d54fa00398d7acb",
+    "tree": "68438ad7fa54a598eb27a94f04de3dcddffc631a",
+    "parents": [
+      "ab84145dc386462237cfb9f836c5e9958da4a4c1"
+    ],
+    "actual_base": "07d0b202b1b4418070abea770a86fefb75e301f1",
+    "signature_native": "G",
+    "clean_native": true,
+    "exact_current_source_manifest": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/source-0c0de262-fundamentals-audit-client-package-v1.json",
+      "bytes": 41832,
+      "sha256": "45eb3a4145abe4f4ae1fdee7596e01cbbdbb62a4ffacd9e7f83a80d4eceaae77"
+    },
+    "retained_signed_handoff": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/secondary-corrected-signed-source-handoff-0c0de262-v1.json",
+      "bytes": 11444,
+      "sha256": "62fe83ac2e8777df50710e16f36d67741de67288b713c8b5393b746d38933e83"
+    }
+  },
+  "independent_native_proof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/independent-0c0de262-narrow-source-Git-byte-mode-prefix-proof-v1.json",
+    "bytes": 47536,
+    "sha256": "55019441567b9390c2b7d9d9c8cd6c5f8c5c89cda18b64151a012fff94ed6886"
+  },
+  "original_immutable_source_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/review-ab84145d-initial-frozen-source-HOLD-v1.json",
+    "bytes": 57354,
+    "sha256": "2a6e303080ff89d57c4adf41f23916fe3e20e3d26caa821f13e89ce3fd4c1da1"
+  },
+  "closed_findings": [
+    {
+      "id": "CC-388-MARKED-GUIDE-REFERENCE-JSON",
+      "disposition": "CLOSED_STATIC_AT_0C0DE262",
+      "evidence": "Entire guide delta is one closing brace inserted at original marked reference byte offset449. New452B reference, unchanged851B usageN6, and unchanged280B settings all parse as native JSON. No helper/test/project execution.",
+      "path": "mcp-fundamentals/AUDIT_INPUTS_CLIENT.md",
+      "frozen_line": 12,
+      "marked_input_pins": [
+        {
+          "label": "REFERENCE",
+          "bytes": 452,
+          "sha256": "697879f174388fe2a093cd27d673901ef82e89b35125299b4f5048e49213e5e3",
+          "native_JSON_parsed": true
+        },
+        {
+          "label": "USAGE",
+          "bytes": 851,
+          "sha256": "998bd4460ddbd524860cae82332e93e46ef794b5ad2a1c4e853919671d702eb1",
+          "native_JSON_parsed": true
+        },
+        {
+          "label": "SETTINGS",
+          "bytes": 280,
+          "sha256": "9d7cb5ee0d7ebd59e8a7b581156e6f4551ab0c5b65b23c75ee85053de99df48d",
+          "native_JSON_parsed": true
+        }
+      ]
+    },
+    {
+      "id": "CC-388-FIXTURE-CLEANUP-AFTER-ASSERTIONS",
+      "disposition": "CLOSED_STATIC_AT_0C0DE262",
+      "also_known_as": "CC-388-FIXTURE-CLEANUP-ON-HOOK-REFUSAL",
+      "evidence": "Only after hook replaced with try/finally. On completed setup fixtureCensus and denials==3 remain required. If before hook failed, the blocked denial-positive test is not treated as executed. Pack1/command<=3 assertions preserved. Native primitive/fetch restoration and original owned recursive removal are in finally; assertions cannot bypass cleanup. Foreign dependency link target is not removed; same guards/caps/once-only pack and command inventory unchanged.",
+      "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+      "frozen_line": 279
+    }
+  ],
+  "narrow_checks": {
+    "exact_four_parent_paths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-fundamentals/AUDIT_INPUTS_CLIENT.md",
+      "mcp-fundamentals/test/audit-inputs-client-package.test.mjs"
+    ],
+    "all11_owned_work_index_frozenGit_bytes_modes": [
+      {
+        "path": "mcp-fundamentals/src/audit-inputs-client.mjs",
+        "bytes": 39509,
+        "sha256": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7",
+        "mode": "100755",
+        "object": "7bd2b362060d8ae475d1be6829912b6de6c3f41d",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": true
+      },
+      {
+        "path": "mcp-fundamentals/AUDIT_INPUTS_CLIENT.md",
+        "bytes": 6752,
+        "sha256": "4e4530c2b11fe0f40fab860188d3edcf5c9a0f16c287a5fdc033b90ce6ed622b",
+        "mode": "100644",
+        "object": "8a32e971c46746be73bb4176cb103b429091ff03",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": false
+      },
+      {
+        "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+        "bytes": 90463,
+        "sha256": "cddad76e0138a4a232659f7b399be52c8e716c9f6bc4c9a7a1ff09a0600c39c2",
+        "mode": "100644",
+        "object": "5530e0cd535eb610dafcf50cc092dfae9cfa83f3",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": false
+      },
+      {
+        "path": "mcp-fundamentals/package.json",
+        "bytes": 1539,
+        "sha256": "a8824bc3e08e50749b7d4bad217a6f6ff0917270acb03699c0917c93c823546d",
+        "mode": "100644",
+        "object": "71b21d39487174b0bfe3421c75299fa342317411",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": true
+      },
+      {
+        "path": "mcp-fundamentals/package-lock.json",
+        "bytes": 6412,
+        "sha256": "7c56649f038d25c4ad474b5c55c28c47cdcc212400273fa29d9a6a4bbe15631b",
+        "mode": "100644",
+        "object": "5301b967ed79d651f01ce34f6532f58fb61fe889",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": true
+      },
+      {
+        "path": "mcp-fundamentals/README.md",
+        "bytes": 15282,
+        "sha256": "28701e7b1db8b754208ff82de83d914ae9d4e4661ea025276c73cde7e77b04e8",
+        "mode": "100644",
+        "object": "b704378b91c4f8a50cf19e43188c4ca92fed177c",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": true
+      },
+      {
+        "path": "mcp-fundamentals/test/audit-package.test.mjs",
+        "bytes": 40144,
+        "sha256": "afbea95d2364e751dc8c4b5e1012564f2961c7c7620634347026c118e7d555dc",
+        "mode": "100644",
+        "object": "022c86d69e62032a190062a28ead3c5492b31bc1",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": true
+      },
+      {
+        "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+        "bytes": 48769,
+        "sha256": "080068cac9285ab6327b180b48e7dbd1ba420c9dd3e2df46a1d02b605691c658",
+        "mode": "100644",
+        "object": "b26fa6d369a78ab2ce5bb0e6eaac84af59537c8b",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": true
+      },
+      {
+        "path": "package.json",
+        "bytes": 15320,
+        "sha256": "eaf96bc941b0bebe8ed893597487c570b9fe3c43594be7772cc52604dabec1db",
+        "mode": "100644",
+        "object": "adb0f2e89927561ae4f68d2e1e47414ed66f80af",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": true
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "bytes": 765521,
+        "sha256": "e86a853e2e44b926ea81b1ec4ad714228aa31aa3fa124cf4669342a5554ef0e0",
+        "mode": "100644",
+        "object": "e7f9d359682849e9f20347f158d0767250b109e9",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": false
+      },
+      {
+        "path": "docs/goal/LOG.md",
+        "bytes": 1591607,
+        "sha256": "b9c1111b131ea05f72c0dbe0ee9898fc382eab6b9a7657a09da5af4366784f5e",
+        "mode": "100644",
+        "object": "3b75dfcbc9d0a6ec3f31c34d3547aefec0f95b29",
+        "work_index_frozenGit_exact": true,
+        "entire_byte_mode_exact_parent": false
+      }
+    ],
+    "full7004_stage0_entire_equal_frozenGit": true,
+    "outside_parent_four7000_Git_identities_exact_originalab": true,
+    "actualbaseprotected6993_Git_identities_bytes": 423969521,
+    "actualbaseprotected_mode_OID_size_all_exact": true,
+    "whole_424MB_physical_audit": false,
+    "all_ten_base_and_parent_goal_wholeprefixes": [
+      {
+        "ancestor": "07d0b202b1b4418070abea770a86fefb75e301f1",
+        "path": "docs/goal/README.md",
+        "prefix_bytes": 6899,
+        "prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "current_bytes": 6899,
+        "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      },
+      {
+        "ancestor": "07d0b202b1b4418070abea770a86fefb75e301f1",
+        "path": "docs/goal/REQUIREMENTS.md",
+        "prefix_bytes": 8758,
+        "prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "current_bytes": 8758,
+        "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      },
+      {
+        "ancestor": "07d0b202b1b4418070abea770a86fefb75e301f1",
+        "path": "docs/goal/STATUS.md",
+        "prefix_bytes": 757639,
+        "prefix_sha256": "aa1ace8ccc9dbb5ecb7b79923ffbef51315d3371da0de626cb29421a340d2a2a",
+        "current_bytes": 765521,
+        "current_sha256": "e86a853e2e44b926ea81b1ec4ad714228aa31aa3fa124cf4669342a5554ef0e0",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      },
+      {
+        "ancestor": "07d0b202b1b4418070abea770a86fefb75e301f1",
+        "path": "docs/goal/PHASES.md",
+        "prefix_bytes": 25963,
+        "prefix_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "current_bytes": 25963,
+        "current_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      },
+      {
+        "ancestor": "07d0b202b1b4418070abea770a86fefb75e301f1",
+        "path": "docs/goal/LOG.md",
+        "prefix_bytes": 1583725,
+        "prefix_sha256": "b909edbc6e3659c90e62827a3ddcda6d9ac3004af9aab6cee7f44be57f584cb7",
+        "current_bytes": 1591607,
+        "current_sha256": "b9c1111b131ea05f72c0dbe0ee9898fc382eab6b9a7657a09da5af4366784f5e",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      },
+      {
+        "ancestor": "ab84145dc386462237cfb9f836c5e9958da4a4c1",
+        "path": "docs/goal/README.md",
+        "prefix_bytes": 6899,
+        "prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "current_bytes": 6899,
+        "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      },
+      {
+        "ancestor": "ab84145dc386462237cfb9f836c5e9958da4a4c1",
+        "path": "docs/goal/REQUIREMENTS.md",
+        "prefix_bytes": 8758,
+        "prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "current_bytes": 8758,
+        "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      },
+      {
+        "ancestor": "ab84145dc386462237cfb9f836c5e9958da4a4c1",
+        "path": "docs/goal/STATUS.md",
+        "prefix_bytes": 760342,
+        "prefix_sha256": "0abde05f1af0a5d84b00820afebd4508ef3a2bbc410fc78034020b107b1388f2",
+        "current_bytes": 765521,
+        "current_sha256": "e86a853e2e44b926ea81b1ec4ad714228aa31aa3fa124cf4669342a5554ef0e0",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      },
+      {
+        "ancestor": "ab84145dc386462237cfb9f836c5e9958da4a4c1",
+        "path": "docs/goal/PHASES.md",
+        "prefix_bytes": 25963,
+        "prefix_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "current_bytes": 25963,
+        "current_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      },
+      {
+        "ancestor": "ab84145dc386462237cfb9f836c5e9958da4a4c1",
+        "path": "docs/goal/LOG.md",
+        "prefix_bytes": 1586428,
+        "prefix_sha256": "706d5a211169a8a8482d3d70aed7685bfcfeffc9a42bec868f4d2638a0d950fb",
+        "current_bytes": 1591607,
+        "current_sha256": "b9c1111b131ea05f72c0dbe0ee9898fc382eab6b9a7657a09da5af4366784f5e",
+        "whole_prefix_exact": true,
+        "independent_whole_prefix_verified": true
+      }
+    ],
+    "guide_one_brace_only": true,
+    "new_test_one_literal_after_hook_replacement_only": true,
+    "all38_names_and_full38_body_suffix_byte_exact_parent": true,
+    "written38_inventory": [
+      {
+        "name": "audit files package: complete ownership-hunk and relocation inverse restores the entire protected client",
+        "bytes": 1073,
+        "sha256": "8e944fc10967c509c44f2765d546da24e3492d7667c1e852f26664b1436fd75c",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: runtime classification changes only root metadata and eleven dev flags with all integrity edges intact",
+        "bytes": 1072,
+        "sha256": "c22a6a95ab367a6f8016b88972967474e29f9cf1055800b472ab37f0ebd39acd",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: exact root-script inverse preserves full verify and the bounded README retains its whole old prefix",
+        "bytes": 740,
+        "sha256": "e1431411cb2d0084e41bfe8877601da0acfd8682a6a7511e1ad33d6b8a728c9b",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: actual raw and admitted captures bind exact sixteen bodies modes four bins and the same gzip",
+        "bytes": 884,
+        "sha256": "e14d857b7967ee667162ee8c72d598c11416fe40469745ce4ea74e17c3c44fb5",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: every JS and MJS static dependency and fixed client dynamic import remains closed",
+        "bytes": 926,
+        "sha256": "3491dde6f7069aff35de5b577dd1aff453ecfd98848299b420416bdfddfdb0cc",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: exported constant from-text is admitted while real reexports are refused",
+        "bytes": 593,
+        "sha256": "8532a9a102468fc4f2eff217d0bdfd8b933479cb439e452ba896ed777374c2e8",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: CRC ISIZE concatenation and trailing bytes refuse before extraction",
+        "bytes": 580,
+        "sha256": "53c0ed60292df6a3112febc40dc5962b2013c2703d70f56c0b3903b91d69b6ef",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: compressed expanded and parser-count bounds refuse before writes",
+        "bytes": 555,
+        "sha256": "97220c1d752cfd7afb9d6175d42390fd7464b3ac2ad56d6a07ff79d6fa87958a",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: checksum-valid high-bit path prefix mode size type and checksum refuse raw ASCII",
+        "bytes": 563,
+        "sha256": "50704ca7483d68ae36178d224e8b67230febcd172de25a02f1cbc18312161c22",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: octal and checksum faults hit their intended admission predicates",
+        "bytes": 426,
+        "sha256": "d39eff0a58c53fabe30da18dc5216844653c16f24ae04fac1827a33ed15a0bc0",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: traversal link nonregular and duplicate headers refuse before fixture writes",
+        "bytes": 802,
+        "sha256": "5de5b68bda246eae3b7713205c15d49144824adc7a63174cba88207f2f79331a",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: missing changed wrong-mode members and altered bins refuse full admission",
+        "bytes": 783,
+        "sha256": "f89c87401ad3211a384ab877d7230ea2540625f65303693e3de4e1fcdaedefd7",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: all three descriptors and individual caps are admitted before any body read",
+        "bytes": 1041,
+        "sha256": "5101ca8832dfbca7721a77f8ff66c579df21f387831436f5b3c2b8a1217b2cc1",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: aggregate short overflow and same-FD mutation controls retain refusal and close all admitted inputs",
+        "bytes": 1140,
+        "sha256": "9e27742382c339a363360717a15dcbe03c160d6ddcfed7854a801756c203e49a",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: close-after-close numeric reuse never retries the foreign descriptor",
+        "bytes": 551,
+        "sha256": "c5e4e37add9993f1b47d179caf85c3c5b8c98ee1029c840564bbdd31430ed4ef",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: one compact request binds original base64 second options full N six statuses and unknowns",
+        "bytes": 1098,
+        "sha256": "fad7cfe7a3945b1894e7bdacf2bc2a5fc43e60fa70f29f3c56e73300927fb13e",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: rehashed selected identity order and denominator tampering never upgrades the compact artifact",
+        "bytes": 538,
+        "sha256": "4303ec7e0af4af1f33fa8c87a999042a34d0467d191834ce56c31e6ffcc8306a",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: rehashed byte bindings rights and source-verification promotions are refused",
+        "bytes": 760,
+        "sha256": "fe1f502685247eddaebc28a7e9c3d229100040f9df9dbf301914a491dafcaedc",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: response graphs with accessors proxies or unbound text refuse without getter effects",
+        "bytes": 678,
+        "sha256": "d463cc8fac1fda01d069aeb8f3a9d9ac19c7dfe8b79b26b870821552fe55a879",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: SAME native adapter handles original startup Promise one wire write and memoized child close",
+        "bytes": 608,
+        "sha256": "dcc869b81024f4322a544973a3a8557fe12fbbd176fc394ded52a6181c58976d",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: serialization crossing the original absolute work deadline performs zero native writes",
+        "bytes": 481,
+        "sha256": "8ec6ffae24959adb480d5d44d421ac7dd78f6886ab2a5a2c44cd44ef4d978bca",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: serialization-triggered sticky abort close and known exit prevent any native write",
+        "bytes": 620,
+        "sha256": "e832249dcb217b3555500b93c98d18637623b41fcc002df7207ddb98b6eab0a2",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: exact native frame capacity admits once while encoded plus-one refuses before write",
+        "bytes": 550,
+        "sha256": "babcc126edb31342d4c38811d9772c6a3e76f77815150803d47a7d3762b72617",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: native stdin backpressure waits one drain and a throwing writer is never retried",
+        "bytes": 476,
+        "sha256": "84828749eaec80db25f38d1e8c8637ca425c15b309920ce4e87bf441965cbe51",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: immediate and delayed original startup rejections are consumed with zero audit writes",
+        "bytes": 756,
+        "sha256": "1da2cf8f2af5523c628922f7bafc44fb426bbd15952e6fc783ecbdb93f2187ac",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: rejection observation precedes fallible child admission and never loses the original outcome",
+        "bytes": 780,
+        "sha256": "9de42b73d16c9c812ba469c028c481da10ed95e06041a0d58e0f8846346911c1",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: delayed SDK task rejection after sticky abort remains handled with no retry",
+        "bytes": 833,
+        "sha256": "10a555f140b86287adfc23ef9e623bf87bc1743090fba75cb4ed7a920d58c44f",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: uncertain child PID or close acknowledgement cannot establish success",
+        "bytes": 564,
+        "sha256": "1026275a8969f2dd1c9efbe0f04498fcaa5cb8d82b5c964829b50b890c11aa3f",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: CLI parsing and package-root capture consume the same pre-input work clock",
+        "bytes": 718,
+        "sha256": "c90e2c3bff5d0489abe44ce87602cc77cdae780d1894d7ffebab7fc2f04ec089",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: backwards and nonfinite clocks refuse before a new input or SDK effect",
+        "bytes": 466,
+        "sha256": "82f819d6b957a1ea25c4eb3f5c4cde86ef61d88e46c30e4318c7132537f27db5",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: final terminal encoding shares the original close reserve and suppresses late success",
+        "bytes": 694,
+        "sha256": "28d31887a9ab1bac4c547bd102ac728d1da8d440f6ffc8c4bc8a3a3a35b1e18c",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: captured terminal writer and caller or process abort are reobserved after serialization",
+        "bytes": 1097,
+        "sha256": "74afbbfbde2bc15389489beb1ab068fcc43b9b687e2f88854d62e678c2e97733",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: terminal drain throw and observed late completion never write a second frame",
+        "bytes": 1139,
+        "sha256": "a9a2cbbbfd0103095a63979d86c409d7544c367609c0154153a7dfad1e8d3499",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: native guards positively deny network foreign writes and unknown child starts",
+        "bytes": 478,
+        "sha256": "1c68142d91013d1c1fce11a3cb7dda71e2efdda4953c9d270062212bfe587d5f",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: malformed bytes oversized stderr and private exceptions remain bounded without echo",
+        "bytes": 841,
+        "sha256": "27d63c9591475b123a091a17bcd7da9bcec3667a818d3f1eae38dfb4b09d19eb",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: command entry1 executes the exact marked packaged guide with one owned child and complete compact parity",
+        "bytes": 339,
+        "sha256": "b0f57b7c4f38be49d633846ec50830a92acaf697f70ffd99dbd1d02a8f1bf7fb",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: command entry2 owned bin symlink preserves exact artifact nulls and known-child closure",
+        "bytes": 355,
+        "sha256": "4e01d7ad42c22e51fd2bbffa31417844a1edb50b90ef544e7d7e5f9f95de9714",
+        "state": "WRITTEN_UNRUN"
+      },
+      {
+        "name": "audit files package: command entry3 bounded server refusal closes the same child without discovery retry or input echo",
+        "bytes": 296,
+        "sha256": "dc1efc435bdd350a18a27d5e0f8bb3fc13e16da6fc250c603ff34092ac27bb92",
+        "state": "WRITTEN_UNRUN"
+      }
+    ],
+    "future_pack_and_command_inventory_exact_parent": {
+      "new_pack_lexical_site": "packOnce: cp.spawn(npm)",
+      "new_command_lexical_site": "actualCommand: cp.spawn(entry)",
+      "new_command_tests": [
+        "audit files package: command entry1 executes the exact marked packaged guide with one owned child and complete compact parity",
+        "audit files package: command entry2 owned bin symlink preserves exact artifact nulls and known-child closure",
+        "audit files package: command entry3 bounded server refusal closes the same child without discovery retry or input echo"
+      ],
+      "max_commands": 3,
+      "guide_is_entry1": true,
+      "native_sdk_injection_actual_children": 0
+    },
+    "runtime_client39509B95fe_entire_byte_mode_exact_parent": true,
+    "old22_old30_union_entire_exact_parent": true,
+    "old57_client_old63_expert_entire_exact_parent": true,
+    "runtime_client_nativewriter_startPromise_clock_unchanged": true,
+    "entire_pkg_pkglock_root2focus_entireverify_exact_parent": true,
+    "sourceowner74_and3_files_disjoint_entire_git_identity_protected": true,
+    "archive_allocation": null,
+    "repository_evidence_writes": 0
+  },
+  "unchanged_semantics_carryforward": {
+    "binding": "Only entire byte-mode-identical sources to originalab carry its completed static review. This receipt independently reviews only corrected guide/after-hook and append-only histories; it does not reexecute or duplicate unchanged semantics.",
+    "original_native_proof": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/independent-ab84145d-native-source-Git-inverse-import-proof-v1.json",
+      "bytes": 187798,
+      "sha256": "82eb7039f345fdf62675b1d09d2a32b8139532e39803e9b1338839357ae00a74"
+    },
+    "original_source_constant_failure_corroboration": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/independent-ab84145d-original-source-constants-and-failure-corroboration-v1.json",
+      "bytes": 15025,
+      "sha256": "befb80ea6d7d54f75c8aa5fb60a41a8ad589a760c9843d8237afd48357681c1a"
+    },
+    "client_original32588Bprotected_inverse_and_lockroot_union": "Established original source proof carried through exact unchanged client/package/lock/root/oldtests; no changed code or expanded authority."
+  },
+  "preserved_history": {
+    "original_ab_SOURCE_verdict": "HOLD preserved, not rewritten",
+    "original_fund308_269PASS39FAIL": "Historical failure preserved, all38 new bodies hookFailed plus afterhook failure; no original SDK/command pass",
+    "current_0c0de262_runtime_and_currentCI": "NOT_REVIEWED_BY_THIS_SOURCE_GATE",
+    "current38_state": "WRITTEN_UNRUN_AT_SOURCE_SEAL; any later actual results require separate retained-currentCI review",
+    "working_corrections_not_approved_outside_this_exact_signedpin": true
+  },
+  "successful_reader": {
+    "recipe": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/inspect-0c0de262-narrow-source-v1.py",
+      "bytes": 11130,
+      "sha256": "38c0cbb3c76c16530a54c80cedb1d104bad6e4738fb6b89a9a9de762f994d9e2"
+    },
+    "AST_inspected_stdlib_native_metadata_JSON_readonlyGit_only": true,
+    "exit": 0,
+    "stdout": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/native-0c0de262-narrow-source-v1-stdout-original.bin",
+      "bytes": 268,
+      "sha256": "575b1596dc964f7fafcb37005de8e5396ae85e84907e15d3211891429fe93804"
+    },
+    "stderr": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/native-0c0de262-narrow-source-v1-stderr-original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "new_metadata_reader_error": null,
+    "old_metadata_reader_stops_external_unchanged": [
+      {
+        "version": 1,
+        "kind": "OWN_METADATA_READER_DIAGNOSTIC_NOT_PRODUCT_OR_RUNTIME_FAILURE",
+        "explanation": "Saved main response is git/ref with object.sha, not top-level sha; corrected additively in v2.",
+        "recipe": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/inspect-ab84145d-frozen-source-v1.py",
+          "bytes": 20223,
+          "sha256": "e8b673e50156b1db21904527d87826fe430f735b9ac8ba66b7fd5d1599325e32"
+        },
+        "stdout": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/native-source-reader-v1-stdout-original.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/native-source-reader-v1-stderr-original.bin",
+          "bytes": 409,
+          "sha256": "3ecdb7ac64ec7a740fe9554481ac6acb550e0f55e3fa7df36d62004de7db8de5"
+        },
+        "originals_preserved": true
+      },
+      {
+        "version": 2,
+        "kind": "OWN_METADATA_READER_DIAGNOSTIC_NOT_PRODUCT_OR_RUNTIME_FAILURE",
+        "explanation": "Moving the sole client dependency to runtime removes empty devDependencies; restore only this original block and original key position for textual inverse; corrected additively in v3.",
+        "recipe": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/inspect-ab84145d-frozen-source-v2.py",
+          "bytes": 20311,
+          "sha256": "ad94ffbd95ffa31e72eec7b940048344ef7ad1a78ba285de4f4094c5127af729"
+        },
+        "stdout": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/native-source-reader-v2-stdout-original.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/native-source-reader-v2-stderr-original.bin",
+          "bytes": 497,
+          "sha256": "d29237ab4e322ea53e6108d2b4c81a36908a7f5c6c919f7907a93f8bfc716319"
+        },
+        "originals_preserved": true
+      },
+      {
+        "version": 3,
+        "kind": "OWN_METADATA_READER_DIAGNOSTIC_NOT_PRODUCT_OR_RUNTIME_FAILURE",
+        "explanation": "Author began authorized goal appends while frozen review was running. Working STATUS/LOG now excluded with evolving guide/test; original frozen Git/index assertions retained; corrected additively in v4.",
+        "recipe": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/inspect-ab84145d-frozen-source-v3.py",
+          "bytes": 20383,
+          "sha256": "22ac24f32731171e11bc63b5a94000205dce698ab06f26988f5ea3cc623133a2"
+        },
+        "stdout": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/native-source-reader-v3-stdout-original.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/native-source-reader-v3-stderr-original.bin",
+          "bytes": 484,
+          "sha256": "9788caf6cad86a261e19a68cf4f5c79677a153ff6c2980ba0375844e923710d1"
+        },
+        "originals_preserved": true
+      }
+    ]
+  },
+  "operations": {
+    "project_import_Node_SDK_test_CLI_pack_install_helper_build": false,
+    "GET_APIrefetch_network": false,
+    "processprobe_projectjob_manualworkflow_rerun_grant": false,
+    "author_source_archive_branch_edits": false,
+    "provider_model_spend_pub": false
+  },
+  "scope_limits": [
+    "SOURCE_ONLY exact0c0de262; static finding closure does not establish current runtime fixture cleanup or successful package/SDK execution.",
+    "No new whole protected physical audit; full Git/index inherited identities and selected owned native bytes verified.",
+    "No currentCI or future candidate/archive/finalhead/READY/ordinarymerge/actualcustody/publication approval.",
+    "ArchiveallocationNULL; four actual separate initial SOURCE/currentCI gates precede any concrete future documentary proposal/allocation."
+  ],
+  "owner_roles": {
+    "PRIMARY": "soleordinarymergepub/guide-release",
+    "SECONDARY": "implementation",
+    "Lead": "soleCPU",
+    "127": "policy unchanged",
+    "THIRD": "independent complementary source/currentCI reviewer"
+  },
+  "all_owner_hierarchy": "ACTIVE",
+  "real_indexing_expert_rights_labels_adoption_qualified_outcomes": null
+}

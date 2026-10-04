@@ -221,3 +221,14 @@ selected denominator, missing roles and unknown human/expert/rights outcomes.
 See [the standalone packaged contract and synthetic SDK workflow](EXPERT_SUBMISSIONS.md).
 The command is not included in the already published `0.5.0` artifact. The default
 seven-tool server and `canli-fundamentals-audit` retain their existing behavior.
+
+
+## Unreleased supplied-file audit client
+
+The candidate package adds `canli-fundamentals-audit-files`, an offline convenience command over the existing compact audit. It preserves all selected rows, exact supplied-byte bindings and unknown outcomes, and closes its one owned stdio child before success. See [the complete fictional file workflow](AUDIT_INPUTS_CLIENT.md). This candidate is not an npm release or an installation/adoption measurement.
+
+```sh
+canli-fundamentals-audit-files --root "$PACKAGE_ROOT" --reference "$REFERENCE" --expected-reference-sha256 "$REFERENCE_SHA256" --usage "$USAGE" --settings "$SETTINGS"
+```
+
+All paths must be absolute; `PACKAGE_ROOT` is this same admitted package and `REFERENCE_SHA256` pins the exact reference bytes. The five flags occur once each. The default seven-tool command and existing audit commands keep their behavior.

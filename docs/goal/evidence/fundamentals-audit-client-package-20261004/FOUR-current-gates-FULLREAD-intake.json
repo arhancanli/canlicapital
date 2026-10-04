@@ -1,0 +1,138 @@
+{
+  "schema": "canli-pr388-four-current-initial-gates-fullread-v1",
+  "utc": "2026-10-04T20:07:32.763610+00:00",
+  "head": "0c0de2628c6380316eea9aa17d54fa00398d7acb",
+  "tree": "68438ad7fa54a598eb27a94f04de3dcddffc631a",
+  "actual_base": "07d0b202b1b4418070abea770a86fefb75e301f1",
+  "state": "ALL_FOUR_ACTUAL_INITIAL_GATES_FULLREAD_ACCEPTED",
+  "gates": [
+    {
+      "role": "PRIMARY",
+      "gate": "SOURCE",
+      "original": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/primary-review-0c0de262-narrow-source-extension-v1.json",
+        "bytes": 71864,
+        "sha256": "2c597574fae900db9c01174dfcd466f7524b3438e49690eb0b5f807ac7626745",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "disposition_key": "result",
+      "literal_disposition": "PASS_NARROW_STATIC_SOURCE_EXTENSION",
+      "findings": [],
+      "fullread_sameFD_hash": true
+    },
+    {
+      "role": "THIRD",
+      "gate": "SOURCE",
+      "original": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/review-0c0de262-narrow-frozen-SOURCE-extension-v1.json",
+        "bytes": 32626,
+        "sha256": "9ba0c2849ce5a94ad85781a336d5c21b10ae99fc721fb36357c3c25d6e396c62",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "disposition_key": "verdict",
+      "literal_disposition": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "findings": [],
+      "fullread_sameFD_hash": true
+    },
+    {
+      "role": "PRIMARY",
+      "gate": "CURRENTCI_ARTIFACT",
+      "original": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/primary-review-0c0de262-retained-current-ci-and-exact16-artifact-v1.json",
+        "bytes": 80612,
+        "sha256": "c9eda74752e0dbf2f62efe097248499de33e2c1d0e7f00ed9bd424f4788f0ef9",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "disposition_key": "state",
+      "literal_disposition": "PASS_EXACT_RETAINED_CURRENT_CI_AND_EXACT16_ARTIFACT_WITH_SCOPE_LIMITS",
+      "findings": [],
+      "fullread_sameFD_hash": true
+    },
+    {
+      "role": "THIRD",
+      "gate": "CURRENTCI_ARTIFACT",
+      "original": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package-peer/review-0c0de262-current-retained-CI-and-exact16-artifact-v1.json",
+        "bytes": 44317,
+        "sha256": "1edee793cf2c9f69c3bfb56bd16624e0c6dc326be223c43d4d6aa88f501973a7",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "disposition_key": "result",
+      "literal_disposition": "PASS_WITH_CURRENT_RETAINED_CI_AND_ARTIFACT_SCOPE_LIMITS",
+      "findings": [],
+      "fullread_sameFD_hash": true
+    }
+  ],
+  "intakes": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/secondary-0c0de262-both-narrow-SOURCE-gates-FULLREAD-intake-v1.json",
+      "bytes": 2643,
+      "sha256": "95924c0171743de75d3aa952de1ffdf382d9041439f4f7f8aa4bd18d93a2f6b8",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/secondary-0c0de262-THIRD-retained-CI-artifact-FULLREAD-intake-v1.json",
+      "bytes": 2114,
+      "sha256": "f85505c09c7946775d96b96e973ccf9594a597dc6d161e99d08d47c70781c0ed",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/secondary-0c0de262-PRIMARY-current-CI-artifact-FULLREAD-intake-v1.json",
+      "bytes": 2922,
+      "sha256": "20586500bfd73f7c37567c38c6268be7efad4455135af92dde1c092b2ac35300",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    }
+  ],
+  "original_reader_stop": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/secondary-0c0de262-fourgate-first-disposition-reader-stop-original-v1.json",
+    "bytes": 869,
+    "sha256": "b280751bc0833814047bac1a2fb23d0f88d0156c20ffc86684296f8048842e36",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "additive_correction": "PRIMARY currentCI uses literal state; no default/coercion or receipt rewriting. Source and currentCI each remain separate peer scopes.",
+  "runtime_scope": {
+    "new_cases": 38,
+    "old_case_sets": [
+      22,
+      30,
+      57,
+      63
+    ],
+    "occurrence": "once MCP zero ROOT",
+    "root": [
+      6,
+      1351,
+      9
+    ],
+    "mcp": [
+      160,
+      1,
+      85,
+      307,
+      183
+    ],
+    "TAP_top_outcomes": 2102,
+    "Node": "22.23.3",
+    "checks": 7,
+    "checks_state": "SUCCESS",
+    "tested": "ab211282499bf0c4a4b3958c5dec1cbbc9760548",
+    "artifact_raw_files": 16,
+    "sdk_entries": 3,
+    "fixture_links_are_install": false
+  },
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "next": "Concrete private bounded documentary proposal; literal PRIMARY allocation required before repository copies. Future signed documentary head and four separate final peer gates, readiness, PRIMARY sole ordinary merge, actual custody remain separate.",
+  "all_owner_hierarchy": "ACTIVE",
+  "actual_outcomes": null,
+  "local_project_execution": false,
+  "API_refetch": false
+}
