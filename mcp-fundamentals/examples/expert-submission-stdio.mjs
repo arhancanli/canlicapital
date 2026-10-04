@@ -346,9 +346,9 @@ export class ExpertSubmissionTransport extends StdioServerTransport {
     this._readBuffer = new ExpertFrameBuffer(message => this.accept(message));
     this._onstdinclose = () => {
       try { this._readBuffer.finish(); } catch { this.diagnostic(); }
-      void this.close();
+      void this.close().catch(() => {});
     };
-    this.onerror = () => { this.diagnostic(); void this.close(); };
+    this.onerror = () => { this.diagnostic(); void this.close().catch(() => {}); };
   }
   accept(message) {
     if (Object.hasOwn(message, 'id')) {
@@ -374,13 +374,22 @@ export class ExpertSubmissionTransport extends StdioServerTransport {
     } : message;
     return this.writer.send(safe, row.scope, { tool: row.method === 'tools/call' && Object.hasOwn(safe, 'result') })
       .then(() => { row.scope.dispose(); this.scopes.delete(message.id); this.responses.delete(message.id); },
-        error => { row.scope.fail(error.code ?? 'WRITE'); this.diagnostic(); void this.close(); throw error; });
+        error => { row.scope.fail(error.code ?? 'WRITE'); this.diagnostic(); void this.close().catch(() => {}); throw error; });
   }
   close() {
     if (!this.closing) {
-      for (const { scope } of this.scopes.values()) { scope.close(); scope.dispose(); }
-      this.scopes.clear(); this.responses.clear();
-      this.closing = super.close();
+      // Publish one closure promise before callbacks can reenter. Pausing the
+      // inherited reader alone leaves a malformed-input child pipe open.
+      let complete; let failed;
+      this.closing = new Promise((resolve, reject) => { complete = resolve; failed = reject; });
+      try {
+        for (const { scope } of this.scopes.values()) { scope.close(); scope.dispose(); }
+        this.scopes.clear(); this.responses.clear();
+        Promise.resolve(super.close()).then(() => {
+          try { this._stdin.destroy(); complete(); }
+          catch { failed(new ExpertStdioError('CLOSE')); }
+        }, () => failed(new ExpertStdioError('CLOSE')));
+      } catch { failed(new ExpertStdioError('CLOSE')); }
     }
     return this.closing;
   }
@@ -389,7 +398,7 @@ export class ExpertSubmissionTransport extends StdioServerTransport {
 export function createExpertSubmissionEndpoint({ input = process.stdin, output = process.stdout, stderr = process.stderr,
   clock = nativeClock, serialize = nativeSerialize, kernel = reconcileExpertSubmissions, decode = nativeDecode } = {}) {
   let transport;
-  const diagnostics = createExpertDiagnostics(stderr, () => { void transport?.close(); });
+  const diagnostics = createExpertDiagnostics(stderr, () => { void transport?.close().catch(() => {}); });
   transport = new ExpertSubmissionTransport(input, output, { clock, serialize, diagnostic: () => diagnostics.emit() });
   const server = new Server({ name: 'canli-expert-submission-stdio-example', version: '0.0.0', title: 'Repository expert-submission audit' }, {
     capabilities: { tools: { listChanged: false } },
@@ -408,7 +417,7 @@ export function createExpertSubmissionEndpoint({ input = process.stdin, output =
     if (Buffer.byteLength(JSON.stringify(projected)) > EXPERT_STDIO_LIMITS.toolResultBytes) refuse('TOOL_RESULT_BOUND');
     scope.observe(); return projected;
   });
-  server.onerror = () => { diagnostics.emit(); void transport.close(); };
+  server.onerror = () => { diagnostics.emit(); void transport.close().catch(() => {}); };
   return { server, transport, diagnostics };
 }
 

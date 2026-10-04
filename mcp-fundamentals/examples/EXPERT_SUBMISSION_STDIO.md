@@ -105,6 +105,9 @@ server admits its native read buffer before copying an overflowing chunk, uses
 fatal UTF8 decoding and closes on malformed or unterminated frames. It supports
 at most 16 pending request IDs and refuses duplicate pending IDs. This is a
 bounded persistent stdio session, not an external process census.
+Memoized transport closure also destroys its owned input stream; merely pausing
+that pipe can leave a child alive after malformed input. The parent still
+observes the captured child's terminal state and PID absence separately.
 
 Report size is separate from actual wire size: JSON escaping and the two public
 copies both count. Oversized batches/results fail whole; no fields are removed
@@ -224,7 +227,9 @@ try {
   assert.deepEqual(listed.tools[0], JSON.parse(JSON.stringify(EXPERT_TOOL)));
   const outcome = await bounded(client.callTool({ name: EXPERT_TOOL.name, arguments: args },
     { toolDefinition: listed.tools[0], signal: abort.signal, timeout: Math.max(1, scope.remaining()) }), scope.remaining());
-  scope.observe(); assert.equal(outcome.kind, 'complete'); result = outcome.result;
+  scope.observe();
+  assert.ok(!Object.hasOwn(outcome, 'resultType') || outcome.resultType === 'complete');
+  result = outcome; // Locked legacy callTool returns the complete result itself.
   assert.equal(result.isError, undefined);
   assert.deepEqual(JSON.parse(result.content[0].text), result.structuredContent);
   assert.deepEqual(result.structuredContent, expected);

@@ -205,8 +205,10 @@ async function ownedWorkflow(kind) {
       const outcome = await boundedPromise(client.callTool({ name: EXPERT_TOOL.name, arguments: args }, {
         toolDefinition: listed.tools[0], signal: abort.signal, timeout: Math.max(1, scope.remaining()),
       }), scope.remaining()); scope.observe();
-      assert.equal(outcome.kind, 'complete');
-      assert.deepEqual(payload(outcome.result), expected); unknown(outcome.result.structuredContent);
+      // Locked legacy callTool returns the complete result itself, not the
+      // wire codec's internal kind/result wrapper.
+      assert.ok(!Object.hasOwn(outcome, 'resultType') || outcome.resultType === 'complete');
+      assert.deepEqual(payload(outcome), expected); unknown(outcome.structuredContent);
       const requests = wire.map(frame => JSON.parse(frame));
       assert.equal(requests.filter(row => row.method === 'initialize').length, 1);
       assert.equal(requests.filter(row => row.method === 'tools/list').length, 1);
@@ -616,4 +618,18 @@ test('expert stdio: fixture byte snapshots admit a bounded regular FD and refuse
     assert.throws(() => readSnapshot(alias, bytes.length)); assert.throws(() => readSnapshot(filename, bytes.length - 1));
     assert.equal(sha(readSnapshot(filename, bytes.length)), sha(bytes));
   } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+test('expert stdio: memoized transport closure destroys the owned input once and settles a pending writer', async () => {
+  const input = new PassThrough(); const output = new Output(() => false); const stderr = new Output();
+  const destroy = input.destroy.bind(input); let destroys = 0;
+  input.destroy = (...args) => { destroys++; return destroy(...args); };
+  const { transport } = createExpertSubmissionEndpoint({ input, output, stderr });
+  transport.accept({ jsonrpc: '2.0', id: 1, method: 'tools/list' });
+  const pending = transport.send({ jsonrpc: '2.0', id: 1, result: { tools: [] } });
+  const rejection = assert.rejects(pending, error => error.code === 'CLOSED');
+  const first = transport.close(); assert.equal(transport.close(), first);
+  await first; await rejection;
+  assert.equal(input.destroyed, true); assert.equal(destroys, 1);
+  await transport.close(); assert.equal(destroys, 1); assert.equal(output.frames.length, 1);
+  assert.equal(output.listenerCount('drain'), 0); assert.equal(output.listenerCount('close'), 0);
 });
