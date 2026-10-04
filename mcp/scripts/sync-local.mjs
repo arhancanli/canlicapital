@@ -37,6 +37,8 @@ export const LOCAL_FILES = [
   "js/series-summary-core.js",
   "js/stress-core.js",
   "js/feasibility-core.js",
+  "js/audit-core.js",
+  "js/null-zoo-v1-sizes.js",
   "api/_lib/limits.js",
   "standards/paper-evidence/schema.json",
 ];

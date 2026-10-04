@@ -114,7 +114,6 @@ export const EXAMPLE_ARGS = Object.freeze({
   validate_haircut_sharpe: { observed_sharpe_annualized: 1.5, periods_per_year: 252, observations: 1260, tests: 50 },
   validate_luck_trials: { observed_sharpe_annualized: 1.5, periods_per_year: 252, observations: 1260 },
   audit_backtest: { returns_file: "backtest_returns.csv", periods_per_year: 252, effective_independent_trials: 20, cross_trial_sharpe_sd_annualized: 0.5 },
-  get_receipt: { id: "0123456789abcdef01234567" },
   verify_receipt: { id: "0123456789abcdef01234567" },
   service_status: {},
   company_financial_history: { ticker: "AAPL", concept: "Assets", limit: 8 },

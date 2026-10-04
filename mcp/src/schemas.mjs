@@ -40,7 +40,7 @@ export const FIELD_DESCRIPTIONS = Object.freeze({
   record_observations: "Record length so far, for its probabilistic Sharpe.",
   label: "Name for the key.",
   receipt_id: "Receipt id from a validation result.",
-  receipt_object: "A receipt as get_receipt returns it, to verify without fetching.",
+  receipt_object: "A receipt object, to verify without fetching.",
   cik: "SEC CIK; send cik or ticker.",
   ticker: "Ticker such as AAPL; send ticker or cik.",
   concept: "us-gaap concept such as Assets; omit to list them.",
@@ -238,8 +238,8 @@ export const auditBacktestToolShape = z
     returns_file: z.string().min(1).max(4096).optional().describe(d.returns_file),
     returns_column: z.union([z.string().min(1).max(200), z.number().int().min(1)]).optional().describe(d.returns_column),
     periods_per_year: z.number().min(1).max(10000).describe(d.periods_per_year),
-    effective_independent_trials: z.number().int().min(2).max(10000000).describe(d.effective_independent_trials),
-    cross_trial_sharpe_sd_annualized: z.number().min(0).max(10).describe(d.cross_trial_sharpe_sd_annualized),
+    effective_independent_trials: z.number().int().min(2).max(10000000).optional().describe(`${d.effective_independent_trials} Optional with variants: counted from them, and the larger number is used.`),
+    cross_trial_sharpe_sd_annualized: z.number().min(0).max(10).optional().describe(`${d.cross_trial_sharpe_sd_annualized} Optional with variants: measured from them, and the larger is used.`),
     benchmark_sharpe_annualized: z.number().min(-10).max(10).optional().describe(d.benchmark_sharpe_annualized),
     confidence: z.number().gt(0).lt(1).optional().describe(d.confidence),
     variants: z.array(z.array(z.number()).max(200)).min(2).max(20000).optional().describe(d.variants),
@@ -253,7 +253,9 @@ export const auditBacktestToolShape = z
 export const auditBacktestInput = auditBacktestToolShape
   .refine((v) => (v.returns === undefined) !== (v.returns_file === undefined), "Send exactly one of returns or returns_file")
   .refine((v) => v.variants === undefined || v.variants_file === undefined, "Send variants or variants_file, not both")
-  .refine((v) => v.returns_column === undefined || v.returns_file !== undefined, "returns_column applies only to returns_file");
+  .refine((v) => v.returns_column === undefined || v.returns_file !== undefined, "returns_column applies only to returns_file")
+  .refine((v) => v.variants !== undefined || v.variants_file !== undefined || (v.effective_independent_trials !== undefined && v.cross_trial_sharpe_sd_annualized !== undefined),
+    "Send variants or variants_file, or declare effective_independent_trials and cross_trial_sharpe_sd_annualized");
 
 // ---------------------------------------------------------------------------------------------
 // get_key / get_receipt
@@ -273,12 +275,13 @@ export const getReceiptInput = z
 
 export const emptyInput = z.object({}).strict();
 
-// verify_receipt: a receipt id to fetch, or a receipt already fetched (get_receipt's data), to check
+// verify_receipt: a receipt id to fetch, or a receipt already fetched, to check
 // offline. Advertised flat; the handler enforces exactly one.
 export const verifyReceiptToolShape = z
   .object({
     id: z.string().regex(/^[0-9a-f]{24}$/, "A receipt id is 24 hex characters").optional().describe(d.receipt_id),
     receipt: z.record(z.string(), z.unknown()).optional().describe(d.receipt_object),
+    include_receipt: z.boolean().optional().describe("With id: also return the stored receipt."),
   })
   .strict();
 
@@ -334,7 +337,7 @@ export const REGISTRY_DESCRIPTION_MAX = 100;
 export const TOOL_DESCRIPTIONS = Object.freeze({
   get_key: `Issue a free validation key for this session. Rarely needed: the first validation issues one itself unless CANLI_KEY or local mode is set, and the read tools need none. ${LIMITS_SENTENCES.quotas}`,
   validate_deflated_sharpe: `Deflated Sharpe ratio: the probability (0 to 1) that the selected strategy's Sharpe beats the best that luck gives across the variants tried, with the probabilistic Sharpe and that luck benchmark. Send the seven statistics or a return series. With every variant's returns use validate_overfitting; luck as a trial count, validate_luck_trials; a multiple-testing haircut, validate_haircut_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
-  audit_backtest: `One-call audit of a strategy's returns: deflated Sharpe, minimum track record and, with every variant's returns, the probability of backtest overfitting, each the matching validator's result with its own receipt. Point returns_file at the backtest's CSV or JSON instead of pasting long series. Prefer it to calling the validators one by one; one validation per check. ${LIMITS_SENTENCES.notAdmission}`,
+  audit_backtest: `One-call audit of a strategy's returns. Headline: one test whose false-positive rate was measured on nine return shapes (Hansen's SPA with variants). Then deflated Sharpe, minimum track record and, with variants, overfitting and out-of-sample decay, each with its receipt, plus fix_next. Send every variant tried (variants_file) so trials are counted; point returns_file at a CSV instead of pasting. ${LIMITS_SENTENCES.notAdmission}`,
   validate_overfitting: `Probability of backtest overfitting (0 to 1) by CSCV: how often the in-sample best variant falls below the out-of-sample median. Needs every variant's returns (periods by variants); with summary statistics only, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
   validate_reality_check: `Data-snooping tests on every variant a search tried: Hansen's SPA p-value that the best beat the benchmark only by luck, White's Reality Check, and the variants Romano-Wolf StepM finds better. Send all variants tried, not only the winners. ${LIMITS_SENTENCES.notAdmission}`,
   validate_paper_evidence: `Checks paper-evidence.v0 structure and disclosures. With CANLI_LOCAL=1, record_file reads an export bundle and journal_file verifies signatures, source hashes and recomputed claims. Without a journal, source facts and signatures are unchecked. Local files are never uploaded. ${LIMITS_SENTENCES.scope}`,
@@ -344,7 +347,6 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   validate_track_record: `Minimum track record length (observations and years) for an observed Sharpe to beat a benchmark at a confidence level; with observations, the record's probabilistic Sharpe so far. For live or paper records; to size a backtest for its trials, use validate_backtest_length. ${LIMITS_SENTENCES.notAdmission}`,
   validate_breadth: `Book Sharpe ceiling from adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. For portfolio construction; it validates no single strategy. ${LIMITS_SENTENCES.scope}`,
   verify_receipt: `Verify a receipt offline: its Ed25519 signature against the bundled canlicapital.com key, its output hash and its id. Send an id to fetch it first, or the receipt itself. ${LIMITS_SENTENCES.unsigned}`,
-  get_receipt: `Fetch a stored verdict by receipt id to re-read it. No key; verify_receipt checks it is genuine. ${LIMITS_SENTENCES.unsigned}`,
   service_status: `Whether the validation API is up, with its quotas; check after a timeout before resubmitting. No key. ${LIMITS_SENTENCES.scope}`,
   company_financial_history: `SEC-reported financial history for one company in the canlicapital.com reference, by cik or ticker: without a concept, the histories available; with one, observations newest first with accession, form, filed date and unit, plus the source's SHA-256. For point-in-time values use canli-fundamentals-mcp. ${COMPANY_REFERENCE_BOUNDARY}`,
 });

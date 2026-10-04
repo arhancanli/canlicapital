@@ -1,5 +1,46 @@
 # Changelog
 
+## 0.12.0 (2026-10-04)
+
+- `audit_backtest` opens with a headline: one test, chosen because its false-positive rate was
+  measured before anyone looked at a caller's numbers. Null Zoo v1 (`scripts/research/null-zoo/v1/`)
+  drew 360,000 complete simulated searches (20 strategies, 504 days) from nine return families at
+  four levels of true skill and scored every candidate; the bar (at most 6% false positives at a
+  nominal 5% on every family, at least 45% power at a true Sharpe of 2) and the rule that picks
+  the test were committed before the run (`config/research/null-zoo-v1-prereg.json`).
+  With variants, the headline is White's Reality Check (`reality_check`): in the confirmation run
+  v1b, on fresh seeds and with the bar unchanged, its false-positive rate was between 4.5% and
+  6.4% across the nine families, at a power of 53.5% on i.i.d. normal returns at a true Sharpe of
+  2. It exceeded the bar on ar1 (6.4%), which the result names when the returns look like that.
+  The first run (v1) had listed only Hansen's studentized SPA, the textbook choice; it exceeded
+  the bar on 7 of 9 families there, and measured 4.3% to 12.6% in v1b. Without variants, the
+  headline is luck trials with Lo's autocorrelation correction (`luck_trials_lo`), within the bar
+  except on skew_negative (8.8%), which the result names when the returns look like that.
+  The result states, in one sentence, the measured rate on returns shaped like the caller's (by
+  rules also fixed before the run) and the worst across families. Results:
+  `config/research/null-zoo-v1-evaluation.json` and `config/research/null-zoo-v1b-evaluation.json`.
+- Trials are counted, not only declared. With variants, the deflated Sharpe runs with the larger
+  of the declared count and Li and Ji's effective count of the variants sent, and the larger
+  Sharpe spread, so a search cannot be made to look smaller than it was.
+- New in the result: Lo's autocorrelation-adjusted Sharpe, a stationary-bootstrap 95% interval
+  for the Sharpe, the haircut Sharpe, the minimum backtest length, the selected variant's
+  out-of-sample decay across CSCV splits (median, 10th and 90th percentiles, share below zero,
+  and the out-of-sample on in-sample line; also in `validate_overfitting`), and `fix_next`: at most
+  five next steps, each with a stable id. `CANLI_FULL_ENVELOPE=1` returns every field.
+- The new arithmetic (`js/audit-core.js`) matches statsmodels' Newey-West t and numpy's
+  eigenvalue-based effective trials to 1e-9 on fixed cases (`scripts/research/audit/`).
+- Cheaper. Each check's plain reading is stated once, in `readings`, and local mode's note once:
+  a returns-only audit grows by 111 o200k tokens despite everything above. The default tool list
+  falls from 5,946 to 5,581 tokens, and to 5,445 with a key configured: `get_receipt` is folded
+  into `verify_receipt` (`include_receipt: true` returns the stored receipt), `get_key` is listed
+  only when no key is configured, and `company_financial_history` leaves the default toolsets
+  (`CANLI_TOOLSETS=all` or `company` lists it; canli-fundamentals-mcp covers company data point in
+  time).
+- A later audit check that cannot be reached is now that check's error, not a failed audit.
+- Migration: call `verify_receipt` with `id` and `include_receipt: true` where you called
+  `get_receipt`. The audit's schema is `canli.audit.v2`: `headline`, `fix_next` and `computed` are
+  new, and each check's plain reading is only in `readings`.
+
 ## 0.11.0 (2026-10-03)
 
 - The lab: four tools that compute in the server process, on stdio and on the hosted endpoint,
