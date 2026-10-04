@@ -9,7 +9,8 @@
     "canli-fundamentals-mcp": "src/server.mjs",
     "canli-fundamentals-audit": "src/audit-inputs-stdio.mjs",
     "canli-expert-submission-audit": "src/expert-submission-stdio.mjs",
-    "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs"
+    "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs",
+    "canli-expert-submission-files": "src/expert-submission-files.mjs"
   },
   "engines": {
     "node": ">=20.10"
@@ -19,7 +20,8 @@
     "README.md",
     "AUDIT_INPUTS.md",
     "EXPERT_SUBMISSIONS.md",
-    "AUDIT_INPUTS_CLIENT.md"
+    "AUDIT_INPUTS_CLIENT.md",
+    "EXPERT_SUBMISSION_FILES.md"
   ],
   "scripts": {
     "test": "node --test test/*.test.mjs"

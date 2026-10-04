@@ -232,3 +232,15 @@ canli-fundamentals-audit-files --root "$PACKAGE_ROOT" --reference "$REFERENCE" -
 ```
 
 All paths must be absolute; `PACKAGE_ROOT` is this same admitted package and `REFERENCE_SHA256` pins the exact reference bytes. The five flags occur once each. The default seven-tool command and existing audit commands keep their behavior.
+
+
+### Supplied-file expert reconciliation (Unreleased)
+
+The candidate package command `canli-expert-submission-files` audits caller-owned
+local gold, intake, evidence and reviewer-return files through the unchanged
+expert-submission core. [EXPERT_SUBMISSION_FILES.md](EXPERT_SUBMISSION_FILES.md)
+provides six complete synthetic input blocks and a private exclusive-output
+workflow. The command preserves the full selected denominator, missing-role
+worklists, exact raw bindings and unknown human/expertise/independence/rights
+outcomes. It needs no SDK child or network. This is a source candidate;
+the unchanged `0.5.0` field is not evidence of npm availability or publication.
