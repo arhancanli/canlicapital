@@ -7,7 +7,7 @@ import os
 import re
 from pathlib import Path
 
-from playwright.sync_api import Page, sync_playwright
+from playwright.sync_api import Page, expect, sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -202,13 +202,17 @@ def audit_page(
         assert visual_box and visual_box["width"] >= width * .9, "opening artwork must span the composition"
 
     initial_path = page.locator("#equity-path").get_attribute("d")
-    # The console's own curve button: the sleeve atlas above it has an AlphaForge button too.
-    forge_curve = page.locator('.live-console [data-curve-key="alphaforge"]')
-    forge_curve.click()
-    assert forge_curve.get_attribute("aria-pressed") == "true"
-    assert page.locator("#chart-title").text_content() == "AlphaForge paper equity curve"
+    # Choices must match the current publication, including when a sleeve retires.
+    paper_state = json.loads((ROOT / "public/paper-state.json").read_text())
+    curves = [algorithm for algorithm in paper_state["algorithms"] if len(algorithm.get("live_curve", [])) >= 2]
+    assert page.locator('.live-console [data-curve-key]').evaluate_all("buttons => buttons.map(button => button.dataset.curveKey)") == [algorithm["key"] for algorithm in curves]
+    alternate = next(algorithm for algorithm in curves if algorithm["key"] != "alphac")
+    curve_button = page.locator(f'.live-console [data-curve-key="{alternate["key"]}"]')
+    curve_button.click()
+    expect(curve_button).to_have_attribute("aria-pressed", "true")
+    assert page.locator("#chart-title").text_content() == f'{alternate["name"]} paper equity curve'
     assert page.locator("#equity-path").get_attribute("d") != initial_path
-    assert "curve=alphaforge" in page.url
+    assert f'curve={alternate["key"]}' in page.url
 
     evidence_core = page.locator("#evidence-core")
     evidence_core.scroll_into_view_if_needed()

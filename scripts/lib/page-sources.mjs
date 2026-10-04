@@ -27,7 +27,7 @@ import { EXECUTION_SOURCE_PATHS } from './execution-workflow.mjs';
 // under test.
 // =============================================================================
 export const PAGE_SOURCES = {
-  "/": ["index.html"],
+  "/": ["index.html", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
   "/systems": ["systems.html"],
   "/performance": ["performance.html"],
   "/progress": ["progress.html"],

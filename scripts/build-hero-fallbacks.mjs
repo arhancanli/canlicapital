@@ -20,6 +20,7 @@
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { curveStatistics } from "../js/curve-stats.js";
+import { renderPaperCurveControls } from "./lib/paper-curve-controls.mjs";
 import { formatCompactCurrency } from "../js/format.js";
 import { goalsRemainOpen, humanizeStatus, recordDays, strategiesText, validationLabel, validationReason } from "../js/home-status.js";
 import { dirname, resolve } from "node:path";
@@ -349,6 +350,9 @@ function main() {
     cards: cardFigures(),
   });
   let html = readFileSync(PAGE, "utf8");
+  const curveControls = /(<div\b[^>]*class="console-tabs"[^>]*>)[\s\S]*?(<\/div>)/;
+  if (!curveControls.test(html)) throw new Error("hero fallbacks: paper curve controls are missing");
+  html = html.replace(curveControls, (_, open, close) => `${open}${renderPaperCurveControls(state)}${close}`);
 
   for (const [id, text] of Object.entries(fallbacks)) {
     // These cells are strong, small, time, span and dd. Capture the tag NAME and

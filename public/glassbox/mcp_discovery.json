@@ -43,12 +43,12 @@
       ],
       "dir": "mcp",
       "package": "canli-validation-mcp",
-      "version": "0.12.0",
-      "commit": "5c0926b814389ca72195bb616f9281f317861e4c",
-      "tag": "mcp-v0.12.0",
+      "version": "0.13.0",
+      "commit": "faa425fae4b7c8c0b45f6e91df65927ff6bb7249",
+      "tag": "mcp-v0.13.0",
       "route": "/mcp-servers/validation",
       "endpoint": "/mcp",
-      "tool_count": 17,
+      "tool_count": 19,
       "tools": [
         {
           "name": "get_key",
@@ -134,6 +134,16 @@
           "name": "check_feasibility",
           "title": "Check a plan against broker limits and impact",
           "description": "Check a trading plan before it trades: broker order-rate and minimum-order limits, 2026 US day-trading rules, square-root market impact with crowding, and the capital where costs eat the return. Checks the plan as described against published broker limits and a market-impact model; it never contacts a broker or sees an account."
+        },
+        {
+          "name": "check_leakage",
+          "title": "Check a signal for lookahead",
+          "description": "Does a signal look ahead? plan gives cuts; rerun your code on the first cut rows for each, then compare. Rows that changed used later rows; the result names the pattern and horizon. No code is sent. A pass covers only these cuts: the columns are the caller's, and survivorship, vendor revisions or a leak no cut reaches leave no trace."
+        },
+        {
+          "name": "placebo_test",
+          "title": "Test a research pipeline on placebo data",
+          "description": "Does your pipeline find edges in noise? plan writes placebo files (your data's returns in random orders, so nothing is predictable); run the whole pipeline on real.csv and on each, then compare for a p-value that counts every choice it makes. Beating the placebos shows the pipeline finds more in the real order of the returns than in random orders of the same returns; it does not show the edge survives costs, capacity or the future."
         }
       ]
     },
