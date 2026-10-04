@@ -1,0 +1,18 @@
+{
+  "schema": "THIRD-paper-package-original-metadata-reader-stop-v1",
+  "utc": "2026-10-04T12:16:10.685076+00:00",
+  "original_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-826c2596-source-v1.py",
+    "bytes": 19625,
+    "sha256": "03f1e6ec0fe88758d467bf08b0defbb929a58d7ed2da71424a342ceff0cc9419"
+  },
+  "native_invocation": [
+    "python3",
+    "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-826c2596-source-v1.py"
+  ],
+  "original_tool_chunk": "9a3f52",
+  "exit_code": 1,
+  "tool_reported_output": "Traceback (most recent call last):\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-826c2596-source-v1.py\", line 140, in <module>\n    b, p = readpin(row['working_FULLREAD']['path'], row['working_FULLREAD'])\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-826c2596-source-v1.py\", line 55, in readpin\n    assert p['bytes'] == expected['bytes'] and p['sha256'] == expected['sha256'], str(path)\nAssertionError: /Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/LOG.md\n",
+  "cause": "Owner appended failure continuity after original freeze. Reader incorrectly required evolving current working LOG to equal frozen original. No project source failure, product execution, or CI retry.",
+  "correction": "Additive reader v2 verifies all frozen Git identities/pins and stage0, independently fullreads current selected physical bytes, separately records any authorized evolving owned working differences without approving them. All nonowned selected bytes must still equal frozen Git. No original source/raw/recipe rewritten."
+}
