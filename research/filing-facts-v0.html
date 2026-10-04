@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-design="reader" data-reader="research" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,29 +29,25 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
-<link rel="stylesheet" href="../css/paper.css" />
-<link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"FilingFacts v0: financial reasoning items verified from SEC XBRL data","description":"FilingFacts is a set of 1,882 questions about the annual SEC filings of 402 companies. Every answer is computed from the company's XBRL facts, re-derived by…","url":"https://canlicapital.com/research/filing-facts-v0","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","dateModified":"2026-10-01","image":{"@type":"ImageObject","url":"https://canlicapital.com/og.png","width":1200,"height":630},"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/filing-facts-v0.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Canli FilingFacts v0: financial reasoning items verified from SEC XBRL data","alternateName":"FilingFacts v0","description":"1,882 questions about 402 companies' SEC annual filings, each answer computed from the company's XBRL facts, re-derived by an independent checker, and cited to the filing accession it depends on. Includes unanswerable items and a closed-book versus tool-using baseline.","url":"https://canlicapital.com/research/filing-facts-v0","identifier":"https://canlicapital.com/research/filing-facts-v0","version":"0","datePublished":"2026-09-26","license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"creator":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli","https://orcid.org/0009-0004-4138-7907"]},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"},"keywords":["financial question answering","SEC XBRL","10-K","LLM evaluation","hallucination","financial reasoning benchmark"],"temporalCoverage":"1988-01-14/2026-06-30","measurementTechnique":"Generated from SEC XBRL company facts; every answer re-derived by an independent checker","isBasedOn":"https://www.sec.gov/search-filings/edgar-application-programming-interfaces","variableMeasured":["question","answer","facts","template","hops"],"distribution":[{"@type":"DataDownload","name":"Items (JSON Lines)","contentUrl":"https://canlicapital.com/datasets/filing-facts/v0/filing-facts-v0.jsonl","encodingFormat":"application/jsonl","contentSize":"1663084 bytes"},{"@type":"DataDownload","name":"Gold packet for annotators","contentUrl":"https://canlicapital.com/datasets/filing-facts/v0/gold-packet-v0.json","encodingFormat":"application/json"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"FilingFacts v0 dataset","item":"https://canlicapital.com/research/filing-facts-v0"}]}</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research" data-current="true">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -78,7 +74,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -99,7 +97,7 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content">
+<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">What is in it</a><a href="#reader-section-2">Baseline: gpt-5.4-mini, 150 items, closed book and with a tool</a><a href="#reader-section-3">Download</a><a href="#reader-section-4">License and citation</a><a href="#reader-section-5">Help verify it</a><a href="#reader-section-6">Evidence boundary</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">FilingFacts v0: financial reasoning items verified from SEC XBRL data</h1>
@@ -109,8 +107,8 @@
 Every answer is computed from the company&#39;s XBRL facts, re-derived by an independent checker, and
 cited to the accession number of each filing it depends on, so a model&#39;s answer can be scored
 against the filing rather than against another model.</p>
-<h2>What is in it</h2>
-<table>
+<h2 id="reader-section-1" data-reader-anchor="true">What is in it</h2>
+<!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th>template</th>
@@ -149,7 +147,7 @@ against the filing rather than against another model.</p>
 <td>1</td>
 <td>338</td>
 </tr>
-</tbody></table>
+</tbody></table></div><!-- design-table:end -->
 <p>The items cite 3,024 facts from filings made between 2009-11-20 and 2026-09-11,
 for periods ending between 1988-01-14 and 2026-06-30. Figures on this page are read from
 <a href="/glassbox/datasets/filing-facts-v0.json"><code>/glassbox/datasets/filing-facts-v0.json</code></a>.</p>
@@ -157,8 +155,8 @@ for periods ending between 1988-01-14 and 2026-06-30. Figures on this page are r
 question never mixes a quarter with a year; one value per concept, period end and unit; a period
 whose annual filings disagree on the value is dropped as ambiguous; an unanswerable item claims
 absence only from the company&#39;s XBRL filings.</p>
-<h2>Baseline: gpt-5.4-mini, 150 items, closed book and with a tool</h2>
-<table>
+<h2 id="reader-section-2" data-reader-anchor="true">Baseline: gpt-5.4-mini, 150 items, closed book and with a tool</h2>
+<!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th></th>
@@ -201,7 +199,7 @@ absence only from the company&#39;s XBRL filings.</p>
 <td>187</td>
 <td>3,833</td>
 </tr>
-</tbody></table>
+</tbody></table></div><!-- design-table:end -->
 <p>By template (accuracy, closed book then with the tool): change 0.0% and 40.0%; lookup 0.0% and 80.0%; net_assets 0.0% and 73.3%; ratio 3.3% and 70.0%; unanswerable 93.3% and 76.7%.</p>
 <p>Accuracy on all items rewards a model that answers &quot;not reported&quot; to everything, because the
 unanswerable items then score. The behaviour rows separate knowing that data is absent from
@@ -212,8 +210,8 @@ rescored, so the effect of the parsing changes is unmeasured. The v1 runner reta
 and source bindings, with full-sample coverage and denominator rules documented in
 <a href="https://github.com/arhancanli/canlicapital/blob/main/scripts/datasets/filing-facts/EVALUATION.md">offline scoring and replay</a>.
 The historical dataset and evaluation files remain unchanged.</p>
-<h2>Download</h2>
-<table>
+<h2 id="reader-section-3" data-reader-anchor="true">Download</h2>
+<!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th>file</th>
@@ -241,22 +239,22 @@ The historical dataset and evaluation files remain unchanged.</p>
 <td>the gold packet annotators fill in</td>
 <td>28 KB</td>
 </tr>
-</tbody></table>
+</tbody></table></div><!-- design-table:end -->
 <p>Checksums: <a href="/datasets/filing-facts/v0/SHA256SUMS">SHA256SUMS</a>. The generator, the independent checker and
 the evaluation harness are in <a href="https://github.com/arhancanli/canlicapital/tree/main/scripts/datasets/filing-facts"><code>scripts/datasets/filing-facts/</code></a>, so
 anyone can rebuild the items from the public company data, including from filings made after a
 model&#39;s training cutoff.</p>
-<h2>License and citation</h2>
+<h2 id="reader-section-4" data-reader-anchor="true">License and citation</h2>
 <p>The items are released under CC BY 4.0. The underlying SEC filings are US public domain.
 Cite as: Arhan Canli (2026), FilingFacts v0: financial reasoning items verified from
 SEC XBRL data, Canli Capital, <a href="https://canlicapital.com/research/filing-facts-v0" rel="noreferrer">canlicapital.com record</a>.</p>
-<h2>Help verify it</h2>
+<h2 id="reader-section-5" data-reader-anchor="true">Help verify it</h2>
 <p>No item has been verified by a person yet (0 of 1,882). The gold packet holds
 50 items stratified by template, and <a href="/annotate">the annotation page</a> walks you through them in
 your browser; <a href="https://github.com/arhancanli/canlicapital/blob/main/scripts/datasets/filing-facts/ANNOTATION_GUIDELINES.md">the annotation guidelines</a>
 say how to check each one against the filing itself. Two annotators fill copies independently, and
 <code>agreement.mjs</code> reports raw agreement and Cohen&#39;s kappa for each judgement.</p>
-<h2>Evidence boundary</h2>
+<h2 id="reader-section-6" data-reader-anchor="true">Evidence boundary</h2>
 <p>The answers are checked against XBRL facts, not against the filings&#39; rendered text, so a filer&#39;s
 tagging error becomes the dataset&#39;s answer. The baseline covers one model on a fixed sample and
 says nothing about other models. Restatement items (first-reported versus later-reported values)
@@ -279,7 +277,7 @@ are planned for a later version.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre><code>@techreport{canli2026filingfactsv0,
+        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026filingfactsv0,
   author      = {Canli, Arhan},
   title       = {FilingFacts v0: financial reasoning items verified from SEC XBRL data},
   institution = {Canli Capital},
@@ -297,7 +295,7 @@ are planned for a later version.</p>
     </footer>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">
@@ -390,12 +388,14 @@ are planned for a later version.</p>
   </div>
   <div class="cc-footer__boundary">
     <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
-    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
-    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-</body>
+
+<script type="module" src="/js/reader-experience.js"></script></body>
 </html>

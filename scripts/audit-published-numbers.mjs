@@ -1,4 +1,5 @@
 import { readSitemapXml } from "./lib/sitemaps.mjs";
+import { publishedArtifactKeys } from "./lib/published-artifact-keys.mjs";
 // =============================================================================
 // CANLI CAPITAL / scripts/audit-published-numbers.mjs
 // -----------------------------------------------------------------------------
@@ -95,7 +96,11 @@ const ISO_DATE = /\b(19|20)\d\d-\d\d-\d\d\b/g;
 // ---------------------------------------------------------------------------
 // The published universe: every number inside every glassbox artifact.
 // ---------------------------------------------------------------------------
-const artifacts = [...walk(resolve(DIST, "glassbox"), ".json"), ...walk(resolve(DIST, "company-data"), ".json")];
+const artifacts = [
+  ...walk(resolve(DIST, "glassbox"), ".json"),
+  ...walk(resolve(DIST, "company-data"), ".json"),
+  ...walk(resolve(DIST, "publication"), ".json"),
+];
 
 // The published data a page renders from is not all under glassbox/. The homepage
 // reads paper-state.json, the public-claims contract, the research index and the
@@ -147,13 +152,9 @@ for (const file of artifacts) {
     /* a non-JSON artifact contributes no container sizes */
   }
   values.sort((a, b) => a - b);
-  // Key by the glassbox-relative name where that applies, and by basename for the
-  // files above, so a page can declare either without knowing where it lives.
-  const key = file.startsWith(resolve(DIST, "glassbox"))
-    ? relative(resolve(DIST, "glassbox"), file)
-    : file.slice(resolve(DIST).length + 1);
-  perArtifact.set(key, { verbatim, labels, values });
-  perArtifact.set(key.split("/").pop(), { verbatim, labels, values });
+  for (const key of publishedArtifactKeys(file, DIST)) {
+    perArtifact.set(key, { verbatim, labels, values });
+  }
 }
 
 /** The whole corpus, used only where a page declares no source. */

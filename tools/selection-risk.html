@@ -1,46 +1,42 @@
 <!doctype html>
-<html lang="en" data-page="selection-risk">
+<html data-design="workbench" lang="en" data-page="selection-risk">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Backtest selection risk simulator | Canli Capital</title>
-<meta name="description" content="A backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it." />
+<meta name="description" content="A free backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it." />
 <link rel="canonical" href="https://canlicapital.com/tools/selection-risk" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="selection_risk_lab_contract.json" />
+<meta name="canli:sources" content="selection_risk_lab_contract.json calculator-defaults/selection-risk.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
 <meta property="og:title" content="Backtest selection risk simulator" />
-<meta property="og:description" content="A backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it." />
+<meta property="og:description" content="A free backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it." />
 <meta property="og:url" content="https://canlicapital.com/tools/selection-risk" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Backtest selection risk simulator" />
-<meta name="twitter:description" content="A backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it." />
+<meta name="twitter:description" content="A free backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Backtest selection risk simulator","alternateName":"Selection Risk Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/selection-risk","description":"A free backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
-<link rel="stylesheet" href="/css/lab.css" />
-<link rel="stylesheet" href="/css/tool-experience.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Backtest selection risk simulator","alternateName":"Selection Risk Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/selection-risk","description":"A backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:end -->
+</head>
 <body class="lab-page">
 <a class="lab-skip" href="#lab">Skip to the lab</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -67,7 +63,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -108,22 +106,22 @@
     <div class="lab-controls">
       <label class="lab-field" for="lab-seed">
     <span class="lab-field__label">Series seed</span>
-    <input id="lab-seed" type="number" value="20260827" min="1" max="999999" step="1" inputmode="numeric" />
+    <input id="lab-seed" type="number" value="20260827" min="1" max="4294967295" step="1" inputmode="numeric">
     <span class="lab-field__note">750 bars, driftless geometric random walk</span>
   </label>
       <label class="lab-field" for="lab-fast">
     <span class="lab-field__label">Fast window</span>
-    <input id="lab-fast" type="number" value="10" min="2" max="60" step="1" inputmode="numeric" />
+    <input id="lab-fast" type="number" value="10" min="2" max="60" step="1" inputmode="numeric">
     <span class="lab-field__note">bars in the fast average</span>
   </label>
       <label class="lab-field" for="lab-slow">
     <span class="lab-field__label">Slow window</span>
-    <input id="lab-slow" type="number" value="50" min="3" max="200" step="1" inputmode="numeric" />
+    <input id="lab-slow" type="number" value="50" min="3" max="200" step="1" inputmode="numeric">
     <span class="lab-field__note">bars in the slow average</span>
   </label>
       <label class="lab-field" for="lab-cost">
     <span class="lab-field__label">Cost</span>
-    <input id="lab-cost" type="number" value="2" min="0" max="100" step="1" inputmode="numeric" />
+    <input id="lab-cost" type="number" value="2" min="0" max="100" step="1" inputmode="numeric">
     <span class="lab-field__note">basis points per unit of turnover</span>
   </label>
       <div class="lab-actions">
@@ -136,30 +134,30 @@
 
     <div class="lab-output">
       <div class="lab-chart-wrap">
-        <svg id="lab-chart" viewBox="0 0 760 260" preserveAspectRatio="none" role="img">
-          <path id="lab-base" class="lab-chart__base" d="" />
-          <path id="lab-path" class="lab-chart__line" d="" />
+        <svg aria-label="Equity curve ending at 0.771" id="lab-chart" viewBox="0 0 760 260" preserveAspectRatio="none" role="img">
+          <path id="lab-base" class="lab-chart__base" d="M0 60.5L760 60.5" />
+          <path id="lab-path" class="lab-chart__line" d="M0.0 60.5L1.1 60.5L2.2 60.5L3.3 60.5L4.3 60.5L5.4 60.5L6.5 60.5L7.6 60.5L8.7 60.5L9.8 60.5L10.9 60.5L12.0 60.5L13.0 60.5L14.1 60.5L15.2 60.5L16.3 60.5L17.4 60.5L18.5 60.5L19.6 60.5L20.7 60.5L21.7 60.5L22.8 60.5L23.9 60.5L25.0 60.5L26.1 60.5L27.2 60.5L28.3 60.5L29.4 60.5L30.4 60.5L31.5 60.5L32.6 60.5L33.7 60.5L34.8 60.5L35.9 60.5L37.0 53.7L38.1 50.5L39.1 42.3L40.2 32.1L41.3 31.2L42.4 23.1L43.5 17.8L44.6 12.8L45.7 8.0L46.8 9.5L47.8 25.6L48.9 25.0L50.0 30.1L51.1 36.4L52.2 30.9L53.3 26.6L54.4 32.6L55.5 31.8L56.5 37.5L57.6 39.1L58.7 54.2L59.8 48.8L60.9 55.3L62.0 52.6L63.1 57.4L64.1 62.6L65.2 64.7L66.3 63.1L67.4 68.0L68.5 68.2L69.6 68.2L70.7 68.2L71.8 68.2L72.8 68.2L73.9 68.2L75.0 68.2L76.1 68.2L77.2 68.2L78.3 68.2L79.4 68.2L80.5 68.2L81.5 68.2L82.6 68.2L83.7 68.2L84.8 68.2L85.9 68.2L87.0 68.2L88.1 68.2L89.2 68.2L90.2 68.2L91.3 68.2L92.4 68.2L93.5 68.2L94.6 68.2L95.7 68.2L96.8 68.2L97.9 68.2L98.9 68.2L100.0 68.2L101.1 68.2L102.2 68.2L103.3 68.2L104.4 68.2L105.5 68.2L106.6 68.2L107.6 68.2L108.7 68.2L109.8 68.2L110.9 68.2L112.0 68.2L113.1 68.2L114.2 68.2L115.3 68.2L116.3 68.2L117.4 68.2L118.5 68.2L119.6 68.2L120.7 68.2L121.8 68.2L122.9 68.2L123.9 68.2L125.0 68.2L126.1 68.2L127.2 68.2L128.3 68.2L129.4 68.2L130.5 68.2L131.6 68.2L132.6 69.0L133.7 73.8L134.8 80.6L135.9 67.5L137.0 65.3L138.1 60.4L139.2 60.1L140.3 71.3L141.3 69.4L142.4 83.7L143.5 85.0L144.6 81.4L145.7 74.5L146.8 73.8L147.9 70.7L149.0 69.9L150.0 70.3L151.1 70.4L152.2 72.4L153.3 74.2L154.4 79.4L155.5 88.8L156.6 92.1L157.7 92.2L158.7 92.2L159.8 92.2L160.9 92.2L162.0 92.2L163.1 92.2L164.2 92.2L165.3 92.2L166.4 92.2L167.4 92.2L168.5 92.2L169.6 92.2L170.7 92.2L171.8 92.2L172.9 92.2L174.0 92.2L175.1 92.2L176.1 92.2L177.2 92.2L178.3 92.2L179.4 92.2L180.5 92.2L181.6 92.2L182.7 92.2L183.7 92.2L184.8 92.2L185.9 92.2L187.0 92.2L188.1 92.2L189.2 89.2L190.3 96.1L191.4 94.8L192.4 92.1L193.5 96.7L194.6 97.9L195.7 103.9L196.8 105.2L197.9 110.7L199.0 118.3L200.1 109.8L201.1 104.5L202.2 108.7L203.3 122.4L204.4 119.5L205.5 130.9L206.6 138.9L207.7 136.3L208.8 136.3L209.8 136.3L210.9 136.3L212.0 136.3L213.1 136.3L214.2 136.3L215.3 136.3L216.4 136.3L217.5 136.3L218.5 136.3L219.6 136.3L220.7 136.3L221.8 136.3L222.9 136.3L224.0 136.3L225.1 136.3L226.2 136.3L227.2 136.3L228.3 136.3L229.4 136.3L230.5 136.3L231.6 136.3L232.7 136.9L233.8 132.6L234.8 131.3L235.9 136.8L237.0 138.6L238.1 139.2L239.2 129.1L240.3 133.7L241.4 135.2L242.5 132.9L243.5 125.4L244.6 115.9L245.7 122.3L246.8 130.3L247.9 132.7L249.0 131.8L250.1 140.1L251.2 141.4L252.2 137.5L253.3 141.5L254.4 151.1L255.5 156.4L256.6 159.7L257.7 158.0L258.8 148.8L259.9 141.6L260.9 139.2L262.0 140.9L263.1 135.1L264.2 132.8L265.3 137.9L266.4 141.5L267.5 144.6L268.6 137.5L269.6 143.4L270.7 142.4L271.8 151.6L272.9 149.3L274.0 155.9L275.1 156.0L276.2 156.0L277.3 156.0L278.3 156.0L279.4 156.0L280.5 156.0L281.6 156.0L282.7 161.6L283.8 154.6L284.9 151.9L286.0 154.1L287.0 159.2L288.1 161.0L289.2 160.3L290.3 165.8L291.4 171.6L292.5 173.6L293.6 174.1L294.6 168.7L295.7 168.6L296.8 168.4L297.9 168.5L299.0 168.5L300.1 168.5L301.2 168.5L302.3 168.5L303.3 172.6L304.4 171.9L305.5 167.8L306.6 174.7L307.7 177.9L308.8 173.6L309.9 176.3L311.0 176.4L312.0 176.4L313.1 176.4L314.2 176.4L315.3 176.4L316.4 176.4L317.5 176.4L318.6 176.4L319.7 176.4L320.7 176.4L321.8 176.4L322.9 176.4L324.0 176.4L325.1 176.4L326.2 176.4L327.3 176.4L328.4 176.4L329.4 176.4L330.5 176.4L331.6 176.4L332.7 176.4L333.8 176.4L334.9 176.4L336.0 176.4L337.1 176.4L338.1 176.4L339.2 176.4L340.3 176.4L341.4 176.4L342.5 176.4L343.6 176.4L344.7 176.4L345.8 176.4L346.8 176.4L347.9 176.4L349.0 176.4L350.1 176.4L351.2 176.4L352.3 176.4L353.4 176.4L354.4 176.4L355.5 176.4L356.6 176.4L357.7 176.4L358.8 176.4L359.9 176.4L361.0 176.4L362.1 176.4L363.1 176.4L364.2 176.4L365.3 176.4L366.4 176.4L367.5 176.4L368.6 176.4L369.7 176.4L370.8 176.4L371.8 176.4L372.9 176.4L374.0 176.4L375.1 167.6L376.2 165.2L377.3 155.4L378.4 155.9L379.5 169.2L380.5 178.4L381.6 175.8L382.7 171.0L383.8 168.1L384.9 175.4L386.0 176.5L387.1 175.7L388.2 180.9L389.2 183.7L390.3 187.7L391.4 184.9L392.5 185.4L393.6 185.5L394.7 185.5L395.8 185.5L396.9 185.5L397.9 185.5L399.0 185.5L400.1 185.5L401.2 185.5L402.3 185.5L403.4 185.5L404.5 185.5L405.6 185.5L406.6 185.5L407.7 185.5L408.8 185.5L409.9 185.5L411.0 185.5L412.1 185.5L413.2 185.5L414.2 187.5L415.3 188.0L416.4 181.4L417.5 175.2L418.6 173.0L419.7 183.6L420.8 188.3L421.9 185.1L422.9 191.3L424.0 191.8L425.1 192.6L426.2 192.2L427.3 184.0L428.4 171.2L429.5 174.3L430.6 175.6L431.6 177.3L432.7 175.8L433.8 171.5L434.9 176.5L436.0 177.2L437.1 178.5L438.2 180.8L439.3 190.0L440.3 190.0L441.4 186.0L442.5 180.1L443.6 188.4L444.7 194.5L445.8 198.7L446.9 205.7L448.0 202.6L449.0 205.6L450.1 205.6L451.2 205.6L452.3 205.6L453.4 205.6L454.5 205.6L455.6 205.6L456.7 205.6L457.7 205.6L458.8 205.6L459.9 205.6L461.0 205.6L462.1 205.6L463.2 205.6L464.3 205.6L465.4 205.6L466.4 205.6L467.5 205.6L468.6 205.6L469.7 205.6L470.8 205.6L471.9 205.6L473.0 205.6L474.0 205.6L475.1 205.6L476.2 205.6L477.3 205.6L478.4 205.6L479.5 205.6L480.6 205.6L481.7 205.6L482.7 205.6L483.8 205.6L484.9 205.6L486.0 205.6L487.1 205.6L488.2 205.6L489.3 205.6L490.4 205.6L491.4 205.6L492.5 205.6L493.6 205.6L494.7 205.6L495.8 205.6L496.9 205.6L498.0 205.6L499.1 205.6L500.1 205.6L501.2 205.6L502.3 205.6L503.4 205.6L504.5 205.6L505.6 205.6L506.7 205.6L507.8 205.6L508.8 205.6L509.9 205.6L511.0 205.6L512.1 205.6L513.2 205.6L514.3 205.6L515.4 205.6L516.5 205.6L517.5 205.6L518.6 205.6L519.7 205.6L520.8 205.6L521.9 205.6L523.0 205.6L524.1 205.6L525.2 205.6L526.2 205.6L527.3 205.6L528.4 205.6L529.5 205.6L530.6 205.6L531.7 212.9L532.8 218.1L533.8 218.2L534.9 218.2L536.0 218.2L537.1 218.2L538.2 218.2L539.3 218.2L540.4 218.2L541.5 218.2L542.5 221.9L543.6 223.4L544.7 225.5L545.8 218.2L546.9 218.5L548.0 214.8L549.1 217.9L550.2 216.9L551.2 213.4L552.3 213.7L553.4 219.4L554.5 224.0L555.6 222.1L556.7 220.9L557.8 211.4L558.9 215.1L559.9 207.9L561.0 210.5L562.1 212.5L563.2 213.4L564.3 215.5L565.4 213.3L566.5 222.9L567.6 227.0L568.6 225.6L569.7 227.1L570.8 226.1L571.9 231.2L573.0 235.1L574.1 228.4L575.2 228.4L576.3 228.4L577.3 228.4L578.4 228.4L579.5 228.4L580.6 228.4L581.7 228.4L582.8 228.4L583.9 228.4L584.9 228.4L586.0 228.4L587.1 228.4L588.2 228.4L589.3 228.4L590.4 228.4L591.5 228.4L592.6 228.4L593.6 228.4L594.7 228.4L595.8 228.4L596.9 228.4L598.0 228.4L599.1 228.4L600.2 228.4L601.3 228.4L602.3 228.4L603.4 228.4L604.5 228.4L605.6 228.4L606.7 228.4L607.8 235.4L608.9 232.3L610.0 237.8L611.0 239.7L612.1 246.0L613.2 244.3L614.3 243.1L615.4 245.2L616.5 245.3L617.6 245.3L618.7 245.3L619.7 245.3L620.8 245.3L621.9 245.3L623.0 245.3L624.1 245.3L625.2 245.3L626.3 245.3L627.4 245.3L628.4 245.3L629.5 245.3L630.6 245.3L631.7 245.3L632.8 245.3L633.9 245.3L635.0 245.3L636.1 245.3L637.1 245.3L638.2 245.3L639.3 245.3L640.4 245.3L641.5 245.3L642.6 245.3L643.7 245.3L644.7 245.3L645.8 245.3L646.9 245.3L648.0 245.3L649.1 245.3L650.2 245.3L651.3 245.3L652.4 245.3L653.4 245.3L654.5 245.3L655.6 245.3L656.7 245.3L657.8 245.3L658.9 245.3L660.0 245.3L661.1 245.3L662.1 245.3L663.2 245.3L664.3 245.3L665.4 245.3L666.5 245.3L667.6 245.3L668.7 245.3L669.8 245.3L670.8 245.3L671.9 245.3L673.0 245.3L674.1 245.3L675.2 245.3L676.3 245.3L677.4 245.3L678.5 245.3L679.5 245.3L680.6 245.3L681.7 245.3L682.8 245.3L683.9 245.3L685.0 245.3L686.1 245.3L687.2 245.3L688.2 245.3L689.3 245.3L690.4 245.3L691.5 245.3L692.6 245.3L693.7 245.3L694.8 245.3L695.9 245.3L696.9 245.3L698.0 245.3L699.1 245.3L700.2 245.3L701.3 245.3L702.4 245.3L703.5 245.3L704.5 245.3L705.6 245.3L706.7 245.3L707.8 245.3L708.9 245.3L710.0 245.3L711.1 245.3L712.2 245.3L713.2 245.3L714.3 245.3L715.4 245.3L716.5 243.6L717.6 246.4L718.7 239.4L719.8 245.0L720.9 247.8L721.9 252.0L723.0 250.4L724.1 241.4L725.2 236.1L726.3 234.7L727.4 233.7L728.5 230.5L729.6 231.3L730.6 229.2L731.7 226.2L732.8 222.4L733.9 220.8L735.0 221.3L736.1 217.2L737.2 218.3L738.3 212.7L739.3 210.5L740.4 212.6L741.5 210.0L742.6 210.6L743.7 209.3L744.8 212.6L745.9 209.3L747.0 219.0L748.0 211.4L749.1 205.4L750.2 197.3L751.3 193.7L752.4 202.0L753.5 201.5L754.6 205.4L755.7 204.4L756.7 201.3L757.8 198.0L758.9 196.3L760.0 189.6" />
         </svg>
-        <p class="lab-causal" id="lab-causal" data-ok="true"></p>
+        <p class="lab-causal" id="lab-causal" data-ok="true">no-lookahead: every decision priced at a strictly later bar</p>
       </div>
       <dl class="lab-stats">
-        <div><dt>Annualised Sharpe</dt><dd id="lab-sharpe">0</dd></div>
-        <div><dt>Max drawdown</dt><dd id="lab-drawdown">0</dd></div>
-        <div><dt>Total return</dt><dd id="lab-total">0</dd></div>
-        <div><dt>Trades</dt><dd id="lab-trades">0</dd></div>
+        <div><dt>Annualised Sharpe</dt><dd id="lab-sharpe">-0.815</dd></div>
+        <div><dt>Max drawdown</dt><dd id="lab-drawdown">39.56%</dd></div>
+        <div><dt>Total return</dt><dd id="lab-total">-22.88%</dd></div>
+        <div><dt>Trades</dt><dd id="lab-trades">23</dd></div>
       </dl>
     </div>
 
     <div class="lab-ledger">
       <h3>Your trial ledger</h3>
       <dl>
-        <div><dt>Distinct settings evaluated</dt><dd id="lab-trials">0</dd></div>
-        <div><dt>Best annualised Sharpe found</dt><dd id="lab-best">0</dd></div>
+        <div><dt>Distinct settings evaluated</dt><dd id="lab-trials">1</dd></div>
+        <div><dt>Best annualised Sharpe found</dt><dd id="lab-best">-0.815</dd></div>
         <div><dt>Sharpe luck alone would find</dt><dd id="lab-luckbar">n/a</dd></div>
         <div><dt>Deflated Sharpe of your best</dt><dd id="lab-dsr">n/a</dd></div>
       </dl>
       <p class="lab-bestparams">Best found at <span id="lab-bestparams">nothing yet</span></p>
-      <p class="lab-verdict" id="lab-verdict" data-state="idle">Move a control to record your first trial.</p>
+      <p class="lab-verdict" id="lab-verdict" data-state="idle">Deflation needs at least two trials to have anything to deflate against. Try another setting.</p>
     </div>
   </section>
 
@@ -200,7 +198,26 @@
       into.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -240,6 +257,7 @@
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
@@ -273,8 +291,9 @@
   </div>
   <div class="cc-footer__boundary">
     <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
-    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
-    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>

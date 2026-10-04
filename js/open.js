@@ -57,7 +57,7 @@ const FILES = {
 // derives from the same log, not the whole thing.
 const TRANSPARENCY_HEAD_ARTIFACT = "/api/v1/chain/head.json";
 
-const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.hasAttribute('data-design');
 
 // The house ease-out, matching --ease-out / scroll.js EASE.out exactly, so the
 // data-viz reveals share the one motion signature with the rest of the manifold.
@@ -327,7 +327,7 @@ function drawCurve(d) {
     };
 
     linePartial(researchPts, rp, "rgba(196,192,184,0.55)", 1.25, false);
-    linePartial(livePts, lp, "#C8553D", 2, true);
+    linePartial(livePts, lp, "#2466BD", 2, true);
   };
 
   // The animated reveal: research draws over ~0.95s, then the live segment over
@@ -970,7 +970,7 @@ function drawCapacityCurve(curve) {
     const reach = progress >= 1 ? segs : segs * progress;
     const whole = Math.floor(reach);
     const partial = reach - whole;
-    ctx.strokeStyle = "#C8553D";
+    ctx.strokeStyle = "#2466BD";
     ctx.lineWidth = 2 * dpr;
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
@@ -995,7 +995,7 @@ function drawCapacityCurve(curve) {
       ctx.font = `${10 * dpr}px ui-monospace, monospace`;
       ctx.textAlign = "center";
       pts.forEach((p) => {
-        ctx.fillStyle = "#C8553D";
+        ctx.fillStyle = "#2466BD";
         ctx.beginPath();
         ctx.arc(px(p.aum), py(p.book), 3.5 * dpr, 0, Math.PI * 2);
         ctx.fill();

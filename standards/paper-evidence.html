@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="standards" lang="en" data-page="standards-paper-evidence">
+<html data-design="chapter" data-reader="standards" lang="en" data-page="standards-paper-evidence">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,30 +20,23 @@
 <meta name="twitter:description" content="A proposed open standard for reporting paper-traded and simulated strategy performance, whose required fields are the ones a performance claim usually omits." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"canli.paper-evidence.v0: an open standard for paper-trading evidence","description":"A proposed open standard for reporting paper-traded and simulated strategy performance, whose required fields are the ones a performance claim usually omits.","url":"https://canlicapital.com/standards/paper-evidence","datePublished":"2026-09-06","dateModified":"2026-10-04","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"image":{"@type":"ImageObject","url":"https://canlicapital.com/og.png","width":1200,"height":630},"license":"https://opensource.org/licenses/MIT"}</script>
+<!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
-<link rel="stylesheet" href="/css/developers.css" />
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"canli.paper-evidence.v0: an open standard for paper-trading evidence","description":"A proposed open standard for reporting paper-traded and simulated strategy performance, whose required fields are the ones a performance claim usually omits.","url":"https://canlicapital.com/standards/paper-evidence","author":{"@id":"https://canlicapital.com/#arhan-canli"},"license":"https://opensource.org/licenses/MIT"}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:end -->
+</head>
 <body class="dev-page">
 <a class="dev-skip skip-link" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -70,7 +63,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -146,7 +141,7 @@
       declare</em>. That second number is the one worth having: a vector failing for an unrelated
       reason looks like a passing test while hiding a rule that does not work.
       <a href="/glassbox/paper_evidence_conformance.json">The receipt</a> is published.</p>
-    <table class="dev-table" tabindex="0" aria-label="Conformance vectors">
+    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0" aria-label="Conformance vectors">
       <thead><tr><th>Vector</th><th>Violates</th><th>Why it matters</th></tr></thead>
       <tbody>
         <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-missing-required-claim-maturity.json"><code>missing-required-claim-maturity</code></a></td><td><code>required: claim_maturity</code></td><td>A record that never says what it fails to establish is the defect this standard exists to prevent.</td></tr>
@@ -162,7 +157,12 @@
         <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-semantic-uncounted-trials.json"><code>semantic-uncounted-trials</code></a></td><td><code>semantic: trials_counted true but trial_count null</code></td><td>Claiming to count trials without a count.</td></tr>
         <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-semantic-reversed-period.json"><code>semantic-reversed-period</code></a></td><td><code>semantic: first_observation after last_observation</code></td><td>A period that runs backwards passes every type check.</td></tr>
       </tbody>
-    </table>
+    </table></div><!-- design-table:end -->
+    <p class="dev-note">To create and check a record from your own supplied paper events,
+      follow the <a href="/mcp-servers/execution">local paper-trading MCP workflow</a>.
+      It connects sizing, order checks, a signed journal and full-bundle verification.
+      The example uses synthetic inputs; a valid record does not establish broker fills
+      or forward performance.</p>
   </section>
 
   <section class="dev-section">
@@ -201,14 +201,14 @@
       <a href="/founder">Arhan Canli</a>.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">
       <span>MCP server</span>
       <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
       <code>npx -y canli-validation-mcp</code>
-      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
     </div>
     <div class="cc-footer__dev-item">
       <span>Open source</span>
@@ -294,8 +294,9 @@
   </div>
   <div class="cc-footer__boundary">
     <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
-    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
-    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>

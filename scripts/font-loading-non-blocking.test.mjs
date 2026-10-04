@@ -7,7 +7,7 @@
 // generator edited without being re-run fails loudly here instead of shipping
 // a render-blocking link.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import test from "node:test";
 
 const FONT_HREF =
@@ -22,8 +22,20 @@ const RENDERED_PAGES = {
 const read = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
 
 for (const [route, path] of Object.entries(RENDERED_PAGES)) {
-  test(`${route}'s googleapis stylesheet link is not render-blocking`, () => {
+  test(`${route}'s fonts use local swapping faces or a nonblocking external loader`, () => {
     const html = read(path);
+    if (!html.includes('fonts.googleapis.com/css')) {
+      assert.ok(html.includes('href="/css/product-shell.css"'), `${route}: the shared font stylesheet is required`);
+      const css = read('../css/design-system.css');
+      for (const family of ['Bricolage Grotesque', 'IBM Plex Mono', 'Inter']) {
+        assert.ok(css.includes(`font-family:'${family}'`) || css.includes(`font-family:${family};`), family);
+      }
+      for (const match of css.matchAll(/src:url\('(\/fonts\/[^']+)'\)[^}]*font-display:swap/g)) {
+        assert.ok(existsSync(new URL('../public' + match[1], import.meta.url)), match[1]);
+      }
+      assert.equal([...css.matchAll(/src:url\('(\/fonts\/[^']+)'\)[^}]*font-display:swap/g)].length, 4);
+      return;
+    }
     assert.ok(html.includes(FONT_HREF), `${route}: expected font stylesheet not found`);
 
     const noscriptFallback = `<noscript><link rel="stylesheet" href="${FONT_HREF}" /></noscript>`;

@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="measurements" lang="en">
+<html data-design="reader" data-reader="measurements" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,29 +22,23 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
-<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"External publication","description":"These are incomplete preparation bundles. No external submission, DOI, peer review, citation, moderation outcome, or independent replication is claimed.","url":"https://canlicapital.com/measurements/external-publication","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/research.json"}}</script>
+<!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"External publication","description":"These are incomplete preparation bundles. No external submission, DOI, peer review, citation, moderation outcome, or independent replication is claimed.","url":"https://canlicapital.com/measurements/external-publication","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/research.json"}}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:end -->
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -71,7 +65,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -307,7 +303,7 @@
 <div class="measure__row"><dt>Released result copies</dt><dd>34</dd></div>
 </dl>
 </section>
-<figure class="measure__tablewrap"><figcaption>Records</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Bundle</th><th scope="col">Checksum bound files</th><th scope="col">Code bindings</th><th scope="col">Environment bindings</th><th scope="col">Passes</th><th scope="col">Pdf pages</th><th scope="col">Recorded hypothesis identities</th><th scope="col">Registry key</th><th scope="col">Released result copies</th><th scope="col">Status</th><th scope="col">Version</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Records</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Bundle</th><th scope="col">Checksum bound files</th><th scope="col">Code bindings</th><th scope="col">Environment bindings</th><th scope="col">Passes</th><th scope="col">Pdf pages</th><th scope="col">Recorded hypothesis identities</th><th scope="col">Registry key</th><th scope="col">Released result copies</th><th scope="col">Status</th><th scope="col">Version</th></tr></thead><tbody>
 <tr><td>publication/crypto-carry/v0.1.0</td><td>31</td><td>10</td><td>2</td><td>yes</td><td>10</td><td>25</td><td>alphaforge_crypto_carry</td><td>9</td><td>BUNDLE_INCOMPLETE</td><td>0.1.0</td></tr>
 <tr><td>publication/alphamax/v0.1.0</td><td>29</td><td>5</td><td>2</td><td>yes</td><td>8</td><td>115</td><td>alphamax_equity_momentum</td><td>7</td><td>BUNDLE_INCOMPLETE</td><td>0.1.0</td></tr>
 <tr><td>publication/alphatrend/v0.1.0</td><td>23</td><td>1</td><td>2</td><td>yes</td><td>6</td><td>21</td><td>alphatrend_managed_futures</td><td>1</td><td>BUNDLE_INCOMPLETE</td><td>0.1.0</td></tr>
@@ -324,7 +320,7 @@
 <tr><td>publication/equity-quality/v0.1.0</td><td>23</td><td>1</td><td>2</td><td>yes</td><td>3</td><td>11</td><td>equity_quality</td><td>1</td><td>BUNDLE_INCOMPLETE</td><td>0.1.0</td></tr>
 <tr><td>publication/equity-value-investment/v0.1.0</td><td>23</td><td>1</td><td>2</td><td>yes</td><td>4</td><td>13</td><td>equity_value_investment</td><td>1</td><td>BUNDLE_INCOMPLETE</td><td>0.1.0</td></tr>
 <tr><td>publication/macro-economic-trend/v0.1.0</td><td>23</td><td>1</td><td>2</td><td>yes</td><td>3</td><td>7</td><td>macro_economic_trend</td><td>1</td><td>BUNDLE_INCOMPLETE</td><td>0.1.0</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <section class="measure__sub"><h4>Source bindings</h4>
 <p class="measure__label">Registry</p><p class="measure__deep">2 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Verifier</p><p class="measure__deep">2 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
@@ -448,10 +444,10 @@
 <div class="measure__row"><dt>Source</dt><dd>Federal Reserve Bank of Philadelphia RTDSM</dd></div>
 <div class="measure__row"><dt>Vintage cutoff inclusive</dt><dd>2026-07-15</dd></div>
 </dl>
-<figure class="measure__tablewrap"><figcaption>Records</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">First observation</th><th scope="col">First vintage</th><th scope="col">Last observation</th><th scope="col">Last vintage</th><th scope="col">Normalized file</th><th scope="col">Normalized sha256</th><th scope="col">Normalized table content hash</th><th scope="col">Official variable page</th><th scope="col">Raw file</th><th scope="col">Raw sha256</th><th scope="col">Resolved download url</th><th scope="col">Rows</th><th scope="col">Series</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Records</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">First observation</th><th scope="col">First vintage</th><th scope="col">Last observation</th><th scope="col">Last vintage</th><th scope="col">Normalized file</th><th scope="col">Normalized sha256</th><th scope="col">Normalized table content hash</th><th scope="col">Official variable page</th><th scope="col">Raw file</th><th scope="col">Raw sha256</th><th scope="col">Resolved download url</th><th scope="col">Rows</th><th scope="col">Series</th></tr></thead><tbody>
 <tr><td>1947-01-01</td><td>1998-11-15</td><td>2026-06-01</td><td>2026-07-15</td><td>PCPI_vintage_long.parquet</td><td>387b8155f73d15a1a6b9ad8a4d3b9315ec03f1c8881f2fae0efe5ddc1290e0a4</td><td>sha256:1e0284a66f96a1ef1799d5854e453ea0fde82fc30b5de880986cc0fc7f51050d</td><td><a href="https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/pcpi" rel="noreferrer">Philadelphia Fed real-time CPI vintage file</a></td><td>pcpiMvMd.xlsx</td><td>11851cd13c73b743bc3be30564fc18283cedd11211a070a3a82ce6b64b6cca10</td><td><a href="https://www.philadelphiafed.org/-/media/FRBP/Assets/Surveys-And-Data/real-time-data/data-files/xlsx/pcpiMvMd.xlsx?sc_lang=en&amp;hash=E41A743DC6423F950B10C3DE7A4F674D" rel="noreferrer">Philadelphia Fed real-time CPI vintage file</a></td><td>317682</td><td>PCPI</td></tr>
 <tr><td>1947-01-01</td><td>1998-11-15</td><td>2026-06-01</td><td>2026-07-15</td><td>PCPIX_vintage_long.parquet</td><td>e764f0b4f68cbc77c2586d4ff9a298ec3ed7a80a5d93bab6216c6461cb6800ca</td><td>sha256:6cc69ec1ac788d0a0cbeb4e2b16034d1bc99670aeaa1a248e0cef4aa7534b70a</td><td><a href="https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/pcpix" rel="noreferrer">Philadelphia Fed real-time core CPI vintage file</a></td><td>pcpixMvMd.xlsx</td><td>dcdab3493a10a880312164f8da7e1ac98c44b5c76080e9314c89dc74c9dd3e38</td><td><a href="https://www.philadelphiafed.org/-/media/FRBP/Assets/Surveys-And-Data/real-time-data/data-files/xlsx/pcpixMvMd.xlsx?sc_lang=en&amp;hash=C6DFB09386E1C79B336AB19F748ADB82" rel="noreferrer">Philadelphia Fed real-time core CPI vintage file</a></td><td>317682</td><td>PCPIX</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 </section>
 <section class="measure__sub"><h4>Source bindings</h4>
 <p class="measure__label">Portable fetcher</p><p class="measure__deep">2 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
@@ -526,21 +522,21 @@
 <div class="measure__row"><dt>Start inclusive</dt><dd>2001-06-27</dd></div>
 <div class="measure__row"><dt>Terms</dt><dd><a href="https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html" rel="noreferrer">legal.yahoo.com record</a></dd></div>
 </dl>
-<figure class="measure__tablewrap"><figcaption>Records</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">First date</th><th scope="col">Last date</th><th scope="col">Normalized sha256</th><th scope="col">Normalized table content hash</th><th scope="col">Raw sha256</th><th scope="col">Resolved download url</th><th scope="col">Rows</th><th scope="col">Symbol</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Records</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">First date</th><th scope="col">Last date</th><th scope="col">Normalized sha256</th><th scope="col">Normalized table content hash</th><th scope="col">Raw sha256</th><th scope="col">Resolved download url</th><th scope="col">Rows</th><th scope="col">Symbol</th></tr></thead><tbody>
 <tr><td>2001-06-27</td><td>2026-08-21</td><td>60fc6da41040bd7f60c82b7b5724408644b320416d676cb5964059631b4046cb</td><td>sha256:a5ee9509e78e9fe8d0d2e182b1af2b128ec8ed0cd82185b8d847a04bdf7de768</td><td>6f96408a2784a135236057d77138eb77cbb485482e2fc63135b71be05e9ef01e</td><td><a href="https://query1.finance.yahoo.com/v8/finance/chart/IWM?period1=993600000&amp;period2=1787356800&amp;interval=1d&amp;events=div%2Csplits" rel="noreferrer">Yahoo Finance chart endpoint for IWM</a></td><td>6325</td><td>IWM</td></tr>
 <tr><td>2001-06-27</td><td>2026-08-21</td><td>6037827cf464b000046b25ab8548aa8c1ba5b62e863cb5af4e3e559f5bdff788</td><td>sha256:c03ddda47d85620c56385d1d953be6d04db0bd22811537a8562e7e994a3bc985</td><td>70f64dd527999fe96e34704463557f8720513fe5897def72462148bf5d2cb3bc</td><td><a href="https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=993600000&amp;period2=1787356800&amp;interval=1d&amp;events=div%2Csplits" rel="noreferrer">Yahoo Finance chart endpoint for SPY</a></td><td>6325</td><td>SPY</td></tr>
 <tr><td>2001-06-27</td><td>2026-08-21</td><td>7650c438af4e3bb8c191ef99d16ffdad8245369369d930c61b64e325a0eccd3a</td><td>sha256:7a88298e03e58c5c337436da66678bfd5527efafa089363e1df395e3fc6669c1</td><td>a9e077628ea9d738906736b39717fec39d89637a7d851c2014bb9aae8f82d54d</td><td><a href="https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=993600000&amp;period2=1787356800&amp;interval=1d&amp;events=div%2Csplits" rel="noreferrer">Yahoo Finance chart endpoint for QQQ</a></td><td>6325</td><td>QQQ</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 </section>
 <p class="measure__label">Market input comparisons</p><p class="measure__deep">Nested beyond what this page renders. <a href="/glassbox/research.json">Read it in the artifact</a>.</p>
-<figure class="measure__tablewrap"><figcaption>Metric comparisons</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Absolute delta</th><th scope="col">Fresh reproduction</th><th scope="col">Metric</th><th scope="col">Published</th><th scope="col">Signed delta</th><th scope="col">Within publication display precision</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Metric comparisons</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Absolute delta</th><th scope="col">Fresh reproduction</th><th scope="col">Metric</th><th scope="col">Published</th><th scope="col">Signed delta</th><th scope="col">Within publication display precision</th></tr></thead><tbody>
 <tr><td>1.736e-6</td><td>0.229834</td><td>net_sharpe</td><td>0.229836</td><td>-1.736e-6</td><td>yes</td></tr>
 <tr><td>4.050e-6</td><td>1.267315</td><td>nw_t</td><td>1.267319</td><td>-4.050e-6</td><td>yes</td></tr>
 <tr><td>2.241e-6</td><td>0.338205</td><td>active_day_net_sharpe_superseded</td><td>0.338207</td><td>-2.241e-6</td><td>yes</td></tr>
 <tr><td>2.698e-6</td><td>0.441001</td><td>gross_sharpe</td><td>0.441004</td><td>-2.698e-6</td><td>yes</td></tr>
 <tr><td>4.109e-6</td><td>-0.020513</td><td>placebo_sharpe</td><td>-0.020517</td><td>4.109e-6</td><td>yes</td></tr>
 <tr><td>2.351e-5</td><td>-0.116986</td><td>placebo_nw_t</td><td>-0.117010</td><td>2.351e-5</td><td>yes</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <section class="measure__sub"><h4>Source bindings</h4>
 <p class="measure__label">Core reproducer</p><p class="measure__deep">2 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Market fetcher</p><p class="measure__deep">2 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
@@ -590,11 +586,11 @@
 <div class="measure__row"><dt>Workspace destroyed after execution</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Workspace outside repository</dt><dd>yes</dd></div>
 </dl>
-<figure class="measure__tablewrap"><figcaption>Records</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Command</th><th scope="col">Exit code</th><th scope="col">Stderr sha256</th><th scope="col">Stdout sha256</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Records</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Command</th><th scope="col">Exit code</th><th scope="col">Stderr sha256</th><th scope="col">Stdout sha256</th></tr></thead><tbody>
 <tr><td>uv run --isolated --script scripts/fetch_rtdsm_cpi_portable.py --output inputs/macro --vintage-cutoff 2026-07-15</td><td>0</td><td>f6a10766bda37c1a677bf5443e699b8d467f9540ac205f3e310c77cba1d9aecc</td><td>b70b26050823efe02c21dc450a7c5b8b50b12d56852e895a89dff3aa78ed0ade</td></tr>
 <tr><td>uv run --isolated --script scripts/fetch_yahoo_iwm_spy_portable.py --output inputs/market --start 2001-06-27 --end-exclusive 2026-08-22</td><td>0</td><td>4da2349642c58d1d06963b1ea4066e37d0b62aafe092b384f2db7b1bb46d3a14</td><td>c0614b1d8715ef66bec6697cb51dc65d9dcdf7e94ef6cc99e77cc436badb26af</td></tr>
 <tr><td>uv run --isolated --script scripts/reproduce_alphavintage_full_decision_portable.py --macro-dir inputs/macro --market-dir inputs/market --book-curve eq=inputs/book/eq.equity.parquet --book-curve mf=inputs/book/mf.equity.parquet --book-curve inv=inputs/book/inv.equity.parquet --output outputs/full_decision.json</td><td>0</td><td>9c898f7fcd29986474e6b0d2655787ee778d0cf95c8b042afba455d2d89354c8</td><td>c3afe037cc5baadd5d044e926a6e02c8f278636db3ebca8c9dba54063ad7eb61</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <p class="measure__label">Workspace file inventory</p><p class="measure__deep">19 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
 </section>
 <section class="measure__sub"><h4>Fresh result</h4>
@@ -626,14 +622,14 @@
 <p class="measure__label">Macro</p><p class="measure__deep">Nested beyond what this page renders. <a href="/glassbox/research.json">Read it in the artifact</a>.</p>
 <p class="measure__label">Market</p><p class="measure__deep">Nested beyond what this page renders. <a href="/glassbox/research.json">Read it in the artifact</a>.</p>
 </section>
-<figure class="measure__tablewrap"><figcaption>Metric comparisons</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Absolute delta</th><th scope="col">Fresh reproduction</th><th scope="col">Metric</th><th scope="col">Published</th><th scope="col">Signed delta</th><th scope="col">Within publication display precision</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Metric comparisons</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Absolute delta</th><th scope="col">Fresh reproduction</th><th scope="col">Metric</th><th scope="col">Published</th><th scope="col">Signed delta</th><th scope="col">Within publication display precision</th></tr></thead><tbody>
 <tr><td>6.328e-7</td><td>0.229837</td><td>net_sharpe</td><td>0.229836</td><td>6.328e-7</td><td>yes</td></tr>
 <tr><td>4.964e-6</td><td>1.267324</td><td>nw_t</td><td>1.267319</td><td>4.964e-6</td><td>yes</td></tr>
 <tr><td>4.177e-7</td><td>0.338208</td><td>active_day_net_sharpe_superseded</td><td>0.338207</td><td>4.177e-7</td><td>yes</td></tr>
 <tr><td>1.625e-7</td><td>0.441004</td><td>gross_sharpe</td><td>0.441004</td><td>1.625e-7</td><td>yes</td></tr>
 <tr><td>2.369e-6</td><td>-0.020515</td><td>placebo_sharpe</td><td>-0.020517</td><td>2.369e-6</td><td>yes</td></tr>
 <tr><td>1.346e-5</td><td>-0.116996</td><td>placebo_nw_t</td><td>-0.117010</td><td>1.346e-5</td><td>yes</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <section class="measure__sub"><h4>Source bindings</h4>
 <p class="measure__label">Benchmark equity curves</p><p class="measure__deep">3 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Published result</p><p class="measure__deep">2 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
@@ -670,7 +666,7 @@
 <div class="measure__row"><dt>Path</dt><dd>data/reproduction/alphatrend_mf_live_fwd_20260823</dd></div>
 <div class="measure__row"><dt>Tree content hash</dt><dd>sha256:d966f1d955810fdc79560b1862a1f669c2b30c683d448d8579a3dce7e5dcd514</dd></div>
 </dl>
-<figure class="measure__tablewrap"><figcaption>Records</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Bytes</th><th scope="col">Path</th><th scope="col">Sha256</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Records</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Bytes</th><th scope="col">Path</th><th scope="col">Sha256</th></tr></thead><tbody>
 <tr><td>16119</td><td>lake_mf/ohlcv_1d/instrument_id=XUSE:CASH:DBAUSD/year=2007/data.parquet</td><td>0734c8a43506d92e81baf0a7fd20165fadfb1db2aa04f6f0156fcdf4ef8b31ef</td></tr>
 <tr><td>16536</td><td>lake_mf/ohlcv_1d/instrument_id=XUSE:CASH:DBAUSD/year=2008/data.parquet</td><td>6c609bae991384ea2d3d76e08dd4786fdcdbf9c791815e52f364f01f005fce83</td></tr>
 <tr><td>16190</td><td>lake_mf/ohlcv_1d/instrument_id=XUSE:CASH:DBAUSD/year=2009/data.parquet</td><td>a0b765eac7cef2f8496385ebac136e75b86af249fbf585d4c74fae9d566ff8ea</td></tr>
@@ -1081,7 +1077,7 @@
 <tr><td>2534</td><td>lake_mf/universe_membership/instrument_id=XUSE:CASH:UUPUSD/year=2007/data.parquet</td><td>d7e291498ea51a0165e6a4bdb489d8a0e558c236a33ef2461126a88d9f1a469e</td></tr>
 <tr><td>37456</td><td>var_mf/experiments.jsonl</td><td>e3153a28bf2f28974744b05aaa67dafec65563213a73137ddd03b957db4c8cb2</td></tr>
 <tr><td>20480</td><td>var_mf/ops.sqlite</td><td>dcadcbce65bd3bedace2261738d80bf8511e1daa61312420e7d29844093c4889</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 </section>
 <section class="measure__sub"><h4>Private reference output</h4>
 <dl class="measure__facts">
@@ -1091,7 +1087,7 @@
 <div class="measure__row"><dt>Path</dt><dd>artifacts/reproduction_private/alphatrend_mf_live_fwd_20260823/reference_output</dd></div>
 <div class="measure__row"><dt>Tree content hash</dt><dd>sha256:a762189de3793b854ffd9912e4134ab8fe9ac572c46e4a772bc77ab3d2a74b13</dd></div>
 </dl>
-<figure class="measure__tablewrap"><figcaption>Records</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Bytes</th><th scope="col">Path</th><th scope="col">Sha256</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Records</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Bytes</th><th scope="col">Path</th><th scope="col">Sha256</th></tr></thead><tbody>
 <tr><td>91159</td><td>equity.parquet</td><td>e3ccf8948e3dd1626d1d7c089d4a301817cc4c7e9b55b87870b305e663669041</td></tr>
 <tr><td>3721</td><td>legs/leg_00/corporate_actions.parquet</td><td>b326c7ab4cf09da69ae53d627cc50492dd08da897b3ac403c9ce59eeaec9ab16</td></tr>
 <tr><td>3737</td><td>legs/leg_00/equity.parquet</td><td>1059437e4f0dd2281aebe538520a12872fc4b6e30134d220acccde02a7462a2b</td></tr>
@@ -1559,7 +1555,7 @@
 <tr><td>414233</td><td>tearsheet.png</td><td>a9aff166b01ddbd996cbd8df603ac7260d429a50a888c1b58fd7bfbd82943f3e</td></tr>
 <tr><td>954</td><td>tearsheet.txt</td><td>ba700490ec3795473ec6db32e393b3f4c77f5ab0523489cc0bb0233e86d74356</td></tr>
 <tr><td>70971</td><td>walkforward.json</td><td>f844254606971b4d9ef41cf6c9c79a13babbb53af409c0e89bf5e3a2c0d08696</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 </section>
 <section class="measure__sub"><h4>Rights and release</h4>
 <dl class="measure__facts">
@@ -1598,7 +1594,7 @@
 <div class="measure__row"><dt>Workspace destroyed after execution</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Workspace outside repository</dt><dd>yes</dd></div>
 </dl>
-<figure class="measure__tablewrap"><figcaption>Records</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Command</th><th scope="col">Exit code</th><th scope="col">Stderr sha256</th><th scope="col">Stderr tail</th><th scope="col">Stdout sha256</th><th scope="col">Stdout tail</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Records</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Command</th><th scope="col">Exit code</th><th scope="col">Stderr sha256</th><th scope="col">Stderr tail</th><th scope="col">Stdout sha256</th><th scope="col">Stdout tail</th></tr></thead><tbody>
 <tr><td>uv sync --frozen</td><td>0</td><td>8d46c944fbfc7a9b41b6ab44b9e0f30ac1048c8dadcbf68fd0721a68dadd881f</td><td>stamps==0.4.5
  + opentimestamps-client==0.7.2
  + osqp==1.1.2
@@ -1671,7 +1667,7 @@
   artifacts   : outputs/mf_live_fwd
 =================================================================
 </td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <p class="measure__label">Replay output inventory</p><p class="measure__deep">467 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Source</p><p class="measure__deep">5 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
 </section>
@@ -1710,7 +1706,7 @@
 <div class="measure__row"><dt>Status</dt><dd>PASS_INTERNAL_AUDIT_REPLAY_NOT_CLEAN_ENVIRONMENT</dd></div>
 <div class="measure__row"><dt>Unique released result objects verified</dt><dd>33</dd></div>
 </dl>
-<figure class="measure__tablewrap"><figcaption>Command receipts</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Command</th><th scope="col">Execution command</th><th scope="col">Returncode</th><th scope="col">Stderr sha256</th><th scope="col">Stdout sha256</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Command receipts</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Command</th><th scope="col">Execution command</th><th scope="col">Returncode</th><th scope="col">Stderr sha256</th><th scope="col">Stdout sha256</th></tr></thead><tbody>
 <tr><td>uv run python scripts/audit_alphatrend_family.py</td><td>uv run python scripts/audit_alphatrend_family.py</td><td>0</td><td>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>659c297bdee7fff3c1a2988a3c118c663b192d5be2d531f60bfcb07070ce429e</td></tr>
 <tr><td>uv run python scripts/audit_crypto_carry_2022_tail.py</td><td>uv run python scripts/audit_crypto_carry_2022_tail.py</td><td>0</td><td>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>59b3a9685e3c75db613097976dd9bd75ba56e708b78e0cbacecfa3bb5a0af052</td></tr>
 <tr><td>uv run python scripts/audit_crypto_carry_first_rebalance_drift.py</td><td>uv run python scripts/audit_crypto_carry_first_rebalance_drift.py</td><td>0</td><td>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>3beefed135322c4617ca5e547eea20423a90b2fb07e02b60a53b6dbacb3616b4</td></tr>
@@ -1724,7 +1720,7 @@
 <tr><td>uv run python scripts/replay_crypto_carry_frozen_inputs.py --seal-existing</td><td>uv run python scripts/replay_crypto_carry_frozen_inputs.py --seal-existing</td><td>0</td><td>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>bad33660d9f783779cb2ad38017839e2c35ad2c83cf31ae620b30663741f0dd1</td></tr>
 <tr><td>uv run python scripts/seal_crypto_carry_replay_correction.py</td><td>uv run python scripts/seal_crypto_carry_replay_correction.py</td><td>0</td><td>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>bf11f9500f2e42b36f17a5528f812bcea129c3f084a6ba88cf6ad9adcb1a4ed0</td></tr>
 <tr><td>uv run python scripts/seal_walkforward_input_snapshot_protocol.py</td><td>uv run python scripts/seal_walkforward_input_snapshot_protocol.py</td><td>0</td><td>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>1335ef7923f1942f92d06fa946697114af505ec1dc817d5335bdda6e06212e0f</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <section class="measure__sub"><h4>Sleeve status</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Alphaforge crypto carry</dt><dd>AUDIT_COMMAND_EXECUTED_ALL_RELEASED_RESULT_HASHES_STABLE</dd></div>
@@ -1769,7 +1765,7 @@
 <div class="measure__row"><dt>Status</dt><dd>PASS_ISOLATED_FROZEN_DEPENDENCY_REPLAY_NOT_PORTABLE_WORKSPACE</dd></div>
 <div class="measure__row"><dt>Unique released result objects verified</dt><dd>33</dd></div>
 </dl>
-<figure class="measure__tablewrap"><figcaption>Command receipts</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Command</th><th scope="col">Execution command</th><th scope="col">Returncode</th><th scope="col">Stderr sha256</th><th scope="col">Stdout sha256</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Command receipts</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Command</th><th scope="col">Execution command</th><th scope="col">Returncode</th><th scope="col">Stderr sha256</th><th scope="col">Stdout sha256</th></tr></thead><tbody>
 <tr><td>uv run python scripts/audit_alphatrend_family.py</td><td>uv run --isolated --frozen python scripts/audit_alphatrend_family.py</td><td>0</td><td>50e4df2e3f109399f912fa6a1173fd0e563a08a1deb2af711daf079b5e328d5d</td><td>659c297bdee7fff3c1a2988a3c118c663b192d5be2d531f60bfcb07070ce429e</td></tr>
 <tr><td>uv run python scripts/audit_crypto_carry_2022_tail.py</td><td>uv run --isolated --frozen python scripts/audit_crypto_carry_2022_tail.py</td><td>0</td><td>93719e439fb7250402fbeae49ccb2adc32be87cc8a1df10f0bbc14c7353928fb</td><td>59b3a9685e3c75db613097976dd9bd75ba56e708b78e0cbacecfa3bb5a0af052</td></tr>
 <tr><td>uv run python scripts/audit_crypto_carry_first_rebalance_drift.py</td><td>uv run --isolated --frozen python scripts/audit_crypto_carry_first_rebalance_drift.py</td><td>0</td><td>7880a22c45b47deb50feba1d5b9c87fbad67d807d969f27cddb61a061732e4b2</td><td>3beefed135322c4617ca5e547eea20423a90b2fb07e02b60a53b6dbacb3616b4</td></tr>
@@ -1783,7 +1779,7 @@
 <tr><td>uv run python scripts/replay_crypto_carry_frozen_inputs.py --seal-existing</td><td>uv run --isolated --frozen python scripts/replay_crypto_carry_frozen_inputs.py --seal-existing</td><td>0</td><td>ce1bfaa2dace764feb8fb27e0d9c3faa2477956c8986fa5f057b93692a6307f3</td><td>bad33660d9f783779cb2ad38017839e2c35ad2c83cf31ae620b30663741f0dd1</td></tr>
 <tr><td>uv run python scripts/seal_crypto_carry_replay_correction.py</td><td>uv run --isolated --frozen python scripts/seal_crypto_carry_replay_correction.py</td><td>0</td><td>c8ad13cc082654f0c89ddaf0a5e2ee3951088692b7c65805238735f840d4a721</td><td>bf11f9500f2e42b36f17a5528f812bcea129c3f084a6ba88cf6ad9adcb1a4ed0</td></tr>
 <tr><td>uv run python scripts/seal_walkforward_input_snapshot_protocol.py</td><td>uv run --isolated --frozen python scripts/seal_walkforward_input_snapshot_protocol.py</td><td>0</td><td>bc5c4acfd457caee07dbeece812dbee8914818d1926cb261f47985ab02e5ddd6</td><td>1335ef7923f1942f92d06fa946697114af505ec1dc817d5335bdda6e06212e0f</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <section class="measure__sub"><h4>Sleeve status</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Alphaforge crypto carry</dt><dd>ISOLATED_FROZEN_DEPENDENCY_AUDIT_EXECUTED_ALL_RELEASED_RESULT_HASHES_STABLE</dd></div>
@@ -1837,7 +1833,7 @@
 </dl>
 </section>
 <p class="measure__prose"><strong>Method.</strong> The revised eight-page AlphaVintage PDF was rasterized with Apple PDFKit and every page was examined in order after its source-evidence correction. The other 15 PDFs are carried forward only because their PDF bytes and page counts exactly match the prior receipt. Every current PDF independently passes machine validation.</p>
-<figure class="measure__tablewrap"><figcaption>Papers</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Bundle</th><th scope="col">Inspection basis</th><th scope="col">Pages inspected</th><th scope="col">Pdf sha256</th><th scope="col">Pdf validation sha256</th><th scope="col">Prior pdf validation sha256</th><th scope="col">Registry key</th><th scope="col">Result</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Papers</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Bundle</th><th scope="col">Inspection basis</th><th scope="col">Pages inspected</th><th scope="col">Pdf sha256</th><th scope="col">Pdf validation sha256</th><th scope="col">Prior pdf validation sha256</th><th scope="col">Registry key</th><th scope="col">Result</th></tr></thead><tbody>
 <tr><td>publication/crypto-carry/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>10</td><td>93c315aebf3262ae195f7475ce668ceed47290c62549ba707cf8544ab795e421</td><td>48a603b78f9568b18c245f9a0c28286edb1277995e0eaa8e77ca8f89e08f77a8</td><td>f41be57dbcbd04f0e72568ccde561cfd4fe6ed06ba29e0c3e1c4d2cafc034c7f</td><td>alphaforge_crypto_carry</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
 <tr><td>publication/alphamax/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>8</td><td>eed32d00c9ed1b3bab146f8a220bd46279f9f56b5db88cd7b22e7b0c81eeaa05</td><td>055ae6bbdc897cffeeca9f39d5b539e52179d01afade2f5f3a620c693fa483f7</td><td>635ed23af6518e2c27782e61dde095e60b8b377dbba3471aa6bff1abcbb28e88</td><td>alphamax_equity_momentum</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
 <tr><td>publication/alphatrend/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>6</td><td>029428552d4fed9e9ea2c79f655c9f239d3546c390f695c42176f4d53fe8ceac</td><td>08ff14b9fca6052f7402a572edd0a084d20bcca788bcdde6259af0f3bcbe57a2</td><td>3e2565edb17422a60bd96c40969f0520866c79e2bc880405852c90cfc3907090</td><td>alphatrend_managed_futures</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
@@ -1854,7 +1850,7 @@
 <tr><td>publication/equity-quality/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>3</td><td>e0a33cf2cb3ca6869e57927f50dffc247aaf5dbb0bdce321567498b84aba1900</td><td>b73b5eea715641d6562604775d40fd57b54f8bd13e9171f514586f9d7130991a</td><td>10914a9184cfc79b14e864f20663b84d4867924ae50255f31217a73b0b4a562c</td><td>equity_quality</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
 <tr><td>publication/equity-value-investment/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>4</td><td>d9823935e464299588b9927869b10dad9cd7a211101986a2fa2b2fcea6eeaacf</td><td>65ba373153b5f6a2478b9c8aa3f642a4a53eda035fcd65c01f2a01a02cc338bd</td><td>5814b70362a26b6d4f49a6360497f79b84b06c1d7e60df8f667c92d57a69edf9</td><td>equity_value_investment</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
 <tr><td>publication/macro-economic-trend/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>3</td><td>7ad1865d7854be839c8b607b0106f7dafd50eb820af3fd4d77fa44b242e81d04</td><td>8c597701c7d36dca680d0254e2fe4effd852176f3ba94c68deaaf3fff5f092f5</td><td>8a6a7b307cb5295f266b76e35a2cffd14a32dbab49ea7773ad6fd864e3a7cec6</td><td>macro_economic_trend</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <section class="measure__sub"><h4>Prior receipt</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Content hash</dt><dd>sha256:45ed2294628bd0bb14fb3594e8e5b084047f7384daecc7c306812ba8dee8c739</dd></div>
@@ -1940,10 +1936,10 @@
 <div class="measure__row"><dt>Replay size</dt><dd>21</dd></div>
 <div class="measure__row"><dt>Source size</dt><dd>22</dd></div>
 </dl>
-<figure class="measure__tablewrap"><figcaption>Current eos intervals</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Effective from</th><th scope="col">Effective to</th><th scope="col">Rank</th><th scope="col">Reason</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Current eos intervals</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Effective from</th><th scope="col">Effective to</th><th scope="col">Rank</th><th scope="col">Reason</th></tr></thead><tbody>
 <tr><td>1580515200000</td><td>1643673600000</td><td>4</td><td>exit_rank_29</td></tr>
 <tr><td>1664582400000</td><td>1669852800000</td><td>6</td><td>exit_rank_32</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <p class="measure__label">Source only</p><ul class="measure__list"><li>BINANCE:PERP:EOSUSDT</li></ul>
 </section>
 <section class="measure__sub"><h4>Reconstruction</h4>
@@ -1983,11 +1979,11 @@
 <p class="measure__label">Replay receipt</p><p class="measure__deep">3 further fields. <a href="/glassbox/research.json">Read them in the artifact</a>.</p>
 </section>
 <section class="measure__sub"><h4>Causal evidence</h4>
-<figure class="measure__tablewrap"><figcaption>Exactly established</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Detail</th><th scope="col">Finding</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Exactly established</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Detail</th><th scope="col">Finding</th></tr></thead><tbody>
 <tr><td>EOS is the sole source-only first-decision member; restoring it to the otherwise current cross-section reproduces all ten historical quantities.</td><td>FIRST_DECISION_MUTABLE_UNIVERSE_CAUSE</td></tr>
 <tr><td>Every comparable order decision price, position mark, funding mark and funding rate is byte-numerically equal. This rules out value drift on overlapping records, not missing rows or membership-state drift.</td><td>OVERLAPPING_EXOGENOUS_MARKS_AND_FUNDING_RATES_EXACT</td></tr>
 <tr><td>The replay records realized_leg_bound on 71 of 224 rebalances; the historical artifact predates and lacks that counter.</td><td>CURRENT_REALIZED_VOL_LEG_EXECUTED</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <p class="measure__label">Missing counterfactual cells</p><ul class="measure__list"><li>historical exact code x historical exact derived-input snapshot</li><li>current code x the same historical exact derived-input snapshot</li><li>historical exact code x current derived-input snapshot</li><li>current code x current derived-input snapshot</li></ul>
 <p class="measure__label">Not identifiable from surviving evidence</p><ul class="measure__list"><li>exact standalone terminal-equity or Sharpe contribution of universe drift</li><li>exact standalone terminal-equity or Sharpe contribution of the realized-vol correction</li><li>interaction contribution between changed holdings, costs, funding, drawdown state and overlay state</li><li>byte-exact source tree used by the historical execution</li></ul>
 <p class="measure__prose"><strong>Recoverability.</strong> The current/current cell exists. The historical/historical output exists, but its exact code and derived inputs do not. Because the missing historical snapshots were never sealed, the other cells cannot now be made exact by rerunning the same command.</p>
@@ -2246,7 +2242,26 @@ artifact the engine wrote.</p>
     </div>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -2286,6 +2301,7 @@ artifact the engine wrote.</p>
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
@@ -2319,8 +2335,9 @@ artifact the engine wrote.</p>
   </div>
   <div class="cc-footer__boundary">
     <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
-    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
-    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>

@@ -1,47 +1,75 @@
-# Canli Capital: the open engine
+# Canli Capital / Open evidence
 
-Historical first-iteration direction. The delivered September 9 candidate uses
-Chakra Petch display type and the original 96-frame glass instrument. See
-[current release handoff](docs/RELEASE-CANDIDATE-2026-09-09.md) and
-[final Figma mapping](docs/FIGMA-DESIGN-SCOPE.md) for verified current state.
+The October 2026 redesign treats finance as something a reader can inspect. The
+opening thesis is **Conviction needs evidence.** Its dimensional illustration uses
+the actual published paper equity curves and declares their paper basis. The story
+moves through the vision, selection bias, trial accounting, failures, forward
+observation, tools, ALPHAC, company provenance and the work still ahead.
 
-Reference: https://unitedcarriers.com/, inspected in Chromium on 2026-09-08. The reference uses a dark immersive opening, an oversized dimensional globe, compact utility navigation, white typography, blue and orange light, and generous white sections. Observed fonts: BT Steinhart, BT Steinhart Mono, Helvetica Neue. Firecrawl captures were unavailable because the account has no credits; browser capture is the evidence. No reference brand assets are reused.
+A light reading surface, midnight opening and footer, blue actions, and ice
+colored evidence planes form one visual vocabulary. Bricolage Grotesque carries
+headings, Inter carries prose, and IBM Plex Mono carries units and source labels.
+All fonts are self hosted with swapping faces and metric matched fallbacks.
+Licenses and source URLs are preserved under `public/fonts` and
+`docs/redesign/font-sources.json`.
 
-![United Carriers browser reference](artifacts/qa/advisor-homepage/united-reference.png)
+## The complete site
 
-## Direction
+The same foundation styles every editable route, including noindex trial records.
+Six families keep distinct jobs: the narrative homepage, chapter hubs, document
+readers, calculator workbenches, developer references, and company filing data.
+The source inventory is `docs/redesign/routes.json`. Immutable original papers and
+checksummed evidence stay preserved; their reading wrappers use the new design.
 
-### Cinematic revision, September 8
+Primary navigation is Research, ALPHAC and Developers. A native Explore disclosure
+keeps the complete route hierarchy and repositories accessible on desktop, phone
+and without JavaScript. Readers have document indexes, spacious prose, complete
+tables, keyboard scrolling and visible source boundaries. Workbenches keep inputs,
+units, results and source context together, with secondary source context in native
+disclosures. The company renderer serves static and hosted pages with the same
+stylesheet and exact source markup.
 
-The reference audit is in `artifacts/reference/united-carriers/DESIGN.md`. The new signature is a continuous cutaway of ALPHAC: one transparent enclosure separates into four actual paper-curve planes as the visitor passes research, observation and publication. This is an original procedural asset, not borrowed freight imagery. The enclosure is illustrative; curves use the published dates and normalized equity. Desktop uses a sticky canvas with scroll-driven camera changes; mobile and reduced motion keep an unpinned static illustration and all chapter copy.
+## Motion and evidence
 
-Palette: carbon #080b10, chalk #f7f8fa, ink #141921, blue #476dff, copper #f4a46b, ice #c6d5ec. Display: uppercase Bricolage Grotesque with restrained width and tight line height. Reading: Inter. Evidence labels: IBM Plex Mono. Layout: asymmetric two-field opening (readable copy / large cutaway), continuous dark research journey, then a white strategy register, dark record, blue developer access, and existing evidence library. Native FAQ disclosures resolve the paper/live, transparency and API questions.
+The homepage separates and traces the evidence process with the existing real
+WebGL renderer. The opening paper planes move with scrolling. The common GSAP
+module animates chapter headings, reading progress, source paths and navigation
+using native scrolling. It never animates numbers. Complete HTML stays visible
+before enhancement. Reduced motion preserves the same copy, source values and
+static diagrams without the moving sequence.
 
-Plan critique: an isolated floating chart would only decorate the prior layout. The revision instead uses the same four planes through three meaningful workflow stages, keeps a visible explanation beside each, and makes the conventional chart directly reachable. No decorative speedometer, fabricated telemetry, endless loading screen or scroll hijacking.
+Research, the open record, performance and six calculator defaults render during
+the build through their existing JavaScript data binders in a local DOM. They read
+captured artifacts and reuse the existing computation cores. This render requires
+no browser binary or external network. Browser enhancement attaches controls and
+can refresh published data afterward. Missing research evidence stops the render;
+it does not create a substitute value. Each calculator publishes its derived
+default display and renderer hash under `public/glassbox/calculator-defaults`,
+retaining its illustrative basis and numerical traceability.
 
-The subject is ALPHAC, Canli Capital's running systematic research engine. The homepage introduces the strategies, shows what is happening, explains the open improvement process, and invites developers to use the validation API. Existing research, tools, methodology, corrections and evidence pages retain their URLs and full content.
+## Source ownership
 
-The signature is an exploded glass view of the actual paper equity curves: separate transparent planes for separate strategies. It conveys the glassbox principle using published data. It is an explanatory perspective illustration, not a conventional comparison chart; the existing interactive console provides that. No decorative returns or invented results.
+`css/design-system.css` owns tokens, type, components, responsive behavior and data
+graphics. `css/story.css` owns homepage composition. `css/page-layouts.css` carries
+only the structural and functional declarations needed by generated markup; its
+migration inputs are in `docs/redesign/layout-sources.json`. Old theme files remain
+historical source and are excluded from editable page delivery.
+`css/product-shell.css` imports the shared foundation.
 
-## Tokens
+Page generators run first. `scripts/build-site-design.mjs` applies the foundation
+and table regions. `scripts/build-static-evidence.mjs` renders data defaults, then
+the design step normalizes their markup. Future changes belong in these sources
+and page generators. The hand authored homepage retains the answer, comparison,
+FAQ and evidence generators' marked regions.
 
-- Carbon #080b10: cinematic opening and footer.
-- Chalk #f7f8fa: editorial background.
-- Ink #141921: body text on light surfaces.
-- Electric blue #476dff: primary actions and AlphaMax.
-- Copper #f4a46b: AlphaTrend.
-- Ice #c6d5ec: AlphaVintage; sea glass #82d2c5: AlphaForge.
-- Existing Bricolage Grotesque for display, Inter for reading, IBM Plex Mono for data. Retain metric matched fallbacks and nonblocking font loading.
-- Generous sections, restrained rounded controls, thin borders, large left aligned display text. A dark opening followed by light strategy pages and a blue developer chapter.
+## Figma
 
-## Structure
+The editable [October page](https://www.figma.com/design/n3MbdBAC6STjHudQocaZa7?node-id=159-2)
+contains desktop and mobile narrative boards, the five other family templates,
+nine bound color variables, five text styles, and Action, Source notice, Evidence
+row and Input field components. Its paper illustration imports the generated
+source SVG. The boards describe the visual system and content hierarchy; route
+screenshots and browser checks document the final implementation.
 
-Opening / strategies / live console / developer API / glassbox introduction / research process / research library / detailed evidence / accountability / release notes.
-
-The first screen answers what the company builds. Strategy rows make the running systems concrete. Developers have a direct route to the existing key issuance and working quickstart. Detailed evidence remains addressable below and through the full site menu.
-
-## Implementation requirements
-
-Keep the existing claim IDs and hydration paths. Generate the hero SVG from paper-state.json on every build; its caption declares the paper basis and source. Reduced motion and mobile render the same static artifact; only capable desktop browsers enhance its perspective. Do not add a renderer dependency. Preserve all existing page routes, API behavior and claim audits. Shared chrome changes must originate in scripts/product-shell.mjs and css/product-shell.css.
-
-All sections must be visible without JavaScript. Navigation, focus, anchor targets and menu must work by keyboard. Validate real screenshots, phone overflow, paper curve switching, developer quickstart and the existing build and verification suite.
+Current route and verification evidence is recorded in
+[the redesign delivery record](docs/redesign/README.md).

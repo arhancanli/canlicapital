@@ -1,5 +1,5 @@
 // Native disclosure first: all routes remain available without JavaScript.
-const header = document.querySelector('header[data-shell-revision="4"]');
+const header = document.querySelector('header[data-shell-revision="5"]');
 if (header && !header.dataset.navigationReady) {
   header.dataset.navigationReady = 'true';
   const menu = header.querySelector('.cc-shell__index');
@@ -39,7 +39,7 @@ if (header && !header.dataset.navigationReady) {
 
   const normalize = path => path.replace(/\/index\.html$/, '/').replace(/\.html$/, '').replace(/\/$/, '') || '/';
   const current = normalize(location.pathname);
-  document.querySelectorAll('[data-shell-revision="4"] a[href]').forEach(link => {
+  document.querySelectorAll('[data-shell-revision="5"] a[href]').forEach(link => {
     const url = new URL(link.href, location.href);
     link.removeAttribute('aria-current');
     if (url.origin === location.origin && normalize(url.pathname) === current && !url.hash) {
@@ -66,10 +66,9 @@ if (header && !header.dataset.navigationReady) {
   // Preserve table semantics, cells and source content. Wide tables scroll inside
   // a labeled keyboard-accessible region instead of widening the whole page.
   document.querySelectorAll('main table').forEach((table, index) => {
-    const region = document.createElement('div');
-    region.className = 'cc-table-scroll';
-    table.before(region);
-    region.append(table);
+    const existing = table.parentElement?.classList.contains('cc-table-scroll');
+    const region = existing ? table.parentElement : document.createElement('div');
+    if (!existing) { region.className = 'cc-table-scroll'; table.before(region); region.append(table); }
     const label = table.caption?.textContent.trim() || table.getAttribute('aria-label') || `Data table ${index + 1}`;
     const update = () => {
       if (region.scrollWidth > region.clientWidth + 1) {

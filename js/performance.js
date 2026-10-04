@@ -43,7 +43,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.hasAttribute('data-design');
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 // ---- scene guards (the live scene is owned by main.js) ----------------------
@@ -302,7 +302,7 @@ function drawCurve(canvas, points, opts = {}) {
     const X = sx(p[xKey]); const Y = sy(p[yKey]);
     if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
   });
-  ctx.strokeStyle = "#C8553D"; // the one signal hue, matches --signal
+  ctx.strokeStyle = "#2466BD"; // the one signal hue, matches --signal
   ctx.lineWidth = 1.5;
   ctx.lineJoin = "round";
   ctx.stroke();
@@ -402,7 +402,7 @@ function makeIdleWaveform(canvas, variant) {
     ctx.beginPath();
     ctx.moveTo(x0, yMid);
     ctx.lineTo(x1, yMid);
-    ctx.strokeStyle = "rgba(200, 85, 61, 0.22)";
+    ctx.strokeStyle = "rgba(36, 102, 189, 0.22)";
     ctx.lineWidth = 1;
     ctx.stroke();
 
@@ -420,7 +420,7 @@ function makeIdleWaveform(canvas, variant) {
       const y = yMid - bump;
       if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
     }
-    ctx.strokeStyle = "rgba(200, 85, 61, 0.7)";
+    ctx.strokeStyle = "rgba(36, 102, 189, 0.7)";
     ctx.lineWidth = 1.5;
     ctx.lineJoin = "round";
     ctx.stroke();
@@ -428,7 +428,7 @@ function makeIdleWaveform(canvas, variant) {
     // a faint node riding the crest, the one bright point.
     ctx.beginPath();
     ctx.arc(cx, yMid - cssH * 0.06, 2.2, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(200, 85, 61, 0.85)";
+    ctx.fillStyle = "rgba(36, 102, 189, 0.85)";
     ctx.fill();
   }
 

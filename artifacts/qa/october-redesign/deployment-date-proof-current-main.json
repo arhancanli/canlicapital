@@ -1,0 +1,70 @@
+{
+  "schema": "canli.redesign-fresh-rebuild-deploy-proof.v1",
+  "source_head": "19e6ef41ba9dec714206212261b07959451a5179",
+  "integrated_main": "ea3985981ec873bd2df09850e8045ffcbc685bb1",
+  "captured_at": "2026-10-04T08:17:07.576425+00:00",
+  "node": "v22.23.2",
+  "stages": [
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "seconds": 18.459324916,
+      "log_sha256": "57939c65debd8f1a0000b9966852a89f160b8f00cc8da70b135004fa866e83f4"
+    },
+    {
+      "command": "npm run verify",
+      "exit_code": 0,
+      "seconds": 41.648755,
+      "log_sha256": "ed1f3afe6aaa073f3e58946a228ec960b3d415a6d133427722233652cb506fb8"
+    }
+  ],
+  "source_html_unchanged_after_build_and_verify": {
+    "index.html": "cd8b3d0776945f144b46a9b3f362743f334ab2bcb367e8134962eb3f09fb192e",
+    "progress.html": "d50fe9366446ced8d77c374c60127a160219e87ed0c0dbdc41e10e87930c39ab",
+    "open.html": "432ffcce9ef88cc5af4adac0faf227ca16c71abbe745515b548a612e6a3358b2"
+  },
+  "command": "git checkout -- config/source-dates.json && GIT_DIR=/nonexistent VERCEL=1 node scripts/build-papers.mjs",
+  "exit_code": 0,
+  "source_dates_sha256": "f6a13b2862837edd998d368f03d257b5b28bd2cee196741237f2422837956faa",
+  "sitemap_sha256": "a7772b068e76866a04fa34065d1dcec07e2129e595726512ea6abadbf144c1c6",
+  "tracked_generated_changes_before_proof": {
+    "public/api/v1/chain/head.json": "b358e564c897122cc3d4a0e4f77c8cc775dadc61fa6d6f590bbaf018a24c9c2c",
+    "public/api/v1/index.json": "dfa1258dde1f23a59cd0167853c8f0dcd9e8fb34927c3e52c7b4b669118955b7",
+    "public/api/v1/record.json": "e1ca864d72f65616bbc3e646fe15360ac275d316ebb5d508d51d4faf8ef88cf4",
+    "public/api/v1/research.json": "90eb0528ccc3ea1f6dde2e26fe755bdde759de1a795f7402adb5cdba1e6f5733",
+    "public/api/v1/sleeves.json": "3a0a29fc7bf954aac29c572e9ee2c8ce0f5f9dd0d1527fdc76a87386b700f38c",
+    "public/api/v1/status.json": "80e520929dce0fb7558c4a238859733496ede7dd0373d19894db9ecff8152a05",
+    "public/api/v1/trials/summary.json": "4b5200c33fc637fafc15f4919cff653040c8d1c328e4881998ede97015aa3b7d",
+    "public/glassbox/cost_coverage.json": "1348ac623ee929f9d51a516db417f2b83f761f9e75cdd906cae5043f2a04b96d",
+    "public/glassbox/paper_evidence_conformance.json": "4153f8ded02f485699daf86f87a5e5016db158dc8c5df75b5da66019e3c37180",
+    "public/standards/paper-evidence/v0/vectors/invalid-empty-does-not-establish.json": "b65667bcbd772779700295a448a54455265fc71f330fa6d6eff4c0ba3b90e992",
+    "public/standards/paper-evidence/v0/vectors/invalid-impossible-date.json": "f27b00757f3151530e48d30b5e707e6fbf3a4e33ad3bb0c04ec8693b5c0d246b",
+    "public/standards/paper-evidence/v0/vectors/invalid-malformed-sha256.json": "67e3aa9bf63004c1c6af48028c34984027caf616b83d3998fd74560f31d7777b",
+    "public/standards/paper-evidence/v0/vectors/invalid-missing-required-claim-maturity.json": "c1b53f0012a01db36da274ab37b50c1f7e525c7c81865c8d24e4cf9a82010e07",
+    "public/standards/paper-evidence/v0/vectors/invalid-no-source-bindings.json": "a9158b99f041d0050970eddf0c859f18b263c72e905d8249688ad2346a881f51",
+    "public/standards/paper-evidence/v0/vectors/invalid-semantic-paper-net-of-realised.json": "3739529e24b675bff4fc77646418f54ea987b35f3e253f7bd921818cd4903c56",
+    "public/standards/paper-evidence/v0/vectors/invalid-semantic-reversed-period.json": "118ce2aec5f124ab4e7267798466f67f776671a8d99c9e3a1290fe3d98478de5",
+    "public/standards/paper-evidence/v0/vectors/invalid-semantic-uncounted-trials.json": "bf8ef9b99761988d42cc93cc1a560a5e2a809f7a528960e5724130b94a87066e",
+    "public/standards/paper-evidence/v0/vectors/invalid-semantic-unreportable-sharpe-reported.json": "cc1f4fa3734d4cd5f3687eaaae9cfb08ead120613fcb0a506a99b85d64fa59b8",
+    "public/standards/paper-evidence/v0/vectors/invalid-unexpected-property.json": "6109f4c4ec521b914fc3be307eff4334f342f425313ada9270a9dcaef92609d7",
+    "public/standards/paper-evidence/v0/vectors/invalid-unknown-capital-kind.json": "b90b78c31d030dcebd7a3c550795212a99bedb5b3b28e5380c4139086185ea44",
+    "public/standards/paper-evidence/v0/vectors/invalid-wrong-schema-id.json": "eb89499d43b6c851076dab1ba440025f4686deaaa3df5fa4a21863c60095e6ac",
+    "public/standards/paper-evidence/v0/vectors/valid-alphac-book.json": "e1ca864d72f65616bbc3e646fe15360ac275d316ebb5d508d51d4faf8ef88cf4",
+    "standards/paper-evidence/vectors/invalid-empty-does-not-establish.json": "b65667bcbd772779700295a448a54455265fc71f330fa6d6eff4c0ba3b90e992",
+    "standards/paper-evidence/vectors/invalid-impossible-date.json": "f27b00757f3151530e48d30b5e707e6fbf3a4e33ad3bb0c04ec8693b5c0d246b",
+    "standards/paper-evidence/vectors/invalid-malformed-sha256.json": "67e3aa9bf63004c1c6af48028c34984027caf616b83d3998fd74560f31d7777b",
+    "standards/paper-evidence/vectors/invalid-missing-required-claim-maturity.json": "c1b53f0012a01db36da274ab37b50c1f7e525c7c81865c8d24e4cf9a82010e07",
+    "standards/paper-evidence/vectors/invalid-no-source-bindings.json": "a9158b99f041d0050970eddf0c859f18b263c72e905d8249688ad2346a881f51",
+    "standards/paper-evidence/vectors/invalid-semantic-paper-net-of-realised.json": "3739529e24b675bff4fc77646418f54ea987b35f3e253f7bd921818cd4903c56",
+    "standards/paper-evidence/vectors/invalid-semantic-reversed-period.json": "118ce2aec5f124ab4e7267798466f67f776671a8d99c9e3a1290fe3d98478de5",
+    "standards/paper-evidence/vectors/invalid-semantic-uncounted-trials.json": "bf8ef9b99761988d42cc93cc1a560a5e2a809f7a528960e5724130b94a87066e",
+    "standards/paper-evidence/vectors/invalid-semantic-unreportable-sharpe-reported.json": "cc1f4fa3734d4cd5f3687eaaae9cfb08ead120613fcb0a506a99b85d64fa59b8",
+    "standards/paper-evidence/vectors/invalid-unexpected-property.json": "6109f4c4ec521b914fc3be307eff4334f342f425313ada9270a9dcaef92609d7",
+    "standards/paper-evidence/vectors/invalid-unknown-capital-kind.json": "b90b78c31d030dcebd7a3c550795212a99bedb5b3b28e5380c4139086185ea44",
+    "standards/paper-evidence/vectors/invalid-wrong-schema-id.json": "eb89499d43b6c851076dab1ba440025f4686deaaa3df5fa4a21863c60095e6ac",
+    "standards/paper-evidence/vectors/valid-alphac-book.json": "e1ca864d72f65616bbc3e646fe15360ac275d316ebb5d508d51d4faf8ef88cf4"
+  },
+  "tracked_changes_added_by_proof": [],
+  "proof_log_sha256": "a467f2e21ff09133f8ad538c63628784e3a443874d5649c4bfa25bede79f26b4",
+  "claim_boundary": "Current-main source rebuild, verification and exact Git-free date guard. Final current-head remote CI remains separate."
+}

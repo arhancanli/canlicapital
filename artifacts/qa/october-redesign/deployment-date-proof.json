@@ -1,0 +1,15 @@
+{
+  "schema": "canli.redesign-deploy-date-proof.v1",
+  "source_head": "48dd5dddc73f675cab7d3a28703a18311801b274",
+  "node": "22.23.2",
+  "preparation": "Production build completed; generated dataset cards are present.",
+  "command": "git checkout -- config/source-dates.json && GIT_DIR=/nonexistent VERCEL=1 node scripts/build-papers.mjs",
+  "exit_code": 0,
+  "source_dates_sha256": "77992fa832934788887c3ed3bff26898f9e64daffa587a92bae5bb769a5d5e0a",
+  "sitemap_sha256": "cbfad16de1ae075e2a9600c124f4e8f969e357b37fb7094463f615e473f5d4a7",
+  "tracked_diff_after_proof": [],
+  "initial_unprepared_checkout": {
+    "exit_code": 1,
+    "reason": "Generated dataset record filing-facts-v0 was absent; the standalone generator requires the normal prebuild inputs."
+  }
+}

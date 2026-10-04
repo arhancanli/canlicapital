@@ -49,5 +49,9 @@ fi
 
 export HOMEPAGE_AUDIT_ORIGIN="http://127.0.0.1:$PORT"
 export PRODUCT_SHELL_AUDIT_ORIGIN="http://127.0.0.1:$PORT"
+export REDESIGN_AUDIT_ORIGIN="http://127.0.0.1:$PORT"
 python3 scripts/audit-homepage.py
 python3 scripts/audit-product-shell.py
+python3 scripts/audit-redesign.py
+python3 scripts/audit-redesign-flows.py
+python3 scripts/audit-redesign-motion.py

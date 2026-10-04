@@ -134,9 +134,8 @@ ${renderProductShellStylesheet()}
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "trials" })}
-${hero}
 <main class="paper__main" id="content"><article class="paper__article">
-  ${hero ? "" : `<p class="paper__eyebrow">${eyebrow}</p>
+  ${hero || `<p class="paper__eyebrow">${eyebrow}</p>
   <h1 class="paper__title">${escapeHtml(h1)}</h1>`}
   <p class="paper__byline">By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}</p>
   <div class="paper__body">${body}</div>

@@ -1,0 +1,21 @@
+{
+  "schema": "canli.calculator-defaults.v1",
+  "route": "/tools/breadth",
+  "evidence_basis": "Illustrative deterministic calculator defaults. Not ALPHAC performance, qualification or admission evidence.",
+  "renderer": {
+    "path": "js/breadth-lab.js",
+    "sha256": "967f19c1899c3d94123b3da07b85ff4602ebc83dcb74ed34eb3b645fa25c0c03"
+  },
+  "source_bindings": {
+    "js/breadth-lab.js": "967f19c1899c3d94123b3da07b85ff4602ebc83dcb74ed34eb3b645fa25c0c03",
+    "js/breadth-core.js": "f90522e17a8a407d5e060131abdcf2cc882ee79d91abef55a3e80c17affef2a7"
+  },
+  "computed_output_selectors": [],
+  "computed_text": [
+    "0.965",
+    "3.175",
+    "30.4%",
+    "26 sleeves",
+    "4 sleeves give 0.965. Reaching 2 needs 26, and the ceiling at this correlation is 3.175, so the target is reachable but the margin is 1.175."
+  ]
+}

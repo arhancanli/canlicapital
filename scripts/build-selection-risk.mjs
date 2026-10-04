@@ -210,7 +210,7 @@ ${renderProductShellHeader({ active: "" })}
   <section class="lab-lab" id="lab" tabindex="-1" aria-labelledby="lab-lab-title">
     <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
     <div class="lab-controls">
-      ${num("lab-seed", "Series seed", d.seed, 1, 999999, 1, `${g.bars} bars, ${g.process}`)}
+      ${num("lab-seed", "Series seed", d.seed, 1, 4294967295, 1, `${g.bars} bars, ${g.process}`)}
       ${num("lab-fast", "Fast window", d.fast, 2, 60, 1, "bars in the fast average")}
       ${num("lab-slow", "Slow window", d.slow, 3, 200, 1, "bars in the slow average")}
       ${num("lab-cost", "Cost", d.cost_bps, 0, 100, 1, "basis points per unit of turnover")}
