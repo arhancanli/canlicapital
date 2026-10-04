@@ -1,0 +1,93 @@
+import runpy, fcntl
+env=runpy.run_path('/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/native-da4cc231-retained-ci-audit-v1.py',run_name='owned_native_definitions_only')
+for name in ['os','stat','json','hashlib','re','datetime','N','A','O','W','H','T','B','TESTED','read','load','save','savejson','sha','pin','git','now','reads','identity']:
+    globals()[name]=env[name]
+R=A/'review-da4cc231-retained-current-ci-v1.json'
+
+def continuity_append(path,addition):
+    fd=os.open(path,os.O_RDWR|os.O_APPEND|os.O_NOFOLLOW)
+    try:
+        fcntl.flock(fd,fcntl.LOCK_EX);a=os.fstat(fd);assert stat.S_ISREG(a.st_mode) and a.st_size<8*1024*1024
+        os.lseek(fd,0,os.SEEK_SET);pieces=[]
+        while True:
+            b=os.read(fd,1024*1024)
+            if not b:break
+            pieces.append(b)
+        before=b''.join(pieces);assert len(before)==a.st_size
+        assert identity(os.fstat(fd))==identity(os.stat(path,follow_symlinks=False))
+        offset=0
+        while offset<len(addition):offset+=os.write(fd,addition[offset:])
+        os.fsync(fd);os.lseek(fd,0,os.SEEK_SET);pieces=[]
+        while True:
+            b=os.read(fd,1024*1024)
+            if not b:break
+            pieces.append(b)
+        after=b''.join(pieces);z=os.fstat(fd)
+        assert after==before+addition and identity(z)==identity(os.stat(path,follow_symlinks=False))
+        return {'path':str(path),'before_bytes':len(before),'before_sha256':sha(before),'append_bytes':len(addition),'append_sha256':sha(addition),'after_bytes':len(after),'after_sha256':sha(after),'entire_prior_prefix_exact':True,'O_APPEND_flock_fsync':True,'after_identity':identity(z)}
+    finally:
+        fcntl.flock(fd,fcntl.LOCK_UN);os.close(fd)
+
+def run():
+    sourcepath=A/'review-da4cc231-narrow-source-extension-v1.json'
+    source=load(sourcepath,{'bytes':34461,'sha256':'ec5f91202ea3656796b58a2b251531c6ee62f583be8f70e27853265cefe52e38'})
+    assert source['head']==H and source['tree']==T and source['findings']==[] and source['disposition']=='PASS_WITH_NARROW_STATIC_SOURCE_SCOPE_LIMITS'
+    sourcebindpath=A/'da4cc231-narrow-source-originals-v1/independent-da4cc231-narrow-source-binding-v1.json'
+    sourcebind=load(sourcebindpath,{'bytes':52759,'sha256':'c6c848be10aeebaad654a839da6109d14fa935a706840d85d48b46aec20e37dd'})
+    manifestpath=N/'source-da4cc231-expert-submission-package-v1.json'
+    load(manifestpath,{'bytes':27041,'sha256':'8c4d1f21ab87d0a39792989234674f689d8abad983dc87357a94f4d389c69539'})
+    ci_path=O/'independent-API-TAP-source-binding-v1.json'
+    ci=load(ci_path,{'bytes':144686,'sha256':'6891e5bb6aa3b99d3a35a8c3ca394fa4962661b7602c1bfce5deba6ed8a1cfaf'})
+    cat_path=O/'independent-complete8-TAP-outcomes-v1.json'
+    cat=load(cat_path,{'bytes':809894,'sha256':'88c3527ab40948795e2c38980e95c1a92e55a508b346f2ff08225aa590d537b6'})
+    art_path=O/'independent-bounded-actual-package-binding-v1.json'
+    artifact=load(art_path,{'bytes':39594,'sha256':'ad16e7711ff16439dea190a8228a9d7a41bc91bd95f21dfce3002beb50462a97'})
+    cmp_path=O/'independent-catalog-and-author-byte-comparison-v1.json'
+    load(cmp_path,{'bytes':1903,'sha256':'9f084edc035087f9085a6a77b6ad946770a10f9f9e8054fe84200f4590e0fd5b'})
+    authorpath=N/'pr377-da4cc231-exact-current-ci-v1.json'
+    author=load(authorpath,{'bytes':38051,'sha256':'60a28599596caa5c1db2be7345d7481c93c38da0b5529aa1cd2f2270ce083811'})
+    for original in ci['all11_originals'].values():read(original['path'],original)
+    for c in ci['capture11_bindings']:
+        for k in ['command','stdout','stderr']:read(c[k]['path'],c[k])
+    for p in artifact['all_read_pins']:
+        if p['path'] not in reads:read(p['path'],p)
+    original_hold_path=A/'review-3586185b-original-frozen-source-v1.json'
+    originalhold=load(original_hold_path,{'bytes':38219,'sha256':'fbab426e8f9a9b38dde95b8cd664fc57a7dd6b399dd429076696697aac4bc3d4'})
+    original_raw=N/'remote-3586185b-first-MCP-failure-v3/mcp-stdout-original.log'
+    read(original_raw,{'bytes':3426467,'sha256':'5058f78161c6c8b405a8d97fe25707ab2135ced8542d7061d0e3cc19fc5e8102'})
+    metadata=[]
+    for p in author['metadata_reader_original_stops_and_corrections']:
+        load(p['path'],p);metadata.append(pin(p['path']))
+    own_metadata=[]
+    for p in [A/'da4cc231-native-reader-syntax-stop-and-correction-v1.json',A/'native-da4cc231-retained-ci-audit-v1-syntax-stop-original.py.txt',A/'da4cc231-native-CI-reader-stop-20261004T064804148680Z.json',A/'da4cc231-native-reader-BOM-correction-v1.json',A/'native-da4cc231-retained-ci-audit-v1-BOM-stop-original.py.txt']:
+        read(p);own_metadata.append(pin(p))
+    for filename in ['native-da4cc231-retained-ci-audit-v1.py','native-da4cc231-artifact-and-catalog-audit-v1.py','native-da4cc231-CI-receipt-seal-v1.py']:
+        p=A/filename;os.chmod(p,0o600);read(p)
+    head,_=git('seal-current-HEAD',['rev-parse','HEAD']);assert head.decode().strip()==H
+    clean,_=git('seal-current-CLEAN',['status','--porcelain=v1','--untracked-files=all']);assert not clean
+    goal=Path('/Users/arhancanli/canlicapital-expansion-20260919/docs/goal')
+    root5=[]
+    for n in ['README.md','REQUIREMENTS.md','STATUS.md','PHASES.md','LOG.md']:
+        p=goal/n;read(p,private=False);root5.append(pin(p))
+    reqpin=next(p for p in root5 if p['path'].endswith('/REQUIREMENTS.md'));assert reqpin['sha256']=='783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced'
+    evidence=savejson(O/'evidence-FULLREAD-sameFD-catalog-v1.json',{'schema':'PRIMARY-da4-CURRENTCI-independent-evidence-FULLREAD-catalog-v1','utc':now(),'pins':list(reads.values()),'unique_read_files':len(reads),'read_scope':'Private immutable source-time originals, independent native proof files, readonly frozen Git captures, native reader metadata, and current ROOT5; no project runtime/refetch.'})
+    blocks={label:[{k:v for k,v in b.items() if k!='rows'} for b in bs] for label,bs in cat['blocks'].items()}
+    sdk=[]
+    for r in ci['named_groups'][0]['rows']:
+        if re.match(r'^expert package: entry[123] ',r['name']):sdk.append(r)
+    assert len(sdk)==3
+    receipt={'schema':'PRIMARY-PR377-da4cc231-independent-retained-CURRENTCI-v1','utc':now(),'disposition':'PASS_WITH_INDEPENDENT_RETAINED_CURRENT_CI_AND_PACKAGE_CUSTODY_SCOPE_LIMITS','findings':[],'head':H,'tree':T,'sole_parent':'3586185bdae0bca97b3b9f00339573112ed63e70','actual_base':B,'tested':TESTED,'tested_ordered_parents':[B,H],'author_receipt':pin(authorpath),'source_manifest':pin(manifestpath),'independent_separate_SOURCE_receipt':pin(sourcepath),'accepted_SOURCE_native_binding':pin(sourcebindpath),'SOURCE_currentCI_pending_seal_time_metadata_qualified_additively':'The prior SOURCE receipt remains immutable. This separately completed retained CURRENTCI gate satisfies only the PRIMARY currentCI requirement.','scope':'Independent full read/hash/same-FD original API/raw/capture-command evidence; native full8 TAP parsing and frozen source-name binding; bounded recovery of original remote gzip/raw TAR and exact14 Git byte-mode comparison. No author receipt, author catalogue, or author artifact custody substituted for this independent gate.','all11_original_pins':ci['all11_originals'],'all11_original_bytes':1350626,'all11_literal_capture_command_stdout_empty_stderr_bindings':ci['capture11_bindings'],'independent_API_TAP_binding':pin(ci_path),'independent_full8_catalog':pin(cat_path),'full8TAP':blocks,'top_outcomes':1947,'nested_outcomes':0,'all_top_names_ordinals_results_YAMLdurations_types_verified':True,'all_seven_counters_all_final_durations_verified':True,'actual30new_onceMCP0ROOT':ci['named_groups'][0],'old22_original_artifact_cases_onceMCP0ROOT':{'count':22,'rows_in_complete_binding':True,'source_pin':ci['source_test_Git_pins'][1]},'old63_expert_stdio_cases_onceMCP0ROOT':{'count':63,'rows_in_complete_binding':True,'source_pin':ci['source_test_Git_pins'][2]},'Node':'22.23.3','run':37182417711,'CodeQL_run':37182417727,'run_attempt':1,'ROOT_job':111377481647,'MCP_job':111377481565,'all7_completed_SUCCESS':ci['all7'],'all6_workflow_jobs_and_all_steps_success':True,'runs':ci['runs'],'captured_pull_scope':ci['captured_pull'],'raw_checkout_full_tested_binding':ci['raw_checkout_bindings'],'tested_Git_API_signature':{'verified':True,'reason':'valid'},'scoped_open_ref_alerts_at_capture':0,'latest_JS_PY_at_capture':ci['security_latest_languages'],'all4_current_plus_historical_analysis_rows':ci['all4_analyses_retained'],'both_postbuild_source_dist_guards_exactly_once':ci['both_postbuild_guard_passes'],'independent_bounded_original_artifact_custody':pin(art_path),'independent_recovered_original_tgz':artifact['independent_recovered_original_tgz'],'actual_gzip':artifact['gzip'],'actual_expanded_TAR_bytes':279040,'all14_frozen_source_bytes_and_raw_modes':artifact['all14_current_frozen_bytes_and_raw_Git_modes'],'RAW_and_distinct_ADMITTED':{'RAW_line':artifact['RAW_record_line'],'ADMITTED_line':artifact['ADMITTED_record_line'],'same_compressed_sha256':True,'RAW_literal':artifact['RAW_literal'],'ADMITTED_literal':artifact['ADMITTED_literal']},'raw_mode_vs_fixture':artifact['disclosed_owned_fixture_bin_modes'],'default_only_owned_fixture_normalization':artifact['owned_default_only_normalization'],'same_disclosed_locked_SDK_tree':{'path':artifact['dependency_tree'],'recorded_selected_pins':artifact['selected_recorded_dependency_pins'],'repository_runtime_sources_linked':False,'qualification':artifact['dependency_evidence_limit']},'all_actual_JS_MJS_imports_closed_to_admitted_source_or_disclosed_dependencies':True,'guide_workflow':{'full_guide_sha256':artifact['guide_sha256'],'shared_entry1':True,'Unreleased_preserved':True},'three_NEW_SDK_named_entry_results':sdk,'SDK_entry_scope':'The three source-declared named cases passed their frozen exact-wire/core parity, same-known-owned-child absence, one memoized close and clock assertions. No fresh independent process census, exhaustive child inventory, real npm installation, publication or production execution is claimed.','after_independent_parse_author_catalog_artifact_comparison':pin(cmp_path),'original358_preserved':{'PRIMARY_SOURCE_HOLD':pin(original_hold_path),'failed_MCP_raw':pin(original_raw),'same_prior_29hookFailed_0newPASS_0newSDK_old22PASS_retained':True,'selector_finding':'Closed STATIC only in separate da4 SOURCE receipt; original immutable HOLD unchanged.','old_results_not_relabelled':True},'author_metadata_stops_and_corrections':metadata,'own_native_reader_stops_and_corrections':own_metadata,'metadata_scope':'Python reserved-keyword formatting and initial raw-log UTF-8 BOM reader stops are preserved externally with corrections; same saved originals only, no project failure or project rerun.','evidence_fullread_catalog':evidence,'ROOT5_FULLREAD_before_seal':root5,'archive_allocation':None,'repository_evidence_writes':0,'other_peer_intake_status':'Not evaluated by this finite PRIMARY currentCI gate.','future_gates_unapproved':['any concrete documentary proposal/allocation','future signed documentary head SOURCE/ARCHIVE and CURRENTCI','unchangedhead ready','ordinary merge','ACTUAL custody','npm/site/version publication'],'roles':{'PRIMARY':'sole ordinary merge/publication; guide/date/focus/live/journal/reconciliation/release','Lead':'sole CPU allocator','127':'policy','SECONDARY':'existing package implementation role'},'all_owner_hierarchy':'ACTIVE','real_outcomes':None,'operations':{'native_stdlib_saved_byte_Git_hash_bounded_gzip':True,'Node_project_import_SDK_CLI_test_build_browser_helper_npm_pack_install':False,'GET_API_refetch_process_probe_job_manual_rerun_grant':False,'provider_model_resource_spend':False,'publication':False,'source_archive_edits':False},'closed_PR376_exact96_and_all_older_deliveries':'Preserved; no historical role replay.'}
+    rp=savejson(R,receipt)
+    addition=('\n\nPRIMARY PR377 da4 separate CURRENTCI checkpoint '+now()+': immutable independent retainedCURRENTCI receipt '+str(R)+' '+str(rp['bytes'])+'B SHA256 '+rp['sha256']+' PASS/findings[]; separate narrowSOURCE34461Bec5f9120 remains sealed/unchanged. FULLREAD/hash/sameFD all11 saved originals1350626B+11 literal command/stdout/empty-stderr bindings, full8TAP1947 dense outcomes/every YAML duration-type/plans/seven counters/finaldurations/nested0; ROOT6+1292+9/MCP149+1+82+269+139/Node22.23.3. Actual30new+old22artifact+old63stdio eachonceMCP0ROOT; all7SUCCESS at source-time run37182417711, testedebd25348595d688a0cffe7a1f6fd13788c5b80aa/tree84dca3d7=da4/orderedactual9d67+da4/capturedref0/latestJS+PY0/bothpostbuild guards once. Independently recovered original79651B8d4a6b1a gzip/CRC/ISIZE/single EOF/no trailing; expanded279040/all14member bytes+rawGitmodes exact; RAW and distinct ADMITTED samehash. Raw default0644 vs ownedfixtureonly0755 separately bound, opt-in bins0755; recorded selected SDKtree/pins bound without exhaustive remote dependency or fresh child-census claim. ThreeNEWSDK namedcase frozen close/knownabsence/clock assertions passed only; no real npm-install/publication/live/adoption/rights/expert/indexing/strategy outcome inferred. Original35829hookFailed0PASS0newSDK/old22PASS and both originalHOLDs immutable; own native syntax/BOM-reader stops and author abbreviation/filename metadata stops external/corrected from sameoriginals/no project reentry. ArchiveNULL/repositoryevidencewrites0/future proposals/finalheads/gates/ready/solePRIMARYordinarymerge/ACTUALcustody/pub separate. FullownerhierarchyACTIVE/realoutcomesUNKNOWNNULL/PRIMARYguide-date-focus-live-journal-release-solemergepub/LeadCPU127unchanged; frozenworktree untouched/no project Node/import/SDK/CLI/test/helper/npm/pack/install/build/browser/GET/APIrefetch/processprobe/job/grant/spend/pub.\n').encode()
+    changes=[continuity_append(goal/name,addition) for name in ['STATUS.md','LOG.md']]
+    read(goal/'REQUIREMENTS.md',private=False);assert pin(goal/'REQUIREMENTS.md')['sha256']==reqpin['sha256']
+    cp=savejson(A/'review-da4cc231-current-ci-ROOT-continuity-v1.json',{'schema':'PRIMARY-da4-currentCI-material-transition-wholeprefix-continuity-v1','utc':now(),'CURRENTCI_receipt':rp,'append_literal_utf8':addition.decode(),'STATUS_LOG_append_prefix_proofs':changes,'REQUIREMENTS_unchanged':pin(goal/'REQUIREMENTS.md'),'all_owner_hierarchy':'ACTIVE','actual_outcomes':None})
+    hp=savejson(A/'handoff-da4cc231-two-separate-initial-gates-v1.json',{'schema':'PRIMARY-PR377-da4-two-separate-initial-gates-handoff-v1','utc':now(),'head':H,'tree':T,'SOURCE':pin(sourcepath),'CURRENTCI':rp,'CURRENTCI_continuity':cp,'findings':[],'archive_allocation':None,'future_final_head_merge_publication_ack':False,'all_owner_hierarchy':'ACTIVE','actual_outcomes':None})
+    print(json.dumps({'SOURCE':pin(sourcepath),'CURRENTCI':rp,'continuity':cp,'handoff':hp,'findings':[]}))
+
+if __name__=='__main__':
+    try:run()
+    except Exception as e:
+        import traceback
+        p=A/('da4cc231-native-seal-reader-stop-'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'.json')
+        savejson(p,{'utc':now(),'exception':repr(e),'traceback':traceback.format_exc(),'project_execution':False,'originals_modified':False});print(json.dumps({'metadata_stop':pin(p),'exception':repr(e)}));raise

@@ -1,0 +1,668 @@
+{
+  "schema": "canlicapital.primary.expert-submission-package.frozen-source-review.v1",
+  "utc": "2026-10-04T06:07:28.566307+00:00",
+  "disposition": "HOLD_ONE_P2_IN_NEW_PACKAGE_FIXTURE_IMPORT_AUDIT",
+  "scope": "Finite independent frozen SOURCE only; repository source/import/guide/fixture controls, not runtime or published npm-artifact proof.",
+  "PR_locator": "PR377, author-supplied current lane; no API refetch by reviewer",
+  "head": "3586185bdae0bca97b3b9f00339573112ed63e70",
+  "tree": "2768bb19002f89dc8048b8336852d95fb0c6db20",
+  "sole_parent": "9d67ff374162ee34480dabaf56a8789022c40add",
+  "manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/source-3586185b-expert-submission-package-v1.json",
+    "bytes": 23601,
+    "sha256": "5c8a1f086b282adc9f4029599a7c8c7c67efca515b838e95f89c4be5903798cc",
+    "mode": "0600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "sealed_source_authorities_personally_FULLREAD": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/assignment-9d67ff37-primary-v1.md",
+      "bytes": 21636,
+      "sha256": "bc5262b7986b0d7bf7414409a90daa0449f9f67a5e5e41d29b4e1b2cbf79b0dc",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/source-basis-9d67ff37-primary-v1.json",
+      "bytes": 24372,
+      "sha256": "e7eed58c527f34dc04183a66b4e8667763c03a7afa4e1d50e717635b73847867",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/assignment-9d67ff37-package-union-cue-and-complete-closure-intake-v1.json",
+      "bytes": 2686,
+      "sha256": "4aea66803e137ee76d92637b9d11744d006c4ffa9735ff84cfd5f27fca2222e9",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/assignment-9d67ff37-primary-seal-v1.json",
+      "bytes": 2237,
+      "sha256": "90df63456d72a87284f9bcfddbec633fb42a0695940178335dfbc77e336ee1ad",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/owner-hierarchy-priorities-after-376-primary-v1.json",
+      "bytes": 4886,
+      "sha256": "0a91ec0d17838d106fe8190eb2094770d2aad0f71e6fbaef3b91d6ead4215893",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    }
+  ],
+  "frozen_native_binding": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/3586185b-source-originals-v1/independent-frozen-source-native-binding-v1.json",
+    "bytes": 70858,
+    "sha256": "2c9263354f60f60824aec907e2e323971fd2c56ad392a8eb8ea6abae390bf853",
+    "mode": "0600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "native_signature_G_saved": true,
+  "captured_pre_correction_HEAD_CLEAN_and_stage0_equal": true,
+  "current_evolving_working_test_excluded": true,
+  "findings": [
+    {
+      "id": "CC-377-IMPORT-AUDIT-EXPORTED-CONSTANT-FALSE-REEXPORT",
+      "priority": "P2",
+      "disposition": "HOLD_FROZEN358_NEW_PACKAGE_FIXTURE_GATE",
+      "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+      "line": 136,
+      "trigger": "The exact protected default source has export const SERVER_INSTRUCTIONS = \"... Treat a value as known from the next trading day ...\"; this ordinary exported constant is not a re-export.",
+      "frozen_default_source": {
+        "path": "mcp-fundamentals/src/server.mjs",
+        "line": 32,
+        "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+        "literal_entire_line": "export const SERVER_INSTRUCTIONS = \"SEC company fundamentals point in time. company takes a ticker, CIK or name; find_company searches names. For a decision on a date, call known_as_of with the company and as_of: it returns only what had been filed by then, and flags values later restated. Use plain names (revenue, net_income, eps_diluted, assets, cash); they follow a company across tag changes. restatements lists numbers that changed after their first report, and vintages shows every filing behind one number. Treat a value as known from the next trading day after its filed date.\";"
+      },
+      "frozen_pattern_literal": "/^export\\s+.*\\sfrom\\s/gm",
+      "static_reasoning": "^export matches the constant declaration, .* spans the declaration and string, and whitespace-from-whitespace matches known from inside the string. The assertion therefore refuses a valid exact pinned source before extraction and SDK entry.",
+      "call_order": {
+        "checkImports": {
+          "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+          "line": 128
+        },
+        "audit_calls_checkImports": {
+          "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+          "line": 147
+        },
+        "before_hook_calls_audit": {
+          "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+          "line": 238
+        },
+        "first_extracted_import": {
+          "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+          "line": 275
+        }
+      },
+      "minimum_correction": "Restrict the refusal to actual export-star/export-brace from declarations while retaining complete admitted JS/MJS import checks, strict membership/source pins and all existing names/bodies. Add a meaningful exported-constant positive control and real-re-export negative control at the next signed pin.",
+      "source_execution": "UNEXECUTED; independent frozen source/textual counterexample only, no Node/JS regex or fixture execution.",
+      "author_runtime_report": "Author separately reports all29 new cases hookFailed UNPARSED_REEXPORT/0newPASS/0newSDK entries and old22PASS. This SOURCE gate does not independently parse or approve that runtime receipt.",
+      "working_correction": "Author disclosed an evolving narrow test correction; excluded from this frozen358 verdict and requires its own exact signed delta.",
+      "additional_concrete_findings": []
+    }
+  ],
+  "independently_accepted_scoped_source_checks": {
+    "exact13_changed_paths_seven_new": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-fundamentals/EXPERT_SUBMISSIONS.md",
+      "mcp-fundamentals/README.md",
+      "mcp-fundamentals/package-lock.json",
+      "mcp-fundamentals/package.json",
+      "mcp-fundamentals/src/expert-agreement.mjs",
+      "mcp-fundamentals/src/expert-intake-core.mjs",
+      "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+      "mcp-fundamentals/src/expert-submission-stdio.mjs",
+      "mcp-fundamentals/src/filing-facts-packet.mjs",
+      "mcp-fundamentals/test/audit-package.test.mjs",
+      "mcp-fundamentals/test/expert-submission-package.test.mjs"
+    ],
+    "full6699_Git_and_captured_stage0_index_exact": true,
+    "all6686_protected_Git_identities": {
+      "count": 6686,
+      "bytes": 413648264,
+      "compact_utf8_sortkeys_noLF_sha256": "4432e27b55977bd2141819bbeec7cf74b367e7c303125de48b0278cfac1061d5"
+    },
+    "protected_scope_qualification": "413648264B is inherited Git identity accounting, not a whole physical-body audit.",
+    "all31_selected_physical_sameFD_fullread_exact_frozen": {
+      "count": 31,
+      "bytes": 1277871,
+      "excluded_selected_physical": []
+    },
+    "unique38_frozen_blob_body_fullreads": {
+      "count": 38,
+      "bytes": 1425197
+    },
+    "five_copies_reverse_entire_original_bytes": [
+      {
+        "original": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+        "target": "mcp-fundamentals/src/expert-submission-stdio.mjs",
+        "original_SHA256": "5f228ccc5bc3433a93415f9b5f3708e1cb73b209aa5599c9dffa5f59dbc3b882",
+        "new_SHA256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208",
+        "forward_and_reverse_entire_byte_equality": true,
+        "literal_changes": [
+          [
+            "../../scripts/datasets/filing-facts/expert-submission-audit.mjs",
+            "./expert-submission-audit-core.mjs"
+          ],
+          [
+            "../../scripts/canonical-json.mjs",
+            "./canonical-json.mjs"
+          ],
+          [
+            "Repository-only opt-in example.",
+            "Packaged opt-in command."
+          ],
+          [
+            "Offline repository example",
+            "Offline opt-in package command"
+          ],
+          [
+            "repository EXPERT_SUBMISSION_STDIO.md",
+            "packaged EXPERT_SUBMISSIONS.md"
+          ],
+          [
+            "Repository expert-submission audit",
+            "Packaged expert-submission audit"
+          ]
+        ],
+        "shebang": "#!/usr/bin/env node\n"
+      },
+      {
+        "original": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+        "target": "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+        "original_SHA256": "79540f0812537798321a4eb3a97bf89d04acc1b5bd5d4a105eddae007e87ad33",
+        "new_SHA256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3",
+        "forward_and_reverse_entire_byte_equality": true,
+        "literal_changes": [
+          [
+            "../../canonical-json.mjs",
+            "./canonical-json.mjs"
+          ],
+          [
+            "../../../js/filing-facts-packet.js",
+            "./filing-facts-packet.mjs"
+          ],
+          [
+            "./expert-intake.mjs",
+            "./expert-intake-core.mjs"
+          ],
+          [
+            "./agreement.mjs",
+            "./expert-agreement.mjs"
+          ]
+        ],
+        "shebang": ""
+      },
+      {
+        "original": "scripts/datasets/filing-facts/expert-intake.mjs",
+        "target": "mcp-fundamentals/src/expert-intake-core.mjs",
+        "original_SHA256": "f37ed4663a78cf819331410205f28b0671966cfe1b3c73aa0b13a46bf19b0ab4",
+        "new_SHA256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545",
+        "forward_and_reverse_entire_byte_equality": true,
+        "literal_changes": [
+          [
+            "../../canonical-json.mjs",
+            "./canonical-json.mjs"
+          ],
+          [
+            "../../../js/filing-facts-packet.js",
+            "./filing-facts-packet.mjs"
+          ]
+        ],
+        "shebang": ""
+      },
+      {
+        "original": "scripts/datasets/filing-facts/agreement.mjs",
+        "target": "mcp-fundamentals/src/expert-agreement.mjs",
+        "original_SHA256": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6",
+        "new_SHA256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef",
+        "forward_and_reverse_entire_byte_equality": true,
+        "literal_changes": [
+          [
+            "../../canonical-json.mjs",
+            "./canonical-json.mjs"
+          ],
+          [
+            "../../../js/filing-facts-packet.js",
+            "./filing-facts-packet.mjs"
+          ]
+        ],
+        "shebang": ""
+      },
+      {
+        "original": "js/filing-facts-packet.js",
+        "target": "mcp-fundamentals/src/filing-facts-packet.mjs",
+        "original_SHA256": "eb61ab2bf78d7047569c8cf92ea348dc5c3a9e6fe311c16a63361765b2e08bc8",
+        "new_SHA256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8",
+        "forward_and_reverse_entire_byte_equality": true,
+        "literal_changes": [
+          [
+            "../scripts/canonical-json.mjs",
+            "./canonical-json.mjs"
+          ]
+        ],
+        "shebang": ""
+      }
+    ],
+    "package_and6507B_base_lock_exact_inverse": "Remove only third bin metadata plus guide files entry from package; root third-bin lock metadata only. Entire original package and lock bytes recovered, all dependency/version/engine/script metadata retained.",
+    "ROOT_package_and_entire_verify": "Selected root package14371B485a0eaa and root lock37957Bfe442d2f exact accepted base; no root registration or workflow change.",
+    "whole5_goal_prefixes": [
+      {
+        "path": "docs/goal/README.md",
+        "base_prefix_bytes": 6899,
+        "base_prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "entire_prefix_preserved": true
+      },
+      {
+        "path": "docs/goal/REQUIREMENTS.md",
+        "base_prefix_bytes": 8758,
+        "base_prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "entire_prefix_preserved": true
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "base_prefix_bytes": 226922,
+        "base_prefix_sha256": "492bc8805a4b3e6dae0ec9df1e780dcd851faee962aed47be95d9d4c9fa991ca",
+        "entire_prefix_preserved": true
+      },
+      {
+        "path": "docs/goal/PHASES.md",
+        "base_prefix_bytes": 5455,
+        "base_prefix_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+        "entire_prefix_preserved": true
+      },
+      {
+        "path": "docs/goal/LOG.md",
+        "base_prefix_bytes": 502286,
+        "base_prefix_sha256": "2f475d7053f9527dc17aa41b3826b09f1003858977401153bb1a00c6f66d90c1",
+        "entire_prefix_preserved": true
+      }
+    ],
+    "package_README_entire13866B_prefix": true,
+    "default7_old_audit_and_canonical_entire_byte_modes": "Protected source identities/body pins unchanged; no new default tool or import.",
+    "old22_expectation_union": {
+      "original22_names": [
+        "audit package: actual offline no-script tarball admits exact files modes shebang bins contract and pinned closure",
+        "audit package: raw archive modes stay distinct from explicit owned bin-link executable normalization",
+        "audit package: canonical bytes and import-only core prove distinct old new whole hashes without changing functions",
+        "audit package: missing canonical helper refuses before any package source import",
+        "audit package: changed canonical helper bytes refuse the independently pinned source audit",
+        "audit package: relative import escaping the tarball refuses source closure even if a repository exists elsewhere",
+        "audit package: changed declared bin and additional private member both refuse the complete package audit",
+        "audit package: gzip corruption compressed capacity and traversal path refuse before unpack writes",
+        "audit package: raw high-bit name prefix type numeric and checksum headers refuse before decoding or fixture writes",
+        "audit package: installed-bin-style symlink actually initializes exactly one annotated SDK tool with bounded schemas",
+        "audit package: actual compact and evidence outputs fingerprints hashes and exact raw bindings match delivered repository behavior",
+        "audit package: all six outcome rows retain full selected N and unknown verdicts through the actual packed command",
+        "audit package: wrong reference SHA returns a bounded non-echoing refusal and a valid next call recovers",
+        "audit package: hash terminator controls refuse strict SHA admission over actual SDK then recover",
+        "audit package: noncanonical base64 padding alphabet and newline refuse without raw echo then recover",
+        "audit package: oversized individually valid inputs refuse aggregate admission and all 64 selected rows still recover intact",
+        "audit package: supplied whole module hash stays unverified and source rights and full universe remain unknown",
+        "audit package: callback failure still closes the SDK child once and observes actual PID absence",
+        "audit package: armed pre-import child sentinel positively blocks network and file writes including caught attempts",
+        "audit package: actual default command in the same tarball still lists exactly the protected seven tools",
+        "audit package: included self-contained synthetic client workflow executes against the packed command",
+        "audit package: oversized unterminated protocol frame exits with bounded notice no raw echo and actual owned PID absence"
+      ],
+      "author3821B_patch_exact_reconstruction": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/audit-package-test-exact-expectation-union-3586185b.patch",
+        "bytes": 3821,
+        "sha256": "548cd0dfa3876b2695e17701ac0c496dfb8d05a6b44d74daf7b2de0cf1817dac",
+        "mode": "0600",
+        "FULLREAD_sameFD_postpath_stable": true
+      },
+      "native_Git4098B_diff": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/3586185b-source-originals-v1/old22-expectation-union-stdout-original.bin",
+        "bytes": 4098,
+        "sha256": "5d91ea1a53dbaa1e7e6a83eee359cb7f43fee81679e60391088ec54a84099a59",
+        "mode": "0600",
+        "FULLREAD_sameFD_postpath_stable": true
+      },
+      "review": "Only five added source-pin entries, guide/member/bin/files/raw-mode/installed-bin/shebang expectation union. Existing22 names, caps, producer/SDK-entry sites, negative branches and preexisting source pins retained."
+    },
+    "old63_entire_source": {
+      "bytes": 52692,
+      "sha256": "bc1a4d1ffdc35e48c32acbd1e5bc82f5482a7628b3db86aa649e03ec67146a7c",
+      "same_entire_Git_body_modes": true
+    },
+    "independent_all_JSMJS_literal_source_closure": {
+      "members": 9,
+      "import_edges": 45,
+      "relative_import_targets_package_src_present": true,
+      "builtin_and_locked_server_stdio_Zod_only": true,
+      "no_runtime_annotation_module_added": true,
+      "qualification": "Frozen pinned source closure accepted; the proposed remote TAR checker has the one P2 false-positive above."
+    },
+    "strict14_written_artifact_fixture": "Original8 plus five source copies and one guide; expected raw default0644/old audit0755/new expert0755. Native gzip256KiB/expanded2MiB/member32 bounds, single-member/footer CRC and ISIZE, raw7bit-before-field-decode/checksum/path/duplicate/link/nonregular admission precede extraction. No actual tarball read/decompressed by reviewer.",
+    "RAW_vs_ADMITTED_written_plan": "Bounded raw gzip/member diagnostic512KiB precedes strict package audit; successful ADMITTED diagnostic after exact source/import/metadata admission and fixture setup remains separate. At358 the false-re-export refusal occurs before extraction.",
+    "finite_plan": {
+      "new_cases": 29,
+      "test_section_pins": [
+        {
+          "name": "expert package: exact14 admitted members retain independent source pins and raw modes",
+          "source_lines_start": 386,
+          "lexical_test_section_bytes": 335,
+          "lexical_test_section_sha256": "2cc2b1b133a2e9f150e5b2957fee8f9d2efa4fd12dc0bf17aab7d42a4f9a33c1",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: all five import-only copies reverse to complete original sources",
+          "source_lines_start": 390,
+          "lexical_test_section_bytes": 661,
+          "lexical_test_section_sha256": "9cade15e2a0a8fe2e75ec18dcfa051a05357cb8624ee47c3a1fb6efe3dc03372",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: original default and audit bytes stay separate from installed executable fixture modes",
+          "source_lines_start": 398,
+          "lexical_test_section_bytes": 523,
+          "lexical_test_section_sha256": "73c32e9fea8dd3788d400965f4d14db74261ec33bcf75044d7f6f2ec163ec4ec",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: missing changed and wrong-mode canonical sources refuse before extraction",
+          "source_lines_start": 404,
+          "lexical_test_section_bytes": 534,
+          "lexical_test_section_sha256": "539f75cc5f5cba57c85c21f7c7a7c9ddca95803542d8bbf4ca853006af8b9a18",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: new old and default source tampering all refuse the exact frozen-byte audit",
+          "source_lines_start": 409,
+          "lexical_test_section_bytes": 381,
+          "lexical_test_section_sha256": "6c7492dae903d0a16cdf6d1c2c255de68192d5855f90c54fa800c5ff69774f35",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: private extra and missing guide members refuse strict membership",
+          "source_lines_start": 414,
+          "lexical_test_section_bytes": 416,
+          "lexical_test_section_sha256": "741ab3ae17d6b6c4077cd8a5c45162bae232f83c84a26fe75595377c914b8b6a",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: bin and files metadata changes refuse with every old mapping retained",
+          "source_lines_start": 418,
+          "lexical_test_section_bytes": 639,
+          "lexical_test_section_sha256": "2796c35455950d6433bfd373f5b858d79035a4520b9b81cb3955573cf9a09695",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: every admitted JS and MJS import is checked including escape and absent dependency",
+          "source_lines_start": 424,
+          "lexical_test_section_bytes": 637,
+          "lexical_test_section_sha256": "c748476aef777f52dfc352bfe2509704fbf8a19ae0b63842655a2f3e13c4d1a9",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: gzip CRC trailing data and concatenated members refuse before TAR admission",
+          "source_lines_start": 433,
+          "lexical_test_section_bytes": 465,
+          "lexical_test_section_sha256": "4c0d94bb0dea05412a72f6cc6c1fc4969dace2cb06c6dc1e2701d3ec6ceb18a0",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: compressed expanded and member-count bounds refuse before fixture writes",
+          "source_lines_start": 438,
+          "lexical_test_section_bytes": 454,
+          "lexical_test_section_sha256": "349e5a1680c552f7b92c70d73713c11665559cfe3a0bdd14796aa185c6dbad1a",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: checksum-valid high-bit path type mode size and checksum fields refuse raw ASCII",
+          "source_lines_start": 444,
+          "lexical_test_section_bytes": 569,
+          "lexical_test_section_sha256": "12e1aa2bb73593917b7e60b718bc578bf22290f40333ec33be7bf0a785d69f39",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: checksum traversal duplicate link and nonregular controls refuse before extraction",
+          "source_lines_start": 453,
+          "lexical_test_section_bytes": 735,
+          "lexical_test_section_sha256": "c149e8fb3feff349abff3ba0869aa618a7b428cb1f35ea3710cc979b134ce856",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: Git-free consumer contains admitted bytes and only disclosed locked dependencies",
+          "source_lines_start": 459,
+          "lexical_test_section_bytes": 509,
+          "lexical_test_section_sha256": "10f17c6b34883d0b50f6c53f427343841ab6b1fc0ece2792c9fe24e701150a57",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: README and standalone guide expose a literal complete package-local workflow",
+          "source_lines_start": 464,
+          "lexical_test_section_bytes": 751,
+          "lexical_test_section_sha256": "5b51b629c778ea7dccd7b66c9f2166c37adca01cacbcd5c16fdd327cd435bf63",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: entry1 direct bin executes the exact marked guide workflow once with full core parity",
+          "source_lines_start": 471,
+          "lexical_test_section_bytes": 835,
+          "lexical_test_section_sha256": "dbbe44a09cb50e8e74e598b58934bcebc330102a4a9f8d7f3667bd96581a2be2",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: entry2 raw original proto key refuses without a successful audit and closes known child",
+          "source_lines_start": 481,
+          "lexical_test_section_bytes": 187,
+          "lexical_test_section_sha256": "862946f99cbce569b88289e85cac38a49823f782fdc4a2e1aa55e13b160ddc81",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: entry3 callback failure closes once and observes the same owned PID absence",
+          "source_lines_start": 484,
+          "lexical_test_section_bytes": 229,
+          "lexical_test_section_sha256": "a7a16b8cfaff738acc1562c8d09baa62720e0b30fc9e229d80a9b340e5e1e58b",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: complete native report keeps all roles tasks raw bytes and null established outcomes",
+          "source_lines_start": 487,
+          "lexical_test_section_bytes": 999,
+          "lexical_test_section_sha256": "a3c9662361157c35e7aa70c50792d10a84c64e34ea450a8211f051923f4d815b",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: original argument and outer params keys refuse before native decode or kernel through SDK",
+          "source_lines_start": 498,
+          "lexical_test_section_bytes": 796,
+          "lexical_test_section_sha256": "a4e32d89e6f64297293f04267cafbd39f71b85ab8b879050af3cee245de94ff6",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: type count and individual decoded limits refuse before the first decode",
+          "source_lines_start": 508,
+          "lexical_test_section_bytes": 673,
+          "lexical_test_section_sha256": "464ae3cc6ab2d8603437bcc28f7d000b2126266b9901f061a25764d9702eb1f9",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: evidence and all-input aggregates refuse before decoding any individually admitted field",
+          "source_lines_start": 517,
+          "lexical_test_section_bytes": 691,
+          "lexical_test_section_sha256": "e8005841f956c1056690050d4774707b445fbf9e86e9abb9b04c083e6fc69368",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: noncanonical padding and wrong gold raw pin retain bounded non-echo refusal",
+          "source_lines_start": 525,
+          "lexical_test_section_bytes": 538,
+          "lexical_test_section_sha256": "5c71a4e97a4eb752daa2b0d70896ad8f54770044ba0fcde71de42612c3a7ca4e",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: escaped duplicated result and whole frame capacities refuse with zero native writes",
+          "source_lines_start": 531,
+          "lexical_test_section_bytes": 768,
+          "lexical_test_section_sha256": "f7259ff8949b565a09d054f87f2bcb875f60b74192bf5e030fd391a2c70b2e4a",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: serialization crossing the absolute deadline prevents the captured native write",
+          "source_lines_start": 540,
+          "lexical_test_section_bytes": 586,
+          "lexical_test_section_sha256": "f1d3637f374e7bf0067579af21e79f912aec88e13c1e4389bf27f07965aec385",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: aborted serialized writes stay sticky while a positive control writes exactly once",
+          "source_lines_start": 546,
+          "lexical_test_section_bytes": 872,
+          "lexical_test_section_sha256": "5287c8b91045d0088a81347f2c8f4634b9fe0d5944c969bb61989146a6964666",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: pending writer is rejected by one memoized close and owned input destroy",
+          "source_lines_start": 554,
+          "lexical_test_section_bytes": 944,
+          "lexical_test_section_sha256": "0d324bbe3f524d8a667f361ec2887a6fc6640679f391ced4513c695682828ea0",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: native readback guards reject symlink and overflow before consumer snapshots",
+          "source_lines_start": 564,
+          "lexical_test_section_bytes": 588,
+          "lexical_test_section_sha256": "fcd47142ae0c2836fa98a6e0ec715dbc3846ca946f864c959098303b11f13d4a",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: native sentinel positive control records even a caught forbidden effect without delegation",
+          "source_lines_start": 571,
+          "lexical_test_section_bytes": 642,
+          "lexical_test_section_sha256": "8280cfb3aed45de045fc9ceaf1d874d1f9c727cea8d6b2c57f11418ec5578f8a",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        },
+        {
+          "name": "expert package: package frame admission retains strict UTF8 and whole request plus newline limits",
+          "source_lines_start": 578,
+          "lexical_test_section_bytes": 663,
+          "lexical_test_section_sha256": "e3b3e75e53bd54f02298bd19409e448c61b1263d5426e1f6dc7c94e8fde4ebb0",
+          "SOURCE_status": "WRITTEN_AT_FROZEN358",
+          "runtime_peer_status": "NOT_REVIEWED_BY_THIS_SOURCE_GATE"
+        }
+      ],
+      "one_new_pack": "packOnce, one before hook, native counter max1, offline/ignore-scripts/notifier-audit-fund optouts/CI=true/private cache/config/output/pre-import network sentinel/output64KiB/observed20s/owned cleanup. Guard stderr marker survives caught forbidden attempts.",
+      "new_actual_SDK_entry_max": 3,
+      "sites": "Literal guide entry1 and one otherOwnedEntry site called only by raw-key entry2 and intentional callback-failure entry3. New native faults use in-process injected SDK/fake writer; no fourth guide child or retry.",
+      "guide_workflow": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/3586185b-source-originals-v1/literal-marked-guide-workflow.mjs.txt",
+        "bytes": 7622,
+        "sha256": "78fafac6203d174f14e5050e1963e55f56ac5ea022868736b3e753ded4832493",
+        "mode": "0600",
+        "FULLREAD_sameFD_postpath_stable": true
+      },
+      "protocol_controls": "Legacy Client, autoFulfill:false, explicit EXPERT_TOOL in callTool second-options, native writer captured stdin with same absolute clock after serialization; full report and JSON text equality, complete content hash/rawbindings/fullN/nulls/unverified diagnostic flags.",
+      "closure": "Written15s work/5s memoized observed closure/20s total, bounded stderr8KiB/noecho, same owned child terminal plus PIDabsence, no foreign/global census claim.",
+      "consumer": "Strict admitted source files then private Git-free consumer and ONLY disclosed pinned existing SDK/Zod dependency cache link; .bin direct/shebang launch and default-only installed-fixture executable normalization. No install/repository runtime-source fallback."
+    },
+    "native_negative_and_positive_controls": "Missing/changed source/raw modes; strict bin/files/membership/private extra; JS/MJS path escape/dynamic import; gzip corruption/trailing/concat/count/bounds; highbit/checksum/traversal/duplicate/link/nonregular; raw own proto/outer-key admission with decode/kernel0; all decode/group/aggregate counts; noncanonical base64/wronggold SHA/noecho; escaped20MiB/result and whole frame zero writes;14999.5+1ms postserialize refusal/sticky abort; pending drain one memoized close+input destroy; FD-first snapshot symlink/overflow; caught sentinel positive; fatalUTF8/newline frame cap. SOURCE-written only.",
+    "standalone_guide_DISCOVERABILITY": "Accurate Unreleased/unpublished0.5.0 qualifier, new README local guide link, self-contained synthetic nine-input workflow with package-local helpers, consumer-side pinned client2.1.0 prerequisite and shared entry1. Packet guideline/filing strings are fixture identifiers, not repository file reads or real source/human evidence."
+  },
+  "metadata_reader_original_stops_and_additive_correction": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/3586185b-source-originals-v1/original-native-reader-stop-1-v1.json",
+      "bytes": 1192,
+      "sha256": "51c38e130f97b1d3343e76c2e1085e932aad9a143e07fd6b56304dbc7d51f1ce",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/3586185b-source-originals-v1/original-native-reader-stop-2-v1.json",
+      "bytes": 627,
+      "sha256": "dca182bbbcd91a7f2b572c9e37602a0d17dac90c1e8c690d146e31e97a8acc06",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/3586185b-source-originals-v1/native-reader-format-and-frozen-scope-correction-v1.json",
+      "bytes": 1352,
+      "sha256": "9dc527c15fb1cf33791d38812a2f4925147ba2be4d8d46b6d83a2b0539f1ce13",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    }
+  ],
+  "ROOT5_current_FULLREAD_before_material_checkpoint": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 85596,
+      "sha256": "89600a2d55a22e5d3f70be783eb08dab43a35676a5203ff66780993e4dcda266",
+      "mode": "0644",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "mode": "0644",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1337029,
+      "sha256": "137e68c6423d1600aeb5efa5c2fc169dfcde13610e6de4da4eb8844870c4bc67",
+      "mode": "0644",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 96669,
+      "sha256": "79d45bc81a230159aa0dec4f90bb9c37c685f36924a7c2c9bff0b84951c629ef",
+      "mode": "0644",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1681879,
+      "sha256": "1bd65c62492b976025bbef286ba72ee0d9aa2cb34250ea814ae3acfbf0dc4b0d",
+      "mode": "0644",
+      "FULLREAD_sameFD_postpath_stable": true
+    }
+  ],
+  "runtime_and_future_scope": {
+    "independent_CURRENTCI_review": "NOT_PERFORMED_BY_THIS_SOURCE_RECEIPT; separate saved-original request needed.",
+    "author_first_failure_preserved_context": "All29 hookFailed/0newPASS/0newSDK reported separately; do not relabel written fixtures PASS or certify actual artifact/child behavior.",
+    "source_semantic_functions": "Byte-exact accepted delivered bodies carry only through enumerated import/comment/description/shebang transformations; no duplicate old whole semantic gate or old-role restart.",
+    "actual_tarball_native_NPM_SDK_pipeline": "UNKNOWN to this independent SOURCE gate",
+    "archive_allocation": null,
+    "future_corrected_source_CI_finalhead_ready_merge_pub": "No approval from original358; separate exact pinned gates required."
+  },
+  "all_owner_goals": "ACTIVE",
+  "actual_outcomes": null,
+  "roles": "Existing PRIMARY sole mergepub/guide-journal-date-focus-live-release; LeadCPU and127policy; existing SECONDARY/THIRD lanes unchanged.",
+  "reviewer_operations": "Python stdlib/immutable Git/hash/sameFD evidence reads and external O_EXCL receipts; no project Node/import/SDK/CLI/test/npm/pack/helper/GET/processprobe/job/grant/APIrefetch/spend/publication.",
+  "source_archive_mutation": false,
+  "closed_PR376_exact96_and_older_lanes": "Preserved, no replay."
+}

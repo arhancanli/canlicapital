@@ -1,0 +1,184 @@
+import os, stat, json, hashlib, re, subprocess, datetime, decimal, traceback
+from pathlib import Path
+
+N=Path('/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package')
+A=N.parent/'expert-submission-package-primary-review'
+O=A/'da4cc231-current-ci-originals-v1'
+W='/Users/arhancanli/canlicapital-expert-submission-package-20261004'
+H='da4cc231fb8d61da8b522c55189c8edab0a33a73'
+T='84dca3d7b6991e031a8880131d097399d044f29d'
+B='9d67ff374162ee34480dabaf56a8789022c40add'
+TESTED='ebd25348595d688a0cffe7a1f6fd13788c5b80aa'
+reads={}
+
+def sha(b): return hashlib.sha256(b).hexdigest()
+def now(): return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def identity(s): return [s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns,stat.S_IMODE(s.st_mode)]
+def read(p,expected=None,cap=8*1024*1024,private=True):
+    p=Path(p);fd=os.open(p,os.O_RDONLY|os.O_NOFOLLOW)
+    try:
+        a=os.fstat(fd);assert stat.S_ISREG(a.st_mode) and a.st_size<=cap,(str(p),'not bounded regular')
+        if private: assert stat.S_IMODE(a.st_mode)==0o600,(str(p),'mode')
+        pieces=[];total=0
+        while True:
+            x=os.read(fd,min(1024*1024,cap+1-total))
+            if not x:break
+            pieces.append(x);total+=len(x);assert total<=cap
+        z=os.fstat(fd)
+    finally: os.close(fd)
+    q=os.stat(p,follow_symlinks=False);assert identity(a)==identity(z)==identity(q),(str(p),'unstable')
+    b=b''.join(pieces);assert len(b)==a.st_size
+    pin={'path':str(p),'bytes':len(b),'sha256':sha(b),'mode_octal':oct(stat.S_IMODE(a.st_mode)),'FULLREAD_sameFD_postpath':True,'identity':identity(a)}
+    if expected:
+        assert len(b)==expected['bytes'] and sha(b)==expected['sha256'],(str(p),'pin mismatch')
+    reads[str(p)]=pin
+    return b
+def load(p,expected=None): return json.loads(read(p,expected))
+def pin(p): return reads[str(p)]
+def save(p,b):
+    p=Path(p);fd=os.open(p,os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
+    try:
+        at=0
+        while at<len(b): at+=os.write(fd,b[at:])
+        os.fsync(fd)
+    finally:os.close(fd)
+    assert read(p)==b
+    return pin(p)
+def savejson(p,d):return save(p,(json.dumps(d,ensure_ascii=False,indent=2)+'\n').encode())
+def git(label,args):
+    argv=['git','-C',W,*args]
+    r=subprocess.run(argv,capture_output=True,env={**os.environ,'GIT_OPTIONAL_LOCKS':'0'})
+    out=save(O/(label+'-stdout-original.bin'),r.stdout);err=save(O/(label+'-stderr-original.bin'),r.stderr)
+    cmd=savejson(O/(label+'-command-original.json'),{'utc':now(),'argv':argv,'exit':r.returncode,'stdout':out,'stderr':err})
+    assert r.returncode==0,(label,r.stderr.decode(errors='replace'))
+    return r.stdout,cmd
+
+def parse_tap(label,b):
+    literal=b.decode('utf-8',errors='strict').splitlines()
+    lines=[]
+    for l in literal:
+        m=re.match(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+Z (.*)$',l)
+        assert m,(label,'raw timestamp prefix',l[:100])
+        lines.append(m[1])
+    blocks=[]
+    for start,x in enumerate(lines):
+        if x!='TAP version 13':continue
+        ends=[i for i in range(start+1,len(lines)) if re.fullmatch(r'# duration_ms \d+(?:\.\d+)?',lines[i])]
+        assert ends,(label,'no final duration')
+        end=ends[0];segment=lines[start+1:end]
+        assert 'TAP version 13' not in segment
+        plans=[(i,int(lines[i][3:])) for i in range(start+1,end) if re.fullmatch(r'1\.\.\d+',lines[i])]
+        assert len(plans)==1
+        planidx,plan=plans[0]
+        counters={}
+        for c in ['tests','suites','pass','fail','cancelled','skipped','todo']:
+            matches=[re.fullmatch(r'# '+c+r' (\d+)',v) for v in segment]
+            matches=[m for m in matches if m]
+            assert len(matches)==1;(value,)=matches[0].groups();counters[c]=int(value)
+        assert counters==dict(tests=plan,suites=0,pass=plan,fail=0,cancelled=0,skipped=0,todo=0)
+        assert lines[planidx+1:end]==['# '+k+' '+str(v) for k,v in counters.items()]
+        nested=sum(bool(re.match(r'^\s+(?:not )?ok \d+ - ',l)) for l in segment);assert nested==0
+        rows=[];subtests=[]
+        for i in range(start+1,planidx):
+            if lines[i].startswith('# Subtest: '):subtests.append(lines[i][11:])
+            m=re.fullmatch(r'(ok|not ok) (\d+) - (.*)',lines[i])
+            if not m:continue
+            result,ordinal,name=m.groups();assert result=='ok' and int(ordinal)==len(rows)+1
+            assert subtests and subtests[-1]==name
+            assert lines[i+1]=='  ---'
+            yamlend=next(j for j in range(i+2,planidx) if lines[j]=='  ...')
+            yaml=lines[i+2:yamlend]
+            assert len(yaml)==2 and yaml[0].startswith('  duration_ms: ') and yaml[1].startswith('  type: ')
+            duration=yaml[0][15:];assert re.fullmatch(r'\d+(?:\.\d+)?',duration) and decimal.Decimal(duration)>=0
+            typeliteral=yaml[1][8:];assert typeliteral in ["'test'",'"test"','test']
+            rows.append({'ordinal':int(ordinal),'name':name,'result':result,'duration_ms_exact':duration,'type':'test','type_literal':typeliteral,'outcome_raw_line':i+1,'yaml_begin_raw_line':i+2,'yaml_end_raw_line':yamlend+1})
+        assert len(rows)==len(subtests)==plan and [r['name'] for r in rows]==subtests
+        finalduration=lines[end][14:];assert decimal.Decimal(finalduration)>=0
+        blocks.append({'begin_raw_line':start+1,'plan':plan,'plan_raw_line':planidx+1,'end_raw_line':end+1,'counters':counters,'nested_outcomes':nested,'final_duration_ms_exact':finalduration,'rows':rows})
+    assert sum(len(x['rows']) for x in blocks)==sum(bool(re.fullmatch(r'(ok|not ok) \d+ - .*',l)) for l in lines)
+    return lines,blocks
+
+def run():
+    O.mkdir(mode=0o700);assert stat.S_IMODE(O.stat().st_mode)==0o700
+    locator=N/'pr377-da4cc231-exact-current-ci-v1.json'
+    author=load(locator,{'bytes':38051,'sha256':'60a28599596caa5c1db2be7345d7481c93c38da0b5529aa1cd2f2270ce083811'})
+    assert author['head']==H and author['tree']==T and author['actual_base']==B
+    raw={k:read(v['path'],v) for k,v in author['original_pins'].items()}
+    assert set(raw)=={'ci-run','ci-jobs','codeql-run','codeql-jobs','pull','alerts','analyses','tested-git','checks','ROOT','MCP'} and sum(map(len,raw.values()))==1350626
+    expected_endpoints={'ci-run':'actions/runs/37182417711','ci-jobs':'actions/runs/37182417711/jobs','codeql-run':'actions/runs/37182417727','codeql-jobs':'actions/runs/37182417727/jobs','pull':'pulls/377','alerts':'code-scanning/alerts?ref=refs%2Fpull%2F377%2Fmerge&state=open&per_page=100','analyses':'code-scanning/analyses?ref=refs%2Fpull%2F377%2Fmerge&per_page=100','tested-git':'git/commits/'+TESTED,'checks':'commits/'+H+'/check-runs','ROOT':'actions/jobs/111377481647/logs','MCP':'actions/jobs/111377481565/logs'}
+    captures=[];seen=set()
+    for binding in author['literal11_capture_bindings']:
+        cmd=load(binding['command']['path'],binding['command']);stdout=read(binding['stdout']['path'],binding['stdout']);stderr=read(binding['stderr']['path'],binding['stderr'])
+        labels=[k for k,v in author['original_pins'].items() if v['path']==binding['stdout']['path']];assert len(labels)==1
+        label=labels[0];assert label not in seen;seen.add(label)
+        argv=['gh','api']+([] if label=='checks' else ['--allow-escape-sequences'])+['repos/arhancanli/canlicapital/'+expected_endpoints[label]]
+        assert cmd['argv']==binding['argv']==argv and cmd['exit']==0 and not stderr and stdout==raw[label]
+        for channel in ['stdout','stderr']:
+            assert {k:cmd[channel][k] for k in ['path','bytes','sha256']}=={k:binding[channel][k] for k in ['path','bytes','sha256']}
+        captures.append({'label':label,'command':pin(binding['command']['path']),'argv':argv,'exit':0,'stdout':pin(binding['stdout']['path']),'stderr':pin(binding['stderr']['path']),'utc':cmd['utc']})
+    assert seen==set(raw)
+    js={k:json.loads(v) for k,v in raw.items() if k not in ['ROOT','MCP']}
+    runs=[];jobs=[]
+    for label,runid in [('ci',37182417711),('codeql',37182417727)]:
+        r=js[label+'-run'];assert r['id']==runid and r['status']=='completed' and r['conclusion']=='success' and r['run_attempt']==1 and r['head_sha']==H and r['event']=='pull_request'
+        assert r['head_commit']['tree_id']==T
+        assert len(r['pull_requests'])==1 and r['pull_requests'][0]['number']==377 and r['pull_requests'][0]['head']['sha']==H and r['pull_requests'][0]['base']['sha']==B
+        jr=js[label+'-jobs'];assert jr['total_count']==len(jr['jobs'])==(4 if label=='ci' else 2)
+        for j in jr['jobs']:
+            assert j['run_id']==runid and j['head_sha']==H and j['run_attempt']==1 and j['status']=='completed' and j['conclusion']=='success'
+            assert all(s['status']=='completed' and s['conclusion']=='success' for s in j['steps'])
+            jobs.append({k:j[k] for k in ['id','run_id','name','head_sha','status','conclusion','run_attempt','started_at','completed_at','steps']})
+        runs.append({k:r[k] for k in ['id','name','head_sha','status','conclusion','run_attempt','event','created_at','updated_at']})
+    cr=js['checks'];assert cr['total_count']==len(cr['check_runs'])==7
+    checknames={'CodeQL','Key revocation PostgreSQL contract','design wrapper build and contracts','vite production build','analyze (javascript-typescript)','MCP package and stdio contracts','analyze (python)'}
+    assert {c['name'] for c in cr['check_runs']}==checknames
+    assert all(c['status']=='completed' and c['conclusion']=='success' and c['head_sha']==H for c in cr['check_runs'])
+    assert {j['id'] for j in jobs}.issubset({c['id'] for c in cr['check_runs']})
+    pull=js['pull'];assert pull['number']==377 and pull['state']=='open' and pull['draft'] is True and pull['merged'] is False and pull['head']['sha']==H and pull['base']['sha']==B and pull['merge_commit_sha']==TESTED
+    tg=js['tested-git'];assert tg['sha']==TESTED and tg['tree']['sha']==T and [x['sha'] for x in tg['parents']]==[B,H]
+    assert tg['verification']['verified'] is True and tg['verification']['reason']=='valid'
+    assert js['alerts']==[]
+    analyses=js['analyses'];assert isinstance(analyses,list) and len(analyses)==4
+    latest=[]
+    for lang in ['javascript-typescript','python']:
+        group=[a for a in analyses if json.loads(a['environment'])['language']==lang]
+        assert len(group)==2
+        for a in group:assert a['ref']=='refs/pull/377/merge' and a['category'].endswith('/language:'+lang)
+        a=max(group,key=lambda x:x['created_at']);assert a['commit_sha']==TESTED and a['results_count']==0 and a['error']==''
+        latest.append({'language':lang,**{k:a[k] for k in ['id','commit_sha','created_at','results_count','error','category','environment']}})
+    parsed={};peeled={};checkout=[]
+    for label,expectedplans in [('ROOT',[6,1292,9]),('MCP',[149,1,82,269,139])]:
+        lines,blocks=parse_tap(label,raw[label]);peeled[label]=lines;parsed[label]=blocks
+        assert [x['plan'] for x in blocks]==expectedplans and any('v22.23.3' in l for l in lines)
+        matchlines=[(i+1,l) for i,l in enumerate(lines) if l.startswith('HEAD is now at ')]
+        assert len(matchlines)==1
+        idx,line=matchlines[0];m=re.fullmatch(r'HEAD is now at ([a-f0-9]{7,40}) Merge '+H+' into '+B,line);assert m and TESTED.startswith(m[1])
+        checkout.append({'label':label,'raw_line':idx,'literal':line,'abbreviation':m[1],'full_tested_binding':TESTED})
+    assert sum(b['plan'] for bs in parsed.values() for b in bs)==1947
+    catalogue=savejson(O/'independent-complete8-TAP-outcomes-v1.json',{'schema':'PRIMARY-independent-original-full8-TAP-v1','head':H,'tested':TESTED,'blocks':parsed,'total_top_outcomes':1947,'nested_outcomes':0})
+    meta,metapin=git('current-frozen-metadata',['show','-s','--format=%H %T %P %G?',H]);assert meta.decode().strip()==H+' '+T+' 3586185bdae0bca97b3b9f00339573112ed63e70 G'
+    clean,cleanpin=git('current-CLEAN',['status','--porcelain=v1','--untracked-files=all']);assert not clean
+    groups=[];source_git_pins=[]
+    for label,path,count,authorfield in [('new30','mcp-fundamentals/test/expert-submission-package.test.mjs',30,'actual30_new_source_names_onceMCP0ROOT'),('old22','mcp-fundamentals/test/audit-package.test.mjs',22,'actual_old22_names_onceMCP0ROOT'),('old63','mcp-fundamentals/test/expert-submission-stdio.test.mjs',63,'actual_old63_names_onceMCP0ROOT')]:
+        blob,cmdpin=git('frozen-'+label+'-test',['show',H+':'+path]);text=blob.decode('utf-8')
+        names=re.findall(r"^test\('((?:\\.|[^'\\])*)',",text,re.M);assert len(names)==len(set(names))==count and all('\\' not in n for n in names)
+        rows=[]
+        for name in names:
+            root=[(i+1,r) for i,b in enumerate(parsed['ROOT']) for r in b['rows'] if r['name']==name]
+            mcp=[(i+1,r) for i,b in enumerate(parsed['MCP']) for r in b['rows'] if r['name']==name]
+            assert not root and len(mcp)==1 and mcp[0][1]['result']=='ok'
+            rows.append({'name':name,'ROOT_count':0,'MCP_count':1,'MCP_block':mcp[0][0],**mcp[0][1]})
+        assert names==author[authorfield]
+        source_git_pins.append({'group':label,'source_path':path,'bytes':len(blob),'sha256':sha(blob),'git_blob_sha1':hashlib.sha1(('blob '+str(len(blob))+'\0').encode()+blob).hexdigest(),'native_command':cmdpin})
+        groups.append({'group':label,'count':count,'rows':rows})
+    guards=[(i+1,l) for i,l in enumerate(peeled['ROOT']) if 'paper-evidence.html' in l and 'verified' in l]
+    assert len(guards)==2 and 'dist/standards/paper-evidence.html' in guards[1][1] and 'standards/paper-evidence.html' in guards[0][1] and 'dist/' not in guards[0][1]
+    bpin=savejson(O/'independent-API-TAP-source-binding-v1.json',{'schema':'PRIMARY-da4cc231-retained-API-TAP-source-binding-v1','utc':now(),'head':H,'tree':T,'actual_base':B,'tested':TESTED,'tested_ordered_parents':[B,H],'author_locator_pin_only':pin(locator),'all11_originals':{k:pin(v['path']) for k,v in author['original_pins'].items()},'all11_original_bytes':sum(map(len,raw.values())),'capture11_bindings':captures,'runs':runs,'jobs':jobs,'all7':[{k:c[k] for k in ['id','name','head_sha','status','conclusion','details_url']} for c in cr['check_runs']],'captured_pull':{'number':377,'state':'open','draft':True,'merged':False,'head':H,'base':B,'merge_tested':TESTED},'tested_Git_original_API':tg,'ref_open_alerts_at_capture':0,'security_latest_languages':latest,'all4_analyses_retained':analyses,'raw_checkout_bindings':checkout,'Node':'22.23.3','independent_complete8_outcome_catalog':catalogue,'named_groups':groups,'source_test_Git_pins':source_git_pins,'both_postbuild_guard_passes':[{'raw_line':i,'literal':l} for i,l in guards],'signature_G_CLEAN_native_commands':[metapin,cleanpin],'all_reads':list(reads.values()),'project_execution':False,'API_refetch':False,'archive_allocation':None,'owner_hierarchy':'ACTIVE','actual_outcomes':None})
+    print(json.dumps({'API_TAP_binding':bpin,'complete_catalog':catalogue,'plans':{k:[b['plan'] for b in bs] for k,bs in parsed.items()},'source_groups':[(g['group'],g['count']) for g in groups],'artifact_audit':'NEXT_SEPARATE_NATIVE_STAGE'}))
+
+if __name__=='__main__':
+    try:run()
+    except Exception as e:
+        stop={'schema':'PRIMARY-native-evidence-reader-stop-immutable-v1','utc':now(),'exception':repr(e),'traceback':traceback.format_exc(),'project_execution':False,'originals_modified':False}
+        p=A/('da4cc231-native-CI-reader-stop-'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'.json')
+        savejson(p,stop);print(json.dumps({'native_reader_stop':pin(p),'error':repr(e)}));raise

@@ -1,0 +1,16 @@
+{
+  "schema": "PRIMARY-native-reader-metadata-stop-v1",
+  "utc": "2026-10-04T06:48:04.048777+00:00",
+  "original_native_source": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/native-da4cc231-retained-ci-audit-v1-syntax-stop-original.py.txt",
+    "bytes": 15581,
+    "sha256": "0568cafc51be17571ce04bd7bb296b927fe5daf50873f3608948c7a2cfd0f2ae"
+  },
+  "exception": "SyntaxError: invalid syntax",
+  "line": 78,
+  "cause": "Python reserved keyword pass used as a dict keyword argument",
+  "project_runtime": false,
+  "CI_originals_mutated": false,
+  "source_OR_project_finding": false,
+  "correction": "Use a literal dict for seven TAP counters; same retained input originals only."
+}

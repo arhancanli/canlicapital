@@ -1,0 +1,8 @@
+{
+  "schema": "PRIMARY-native-evidence-reader-stop-immutable-v1",
+  "utc": "2026-10-04T06:48:04.148314+00:00",
+  "exception": "AssertionError(('ROOT', 'raw timestamp prefix', \"\\ufeff2026-10-04T06:18:28.5151180Z Current runner version: '2.337.0'\"))",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/native-da4cc231-retained-ci-audit-v1.py\", line 180, in <module>\n    try:run()\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/native-da4cc231-retained-ci-audit-v1.py\", line 151, in run\n    lines,blocks=parse_tap(label,raw[label]);peeled[label]=lines;parsed[label]=blocks\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/native-da4cc231-retained-ci-audit-v1.py\", line 61, in parse_tap\n    assert m,(label,'raw timestamp prefix',l[:100])\nAssertionError: ('ROOT', 'raw timestamp prefix', \"\\ufeff2026-10-04T06:18:28.5151180Z Current runner version: '2.337.0'\")\n",
+  "project_execution": false,
+  "originals_modified": false
+}

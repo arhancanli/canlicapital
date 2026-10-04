@@ -1,0 +1,122 @@
+[
+  {
+    "original": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+    "target": "mcp-fundamentals/src/expert-submission-stdio.mjs",
+    "original_bytes": 25796,
+    "original_sha256": "5f228ccc5bc3433a93415f9b5f3708e1cb73b209aa5599c9dffa5f59dbc3b882",
+    "new_bytes": 25763,
+    "new_sha256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208",
+    "literal_changes": [
+      [
+        "../../scripts/datasets/filing-facts/expert-submission-audit.mjs",
+        "./expert-submission-audit-core.mjs"
+      ],
+      [
+        "../../scripts/canonical-json.mjs",
+        "./canonical-json.mjs"
+      ],
+      [
+        "Repository-only opt-in example.",
+        "Packaged opt-in command."
+      ],
+      [
+        "Offline repository example",
+        "Offline opt-in package command"
+      ],
+      [
+        "repository EXPERT_SUBMISSION_STDIO.md",
+        "packaged EXPERT_SUBMISSIONS.md"
+      ],
+      [
+        "Repository expert-submission audit",
+        "Packaged expert-submission audit"
+      ]
+    ],
+    "shebang": "#!/usr/bin/env node\n",
+    "reverse_recovers_entire_original": true
+  },
+  {
+    "original": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+    "target": "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+    "original_bytes": 23778,
+    "original_sha256": "79540f0812537798321a4eb3a97bf89d04acc1b5bd5d4a105eddae007e87ad33",
+    "new_bytes": 23777,
+    "new_sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3",
+    "literal_changes": [
+      [
+        "../../canonical-json.mjs",
+        "./canonical-json.mjs"
+      ],
+      [
+        "../../../js/filing-facts-packet.js",
+        "./filing-facts-packet.mjs"
+      ],
+      [
+        "./expert-intake.mjs",
+        "./expert-intake-core.mjs"
+      ],
+      [
+        "./agreement.mjs",
+        "./expert-agreement.mjs"
+      ]
+    ],
+    "shebang": "",
+    "reverse_recovers_entire_original": true
+  },
+  {
+    "original": "scripts/datasets/filing-facts/expert-intake.mjs",
+    "target": "mcp-fundamentals/src/expert-intake-core.mjs",
+    "original_bytes": 30964,
+    "original_sha256": "f37ed4663a78cf819331410205f28b0671966cfe1b3c73aa0b13a46bf19b0ab4",
+    "new_bytes": 30951,
+    "new_sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545",
+    "literal_changes": [
+      [
+        "../../canonical-json.mjs",
+        "./canonical-json.mjs"
+      ],
+      [
+        "../../../js/filing-facts-packet.js",
+        "./filing-facts-packet.mjs"
+      ]
+    ],
+    "shebang": "",
+    "reverse_recovers_entire_original": true
+  },
+  {
+    "original": "scripts/datasets/filing-facts/agreement.mjs",
+    "target": "mcp-fundamentals/src/expert-agreement.mjs",
+    "original_bytes": 6423,
+    "original_sha256": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6",
+    "new_bytes": 6410,
+    "new_sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef",
+    "literal_changes": [
+      [
+        "../../canonical-json.mjs",
+        "./canonical-json.mjs"
+      ],
+      [
+        "../../../js/filing-facts-packet.js",
+        "./filing-facts-packet.mjs"
+      ]
+    ],
+    "shebang": "",
+    "reverse_recovers_entire_original": true
+  },
+  {
+    "original": "js/filing-facts-packet.js",
+    "target": "mcp-fundamentals/src/filing-facts-packet.mjs",
+    "original_bytes": 564,
+    "original_sha256": "eb61ab2bf78d7047569c8cf92ea348dc5c3a9e6fe311c16a63361765b2e08bc8",
+    "new_bytes": 555,
+    "new_sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8",
+    "literal_changes": [
+      [
+        "../scripts/canonical-json.mjs",
+        "./canonical-json.mjs"
+      ]
+    ],
+    "shebang": "",
+    "reverse_recovers_entire_original": true
+  }
+]
