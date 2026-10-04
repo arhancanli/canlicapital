@@ -410,9 +410,14 @@ export function createPaperScope({ now = () => performance.now(), signal, totalM
       timeout = setTimeout(() => finishBound(reject, fail(new Stop(closing ? 'STDIO_CLOSE_UNCERTAIN' : 'DEADLINE'))), Math.max(1, remaining));
       Promise.resolve().then(() => {
         requireThat(!settled, first?.code || 'DEADLINE'); observe();
-        const value = task(); observe(); return value;
-      }).then(value => { if (settled) return; try { observe(); finishBound(resolve, value); } catch (error) { finishBound(reject, fail(error)); } },
-        error => finishBound(reject, fail(error)));
+        const value = task();
+        // Own the returned task before a synchronous post-callback observation can refuse.
+        Promise.resolve(value).then(value => {
+          if (settled) return;
+          try { observe(); finishBound(resolve, value); } catch (error) { finishBound(reject, fail(error)); }
+        }, error => finishBound(reject, fail(error))).catch(error => finishBound(reject, fail(error)));
+        observe();
+      }).catch(error => finishBound(reject, fail(error)));
     } catch (error) { finishBound(reject, fail(error)); }
   });
   return { guard, bounded, fail, beginClose, closureRemaining, finalObservation, signal: controller.signal,

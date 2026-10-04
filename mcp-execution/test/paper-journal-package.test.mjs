@@ -49,7 +49,7 @@ const SOURCE_PINS = Object.freeze({
   "package/src/journal.mjs": "72829724fd58fb8d6c7af8dc21fde02a0f97b68a57eedd606f5ff92826957619",
   "package/src/local-input.mjs": "fafeb03647cd04897fb03cf637186a91c91c9da1186414fd167bcfe9d12ad825",
   "package/src/measure-shortfall.mjs": "74cc85b67a4c0b7a685e81979097c345f1b21fc41c2755b2a65a0303626dc9a2",
-  "package/src/paper-journal.mjs": "3ec87e000a6b602432afcdba3c56d629cc27bb32fa084c20f23956c26e4e3928",
+  "package/src/paper-journal.mjs": "357051ad1f6b9faf89dbca841f85a85b9f36f42ce7b0c2c3470d139ecee7dab8",
   "package/src/server.mjs": "4cd48c1dc40098ac049f45f3951322e3b63118605c36330c6d4874b25951c5bd",
   "package/src/size-position.mjs": "09e690c9f0452c039ff20fc3f2728e365e6f7ba6bcf9f2da150383654e8453f4"
 });
@@ -493,6 +493,18 @@ test('paper package: native SDK config has explicit legacy exact tool definition
 test('paper package: queued call crossing absolute work deadline performs zero additional native writes', async () => {
   const f = homeFixture(); let clock = 0; const { report, sdk } = await injected(f, { now: () => clock, onQueuedSend: () => { clock = 25000; } });
   assert.equal(report.stop.code, 'DEADLINE'); assert.equal(sdk.counts.calls, 1); assert.equal(sdk.counts.writes, 1); assert.equal(report.call_count, 1); assert.equal(report.planning, null);
+  assert.equal(f.requests.length, 0); assert.equal(sdk.counts.clientClose, 1); assert.equal(sdk.counts.transportClose, 1);
+  // Both an already-rejected SDK task and a later rejection must stay owned after post-callback refusal.
+  await new Promise(resolve => setImmediate(resolve));
+  clock = 0; const scope = adapter.createPaperScope({ now: () => clock }); let rejectTask, taskCalls = 0;
+  const delayed = new Promise((_, reject) => { rejectTask = reject; });
+  const stopped = scope.bounded(() => { taskCalls++; clock = 25000; return delayed; });
+  await assert.rejects(stopped, error => error.code === 'DEADLINE');
+  rejectTask(new Error('PRIVATE_DIAGNOSTIC_LATE_REJECTION'));
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(taskCalls, 1); assert.equal(scope.failure.code, 'DEADLINE'); scope.dispose();
+  const positive = adapter.createPaperScope({ now: () => 0 });
+  assert.equal(await positive.bounded(() => Promise.resolve('exact positive task')), 'exact positive task'); positive.dispose();
 });
 test('paper package: serializer crossing prevents native write while an exact positive frame succeeds', async () => {
   let clock = 0; const scope = adapter.createPaperScope({ now: () => clock }), output = new Output(), writer = adapter.createPaperNativeWriter(output, scope);
