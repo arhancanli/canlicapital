@@ -21,6 +21,20 @@ performance or investment advice.
 | `live_record` | `/api/v1/record.json`, `/api/v1/sleeves.json` | The live paper record and each sleeve's paper equity |
 | `chain_head` | `/api/v1/chain/head.json` | The head of the tamper-evident chain, and where to verify it |
 
+## Prompts and resources
+
+| Prompt | Asks |
+|---|---|
+| `preflight_idea` | Has this quant idea already been tried here, how did it end, and what does the literature say? |
+| `audit_canli_record` | Hypotheses tried against the budget, the live paper record with its limits, and how to verify the chain |
+| `literature_review` | Every paper on a topic, summarized with links |
+
+| Resource | Holds |
+|---|---|
+| `canli://schemas/{tool}` | A tool's exact input and output JSON Schema and description |
+| `canli://examples/{language}/{tool}` | A working call against the hosted endpoint in `python`, `javascript` or `curl` |
+| `canli://limits` | What every result does not establish |
+
 ## Install
 
 ```bash

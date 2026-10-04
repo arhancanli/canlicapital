@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased: prompts and code resources
+
+- Three guided prompts: `preflight_idea` (has this idea been tried here, how did it end, what does
+  the literature say), `audit_canli_record` (hypotheses tried against the budget, the live paper
+  record and its limits, how to verify the chain) and `literature_review` (every paper on a topic).
+- Code resources: `canli://schemas/{tool}` (each tool's exact input and output JSON Schema) and
+  `canli://examples/{language}/{tool}` (a working call against the hosted endpoint in Python,
+  JavaScript or curl; both variables complete), plus `canli://limits`. Every example's arguments
+  are parsed against the tool's own input schema in a test.
+- The hosted endpoint lists them once its pinned release includes them.
+
 ## 0.2.0 (2026-09-27)
 
 - Built on the MCP SDK's v2 server package (`@modelcontextprotocol/server` 2.1.0): about 94

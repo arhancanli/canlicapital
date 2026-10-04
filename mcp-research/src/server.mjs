@@ -15,6 +15,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
 import { BoundedCache } from "./bounded-cache.mjs";
+import { registerPrompts, registerResources } from "./guides.mjs";
 
 export const SERVER_NAME = "canli-research-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
@@ -259,13 +260,26 @@ export const OUTPUT_SCHEMAS = Object.freeze({
 });
 
 export function registerTools(server, session) {
-  const tool = (name, title, inputSchema, fn) => server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
+  const catalog = {};
+  const tool = (name, title, inputSchema, fn) => {
+    server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
+    catalog[name] = { description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] };
+  };
   tool("search_research", "Search research", searchInput, (args) => toolSearchResearch(session, args));
   tool("list_topics", "Research topics", z.object({}).strict(), () => toolListTopics(session));
   tool("get_paper", "Read a paper", paperInput, (args) => toolGetPaper(session, args));
   tool("trial_ledger", "Trial ledger", z.object({}).strict(), () => toolTrialLedger(session));
   tool("live_record", "Live paper record", z.object({}).strict(), () => toolLiveRecord(session));
   tool("chain_head", "Verification chain head", z.object({}).strict(), () => toolChainHead(session));
+  return catalog;
+}
+
+// Tools, the guided prompts and the code resources: what the stdio server and the hosted endpoint list.
+export function registerAll(server, session) {
+  const catalog = registerTools(server, session);
+  registerPrompts(server);
+  registerResources(server, catalog, RESEARCH_LIMITS);
+  return catalog;
 }
 
 const isMain = (() => {
@@ -278,6 +292,6 @@ const isMain = (() => {
 
 if (isMain) {
   const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
-  registerTools(server, createSession());
+  registerAll(server, createSession());
   await server.connect(new StdioServerTransport());
 }
