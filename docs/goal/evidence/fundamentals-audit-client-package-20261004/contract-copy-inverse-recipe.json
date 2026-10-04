@@ -1,0 +1,69 @@
+{
+  "original": {
+    "path": "mcp-fundamentals/examples/audit-inputs-client.mjs",
+    "mode": "100644",
+    "type": "blob",
+    "object": "06101488cadb0d6dee614dbf92398c76d5d10180",
+    "bytes": 32588,
+    "sha256": "60f20a7297bbb463139a829bc4d14e35f108d650faa4488faa91525a2d9e4195",
+    "snapshot": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/actual-source-bodies-v1/mcp-fundamentals__examples__audit-inputs-client.mjs.original.txt",
+      "bytes": 32588,
+      "sha256": "60f20a7297bbb463139a829bc4d14e35f108d650faa4488faa91525a2d9e4195"
+    },
+    "physical": {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/mcp-fundamentals/examples/audit-inputs-client.mjs",
+      "bytes": 32588,
+      "sha256": "60f20a7297bbb463139a829bc4d14e35f108d650faa4488faa91525a2d9e4195",
+      "mode_octal": "0o644",
+      "sameFD_postpath_stable": true
+    },
+    "Git_blob_recomputed": true
+  },
+  "new_path": "mcp-fundamentals/src/audit-inputs-client.mjs",
+  "prepend": "#!/usr/bin/env node\n",
+  "new_mode": "100755",
+  "literal_replacements": [
+    {
+      "old": "from '../src/audit-inputs-stdio.mjs'",
+      "new": "from './audit-inputs-stdio.mjs'",
+      "count": 1
+    },
+    {
+      "old": "from '../src/audit-inputs-core.mjs'",
+      "new": "from './audit-inputs-core.mjs'",
+      "count": 1
+    },
+    {
+      "old": "from '../src/canonical-json.mjs'",
+      "new": "from './canonical-json.mjs'",
+      "count": 1
+    },
+    {
+      "old": "// Repository-only, offline example. Importing it starts no client or input capture.",
+      "new": "// Packaged opt-in offline file client. Importing it starts no client or input capture.",
+      "count": 1
+    },
+    {
+      "old": "resolve(dirname(fileURLToPath(import.meta.url)), '../..')",
+      "new": "resolve(dirname(fileURLToPath(import.meta.url)), '..')",
+      "count": 1
+    },
+    {
+      "old": "resolve(root, 'mcp-fundamentals/src/audit-inputs-stdio.mjs')",
+      "new": "resolve(root, 'src/audit-inputs-stdio.mjs')",
+      "count": 1
+    }
+  ],
+  "baseline": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/expected-portable-client-transform-baseline-v1.mjs.txt",
+    "bytes": 32576,
+    "sha256": "5c2fdae15f1e164c07bd52a97ae0c99f913191d02d4f4e47a332d5ba95662ea5"
+  },
+  "whole_inverse_exact_original": true,
+  "final_owned_exceptions_not_yet_written": [
+    "Own same-package final terminal writer clock/signal/onewrite boundary in the new copy only",
+    "Immediately handled original transport.start Promise outcomes before fallible owned-child admission in the new copy only"
+  ],
+  "scope": "Private source preparation only, not repository write/runtime/final-source ACK"
+}

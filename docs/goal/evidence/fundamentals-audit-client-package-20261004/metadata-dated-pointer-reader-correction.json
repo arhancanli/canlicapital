@@ -1,0 +1,100 @@
+{
+  "utc": "2026-10-04T18:08:47.043456+00:00",
+  "original_tool_exit": 1,
+  "original_error": "AssertionError in recursive refs/pinread before any control capture, worktree or source mutation",
+  "cause": "Reader treated dated ROOT/current header pointer hashes as immutable current bodies. The separately pinned original snapshots remain exact; current README/header contain the old entire bytes as suffix and STATUS/LOG as prefix.",
+  "correction": "Fresh fullread mutable current pointers; verify complete original snapshots and correct whole-history preservation; immutable source/tables/body pins remain exact.",
+  "dated_pointers": [
+    {
+      "dated_expected_pointer": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+        "bytes": 85596,
+        "sha256": "89600a2d55a22e5d3f70be783eb08dab43a35676a5203ff66780993e4dcda266"
+      },
+      "fresh_current": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+        "bytes": 87805,
+        "sha256": "93185e61be5e5bb057460c26b9760f633a25da9e4e040fba153c12696193246f",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "historical_not_required_to_equal_current": true
+    },
+    {
+      "dated_expected_pointer": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+        "bytes": 8404,
+        "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+      },
+      "fresh_current": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+        "bytes": 8404,
+        "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "historical_not_required_to_equal_current": true
+    },
+    {
+      "dated_expected_pointer": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+        "bytes": 1588626,
+        "sha256": "09cd5ab37fe13c538851d212941a9e9a2a7da6046297419a13c0167a5b7092d7"
+      },
+      "fresh_current": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+        "bytes": 1591888,
+        "sha256": "fef317f8a075c1ce686d9038fefd559c5abb2df1f517fcf9bb53c136e90aa2ea",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "historical_not_required_to_equal_current": true
+    },
+    {
+      "dated_expected_pointer": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+        "bytes": 141876,
+        "sha256": "28e9f5da897fe5821e8b87a96c53c72a4936b9c28dad17e5217e96c253259daa"
+      },
+      "fresh_current": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+        "bytes": 141876,
+        "sha256": "28e9f5da897fe5821e8b87a96c53c72a4936b9c28dad17e5217e96c253259daa",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "historical_not_required_to_equal_current": true
+    },
+    {
+      "dated_expected_pointer": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+        "bytes": 1933476,
+        "sha256": "dc8dbdd7bc1828d6fb78e1ddf72e4af641bac6a4bcf2c3a7c97d43a7999d5009"
+      },
+      "fresh_current": {
+        "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+        "bytes": 1936738,
+        "sha256": "07c196ce95888f8bf25687dc1e43bd8d7a9ff0c3e96d24640939996a80b27c1c",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "historical_not_required_to_equal_current": true
+    },
+    {
+      "dated_expected_pointer": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/primary-assignment.md",
+        "bytes": 99354,
+        "sha256": "1f31da679a273b41b26e36d8d6a2797ab6cddad9a21af3bcfb94486eb71a1946"
+      },
+      "fresh_current": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/primary-assignment.md",
+        "bytes": 102810,
+        "sha256": "7a276856087af0ff8e9969451eb021191083f7c12eb720b8e6afc79a895801e2",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "historical_not_required_to_equal_current": true
+    }
+  ],
+  "product_or_runtime_failure": false
+}

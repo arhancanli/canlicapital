@@ -1,0 +1,68 @@
+{
+  "utc": "2026-10-04T19:55:01.244043+00:00",
+  "original_stops": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/primary-ci-0c0de262-native-v1/native-reader-stop-20261004T194934452093Z.json",
+      "bytes": 1117,
+      "sha256": "9a5270896ed327ea7ef7956660d40a15dcb1d0ac3a239ba6d8b3ce49ddc9d5f2",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/primary-ci-0c0de262-native-v1/native-reader-stop-20261004T195012726033Z.json",
+      "bytes": 1927,
+      "sha256": "44980c387cd78a1f4132eff33a8df7e0293ed0d6d1a5624405b18efb1d90b7c8",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath_stable": true
+    }
+  ],
+  "reader_v1_original": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/primary-ci-0c0de262-native-v1/independent_saved_evidence_audit-reader-v1-original.txt",
+    "bytes": 35072,
+    "sha256": "84bbd86254e7bccdf5216559474f2fbae7a447413b2ba589752a9d15196bf420",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "reader_v2_original": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/primary-ci-0c0de262-native-v1/independent_saved_evidence_audit-reader-v2-original.txt",
+    "bytes": 35209,
+    "sha256": "369d846c0ce455a63eae2af859b5174389be9cbd4f7a5cc21ca759b544b6f845",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "corrected_native_auditor": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/primary-ci-0c0de262-native-v1/independent_saved_evidence_audit.py",
+    "bytes": 35211,
+    "sha256": "f4d12a3ce47f7ae1ae113fe783a3a63a08e6d2dbe066b6c46c80cae72e563b60",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "corrections": [
+    {
+      "stop": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/primary-ci-0c0de262-native-v1/native-reader-stop-20261004T194934452093Z.json",
+        "bytes": 1117,
+        "sha256": "9a5270896ed327ea7ef7956660d40a15dcb1d0ac3a239ba6d8b3ce49ddc9d5f2",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath_stable": true
+      },
+      "cause": "reader guessed two legacy bin labels; actual declared labels are canli-fundamentals-audit and canli-expert-submission-audit",
+      "correction": "derive the exact expected bin union from actual07d0 package metadata and already-issued mandatory exact16 union; keep exact bin equality"
+    },
+    {
+      "stop": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/fundamentals-audit-client-package/primary-ci-0c0de262-native-v1/native-reader-stop-20261004T195012726033Z.json",
+        "bytes": 1927,
+        "sha256": "44980c387cd78a1f4132eff33a8df7e0293ed0d6d1a5624405b18efb1d90b7c8",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath_stable": true
+      },
+      "cause": "reader literal omitted 0a from full mandatory-union SHA",
+      "correction": "use full exact immutable union SHA 5d943a1e07c067b037dd217cab08fd98f0845c7ebc7e0a0e0a8065fcbd7373da, cross-bound to retained original PRIMARY source receipt"
+    }
+  ],
+  "source_product_raw_or_command_mutation": false,
+  "product_finding_or_runtime_failure": false,
+  "native_saved_original_reparse_only": true,
+  "network_API_project_job_or_rerun": false
+}
