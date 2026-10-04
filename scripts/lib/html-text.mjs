@@ -12,3 +12,9 @@ export function escapeHtml(text) {
   const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
   return String(text).replace(/[&<>"']/g, character => entities[character]);
 }
+
+export function htmlWithoutElements(source, selectors) {
+  const { document } = parseHTML(source);
+  for (const node of document.querySelectorAll(selectors)) node.remove();
+  return document.toString();
+}

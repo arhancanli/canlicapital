@@ -18,7 +18,7 @@ import { IMMUTABLE_PAPER_SHORT_TITLES } from "./paper-presentation.mjs";
 import { normalizeEditableCopy } from "./editable-copy.mjs";
 import { canonicalJson as canonicalJsonShared } from "./canonical-json.mjs";
 import { imageProse } from './lib/image-prose.mjs';
-import { htmlText } from './lib/html-text.mjs';
+import { htmlText, htmlWithoutElements } from './lib/html-text.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -661,13 +661,9 @@ if (existsSync(founderFile)) {
   // check fire on any icon added to the shell. Adding one GitHub mark introduced
   // 47 "untraceable" numbers, all of them path data. Stripped for the same reason
   // <script> and <pre> already are.
-  const prose = imageProse(founderHtml)
+  const prose = htmlWithoutElements(imageProse(founderHtml)
     .replaceAll(forwardReport.generated_at, " ")
-    .replaceAll(snapshotTimestamp, " ")
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<head>[\s\S]*?<\/head>/gi, " ")
-    .replace(/<svg[\s\S]*?<\/svg>/gi, " ")
-    .replace(/<pre[\s\S]*?<\/pre>/gi, " ");
+    .replaceAll(snapshotTimestamp, " "), 'script,head,svg,pre');
   const datesRemoved = prose.replace(/\b\d{4}-\d{2}-\d{2}\b/g, (d) =>
     renderings.has(d) ? " " : ` UNTRACEABLE_DATE_${d} `,
   );

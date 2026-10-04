@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {applySiteDesign} from './build-site-design.mjs';
 import {applyReaderPresentation,applyHubNavigation} from './lib/reading-layout.mjs';
 import {applyReleaseReadiness} from './build-release-readiness.mjs';
-import {htmlText,escapeHtml} from './lib/html-text.mjs';
+import {htmlText,escapeHtml,htmlWithoutElements} from './lib/html-text.mjs';
 const page='<!doctype html><html lang="en"><head><title>Source example</title><meta name="robots" content="index, follow"><link rel="stylesheet" href="../css/paper.css"></head><body><header data-product-shell="v3"></header><main><h1>Source example</h1><table><caption>Filing history</caption><tbody><tr><td>Original value</td></tr></tbody></table><a href="/verify">Verify</a></main></body></html>';
 test('the design migration is byte-identical on a second run',()=>{const once=applySiteDesign(page,'research/example.html');assert.equal(applySiteDesign(once,'research/example.html'),once);});
 test('route migration preserves the title, robots, evidence cells and links',()=>{const result=applySiteDesign(page,'research/example.html');for(const text of ['<title>Source example</title>','content="index, follow"','<td>Original value</td>','href="/verify"'])assert.ok(result.includes(text),text);assert.match(result,/data-design="reader"/);assert.match(result,/class="cc-table-scroll"/);assert.match(result,/href="\/css\/product-shell.css"/);assert.doesNotMatch(result,/href="\.\.\/css\/paper.css"/);});
@@ -33,6 +33,9 @@ test('nested style removal and reading labels preserve prose without creating ma
  assert.match(result,/<title>Source example<\/title>/);
  assert.equal(htmlText('<em>Trials &amp; limits</em><SCRIPT>discard</SCRIPT>'),'Trials & limits');
  assert.equal(escapeHtml(htmlText('&lt;script&gt; &amp; limits')),'&lt;script&gt; &amp; limits');
+ const prose=htmlWithoutElements('<!doctype html><html><head><title>Hidden</title></head><body><SCRIPT>discard</SCRIPT ><h1>Real claim</h1><svg><text>Geometry</text></svg><pre>Code</pre></body></html>','script,head,svg,pre');
+ assert.doesNotMatch(prose,/discard|Hidden|Geometry|Code/);
+ assert.match(prose,/<h1>Real claim<\/h1>/);
  const reading=applyReaderPresentation(page.replace('<h1>Source example</h1>','<h1>Source example</h1><h2>Trials &amp; &lt;limits&gt;</h2>'),{file:'research/example.html',family:'research'});
  assert.match(reading,/<a href="#reader-section-1">Trials &amp; &lt;limits&gt;<\/a>/);
 });
