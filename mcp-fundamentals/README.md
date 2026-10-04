@@ -211,3 +211,13 @@ described in the contract. This command lists one `audit_inputs` tool.
 The new command has not been published to npm; version0.5.0 is unchanged while
 PRIMARY assembles the substantial release. Do not use a current npm download as
 evidence that this Unreleased command is available.
+
+
+## Unreleased: offline expert-submission audit
+
+The repository candidate adds the separate opt-in `canli-expert-submission-audit`
+command. It audits supplied packet and review bytes while preserving the complete
+selected denominator, missing roles and unknown human/expert/rights outcomes.
+See [the standalone packaged contract and synthetic SDK workflow](EXPERT_SUBMISSIONS.md).
+The command is not included in the already published `0.5.0` artifact. The default
+seven-tool server and `canli-fundamentals-audit` retain their existing behavior.

@@ -1,0 +1,7 @@
+{
+  "stage": "reverse-source-check-before-writing-first-new-module",
+  "cause": "metadata assembly assumed19-byte shebang; literal is20 bytes",
+  "original_exception": "AssertionError",
+  "new_source_files_written": 0,
+  "correction": "slice len(actual shebang bytes); all original sources unchanged"
+}

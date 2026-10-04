@@ -1,0 +1,1169 @@
+{
+  "schema": "canlicapital.third.expert-submission-package.da4cc231-narrow-SOURCE-extension.v1",
+  "utc": "2026-10-04T06:25:22.679868+00:00",
+  "result": "PASS_WITH_STATIC_SCOPE_LIMITS",
+  "findings": [],
+  "closedSourceFindings": [
+    {
+      "id": "CC-377-EXPORTED-CONSTANT-MISCLASSIFIED-AS-REEXPORT",
+      "priority": "P2",
+      "original358_disposition": "HOLD_AT_ORIGINAL_3586185B_PRESERVED",
+      "currentda4_disposition": "CLOSED_STATIC_AT_DA4CC231",
+      "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+      "current_line": 136,
+      "old_selector_literal": "assert.doesNotMatch(source, /^export\\s+.*\\sfrom\\s/gm, 'UNPARSED_REEXPORT');",
+      "new_selector_literal": "assert.doesNotMatch(source, /^export\\s+(?:\\*\\s*(?:as\\s+\\w+\\s*)?|\\{[^}]*\\}\\s*)from\\b/gm, 'UNPARSED_REEXPORT');",
+      "closed_reason": "The new selector begins with actual export-star (including as-name) or export-brace syntax before from. Ordinary export const instruction strings cannot match either alternative, while the two written actual export-star/export-brace controls remain refused. The unchanged default instruction string and independently reviewed nine-member import closure are preserved.",
+      "written_control": {
+        "name": "expert package: import closure admits from text in exported constants and refuses actual reexports",
+        "line": 586,
+        "entire_source_bytes": 648,
+        "sha256": "7a29ad38017301aff794b978d6308b2f1caec26eb7d6375b7fe1eec3078f67c3",
+        "positive": "exported constant contains from text",
+        "negatives": [
+          "actual export-star from private path",
+          "actual export-brace from missing path"
+        ],
+        "runtime_status": "WRITTEN_UNRUN"
+      },
+      "currentCI_or_runtime_substitution": false
+    }
+  ],
+  "acceptedInheritedScope": "Original independent358 copy/core/schema/fullreport/null/canonical/default7/old22 expectation-only/import-closure/finite pack-SDK guard analyses carry ONLY byte-mode exact sources; original sole classifier finding is CLOSED_STATIC_AT_DA4CC231, not a remaining inherited finding.",
+  "head": "da4cc231fb8d61da8b522c55189c8edab0a33a73",
+  "tree": "84dca3d7b6991e031a8880131d097399d044f29d",
+  "sole_parent": "3586185bdae0bca97b3b9f00339573112ed63e70",
+  "actual_main_basis": "9d67ff374162ee34480dabaf56a8789022c40add",
+  "native_signature_G_CLEAN": true,
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/source-da4cc231-expert-submission-package-v1.json",
+    "bytes": 27041,
+    "sha256": "8c4d1f21ab87d0a39792989234674f689d8abad983dc87357a94f4d389c69539",
+    "mode": "0600",
+    "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+  },
+  "literal_parent_delta": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/source-3586185b-to-da4cc231-literal-delta-v1.patch",
+    "bytes": 8586,
+    "sha256": "373b0a5d23b8023b3ce8b5cfa035d3fe4999b3d08af638c548b631a2add0900b",
+    "mode": "0600",
+    "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+  },
+  "exact_narrow_change": {
+    "paths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-fundamentals/test/expert-submission-package.test.mjs"
+    ],
+    "entire_old_test_recovered_by_one_selector_reverse_plus_removal_of_one_appended_test": true,
+    "new30th_entire_case": "test('expert package: import closure admits from text in exported constants and refuses actual reexports', () => {\n  const positive = cloneEntries(); positive.set('package/src/text-control.js', { mode: 0o644,\n    bytes: Buffer.from('export const description = \"Computed from supplied bytes.\";\\n') });\n  checkImports(positive);\n  for (const source of [\"export * from '../../private.mjs';\\n\", \"export { secret } from './missing.mjs';\\n\"]) {\n    const negative = cloneEntries(); negative.set('package/src/actual-reexport.mjs', { mode: 0o644, bytes: Buffer.from(source) });\n    assert.throws(() => checkImports(negative), /UNPARSED_REEXPORT/);\n  }\n});\n",
+    "existing29_entire_body_sections_exact": true,
+    "all_helper_guard_prefix_exact_after_one_selector_reverse": true
+  },
+  "full_Git_index_identity": {
+    "count": 6699,
+    "full_stage0_index_entire_frozen_tree_equal": true,
+    "unchanged_parent_identity_count": 6696,
+    "protected_actual_base_count": 6686,
+    "protected_actual_base_Git_bytes": 413648264,
+    "protected_compact_utf8_sortkeys_noLF_sha256": "4432e27b55977bd2141819bbeec7cf74b367e7c303125de48b0278cfac1061d5",
+    "all_base_parent_protected_object_sizes_modes_types_exact": true,
+    "whole413MBphysical_audit_claim": false
+  },
+  "thirty_source_named_native_cases": {
+    "new_total_WRITTEN_UNRUN": 30,
+    "preserved29": [
+      {
+        "name": "expert package: exact14 admitted members retain independent source pins and raw modes",
+        "original358_line": 386,
+        "currentda4_line": 386,
+        "whole_case_source_section_bytes": 335,
+        "sha256": "2cc2b1b133a2e9f150e5b2957fee8f9d2efa4fd12dc0bf17aab7d42a4f9a33c1",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: all five import-only copies reverse to complete original sources",
+        "original358_line": 390,
+        "currentda4_line": 390,
+        "whole_case_source_section_bytes": 661,
+        "sha256": "9cade15e2a0a8fe2e75ec18dcfa051a05357cb8624ee47c3a1fb6efe3dc03372",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: original default and audit bytes stay separate from installed executable fixture modes",
+        "original358_line": 398,
+        "currentda4_line": 398,
+        "whole_case_source_section_bytes": 523,
+        "sha256": "73c32e9fea8dd3788d400965f4d14db74261ec33bcf75044d7f6f2ec163ec4ec",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: missing changed and wrong-mode canonical sources refuse before extraction",
+        "original358_line": 404,
+        "currentda4_line": 404,
+        "whole_case_source_section_bytes": 534,
+        "sha256": "539f75cc5f5cba57c85c21f7c7a7c9ddca95803542d8bbf4ca853006af8b9a18",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: new old and default source tampering all refuse the exact frozen-byte audit",
+        "original358_line": 409,
+        "currentda4_line": 409,
+        "whole_case_source_section_bytes": 381,
+        "sha256": "6c7492dae903d0a16cdf6d1c2c255de68192d5855f90c54fa800c5ff69774f35",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: private extra and missing guide members refuse strict membership",
+        "original358_line": 414,
+        "currentda4_line": 414,
+        "whole_case_source_section_bytes": 416,
+        "sha256": "741ab3ae17d6b6c4077cd8a5c45162bae232f83c84a26fe75595377c914b8b6a",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: bin and files metadata changes refuse with every old mapping retained",
+        "original358_line": 418,
+        "currentda4_line": 418,
+        "whole_case_source_section_bytes": 639,
+        "sha256": "2796c35455950d6433bfd373f5b858d79035a4520b9b81cb3955573cf9a09695",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: every admitted JS and MJS import is checked including escape and absent dependency",
+        "original358_line": 424,
+        "currentda4_line": 424,
+        "whole_case_source_section_bytes": 637,
+        "sha256": "c748476aef777f52dfc352bfe2509704fbf8a19ae0b63842655a2f3e13c4d1a9",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: gzip CRC trailing data and concatenated members refuse before TAR admission",
+        "original358_line": 433,
+        "currentda4_line": 433,
+        "whole_case_source_section_bytes": 465,
+        "sha256": "4c0d94bb0dea05412a72f6cc6c1fc4969dace2cb06c6dc1e2701d3ec6ceb18a0",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: compressed expanded and member-count bounds refuse before fixture writes",
+        "original358_line": 438,
+        "currentda4_line": 438,
+        "whole_case_source_section_bytes": 454,
+        "sha256": "349e5a1680c552f7b92c70d73713c11665559cfe3a0bdd14796aa185c6dbad1a",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: checksum-valid high-bit path type mode size and checksum fields refuse raw ASCII",
+        "original358_line": 444,
+        "currentda4_line": 444,
+        "whole_case_source_section_bytes": 569,
+        "sha256": "12e1aa2bb73593917b7e60b718bc578bf22290f40333ec33be7bf0a785d69f39",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: checksum traversal duplicate link and nonregular controls refuse before extraction",
+        "original358_line": 453,
+        "currentda4_line": 453,
+        "whole_case_source_section_bytes": 735,
+        "sha256": "c149e8fb3feff349abff3ba0869aa618a7b428cb1f35ea3710cc979b134ce856",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: Git-free consumer contains admitted bytes and only disclosed locked dependencies",
+        "original358_line": 459,
+        "currentda4_line": 459,
+        "whole_case_source_section_bytes": 509,
+        "sha256": "10f17c6b34883d0b50f6c53f427343841ab6b1fc0ece2792c9fe24e701150a57",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: README and standalone guide expose a literal complete package-local workflow",
+        "original358_line": 464,
+        "currentda4_line": 464,
+        "whole_case_source_section_bytes": 751,
+        "sha256": "5b51b629c778ea7dccd7b66c9f2166c37adca01cacbcd5c16fdd327cd435bf63",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: entry1 direct bin executes the exact marked guide workflow once with full core parity",
+        "original358_line": 471,
+        "currentda4_line": 471,
+        "whole_case_source_section_bytes": 835,
+        "sha256": "dbbe44a09cb50e8e74e598b58934bcebc330102a4a9f8d7f3667bd96581a2be2",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: entry2 raw original proto key refuses without a successful audit and closes known child",
+        "original358_line": 481,
+        "currentda4_line": 481,
+        "whole_case_source_section_bytes": 187,
+        "sha256": "862946f99cbce569b88289e85cac38a49823f782fdc4a2e1aa55e13b160ddc81",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: entry3 callback failure closes once and observes the same owned PID absence",
+        "original358_line": 484,
+        "currentda4_line": 484,
+        "whole_case_source_section_bytes": 229,
+        "sha256": "a7a16b8cfaff738acc1562c8d09baa62720e0b30fc9e229d80a9b340e5e1e58b",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: complete native report keeps all roles tasks raw bytes and null established outcomes",
+        "original358_line": 487,
+        "currentda4_line": 487,
+        "whole_case_source_section_bytes": 999,
+        "sha256": "a3c9662361157c35e7aa70c50792d10a84c64e34ea450a8211f051923f4d815b",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: original argument and outer params keys refuse before native decode or kernel through SDK",
+        "original358_line": 498,
+        "currentda4_line": 498,
+        "whole_case_source_section_bytes": 796,
+        "sha256": "a4e32d89e6f64297293f04267cafbd39f71b85ab8b879050af3cee245de94ff6",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: type count and individual decoded limits refuse before the first decode",
+        "original358_line": 508,
+        "currentda4_line": 508,
+        "whole_case_source_section_bytes": 673,
+        "sha256": "464ae3cc6ab2d8603437bcc28f7d000b2126266b9901f061a25764d9702eb1f9",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: evidence and all-input aggregates refuse before decoding any individually admitted field",
+        "original358_line": 517,
+        "currentda4_line": 517,
+        "whole_case_source_section_bytes": 691,
+        "sha256": "e8005841f956c1056690050d4774707b445fbf9e86e9abb9b04c083e6fc69368",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: noncanonical padding and wrong gold raw pin retain bounded non-echo refusal",
+        "original358_line": 525,
+        "currentda4_line": 525,
+        "whole_case_source_section_bytes": 538,
+        "sha256": "5c71a4e97a4eb752daa2b0d70896ad8f54770044ba0fcde71de42612c3a7ca4e",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: escaped duplicated result and whole frame capacities refuse with zero native writes",
+        "original358_line": 531,
+        "currentda4_line": 531,
+        "whole_case_source_section_bytes": 768,
+        "sha256": "f7259ff8949b565a09d054f87f2bcb875f60b74192bf5e030fd391a2c70b2e4a",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: serialization crossing the absolute deadline prevents the captured native write",
+        "original358_line": 540,
+        "currentda4_line": 540,
+        "whole_case_source_section_bytes": 586,
+        "sha256": "f1d3637f374e7bf0067579af21e79f912aec88e13c1e4389bf27f07965aec385",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: aborted serialized writes stay sticky while a positive control writes exactly once",
+        "original358_line": 546,
+        "currentda4_line": 546,
+        "whole_case_source_section_bytes": 872,
+        "sha256": "5287c8b91045d0088a81347f2c8f4634b9fe0d5944c969bb61989146a6964666",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: pending writer is rejected by one memoized close and owned input destroy",
+        "original358_line": 554,
+        "currentda4_line": 554,
+        "whole_case_source_section_bytes": 944,
+        "sha256": "0d324bbe3f524d8a667f361ec2887a6fc6640679f391ced4513c695682828ea0",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: native readback guards reject symlink and overflow before consumer snapshots",
+        "original358_line": 564,
+        "currentda4_line": 564,
+        "whole_case_source_section_bytes": 588,
+        "sha256": "fcd47142ae0c2836fa98a6e0ec715dbc3846ca946f864c959098303b11f13d4a",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: native sentinel positive control records even a caught forbidden effect without delegation",
+        "original358_line": 571,
+        "currentda4_line": 571,
+        "whole_case_source_section_bytes": 642,
+        "sha256": "8280cfb3aed45de045fc9ceaf1d874d1f9c727cea8d6b2c57f11418ec5578f8a",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      },
+      {
+        "name": "expert package: package frame admission retains strict UTF8 and whole request plus newline limits",
+        "original358_line": 578,
+        "currentda4_line": 578,
+        "whole_case_source_section_bytes": 663,
+        "sha256": "e3b3e75e53bd54f02298bd19409e448c61b1263d5426e1f6dc7c94e8fde4ebb0",
+        "entire_body_preserved": true,
+        "current_runtime": "WRITTEN_UNRUN_NOT_ACKNOWLEDGED"
+      }
+    ],
+    "new30": {
+      "name": "expert package: import closure admits from text in exported constants and refuses actual reexports",
+      "line": 586,
+      "bytes": 648,
+      "sha256": "7a29ad38017301aff794b978d6308b2f1caec26eb7d6375b7fe1eec3078f67c3",
+      "runtime": "WRITTEN_UNRUN"
+    },
+    "old_original358_actual": "29hookFailed/0newPASS/0newSDK; old22PASS is historical source-context, unchanged originals, not currentCI acceptance",
+    "current_runtime_or_passes": null
+  },
+  "producer_child_raw_import_guard_caps": {
+    "one_new_pack_site": true,
+    "same_existing_old22_producer": "ENTIRE_UNCHANGED",
+    "new_SDK_maximum_TOTAL": 3,
+    "guideentry1_shared_no_fourth": true,
+    "otherOwnedEntry_two_named_cases_only": true,
+    "appended30th_extra_child_or_producer": false,
+    "guard_and_original_caps": "ENTIRE_HELPER_PREFIX_RESTORED_EXACT358_AFTER_ONLY_CLASSIFIER_SWAP",
+    "strict_native_raw_ASCII_gzip_CRC_ISIZE_singlemember_256KiB_2MiB_32members_exact14": "UNCHANGED_SOURCE_ONLY",
+    "raw_before_admit_extract_import_distinct_ADMITTED_no_upgrade": "UNCHANGED_SOURCE_ONLY",
+    "same_clock_writer_close_once_knownPID_15_5_20_and64KiBnpm20s": "UNCHANGED_SOURCE_ONLY",
+    "allJS_MJS_original_missing_external_dynamic_import_refusals_preserved": true,
+    "arbitrary_JS_grammar_security_or_global_census_claim": false
+  },
+  "scope13_unchanged_parent_non_delta_products_and_metadata": [
+    {
+      "path": "mcp-fundamentals/src/expert-submission-stdio.mjs",
+      "mode": "100755",
+      "bytes": 25763,
+      "sha256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208",
+      "entire_parent_358_bytes_mode_exact": true
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+      "mode": "100644",
+      "bytes": 23777,
+      "sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3",
+      "entire_parent_358_bytes_mode_exact": true
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-intake-core.mjs",
+      "mode": "100644",
+      "bytes": 30951,
+      "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545",
+      "entire_parent_358_bytes_mode_exact": true
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-agreement.mjs",
+      "mode": "100644",
+      "bytes": 6410,
+      "sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef",
+      "entire_parent_358_bytes_mode_exact": true
+    },
+    {
+      "path": "mcp-fundamentals/src/filing-facts-packet.mjs",
+      "mode": "100644",
+      "bytes": 555,
+      "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8",
+      "entire_parent_358_bytes_mode_exact": true
+    },
+    {
+      "path": "mcp-fundamentals/EXPERT_SUBMISSIONS.md",
+      "mode": "100644",
+      "bytes": 13232,
+      "sha256": "6ab9977361e0d8750a95e07d15fe712bcbc63127870047a2b29e6504d69b455a",
+      "entire_parent_358_bytes_mode_exact": true
+    },
+    {
+      "path": "mcp-fundamentals/package.json",
+      "mode": "100644",
+      "bytes": 1467,
+      "sha256": "1680988205f193ad976122dea768d0f45a85850709a5f5ebf1fdf65ec8041c6a",
+      "entire_parent_358_bytes_mode_exact": true
+    },
+    {
+      "path": "mcp-fundamentals/package-lock.json",
+      "mode": "100644",
+      "bytes": 6583,
+      "sha256": "6067b4791d71e75e00786e9a60a75cd91201492a36431ed32d57743c3aba9480",
+      "entire_parent_358_bytes_mode_exact": true
+    },
+    {
+      "path": "mcp-fundamentals/README.md",
+      "mode": "100644",
+      "bytes": 14412,
+      "sha256": "8606a1ae17645536e05bb115ede37a2739e32b3997078aae32c55e24f490d33b",
+      "entire_parent_358_bytes_mode_exact": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-package.test.mjs",
+      "mode": "100644",
+      "bytes": 38830,
+      "sha256": "76e73b88e879a7a571794e4aa29f8191f8dccb6d9f151b23abe03a28ee255eec",
+      "entire_parent_358_bytes_mode_exact": true
+    }
+  ],
+  "native_fullread38_selected_scope_work_index_Git_rows": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "object": "13ea65483dbc5a68d23fa301e89a1e6c31efd7b3",
+      "bytes": 5020,
+      "sha256": "7655f5eb2981474bec7c2d7a6210cd940d1f1a1baa813de5cc6a0eea49a6e9f1",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c9da827cc05f633ffe3478f6ee392c0bc80447ea",
+      "bytes": 994,
+      "sha256": "bf219f75e95cd459028ecaa5056360378989b82a99f366d9f98d467eb7185728",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "327a684fbb93b7f65c6a38631940a20c7b02919c",
+      "bytes": 506473,
+      "sha256": "a82714725635783db6259a29d99453070a831eb8d55973d3384873f94fc1a19e",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": false
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "61fc2fe3630ff0666b7530bfabd5f3dbfb6ec0b7",
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "docs/goal/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "80e839cbaae76013a456b2ea4543796b59f235f0",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "cd6f8dd81e13638b593a0b1f2294660870fb5bca",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "d132a56e6ac5532a1b57c80b79f682cf87ecc76d",
+      "bytes": 231109,
+      "sha256": "c841339babf018baf8bf4c3021fb2a5283fd2f4007d57241787a10fe36b170a2",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": false
+    },
+    {
+      "path": "js/annotate-core.js",
+      "mode": "100644",
+      "type": "blob",
+      "object": "8577469e89b8d7e1ec0ed8845877ca4888ceb9e4",
+      "bytes": 7115,
+      "sha256": "077c8cd3d7c4c2ad8c69ce9dfa24c8b38f6c4ff3b17470cb4d2645396506bdd3",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "js/filing-facts-packet.js",
+      "mode": "100644",
+      "type": "blob",
+      "object": "b4c2cb014ec404db1b80483e6c97df41c1060ce0",
+      "bytes": 564,
+      "sha256": "eb61ab2bf78d7047569c8cf92ea348dc5c3a9e6fe311c16a63361765b2e08bc8",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/AUDIT_INPUTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ff0625ed3ca3e74986c4538a14439f271a381752",
+      "bytes": 40194,
+      "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/EXPERT_SUBMISSIONS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "bf19c5ae3c4578d34f14eb3bda8cc5f159714316",
+      "bytes": 13232,
+      "sha256": "6ab9977361e0d8750a95e07d15fe712bcbc63127870047a2b29e6504d69b455a",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "object": "eb5330e5dce6357e4c1cb0d5c1282f5e6d40b7d4",
+      "bytes": 1084,
+      "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "a502d875a23b417a620c097f96c111c75198e1e9",
+      "bytes": 14412,
+      "sha256": "8606a1ae17645536e05bb115ede37a2739e32b3997078aae32c55e24f490d33b",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "abb08de2db248d043a975d1d47d8a98bd3437abf",
+      "bytes": 16703,
+      "sha256": "cb7de9297f083d87490534d6a26d0a3b6c456e47663c2f7d033b7c4b85f3d6e2",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ea6fa1fea37f6a72e7bb9f394e7cd8bb1c4b31d7",
+      "bytes": 25796,
+      "sha256": "5f228ccc5bc3433a93415f9b5f3708e1cb73b209aa5599c9dffa5f59dbc3b882",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ba12a4247f22880b3929f5c9896cfda55f526624",
+      "bytes": 6583,
+      "sha256": "6067b4791d71e75e00786e9a60a75cd91201492a36431ed32d57743c3aba9480",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "d53cba2780989493e365c1c0cf5417e4b69da4f9",
+      "bytes": 1467,
+      "sha256": "1680988205f193ad976122dea768d0f45a85850709a5f5ebf1fdf65ec8041c6a",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c772372609b7f37bb04c747898d168b64458e377",
+      "bytes": 21651,
+      "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-stdio.mjs",
+      "mode": "100755",
+      "type": "blob",
+      "object": "8ed08fc03502f68d56184da953efb294deec45bc",
+      "bytes": 12929,
+      "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/src/canonical-json.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-agreement.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "af0bc30fc0d5e6698ff87ab59f5f70f902d37868",
+      "bytes": 6410,
+      "sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-intake-core.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "0315abb2910c16f507cef2489bb4604feea76db2",
+      "bytes": 30951,
+      "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "43a7a0ffcc705972641109067309e325409c54b9",
+      "bytes": 23777,
+      "sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-submission-stdio.mjs",
+      "mode": "100755",
+      "type": "blob",
+      "object": "3c767d4095b57d3a15896defb00e68f4e4416b72",
+      "bytes": 25763,
+      "sha256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/src/filing-facts-packet.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "cc7c774411a653a103af57ad600aa6f73056ca02",
+      "bytes": 555,
+      "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/src/server.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "0c373d5e5b2d6712cda9b3a7acec6d0177c1e423",
+      "bytes": 64736,
+      "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-client.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c54ebc051832f46e844dc2704b006e396b347072",
+      "bytes": 48164,
+      "sha256": "285cb42d1f6652bccbffdfd9a0c39e510729320126d2c23aba99c9dfe7ff02a0",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-package.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "5dc0d7be5492ac04629a75b044fe1bec9907a320",
+      "bytes": 38830,
+      "sha256": "76e73b88e879a7a571794e4aa29f8191f8dccb6d9f151b23abe03a28ee255eec",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "985980ef10f3677244e645c7d926ad91e0792d2d",
+      "bytes": 47320,
+      "sha256": "d1fab55e1955acfd3091a0d1ce09985eccfaae799feae382f700b8f2f26fef00",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": false
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "bc31fbd21ef865180c9279b4be77172f0c182e26",
+      "bytes": 52692,
+      "sha256": "bc1a4d1ffdc35e48c32acbd1e5bc82f5482a7628b3db86aa649e03ec67146a7c",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "3001347bc79c0f469738c03b67459b1314745aae",
+      "bytes": 37957,
+      "sha256": "fe442d2f36df95cff3ae0993f843a89b85d3ee3f3454a0e00141139da0be8743",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "3ce3add07e99f9bd2298c6f721a431327241ba42",
+      "bytes": 14371,
+      "sha256": "485a0eaa1aa276cccf4706117bfe9532bbc2452c457ab0342611c3088d42c199",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "scripts/canonical-json.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/EXPERT_INTAKE.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "48ea5e1d44658dede258d0eb0bc64e41f52016e6",
+      "bytes": 16835,
+      "sha256": "fb8f29acd987c9f399edb8bc2022ff929ca058648d7fd2b47ddd01fa99a12747",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/EXPERT_SUBMISSION_AUDIT.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ad405a5186b19110c909d1371e17171da0dcf52e",
+      "bytes": 14241,
+      "sha256": "0dd19b031488b37c147f119e71569d285ba21fe2cf766c31d7933d2cb22b08ae",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/agreement.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "302880c766fe1eb4a8a9aa9e74409c7fca53e8d1",
+      "bytes": 6423,
+      "sha256": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-intake.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "274782df96a0c6e6948a3c31478c9854b429bf67",
+      "bytes": 30964,
+      "sha256": "f37ed4663a78cf819331410205f28b0671966cfe1b3c73aa0b13a46bf19b0ab4",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "591b0176eee32537c4bb257efdce2b2d68ec79cd",
+      "bytes": 23778,
+      "sha256": "79540f0812537798321a4eb3a97bf89d04acc1b5bd5d4a105eddae007e87ad33",
+      "working_index_Git_bytes_modes_exact": true,
+      "unchanged_entire_parent_bytes_modes": true
+    }
+  ],
+  "base5_parent5_entire_goal_prefixes": [
+    {
+      "path": "docs/goal/README.md",
+      "prefix_ref": "9d67ff374162ee34480dabaf56a8789022c40add",
+      "prefix_bytes": 6899,
+      "prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "final_bytes": 6899,
+      "final_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "append_bytes": 0,
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/README.md",
+      "prefix_ref": "3586185bdae0bca97b3b9f00339573112ed63e70",
+      "prefix_bytes": 6899,
+      "prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "final_bytes": 6899,
+      "final_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "append_bytes": 0,
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "prefix_ref": "9d67ff374162ee34480dabaf56a8789022c40add",
+      "prefix_bytes": 8758,
+      "prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "final_bytes": 8758,
+      "final_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "append_bytes": 0,
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "prefix_ref": "3586185bdae0bca97b3b9f00339573112ed63e70",
+      "prefix_bytes": 8758,
+      "prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "final_bytes": 8758,
+      "final_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "append_bytes": 0,
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "prefix_ref": "9d67ff374162ee34480dabaf56a8789022c40add",
+      "prefix_bytes": 226922,
+      "prefix_sha256": "492bc8805a4b3e6dae0ec9df1e780dcd851faee962aed47be95d9d4c9fa991ca",
+      "final_bytes": 231109,
+      "final_sha256": "c841339babf018baf8bf4c3021fb2a5283fd2f4007d57241787a10fe36b170a2",
+      "append_bytes": 4187,
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "prefix_ref": "3586185bdae0bca97b3b9f00339573112ed63e70",
+      "prefix_bytes": 229465,
+      "prefix_sha256": "b1280f9d7a1fffd27f85377092d1a2e1fd1d7f1a096db2aa6c703d80152a3c4f",
+      "final_bytes": 231109,
+      "final_sha256": "c841339babf018baf8bf4c3021fb2a5283fd2f4007d57241787a10fe36b170a2",
+      "append_bytes": 1644,
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "prefix_ref": "9d67ff374162ee34480dabaf56a8789022c40add",
+      "prefix_bytes": 5455,
+      "prefix_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "final_bytes": 5455,
+      "final_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "append_bytes": 0,
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "prefix_ref": "3586185bdae0bca97b3b9f00339573112ed63e70",
+      "prefix_bytes": 5455,
+      "prefix_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "final_bytes": 5455,
+      "final_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "append_bytes": 0,
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "prefix_ref": "9d67ff374162ee34480dabaf56a8789022c40add",
+      "prefix_bytes": 502286,
+      "prefix_sha256": "2f475d7053f9527dc17aa41b3826b09f1003858977401153bb1a00c6f66d90c1",
+      "final_bytes": 506473,
+      "final_sha256": "a82714725635783db6259a29d99453070a831eb8d55973d3384873f94fc1a19e",
+      "append_bytes": 4187,
+      "entire_prefix_preserved": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "prefix_ref": "3586185bdae0bca97b3b9f00339573112ed63e70",
+      "prefix_bytes": 504829,
+      "prefix_sha256": "3fddd3966b2a0a2d84484c6772ab9295249c4ae809f7a5d99628483d0b36a991",
+      "final_bytes": 506473,
+      "final_sha256": "a82714725635783db6259a29d99453070a831eb8d55973d3384873f94fc1a19e",
+      "append_bytes": 1644,
+      "entire_prefix_preserved": true
+    }
+  ],
+  "original_source_receipts_and_input_pins_fullread": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/source-da4cc231-expert-submission-package-v1.json",
+      "bytes": 27041,
+      "sha256": "8c4d1f21ab87d0a39792989234674f689d8abad983dc87357a94f4d389c69539",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/source-3586185b-to-da4cc231-literal-delta-v1.patch",
+      "bytes": 8586,
+      "sha256": "373b0a5d23b8023b3ce8b5cfa035d3fe4999b3d08af638c548b631a2add0900b",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-peer/review-3586185b-source-v1.json",
+      "bytes": 79395,
+      "sha256": "a3511b9e7953197f3ef88c8072bef832a72fa82d775318a44117426963f910b1",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-peer/review-3586185b-source-v2.json",
+      "bytes": 81510,
+      "sha256": "24fd80ce8af7ca8056432b03e9706c0ffc12dd5158c770dbb98a64b5f57ff7c4",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-peer/handoff-3586185b-source-v2.json",
+      "bytes": 7325,
+      "sha256": "6d584d197b55d7dbc0afe2e7330ae5a1ea8d565c1c25b50a5aba2c7050637e96",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/source-3586185b-expert-submission-package-v1.json",
+      "bytes": 23601,
+      "sha256": "5c8a1f086b282adc9f4029599a7c8c7c67efca515b838e95f89c4be5903798cc",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/assignment-9d67ff37-primary-v1.md",
+      "bytes": 21636,
+      "sha256": "bc5262b7986b0d7bf7414409a90daa0449f9f67a5e5e41d29b4e1b2cbf79b0dc",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/assignment-9d67ff37-primary-seal-v1.json",
+      "bytes": 2237,
+      "sha256": "90df63456d72a87284f9bcfddbec633fb42a0695940178335dfbc77e336ee1ad",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/source-basis-9d67ff37-primary-v1.json",
+      "bytes": 24372,
+      "sha256": "e7eed58c527f34dc04183a66b4e8667763c03a7afa4e1d50e717635b73847867",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/assignment-9d67ff37-package-union-cue-and-complete-closure-intake-v1.json",
+      "bytes": 2686,
+      "sha256": "4aea66803e137ee76d92637b9d11744d006c4ffa9735ff84cfd5f27fca2222e9",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 85596,
+      "sha256": "89600a2d55a22e5d3f70be783eb08dab43a35676a5203ff66780993e4dcda266",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1343663,
+      "sha256": "a0c12d048a6889f092a112099048d178f15588a906910ef044d9998f70b57170",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 96669,
+      "sha256": "79d45bc81a230159aa0dec4f90bb9c37c685f36924a7c2c9bff0b84951c629ef",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1688513,
+      "sha256": "c88b6732c41633d3a622ebe6a5e0be2faa6a4e79c7c5001b19e075fc0e6350b8",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/README.md",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/REQUIREMENTS.md",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/STATUS.md",
+      "bytes": 231109,
+      "sha256": "c841339babf018baf8bf4c3021fb2a5283fd2f4007d57241787a10fe36b170a2",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/PHASES.md",
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/LOG.md",
+      "bytes": 506473,
+      "sha256": "a82714725635783db6259a29d99453070a831eb8d55973d3384873f94fc1a19e",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/full6699-Git-source-da4cc231-v1.json",
+      "bytes": 1431097,
+      "sha256": "57ca1090d41a42d2b1d160912a26c5a55996dc48f86d2eb4fffc63120c40bf4a",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/secondary-written30-package-case-and-entry-inventory-da4cc231-v1.json",
+      "bytes": 6442,
+      "sha256": "f6bcb04ac059b0135e51edaba43bcecc3aa163a3f80fa60f25057f87f15d6a48",
+      "mode": "0600",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-peer/inspect-da4cc231-narrow-source-v1.py",
+      "bytes": 22079,
+      "sha256": "417b8a05f1328efe40e51650ab37188e29db28ae9317e288138de887b3ff5682",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    }
+  ],
+  "original_metadata_reader_diagnostics_corrections": "PRESERVED via original own v1/v2 receipt and prior patch-format stop; no original rewrite or repeated original semantic audit",
+  "continuity_ROOT5_and_owned5_fullread": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 85596,
+      "sha256": "89600a2d55a22e5d3f70be783eb08dab43a35676a5203ff66780993e4dcda266",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1343663,
+      "sha256": "a0c12d048a6889f092a112099048d178f15588a906910ef044d9998f70b57170",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 96669,
+      "sha256": "79d45bc81a230159aa0dec4f90bb9c37c685f36924a7c2c9bff0b84951c629ef",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1688513,
+      "sha256": "c88b6732c41633d3a622ebe6a5e0be2faa6a4e79c7c5001b19e075fc0e6350b8",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/README.md",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/REQUIREMENTS.md",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/STATUS.md",
+      "bytes": 231109,
+      "sha256": "c841339babf018baf8bf4c3021fb2a5283fd2f4007d57241787a10fe36b170a2",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/PHASES.md",
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-package-20261004/docs/goal/LOG.md",
+      "bytes": 506473,
+      "sha256": "a82714725635783db6259a29d99453070a831eb8d55973d3384873f94fc1a19e",
+      "mode": "0644",
+      "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+    }
+  ],
+  "review_method": "Narrow static frozenGit and pure stdlib byte/hash/identity/diff metadata inspection; no project Node/import/SDK/CLI/tests/npm/pack/helper/GET/processprobe/APIrefetch/job/grant entry or fixture/JS-regexp execution.",
+  "separate_retained_CURRENTCI_gate": "NOT_ISSUED_PENDING_FUTURE_ACTUAL_SAVED_ORIGINALS_REQUEST",
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "future_head_runtime_archive_ready_merge_actualdelivery_publication_ACK": false,
+  "roles": "PRIMARYsoleordinarymergepub/LeadCPU/127policy/SECONDARYimplementation/THIRDindependentgates unchanged",
+  "all_owner_goals_and_hierarchy": "ACTIVE",
+  "actual_index_human_expert_rights_labels_admission_adoption_qualified_strategy_outcomes": null,
+  "audit_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-peer/inspect-da4cc231-narrow-source-v1.py",
+    "bytes": 22079,
+    "sha256": "417b8a05f1328efe40e51650ab37188e29db28ae9317e288138de887b3ff5682",
+    "mode": "0644",
+    "whole_FD_first_regular_bounded_stable_native_read_one_close": true
+  }
+}
