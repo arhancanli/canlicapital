@@ -1,5 +1,33 @@
 # Changelog
 
+## Unreleased
+
+- New lab tool `check_leakage` finds lookahead in a signal without seeing its code. `plan` picks
+  seeded cut points between 40% and 95% of the series; the caller reruns its own code on the rows
+  before each cut, and `compare` checks every output column: a value that changed when the later
+  rows were removed used them. The result names the pattern (future rows with their horizon, the
+  full sample, or scattered rows) and the SHA-256 of exactly what it compared. On your machine,
+  `columns_file` reads the columns from a JSON file instead of the call. On a fixed zoo of
+  22 pandas and statsmodels signals (`config/research/leakage-zoo.json`, built by
+  `scripts/research/leakage/`), all 11 leaks are found with the right pattern and none of the
+  11 honest indicators is flagged. New prompt: `check_signal_for_lookahead`.
+- New lab tool `placebo_test` tests a whole research pipeline on placebo data: the caller's returns
+  with the periods in a random order, the same order for every asset, so nothing can be predicted.
+  `plan` writes `real.csv` and 19 placebos to a new temporary folder (the hosted endpoint returns
+  small placebos inline); the caller runs its pipeline unchanged on each, and `compare` ranks the
+  real result among the placebo results, so every choice the pipeline makes is counted. The
+  permutation was chosen by a pre-registered study (`scripts/research/placebo/v1/`): in all
+  30 simulated markets and pipelines where nothing can be predicted, its false-positive rate
+  at a nominal 5% was 4.6% to 5.5%, where a t-test on the best rule reached 10.9% to 78.9%
+  and Bonferroni 8.0% to 10.3% in drifting markets. New prompt: `test_pipeline_on_placebos`.
+- The listed schemas leave out keywords zod writes that constrain nothing: JavaScript's
+  safe-integer range on every integer field, `propertyNames` of type string, and an empty
+  `additionalProperties`. zod still validates every call. That takes 357 tokens off the default
+  tool list, which costs 5,970 tokens with the two new tools, against 5,581 in 0.12.0 without
+  them (`bench/tool_list_tokens.py`). `canli://schemas/{tool}` serves the same schemas the list
+  carries.
+- README: the tool count and the `validate` toolset's validator count were out of date.
+
 ## 0.12.0 (2026-10-04)
 
 - `audit_backtest` opens with a headline: one test, chosen because its false-positive rate was

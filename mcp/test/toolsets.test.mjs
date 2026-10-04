@@ -24,7 +24,7 @@ test("every registered tool is in exactly one toolset, and every toolset name is
   const members = Object.values(TOOLSETS).flat();
   assert.equal(new Set(members).size, members.length, "no tool is in two toolsets");
   assert.deepEqual([...members].sort(), [...all].sort());
-  assert.equal(all.length, 18, "0.12.0 folded get_receipt into verify_receipt");
+  assert.equal(all.length, 20, "0.12.0 folded get_receipt into verify_receipt; check_leakage and placebo_test joined the lab");
   // A real McpServer accepts the same registrations.
   registerTools(new McpServer({ name: "t", version: "0" }), createSession({ toolsets: ["company"] }));
 });

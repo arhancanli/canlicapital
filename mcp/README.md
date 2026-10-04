@@ -34,14 +34,16 @@ other stdio client (Cursor, VS Code) run the same `npx` command; see "Claude Des
 
 ## What it does
 
-An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
-gives a coding agent fifteen tools: issue a free key, run the nine validators (deflated Sharpe,
-CSCV overfitting, data-snooping tests (Hansen's SPA, White's Reality Check and Romano-Wolf StepM),
-paper-evidence conformance, breadth ceiling, minimum track record length, minimum backtest length,
-haircut Sharpe ratio, luck-equivalent trials),
-audit one backtest with three of them in a single call, fetch a stored receipt, verify a
-receipt's signature offline, read service status, and read a company's reported financial history
-from SEC filings. Every validation result carries, beside the number, the sentences that say what
+An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API, with a
+lab that computes on your machine. It gives a coding agent twenty tools: issue a free key, run the
+nine validators (deflated Sharpe, CSCV overfitting, data-snooping tests (Hansen's SPA, White's
+Reality Check and Romano-Wolf StepM), paper-evidence conformance, breadth ceiling, minimum track
+record length, minimum backtest length, haircut Sharpe ratio, luck-equivalent trials), audit one
+backtest with several of them in a single call, verify a receipt's signature offline, read service
+status, read a company's reported financial history from SEC filings, and six lab tools: backtest
+a rule over a parameter grid, summarize a long series, stress-test a strategy's returns, check a
+plan against a broker's limits, check a signal for lookahead, and test a whole research pipeline
+on placebo data. Every validation result carries, beside the number, the sentences that say what
 it does not establish and the receipt that records it, success or error, so the agent cannot see a
 number without its limits.
 
@@ -136,9 +138,9 @@ original SEC response and the record's own boundary sentence: these are accounti
 reported to the SEC, not market prices, returns or a recommendation. Companies and concepts
 outside the current release return an error with the available concepts listed.
 
-## The lab: backtest, summarize, stress, check feasibility
+## The lab: backtest, summarize, stress, feasibility, lookahead, placebos
 
-Four tools compute in the server process itself, on your machine or on the hosted endpoint, with
+Six tools compute in the server process itself, on your machine or on the hosted endpoint, with
 nothing sent to the API and no receipt stored. Each result names the SHA-256 of exactly the numbers
 it was computed from, and states what it does not establish.
 
@@ -174,6 +176,32 @@ it was computed from, and states what it does not establish.
   share of daily volume, square-root market impact (coefficient Y, default 1) with every copy of the
   same strategy counted, and the capital at which costs and impact eat the expected gross return.
   Every broker fact carries the date it was checked and its source.
+- **`check_leakage`** finds lookahead in a signal without seeing its code. A causal signal computed
+  on the first n rows gives exactly the values the full run gives for those rows. `plan` picks the
+  cuts (seeded, between 40% and 95% of the series); you rerun your own code on the rows before each
+  cut, and `compare` checks every column: a value that changed when the later rows were removed
+  used them. On your machine, `columns_file` takes the path of a JSON file `{cuts, columns}` your
+  script wrote (Python's `NaN` reads as missing) instead of thousands of pasted numbers. The result names the pattern: future rows with their horizon (a `shift(-5)` reads as
+  five rows), the full sample (a normalization, rank, scaling or fit over the whole series), or
+  scattered rows (filling gaps backwards). On a fixed zoo of 22 pandas and statsmodels signals
+  (`config/research/leakage-zoo.json`, from `scripts/research/leakage/`), all 11 leaks are found
+  with the right pattern and none of the 11 honest indicators is flagged. A pass covers only the
+  cuts tested: survivorship, vendor revisions or a leak confined to the first rows leave no trace.
+- **`placebo_test`** tests a whole research pipeline at once. `plan` writes your panel (`real.csv`)
+  and 19 placebos to a new folder in the system's temporary directory: the same returns with the
+  periods in a random order, the same order for every asset, so each asset keeps its returns and each
+  day its cross-section, but nothing can be predicted. Run the pipeline unchanged on each, every
+  search, filter and parameter choice included, and `compare` ranks its real result among the
+  placebo results. Every choice the pipeline makes is counted, because it makes them again on every
+  placebo. A pre-registered study chose the reordering (`scripts/research/placebo/v1/`,
+  `config/research/placebo-v1-evaluation.json`): in all 30 combinations of simulated market and
+  pipeline where nothing can be predicted (10,000 tests each; five return shapes, flat,
+  drifting and with assets that differ only in their constant means; SMA, time-series and
+  cross-sectional momentum grids), its false-positive rate at a nominal 5% was 4.6% to 5.5%.
+  On the same markets a t-test on the best rule found an edge 10.9% to 78.9% of the time,
+  and Bonferroni's correction 8.0% to 10.3% wherever the market drifted and 58.5% to
+  59.7% where assets only differed in their means. With 19 placebos the smallest p is 0.05; 99
+  give a finer one.
 
 On your own machine, `prices_file`, `series_file` and `returns_file` take a CSV or JSON path instead
 of the numbers. Only numbers are read, plus an ISO date column when the file has one, so results can
@@ -214,10 +242,10 @@ took three audit questions from 4 of 9 to 8 of 9 answered correctly on gpt-5.4-m
 
 ## Prompts, resources and structured results
 
-Clients that show MCP prompts offer six guided workflows: `validate_backtest` (deflated Sharpe, then
+Clients that show MCP prompts offer eight guided workflows: `validate_backtest` (deflated Sharpe, then
 overfitting, then the track record needed, reported with what each number does not establish),
-`track_record_needed`, `backtest_and_validate`, `stress_my_strategy`, `production_check` and
-`summarize_market_series`. Resources: `canli://limits`, the boundary sentences every result carries;
+`track_record_needed`, `backtest_and_validate`, `stress_my_strategy`, `production_check`,
+`summarize_market_series`, `check_signal_for_lookahead` and `test_pipeline_on_placebos`. Resources: `canli://limits`, the boundary sentences every result carries;
 `canli://sources`, the papers behind each validator and how each is checked against them;
 `canli://strategy-spec`, the JSON Schema of every strategy family and its parameters; and
 `canli://openapi`, the API's OpenAPI 3.1 document. Two resource templates are for writing code
@@ -420,25 +448,25 @@ no key is configured.
 
 | toolset | tools |
 |---|---|
-| `validate` | `get_key`, the eight validators, `audit_backtest` |
+| `validate` | `get_key`, the nine validators, `audit_backtest` |
 | `receipts` | `verify_receipt` |
 | `company` | `company_financial_history` |
 | `status` | `service_status` |
-| `lab` | `backtest_strategy`, `summarize_series`, `stress_test`, `check_feasibility` |
+| `lab` | `backtest_strategy`, `summarize_series`, `stress_test`, `check_feasibility`, `check_leakage`, `placebo_test` |
 
 Measured with `bench/tool_list_tokens.py` (tokenizer: tiktoken `o200k_base`; other models'
 tokenizers give different absolute counts), in the shape an OpenAI-style client sends the list:
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| (default) | 17 | 5,581 | 95% |
-| (default, with CANLI_KEY) | 16 | 5,445 | 93% |
-| `all` | 18 | 5,852 | 100% |
-| `validate` | 11 | 3,708 | 63% |
-| `receipts` | 1 | 195 | 3% |
-| `company` | 1 | 273 | 5% |
-| `status` | 1 | 89 | 2% |
-| `lab` | 4 | 1,595 | 27% |
+| (default) | 19 | 5,970 | 96% |
+| (default, with CANLI_KEY) | 18 | 5,834 | 93% |
+| `all` | 20 | 6,241 | 100% |
+| `validate` | 11 | 3,650 | 58% |
+| `receipts` | 1 | 182 | 3% |
+| `company` | 1 | 273 | 4% |
+| `status` | 1 | 89 | 1% |
+| `lab` | 6 | 2,055 | 33% |
 
 Providers cache a tool list that is identical from turn to turn and bill the cached part at a
 fraction of the price (`test/tool-list-stable.test.mjs` keeps each list byte-stable); a smaller list
