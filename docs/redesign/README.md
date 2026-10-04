@@ -98,3 +98,11 @@ no tracked diff. [The receipt](../../artifacts/qa/october-redesign/deployment-da
 binds the source head, committed manifest and sitemap hashes. An earlier empty
 checkout lacked generated dataset cards; its failed prerequisite is recorded
 separately. Final protected-main PR checks follow source delivery.
+
+
+## Review delivery
+
+[PR #380](https://github.com/arhancanli/canlicapital/pull/380) contains the full redesign and prerequisite #375.
+All local build, source, browser and deployment-date checks above passed.
+Automatic checks run on the final branch. The owner retains protected-main
+merge and production deployment.
