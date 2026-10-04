@@ -1,0 +1,16 @@
+{
+  "schema": "THIRD-4c8ea35e-native-recipe-writer-quoting-stop-v1",
+  "operation": "Write a private metadata inspection recipe by combining pinned own helper definitions and a Python literal body",
+  "observed_exit": 1,
+  "exception": "SyntaxError: invalid syntax",
+  "cause": "The outer raw triple-single-quoted writer body collided with the reader's triple-single-quoted expected fixture bytes.",
+  "stage": "Writer parsing; no metadata reader creation or execution occurred in this failed attempt",
+  "original_tool_record": "Input and returned truncated combined error remain in turn tool history. Separate raw stdout/stderr were not saved and are not reconstructed here.",
+  "correction": "Use an outer raw triple-double-quoted writer body, with no matching delimiter in its contents; parse the completed reader with ast.parse before native execution.",
+  "product_failure": false,
+  "source_or_raw_change": false,
+  "project_execution_or_API_refetch_or_rerun": false,
+  "frozen_H": "4c8ea35ec930162c13a1b56b9f9db875366cc935",
+  "archive_member": false,
+  "owner_hierarchy": "ACTIVE"
+}

@@ -1,0 +1,317 @@
+{
+  "schema": "THIRD-paper-package-941901ec-transport-start-custody-addendum-v1",
+  "utc": "2026-10-04T14:02:06.334207+00:00",
+  "frozen_H": "941901ec5e53bd532da9ae1f448a921e806de9d9",
+  "tree": "25dd56ce520a94b1b6797ce3d7525a6adbbe71a2",
+  "sole_parent": "d261d2bb95ad53b86c90fb2fb5f980015742a33e",
+  "disposition": "HOLD_STATIC_ONLY_ONE_TRANSPORT_START_P2_WITH_BOUNDED_TASK_CLOSURE_PRESERVED",
+  "findings": [
+    {
+      "id": "CC-PAPER-PACKAGE-TRANSPORT-START-PROMISE-CUSTODY",
+      "severity": "P2",
+      "status": "OPEN_STATIC_AT_FROZEN_941",
+      "path": "mcp-execution/src/paper-journal.mjs",
+      "line_start": 509,
+      "line_end": 523,
+      "title": "Fallible child admission can abandon the original transport-start Promise",
+      "frozen_start_wrapper": "    const originalStart = transport.start.bind(transport); let writer;\n    transport.start = () => {\n      scope.guard(); requireThat(!closed, 'STDIO_CLOSED'); const pending = originalStart();\n      // Exact locked2.1.0 object is retained before its close handler clears _process.\n      child = transport._process; requireThat(child && child.stdin && typeof child.once === 'function', 'STDIO_CHILD_UNKNOWN');\n      const born = () => { birth = Number.isSafeInteger(child.pid) && child.pid > 0; pid = birth ? child.pid : null; };\n      if (child.pid) born(); child.once('spawn', born);\n      terminal = new Promise(resolve => {\n        const complete = () => { if (exited && childClosed) resolve(); };\n        child.once('exit', () => { exited = true; writerState.exited = true; if (!closed) scope.fail(new Stop('STDIO_EARLY_EXIT')); complete(); }); child.once('close', () => { childClosed = true; complete(); });\n        child.once('error', () => scope.fail(new Stop('STDIO_CHILD_UNKNOWN')));\n      });\n      writer = createPaperNativeWriter(child.stdin, scope, { state: writerState });\n      return pending;\n    };\n",
+      "wrapper_bytes": 1116,
+      "wrapper_sha256": "fe98d05a6cf3340c6ba27bf151d2107ad8319335daf23cdcadeee4413882ba02",
+      "entire_start_wrapper_exact_d261": true,
+      "independent_source_trace": "originalStart() is called before child/stdin/listener/writer admission. No outcome handlers are attached to pending before those operations. If admission throws, return pending is not reached. Client.connect can reject and be handled by bounded while the original pending Promise independently rejects.",
+      "static_counterexample_UNEXECUTED": "Use the existing JS-only sdkModules seam: original Transport.start returns Promise.reject(error), or a Promise that rejects later, and leaves _process absent. The own wrapper throws STDIO_CHILD_UNKNOWN before returning pending. The async Client.connect result is handled by scope.bounded; the distinct original pending lacks a rejection handler. No child, wire, pack, network or actual lockedSDK entry is required for this source path.",
+      "qualification": "This corroborates PRIMARY's accepted source-only finding. No native-start failure, actual execution, unhandled event at this site or process absence is inferred from retained941 green metadata.",
+      "expected_narrow_correction": "Observe both original pending outcomes immediately before any fallible admission; retain the original pending object returned unchanged after successful admission. The observation callbacks must not throw and their owned handler chain must be handled. Preserve sticky first failure, clock, nativewriter, known same-child observations, no hidden retry, one memoized close and full report.",
+      "expected_written_controls": "Extend one existing memoized-close/refusal case with immediate and delayed rejecting startup with no child, zero kernel/wire effects and one-close controls, plus an admitted startup positive. Preserve all44 names, three actual SDK sites and one pack. Review only the next actual signed pin; these controls are currently a plan."
+    }
+  ],
+  "accepted_peer_intake": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-941-two-SOURCE-receipts-and-original-d261-FULLREAD-P2-intake-v1.json",
+    "bytes": 9360,
+    "sha256": "58ca84842acb97e2360adf942b28eda4e37f3e4764ed123fcecca0426d143d19",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "FULLREAD_primary_original_d261": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-d261d2bb-paper-journal-package-integrated-SOURCE-extension-v1.json",
+    "bytes": 71683,
+    "sha256": "dc561c541f4e422960c0ecb2cddaa544b471e2784d83a8e4293bf0a9293e375c",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "FULLREAD_primary_current941": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-941901ec-paper-journal-package-narrow-SOURCE-extension-v1.json",
+    "bytes": 40359,
+    "sha256": "02ca6290c6590fccca449b511ddc5026cdf2c39683cdabd00c005e0f53488172",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "original_THIRD_narrow_SOURCE_immutable": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/review-941901ec-narrow-SOURCE-extension-v1.json",
+    "bytes": 42396,
+    "sha256": "e42783474c393496ae5d3a902e5a7e056fdd5ef0a4038548f8912d42c0d3416e",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "bounded_task_finding": "CLOSED_STATIC_AT_941901ec; exact earlier narrow receipt remains immutable and scoped.",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/source-941901ec-paper-journal-package-narrow-v1.json",
+    "bytes": 140444,
+    "sha256": "71d46b542447c44d8f7232a50d4ba4aa1752a37dea9c66fff47ee32205ea697d",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "independent_frozen_module": {
+    "path": "mcp-execution/src/paper-journal.mjs",
+    "bytes": 44092,
+    "sha256": "357051ad1f6b9faf89dbca841f85a85b9f36f42ce7b0c2c3470d139ecee7dab8",
+    "working_bytes_excluded": true
+  },
+  "source_fixture_context": {
+    "path": "mcp-execution/test/paper-journal-package.test.mjs",
+    "synthetic_fixture_bytes": 1791,
+    "synthetic_fixture_sha256": "6764d632e6bc74c8add9251fb4606848da146390ee6a6998340c5d16665e8cfc",
+    "client_awaits_transport_start": true,
+    "source_only_no_execution": true
+  },
+  "saved_current941_checks": {
+    "pin": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/remote-941901ec-initial-automatic-CI-discovery-v1/fresh-current-PR386-stdout-original.bin",
+      "bytes": 2276,
+      "sha256": "f0debf179df6241a7479baafb5288e962ed86117748991520ef8454d7ca17ae7",
+      "FULLREAD_sameFD_postpath": true
+    },
+    "seven_SUCCESS_at_capture": true,
+    "scope": "Saved conclusion metadata only; not independent full raw TAP/testedGit/security/package custody CURRENTCI acceptance."
+  },
+  "successful11_capture_catalog_FULLREAD": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-941-current-CI-literal11-original-capture-bindings-v1.json",
+    "bytes": 14882,
+    "sha256": "cb0d9c1001f77df66ac17857cc8e8ecf9e33d8635d198a18fec44fa5d4d1e0da",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "current_retainedCI_gate": "SEPARATE_NOT_ADMITTED_IN_THIS_FINITE_SOURCE_ADDENDUM",
+  "historical_d261_failedCI": "Original44 namedPASS and distinct fileFAIL retained; no promotion or rewrite.",
+  "evolving_FIX_ACK": false,
+  "future_corrected_head_ACK": false,
+  "archive_allocation": null,
+  "owned_source_branch_or_archive_edits": false,
+  "project_execution_or_API_refetch_or_rerun": false,
+  "fresh_live_PR_check_by_reviewer": false,
+  "ROOT_OWN5_fullread": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 85596,
+      "sha256": "89600a2d55a22e5d3f70be783eb08dab43a35676a5203ff66780993e4dcda266",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1507850,
+      "sha256": "c38d7c905790047dd2eaa80d6a8556069b184816c54b45ed42a120b55b76f2b8",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 141876,
+      "sha256": "28e9f5da897fe5821e8b87a96c53c72a4936b9c28dad17e5217e96c253259daa",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1852700,
+      "sha256": "8303d452a273fdc92847599583333e5907ae866131e299eeeb139af6f58a96c7",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/README.md",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/REQUIREMENTS.md",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/STATUS.md",
+      "bytes": 754036,
+      "sha256": "c49eaf0b2d1c43abf12ecf8c90959bf9b8cb3f6bd11596dc3afae797562a190f",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/PHASES.md",
+      "bytes": 25963,
+      "sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/LOG.md",
+      "bytes": 1580122,
+      "sha256": "7c923033853a29cba9540e9919f8a9b16673d08396ab19ae707654f4b6cd2c1e",
+      "FULLREAD_sameFD_postpath": true
+    }
+  ],
+  "independently_read_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 85596,
+      "sha256": "89600a2d55a22e5d3f70be783eb08dab43a35676a5203ff66780993e4dcda266",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1507850,
+      "sha256": "c38d7c905790047dd2eaa80d6a8556069b184816c54b45ed42a120b55b76f2b8",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 141876,
+      "sha256": "28e9f5da897fe5821e8b87a96c53c72a4936b9c28dad17e5217e96c253259daa",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1852700,
+      "sha256": "8303d452a273fdc92847599583333e5907ae866131e299eeeb139af6f58a96c7",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/README.md",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/REQUIREMENTS.md",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/STATUS.md",
+      "bytes": 754036,
+      "sha256": "c49eaf0b2d1c43abf12ecf8c90959bf9b8cb3f6bd11596dc3afae797562a190f",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/PHASES.md",
+      "bytes": 25963,
+      "sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-paper-journal-package-20261004/docs/goal/LOG.md",
+      "bytes": 1580122,
+      "sha256": "7c923033853a29cba9540e9919f8a9b16673d08396ab19ae707654f4b6cd2c1e",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-941-two-SOURCE-receipts-and-original-d261-FULLREAD-P2-intake-v1.json",
+      "bytes": 9360,
+      "sha256": "58ca84842acb97e2360adf942b28eda4e37f3e4764ed123fcecca0426d143d19",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-d261d2bb-paper-journal-package-integrated-SOURCE-extension-v1.json",
+      "bytes": 71683,
+      "sha256": "dc561c541f4e422960c0ecb2cddaa544b471e2784d83a8e4293bf0a9293e375c",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-941901ec-paper-journal-package-narrow-SOURCE-extension-v1.json",
+      "bytes": 40359,
+      "sha256": "02ca6290c6590fccca449b511ddc5026cdf2c39683cdabd00c005e0f53488172",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/review-941901ec-narrow-SOURCE-extension-v1.json",
+      "bytes": 42396,
+      "sha256": "e42783474c393496ae5d3a902e5a7e056fdd5ef0a4038548f8912d42c0d3416e",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/source-941901ec-paper-journal-package-narrow-v1.json",
+      "bytes": 140444,
+      "sha256": "71d46b542447c44d8f7232a50d4ba4aa1752a37dea9c66fff47ee32205ea697d",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/remote-941901ec-initial-automatic-CI-discovery-v1/fresh-current-PR386-stdout-original.bin",
+      "bytes": 2276,
+      "sha256": "f0debf179df6241a7479baafb5288e962ed86117748991520ef8454d7ca17ae7",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-941-current-CI-literal11-original-capture-bindings-v1.json",
+      "bytes": 14882,
+      "sha256": "cb0d9c1001f77df66ac17857cc8e8ecf9e33d8635d198a18fec44fa5d4d1e0da",
+      "FULLREAD_sameFD_postpath": true
+    }
+  ],
+  "native_Git_commands": [
+    {
+      "argv": [
+        "git",
+        "show",
+        "-s",
+        "--format=%H%n%T%n%P%n%G?",
+        "941901ec5e53bd532da9ae1f448a921e806de9d9"
+      ],
+      "exit": 0,
+      "stdout_bytes": 125,
+      "stdout_sha256": "88a1828c5ddc4e64fbb7d0fb84208d04482362e4d43f2ca99fd20f8accd0c4e5",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "941901ec5e53bd532da9ae1f448a921e806de9d9:mcp-execution/src/paper-journal.mjs"
+      ],
+      "exit": 0,
+      "stdout_bytes": 44092,
+      "stdout_sha256": "357051ad1f6b9faf89dbca841f85a85b9f36f42ce7b0c2c3470d139ecee7dab8",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "d261d2bb95ad53b86c90fb2fb5f980015742a33e:mcp-execution/src/paper-journal.mjs"
+      ],
+      "exit": 0,
+      "stdout_bytes": 43856,
+      "stdout_sha256": "3ec87e000a6b602432afcdba3c56d629cc27bb32fa084c20f23956c26e4e3928",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "941901ec5e53bd532da9ae1f448a921e806de9d9:mcp-execution/test/paper-journal-package.test.mjs"
+      ],
+      "exit": 0,
+      "stdout_bytes": 71045,
+      "stdout_sha256": "b44a21ec02ea91cd55363b4081d6a5297270515d2ebc25941eccf9ddfe4705b1",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "owner_hierarchy": "ACTIVE",
+  "actual_outcomes": "UNKNOWN_NULL",
+  "roles": "PRIMARY soleordinarymergepub; LeadCPU127policy unchanged; THIRD complementary source/retained evidence reviewer"
+}

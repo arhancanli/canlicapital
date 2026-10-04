@@ -1,0 +1,14 @@
+{
+  "schema": "THIRD-paper-package-selected-physical-reader-stop-v3",
+  "utc": "2026-10-04T12:18:13.132207+00:00",
+  "original_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-826c2596-source-v3.py",
+    "bytes": 20369,
+    "sha256": "8a9aebcb400706194436d33bac4b0618472a0425bec0ddbae990f2262f637836"
+  },
+  "original_tool_chunk": "7173d0",
+  "exit_code": 1,
+  "tool_reported_output": "Traceback (most recent call last):\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-826c2596-source-v3.py\", line 307, in <module>\n    'ten_owned': [dict(by_path[p], sha256=sha(blob(H, p)), index_frozen_Git_equal=True,\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-826c2596-source-v3.py\", line 308, in <listcomp>\n    working_frozen_Git_equal=next(x['working_index_frozen_Git_equal'] for x in physical_rows if x['path'] == p)) for p in owned],\nStopIteration\n",
+  "cause": "Reader output construction incorrectly assumed the selected41 physical list contains every owned test path. Native full-tree/index/metadata/import/history comparisons already finished.",
+  "correction": "Fullread any missing owned working test paths separately and report them separately from selected41. Frozen identity/sha/index checks remain exact; evolving owned bytes remain excluded. No product/CI failure."
+}

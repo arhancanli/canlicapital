@@ -1,0 +1,14 @@
+{
+  "schema": "THIRD-paper-package-import-path-reader-stop-v2",
+  "utc": "2026-10-04T12:17:09.895639+00:00",
+  "original_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-826c2596-source-v2.py",
+    "bytes": 20364,
+    "sha256": "b99d47780799b2f47fb582e6a2939f40e0744a42867db9cbb465625c9bca1dcf"
+  },
+  "original_tool_chunk": "8f7158",
+  "exit_code": 1,
+  "tool_reported_output": "Traceback (most recent call last):\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-826c2596-source-v2.py\", line 250, in <module>\n    assert all(not r['specifier'].startswith(('../examples', '../js', '../scripts')) for r in graph)\nAssertionError\n",
+  "cause": "Incorrect blanket relative-spelling rejection also catches legitimate src/core/js -> src/core/scripts/canonical-json.mjs inside the artifact. All 77 independently resolved edges already matched frozen closure.",
+  "correction": "Use normalized resolved path under exact package/src members. Do not weaken member/pin/declared-dependency checks; no source/runtime failure or project rerun."
+}

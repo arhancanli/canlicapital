@@ -1,0 +1,288 @@
+{
+  "schema": "PRIMARY-PR386-original826c-finite-STATIC-SOURCE-gate-v1",
+  "reviewed_at": "2026-10-04T12:22:19.403846+00:00",
+  "disposition": "HOLD_STATIC_SOURCE_TWO_P2_PLUS_ORIGINAL_FIXTURE_AND_PIN_HOLDS",
+  "exact_reviewed_head": "826c25966c6fb9212930c82fc864516cdd26368f",
+  "tree": "137cd2fdc31564f848b27fe5651e51b5ee892fda",
+  "orderedparents": [
+    "077d37328d358611df557bc3ac0fb75a07544f75",
+    "fd9ec02f075da3272e100cbc8831e454e6cce25d"
+  ],
+  "signature_native": "G",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/source-826c2596-paper-journal-package-v1.json",
+    "bytes": 67034,
+    "sha256": "fac54e6263baad3f811002cf895bf819e8c1fb3e5e29ddcaa70fde436e34164e"
+  },
+  "reviewed_bytes": "Frozen Git and captured original working/index equivalence; later evolving working bytes explicitly excluded. Original signedCLEAN freeze remains immutable.",
+  "findings": [
+    {
+      "id": "CC-PAPER-PACKAGE-COMMAND-SIGNAL-FANIN",
+      "priority": "P2",
+      "status": "OPEN_STATIC_HOLD_AT_826c",
+      "path": "mcp-execution/src/paper-journal.mjs",
+      "lines": [
+        555,
+        557,
+        558,
+        560
+      ],
+      "problem": "With explicit options.signal, installed SIGINT/SIGTERM listeners abort an unused internal controller. The observed scope receives the supplied signal; cancellation does not reach it.",
+      "source_only_unexecuted_counterexample": [
+        "Pass an explicit un-aborted caller AbortSignal and a SAME native injected SDK adapter held before a followup send.",
+        "Call only the newly installed owned SIGINT/SIGTERM listener directly in a future native fixture, with no OS signal. Its cancel aborts the internal controller created at557, while the supplied signal remains un-aborted.",
+        "The active scope and native writer can still admit the next tools/call before the25s deadline. Installing the listener consumes normal process termination without entering the claimed cancellation/teardown path."
+      ],
+      "qualification": "Default CLI without an explicit signal observes its controller correctly. Explicit programmatic signal branch only; no actual signal/process/test executed.",
+      "narrow_correction": "Combine caller cancellation and owned process cancellation into the SAME active scope/controller, preserving first sticky failure/pending controls/one close and listener cleanup.",
+      "meaningful_future_native_case": "Default plus explicit signal positive/negative; invoke only newly captured owned listener, zero followup wire/tool effect, retained pending identity, one close, external abort still effective. No extra SDK entry."
+    },
+    {
+      "id": "CC-PAPER-PACKAGE-STDIO-RETURN-POSTCAPTURE-CLOCK",
+      "priority": "P2",
+      "status": "OPEN_STATIC_HOLD_AT_826c",
+      "path": "mcp-execution/src/paper-journal.mjs",
+      "lines": [
+        66,
+        332,
+        333,
+        539,
+        544,
+        545,
+        547
+      ],
+      "problem": "Direct runPaperJournalStdio observes/folds failure then disposes its scope before finish(report) captures/freezes the complete returned report. There is no post-capture clock/abort observation before the direct success return.",
+      "source_only_unexecuted_counterexample": [
+        "Use the SAME native injected adapter and monotone virtual clock at0 through workflow/owned close, producing writes_disabled or completed.",
+        "A scoped test-only JSON.stringify wrapper forwards exact original bytes but advances the virtual clock to30001 or aborts the caller when finish captures the final receipt schema STRING after the539 observation. capture string at66 performs this serializer call.",
+        "Scope disposal at545 precedes finish at547, so no subsequent observation/failure fold occurs and the direct interface returns its earlier success/timing snapshot. This also models synchronous final-capture work crossing the last observed budget."
+      ],
+      "qualification": "Direct programmatic returned-report finalization only. Existing paperJournalCommand separately observes after whole-frame encoding at570-576 and is not falsified by this finding. Preserved pure workflow unchanged; no callback/test/runtime executed.",
+      "narrow_correction": "Keep scope live through complete report capture, freshly observe SAME absolute work/closure/total clock and sticky cancellation after capture before direct return, downgrade with full pending controls when failure is found, then dispose. Retain outer command post-frame observation.",
+      "meaningful_future_native_case": "Direct-return native positive plus final-capture deadline/abort negatives; preserve requests/receipts/pending identities and one close; zero extra writes/calls/SDK entries."
+    }
+  ],
+  "known_original_fixture_holds": [
+    {
+      "id": "CC-PAPER-PACKAGE-FIXTURE-CHECKSUM-VECTOR",
+      "path": "mcp-execution/test/paper-journal-package.test.mjs",
+      "lines": [
+        190,
+        194,
+        399,
+        401,
+        402
+      ],
+      "scope": "Known original fixture oracle; not a TAR parser product defect",
+      "detail": "p XOR1 becomes q, so changed[0] turns package/ into qackage/ and TAR_PATH precedes asserted TAR_CHECKSUM. Keep valid path/ASCII/octal and mutate checksum digit."
+    },
+    {
+      "id": "CC-PAPER-PACKAGE-FIXTURE-GUIDE-PROTOTYPE",
+      "path": "mcp-execution/test/paper-journal-package.test.mjs",
+      "lines": [
+        414
+      ],
+      "module_lines": [
+        80,
+        333
+      ],
+      "scope": "Known original fixture oracle; not missing result values",
+      "detail": "Strict assert from node:assert/strict compares null-prototype captured report against ordinary JSON.parse prototypes. Preserve entire encoded JSON+LF bytes and complete value roundtrip."
+    },
+    {
+      "id": "CC-PAPER-PACKAGE-FIXTURE-RAW-DIAGNOSTIC-FLUSH",
+      "path": "mcp-execution/test/paper-journal-package.test.mjs",
+      "lines": [
+        257,
+        258,
+        259,
+        276
+      ],
+      "scope": "Original failed evidence retention/admission proof",
+      "detail": "Deferred t.diagnostic is not immediate persisted custody before TAR admission. Saved original failed log contains neither RAW nor ADMITTED diagnostic. Future bounded captured diagnostic/drain BEFORE admission required; original tar custody remainsUNKNOWN."
+    },
+    {
+      "id": "CC-PAPER-PACKAGE-FIXTURE-OWN-LINK-CLEANUP",
+      "path": "mcp-execution/test/paper-journal-package.test.mjs",
+      "lines": [
+        76,
+        267,
+        283
+      ],
+      "scope": "Known original distinct afterhookDENIED",
+      "detail": "Dependency fixture symlink targets the foreign locked tree. Admit and unlink only that exact owned link before guarded recursive cleanup; preserve foreign-path denial and never remove foreign target."
+    }
+  ],
+  "source_owner_binding_hold": {
+    "original_guard_refusal_correct": true,
+    "three_exact_protected_source_pin_changes_independently_verified": true,
+    "actual_issued_literal_exception": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-exact-826c2596-three-source-owner-pin-only-exception-v1.json",
+      "bytes": 11199,
+      "sha256": "61870181e7470db378149d6a639af4b83eec3119c720df6a0932cfb08b3b1f08"
+    },
+    "74_path_source_scope": "Existing reviewed legacy execution-workflow source set; new portable consumer/artifact proofs separate; frozen826c snapshot not actual merged delivery.",
+    "future_application_no_PASS": "Only specified literal bytes/modes under exact issue; new signed delta/source/CI gates required."
+  },
+  "native_proof": {
+    "intake": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/native-intake-capture-binding-v1.json",
+      "bytes": 21580,
+      "sha256": "a90467075d80e1344eb5d072460f0e14979f233b6b516821d0b7bfedcfc5101d"
+    },
+    "independent_source_verification": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/independent-native-source-verification-v1.json",
+      "bytes": 63317,
+      "sha256": "04f5b6c594ab2847365a05c28bde2f004fd557b3516739d9df9be026e399ee96"
+    },
+    "independent_three_pin_exception_audit": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/independent-three-source-owner-pin-exception-audit-v1.json",
+      "bytes": 31442,
+      "sha256": "e52a3df59934a9dced5cc3af12a9320f70c0a7e6669760dedd0c02006e325686"
+    },
+    "full_tree_index6886_stage0_equal": true,
+    "exact_TEN_scope_vs_incomingfd9": true,
+    "protected6876_Git_bytes421004037_all_identities_equal": true,
+    "selected41_physical2014828_work_index_H_bytes_modes_equal": true,
+    "no_whole421MBphysicalaudit": true,
+    "six_C_products_entire_exact": true,
+    "root_two_lines_inverse_entire14863_incoming": true,
+    "test_one7121_to4ea3_literal_inverse_entire_C": true,
+    "all40_distinct_case_sections_entire_name_body_pins_verified": true,
+    "pure24671_c220_entire_exact_andold34test27429_46011_entire_equal": true,
+    "package_union_closed_andlock_only_root_union_plus11dev_flags": true,
+    "private0_1_0_server_defaults_oldmodules_archives_unchanged": true,
+    "artifact28_native_source_Git_bytes_modes_equal_pins": true,
+    "JS_MJS22_module77_literal_import_edges_closed": true,
+    "literal_import_scope": "Native text+manual source inspection, not executed JS parser or arbitrary future-source validation",
+    "goal_history": "Entire incoming STATUS/LOG prefix PLUS entire historicalC/B chronology. README/REQUIREMENTS original+incoming exact. PHASES incoming exact with historicaloriginalqualification; no false old allfive-prefix claim."
+  },
+  "reviewed_controls_with_scope_limits": {
+    "native_writer": "Captured native stdin.write; actual UTF8 JSON+LF<=65536 then SAME absclock/stickyabort/closed/exited immediately beforeeffect. Promise/one-drain/error/late-abort control source confirmed.",
+    "SDK": "Exact cached client2.1 TGZ integrity verified without import/install. Explicit legacy skips probe path; exact secondargumenttoolDefinition blocks tools/list/header fallback retry. Retained exact child object before SDK clears it.",
+    "response_stderr": "Locked maxBuffer524288 beforeconcat; old131072reply/196608report/65536stderr drained withoutretention/echo. Cooperative observed budgets, no universal preemption/RSS/census claim.",
+    "close": "Memoized promises published before callbacks; same admitted child birth/exit/close before success, no pidnull/close-return-only proof. Direct-return finalcapture P2 remains.",
+    "raw_mode": "Protected server/inherited sources100644. NEW consumer100755 explicitly pinned/tested; no oldsourcechmod. Extracted two ownfixturebins0755 scoped separately. Original failed log tarcustodyUNKNOWN.",
+    "synthetic": "Defaulttwo calls; explicitwrite11/sixentries/config-decision-check-order-fill-mark; supplied10000/10006.5/fee1/local_sim/irregular/nullSharpe/fullretainedpending identity. Pure/core/server/key behavior unchanged; no real orders/rights/adoption/strategy outcomes."
+  },
+  "source_fullread_pins": {
+    "module": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/frozen-Git/mcp-execution/src/paper-journal.mjs",
+      "bytes": 43181,
+      "sha256": "d8c29d04ebc909ff2ee68aed8ddf3a59e7be17de227a326d626583c3518b057b"
+    },
+    "test": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/frozen-Git/mcp-execution/test/paper-journal-package.test.mjs",
+      "bytes": 60317,
+      "sha256": "bcd6d57d9fff9fe7e1aef3b503b2d771c3e4c841b429e7aaf3161603df3ffe38"
+    },
+    "guide": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/frozen-Git/mcp-execution/PAPER_JOURNAL.md",
+      "bytes": 6851,
+      "sha256": "664b54e75ae625700bc6f44ec505a4265502e37091e485738bdfd30c23990730"
+    },
+    "locked_SDK_static_sources": [
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/locked-client/package.json",
+        "bytes": 4584,
+        "sha256": "d3e82c6355b41114e61f892d628f0788db15def04658279cebaae656e41704a4"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/locked-client/dist/stdio.mjs",
+        "bytes": 6153,
+        "sha256": "89b2fb52b95d4b2ba79f1bd4e022282d9654177e4ee06ee904efeb8764d59b5c"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/locked-client/dist/index.mjs",
+        "bytes": 253623,
+        "sha256": "f1f174a3f4902e6489078c9f5dd800e9da9d358d68099adebc965cdb275a0c4f"
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/locked-client/dist/src-DDAAhLnO.mjs",
+        "bytes": 305070,
+        "sha256": "743dee8114f52b5e7df4690770453f6655502cf729380757a392b1ff2ddb070d"
+      }
+    ]
+  },
+  "finite_effect_inventory": {
+    "written_source_names": 40,
+    "ONEnew_offline_pack": 1,
+    "at_most_NEW_SDK_entries": 3,
+    "exact_entry_names": [
+      "paper package: entry1 exact installed guide defaults to two calls no key and known same-child closure",
+      "paper package: entry2 complete synthetic signed record binds sole fee mark and null Sharpe",
+      "paper package: entry3 typed busy refuses once retains pending request and never erases lock"
+    ],
+    "same_native_spawns_site": true,
+    "remaining_faults_injected": "No own execution. Existing future threeentry cases qualify only admitted same-child observations."
+  },
+  "original_actual_failure_evidence_retention_only": {
+    "diagnosis": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-826c-original-failures-narrow-diagnosis-v1.json",
+      "bytes": 12315,
+      "sha256": "19a9fc4465a3a08ca419a18a6c13a60bd6a707642b11603f424f41b855e377ba",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    },
+    "saved_originals_fullread_rehashed": [
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/remote-826c2596-first-failed-originals-v1/MCP-job-log-stdout-original.bin",
+        "bytes": 521736,
+        "sha256": "b829fc2d0c2baba84ba18825f4bd4b0ba1490da0cbc8535f887504f8e9f67f6a",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/remote-826c2596-first-failed-originals-v1/ROOT-job-log-stdout-original.bin",
+        "bytes": 40900,
+        "sha256": "725859415c6f09be91175948cce985c2da6df53df190a265951f798df822d6d9",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/remote-826c2596-first-failed-originals-v1/CodeQL-first-check-stdout-original.bin",
+        "bytes": 3064,
+        "sha256": "6d78f053c53876af52b20395553f9d74321946ea6b85d3b9fcad8d6921055d00",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/remote-826c2596-first-failed-originals-v1/CodeQL-first-annotations-stdout-original.bin",
+        "bytes": 426,
+        "sha256": "f0369380897ecbc4202f368df7ec12d9e88e65aa3092cdabd2efefe84d740046",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      }
+    ],
+    "author_observation": "40 original names=38PASS/2FAIL; distinct afterhookDENIED. Original final execution plan/counters absent; no complete currentCI PASS/catalog claim.",
+    "RAW_ADMITTED_diagnostics_missing_confirmed": true,
+    "actual_original_tar_custody": "UNKNOWN, no rawpromotion/decodedartifact claim",
+    "ROOT_prebuild": "Correct staleREADME pin refusal; ROOTtest/notify outcomes not inferred.",
+    "CodeQL": "Original temporary-file annotation retained; future fixed ROOT sentinel preserves foreign-write denial without suppression.",
+    "original_metadata_stop": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-826c-failure-reader-RAW-label-metadata-stop-v1.json",
+      "bytes": 446,
+      "sha256": "16baaf7435599fb052e4d3e9819514631b8297d7f1ea28f57313b9f11f109268",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    }
+  },
+  "own_external_metadata_stop_and_qualification": {
+    "original": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/original-receipt-metadata-key-stop-v1.json",
+      "bytes": 903,
+      "sha256": "e92a493c37a2a919f96e95dd4771a7c8992d2ea229796ba4c97fb9a00b1d27fe"
+    },
+    "correction": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-826c2596-native-source-v1/receipt-metadata-key-qualified-correction-v1.json",
+      "bytes": 1579,
+      "sha256": "1e78e43c699cfd3bc77a54f2dc94132ddedf27a354ab4d6bdbed3b1d53ffd5db"
+    },
+    "effect": "Receipt key-shape error only; exact issued authority not overwritten, no source/project retry or code defect."
+  },
+  "SOURCE_CI_separation": "This receipt is original STATIC SOURCE HOLD. Separate corrected frozen delta and independently parsed retainedCURRENTCI needed; evolving working/futurehead/runtime/READY/merge/archive/pub unapproved.",
+  "runtime_by_reviewer": "NONE. Native Python stdlib/Git/hash/text plus bounded cached third-party source decode only; no Node/import/SDK/test/CLI/npm/pack/install/helper/build/browser/GET/processprobe/job/APIrefetch/manualworkflow/rerun/CPUgrant/provider-model-resource-spend/publication.",
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "owner_hierarchy": "AllSovereignMCP/API/developeradoption/realrights-clearedindependentexpertannotation-refinery/novelresearch/governedALPHAC-privatepaper-lawfulcapital/10MACTUALindexing-qualitySEO-keywords-design-analyzers ACTIVE; actualoutcomesUNKNOWNNULL. PRIMARYreservedroles/solemergepub/LeadCPU127 unchanged; no role/thread/model/goal reset."
+}

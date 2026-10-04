@@ -1,0 +1,60 @@
+{
+  "schema": "THIRD-d261d2bb-C-versus-H-source-reader-count-correction-v1",
+  "utc": "2026-10-04T13:29:37.934231+00:00",
+  "disposition": "ADDITIVE_METADATA_READER_CORRECTION_NO_PRODUCT_FAILURE",
+  "original_error_and_recipes": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-d261d2bb-integrated-source-v1.py",
+      "bytes": 24189,
+      "sha256": "d54b7c0551633200ae0d281d695e00ff2d86e50f125ae89b697326726a089a94"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/native-reader-d261d2bb-integrated-v1-stderr-original.bin",
+      "bytes": 304,
+      "sha256": "d061a2ce8b768d90caad9c091d5acab2be70157cc8490e7d8f8481deeb980202"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/native-reader-d261d2bb-integrated-v1-stdout-original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/inspect-d261d2bb-integrated-source-v2.py",
+      "bytes": 24296,
+      "sha256": "f53449e09c098c70552c7b2ad49952b80592b354de46128a15bcd219b58acf5c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/native-reader-d261d2bb-integrated-v2-stdout-original.bin",
+      "bytes": 742,
+      "sha256": "11d4d269cd168514e0d334fb9e10c747abb07612971b24a0497604f650c43345"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/native-reader-d261d2bb-integrated-v2-stderr-original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "original_inference": "Reader v1 wrongly required checkpointC to differ from22fd in every13 allowed source path.",
+  "correct_predicate": "C has10 changed paths because three source-owner paths remain entire incoming at C. H then modifies exactly those3. H has13 scoped paths vs22fd; all count/recipe controls match actual signed C/H.",
+  "corrected_reader_exit": 0,
+  "immutable_SOURCE": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/review-d261d2bb-integrated-SOURCE-extension-v1.json",
+    "bytes": 64517,
+    "sha256": "40cabbeabb3609e4195677d0c7920cdfb5c5e02554b5d6ddeb2fd57f1c5b57f5"
+  },
+  "independent_native_proof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/native-source-proof-d261d2bb-integrated-v1.json",
+    "bytes": 167723,
+    "sha256": "3ce744328a11365e782f7c35136bbbfa5c14da4e08c7ef576d13db23b1478e5a"
+  },
+  "handoff": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/handoff-d261d2bb-integrated-SOURCE-v1.json",
+    "bytes": 1465,
+    "sha256": "bdf6ba55eb147c92009796c2853423d71d76c69f7fc774098c8c30fb515c659e"
+  },
+  "originals_overwritten": false,
+  "project_execution_or_rerun_or_API_refetch": false,
+  "source_archive_branch_edits": false,
+  "futureCI_merge_pub_ACK": false,
+  "all_owner_hierarchy": "ACTIVE"
+}

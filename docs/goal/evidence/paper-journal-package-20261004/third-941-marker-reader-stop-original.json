@@ -1,0 +1,15 @@
+{
+  "schema": "THIRD-941901ec-display-only-metadata-reader-stop-v1",
+  "operation": "Display selected actual manifest fields and locate source74= in an old native inspection recipe",
+  "observed_exit": 1,
+  "exception": "ValueError: substring not found",
+  "cause": "The display expression evaluated s.index('source74=') before its conditional fallback. The old recipe has no such marker.",
+  "original_tool_result": "Retained in this turn's tool history; combined stdout/error was returned by exec_command. Separate original process stream files were not saved and are not reconstructed here.",
+  "correction": "Use actual source_epoch_C, legacy74_actual_raw_C_pairs, legacy74_source_pairs_sha256, and the actual pair_rows/pairs blocks; do not assume the old display marker exists.",
+  "product_failure": false,
+  "source_or_raw_evidence_change": false,
+  "project_execution_or_API_refetch_or_rerun": false,
+  "frozen_H": "941901ec5e53bd532da9ae1f448a921e806de9d9",
+  "archive_member": false,
+  "owner_hierarchy": "ACTIVE"
+}

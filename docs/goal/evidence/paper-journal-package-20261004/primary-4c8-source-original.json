@@ -1,0 +1,481 @@
+{
+  "schema": "PRIMARY-PR386-4c8-startup-Promise-custody-narrow-SOURCE-extension-v1",
+  "utc": "2026-10-04T14:31:49.389437+00:00",
+  "H": "4c8ea35ec930162c13a1b56b9f9db875366cc935",
+  "tree": "01945ee7acade4916bc1de96c537fa491b687b55",
+  "sole_parent": "941901ec5e53bd532da9ae1f448a921e806de9d9",
+  "actual_integrated_base": "22fd080d848078db39058457c02e62d3dd867ff4",
+  "combined_C": "02794a306db37e2ee3b831e6fffe81e6fbce9b19",
+  "disposition": "PASS_WITH_NARROW_STATIC_SCOPE_LIMITS",
+  "findings": [],
+  "scope": "Independent finite SOURCE extension from frozen941 to4c8, resolving the remaining original startup Promise-custody P2. Unchanged semantics are carried only through independently equal bytes/identities; no duplicate full source, actual runtime, current-CI, archive, READY, merge, delivery or publication approval.",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/source-4c8ea35e-paper-journal-package-narrow-v1.json",
+    "bytes": 142122,
+    "sha256": "c7d761641322e590821d400429f0daa12cf8032ac847adf01a494e747d367995",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "ordinary_push_handoff": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-handoff-v1.json",
+    "bytes": 8097,
+    "sha256": "933fb4dd9093fad3946f171643042f6fd17e9e2968524e898eae631ae7b1b134",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "immutable_prior_source_receipts": [
+    {
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-d261d2bb-paper-journal-package-integrated-SOURCE-extension-v1.json",
+        "bytes": 71683,
+        "sha256": "dc561c541f4e422960c0ecb2cddaa544b471e2784d83a8e4293bf0a9293e375c",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "original_disposition": "HOLD_TWO_P2_PROMISE_REJECTION_CUSTODY_WITH_INTEGRATION_AND_EPOCH_CONTROLS_PASS"
+    },
+    {
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-review-941901ec-paper-journal-package-narrow-SOURCE-extension-v1.json",
+        "bytes": 40359,
+        "sha256": "02ca6290c6590fccca449b511ddc5026cdf2c39683cdabd00c005e0f53488172",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "original_disposition": "HOLD_ONE_P2_TRANSPORT_START_PROMISE_CUSTODY_BOUNDED_TASK_FIX_STATIC_ACCEPTED"
+    },
+    {
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package-peer/review-941901ec-narrow-SOURCE-extension-v1.json",
+        "bytes": 42396,
+        "sha256": "e42783474c393496ae5d3a902e5a7e056fdd5ef0a4038548f8912d42c0d3416e",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "original_disposition": "PASS_WITH_STATIC_SCOPE_LIMITS"
+    }
+  ],
+  "finding_dispositions": [
+    {
+      "id": "CC-PAPER-PACKAGE-TRANSPORT-START-PROMISE-CUSTODY",
+      "severity": "P2",
+      "original_d261": "OPEN_STATIC_ORIGINAL_D261",
+      "original941": "OPEN_STATIC_ENTIRE_WRAPPER_UNCHANGED",
+      "current4c8": "CLOSED_STATIC_AT_4C8EA35E",
+      "source_file": "mcp-execution/src/paper-journal.mjs",
+      "observed_lines": {
+        "originalStart_pending_line": 511,
+        "both_outcomes_observed_line": 513,
+        "fallible_child_admission_line": 515,
+        "original_pending_returned_line": 524
+      },
+      "reason": "Immediately after originalStart returns, Promise.resolve(pending) receives both outcome callbacks returning undefined, and catch handles the observer chain, all before fallible child/stdin/listener/nativewriter admission. Admission refusal therefore cannot detach original pending rejection. On admitted startup return pending remains unchanged; the observer does not replace the SDK outcome. Entire941 source is recovered by removing only the194 inserted comment/observer bytes.",
+      "counterexample_scope": "Original native-injection source cue remains UNEXECUTED by reviewer. No assertion that native lockedSDK startup failed in retained CI, no actual child census or absence claim.",
+      "meaningful_written_regression": "The SAME memoized-close/refusal native case exercises immediate and delayed startup rejection with zero child/calls/writes, one connect and one client/transport close, pid/exit/close/absence null, one event-loop turn and no private-error echo. Its valid-start positive checks two calls and three writes; no additional realSDK or pack entry."
+    },
+    {
+      "id": "CC-PAPER-PACKAGE-BOUNDED-TASK-PROMISE-CUSTODY",
+      "original_d261": "OPEN_STATIC_AT_D261",
+      "previous941": "CLOSED_STATIC_AT_941",
+      "current4c8": "CLOSED_STATIC_CARRIED_ENTIRE941_BLOCK_EXACT",
+      "no_repeat_semantic_review": true
+    },
+    {
+      "id": "original826c-three-source-corrections",
+      "current4c8": "PREVIOUSLY_CLOSED_STATIC_CARRIED_THROUGH_EXACT941_BYTES",
+      "original_reviews_and_failed_runtime": "IMMUTABLE"
+    }
+  ],
+  "independent_native_proof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-4c8-startup-SOURCE-native-v1/independent-4c8-startup-custody-and-narrow-preservation-proof-v1.json",
+    "bytes": 53523,
+    "sha256": "00525038554350d2f2d180f1abd45f401c23d0e107429dbb175019ccc0722e4d",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "independent_stage1": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-4c8-startup-SOURCE-native-v1/independent-4c8-native-source-stage1-v1.json",
+    "bytes": 145992,
+    "sha256": "ece71831ca36be680d553b4f8f192632fd4614ce736eedba7bfac69e683bb805",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "native_read_and_Git_catalog": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-4c8-startup-SOURCE-native-v1/native-read-and-Git-capture-catalog-v1.json",
+    "bytes": 81038,
+    "sha256": "5a137f3c51937182b335b1ced99e31a9715e679fd4fa5b2eb80aca080c531131",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "current_module": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-4c8-startup-SOURCE-native-v1/frozen-4c8-paper-journal-module-original.mjs.txt",
+    "bytes": 44286,
+    "sha256": "12d8d1c06bf8d65f9f122e0afbde85a483c62d88517dc9d0ff5f785cba660098",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "current_test": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-4c8-startup-SOURCE-native-v1/frozen-4c8-paper-package-test-original.mjs.txt",
+    "bytes": 72486,
+    "sha256": "6942de5a2ce0eb93dadb7ad503a4ed71ba2483324c11476f9406e676a83c7bf8",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "parent_module": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-4c8-startup-SOURCE-native-v1/frozen-941-paper-journal-module-original.mjs.txt",
+    "bytes": 44092,
+    "sha256": "357051ad1f6b9faf89dbca841f85a85b9f36f42ce7b0c2c3470d139ecee7dab8",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "parent_test": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/primary-4c8-startup-SOURCE-native-v1/frozen-941-paper-package-test-original.mjs.txt",
+    "bytes": 71045,
+    "sha256": "b44a21ec02ea91cd55363b4081d6a5297270515d2ebc25941eccf9ddfe4705b1",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "delta": {
+    "only_parent_paths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-execution/src/paper-journal.mjs",
+      "mcp-execution/test/paper-journal-package.test.mjs"
+    ],
+    "full6890_stage0_index_tree_equal": true,
+    "parent_outside4_count": 6886,
+    "all_parent_protected_Git_identities_exact": true,
+    "incoming_outside13_count": 6877,
+    "incoming_protected_Git_blob_bytes": 421024098,
+    "incoming_protected_digest": "64ec1fbe376c49aafaa57030974cf03b76ba2fde7cada61cce2f7c35b7b95814",
+    "all_incoming_nonowned_Git_identities_exact": true,
+    "all13_working_index_frozenGit_bytes_modes_exact": true,
+    "fresh_local_H_G_CLEAN": true
+  },
+  "physical_scope": {
+    "selected_unique_regular_fullread_files": 93,
+    "selected_unique_bytes": 3409027,
+    "sameFD_then_postpath_stability": true,
+    "no_whole421MB_physical_audit": true
+  },
+  "module_preservation": {
+    "entire941_inverse_except194B_observer": true,
+    "bounded_task_scope_nativewriter_drain_terminal_emit_memoizedclose_complete_report": "ENTIRE941_BYTES_UNCHANGED",
+    "imports_default_flags_schemas_pure_core_old34_no_retry": "UNCHANGED_SOURCE_CARRIED",
+    "admitted_original_pending_identity": "RETURN_PENDING_BYTE_EXACT",
+    "new_source_epoch": false
+  },
+  "test_preservation": {
+    "independent_case_inventory": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/source-4c8ea35e-written44-name-body-inventory-v1.json",
+      "bytes": 12978,
+      "sha256": "920e89e1a2f645c24ed87965c6248282784471099f7926017746c7216e748892",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    },
+    "all44_names_entire_order_unique_exact941": true,
+    "other43_whole_raw_sections_exact941": true,
+    "changed_existing_case": "paper package: memoized close is published before reentrancy and an error cannot mark success",
+    "entire_test_inverse": {
+      "strict_own_module_pin_updated_once": true,
+      "two_native_helper_changes_only": true,
+      "one_existing_case_extended": "paper package: memoized close is published before reentrancy and an error cannot mark success",
+      "entire_inverse_byte_exact": true
+    },
+    "new_actual_SDK_entry_bound": 3,
+    "one_offline_pack_entry": 1,
+    "SDK_entry_names_exact941": [
+      "paper package: entry1 exact installed guide defaults to two calls no key and known same-child closure",
+      "paper package: entry2 complete synthetic signed record binds sole fee mark and null Sharpe",
+      "paper package: entry3 typed busy refuses once retains pending request and never erases lock"
+    ],
+    "guard_bootstrap_and_actual_entry_cases_exact_parent": true,
+    "current_runtime_in_this_gate": "WRITTEN_UNRUN",
+    "source_pin_binds_current_module": "12d8d1c06bf8d65f9f122e0afbde85a483c62d88517dc9d0ff5f785cba660098"
+  },
+  "source_epoch_preservation": {
+    "combined_C": "02794a306db37e2ee3b831e6fffe81e6fbce9b19",
+    "all74_actualC_rawbytes_equal_current": true,
+    "ordered74_raw_pair_hash": "c9ea3bf5f07c2ffff07e55cf8b016854fefd842773e7967843d6daf214bf0c17",
+    "three_source_owner_files_entire941_exact": true,
+    "entire_root_package_parent941_exact": true,
+    "whole_incoming_root_package_recovered_by_two_literal_own_lines": true,
+    "entire_incoming_verify_sha256": "f22252c98bef63f212af303d2e1fc2e91e8559bc8e9ce54e319cd3b75fd77212",
+    "guide_execution_package_lock_versions_dependencies_default7_old_bins_old_archives": "PROTECTED_EXACT_PARENT"
+  },
+  "goal_history": {
+    "all_five_incoming_C_and941_whole_prefixes_verified": true,
+    "rows": [
+      {
+        "path": "docs/goal/README.md",
+        "incoming_entire_prefix_bytes": 6899,
+        "incoming_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "combinedC_entire_prefix_bytes": 6899,
+        "combinedC_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "parent941_entire_prefix_bytes": 6899,
+        "parent941_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "current_bytes": 6899,
+        "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "all_three_whole_prefixes_preserved": true,
+        "parent_tail_bytes": 0,
+        "entire9ba_history_exact": true
+      },
+      {
+        "path": "docs/goal/REQUIREMENTS.md",
+        "incoming_entire_prefix_bytes": 8758,
+        "incoming_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "combinedC_entire_prefix_bytes": 8758,
+        "combinedC_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "parent941_entire_prefix_bytes": 8758,
+        "parent941_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "current_bytes": 8758,
+        "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "all_three_whole_prefixes_preserved": true,
+        "parent_tail_bytes": 0,
+        "entire9ba_history_exact": true
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "incoming_entire_prefix_bytes": 257901,
+        "incoming_sha256": "9de55c1e3cc0e8e24b04b3cb6e3af00d530d873f0203013d6ab3d6a4b9a7a97d",
+        "combinedC_entire_prefix_bytes": 752300,
+        "combinedC_sha256": "8174f89fc4a332824cb7c398ea0ed39f98dfba3021c04bead7065866349f6d52",
+        "parent941_entire_prefix_bytes": 754036,
+        "parent941_sha256": "c49eaf0b2d1c43abf12ecf8c90959bf9b8cb3f6bd11596dc3afae797562a190f",
+        "current_bytes": 755920,
+        "current_sha256": "2e4902f92321da8431e4283ef052ab45cb0acf64718458fb3b17a86364f32b3d",
+        "all_three_whole_prefixes_preserved": true,
+        "parent_tail_bytes": 1884,
+        "entire9ba_history_binding": {
+          "path": "docs/goal/STATUS.md",
+          "whole826c_prefix_bytes": 490628,
+          "whole826c_prefix_sha256": "4788597f9337b7884fb045e7bea051846944029a5e8f6f135cfa05df42398ea8",
+          "current_bytes": 493905,
+          "current_sha256": "cf660b4975b3e1170b8c8a475be9777b6e4ee8f04abf3f5ccdc2ac925323e166",
+          "whole_parent_prefix": true,
+          "incoming_and_complete_C_chronologies_carried_byteexact": true,
+          "historical_original_PHases_qualification_carried": true
+        }
+      },
+      {
+        "path": "docs/goal/PHASES.md",
+        "incoming_entire_prefix_bytes": 25963,
+        "incoming_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "combinedC_entire_prefix_bytes": 25963,
+        "combinedC_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "parent941_entire_prefix_bytes": 25963,
+        "parent941_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "current_bytes": 25963,
+        "current_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "all_three_whole_prefixes_preserved": true,
+        "parent_tail_bytes": 0,
+        "entire9ba_history_exact": true
+      },
+      {
+        "path": "docs/goal/LOG.md",
+        "incoming_entire_prefix_bytes": 533265,
+        "incoming_sha256": "993183c81fac99b31e73a0dc44b47bcdf9cbb1ff16a5514af02f58437ad00ec9",
+        "combinedC_entire_prefix_bytes": 1578386,
+        "combinedC_sha256": "1fc8ad16df4245919295666e52162bc1839b21bda43215fda1f090e8a5a7a599",
+        "parent941_entire_prefix_bytes": 1580122,
+        "parent941_sha256": "7c923033853a29cba9540e9919f8a9b16673d08396ab19ae707654f4b6cd2c1e",
+        "current_bytes": 1582006,
+        "current_sha256": "9f01b554da719a0ac9a61f95b7b627c76554760ae17b5cd8c4230bd0476c341f",
+        "all_three_whole_prefixes_preserved": true,
+        "parent_tail_bytes": 1884,
+        "entire9ba_history_binding": {
+          "path": "docs/goal/LOG.md",
+          "whole826c_prefix_bytes": 1041350,
+          "whole826c_prefix_sha256": "d8dcd9251e45f589809511bf91c0aa84289e7277044dadfcf70cd64b1e76ddbd",
+          "current_bytes": 1044627,
+          "current_sha256": "b6b13ccc94148ab38dad9c246dd9fa3e66a1997d2487ae5aa8245ede4f79dd9f",
+          "whole_parent_prefix": true,
+          "incoming_and_complete_C_chronologies_carried_byteexact": true,
+          "historical_original_PHases_qualification_carried": true
+        }
+      }
+    ],
+    "STATUS_LOG_only_new_tail_append": true,
+    "README_REQUIREMENTS_PHASES_entire_parent_C_incoming_exact": true,
+    "earlier9ba_complete_chronology": "Carried from previously accepted combinedC proof by the independently exact complete C prefix; no new claim about a different preferred union representation."
+  },
+  "saved_source_control_context": {
+    "author_pre_post_push_bindings": [
+      {
+        "command": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/fresh-existing-draft-PR-before-narrow-push-command-original.json",
+          "bytes": 285,
+          "sha256": "157236d2c2f5f4ed870e921e3b03fd7f1fb04508d350f6b6ae8a7ea967addc4d",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "stdout": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/fresh-existing-draft-PR-before-narrow-push-stdout-original.bin",
+          "bytes": 88,
+          "sha256": "6b62dcfa963ca4eb2a79f11f1b5393caf42130d5f9fb82320af8a552acf791ba",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "stderr": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/fresh-existing-draft-PR-before-narrow-push-stderr-original.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "exit": 0
+      },
+      {
+        "command": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/fresh-exact-main-immediately-before-narrow-push-command-original.json",
+          "bytes": 228,
+          "sha256": "2f626acc9f9312d68fb402ac12e606dbb19cafc1e161891b77afdc1b3e642874",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "stdout": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/fresh-exact-main-immediately-before-narrow-push-stdout-original.bin",
+          "bytes": 344,
+          "sha256": "1d4cd71013f6a9abd917c7ef01e3583e16ca88b6c8deee1caa29136672c75ac4",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "stderr": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/fresh-exact-main-immediately-before-narrow-push-stderr-original.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "exit": 0
+      },
+      {
+        "command": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/fresh-existing-draft-after-ordinary-push-command-original.json",
+          "bytes": 341,
+          "sha256": "a388389aac43ab844236c489a6f592f77d7ed9e9f64f9ed369918d2aa3f30344",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "stdout": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/fresh-existing-draft-after-ordinary-push-stdout-original.bin",
+          "bytes": 218,
+          "sha256": "a6ee2c57ad56466b618bcc7ac039a2ed5af3eb01955159ad531305595c29e576",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "stderr": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/fresh-existing-draft-after-ordinary-push-stderr-original.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "exit": 0
+      },
+      {
+        "command": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/ONE-ordinary-existing-branch-startup-correction-push-command-original.json",
+          "bytes": 249,
+          "sha256": "e29b96ad6fc0c2718fb2a88368cc386d26b4a1492c9ea5b7860541528ac7e843",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "stdout": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/ONE-ordinary-existing-branch-startup-correction-push-stdout-original.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "stderr": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary-4c8ea35e-startup-source-ordinary-push-native-v1/ONE-ordinary-existing-branch-startup-correction-push-stderr-original.bin",
+          "bytes": 119,
+          "sha256": "23ba44fb3eb9eb6d2c35adcf520bc08547b54a70d268e9dac25b9d45d8ae1376",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "exit": 0
+      }
+    ],
+    "postpush_PR": {
+      "baseRefOid": "22fd080d848078db39058457c02e62d3dd867ff4",
+      "headRefOid": "4c8ea35ec930162c13a1b56b9f9db875366cc935",
+      "isDraft": true,
+      "mergeStateStatus": "UNKNOWN",
+      "mergeable": "UNKNOWN",
+      "state": "OPEN",
+      "statusCheckRollup": []
+    },
+    "scope": "Capture-time author metadata physically fullread/hash only. This reviewer used read-only local native Git; no fresh GitHub/API request."
+  },
+  "historical_metadata_qualifiers": [
+    "Inherited original-integrated-head and d261 inverse flags in author manifest describe earlier epochs. This gate independently establishes the current entire941 inverse except pending observer and the exact4 parent paths. No current entire-d261 one-block-only claim is made.",
+    "CheckpointC UNPUSHED/no separate job is historical source authority; no new source epoch or project-entry authority is conferred."
+  ],
+  "history_preserved": {
+    "d26171683Bdc56_SOURCE_twoP2": "IMMUTABLE",
+    "94140359B02ca_SOURCE_oneP2": "IMMUTABLE",
+    "THIRD94142396Be427_narrowSOURCE": "IMMUTABLE_SCOPED",
+    "941_saved_green_all7": "SEPARATE_HISTORICAL_RUNTIME_METADATA_SOURCEHOLD_UNCHANGED",
+    "d261_actual44_named_PASS_plus_fileFAIL": "PRESERVED_NO_PIPELINE_PASS",
+    "826c38P2F_afterhookFAIL_tarUNKNOWN_and_prior_failures": "IMMUTABLE"
+  },
+  "ROOT5_fullreads": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 85596,
+      "sha256": "89600a2d55a22e5d3f70be783eb08dab43a35676a5203ff66780993e4dcda266",
+      "mode_octal": "0o644",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "mode_octal": "0o644",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1516907,
+      "sha256": "01851df2a79b7e39b3f6976806057833f13560d35b03cfca8bb80aea4047eb81",
+      "mode_octal": "0o644",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 141876,
+      "sha256": "28e9f5da897fe5821e8b87a96c53c72a4936b9c28dad17e5217e96c253259daa",
+      "mode_octal": "0o644",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 1861757,
+      "sha256": "9bdca2f871a764f380c8c9b089481b7bf5c44d9b0d69b38cc69d24906c0759fd",
+      "mode_octal": "0o644",
+      "FULLREAD_sameFD_postpath": true
+    }
+  ],
+  "reviewer_actions": {
+    "native_FD_hash_JSON_Git_only": true,
+    "project_Node_import_SDK_test_CLI_npm_pack_install_helper_build_browser_GET_process_probe_job_rerun": false,
+    "API_refetch": false,
+    "source_branch_archive_edits": false,
+    "provider_model_resource_spend_grant_publication": false
+  },
+  "limitations": [
+    "Current44 assertion outcomes and tar/SDK/runtime closure require separate exact saved-original CURRENT-CI gate; SOURCE does not establish any runtime pass.",
+    "Selected93 files plus Git protected identities only; no whole421MB physical body audit.",
+    "Written zero-child synthetic startup controls cannot establish a census or native startup-failure outcome.",
+    "No final-head archive/READY/merge/actualM/job/publication/realhuman/right/adoption/indexing/strategy outcome is inferred."
+  ],
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "currentCI": "SEPARATE_PENDING",
+  "future_HEAD_FINAL_READY_merge_actual_custody_publication_approval": false,
+  "full_owner_hierarchy": "ACTIVE_ALL_SOVEREIGN_MCP_API_ADOPTION_REFINERY_REAL_EXPERT_RIGHTS_ANNOTATION_NOVEL_RESEARCH_GOVERNED_ALPHAC_PRIVATEPAPER_LAWFULCAPITAL_10M_ACTUAL_INDEXING_QUALITY_SEO_KEYWORDS_DESIGN3D_GRAPH_SOCIAL_A11Y_SECURITY_PERFORMANCE_ANALYZERS",
+  "actual_outcomes": null,
+  "roles": "Existing PRIMARY reserved guide/date/focus/live/privatejournal/reconciliation/release/sole ordinary merge and publication; Lead sole CPU,127 policy and sameSECONDARYTHIRD unchanged."
+}

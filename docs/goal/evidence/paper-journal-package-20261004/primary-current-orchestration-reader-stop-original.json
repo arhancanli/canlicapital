@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-04T14:59:57.410133+00:00",
+  "tool": "functions.exec",
+  "literal_tool_result": "Script error: SyntaxError: Invalid or unexpected token",
+  "scope": "JavaScript orchestration string contained a literal backtick while defining native Python audit source. Script was not evaluated; no nested tool or filesystem/project operation ran.",
+  "correction": "Represent template delimiters as integer96 in the native lexical reader.",
+  "project_execution_or_API_refetch": false,
+  "source_or_raw_modified": false
+}
