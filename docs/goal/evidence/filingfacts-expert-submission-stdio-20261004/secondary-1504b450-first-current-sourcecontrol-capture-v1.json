@@ -1,0 +1,155 @@
+{
+  "observed_at": "2026-10-04T02:44:09.120869+00:00",
+  "records": [
+    {
+      "name": "pull-current",
+      "argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/pulls/376"
+      ],
+      "exit_code": 0,
+      "original_pins": [
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-pull-current-stdout-original-v1.json",
+          "bytes": 18355,
+          "sha256": "b1b8c91ae92b04e7f53e45411d90290199b5bab01a95e01f2dcd2b938e44ce08"
+        },
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-pull-current-stderr-original-v1.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "summary": {
+        "number": 376,
+        "state": "open",
+        "draft": true,
+        "mergeable": true,
+        "mergeable_state": "clean",
+        "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+        "base": "67aede2ab145db52dec7be37668f1149d9b7e9d5"
+      }
+    },
+    {
+      "name": "checks-current",
+      "argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/commits/1504b450efc3b63e66a035d2f9b18870e4562492/check-runs?per_page=100"
+      ],
+      "exit_code": 0,
+      "original_pins": [
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-checks-current-stdout-original-v1.json",
+          "bytes": 24358,
+          "sha256": "4c314651e7714593734ffed66eff2cdaf15ca23ccfba7134e73c6033011626e6"
+        },
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-checks-current-stderr-original-v1.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "summary": [
+        {
+          "id": 111345603881,
+          "name": "CodeQL",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/arhancanli/canlicapital/runs/111345603881",
+          "head_sha": "1504b450efc3b63e66a035d2f9b18870e4562492"
+        },
+        {
+          "id": 111345472222,
+          "name": "design wrapper build and contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37171598817/job/111345472222",
+          "head_sha": "1504b450efc3b63e66a035d2f9b18870e4562492"
+        },
+        {
+          "id": 111345472216,
+          "name": "Key revocation PostgreSQL contract",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37171598817/job/111345472216",
+          "head_sha": "1504b450efc3b63e66a035d2f9b18870e4562492"
+        },
+        {
+          "id": 111345472207,
+          "name": "vite production build",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37171598817/job/111345472207",
+          "head_sha": "1504b450efc3b63e66a035d2f9b18870e4562492"
+        },
+        {
+          "id": 111345472085,
+          "name": "MCP package and stdio contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37171598817/job/111345472085",
+          "head_sha": "1504b450efc3b63e66a035d2f9b18870e4562492"
+        },
+        {
+          "id": 111345472043,
+          "name": "analyze (python)",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37171598805/job/111345472043",
+          "head_sha": "1504b450efc3b63e66a035d2f9b18870e4562492"
+        },
+        {
+          "id": 111345471931,
+          "name": "analyze (javascript-typescript)",
+          "status": "completed",
+          "conclusion": "success",
+          "details_url": "https://github.com/arhancanli/canlicapital/actions/runs/37171598805/job/111345471931",
+          "head_sha": "1504b450efc3b63e66a035d2f9b18870e4562492"
+        }
+      ]
+    },
+    {
+      "name": "runs-current",
+      "argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/actions/runs?head_sha=1504b450efc3b63e66a035d2f9b18870e4562492&per_page=100"
+      ],
+      "exit_code": 0,
+      "original_pins": [
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-runs-current-stdout-original-v1.json",
+          "bytes": 26634,
+          "sha256": "4eb1b3a24b5f893f897abc12c53f4795f0a790157d318afa263473bb4289b937"
+        },
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-runs-current-stderr-original-v1.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "summary": [
+        {
+          "id": 37171598805,
+          "name": "CodeQL",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "1504b450efc3b63e66a035d2f9b18870e4562492",
+          "run_attempt": 1,
+          "event": "pull_request"
+        },
+        {
+          "id": 37171598817,
+          "name": "ci",
+          "status": "completed",
+          "conclusion": "success",
+          "head_sha": "1504b450efc3b63e66a035d2f9b18870e4562492",
+          "run_attempt": 1,
+          "event": "pull_request"
+        }
+      ]
+    }
+  ]
+}

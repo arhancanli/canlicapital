@@ -1,0 +1,14 @@
+{
+  "schema": "primary-native-retained-reader-exact-first-stop-v1",
+  "utc": "2026-10-04T03:05:43.251878+00:00",
+  "original_exec_chunk": "bf2b9d",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr_literal": "Traceback (most recent call last):\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/independent-native-retained-reader-v1.py\", line 271, in <module>\n    assert lines[i + 1] == TESTED and f'Merge {HEAD} into {BASE}' in lines\nAssertionError\n",
+  "reader": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/independent-native-retained-reader-v1.py",
+    "bytes": 23358,
+    "sha256": "f71e056f79ebfca57c57e220b8eed11b6ed97cc586a35f61f5dbe05cb84d5d96"
+  },
+  "stop_scope": "Own retained metadata assertion; no project import/test/job/API or original rewrite. All TAP was parsed before this extra raw-merge-message assumption; no CI receipt sealed."
+}

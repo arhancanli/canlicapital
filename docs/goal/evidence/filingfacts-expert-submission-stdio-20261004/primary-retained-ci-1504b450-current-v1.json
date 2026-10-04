@@ -1,0 +1,1367 @@
+{
+  "schema": "canlicapital-primary-finite-retained-current-CI-review-v1",
+  "utc": "2026-10-04T03:06:45.803650+00:00",
+  "reviewer": "PRIMARY",
+  "gate": "RETAINED_CURRENT_CI_ONLY",
+  "disposition": "PASS_WITH_RETAINED_CI_SCOPE",
+  "findings": [],
+  "PR": 376,
+  "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+  "tree": "e1abf1cfff33ea1965a962e19dca11f83238203a",
+  "actual_base": "67aede2ab145db52dec7be37668f1149d9b7e9d5",
+  "sole_source_parent": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+  "tested": "969f0a4afa55230692214b638254730abab61b80",
+  "ordered_tested_parents": [
+    "67aede2ab145db52dec7be37668f1149d9b7e9d5",
+    "1504b450efc3b63e66a035d2f9b18870e4562492"
+  ],
+  "frozen_source_Git_tree_equals_saved_tested_merge_tree": true,
+  "separate_current_SOURCE_receipt": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-narrow-source-extension-v1.json",
+    "bytes": 75872,
+    "sha256": "60d1a38dfad05276e75194a60d60711533d91a565e812c5721fcf720f8b7b373"
+  },
+  "author_receipt_locator_not_peer_ACK": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-exact-current-CI-v1.json",
+    "bytes": 39725,
+    "sha256": "b0b661275b1d000671cca7962765b01b89ea91e2593f15f38855ed337f2a8bdc"
+  },
+  "independent_native_binding": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/independent-retained-current-CI-binding-v1.json",
+    "bytes": 180350,
+    "sha256": "349a91d27357bc3f8f41c43b8e31b7195d11aec4c2b09b6880bbde1c07399a5d"
+  },
+  "complete_independent_TAP_catalog": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/independent-complete-8TAP-catalog-v1.json",
+    "bytes": 686539,
+    "sha256": "ba4fb924ef40e5d4f7f042ce53f8be9de00df6fc92866d4918a5d56a6ebe6270"
+  },
+  "all11_success_originals_FULLREAD_sameFD_stable_hash": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-checks-current-stdout-original-v1.json",
+      "bytes": 24358,
+      "sha256": "4c314651e7714593734ffed66eff2cdaf15ca23ccfba7134e73c6033011626e6"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-root-job-api-original-v1.log",
+      "bytes": 741722,
+      "sha256": "256ad046a9d578baaef1f2bbfdb07a7db75cc184a5c4cf559fa90d1b74ab1232"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-mcp-job-api-original-v1.log",
+      "bytes": 352997,
+      "sha256": "4c3184bf410da8e1d5e6b2753482902c81a24dbf7d2fe994f7d351f247e71766"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ci-run-original-v1.json",
+      "bytes": 13295,
+      "sha256": "53ea48841c7f4934becf44ae75a1ede616efead8b0055d89ebb750a665de4de4"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ci-jobs-original-v1.json",
+      "bytes": 13311,
+      "sha256": "735f24b57e9afb1c35d7929c26459d45ff449a9ca4e8c36028ea51bff9122d8f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-CodeQL-run-original-v1.json",
+      "bytes": 13302,
+      "sha256": "5b92a07e68129bdd25d8f4a64b3802457fc933de4a7541081c565e109075737f"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-pull-current-stdout-original-v1.json",
+      "bytes": 18355,
+      "sha256": "b1b8c91ae92b04e7f53e45411d90290199b5bab01a95e01f2dcd2b938e44ce08"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-tested-Git-original-v1.json",
+      "bytes": 2648,
+      "sha256": "b0f5e9ac66d3c30bcb10a43430bcbe6481775a9ddedef5c935b8824b2409f96e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-source-Git-original-v1.json",
+      "bytes": 1859,
+      "sha256": "a5b69f918df0095b056d158e49593637b534fd6a874f39668f69ada00cb349fc"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ref-alerts-original-v1.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ref-analyses-original-v1.json",
+      "bytes": 3560,
+      "sha256": "6a3749765d7fe988e04448f42a6c56a16479d1db26c3bafd78a1dd4e2a82c540"
+    }
+  ],
+  "original_bytes": 1185409,
+  "ten_capture_command_record_files_FULLREAD_hash": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-root-job-api-command-original-v1.json",
+      "bytes": 854,
+      "sha256": "236b7418d7f6349f25e81779998cb14683ada44c5148fa0424ad1f01078dc12c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-mcp-job-api-command-original-v1.json",
+      "bytes": 852,
+      "sha256": "216f1ec9b870324b8540ebd4b0d417dbac3bb7938edd7d981a683459fd8c1820"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ci-run-command-original-v1.json",
+      "bytes": 820,
+      "sha256": "9b37bcb9302ddd12a6fef4e043796856a65720850b9c48945ce8245e1c27e2b3"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ci-jobs-command-original-v1.json",
+      "bytes": 840,
+      "sha256": "04781f51a69b7d5695c1b8d8e872594683b44692da5bc7c3e210ff2baa36ce85"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-CodeQL-run-command-original-v1.json",
+      "bytes": 828,
+      "sha256": "6fb632ce253b4f789d7c75361a99aa5fb03bb7b3e604824e5280f97c52f41551"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-source-Git-command-original-v1.json",
+      "bytes": 839,
+      "sha256": "3e317adbcad18dbb2c13c233d3b535d15bdf0868e32060646e87a45e2bf9ad27"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ref-alerts-command-original-v1.json",
+      "bytes": 857,
+      "sha256": "b3ba635e1264cad4818adebd30a1e0b3aeddd1947248f118fe0043efc9b91410"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ref-analyses-command-original-v1.json",
+      "bytes": 866,
+      "sha256": "26e6a72a136684a24fd6b30be7c2c11709b6d25cde02516d84e2f251e8a6889b"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-current-sourcecontrol-capture-v1.json",
+      "bytes": 5823,
+      "sha256": "1e57bd089e41e2be89376a958251ffe2b8e4ec1585c95008ea3eae31afdc6e0b"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-tested-Git-command-original-v1.json",
+      "bytes": 839,
+      "sha256": "6e7ea75542049fe5a766845adfc454a7e321642330065e79206ea94640e15be0"
+    }
+  ],
+  "literal_command_records": 12,
+  "capture_binding_qualification": "Ten immutable files contain nine single-command records plus one three-record discovery bundle. Twelve literal successful saved command records bind all eleven charged originals plus one additional run-discovery original. No argv executed by this review.",
+  "extra_run_discovery_separate": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-runs-current-stdout-original-v1.json",
+      "bytes": 26634,
+      "sha256": "4eb1b3a24b5f893f897abc12c53f4795f0a790157d318afa263473bb4289b937",
+      "mode": "0600",
+      "fullread_sameFD_stable_regular_NOFOLLOW": true
+    }
+  ],
+  "CI_run": 37171598817,
+  "CodeQL_run": 37171598805,
+  "attempt": 1,
+  "root_job": 111345472207,
+  "MCP_job": 111345472085,
+  "all7_current_checks_completed_success_exact_head": [
+    {
+      "id": 111345603881,
+      "name": "CodeQL",
+      "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 111345472222,
+      "name": "design wrapper build and contracts",
+      "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 111345472216,
+      "name": "Key revocation PostgreSQL contract",
+      "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 111345472207,
+      "name": "vite production build",
+      "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 111345472085,
+      "name": "MCP package and stdio contracts",
+      "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 111345472043,
+      "name": "analyze (python)",
+      "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 111345471931,
+      "name": "analyze (javascript-typescript)",
+      "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "ROOT_plans": [
+    6,
+    1292,
+    9
+  ],
+  "MCP_plans": [
+    149,
+    1,
+    82,
+    239,
+    139
+  ],
+  "full8TAP_top": 1917,
+  "dense_every_ordinal_name_result_everyYAMLduration_type_7counters_plan_finalduration": true,
+  "nested_outcomes": 0,
+  "all_fail_cancel_skip_todo": 0,
+  "actual_source63_onceMCP0ROOT": [
+    {
+      "source": "mcp",
+      "ordinal": 145,
+      "name": "expert stdio: one direct legacy SDK call returns the complete core report and known child closure",
+      "result": "ok",
+      "raw_line": 2543,
+      "duration_ms": "467.179301",
+      "duration_line": 2545,
+      "type": "test",
+      "type_line": 2546
+    },
+    {
+      "source": "mcp",
+      "ordinal": 146,
+      "name": "expert stdio: one absolute symlink SDK entry preserves report identity and known child closure",
+      "result": "ok",
+      "raw_line": 2549,
+      "duration_ms": "392.33478",
+      "duration_line": 2551,
+      "type": "test",
+      "type_line": 2552
+    },
+    {
+      "source": "mcp",
+      "ordinal": 147,
+      "name": "expert stdio: third owned SDK entry closes malformed private input without a tool dispatch or retry",
+      "result": "ok",
+      "raw_line": 2555,
+      "duration_ms": "253.792537",
+      "duration_line": 2557,
+      "type": "test",
+      "type_line": 2558
+    },
+    {
+      "source": "mcp",
+      "ordinal": 148,
+      "name": "expert stdio: importing the module and constructing an inert endpoint emit no protocol data",
+      "result": "ok",
+      "raw_line": 2561,
+      "duration_ms": "3.333564",
+      "duration_line": 2563,
+      "type": "test",
+      "type_line": 2564
+    },
+    {
+      "source": "mcp",
+      "ordinal": 149,
+      "name": "expert stdio: delivered blank50 bytes retain100 assignments and every missing role and pair",
+      "result": "ok",
+      "raw_line": 2567,
+      "duration_ms": "169.933217",
+      "duration_line": 2569,
+      "type": "test",
+      "type_line": 2570
+    },
+    {
+      "source": "mcp",
+      "ordinal": 150,
+      "name": "expert stdio: one absent role keeps the complete selected denominator and original returned bytes",
+      "result": "ok",
+      "raw_line": 2573,
+      "duration_ms": "21.527923",
+      "duration_line": 2575,
+      "type": "test",
+      "type_line": 2576
+    },
+    {
+      "source": "mcp",
+      "ordinal": 151,
+      "name": "expert stdio: partial fields and missing required notes retain each task and per-field missing coverage",
+      "result": "ok",
+      "raw_line": 2579,
+      "duration_ms": "28.442644",
+      "duration_line": 2581,
+      "type": "test",
+      "type_line": 2582
+    },
+    {
+      "source": "mcp",
+      "ordinal": 152,
+      "name": "expert stdio: syntactically complete fictional returns establish no expert agreement or adjudication",
+      "result": "ok",
+      "raw_line": 2585,
+      "duration_ms": "15.903502",
+      "duration_line": 2587,
+      "type": "test",
+      "type_line": 2588
+    },
+    {
+      "source": "mcp",
+      "ordinal": 153,
+      "name": "expert stdio: complete escape-heavy notes survive both public copies and the original raw bindings",
+      "result": "ok",
+      "raw_line": 2591,
+      "duration_ms": "16.107623",
+      "duration_line": 2593,
+      "type": "test",
+      "type_line": 2594
+    },
+    {
+      "source": "mcp",
+      "ordinal": 154,
+      "name": "expert stdio: caller64 and null source declarations remain unverified in the unchanged full report",
+      "result": "ok",
+      "raw_line": 2597,
+      "duration_ms": "11.774763",
+      "duration_line": 2599,
+      "type": "test",
+      "type_line": 2600
+    },
+    {
+      "source": "mcp",
+      "ordinal": 155,
+      "name": "expert stdio: primitive SHA arrays boxes uppercase and end suffixes stop before decode or kernel",
+      "result": "ok",
+      "raw_line": 2603,
+      "duration_ms": "1.262607",
+      "duration_line": 2605,
+      "type": "test",
+      "type_line": 2606
+    },
+    {
+      "source": "mcp",
+      "ordinal": 156,
+      "name": "expert stdio: extra missing symbol and inherited argument keys stop before decode",
+      "result": "ok",
+      "raw_line": 2609,
+      "duration_ms": "0.665944",
+      "duration_line": 2611,
+      "type": "test",
+      "type_line": 2612
+    },
+    {
+      "source": "mcp",
+      "ordinal": 157,
+      "name": "expert stdio: argument getters and proxies are refused without invoking caller traps",
+      "result": "ok",
+      "raw_line": 2615,
+      "duration_ms": "0.458506",
+      "duration_line": 2617,
+      "type": "test",
+      "type_line": 2618
+    },
+    {
+      "source": "mcp",
+      "ordinal": 158,
+      "name": "expert stdio: sparse accessor proxy and foreign-prototype evidence arrays stop before decode",
+      "result": "ok",
+      "raw_line": 2621,
+      "duration_ms": "0.612715",
+      "duration_line": 2623,
+      "type": "test",
+      "type_line": 2624
+    },
+    {
+      "source": "mcp",
+      "ordinal": 159,
+      "name": "expert stdio: evidence and submission counts are refused before encoded element inspection",
+      "result": "ok",
+      "raw_line": 2627,
+      "duration_ms": "0.517596",
+      "duration_line": 2629,
+      "type": "test",
+      "type_line": 2630
+    },
+    {
+      "source": "mcp",
+      "ordinal": 160,
+      "name": "expert stdio: nonprimitive base64 and noncanonical alphabet padding whitespace and suffixes stop before decode",
+      "result": "ok",
+      "raw_line": 2633,
+      "duration_ms": "1.13522",
+      "duration_line": 2635,
+      "type": "test",
+      "type_line": 2636
+    },
+    {
+      "source": "mcp",
+      "ordinal": 161,
+      "name": "expert stdio: all six individual raw caps refuse encoded overflow before any allocation callback",
+      "result": "ok",
+      "raw_line": 2639,
+      "duration_ms": "2.395573",
+      "duration_line": 2641,
+      "type": "test",
+      "type_line": 2642
+    },
+    {
+      "source": "mcp",
+      "ordinal": 162,
+      "name": "expert stdio: evidence and submission individual plus-one caps refuse before decode",
+      "result": "ok",
+      "raw_line": 2645,
+      "duration_ms": "5.105321",
+      "duration_line": 2647,
+      "type": "test",
+      "type_line": 2648
+    },
+    {
+      "source": "mcp",
+      "ordinal": 163,
+      "name": "expert stdio: individually valid evidence over256KiB is refused before the first decode",
+      "result": "ok",
+      "raw_line": 2651,
+      "duration_ms": "0.738419",
+      "duration_line": 2653,
+      "type": "test",
+      "type_line": 2654
+    },
+    {
+      "source": "mcp",
+      "ordinal": 164,
+      "name": "expert stdio: individually valid first-six inputs over768KiB stop before decode",
+      "result": "ok",
+      "raw_line": 2657,
+      "duration_ms": "2.089021",
+      "duration_line": 2659,
+      "type": "test",
+      "type_line": 2660
+    },
+    {
+      "source": "mcp",
+      "ordinal": 165,
+      "name": "expert stdio: individually valid two submissions over the full4MiB batch stop before decode",
+      "result": "ok",
+      "raw_line": 2663,
+      "duration_ms": "8.138675",
+      "duration_line": 2665,
+      "type": "test",
+      "type_line": 2666
+    },
+    {
+      "source": "mcp",
+      "ordinal": 166,
+      "name": "expert stdio: exact evidence first-six and full-batch boundaries admit owned bytes without a kernel",
+      "result": "ok",
+      "raw_line": 2669,
+      "duration_ms": "33.643523",
+      "duration_line": 2671,
+      "type": "test",
+      "type_line": 2672
+    },
+    {
+      "source": "mcp",
+      "ordinal": 167,
+      "name": "expert stdio: canonical empty forms reach the unchanged kernel once and receive its stable byte refusal",
+      "result": "ok",
+      "raw_line": 2675,
+      "duration_ms": "0.885383",
+      "duration_line": 2677,
+      "type": "test",
+      "type_line": 2678
+    },
+    {
+      "source": "mcp",
+      "ordinal": 168,
+      "name": "expert stdio: decoder length or byte substitution is refused before the kernel",
+      "result": "ok",
+      "raw_line": 2681,
+      "duration_ms": "0.530961",
+      "duration_line": 2683,
+      "type": "test",
+      "type_line": 2684
+    },
+    {
+      "source": "mcp",
+      "ordinal": 169,
+      "name": "expert stdio: invalid UTF8 JSON schema and separate raw gold pin are stable one-kernel refusals",
+      "result": "ok",
+      "raw_line": 2687,
+      "duration_ms": "3.761984",
+      "duration_line": 2689,
+      "type": "test",
+      "type_line": 2690
+    },
+    {
+      "source": "mcp",
+      "ordinal": 170,
+      "name": "expert stdio: swapped or rehashed foreign submissions are not repaired or reassigned",
+      "result": "ok",
+      "raw_line": 2693,
+      "duration_ms": "4.626698",
+      "duration_line": 2695,
+      "type": "test",
+      "type_line": 2696
+    },
+    {
+      "source": "mcp",
+      "ordinal": 171,
+      "name": "expert stdio: declaration terminators and foreign packet identity keep complete contract refusals",
+      "result": "ok",
+      "raw_line": 2699,
+      "duration_ms": "13.471202",
+      "duration_line": 2701,
+      "type": "test",
+      "type_line": 2702
+    },
+    {
+      "source": "mcp",
+      "ordinal": 172,
+      "name": "expert stdio: a tampered complete report hash never becomes a successful tool result",
+      "result": "ok",
+      "raw_line": 2705,
+      "duration_ms": "7.983897",
+      "duration_line": 2707,
+      "type": "test",
+      "type_line": 2708
+    },
+    {
+      "source": "mcp",
+      "ordinal": 173,
+      "name": "expert stdio: missing report rows or invented verified identity fail the advertised full-report schema",
+      "result": "ok",
+      "raw_line": 2711,
+      "duration_ms": "14.186727",
+      "duration_line": 2713,
+      "type": "test",
+      "type_line": 2714
+    },
+    {
+      "source": "mcp",
+      "ordinal": 174,
+      "name": "expert stdio: full report over6MiB is refused whole without removing original fields",
+      "result": "ok",
+      "raw_line": 2717,
+      "duration_ms": "90.918206",
+      "duration_line": 2719,
+      "type": "test",
+      "type_line": 2720
+    },
+    {
+      "source": "mcp",
+      "ordinal": 175,
+      "name": "expert stdio: an injected private exception is replaced by a tiny stable no-echo refusal",
+      "result": "ok",
+      "raw_line": 2723,
+      "duration_ms": "0.711959",
+      "duration_line": 2725,
+      "type": "test",
+      "type_line": 2726
+    },
+    {
+      "source": "mcp",
+      "ordinal": 176,
+      "name": "expert stdio: final sender writes exact locked JSON plus LF once with no extra serialization",
+      "result": "ok",
+      "raw_line": 2729,
+      "duration_ms": "0.542654",
+      "duration_line": 2731,
+      "type": "test",
+      "type_line": 2732
+    },
+    {
+      "source": "mcp",
+      "ordinal": 177,
+      "name": "expert stdio: queued late sender performs no serialization or native write",
+      "result": "ok",
+      "raw_line": 2735,
+      "duration_ms": "0.828066",
+      "duration_line": 2737,
+      "type": "test",
+      "type_line": 2738
+    },
+    {
+      "source": "mcp",
+      "ordinal": 178,
+      "name": "expert stdio:14999.5ms plus1ms synchronous serialization crosses the same deadline with zero native writes",
+      "result": "ok",
+      "raw_line": 2741,
+      "duration_ms": "0.56209",
+      "duration_line": 2743,
+      "type": "test",
+      "type_line": 2744
+    },
+    {
+      "source": "mcp",
+      "ordinal": 179,
+      "name": "expert stdio: serialization-triggered abort refuses before the same captured native writer",
+      "result": "ok",
+      "raw_line": 2747,
+      "duration_ms": "0.489233",
+      "duration_line": 2749,
+      "type": "test",
+      "type_line": 2750
+    },
+    {
+      "source": "mcp",
+      "ordinal": 180,
+      "name": "expert stdio: serialization-triggered reentrant close refuses before native write",
+      "result": "ok",
+      "raw_line": 2753,
+      "duration_ms": "0.380871",
+      "duration_line": 2755,
+      "type": "test",
+      "type_line": 2756
+    },
+    {
+      "source": "mcp",
+      "ordinal": 181,
+      "name": "expert stdio: serialization-triggered known exit refuses before native write",
+      "result": "ok",
+      "raw_line": 2759,
+      "duration_ms": "0.367035",
+      "duration_line": 2761,
+      "type": "test",
+      "type_line": 2762
+    },
+    {
+      "source": "mcp",
+      "ordinal": 182,
+      "name": "expert stdio: backpressure waits one drain and never writes the frame a second time",
+      "result": "ok",
+      "raw_line": 2765,
+      "duration_ms": "0.375561",
+      "duration_line": 2767,
+      "type": "test",
+      "type_line": 2768
+    },
+    {
+      "source": "mcp",
+      "ordinal": 183,
+      "name": "expert stdio: close before drain rejects and removes listeners without a second native write",
+      "result": "ok",
+      "raw_line": 2771,
+      "duration_ms": "0.396641",
+      "duration_line": 2773,
+      "type": "test",
+      "type_line": 2774
+    },
+    {
+      "source": "mcp",
+      "ordinal": 184,
+      "name": "expert stdio: abort while waiting for drain stays sticky and cannot revive a send",
+      "result": "ok",
+      "raw_line": 2777,
+      "duration_ms": "0.706058",
+      "duration_line": 2779,
+      "type": "test",
+      "type_line": 2780
+    },
+    {
+      "source": "mcp",
+      "ordinal": 185,
+      "name": "expert stdio: a native writer throw retains one attempt and no retry or raw exception echo",
+      "result": "ok",
+      "raw_line": 2783,
+      "duration_ms": "0.649302",
+      "duration_line": 2785,
+      "type": "test",
+      "type_line": 2786
+    },
+    {
+      "source": "mcp",
+      "ordinal": 186,
+      "name": "expert stdio: clock rollback after serialization refuses rather than renewing the absolute window",
+      "result": "ok",
+      "raw_line": 2789,
+      "duration_ms": "0.354792",
+      "duration_line": 2791,
+      "type": "test",
+      "type_line": 2792
+    },
+    {
+      "source": "mcp",
+      "ordinal": 187,
+      "name": "expert stdio: synchronous kernel exhaustion is caught before projector and final success write",
+      "result": "ok",
+      "raw_line": 2795,
+      "duration_ms": "6.409688",
+      "duration_line": 2797,
+      "type": "test",
+      "type_line": 2798
+    },
+    {
+      "source": "mcp",
+      "ordinal": 188,
+      "name": "expert stdio: synthetic whole response exact20MiB includes LF and plus-one writes nothing",
+      "result": "ok",
+      "raw_line": 2801,
+      "duration_ms": "192.436705",
+      "duration_line": 2803,
+      "type": "test",
+      "type_line": 2804
+    },
+    {
+      "source": "mcp",
+      "ordinal": 189,
+      "name": "expert stdio: synthetic complete escaped tool object exact19MiB and plus-one use the real sender cap",
+      "result": "ok",
+      "raw_line": 2807,
+      "duration_ms": "308.129476",
+      "duration_line": 2809,
+      "type": "test",
+      "type_line": 2810
+    },
+    {
+      "source": "mcp",
+      "ordinal": 190,
+      "name": "expert stdio: producer actual request cap counts the complete6MiB frame before native stdin effect",
+      "result": "ok",
+      "raw_line": 2813,
+      "duration_ms": "25.158732",
+      "duration_line": 2815,
+      "type": "test",
+      "type_line": 2816
+    },
+    {
+      "source": "mcp",
+      "ordinal": 191,
+      "name": "expert stdio: oversized or unsafe reflected IDs refuse before output serialization",
+      "result": "ok",
+      "raw_line": 2819,
+      "duration_ms": "0.560577",
+      "duration_line": 2821,
+      "type": "test",
+      "type_line": 2822
+    },
+    {
+      "source": "mcp",
+      "ordinal": 192,
+      "name": "expert stdio: exact128UTF8 ID is admitted while the next Unicode scalar is refused before SDK dispatch",
+      "result": "ok",
+      "raw_line": 2825,
+      "duration_ms": "0.639824",
+      "duration_line": 2827,
+      "type": "test",
+      "type_line": 2828
+    },
+    {
+      "source": "mcp",
+      "ordinal": 193,
+      "name": "expert stdio: fatal invalid UTF8 and malformed JSON are not repaired skipped or echoed",
+      "result": "ok",
+      "raw_line": 2831,
+      "duration_ms": "0.397803",
+      "duration_line": 2833,
+      "type": "test",
+      "type_line": 2834
+    },
+    {
+      "source": "mcp",
+      "ordinal": 194,
+      "name": "expert stdio: complete input frame exact6MiB includes LF and preserves parsed admission",
+      "result": "ok",
+      "raw_line": 2837,
+      "duration_ms": "36.613639",
+      "duration_line": 2839,
+      "type": "test",
+      "type_line": 2840
+    },
+    {
+      "source": "mcp",
+      "ordinal": 195,
+      "name": "expert stdio: retained unterminated input plus-one fails before copying a second chunk",
+      "result": "ok",
+      "raw_line": 2843,
+      "duration_ms": "1.352154",
+      "duration_line": 2845,
+      "type": "test",
+      "type_line": 2846
+    },
+    {
+      "source": "mcp",
+      "ordinal": 196,
+      "name": "expert stdio: EOF with an incomplete frame is a bounded failure with zero SDK dispatches",
+      "result": "ok",
+      "raw_line": 2849,
+      "duration_ms": "0.306252",
+      "duration_line": 2851,
+      "type": "test",
+      "type_line": 2852
+    },
+    {
+      "source": "mcp",
+      "ordinal": 197,
+      "name": "expert stdio: protocol shape unsafe IDs and extra envelope fields stop before SDK callbacks",
+      "result": "ok",
+      "raw_line": 2855,
+      "duration_ms": "0.70139",
+      "duration_line": 2857,
+      "type": "test",
+      "type_line": 2858
+    },
+    {
+      "source": "mcp",
+      "ordinal": 198,
+      "name": "expert stdio: diagnostic overflow is failing once and never truncation accepted as success",
+      "result": "ok",
+      "raw_line": 2861,
+      "duration_ms": "0.572488",
+      "duration_line": 2863,
+      "type": "test",
+      "type_line": 2864
+    },
+    {
+      "source": "mcp",
+      "ordinal": 199,
+      "name": "expert stdio: unknown tool receives stable refusal through actual low-level SDK projection with no raw echo",
+      "result": "ok",
+      "raw_line": 2867,
+      "duration_ms": "70.478192",
+      "duration_line": 2869,
+      "type": "test",
+      "type_line": 2870
+    },
+    {
+      "source": "mcp",
+      "ordinal": 200,
+      "name": "expert stdio: SDK validation exceptions are sanitized before the same native sender",
+      "result": "ok",
+      "raw_line": 2873,
+      "duration_ms": "2.884966",
+      "duration_line": 2875,
+      "type": "test",
+      "type_line": 2876
+    },
+    {
+      "source": "mcp",
+      "ordinal": 201,
+      "name": "expert stdio: duplicate pending IDs and cancelled scopes cannot revive or dispatch a second response",
+      "result": "ok",
+      "raw_line": 2879,
+      "duration_ms": "0.923885",
+      "duration_line": 2881,
+      "type": "test",
+      "type_line": 2882
+    },
+    {
+      "source": "mcp",
+      "ordinal": 202,
+      "name": "expert stdio: fixture byte snapshots admit a bounded regular FD and refuse a direct symlink",
+      "result": "ok",
+      "raw_line": 2885,
+      "duration_ms": "7.616049",
+      "duration_line": 2887,
+      "type": "test",
+      "type_line": 2888
+    },
+    {
+      "source": "mcp",
+      "ordinal": 203,
+      "name": "expert stdio: memoized transport closure destroys the owned input once and settles a pending writer",
+      "result": "ok",
+      "raw_line": 2891,
+      "duration_ms": "0.651306",
+      "duration_line": 2893,
+      "type": "test",
+      "type_line": 2894
+    },
+    {
+      "source": "mcp",
+      "ordinal": 204,
+      "name": "expert stdio: raw own __proto__ argument refuses before locked SDK projection decode or core",
+      "result": "ok",
+      "raw_line": 2897,
+      "duration_ms": "4.258521",
+      "duration_line": 2899,
+      "type": "test",
+      "type_line": 2900
+    },
+    {
+      "source": "mcp",
+      "ordinal": 205,
+      "name": "expert stdio: raw extra ordinary and __proto__ params refuse before SDK projection or core",
+      "result": "ok",
+      "raw_line": 2903,
+      "duration_ms": "2.522639",
+      "duration_line": 2905,
+      "type": "test",
+      "type_line": 2906
+    },
+    {
+      "source": "mcp",
+      "ordinal": 206,
+      "name": "expert stdio: raw exact nine-key ingress reaches the unchanged core once and retains the complete report",
+      "result": "ok",
+      "raw_line": 2909,
+      "duration_ms": "16.462776",
+      "duration_line": 2911,
+      "type": "test",
+      "type_line": 2912
+    },
+    {
+      "source": "mcp",
+      "ordinal": 207,
+      "name": "expert stdio: raw admission preserves the request clock and refuses a crossing before SDK dispatch",
+      "result": "ok",
+      "raw_line": 2915,
+      "duration_ms": "0.817867",
+      "duration_line": 2917,
+      "type": "test",
+      "type_line": 2918
+    }
+  ],
+  "four_raw_ingress_regressions_actual_passes": [
+    {
+      "source": "mcp",
+      "ordinal": 204,
+      "name": "expert stdio: raw own __proto__ argument refuses before locked SDK projection decode or core",
+      "result": "ok",
+      "raw_line": 2897,
+      "duration_ms": "4.258521",
+      "duration_line": 2899,
+      "type": "test",
+      "type_line": 2900
+    },
+    {
+      "source": "mcp",
+      "ordinal": 205,
+      "name": "expert stdio: raw extra ordinary and __proto__ params refuse before SDK projection or core",
+      "result": "ok",
+      "raw_line": 2903,
+      "duration_ms": "2.522639",
+      "duration_line": 2905,
+      "type": "test",
+      "type_line": 2906
+    },
+    {
+      "source": "mcp",
+      "ordinal": 206,
+      "name": "expert stdio: raw exact nine-key ingress reaches the unchanged core once and retains the complete report",
+      "result": "ok",
+      "raw_line": 2909,
+      "duration_ms": "16.462776",
+      "duration_line": 2911,
+      "type": "test",
+      "type_line": 2912
+    },
+    {
+      "source": "mcp",
+      "ordinal": 207,
+      "name": "expert stdio: raw admission preserves the request clock and refuses a crossing before SDK dispatch",
+      "result": "ok",
+      "raw_line": 2915,
+      "duration_ms": "0.817867",
+      "duration_line": 2917,
+      "type": "test",
+      "type_line": 2918
+    }
+  ],
+  "existing_three_SDK_entries_named_passes": [
+    {
+      "source": "mcp",
+      "ordinal": 145,
+      "name": "expert stdio: one direct legacy SDK call returns the complete core report and known child closure",
+      "result": "ok",
+      "raw_line": 2543,
+      "duration_ms": "467.179301",
+      "duration_line": 2545,
+      "type": "test",
+      "type_line": 2546
+    },
+    {
+      "source": "mcp",
+      "ordinal": 146,
+      "name": "expert stdio: one absolute symlink SDK entry preserves report identity and known child closure",
+      "result": "ok",
+      "raw_line": 2549,
+      "duration_ms": "392.33478",
+      "duration_line": 2551,
+      "type": "test",
+      "type_line": 2552
+    },
+    {
+      "source": "mcp",
+      "ordinal": 147,
+      "name": "expert stdio: third owned SDK entry closes malformed private input without a tool dispatch or retry",
+      "result": "ok",
+      "raw_line": 2555,
+      "duration_ms": "253.792537",
+      "duration_line": 2557,
+      "type": "test",
+      "type_line": 2558
+    }
+  ],
+  "owned_child_closure_scope": "Retained actual named fixture results; exact frozen source has three existing bounded SDK entry sites. No fresh child entry or independent PID census in this review.",
+  "remote_Node": "22.23.3",
+  "both_postbuild_guards_exact_once": [
+    {
+      "raw_line": 1146,
+      "text": "standards/paper-evidence.html: generated skip link and focus target verified"
+    },
+    {
+      "raw_line": 1147,
+      "text": "dist/standards/paper-evidence.html: generated skip link and focus target verified"
+    }
+  ],
+  "raw_checkout_bindings": [
+    {
+      "source": "root",
+      "command_line": 157,
+      "sha_line": 158,
+      "sha": "969f0a4afa55230692214b638254730abab61b80"
+    },
+    {
+      "source": "mcp",
+      "command_line": 146,
+      "sha_line": 147,
+      "sha": "969f0a4afa55230692214b638254730abab61b80"
+    }
+  ],
+  "scoped_current_ref_alerts": {
+    "count": 0,
+    "ref": "refs/pull/376/merge",
+    "explicit_state_query_parameter": null,
+    "literal_query": "repos/arhancanli/canlicapital/code-scanning/alerts?ref=refs/pull/376/merge&per_page=100",
+    "no_global_security_claim": true
+  },
+  "latestJS_PY_exact_tested_zero_results_empty_errors": [
+    {
+      "language": "javascript-typescript",
+      "analysis": {
+        "ref": "refs/pull/376/merge",
+        "commit_sha": "969f0a4afa55230692214b638254730abab61b80",
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "environment": "{\"language\":\"javascript-typescript\"}",
+        "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+        "error": "",
+        "created_at": "2026-10-04T02:38:40Z",
+        "results_count": 0,
+        "rules_count": 103,
+        "id": 1887549254,
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1887549254",
+        "sarif_id": "b52ace2a-bf9c-11f1-953a-cec701bc4fc6",
+        "tool": {
+          "name": "CodeQL",
+          "guid": null,
+          "version": "2.27.1"
+        },
+        "deletable": true,
+        "warning": ""
+      }
+    },
+    {
+      "language": "python",
+      "analysis": {
+        "ref": "refs/pull/376/merge",
+        "commit_sha": "969f0a4afa55230692214b638254730abab61b80",
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "environment": "{\"language\":\"python\"}",
+        "category": ".github/workflows/codeql.yml:analyze/language:python",
+        "error": "",
+        "created_at": "2026-10-04T02:37:50Z",
+        "results_count": 0,
+        "rules_count": 50,
+        "id": 1887547808,
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1887547808",
+        "sarif_id": "96bb7282-bf9c-11f1-985b-d4bb52e02ed0",
+        "tool": {
+          "name": "CodeQL",
+          "guid": null,
+          "version": "2.27.1"
+        },
+        "deletable": true,
+        "warning": ""
+      }
+    }
+  ],
+  "four_historical_analysis_rows_preserved": [
+    {
+      "ref": "refs/pull/376/merge",
+      "commit_sha": "5f4cdafc0c1eb73538127dff823d11ce51d2352f",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-04T01:33:28Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1887430878,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1887430878",
+      "sarif_id": "98e47878-bf93-11f1-963f-403c78ea942f",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": false,
+      "warning": ""
+    },
+    {
+      "ref": "refs/pull/376/merge",
+      "commit_sha": "5f4cdafc0c1eb73538127dff823d11ce51d2352f",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-04T01:32:16Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1887428861,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1887428861",
+      "sarif_id": "6e3e73a8-bf93-11f1-87a2-223487a313f3",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": false,
+      "warning": ""
+    },
+    {
+      "ref": "refs/pull/376/merge",
+      "commit_sha": "fac94284617b3fa57e10ae644933b4a478d84f51",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-04T01:18:12Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1887401595,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1887401595",
+      "sarif_id": "775dfc1c-bf91-11f1-8507-79cdcd9d5476",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": false,
+      "warning": ""
+    },
+    {
+      "ref": "refs/pull/376/merge",
+      "commit_sha": "fac94284617b3fa57e10ae644933b4a478d84f51",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-04T01:17:27Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1887400091,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1887400091",
+      "sarif_id": "5c013dda-bf91-11f1-8a20-65effe880017",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": false,
+      "warning": ""
+    }
+  ],
+  "metadata_stop_and_correction_preserved": [
+    {
+      "role": "metadata_reader_stop",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-native-TAP-or-metadata-reader-stop-original-v1.json",
+        "bytes": 299,
+        "sha256": "58c929b2c0b34f438a05f3aef36c221e6bee0dcc12bfe9152e428a21b6bde7d2"
+      },
+      "literal_record": {
+        "utc": "2026-10-04T02:49:17.701544+00:00",
+        "error": "Traceback (most recent call last):\n  File \"<stdin>\", line 69, in <module>\nAssertionError\n",
+        "scope": "Native source/log/metadata reader only; no project runtime or original overwrite; successful raw/API captures remain immutable."
+      }
+    },
+    {
+      "role": "metadata_reader_correction",
+      "pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-native-TAP-type-reader-correction-v1.json",
+        "bytes": 3684,
+        "sha256": "02871693ae7715608e8f9816bdef7b114d86018667c303a34cfff44803dc2f1b"
+      },
+      "literal_record": {
+        "schema": "canli.native-TAP-metadata-reader-correction.v1",
+        "utc": "2026-10-04T02:52:01.215628+00:00",
+        "original_stop": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-native-TAP-or-metadata-reader-stop-original-v1.json",
+          "bytes": 299,
+          "sha256": "58c929b2c0b34f438a05f3aef36c221e6bee0dcc12bfe9152e428a21b6bde7d2"
+        },
+        "cause": "First native TAP parser required unquoted type: test; exact saved Node TAP uses type: 'test'. All eight complete blocks now parsed with literal quoted type admission.",
+        "scope": "Reader-only correction; original source, captures and CI runtime unchanged; no API refetch or rerun.",
+        "all_top_type_values": "test",
+        "all_raw_originals_unchanged": [
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-checks-current-stdout-original-v1.json",
+            "bytes": 24358,
+            "sha256": "4c314651e7714593734ffed66eff2cdaf15ca23ccfba7134e73c6033011626e6"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-root-job-api-original-v1.log",
+            "bytes": 741722,
+            "sha256": "256ad046a9d578baaef1f2bbfdb07a7db75cc184a5c4cf559fa90d1b74ab1232"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-mcp-job-api-original-v1.log",
+            "bytes": 352997,
+            "sha256": "4c3184bf410da8e1d5e6b2753482902c81a24dbf7d2fe994f7d351f247e71766"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ci-run-original-v1.json",
+            "bytes": 13295,
+            "sha256": "53ea48841c7f4934becf44ae75a1ede616efead8b0055d89ebb750a665de4de4"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ci-jobs-original-v1.json",
+            "bytes": 13311,
+            "sha256": "735f24b57e9afb1c35d7929c26459d45ff449a9ca4e8c36028ea51bff9122d8f"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-CodeQL-run-original-v1.json",
+            "bytes": 13302,
+            "sha256": "5b92a07e68129bdd25d8f4a64b3802457fc933de4a7541081c565e109075737f"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-first-pull-current-stdout-original-v1.json",
+            "bytes": 18355,
+            "sha256": "b1b8c91ae92b04e7f53e45411d90290199b5bab01a95e01f2dcd2b938e44ce08"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-tested-Git-original-v1.json",
+            "bytes": 2648,
+            "sha256": "b0f5e9ac66d3c30bcb10a43430bcbe6481775a9ddedef5c935b8824b2409f96e"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-source-Git-original-v1.json",
+            "bytes": 1859,
+            "sha256": "a5b69f918df0095b056d158e49593637b534fd6a874f39668f69ada00cb349fc"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ref-alerts-original-v1.json",
+            "bytes": 2,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504b450-current-ref-analyses-original-v1.json",
+            "bytes": 3560,
+            "sha256": "6a3749765d7fe988e04448f42a6c56a16479d1db26c3bafd78a1dd4e2a82c540"
+          }
+        ]
+      }
+    }
+  ],
+  "own_native_reader_metadata_stop_preserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/first-native-reader-raw-checkout-assertion-stop-original-v1.json",
+    "bytes": 1026,
+    "sha256": "9502bb04ff4234db0b9f0e8f99ccef38d6a8d6e372132172f09d3d837feceee3"
+  },
+  "own_native_reader_literal_correction": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/native-reader-raw-checkout-format-correction-v2.json",
+    "bytes": 1869,
+    "sha256": "5d474ff6743250fb6fa7ca8c7b1f21edb1c8b8d0f70eeaae50a024ab30251505"
+  },
+  "raw_checkout_merge_messages": [
+    {
+      "source": "root",
+      "raw_line": 155,
+      "text": "HEAD is now at 969f0a4a Merge 1504b450efc3b63e66a035d2f9b18870e4562492 into 67aede2ab145db52dec7be37668f1149d9b7e9d5",
+      "abbreviated_tested_prefix": "969f0a4a"
+    },
+    {
+      "source": "mcp",
+      "raw_line": 144,
+      "text": "HEAD is now at 969f0a4 Merge 1504b450efc3b63e66a035d2f9b18870e4562492 into 67aede2ab145db52dec7be37668f1149d9b7e9d5",
+      "abbreviated_tested_prefix": "969f0a4"
+    }
+  ],
+  "old_c6_SOURCE_HOLD_and59_green_not_relabelled": [
+    {
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-c6fb3075-current-source-v1.json",
+        "bytes": 65448,
+        "sha256": "900f0162763656a4bc7709389fb9451dd57f7a408705019a93f0fe4eeca936c7"
+      },
+      "disposition": "HOLD_STATIC_SOURCE",
+      "head": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+      "gate": "SOURCE_ONLY",
+      "fullread_hash_preserved": true
+    },
+    {
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+        "bytes": 62647,
+        "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37"
+      },
+      "disposition": null,
+      "head": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+      "gate": null,
+      "fullread_hash_preserved": true
+    },
+    {
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/retained-ci-c6fb3075-current-v1.json",
+        "bytes": 60722,
+        "sha256": "e143cfcd8a8c66b46b4daf45104fbd414dcf7f6a83c71302c73b540c40a81d42"
+      },
+      "disposition": "PASS_WITH_RETAINED_CI_SCOPE",
+      "head": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+      "gate": "RETAINED_CURRENT_CI_ONLY",
+      "fullread_hash_preserved": true
+    },
+    {
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/retained-ci-c6fb3075-current-v1.json",
+        "bytes": 64849,
+        "sha256": "f94ea59456c853f2fecf1de030ec941e803b306babe02fb4ecc4299375d4fa05"
+      },
+      "disposition": null,
+      "head": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+      "gate": null,
+      "fullread_hash_preserved": true
+    }
+  ],
+  "original92_55PASS_3FAIL_preserved": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-source-92fb0cfe-v1.json",
+      "bytes": 42849,
+      "sha256": "19a12ad5a1178cc5bb4f7d3952d3f50eabed6c796ffe9adcfd22a2e08bb0aea4"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-92fb0cfe-initial-actual-55pass-3fail-v1.json",
+      "bytes": 110230,
+      "sha256": "294d229369a42c60035a2d8d988146a63176f79b0a167a5e564361f065cba7d3"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-92fb0cfe-mcp-job-api-original-v3.log",
+      "bytes": 295962,
+      "sha256": "315ce3bd04b09fe73a2b7ba3e7aaa00de795bdda6b6c05e5cae192ad581d21fe"
+    }
+  ],
+  "source_finding_disposition": "CC-376-ORIGINAL-ARGUMENT-KEYS-BEFORE-SDK-PROJECTION CLOSED_STATIC_AT_1504 by the separate SOURCE receipt; current new regression passes independently retained here.",
+  "semantic_or_futurehead_approval": false,
+  "archive_allocation": null,
+  "repo_archive_writes": 0,
+  "repo_source_edits": false,
+  "Node_project_SDK_import_CLI_test_helper_build_browser_GET_process_probe_job": false,
+  "API_refetch": false,
+  "CI_rerun": false,
+  "grant_ready_merge_publication_authority": false,
+  "all_owner_goals": "ACTIVE",
+  "actual_human_expertise_independence_rights_labels_admission_indexing_adoption_qualified_strategy": null
+}

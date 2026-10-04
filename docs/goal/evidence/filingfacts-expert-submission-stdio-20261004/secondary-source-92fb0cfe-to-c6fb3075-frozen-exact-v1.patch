@@ -1,0 +1,143 @@
+diff --git a/docs/goal/LOG.md b/docs/goal/LOG.md
+index 9bb25e19..1540e62b 100644
+--- a/docs/goal/LOG.md
++++ b/docs/goal/LOG.md
+@@ -6284,3 +6284,6 @@ New standalone filingfacts_audit_expert_submissions/module/test/guide implemente
+ 
+ 
+ Expert-submission stdio pre-freeze 2026-10-04T01:12:26.575807+00:00: own native-array length admission now precedes element-descriptor collection; the existing count case includes maximum sparse native length and zero-decode/core assertions. Current58names remain WRITTEN_UNRUN and one lexical SDK site/threefutureentries unchanged. Allsixpaths/core/default7/rootverify/imports/locks/versions/archives remain within sealed a4cd/7784 scope; no project runtime or localgrant executed. Exact original pre-tightening bytes/deltas are preserved privately. One signed source/draft/automaticCI FIRST and independent source/currentCI gates remain next; archiveNULL/fullownerhierarchyACTIVE/actualoutcomesunknownnull.
++
++
++PR376 expert-submission stdio source/firstCI 2026-10-04T01:27:46.076738+00:00: initial signedG/CLEAN92fb0cfe/tree4ac2/soleactual67a sixpath source frozen and ordinarydraft PR376 pushed; external42849B19a12ad5 manifest binds6596index/6590protected410643009B/32selected/wholefiveprefixes/package inverse/rootverify. PRIMARY+THIRD initial source asks queued separately. Actual same automaticMCP run37167512979/job111333453234 produced58newnames55PASS3FAIL/0UNKNOWN within234fund231PASS3FAIL; preceding149+1+82 pass, laterexecution139UNRUN. Original295962B315ce3bd raw/source/failure110230B294d2293 preserved, first pending-log and GH escape refusals unchanged. Two direct/alias assertions wrongly expected internal kind/result wrapper; complete report comparison assertions were not reached. Third malformed-input child stayed alive beyond workbound until owned cleanup. Current WRITTEN correction onlyownmodule/test/guide+appendgoals: actual locked legacy complete result handling; prepublished memoized close destroys owned input stream with stable closefailure; one native pendingwriter/inputdestroy-once fixture adds59thcase with3actualSDKentry sites unchanged. Native diff-check passes; allcurrent59outcomes UNKNOWN until new signedhead automaticCI. No localprojectNode/import/test/SDK/CLI/helper/build/browser/GET/processprobe/job/grant/manualCIrerun/provider-model-resource-spend/pub. ArchiveallocationNULL/fourcurrentpeer gates and futurefinaldelivery separate; allownerhierarchyACTIVE/actualoutcomesunknownnull.
+diff --git a/docs/goal/STATUS.md b/docs/goal/STATUS.md
+index c8bdd6ca..80be21e5 100644
+--- a/docs/goal/STATUS.md
++++ b/docs/goal/STATUS.md
+@@ -2205,3 +2205,6 @@ New standalone filingfacts_audit_expert_submissions/module/test/guide implemente
+ 
+ 
+ Expert-submission stdio pre-freeze 2026-10-04T01:12:26.575807+00:00: own native-array length admission now precedes element-descriptor collection; the existing count case includes maximum sparse native length and zero-decode/core assertions. Current58names remain WRITTEN_UNRUN and one lexical SDK site/threefutureentries unchanged. Allsixpaths/core/default7/rootverify/imports/locks/versions/archives remain within sealed a4cd/7784 scope; no project runtime or localgrant executed. Exact original pre-tightening bytes/deltas are preserved privately. One signed source/draft/automaticCI FIRST and independent source/currentCI gates remain next; archiveNULL/fullownerhierarchyACTIVE/actualoutcomesunknownnull.
++
++
++PR376 expert-submission stdio source/firstCI 2026-10-04T01:27:46.076738+00:00: initial signedG/CLEAN92fb0cfe/tree4ac2/soleactual67a sixpath source frozen and ordinarydraft PR376 pushed; external42849B19a12ad5 manifest binds6596index/6590protected410643009B/32selected/wholefiveprefixes/package inverse/rootverify. PRIMARY+THIRD initial source asks queued separately. Actual same automaticMCP run37167512979/job111333453234 produced58newnames55PASS3FAIL/0UNKNOWN within234fund231PASS3FAIL; preceding149+1+82 pass, laterexecution139UNRUN. Original295962B315ce3bd raw/source/failure110230B294d2293 preserved, first pending-log and GH escape refusals unchanged. Two direct/alias assertions wrongly expected internal kind/result wrapper; complete report comparison assertions were not reached. Third malformed-input child stayed alive beyond workbound until owned cleanup. Current WRITTEN correction onlyownmodule/test/guide+appendgoals: actual locked legacy complete result handling; prepublished memoized close destroys owned input stream with stable closefailure; one native pendingwriter/inputdestroy-once fixture adds59thcase with3actualSDKentry sites unchanged. Native diff-check passes; allcurrent59outcomes UNKNOWN until new signedhead automaticCI. No localprojectNode/import/test/SDK/CLI/helper/build/browser/GET/processprobe/job/grant/manualCIrerun/provider-model-resource-spend/pub. ArchiveallocationNULL/fourcurrentpeer gates and futurefinaldelivery separate; allownerhierarchyACTIVE/actualoutcomesunknownnull.
+diff --git a/mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md b/mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md
+index 3b45d884..dad4acea 100644
+--- a/mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md
++++ b/mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md
+@@ -105,6 +105,9 @@ server admits its native read buffer before copying an overflowing chunk, uses
+ fatal UTF8 decoding and closes on malformed or unterminated frames. It supports
+ at most 16 pending request IDs and refuses duplicate pending IDs. This is a
+ bounded persistent stdio session, not an external process census.
++Memoized transport closure also destroys its owned input stream; merely pausing
++that pipe can leave a child alive after malformed input. The parent still
++observes the captured child's terminal state and PID absence separately.
+ 
+ Report size is separate from actual wire size: JSON escaping and the two public
+ copies both count. Oversized batches/results fail whole; no fields are removed
+@@ -224,7 +227,9 @@ try {
+   assert.deepEqual(listed.tools[0], JSON.parse(JSON.stringify(EXPERT_TOOL)));
+   const outcome = await bounded(client.callTool({ name: EXPERT_TOOL.name, arguments: args },
+     { toolDefinition: listed.tools[0], signal: abort.signal, timeout: Math.max(1, scope.remaining()) }), scope.remaining());
+-  scope.observe(); assert.equal(outcome.kind, 'complete'); result = outcome.result;
++  scope.observe();
++  assert.ok(!Object.hasOwn(outcome, 'resultType') || outcome.resultType === 'complete');
++  result = outcome; // Locked legacy callTool returns the complete result itself.
+   assert.equal(result.isError, undefined);
+   assert.deepEqual(JSON.parse(result.content[0].text), result.structuredContent);
+   assert.deepEqual(result.structuredContent, expected);
+diff --git a/mcp-fundamentals/examples/expert-submission-stdio.mjs b/mcp-fundamentals/examples/expert-submission-stdio.mjs
+index f74dd2cf..5d2bcf22 100644
+--- a/mcp-fundamentals/examples/expert-submission-stdio.mjs
++++ b/mcp-fundamentals/examples/expert-submission-stdio.mjs
+@@ -346,9 +346,9 @@ export class ExpertSubmissionTransport extends StdioServerTransport {
+     this._readBuffer = new ExpertFrameBuffer(message => this.accept(message));
+     this._onstdinclose = () => {
+       try { this._readBuffer.finish(); } catch { this.diagnostic(); }
+-      void this.close();
++      void this.close().catch(() => {});
+     };
+-    this.onerror = () => { this.diagnostic(); void this.close(); };
++    this.onerror = () => { this.diagnostic(); void this.close().catch(() => {}); };
+   }
+   accept(message) {
+     if (Object.hasOwn(message, 'id')) {
+@@ -374,13 +374,22 @@ export class ExpertSubmissionTransport extends StdioServerTransport {
+     } : message;
+     return this.writer.send(safe, row.scope, { tool: row.method === 'tools/call' && Object.hasOwn(safe, 'result') })
+       .then(() => { row.scope.dispose(); this.scopes.delete(message.id); this.responses.delete(message.id); },
+-        error => { row.scope.fail(error.code ?? 'WRITE'); this.diagnostic(); void this.close(); throw error; });
++        error => { row.scope.fail(error.code ?? 'WRITE'); this.diagnostic(); void this.close().catch(() => {}); throw error; });
+   }
+   close() {
+     if (!this.closing) {
+-      for (const { scope } of this.scopes.values()) { scope.close(); scope.dispose(); }
+-      this.scopes.clear(); this.responses.clear();
+-      this.closing = super.close();
++      // Publish one closure promise before callbacks can reenter. Pausing the
++      // inherited reader alone leaves a malformed-input child pipe open.
++      let complete; let failed;
++      this.closing = new Promise((resolve, reject) => { complete = resolve; failed = reject; });
++      try {
++        for (const { scope } of this.scopes.values()) { scope.close(); scope.dispose(); }
++        this.scopes.clear(); this.responses.clear();
++        Promise.resolve(super.close()).then(() => {
++          try { this._stdin.destroy(); complete(); }
++          catch { failed(new ExpertStdioError('CLOSE')); }
++        }, () => failed(new ExpertStdioError('CLOSE')));
++      } catch { failed(new ExpertStdioError('CLOSE')); }
+     }
+     return this.closing;
+   }
+@@ -389,7 +398,7 @@ export class ExpertSubmissionTransport extends StdioServerTransport {
+ export function createExpertSubmissionEndpoint({ input = process.stdin, output = process.stdout, stderr = process.stderr,
+   clock = nativeClock, serialize = nativeSerialize, kernel = reconcileExpertSubmissions, decode = nativeDecode } = {}) {
+   let transport;
+-  const diagnostics = createExpertDiagnostics(stderr, () => { void transport?.close(); });
++  const diagnostics = createExpertDiagnostics(stderr, () => { void transport?.close().catch(() => {}); });
+   transport = new ExpertSubmissionTransport(input, output, { clock, serialize, diagnostic: () => diagnostics.emit() });
+   const server = new Server({ name: 'canli-expert-submission-stdio-example', version: '0.0.0', title: 'Repository expert-submission audit' }, {
+     capabilities: { tools: { listChanged: false } },
+@@ -408,7 +417,7 @@ export function createExpertSubmissionEndpoint({ input = process.stdin, output =
+     if (Buffer.byteLength(JSON.stringify(projected)) > EXPERT_STDIO_LIMITS.toolResultBytes) refuse('TOOL_RESULT_BOUND');
+     scope.observe(); return projected;
+   });
+-  server.onerror = () => { diagnostics.emit(); void transport.close(); };
++  server.onerror = () => { diagnostics.emit(); void transport.close().catch(() => {}); };
+   return { server, transport, diagnostics };
+ }
+ 
+diff --git a/mcp-fundamentals/test/expert-submission-stdio.test.mjs b/mcp-fundamentals/test/expert-submission-stdio.test.mjs
+index dad6c1bb..94b988ef 100644
+--- a/mcp-fundamentals/test/expert-submission-stdio.test.mjs
++++ b/mcp-fundamentals/test/expert-submission-stdio.test.mjs
+@@ -205,8 +205,10 @@ async function ownedWorkflow(kind) {
+       const outcome = await boundedPromise(client.callTool({ name: EXPERT_TOOL.name, arguments: args }, {
+         toolDefinition: listed.tools[0], signal: abort.signal, timeout: Math.max(1, scope.remaining()),
+       }), scope.remaining()); scope.observe();
+-      assert.equal(outcome.kind, 'complete');
+-      assert.deepEqual(payload(outcome.result), expected); unknown(outcome.result.structuredContent);
++      // Locked legacy callTool returns the complete result itself, not the
++      // wire codec's internal kind/result wrapper.
++      assert.ok(!Object.hasOwn(outcome, 'resultType') || outcome.resultType === 'complete');
++      assert.deepEqual(payload(outcome), expected); unknown(outcome.structuredContent);
+       const requests = wire.map(frame => JSON.parse(frame));
+       assert.equal(requests.filter(row => row.method === 'initialize').length, 1);
+       assert.equal(requests.filter(row => row.method === 'tools/list').length, 1);
+@@ -617,3 +619,17 @@ test('expert stdio: fixture byte snapshots admit a bounded regular FD and refuse
+     assert.equal(sha(readSnapshot(filename, bytes.length)), sha(bytes));
+   } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+ });
++test('expert stdio: memoized transport closure destroys the owned input once and settles a pending writer', async () => {
++  const input = new PassThrough(); const output = new Output(() => false); const stderr = new Output();
++  const destroy = input.destroy.bind(input); let destroys = 0;
++  input.destroy = (...args) => { destroys++; return destroy(...args); };
++  const { transport } = createExpertSubmissionEndpoint({ input, output, stderr });
++  transport.accept({ jsonrpc: '2.0', id: 1, method: 'tools/list' });
++  const pending = transport.send({ jsonrpc: '2.0', id: 1, result: { tools: [] } });
++  const rejection = assert.rejects(pending, error => error.code === 'CLOSED');
++  const first = transport.close(); assert.equal(transport.close(), first);
++  await first; await rejection;
++  assert.equal(input.destroyed, true); assert.equal(destroys, 1);
++  await transport.close(); assert.equal(destroys, 1); assert.equal(output.frames.length, 1);
++  assert.equal(output.listenerCount('drain'), 0); assert.equal(output.listenerCount('close'), 0);
++});

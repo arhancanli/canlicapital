@@ -1,0 +1,887 @@
+{
+  "schema": "canli.third.expert-submission-stdio.source-extension.v1",
+  "observed_at": "2026-10-04T02:50:05.261919+00:00",
+  "reviewer_role": "THIRD",
+  "verdict": "PASS_WITH_STATIC_SOURCE_SCOPE_LIMITS",
+  "head": "1504b450efc3b63e66a035d2f9b18870e4562492",
+  "tree": "e1abf1cfff33ea1965a962e19dca11f83238203a",
+  "parents": [
+    "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62"
+  ],
+  "actual_main_basis": "67aede2ab145db52dec7be37668f1149d9b7e9d5",
+  "signature": "G",
+  "head_clean_start_end": true,
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-source-1504b450-v1.json",
+    "bytes": 59661,
+    "sha256": "8be46e649ddd441978be3c2ff5be1cfdcfc28e6afdb30dd4c4f7e490a64da468"
+  },
+  "literal_delta": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-source-c6fb3075-to-1504b450-frozen-exact-v1.patch",
+    "bytes": 14272,
+    "sha256": "19962470b17c12b88a651313961f0507ac7e6cd0148980e9d238aac43d762541"
+  },
+  "literal_delta_each_byte_matches_local_Git": true,
+  "prior_independent_source_HOLD_preserved": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+    "bytes": 62647,
+    "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37"
+  },
+  "prior_independent_retained_CI_Pass_preserved_59_only": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/retained-ci-c6fb3075-current-v1.json",
+    "bytes": 64849,
+    "sha256": "f94ea59456c853f2fecf1de030ec941e803b306babe02fb4ecc4299375d4fa05"
+  },
+  "closed_source_findings": [
+    {
+      "id": "CC-376-ORIGINAL-ARGUMENT-KEYS-BEFORE-SDK-PROJECTION",
+      "status": "CLOSED_STATIC_AT_1504B450",
+      "original_receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+        "bytes": 62647,
+        "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37"
+      },
+      "evidence": {
+        "path": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+        "first_line": 360,
+        "last_line": 370,
+        "text": "    if (message.method === 'tools/call') {\n      // The locked SDK projects params and drops record keys such as __proto__.\n      // Admit original keys on the same request clock before that projection.\n      const scope = this.scopes.get(message.id)?.scope;\n      if (!scope) refuse('FRAME_REQUEST');\n      scope.observe();\n      const params = message.params;\n      if (!params || Object.keys(params).length !== 2 || !Object.hasOwn(params, 'name') || !Object.hasOwn(params, 'arguments')) refuse('ARGUMENTS');\n      argumentsRecord(params.arguments);\n      scope.observe();\n    }\n"
+      },
+      "reason": "Original raw-parsed tools/call params count/required-own-name+arguments and original nine descriptor keys are admitted before lockedSDK dispatchCodec projection. The same scope created for that request is observed before and after; invalid original keys throw before returning the frame to SDK or decode/kernel.",
+      "runtime_qualification": "Static source closure only. New four native ingress controls remain WRITTEN_UNRUN in this receipt; no old59 CI relabel."
+    }
+  ],
+  "findings": [],
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "Git_index_proof": {
+    "full_entries": 6596,
+    "full_captured_tree_NUL_exact": true,
+    "full_current_captured_stage0_index_exact": true,
+    "full_table_each_row_exact": true,
+    "six_base_delta_paths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md",
+      "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "package.json"
+    ],
+    "five_parent_delta_paths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md",
+      "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "mcp-fundamentals/test/expert-submission-stdio.test.mjs"
+    ],
+    "protected_entries": 6590,
+    "protected_Git_bytes": 410643009,
+    "every_protected_mode_type_object_size_identity_exact_actual_main": true,
+    "every_6591_non_delta_parent_identity_exact": true,
+    "qualification": "Inherited Git identities plus selected native bodies; no whole410MB physical body rehash."
+  },
+  "selected_scoped_native_bodies": [
+    {
+      "path": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ea6fa1fea37f6a72e7bb9f394e7cd8bb1c4b31d7",
+      "bytes": 25796,
+      "sha256": "5f228ccc5bc3433a93415f9b5f3708e1cb73b209aa5599c9dffa5f59dbc3b882",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "bc31fbd21ef865180c9279b4be77172f0c182e26",
+      "bytes": 52692,
+      "sha256": "bc1a4d1ffdc35e48c32acbd1e5bc82f5482a7628b3db86aa649e03ec67146a7c",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "abb08de2db248d043a975d1d47d8a98bd3437abf",
+      "bytes": 16703,
+      "sha256": "cb7de9297f083d87490534d6a26d0a3b6c456e47663c2f7d033b7c4b85f3d6e2",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "3ce3add07e99f9bd2298c6f721a431327241ba42",
+      "bytes": 14371,
+      "sha256": "485a0eaa1aa276cccf4706117bfe9532bbc2452c457ab0342611c3088d42c199",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "45dc887b512395e8f6bd5771863bdf40b58d6590",
+      "bytes": 225219,
+      "sha256": "92f3bc38b0b19b81bf7cc2df9f41f0fb8c69c6eb8f6f1abd7923ba767d35234f",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "94aa822c7359b38b6aedcadc2890124b8e62df31",
+      "bytes": 500583,
+      "sha256": "bca4c7889a990c71a66a08a0b6bc3e196e30f87cdcbd808ae8e0eac5f3a96970",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c9da827cc05f633ffe3478f6ee392c0bc80447ea",
+      "bytes": 994,
+      "sha256": "bf219f75e95cd459028ecaa5056360378989b82a99f366d9f98d467eb7185728",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "3001347bc79c0f469738c03b67459b1314745aae",
+      "bytes": 37957,
+      "sha256": "fe442d2f36df95cff3ae0993f843a89b85d3ee3f3454a0e00141139da0be8743",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "object": "13ea65483dbc5a68d23fa301e89a1e6c31efd7b3",
+      "bytes": 5020,
+      "sha256": "7655f5eb2981474bec7c2d7a6210cd940d1f1a1baa813de5cc6a0eea49a6e9f1",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "b94c59476fd41175baee7d79d67f40138486cce3",
+      "bytes": 1366,
+      "sha256": "4e9a4eb7d0938b16c76d222146df8ca38a00c7ff7e460a43dd07117c615044e1",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1f091d39ae6afef458d738d5e687922fe4b9706c",
+      "bytes": 6507,
+      "sha256": "22a97b5418f41335e202160809937ce5f435fb139dc97547db6602a438c96624",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/src/server.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "0c373d5e5b2d6712cda9b3a7acec6d0177c1e423",
+      "bytes": 64736,
+      "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c772372609b7f37bb04c747898d168b64458e377",
+      "bytes": 21651,
+      "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/src/canonical-json.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-stdio.mjs",
+      "mode": "100755",
+      "type": "blob",
+      "object": "8ed08fc03502f68d56184da953efb294deec45bc",
+      "bytes": 12929,
+      "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+      "physical_mode": "0755",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/examples/audit-inputs-stdio.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ee32d9a3eb69ec0a267ba05da60c17b7f47098dd",
+      "bytes": 12955,
+      "sha256": "de1deacff44907249640e8c6dfe4a0df9ec38dc27aed4a299e8ffed0146a421c",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-stdio.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "66e7758081cbab8d676409c399d849993dad1680",
+      "bytes": 28081,
+      "sha256": "9ccc50acea82d7755e650c5f57a9ae249b26708bd8ce99b73bdc5547beeb38ed",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/examples/audit-inputs-client.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "06101488cadb0d6dee614dbf92398c76d5d10180",
+      "bytes": 32588,
+      "sha256": "60f20a7297bbb463139a829bc4d14e35f108d650faa4488faa91525a2d9e4195",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-client.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c54ebc051832f46e844dc2704b006e396b347072",
+      "bytes": 48164,
+      "sha256": "285cb42d1f6652bccbffdfd9a0c39e510729320126d2c23aba99c9dfe7ff02a0",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "a4ae35d9b6b6c0efe7e01b8851e11379b510ec7e",
+      "bytes": 13866,
+      "sha256": "ea2d9d029a2551f183027bdca564acf8d6e0c20139f251bbc2c1c31a0296990c",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "mcp-fundamentals/AUDIT_INPUTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ff0625ed3ca3e74986c4538a14439f271a381752",
+      "bytes": 40194,
+      "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "591b0176eee32537c4bb257efdce2b2d68ec79cd",
+      "bytes": 23778,
+      "sha256": "79540f0812537798321a4eb3a97bf89d04acc1b5bd5d4a105eddae007e87ad33",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-audit.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "2b87c733dd51e3766d6e8d4aa1356b8bb6209ffa",
+      "bytes": 36938,
+      "sha256": "550656f17c42a5494ff5c055725d925811c9252824e2886e2b3d9fdc0a6b715d",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/EXPERT_SUBMISSION_AUDIT.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ad405a5186b19110c909d1371e17171da0dcf52e",
+      "bytes": 14241,
+      "sha256": "0dd19b031488b37c147f119e71569d285ba21fe2cf766c31d7933d2cb22b08ae",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-cli.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "9d20a2c0a282e84e11b665fa7244021a66da71a9",
+      "bytes": 16094,
+      "sha256": "d8f35d72e842244558ccbd1b42ec7c2e9fc07da1b790cdb843422e53c5d513d7",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-cli.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "574e919074c054156167045238866ed514567712",
+      "bytes": 48483,
+      "sha256": "ac078c75ac71084c1cf5413d7c88f9f73cb0b02fd358f29d0164217bb753c783",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/EXPERT_SUBMISSION_CLI.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ff66c18e5210d34c4c1565c62938aacb8ede2395",
+      "bytes": 13113,
+      "sha256": "1b7a01cd02425d88ae17a7c30f97e403ce228a952572754182dad81eab573690",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-intake.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "274782df96a0c6e6948a3c31478c9854b429bf67",
+      "bytes": 30964,
+      "sha256": "f37ed4663a78cf819331410205f28b0671966cfe1b3c73aa0b13a46bf19b0ab4",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-intake.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "e9565bf46004e514dfa6f4f001ca161ec5fdfde5",
+      "bytes": 33301,
+      "sha256": "e12076776b8a4ffabe3c789c8cb169092d3a94cccb52a938a810d9d1a0995219",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/agreement.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "302880c766fe1eb4a8a9aa9e74409c7fca53e8d1",
+      "bytes": 6423,
+      "sha256": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "scripts/canonical-json.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "js/filing-facts-packet.js",
+      "mode": "100644",
+      "type": "blob",
+      "object": "b4c2cb014ec404db1b80483e6c97df41c1060ce0",
+      "bytes": 564,
+      "sha256": "eb61ab2bf78d7047569c8cf92ea348dc5c3a9e6fe311c16a63361765b2e08bc8",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "docs/goal/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "80e839cbaae76013a456b2ea4543796b59f235f0",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "cd6f8dd81e13638b593a0b1f2294660870fb5bca",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "61fc2fe3630ff0666b7530bfabd5f3dbfb6ec0b7",
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    },
+    {
+      "path": "js/annotate-core.js",
+      "mode": "100644",
+      "type": "blob",
+      "object": "8577469e89b8d7e1ec0ed8845877ca4888ceb9e4",
+      "bytes": 7115,
+      "sha256": "077c8cd3d7c4c2ad8c69ce9dfa24c8b38f6c4ff3b17470cb4d2645396506bdd3",
+      "physical_mode": "0644",
+      "work_index_frozen_Git_body_exact": true,
+      "native_FD_regular_bounded_stable_single_close": true
+    }
+  ],
+  "selected_scoped_native_count": 36,
+  "selected_scoped_native_bytes": 1433460,
+  "whole_goal_prefixes": [
+    {
+      "reference": "67aede2ab145db52dec7be37668f1149d9b7e9d5",
+      "path": "docs/goal/README.md",
+      "prefix_bytes": 6899,
+      "prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "current_bytes": 6899,
+      "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "67aede2ab145db52dec7be37668f1149d9b7e9d5",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "prefix_bytes": 8758,
+      "prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "current_bytes": 8758,
+      "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "67aede2ab145db52dec7be37668f1149d9b7e9d5",
+      "path": "docs/goal/STATUS.md",
+      "prefix_bytes": 218531,
+      "prefix_sha256": "b8af1fe8924c88cd3dbd3ccd24c923bf8d5c58bec5f6b73cf08d62bec9e771bd",
+      "current_bytes": 225219,
+      "current_sha256": "92f3bc38b0b19b81bf7cc2df9f41f0fb8c69c6eb8f6f1abd7923ba767d35234f",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "67aede2ab145db52dec7be37668f1149d9b7e9d5",
+      "path": "docs/goal/PHASES.md",
+      "prefix_bytes": 5455,
+      "prefix_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "current_bytes": 5455,
+      "current_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "67aede2ab145db52dec7be37668f1149d9b7e9d5",
+      "path": "docs/goal/LOG.md",
+      "prefix_bytes": 493895,
+      "prefix_sha256": "e78d40927a362df5c6dfd3ba650c8e10054950c969728e7f2950ebdf4344406d",
+      "current_bytes": 500583,
+      "current_sha256": "bca4c7889a990c71a66a08a0b6bc3e196e30f87cdcbd808ae8e0eac5f3a96970",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "92fb0cfe8ec2965fee3b50986ef5335e7b41e466",
+      "path": "docs/goal/README.md",
+      "prefix_bytes": 6899,
+      "prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "current_bytes": 6899,
+      "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "92fb0cfe8ec2965fee3b50986ef5335e7b41e466",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "prefix_bytes": 8758,
+      "prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "current_bytes": 8758,
+      "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "92fb0cfe8ec2965fee3b50986ef5335e7b41e466",
+      "path": "docs/goal/STATUS.md",
+      "prefix_bytes": 222136,
+      "prefix_sha256": "a7b00c729d17068c810d4462d8423a797784ac07acef9f8672874156b9490b41",
+      "current_bytes": 225219,
+      "current_sha256": "92f3bc38b0b19b81bf7cc2df9f41f0fb8c69c6eb8f6f1abd7923ba767d35234f",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "92fb0cfe8ec2965fee3b50986ef5335e7b41e466",
+      "path": "docs/goal/PHASES.md",
+      "prefix_bytes": 5455,
+      "prefix_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "current_bytes": 5455,
+      "current_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "92fb0cfe8ec2965fee3b50986ef5335e7b41e466",
+      "path": "docs/goal/LOG.md",
+      "prefix_bytes": 497500,
+      "prefix_sha256": "153b1b1bd8d1a1eff78eb30f2c16420f65ea50376584f3a5d3e69986adae8b9f",
+      "current_bytes": 500583,
+      "current_sha256": "bca4c7889a990c71a66a08a0b6bc3e196e30f87cdcbd808ae8e0eac5f3a96970",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+      "path": "docs/goal/README.md",
+      "prefix_bytes": 6899,
+      "prefix_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "current_bytes": 6899,
+      "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+      "path": "docs/goal/REQUIREMENTS.md",
+      "prefix_bytes": 8758,
+      "prefix_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "current_bytes": 8758,
+      "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+      "path": "docs/goal/STATUS.md",
+      "prefix_bytes": 223656,
+      "prefix_sha256": "86d69660078fc3d386abdd32a726bf27c0a4dcb1fbecfd46bd302e2b6dde7f6c",
+      "current_bytes": 225219,
+      "current_sha256": "92f3bc38b0b19b81bf7cc2df9f41f0fb8c69c6eb8f6f1abd7923ba767d35234f",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+      "path": "docs/goal/PHASES.md",
+      "prefix_bytes": 5455,
+      "prefix_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "current_bytes": 5455,
+      "current_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    },
+    {
+      "reference": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+      "path": "docs/goal/LOG.md",
+      "prefix_bytes": 499020,
+      "prefix_sha256": "c1cb0199632c68058711e31f1c890067fbfbf17dba6f513334dcc1cbd9f6bd30",
+      "current_bytes": 500583,
+      "current_sha256": "bca4c7889a990c71a66a08a0b6bc3e196e30f87cdcbd808ae8e0eac5f3a96970",
+      "whole_prefix_preserved": true,
+      "independent_Git_full_prefix_exact": true
+    }
+  ],
+  "package_inverse": {
+    "recovered_bytes": 14139,
+    "recovered_sha256": "f9ab592f2f900cd1bb35f96e3456dc2a6f8f3f9c03ffb94d047bc06509738634",
+    "root_verify_byte_exact": true,
+    "two_literal_lines": [
+      "    \"test:expert-submission-stdio\": \"node --test --test-concurrency=1 mcp-fundamentals/test/expert-submission-stdio.test.mjs\",\n",
+      "    \"filingfacts:expert-submission-stdio\": \"node mcp-fundamentals/examples/expert-submission-stdio.mjs\",\n"
+    ],
+    "whole_byte_roundtrip_exact": true
+  },
+  "entire_parent_module_recovered_after_only_11_line_admission_removal": true,
+  "native_writer_complete_report_caps_codec_close_and_other_module_bytes_exact_parent": true,
+  "entire_old59_test_file_prefix_exact": true,
+  "old59_names_preserved_order": [
+    "expert stdio: one direct legacy SDK call returns the complete core report and known child closure",
+    "expert stdio: one absolute symlink SDK entry preserves report identity and known child closure",
+    "expert stdio: third owned SDK entry closes malformed private input without a tool dispatch or retry",
+    "expert stdio: importing the module and constructing an inert endpoint emit no protocol data",
+    "expert stdio: delivered blank50 bytes retain100 assignments and every missing role and pair",
+    "expert stdio: one absent role keeps the complete selected denominator and original returned bytes",
+    "expert stdio: partial fields and missing required notes retain each task and per-field missing coverage",
+    "expert stdio: syntactically complete fictional returns establish no expert agreement or adjudication",
+    "expert stdio: complete escape-heavy notes survive both public copies and the original raw bindings",
+    "expert stdio: caller64 and null source declarations remain unverified in the unchanged full report",
+    "expert stdio: primitive SHA arrays boxes uppercase and end suffixes stop before decode or kernel",
+    "expert stdio: extra missing symbol and inherited argument keys stop before decode",
+    "expert stdio: argument getters and proxies are refused without invoking caller traps",
+    "expert stdio: sparse accessor proxy and foreign-prototype evidence arrays stop before decode",
+    "expert stdio: evidence and submission counts are refused before encoded element inspection",
+    "expert stdio: nonprimitive base64 and noncanonical alphabet padding whitespace and suffixes stop before decode",
+    "expert stdio: all six individual raw caps refuse encoded overflow before any allocation callback",
+    "expert stdio: evidence and submission individual plus-one caps refuse before decode",
+    "expert stdio: individually valid evidence over256KiB is refused before the first decode",
+    "expert stdio: individually valid first-six inputs over768KiB stop before decode",
+    "expert stdio: individually valid two submissions over the full4MiB batch stop before decode",
+    "expert stdio: exact evidence first-six and full-batch boundaries admit owned bytes without a kernel",
+    "expert stdio: canonical empty forms reach the unchanged kernel once and receive its stable byte refusal",
+    "expert stdio: decoder length or byte substitution is refused before the kernel",
+    "expert stdio: invalid UTF8 JSON schema and separate raw gold pin are stable one-kernel refusals",
+    "expert stdio: swapped or rehashed foreign submissions are not repaired or reassigned",
+    "expert stdio: declaration terminators and foreign packet identity keep complete contract refusals",
+    "expert stdio: a tampered complete report hash never becomes a successful tool result",
+    "expert stdio: missing report rows or invented verified identity fail the advertised full-report schema",
+    "expert stdio: full report over6MiB is refused whole without removing original fields",
+    "expert stdio: an injected private exception is replaced by a tiny stable no-echo refusal",
+    "expert stdio: final sender writes exact locked JSON plus LF once with no extra serialization",
+    "expert stdio: queued late sender performs no serialization or native write",
+    "expert stdio:14999.5ms plus1ms synchronous serialization crosses the same deadline with zero native writes",
+    "expert stdio: serialization-triggered abort refuses before the same captured native writer",
+    "expert stdio: serialization-triggered reentrant close refuses before native write",
+    "expert stdio: serialization-triggered known exit refuses before native write",
+    "expert stdio: backpressure waits one drain and never writes the frame a second time",
+    "expert stdio: close before drain rejects and removes listeners without a second native write",
+    "expert stdio: abort while waiting for drain stays sticky and cannot revive a send",
+    "expert stdio: a native writer throw retains one attempt and no retry or raw exception echo",
+    "expert stdio: clock rollback after serialization refuses rather than renewing the absolute window",
+    "expert stdio: synchronous kernel exhaustion is caught before projector and final success write",
+    "expert stdio: synthetic whole response exact20MiB includes LF and plus-one writes nothing",
+    "expert stdio: synthetic complete escaped tool object exact19MiB and plus-one use the real sender cap",
+    "expert stdio: producer actual request cap counts the complete6MiB frame before native stdin effect",
+    "expert stdio: oversized or unsafe reflected IDs refuse before output serialization",
+    "expert stdio: exact128UTF8 ID is admitted while the next Unicode scalar is refused before SDK dispatch",
+    "expert stdio: fatal invalid UTF8 and malformed JSON are not repaired skipped or echoed",
+    "expert stdio: complete input frame exact6MiB includes LF and preserves parsed admission",
+    "expert stdio: retained unterminated input plus-one fails before copying a second chunk",
+    "expert stdio: EOF with an incomplete frame is a bounded failure with zero SDK dispatches",
+    "expert stdio: protocol shape unsafe IDs and extra envelope fields stop before SDK callbacks",
+    "expert stdio: diagnostic overflow is failing once and never truncation accepted as success",
+    "expert stdio: unknown tool receives stable refusal through actual low-level SDK projection with no raw echo",
+    "expert stdio: SDK validation exceptions are sanitized before the same native sender",
+    "expert stdio: duplicate pending IDs and cancelled scopes cannot revive or dispatch a second response",
+    "expert stdio: fixture byte snapshots admit a bounded regular FD and refuse a direct symlink",
+    "expert stdio: memoized transport closure destroys the owned input once and settles a pending writer"
+  ],
+  "new4_written_source_controls": [
+    {
+      "name": "expert stdio: raw own __proto__ argument refuses before locked SDK projection decode or core",
+      "source_oracle": "Actual enumerable own __proto__ via defineProperty/JSON frame; same production raw ingress, no success after initialize, input destroyed, zero decode/kernel and no private echo."
+    },
+    {
+      "name": "expert stdio: raw extra ordinary and __proto__ params refuse before SDK projection or core",
+      "source_oracle": "Ordinary extra and own __proto__ outer params; same raw/SKD ingress, original own-key assertion, zero decode/kernel/no-success/constant bounded diagnostic."
+    },
+    {
+      "name": "expert stdio: raw exact nine-key ingress reaches the unchanged core once and retains the complete report",
+      "source_oracle": "Valid complete original nine keys reaches protected kernel once, six decodes, full public report/captured original values, complete denominator and null actual outcomes."
+    },
+    {
+      "name": "expert stdio: raw admission preserves the request clock and refuses a crossing before SDK dispatch",
+      "source_oracle": "Same per-request clock readings0/14999.5/15000.5; postadmission deadline refusal before SDK dispatch, zero output, sticky scope failure."
+    }
+  ],
+  "written_names": [
+    "expert stdio: one direct legacy SDK call returns the complete core report and known child closure",
+    "expert stdio: one absolute symlink SDK entry preserves report identity and known child closure",
+    "expert stdio: third owned SDK entry closes malformed private input without a tool dispatch or retry",
+    "expert stdio: importing the module and constructing an inert endpoint emit no protocol data",
+    "expert stdio: delivered blank50 bytes retain100 assignments and every missing role and pair",
+    "expert stdio: one absent role keeps the complete selected denominator and original returned bytes",
+    "expert stdio: partial fields and missing required notes retain each task and per-field missing coverage",
+    "expert stdio: syntactically complete fictional returns establish no expert agreement or adjudication",
+    "expert stdio: complete escape-heavy notes survive both public copies and the original raw bindings",
+    "expert stdio: caller64 and null source declarations remain unverified in the unchanged full report",
+    "expert stdio: primitive SHA arrays boxes uppercase and end suffixes stop before decode or kernel",
+    "expert stdio: extra missing symbol and inherited argument keys stop before decode",
+    "expert stdio: argument getters and proxies are refused without invoking caller traps",
+    "expert stdio: sparse accessor proxy and foreign-prototype evidence arrays stop before decode",
+    "expert stdio: evidence and submission counts are refused before encoded element inspection",
+    "expert stdio: nonprimitive base64 and noncanonical alphabet padding whitespace and suffixes stop before decode",
+    "expert stdio: all six individual raw caps refuse encoded overflow before any allocation callback",
+    "expert stdio: evidence and submission individual plus-one caps refuse before decode",
+    "expert stdio: individually valid evidence over256KiB is refused before the first decode",
+    "expert stdio: individually valid first-six inputs over768KiB stop before decode",
+    "expert stdio: individually valid two submissions over the full4MiB batch stop before decode",
+    "expert stdio: exact evidence first-six and full-batch boundaries admit owned bytes without a kernel",
+    "expert stdio: canonical empty forms reach the unchanged kernel once and receive its stable byte refusal",
+    "expert stdio: decoder length or byte substitution is refused before the kernel",
+    "expert stdio: invalid UTF8 JSON schema and separate raw gold pin are stable one-kernel refusals",
+    "expert stdio: swapped or rehashed foreign submissions are not repaired or reassigned",
+    "expert stdio: declaration terminators and foreign packet identity keep complete contract refusals",
+    "expert stdio: a tampered complete report hash never becomes a successful tool result",
+    "expert stdio: missing report rows or invented verified identity fail the advertised full-report schema",
+    "expert stdio: full report over6MiB is refused whole without removing original fields",
+    "expert stdio: an injected private exception is replaced by a tiny stable no-echo refusal",
+    "expert stdio: final sender writes exact locked JSON plus LF once with no extra serialization",
+    "expert stdio: queued late sender performs no serialization or native write",
+    "expert stdio:14999.5ms plus1ms synchronous serialization crosses the same deadline with zero native writes",
+    "expert stdio: serialization-triggered abort refuses before the same captured native writer",
+    "expert stdio: serialization-triggered reentrant close refuses before native write",
+    "expert stdio: serialization-triggered known exit refuses before native write",
+    "expert stdio: backpressure waits one drain and never writes the frame a second time",
+    "expert stdio: close before drain rejects and removes listeners without a second native write",
+    "expert stdio: abort while waiting for drain stays sticky and cannot revive a send",
+    "expert stdio: a native writer throw retains one attempt and no retry or raw exception echo",
+    "expert stdio: clock rollback after serialization refuses rather than renewing the absolute window",
+    "expert stdio: synchronous kernel exhaustion is caught before projector and final success write",
+    "expert stdio: synthetic whole response exact20MiB includes LF and plus-one writes nothing",
+    "expert stdio: synthetic complete escaped tool object exact19MiB and plus-one use the real sender cap",
+    "expert stdio: producer actual request cap counts the complete6MiB frame before native stdin effect",
+    "expert stdio: oversized or unsafe reflected IDs refuse before output serialization",
+    "expert stdio: exact128UTF8 ID is admitted while the next Unicode scalar is refused before SDK dispatch",
+    "expert stdio: fatal invalid UTF8 and malformed JSON are not repaired skipped or echoed",
+    "expert stdio: complete input frame exact6MiB includes LF and preserves parsed admission",
+    "expert stdio: retained unterminated input plus-one fails before copying a second chunk",
+    "expert stdio: EOF with an incomplete frame is a bounded failure with zero SDK dispatches",
+    "expert stdio: protocol shape unsafe IDs and extra envelope fields stop before SDK callbacks",
+    "expert stdio: diagnostic overflow is failing once and never truncation accepted as success",
+    "expert stdio: unknown tool receives stable refusal through actual low-level SDK projection with no raw echo",
+    "expert stdio: SDK validation exceptions are sanitized before the same native sender",
+    "expert stdio: duplicate pending IDs and cancelled scopes cannot revive or dispatch a second response",
+    "expert stdio: fixture byte snapshots admit a bounded regular FD and refuse a direct symlink",
+    "expert stdio: memoized transport closure destroys the owned input once and settles a pending writer",
+    "expert stdio: raw own __proto__ argument refuses before locked SDK projection decode or core",
+    "expert stdio: raw extra ordinary and __proto__ params refuse before SDK projection or core",
+    "expert stdio: raw exact nine-key ingress reaches the unchanged core once and retains the complete report",
+    "expert stdio: raw admission preserves the request clock and refuses a crossing before SDK dispatch"
+  ],
+  "written_case_count": 63,
+  "new_controls_add_no_child_or_client_launch": true,
+  "actual_launch_source_inventory": {
+    "lexical_site_count": 1,
+    "lexical_site_line": 165,
+    "literal_entries": [
+      {
+        "kind": "direct",
+        "line": 238,
+        "source_occurrences": 1
+      },
+      {
+        "kind": "symlink",
+        "line": 241,
+        "source_occurrences": 1
+      },
+      {
+        "kind": "bad-frame",
+        "line": 244,
+        "source_occurrences": 1
+      }
+    ],
+    "maximum": 3,
+    "runtime_launched_local": 0
+  },
+  "imports": {
+    "exact_local_closure_files": 8,
+    "exact_import_edges": 47,
+    "frozen_core_default7_locks_versions_exact_parent_and_base": true,
+    "locked_native_dependency_source_verification_carried_only_for_identical_lock_and_import_bytes": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+      "bytes": 62647,
+      "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37"
+    }
+  },
+  "guide_scope": "One exact paragraph change explains raw original-key admission and bounded closing diagnostic; entire remaining guide exact parent.",
+  "originals_preserved": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/assignment-67aede2a-primary-v1.md",
+      "bytes": 23933,
+      "sha256": "a4cd162f1b04d25160364f8fdcba8db7ff248178f980ace5b0e24933bbb8f3e1"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/source-basis-67aede2a-primary-v1.json",
+      "bytes": 30865,
+      "sha256": "778497d9b699acbd25a78f29f75d51f572579e43907d62807d4d9201e352c8ea"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-c6-original-key-finding-intake-written-correction-v1.json",
+      "bytes": 3673,
+      "sha256": "bb74554b58b7d373237b3487630f350d7bcaeea1c7a408f329347756dfb5e20e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-1504-source-manifest-first-native-extra-pins-shape-stop-original-v1.json",
+      "bytes": 458,
+      "sha256": "fd86963a84fceead02141b25bd305b661b2107ab4e1229761dbdc4d897bd0643"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-source-92fb0cfe-v1.json",
+      "bytes": 42849,
+      "sha256": "19a12ad5a1178cc5bb4f7d3952d3f50eabed6c796ffe9adcfd22a2e08bb0aea4"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-92fb0cfe-initial-actual-55pass-3fail-v1.json",
+      "bytes": 110230,
+      "sha256": "294d229369a42c60035a2d8d988146a63176f79b0a167a5e564361f065cba7d3"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-92fb0cfe-mcp-job-api-original-v3.log",
+      "bytes": 295962,
+      "sha256": "315ce3bd04b09fe73a2b7ba3e7aaa00de795bdda6b6c05e5cae192ad581d21fe"
+    }
+  ],
+  "author_manifest_reader_shape_error": "458B fd86963a original retained external; no product/runtime failure is inferred.",
+  "source_time_new63_cases": "WRITTEN_UNRUN; exact new-head retainedCI review is separate.",
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "limitations": [
+    "No project JS/import/SDK/fixture/CLI/helper/browser/build/job execution or network/API refetch.",
+    "No hard preemption, global process census, verified human/expertise/rights or future readines/merge/publication claims.",
+    "Original92fb55PASS3FAIL and originalc6 SOURCEHOLD/CI59PASS remain immutable historical scopes."
+  ],
+  "all_owner_goals": "ACTIVE",
+  "roles": "PRIMARY sole merge/publication; Lead sole CPU; 127 policy unchanged",
+  "own_reader_metadata_diagnostic": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/inspect-1504b450-source-extension-v1-original-table-metadata-diagnostic.json",
+    "bytes": 1273,
+    "sha256": "1affd4795cf56938ba78dfe258b6a4b4193ba901c3d817644547d9ae3ecbd506"
+  },
+  "own_reader_metadata_correction": "New pinned table is a plain list; every row compared directly to independent frozen Git. Original wrapped-table assumption preserved; no product/source/raw rewrite.",
+  "recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/inspect-1504b450-source-extension-v2.py",
+    "bytes": 16731,
+    "sha256": "fb4c1d28ae4d8330b6e0002808cba7758ed1c2b9b272875b3e555fef93054308"
+  }
+}
