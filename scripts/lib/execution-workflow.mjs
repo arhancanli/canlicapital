@@ -7,7 +7,7 @@ import { z } from 'zod';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const EXECUTION_ROUTE = '/mcp-servers/execution';
-export const EXECUTION_SOURCE_COMMIT = '1c6668d3f1636563523f3a31ce524484ba463703';
+export const EXECUTION_SOURCE_COMMIT = '5c0926b814389ca72195bb616f9281f317861e4c';
 export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'mcp-execution/EXAMPLES.md',
   'mcp-execution/JOURNAL_STORAGE.md',
@@ -45,6 +45,7 @@ export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'mcp/src/lab.mjs',
   'mcp/src/local.mjs',
   'mcp/src/local/api/_lib/limits.js',
+  'mcp/src/local/js/audit-core.js',
   'mcp/src/local/js/backtest-core.js',
   'mcp/src/local/js/breadth-core.js',
   'mcp/src/local/js/dsr-core.js',
@@ -53,6 +54,7 @@ export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'mcp/src/local/js/journal-files.js',
   'mcp/src/local/js/luck-core.js',
   'mcp/src/local/js/moments-core.js',
+  'mcp/src/local/js/null-zoo-v1-sizes.js',
   'mcp/src/local/js/paper-evidence-core.js',
   'mcp/src/local/js/pbo-core.js',
   'mcp/src/local/js/receipt-statement.js',
@@ -81,7 +83,7 @@ export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'standards/trade-journal/EXPORT.md',
 ]);
 // A changed file plus a rehashed editable config cannot retain the old source claim.
-const REVIEWED_HASH_PAIRS = 'da943b468b302f0435b0913ffb6745a70f84d1ca7b67d1f229383c8666625265';
+const REVIEWED_HASH_PAIRS = '1e17a1f7e6e916fe64485cc726e85958a2ed36bcb72ab9797d8d3db0bd28004e';
 const names = ['size_position', 'check_orders', 'measure_shortfall', 'journal'];
 const recordSchema = z.object({
   schema: z.literal('canli.execution-workflow-source.v1'),
