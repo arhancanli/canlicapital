@@ -143,3 +143,9 @@ The integrated build, 1,304 tests plus six preverify cases, and complete browser
 suite passed. Seven generator/test code-scanning findings are addressed with
 complete escaping, parsed heading text, stable style removal and anchored test
 host matches. Final current-head checks are linked from PR #380.
+
+
+The final [current-main proof](../../artifacts/qa/october-redesign/deployment-date-proof-current-main.json)
+binds source 19e6ef41 after the current-main integration and security corrections.
+Fresh production build, full verification and the exact Git-free guard all
+passed with the committed source pages, manifest and sitemap unchanged.
