@@ -1,0 +1,61 @@
+{
+ "schema": "canli.placebo-prereg.v1",
+ "written": "2026-10-04",
+ "question": "Is the pipeline placebo calibrated, and which way of reordering periods should placebo_test use by default?",
+ "candidates": [
+  "permute",
+  "block_permute",
+  "stationary_bootstrap"
+ ],
+ "candidate_order": "permute first: when periods are exchangeable its p-value is exact, and it removes the most structure, so it should have the most power. block_permute next: it keeps volatility clustering inside blocks of round(n^(1/3)) periods. The stationary bootstrap last: it resamples with replacement, so placebo means vary.",
+ "bar": {
+  "nominal": 0.05,
+  "size_max": 0.06,
+  "where": "every null cell"
+ },
+ "selection": "The first candidate, in the order above, whose size is at most size_max in every null cell. If none meets it, the candidate with the fewest failing cells, then the smallest mean size.",
+ "size": "The share of tests in which none of the 19 placebos was at least as good as the real result, the p-value 0.05.",
+ "design": {
+  "observations": 1260,
+  "placebos": 19,
+  "null_tests_per_cell": 10000,
+  "power_tests_per_cell": 2000,
+  "base_seed": 20261007,
+  "chunk": 250,
+  "block": "round(n^(1/3)), 11 periods for 1260"
+ },
+ "null_markets": {
+  "families": [
+   "iid_normal",
+   "student_t4",
+   "skew_negative",
+   "garch",
+   "regimes"
+  ],
+  "single_asset": "1% daily volatility; variant flat (mean zero) or drift (an annualized Sharpe of 0.5).",
+  "cross_section": "20 assets sharing a factor (pairwise correlation 0.3); variant flat (means zero) or dispersed (each asset a constant mean, annualized Sharpe drawn from a normal with standard deviation 0.5).",
+  "why": "Nothing in any null market can be predicted from the past, so every rejection is a false positive. Drift and dispersed means are what a long-only rule and a cross-sectional ranking earn without predicting anything."
+ },
+ "trend_markets": {
+  "single_asset": "a slowly moving mean (AR(1), rho 0.98) with stationary standard deviation of strength times the 1% daily volatility; strengths 0.04, 0.08, 0.16",
+  "cross_section": "each asset its own slowly moving mean (rho 0.99) on the common factor; strengths 0.02, 0.04, 0.08"
+ },
+ "pipelines": {
+  "sma_grid": "one asset, long or flat while a fast moving average of price is above a slow one; 11 (fast, slow) pairs",
+  "tsmom_grid": "one asset, long or short on the sign of the past return; lookbacks 5, 10, 21, 63, 126, 252",
+  "xsmom_grid": "20 assets, long the 4 best and short the 4 worst by past return, rebalanced every 21 days; lookbacks 21, 63, 126, 252",
+  "headline": "the best annualized Sharpe in the grid, every rule scored on the same days after a 252-day warm-up"
+ },
+ "report": {
+  "power": "every candidate's rejection rate at every planted strength; not a bar",
+  "textbook": "the naive one-sided t-test on the best rule and its Bonferroni correction, rejection rates at 0.05 in every cell, beside the placebo's",
+  "rank_chi_square_critical": 36.191,
+  "rank_uniformity": "Pearson's chi-square of each null cell's 20 rank counts against uniform; cells beyond the 99th percentile of chi-square with 19 degrees of freedom are counted"
+ },
+ "pilot": {
+  "what": "A timing pilot of 250 tests per cell was run before this file was written, with base seed 20261006; its counts are in config/research/placebo-v1-pilot.json. The run this file governs uses base seed 20261007, so it shares no test with the pilot. The candidate order and bar above were set before the pilot.",
+  "tests_per_cell": 250,
+  "base_seed": 20261006
+ },
+ "consequence": "placebo_test's default method is the selected candidate; a test fails if the shipped default differs from the evaluation's selection."
+}
