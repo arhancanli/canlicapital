@@ -88,3 +88,13 @@ the owner merges protected main and controls deployment.
 The boards establish content hierarchy and design vocabulary. Browser captures
 document the final delivery. Broader indexing, adoption, expert annotation,
 independent research and governed ALPHAC outcomes remain open.
+
+
+## Committed deployment-date proof
+
+Signed source commit 2280b88f and paired date/output commit 48dd5ddd are verified.
+The exact required Git-free command exited 0 from the prepared build, and left
+no tracked diff. [The receipt](../../artifacts/qa/october-redesign/deployment-date-proof.json)
+binds the source head, committed manifest and sitemap hashes. An earlier empty
+checkout lacked generated dataset cards; its failed prerequisite is recorded
+separately. Final protected-main PR checks follow source delivery.
