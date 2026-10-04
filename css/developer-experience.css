@@ -8,6 +8,17 @@ html[data-page="developers"] body .dev-hero :is(p,.dev-kicker) { color: #343b46;
 html[data-page="developers"] body .dev-hero a { color: #0016cb; }
 html[data-page="developers"] .dev-lead { max-width: 72ch; font-size: 18px; }
 html[data-page="developers"] .dev-hero-note { max-width: 82ch; }
+/* Three ways to start, side by side: the first thing a visitor chooses on this page. */
+html[data-page="developers"] .dev-paths { list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+html[data-page="developers"] .dev-path { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 22px 22px 24px; background: #fff; border: 1px solid #c9cfdb; }
+html[data-page="developers"] .dev-path__tag { font: 500 11px/1.4 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: #0016cb; }
+html[data-page="developers"] .dev-path h2 { margin: 0; font-size: 1.35rem; line-height: 1.2; }
+html[data-page="developers"] .dev-path p { margin: 0; color: #343b46; font-size: .95rem; line-height: 1.6; }
+html[data-page="developers"] .dev-path__code { margin: 4px 0 0; padding: 12px 14px; background: #111; color: #fff; font: 12px/1.6 "IBM Plex Mono", monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+html[data-page="developers"] .dev-path > a:last-child { margin-top: auto; padding-top: 6px; }
+html[data-page="developers"] .dev-path .dev-button { align-self: flex-start; }
+html[data-page="developers"] .dev-hero-links { margin-top: 24px; max-width: 110ch; font-size: .92rem; line-height: 1.9; color: #343b46; }
+@media (max-width: 900px) { html[data-page="developers"] .dev-paths { grid-template-columns: minmax(0, 1fr); } }
 html[data-page="developers"] .dev-downloads { margin-top: 30px; gap: 12px; }
 html[data-page="developers"] .dev-button { min-height: 48px; font: 500 12px/1.35 Inter,sans-serif; text-transform: none; letter-spacing: 0; padding: 12px 21px; cursor: pointer; }
 html[data-page="developers"] body .dev-button--primary { color: white; background: #0016cb; border-color: #0016cb; }

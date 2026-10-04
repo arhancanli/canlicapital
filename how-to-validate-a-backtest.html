@@ -4,19 +4,19 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>How to validate a backtest | Canli Capital</title>
-<meta name="description" content="A step-by-step walk-through of this site&#39;s own instruments for checking a backtest, from counting trials to keeping a receipt." />
+<meta name="description" content="Six checks, in order, for whether a trading backtest is real or luck: count the versions you tried, shrink the Sharpe for them, test the winner on unseen data, price in costs, check what it adds, keep a receipt." />
 <link rel="canonical" href="https://canlicapital.com/how-to-validate-a-backtest" />
 <meta name="author" content="Arhan Canli" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Canli Capital" />
 <meta property="og:title" content="How to validate a backtest" />
-<meta property="og:description" content="A step-by-step walk-through of this site&#39;s own instruments for checking a backtest, from counting trials to keeping a receipt." />
+<meta property="og:description" content="Six checks, in order, for whether a trading backtest is real or luck: count the versions you tried, shrink the Sharpe for them, test the winner on unseen data, price in costs, check what it adds, keep a receipt." />
 <meta property="og:url" content="https://canlicapital.com/how-to-validate-a-backtest" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="How to validate a backtest" />
-<meta name="twitter:description" content="A step-by-step walk-through of this site&#39;s own instruments for checking a backtest, from counting trials to keeping a receipt." />
+<meta name="twitter:description" content="Six checks, in order, for whether a trading backtest is real or luck: count the versions you tried, shrink the Sharpe for them, test the winner on unseen data, price in costs, check what it adds, keep a receipt." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -28,7 +28,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="./css/paper.css" />
 <link rel="stylesheet" href="/css/product-shell.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to validate a backtest","description":"A step-by-step walk-through of this site's own instruments for checking a backtest, from counting trials to keeping a receipt.","url":"https://canlicapital.com/how-to-validate-a-backtest","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"step":[{"@type":"HowToStep","name":"Count the trials","text":"A Sharpe ratio means little without knowing how many variants were tried to find it, so start by counting every hypothesis in the search.","url":"https://canlicapital.com/tools/trial-accounting"},{"@type":"HowToStep","name":"Deflate the Sharpe","text":"Put the observed Sharpe ratio and that trial count through the same deflation the search should have been judged by from the start.","url":"https://canlicapital.com/tools/deflated-sharpe"},{"@type":"HowToStep","name":"Estimate overfitting probability","text":"Check whether the in-sample winner predicts anything out of sample, rather than assuming a high Sharpe ratio implies it does.","url":"https://canlicapital.com/tools/backtest-overfitting"},{"@type":"HowToStep","name":"Price execution assumptions","text":"Reprice the same strategy under different fill, delay and impact assumptions, because a backtest that fills at the mid is pricing a trade nobody could place.","url":"https://canlicapital.com/tools/execution"},{"@type":"HowToStep","name":"Check breadth","text":"Ask what this strategy actually adds to a book of others once its correlation to them is accounted for, not just what it earns alone.","url":"https://canlicapital.com/tools/breadth"},{"@type":"HowToStep","name":"Keep a receipt","text":"Every validation call above returns a content-hashed receipt naming the exact source it ran; keep it, and verify a signed record stays unchanged rather than trusting a screenshot of it.","url":"https://canlicapital.com/tools/evidence-chain"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to validate a backtest","description":"Six checks, in order, for whether a trading backtest is real or luck: count the versions you tried, shrink the Sharpe for them, test the winner on unseen data, price in costs, check what it adds, keep a receipt.","url":"https://canlicapital.com/how-to-validate-a-backtest","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"step":[{"@type":"HowToStep","name":"Count every version you tried","text":"A good Sharpe ratio means little until you know how many versions of the strategy were tried to find it. Write down every variant, parameter set and idea you tested, including the ones you dropped.","url":"https://canlicapital.com/tools/trial-accounting"},{"@type":"HowToStep","name":"Shrink the Sharpe for that count","text":"The more versions you try, the better the best one looks by luck alone. The deflated Sharpe ratio corrects for that: it is the chance your Sharpe beats the best that luck would give across that many tries.","url":"https://canlicapital.com/tools/deflated-sharpe"},{"@type":"HowToStep","name":"Check the winner on unseen data","text":"Split the history into pieces, pick the best version on some of them, and see how it ranks on the rest. If the winner often lands in the bottom half, the backtest is probably overfit.","url":"https://canlicapital.com/tools/backtest-overfitting"},{"@type":"HowToStep","name":"Price in realistic trading costs","text":"Run the same strategy again with slower fills, wider spreads and market impact. A backtest that always trades at the midpoint is pricing trades nobody could place.","url":"https://canlicapital.com/tools/execution"},{"@type":"HowToStep","name":"See what it adds to a portfolio","text":"A strategy that moves with the ones you already run adds less than its own Sharpe suggests. Check what it adds once its correlation with them is counted.","url":"https://canlicapital.com/tools/breadth"},{"@type":"HowToStep","name":"Keep a receipt","text":"Each check through the API returns a signed receipt that names the exact code it ran. Keep it, so anyone can recheck the result later instead of trusting a screenshot.","url":"https://canlicapital.com/tools/evidence-chain"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Methodology","item":"https://canlicapital.com/methodology"},{"@type":"ListItem","position":3,"name":"How to validate a backtest","item":"https://canlicapital.com/how-to-validate-a-backtest"}]}</script>
 
 <link rel="stylesheet" href="/css/reader-experience.css" />
@@ -92,67 +92,68 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/systems">Explore systems</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Count the trials</a><a href="#reader-section-2">Deflate the Sharpe</a><a href="#reader-section-3">Estimate overfitting probability</a><a href="#reader-section-4">Price execution assumptions</a><a href="#reader-section-5">Check breadth</a><a href="#reader-section-6">Keep a receipt</a><a href="#reader-section-7">What this page does not establish</a><a href="#reader-section-8">Where to go next</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/systems">Explore systems</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Count every version you tried</a><a href="#reader-section-2">Shrink the Sharpe for that count</a><a href="#reader-section-3">Check the winner on unseen data</a><a href="#reader-section-4">Price in realistic trading costs</a><a href="#reader-section-5">See what it adds to a portfolio</a><a href="#reader-section-6">Keep a receipt</a><a href="#reader-section-7">What this page does not establish</a><a href="#reader-section-8">Where to go next</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/methodology">Methodology</a></p>
     <h1 class="paper__title">How to validate a backtest</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-      <p class="hub__standfirst">Each step below runs through one of this site's own instruments, in
-      the order they are meant to be used. Every calculator also runs as a validation API route
-      where one is published, so the same check can run in a browser or inside a pipeline.</p>
+      <p class="hub__standfirst">Six checks, in the order to run them. Each has a free calculator, and
+      most also run through the API or from an AI assistant, so the same check works in a browser,
+      in your code or in a chat.</p>
       <ol class="howto__steps">
 <li class="howto__step" id="step-1">
-      <h2 id="reader-section-1" data-reader-anchor="true">Count the trials</h2>
-      <p>A Sharpe ratio means little without knowing how many variants were tried to find it, so start by counting every hypothesis in the search.</p>
+      <h2 id="reader-section-1" data-reader-anchor="true">Count every version you tried</h2>
+      <p>A good Sharpe ratio means little until you know how many versions of the strategy were tried to find it. Write down every variant, parameter set and idea you tested, including the ones you dropped.</p>
       <p class="howto__links">
         <a href="/tools/trial-accounting">Trial accounting explorer</a><span aria-hidden="true"> / </span><a href="/api/v1/trials/summary">Trials summary endpoint</a>
       </p>
     </li>
 <li class="howto__step" id="step-2">
-      <h2 id="reader-section-2" data-reader-anchor="true">Deflate the Sharpe</h2>
-      <p>Put the observed Sharpe ratio and that trial count through the same deflation the search should have been judged by from the start.</p>
+      <h2 id="reader-section-2" data-reader-anchor="true">Shrink the Sharpe for that count</h2>
+      <p>The more versions you try, the better the best one looks by luck alone. The deflated Sharpe ratio corrects for that: it is the chance your Sharpe beats the best that luck would give across that many tries.</p>
       <p class="howto__links">
         <a href="/tools/deflated-sharpe">Deflated Sharpe ratio calculator</a><span aria-hidden="true"> / </span><a href="/developers#api-deflated-sharpe">Deflated Sharpe validation route</a>
       </p>
     </li>
 <li class="howto__step" id="step-3">
-      <h2 id="reader-section-3" data-reader-anchor="true">Estimate overfitting probability</h2>
-      <p>Check whether the in-sample winner predicts anything out of sample, rather than assuming a high Sharpe ratio implies it does.</p>
+      <h2 id="reader-section-3" data-reader-anchor="true">Check the winner on unseen data</h2>
+      <p>Split the history into pieces, pick the best version on some of them, and see how it ranks on the rest. If the winner often lands in the bottom half, the backtest is probably overfit.</p>
       <p class="howto__links">
         <a href="/tools/backtest-overfitting">Probability of backtest overfitting calculator</a><span aria-hidden="true"> / </span><a href="/developers#api-overfitting">Overfitting validation route</a>
       </p>
     </li>
 <li class="howto__step" id="step-4">
-      <h2 id="reader-section-4" data-reader-anchor="true">Price execution assumptions</h2>
-      <p>Reprice the same strategy under different fill, delay and impact assumptions, because a backtest that fills at the mid is pricing a trade nobody could place.</p>
+      <h2 id="reader-section-4" data-reader-anchor="true">Price in realistic trading costs</h2>
+      <p>Run the same strategy again with slower fills, wider spreads and market impact. A backtest that always trades at the midpoint is pricing trades nobody could place.</p>
       <p class="howto__links">
         <a href="/tools/execution">Execution assumptions cost calculator</a><span aria-hidden="true"> / </span><span class="howto__no-api">No validation API route publishes this step yet</span>
       </p>
     </li>
 <li class="howto__step" id="step-5">
-      <h2 id="reader-section-5" data-reader-anchor="true">Check breadth</h2>
-      <p>Ask what this strategy actually adds to a book of others once its correlation to them is accounted for, not just what it earns alone.</p>
+      <h2 id="reader-section-5" data-reader-anchor="true">See what it adds to a portfolio</h2>
+      <p>A strategy that moves with the ones you already run adds less than its own Sharpe suggests. Check what it adds once its correlation with them is counted.</p>
       <p class="howto__links">
         <a href="/tools/breadth">Portfolio breadth calculator</a><span aria-hidden="true"> / </span><a href="/developers#api-breadth">Breadth validation route</a>
       </p>
     </li>
 <li class="howto__step" id="step-6">
       <h2 id="reader-section-6" data-reader-anchor="true">Keep a receipt</h2>
-      <p>Every validation call above returns a content-hashed receipt naming the exact source it ran; keep it, and verify a signed record stays unchanged rather than trusting a screenshot of it.</p>
+      <p>Each check through the API returns a signed receipt that names the exact code it ran. Keep it, so anyone can recheck the result later instead of trusting a screenshot.</p>
       <p class="howto__links">
         <a href="/tools/evidence-chain">Signed evidence chain verifier</a><span aria-hidden="true"> / </span><a href="/developers#validation">How the validation API issues a receipt</a>
       </p>
     </li>
       </ol>
+      <p>Short on time? From an AI assistant, <code>audit_backtest</code> runs the first three checks
+      in one call, and <code>backtest_strategy</code> tests a rule over a whole grid of settings and
+      counts every version for you. <a href="/mcp-servers/validation">See the validation MCP server.</a></p>
       <section class="verify__level" id="boundary">
         <h2 id="reader-section-7" data-reader-anchor="true">What this page does not establish</h2>
-        <p>None of these steps establish that a strategy is profitable, admissible for capital, or a
-        forecast of anything. Each is a diagnostic about a search and a return series exactly as
-        submitted; a strategy can clear every step here and still fail on data quality, execution
-        realism the calculators do not model, or plain bad luck. What counts as a passing result is
-        a question for the reader's own research programme; this page states what to check and in
-        what order, not what a good number looks like.</p>
+        <p>None of these checks proves a strategy will make money, and none is a forecast. Each one
+        describes your search and your returns exactly as you sent them. A strategy can pass every
+        step and still fail on bad data, costs the calculators do not model, or plain bad luck. This
+        page tells you what to check and in what order, not what a good number looks like.</p>
       </section>
       <section class="verify__level" id="elsewhere">
         <h2 id="reader-section-8" data-reader-anchor="true">Where to go next</h2>
@@ -165,6 +166,25 @@
   </article>
 </main>
 <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -204,6 +224,7 @@
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>

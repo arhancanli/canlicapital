@@ -54,6 +54,15 @@ jobs:
           npm run test:corpus
       - name: Verify change-notification batching
         run: npm run test:indexnow
+      - name: Prove the deploy can date every sitemap page without git
+        # Vercel builds from an upload with no git history, so every page's sitemap date has to come
+        # from the committed config/source-dates.json. The build above rewrote that file from git, so
+        # restore the committed copy and rerun the sitemap step with git unavailable, as Vercel does.
+        # A page or generator changed without rebinding its date fails here, not in the hourly deploy.
+        run: |
+          git checkout -- config/source-dates.json
+          GIT_DIR=/nonexistent VERCEL=1 node scripts/build-papers.mjs > /dev/null
+          git checkout -- config/source-dates.json public/sitemap.xml
       - name: Check patch hygiene
         run: git diff --check
 
