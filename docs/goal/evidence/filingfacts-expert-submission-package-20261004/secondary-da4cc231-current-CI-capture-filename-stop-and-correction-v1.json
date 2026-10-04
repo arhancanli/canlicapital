@@ -1,0 +1,10 @@
+{
+  "schema": "secondary-da4cc231-current-CI-capture-filename-stop-and-correction-v1",
+  "utc": "2026-10-04T06:34:15.393941+00:00",
+  "original_error": "Traceback (most recent call last):\n  File \"<stdin>\", line 20, in <module>\n  File \"<stdin>\", line 5, in read\nFileNotFoundError: [Errno 2] No such file or directory: remote-da4cc231-terminal-checks-v1/checks-capture-command-original.json",
+  "actual_original_command_file": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/remote-da4cc231-terminal-checks-v1/checks-command-original.json",
+  "correction": "Select the captured command by its literal stdout path binding rather than assuming every writer used the same command-file suffix. Full stdout/size/SHA/argv/exit/empty-stderr checks unchanged.",
+  "original_raw_API_source_unchanged": true,
+  "API_refetch_or_project_execution": false,
+  "sealed_receipt_or_catalog_written_before_stop": false
+}
