@@ -99,6 +99,12 @@ feasibility; code-generation resources and prompts) published from CI: the tag `
 `mcp-publish.yml` (run 37140838081) to npm with provenance and to the official MCP Registry, where
 0.11.0 is listed as latest.
 
+Release checkpoint, October 4, 2026: `canli-validation-mcp@0.12.0` (audit_backtest opens with a
+headline test whose false-positive rate Null Zoo measured before it was chosen, adds fix_next,
+counted trials and out-of-sample decay; a smaller default tool list) published from CI: the tag
+`mcp-v0.12.0` ran `mcp-publish.yml` (run 37187236871) to npm with provenance and to the official MCP
+Registry, where 0.12.0 is listed as latest.
+
 `canli-research-mcp` (the `mcp-research/` directory) publishes from `mcp-research-publish.yml` on a tag
 `research-mcp-v<version>`, the same way. Its 0.1.0 was published to npm by hand on September 26, 2026,
 to create the package; npm trusted publishing for later versions needs the package's Trusted Publisher
@@ -110,11 +116,6 @@ trusted publisher only to a package that exists, so its 0.1.0 is published to np
 (`npm publish --access public` in `mcp-fundamentals/`); then its Trusted Publisher setting on
 npmjs.com (workflow `mcp-fundamentals-publish.yml`, environment `mcp-fundamentals-release`) lets the
 tag publish every later version, and the `fundamentals-mcp-v0.1.0` tag publishes the registry entry.
-
-Next release, not yet published: `canli-validation-mcp@0.12.0` (audit_backtest opens with a
-headline test whose false-positive rate Null Zoo measured before it was chosen, adds fix_next,
-counted trials and out-of-sample decay; a smaller default tool list). It publishes from
-`mcp-publish.yml` on the tag `mcp-v0.12.0`.
 
 ## Official registry (registry.modelcontextprotocol.io)
 
