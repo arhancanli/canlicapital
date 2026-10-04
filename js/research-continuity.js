@@ -29,7 +29,6 @@ export function createResearchContinuity() {
       { selector: '.cinema-process', label: 'The process', ry: -8, rx: 0, rz: -12, spread: 40, scale: .85 },
       { selector: '.sleeves', label: 'The strategies', ry: 12, rx: 0, rz: 10, spread: 45, scale: .82 },
       { selector: '.record-chapter', label: 'The record', ry: -12, rx: 0, rz: -5, spread: 28, scale: .95 },
-      { selector: '.developer-chapter', label: 'For developers', ry: 18, rx: 0, rz: 15, spread: 55, scale: .8 },
       { selector: '#record-details', label: 'Look inside', ry: -18, rx: 0, rz: -10, spread: 38, scale: .9 },
       { selector: '.research', label: 'Research', ry: -32, rx: 16, rz: -16, spread: 20, scale: .9, color: '#000000' },
       { selector: '#evidence-details', label: 'Evidence', ry: 30, rx: -12, rz: 12, spread: 72, scale: .82, color: '#071024' },
@@ -56,6 +55,8 @@ export function createResearchContinuity() {
     caption.textContent = stages[0].label;
     stages.slice(1).forEach(stage => {
       const section = root.querySelector(stage.selector);
+      // A section that moved out of the journey (or was removed) has no chapter here.
+      if (!section) return;
       const tl = gsap.timeline({ defaults: { duration: 1, ease: 'none' }, scrollTrigger: {
         trigger: section, start: 'top 95%', end: 'top 30%', scrub: .65, invalidateOnRefresh: true,
         onEnter: () => { caption.textContent = stage.label; root.dataset.continuityChapter = stage.label; },

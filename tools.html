@@ -94,48 +94,45 @@
   <section class="lab-hero" aria-labelledby="tools-title">
     <p class="lab-kicker"><span>Open research instruments</span><span>7 calculators</span></p>
     <h1 id="tools-title">Every calculator, in one place.</h1>
-    <p class="lab-lead">Canli Capital, the research house that publishes ALPHAC, built each of these.
-      Every one runs entirely in your browser, is free, requires no account or key, and is built
-      from the same source-bound arithmetic this project's own published record is held to. Most
-      started life under a house name; each now names itself for what it computes, and keeps the
-      house name as a subtitle where one exists.</p>
+    <p class="lab-lead">Free, no account, and everything runs in your browser. Each one uses the same
+      code our own published record is held to.</p>
   </section>
 
   <section class="tools-grid" id="tools-list" aria-label="All calculators">
     <article class="tools-card">
         <h2><a href="/tools/deflated-sharpe">Deflated Sharpe ratio calculator (PSR and DSR)</a></h2>
         <p class="tools-card__house">Deflated Sharpe calculator</p>
-        <p>Calculates the Probabilistic and Deflated Sharpe Ratio, exposing trial count, dispersion, sample length and non-normal return assumptions.</p>
+        <p>Is your Sharpe ratio still good once you count how many versions you tried? Gives the probabilistic and deflated Sharpe ratios.</p>
       </article>
     <article class="tools-card">
         <h2><a href="/tools/backtest-overfitting">Probability of backtest overfitting calculator</a></h2>
         
-        <p>Runs Combinatorially Symmetric Cross-Validation on your own matrix of variant returns, the same core the validation API imports.</p>
+        <p>Paste every version&#39;s returns to see how likely the best one is overfit, with the same method the API uses (CSCV).</p>
       </article>
     <article class="tools-card">
         <h2><a href="/tools/selection-risk">Backtest selection risk simulator</a></h2>
         <p class="tools-card__house">Selection Risk Lab</p>
-        <p>Searches a series with provably no edge and deflates your best result once the search is counted against it.</p>
+        <p>Search a series with no edge at all, watch a good-looking result appear by chance, then see it deflated.</p>
       </article>
     <article class="tools-card">
         <h2><a href="/tools/execution">Execution assumptions cost calculator</a></h2>
         <p class="tools-card__house">Execution Reality Lab</p>
-        <p>Prices one strategy under six fill, delay and impact assumptions, and measures which are costs and which are re-timings.</p>
+        <p>Price one strategy under six fill, delay and market-impact assumptions, and see which ones cost you on every trade.</p>
       </article>
     <article class="tools-card">
         <h2><a href="/tools/breadth">Portfolio breadth calculator</a></h2>
         <p class="tools-card__house">Breadth Lab</p>
-        <p>Computes how much a book (the set of sleeves run together) of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.</p>
+        <p>How much is a portfolio of several strategies worth, and how far can adding more help once they move together?</p>
       </article>
     <article class="tools-card">
         <h2><a href="/tools/trial-accounting">Trial accounting explorer</a></h2>
         <p class="tools-card__house">Trial accounting</p>
-        <p>Reconstructs the public search denominator: every hypothesis identity, legacy and prospective, that a deflated Sharpe here is corrected against.</p>
+        <p>Every idea this project has tested: the count our own deflated Sharpe is corrected for.</p>
       </article>
     <article class="tools-card">
         <h2><a href="/tools/evidence-chain">Signed evidence chain verifier</a></h2>
         <p class="tools-card__house">Evidence chain</p>
-        <p>Recomputes the signed, append-only hash chain behind this record in your browser, so you do not have to trust the website that shows it to you.</p>
+        <p>Recheck the signed record behind this site in your browser, so you do not have to trust the site.</p>
       </article>
   </section>
 
@@ -167,6 +164,25 @@
   </section>
 </main>
 <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -206,6 +222,7 @@
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
