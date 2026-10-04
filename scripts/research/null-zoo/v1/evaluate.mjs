@@ -1,8 +1,9 @@
 // Reads a Null Zoo v1 run and the pre-registration, and derives everything published from them:
 // each validator's size and power per family, size-adjusted power, the ceiling, and the headline
 // test each audit path uses, chosen by the pre-registered rule. Nothing is typed by hand.
-//   node scripts/research/null-zoo/v1/evaluate.mjs config/research/null-zoo-v1.json
-// writes config/research/null-zoo-v1-evaluation.json and js/null-zoo-v1-sizes.js.
+//   node scripts/research/null-zoo/v1/evaluate.mjs [run] [prereg] [evaluation out] [sizes module out]
+// defaults: config/research/null-zoo-v1.json, config/research/null-zoo-v1-prereg.json,
+// config/research/null-zoo-v1-evaluation.json and js/null-zoo-v1-sizes.js.
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -97,11 +98,13 @@ export function sizesModule(evaluation) {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const run = JSON.parse(readFileSync(process.argv[2] ?? resolve(ROOT, "config/research/null-zoo-v1.json"), "utf8"));
-  const prereg = JSON.parse(readFileSync(resolve(ROOT, "config/research/null-zoo-v1-prereg.json"), "utf8"));
+  const [runPath, preregPath, evalOut, sizesOut] = process.argv.slice(2);
+  const run = JSON.parse(readFileSync(resolve(ROOT, runPath ?? "config/research/null-zoo-v1.json"), "utf8"));
+  const prereg = JSON.parse(readFileSync(resolve(ROOT, preregPath ?? "config/research/null-zoo-v1-prereg.json"), "utf8"));
   const evaluation = evaluate(run, prereg);
-  writeFileSync(resolve(ROOT, "config/research/null-zoo-v1-evaluation.json"), `${JSON.stringify(evaluation, null, 1)}\n`);
-  writeFileSync(resolve(ROOT, "js/null-zoo-v1-sizes.js"), sizesModule(evaluation));
+  evaluation.prereg = preregPath ?? "config/research/null-zoo-v1-prereg.json";
+  writeFileSync(resolve(ROOT, evalOut ?? "config/research/null-zoo-v1-evaluation.json"), `${JSON.stringify(evaluation, null, 1)}\n`);
+  writeFileSync(resolve(ROOT, sizesOut ?? "js/null-zoo-v1-sizes.js"), sizesModule(evaluation));
   const fmt = (x) => (x === null ? "  -  " : x.toFixed(3));
   const fams = run.families.names;
   console.log(`ceiling (oracle) power on iid_normal at skill 2: ${fmt(evaluation.ceiling.power_iid_skill_2)}`);

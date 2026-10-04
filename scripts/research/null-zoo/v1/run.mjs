@@ -5,7 +5,8 @@
 //
 // The work is split into chunks of searches with fixed seeds, spread over worker threads, and merged
 // in chunk order, so the output is byte-identical whatever the number of workers.
-//   node scripts/research/null-zoo/v1/run.mjs [reps per cell] [workers] > config/research/null-zoo-v1.json
+//   node scripts/research/null-zoo/v1/run.mjs [reps per cell] [workers] [base seed] > config/research/null-zoo-v1.json
+// The base seed defaults to v1's (20261004); the confirmation run v1b uses 20261005.
 import { Worker, isMainThread, parentPort } from "node:worker_threads";
 import { availableParallelism } from "node:os";
 import { fileURLToPath } from "node:url";
@@ -59,7 +60,7 @@ export function runChunk(cell, chunk, count, design = DESIGN_V1, settings = V1_S
 export function jobList(reps, design = DESIGN_V1) {
   const jobs = [];
   for (const cell of cellList(design)) {
-    for (let chunk = 0; chunk * design.chunk < reps; chunk++) jobs.push({ id: jobs.length, cell, chunk, count: Math.min(design.chunk, reps - chunk * design.chunk) });
+    for (let chunk = 0; chunk * design.chunk < reps; chunk++) jobs.push({ id: jobs.length, cell, chunk, count: Math.min(design.chunk, reps - chunk * design.chunk), baseSeed: design.baseSeed });
   }
   return jobs;
 }
@@ -101,7 +102,8 @@ export function assemble(reps, jobs, results, design = DESIGN_V1, settings = V1_
 async function main() {
   const reps = Number(process.argv[2] ?? 10000);
   const workers = Number(process.argv[3] ?? Math.max(1, availableParallelism() - 2));
-  const jobs = jobList(reps);
+  const design = { ...DESIGN_V1, baseSeed: Number(process.argv[4] ?? DESIGN_V1.baseSeed) };
+  const jobs = jobList(reps, design);
   const results = new Array(jobs.length);
   const started = Date.now();
   let done = 0;
@@ -128,12 +130,12 @@ async function main() {
     };
     for (let i = 0; i < Math.min(workers, jobs.length); i++) spawn();
   });
-  process.stdout.write(`${JSON.stringify(assemble(reps, jobs, results))}\n`);
+  process.stdout.write(`${JSON.stringify(assemble(reps, jobs, results, design))}\n`);
   process.stderr.write(`null-zoo v1: DONE ${new Date().toISOString()} in ${((Date.now() - started) / 60000).toFixed(1)} min\n`);
 }
 
 if (!isMainThread) {
-  parentPort.on("message", (job) => parentPort.postMessage({ id: job.id, res: runChunk(job.cell, job.chunk, job.count) }));
+  parentPort.on("message", (job) => parentPort.postMessage({ id: job.id, res: runChunk(job.cell, job.chunk, job.count, { ...DESIGN_V1, baseSeed: job.baseSeed }) }));
 } else if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch((e) => { process.stderr.write(`null-zoo v1: FAILED ${e.stack ?? e}\n`); process.exit(1); });
 }
