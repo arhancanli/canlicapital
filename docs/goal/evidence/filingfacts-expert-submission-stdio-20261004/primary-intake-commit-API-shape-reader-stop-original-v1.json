@@ -1,0 +1,12 @@
+{
+  "schema": "canli.native.intake-Git-API-shape-reader-stop.v1",
+  "observed_at_utc": "2026-10-04T00:28:13.679045+00:00",
+  "original_tool_chunk": "5ea542",
+  "exit_code": 1,
+  "literal_received_tool_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 45, in <module>\nKeyError: 'commit'\n",
+  "cause": "Reader expected repos/commits nested commit.tree; selected saved capture is repos/git/commits with flat tree.",
+  "source_product_or_fixture_finding": false,
+  "project_runtime_refetch_or_rerun": false,
+  "source_intake_registration_written_before_stop": false,
+  "correction": "Inspect the SAME saved command and JSON object; validate flat Git commit tree/parents against exact source basis. No API request."
+}

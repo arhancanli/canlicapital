@@ -1,0 +1,28 @@
+{
+  "schema": "primary-native-retained-reader-metadata-only-correction-v2",
+  "utc": "2026-10-04T03:06:37.347465+00:00",
+  "original_stop": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/first-native-reader-raw-checkout-assertion-stop-original-v1.json",
+    "bytes": 1026,
+    "sha256": "9502bb04ff4234db0b9f0e8f99ccef38d6a8d6e372132172f09d3d837feceee3"
+  },
+  "original_reader": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/independent-native-retained-reader-v1.py",
+    "bytes": 23358,
+    "sha256": "f71e056f79ebfca57c57e220b8eed11b6ed97cc586a35f61f5dbe05cb84d5d96"
+  },
+  "new_reader": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/independent-native-retained-reader-v2.py",
+    "bytes": 24420,
+    "sha256": "28c2b2edc2690629db25d434cbfef8683a8dc3cd86d4a9e127b0d4281a5327b1"
+  },
+  "exact_literal_patch": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-1504b450-retained-ci-v1/native-reader-v1-to-v2-exact.patch",
+    "bytes": 3640,
+    "sha256": "f96516474430302699316917f91bb09ff41bf2894804fd34afb3f5dfed3ea3e1"
+  },
+  "qualification": "Logs contain HEAD is now at <abbreviated tested SHA> Merge <full source> into <full actual base>, not a standalone Merge line. The corrected reader checks the exact whole message and tested prefix plus the separate full git-log SHA. No original/API/project/CI/runtime changes. First original native metadata-reader stop preserved; independent TAP/source/security checks otherwise unchanged.",
+  "reviewer_project_execution": false,
+  "API_refetch": false,
+  "project_rerun": false
+}
