@@ -123,7 +123,7 @@ test("code resources: exact schemas, the strategy spec, completions, and the liv
 
 test("every example's arguments are valid input for its tool", () => {
   const catalog = registerTools(new McpServer({ name: "t", version: "0" }), createSession());
-  const placeholders = new Set(["get_receipt", "verify_receipt"]);
+  const placeholders = new Set(["verify_receipt"]);
   for (const [tool, entry] of Object.entries(catalog)) {
     assert.ok(EXAMPLE_ARGS[tool], `${tool} has example arguments`);
     if (placeholders.has(tool)) continue;

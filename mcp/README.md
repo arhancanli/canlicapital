@@ -83,7 +83,7 @@ receipt. The current npm/hosted release retains the existing record-only API.
 
 | Tool | Calls | Key required |
 |---|---|---|
-| `get_key` | `POST /api/v1/keys` | no |
+| `get_key` | `POST /api/v1/keys` (listed only when no key is configured) | no |
 | `validate_deflated_sharpe` | `POST /api/v1/validate/deflated-sharpe` | yes |
 | `validate_overfitting` | `POST /api/v1/validate/overfitting` | yes |
 | `validate_paper_evidence` | `POST /api/v1/validate/paper-evidence` | yes |
@@ -93,9 +93,8 @@ receipt. The current npm/hosted release retains the existing record-only API.
 | `validate_haircut_sharpe` | `POST /api/v1/validate/haircut-sharpe` | yes |
 | `validate_luck_trials` | `POST /api/v1/validate/luck-trials` | yes |
 | `validate_reality_check` | `POST /api/v1/validate/reality-check` (a `matrix_file` is read on your machine and sent as numbers) | yes |
-| `audit_backtest` | the deflated Sharpe, track record and, with `variants`, overfitting routes, one validation each | yes |
-| `verify_receipt` | `GET /api/v1/receipts/{id}` when given an id; the checks run locally | no |
-| `get_receipt` | `GET /api/v1/receipts/{id}` | no |
+| `audit_backtest` | the deflated Sharpe and track record routes, then the headline: with `variants`, the overfitting and data-snooping routes; without, luck trials. One validation each | yes |
+| `verify_receipt` | `GET /api/v1/receipts/{id}` when given an id (`include_receipt` returns the stored receipt); the checks run locally | no |
 | `service_status` | `GET /api/v1/validate/status` | no |
 | `company_financial_history` | `GET /company-data/{cik}.json` (a ticker resolves through `GET /api/v1/company-tickers.json`) | no |
 
@@ -182,12 +181,27 @@ name the day a drawdown began.
 
 ## Auditing a backtest in one call
 
-`audit_backtest` takes one strategy's return series, the number of variants tried and their Sharpe
-dispersion, and optionally every variant's returns. It runs `validate_deflated_sharpe` on the
-series, then `validate_track_record` on the Sharpe, skew and kurtosis that check derived, then,
-with `variants`, `validate_overfitting`. Each check is exactly what its own tool returns, with its
-own receipt; the boundary sentences they share are stated once. A check that refuses (a Sharpe
-that cannot beat the benchmark has no minimum track record) is reported as that check's error.
+`audit_backtest` takes one strategy's return series and, ideally, every variant's returns
+(`variants` or `variants_file`, the dropped ones too); without them, the number of variants tried
+and their Sharpe spread. The result opens with:
+
+- `headline`: one test chosen because its false-positive rate was measured before anyone looked at
+  your numbers. Null Zoo v1 (`scripts/research/null-zoo/v1/` in the repository) drew hundreds of
+  thousands of simulated searches from nine return shapes with known ground truth; the bar and the
+  rule that picks the test were committed before the run. With variants the headline comes from
+  the data-snooping tests (`validate_reality_check`, with its receipt); without, from luck trials
+  with Lo's autocorrelation correction. Its sentence quotes the measured false-positive rate for
+  returns shaped like yours, and the worst across the nine shapes.
+- `fix_next`: at most five next steps, each `{id, why, next}` with a stable id.
+- `computed`: Lo's adjusted Sharpe, a stationary-bootstrap 95% interval for the Sharpe, the
+  haircut Sharpe, the minimum backtest length and, with variants, how many independent trials
+  they count as (Li and Ji) and the selected variant's out-of-sample decay.
+
+Then the checks: `validate_deflated_sharpe` on the series (an estimate), `validate_track_record`
+on the Sharpe, skew and kurtosis that check derived and, with variants, `validate_overfitting`.
+Each is exactly what its own tool returns, with its own receipt; the deflated Sharpe runs with the
+larger of the declared and counted trials and Sharpe spread, so a search cannot be made to look
+smaller than it was. A check that refuses or cannot be reached is reported as that check's error.
 The audit adds no grade of its own. Through the API it uses one validation per check.
 
 When the server runs on your machine, `returns_file` and `variants_file` take the path of the
@@ -327,7 +341,7 @@ equals the hosted one; it names no receipt id because none was made.
 claude mcp add canli-local --env CANLI_LOCAL=1 -- npx -y canli-validation-mcp
 ```
 
-`get_receipt`, `service_status` and `company_financial_history` still read from canlicapital.com;
+`verify_receipt` by id, `service_status` and `company_financial_history` still read from canlicapital.com;
 they send no series. In the Claude Desktop extension this is the "Private local mode" setting.
 
 ## Generic stdio client
@@ -392,20 +406,22 @@ A validation result is the answer (`data`), the sentences above except the quota
 receipt's id and URL; an error keeps its error. The rest of the API envelope (schema, endpoint,
 timestamps, claim and capital class, the human page, the source-file hashes and the quota line)
 describes the service rather than the answer, and an agent pays for every token of it on every
-call. It stays in the stored receipt, which `get_receipt` returns in full, and in `service_status`.
+call. It stays in the stored receipt, which `verify_receipt` returns in full with `include_receipt`, and in `service_status`.
 On a breadth result this is about half the text. Set `CANLI_FULL_ENVELOPE=1` to receive every field.
 
 ## Toolsets (tokens)
 
 A client sends the model the whole tool list on every turn, and it is most of each turn's prompt:
-a validation result is a few hundred tokens, the list of all nineteen tools several thousand. A
-client that needs one kind of tool can list only that kind, with `CANLI_TOOLSETS` (stdio) or
-`?toolsets=` (hosted endpoint). The default is every tool.
+a validation result is a few hundred tokens, the list of every tool several thousand. A client
+that needs one kind of tool can list only that kind, with `CANLI_TOOLSETS` (stdio) or
+`?toolsets=` (hosted endpoint). The default is every toolset except `company`, whose one tool
+canli-fundamentals-mcp does better and point in time; `all` adds it. `get_key` is listed only when
+no key is configured.
 
 | toolset | tools |
 |---|---|
 | `validate` | `get_key`, the eight validators, `audit_backtest` |
-| `receipts` | `get_receipt`, `verify_receipt` |
+| `receipts` | `verify_receipt` |
 | `company` | `company_financial_history` |
 | `status` | `service_status` |
 | `lab` | `backtest_strategy`, `summarize_series`, `stress_test`, `check_feasibility` |
@@ -415,11 +431,13 @@ tokenizers give different absolute counts), in the shape an OpenAI-style client 
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| `all` | 19 | 5,946 | 100% |
-| `validate` | 11 | 3,685 | 62% |
-| `receipts` | 2 | 312 | 5% |
+| (default) | 17 | 5,581 | 95% |
+| (default, with CANLI_KEY) | 16 | 5,445 | 93% |
+| `all` | 18 | 5,852 | 100% |
+| `validate` | 11 | 3,708 | 63% |
+| `receipts` | 1 | 195 | 3% |
 | `company` | 1 | 273 | 5% |
-| `status` | 1 | 89 | 1% |
+| `status` | 1 | 89 | 2% |
 | `lab` | 4 | 1,595 | 27% |
 
 Providers cache a tool list that is identical from turn to turn and bill the cached part at a

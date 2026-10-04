@@ -15,6 +15,12 @@ import { validateLocalJournalEvidence } from "./journal-evidence.mjs";
 import { readMatrixFile, readSeriesFile } from "./series-file.mjs";
 import { LAB_TOOLS, labToolSpecs, registerCodeResources, registerLabPrompts } from "./lab.mjs";
 import { verifyReceipt } from "./local/js/receipt-statement.js";
+import { annualizeDecay, blockBootstrapT, fixNext, neweyWestT, nullZooFamily, returnShape, searchFromVariants, sharpeInterval } from "./local/js/audit-core.js";
+import { NULL_ZOO_V1 } from "./local/js/null-zoo-v1-sizes.js";
+import { haircutSharpe } from "./local/js/haircut-core.js";
+import { bestOfTrialsProbability } from "./local/js/luck-core.js";
+import { minimumBacktestLength } from "./local/js/dsr-core.js";
+import { studentTUpper } from "./local/js/student-t.js";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, paperEvidenceToolShape, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
 
@@ -66,21 +72,24 @@ export function configuredLocal(value) {
 
 // Toolsets: which tools the server lists. The tool list is re-sent to the model on every turn and
 // is most of each turn's prompt (README, "Toolsets"; bench/tool_list_tokens.py measures it), so a
-// client that needs one kind of tool can load only that kind. Default: all.
+// client that needs one kind of tool can load only that kind. Default: every toolset except
+// company, whose one tool canli-fundamentals-mcp does better and point in time; "all" adds it.
 export const TOOLSETS = Object.freeze({
   validate: Object.freeze(["get_key", "validate_deflated_sharpe", "validate_overfitting", "validate_paper_evidence", "validate_breadth", "validate_track_record", "validate_backtest_length", "validate_haircut_sharpe", "validate_luck_trials", "validate_reality_check", "audit_backtest"]),
-  receipts: Object.freeze(["get_receipt", "verify_receipt"]),
+  receipts: Object.freeze(["verify_receipt"]),
   company: Object.freeze(["company_financial_history"]),
   status: Object.freeze(["service_status"]),
   lab: Object.freeze([...LAB_TOOLS]),
 });
 
 // CANLI_TOOLSETS=validate,company (or ?toolsets= on the hosted endpoint): a comma-separated list of
-// TOOLSETS names, or "all". Empty or unsubstituted means all; an unknown name is refused, so a typo
-// never silently leaves a client without the tools it asked for.
+// TOOLSETS names, or "all". Empty or unsubstituted means the default; an unknown name is refused, so
+// a typo never silently leaves a client without the tools it asked for.
+export const DEFAULT_TOOLSETS = Object.freeze(Object.keys(TOOLSETS).filter((name) => name !== "company"));
 export function configuredToolsets(value) {
   const v = configuredKey(value);
-  if (!v || v.trim().toLowerCase() === "all") return Object.keys(TOOLSETS);
+  if (!v) return [...DEFAULT_TOOLSETS];
+  if (v.trim().toLowerCase() === "all") return Object.keys(TOOLSETS);
   const names = [...new Set(v.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean))];
   const unknown = names.filter((n) => !Object.hasOwn(TOOLSETS, n));
   if (unknown.length || !names.length) throw new Error(`Unknown toolset ${unknown.join(", ") || "(none)"}; choose from ${Object.keys(TOOLSETS).join(", ")} or all`);
@@ -169,7 +178,7 @@ const asText = (envelope, failed = false) => ({
 // A validation result as the model reads it: the answer, the sentences saying what it does not
 // establish, and the receipt that holds the rest. Metadata (schema, endpoint, timestamps, claim and
 // capital class, human page), the source hashes and the quota sentence are about the service, not
-// the answer; they stay in the stored receipt (get_receipt) and service_status, and
+// the answer; they stay in the stored receipt (verify_receipt with include_receipt) and service_status, and
 // CANLI_FULL_ENVELOPE=1 returns every field. On a result this cuts the text roughly in half.
 const QUOTA_SENTENCE = /^Quotas:/;
 
@@ -329,11 +338,58 @@ async function runValidator(session, tool, path, body) {
 
 const sameJson = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
-// audit_backtest: deflated Sharpe from the series, then the minimum track record length from the
-// Sharpe, skew and kurtosis that check derived, then (with variants) CSCV overfitting. Each check
-// keeps its envelope and receipt; the limits every envelope repeats are stated once at the top.
-// A refused later check (for example a Sharpe that does not exceed the benchmark) is reported as
-// that check's error, not as a failed audit; the audit fails only when the first check does.
+// audit_backtest: one calibrated test first, then the checks behind it.
+//   headline  with every variant's returns, Hansen's SPA (validate_reality_check, with its receipt);
+//             with one series, the single-series test Null Zoo v1 chose. Either way the result quotes
+//             that test's measured false-positive rate on returns shaped like these
+//             (local/js/null-zoo-v1-sizes.js) and the worst across the nine families.
+//   checks    the deflated Sharpe (an estimate), the minimum track record and, with variants, CSCV
+//             overfitting with out-of-sample decay: each the validator's own result and receipt.
+//   computed  in this process from the series sent: its shape, Lo's adjusted Sharpe, a bootstrap
+//             interval for the Sharpe, the haircut Sharpe, the minimum backtest length, and what the
+//             variants say about the search. Trials and their spread are the larger of declared and
+//             counted, so a search cannot be made to look smaller than it was.
+// A refused later check is reported as that check's error, not as a failed audit; the audit fails
+// only when the first check does.
+export const AUDIT_SPA_REPS = 2000;
+
+function singleSeriesHeadline(test, returns, trials) {
+  const xs = Float64Array.from(returns, Number);
+  if (test === "hac_t_sidak") return { p: bestOfTrialsProbability(studentTUpper(neweyWestT(xs), xs.length - 1), trials) };
+  if (test === "bootstrap_t_sidak") {
+    // Enough resamples that the smallest attainable p-value sits well inside the Sidak level for
+    // this many trials, up to a cap; beyond it the floor is stated.
+    const perTest = -Math.expm1(Math.log1p(-0.05) / trials);
+    const reps = Math.min(200000, Math.max(4999, Math.ceil(5 / perTest)));
+    const p = bestOfTrialsProbability(blockBootstrapT(xs, { reps, seed: 42 }), trials);
+    const floor = bestOfTrialsProbability(1 / (reps + 1), trials);
+    return { p, reps, ...(floor > 0.01 ? { resolution_floor: floor } : {}) };
+  }
+  if (test === "luck_trials_lo") return null; // run through validate_luck_trials below, for its receipt
+  throw new Error(`audit_backtest: no single-series headline test named ${test}`);
+}
+
+function headlineResult({ path, test, p, shape, search, receipt, extra, full }) {
+  const sizes = NULL_ZOO_V1[path];
+  const family = nullZooFamily(shape, search);
+  const size = sizes.size_by_family[family];
+  const worstSize = sizes.size_by_family[sizes.worst];
+  const pct = (x) => `${(x * 100).toFixed(1)}%`;
+  const rejects = p <= NULL_ZOO_V1.level;
+  return {
+    test,
+    p,
+    rejects_luck: rejects,
+    measured_size: { family, here: size, worst: worstSize, ...(full ? { worst_family: sizes.worst, source: NULL_ZOO_V1.source } : {}) },
+    sentence: `${rejects ? "Rejects" : "Cannot reject"} luck at ${pct(NULL_ZOO_V1.level)} (p ${p.toFixed(3)}); measured false-positive rate ${pct(size)} on ${family}-like returns, ${pct(worstSize)} worst.`,
+    ...(receipt ? { receipt } : {}),
+    ...(full ? { level: NULL_ZOO_V1.level, ...(extra ?? {}) } : {}),
+  };
+}
+
+const round = (x, digits = 4) => (Number.isFinite(x) ? Number(x.toPrecision(digits)) : x);
+const roundAll = (o, digits = 4) => (typeof o === "number" ? round(o, digits) : Array.isArray(o) ? o.map((v) => roundAll(v, digits)) : o && typeof o === "object" ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, roundAll(v, digits)])) : o);
+
 export async function toolAuditBacktest(session, args) {
   const input = parseOrThrow(auditBacktestInput, args, "audit_backtest");
   if ((input.returns_file || input.variants_file) && session.hosted) {
@@ -343,9 +399,16 @@ export async function toolAuditBacktest(session, args) {
   const variantsRead = input.variants_file ? readMatrixFile(input.variants_file) : null;
   const returns = input.returns ?? returnsRead.values;
   const variants = input.variants ?? variantsRead?.matrix;
-  const { periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized } = input;
+  const { periods_per_year } = input;
+
+  const shape = returnShape(returns, periods_per_year);
+  const search = variants ? searchFromVariants(variants, periods_per_year) : null;
+  const declaredTrials = input.effective_independent_trials;
+  const trials = Math.max(declaredTrials ?? 0, search?.effective_trials.used ?? 0);
+  const crossSd = Math.max(input.cross_trial_sharpe_sd_annualized ?? 0, search?.cross_trial_sharpe_sd_annualized ?? 0);
+
   const dsr = await runValidator(session, "validate_deflated_sharpe", "/api/v1/validate/deflated-sharpe", {
-    returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized,
+    returns, periods_per_year, effective_independent_trials: trials, cross_trial_sharpe_sd_annualized: crossSd,
   });
   if (dsr.failed) return validationText(session, { envelope: dsr.envelope, failed: true });
   const derived = dsr.envelope?.data?.derived_inputs ?? {};
@@ -365,20 +428,102 @@ export async function toolAuditBacktest(session, args) {
         ...(input.n_splits !== undefined ? { n_splits: input.n_splits } : {}),
       })
     : null;
-  const shape = (e) => (session.fullEnvelope ? e : compactEnvelope(e));
-  const envelopes = { deflated_sharpe: shape(dsr.envelope), track_record: shape(track.envelope), ...(overfit ? { overfitting: shape(overfit.envelope) } : {}) };
+
+  // The headline test.
+  let headline;
+  if (variants) {
+    // One stationary bootstrap gives the Reality Check and the three SPA p-values; the headline is
+    // whichever of them Null Zoo selected, and the result names it.
+    const test = NULL_ZOO_V1.with_variants.test;
+    // A later check that cannot run is that check's error, not a failed audit.
+    const rc = await runValidator(session, "validate_reality_check", "/api/v1/validate/reality-check", { matrix: variants, reps: AUDIT_SPA_REPS, seed: 42 })
+      .catch((e) => ({ failed: true, envelope: { error: { code: "unreachable", message: e.message } } }));
+    const data = rc.envelope?.data;
+    const p = { reality_check: data?.reality_check?.p_value, spa_consistent: data?.spa?.p_value, spa_upper: data?.spa?.p_value_upper }[test];
+    headline = rc.failed || typeof p !== "number"
+      ? { test, error: rc.envelope?.error?.message ?? "the data-snooping check returned no p-value" }
+      : headlineResult({ path: "with_variants", test, p, shape, search, receipt: compactEnvelope(rc.envelope).receipt ?? null, extra: { spa_consistent: data.spa?.p_value, reality_check: data.reality_check?.p_value, monte_carlo_se: Math.sqrt((p * (1 - p)) / AUDIT_SPA_REPS) }, full: session.fullEnvelope });
+  } else {
+    const test = NULL_ZOO_V1.single_series.test;
+    const local = singleSeriesHeadline(test, returns, trials);
+    if (local) {
+      headline = headlineResult({ path: "single_series", test, p: local.p, shape, search, extra: { trials, computed: "in this process", ...(local.reps ? { reps: local.reps } : {}) }, full: session.fullEnvelope });
+      if (local.resolution_floor) headline.resolution_floor = local.resolution_floor;
+    } else {
+      const luck = await runValidator(session, "validate_luck_trials", "/api/v1/validate/luck-trials", {
+        observed_sharpe_annualized: shape.sharpe_annualized, observations: shape.observations, periods_per_year, effective_independent_trials: trials, autocorrelation: Math.max(-0.95, Math.min(0.95, shape.lag1_autocorrelation)),
+      }).catch((e) => ({ failed: true, envelope: { error: { code: "unreachable", message: e.message } } }));
+      const p = luck.envelope?.data?.result?.best_of_trials_probability;
+      headline = luck.failed || typeof p !== "number"
+        ? { test, error: luck.envelope?.error?.message ?? "the luck-trials check returned no probability" }
+        : headlineResult({ path: "single_series", test, p, shape, search, receipt: compactEnvelope(luck.envelope).receipt ?? null, extra: { trials }, full: session.fullEnvelope });
+    }
+  }
+
+  const interval = sharpeInterval(returns, { periodsPerYear: periods_per_year });
+  const haircut = shape.sharpe_annualized > 0
+    ? haircutSharpe({ sharpeAnnualized: shape.sharpe_annualized, periodsPerYear: periods_per_year, observations: shape.observations, tests: trials, autocorrelation: Math.max(-0.95, Math.min(0.95, shape.lag1_autocorrelation)) })
+    : null;
+  const years = shape.observations / periods_per_year;
+  const minBtl = shape.sharpe_annualized > 0 ? minimumBacktestLength({ trials, targetSharpe: shape.sharpe_annualized }) : null;
+  const decayPerPeriod = overfit && !overfit.failed ? overfit.envelope?.data?.oos_decay : null;
+  const decay = decayPerPeriod ? annualizeDecay(decayPerPeriod, periods_per_year) : null;
+  const trackResult = track.failed ? null : track.envelope?.data?.result;
+  const fix = fixNext({
+    headline: headline.error ? null : { ...headline, level: NULL_ZOO_V1.level },
+    shape, interval, search, declaredTrials,
+    overfitting: overfit && !overfit.failed ? { pbo: overfit.envelope?.data?.pbo } : null,
+    decay,
+    trackRecord: trackResult?.record && !trackResult.record.long_enough
+      ? { short: true, finding: `The minimum track record for this Sharpe is ${trackResult.minimum_observations} periods; the series has ${trackResult.record.observations}.` }
+      : null,
+  });
+
+  // Compact: each check's plain reading is stated once, in readings, not again inside the check.
+  const dropReading = (e) => (e?.data && typeof e.data === "object" && "plain_reading" in e.data ? { ...e, data: Object.fromEntries(Object.entries(e.data).filter(([k]) => k !== "plain_reading")) } : e);
+  // Local mode: the same "computed locally" note on every check is stated once at the top.
+  const localNote = !session.fullEnvelope && dsr.envelope?.computed ? { computed: dsr.envelope.computed, note: dsr.envelope.note } : null;
+  const dropLocal = (e) => (localNote && e?.computed === localNote.computed && e?.note === localNote.note ? Object.fromEntries(Object.entries(e).filter(([k]) => k !== "computed" && k !== "note")) : e);
+  const shapeEnv = (e) => (session.fullEnvelope ? e : dropLocal(dropReading(compactEnvelope(e))));
+  const envelopes = { deflated_sharpe: shapeEnv(dsr.envelope), track_record: shapeEnv(track.envelope), ...(overfit ? { overfitting: shapeEnv(overfit.envelope) } : {}) };
   const limits = envelopes.deflated_sharpe?.limits;
   const shared = Object.values(envelopes).every((e) => sameJson(e?.limits, limits));
   const checks = Object.fromEntries(
     Object.entries(envelopes).map(([name, e]) => [name, shared ? Object.fromEntries(Object.entries(e).filter(([k]) => k !== "limits")) : e]),
   );
   const readings = Object.fromEntries(
-    Object.entries(envelopes).map(([name, e]) => [name, e?.data?.plain_reading ?? e?.error?.message ?? null]),
+    Object.entries({ deflated_sharpe: dsr.envelope, track_record: track.envelope, ...(overfit ? { overfitting: overfit.envelope } : {}) })
+      .map(([name, e]) => [name, e?.data?.plain_reading ?? e?.error?.message ?? null]),
   );
   return asText({
-    schema: "canli.audit.v1",
-    note: "Each check is its validator's own result and receipt, side by side. The audit does not grade the strategy.",
+    schema: "canli.audit.v2",
+    headline: roundAll(headline),
+    fix_next: fix,
+    note: "One measured test, then each check's own result and receipt. No grade.",
+    ...(localNote ? { local: localNote } : {}),
     ...(shared ? { limits } : {}),
+    computed: {
+      // Exact: these are the inputs the deflated Sharpe check ran with, so they must reproduce it.
+      // Without variants they are the declared ones, which the check's derived inputs already show.
+      ...(search || session.fullEnvelope ? { trials: { used: trials, ...(declaredTrials !== undefined ? { declared: declaredTrials } : {}), ...(search ? { counted: search.effective_trials.used } : {}), cross_trial_sharpe_sd_annualized: crossSd } } : {}),
+      ...roundAll(session.fullEnvelope ? {
+        shape,
+        sharpe_interval: interval,
+        ...(haircut ? { haircut_sharpe_bonferroni: haircut.bonferroni.haircut_sharpe_annualized } : {}),
+        ...(minBtl ? { minimum_backtest_length_years: minBtl.years, years_available: years } : {}),
+        ...(search ? { search } : {}),
+        ...(decay ? { oos_decay: decay } : {}),
+      } : {
+        // Skew and kurtosis are in the deflated Sharpe check's derived inputs; not repeated here.
+        lag1_autocorrelation: shape.lag1_autocorrelation,
+        lo_adjusted_sharpe: shape.lo_adjusted_sharpe_annualized,
+        sharpe_95: interval.intervals["0.95"],
+        ...(haircut ? { haircut_sharpe: haircut.bonferroni.haircut_sharpe_annualized } : {}),
+        ...(minBtl ? { min_backtest_years: minBtl.years, years } : {}),
+        ...(search ? { variants: search.variants, mean_correlation: search.mean_pairwise_correlation, li_ji_trials: search.effective_trials.li_ji } : {}),
+        ...(decay ? { oos_sharpe_median: decay.oos_sharpe.median, oos_below_zero: decay.oos_sharpe.prob_below_zero, oos_on_is_slope: decay.degradation.slope } : {}),
+      }, 3),
+    },
     readings,
     checks,
     ...(input.returns_file || input.variants_file
@@ -387,7 +532,7 @@ export async function toolAuditBacktest(session, args) {
           ...(variantsRead ? { variants_file: input.variants_file, variants: variants[0].length, periods: variants.length, ...(variantsRead.skipped.length ? { skipped_variant_row_counter_columns: variantsRead.skipped } : {}) } : {}),
         } }
       : {}),
-    ...(variants ? {} : { not_run: { overfitting: "Send variants or variants_file (every variant's returns) to add the overfitting check." } }),
+    ...(variants ? {} : { not_run: { overfitting: "Send variants for overfitting and SPA." } }),
   });
 }
 
@@ -418,7 +563,7 @@ export async function toolVerifyReceipt(session, args) {
       valid: false,
       checks: { well_formed: false, id_matches_content: false, signature_valid: false, key_published: false },
       key_id: data?.signature?.key_id ?? null,
-      meaning: `The receipt is not well formed${missing.length ? `: it has no ${missing.join(", ")}` : ""}, so it cannot be checked. Send the whole receipt object as get_receipt or the validation result returned it, or send its id.`,
+      meaning: `The receipt is not well formed${missing.length ? `: it has no ${missing.join(", ")}` : ""}, so it cannot be checked. Send the whole receipt object as the validation result returned it, or send its id.`,
     });
   }
   return asText({
@@ -430,6 +575,8 @@ export async function toolVerifyReceipt(session, args) {
     meaning: result.valid
       ? "canlicapital.com signed this exact output for this exact input, computed by the source files whose hashes the receipt lists. It says nothing about how the input series was built."
       : "At least one check failed: do not treat this receipt as issued by canlicapital.com for this content.",
+    // With an id and include_receipt, the stored receipt itself: what get_receipt returned before 0.12.0.
+    ...(input.include_receipt && input.id !== undefined ? { receipt: data } : {}),
   });
 }
 
@@ -552,7 +699,11 @@ const WRITES_RECEIPT = { readOnlyHint: false, destructiveHint: false, openWorldH
 // Registers the enabled tools and returns what it registered, by name: { description, inputSchema,
 // outputSchema }, which the code-generation resources (canli://schemas/{tool}) serve.
 export function registerTools(server, session) {
-  const enabled = new Set((session.toolsets ?? Object.keys(TOOLSETS)).flatMap((name) => TOOLSETS[name]));
+  const enabled = new Set((session.toolsets ?? DEFAULT_TOOLSETS).flatMap((name) => TOOLSETS[name]));
+  // get_key only helps a session with no key: with CANLI_KEY set, or a caller's or the shared key on
+  // the hosted endpoint, it would issue nothing, so it is not listed and costs no tokens.
+  const keyed = Boolean(session.envKey) || Boolean(session.hosted && session.hosted.keySource !== "none");
+  if (keyed) enabled.delete("get_key");
   const catalog = {};
   const register = (name, config, handler) => {
     if (!enabled.has(name)) return;
@@ -613,11 +764,6 @@ export function registerTools(server, session) {
     "audit_backtest",
     { title: "Audit a backtest", annotations: { title: "Audit a backtest", ...WRITES_RECEIPT }, description: TOOL_DESCRIPTIONS.audit_backtest, inputSchema: auditBacktestToolShape, outputSchema: auditOutput },
     (args) => toolAuditBacktest(session, args),
-  );
-  register(
-    "get_receipt",
-    { title: "Get a receipt", annotations: { title: "Get a receipt", ...READ_ONLY }, description: TOOL_DESCRIPTIONS.get_receipt, inputSchema: getReceiptInput, outputSchema: receiptOutput },
-    (args) => toolGetReceipt(session, args),
   );
   register(
     "verify_receipt",
