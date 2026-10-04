@@ -1,0 +1,25 @@
+{
+  "schema": "canli.calculator-defaults.v1",
+  "route": "/tools/backtest-overfitting",
+  "evidence_basis": "Illustrative deterministic calculator defaults. Not ALPHAC performance, qualification or admission evidence.",
+  "renderer": {
+    "path": "js/backtest-overfitting-tool.js",
+    "sha256": "b9ea082d16ec4a2f53a415ff55aa545ca3380e92e2bfb3d5f8ca5e78edcb8e69"
+  },
+  "source_bindings": {
+    "js/backtest-overfitting-tool.js": "b9ea082d16ec4a2f53a415ff55aa545ca3380e92e2bfb3d5f8ca5e78edcb8e69",
+    "js/pbo-core.js": "56d66a9065256fac879da7a1c9d13e45e739d548332b1feaaca315f26051979f",
+    "js/selection-risk-core.js": "b2730eb3e29348530265c72196f39cca58774000da64ebeaf5bbddb3053f8f75"
+  },
+  "computed_output_selectors": [],
+  "computed_text": [
+    "34.3%",
+    "70 (exhaustive)",
+    "all combinations enumerated in lexicographic order",
+    "20 rows",
+    "0.2284",
+    "0.0571",
+    "95.7%",
+    "In 34.3 percent of the 70 in-sample and out-of-sample splits, the variant that looked best in sample ranked in the worse half out of sample. That share is the probability of backtest overfitting for this matrix as submitted."
+  ]
+}

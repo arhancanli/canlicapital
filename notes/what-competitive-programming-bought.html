@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="notes" lang="en" data-page="notes">
+<html data-design="reader" data-reader="notes" lang="en" data-page="notes">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,29 +20,25 @@
 <meta name="twitter:description" content="There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the…" />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
-<link rel="stylesheet" href="/css/product-shell.css" />
-<link rel="stylesheet" href="/css/notes.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"What competitive programming actually bought me, and what it did not","description":"There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.","url":"https://canlicapital.com/notes/what-competitive-programming-bought","datePublished":"2026-08-27","dateModified":"2026-08-27","wordCount":1308,"inLanguage":"en","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/what-competitive-programming-bought","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"What competitive programming actually bought me, and what it did not","description":"There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.","url":"https://canlicapital.com/notes/what-competitive-programming-bought","datePublished":"2026-08-27","dateModified":"2026-08-27","wordCount":1308,"inLanguage":"en","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"image":{"@type":"ImageObject","url":"https://canlicapital.com/og.png","width":1200,"height":630},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/what-competitive-programming-bought","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
 
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- release-style:start --><!-- release-style:end -->
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head>
 <body class="note-page">
 <a class="note-skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -69,7 +65,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -192,7 +190,7 @@ about and starts scaling with the number of intervals you actually have, which i
 orders of magnitude.</p>
 <p>Measured on a grid the size of this project&#39;s equity panel, 7,500 sessions by 3,000
 instruments, 22.5 million cells, 9,000 membership intervals:</p>
-<table tabindex="0" data-reader-focus="true">
+<!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th>approach</th>
@@ -207,7 +205,7 @@ instruments, 22.5 million cells, 9,000 membership intervals:</p>
 <td>two searches per interval, then paint</td>
 <td align="right"><strong>0.022 s</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div><!-- design-table:end -->
 <p>About <strong>180x</strong>, and the gap widens as the panel grows, because one side scales with cells and
 the other with intervals. That is the whole trick, and it is the same trick as a difference
 array in a contest problem: the work belongs on the edges of the ranges, not on the points
@@ -252,14 +250,14 @@ proves it on every push.</em></p>
     </footer>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">
       <span>MCP server</span>
       <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
       <code>npx -y canli-validation-mcp</code>
-      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
     </div>
     <div class="cc-footer__dev-item">
       <span>Open source</span>

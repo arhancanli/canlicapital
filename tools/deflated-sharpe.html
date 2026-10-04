@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-design="workbench" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,7 +7,7 @@
 <meta name="description" content="A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial count, dispersion, sample length and non-normal return assumptions." />
 <link rel="canonical" href="https://canlicapital.com/tools/deflated-sharpe" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="deflated_sharpe_calculator_contract.json trial_ledger.json" />
+<meta name="canli:sources" content="deflated_sharpe_calculator_contract.json trial_ledger.json calculator-defaults/deflated-sharpe.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
@@ -20,29 +20,25 @@
 <meta name="twitter:description" content="A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial count, dispersion, sample length and non-normal return assumptions." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
-<link rel="stylesheet" href="/css/product-shell.css" />
-<link rel="stylesheet" href="/css/dsr-tool.css" />
-<link rel="stylesheet" href="/css/tool-experience.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Deflated Sharpe ratio calculator (PSR and DSR)","alternateName":"Deflated Sharpe calculator","url":"https://canlicapital.com/tools/deflated-sharpe","description":"A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial count, dispersion, sample length and non-normal return assumptions.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"citation":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Deflated Sharpe ratio calculator (PSR and DSR)","alternateName":"Deflated Sharpe calculator","url":"https://canlicapital.com/tools/deflated-sharpe","description":"A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial count, dispersion, sample length and non-normal return assumptions.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"citation":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551"}</script>
 
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- release-style:start --><!-- release-style:end -->
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head>
 <body class="dsr-page">
 <a class="dsr-skip" href="#calculator">Skip to calculator</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -69,7 +65,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -101,7 +99,7 @@
         <a class="dsr-button" href="https://github.com/arhancanli/alphac/blob/9b92f5128acfdabbc9c3160348004c5b3eba6f05/src/alphaforge/validation/dsr.py" rel="noreferrer">Inspect the Python source <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-    <aside class="dsr-union" aria-label="Current ALPHAC trial accounting preset">
+    <details class="workbench-source"><summary>Published preset and source boundary</summary><aside class="dsr-union" aria-label="Current ALPHAC trial accounting preset">
       <div class="dsr-union__head"><span>What this preset loads (current union preset)</span><strong>Source-bound</strong></div>
       <dl>
         <div><dt>Ideas tested (hypothesis identities)</dt><dd>349</dd></div>
@@ -112,7 +110,7 @@
       <p>This count is the full union, including the one live prospective identity not yet
         admitted; a retired legacy set published elsewhere on the site is smaller by that one
         identity. This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.</p>
-    </aside>
+    </aside></details>
   </section>
 
   <section class="dsr-boundary" aria-label="Calculator claim boundary">
@@ -136,27 +134,27 @@
           <legend><span>Observed sample</span><small>Illustrative until replaced</small></legend>
           <label class="dsr-field" for="observed_sharpe_annualized">
     <span>Observed Sharpe, annualized</span>
-    <input id="observed_sharpe_annualized" name="observed_sharpe_annualized" type="number" value="1.5" min="-10" max="10" step="0.01" inputmode="decimal" />
+    <input id="observed_sharpe_annualized" name="observed_sharpe_annualized" type="number" value="1.5" min="-10" max="10" step="0.01" inputmode="decimal">
     <small>Converted to per-period Sharpe before inference.</small>
   </label>
           <label class="dsr-field" for="observations">
     <span>Return observations</span>
-    <input id="observations" name="observations" type="number" value="730" min="2" max="1000000" step="1" inputmode="decimal" />
+    <input id="observations" name="observations" type="number" value="730" min="2" max="1000000" step="1" inputmode="decimal">
     <small>Use the count after dropping missing returns.</small>
   </label>
           <label class="dsr-field" for="periods_per_year">
     <span>Periods per year</span>
-    <input id="periods_per_year" name="periods_per_year" type="number" value="365" min="1" max="10000" step="1" inputmode="decimal" />
+    <input id="periods_per_year" name="periods_per_year" type="number" value="365" min="1" max="10000" step="1" inputmode="decimal">
     <small>365 for daily crypto; 252 for trading days.</small>
   </label>
           <label class="dsr-field" for="skew">
     <span>Sample skew</span>
-    <input id="skew" name="skew" type="number" value="-0.5" min="-20" max="20" step="0.01" inputmode="decimal" />
+    <input id="skew" name="skew" type="number" value="-0.5" min="-20" max="20" step="0.01" inputmode="decimal">
     <small>Negative skew can widen estimator uncertainty.</small>
   </label>
           <label class="dsr-field" for="non_excess_kurtosis">
     <span>Non-excess kurtosis</span>
-    <input id="non_excess_kurtosis" name="non_excess_kurtosis" type="number" value="5" min="1" max="100" step="0.01" inputmode="decimal" />
+    <input id="non_excess_kurtosis" name="non_excess_kurtosis" type="number" value="5" min="1" max="100" step="0.01" inputmode="decimal">
     <small>Gaussian returns equal 3, not 0.</small>
   </label>
         </fieldset>
@@ -164,12 +162,12 @@
           <legend><span>Selection process</span><small>Preset from the public union</small></legend>
           <label class="dsr-field" for="effective_independent_trials">
     <span>Effective independent trials</span>
-    <input id="effective_independent_trials" name="effective_independent_trials" type="number" value="349" min="2" max="10000000" step="1" inputmode="decimal" />
+    <input id="effective_independent_trials" name="effective_independent_trials" type="number" value="349" min="2" max="10000000" step="1" inputmode="decimal">
     <small>Do not shrink N after seeing outcomes.</small>
   </label>
           <label class="dsr-field" for="cross_trial_sharpe_sd_annualized">
     <span>Cross-trial Sharpe SD, annualized</span>
-    <input id="cross_trial_sharpe_sd_annualized" name="cross_trial_sharpe_sd_annualized" type="number" value="0.675619" min="0" max="10" step="0.000001" inputmode="decimal" />
+    <input id="cross_trial_sharpe_sd_annualized" name="cross_trial_sharpe_sd_annualized" type="number" value="0.675619" min="0" max="10" step="0.000001" inputmode="decimal">
     <small>Derived from the identity-aligned per-period V[SR].</small>
   </label>
           <div class="dsr-selection-seal">
@@ -181,24 +179,24 @@
         </fieldset>
       </form>
 
-      <section class="dsr-chamber" aria-live="polite" aria-atomic="true">
-        <div class="dsr-chamber__status"><span id="dsr-status-label">Calculating</span><strong id="dsr-status">Pending</strong></div>
+      <section data-reference="below" class="dsr-chamber" aria-live="polite" aria-atomic="true">
+        <div class="dsr-chamber__status"><span id="dsr-status-label">Book-maturity reference</span><strong id="dsr-status">Below 0.95</strong></div>
         <div class="dsr-score">
           <span>Deflated Sharpe ratio</span>
-          <strong id="dsr-value">...</strong>
-          <small id="dsr-threshold-note">Against the expected best result under the supplied search.</small>
+          <strong id="dsr-value">0.250</strong>
+          <small id="dsr-threshold-note">The supplied inputs do not clear the full-union book-maturity reference.</small>
         </div>
         <div class="dsr-rail" id="dsr-rail" role="img" aria-label="Observed Sharpe and expected best-by-luck benchmark on an annualized Sharpe scale">
           <div class="dsr-rail__grid" aria-hidden="true"></div>
-          <div class="dsr-marker dsr-marker--observed" id="dsr-observed-marker"><span>Observed</span><strong id="dsr-observed-rail">...</strong></div>
-          <div class="dsr-marker dsr-marker--benchmark" id="dsr-benchmark-marker"><span>Best by luck</span><strong id="dsr-benchmark-rail">...</strong></div>
-          <div class="dsr-rail__axis"><span id="dsr-axis-min">...</span><span>Annualized Sharpe</span><span id="dsr-axis-max">...</span></div>
+          <div style="left:62.64705882352941%" class="dsr-marker dsr-marker--observed" id="dsr-observed-marker"><span>Observed</span><strong id="dsr-observed-rail">1.50</strong></div>
+          <div style="left:74.9951039317792%" class="dsr-marker dsr-marker--benchmark" id="dsr-benchmark-marker"><span>Best by luck</span><strong id="dsr-benchmark-rail">1.99</strong></div>
+          <div class="dsr-rail__axis"><span id="dsr-axis-min">-0.7</span><span>Annualized Sharpe</span><span id="dsr-axis-max">2.7</span></div>
         </div>
         <dl class="dsr-readout">
-          <div><dt>PSR against zero</dt><dd id="dsr-psr">...</dd><dd class="dsr-readout-note"><small>Sampling uncertainty only</small></dd></div>
-          <div><dt>Best-by-luck benchmark</dt><dd id="dsr-benchmark">...</dd><dd class="dsr-readout-note"><small>Annualized for display</small></dd></div>
-          <div><dt>Search haircut</dt><dd id="dsr-haircut">...</dd><dd class="dsr-readout-note"><small>Observed minus benchmark</small></dd></div>
-          <div><dt>Non-normality term</dt><dd id="dsr-variance-term">...</dd><dd class="dsr-readout-note"><small>Must remain positive</small></dd></div>
+          <div><dt>PSR against zero</dt><dd id="dsr-psr">98.09%</dd><dd class="dsr-readout-note"><small>Sampling uncertainty only</small></dd></div>
+          <div><dt>Best-by-luck benchmark</dt><dd id="dsr-benchmark">1.988</dd><dd class="dsr-readout-note"><small>Annualized for display</small></dd></div>
+          <div><dt>Search haircut</dt><dd id="dsr-haircut">-0.488</dd><dd class="dsr-readout-note"><small>Observed minus benchmark</small></dd></div>
+          <div><dt>Non-normality term</dt><dd id="dsr-variance-term">1.0454</dd><dd class="dsr-readout-note"><small>Must remain positive</small></dd></div>
         </dl>
         <p class="dsr-error" id="dsr-error" role="alert" hidden></p>
       </section>
@@ -237,7 +235,7 @@
       <a href="https://github.com/arhancanli/alphac/blob/9b92f5128acfdabbc9c3160348004c5b3eba6f05/src/alphaforge/validation/dsr.py" rel="noreferrer"><span>Python implementation</span><strong>ac2f18440e21b824...</strong><small>Production arithmetic in ALPHAC</small></a>
       <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551" rel="noreferrer"><span>Primary paper</span><strong>Bailey and López de Prado</strong><small>Journal of Portfolio Management 40(5), 94-107 (2014)</small></a>
     </div>
-    <p class="dsr-source__boundary">This contract reproduces ALPHAC&#39;s PSR and DSR arithmetic for supplied inputs. It does not validate a strategy, prove profitability, estimate current portfolio performance, or replace the complete admission contract.</p>
+    <p class="dsr-source__boundary">This contract reproduces ALPHAC's PSR and DSR arithmetic for supplied inputs. It does not validate a strategy, prove profitability, estimate current portfolio performance, or replace the complete admission contract.</p>
     <p class="dsr-source__boundary">A deflated Sharpe asks whether one result survives the search
       that produced it. <a href="/tools/backtest-overfitting">The probability of backtest overfitting
       calculator</a> asks the sharper question of whether the in-sample winner predicts anything
@@ -245,7 +243,26 @@
       <a href="/developers#api-deflated-sharpe">the validation API</a>.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -285,6 +302,7 @@
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>

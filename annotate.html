@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-page="annotate">
+<html data-design="workbench" lang="en" data-page="annotate">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,37 +21,22 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="stylesheet" href="./css/paper.css" />
-<link rel="stylesheet" href="/css/product-shell.css" />
-<style>
-.annotate__item{border:1px solid rgba(0,0,0,.14);border-radius:8px;padding:1.25rem 1.5rem;margin:1rem 0}
-.annotate__question{font-size:1.1rem;font-weight:600;line-height:1.5;margin:.4rem 0 1rem}
-.annotate__meta,.annotate__progress{font-family:"IBM Plex Mono",monospace;font-size:.8rem;letter-spacing:.02em;opacity:.75}
-.annotate__judgement{border:0;padding:0;margin:1rem 0}
-.annotate__judgement legend{font-weight:600;margin-bottom:.35rem}
-.annotate__judgement label{margin-right:1.25rem;white-space:nowrap}
-.annotate__item textarea,.annotate__send input{width:100%;font:inherit;padding:.5rem;margin:.35rem 0 .75rem;box-sizing:border-box}
-.annotate__nav button,.annotate__send button,.annotate__recovery button{font:inherit;padding:.45rem 1rem;margin-right:.5rem;cursor:pointer}
-.annotate__warn{color:#9a3412}
-.annotate__recovery{border-left:3px solid #9a3412;padding:.6rem 1rem;margin:1rem 0}
-#annotate-app [hidden]{display:none}
-#annotate-app :focus-visible{outline:2px solid #1b4e78;outline-offset:3px}
-html[data-page="annotate"] .cc-footer[data-product-shell] .cc-footer__dev{margin-top:0}
-</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"FilingFacts v0","item":"https://canlicapital.com/research/filing-facts-v0"},{"@type":"ListItem","position":3,"name":"Check financial questions against SEC filings","item":"https://canlicapital.com/annotate"}]}</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research" data-current="true">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -78,7 +63,9 @@ html[data-page="annotate"] .cc-footer[data-product-shell] .cc-footer__dev{margin
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -139,7 +126,7 @@ html[data-page="annotate"] .cc-footer[data-product-shell] .cc-footer__dev{margin
     </div>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">

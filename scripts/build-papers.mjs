@@ -40,6 +40,8 @@ import {
 import { discover as discoverMeasurementArtifacts, rawArtifactUrl } from "./build-measurements.mjs";
 import { gitCommitDate, artifactDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
 import { PAGE_SOURCES } from "./lib/page-sources.mjs";
+import { applyReaderPresentation, applyHubNavigation } from './lib/reading-layout.mjs';
+import { applySiteDesign } from './build-site-design.mjs';
 import { fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
 import { describeProvenanceUrl } from "./describe-provenance-url.mjs";
 
@@ -941,7 +943,7 @@ function main() {
     );
     writeFileSync(
       resolve(OUT_DIR, `${paper.slug}.html`),
-      normalizeEditableCopy(pageHtml({
+      applySiteDesign(applyReaderPresentation(normalizeEditableCopy(pageHtml({
         ...paper,
         body,
         sourceSha256: sha256(paper.markdown),
@@ -949,7 +951,7 @@ function main() {
         citation: bibtex(paper),
         datasetJsonLd: datasetRecordJsonLd(paper.markdown),
         dateModified: paperLastmods.get(paper.slug),
-      })),
+      })), { file: `research/${paper.slug}.html`, family: 'research' }), `research/${paper.slug}.html`),
     );
     writeFileSync(resolve(CITATION_DIR, `${paper.slug}.bib`), bibtex(paper));
   }
@@ -970,7 +972,8 @@ function main() {
     if (members.length < 3) continue;
     writeFileSync(
       resolve(OUT_DIR, "topics", `${hub.slug}.html`),
-      normalizeEditableCopy(hubHtml(hub, members)),
+      applySiteDesign(applyHubNavigation(normalizeEditableCopy(hubHtml(hub, members)),
+        { file: `research/topics/${hub.slug}.html` }), `research/topics/${hub.slug}.html`),
     );
     hubs.push({ ...hub, count: members.length });
   }
@@ -1053,7 +1056,7 @@ function main() {
   if (rewritten === withHubs && !withHubs.includes(archivalBlock)) {
     throw new Error("research.html has no archival-paper sentinels");
   }
-  writeFileSync(libraryPage, normalizeEditableCopy(rewritten));
+  writeFileSync(libraryPage, applySiteDesign(normalizeEditableCopy(rewritten), 'research.html'));
 
 
   const measurements = measurementRoutes();

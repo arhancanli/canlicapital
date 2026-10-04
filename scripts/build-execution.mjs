@@ -174,6 +174,7 @@ ${renderProductShellHeader({ active: "" })}
 
     <div class="lab-output">
       <div class="lab-chart-wrap">
+        <p class="lab-chart-note">Preset comparison. These curves use the published execution assumptions. The controls update the isolated assumption table below.</p>
         <svg id="lab-chart" viewBox="0 0 760 260" preserveAspectRatio="none" role="img" aria-label="Equity curves under stacked execution assumptions">
           <g id="lab-curves"></g>
         </svg>

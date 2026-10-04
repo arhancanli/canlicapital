@@ -90,13 +90,13 @@ export function renderProductShellHeader({ active = "", dynamicStatus = false } 
   const statusId = dynamicStatus ? ' id="header-broker-status"' : "";
   const statusClass = dynamicStatus ? "cc-shell__status header-status" : "cc-shell__status";
   const statusText = dynamicStatus ? "Broker record loading…" : "Public paper record";
-  return `<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+  return `<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-${renderLinks(["systems", "research", "developers", "verify"].map(key => PRIMARY_LINKS.find(link => link.key === key)), active, "cc-shell__link")}
+${renderLinks([PRIMARY_LINKS.find(link => link.key === "research"), {key:"performance",label:"ALPHAC",href:"/performance"}, PRIMARY_LINKS.find(link => link.key === "developers")], active, "cc-shell__link")}
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -111,7 +111,7 @@ ${renderLinks(["systems", "research", "developers", "verify"].map(key => PRIMARY
       </div>
       <div>
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
-        <nav aria-label="Tools">${renderLinks([...PRIMARY_LINKS.filter(link => link.key === "developers"), ...TOOLS_LINKS], active, "cc-shell__panel-link")}</nav>
+        <nav aria-label="Tools">${renderLinks([...PRIMARY_LINKS.filter(link => link.key === "developers"), ...TOOLS_LINKS, {key:"mcp-servers",label:"MCP servers",href:"/mcp-servers"}, {key:"datasets",label:"Financial datasets",href:"/datasets/filing-facts"}], active, "cc-shell__panel-link")}</nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -168,7 +168,7 @@ ${companies.map(company => `      <a href="${company.href}">${company.label.repl
 }
 
 export function renderProductShellFooter({ developerStrip = true, companies = [] } = {}) {
-  return `<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  return `<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
 ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary>${renderOpticalHandoff()}</details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>

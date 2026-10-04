@@ -111,3 +111,13 @@ responsive behavior remains authoritative in code. Editorial capture layers are
 not claimed to be fully tokenized. Access Action instances preserve source blue
 label/transparent ghost overrides. Both oversized decorative arrows use original
 SVG in code and Figma, avoiding font-dependent emoji fallback.
+
+
+## October 2026 complete-site redesign
+
+The current design is the October page159:2 in the same file, under verified
+Pro/Full access. It adds the homepage desktop159:20/mobile159:179 and chapter,
+reader, calculator, company and developer boards, nine bound color variables,
+five text styles and four reusable components. It imports the published paper
+curve SVG rather than invented telemetry. The September scope above is retained
+as history. Current sources and QA are in DESIGN.md and docs/redesign/README.md.

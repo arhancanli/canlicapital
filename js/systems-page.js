@@ -51,7 +51,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.hasAttribute('data-design');
 const isDesktop = window.matchMedia("(min-width: 1025px)").matches;
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 

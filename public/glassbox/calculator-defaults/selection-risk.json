@@ -1,0 +1,27 @@
+{
+  "schema": "canli.calculator-defaults.v1",
+  "route": "/tools/selection-risk",
+  "evidence_basis": "Illustrative deterministic calculator defaults. Not ALPHAC performance, qualification or admission evidence.",
+  "renderer": {
+    "path": "js/selection-risk-lab.js",
+    "sha256": "57fed2848011e6337086668b8ea5e9da70101e8436d8eafcedace545245f4315"
+  },
+  "source_bindings": {
+    "js/selection-risk-lab.js": "57fed2848011e6337086668b8ea5e9da70101e8436d8eafcedace545245f4315",
+    "js/dsr-tool.js": "27ef031df0015c5267b6afa09e1cebd6e1e4d053ea02b9ad67e7f1fb4ba05a1b",
+    "js/dsr-core.js": "79ec18cc7c15e0b2ad004dd5296e83020187912aab161b68aad4784d959816d1",
+    "js/selection-risk-core.js": "b2730eb3e29348530265c72196f39cca58774000da64ebeaf5bbddb3053f8f75"
+  },
+  "computed_output_selectors": [],
+  "computed_text": [
+    "no-lookahead: every decision priced at a strictly later bar",
+    "-0.815",
+    "39.56%",
+    "-22.88%",
+    "23",
+    "1",
+    "n/a",
+    "nothing yet",
+    "Deflation needs at least two trials to have anything to deflate against. Try another setting."
+  ]
+}

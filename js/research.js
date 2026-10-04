@@ -40,7 +40,7 @@ gsap.registerPlugin(ScrollTrigger);
 const BASE = "/glassbox/";
 const FILE = "research.json";
 
-const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.hasAttribute('data-design');
 
 // The house ease-out, matching --ease-out / scroll.js EASE.out / open.js exactly,
 // so the data-viz reveals share the one motion signature with the rest of the
