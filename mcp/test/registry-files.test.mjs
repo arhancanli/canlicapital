@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 
 import { LIMITS_SENTENCES, REGISTRY_DESCRIPTION_MAX, REGISTRY_LIMITS_CLAUSE } from "../src/schemas.mjs";
+import { TOOLSETS, createSession, registerTools } from "../src/server.mjs";
 
 const MCP_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const pkg = JSON.parse(readFileSync(resolve(MCP_ROOT, "package.json"), "utf8"));
@@ -88,3 +89,16 @@ test("mcp/REGISTRIES.md names the published npm package and the three registries
     assert.ok(registries.includes(registry), `REGISTRIES.md must cover ${registry}`);
   }
 });
+
+// The Claude Desktop extension manifest lists its tools for the install screen. When check_leakage
+// and placebo_test joined the server, the manifest still listed the 18 tools before them, because
+// nothing compared the two lists; now it must name exactly every tool the server can register.
+test("the Claude Desktop manifest lists exactly the server's tools, at the package's version", () => {
+  const manifest = JSON.parse(readFileSync(resolve(MCP_ROOT, "mcpb/manifest.json"), "utf8"));
+  assert.equal(manifest.version, pkg.version);
+  const names = [];
+  registerTools({ registerTool: (name) => names.push(name) }, createSession({ toolsets: Object.keys(TOOLSETS) }));
+  assert.deepEqual(manifest.tools.map((t) => t.name).sort(), names.sort());
+  for (const tool of manifest.tools) assert.ok(tool.description?.length > 20, `${tool.name} needs a description`);
+});
+

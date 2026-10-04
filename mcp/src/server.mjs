@@ -707,7 +707,7 @@ export function registerTools(server, session) {
   const catalog = {};
   const register = (name, config, handler) => {
     if (!enabled.has(name)) return;
-    server.registerTool(name, { ...config, inputSchema: listedSchema(config.inputSchema), outputSchema: listedSchema(config.outputSchema) }, handler);
+    server.registerTool(name, config, handler);
     catalog[name] = { description: config.description, inputSchema: config.inputSchema, outputSchema: config.outputSchema };
   };
   register(
@@ -881,7 +881,11 @@ export function registerResources(server) {
 
 // Everything the server exposes: the npm package and the hosted endpoint both call this.
 export function registerAll(server, session) {
-  const catalog = registerTools(server, session);
+  // The SDK lists the schemas it is given, so the server registers lean ones (listedSchema), while
+  // registerTools itself hands out the zod schemas: the website's MCP pages read those to check
+  // their example arguments.
+  const listing = { registerTool: (name, config, handler) => server.registerTool(name, { ...config, inputSchema: listedSchema(config.inputSchema), outputSchema: listedSchema(config.outputSchema) }, handler) };
+  const catalog = registerTools(listing, session);
   registerPrompts(server);
   registerLabPrompts(server);
   registerResources(server);
