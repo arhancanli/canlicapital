@@ -82,3 +82,10 @@ test("the footer promotes the MCP server, every public repository and the API ke
 test("company pages keep their released footer bytes", () => {
   assert.doesNotMatch(renderProductShellFooter({ developerStrip: false }), /cc-footer__dev/);
 });
+
+test("the shared footer follows the public paper record without freezing its start date", () => {
+  const html = renderProductShellFooter();
+  assert.match(html, /href="\/performance">public paper record and its observation dates<\/a>/);
+  assert.doesNotMatch(html, /\b\d{4}-\d{2}-\d{2}\b/);
+  assert.match(html, /since July 2024/);
+});
