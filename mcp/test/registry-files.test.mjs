@@ -101,4 +101,3 @@ test("the Claude Desktop manifest lists exactly the server's tools, at the packa
   assert.deepEqual(manifest.tools.map((t) => t.name).sort(), names.sort());
   for (const tool of manifest.tools) assert.ok(tool.description?.length > 20, `${tool.name} needs a description`);
 });
-
