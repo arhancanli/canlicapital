@@ -5,7 +5,7 @@ import test from "node:test";
 
 import { score, TASKS } from "../bench/agent/tasks.mjs";
 
-const TOOLS = new Set(["validate_deflated_sharpe", "validate_overfitting", "validate_paper_evidence", "validate_breadth", "validate_track_record", "company_financial_history", "get_key", "get_receipt", "service_status"]);
+const TOOLS = new Set(["validate_deflated_sharpe", "validate_overfitting", "validate_paper_evidence", "validate_breadth", "validate_track_record", "company_financial_history", "get_key", "verify_receipt", "service_status"]);
 
 test("every benchmark task names a real tool or none, and has a checkable ground truth", () => {
   const ids = new Set();

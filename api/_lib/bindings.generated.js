@@ -35,7 +35,7 @@ export const BINDINGS = Object.freeze({
     "standards/paper-evidence/schema.json": "sha256:26be3e03f646df09a146ca479689db0a3feb879248422e3ff2cc234bd2e2e3fe",
     "api/_lib/limits.js": "sha256:4e1906e6a66f54d887239707979b7b05a2272050214319ba41013fcc9dc6345a",
     "js/validate/deflated-sharpe.js": "sha256:7ce44fce7c3694b133284c5ff52601e283f8a0345232a13218d850b84d836c16",
-    "js/validate/overfitting.js": "sha256:5c467d9003a4884adf0f95c09dd9d9041af4a0241782d444924dfb3074636fbb",
+    "js/validate/overfitting.js": "sha256:008e052ce257815f00e344e1fa8dec977e38ed96df61ba3b4d8e43e3f4c9519f",
     "js/validate/paper-evidence.js": "sha256:4aad8d762db032f5d032d3d1568ad90d2c1c603ff9092b022605dceff0fceb24",
     "js/validate/breadth.js": "sha256:7bda59fd9f9fb77072c02a58798db0b15be1559acebefa1dc38290def7ce6b3b",
     "js/validate/track-record.js": "sha256:7b9aa472e88741c42e4fddca9301925391cb741e56c0aff36b3a8545f0283118",
