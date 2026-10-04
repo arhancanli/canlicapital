@@ -84,3 +84,12 @@ The date mismatch was an extra blank line accumulated by composing the legacy re
 Corrected production build and npm verify pass1302 tests+6 preverify. All60 design wrapper contracts pass. A separate production-browser JavaScript-off check expands the native footer at1440/320:3 workflow links visible, correct260/190px diagram height,0 horizontal overflow,2 PASS with screenshots. The complete repeated browser audit remains running. Source/date commit, proof after another fresh full rebuild, final current remote CI and owner delivery are still open.
 
 Every earlier owner objective remains ACTIVE and unclaimed; production is untouched, with protected-main merge/deployment reserved to Arhan. This finite redesign still does not establish actual indexing/SEO ranking/adoption/expert-rights/annotation/qualified-ALPHAC/funded outcomes.
+
+
+### Redesign shared markup date dependencies (2026-10-04T07:43:35.247987+00:00)
+
+At signed5869962e a fresh full build and verify passed and index/progress/open source bytes stayed identical to committed content. The exact Git-free guard also exited0. An additional local no-output-change assertion failed because /verify, /developers and /standards/paper-evidence resolved older dates after generated JSON timestamps invalidated their raw-byte bindings. This is distinct from the earlier actual CI guard failure; the original fresh-build/verify/proof logs and assertion outcome are retained.
+
+Every static route now registers the shared product-shell and final design transform as real markup inputs. Their committed dates persist when generated timestamp bytes change, without trusting a stale input hash or inventing a build date. A supplied temporary Git/archive fixture verifies that changed input bytes reject their old date while the actual committed markup date remains. All19 date/layout regression cases pass. Production build and final paired bindings pass; final committed-source full verification/proof and remote CI remain next. No computation cores, MCP configurations, expert-submission code or production deployment changed.
+
+All broader owner goals and unknown real outcomes remain unchanged and ACTIVE; owner protected-main merge/deployment is reserved.
