@@ -1,0 +1,16 @@
+{
+  "schema": "secondary-da4cc231-current-CI-native-reader-stop-correction-v1",
+  "utc": "2026-10-04T06:31:01.485251+00:00",
+  "preserved_original_stop": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package/secondary-da4cc231-current-CI-native-reader-stop-v1.json",
+    "bytes": 674,
+    "sha256": "6d55e93c9cd212dce882642c6125f12754a0078b6b592febb84493c90156c2bb"
+  },
+  "identified_reader_assumption": "The original reader demanded exactly the first seven tested-SHA characters in both HEAD-is-now-at messages. Saved ROOT uses eight ebd25348, MCP uses seven ebd2534. Both retain the SAME full tested SHA in git-log stdout.",
+  "correction": "Parse the actual hexadecimal abbreviation, require it be a prefix of exact full ebd25348595d688a0cffe7a1f6fd13788c5b80aa, retain exact full source/base merge message and full log SHA; require captured Git API exact tree84dca3d7 and ordered parents9d67+da4. No abbreviation-length inference.",
+  "full_TAP_native_parse": "Eight plans/root6+1292+9/MCP149+1+82+269+139 and names/durations/counters already matched; unsealed receipt was stopped before writing.",
+  "originals_unchanged": true,
+  "API_refetch_or_project_rerun": false,
+  "source_or_runtime_failure": false,
+  "archive_allocation": null
+}

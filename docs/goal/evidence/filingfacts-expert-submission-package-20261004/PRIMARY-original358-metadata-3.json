@@ -1,0 +1,24 @@
+{
+  "schema": "canlicapital.primary.source-review.native-metadata-and-source-scope-correction.v1",
+  "original_stops": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/3586185b-source-originals-v1/original-native-reader-stop-1-v1.json",
+      "bytes": 1192,
+      "sha256": "51c38e130f97b1d3343e76c2e1085e932aad9a143e07fd6b56304dbc7d51f1ce",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-package-primary-review/3586185b-source-originals-v1/original-native-reader-stop-2-v1.json",
+      "bytes": 627,
+      "sha256": "dca182bbbcd91a7f2b572c9e37602a0d17dac90c1e8c690d146e31e97a8acc06",
+      "mode": "0600",
+      "FULLREAD_sameFD_postpath_stable": true
+    }
+  ],
+  "patch_format_correction": "Reconstruct Python difflib from saved full base/frozen source using author labels; all3821 author bytes match. Git diff separately preserved for same source pair.",
+  "frozen_source_correction": "Read38 exact immutable frozen Git blobs with one native cat-file --batch; evolving working files are not semantic inputs or future-head approval.",
+  "author_patch_entire_byte_equal_reconstruction": true,
+  "no_original_rewrite": true,
+  "no_project_runtime_repeat": true
+}
