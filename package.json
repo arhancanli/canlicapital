@@ -19,6 +19,8 @@
     "test:fundamentals-audit-stdio": "node --test --test-concurrency=1 mcp-fundamentals/test/audit-inputs-stdio.test.mjs",
     "test:fundamentals-audit-inputs": "node --test --test-concurrency=1 mcp-fundamentals/test/audit-inputs-core.test.mjs",
     "test:fundamentals-audit-client": "node --test --test-concurrency=1 mcp-fundamentals/test/audit-inputs-client.test.mjs",
+    "test:audit-inputs-client-package": "node --test --test-concurrency=1 mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+    "filingfacts:audit-inputs-files": "node mcp-fundamentals/src/audit-inputs-client.mjs",
     "test:indexing-evidence": "node --test --test-concurrency=1 scripts/indexing-evidence.test.mjs",
     "test:attempt-accounting": "node --test --test-concurrency=1 scripts/datasets/filing-facts/attempt-accounting.test.mjs",
     "test:attempt-scoring": "node --test --test-concurrency=1 scripts/datasets/filing-facts/attempt-scoring.test.mjs",

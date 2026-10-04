@@ -20,6 +20,7 @@ const L = Object.freeze({ compressed: 262144, expanded: 2097152, members: 32, np
   fixture: 24 * 1024 * 1024, work: 15000, closure: 5000, total: 20000 });
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const SOURCE_PINS = Object.freeze({
+  'src/audit-inputs-client.mjs': '95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7',
   'src/server.mjs': 'dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38',
   'src/audit-inputs-stdio.mjs': '537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0',
   'src/audit-inputs-core.mjs': 'e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059',
@@ -40,12 +41,12 @@ const SDK_SOURCE_PINS = Object.freeze({
   '@modelcontextprotocol/server/dist/src-D-y6h4N7.mjs': '9cc3caf713a88aa6d7787001b673915ee011ea5edc620118aae2737c4b335c75',
   '@modelcontextprotocol/core/package.json': 'c3902f5ce4f7c44fe8c763adab3ea0f76a6e0d6b54d88d81bc2a3ec0e47ebb34',
 });
-const MEMBERS = Object.freeze(['LICENSE', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md',
+const MEMBERS = Object.freeze(['LICENSE', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md',
   'package.json', ...Object.keys(SOURCE_PINS)].map(name => 'package/' + name).sort());
 const BIN = Object.freeze({ 'canli-fundamentals-mcp': 'src/server.mjs',
-  'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs', 'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs' });
+  'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs', 'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs' });
 const MODES = Object.freeze(Object.fromEntries(MEMBERS.map(name => [name,
-  ['package/src/audit-inputs-stdio.mjs', 'package/src/expert-submission-stdio.mjs'].includes(name) ? 0o755 : 0o644])));
+  ['package/src/audit-inputs-stdio.mjs', 'package/src/expert-submission-stdio.mjs', 'package/src/audit-inputs-client.mjs'].includes(name) ? 0o755 : 0o644])));
 const RELOCATIONS = Object.freeze([
   ['src/expert-submission-stdio.mjs', 'examples/expert-submission-stdio.mjs', [
     ['../../scripts/datasets/filing-facts/expert-submission-audit.mjs', './expert-submission-audit-core.mjs'],
@@ -130,7 +131,12 @@ function checkImports(entries) {
   for (const [filename, row] of entries) {
     if (!/\.(?:mjs|js)$/.test(filename)) continue;
     const source = row.bytes.toString('utf8');
-    assert.doesNotMatch(source, /\b(?:import\s*\(|require\s*\(|createRequire\b)/, 'DYNAMIC_IMPORT');
+    const dynamic = [...source.matchAll(/\bimport\s*\(\s*(['"])([^'"]+)\1\s*\)/g)];
+    if (filename === 'package/src/audit-inputs-client.mjs') {
+      assert.equal(sha(row.bytes), SOURCE_PINS['src/audit-inputs-client.mjs'], 'SOURCE_PIN');
+      assert.deepEqual(dynamic.map(hit => hit[2]), ['@modelcontextprotocol/client', '@modelcontextprotocol/client/stdio'], 'FIXED_DYNAMIC_IMPORTS');
+    } else assert.equal(dynamic.length, 0, 'DYNAMIC_IMPORT');
+    assert.doesNotMatch(source.replace(/\bimport\s*\(\s*(['"])([^'"]+)\1\s*\)/g, 'FIXED_SDK_IMPORT'), /\b(?:import\s*\(|require\s*\(|createRequire\b)/, 'DYNAMIC_IMPORT');
     const imports = [...source.matchAll(/^import .+ from ['"]([^'"]+)['"];$/gm)];
     assert.equal(imports.length, [...source.matchAll(/^import\b/gm)].length, 'UNPARSED_IMPORT');
     assert.doesNotMatch(source, /^export\s+(?:\*\s*(?:as\s+\w+\s*)?|\{[^}]*\}\s*)from\b/gm, 'UNPARSED_REEXPORT');
@@ -152,9 +158,9 @@ function audit(entries) {
   }
   const metadata = JSON.parse(entries.get('package/package.json').bytes);
   assert.deepEqual(metadata.bin, BIN, 'PACKAGE_BIN');
-  assert.deepEqual(metadata.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md'], 'PACKAGE_FILES');
+  assert.deepEqual(metadata.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md'], 'PACKAGE_FILES');
   assert.equal(metadata.name, 'canli-fundamentals-mcp'); assert.equal(metadata.version, '0.5.0');
-  assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.1.0', zod: '4.6.5' });
+  assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.1.0', zod: '4.6.5', '@modelcontextprotocol/client': '2.1.0' });
   for (const [filename, row] of entries) assert.deepEqual(row.bytes, expectedBytes.get(filename), 'EXACT_FROZEN_BYTES');
   assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   return metadata;
@@ -384,7 +390,9 @@ async function otherOwnedEntry(kind) {
 }
 
 test('expert package: exact14 admitted members retain independent source pins and raw modes', () => {
-  assert.equal(MEMBERS.length, 14); assert.deepEqual(audit(cloneEntries()), packed.metadata);
+  const legacy = MEMBERS.filter(name => !['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md'].includes(name));
+  assert.equal(legacy.length, 14); assert.deepEqual(legacy, ['LICENSE', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'package.json', ...Object.keys(SOURCE_PINS).filter(name => name !== 'src/audit-inputs-client.mjs')].map(name => 'package/' + name).sort());
+  assert.equal(MEMBERS.length, 16); assert.deepEqual(audit(cloneEntries()), packed.metadata);
   assert.equal(packed.raw.admission, 'RAW_CAPTURED_NOT_ADMITTED'); assert.equal(packed.raw.compressed_sha256, sha(packed.compressed));
 });
 test('expert package: all five import-only copies reverse to complete original sources', () => {
@@ -398,7 +406,9 @@ test('expert package: all five import-only copies reverse to complete original s
 test('expert package: original default and audit bytes stay separate from installed executable fixture modes', () => {
   for (const local of ['src/server.mjs', 'src/audit-inputs-stdio.mjs', 'src/audit-inputs-core.mjs', 'src/canonical-json.mjs'])
     assert.equal(sha(packed.entries.get('package/' + local).bytes), SOURCE_PINS[local]);
-  assert.deepEqual(packed.bins.map(row => row.raw_mode), [0o644, 0o755, 0o755]);
+  const oldBins = packed.bins.filter(row => row.name !== 'canli-fundamentals-audit-files');
+  assert.deepEqual(oldBins.map(row => row.raw_mode), [0o644, 0o755, 0o755]);
+  assert.equal(packed.bins.length, 4); assert.equal(packed.bins.find(row => row.name === 'canli-fundamentals-audit-files').raw_mode, 0o755);
   assert.ok(packed.bins.every(row => row.owned_fixture_only && row.installed_fixture_mode === 0o755));
 });
 test('expert package: missing changed and wrong-mode canonical sources refuse before extraction', () => {
