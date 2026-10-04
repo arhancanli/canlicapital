@@ -94,15 +94,14 @@ def audit_route(browser, route: str, *, mobile: bool = False) -> dict[str, objec
             f"{route}: source control is visible at {width}px; below "
             f"{SOURCE_CONTROL_HIDDEN_BELOW_PX}px the expanded menu is meant to carry it instead"
         )
-    # The footer states when the work began AND where the published record begins,
-    # because a lone "since July 2024" beside a live equity curve invites the reader
-    # to assume two years of track record that does not exist.
+    # Engineering history must remain distinct from the current paper record.
+    # The record link supplies observation dates without pinning a retired window.
     footer_text = footer.inner_text()
     assert "since July 2024" in footer_text, f"{route}: footer lost its inception statement"
-    assert "2026-08-07" in footer_text, (
-        f"{route}: footer states an inception date without the record's start date, "
-        "which reads as two years of track record"
-    )
+    assert "Earlier engineering is not a track record." in footer_text, f"{route}: footer lost the performance boundary"
+    record_link = footer.get_by_role("link", name="public paper record and its observation dates", exact=True)
+    assert record_link.count() == 1 and record_link.get_attribute("href") == "/performance", f"{route}: footer lost the current observation-date source"
+    assert "2026-08-07" not in footer_text, f"{route}: footer reintroduced a retired paper window"
     assert not page.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth")
     if route.startswith("/publication/"):
         assert page.locator(".publication-hero").count() == 1, f"{route}: publication wrapper did not resolve"
