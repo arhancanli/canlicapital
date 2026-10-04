@@ -354,6 +354,10 @@ for (const file of htmlFiles) {
   for (const token of new Set(text.match(NUMERAL) || [])) {
     seen += 1;
     if (identifiers.has(token)) { reasons.IDENTIFIER += 1; continue; }
+    // A numeral written with a leading zero is a code, not a quantity: a file mode such as 0600, a
+    // zero-padded index. No quantity is written that way, so there is no claim to trace. (0700 used
+    // to pass only because the site happened to have 700 pages.)
+    if (/^0\d+$/.test(token)) { reasons.IDENTIFIER += 1; continue; }
     const bare = token.replace(/,/g, "");
     const value = Number(bare);
     const decimals = (bare.split(".")[1] || "").length;

@@ -3,6 +3,7 @@
 // MCP package's local mode (mcp/src/local mirrors it byte for byte), so the two cannot disagree.
 import { finiteNumbers } from "../moments-core.js";
 import { pboCscv } from "../pbo-core.js";
+import { oosDecay } from "../audit-core.js";
 import { LIMITS } from "../../api/_lib/limits.js";
 
 const mean = (xs) => xs.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0) / xs.length;
@@ -30,6 +31,8 @@ export function compute(body) {
     block_length: out.block_length,
     lambda_quantiles: { p05: q(0.05), p25: q(0.25), p50: q(0.5), p75: q(0.75), p95: q(0.95) },
     is_oos_summary: { mean_is_sharpe_of_selected: mean(out.is_oos_pairs.map((p) => p[0])), mean_oos_sharpe_of_selected: mean(out.is_oos_pairs.map((p) => p[1])), share_oos_below_is: degraded },
+    // What the in-sample best did out of sample across the splits, per period like is_oos_summary.
+    oos_decay: oosDecay(out.is_oos_pairs),
     plain_reading: `In ${(out.pbo * 100).toFixed(1)} percent of the ${out.n_combinations} in-sample and out-of-sample splits, the variant that looked best in sample ranked in the worse half out of sample. That share is the probability of backtest overfitting for this set of variants as submitted.`,
   };
 }

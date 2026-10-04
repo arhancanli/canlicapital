@@ -77,9 +77,7 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
     "audit_backtest",
     "backtest_strategy",
     "check_feasibility",
-    "company_financial_history",
     "get_key",
-    "get_receipt",
     "service_status",
     "stress_test",
     "summarize_series",
@@ -130,7 +128,7 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   const sources = await client.readResource({ uri: "canli://sources" });
   assert.match(sources.contents[0].text, /pbo/);
   assert.ok(!result.isError);
-  const failed = await client.callTool({ name: "get_receipt", arguments: { id: 'a'.repeat(24) } });
+  const failed = await client.callTool({ name: "verify_receipt", arguments: { id: 'a'.repeat(24) } });
   assert.equal(failed.isError, true);
   assert.deepEqual(JSON.parse(failed.content[0].text), { ...STUB_ENVELOPE, error: { code: 'not_found' } });
 });

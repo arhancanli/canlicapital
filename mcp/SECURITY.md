@@ -33,7 +33,7 @@ versions with a lockfile.
 
 With `CANLI_LOCAL=1` the validators compute on your machine from `src/local`, a byte-for-byte copy of
 the API's computation. The series you submit is not sent anywhere and no receipt is stored. The read
-tools (`get_receipt`, `service_status`, `company_financial_history`) still call canlicapital.com and
+tools (`verify_receipt` by id, `service_status`, `company_financial_history`) still call canlicapital.com and
 send no series.
 
 The unreleased source can bind a paper record to the supplied signed journal and recompute its

@@ -71,9 +71,10 @@ export function createHostedHandler({ env = () => process.env, fetchImpl = inPro
       if (e instanceof BodyError) return rpcError(res, e.status, -32700, e.message);
       return rpcError(res, 400, -32700, "Could not read the request body");
     }
-    // ?toolsets=company lists only those tools; this deployment's own environment never chooses.
+    // ?toolsets=company lists only those tools; without it, the released package's default, the same
+    // list npm users get. This deployment's own environment never chooses.
     let toolsets;
-    try { toolsets = configuredToolsets(toolsetsParam(req) ?? "all"); } catch (e) { return rpcError(res, 400, -32602, e.message); }
+    try { toolsets = configuredToolsets(toolsetsParam(req)); } catch (e) { return rpcError(res, 400, -32602, e.message); }
     const session = createSession({
       toolsets,
       envKey: resolved.key,

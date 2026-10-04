@@ -63,16 +63,13 @@ test("initialize answers with the package's own server name and version", async 
   });
 });
 
-test("tools/list exposes exactly the npm package's tools", async () => {
+test("tools/list exposes exactly the npm package's default tools; a keyed session has no get_key", async () => {
   await withServer({ CANLI_REMOTE_MCP_KEY: SHARED_KEY }, async (url) => {
     const { json } = await rpc(url, "tools/list", {});
     assert.deepEqual(json.result.tools.map((t) => t.name).sort(), [
       "audit_backtest",
       "backtest_strategy",
       "check_feasibility",
-      "company_financial_history",
-      "get_key",
-      "get_receipt",
       "service_status",
       "stress_test",
       "summarize_series",
@@ -84,7 +81,7 @@ test("tools/list exposes exactly the npm package's tools", async () => {
       "validate_overfitting",
       "validate_paper_evidence",
       "validate_reality_check",
-    "validate_track_record",
+      "validate_track_record",
       "verify_receipt",
     ]);
   });
@@ -129,10 +126,10 @@ test("a caller key replaces the shared key and is never echoed back", async () =
   });
 });
 
-test("get_key on the hosted endpoint says which key is in use and issues nothing", async () => {
+test("get_key on the hosted endpoint issues nothing: not listed under the shared key, and says so without one", async () => {
   await withServer({ CANLI_REMOTE_MCP_KEY: SHARED_KEY }, async (url, api) => {
     const shared = await rpc(url, "tools/call", { name: "get_key", arguments: {} });
-    assert.match(shared.text, /shared anonymous key/);
+    assert.match(shared.text, /get_key/, "a keyed session does not list get_key, so the call is refused by name");
     assert.equal(api.calls.length, 0, "no key is issued from the platform's shared address");
     assert.ok(!shared.text.includes(SHARED_KEY), "the shared key must not be revealed");
   });
@@ -175,12 +172,16 @@ test("?toolsets= lists only those tools; an unknown toolset is a 400, and the de
   process.env.CANLI_TOOLSETS = "status";
   t.after(() => { if (saved === undefined) delete process.env.CANLI_TOOLSETS; else process.env.CANLI_TOOLSETS = saved; });
   await withServer({ CANLI_TOOLSETS: "status" }, async (url) => {
-    const all = await rpc(url, "tools/list", {});
-    assert.equal(all.json.result.tools.length, 19, "the server's own CANLI_TOOLSETS is ignored");
+    const defaults = await rpc(url, "tools/list", {});
+    const names = defaults.json.result.tools.map((t) => t.name);
+    assert.equal(names.length, 17, "the server's own CANLI_TOOLSETS is ignored: the default is every toolset but company");
+    assert.ok(names.includes("get_key") && !names.includes("company_financial_history"), "no key here, so get_key is listed");
+    const all = await rpc(`${url}?toolsets=all`, "tools/list", {});
+    assert.equal(all.json.result.tools.length, 18, "all adds company_financial_history");
     const company = await rpc(`${url}?toolsets=company`, "tools/list", {});
     assert.deepEqual(company.json.result.tools.map((t) => t.name), ["company_financial_history"]);
     const two = await rpc(`${url}?toolsets=receipts,company`, "tools/list", {});
-    assert.deepEqual(two.json.result.tools.map((t) => t.name).sort(), ["company_financial_history", "get_receipt", "verify_receipt"]);
+    assert.deepEqual(two.json.result.tools.map((t) => t.name).sort(), ["company_financial_history", "verify_receipt"]);
     const bad = await rpc(`${url}?toolsets=nope`, "tools/list", {});
     assert.equal(bad.status, 400);
     assert.match(bad.text, /Unknown toolset nope/);

@@ -696,6 +696,17 @@ test("verify_receipt: a receipt fetched by id verifies against the trusted key; 
   assert.match(fetchImpl.calls[0].url, /\/api\/v1\/receipts\/[0-9a-f]{24}$/);
 });
 
+test("verify_receipt: include_receipt returns the stored receipt beside the checks (what get_receipt returned)", async () => {
+  const { key, data } = signedReceipt();
+  const fetchImpl = fakeFetch([{ status: 200, body: envelope({ endpoint: `receipts/${data.id}`, data }) }, { status: 200, body: envelope({ endpoint: `receipts/${data.id}`, data }) }]);
+  const session = createSession({ base: "https://example.test", fetchImpl, receiptKeys: [key] });
+  const out = parsedText(await toolVerifyReceipt(session, { id: data.id, include_receipt: true }));
+  assert.equal(out.valid, true);
+  assert.deepEqual(out.receipt, data);
+  const plain = parsedText(await toolVerifyReceipt(session, { id: data.id }));
+  assert.equal(plain.receipt, undefined, "without the flag the receipt is not repeated");
+});
+
 test("verify_receipt: a receipt passed in verifies offline, and a changed number or an unknown key fails", async () => {
   const { key, data } = signedReceipt();
   const session = createSession({ base: "https://example.test", fetchImpl: neverFetch, receiptKeys: [key] });
