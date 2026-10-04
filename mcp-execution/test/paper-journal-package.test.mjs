@@ -27,7 +27,7 @@ const SOURCE_PINS = Object.freeze({
   "package/EXAMPLES.md": "e3f39e9764bdb50390b784c156b9aa0c1ef3daa235d7cfe95934851c8e9586ac",
   "package/JOURNAL_STORAGE.md": "71f246c46295d9cb6b1187709ec8a00111314c012688a53226be1967b456139a",
   "package/LICENSE": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
-  "package/PAPER_JOURNAL.md": "664b54e75ae625700bc6f44ec505a4265502e37091e485738bdfd30c23990730",
+  "package/PAPER_JOURNAL.md": "56be27fd25576d4b7d142913e927c310f3ff0bcb6c9bb178460e55bc8cdd01f3",
   "package/README.md": "2c1c2b398b865f50e132053b713bf80c498c9f69afb79cf360e562eb13cc7bf8",
   "package/package.json": "bf93d0ae94a5be4c5933766475b196150d660b7a1a576dad91f682043f282169",
   "package/src/check-orders.mjs": "ec2e0e50e04e413fff7047b17b5d8273591e66ae5ef63ef9ec2653188f07da21",
@@ -49,7 +49,7 @@ const SOURCE_PINS = Object.freeze({
   "package/src/journal.mjs": "72829724fd58fb8d6c7af8dc21fde02a0f97b68a57eedd606f5ff92826957619",
   "package/src/local-input.mjs": "fafeb03647cd04897fb03cf637186a91c91c9da1186414fd167bcfe9d12ad825",
   "package/src/measure-shortfall.mjs": "74cc85b67a4c0b7a685e81979097c345f1b21fc41c2755b2a65a0303626dc9a2",
-  "package/src/paper-journal.mjs": "d8c29d04ebc909ff2ee68aed8ddf3a59e7be17de227a326d626583c3518b057b",
+  "package/src/paper-journal.mjs": "3ec87e000a6b602432afcdba3c56d629cc27bb32fa084c20f23956c26e4e3928",
   "package/src/server.mjs": "4cd48c1dc40098ac049f45f3951322e3b63118605c36330c6d4874b25951c5bd",
   "package/src/size-position.mjs": "09e690c9f0452c039ff20fc3f2728e365e6f7ba6bcf9f2da150383654e8453f4"
 });
@@ -65,7 +65,8 @@ const BINS = Object.freeze({ 'canli-execution-mcp': 'src/server.mjs', 'canli-pap
 const MODES = Object.freeze(Object.fromEntries(MEMBERS.map(name => [name, name === 'package/src/paper-journal.mjs' ? 0o755 : 0o644])));
 let directory, packageRoot, adapter, server, guide, packed, expectedBytes, expectedTotal, packEntries = 0, sdkEntries = 0;
 const children = [], denials = [];
-const nativeSpawn = childProcess.spawn, nativeRealpath = fs.realpathSync;
+const nativeSpawn = childProcess.spawn, nativeRealpath = fs.realpathSync, nativeUnlink = fs.unlinkSync;
+const capturedDiagnosticWrite = process.stdout.write.bind(process.stdout);
 const owned = name => typeof name === 'string' && (path.resolve(name) === directory || path.resolve(name).startsWith(directory + path.sep));
 const deny = name => { denials.push(name); throw new Error('DENIED_OPERATION'); };
 function writePath(name) {
@@ -226,9 +227,25 @@ function audit(entries) {
 }
 const bounded = (promise, ms) => { let timer; return Promise.race([Promise.resolve(promise), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('FIXTURE_BOUND')), ms); })]).finally(() => clearTimeout(timer)); };
 const absent = pid => { try { process.kill(pid, 0); return false; } catch (error) { if (error.code === 'ESRCH') return true; throw error; } };
+function retainedDiagnostic(label, value) {
+  const line = label + ' ' + JSON.stringify(value) + '\n';
+  assert.ok(Buffer.byteLength(line) <= Math.ceil(LIMITS.compressed / 3) * 4 + 65536, 'DIAGNOSTIC_BOUND');
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    const finish = error => { if (settled) return; settled = true; clearTimeout(timer);
+      process.stdout.removeListener('error', failed); process.stdout.removeListener('drain', drained);
+      error ? reject(error) : resolve(); };
+    const failed = () => finish(new Error('DIAGNOSTIC_WRITE'));
+    const drained = () => finish();
+    const timer = setTimeout(() => finish(new Error('DIAGNOSTIC_BOUND')), 5000);
+    process.stdout.once('error', failed);
+    try { if (capturedDiagnosticWrite(line)) finish(); else process.stdout.once('drain', drained); }
+    catch { failed(); }
+  });
+}
 async function packOnce() {
   const output = path.join(directory, 'pack'), cache = path.join(directory, 'cache'); fs.mkdirSync(output); fs.mkdirSync(cache);
-  const guard = path.join(directory, 'pack-guard.mjs'); fs.writeFileSync(guard, NETWORK_GUARD, { flag: 'wx', mode: 0o600 });
+  const guard = path.join(directory, 'pack-guard.mjs'); fs.writeFileSync(guard, childGuardSource(directory), { flag: 'wx', mode: 0o600 });
   const user = path.join(directory, 'user.conf'), global = path.join(directory, 'global.conf'); fs.writeFileSync(user, '', { flag: 'wx', mode: 0o600 }); fs.writeFileSync(global, '', { flag: 'wx', mode: 0o600 });
   const args = ['pack', '--json', '--ignore-scripts', '--offline', '--update-notifier=false', '--audit=false', '--fund=false',
     '--pack-destination', output, '--cache', cache, '--userconfig', user, '--globalconfig', global];
@@ -254,9 +271,9 @@ before(async t => {
   const artifact = await packOnce(), raw = { admission: 'RAW_CAPTURED_NOT_ADMITTED', compressed_bytes: artifact.compressed.length,
     compressed_sha256: sha(artifact.compressed), original_gzip_base64: artifact.compressed.toString('base64'), files: null };
   assert.ok(artifact.compressed.length + raw.original_gzip_base64.length * 2 + LIMITS.expanded + expectedTotal <= LIMITS.nativePeak, 'NATIVE_PEAK');
-  t.diagnostic('CANLI_PAPER_PACKAGE_TARBALL_RAW ' + JSON.stringify(raw)); // exact original before admission or extraction
+  await retainedDiagnostic('CANLI_PAPER_PACKAGE_TARBALL_RAW', raw); // flushed captured output before admission or extraction
   const entries = tarEntries(artifact.compressed); raw.files = [...entries].map(([filename, row]) => ({ path: filename, mode: row.mode, bytes: row.bytes.length, sha256: sha(row.bytes) }));
-  t.diagnostic('CANLI_PAPER_PACKAGE_RAW_MEMBERS ' + JSON.stringify({ admission: raw.admission, compressed_sha256: raw.compressed_sha256, files: raw.files }));
+  await retainedDiagnostic('CANLI_PAPER_PACKAGE_RAW_MEMBERS', { admission: raw.admission, compressed_sha256: raw.compressed_sha256, files: raw.files });
   const metadata = audit(entries), consumer = path.join(directory, 'consumer'); fs.mkdirSync(consumer); fs.mkdirSync(path.join(consumer, 'node_modules'));
   packageRoot = path.join(consumer, 'node_modules', metadata.name); fs.mkdirSync(packageRoot);
   for (const [filename, row] of entries) { const target = path.join(packageRoot, filename.slice(8)); fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -273,14 +290,28 @@ before(async t => {
   adapter = await import(pathToFileURL(path.join(packageRoot, 'src/paper-journal.mjs')));
   server = await import(pathToFileURL(path.join(packageRoot, 'src/server.mjs'))); guide = await import(pathToFileURL(snippetPath));
   packed = { ...artifact, entries, metadata, raw, consumer, bins, dependencies };
-  t.diagnostic('CANLI_PAPER_PACKAGE_TARBALL_ADMITTED ' + JSON.stringify({ admission: 'ADMITTED', compressed_sha256: raw.compressed_sha256, files: raw.files, bins, dependencies,
-    dependency_tree: path.join(ROOT, 'node_modules'), dependency_link_is_not_install: true, repository_sources_linked: false }));
+  await retainedDiagnostic('CANLI_PAPER_PACKAGE_TARBALL_ADMITTED', { admission: 'ADMITTED', compressed_sha256: raw.compressed_sha256, files: raw.files, bins, dependencies,
+    dependency_tree: path.join(ROOT, 'node_modules'), dependency_link_is_not_install: true, repository_sources_linked: false });
 }, { timeout: 40000 });
 after(() => {
-  assert.equal(packEntries, 1); assert.equal(sdkEntries, 3); assert.equal(children.length, 3);
-  assert.ok(children.every(row => row.pid && row.exit && row.close && absent(row.pid)));
-  assert.deepEqual([...new Set(denials)].sort(), ['fetch', 'filesystem', 'network', 'spawn']);
-  if (directory) fs.rmSync(directory, { recursive: true });
+  try {
+    assert.equal(packEntries, 1); assert.equal(sdkEntries, 3); assert.equal(children.length, 3);
+    assert.ok(children.every(row => row.pid && row.exit && row.close && absent(row.pid)));
+    assert.deepEqual([...new Set(denials)].sort(), ['fetch', 'filesystem', 'network', 'spawn']);
+  } finally {
+    if (directory) {
+      if (packageRoot) {
+        // Unlink this exact owned link itself; the SDK tree is never traversed or removed.
+        const dependencyLink = path.join(packageRoot, 'node_modules');
+        if (fs.existsSync(dependencyLink)) {
+          assert.ok(owned(dependencyLink) && fs.lstatSync(dependencyLink).isSymbolicLink());
+          assert.equal(fs.readlinkSync(dependencyLink), path.join(ROOT, 'node_modules'));
+          nativeUnlink(dependencyLink);
+        }
+      }
+      fs.rmSync(directory, { recursive: true });
+    }
+  }
 });
 const clonedEntries = () => new Map([...packed.entries].map(([name, row]) => [name, { mode: row.mode, bytes: Buffer.from(row.bytes) }]));
 const envelope = value => ({ content: [{ type: 'text', text: JSON.stringify(value) }], structuredContent: value });
@@ -333,7 +364,7 @@ function assertClosed(row, report, calls) {
 test('paper package: guards positively deny network fetch foreign writes and extra spawn before imports', () => {
   assert.throws(() => globalThis.fetch('https://invalid.example'), /DENIED_OPERATION/);
   assert.throws(() => http.get('https://invalid.example'), /DENIED_OPERATION/);
-  assert.throws(() => fs.writeFileSync(path.join(os.tmpdir(), 'foreign-paper-fixture'), 'PRIVATE_DIAGNOSTIC'), /DENIED_OPERATION/);
+  assert.throws(() => fs.writeFileSync(path.join(ROOT, 'foreign-paper-fixture'), 'PRIVATE_DIAGNOSTIC'), /DENIED_OPERATION/);
   assert.throws(() => childProcess.spawn('unexpected-process', [], {}), /DENIED_OPERATION/);
 });
 test('paper package: exact28 raw members modes source pins and Git-free closure are admitted separately', () => {
@@ -398,7 +429,8 @@ test('paper package: traversal backslash duplicate links and extension headers r
 });
 test('paper package: nonoctal bad checksum and truncated bodies refuse without extraction', () => {
   assert.throws(() => tarEntries(tarFixture([{ name: 'package/A', bytes: Buffer.alloc(0) }], h => { h[100] = 57; })), /TAR_OCTAL/);
-  const inflated = inflateRawSync(packed.compressed.subarray(10)); const changed = Buffer.from(inflated); changed[0] ^= 1;
+  const inflated = inflateRawSync(packed.compressed.subarray(10)); const changed = Buffer.from(inflated);
+  changed[148] = changed[148] === 48 ? 49 : 48; // valid octal checksum, unchanged valid path
   assert.throws(() => tarEntries(gzipSync(changed)), /TAR_CHECKSUM/);
   assert.throws(() => tarEntries(gzipSync(inflated.subarray(0, 512))), /TAR_BODY|TAR_END/);
 });
@@ -411,7 +443,9 @@ test('paper package: guide and old repository instructions remain packaged witho
 test('paper package: entry1 exact installed guide defaults to two calls no key and known same-child closure', { timeout: 31000 }, async () => {
   const f = homeFixture(), frames = []; const report = await guide.guideRun(f.home, bytes => frames.push(bytes));
   assert.equal(report.status, 'writes_disabled', JSON.stringify(report.stop)); assert.equal(report.call_count, 2); assert.deepEqual(fs.readdirSync(f.home), []);
-  assert.equal(frames.length, 1); assert.deepEqual(JSON.parse(frames[0]), report); assert.ok(Buffer.byteLength(frames[0]) <= 196609); assertClosed(children[0], report, 2);
+  assert.equal(frames.length, 1); assert.equal(frames[0], JSON.stringify(report) + '\n');
+  assert.deepEqual(JSON.parse(frames[0]), JSON.parse(JSON.stringify(report)));
+  assert.ok(Buffer.byteLength(frames[0]) <= 196609); assertClosed(children[0], report, 2);
 });
 test('paper package: entry2 complete synthetic signed record binds sole fee mark and null Sharpe', { timeout: 31000 }, async () => {
   const f = homeFixture(true), key = snapshot(path.join(f.home, 'journal.key'), 8192);
@@ -566,4 +600,103 @@ test('paper package: oversized retained replies reserve complete bounded control
     return { ...reply, large: 'x'.repeat(131073) };
   } }); assert.equal(report.status, 'stopped'); assert.equal(report.call_count, 11); assert.equal(report.receipts.length, 6); assert.equal(report.requests.length, 6); assert.equal(report.pending_export.dispatched, true);
   assert.ok(Buffer.byteLength(JSON.stringify(report)) <= adapter.PAPER_LIMITS.outputBytes); assert.ok(Object.isFrozen(report.pending_export));
+});
+test('paper package: caller and owned process cancellation share one scope without a followup write', async () => {
+  for (const mode of ['default-SIGINT', 'default-SIGTERM', 'explicit-SIGINT', 'explicit-SIGTERM', 'caller-abort']) {
+    const before = new Map(['SIGINT', 'SIGTERM'].map(name => [name, process.listeners(name)]));
+    const external = new AbortController(), f = homeFixture(true); let cancelled = false;
+    const sdk = syntheticSdk({ ...f, callTool: request => {
+      if (request.arguments.action !== 'initialize') return f.callTool(request);
+      cancelled = true;
+      if (mode === 'caller-abort') external.abort();
+      else {
+        const name = mode.endsWith('SIGINT') ? 'SIGINT' : 'SIGTERM';
+        const owned = process.listeners(name).filter(listener => !before.get(name).includes(listener));
+        assert.equal(owned.length, 1); owned[0](); // invoke only this command's listener, never an OS signal
+      }
+      return new Promise(() => {});
+    } });
+    const frames = [], result = await adapter.paperJournalCommand(['--home', f.home, '--write'],
+      { now: () => 0, sdkModules: sdk.modules, emit: frame => frames.push(frame),
+        ...(mode.startsWith('default-') ? {} : { signal: external.signal }) });
+    assert.equal(cancelled, true); assert.equal(result.stop.code, 'CANCELLED'); assert.equal(result.status, 'stopped');
+    assert.equal(result.call_count, 4); assert.equal(result.requests.length, 1); assert.equal(result.receipts.length, 0);
+    assert.equal(result.pending_request.request.operation_id, 'synthetic-paper-v1:initialize'); assert.equal(result.pending_request.dispatched, true);
+    assert.equal(sdk.counts.calls, 4); assert.equal(sdk.counts.writes, 5); assert.equal(sdk.counts.clientClose, 1); assert.equal(sdk.counts.transportClose, 1);
+    assert.equal(frames.length, 1); assert.equal(JSON.parse(frames[0]).pending_request.request.operation_id, result.pending_request.request.operation_id);
+    assert.equal(external.signal.aborted, mode === 'caller-abort');
+    for (const name of before.keys()) assert.deepEqual(process.listeners(name), before.get(name));
+  }
+  const external = new AbortController(), f = homeFixture(), sdk = syntheticSdk(f), frames = [];
+  const result = await adapter.paperJournalCommand(['--home', f.home], { signal: external.signal, now: () => 0,
+    sdkModules: sdk.modules, emit: frame => frames.push(frame) });
+  assert.equal(result.status, 'writes_disabled'); assert.equal(external.signal.aborted, false); assert.equal(sdk.counts.calls, 2); assert.equal(frames.length, 1);
+});
+test('paper package: direct return reobserves deadline and abort after full final report capture', async () => {
+  const original = JSON.stringify;
+  for (const mode of ['positive', 'deadline', 'abort']) {
+    const f = homeFixture(true), sdk = syntheticSdk(f), external = new AbortController(); let clock = 0, crossed = false;
+    JSON.stringify = (...args) => {
+      const bytes = original(...args);
+      if (!crossed && args[0] === 'canli.paper-journal.example-receipt.v1' && sdk.counts.transportClose === 1) {
+        crossed = true; if (mode === 'deadline') clock = 30001; if (mode === 'abort') external.abort();
+      }
+      return bytes;
+    };
+    try {
+      const result = await adapter.runPaperJournalStdio({ home: f.home, write: true, sdkModules: sdk.modules, signal: external.signal, now: () => clock });
+      assert.equal(crossed, true); assert.equal(result.status, mode === 'positive' ? 'completed' : 'stopped');
+      assert.equal(result.stop?.code ?? null, mode === 'positive' ? null : mode === 'deadline' ? 'DEADLINE' : 'CANCELLED');
+      assert.equal(result.receipts.length, 6); assert.equal(result.requests.length, 6); assert.equal(result.call_count, 11);
+      assert.equal(result.export.record.identity.name, 'synthetic-paper-example'); assert.equal(result.pending_export, null);
+      assert.equal(sdk.counts.calls, 11); assert.equal(sdk.counts.writes, 12); assert.equal(sdk.counts.clientClose, 1); assert.equal(sdk.counts.transportClose, 1);
+      assert.ok(Object.isFrozen(result.receipts)); assert.ok(Buffer.byteLength(original(result)) <= 196608);
+    } finally { JSON.stringify = original; }
+  }
+});
+test('paper package: direct final capture clock faults retain complete receipts and sticky pending export', async () => {
+  const original = JSON.stringify;
+  for (const mode of ['throw', 'nonfinite', 'backward', 'pending-export']) {
+    const f = homeFixture(true), sdk = syntheticSdk({ ...f, callTool: async request => {
+      const reply = await f.callTool(request);
+      if (mode !== 'pending-export' || request.arguments.action !== 'export') return reply;
+      const data = structuredClone(reply.structuredContent); data.metrics.closing_equity += 1; return envelope(data);
+    } }); let crossed = false;
+    JSON.stringify = (...args) => { const bytes = original(...args);
+      if (args[0] === 'canli.paper-journal.example-receipt.v1' && sdk.counts.transportClose === 1) crossed = true; return bytes; };
+    try {
+      const result = await adapter.runPaperJournalStdio({ home: f.home, write: true, sdkModules: sdk.modules,
+        now: () => { if (!crossed) return 10; if (mode === 'nonfinite') return NaN; if (mode === 'backward') return 9; throw new Error('PRIVATE_DIAGNOSTIC'); } });
+      assert.equal(crossed, true); assert.equal(result.status, 'stopped');
+      assert.equal(result.stop.code, mode === 'pending-export' ? 'MALFORMED_EXPORT' : 'CLOCK');
+      assert.equal(result.receipts.length, 6); assert.equal(result.requests.length, 6); assert.equal(result.call_count, 11);
+      assert.equal(result.pending_export?.dispatched ?? null, mode === 'pending-export' ? true : null);
+      if (mode === 'pending-export') assert.equal(result.pending_export.request.action, 'export');
+      assert.equal(sdk.counts.calls, 11); assert.equal(sdk.counts.clientClose, 1); assert.equal(sdk.counts.transportClose, 1);
+      assert.doesNotMatch(original(result), /PRIVATE_DIAGNOSTIC/); assert.ok(Buffer.byteLength(original(result)) <= 196608);
+    } finally { JSON.stringify = original; }
+  }
+});
+test('paper package: terminal postencoding clock faults emit one full stopped report with pending controls', async () => {
+  const original = JSON.stringify;
+  for (const mode of ['throw', 'nonfinite', 'backward', 'pending-export']) {
+    const f = homeFixture(true), sdk = syntheticSdk({ ...f, callTool: async request => {
+      const reply = await f.callTool(request);
+      if (mode !== 'pending-export' || request.arguments.action !== 'export') return reply;
+      const data = structuredClone(reply.structuredContent); data.metrics.closing_equity += 1; return envelope(data);
+    } }); let encoded = false; const frames = [];
+    JSON.stringify = (...args) => { const bytes = original(...args);
+      if (args[0]?.schema === 'canli.paper-journal.example-receipt.v1') encoded = true; return bytes; };
+    try {
+      const result = await adapter.paperJournalCommand(['--home', f.home, '--write'], { sdkModules: sdk.modules,
+        emit: frame => frames.push(frame), now: () => { if (!encoded) return 10; if (mode === 'nonfinite') return NaN;
+          if (mode === 'backward') return 9; throw new Error('PRIVATE_DIAGNOSTIC'); } });
+      assert.equal(encoded, true); assert.equal(result.status, 'stopped'); assert.equal(result.stop.code, mode === 'pending-export' ? 'MALFORMED_EXPORT' : 'CLOCK');
+      assert.equal(result.receipts.length, 6); assert.equal(result.requests.length, 6); assert.equal(result.call_count, 11);
+      assert.equal(result.pending_export?.dispatched ?? null, mode === 'pending-export' ? true : null);
+      assert.equal(frames.length, 1); assert.equal(frames[0], original(result) + '\n');
+      assert.ok(Buffer.byteLength(frames[0]) <= 196609); assert.doesNotMatch(frames[0], /PRIVATE_DIAGNOSTIC/);
+      assert.equal(sdk.counts.calls, 11); assert.equal(sdk.counts.writes, 12); assert.equal(sdk.counts.clientClose, 1); assert.equal(sdk.counts.transportClose, 1);
+    } finally { JSON.stringify = original; }
+  }
 });

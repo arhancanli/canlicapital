@@ -542,9 +542,17 @@ export async function runPaperJournalStdio({ home, write = false, scenario = SYN
       absence_scope: sdkModules ? null : child && birth && exited && childClosed ? 'admitted_same_child_terminal_only' : null,
       stderr_bytes: stderrBytes, timing };
     if (scope.failure) stopped(report, scope.failure);
-    if (!providedScope) scope.dispose();
   }
-  return finish(report);
+  try {
+    let result = finish(report);
+    try { scope.finalObservation(); } catch (error) { scope.fail(error); }
+    if (scope.failure && result.stop?.code !== scope.failure.code) {
+      stopped(report, scope.failure); result = finish(report);
+      // A repeated failed clock still retains the full stopped report and its first failure.
+      try { scope.finalObservation(); } catch (error) { scope.fail(error); }
+    }
+    return result;
+  } finally { if (!providedScope) scope.dispose(); }
 }
 
 export function paperJournalEntry(argvPath, modulePath = fileURLToPath(import.meta.url), fs = { realpathSync }) {
@@ -555,8 +563,11 @@ export function paperJournalEntry(argvPath, modulePath = fileURLToPath(import.me
 export async function paperJournalCommand(argv, { emit,
   now, sdkModules, nativeFs, signal, totalMs = PACKAGE_PAPER_LIMITS.totalMs } = {}) {
   const controller = new AbortController(), cancel = () => controller.abort();
-  const scope = createPaperScope({ signal: signal ?? controller.signal, totalMs, ...(now ? { now } : {}) });
+  requireThat(!signal || signal instanceof AbortSignal, 'POLICY');
+  const activeSignal = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
+  const scope = createPaperScope({ signal: activeSignal, totalMs, ...(now ? { now } : {}) });
   const capturedEmit = emit ?? process.stdout.write.bind(process.stdout);
+  const observeTerminal = () => { try { scope.finalObservation(); } catch (error) { scope.fail(error); } };
   process.once('SIGINT', cancel); process.once('SIGTERM', cancel); let result;
   try {
     scope.guard(); requireThat(typeof capturedEmit === 'function', 'STDIO_WRITER'); const args = capture(argv ?? process.argv.slice(2), 8_192); scope.guard();
@@ -569,11 +580,11 @@ export async function paperJournalCommand(argv, { emit,
   try {
     let frame = JSON.stringify(result) + '\n';
     requireThat(Buffer.byteLength(frame, 'utf8') <= PACKAGE_PAPER_LIMITS.stdoutBytes, 'OUTPUT_CAPACITY');
-    scope.finalObservation();
+    observeTerminal();
     if (scope.failure && result.stop?.code !== scope.failure.code) {
       const report = capture(result, PAPER_LIMITS.outputBytes); stopped(report, scope.failure);
       result = finish(report); frame = JSON.stringify(result) + '\n';
-      requireThat(Buffer.byteLength(frame, 'utf8') <= PACKAGE_PAPER_LIMITS.stdoutBytes, 'OUTPUT_CAPACITY'); scope.finalObservation();
+      requireThat(Buffer.byteLength(frame, 'utf8') <= PACKAGE_PAPER_LIMITS.stdoutBytes, 'OUTPUT_CAPACITY'); observeTerminal();
     }
     capturedEmit(frame);
     return result;

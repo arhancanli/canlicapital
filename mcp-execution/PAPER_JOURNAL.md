@@ -81,7 +81,11 @@ This observes the admitted same child, not descendants, PID reuse or global idle
 | Fixed last-resort refusal | 2,048 |
 
 The original input, planning, export, retained-control and output reservations are
-unchanged. A final clock check follows serialization and precedes terminal emission.
+unchanged. Caller cancellation and the owned SIGINT/SIGTERM handlers reach the same
+active scope. It stays live through complete direct-return report capture. A fresh
+clock and abort observation follows capture and terminal serialization; an expired
+or invalid final clock retains a bounded stopped report and its complete controls.
+The first failure stays sticky through that refusal's final observation.
 The report's timing snapshot is taken before terminal encoding; it is not a latency
 benchmark or a claim about effects after the captured stdout call. Finalization
 cannot turn an earlier failure into success or discard pending controls to fit a cap.
