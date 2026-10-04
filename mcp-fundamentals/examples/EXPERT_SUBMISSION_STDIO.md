@@ -23,7 +23,12 @@ input paths are accepted. The protocol identity is
 
 ## Supplied byte contract
 
-All nine fields are required. Additional fields are refused.
+All nine fields are required. Additional fields are refused. The original parsed
+`tools/call` frame must contain only `name` and `arguments` in `params`, and the
+original argument key set is checked before the locked SDK projects either
+object. This includes an own `__proto__` field that the SDK would otherwise drop.
+Such a frame closes with a bounded constant diagnostic before any decode or
+kernel call; it cannot become an admitted request by losing a field.
 
 | Field | Form | Decoded maximum |
 | --- | --- | ---: |

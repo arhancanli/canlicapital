@@ -357,6 +357,17 @@ export class ExpertSubmissionTransport extends StdioServerTransport {
     } else if (message.method === 'notifications/cancelled') {
       this.scopes.get(message.params?.requestId)?.scope.fail('ABORTED');
     }
+    if (message.method === 'tools/call') {
+      // The locked SDK projects params and drops record keys such as __proto__.
+      // Admit original keys on the same request clock before that projection.
+      const scope = this.scopes.get(message.id)?.scope;
+      if (!scope) refuse('FRAME_REQUEST');
+      scope.observe();
+      const params = message.params;
+      if (!params || Object.keys(params).length !== 2 || !Object.hasOwn(params, 'name') || !Object.hasOwn(params, 'arguments')) refuse('ARGUMENTS');
+      argumentsRecord(params.arguments);
+      scope.observe();
+    }
   }
   scopeFor(id, signal) {
     const row = this.scopes.get(id);

@@ -633,3 +633,78 @@ test('expert stdio: memoized transport closure destroys the owned input once and
   await transport.close(); assert.equal(destroys, 1); assert.equal(output.frames.length, 1);
   assert.equal(output.listenerCount('drain'), 0); assert.equal(output.listenerCount('close'), 0);
 });
+
+// Native in-memory streams exercise the production raw ingress and locked SDK
+// projection. This helper never creates a child or an additional SDK client.
+async function memoryRawIngress(params, refused) {
+  const input = new PassThrough(); const output = new Output(); const stderr = new Output();
+  let decoded = 0; let calls = 0;
+  const { server, transport } = createExpertSubmissionEndpoint({ input, output, stderr,
+    decode: text => { decoded++; return Buffer.from(text, 'base64'); },
+    kernel: (...args) => { calls++; return reconcileExpertSubmissions(...args); },
+  });
+  const started = performance.now();
+  const waitFor = async predicate => {
+    for (let i = 0; i < 100 && !predicate(); i++) await new Promise(resolve => setImmediate(resolve));
+    assert.equal(Boolean(predicate()), true);
+  };
+  const frame = Buffer.from(JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'tools/call', params }) + '\n');
+  try {
+    await server.connect(transport);
+    input.write(Buffer.from(JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'initialize',
+      params: { protocolVersion: '2025-11-25', capabilities: {}, clientInfo: { name: 'synthetic-raw-ingress', version: '0.0.0' } } }) + '\n'));
+    await waitFor(() => output.frames.length === 1);
+    input.write(frame);
+    if (refused) {
+      await waitFor(() => transport.closing !== undefined);
+      const first = transport.close(); assert.equal(transport.close(), first); await first;
+      assert.equal(input.destroyed, true); assert.equal(output.frames.length, 1);
+      assert.equal(decoded, 0); assert.equal(calls, 0); assert.equal(transport.scopes.size, 0);
+      assert.equal(transport.responses.size, 0);
+      const diagnostic = stderr.frames.join('');
+      assert.ok(diagnostic.length > 0 && Buffer.byteLength(diagnostic) <= LIMITS.stderrBytes);
+      assert.equal(diagnostic.includes('PRIVATE_RAW_'), false);
+      assert.equal(output.frames.join('').includes('PRIVATE_RAW_'), false);
+      return { frame, response: null, decoded, calls };
+    }
+    await waitFor(() => output.frames.length === 2);
+    assert.equal(calls, 1); assert.equal(stderr.frames.length, 0);
+    return { frame, response: JSON.parse(output.frames[1]), decoded, calls };
+  } finally {
+    const first = transport.close(); assert.equal(transport.close(), first); await first; await server.close(); input.destroy();
+    assert.ok(performance.now() - started < LIMITS.totalMs);
+  }
+}
+test('expert stdio: raw own __proto__ argument refuses before locked SDK projection decode or core', async () => {
+  const args = wireArguments();
+  Object.defineProperty(args, '__proto__', { value: 'PRIVATE_RAW_ARGUMENT', enumerable: true });
+  const { frame } = await memoryRawIngress({ name: EXPERT_TOOL.name, arguments: args }, true);
+  assert.equal(Object.hasOwn(JSON.parse(frame).params.arguments, '__proto__'), true);
+});
+test('expert stdio: raw extra ordinary and __proto__ params refuse before SDK projection or core', async () => {
+  for (const key of ['extra', '__proto__']) {
+    const params = { name: EXPERT_TOOL.name, arguments: wireArguments() };
+    Object.defineProperty(params, key, { value: 'PRIVATE_RAW_PARAMS', enumerable: true });
+    const { frame } = await memoryRawIngress(params, true);
+    assert.equal(Object.hasOwn(JSON.parse(frame).params, key), true);
+  }
+});
+test('expert stdio: raw exact nine-key ingress reaches the unchanged core once and retains the complete report', async () => {
+  const s = setup(); const args = wireArguments(s);
+  const { frame, response, decoded, calls } = await memoryRawIngress({ name: EXPERT_TOOL.name, arguments: args }, false);
+  assert.deepEqual(JSON.parse(frame).params.arguments, args);
+  assert.equal(calls, 1); assert.equal(decoded, 6);
+  const accepted = payload(response.result); assert.deepEqual(accepted, report(s)); unknown(accepted);
+  assert.equal(accepted.coverage.selected_n, s.gold.labels.length);
+});
+test('expert stdio: raw admission preserves the request clock and refuses a crossing before SDK dispatch', async () => {
+  const input = new PassThrough(); const output = new Output(); const stderr = new Output(); let observations = 0;
+  const times = [0, 14999.5, 15000.5];
+  const { transport } = createExpertSubmissionEndpoint({ input, output, stderr, clock: () => times[Math.min(observations++, 2)] });
+  try {
+    assert.throws(() => transport.accept({ jsonrpc: '2.0', id: 1, method: 'tools/call',
+      params: { name: EXPERT_TOOL.name, arguments: wireArguments() } }), error => error.code === 'DEADLINE');
+    assert.equal(observations, 3); assert.equal(transport.scopes.get(1).scope.failure, 'DEADLINE');
+    assert.equal(output.frames.length, 0); assert.equal(stderr.frames.length, 0);
+  } finally { const first = transport.close(); assert.equal(transport.close(), first); await first; input.destroy(); }
+});
