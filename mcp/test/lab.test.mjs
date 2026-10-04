@@ -121,6 +121,20 @@ test("code resources: exact schemas, the strategy spec, completions, and the liv
   assert.match(python, /session\.call_tool\("check_feasibility"/);
 });
 
+test("the tool list and canli://schemas carry the same lean schemas, and zod still validates", async (t) => {
+  const client = await connect(t, { CANLI_LOCAL: "1", CANLI_TOOLSETS: "all" });
+  const { tools } = await client.listTools();
+  assert.doesNotMatch(JSON.stringify(tools), /9007199254740991|"propertyNames":\{"type":"string"\}|"additionalProperties":\{\}/);
+  for (const tool of tools) {
+    const served = JSON.parse((await client.readResource({ uri: `canli://schemas/${tool.name}` })).contents[0].text);
+    assert.deepEqual(served.input_schema, tool.inputSchema, tool.name);
+    assert.deepEqual(served.output_schema, tool.outputSchema, tool.name);
+  }
+  const refused = await client.callTool({ name: "check_leakage", arguments: { action: "plan", observations: 252.5 } });
+  assert.equal(refused.isError, true);
+  assert.match(refused.content[0].text, /observations/);
+});
+
 test("every example's arguments are valid input for its tool", () => {
   const catalog = registerTools(new McpServer({ name: "t", version: "0" }), createSession());
   const placeholders = new Set(["verify_receipt"]);
@@ -147,4 +161,75 @@ test("every generated Python and JavaScript example compiles", (t) => {
     assert.ok(curl.includes("curl -sS https://canlicapital.com/mcp") || curl.includes("reads a file on your machine"), tool);
   }
   assert.deepEqual([...EXAMPLE_LANGUAGES], ["python", "javascript", "curl"]);
+});
+
+test("check_leakage: a plan, the caller's reruns on each prefix, and a compare that finds shift(-2) but passes a trailing average", async () => {
+  const { toolCheckLeakage } = await import("../src/lab.mjs");
+  const session = { hosted: false };
+  const plan = JSON.parse((await toolCheckLeakage(session, { action: "plan", observations: 400, prefixes: 4, seed: 11 })).content[0].text);
+  assert.equal(plan.cuts.length, 4);
+  assert.equal(plan.seed, 11);
+  const prices = Array.from({ length: 400 }, (_, i) => 100 + Math.sin(i / 7) * 5 + i * 0.05);
+  // Each "signal" is the caller's own code, run on whatever rows it is given.
+  const trailingMean = (xs) => xs.map((_, i) => (i < 9 ? null : xs.slice(i - 9, i + 1).reduce((a, b) => a + b, 0) / 10));
+  const forwardReturn = (xs) => xs.map((x, i) => (i + 2 < xs.length ? xs[i + 2] / x - 1 : null));
+  const run = (fn) => ({ full: fn(prices), prefixes: plan.cuts.map((c) => fn(prices.slice(0, c))) });
+  const out = JSON.parse((await toolCheckLeakage(session, { action: "compare", cuts: plan.cuts, columns: { sma10: run(trailingMean), fwd2: run(forwardReturn) } })).content[0].text);
+  assert.equal(out.verdict, "lookahead_found");
+  assert.deepEqual(out.flagged_columns, ["fwd2"]);
+  assert.equal(out.columns.fwd2.pattern, "future_rows");
+  assert.equal(out.columns.fwd2.horizon_rows, 2);
+  assert.equal(out.columns.sma10.verdict, "no_lookahead_found");
+  assert.match(out.plain_reading, /Lookahead in 1 of 2 columns \(fwd2\)/);
+  assert.ok(out.limits.length >= 2);
+  assert.match(out.source.input_sha256, /^[0-9a-f]{64}$/, "the result names exactly what it compared");
+  const sma = run(trailingMean);
+  const again = JSON.parse((await toolCheckLeakage(session, { action: "compare", cuts: plan.cuts, columns: { sma10: sma } })).content[0].text);
+  sma.full[0] = 1;
+  const edited = JSON.parse((await toolCheckLeakage(session, { action: "compare", cuts: plan.cuts, columns: { sma10: sma } })).content[0].text);
+  assert.notEqual(again.source.input_sha256, edited.source.input_sha256);
+});
+
+test("check_leakage: columns_file reads what a Python script wrote, NaN included, and never echoes a wrong file", async (t) => {
+  const { toolCheckLeakage } = await import("../src/lab.mjs");
+  const dir = mkdtempSync(path.join(tmpdir(), "leakage-file-"));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const cuts = [120, 150];
+  const prices = Array.from({ length: 200 }, (_, i) => 100 + Math.sin(i / 5) * 4 + i * 0.1);
+  const lagged = (xs) => xs.map((x, i) => (i < 3 ? Number.NaN : x / xs[i - 3] - 1));
+  const leaked = (xs) => xs.map((x, i) => (i + 1 < xs.length ? xs[i + 1] / x - 1 : Number.NaN));
+  const run = (fn) => ({ full: fn(prices), prefixes: cuts.map((c) => fn(prices.slice(0, c))) });
+  const columns = { mom3: run(lagged), fwd1: run(leaked) };
+  // As json.dump writes it: NaN for a missing value.
+  const file = path.join(dir, "columns.json");
+  writeFileSync(file, JSON.stringify({ cuts, columns }, (_, v) => (Number.isNaN(v) ? "__NAN__" : v)).replaceAll('"__NAN__"', "NaN"));
+  const fromFile = JSON.parse((await toolCheckLeakage({}, { action: "compare", columns_file: file })).content[0].text);
+  assert.deepEqual(fromFile.flagged_columns, ["fwd1"]);
+  assert.equal(fromFile.columns.fwd1.horizon_rows, 1);
+  assert.equal(fromFile.source.columns_file, file);
+  const nulls = (c) => ({ full: c.full.map((v) => (Number.isNaN(v) ? null : v)), prefixes: c.prefixes.map((r) => r.map((v) => (Number.isNaN(v) ? null : v))) });
+  const inline = JSON.parse((await toolCheckLeakage({}, { action: "compare", cuts, columns: { mom3: nulls(columns.mom3), fwd1: nulls(columns.fwd1) } })).content[0].text);
+  assert.deepEqual(inline.columns, fromFile.columns);
+  assert.equal(inline.source.input_sha256, fromFile.source.input_sha256, "the same numbers, the same digest");
+
+  await assert.rejects(() => toolCheckLeakage({ hosted: { keySource: "shared" } }, { action: "compare", columns_file: file }), /hosted endpoint cannot read files/);
+  await assert.rejects(() => toolCheckLeakage({}, { action: "compare", columns_file: file, columns: {} }), /send columns or columns_file, not both/);
+  await assert.rejects(() => toolCheckLeakage({}, { action: "compare", columns_file: file, cuts: [120, 151] }), /cuts sent differ/);
+  const secret = path.join(dir, "secret.json");
+  writeFileSync(secret, JSON.stringify({ columns: { api_token: "hunter2-value" } }));
+  await assert.rejects(() => toolCheckLeakage({}, { action: "compare", cuts, columns_file: secret }), (error) => /column 1 is not/.test(error.message) && !/hunter2|api_token/.test(error.message));
+  writeFileSync(secret, "password=hunter2-value");
+  await assert.rejects(() => toolCheckLeakage({}, { action: "compare", cuts, columns_file: secret }), (error) => /does not parse as JSON/.test(error.message) && !/hunter2/.test(error.message));
+  writeFileSync(secret, JSON.stringify({ columns: { x: { full: ["hunter2-value"], prefixes: [[], []] } } }));
+  await assert.rejects(() => toolCheckLeakage({}, { action: "compare", cuts, columns_file: secret }), (error) => /column 1, full\[0\] is not a finite number or null/.test(error.message) && !/hunter2/.test(error.message));
+});
+
+test("check_leakage: a plan with no seed picks a fresh one, and compare refuses a run of the wrong length", async () => {
+  const { toolCheckLeakage } = await import("../src/lab.mjs");
+  const a = JSON.parse((await toolCheckLeakage({}, { action: "plan", observations: 1000 })).content[0].text);
+  const b = JSON.parse((await toolCheckLeakage({}, { action: "plan", observations: 1000 })).content[0].text);
+  assert.ok(Number.isInteger(a.seed) && Number.isInteger(b.seed));
+  assert.notDeepEqual([a.seed, a.cuts], [b.seed, b.cuts], "two plans without a seed differ");
+  await assert.rejects(() => toolCheckLeakage({}, { action: "compare", cuts: [50, 60], columns: { x: { full: Array(100).fill(1), prefixes: [Array(50).fill(1), Array(59).fill(1)] } } }), /prefixes\[1\] has 59 values; its cut is 60/);
+  await assert.rejects(() => toolCheckLeakage({}, { action: "plan" }), /plan needs observations/);
 });

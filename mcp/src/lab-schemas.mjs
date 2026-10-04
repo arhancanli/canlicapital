@@ -1,8 +1,8 @@
 // mcp/src/lab-schemas.mjs
 //
 // Input and output schemas for the lab tools (src/lab.mjs): backtest_strategy, summarize_series,
-// stress_test and check_feasibility. Like the validators' descriptions, each tool description
-// carries one sentence of its own result's boundary language verbatim (test/lab.test.mjs checks
+// stress_test, check_feasibility and check_leakage. Like the validators' descriptions, each tool
+// description carries one sentence of its own result's boundary language verbatim (test/lab.test.mjs checks
 // it against the sentences the computation attaches), so an agent reads what the result cannot be
 // used to claim before it ever calls the tool. Descriptions stay terse: the tool list is re-sent to
 // the model on every turn.
@@ -11,12 +11,14 @@ import { BACKTEST_LIMITS_TEXT, FAMILIES } from "./local/js/backtest-core.js";
 import { FEASIBILITY_LIMITS_TEXT } from "./local/js/feasibility-core.js";
 import { SUMMARY_LIMITS_TEXT } from "./local/js/series-summary-core.js";
 import { STRESS_LIMITS_TEXT } from "./local/js/stress-core.js";
+import { LEAKAGE_LIMITS_TEXT } from "./local/js/leakage-core.js";
 
 export const LAB_BOUNDARY = Object.freeze({
   backtest_strategy: BACKTEST_LIMITS_TEXT[3],
   summarize_series: SUMMARY_LIMITS_TEXT[2],
   stress_test: STRESS_LIMITS_TEXT[2],
   check_feasibility: FEASIBILITY_LIMITS_TEXT[0],
+  check_leakage: LEAKAGE_LIMITS_TEXT[0],
 });
 
 export const LAB_TOOL_DESCRIPTIONS = Object.freeze({
@@ -24,6 +26,7 @@ export const LAB_TOOL_DESCRIPTIONS = Object.freeze({
   summarize_series: `A long price or return series in about 100 words plus fields: growth, risk, dated drawdowns, trend, volatility regime, tails, jumps, stale data. Use instead of reading raw bars. ${LAB_BOUNDARY.summarize_series}`,
   stress_test: `Stress a strategy's returns: bootstrap histories (how often the drawdown limit breaks or Sharpe turns negative) and named crash, volatility, repeat and stuck-position scenarios, with a fragility share. ${LAB_BOUNDARY.stress_test}`,
   check_feasibility: `Check a trading plan before it trades: broker order-rate and minimum-order limits, 2026 US day-trading rules, square-root market impact with crowding, and the capital where costs eat the return. ${LAB_BOUNDARY.check_feasibility}`,
+  check_leakage: `Does a signal look ahead? plan gives cuts; rerun your code on the first cut rows for each, then compare. Rows that changed used later rows; the result names the pattern and horizon. No code is sent. ${LAB_BOUNDARY.check_leakage}`,
 });
 
 const FAMILY_NAMES = Object.keys(FAMILIES);
@@ -102,6 +105,22 @@ export const feasibilityInput = z
   })
   .strict();
 
+export const leakageInput = z
+  .object({
+    action: z.enum(["plan", "compare"]),
+    observations: z.number().int().optional().describe("plan: rows in the series."),
+    prefixes: z.number().int().optional().describe("plan: cuts, default 5."),
+    seed: z.number().int().optional(),
+    cuts: z.array(z.number().int()).optional().describe("compare: plan's cuts."),
+    // Shapes and lengths are checked by the computation (js/leakage-core.js) with messages that
+    // say what to send; the advertised schema stays small because it is re-sent every turn.
+    columns: z.record(z.string(), z.looseObject({})).optional().describe("compare: {name: {full: [all rows], prefixes: [[first cuts[i] rows], ...]}}, null for missing."),
+    columns_file: z.string().optional().describe("compare, on your machine: a JSON file {cuts, columns} instead."),
+    timestamps: z.array(z.string()).optional(),
+    tolerance: z.number().optional().describe("Default 1e-9."),
+  })
+  .strict();
+
 const loose = z.looseObject({}).optional();
 const sentences = z.array(z.string()).optional();
 
@@ -116,6 +135,10 @@ export const summaryOutput = z
 export const stressOutput = z
   .looseObject({ baseline: loose, resampled: loose, scenarios: z.array(z.unknown()).optional(), fragility: loose, plain_reading: z.string().optional(), limits: sentences, source: loose })
   .describe("resampled holds bootstrap percentiles and breach frequencies; scenarios each named stress and its rule; fragility the share of histories breaking the limit or losing.");
+
+export const leakageOutput = z
+  .looseObject({ verdict: z.string().optional(), cuts: z.array(z.number()).optional(), seed: z.number().optional(), columns: loose, flagged_columns: z.array(z.string()).optional(), plain_reading: z.string().optional(), limits: sentences, source: loose })
+  .describe("plan: cuts and seed. compare: verdict over all columns, flagged_columns, and per column its pattern, sentence and per-cut changes.");
 
 export const feasibilityOutput = z
   .looseObject({ verdict: z.string().optional(), checks: z.array(z.unknown()).optional(), to_change: z.array(z.string()).optional(), sources: loose, plain_reading: z.string().optional(), limits: sentences })

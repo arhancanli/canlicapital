@@ -22,7 +22,7 @@ import { bestOfTrialsProbability } from "./local/js/luck-core.js";
 import { minimumBacktestLength } from "./local/js/dsr-core.js";
 import { studentTUpper } from "./local/js/student-t.js";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
-import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, paperEvidenceToolShape, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
+import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, paperEvidenceToolShape, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput, listedSchema } from "./schemas.mjs";
 
 export const DEFAULT_BASE = "https://canlicapital.com";
 export const SERVER_NAME = "canlicapital-validation-mcp";
@@ -707,7 +707,7 @@ export function registerTools(server, session) {
   const catalog = {};
   const register = (name, config, handler) => {
     if (!enabled.has(name)) return;
-    server.registerTool(name, config, handler);
+    server.registerTool(name, { ...config, inputSchema: listedSchema(config.inputSchema), outputSchema: listedSchema(config.outputSchema) }, handler);
     catalog[name] = { description: config.description, inputSchema: config.inputSchema, outputSchema: config.outputSchema };
   };
   register(

@@ -11,11 +11,13 @@ import { closeSync, fstatSync, openSync, readSync } from "node:fs";
 import { resolve } from "node:path";
 
 export const MAX_SERIES_FILE_BYTES = 5 * 1024 * 1024;
+// check_leakage's file holds a full run and every prefix run of each column: several times a series.
+export const MAX_COLUMNS_FILE_BYTES = 50 * 1024 * 1024;
 
 // One open file descriptor for the check and the read, so the file checked is the file read: a
 // path swapped between a separate stat and read could otherwise pass the size and type checks as
 // one file and be read as another. The read stops one byte past the cap, whatever the file grows to.
-function readText(path) {
+function readText(path, maxBytes = MAX_SERIES_FILE_BYTES) {
   let fd;
   try {
     fd = openSync(resolve(path), "r");
@@ -25,14 +27,14 @@ function readText(path) {
   try {
     const stat = fstatSync(fd);
     if (!stat.isFile()) throw new Error(`${path}: not a regular file`);
-    if (stat.size > MAX_SERIES_FILE_BYTES) throw new Error(`${path}: larger than ${MAX_SERIES_FILE_BYTES} bytes`);
-    const buffer = Buffer.alloc(MAX_SERIES_FILE_BYTES + 1);
+    if (stat.size > maxBytes) throw new Error(`${path}: larger than ${maxBytes} bytes`);
+    const buffer = Buffer.alloc(maxBytes + 1);
     let length = 0;
     for (;;) {
       const read = readSync(fd, buffer, length, buffer.length - length, null);
       if (read === 0) break;
       length += read;
-      if (length > MAX_SERIES_FILE_BYTES) throw new Error(`${path}: larger than ${MAX_SERIES_FILE_BYTES} bytes`);
+      if (length > maxBytes) throw new Error(`${path}: larger than ${maxBytes} bytes`);
     }
     return buffer.toString("utf8", 0, length);
   } finally {
@@ -177,4 +179,36 @@ export function readMatrixFile(path) {
   if (incomplete.length) throw incompleteError(path, incomplete[0]);
   if (columns.length < 2) throw new Error(`${path}: needs at least 2 numeric columns, one per variant`);
   return { matrix: table.rows.map((_, i) => columns.map((c) => c.values[i])), skipped };
+}
+
+// check_leakage's columns as the caller's script wrote them: {"columns": {name: {"full": [...],
+// "prefixes": [[...], ...]}}}, with "cuts" and "timestamps" if the script has them. Python's
+// json.dump writes a missing value as NaN, which is not JSON, so NaN reads as null. Every problem
+// is named by position; names leave this module only once every column has the right shape.
+export function readColumnsFile(path) {
+  const text = readText(path, MAX_COLUMNS_FILE_BYTES).replace(/(?<=[[,:]\s*)NaN(?=\s*[,\]}])/g, "null");
+  let value;
+  try {
+    value = JSON.parse(text);
+  } catch {
+    throw new Error(`${path}: does not parse as JSON (numbers, null for a missing value)`);
+  }
+  const isObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+  if (!isObject(value) || !isObject(value.columns)) throw new Error(`${path}: must be a JSON object {"columns": {name: {"full": [...], "prefixes": [[...], ...]}}}`);
+  Object.entries(value.columns).forEach(([name, column], i) => {
+    if (name.length > 100) throw new Error(`${path}: column ${i + 1} has a name longer than 100 characters`);
+    if (!isObject(column) || !Array.isArray(column.full) || !Array.isArray(column.prefixes) || !column.prefixes.every(Array.isArray)) {
+      throw new Error(`${path}: column ${i + 1} is not {"full": [...], "prefixes": [[...], ...]}`);
+    }
+    [column.full, ...column.prefixes].forEach((run, r) => run.forEach((cell, t) => {
+      if (cell !== null && !(typeof cell === "number" && Number.isFinite(cell))) {
+        throw new Error(`${path}: column ${i + 1}, ${r === 0 ? "full" : `prefixes[${r - 1}]`}[${t}] is not a finite number or null`);
+      }
+    }));
+  });
+  if (value.cuts !== undefined && !(Array.isArray(value.cuts) && value.cuts.every(Number.isInteger))) throw new Error(`${path}: cuts must be a list of whole numbers`);
+  if (value.timestamps !== undefined && !(Array.isArray(value.timestamps) && value.timestamps.every((v) => typeof v === "string" || typeof v === "number"))) {
+    throw new Error(`${path}: timestamps must be a list of dates or numbers`);
+  }
+  return { columns: value.columns, cuts: value.cuts, timestamps: value.timestamps?.map(String) };
 }
