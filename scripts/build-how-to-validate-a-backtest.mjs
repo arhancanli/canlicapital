@@ -86,7 +86,7 @@ const STEPS = [
 ];
 
 const description =
-  "Six checks, in order, for whether a trading backtest is real or luck: count the versions you tried, shrink the Sharpe for them, test the winner on unseen data, price in costs, check what it adds, keep a receipt.";
+  "Six checks for a trading backtest: count every trial, deflate Sharpe, test unseen data, account for costs, measure breadth and retain a signed receipt.";
 
 const jsonLd = {
   "@context": "https://schema.org",

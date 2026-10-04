@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-page="backtest-overfitting">
+<html data-design="workbench" lang="en" data-page="backtest-overfitting">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,7 +7,7 @@
 <meta name="description" content="Calculate the probability of backtest overfitting (CSCV) from your own in-sample and out-of-sample variant returns, the same method the validation API runs on." />
 <link rel="canonical" href="https://canlicapital.com/tools/backtest-overfitting" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="backtest_overfitting_calculator_contract.json" />
+<meta name="canli:sources" content="backtest_overfitting_calculator_contract.json calculator-defaults/backtest-overfitting.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
@@ -20,27 +20,23 @@
 <meta name="twitter:description" content="Calculate the probability of backtest overfitting (CSCV) from your own in-sample and out-of-sample variant returns, the same method the validation API runs on." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Probability of backtest overfitting calculator","url":"https://canlicapital.com/tools/backtest-overfitting","description":"Calculate the probability of backtest overfitting (CSCV) from your own in-sample and out-of-sample variant returns, the same method the validation API runs on.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"citation":"https://doi.org/10.21314/JCF.2016.322"}</script>
+<!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
-<link rel="stylesheet" href="/css/lab.css" />
-<link rel="stylesheet" href="/css/tool-experience.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Probability of backtest overfitting calculator","url":"https://canlicapital.com/tools/backtest-overfitting","description":"Calculate the probability of backtest overfitting (CSCV) from your own in-sample and out-of-sample variant returns, the same method the validation API runs on.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"citation":"https://doi.org/10.21314/JCF.2016.322"}</script>
-
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:end -->
+</head>
 <body class="lab-page">
 <a class="lab-skip" href="#lab">Skip to the lab</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -67,7 +63,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -271,17 +269,17 @@
       </label>
       <label class="lab-field" for="pbo-splits">
     <span class="lab-field__label">Blocks to split into</span>
-    <input id="pbo-splits" type="number" value="8" min="2" max="64" step="2" inputmode="numeric" />
+    <input id="pbo-splits" type="number" value="8" min="2" max="64" step="2" inputmode="numeric">
     <span class="lab-field__note">must be even; matches the loaded example, recommended default is 16</span>
   </label>
       <label class="lab-field" for="pbo-max-combinations">
     <span class="lab-field__label">Combinations ceiling</span>
-    <input id="pbo-max-combinations" type="number" value="2000" min="2" max="2000" step="1" inputmode="numeric" />
+    <input id="pbo-max-combinations" type="number" value="2000" min="2" max="2000" step="1" inputmode="numeric">
     <span class="lab-field__note">above C(splits, splits/2) it samples instead of enumerating; the free API caps this at 2000</span>
   </label>
       <label class="lab-field" for="pbo-seed">
     <span class="lab-field__label">Sample seed</span>
-    <input id="pbo-seed" type="number" value="42" min="1" max="999999" step="1" inputmode="numeric" />
+    <input id="pbo-seed" type="number" value="42" min="1" max="999999" step="1" inputmode="numeric">
     <span class="lab-field__note">only used once sampling replaces enumeration</span>
   </label>
       <div class="lab-actions">
@@ -294,21 +292,21 @@
 
     <div class="lab-output">
       <dl class="lab-stats">
-        <div><dt>Probability of backtest overfitting</dt><dd id="pbo-value">...</dd></div>
-        <div><dt>Splits evaluated</dt><dd id="pbo-combinations">...</dd></div>
-        <div><dt>Sampler</dt><dd id="pbo-sampler">...</dd></div>
-        <div><dt>Block length</dt><dd id="pbo-block-length">...</dd></div>
+        <div><dt>Probability of backtest overfitting</dt><dd id="pbo-value">34.3%</dd></div>
+        <div><dt>Splits evaluated</dt><dd id="pbo-combinations">70 (exhaustive)</dd></div>
+        <div><dt>Sampler</dt><dd id="pbo-sampler">all combinations enumerated in lexicographic order</dd></div>
+        <div><dt>Block length</dt><dd id="pbo-block-length">20 rows</dd></div>
       </dl>
       <dl class="lab-stats">
-        <div><dt>Mean in-sample Sharpe of the winner</dt><dd id="pbo-mean-is">...</dd></div>
-        <div><dt>Mean out-of-sample Sharpe of the winner</dt><dd id="pbo-mean-oos">...</dd></div>
-        <div><dt>Share of splits where it degraded out of sample</dt><dd id="pbo-degraded">...</dd></div>
+        <div><dt>Mean in-sample Sharpe of the winner</dt><dd id="pbo-mean-is">0.2284</dd></div>
+        <div><dt>Mean out-of-sample Sharpe of the winner</dt><dd id="pbo-mean-oos">0.0571</dd></div>
+        <div><dt>Share of splits where it degraded out of sample</dt><dd id="pbo-degraded">95.7%</dd></div>
       </dl>
     </div>
 
     <div class="lab-ledger">
       <h3>Plain reading</h3>
-      <p class="lab-verdict" id="pbo-verdict" data-state="idle">Run CSCV to see the plain-language reading of the result above.</p>
+      <p class="lab-verdict" id="pbo-verdict" data-state="pass">In 34.3 percent of the 70 in-sample and out-of-sample splits, the variant that looked best in sample ranked in the worse half out of sample. That share is the probability of backtest overfitting for this matrix as submitted.</p>
     </div>
   </section>
 
@@ -318,11 +316,11 @@
       <article><h3>Step 1</h3><p>Split the T rows into S contiguous equal blocks (S even). Drop any remainder rows so every block has exactly T div S rows.</p></article>
       <article><h3>Step 2</h3><p>For each way of choosing S/2 blocks as in-sample, form the in-sample matrix from those blocks and the out-of-sample matrix from the rest.</p></article>
       <article><h3>Step 3</h3><p>Take the in-sample winner: the configuration with the highest in-sample Sharpe.</p></article>
-      <article><h3>Step 4</h3><p>Find that same configuration&#39;s rank among all configurations out-of-sample, ascending, and take the logit of its relative rank.</p></article>
+      <article><h3>Step 4</h3><p>Find that same configuration's rank among all configurations out-of-sample, ascending, and take the logit of its relative rank.</p></article>
       <article><h3>Step 5</h3><p>PBO is the fraction of splits where the in-sample winner lands in the worse half out-of-sample.</p></article>
     </div>
-    <p class="lab-safety"><strong>Same core as the API.</strong> a line-for-line port of alphaforge.validation.pbo.pbo_cscv, the same core the validation API&#39;s POST /api/v1/validate/overfitting route imports, so a browser result and an API result on the same matrix agree.
-      when C(n_splits, n_splits / 2) is at most the combinations ceiling, every split is enumerated and the result is bit-comparable to the Python reference. Above that ceiling, n_splits / 2 sized subsets are sampled without replacement by this repo&#39;s mulberry32 generator, and the result is reported as exhaustive: false, agreeing with the Python reference within sampling noise rather than bit for bit.</p>
+    <p class="lab-safety"><strong>Same core as the API.</strong> a line-for-line port of alphaforge.validation.pbo.pbo_cscv, the same core the validation API's POST /api/v1/validate/overfitting route imports, so a browser result and an API result on the same matrix agree.
+      when C(n_splits, n_splits / 2) is at most the combinations ceiling, every split is enumerated and the result is bit-comparable to the Python reference. Above that ceiling, n_splits / 2 sized subsets are sampled without replacement by this repo's mulberry32 generator, and the result is reported as exhaustive: false, agreeing with the Python reference within sampling noise rather than bit for bit.</p>
     <p class="lab-safety"><strong>Sandbox contract.</strong> the matrix and parameters you enter never leave your browser; nothing is uploaded. no write path to any ledger, artifact, broker or published record exists. export downloads a JSON receipt of exactly what you entered and what it computed.</p>
     <p class="lab-source">Rendered from
       <a href="/glassbox/backtest_overfitting_calculator_contract.json"><code>backtest_overfitting_calculator_contract.json</code></a>, whose worked example is
@@ -336,7 +334,26 @@
       one Sharpe at a time with <a href="/tools/deflated-sharpe">the deflated Sharpe calculator</a>.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -376,6 +393,7 @@
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
@@ -409,8 +427,9 @@
   </div>
   <div class="cc-footer__boundary">
     <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
-    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
-    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>

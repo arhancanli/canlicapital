@@ -22,14 +22,14 @@ import { bestOfTrialsProbability } from "./local/js/luck-core.js";
 import { minimumBacktestLength } from "./local/js/dsr-core.js";
 import { studentTUpper } from "./local/js/student-t.js";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
-import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, paperEvidenceToolShape, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput } from "./schemas.mjs";
+import { breadthInput, trackRecordInput, auditBacktestInput, verifyReceiptToolShape, backtestLengthInput, haircutSharpeInput, luckTrialsInput, auditBacktestToolShape, companyHistoryInput, companyHistoryToolShape, deflatedSharpeInput, deflatedSharpeToolShape, emptyInput, getKeyInput, getReceiptInput, overfittingInput, realityCheckInput, realityCheckToolShape, LIMITS_SENTENCES, paperEvidenceInput, paperEvidenceToolShape, TOOL_DESCRIPTIONS, validationOutput, auditOutput, keyOutput, receiptOutput, verifyReceiptOutput, statusOutput, companyHistoryOutput, listedSchema } from "./schemas.mjs";
 
 export const DEFAULT_BASE = "https://canlicapital.com";
 export const SERVER_NAME = "canlicapital-validation-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 // Sent once in initialize; clients such as Claude Code put it in the system prompt, so the model
 // knows the first call to make even when tool definitions are deferred. Byte-stable across runs.
-export const SERVER_INSTRUCTIONS = "Checks whether a backtest's result is real. For one strategy's returns, call audit_backtest, pointing returns_file at the backtest's CSV instead of pasting long series. For a Sharpe found by a search, validate_deflated_sharpe needs how many independent variants were tried and how their Sharpes spread; with every variant's returns, validate_overfitting gives the probability of backtest overfitting. To test a rule on prices, backtest_strategy runs a whole parameter grid and validates the best with the count actually run; summarize_series reads a long series in a hundred words; stress_test and check_feasibility ask whether it survives bad markets and a real broker. Set CANLI_LOCAL=1 to compute on this machine with no network. Every result says what it does not establish; quote those limits with the number.";
+export const SERVER_INSTRUCTIONS = "Checks whether a backtest's result is real. For one strategy's returns, call audit_backtest, pointing returns_file at the backtest's CSV instead of pasting long series. For a Sharpe found by a search, validate_deflated_sharpe needs how many independent variants were tried and how their Sharpes spread; with every variant's returns, validate_overfitting gives the probability of backtest overfitting. To test a rule on prices, backtest_strategy runs a whole parameter grid and validates the best with the count actually run; summarize_series reads a long series in a hundred words; stress_test and check_feasibility ask whether it survives bad markets and a real broker. Before trusting a research pipeline, check_leakage finds lookahead in its signals and placebo_test runs it on data where nothing can be predicted. Set CANLI_LOCAL=1 to compute on this machine with no network. Every result says what it does not establish; quote those limits with the number.";
 
 // How the server introduces itself in initialize: a readable title, the page that documents it
 // and its icon, so clients and directories that read serverInfo show more than a package name.
@@ -707,7 +707,7 @@ export function registerTools(server, session) {
   const catalog = {};
   const register = (name, config, handler) => {
     if (!enabled.has(name)) return;
-    server.registerTool(name, config, handler);
+    server.registerTool(name, { ...config, inputSchema: listedSchema(config.inputSchema), outputSchema: listedSchema(config.outputSchema) }, handler);
     catalog[name] = { description: config.description, inputSchema: config.inputSchema, outputSchema: config.outputSchema };
   };
   register(

@@ -356,7 +356,7 @@ test('paper package: runtime promotion preserves every locked version integrity 
     assert.equal(lock.packages['node_modules/' + name].dev, undefined);
   assert.equal(lock.packages['node_modules/@modelcontextprotocol/client'].version, '2.1.0');
   assert.equal(lock.packages['node_modules/@modelcontextprotocol/client'].integrity, 'sha512-mDVhoy5WjDb0U+4dQPzLcciC2erSex/GRVQqnoZdiuMoE3YiTZdiS7ezNcFwX4XEOWOaj7jZr0kLYnILnL8orA==');
-  const root = JSON.parse(snapshot(path.join(ROOT, '../package.json'), 32768)); assert.equal(sha(Buffer.from(root.scripts.verify)), '7121cb2dd165e348763bbc94466a1b5884c63572237b022580cd3830a12256c6');
+  const root = JSON.parse(snapshot(path.join(ROOT, '../package.json'), 32768)); assert.equal(sha(Buffer.from(root.scripts.verify)), '4ea3441123b6835c2e1465afb3e7f7a1effabcdb1d0eb7d2f902f68641676a25');
 });
 test('paper package: original default server source mode differs only in owned executable fixture', () => {
   assert.equal(packed.entries.get('package/src/server.mjs').mode, 0o644); assert.equal(packed.entries.get('package/src/paper-journal.mjs').mode, 0o755);

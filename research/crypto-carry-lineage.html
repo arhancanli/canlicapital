@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-design="reader" data-reader="research" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,28 +29,24 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
-<link rel="stylesheet" href="../css/paper.css" />
-<link rel="stylesheet" href="/css/product-shell.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Crypto perpetual carry: trial lineage, capacity failure, and live evidence boundary","description":"AlphaForge studies cross-sectional carry in USDT-margined perpetual futures, ranking contracts by the negative trailing mean of observed funding: expensive…","url":"https://canlicapital.com/research/crypto-carry-lineage","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/crypto-carry-lineage.md","encodingFormat":"text/markdown"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Crypto perpetual carry: trial lineage, capacity failure, and live evidence boundary","description":"AlphaForge studies cross-sectional carry in USDT-margined perpetual futures, ranking contracts by the negative trailing mean of observed funding: expensive…","url":"https://canlicapital.com/research/crypto-carry-lineage","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","dateModified":"2026-09-06","image":{"@type":"ImageObject","url":"https://canlicapital.com/og.png","width":1200,"height":630},"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/crypto-carry-lineage.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"AlphaForge crypto carry: complete trial lineage","item":"https://canlicapital.com/research/crypto-carry-lineage"}]}</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research" data-current="true">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -77,7 +73,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -98,13 +96,13 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content">
+<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Abstract</a><a href="#reader-section-2">Claim boundary</a><a href="#reader-section-3">Economic mechanism and falsifiable hypothesis</a><a href="#reader-section-4">Exact ALPHAC implementation</a><a href="#reader-section-5">Trial lineage</a><a href="#reader-section-6">Results and decisions</a><a href="#reader-section-7">Capacity: related-system decay, not measured carry capacity</a><a href="#reader-section-8">Forward paper record and dated corrections</a><a href="#reader-section-9">Selection, diversification, and governing targets</a><a href="#reader-section-10">Reproduction map</a><a href="#reader-section-11">Packet completeness and legacy limitations</a><a href="#reader-section-12">Decision</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Crypto perpetual carry: trial lineage, capacity failure, and live evidence boundary</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital</dd></div><div><dt>Research system</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Family key</dt><dd><code>crypto_carry</code></dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-24</dd></div></dl></div><h2>Abstract</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital</dd></div><div><dt>Research system</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Family key</dt><dd><code>crypto_carry</code></dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-24</dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Abstract</h2>
 <p>AlphaForge studies cross-sectional carry in USDT-margined perpetual futures, ranking contracts by
 the negative trailing mean of observed funding: expensive longs rank as shorts and
 negative-funding contracts as longs. This paper reconciles all 25 charged hypothesis identities.</p>
@@ -129,7 +127,7 @@ omitted until a forward-only repair; fewer than half of intended hourly cycles c
 stored universe remains frozen at 2026-06-01. Crypto carry is therefore an incumbent experiment
 with a plausible mechanism, severe selection and capacity evidence, known operational defects,
 and an unmet forward burden of proof, not a validated sleeve.</p>
-<h2>Claim boundary</h2>
+<h2 id="reader-section-2" data-reader-anchor="true">Claim boundary</h2>
 <p>This paper supports six claims only:</p>
 <ol>
 <li>The funding-carry hypothesis and point-in-time implementation can be stated precisely.</li>
@@ -144,7 +142,7 @@ reproducibility is disproved and the open correction is machine-verifiable.</li>
 <p>It does <strong>not</strong> establish a forward Sharpe, expected maximum drawdown, future return, live-money
 performance, riskless arbitrage, or externally verified execution. It does not establish that the
 current live universe is the same strategy as the selected historical artifact.</p>
-<h2>Economic mechanism and falsifiable hypothesis</h2>
+<h2 id="reader-section-3" data-reader-anchor="true">Economic mechanism and falsifiable hypothesis</h2>
 <p>Perpetual futures have no expiry date, so exchanges use recurring funding transfers to pull the
 contract toward its reference index. When the funding rate is positive, long holders pay short
 holders; when it is negative, shorts pay longs. A cross-sectional carry strategy therefore takes
@@ -174,10 +172,10 @@ signals they study, while signal frequency matters
 </ul>
 <p>These sources do not validate ALPHAC&#39;s market data, universe, costs, trial selection, or paper
 execution.</p>
-<h2>Exact ALPHAC implementation</h2>
+<h2 id="reader-section-4" data-reader-anchor="true">Exact ALPHAC implementation</h2>
 <p>For instrument <code>i</code>, decision time <code>t</code>, and the last <code>K</code> funding settlements known by <code>t</code>, the
 historical feature is:</p>
-<pre><code class="language-text">carry(i,t) = -mean(funding_rate(i, settlements &lt;= t)) * 3 * 365
+<pre tabindex="0" data-reader-focus="true"><code class="language-text">carry(i,t) = -mean(funding_rate(i, settlements &lt;= t)) * 3 * 365
 </code></pre>
 <p>The negative sign makes a high positive funding rate unattractive to a long position. The factor
 uses a backward point-in-time as-of join: only settlements whose stored publication timestamp is
@@ -196,10 +194,10 @@ disclosed rather than silently treating every period as eight hours.</p>
 bars across 58 Binance perpetual instruments. Other charged identities change the funding horizon,
 blend, cadence, allocator, no-trade band, or regime treatment. Each change remains a distinct
 hypothesis identity even though all belong to one economic family.</p>
-<h2>Trial lineage</h2>
+<h2 id="reader-section-5" data-reader-anchor="true">Trial lineage</h2>
 <p>The public manifest binds 25 distinct return identities to <code>crypto_carry</code>. The labels below sum
 exactly to the family total; they are an accounting view and do not collapse the trial denominator.</p>
-<table>
+<!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th>Machine-label group</th>
@@ -247,7 +245,7 @@ exactly to the family total; they are an accounting view and do not collapse the
 <td align="right"><strong>25</strong></td>
 <td>Every identity remains charged to the union search burden</td>
 </tr>
-</tbody></table>
+</tbody></table></div><!-- design-table:end -->
 <p>Twenty-one identities use the original crypto-perpetual research profiles. Four recovered legacy
 identities were filed with their durable result artifacts: one original carry experiment, two
 shorter-window carry experiments, and the grand matrix&#39;s carry-plus-reversal tilt. Their recorded
@@ -257,7 +255,7 @@ interval; it is direct evidence of specification sensitivity.</p>
 <a href="/glassbox/trial_packet_manifest.json"><code>/glassbox/trial_packet_manifest.json</code></a>. Select identities
 where <code>research_family_key</code> equals <code>crypto_carry</code>; each row includes its exact hypothesis key,
 immutable first measurement, source ledger, paper binding, and missing packet sections.</p>
-<h2>Results and decisions</h2>
+<h2 id="reader-section-6" data-reader-anchor="true">Results and decisions</h2>
 <h3>Selected historical survivor</h3>
 <blockquote>
 <p><strong>Open material correction (2026-08-23).</strong> The table below reports the immutable selected
@@ -268,7 +266,7 @@ It must not be described as validated or submission-ready.</p>
 </blockquote>
 <p>The persisted <code>crypto_carry_wk</code> artifact covers 1,575 daily observations from 2022-02-08 through
 2026-06-01. It reports:</p>
-<table>
+<!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th>Measure</th>
@@ -307,7 +305,7 @@ It must not be described as validated or submission-ready.</p>
 <td>DSR / DSR gate</td>
 <td align="right">0.0386 / failed</td>
 </tr>
-</tbody></table>
+</tbody></table></div><!-- design-table:end -->
 <p>Funding contributed roughly half of the artifact&#39;s dollar gain. The result is therefore
 mechanically dependent on accurate funding settlement and cannot be validated by a live ledger
 that records price and fees but omits funding. The full-history Sharpe also hides a severe 2022
@@ -335,10 +333,10 @@ its baseline, PBO, winner decision, and capacity curve cannot be represented as 
 institutional re-grade of <code>carry_fund_21</code>. The carry-specific conclusion comes from the weak
 0.0618 tilted arm, the recovered legacy carry experiments, the complete 25-identity lineage, and
 the failed selected-artifact DSR, not from relabelling a broader system as carry.</p>
-<h2>Capacity: related-system decay, not measured carry capacity</h2>
+<h2 id="reader-section-7" data-reader-anchor="true">Capacity: related-system decay, not measured carry capacity</h2>
 <p>The grand matrix&#39;s capacity sweep varies capital for its default broad multi-factor configuration
 without adding a new return hypothesis:</p>
-<table>
+<!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th align="right">Initial capital</th>
@@ -369,14 +367,14 @@ without adding a new return hypothesis:</p>
 <td align="right">22.69%</td>
 <td align="right">$8,043,578.96</td>
 </tr>
-</tbody></table>
+</tbody></table></div><!-- design-table:end -->
 <p>This is evidence that the related engine is highly sensitive to market impact, not a measurement
 of pure carry capacity. The broad engine&#39;s edge is almost absent at $1 million and negative at
 $10 million under the committed model. Carry capacity is <strong>unmeasured</strong>: no persisted
 carry-specific capital sweep exists. It remains unestablished until a preregistered carry sweep
 and forward fills, order-book depth, venue fragmentation, and financing are observed at the
 intended scale.</p>
-<h2>Forward paper record and dated corrections</h2>
+<h2 id="reader-section-8" data-reader-anchor="true">Forward paper record and dated corrections</h2>
 <p>AlphaForge uses <code>ALPHAFORGE_PAPERBROKER</code>: locally simulated fills against live exchange order
 books with a local ledger. It is paper-only, not an Alpaca account, not live money, and not
 externally attested. ALPHAC&#39;s public composite is derived from its sleeves and is not itself a
@@ -429,7 +427,7 @@ remains based on stale liquidity membership. No missed historical rebalance is r
 </ul>
 <p>These corrections are evidence about process quality only if they remain visible and are pinned by
 tests. They are not evidence that the return process is profitable.</p>
-<h2>Selection, diversification, and governing targets</h2>
+<h2 id="reader-section-9" data-reader-anchor="true">Selection, diversification, and governing targets</h2>
 <p>The family is one economic sleeve candidate, not 21 independent sources of alpha. Every return
 hypothesis remains charged to the union ledger. It also cannot receive diversification credit from
 old correlations measured before commodity-linked contracts overlapped AlphaTrend&#39;s metals and
@@ -440,7 +438,7 @@ and a diversified book of up to 14 sleeves. Crypto carry has established none of
 Its selected historical maximum drawdown already exceeds the program objective, its institutional
 re-grade is a null, and its forward execution record is too short and discontinuous to estimate a
 reliable Sharpe.</p>
-<h2>Reproduction map</h2>
+<h2 id="reader-section-10" data-reader-anchor="true">Reproduction map</h2>
 <p>Primary implementation and evidence paths:</p>
 <ul>
 <li><code>src/alphaforge/features/library/carry.py</code>: point-in-time funding features.</li>
@@ -477,7 +475,7 @@ artifacts permit claim auditing; they do not imply that every venue dataset can 
 The full current-state equity Parquet remains local and is bound by its SHA-256 in the replay
 receipt; it is withheld from the public bundle under the conservative source-rights policy because
 it is a row-level derived series.</p>
-<h2>Packet completeness and legacy limitations</h2>
+<h2 id="reader-section-11" data-reader-anchor="true">Packet completeness and legacy limitations</h2>
 <p>This family paper verifies shared identity, authorship, mechanism, literature, family accounting,
 and stable-publication sections for 25 identities. Its 2026-08-23 correction proves that the
 selected output is not currently exactly reproducible; this is a publication blocker, not a 26th
@@ -485,7 +483,7 @@ return identity. It does not retroactively manufacture
 identity-level preregistrations, return series, exact environment snapshots, or complete rerunnable
 data bundles. The manifest must therefore continue to mark all 25 trial packets incomplete until
 every missing required section is proved. A family-paper binding is not a completed packet.</p>
-<h2>Decision</h2>
+<h2 id="reader-section-12" data-reader-anchor="true">Decision</h2>
 <p><strong>Research decision:</strong> retain AlphaForge only as an incumbent paper experiment under observation;
 do not describe the historical edge as validated; do not claim positive $10 million capacity; and
 do not admit this family under the current evidence.</p>
@@ -517,7 +515,7 @@ replace either result.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre><code>@techreport{canli2026cryptocarrylineage,
+        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026cryptocarrylineage,
   author      = {Canli, Arhan},
   title       = {Crypto perpetual carry: trial lineage, capacity failure, and live evidence boundary},
   institution = {Canli Capital},
@@ -535,14 +533,14 @@ replace either result.</p>
     </footer>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">
       <span>MCP server</span>
       <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
       <code>npx -y canli-validation-mcp</code>
-      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
     </div>
     <div class="cc-footer__dev-item">
       <span>Open source</span>
@@ -628,12 +626,14 @@ replace either result.</p>
   </div>
   <div class="cc-footer__boundary">
     <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
-    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
-    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-</body>
+
+<script type="module" src="/js/reader-experience.js"></script></body>
 </html>

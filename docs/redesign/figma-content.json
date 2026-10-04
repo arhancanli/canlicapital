@@ -1,0 +1,52 @@
+{
+  "research.html": {
+    "title": "How we got here.",
+    "paragraphs": [
+      "00 / The research",
+      "Most ideas die. We publish them anyway, including the ones that did.",
+      "The current ALPHAC flagship combines 4 live sleeves: AlphaForge, AlphaMax, AlphaTrend, AlphaVintage. Their economic inputs differ, but diversification is not treated as proof of alpha. No sleeve clears the multiple-testing gate in-sample. AlphaVintage remains visible as a paper-trading history but its calendar-correct research verdict is KILLED; it is not an admitted sleeve. The live record, including a genuine risk-off episode, is the evidence that matters next.",
+      "Execution basis: paper trading and local simulation. \u201cLive\u201d below describes running systems, not funded execution. Model expectations are not measured forward returns. Inspect the forward evidence.",
+      "10 factors tested \u00b7 2 survived \u00b7 8 killed \u00b7 across 35+ families \u00b7 forward 0.3 to 0.9 (the +10% beta does NOT improve this - it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1) Sharpe \u00b7 grade C+"
+    ]
+  },
+  "developers.html": {
+    "title": "Check a backtest. Keep the receipt.",
+    "paragraphs": [
+      "Free \u00b7 No signup or email",
+      "Send the returns your backtest produced and find out whether the result could be luck:\n      how much the Sharpe ratio shrinks once every version you tried is counted, how likely the backtest\n      is to be overfit, and how long a live record must run to prove it. Each answer comes with a\n      receipt anyone can recheck.",
+      "Add the hosted server to Claude, Cursor or VS Code. Nothing to install.",
+      "Get a free key, then call the API from Python, JavaScript or curl.",
+      "Type your numbers into the free calculators."
+    ]
+  },
+  "companies/0000320193.html": {
+    "title": "Apple Inc.: financial reference",
+    "paragraphs": [
+      "Explore Apple Inc. financial histories from SEC filings, with original units, reporting periods, filing dates and downloadable source data. 9 measures, each\u2026",
+      "Choose a measure to inspect its definition, complete selected history and filing provenance. Each row shows the latest period available for that selected concept and original unit. Separate currencies and reporting intervals remain separate rows. Coverage dates can differ between concepts. A recent capture does not imply recent accounting coverage; these amounts are not prices.",
+      "Current SEC company facts \u00b7 Download the original response snapshot (gzip) \u00b7 Download the selected JSON",
+      "Latest-filed annual-report facts per unit and reporting period at capture time. Duration facts cover 300 to 400 days. This selection can include restatements and is not a point-in-time backtest dataset. Missing concepts are omitted, never zero-filled. Values retain original units and are not currency converted.",
+      "Public company accounting reference, not market prices, returns, an investment recommendation, or ALPHAC performance. Validate a separately constructed return series with the validation API; accounting values are not returns."
+    ]
+  },
+  "research/forward-sharpe-evidence-standard.html": {
+    "title": "When a Forward Sharpe Ratio Becomes Evidence",
+    "paragraphs": [
+      "Research",
+      "By Arhan Canli , Canli Capital",
+      "A forward Sharpe ratio should not become a headline merely because a short paper-trading curve can\nproduce one. This paper defines the precommitted evidence states used by ALPHAC: when a point\nestimate may be shown, when a target is only observed, and what must be true before the target can\nbe described as statistically established.",
+      "The easiest time to report an extraordinary risk-adjusted return is when the record is shortest.\nSampling error is widest, the worst regime may not have occurred, and one favorable sequence can\ndominate the estimate. ALPHAC therefore separates four states: an immature record, an\nestimate-eligible record, a point target that has been observed but not established, and a target\nthat has cleared a frozen sample-length and Probabilistic Sharpe Ratio threshold. The rule requires\n252 observed daily returns before publishing a mature point estimate and 756 before statistical\nestablishment is possible. Establishment additionally requires an annualized point Sharpe of at\nleast 2.0 and at least 0.95 probability, under the non-normal Probabilistic Sharpe Ratio formula,\nthat the true annualized Sharpe exceeds 2.0. Configuration continuity, record continuity, and a\nfresh passing broker reconciliation are mandatory provenance gates. Realized drawdown, modeled\nexpected maximum drawdown, and modeled tail drawdown are reported as different quantities. The\nstandard is deliberately harder to satisfy than displaying a computed ratio because its purpose is\nto prevent a target from becoming an achievement through presentation alone.",
+      "A Sharpe ratio is a ratio of estimated mean excess return to estimated return volatility. Both\nterms are uncertain, and their ratio is especially unstable over a short record. Annualization does\nnot create information: multiplying a daily ratio by the square root of 365 changes its unit, not\nthe number of observations supporting it."
+    ]
+  },
+  "tools/deflated-sharpe.html": {
+    "title": "Deflated Sharpe ratio calculator (PSR and DSR)",
+    "paragraphs": [
+      "Open research instrument Deflated Sharpe calculator Contract v1.0.0",
+      "This is a Probabilistic Sharpe ratio calculator that also reports its Deflated form. How much Sharpe survives the search? A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.",
+      "This count is the full union, including the one live prospective identity not yet\n        admitted; a retired legacy set published elsewhere on the site is smaller by that one\n        identity. This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.",
+      "The current-union preset supplies only trial count and dispersion. The observed Sharpe, sample length, skew and kurtosis are illustrative until you replace them. No output on this page is an ALPHAC performance claim or an admission verdict.",
+      "Selection pressure chamber"
+    ]
+  }
+}

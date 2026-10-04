@@ -22,6 +22,7 @@ const accessionLink = (company, observation) => `https://www.sec.gov/Archives/ed
 // HTML too, so the two signals never disagree.
 export function renderReferenceDocument({ path, title, description, heading, body, sources, lastmod, dataset, coverage, robots = 'index, follow' }) {
   if (!['index, follow', 'noindex'].includes(robots)) throw new Error('Invalid robots directive');
+  const introduction = description.endsWith('…') && description.includes('. ') ? description.slice(0, description.lastIndexOf('. ') + 1) : description;
   const titleText = title.length <= 49 ? `${title} | Canli Capital` : title;
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Company reference', path: '/companies' }];
   if (!dataset && /^\/companies\/page\/\d+$/.test(path)) crumbs.push({ name: `Page ${path.split('/').at(-1)}`, path });
@@ -30,7 +31,7 @@ export function renderReferenceDocument({ path, title, description, heading, bod
   const breadcrumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((crumb, i) => ({ '@type': 'ListItem', position: i + 1, name: crumb.name, item: origin + crumb.path })) };
   const schema = dataset ? { '@context': 'https://schema.org', '@type': 'Dataset', name: heading, description, url: origin + path, license: 'https://creativecommons.org/licenses/by/4.0/', creator: { '@type': 'Organization', name: dataset.name }, provider: { '@type': 'Organization', name: 'U.S. Securities and Exchange Commission' }, isBasedOn: dataset.source_url, distribution: { '@type': 'DataDownload', contentUrl: origin + dataFor(dataset), encodingFormat: 'application/json' }, dateModified: lastmod, ...(coverage ? { temporalCoverage: `${coverage.first}/${coverage.last}` } : {}) } : { '@context': 'https://schema.org', '@type': 'CollectionPage', name: heading, url: origin + path };
   const html = `<!doctype html>
-<html lang="en" data-page="companies"><head><meta charset="utf-8" />
+<html lang="en" data-design="reference" data-page="companies"><head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${esc(titleText)}</title>
 <meta name="description" content="${esc(description)}" />
@@ -41,13 +42,13 @@ export function renderReferenceDocument({ path, title, description, heading, bod
 <meta property="og:title" content="${esc(heading)}" /><meta property="og:description" content="${esc(description)}" />
 <meta property="og:type" content="website" /><meta property="og:url" content="${origin}${path}" />
 <meta property="og:image" content="${origin}/og.png" />
-<link rel="stylesheet" href="/css/paper.css" /><link rel="stylesheet" href="/css/company-reference.css" />
+
 ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify([schema, breadcrumbs]).replaceAll('<', '\\u003c')}</script></head>
 <body class="paper"><a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: 'companies' })}
 <main class="company-reference" id="content" tabindex="-1"><nav class="company-reference__breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav>
-<h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(description)}</p>${body}</main>
+<h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(introduction)}</p>${body}</main>
 ${renderProductShellFooter({ developerStrip: false })}</body></html>\n`;
   return { path, html, lastmod, loc: origin + path };
 }

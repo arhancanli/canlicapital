@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-design="reader" data-hub="topic" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,28 +20,24 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
-<link rel="stylesheet" href="../../css/paper.css" />
-<link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Event-driven: Canli Capital research","description":"Merger arbitrage, spin-off dislocation, tender offers and activist escalation depend on what regulatory filings actually contain.","url":"https://canlicapital.com/research/topics/event-driven","inLanguage":"en","isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"hasPart":[{"@type":"ScholarlyArticle","headline":"Active ownership escalation; Schedule 13D Item 4 source-schema v3","url":"https://canlicapital.com/research/active-ownership-item4-v3-feasibility"},{"@type":"ScholarlyArticle","headline":"Author review for approval-gated research protocols","url":"https://canlicapital.com/research/author-protocol-approval-protocol"},{"@type":"ScholarlyArticle","headline":"Merger arbitrage v2: point-in-time announcement identity","url":"https://canlicapital.com/research/merger-announcement-identity-v2"},{"@type":"ScholarlyArticle","headline":"Repurchase and issuance flow: literature dossier","url":"https://canlicapital.com/research/literature-repurchase-issuance-flow"},{"@type":"ScholarlyArticle","headline":"Repurchase and issuance flow: no-return SEC feasibility protocol","url":"https://canlicapital.com/research/repurchase-issuance-flow-feasibility"},{"@type":"ScholarlyArticle","headline":"Spin-off dislocation (initial Form 10 document-schema protocol","url":"https://canlicapital.com/research/spin-off-document-schema"},{"@type":"ScholarlyArticle","headline":"Spin-off dislocation) literature and claim boundary","url":"https://canlicapital.com/research/literature-spin-off-dislocation"},{"@type":"ScholarlyArticle","headline":"Spin-off dislocation; SEC Form 10 lineage protocol","url":"https://canlicapital.com/research/spin-off-dislocation-lineage"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Event-driven","item":"https://canlicapital.com/research/topics/event-driven"}]}</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research" data-current="true">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -68,7 +64,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -90,6 +88,8 @@
   <script type="module" src="/js/navigation.js"></script>
 </header>
 <main class="paper__main" id="content">
+<!-- hub-index:start --><nav class="hub-index" aria-label="Related evidence hubs"><span>Explore the evidence</span><a href="/research">Research library</a><a href="/methodology">Methodology</a><a href="/measurements">Measurements</a><a href="/verify">Verify a claim</a></nav><!-- hub-index:end -->
+
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Event-driven</h1>
@@ -100,9 +100,10 @@
       <p>The evidence, though, lives in regulatory documents, and this is where the cluster&#39;s most useful findings came from. A protocol that assumes a filing states something will fail if the disclosure rule that produced the filing never required it. Three separate mechanisms here failed for exactly that reason, and the failures are published together because the pattern is worth more than any of them individually.</p>
       <p>The pattern is that each protocol specified a language test where the identity needed a structural fact. A registration statement was asked to state distribution mechanics that were not settled on the day it was filed. A narrative disclosure was asked to name a counterparty that the rule requiring the disclosure never required naming. A deal study was asked to require one specific form when what it actually needed was a timestamp that several documents supply.</p>
       <p>So the redesign notes name the document that would carry the evidence before naming a threshold. They propose no threshold because choosing one after seeing which population clears it is selection, not specification. For spin-offs, the form type itself declares the event universe. The count comes from metadata rather than narrative extraction.</p>
+
       <h2 class="hub__heading">The event-driven documents</h2>
       <ul class="research-library research-library--hub">
-        <li class="research-library__item"><a class="research-library__link" href="/research/active-ownership-item4-v3-feasibility"><span class="research-library__title">Active ownership escalation; Schedule 13D Item 4 source-schema v3</span><span class="research-library__desc">V2 used the unchanged 160-accession sample and added the SEC structured Schedule 13D schema, but the implementation required the primary bytes to begin with…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/author-protocol-approval-protocol"><span class="research-library__title">Author review for approval-gated research protocols</span><span class="research-library__desc">The merger-announcement and Treasury-auction redesigns have passed their no-return structural tests, but software cannot decide that Arhan understands or…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/merger-announcement-identity-v2"><span class="research-library__title">Merger arbitrage v2: point-in-time announcement identity</span><span class="research-library__desc">The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least 80% of all target-side deal anchors. It failed at 67.02%.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/literature-repurchase-issuance-flow"><span class="research-library__title">Repurchase and issuance flow: literature dossier</span><span class="research-library__desc">The literature supports a real economic family around corporate equity supply.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/repurchase-issuance-flow-feasibility"><span class="research-library__title">Repurchase and issuance flow: no-return SEC feasibility protocol</span><span class="research-library__desc">Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/spin-off-document-schema"><span class="research-library__title">Spin-off dislocation; initial Form 10 document-schema protocol</span><span class="research-library__desc">From the sealed 204 initial 10-12B registrations in 2016–2025, sort each year by SHA-256 of CIK|accession and retain the first ten, or all rows when a year…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/literature-spin-off-dislocation"><span class="research-library__title">Spin-off dislocation; literature and claim boundary</span><span class="research-library__desc">A completed corporate separation can create temporary price pressure and information frictions.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/spin-off-dislocation-lineage"><span class="research-library__title">Spin-off dislocation; SEC Form 10 lineage protocol</span><span class="research-library__desc">Can the complete 2016–2025 exchange-registration candidate universe be reconstructed from official quarterly EDGAR full indexes without starting from a…</span></a></li>
+        <li class="research-library__item"><a class="research-library__link" href="/research/active-ownership-item4-v3-feasibility"><span class="research-library__title">Active ownership escalation; Schedule 13D Item 4 source-schema v3</span><span class="research-library__desc">No heading phrase, minimum length, active-intent classifier, ownership regex, sample row, threshold, or label is changed. Any machine failure is DATA_GATED.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/author-protocol-approval-protocol"><span class="research-library__title">Author review for approval-gated research protocols</span><span class="research-library__desc">The merger-announcement and Treasury-auction redesigns have passed their no-return structural tests, but software cannot decide that Arhan understands or…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/merger-announcement-identity-v2"><span class="research-library__title">Merger arbitrage v2: point-in-time announcement identity</span><span class="research-library__desc">The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least 80% of all target-side deal anchors. It failed at 67.02%.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/literature-repurchase-issuance-flow"><span class="research-library__title">Repurchase and issuance flow: literature dossier</span><span class="research-library__desc">The literature supports a real economic family around corporate equity supply. Net share issuance has predicted lower subsequent cross-sectional returns…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/repurchase-issuance-flow-feasibility"><span class="research-library__title">Repurchase and issuance flow: no-return SEC feasibility protocol</span><span class="research-library__desc">This audit measures data feasibility only. It may inspect filing metadata, XBRL facts, Item 703 tables, taxonomies, contexts, amendments, and extraction errors.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/spin-off-document-schema"><span class="research-library__title">Spin-off dislocation; initial Form 10 document-schema protocol</span><span class="research-library__desc">No company names, filings, or years may be removed because they are not genuine spin-offs. Form 10 is deliberately being tested as a noisy discovery source.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/literature-spin-off-dislocation"><span class="research-library__title">Spin-off dislocation; literature and claim boundary</span><span class="research-library__desc">A completed corporate separation can create temporary price pressure and information frictions. These studies do not establish a modern executable sleeve.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/spin-off-dislocation-lineage"><span class="research-library__title">Spin-off dislocation; SEC Form 10 lineage protocol</span><span class="research-library__desc">Can the complete 2016–2025 exchange-registration candidate universe be reconstructed from official quarterly EDGAR full indexes without starting from a modern…</span></a></li>
       </ul>
     </div>
     <footer class="paper__footer">
@@ -111,14 +112,14 @@
     </footer>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">
       <span>MCP server</span>
       <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
       <code>npx -y canli-validation-mcp</code>
-      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
     </div>
     <div class="cc-footer__dev-item">
       <span>Open source</span>
@@ -204,12 +205,14 @@
   </div>
   <div class="cc-footer__boundary">
     <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
-    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
-    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
+<script type="module" src="/js/hub-experience.js"></script>
 </body>
 </html>

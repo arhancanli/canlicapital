@@ -11,6 +11,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import test from "node:test";
+import { z } from "zod";
 
 import {
   breadthInput,
@@ -24,6 +25,7 @@ import {
   overfittingInput,
   paperEvidenceInput,
   TOOL_DESCRIPTIONS,
+  leanJsonSchema,
 } from "../src/schemas.mjs";
 import { MANIFEST } from "../../api/_lib/manifest.js";
 import { LIMITS_TEXT } from "../../api/_lib/limits.js";
@@ -151,4 +153,25 @@ test("an inline matrix is capped at the API's 200 variants per row, so a call st
   const row = Array.from({ length: 201 }, () => 0.01);
   assert.equal(overfittingInput.safeParse({ matrix: [row, row] }).success, false);
   assert.equal(overfittingInput.safeParse({ matrix: [row.slice(0, 200), row.slice(0, 200)] }).success, true);
+});
+
+test("leanJsonSchema drops only keywords that constrain nothing, and only from subschemas", () => {
+  const json = z.toJSONSchema(z.object({
+    count: z.number().int(),
+    at_least_two: z.number().int().min(2),
+    maybe: z.number().int().nullable(),
+    record: z.record(z.string(), z.unknown()),
+    minimum: z.unknown(),
+    additionalProperties: z.unknown(),
+  }));
+  assert.match(JSON.stringify(json), /9007199254740991/, "zod still writes the safe-integer range");
+  const lean = leanJsonSchema(json);
+  assert.deepEqual(lean.properties.count, { type: "integer" });
+  assert.deepEqual(lean.properties.at_least_two, { type: "integer", minimum: 2 });
+  assert.deepEqual(lean.properties.maybe.anyOf, [{ type: "integer" }, { type: "null" }]);
+  assert.deepEqual(lean.properties.record, { type: "object" });
+  assert.deepEqual(lean.properties.minimum, {}, "a field named minimum is a field, not a bound");
+  assert.deepEqual(lean.properties.additionalProperties, {});
+  assert.equal(lean.additionalProperties, false, "a closed object stays closed");
+  assert.deepEqual(json.properties.count.minimum, Number.MIN_SAFE_INTEGER, "the input is not modified");
 });

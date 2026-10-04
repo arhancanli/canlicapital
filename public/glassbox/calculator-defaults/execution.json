@@ -1,0 +1,30 @@
+{
+  "schema": "canli.calculator-defaults.v1",
+  "route": "/tools/execution",
+  "evidence_basis": "Illustrative deterministic calculator defaults. Not ALPHAC performance, qualification or admission evidence.",
+  "renderer": {
+    "path": "js/execution-lab.js",
+    "sha256": "59c4630c236acc35a3b90bd7627442952f12e32613fc69d939fa936f5d96c76d"
+  },
+  "source_bindings": {
+    "js/execution-lab.js": "59c4630c236acc35a3b90bd7627442952f12e32613fc69d939fa936f5d96c76d",
+    "js/execution-core.js": "432c37ece4088251a3da9cdf3ba0dda755b69201ae3ae8a2eb6cd032a342678f",
+    "js/selection-risk-core.js": "b2730eb3e29348530265c72196f39cca58774000da64ebeaf5bbddb3053f8f75"
+  },
+  "computed_output_selectors": [
+    "#lab-classification"
+  ],
+  "computed_text": [
+    "0.434",
+    "0.332",
+    "0.102",
+    "23%",
+    "Fill at the decision price-0.0003-0.148%indistinguishable",
+    "Spread and fees alone-0.0327-73.5100%cost",
+    "Decision-to-fill delay alone-0.0162-1.454%indistinguishable",
+    "Market impact alone-0.0523-73.7100%cost",
+    "Venue outages alone-0.0012-0.537%indistinguishable",
+    "Across 200 independent series, 2 of these 5 assumptions are a cost: it reduces the result on essentially every series (Spread and fees, Market impact). The other 3 are not, and subtracting a single slippage number for them would misstate both their size and, on any one series, their sign. That is the difference this page exists to show, and no single equity chart can show it. Note that Decision-to-fill delay sits just under the threshold at this sample size (|t| below 2). That is a sweep without the power to resolve the effect, not evidence there is none. Raise the number of series and watch it settle.",
+    "Fill at the decision price | -0.0003 | -0.1 | 48% | indistinguishable | Spread and fees alone | -0.0327 | -73.5 | 100% | cost | Decision-to-fill delay alone | -0.0162 | -1.4 | 54% | indistinguishable | Market impact alone | -0.0523 | -73.7 | 100% | cost | Venue outages alone | -0.0012 | -0.5 | 37% | indistinguishable"
+  ]
+}

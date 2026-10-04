@@ -42,8 +42,8 @@ ROUTES = (
 )
 
 EXPECTED_CORE = {"Live", "Research", "Trials", "Systems", "Methodology", "Performance"}
-EXPECTED_PRIMARY = {"Research", "Systems", "Developers", "Verify"}
-EXPECTED_INSTITUTION = {"Verify", "Corrections", "Founder", "Open data", "Measurements"}
+EXPECTED_PRIMARY = {"Research", "ALPHAC", "Developers"}
+EXPECTED_INSTITUTION = {"Verify", "Company reference", "Corrections", "Founder", "Open data", "Measurements"}
 EXPECTED_SOURCE = {
     "Engineering hub",
     "Engineering notes",

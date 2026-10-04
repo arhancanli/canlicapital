@@ -134,7 +134,7 @@ def audit_page(
 
     assert hero.is_visible()
     # Display uses CSS uppercase; test the accessible wording, not its casing.
-    assert "quant research." in hero.inner_text().casefold() and "proved in the open." in hero.inner_text().casefold()
+    assert "conviction needs" in hero.inner_text().casefold() and "evidence." in hero.inner_text().casefold()
     # The first paragraph a reader meets says what Canli Capital is (config/home-answers.json).
     assert page.locator(".cinema-hero .hero__lead").inner_text().startswith("Canli Capital is ")
     assert page.get_by_role("link", name="Explore the strategies").is_visible()
