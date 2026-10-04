@@ -25,6 +25,10 @@ export function applySiteDesign(html, path) {
   next = next.replace(/<noscript>\s*<link\b[^>]*href="https:\/\/fonts\.googleapis\.com[^>]*>\s*<\/noscript>\s*/g, '');
   next = next.replace(/<link\b[^>]*href="https:\/\/fonts\.googleapis\.com[^>]*>\s*/g, '');
   next = next.replace(/<style\b[^>]*>[\s\S]*?<\/style>\s*/g, '');
+  // The legacy release pass inserts its theme just before </head>. Remove the
+  // whole retired region, including insertion whitespace, so a full rebuild
+  // preserves the bytes used by the deployment source-date manifest.
+  next = next.replace(/\s*<!-- release-style:start -->[\s\S]*?<!-- release-style:end -->\s*/g, '\n');
   // Calculator introductions stay compact; the published preset remains a
   // native disclosure beside the heading, so the working controls arrive early.
   next = next.replace(/(<section\b[^>]*class="(?:dsr|ec|ta|lab|chain|union)-hero[^>]*>)([\s\S]*?)(<\/section>)/g, (_, open, body, close) => {

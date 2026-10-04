@@ -56,6 +56,34 @@ html[data-design]:not([data-design=home]):not([data-design=workbench]) main>sect
 @media print{.cc-shell,.cc-footer,.reader-index,.hub-index,.cc-reading-progress{display:none!important}main,.paper__main{padding:0!important;display:block!important}body{background:white;color:black}details{display:block}a{color:inherit}pre,table{break-inside:avoid}h1,h2,h3{break-after:avoid}}
 
 .cc-shell__index:not([open]) .cc-shell__panel{display:none}.cc-shell__panel>*{min-width:0}.cc-shell__panel-link{overflow-wrap:anywhere}main :is(section,article,aside,div,figure){min-width:0}
+
+/* Shared shell states also used by the React wrappers and expanded footer. */
+.header-status{display:flex;align-items:center;gap:10px}
+.cc-footer .cc-footer__dev-cta{display:inline-flex;align-items:center;min-height:44px;color:var(--cc-ice);font-weight:600;text-decoration:underline;text-underline-offset:.3em}
+.cc-handoff{display:block}
+.cc-handoff__viewport{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:28px 40px;min-width:0}
+.cc-handoff__intro{min-width:0;max-width:45ch}
+.cc-handoff__intro>p:first-child{color:var(--cc-ice);font:400 .65rem/1.7 var(--cc-mono)}
+.cc-handoff__stage{position:relative;min-width:0;height:260px}
+.cc-handoff__route{position:absolute;inset:0;width:100%;height:100%;overflow:visible;fill:none}
+.cc-handoff__track{stroke:#617f92;stroke-width:2}
+.cc-handoff__trace{stroke:var(--cc-ice);stroke-width:2;stroke-dasharray:1;stroke-dashoffset:0}
+.cc-handoff__dock,.cc-handoff__gate{position:absolute;display:grid;gap:5px;width:56px;transform:translate(-50%,-50%)}
+.cc-handoff__dock i,.cc-handoff__gate i{display:block;height:14px;border:1px solid #91d2e380;background:#142f40}
+.cc-handoff__dock--inputs{left:12%;top:70%}
+.cc-handoff__dock--record{left:88%;top:70%}
+.cc-handoff__gate{left:50%;top:28%;width:76px}
+.cc-handoff__gate i{border-color:var(--cc-ice)}
+.cc-handoff__packet{position:absolute;left:50%;top:28%;width:64px;transform:translate(-50%,-50%)}
+.cc-handoff__packet img{display:block;width:100%;height:auto}
+.cc-handoff__steps>a{display:flex;flex-direction:column;gap:9px;min-width:0;padding:22px;border:1px solid #91d2e240;border-radius:4px}
+.cc-handoff__steps>a:hover{background:#142f40;border-color:var(--cc-ice)}
+.cc-handoff__steps span{color:var(--cc-ice);font:400 .63rem/1.6 var(--cc-mono);text-transform:uppercase;letter-spacing:.06em}
+.cc-handoff__steps strong{font:500 1.1rem/1.4 var(--cc-display);color:var(--cc-paper)}
+.cc-handoff__steps small{font-size:.74rem;line-height:1.7}
+.cc-handoff__steps em{margin-top:auto;padding-top:10px;color:var(--cc-ice);font-size:.7rem;font-style:normal}
+.cc-handoff__boundary{grid-column:1/-1;margin:0;font-size:.68rem;line-height:1.8}
+@media(max-width:767px){.cc-handoff__viewport{grid-template-columns:1fr;gap:24px}.cc-handoff__stage{height:190px}.cc-handoff__intro{max-width:none}.cc-handoff__steps>a{padding:20px}}
 /* Calculators expose their controls early, with source context in a disclosure. */
 html[data-design=workbench] :is(.dsr-hero,.ec-hero,.ta-hero,.lab-hero){padding:34px 0;min-height:0;align-items:start;gap:28px}
 html[data-design=workbench] :is(.dsr-hero,.ec-hero,.ta-hero,.lab-hero) h1{font-size:clamp(2rem,3vw,3rem);max-width:27ch;line-height:1.1}

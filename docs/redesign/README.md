@@ -48,7 +48,7 @@ from actual search-engine indexing.
 
 ## Verification
 
-Node 22.23.2 `npm run build` and `npm run verify` passed. The latter ran 1,301 tests
+Node 22.23.2 `npm run build` and `npm run verify` passed. The latter ran 1,302 tests
 and six preverify cases, followed by writing, publication, source, SEO, link,
 indexability, numerical and search-intent audits. All 30,281 visible numerals trace
 to published artifacts. On-page checks report zero errors and warnings. Every
@@ -106,3 +106,14 @@ separately. Final protected-main PR checks follow source delivery.
 All local build, source, browser and deployment-date checks above passed.
 Automatic checks run on the final branch. The owner retains protected-main
 merge and production deployment.
+
+
+## Full-rebuild regression and shell contracts
+
+The release-style generator and final design pass now preserve exact source
+bytes across repeated generation, including the homepage, progress and open
+data pages. The deployment-date CI guard caught accumulating insertion
+whitespace; a regression composes the actual production transforms.
+All 60 React wrapper contracts pass with the complete shared footer styles.
+The expanded native footer also passes desktop and 320px browser checks with
+JavaScript off; reports and captures are in the October QA folder.
