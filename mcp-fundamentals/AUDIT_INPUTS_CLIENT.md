@@ -8,7 +8,7 @@ Save the following fictional examples as three separate UTF-8 files. These suppl
 
 <!-- AUDIT_FILES_REFERENCE_BEGIN -->
 ```json
-{"schema":"canli.fundamentals.audit-reference.v1","companyfacts":[{"cik":123456,"facts":{"us-gaap":{"Assets":{"units":{"USD":[{"end":"2019-12-31","val":100,"accn":"0000123456-20-000001","filed":"2020-02-10","form":"10-K"}]}},"Ambiguous":{"units":{"USD":[{"end":"2019-12-31","val":100,"accn":"0000123456-20-000001","filed":"2020-02-10","form":"10-K"},{"end":"2019-12-31","val":99,"accn":"0000123456-20-000002","filed":"2020-02-10","form":"10-K"}]}}}}]}
+{"schema":"canli.fundamentals.audit-reference.v1","companyfacts":[{"cik":123456,"facts":{"us-gaap":{"Assets":{"units":{"USD":[{"end":"2019-12-31","val":100,"accn":"0000123456-20-000001","filed":"2020-02-10","form":"10-K"}]}},"Ambiguous":{"units":{"USD":[{"end":"2019-12-31","val":100,"accn":"0000123456-20-000001","filed":"2020-02-10","form":"10-K"},{"end":"2019-12-31","val":99,"accn":"0000123456-20-000002","filed":"2020-02-10","form":"10-K"}]}}}}}]}
 ```
 <!-- AUDIT_FILES_REFERENCE_END -->
 

@@ -276,7 +276,16 @@ function fixtureCensus() {
   };
   visit(TMP, 0); return { bytes, count };
 }
-after(() => { if (packed) fixtureCensus(); assert.equal(denials, 3); assert.equal(packEntries, 1); assert.ok(commandEntries <= 3); for (const [object, key, prior] of saved.reverse()) object[key] = prior; globalThis.fetch = oldFetch; syncBuiltinESMExports(); originalRm(TMP, { recursive: true, force: true }); });
+after(() => {
+  try {
+    if (packed) { fixtureCensus(); assert.equal(denials, 3); }
+    assert.equal(packEntries, 1); assert.ok(commandEntries <= 3);
+  } finally {
+    for (const [object, key, prior] of saved.reverse()) object[key] = prior;
+    globalThis.fetch = oldFetch; syncBuiltinESMExports();
+    originalRm(TMP, { recursive: true, force: true });
+  }
+});
 
 const clone = value => JSON.parse(JSON.stringify(value));
 const inputs = () => Object.fromEntries(Object.entries(packed.fixture).map(([key, bytes]) => [key, Buffer.from(bytes)]));
