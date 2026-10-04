@@ -44,16 +44,16 @@ test("the performance link reads the same word everywhere: the page's own name",
 
 test("phase 4 keeps dynamic status out of the stable top row", () => {
   const html=renderProductShellHeader({dynamicStatus:true});
-  assert.match(html,/data-shell-revision="4"/);
+  assert.match(html,/data-shell-revision="5"/);
   assert.ok(html.indexOf('cc-shell__panel-foot') < html.indexOf('id="header-broker-status"'));
   assert.match(html,/<script type="module" src="\/js\/navigation.js"><\/script>/);
   assert.match(html,/Live record <span aria-hidden="true">↗<\/span>/);
 });
 
-test("primary navigation exposes systems, research, developers and verification", () => {
+test("primary navigation follows research, the ALPHAC record and developer tools", () => {
   const html=renderProductShellHeader({active:'research'});
   const primary=html.match(/<nav class="cc-shell__primary"[^>]*>([\s\S]*?)<\/nav>/)[1];
-  assert.deepEqual([...primary.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['/systems','/research','/developers','/verify']);
+  assert.deepEqual([...primary.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['/research','/performance','/developers']);
   assert.doesNotMatch(primary,/aria-current="page"/,'A parent-family match is not necessarily the current page');
 });
 

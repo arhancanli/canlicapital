@@ -18,6 +18,7 @@ import { IMMUTABLE_PAPER_SHORT_TITLES } from "./paper-presentation.mjs";
 import { normalizeEditableCopy } from "./editable-copy.mjs";
 import { canonicalJson as canonicalJsonShared } from "./canonical-json.mjs";
 import { imageProse } from './lib/image-prose.mjs';
+import { htmlText, htmlWithoutElements } from './lib/html-text.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -28,6 +29,26 @@ const check = (condition, message) => {
   if (!condition) failures.push(message);
 };
 const sha256 = (text) => createHash("sha256").update(text).digest("hex");
+const verifyCalculatorDefaults = (slug, renderer) => {
+  const artifact = resolve(DIST, 'glassbox/calculator-defaults', `${slug}.json`);
+  check(existsSync(artifact), `/tools/${slug} is missing its computed default artifact`);
+  if (!existsSync(artifact)) return;
+  const record = JSON.parse(readFileSync(artifact, 'utf8'));
+  check(record.schema === 'canli.calculator-defaults.v1' && record.route === `/tools/${slug}` &&
+    record.renderer?.path === renderer && record.renderer?.sha256 === sha256(readFileSync(resolve(ROOT, renderer))) &&
+    record.source_bindings?.[renderer] === record.renderer?.sha256 &&
+    Object.keys(record.source_bindings ?? {}).length >= 2 &&
+    Array.isArray(record.computed_text) && record.computed_text.length > 0 &&
+    record.computed_text.every(text => typeof text === 'string' && text.trim()) &&
+    record.evidence_basis?.includes('Illustrative deterministic calculator defaults') &&
+    record.evidence_basis?.includes('Not ALPHAC performance, qualification or admission evidence'),
+    `/tools/${slug} default artifact lacks its exact renderer, outputs or illustration boundary`);
+  for (const [file, hash] of Object.entries(record.source_bindings ?? {})) {
+    const allowed = /^js\/[a-z0-9/-]+\.js$/.test(file) && !file.includes('..');
+    check(allowed && existsSync(resolve(ROOT, file)) && hash === sha256(readFileSync(resolve(ROOT, file))),
+      `/tools/${slug} computed default source binding differs: ${file}`);
+  }
+};
 const canonicalJson = (value) => {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
   if (value && typeof value === "object") {
@@ -45,6 +66,11 @@ if (!existsSync(DIST)) {
 }
 
 const sources = readdirSync(resolve(ROOT, "public/research")).filter((n) => n.endsWith(".md"));
+for (const [slug, renderer] of [['deflated-sharpe','dsr-tool'],['breadth','breadth-lab'],
+  ['execution','execution-lab'],['selection-risk','selection-risk-lab'],
+  ['trial-accounting','trial-accounting-tool'],['backtest-overfitting','backtest-overfitting-tool']]) {
+  verifyCalculatorDefaults(slug, `js/${renderer}.js`);
+}
 const citationDir = resolve(DIST, "research", "citations");
 const citations = existsSync(citationDir)
   ? readdirSync(citationDir).filter((n) => n.endsWith(".bib"))
@@ -180,9 +206,10 @@ for (const page of pages) {
   // 4. The stylesheet resolved. A wrong relative depth renders an unstyled page in
   //    production only, which no local check of the source would show.
   const stylesheetTags = html.match(/<link\b[^>]*>/g) || [];
-  const linksBuiltStylesheet = stylesheetTags.some(
-    (tag) => /rel="stylesheet"/.test(tag) && /href="\/assets\/paper-[^"]+\.css"/.test(tag),
-  );
+  const linksBuiltStylesheet = stylesheetTags.some((tag) => {
+    const href = tag.match(/href="(\/assets\/[^"]+\.css)"/)?.[1];
+    return /rel="stylesheet"/.test(tag) && href && existsSync(resolve(DIST, href.slice(1)));
+  });
   check(
     linksBuiltStylesheet,
     `${page} does not link a built stylesheet -- it would render unstyled in production`,
@@ -634,13 +661,9 @@ if (existsSync(founderFile)) {
   // check fire on any icon added to the shell. Adding one GitHub mark introduced
   // 47 "untraceable" numbers, all of them path data. Stripped for the same reason
   // <script> and <pre> already are.
-  const prose = imageProse(founderHtml)
+  const prose = htmlWithoutElements(imageProse(founderHtml)
     .replaceAll(forwardReport.generated_at, " ")
-    .replaceAll(snapshotTimestamp, " ")
-    .replace(/<script[\s\S]*?<\/script>/g, " ")
-    .replace(/<head>[\s\S]*?<\/head>/g, " ")
-    .replace(/<svg[\s\S]*?<\/svg>/g, " ")
-    .replace(/<pre[\s\S]*?<\/pre>/g, " ");
+    .replaceAll(snapshotTimestamp, " "), 'script,head,svg,pre');
   const datesRemoved = prose.replace(/\b\d{4}-\d{2}-\d{2}\b/g, (d) =>
     renderings.has(d) ? " " : ` UNTRACEABLE_DATE_${d} `,
   );
@@ -1065,7 +1088,7 @@ if (existsSync(dsrToolFile)) {
   );
   check(
     dsrToolHtml.includes(
-      'content="deflated_sharpe_calculator_contract.json trial_ledger.json"',
+      'content="deflated_sharpe_calculator_contract.json trial_ledger.json calculator-defaults/deflated-sharpe.json"',
     ),
     "/tools/deflated-sharpe does not declare both exact source artifacts",
   );
@@ -1124,7 +1147,7 @@ if (existsSync(pboToolFile)) {
     "/tools/backtest-overfitting lacks WebApplication markup or founder attribution",
   );
   check(
-    pboToolHtml.includes('content="backtest_overfitting_calculator_contract.json"'),
+    pboToolHtml.includes('content="backtest_overfitting_calculator_contract.json calculator-defaults/backtest-overfitting.json"'),
     "/tools/backtest-overfitting does not declare its exact source artifact",
   );
   check(
@@ -1358,7 +1381,7 @@ if (existsSync(trialToolFile)) {
   );
   check(
     trialToolHtml.includes(
-      'content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json prospective_epoch_register.json trial-packets/forward_index.json"',
+      'content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json prospective_epoch_register.json trial-packets/forward_index.json calculator-defaults/trial-accounting.json"',
     ) &&
       trialToolHtml.includes(`sha256:${sha256(ledgerBytes)}`) &&
       trialToolHtml.includes(`sha256:${sha256(manifestBytes)}`) &&
@@ -1464,7 +1487,7 @@ for (const page of pages) {
     const h1 = (html.match(/<h1 class="paper__title">([\s\S]*?)<\/h1>/) || [])[1];
     check(h1 !== undefined, `${slug} has no paper title heading`);
     if (h1 !== undefined) {
-      const h1Text = h1.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+      const h1Text = htmlText(h1).replace(/\s+/g, " ").trim();
       check(
         h1Text === realTitle,
         `${slug} presents "${h1Text}" as its name but the document is called "${realTitle}". ` +

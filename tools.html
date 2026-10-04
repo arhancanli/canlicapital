@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-page="tools">
+<html data-design="chapter" lang="en" data-page="tools">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,30 +19,23 @@
 <meta name="twitter:description" content="Every browser calculator this project publishes: deflated Sharpe, overfitting, selection risk, execution cost and portfolio breadth, free and source-bound." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
-<link rel="stylesheet" href="/css/product-shell.css" />
-<link rel="stylesheet" href="/css/lab.css" />
-<link rel="stylesheet" href="/css/tools-hub.css" />
-<link rel="stylesheet" href="/css/tool-experience.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Backtest validation calculators","description":"Every browser calculator this project publishes: deflated Sharpe, overfitting, selection risk, execution cost and portfolio breadth, free and source-bound.","url":"https://canlicapital.com/tools","author":{"@id":"https://canlicapital.com/#arhan-canli"},"mainEntity":{"@type":"ItemList","numberOfItems":7,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://canlicapital.com/tools/deflated-sharpe","name":"Deflated Sharpe ratio calculator (PSR and DSR)"},{"@type":"ListItem","position":2,"url":"https://canlicapital.com/tools/backtest-overfitting","name":"Probability of backtest overfitting calculator"},{"@type":"ListItem","position":3,"url":"https://canlicapital.com/tools/selection-risk","name":"Backtest selection risk simulator"},{"@type":"ListItem","position":4,"url":"https://canlicapital.com/tools/execution","name":"Execution assumptions cost calculator"},{"@type":"ListItem","position":5,"url":"https://canlicapital.com/tools/breadth","name":"Portfolio breadth calculator"},{"@type":"ListItem","position":6,"url":"https://canlicapital.com/tools/trial-accounting","name":"Trial accounting explorer"},{"@type":"ListItem","position":7,"url":"https://canlicapital.com/tools/evidence-chain","name":"Signed evidence chain verifier"}]}}</script>
-
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head>
 <body class="lab-page tools-hub-page">
 <a class="lab-skip" href="#tools-list">Skip to the calculators</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -69,7 +62,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -106,7 +101,7 @@
       </article>
     <article class="tools-card">
         <h2><a href="/tools/backtest-overfitting">Probability of backtest overfitting calculator</a></h2>
-        
+
         <p>Paste every version&#39;s returns to see how likely the best one is overfit, with the same method the API uses (CSCV).</p>
       </article>
     <article class="tools-card">
@@ -163,7 +158,7 @@
       <a href="/how-to-validate-a-backtest">how to validate a backtest</a>.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">

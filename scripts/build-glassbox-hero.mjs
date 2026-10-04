@@ -4,8 +4,8 @@ import { fileURLToPath } from "node:url";
 const root = new URL("../", import.meta.url);
 const state = JSON.parse(readFileSync(new URL("public/paper-state.json", root), "utf8"));
 const styles = [
-  ["alphamax", "#476dff"], ["managed_futures", "#f4a46b"],
-  ["alphavintage", "#c6d5ec"], ["alphaforge", "#82d2c5"],
+  ["alphamax", "#91d2e3"], ["managed_futures", "#d2a07c"],
+  ["alphavintage", "#a1bdd1"], ["alphaforge", "#86c2bb"],
 ];
 const escape = (value) => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 // A suspended sleeve has no public curve by design (state.suspended_sleeves, v4 2026-09-24): it is

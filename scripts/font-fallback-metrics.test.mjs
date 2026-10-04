@@ -17,7 +17,7 @@ const REQUIRED_PROPERTIES = ["src: local(", "size-adjust:", "ascent-override:", 
 
 for (const [file, families] of [
   ["css/home.css", ["Inter Fallback", "Bricolage Grotesque Fallback"]],
-  ["css/product-shell.css", ["Inter Fallback", "Bricolage Grotesque Fallback"]],
+  ["css/design-system.css", ["Inter Fallback", "Bricolage Grotesque Fallback"]],
 ]) {
   test(`${file} declares a metric-matched @font-face for each fallback family`, () => {
     const css = read(file);

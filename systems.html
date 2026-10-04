@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-hub="systems" lang="en" data-page="systems">
+<html data-design="chapter" data-hub="systems" lang="en" data-page="systems">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,22 +27,10 @@
   <meta name="twitter:description" content="How the ALPHAC engine works end to end: a point-in-time data lake, an IC-weighted factor library, a risk-aware portfolio, and a 24/7 paper-trading loop." />
   <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
-  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" /></noscript>
-
-  <link rel="stylesheet" href="./css/styles.css" />
-  <link rel="stylesheet" href="./css/motion.css" />
-  <link rel="stylesheet" href="./css/waitlist.css" />
   <!-- Page-specific layout for /systems only: the chaptered architecture story,
        the pipeline spine, and the per-chapter schematics. Loaded last, adds only
        (never redefines a token, the cursor, the rail, or an easing). -->
-  <link rel="stylesheet" href="./css/systems.css" />
-  <link rel="stylesheet" href="./css/shell.css" />
-  <link rel="stylesheet" href="/css/product-shell.css" />
-
   <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
        primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
        iOS home-screen and PWA install. All long-cached as static assets. -->
@@ -70,28 +58,6 @@
   }
   </script>
 
-  <style>
-    .skip-link {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 200;
-      transform: translateY(-120%);
-      margin: 12px;
-      padding: 10px 16px;
-      background: #0A0B0D;
-      color: #F4F1EA;
-      font: 500 13px/1 "Space Grotesk", system-ui, sans-serif;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      border: 1px solid #C8553D;
-      border-radius: 2px;
-      transition: transform 180ms ease;
-    }
-    .skip-link:focus { transform: translateY(0); }
-    .skip-link:focus-visible { outline: 2px solid #F4F1EA; outline-offset: 3px; }
-  </style>
-
   <script>document.documentElement.classList.add("js");</script>
 
   <!-- Per-page config for the shared bootstrap. /systems is the coalescing +
@@ -111,9 +77,10 @@
       sceneStill: 0.42
     };
   </script>
-<link rel="stylesheet" href="/css/hub-experience.css" />
-
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head>
 
 <body>
 
@@ -154,16 +121,15 @@
        edge. aria-hidden: the rail is the accessible nav; this is a visual echo. -->
   <nav class="sys-pipe" id="sysPipe" aria-hidden="true"></nav>
 
-  <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+  <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems" data-current="true">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -190,7 +156,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -1034,7 +1002,7 @@
          The stage copy distills each chapter above verbatim so the two never drift. -->
   </main>
 
-  <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">

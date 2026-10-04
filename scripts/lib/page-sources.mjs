@@ -134,6 +134,15 @@ export const PAGE_SOURCES = {
   "/tools": ["scripts/build-tools-hub.mjs"],
 };
 
+// Every editable static route also receives these shared markup transforms.
+// Their committed content dates survive generated input timestamps changing in
+// a Git-free build, and keep the page's structured date and sitemap aligned.
+export const SHARED_PAGE_SOURCES = [
+  'scripts/product-shell.mjs',
+  'scripts/build-site-design.mjs',
+];
+for (const files of Object.values(PAGE_SOURCES)) files.push(...SHARED_PAGE_SOURCES);
+
 /**
  * The date a static route's sources last changed, the same as its sitemap <lastmod>; null when no
  * source can be dated (never the build date, which would be an invented dateModified).

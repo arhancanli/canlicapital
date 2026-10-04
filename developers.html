@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-page="developers">
+<html data-design="developer" lang="en" data-page="developers">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,29 +20,23 @@
 <meta name="twitter:description" content="A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
-<link rel="stylesheet" href="/css/product-shell.css" />
-<link rel="stylesheet" href="/css/developers.css" />
-<link rel="stylesheet" href="/css/developer-workbench.css" /><link rel="stylesheet" href="/css/developer-experience.css" />
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebAPI","name":"Canli Capital public read API","description":"A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits.","documentation":"https://canlicapital.com/developers","url":"https://canlicapital.com/api/v1","provider":{"@id":"https://canlicapital.com/#organization"},"termsOfService":"https://canlicapital.com/methodology"},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-validation-mcp","description":"MCP server that validates a backtest against the Canli Capital Validation API from Claude, Cursor or any MCP client.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#ai-assistant","downloadUrl":"https://www.npmjs.com/package/canli-validation-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-fundamentals-mcp","description":"MCP server for SEC company fundamentals point in time: what was first reported, what was known on any date, and every later restatement, each value with the filing behind it. Computed locally from a hash-checked SEC snapshot.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#mcp-fundamentals","downloadUrl":"https://www.npmjs.com/package/canli-fundamentals-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp-fundamentals","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-research-mcp","description":"MCP server for Canli Capital's open research record: every paper, killed candidate, trial count, the live paper record and its verification chain, each with its own limits.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#mcp-research","downloadUrl":"https://www.npmjs.com/package/canli-research-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp-research","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"alphac","description":"Auditable multi-asset quantitative research engine with point-in-time data, walk-forward validation, trial accounting and execution simulation.","codeRepository":"https://github.com/arhancanli/alphac","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canli-pit-lake","description":"A point-in-time market data lake where every read takes an explicit as-of.","codeRepository":"https://github.com/arhancanli/canli-pit-lake","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canli-backtest","description":"A backtester that enforces fill-time causality and counts every hypothesis ever run.","codeRepository":"https://github.com/arhancanli/canli-backtest","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canlicapital","description":"The source of canlicapital.com: methodology, paper record, kill log, retractions and reproducible artifacts.","codeRepository":"https://github.com/arhancanli/canlicapital","programmingLanguage":"HTML","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}}]</script>
-
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head>
 <body class="dev-page">
 <a class="dev-skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers" data-current="true">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -69,7 +63,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers" data-current="true">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -356,14 +352,14 @@ console.log(await response.json());</code></pre></div>
 }</code></pre></div>
     <h3 id="mcp-benchmark">How well agents use it</h3>
     <p class="dev-note">Each model was given these tools and 24 fixed questions (deflated Sharpe, track record length, breadth, overfitting, company financials by ticker, and what a result does not establish), each asked 3 times. An answer counts when it matches ground truth computed from the same checked code.</p>
-    <table class="dev-table" tabindex="0" aria-label="MCP agent benchmark">
+    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0" aria-label="MCP agent benchmark">
       <thead><tr><th>Model</th><th>Correct answers</th><th>Right tool first</th><th>Runs</th></tr></thead>
       <tbody>
         <tr><td>Claude Haiku 4.5</td><td>97.2%</td><td>98.6%</td><td>72</td></tr>
         <tr><td>Claude Sonnet 5</td><td>100%</td><td>100%</td><td>72</td></tr>
         <tr><td>GPT-5.4 mini</td><td>98.6%</td><td>100%</td><td>72</td></tr>
       </tbody>
-    </table>
+    </table></div><!-- design-table:end -->
     <p class="dev-note">Tasks written by us, run against the server in private local mode. The per-run records also hold tokens and time, which depend on each provider&#39;s tokenizer and serving, so they compare runs of one model only. <a href="/glassbox/mcp_agent_benchmark.json">The artifact</a>, <a href="https://github.com/arhancanli/canlicapital/blob/main/mcp/bench/agent/README.md" rel="noreferrer">the method and every miss</a>.</p>
     <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp" rel="noreferrer">Inspect the MCP implementation and contribute an integration</a>. If the tools help your research, star the repository to help others discover it.</p>
     <p class="dev-note"><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">canli-validation-mcp on npm</a>, with the full tool list and what each one does not establish.</p>
@@ -387,7 +383,7 @@ console.log(await response.json());</code></pre></div>
 
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>
-    <table class="dev-table" tabindex="0" aria-label="Public read endpoints">
+    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0" aria-label="Public read endpoints">
       <thead><tr><th>Path</th><th>What it returns</th></tr></thead>
       <tbody>
         <tr><td><a href="/api/v1/chain/head"><code>GET /api/v1/chain/head</code></a></td><td>The head of the signed append-only transparency chain, and the public key needed to verify it.</td></tr>
@@ -397,14 +393,14 @@ console.log(await response.json());</code></pre></div>
         <tr><td><a href="/api/v1/status"><code>GET /api/v1/status</code></a></td><td>Current state of the paper record: capital kind, period, observation count, validation status and broker reconciliation.</td></tr>
         <tr><td><a href="/api/v1/trials/summary"><code>GET /api/v1/trials/summary</code></a></td><td>The trial union used as the multiple-testing denominator, plus the kill counts.</td></tr>
       </tbody>
-    </table>
+    </table></div><!-- design-table:end -->
   </section>
 
   <section class="dev-section" id="validation">
     <h2>Validation endpoints, free key</h2>
     <p class="dev-note">Send your own numbers; get back the arithmetic this house runs on itself.
       Nothing you send is stored. Each verdict returns a receipt anyone can recompute.</p>
-    <table class="dev-table" tabindex="0" aria-label="Validation endpoints">
+    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0" aria-label="Validation endpoints">
       <thead><tr><th>Route</th><th>What it does</th></tr></thead>
       <tbody>
         <tr><td><code>POST /api/v1/keys/revoke</code></td><td>Permanently revoke the bearer key without consuming validation quota. Already admitted requests may finish; public receipts remain available.</td></tr>
@@ -422,7 +418,7 @@ console.log(await response.json());</code></pre></div>
         <tr><td><code>GET /api/v1/receipts/{id}</code></td><td>A stored verdict by content-hash id. Immutable.</td></tr>
         <tr><td><code>GET /api/v1/receipts/{id}/badge.svg</code></td><td>An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark.</td></tr>
       </tbody>
-    </table>
+    </table></div><!-- design-table:end -->
     <h3>First, issue a key</h3>
     <div class="dev-snippets">
       <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code" tabindex="0" aria-label="curl code example"><code>curl -X POST https://canlicapital.com/api/v1/keys \
@@ -706,7 +702,7 @@ console.log(await response.json());</code></pre></div>
 
   <section class="dev-section" id="quotas">
     <h2>Quotas, public and enforced from one source</h2>
-    <table class="dev-table" tabindex="0" aria-label="API quotas">
+    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0" aria-label="API quotas">
       <thead><tr><th>Limit</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>Validations per key per UTC day</td><td>1000</td></tr>
@@ -716,7 +712,7 @@ console.log(await response.json());</code></pre></div>
         <tr><td>Variants per matrix</td><td>200</td></tr>
         <tr><td>CSCV combinations evaluated</td><td>2000</td></tr>
       </tbody>
-    </table>
+    </table></div><!-- design-table:end -->
     <p class="dev-note">Every response carries <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>
       and <code>X-RateLimit-Reset</code>. A 429 carries <code>Retry-After</code>.</p>
     <h3>What happens to a key after you have it</h3>
@@ -769,7 +765,7 @@ console.log(await response.json());</code></pre></div>
       is the fastest way to get it fixed and recorded.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-design="workbench" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,29 +20,23 @@
 <meta name="twitter:description" content="Inspect and independently verify every predecessor link and Ed25519 signature in Canli Capital&#39;s public record, with disclosure and Bitcoin checkpoints visible." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Canli Capital evidence-chain explorer","url":"https://canlicapital.com/tools/evidence-chain","description":"Inspect and independently verify every predecessor link and Ed25519 signature in Canli Capital's public record, with disclosure and Bitcoin checkpoints visible.","applicationCategory":"DeveloperApplication","operatingSystem":"Any modern web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true}</script>
+<!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
-<link rel="stylesheet" href="/css/evidence-chain-tool.css" />
-<link rel="stylesheet" href="/css/tool-experience.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Canli Capital evidence-chain explorer","url":"https://canlicapital.com/tools/evidence-chain","description":"Inspect and independently verify every predecessor link and Ed25519 signature in Canli Capital's public record, with disclosure and Bitcoin checkpoints visible.","applicationCategory":"DeveloperApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true}</script>
-
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:end -->
+</head>
 <body class="chain-page">
 <a class="chain-skip" href="#microscope">Skip to the chain microscope</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify" data-current="true">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -69,7 +63,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -101,7 +97,7 @@
         <a class="chain-button" href="/glassbox/verify_transparency.py">Download the full Python verifier</a>
       </div>
     </div>
-    <aside class="chain-terminal" aria-label="Current published chain facts">
+    <details class="workbench-source"><summary>Published preset and source boundary</summary><aside class="chain-terminal" aria-label="Current published chain facts">
       <div class="chain-terminal__head"><span>Published head</span><strong>SEQ 1062</strong></div>
       <code>e9563e35e7343e7704ffb95ffcb4a67e2bf39500107afc459c43b9a43a656ad0</code>
       <dl>
@@ -111,7 +107,7 @@
         <div><dt>Bitcoin checkpoints</dt><dd>77</dd></div>
       </dl>
       <p>2026-06-27 to 2026-09-20. Source facts, not page copy.</p>
-    </aside>
+    </aside></details>
   </section>
 
   <section class="chain-boundary" aria-label="Verification claim boundary">
@@ -216,7 +212,26 @@
     <p class="chain-source__boundary"><strong>Why Python for payload rehashing?</strong> JavaScript parses numeric JSON tokens such as <code>100000.0</code> into the number <code>100000</code>. Re-serializing that value can change canonical bytes even when the data are equivalent. This browser therefore verifies links and signatures without pretending it can reproduce Python's original numeric lexemes. The published Python verifier performs the complete disclosed-payload rehash.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -256,6 +271,7 @@
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>

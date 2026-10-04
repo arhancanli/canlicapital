@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-design="reader" data-hub="topic" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,28 +20,24 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
-<link rel="stylesheet" href="../../css/paper.css" />
-<link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Options and volatility: Canli Capital research","description":"Variance risk premium, index-versus-constituent dispersion and dealer positioning: mechanisms that are well documented and expensive to implement honestly.","url":"https://canlicapital.com/research/topics/options-and-volatility","inLanguage":"en","isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"hasPart":[{"@type":"ScholarlyArticle","headline":"AlphaTrend managed-futures trend: complete trial lineage and evidence boundary","url":"https://canlicapital.com/research/alphatrend-managed-futures-lineage"},{"@type":"ScholarlyArticle","headline":"Crypto defensive factors: positive summaries without admission evidence","url":"https://canlicapital.com/research/crypto-defensive-lineage"},{"@type":"ScholarlyArticle","headline":"Crypto Low-Volatility: a killed candidate","url":"https://canlicapital.com/research/kill-crypto-lowvol-720"},{"@type":"ScholarlyArticle","headline":"Crypto Variance-Risk-Premium (campaign): a killed candidate","url":"https://canlicapital.com/research/kill-crypto-vrp"},{"@type":"ScholarlyArticle","headline":"Crypto volatility risk premium: one proxy trial and a published null","url":"https://canlicapital.com/research/crypto-vrp-lineage"},{"@type":"ScholarlyArticle","headline":"Options dispersion: literature and implementation boundary","url":"https://canlicapital.com/research/literature-options-dispersion"},{"@type":"ScholarlyArticle","headline":"Options dispersion: locked no-return data and execution-feasibility protocol","url":"https://canlicapital.com/research/options-dispersion-feasibility"},{"@type":"ScholarlyArticle","headline":"Point-in-time options execution foundation","url":"https://canlicapital.com/research/options-execution-foundation"},{"@type":"ScholarlyArticle","headline":"Point-in-time securities-borrow foundation","url":"https://canlicapital.com/research/borrow-execution-foundation"},{"@type":"ScholarlyArticle","headline":"Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate","url":"https://canlicapital.com/research/kill-alphamax-volscale"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Options and volatility","item":"https://canlicapital.com/research/topics/options-and-volatility"}]}</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research" data-current="true">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -68,7 +64,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -90,6 +88,8 @@
   <script type="module" src="/js/navigation.js"></script>
 </header>
 <main class="paper__main" id="content">
+<!-- hub-index:start --><nav class="hub-index" aria-label="Related evidence hubs"><span>Explore the evidence</span><a href="/research">Research library</a><a href="/methodology">Methodology</a><a href="/measurements">Measurements</a><a href="/verify">Verify a claim</a></nav><!-- hub-index:end -->
+
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Options and volatility</h1>
@@ -100,9 +100,10 @@
       <p>They are, however, expensive to implement honestly, and that is where most of the published enthusiasm goes. Selling volatility is short convexity: the strategy earns a small premium repeatedly and gives it back in a single episode, so a backtest over any sample without such an episode is measuring the premium and not the risk. Add bid-ask spreads on options, the cost of delta hedging, and the assumption that a historical quote was executable, and a large fraction of the documented premium is gone before any of it is realised.</p>
       <p>The feasibility question here is unusually binding. A point-in-time option surface includes open interest, quotes and the chain as it stood on a past date. It is either a licensed vendor product or a reconstruction, and a recent reconstruction cannot supply the years of observations a deflated result requires. That constraint is measured against the admission contract, so arithmetic decides before the idea does.</p>
       <p>So what is published in this cluster is mostly boundary work: what the mechanism is, what it would take to test it properly, the execution contracts that would have to hold, and the crypto variance premium tested and killed. That is a thinner result than the literature would suggest, and it is the accurate one for a book that will not price a strategy at quotes it could not have traded.</p>
+
       <h2 class="hub__heading">The options and volatility documents</h2>
       <ul class="research-library research-library--hub">
-        <li class="research-library__item"><a class="research-library__link" href="/research/alphatrend-managed-futures-lineage"><span class="research-library__title">AlphaTrend managed-futures trend: complete trial lineage and evidence boundary</span><span class="research-library__desc">AlphaTrend is ALPHAC&#39;s managed-futures trend program. It takes volatility-normalized directional positions from medium- and long-horizon price trends across…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/crypto-defensive-lineage"><span class="research-library__title">Crypto defensive factors: positive summaries without admission evidence</span><span class="research-library__desc">This record reconciles two cross-sectional defensive-factor identities in crypto perpetual futures: 720-hour low beta and 720-hour low realized volatility.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/kill-crypto-lowvol-720"><span class="research-library__title">Crypto Low-Volatility: a killed candidate</span><span class="research-library__desc">The STRONGEST in-sample signal the 200+-factor campaign found anywhere (Rank-IC t = 6.66). Full purged walk-forward: net Sharpe 0.69; respectable.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/kill-crypto-vrp"><span class="research-library__title">Crypto Variance-Risk-Premium (campaign): a killed candidate</span><span class="research-library__desc">Pitched at 2.15 Sharpe; the headline was a 252-vs-365 vol-annualization error inventing a phantom 15-vol-point premium.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/crypto-vrp-lineage"><span class="research-library__title">Crypto volatility risk premium: one proxy trial and a published null</span><span class="research-library__desc">AlphaForge tested one preregistered BTC/ETH volatility-risk-premium timing rule from 2021-03-24 through 2026-06-01.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/literature-options-dispersion"><span class="research-library__title">Options dispersion: literature and implementation boundary</span><span class="research-library__desc">The defensible mechanism is a priced difference between index correlation/variance insurance and the corresponding single-stock option basket.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/options-dispersion-feasibility"><span class="research-library__title">Options dispersion: locked no-return data and execution-feasibility protocol</span><span class="research-library__desc">Can one point-in-time S&amp;P 500 index-versus-constituent option book be reconstructed with enough quote, membership, corporate-action, settlement, and…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/options-execution-foundation"><span class="research-library__title">Point-in-time options execution foundation</span><span class="research-library__desc">AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin,…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/borrow-execution-foundation"><span class="research-library__title">Point-in-time securities-borrow foundation</span><span class="research-library__desc">AlphaForge now has tested primitives for security-level borrow availability, locates, fees, recalls, and forced-buy-in deadlines, plus optional event-driven…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/kill-alphamax-volscale"><span class="research-library__title">Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate</span><span class="research-library__desc">Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve.</span></a></li>
+        <li class="research-library__item"><a class="research-library__link" href="/research/alphatrend-managed-futures-lineage"><span class="research-library__title">AlphaTrend managed-futures trend: complete trial lineage and evidence boundary</span><span class="research-library__desc">AlphaTrend is ALPHAC&#39;s managed-futures trend program. It takes volatility-normalized directional positions from medium- and long-horizon price trends across…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/crypto-defensive-lineage"><span class="research-library__title">Crypto defensive factors: positive summaries without admission evidence</span><span class="research-library__desc">This record reconciles two cross-sectional defensive-factor identities in crypto perpetual futures: 720-hour low beta and 720-hour low realized volatility.</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/kill-crypto-lowvol-720"><span class="research-library__title">Crypto Low-Volatility: a killed candidate</span><span class="research-library__desc">The STRONGEST in-sample signal the 200+-factor campaign found anywhere (Rank-IC t = 6.66). Full purged walk-forward: net Sharpe 0.69; respectable. But the…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/kill-crypto-vrp"><span class="research-library__title">Crypto Variance-Risk-Premium (campaign): a killed candidate</span><span class="research-library__desc">Pitched at 2.15 Sharpe; the headline was a 252-vs-365 vol-annualization error inventing a phantom 15-vol-point premium. Honest measurement: net Sharpe -0.07…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/crypto-vrp-lineage"><span class="research-library__title">Crypto volatility risk premium: one proxy trial and a published null</span><span class="research-library__desc">AlphaForge tested one preregistered BTC/ETH volatility-risk-premium timing rule from 2021-03-24 through 2026-06-01. It compared Deribit DVOL closes with a…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/literature-options-dispersion"><span class="research-library__title">Options dispersion: literature and implementation boundary</span><span class="research-library__desc">The defensible mechanism is a priced difference between index correlation/variance insurance and the corresponding single-stock option basket. It is not a…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/options-dispersion-feasibility"><span class="research-library__title">Options dispersion: locked no-return data and execution-feasibility protocol</span><span class="research-library__desc">Can one point-in-time S&amp;P 500 index-versus-constituent option book be reconstructed with enough quote, membership, corporate-action, settlement, and…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/options-execution-foundation"><span class="research-library__title">Point-in-time options execution foundation</span><span class="research-library__desc">AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/borrow-execution-foundation"><span class="research-library__title">Point-in-time securities-borrow foundation</span><span class="research-library__desc">AlphaForge now has tested primitives for security-level borrow availability, locates, fees, recalls, and forced-buy-in deadlines, plus optional event-driven…</span></a></li><li class="research-library__item"><a class="research-library__link" href="/research/kill-alphamax-volscale"><span class="research-library__title">Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate</span><span class="research-library__desc">Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve. On the canonical window it HURTS (net…</span></a></li>
       </ul>
     </div>
     <footer class="paper__footer">
@@ -111,14 +112,14 @@
     </footer>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">
       <span>MCP server</span>
       <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
       <code>npx -y canli-validation-mcp</code>
-      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
     </div>
     <div class="cc-footer__dev-item">
       <span>Open source</span>
@@ -211,5 +212,6 @@
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
+<script type="module" src="/js/hub-experience.js"></script>
 </body>
 </html>

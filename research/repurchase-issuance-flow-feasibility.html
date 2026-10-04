@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html data-design="reader" data-reader="research" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Repurchase and issuance flow: no-return SEC feasibility protocol</title>
-<meta name="description" content="Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and…" />
+<meta name="description" content="This audit measures data feasibility only. It may inspect filing metadata, XBRL facts, Item 703 tables, taxonomies, contexts, amendments, and extraction errors." />
 <meta name="alphac-source-sha256" content="bf636717ee2cf61f569eb5bf993de653413e97d064c47f1dedf8f30a66ecb404" />
 
 <link rel="canonical" href="https://canlicapital.com/research/repurchase-issuance-flow-feasibility" />
@@ -18,39 +18,35 @@
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Canli Capital" />
 <meta property="og:title" content="Repurchase and issuance flow: no-return SEC feasibility protocol" />
-<meta property="og:description" content="Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and…" />
+<meta property="og:description" content="This audit measures data feasibility only. It may inspect filing metadata, XBRL facts, Item 703 tables, taxonomies, contexts, amendments, and extraction errors." />
 <meta property="og:url" content="https://canlicapital.com/research/repurchase-issuance-flow-feasibility" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta property="article:author" content="Arhan Canli" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Repurchase and issuance flow: no-return SEC feasibility protocol" />
-<meta name="twitter:description" content="Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and…" />
+<meta name="twitter:description" content="This audit measures data feasibility only. It may inspect filing metadata, XBRL facts, Item 703 tables, taxonomies, contexts, amendments, and extraction errors." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
-<link rel="stylesheet" href="../css/paper.css" />
-<link rel="stylesheet" href="/css/product-shell.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Repurchase and issuance flow: no-return SEC feasibility protocol","description":"Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and…","url":"https://canlicapital.com/research/repurchase-issuance-flow-feasibility","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/repurchase-issuance-flow-feasibility.md","encodingFormat":"text/markdown"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Repurchase and issuance flow: no-return SEC feasibility protocol","description":"This audit measures data feasibility only. It may inspect filing metadata, XBRL facts, Item 703 tables, taxonomies, contexts, amendments, and extraction errors.","url":"https://canlicapital.com/research/repurchase-issuance-flow-feasibility","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","dateModified":"2026-09-06","image":{"@type":"ImageObject","url":"https://canlicapital.com/og.png","width":1200,"height":630},"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/repurchase-issuance-flow-feasibility.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Repurchase and issuance flow: no-return SEC feasibility protocol","item":"https://canlicapital.com/research/repurchase-issuance-flow-feasibility"}]}</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research" data-current="true">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -77,7 +73,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -98,20 +96,20 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content">
+<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Question</a><a href="#reader-section-2">Frozen source and sample</a><a href="#reader-section-3">Frozen fact families</a><a href="#reader-section-4">Point-in-time rules</a><a href="#reader-section-5">Locked gates</a><a href="#reader-section-6">Decisions</a><a href="#reader-section-7">Identity-overlap decision</a><a href="#reader-section-8">Implemented pipeline and current state</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Repurchase and issuance flow: no-return SEC feasibility protocol</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Declared</dt><dd>2026-08-16</dd></div><div><dt>Return data</dt><dd>prohibited</dd></div><div><dt>Hypotheses spent</dt><dd>zero</dd></div><div><dt>Family trial account</dt><dd><code>corporate_equity_supply</code></dd></div><div><dt>Prior return configurations</dt><dd>three (<code>eq_net_issuance</code>)</dd></div><div><dt>Minimum family trial count if one completed-flow return identity is opened</dt><dd>four</dd></div><div><dt>Independent-sleeve count</dt><dd>prohibited; this is a same-family measurement refinement</dd></div></dl></div><h2>Question</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Declared</dt><dd>2026-08-16</dd></div><div><dt>Return data</dt><dd>prohibited</dd></div><div><dt>Hypotheses spent</dt><dd>zero</dd></div><div><dt>Family trial account</dt><dd><code>corporate_equity_supply</code></dd></div><div><dt>Prior return configurations</dt><dd>three (<code>eq_net_issuance</code>)</dd></div><div><dt>Minimum family trial count if one completed-flow return identity is opened</dt><dd>four</dd></div><div><dt>Independent-sleeve count</dt><dd>prohibited; this is a same-family measurement refinement</dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Question</h2>
 <p>Can completed repurchases and completed issuance be reconstructed from information available at
 each SEC filing acceptance time, with enough coverage and semantic stability to justify exactly
 one later return preregistration?</p>
 <p>This audit measures data feasibility only. It may inspect filing metadata, XBRL facts, Item 703
 tables, taxonomies, contexts, amendments, and extraction errors. It may not read prices, returns,
 future delistings, signals, positions, portfolio correlations, or performance statistics.</p>
-<h2>Frozen source and sample</h2>
+<h2 id="reader-section-2" data-reader-anchor="true">Frozen source and sample</h2>
 <ul>
 <li>Official SEC <code>company_tickers.json</code>, Submissions API, Company Facts API, and immutable filing
 documents. No vendor-derived fundamentals.</li>
@@ -124,7 +122,7 @@ where documents exist. Selection is by the same sealed hash rule, never by extra
 <li>Every raw response stores URL, retrieval time, byte count, SHA-256, CIK, accession, acceptance
 time, form, fiscal period, taxonomy tag, unit, start/end dates, <code>filed</code>, <code>frame</code>, and source file.</li>
 </ul>
-<h2>Frozen fact families</h2>
+<h2 id="reader-section-3" data-reader-anchor="true">Frozen fact families</h2>
 <p>The parser records, but does not combine or optimize, these standard-tag families:</p>
 <ul>
 <li>completed cash repurchases: <code>PaymentsForRepurchaseOfCommonStock</code> and direct successor tags with
@@ -139,7 +137,7 @@ merged into ordinary issuance.</li>
 </ul>
 <p>Custom extension tags are preserved and counted but cannot be auto-mapped from text similarity.
 Any successor mapping requires identical definitions and a published mapping table.</p>
-<h2>Point-in-time rules</h2>
+<h2 id="reader-section-4" data-reader-anchor="true">Point-in-time rules</h2>
 <ol>
 <li>A fact becomes knowable at the filing&#39;s accepted timestamp, never at fiscal period end.</li>
 <li>The first accepted filing is the historical value. An amendment is a new state from its own
@@ -154,7 +152,7 @@ failure states. No best-looking value is selected.</li>
 <li>Item 703 tables are parsed from the immutable filing document tied to the accession. The
 vacated 2023 daily disclosure format is not assumed.</li>
 </ol>
-<h2>Locked gates</h2>
+<h2 id="reader-section-5" data-reader-anchor="true">Locked gates</h2>
 <p>All gates must pass before a return protocol can be written:</p>
 <ol>
 <li>100% raw-response hashes and accession/acceptance lineage.</li>
@@ -174,7 +172,7 @@ ambiguous; zero is never imputed.</li>
 receive explicit coverage/error counts.</li>
 <li>Return data opened and return identities spent both remain exactly zero.</li>
 </ol>
-<h2>Decisions</h2>
+<h2 id="reader-section-6" data-reader-anchor="true">Decisions</h2>
 <ul>
 <li><code>PASS_TO_RETURN_PREREGISTRATION</code>: every gate passes and the complete manifest is hashed.</li>
 <li><code>DATA_GATED</code>: coverage or semantic lineage is inadequate but a named vendor could resolve it.</li>
@@ -185,7 +183,7 @@ value was inferred from future information.</li>
 </ul>
 <p>Passing permits one separately sealed family-wise return identity. It does not choose a sign,
 horizon, universe, threshold, or sleeve weight and does not create an ALPHAC sleeve.</p>
-<h2>Identity-overlap decision</h2>
+<h2 id="reader-section-7" data-reader-anchor="true">Identity-overlap decision</h2>
 <p><code>artifacts/feasibility/repurchase_issuance_flow/identity_overlap_audit.json</code> reconciles this
 proposal against the historical <code>eq_net_issuance</code> campaign. The prior signal measured the
 year-over-year change in split-adjusted shares with the same long-repurchaser/short-issuer economic
@@ -197,7 +195,7 @@ same corporate-equity-supply family. A later return protocol, if feasibility pas
 all prior trials, residualize against the frozen broad issuance signal, prove positive mean-zero
 marginal book contribution, and use an untouched holdout. It may qualify only as a same-family
 replacement or refinement and cannot count toward the ten new independent sleeves.</p>
-<h2>Implemented pipeline and current state</h2>
+<h2 id="reader-section-8" data-reader-anchor="true">Implemented pipeline and current state</h2>
 <p>The complete no-return collection, semantic-audit, blind-extraction, and combined-decision path
 is implemented and covered by 48 focused tests. Official SEC collection and semantics are now
 complete. The family is stopped at the intended blind-label gate: all 240 frozen documents are
@@ -271,7 +269,7 @@ sheet from its bundled filing documents, then transferring those source labels t
 <code>artifacts/feasibility/repurchase_issuance_flow/item703/labels.csv</code> without inspecting parser
 output. The seal command must run before parsing. Until then the honest decision is
 <code>BLIND_ITEM703_LABELING_REQUIRED</code>, not pass, kill, or return authorization.</p>
-<pre><code class="language-bash">uv run python scripts/build_repurchase_issuance_manifest.py
+<pre tabindex="0" data-reader-focus="true"><code class="language-bash">uv run python scripts/build_repurchase_issuance_manifest.py
 uv run python scripts/collect_repurchase_issuance_companyfacts.py
 uv run python scripts/collect_repurchase_issuance_submissions.py
 uv run python scripts/audit_repurchase_issuance_companyfacts.py
@@ -290,7 +288,7 @@ uv run python scripts/audit_repurchase_issuance_feasibility.py
       <p class="paper__related-kicker">Filed under</p>
       <p class="paper__links"><a href="/research/topics/feasibility-protocols">Feasibility protocols</a><span aria-hidden="true"> / </span><a href="/research/topics/equities">Equities</a><span aria-hidden="true"> / </span><a href="/research/topics/event-driven">Event-driven</a></p>
       <p class="paper__related-kicker">Related work</p>
-      <ul class="paper__related-list"><li><a href="/research/active-ownership-item4-v3-feasibility">Active ownership escalation; Schedule 13D Item 4 source-schema v3</a></li><li><a href="/research/literature-repurchase-issuance-flow">Repurchase and issuance flow: literature dossier</a></li><li><a href="/research/spin-off-dislocation-lineage">Spin-off dislocation; SEC Form 10 lineage protocol</a></li><li><a href="/research/kill-eq-52whigh">52-Week-High Momentum (campaign): a killed candidate</a></li><li><a href="/research/alphamax-equity-momentum-lineage">AlphaMax equity momentum: signal, trial lineage, and evidence boundary</a></li><li><a href="/research/equity-narrative-change-lineage">Annual risk-factor narrative stability: a preregistered null</a></li></ul>
+      <ul class="paper__related-list"><li><a href="/research/literature-repurchase-issuance-flow">Repurchase and issuance flow: literature dossier</a></li><li><a href="/research/spin-off-document-schema">Spin-off dislocation; initial Form 10 document-schema protocol</a></li><li><a href="/research/spin-off-dislocation-lineage">Spin-off dislocation; SEC Form 10 lineage protocol</a></li><li><a href="/research/kill-eq-52whigh">52-Week-High Momentum (campaign): a killed candidate</a></li><li><a href="/research/active-ownership-item4-v3-feasibility">Active ownership escalation; Schedule 13D Item 4 source-schema v3</a></li><li><a href="/research/alphamax-equity-momentum-lineage">AlphaMax equity momentum: signal, trial lineage, and evidence boundary</a></li></ul>
     </nav>
     <footer class="paper__footer">
       <p class="paper__links">
@@ -302,7 +300,7 @@ uv run python scripts/audit_repurchase_issuance_feasibility.py
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre><code>@techreport{canli2026repurchaseissuanceflowfeasibility,
+        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026repurchaseissuanceflowfeasibility,
   author      = {Canli, Arhan},
   title       = {Repurchase and issuance flow: no-return SEC feasibility protocol},
   institution = {Canli Capital},
@@ -320,14 +318,14 @@ uv run python scripts/audit_repurchase_issuance_feasibility.py
     </footer>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">
       <span>MCP server</span>
       <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
       <code>npx -y canli-validation-mcp</code>
-      <nav aria-label="MCP server listings"><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
     </div>
     <div class="cc-footer__dev-item">
       <span>Open source</span>
@@ -420,5 +418,6 @@ uv run python scripts/audit_repurchase_issuance_feasibility.py
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-</body>
+
+<script type="module" src="/js/reader-experience.js"></script></body>
 </html>

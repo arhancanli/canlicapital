@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-hub="performance" lang="en" data-page="performance">
+<html data-design="chapter" data-hub="performance" lang="en" data-page="performance">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,22 +26,10 @@
   <meta name="twitter:description" content="How Canli Capital tests whether an edge is real: purged walk-forward, deflated and probabilistic Sharpe, and the results that failed. Paper trading only." />
   <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
-  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" /></noscript>
-
-  <link rel="stylesheet" href="./css/styles.css" />
-  <link rel="stylesheet" href="./css/motion.css" />
-  <link rel="stylesheet" href="./css/waitlist.css" />
   <!-- Page-specific layer: adds the gauntlet ledger, the reserved results panel,
        the capacity panel, and the gauntlet pin. Loaded LAST so it only ADDS to
        the single design system above; it never redefines a token or an easing. -->
-  <link rel="stylesheet" href="./css/performance.css" />
-  <link rel="stylesheet" href="./css/shell.css" />
-  <link rel="stylesheet" href="/css/product-shell.css" />
-
   <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
        primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
        iOS home-screen and PWA install. All long-cached as static assets. -->
@@ -69,28 +57,6 @@
   }
   </script>
 
-  <style>
-    .skip-link {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 200;
-      transform: translateY(-120%);
-      margin: 12px;
-      padding: 10px 16px;
-      background: #0A0B0D;
-      color: #F4F1EA;
-      font: 500 13px/1 "Space Grotesk", system-ui, sans-serif;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      border: 1px solid #C8553D;
-      border-radius: 2px;
-      transition: transform 180ms ease;
-    }
-    .skip-link:focus { transform: translateY(0); }
-    .skip-link:focus-visible { outline: 2px solid #F4F1EA; outline-offset: 3px; }
-  </style>
-
   <script>document.documentElement.classList.add("js");</script>
 
   <!-- Per-page config for the shared bootstrap. /performance is the tightening /
@@ -111,9 +77,10 @@
       sceneStill: 0.78
     };
   </script>
-<link rel="stylesheet" href="/css/hub-experience.css" />
-
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head>
 
 <body>
 
@@ -142,16 +109,15 @@
     </ul>
   </nav>
 
-  <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+  <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance" data-current="true">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -178,7 +144,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -210,13 +178,13 @@
     <!-- (00) HERO / OVERVIEW                                                  -->
     <!-- =================================================================== -->
     <section class="hero perf-hero section" id="hero" data-section="0" aria-labelledby="performance-word">
-      <span class="hero__ghost" aria-hidden="true">Method</span>
+      <span class="hero__ghost is-shown" aria-hidden="true">Method</span>
       <div class="hero__body">
         <p class="eyebrow label reveal-line"><span class="idx mono-label">00 /</span> Performance</p>
         <h1 class="hero__word display-l" id="performance-word">
-          <span class="mask" data-chars><span class="mask__inner">We would rather show you</span></span>
-          <span class="mask" data-chars><span class="mask__inner">the method than a number</span></span>
-          <span class="mask" data-chars><span class="mask__inner">we cannot defend.</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">We would rather show you</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">the method than a number</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">we cannot defend.</span></span>
         </h1>
         <p class="hero__sub body-l reveal-fade">
           Most platforms lead with a curve. We lead with how the curve is judged,
@@ -243,8 +211,8 @@
       <div class="perf-chapter__head">
         <p class="eyebrow label"><span class="idx mono-label">02 /</span> What we measure</p>
         <h2 class="perf-chapter__title display-l" id="measures-head">
-          <span class="mask" data-chars><span class="mask__inner">Six ways to</span></span>
-          <span class="mask" data-chars><span class="mask__inner">catch ourselves out.</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">Six ways to</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">catch ourselves out.</span></span>
         </h2>
         <p class="perf-chapter__intro body reveal-fade">
           Search enough ideas and one will look brilliant by luck. These six tests
@@ -257,9 +225,73 @@
            js/performance.js. Labels, gates, and the honest sentences are real and
            final; the measured value and verdict are reserved until a validated
            artifact is wired (no fabricated numbers). -->
-      <div class="gauntlet" id="gauntletList" aria-label="The validation gauntlet" role="group">
-        <!-- rows injected by js/performance.js from GAUNTLET in performance_data.js -->
+      <div class="gauntlet" id="gauntletList" aria-label="The validation gauntlet" role="list"><div role="listitem" class="gauntlet__row">
+      <span class="gauntlet__idx mono-label" aria-hidden="true">01</span>
+      <div>
+        <h3 class="gauntlet__name display-m">Purged walk-forward</h3>
+        <span class="gauntlet__gate mono-label">Gate: Positive, stable out-of-sample</span>
       </div>
+      <p class="gauntlet__blurb body">Out-of-sample by construction, with a purge and embargo around every train and test boundary. If an edge only exists in-sample, it disappears here.</p>
+      <div class="gauntlet__verdict">
+        <span class="gauntlet__value" data-empty="0">+0.04 Sharpe, unstable</span>
+        <span class="chip chip--hold">Holds</span>
+      </div>
+    </div><div role="listitem" class="gauntlet__row">
+      <span class="gauntlet__idx mono-label" aria-hidden="true">02</span>
+      <div>
+        <h3 class="gauntlet__name display-m">Deflated Sharpe Ratio</h3>
+        <span class="gauntlet__gate mono-label">Gate: 0.95 to deploy</span>
+      </div>
+      <p class="gauntlet__blurb body">A Sharpe discounted for the number of trials behind it and the non-normal shape of real returns. Given how hard we looked, how impressed should we be.</p>
+      <div class="gauntlet__verdict">
+        <span class="gauntlet__value" data-empty="0">0.21</span>
+        <span class="chip chip--hold">Holds</span>
+      </div>
+    </div><div role="listitem" class="gauntlet__row">
+      <span class="gauntlet__idx mono-label" aria-hidden="true">03</span>
+      <div>
+        <h3 class="gauntlet__name display-m">Probabilistic Sharpe Ratio</h3>
+        <span class="gauntlet__gate mono-label">Gate: High confidence above zero</span>
+      </div>
+      <p class="gauntlet__blurb body">The probability that the true Sharpe sits above zero, given the sample. A confidence statement, not a point estimate.</p>
+      <div class="gauntlet__verdict">
+        <span class="gauntlet__value" data-empty="0">0.54</span>
+        <span class="chip chip--hold">Holds</span>
+      </div>
+    </div><div role="listitem" class="gauntlet__row">
+      <span class="gauntlet__idx mono-label" aria-hidden="true">04</span>
+      <div>
+        <h3 class="gauntlet__name display-m">Probability of Backtest Overfitting</h3>
+        <span class="gauntlet__gate mono-label">Gate: Below 0.20</span>
+      </div>
+      <p class="gauntlet__blurb body">Estimated by combinatorially symmetric cross-validation. The chance the best in-sample configuration is no better than median out-of-sample. Lower is better.</p>
+      <div class="gauntlet__verdict">
+        <span class="gauntlet__value" data-empty="0">0.88</span>
+        <span class="chip chip--hold">Holds</span>
+      </div>
+    </div><div role="listitem" class="gauntlet__row">
+      <span class="gauntlet__idx mono-label" aria-hidden="true">05</span>
+      <div>
+        <h3 class="gauntlet__name display-m">Combinatorially-purged cross-validation</h3>
+        <span class="gauntlet__gate mono-label">Gate: Consistent across folds</span>
+      </div>
+      <p class="gauntlet__blurb body">Performance estimated across many purged train and test combinations, so the headline figure is not one lucky path through history.</p>
+      <div class="gauntlet__verdict">
+        <span class="gauntlet__value" data-empty="0">clusters at zero</span>
+        <span class="chip chip--hold">Holds</span>
+      </div>
+    </div><div role="listitem" class="gauntlet__row">
+      <span class="gauntlet__idx mono-label" aria-hidden="true">06</span>
+      <div>
+        <h3 class="gauntlet__name display-m">Must-beat-baseline gate</h3>
+        <span class="gauntlet__gate mono-label">Gate: Beats baseline by a margin</span>
+      </div>
+      <p class="gauntlet__blurb body">Every configuration tried is counted and fed into the deflation, and the strategy must beat a simple honest baseline by a margin. Beating zero is not the bar.</p>
+      <div class="gauntlet__verdict">
+        <span class="gauntlet__value" data-empty="0">did not beat</span>
+        <span class="chip chip--hold">Holds</span>
+      </div>
+    </div></div>
 
       <!-- The gauntlet's DESIGN parameters, as a terminal-readout dataline. These
            are facts about how the test is built (train/test windowing, purge and
@@ -268,7 +300,7 @@
            name no result: the quant's request to see the rigor named, satisfied
            without fabricating a single measurement. Written by js/performance.js
            from GAUNTLET_PARAMS and revealed left to right as a mono type-in. -->
-      <p class="gauntlet__params mono-label type-mono" id="gauntletParams"></p>
+      <p class="gauntlet__params mono-label type-mono" id="gauntletParams"><span class="gauntlet__params-tier">// rebalance: 72 bars (3 days)  /  purge: 72 bars  /  embargo: 168 bars</span><span class="gauntlet__params-tier">// walk-forward: rolling, expanding train  /  trials: 8  /  baseline: blend-only, same legs</span></p>
     </section>
 
     <!-- THE PIN: the page's one tentpole beat. The six measures cross-fade inside a
@@ -367,7 +399,7 @@
       <div class="proof__head perf-chapter__head">
         <p class="eyebrow label"><span class="idx mono-label">03 /</span> The facts</p>
         <h2 class="proof__title perf-chapter__title display-m" id="facts-head">
-          <span class="mask" data-chars><span class="mask__inner">What is true today.</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">What is true today.</span></span>
         </h2>
         <p class="proof__lead perf-chapter__lead body-l reveal-fade">
           These are the only numbers on this page. Every one is a property of the
@@ -398,7 +430,7 @@
       <p class="proof__aside perf-chapter__close body reveal-fade">
         <span class="comment mono-label">//</span>
         Performance is absent from this ledger on purpose.
-        <span data-brand>Canli Capital</span> has not traded real capital. There is
+        <span data-brand="">Canli Capital</span> has not traded real capital. There is
         no live return to report, and a backtest is not one.
       </p>
     </section>
@@ -411,8 +443,8 @@
       <div class="perf-chapter__head">
         <p class="eyebrow label"><span class="idx mono-label">04 /</span> Results</p>
         <h2 class="perf-chapter__title display-m" id="results-head">
-          <span class="mask" data-chars><span class="mask__inner">Here is the curve,</span></span>
-          <span class="mask" data-chars><span class="mask__inner">and what it did not clear.</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">Here is the curve,</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">and what it did not clear.</span></span>
         </h2>
         <p class="perf-chapter__lead body reveal-fade">
           This is the validated out-of-sample result for
@@ -433,32 +465,51 @@
         <div class="results__panel" data-results-src="">
           <div class="results__panel-head">
             <span class="results__panel-title label">Out-of-sample evidence</span>
-            <span class="results__state mono-label" id="resultsState">[ validated, did not clear ]</span>
+            <span class="results__state mono-label" id="resultsState">[ validated artifact ]</span>
           </div>
           <div class="results__body">
             <div class="results__chart" role="img" aria-label="Out-of-sample equity curve, the validated crypto-only result that did not clear the gate">
-              <canvas class="results__canvas" id="resultsCanvas" aria-hidden="true"></canvas>
-              <div class="results__pending" id="resultsPending">
+              <canvas height="320" width="600" class="results__canvas" id="resultsCanvas" aria-hidden="true"></canvas>
+              <div style="display:none" class="results__pending" id="resultsPending">
                 <span class="results__pending-dot" aria-hidden="true"></span>
-                <span class="results__pending-cap mono-label" id="resultsPendingCap">[ validated result, did not clear the gate ]</span>
+                <span class="results__pending-cap mono-label" id="resultsPendingCap">[ validated result, did not clear ]</span>
               </div>
             </div>
-            <div class="results__fields" id="resultFields" aria-label="Validated result fields" role="group">
-              <!-- fields injected by js/performance.js from RESULTS_FIELDS -->
-            </div>
+            <div class="results__fields" id="resultFields" aria-label="Validated result fields" role="group"><div class="results__field results__field--primary">
+      <span class="results__field-label mono-label">Deflated Sharpe</span>
+      <span class="results__field-value" data-empty="0">0.21</span>
+      <span class="results__field-unit mono-label">gate 0.95</span>
+    </div><div class="results__field results__field--primary">
+      <span class="results__field-label mono-label">Probabilistic Sharpe</span>
+      <span class="results__field-value" data-empty="0">0.54</span>
+
+    </div><div class="results__field results__field--primary">
+      <span class="results__field-label mono-label">PBO</span>
+      <span class="results__field-value" data-empty="0">0.88</span>
+      <span class="results__field-unit mono-label">gate 0.20</span>
+    </div><div class="results__field">
+      <span class="results__field-label mono-label">Out-of-sample equity</span>
+      <span class="results__field-value" data-empty="0">-0.7%</span>
+      <span class="results__field-unit mono-label">net, 2022 to 2026</span>
+    </div><div class="results__field">
+      <span class="results__field-label mono-label">Trials tested</span>
+      <span class="results__field-value" data-empty="0">8</span>
+      <span class="results__field-unit mono-label">distinct</span>
+    </div><div class="results__field">
+      <span class="results__field-label mono-label">Baseline beaten by</span>
+      <span class="results__field-value" data-empty="0">0.00</span>
+      <span class="results__field-unit mono-label">did not beat</span>
+    </div></div>
           </div>
         </div>
-        <p class="results__note mono-label" id="resultsNote">
-          This is a real, validated result. It did not clear purged walk-forward and
-          the deflation, and we publish it in full. The path forward is breadth.
-        </p>
+        <p class="results__note mono-label" id="resultsNote">This is a real, validated result. It did not clear purged walk-forward and the deflation, and we publish it in full. The crypto-only edge is a null, and the path forward is breadth.</p>
         <!-- The reserved cadence line. While reserved this reads as "actively
              pending": the test is configured, it re-runs on every engine change,
              and these are the trials fed into the deflation. It names no result.
              When a validated artifact is wired, js/performance.js swaps this for
              the honest source/as-of line. -->
         <p class="results__cadence mono-label" id="resultsCadence" aria-live="polite"></p>
-        <p class="results__source mono-label" id="resultsSource" aria-live="polite"></p>
+        <p class="results__source mono-label" id="resultsSource" aria-live="polite">Source: grand_backtest/20260616T143620Z  /  As of 2026-06-17  /  Crypto perpetuals  /  Out-of-sample 2022 to 2026</p>
 
         <aside class="evidence-docket reveal-fade" aria-labelledby="evidence-docket-head">
           <div class="evidence-docket__head">
@@ -466,7 +517,7 @@
               <p class="mono-label evidence-docket__eyebrow">Forward evidence / live authority chain</p>
               <h3 class="display-m evidence-docket__title" id="evidence-docket-head">The claim stays withheld until every link holds.</h3>
             </div>
-            <p class="mono-label evidence-docket__author" id="evidenceAuthor">Author / loading</p>
+            <p class="mono-label evidence-docket__author" id="evidenceAuthor">Author / Arhan Canli</p>
           </div>
           <ol class="evidence-chain" aria-label="Forward Sharpe evidence stages">
             <li class="evidence-chain__item is-complete">
@@ -474,9 +525,9 @@
               <div>
                 <div class="evidence-chain__line">
                   <span class="label">Contract sealed</span>
-                  <span class="evidence-chain__status mono-label" id="evidenceContractStatus">READING</span>
+                  <span class="evidence-chain__status mono-label" id="evidenceContractStatus">PASS</span>
                 </div>
-                <p class="body evidence-chain__copy" id="evidenceContractCopy">Reading the governing target and sample gates.</p>
+                <p class="body evidence-chain__copy" id="evidenceContractCopy">Target 2.0. 252 observations before an estimate; 756 before establishment.</p>
                 <a class="evidence-chain__link mono-label" href="/glassbox/forward_evidence_contract.json">Inspect the governing contract</a>
               </div>
             </li>
@@ -485,9 +536,9 @@
               <div>
                 <div class="evidence-chain__line">
                   <span class="label">Runtime rollout</span>
-                  <span class="evidence-chain__status mono-label" id="evidenceRolloutStatus">READING</span>
+                  <span class="evidence-chain__status mono-label" id="evidenceRolloutStatus">PASS</span>
                 </div>
-                <p class="body evidence-chain__copy" id="evidenceRolloutCopy">Reading the sole-writer runtime receipt.</p>
+                <p class="body evidence-chain__copy" id="evidenceRolloutCopy">VERIFIED FIRST NATURAL MARKED CYCLE. This verifies only prospective position-attribution operation on the first eligible natural cycle. It is not a Sharpe estimate, return trial, or trading authorization. remote_source_files proves only that these three paths hashed to these values on Frankfurt AT verified_at_utc; it does not itself claim signal, weight, or risk-limit equivalence -- that is the change_scope declaration in the preflight contract.</p>
                 <a class="evidence-chain__link mono-label" href="/glassbox/crypto_position_attribution_rollout_verification.json">Inspect rollout evidence</a>
               </div>
             </li>
@@ -496,14 +547,14 @@
               <div>
                 <div class="evidence-chain__line">
                   <span class="label">Sharpe claim</span>
-                  <span class="evidence-chain__status mono-label" id="evidenceMaturityStatus">READING</span>
+                  <span class="evidence-chain__status mono-label" id="evidenceMaturityStatus">PASS</span>
                 </div>
-                <p class="body evidence-chain__copy" id="evidenceMaturityCopy">Reading the current maturity receipt.</p>
+                <p class="body evidence-chain__copy" id="evidenceMaturityCopy">5 of 252 observations. 0 provenance gates remain open. Status: IMMATURE RECORD TOO SHORT.</p>
                 <a class="evidence-chain__link mono-label" href="/glassbox/forward_evidence_maturity.json">Inspect every maturity gate</a>
               </div>
             </li>
           </ol>
-          <p class="evidence-docket__receipt mono-label" id="evidenceReceipt" aria-live="polite">Machine evidence is loading.</p>
+          <p class="evidence-docket__receipt mono-label" id="evidenceReceipt" aria-live="polite">Maturity receipt / sha256:14adbbf60…9b7625c6</p>
         </aside>
       </div>
     </section>
@@ -516,7 +567,7 @@
       <div class="perf-chapter__head">
         <p class="eyebrow label"><span class="idx mono-label">05 /</span> Capacity</p>
         <h2 class="perf-chapter__title display-m" id="capacity-head">
-          <span class="mask" data-chars><span class="mask__inner">Size has a price.</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">Size has a price.</span></span>
         </h2>
         <p class="perf-chapter__lead body reveal-fade">
           An edge that exists at one notional may not exist at ten. The capacity
@@ -537,18 +588,14 @@
             <span class="capacity__axes mono-label">Deployed capital to net-of-cost edge</span>
           </div>
           <div class="capacity__plot" role="img" aria-label="Capacity curve, awaiting validated artifact">
-            <canvas class="capacity__canvas" id="capacityCanvas" aria-hidden="true"></canvas>
-            <div class="capacity__pending" id="capacityPending">
+            <canvas height="320" width="600" class="capacity__canvas" id="capacityCanvas" aria-hidden="true"></canvas>
+            <div style="display:none" class="capacity__pending" id="capacityPending">
               <span class="capacity__pending-dot" aria-hidden="true"></span>
-              <span class="capacity__pending-cap mono-label" id="capacityPendingCap">
-                The capacity curve is drawn from a validated artifact. It is dormant until one exists.
-              </span>
+              <span class="capacity__pending-cap mono-label" id="capacityPendingCap">Annualized Sharpe versus deployed capital. The thin edge decays as size grows and turns negative well before institutional scale.</span>
             </div>
           </div>
         </div>
-        <p class="capacity__note mono-label" id="capacityNote">
-          The capacity curve is drawn from a validated artifact. It is dormant until one exists.
-        </p>
+        <p class="capacity__note mono-label" id="capacityNote">Annualized Sharpe versus deployed capital. The thin edge decays as size grows and turns negative well before institutional scale.</p>
       </div>
     </section>
 
@@ -560,9 +607,9 @@
       <div class="standing__head">
         <p class="eyebrow label"><span class="idx mono-label">06 /</span> Standing</p>
         <h2 class="standing__title display-l" id="standing-head">
-          <span class="mask" data-chars><span class="mask__inner">No sleeve has cleared</span></span>
-          <span class="mask" data-chars><span class="mask__inner">deflation. We are</span></span>
-          <span class="mask" data-chars><span class="mask__inner">telling you on purpose.</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">No sleeve has cleared</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">deflation. We are</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">telling you on purpose.</span></span>
         </h2>
         <p class="standing__body body-l reveal-fade">
           AlphaMax, AlphaTrend, AlphaVintage, and AlphaForge all remain below the
@@ -570,7 +617,7 @@
           The current paper book tests diversification and implementation; it does
           not certify that any sleeve has alpha. So we report the null instead of
           dressing a backtest as a promise.
-          <span data-brand>Canli Capital</span> does not claim to always win. It runs
+          <span data-brand="">Canli Capital</span> does not claim to always win. It runs
           the test in the open and reports what
           <span class="signal-word">passes</span> and what does not.
         </p>
@@ -596,7 +643,7 @@
       </p>
       <div class="standing__forward reveal-fade">
         <a href="/progress#equity-breadth" class="perf-link label">See the roadmap</a>
-        <a href="/#waitlist" class="perf-cta label" data-magnetic>Join the waitlist</a>
+        <a href="/#waitlist" class="perf-cta label" data-magnetic="">Join the waitlist</a>
       </div>
     </section>
 
@@ -621,8 +668,8 @@
       <div class="perf-chapter__head">
         <p class="eyebrow label"><span class="idx mono-label">07 /</span> The current book</p>
         <h2 class="perf-chapter__title display-m" id="book-head">
-          <span class="mask" data-chars><span class="mask__inner">What the sleeves</span></span>
-          <span class="mask" data-chars><span class="mask__inner">are holding, right now.</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">What the sleeves</span></span>
+          <span class="mask" data-chars=""><span class="mask__inner">are holding, right now.</span></span>
         </h2>
         <p class="perf-chapter__lead body reveal-fade">
           The book runs three sleeves: AlphaMax (US-equity 12-1 momentum), AlphaTrend
@@ -707,7 +754,7 @@
           Their research curves are near-uncorrelated, and the average pairwise
           correlation is slightly POSITIVE (<a href="/measurements/current-book-diversification">current
           measurement</a>). We used to call that decorrelation
-          &ldquo;the edge&rdquo; and we withdrew the claim: the diversification is
+          “the edge” and we withdrew the claim: the diversification is
           real but smaller than we said. The disclosed overlay is commoditized beta,
           held as a separate labelled line, never blended into the neutral core.
         </p>
@@ -733,7 +780,7 @@
   <!-- Footer is the Colophon chapter (index 8 in the per-page chapters array), so
        the living rail head reads "08 / Colophon" when the footer is in view,
        matching the landing's footer-as-last-chapter behaviour. -->
-  <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">

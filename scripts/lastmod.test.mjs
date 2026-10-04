@@ -4,8 +4,41 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { artifactDate, gitCommitDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
+import { PAGE_SOURCES, SHARED_PAGE_SOURCES, sourceDate } from "./lib/page-sources.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+
+test("shared markup keeps portable page dates current when generated timestamps change", async () => {
+  const { mkdtempSync, mkdirSync, writeFileSync, rmSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const { execFileSync } = await import("node:child_process");
+  const root = mkdtempSync(resolve(tmpdir(), "canli-shared-page-date-"));
+  const git = (date, ...args) => execFileSync("git", args, {
+    cwd: root, stdio: "pipe",
+    env: { ...process.env, GIT_AUTHOR_DATE: date, GIT_COMMITTER_DATE: date },
+  });
+  const write = (file, text) => { mkdirSync(dirname(resolve(root, file)), { recursive: true }); writeFileSync(resolve(root, file), text); };
+  try {
+    for (const files of Object.values(PAGE_SOURCES)) {
+      for (const shared of SHARED_PAGE_SOURCES) assert.ok(files.includes(shared));
+    }
+    write("scripts/build-verify.mjs", "// original generator\n");
+    write("public/glassbox/record.json", '{"generated_at":"2026-09-06T00:00:00Z","value":1}');
+    for (const file of SHARED_PAGE_SOURCES) write(file, "// original shared markup\n");
+    git("2026-09-06T12:00:00Z", "init");
+    git("2026-09-06T12:00:00Z", "add", ".");
+    git("2026-09-06T12:00:00Z", "-c", "user.name=Test", "-c", "user.email=test@example.invalid", "-c", "commit.gpgsign=false", "commit", "-m", "fixture");
+    write("scripts/build-site-design.mjs", "// updated shared markup\n");
+    git("2026-10-04T12:00:00Z", "add", ".");
+    git("2026-10-04T12:00:00Z", "-c", "user.name=Test", "-c", "user.email=test@example.invalid", "-c", "commit.gpgsign=false", "commit", "-m", "updated markup");
+    assert.equal(sourceDate(root, "/verify"), "2026-10-04");
+    writeSourceDates(root);
+    rmSync(resolve(root, ".git"), { recursive: true });
+    write("public/glassbox/record.json", '{"generated_at":"2026-10-05T00:00:00Z","value":1}');
+    assert.equal(gitCommitDate(root, "public/glassbox"), null, "changed input bytes cannot reuse their old date");
+    assert.equal(sourceDate(root, "/verify"), "2026-10-04", "retain the committed markup date without inventing a build date");
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
 
 test("artifactDate prefers generated_at over evidence_date", () => {
   assert.equal(

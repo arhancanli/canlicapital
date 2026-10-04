@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="measurements" lang="en">
+<html data-design="reader" data-reader="measurements" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,29 +22,23 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
-<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Drawdown live estimator","description":"A simulation through a vectorized twin of the PRODUCTION covariance estimator, asserted equal to ewma_cov on real states before any result was reported.","url":"https://canlicapital.com/measurements/drawdown-live-estimator","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/drawdown_live_estimator.json"}}</script>
+<!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Drawdown live estimator","description":"A simulation through a vectorized twin of the PRODUCTION covariance estimator, asserted equal to ewma_cov on real states before any result was reported.","url":"https://canlicapital.com/measurements/drawdown-live-estimator","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/drawdown_live_estimator.json"}}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:end -->
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -71,7 +65,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -118,7 +114,7 @@
 <div class="measure__row"><dt>Window bars</dt><dd>720</dd></div>
 </dl>
 </section>
-<figure class="measure__tablewrap"><figcaption>Cost of each configuration</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Drawdown bought pp</th><th scope="col">Extra turnover per year</th><th scope="col">Halflife bars</th><th scope="col">Sharpe cost at 10bp</th><th scope="col">Sharpe cost at 30bp</th><th scope="col">Window bars</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Cost of each configuration</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Drawdown bought pp</th><th scope="col">Extra turnover per year</th><th scope="col">Halflife bars</th><th scope="col">Sharpe cost at 10bp</th><th scope="col">Sharpe cost at 30bp</th><th scope="col">Window bars</th></tr></thead><tbody>
 <tr><td>0</td><td>0</td><td>720</td><td>0</td><td>0</td><td>720</td></tr>
 <tr><td>-0.475113</td><td>-0.020834</td><td>252</td><td>-2.083e-4</td><td>-6.250e-4</td><td>720</td></tr>
 <tr><td>0.801312</td><td>0.304177</td><td>63</td><td>0.003042</td><td>0.009125</td><td>720</td></tr>
@@ -130,10 +126,10 @@
 <tr><td>-0.784939</td><td>0.295475</td><td>240</td><td>0.002955</td><td>0.008864</td><td>240</td></tr>
 <tr><td>1.416421</td><td>1.056063</td><td>21</td><td>0.010561</td><td>0.031682</td><td>240</td></tr>
 <tr><td>1.734495</td><td>1.052968</td><td>21</td><td>0.010530</td><td>0.031589</td><td>168</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <p class="measure__prose"><strong>Cost unit warning.</strong> Turnover is a MULTIPLE OF EQUITY per year; a round-trip cost in basis points is a fraction of the NOTIONAL TRADED. The annual drag is turnover * bps/10000 of equity. Dividing by 100 instead overstates it a hundredfold, which has happened once in this project already.</p>
 <p class="measure__prose"><strong>Excluded deliberately.</strong> Ledoit-Wolf shrinkage. artifacts/analysis/ledoit_wolf_effective_sample measured it separately: immaterial at the production setting (0.36% ex-ante vol error) and material at a short halflife (4.46% mean, 38% worst). Folding it in here would conflate two effects in one number. It is a PRECONDITION on acting on this result, not a term inside it.</p>
-<figure class="measure__tablewrap"><figcaption>Grid</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Expected max drawdown</th><th scope="col">Halflife bars</th><th scope="col">Max drawdown stderr</th><th scope="col">Median max drawdown</th><th scope="col">Overlay gross turnover per year</th><th scope="col">P95 max drawdown</th><th scope="col">Realized book sharpe</th><th scope="col">Realized book vol</th><th scope="col">Seed rows</th><th scope="col">Window bars</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Grid</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Expected max drawdown</th><th scope="col">Halflife bars</th><th scope="col">Max drawdown stderr</th><th scope="col">Median max drawdown</th><th scope="col">Overlay gross turnover per year</th><th scope="col">P95 max drawdown</th><th scope="col">Realized book sharpe</th><th scope="col">Realized book vol</th><th scope="col">Seed rows</th><th scope="col">Window bars</th></tr></thead><tbody>
 <tr><td>0.102512</td><td>720</td><td>0.004874</td><td>0.094953</td><td>0.509765</td><td>0.187632</td><td>1.346748</td><td>0.104125</td><td>240</td><td>720</td></tr>
 <tr><td>0.107263</td><td>252</td><td>0.005246</td><td>0.098056</td><td>0.488930</td><td>0.185477</td><td>1.381906</td><td>0.103619</td><td>240</td><td>720</td></tr>
 <tr><td>0.094498</td><td>63</td><td>0.004206</td><td>0.086786</td><td>0.813941</td><td>0.174776</td><td>1.635959</td><td>0.100926</td><td>240</td><td>720</td></tr>
@@ -145,7 +141,7 @@
 <tr><td>0.110361</td><td>240</td><td>0.005277</td><td>0.098032</td><td>0.805240</td><td>0.213392</td><td>1.427401</td><td>0.109265</td><td>80</td><td>240</td></tr>
 <tr><td>0.088347</td><td>21</td><td>0.003512</td><td>0.080920</td><td>1.565827</td><td>0.150866</td><td>1.674844</td><td>0.100141</td><td>80</td><td>240</td></tr>
 <tr><td>0.085167</td><td>21</td><td>0.003172</td><td>0.079339</td><td>1.562732</td><td>0.144952</td><td>1.692588</td><td>0.099646</td><td>56</td><td>168</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <p class="measure__prose"><strong>P95 still misses the objective.</strong> No configuration holds the 95th percentile at or under 11%. The best is 13.5% at 720/7. The drawdown objective is an EXPECTED maximum drawdown, and both figures are always published together.</p>
 <section class="measure__sub"><h3>Parameters</h3>
 <dl class="measure__facts">
@@ -179,7 +175,7 @@
 </dl>
 </section>
 <p class="measure__prose"><strong>The finding.</strong> THE HALFLIFE IS THE LEVER AND THE WINDOW IS NOT. Shortening the halflife inside the production 720-bar window improves expected maximum drawdown monotonically: 10.25% at 720, 9.45% at 63, 8.38% at 21, 7.96% at 7. Shortening the WINDOW buys nothing on top of it; 168/21 gives 8.52% against 720/21&#39;s 8.38%, inside the standard error. This corrects a claim published earlier the same day that named the window as the only lever; that came from sampling only halflives at or above 21 days, where the window truncates everything into one narrow band.</p>
-<figure class="measure__tablewrap"><figcaption>Twin verification</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Halflife</th><th scope="col">Max abs error</th><th scope="col">Seed</th><th scope="col">Window</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Twin verification</figcaption><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Halflife</th><th scope="col">Max abs error</th><th scope="col">Seed</th><th scope="col">Window</th></tr></thead><tbody>
 <tr><td>720</td><td>1.084e-19</td><td>240</td><td>720</td></tr>
 <tr><td>252</td><td>8.132e-20</td><td>240</td><td>720</td></tr>
 <tr><td>63</td><td>6.776e-20</td><td>240</td><td>720</td></tr>
@@ -191,7 +187,7 @@
 <tr><td>240</td><td>2.711e-20</td><td>80</td><td>240</td></tr>
 <tr><td>21</td><td>1.355e-20</td><td>80</td><td>240</td></tr>
 <tr><td>21</td><td>1.355e-20</td><td>56</td><td>168</td></tr>
-</tbody></table></figure>
+</tbody></table></div><!-- design-table:end --></figure>
 <p class="measure__prose"><strong>Why the original sweep does not transfer.</strong> analyze_frontier_14.py updates covariance with an UNTRUNCATED recursion; infinite memory, no window, no seed block. Production&#39;s ewma_cov is windowed at cov_window_bars and seeded with an equally weighted block of the oldest cov_min_periods rows, so the window BOUNDS the memory and a halflife longer than the window cannot be delivered. A halflife sweep on an untruncated estimator answers a question about a system this book does not run.</p>
 </section>
 <section class="measure__section"><h2 id="reader-section-3" data-reader-anchor="true">Check it yourself</h2>
@@ -204,7 +200,26 @@ artifact the engine wrote.</p>
     </div>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -244,6 +259,7 @@ artifact the engine wrote.</p>
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>

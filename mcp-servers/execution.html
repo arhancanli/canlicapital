@@ -1,0 +1,256 @@
+<!doctype html>
+<html data-design="developer" lang="en" data-page="mcp-discovery"><head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paper trading MCP workflow and signed journals | Canli Capital</title>
+<meta name="description" content="Plan supplied paper orders, check limits and costs, and verify signed local journals with the private Canli Execution MCP source. No broker connection." />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="execution_workflow_source.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<link rel="canonical" href="https://canlicapital.com/mcp-servers/execution" />
+<meta property="og:type" content="website" /><meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Paper trading MCP workflow and signed journals" /><meta property="og:description" content="Plan supplied paper orders, check limits and costs, and verify signed local journals with the private Canli Execution MCP source. No broker connection." />
+<meta property="og:url" content="https://canlicapital.com/mcp-servers/execution" /><meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Paper trading MCP workflow and signed journals" />
+<meta name="twitter:description" content="Plan supplied paper orders, check limits and costs, and verify signed local journals with the private Canli Execution MCP source. No broker connection." /><meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preload" as="font" href="/fonts/chakra-petch/ChakraPetch-Bold.woff2" type="font/woff2" crossorigin />
+<link rel="preload" as="font" href="/fonts/inter/InterVariable.woff2" type="font/woff2" crossorigin />
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebPage","@id":"https://canlicapital.com/mcp-servers/execution","url":"https://canlicapital.com/mcp-servers/execution","name":"Paper trading MCP workflow and signed journals","description":"Plan supplied paper orders, check limits and costs, and verify signed local journals with the private Canli Execution MCP source. No broker connection.","dateModified":"2026-10-04","publisher":{"@id":"https://canlicapital.com/#organization"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://canlicapital.com/"},{"@type":"ListItem","position":2,"name":"Finance MCP servers","item":"https://canlicapital.com/mcp-servers"},{"@type":"ListItem","position":3,"name":"Paper trading MCP workflow and signed journals","item":"https://canlicapital.com/mcp-servers/execution"}]},{"@context":"https://schema.org","@type":"SoftwareSourceCode","@id":"https://canlicapital.com/mcp-servers/execution#source","name":"canli-execution-mcp","description":"Private, Unreleased local paper-planning and signed-journal source. No broker integration.","codeRepository":"https://github.com/arhancanli/canlicapital/tree/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution","programmingLanguage":"JavaScript","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}}]</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head><body class="dev-page">
+<a class="dev-skip skip-link" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
+<a class="cc-shell__link" href="/developers" data-current="true">Developers</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/companies">Company reference</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers" data-current="true">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Reproducible code</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
+</header>
+<main id="content" tabindex="-1"><section class="dev-hero"><nav class="mcp-breadcrumbs" aria-label="MCP navigation"><a href="/mcp-servers">All MCP servers</a><a href="/mcp-servers/validation">validation</a><a href="/mcp-servers/fundamentals">fundamentals</a><a href="/mcp-servers/research">research</a><a href="/mcp-servers/execution" aria-current="page">Local paper workflow</a></nav>
+<p class="dev-kicker">Canli Execution / Local repository source / Unreleased</p>
+<h1>Paper trading with local MCP tools</h1><p class="dev-lead">Turn your stated budget and limits into proposed orders, check their costs, then keep a signed local record of the paper statements you supply.</p>
+<div class="dev-actions"><a class="dev-button dev-button--primary" href="#workflow">Follow the paper workflow</a><a class="dev-button" href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/src/server.mjs" rel="noreferrer">Read the pinned source</a></div>
+<p class="dev-hero-note">4 local tools. The package is private and Unreleased. This source connects to no broker and places no orders.</p></section>
+<nav class="dev-page-index" aria-label="Paper workflow sections"><a href="#workflow">Workflow</a><a href="#setup">Local setup</a><a href="#example">Run the example</a><a href="#tools">Tools</a><a href="#validation">Validate the export</a><a href="#receipts">Receipts and recovery</a><a href="#limits">Evidence limits</a></nav>
+<section class="dev-section" id="workflow"><h2>From a proposal to verifiable paper evidence</h2><ol class="mcp-workflow">
+<li><strong>Supply the scenario.</strong> State equity, current positions, prices, lot sizes, risk budget and limits. Supply any spreads, liquidity and fee schedule used by the checks. The server fetches no market data for this workflow.</li>
+<li><strong>Size the proposed position.</strong> Call <code>size_position</code> with your budget and caps. Read the binding cap, resulting orders and any stated drawdown state. Sizing does not submit an order or run the kill-switch check.</li>
+<li><strong>Check every proposed order.</strong> Call <code>check_orders</code> with your market state and limits. Inspect every rejection and <code>checks_skipped</code>, as well as costs that could not be modelled. Your client must stop a rejected or incomplete scenario; the tool does not automatically govern later calls.</li>
+<li><strong>Record only supplied statements.</strong> Explicitly enable local journal writes, initialize a signed account with its opening cash and positions, then append supported decisions, checks, paper fills and complete valuations. Fills, prices and fees come from your scenario. A refused proposal creates no fabricated fill.</li>
+<li><strong>Verify and recompute.</strong> Use <code>journal</code> with <code>verify</code> to check the full signed chain. Export a supported account/window to recompute returns, turnover, costs and drawdown. Missing fees, incomplete valuations or unresolved reconciliation refuse export.</li>
+<li><strong>Bind the evidence to its source.</strong> Start the repository validation stdio server with <code>CANLI_LOCAL=1</code>. Send the complete export bundle via <code>record_file</code> and the original <code>journal_file</code> to <code>validate_paper_evidence</code>. Inspect <code>bindings.checked</code> and <code>all_match</code>. A valid shape without the journal leaves source facts unchecked.</li>
+</ol><p>The <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/standards/trade-journal/EXPORT.md" rel="noreferrer">signed account and export profile</a> defines the required payloads, explicit fees, supported events and sequence-window semantics. The <a href="/standards/paper-evidence">paper evidence standard</a> describes what a record must disclose.</p></section>
+<section class="dev-section" id="setup"><h2>Prepare a local MCP session</h2>
+<p>Use the <a href="https://github.com/arhancanli/canlicapital/tree/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution" rel="noreferrer">reviewed repository checkout</a> and its locked execution dependencies. Launch <code>mcp-execution/src/server.mjs</code> through your stdio MCP client. Configure an existing, owned <code>0700</code> home on a supported local POSIX filesystem. Writes additionally need an owned, regular, non-symlink <code>0600</code> Ed25519 PEM file named <code>journal.key</code>, with no extra hard link. Read <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/JOURNAL_STORAGE.md" rel="noreferrer">the storage setup</a> before preparing that key.</p>
+<pre class="dev-code" role="group" tabindex="0" aria-label="Local stdio client launch settings"><code>{
+  &quot;command&quot;: &quot;node&quot;,
+  &quot;args&quot;: [
+    &quot;/absolute/canlicapital/mcp-execution/src/server.mjs&quot;
+  ],
+  &quot;env&quot;: {
+    &quot;CANLI_HOME&quot;: &quot;/absolute/private-paper-home&quot;
+  }
+}</code></pre>
+<p>Replace both absolute paths with your local checkout and prepared home. These are client launch settings. Send tool arguments through MCP. Keep signing material out of tool arguments.</p>
+<p>Default mode offers <code>head</code>, <code>verify</code> and <code>export</code>; an export may create a private artifact. To enable <code>initialize</code> and <code>append</code> on the existing <code>journal</code> tool, explicitly add <code>CANLI_EXEC_JOURNAL_WRITE=1</code> to the client launch environment. Read <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/JOURNAL_STORAGE.md#opt-in-local-mcp-adapter" rel="noreferrer">the local setup and recovery contract</a> before enabling writes. The execution package remains private and Unreleased.</p>
+</section>
+<section class="dev-section" id="example"><h2>Run the bounded synthetic example</h2>
+<p>From the pinned repository root, install the execution package's locked development dependencies and run the delivered example against a fresh, prepared home:</p>
+<pre class="dev-code" role="group" tabindex="0" aria-label="Read-only paper-journal example command"><code>npm ci --prefix mcp-execution
+node mcp-execution/examples/paper-journal.mjs --home /absolute/private/example-home</code></pre>
+<p>This default makes only sizing and order-check calls. When they pass, it returns <code>writes_disabled</code>; it needs no key and creates no journal. After preparing the private signing key, explicitly add <code>--write</code> to the example command to record the supplied scenario.</p>
+<p>The fixture opens a flat USD10,000 account, proposes ten <code>SYNTH</code> units from a stated 10% budget at USD100, and supplies a fill at USD100.25, an explicit USD1 fee and a USD101 mark. Those are synthetic statements, not market observations. Your limits or kill switch can cause the example to stop.</p>
+<p>A successful write run makes at most 11 tool calls. Its nominal stdio window is 30 seconds, reserving five seconds for one close attempt; timers and trusted synchronous work are cooperative. It prints one bounded receipt with the original requests, acknowledged prefix and any pending operation. A process interruption can prevent receipt output, so preserve the local journal and any pending lock for manual review. A normal rerun stops on an existing journal; this example does not automatically recover or resubmit.</p>
+<p>Read the <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/EXAMPLES.md" rel="noreferrer">complete example and stopping contract</a>, inspect the <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/examples/paper-journal.mjs" rel="noreferrer">pinned runner</a>, or <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/test/paper-journal-example.test.mjs" rel="noreferrer">review the finite fault and roundtrip cases</a> before extending the scenario.</p></section>
+<section class="dev-section" id="tools"><h2>The four local tools and their inputs</h2><div class="mcp-table"><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0"><caption>Private Canli Execution source at b89e206ed823</caption><thead><tr><th scope="col">Tool</th><th scope="col">Use and input limits</th></tr></thead><tbody>
+<tr><th scope="row"><code>size_position</code></th><td>Lot-rounded sizing under supplied budgets and caps. It reads the limits file; calls can tighten those limits. <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/src/size-position.mjs" rel="noreferrer">Sizing schema and calculation</a>.</td></tr>
+<tr><th scope="row"><code>check_orders</code></th><td>Supplied orders, costs, market state, limits and kill switch. Missing checks stay listed; missing commissions stay unmodelled. <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/src/check-orders.mjs" rel="noreferrer">Order-check schema and results</a>.</td></tr>
+<tr><th scope="row"><code>measure_shortfall</code></th><td>Decompose supplied fills into delay, execution, unfilled opportunity and stated fees. Missing fees leave total cost unknown. <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/src/measure-shortfall.mjs" rel="noreferrer">Shortfall schema and calculation</a>.</td></tr>
+<tr><th scope="row"><code>journal</code></th><td>Head inspection, full-chain verification and account export. Explicit opt-in adds local initialize/append. <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/src/journal.mjs" rel="noreferrer">Read/export schema</a> and <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution/src/journal-write.mjs" rel="noreferrer">opt-in write schema</a>.</td></tr>
+</tbody></table></div><!-- design-table:end --></div><p>The hosted <a href="/mcp-servers/validation">backtest validation server</a>, <a href="/mcp-servers/fundamentals">SEC fundamentals server</a> and <a href="/mcp-servers/research">research server</a> have separate release pins. The local source validation step above is not added to their hosted or npm contracts by this guide.</p></section>
+<section class="dev-section" id="validation"><h2>Validate the complete export against its journal</h2>
+<p>Install the repository validation package's locked dependencies with <code>npm ci --prefix mcp</code>, then configure a separate local stdio session:</p>
+<pre class="dev-code" role="group" tabindex="0" aria-label="Local validation stdio launch settings"><code>{
+  &quot;command&quot;: &quot;node&quot;,
+  &quot;args&quot;: [
+    &quot;/absolute/canlicapital/mcp/src/server.mjs&quot;
+  ],
+  &quot;env&quot;: {
+    &quot;CANLI_LOCAL&quot;: &quot;1&quot;
+  }
+}</code></pre>
+<p>Keep a private JSON file containing the full export bundle, including its record, signature and financial companions. Send these placeholder paths to <code>validate_paper_evidence</code>, replacing them with that file and the original source journal:</p>
+<pre class="dev-code" role="group" tabindex="0" aria-label="Source-bound paper evidence tool arguments"><code>{
+  &quot;record_file&quot;: &quot;/absolute/private/export-bundle.json&quot;,
+  &quot;journal_file&quot;: &quot;/absolute/private-paper-home/journal.jsonl&quot;
+}</code></pre>
+<p><code>CANLI_LOCAL=1</code> is required for files and signatures; they stay on your machine. <code>record_file</code> preserves full-bundle companion checks, while <code>journal_file</code> enables signed-source reconstruction. Inspect <code>conformance_valid</code>, <code>bindings.checked</code>, <code>bindings.all_match</code> and the final <code>valid</code> result. Without the source journal, structural conformance leaves source facts and signatures unchecked.</p>
+<p>The <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp/src/journal-evidence.mjs" rel="noreferrer">local verifier</a> and <a href="https://github.com/arhancanli/canlicapital/blob/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp/src/schemas.mjs" rel="noreferrer">tool input schema</a> define these repository-only arguments. This source workflow provides no hosted file upload.</p></section>
+<section class="dev-section" id="receipts"><h2>Read the receipt and stop on uncertainty</h2>
+<p>A successful local write returns operation, request, entry and journal-prefix bindings. Keep its <code>operation_id</code>, <code>request_sha256</code>, <code>entry_head</code>, <code>entry_seq</code>, <code>journal_prefix_sha256</code> and <code>journal_prefix_bytes</code>. A prefix binds the journal through that operation; later appends can change the current head.</p>
+<p><code>JOURNAL_STORE_BUSY</code>, <code>JOURNAL_STORE_REFUSED</code> and <code>JOURNAL_STORE_UNCERTAIN</code> are errors with no success receipt. Stop the client workflow and preserve the original request and files for manual review. Do not delete a pending lock based on its age or PID, and do not automatically resubmit. An uncertain write may have left partial or complete files.</p>
+<p>An exact retry preserves the original operation ID, timestamp, kind, payload and expected head, including after later appends. Changed contents or a changed expected head conflict. The storage API has no automatic recovery command. <code>head</code> alone does not verify signatures; use <code>verify</code> for integrity.</p>
+</section>
+<section class="dev-section" id="limits"><h2>What this workflow can establish</h2>
+<p>Signatures and replay bind the statements supplied by the key holder. They do not authenticate broker fills, prove an independent timestamp, exclude another journal, establish profitability or qualify capital deployment. The local filesystem contract observes replacements and requests persistence; software checks do not establish power-loss safety or exclude every change between checks by the same OS user.</p>
+<p>Market inputs, fees, complete valuations and declared trial counts remain the caller's evidence. Unknown values stay unknown. A statistical or accounting check is not investment advice or a venue quote. Fresh token and latency measurements and the substantial execution release gates remain open.</p>
+<p>Source pin: <a href="https://github.com/arhancanli/canlicapital/tree/b89e206ed823a7acc4de6a54e1ba8691de630820/mcp-execution" rel="noreferrer">commit b89e206ed823</a>. The <a href="/glassbox/execution_workflow_source.json">machine-readable source record</a> binds the documented schemas, storage contract and local validation surface. These are reviewed source links, not deployment or indexing evidence.</p>
+<ul class="mcp-related"><li><a href="/developers#mcp-execution">Developer setup and repository entry</a></li>
+<li><a href="/tools/execution">Execution-assumptions cost calculator</a></li>
+<li><a href="/research/topics/execution-and-market-structure">Execution and market-structure research</a></li>
+<li><a href="/mcp-servers">Released finance MCP servers</a></li></ul></section></main>
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/costs">What costs are charged</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Performance</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Calculators">
+      <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
+      <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
+      <a href="/tools/selection-risk">Selection Risk Lab</a>
+      <a href="/tools/breadth">Breadth Lab</a>
+      <a href="/tools/execution">Execution Reality Lab</a>
+      <a href="/tools/trial-accounting">Trial accounting</a>
+      <a href="/tools/evidence-chain">Evidence chain</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/developers">Developers</a>
+      <a href="/developers#quickstart">Get an API key</a>
+      <a href="/developers#ai-assistant">Connect the MCP server</a>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="/standards/paper-evidence">Evidence standard</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
+    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
+</footer>
+<script type="module" src="/js/main.js"></script>
+</body></html>

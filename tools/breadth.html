@@ -1,46 +1,42 @@
 <!doctype html>
-<html lang="en" data-page="breadth">
+<html data-design="workbench" lang="en" data-page="breadth">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Portfolio breadth calculator | Canli Capital</title>
-<meta name="description" content="A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass." />
+<meta name="description" content="A free portfolio breadth calculator: how much a book of N strategies is worth, how correlation erodes it, and the ceiling no amount of breadth can pass." />
 <link rel="canonical" href="https://canlicapital.com/tools/breadth" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="breadth_lab_contract.json public-claims.json" />
+<meta name="canli:sources" content="breadth_lab_contract.json public-claims.json calculator-defaults/breadth.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
 <meta property="og:title" content="Portfolio breadth calculator" />
-<meta property="og:description" content="A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass." />
+<meta property="og:description" content="A free portfolio breadth calculator: how much a book of N strategies is worth, how correlation erodes it, and the ceiling no amount of breadth can pass." />
 <meta property="og:url" content="https://canlicapital.com/tools/breadth" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Portfolio breadth calculator" />
-<meta name="twitter:description" content="A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass." />
+<meta name="twitter:description" content="A free portfolio breadth calculator: how much a book of N strategies is worth, how correlation erodes it, and the ceiling no amount of breadth can pass." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Portfolio breadth calculator","alternateName":"Breadth Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/breadth","description":"A free portfolio breadth calculator: how much a book of N strategies is worth, how correlation erodes it, and the ceiling no amount of breadth can pass.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
-<link rel="stylesheet" href="/css/lab.css" />
-<link rel="stylesheet" href="/css/tool-experience.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Portfolio breadth calculator","alternateName":"Breadth Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/breadth","description":"A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<!-- site-design:end -->
+</head>
 <body class="lab-page">
 <a class="lab-skip" href="#lab">Skip to the lab</a>
-<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
-<a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
@@ -67,7 +63,9 @@
         <span class="cc-shell__panel-label">Build &amp; reproduce</span>
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
-<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -94,7 +92,7 @@
     <h1 id="lab-title">Portfolio breadth calculator</h1>
     <p class="lab-lead">More sleeves stops working, and you can see where. A book of equally weighted sleeves, each worth <strong>s</strong>, sharing a
       pairwise correlation <strong>rho</strong>, is worth
-      <code>s &times; sqrt(N / (1 + (N-1) &times; rho))</code>. Take that to the limit and the
+      <code>s × sqrt(N / (1 + (N-1) × rho))</code>. Take that to the limit and the
       ceiling is <code>s / sqrt(rho)</code>, which does not contain N at all. Past a point, breadth
       is not the lever and correlation is. This is the most important arithmetic in this project
       and it decides whether its own objective is reachable. Canli Capital, the research house
@@ -107,28 +105,28 @@
     <div class="lab-controls">
       <label class="lab-field" for="lab-sharpe">
     <span class="lab-field__label">Sharpe per sleeve</span>
-    <input id="lab-sharpe" type="number" value="0.5" min="0" max="3" step="0.05" inputmode="decimal" />
+    <input id="lab-sharpe" type="number" value="0.5" min="0" max="3" step="0.05" inputmode="decimal">
     <span class="lab-field__note">s, the same for every sleeve</span>
   </label>
       <label class="lab-field" for="lab-rho">
     <span class="lab-field__label">Average pairwise correlation</span>
-    <input id="lab-rho" type="number" value="0.0248" min="-0.5" max="1" step="0.005" inputmode="decimal" />
+    <input id="lab-rho" type="number" value="0.0248" min="-0.5" max="1" step="0.005" inputmode="decimal">
     <span class="lab-field__note">rho, shared by every pair</span>
   </label>
       <label class="lab-field" for="lab-n">
     <span class="lab-field__label">Sleeves</span>
-    <input id="lab-n" type="number" value="4" min="1" max="60" step="1" inputmode="decimal" />
+    <input id="lab-n" type="number" value="4" min="1" max="60" step="1" inputmode="decimal">
     <span class="lab-field__note">N, equally weighted</span>
   </label>
       <label class="lab-field" for="lab-target">
     <span class="lab-field__label">Target book Sharpe</span>
-    <input id="lab-target" type="number" value="2" min="0" max="5" step="0.1" inputmode="decimal" />
+    <input id="lab-target" type="number" value="2" min="0" max="5" step="0.1" inputmode="decimal">
     <span class="lab-field__note">the objective to test against</span>
   </label>
       <div class="lab-actions">
-        <button type="button" class="lab-button" data-preset='{"s":0.5,"rho":0.0248,"n":4,"target":2}'>This book, as published</button>
-        <button type="button" class="lab-button" data-preset='{"s":0.5,"rho":0.0248,"n":14,"target":2}'>The planned book</button>
-        <button type="button" class="lab-button" data-preset='{"s":0.5,"rho":0.15,"n":14,"target":2}'>At the live correlation ceiling</button>
+        <button type="button" class="lab-button" data-preset="{&quot;s&quot;:0.5,&quot;rho&quot;:0.0248,&quot;n&quot;:4,&quot;target&quot;:2}">This book, as published</button>
+        <button type="button" class="lab-button" data-preset="{&quot;s&quot;:0.5,&quot;rho&quot;:0.0248,&quot;n&quot;:14,&quot;target&quot;:2}">The planned book</button>
+        <button type="button" class="lab-button" data-preset="{&quot;s&quot;:0.5,&quot;rho&quot;:0.15,&quot;n&quot;:14,&quot;target&quot;:2}">At the live correlation ceiling</button>
       </div>
       <p class="lab-warning" id="lab-warning" role="alert" hidden></p>
     </div>
@@ -136,24 +134,24 @@
     <div class="lab-output">
       <div class="lab-chart-wrap">
         <svg id="lab-chart" viewBox="0 0 760 260" preserveAspectRatio="none" role="img" aria-label="Book Sharpe against sleeve count, with the ceiling">
-          <path id="lab-ceiling" class="lab-chart__ceiling" d="" />
-          <path id="lab-target-line" class="lab-chart__base" d="" />
-          <path id="lab-curve" class="lab-chart__line" d="" />
-          <circle id="lab-marker" class="lab-chart__marker" cx="0" cy="0" r="4" />
+          <path style="display:" id="lab-ceiling" class="lab-chart__ceiling" d="M0 25.2L760 25.2" />
+          <path id="lab-target-line" class="lab-chart__base" d="M0 109.5L760 109.5" />
+          <path id="lab-curve" class="lab-chart__line" d="M0.0 217.1L12.9 202.9L25.8 192.4L38.6 183.8L51.5 176.5L64.4 170.1L77.3 164.5L90.2 159.3L103.1 154.7L115.9 150.4L128.8 146.5L141.7 142.9L154.6 139.5L167.5 136.3L180.3 133.3L193.2 130.5L206.1 127.9L219.0 125.4L231.9 123.0L244.7 120.7L257.6 118.6L270.5 116.6L283.4 114.6L296.3 112.8L309.2 111.0L322.0 109.3L334.9 107.7L347.8 106.1L360.7 104.6L373.6 103.2L386.4 101.8L399.3 100.4L412.2 99.1L425.1 97.9L438.0 96.7L450.8 95.5L463.7 94.4L476.6 93.3L489.5 92.3L502.4 91.3L515.3 90.3L528.1 89.3L541.0 88.4L553.9 87.5L566.8 86.6L579.7 85.8L592.5 84.9L605.4 84.1L618.3 83.3L631.2 82.6L644.1 81.8L656.9 81.1L669.8 80.4L682.7 79.7L695.6 79.1L708.5 78.4L721.4 77.8L734.2 77.2L747.1 76.6L760.0 76.0" />
+          <circle style="display:" id="lab-marker" class="lab-chart__marker" cx="38.6" cy="183.8" r="4" />
         </svg>
-        <p class="lab-causal" id="lab-causal">solid: book Sharpe against N &middot; long dash: the ceiling &middot; short dash: your target</p>
+        <p class="lab-causal" id="lab-causal">solid: book Sharpe against N · long dash: the ceiling · short dash: your target</p>
       </div>
       <dl class="lab-stats">
-        <div><dt>Book Sharpe</dt><dd id="lab-book">0</dd></div>
-        <div><dt>Ceiling at this correlation</dt><dd id="lab-ceiling-value">0</dd></div>
-        <div><dt>Share of the ceiling captured</dt><dd id="lab-captured">0</dd></div>
-        <div><dt>Sleeves needed for the target</dt><dd id="lab-required">0</dd></div>
+        <div><dt>Book Sharpe</dt><dd id="lab-book">0.965</dd></div>
+        <div><dt>Ceiling at this correlation</dt><dd id="lab-ceiling-value">3.175</dd></div>
+        <div><dt>Share of the ceiling captured</dt><dd id="lab-captured">30.4%</dd></div>
+        <div><dt>Sleeves needed for the target</dt><dd id="lab-required">26 sleeves</dd></div>
       </dl>
     </div>
 
     <div class="lab-ledger">
       <h3>What this says</h3>
-      <p class="lab-verdict" id="lab-verdict" data-state="idle">Move a control.</p>
+      <p class="lab-verdict" id="lab-verdict" data-state="work">4 sleeves give 0.965. Reaching 2 needs 26, and the ceiling at this correlation is 3.175, so the target is reachable but the margin is 1.175.</p>
       <p class="lab-bestparams">The live contract permits average pairwise correlation up to 0.15. This is what that permits the book to become.</p>
     </div>
   </section>
@@ -194,7 +192,26 @@
       <a href="/developers#api-breadth">the validation API</a>.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
   <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
     <div class="cc-handoff__viewport">
       <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
@@ -234,6 +251,7 @@
       <a href="/verify">Verify record</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
