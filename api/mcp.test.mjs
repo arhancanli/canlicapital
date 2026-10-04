@@ -70,6 +70,8 @@ test("tools/list exposes exactly the npm package's default tools; a keyed sessio
       "audit_backtest",
       "backtest_strategy",
       "check_feasibility",
+      "check_leakage",
+      "placebo_test",
       "service_status",
       "stress_test",
       "summarize_series",
@@ -159,7 +161,7 @@ test("GET is refused: the endpoint is stateless and has no server stream", async
 test("the hosted endpoint serves the same prompts and resources as the package", async () => {
   await withServer({ CANLI_REMOTE_MCP_KEY: SHARED_KEY }, async (url) => {
     const prompts = await rpc(url, "prompts/list", {});
-    assert.deepEqual(prompts.json.result.prompts.map((p) => p.name).sort(), ["backtest_and_validate", "production_check", "stress_my_strategy", "summarize_market_series", "track_record_needed", "validate_backtest"]);
+    assert.deepEqual(prompts.json.result.prompts.map((p) => p.name).sort(), ["backtest_and_validate", "check_signal_for_lookahead", "production_check", "stress_my_strategy", "summarize_market_series", "test_pipeline_on_placebos", "track_record_needed", "validate_backtest"]);
     const resources = await rpc(url, "resources/list", {});
     assert.deepEqual(resources.json.result.resources.map((r) => r.uri).sort(), ["canli://limits", "canli://openapi", "canli://sources", "canli://strategy-spec"]);
     const templates = await rpc(url, "resources/templates/list", {});
@@ -174,10 +176,10 @@ test("?toolsets= lists only those tools; an unknown toolset is a 400, and the de
   await withServer({ CANLI_TOOLSETS: "status" }, async (url) => {
     const defaults = await rpc(url, "tools/list", {});
     const names = defaults.json.result.tools.map((t) => t.name);
-    assert.equal(names.length, 17, "the server's own CANLI_TOOLSETS is ignored: the default is every toolset but company");
+    assert.equal(names.length, 19, "the server's own CANLI_TOOLSETS is ignored: the default is every toolset but company");
     assert.ok(names.includes("get_key") && !names.includes("company_financial_history"), "no key here, so get_key is listed");
     const all = await rpc(`${url}?toolsets=all`, "tools/list", {});
-    assert.equal(all.json.result.tools.length, 18, "all adds company_financial_history");
+    assert.equal(all.json.result.tools.length, 20, "all adds company_financial_history");
     const company = await rpc(`${url}?toolsets=company`, "tools/list", {});
     assert.deepEqual(company.json.result.tools.map((t) => t.name), ["company_financial_history"]);
     const two = await rpc(`${url}?toolsets=receipts,company`, "tools/list", {});

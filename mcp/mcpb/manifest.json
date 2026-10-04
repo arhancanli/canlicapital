@@ -2,9 +2,9 @@
   "manifest_version": "0.3",
   "name": "canli-validation-mcp",
   "display_name": "Canli Validation",
-  "version": "0.12.0",
-  "description": "Check a backtest before you trust it: deflated Sharpe, backtest overfitting (CSCV), paper-evidence and breadth, each with a recomputable receipt.",
-  "long_description": "Tools over canlicapital.com's free validation API. Every result is the full API envelope, including the sentences that say what a number does not establish. Also reads a company's SEC-reported financial history. Your returns are not stored: the API keeps a SHA-256 hash of the input and the verdict.",
+  "version": "0.13.0",
+  "description": "Check a backtest before you trust it: deflated Sharpe, overfitting and data-snooping tests with signed receipts, plus lookahead and pipeline placebo checks that run on your machine.",
+  "long_description": "Validators over canlicapital.com's free API (deflated Sharpe, CSCV overfitting, Hansen's SPA, White's Reality Check and StepM, minimum track record and backtest length, and more), each result carrying the sentences that say what a number does not establish and a signed receipt. A lab computes on your machine with nothing sent: grid backtests validated by the variants actually run, series summaries, stress tests, broker feasibility, check_leakage for lookahead in a signal and placebo_test for a whole research pipeline. Also reads a company's SEC-reported financial history. Your returns are not stored: the API keeps a SHA-256 hash of the input and the verdict.",
   "author": {
     "name": "Arhan Canli",
     "url": "https://canlicapital.com"
@@ -104,6 +104,14 @@
     {
       "name": "check_feasibility",
       "description": "Check a trading plan against broker limits, market impact and crowding"
+    },
+    {
+      "name": "check_leakage",
+      "description": "Find lookahead in a signal by comparing your code's output on prefixes the server picks, without seeing the code"
+    },
+    {
+      "name": "placebo_test",
+      "description": "Run a whole research pipeline on placebo data where nothing can be predicted and rank its real result"
     }
   ],
   "user_config": {
@@ -146,7 +154,9 @@
     "finance",
     "deflated sharpe",
     "overfitting",
-    "sec"
+    "sec",
+    "lookahead",
+    "data snooping"
   ],
   "license": "MIT",
   "privacy_policies": [
