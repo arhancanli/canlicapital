@@ -52,6 +52,12 @@
 .atlas-complete .api-preview__steps { grid-column: 2; grid-row: 3 / 5; margin: 0; padding: 0; }
 .atlas-complete .api-preview__steps li { color: #343b46; padding: 14px 0; border-color: var(--pub-rule); }
 .atlas-complete .api-preview__steps li span { color: var(--cin-blue); }
+/* The three ways to start: one column, each label above its command, the list at the end. */
+.atlas-complete .api-preview__body.api-preview__body--ways { display: block; }
+.atlas-complete .api-preview__body--ways > p { margin: 26px 0 12px; }
+.atlas-complete .api-preview__body--ways > p:first-child { margin: 0 0 8px; }
+.atlas-complete .api-preview__body--ways > p:last-child { margin: 26px 0 0; color: #5b6370; font-size: .9rem; }
+.atlas-complete .api-preview__body--ways .api-preview__steps { margin: 34px 0 0; }
 .atlas-complete .deep-record { margin: 0; border: 0; border-top: 1px solid var(--pub-rule); background: var(--cin-paper); }
 .atlas-complete .deep-record > summary { padding: 32px 4vw; color: var(--cin-ink); gap: 15px 30px; background: transparent; }
 .atlas-complete .deep-record > summary > span:first-child { color: var(--cin-blue); }

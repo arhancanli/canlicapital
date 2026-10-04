@@ -93,9 +93,11 @@ provenance and to the official MCP Registry.
 Release checkpoint, September 28, 2026: `canli-validation-mcp@0.10.1` (data-snooping tests; missing
 values refused instead of read as zero) published from CI on the tag `mcp-v0.10.1`.
 
-Next release, not yet published: `canli-validation-mcp@0.11.0` (the lab: grid backtests validated
-with the number of variants actually run, series summaries, stress tests and broker feasibility;
-code-generation resources and prompts). It publishes from `mcp-publish.yml` on the tag `mcp-v0.11.0`.
+Release checkpoint, October 3, 2026: `canli-validation-mcp@0.11.0` (the lab: grid backtests
+validated with the number of variants actually run, series summaries, stress tests and broker
+feasibility; code-generation resources and prompts) published from CI: the tag `mcp-v0.11.0` ran
+`mcp-publish.yml` (run 37140838081) to npm with provenance and to the official MCP Registry, where
+0.11.0 is listed as latest.
 
 `canli-research-mcp` (the `mcp-research/` directory) publishes from `mcp-research-publish.yml` on a tag
 `research-mcp-v<version>`, the same way. Its 0.1.0 was published to npm by hand on September 26, 2026,

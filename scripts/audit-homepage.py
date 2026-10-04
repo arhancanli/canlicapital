@@ -162,8 +162,8 @@ def audit_page(
     reconciled_sleeves = claims_by_id["broker.reconciled-alpaca-sleeves"]["value"]
     assert page.locator("#evidence-accounts").inner_text() == f"{reconciled_sleeves} / paper"
     assert page.locator("#evidence-status").inner_text() == "Broker pass"
-    assert page.locator("#hero-record-basis").inner_text() == "Observed paper"
-    assert page.locator("#hero-broker-execution").inner_text() == f"{reconciled_sleeves} Alpaca paper sleeves"
+    assert page.locator("#hero-record-basis").inner_text() == "Paper only"
+    assert page.locator("#hero-broker-execution").inner_text() == f"{reconciled_sleeves} Alpaca paper accounts"
     assert page.locator("#hero-paper-since").inner_text().startswith("Since ")
     current_sleeves = claims_by_id["sleeves.current"]["value"]
     target_sleeves = claims_by_id["sleeves.target"]["value"]

@@ -94,12 +94,12 @@ function hydrateClaimContract(payload) {
   setClaimText(
     "hero-record-basis",
     capitalKind,
-    capitalKind.value === "PAPER_ONLY" ? "Observed paper" : humanizeStatus(capitalKind.value),
+    capitalKind.value === "PAPER_ONLY" ? "Paper only" : humanizeStatus(capitalKind.value),
   );
   setClaimText(
     "hero-broker-execution",
     brokerSleeves,
-    `${integer.format(Number(brokerSleeves.value))} Alpaca paper sleeves`,
+    `${integer.format(Number(brokerSleeves.value))} Alpaca paper accounts`,
   );
   const paperStart = new Date(`${firstMark.value}T00:00:00Z`);
   setClaimText(
