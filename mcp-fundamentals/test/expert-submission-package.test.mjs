@@ -133,7 +133,7 @@ function checkImports(entries) {
     assert.doesNotMatch(source, /\b(?:import\s*\(|require\s*\(|createRequire\b)/, 'DYNAMIC_IMPORT');
     const imports = [...source.matchAll(/^import .+ from ['"]([^'"]+)['"];$/gm)];
     assert.equal(imports.length, [...source.matchAll(/^import\b/gm)].length, 'UNPARSED_IMPORT');
-    assert.doesNotMatch(source, /^export\s+.*\sfrom\s/gm, 'UNPARSED_REEXPORT');
+    assert.doesNotMatch(source, /^export\s+(?:\*\s*(?:as\s+\w+\s*)?|\{[^}]*\}\s*)from\b/gm, 'UNPARSED_REEXPORT');
     for (const [, name] of imports) {
       if (name.startsWith('.')) {
         const target = path.posix.normalize(path.posix.join(path.posix.dirname(filename), name));
@@ -582,4 +582,13 @@ test('expert package: package frame admission retains strict UTF8 and whole requ
   reader.append(Buffer.alloc(adapter.EXPERT_STDIO_LIMITS.requestFrameBytes, 32));
   assert.throws(() => reader.append(Buffer.from('\n')), error => error.code === 'FRAME_INPUT_BOUND');
   assert.equal(dispatched, 0); assert.equal(reader.buffer.length, 0);
+});
+test('expert package: import closure admits from text in exported constants and refuses actual reexports', () => {
+  const positive = cloneEntries(); positive.set('package/src/text-control.js', { mode: 0o644,
+    bytes: Buffer.from('export const description = "Computed from supplied bytes.";\n') });
+  checkImports(positive);
+  for (const source of ["export * from '../../private.mjs';\n", "export { secret } from './missing.mjs';\n"]) {
+    const negative = cloneEntries(); negative.set('package/src/actual-reexport.mjs', { mode: 0o644, bytes: Buffer.from(source) });
+    assert.throws(() => checkImports(negative), /UNPARSED_REEXPORT/);
+  }
 });
