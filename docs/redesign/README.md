@@ -48,7 +48,7 @@ from actual search-engine indexing.
 
 ## Verification
 
-Node 22.23.2 `npm run build` and `npm run verify` passed. The latter ran 1,302 tests
+Node 22.23.2 `npm run build` and `npm run verify` passed. The latter ran 1,303 tests
 and six preverify cases, followed by writing, publication, source, SEO, link,
 indexability, numerical and search-intent audits. All 30,281 visible numerals trace
 to published artifacts. On-page checks report zero errors and warnings. Every
@@ -117,3 +117,19 @@ whitespace; a regression composes the actual production transforms.
 All 60 React wrapper contracts pass with the complete shared footer styles.
 The expanded native footer also passes desktop and 320px browser checks with
 JavaScript off; reports and captures are in the October QA folder.
+
+
+## Final fresh-build deployment proof
+
+At signed source 816b0224, a clean production rebuild and full verification
+passed 1,303 tests plus six preverify cases. The exact Git-free command then
+exited 0 with no additional tracked changes. The committed manifest, sitemap
+and affected hand-authored pages remain byte identical through the complete
+sequence. [The fresh-build receipt](../../artifacts/qa/october-redesign/deployment-date-proof-after-rebuild.json)
+records the source head, stage results and hashes.
+
+All static routes register the shared shell and final page transform as real
+markup dependencies. A portable archive regression verifies that generated
+timestamp changes reject stale byte bindings while preserving the committed
+markup date. Earlier CI findings and their corrections are retained in the
+goal log and the original [CI run](https://github.com/arhancanli/canlicapital/actions/runs/37185202197).
