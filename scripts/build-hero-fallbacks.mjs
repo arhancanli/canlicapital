@@ -131,9 +131,9 @@ export function heroFallbacks(claimsPayload, chainPayload, brokerPayload, extra 
   };
 
   return {
-    "hero-record-basis": "Observed paper",
+    "hero-record-basis": "Paper only",
     "hero-broker-execution":
-      `${integer.format(Number(value("broker.reconciled-alpaca-sleeves")))} Alpaca paper sleeves`,
+      `${integer.format(Number(value("broker.reconciled-alpaca-sleeves")))} Alpaca paper accounts`,
     "hero-paper-since": `Since ${fullDate.format(firstMark)}`,
     "hero-strategies": strategiesText(value("sleeves.current"), value("sleeves.target")),
     // The rest of the page carried the same placeholders below the fold. Same

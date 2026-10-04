@@ -5,12 +5,14 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  toolValidateRealityCheck,
   createSession,
   toolAuditBacktest,
   toolValidateDeflatedSharpe,
   toolValidateOverfitting,
   toolValidateTrackRecord,
 } from "../src/server.mjs";
+import { NULL_ZOO_V1 } from "../src/local/js/null-zoo-v1-sizes.js";
 
 const parsed = (result) => JSON.parse(result.content[0].text);
 
@@ -28,25 +30,42 @@ function localSession() {
 test("local: each check equals the standalone tool's result for the same inputs", async () => {
   const session = localSession();
   const audit = parsed(await toolAuditBacktest(session, { ...BASE, variants: VARIANTS, n_splits: 6, benchmark_sharpe_annualized: 0.2 }));
-  const dsr = parsed(await toolValidateDeflatedSharpe(session, BASE));
-  assert.deepEqual(audit.checks.deflated_sharpe.data, dsr.data);
+  // The deflated Sharpe ran with the larger of the declared and counted trials and spread.
+  const used = audit.checks.deflated_sharpe.data.derived_inputs;
+  assert.equal(used.effective_independent_trials, Math.max(BASE.effective_independent_trials, audit.computed.trials.counted));
+  assert.equal(used.cross_trial_sharpe_sd_annualized, audit.computed.trials.cross_trial_sharpe_sd_annualized);
+  assert.ok(used.cross_trial_sharpe_sd_annualized >= BASE.cross_trial_sharpe_sd_annualized);
+  const dsr = parsed(await toolValidateDeflatedSharpe(session, { ...BASE, effective_independent_trials: used.effective_independent_trials, cross_trial_sharpe_sd_annualized: used.cross_trial_sharpe_sd_annualized }));
+  assert.deepEqual({ ...audit.checks.deflated_sharpe.data, plain_reading: audit.readings.deflated_sharpe }, dsr.data);
+  // The headline with variants is the standalone SPA for the same matrix, seed and draws.
+  const spa = parsed(await toolValidateRealityCheck(session, { matrix: VARIANTS, reps: 2000, seed: 42 }));
+  // The headline is whichever test Null Zoo selected, read from the same bootstrap the standalone ran.
+  const selected = NULL_ZOO_V1.with_variants.test;
+  const expected = { reality_check: spa.data.reality_check.p_value, spa_consistent: spa.data.spa.p_value, spa_upper: spa.data.spa.p_value_upper }[selected];
+  assert.equal(audit.headline.test, selected);
+  assert.equal(audit.headline.p, Number(expected.toPrecision(4)));
+  assert.match(audit.headline.sentence, /measured false-positive rate/);
   const d = dsr.data.derived_inputs;
   const track = parsed(await toolValidateTrackRecord(session, {
     observed_sharpe_annualized: d.observed_sharpe_annualized, periods_per_year: 252, skew: d.skew,
     non_excess_kurtosis: d.non_excess_kurtosis, observations: d.observations, benchmark_sharpe_annualized: 0.2,
   }));
-  assert.deepEqual(audit.checks.track_record.data, track.data);
+  assert.deepEqual({ ...audit.checks.track_record.data, plain_reading: audit.readings.track_record }, track.data);
   const overfit = parsed(await toolValidateOverfitting(session, { matrix: VARIANTS, n_splits: 6 }));
-  assert.deepEqual(audit.checks.overfitting.data, overfit.data);
+  assert.deepEqual({ ...audit.checks.overfitting.data, plain_reading: audit.readings.overfitting }, overfit.data);
 });
 
 test("local: the shared limits are stated once, every reading is the check's own, and no grade is added", async () => {
   const audit = parsed(await toolAuditBacktest(localSession(), BASE));
-  assert.equal(audit.schema, "canli.audit.v1");
+  assert.equal(audit.schema, "canli.audit.v2");
+  assert.ok(audit.headline.p >= 0 && audit.headline.p <= 1 && audit.headline.measured_size.family && audit.headline.sentence);
+  assert.ok(Array.isArray(audit.fix_next) && audit.fix_next.length <= 5);
+  assert.ok(audit.fix_next.some((f) => f.id === "count_every_variant"), "no variants sent: the first fix is to send them");
   assert.ok(Array.isArray(audit.limits) && audit.limits.length > 0);
   for (const check of Object.values(audit.checks)) assert.equal(check.limits, undefined);
-  assert.equal(audit.readings.deflated_sharpe, audit.checks.deflated_sharpe.data.plain_reading);
-  assert.equal(audit.readings.track_record, audit.checks.track_record.data.plain_reading);
+  // Each reading is stated once: in readings, not again inside its check.
+  assert.ok(audit.readings.deflated_sharpe && audit.checks.deflated_sharpe.data.plain_reading === undefined);
+  assert.ok(audit.readings.track_record && audit.checks.track_record.data.plain_reading === undefined);
   assert.deepEqual(Object.keys(audit.checks), ["deflated_sharpe", "track_record"]);
   assert.ok(audit.not_run.overfitting);
   for (const key of ["grade", "verdict", "pass", "score"]) assert.equal(audit[key], undefined);
@@ -91,10 +110,14 @@ test("API: three validations in order, the track record sent the derived statist
     "/api/v1/validate/deflated-sharpe": { status: 200, body: apiEnvelope("dsr", { derived_inputs: DERIVED, plain_reading: "R1" }, { id: "a".repeat(24) }) },
     "/api/v1/validate/track-record": { status: 200, body: apiEnvelope("trl", { plain_reading: "R2" }, { id: "b".repeat(24) }) },
     "/api/v1/validate/overfitting": { status: 200, body: apiEnvelope("pbo", { plain_reading: "R3" }, { id: "c".repeat(24) }) },
+    "/api/v1/validate/reality-check": { status: 200, body: apiEnvelope("rc", { spa: { p_value: 0.2, p_value_lower: 0.1, p_value_upper: 0.3, monte_carlo_se: 0.009 }, reality_check: { p_value: 0.25 }, plain_reading: "R4" }, { id: "d".repeat(24) }) },
   });
   const session = createSession({ base: "https://example.test", fetchImpl, envKey: "k-test", local: false });
   const audit = parsed(await toolAuditBacktest(session, { ...BASE, variants: VARIANTS, confidence: 0.9 }));
-  assert.deepEqual(fetchImpl.calls.map((c) => c.path), ["/api/v1/validate/deflated-sharpe", "/api/v1/validate/track-record", "/api/v1/validate/overfitting"]);
+  assert.deepEqual(fetchImpl.calls.map((c) => c.path), ["/api/v1/validate/deflated-sharpe", "/api/v1/validate/track-record", "/api/v1/validate/overfitting", "/api/v1/validate/reality-check"]);
+  assert.deepEqual(fetchImpl.calls[3].body, { matrix: VARIANTS, reps: 2000, seed: 42 });
+  assert.equal(audit.headline.p, { reality_check: 0.25, spa_consistent: 0.2, spa_upper: 0.3 }[NULL_ZOO_V1.with_variants.test]);
+  assert.equal(audit.headline.receipt.id, "d".repeat(24));
   assert.ok(fetchImpl.calls.every((c) => c.auth === "Bearer k-test"));
   assert.deepEqual(fetchImpl.calls[1].body, {
     observed_sharpe_annualized: 1.1, periods_per_year: 252, skew: -0.3, non_excess_kurtosis: 4.2, observations: 504, confidence: 0.9,
@@ -119,9 +142,26 @@ test("API: envelopes with different limits keep their own limits", async () => {
   const fetchImpl = routedFetch({
     "/api/v1/validate/deflated-sharpe": { status: 200, body: apiEnvelope("dsr", { derived_inputs: DERIVED, plain_reading: "R1" }) },
     "/api/v1/validate/track-record": { status: 200, body: { ...apiEnvelope("trl", { plain_reading: "R2" }), limits: ["other"] } },
+    "/api/v1/validate/luck-trials": { status: 200, body: apiEnvelope("luck", { result: { best_of_trials_probability: 0.3 }, plain_reading: "R5" }) },
   });
   const audit = parsed(await toolAuditBacktest(createSession({ base: "https://example.test", fetchImpl, envKey: "k", local: false }), BASE));
   assert.equal(audit.limits, undefined);
   assert.deepEqual(audit.checks.deflated_sharpe.limits, ["L1", "L2"]);
   assert.deepEqual(audit.checks.track_record.limits, ["other"]);
+});
+
+test("API: a headline check that cannot be reached is the headline's error, not a failed audit", async () => {
+  const fetchImpl = routedFetch({
+    "/api/v1/validate/deflated-sharpe": { status: 200, body: apiEnvelope("dsr", { derived_inputs: DERIVED, plain_reading: "R1" }) },
+    "/api/v1/validate/track-record": { status: 200, body: apiEnvelope("trl", { plain_reading: "R2" }) },
+  });
+  const result = await toolAuditBacktest(createSession({ base: "https://example.test", fetchImpl, envKey: "k", local: false }), BASE);
+  assert.equal(result.isError, undefined);
+  const audit = parsed(result);
+  if (NULL_ZOO_V1.single_series.test === "luck_trials_lo") {
+    assert.match(audit.headline.error, /could not be reached/);
+    assert.deepEqual(Object.keys(audit.checks), ["deflated_sharpe", "track_record"]);
+  } else {
+    assert.ok(audit.headline.p >= 0, "an in-process headline needs no route");
+  }
 });

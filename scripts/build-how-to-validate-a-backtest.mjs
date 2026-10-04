@@ -48,45 +48,45 @@ const esc = (v) =>
 // `api` is omitted, never invented, where no validation API route exists yet.
 const STEPS = [
   {
-    title: "Count the trials",
-    text: "A Sharpe ratio means little without knowing how many variants were tried to find it, so start by counting every hypothesis in the search.",
+    title: "Count every version you tried",
+    text: "A good Sharpe ratio means little until you know how many versions of the strategy were tried to find it. Write down every variant, parameter set and idea you tested, including the ones you dropped.",
     calculator: { href: "/tools/trial-accounting", label: "Trial accounting explorer" },
     api: { href: "/api/v1/trials/summary", label: "Trials summary endpoint" },
   },
   {
-    title: "Deflate the Sharpe",
-    text: "Put the observed Sharpe ratio and that trial count through the same deflation the search should have been judged by from the start.",
+    title: "Shrink the Sharpe for that count",
+    text: "The more versions you try, the better the best one looks by luck alone. The deflated Sharpe ratio corrects for that: it is the chance your Sharpe beats the best that luck would give across that many tries.",
     calculator: { href: "/tools/deflated-sharpe", label: "Deflated Sharpe ratio calculator" },
     api: { href: "/developers#api-deflated-sharpe", label: "Deflated Sharpe validation route" },
   },
   {
-    title: "Estimate overfitting probability",
-    text: "Check whether the in-sample winner predicts anything out of sample, rather than assuming a high Sharpe ratio implies it does.",
+    title: "Check the winner on unseen data",
+    text: "Split the history into pieces, pick the best version on some of them, and see how it ranks on the rest. If the winner often lands in the bottom half, the backtest is probably overfit.",
     calculator: { href: "/tools/backtest-overfitting", label: "Probability of backtest overfitting calculator" },
     api: { href: "/developers#api-overfitting", label: "Overfitting validation route" },
   },
   {
-    title: "Price execution assumptions",
-    text: "Reprice the same strategy under different fill, delay and impact assumptions, because a backtest that fills at the mid is pricing a trade nobody could place.",
+    title: "Price in realistic trading costs",
+    text: "Run the same strategy again with slower fills, wider spreads and market impact. A backtest that always trades at the midpoint is pricing trades nobody could place.",
     calculator: { href: "/tools/execution", label: "Execution assumptions cost calculator" },
     api: null,
   },
   {
-    title: "Check breadth",
-    text: "Ask what this strategy actually adds to a book of others once its correlation to them is accounted for, not just what it earns alone.",
+    title: "See what it adds to a portfolio",
+    text: "A strategy that moves with the ones you already run adds less than its own Sharpe suggests. Check what it adds once its correlation with them is counted.",
     calculator: { href: "/tools/breadth", label: "Portfolio breadth calculator" },
     api: { href: "/developers#api-breadth", label: "Breadth validation route" },
   },
   {
     title: "Keep a receipt",
-    text: "Every validation call above returns a content-hashed receipt naming the exact source it ran; keep it, and verify a signed record stays unchanged rather than trusting a screenshot of it.",
+    text: "Each check through the API returns a signed receipt that names the exact code it ran. Keep it, so anyone can recheck the result later instead of trusting a screenshot.",
     calculator: { href: "/tools/evidence-chain", label: "Signed evidence chain verifier" },
     api: { href: "/developers#validation", label: "How the validation API issues a receipt" },
   },
 ];
 
 const description =
-  "A step-by-step walk-through for checking a backtest with this site's own free instruments, from counting trials and deflating the Sharpe to keeping a receipt.";
+  "Six checks, in order, for whether a trading backtest is real or luck: count the versions you tried, shrink the Sharpe for them, test the winner on unseen data, price in costs, check what it adds, keep a receipt.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -168,20 +168,21 @@ ${renderProductShellHeader({ active: "methodology" })}
     <h1 class="paper__title">How to validate a backtest</h1>
     <p class="paper__byline">By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}</p>
     <div class="paper__body">
-      <p class="hub__standfirst">Each step below runs through one of this site's own instruments, in
-      the order they are meant to be used. Every calculator also runs as a validation API route
-      where one is published, so the same check can run in a browser or inside a pipeline.</p>
+      <p class="hub__standfirst">Six checks, in the order to run them. Each has a free calculator, and
+      most also run through the API or from an AI assistant, so the same check works in a browser,
+      in your code or in a chat.</p>
       <ol class="howto__steps">
 ${STEPS.map(stepHtml).join("\n")}
       </ol>
+      <p>Short on time? From an AI assistant, <code>audit_backtest</code> runs the first three checks
+      in one call, and <code>backtest_strategy</code> tests a rule over a whole grid of settings and
+      counts every version for you. <a href="/mcp-servers/validation">See the validation MCP server.</a></p>
       <section class="verify__level" id="boundary">
         <h2>What this page does not establish</h2>
-        <p>None of these steps establish that a strategy is profitable, admissible for capital, or a
-        forecast of anything. Each is a diagnostic about a search and a return series exactly as
-        submitted; a strategy can clear every step here and still fail on data quality, execution
-        realism the calculators do not model, or plain bad luck. What counts as a passing result is
-        a question for the reader's own research programme; this page states what to check and in
-        what order, not what a good number looks like.</p>
+        <p>None of these checks proves a strategy will make money, and none is a forecast. Each one
+        describes your search and your returns exactly as you sent them. A strategy can pass every
+        step and still fail on bad data, costs the calculators do not model, or plain bad luck. This
+        page tells you what to check and in what order, not what a good number looks like.</p>
       </section>
       <section class="verify__level" id="elsewhere">
         <h2>Where to go next</h2>

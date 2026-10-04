@@ -24,7 +24,7 @@ test("every registered tool is in exactly one toolset, and every toolset name is
   const members = Object.values(TOOLSETS).flat();
   assert.equal(new Set(members).size, members.length, "no tool is in two toolsets");
   assert.deepEqual([...members].sort(), [...all].sort());
-  assert.equal(all.length, 19);
+  assert.equal(all.length, 18, "0.12.0 folded get_receipt into verify_receipt");
   // A real McpServer accepts the same registrations.
   registerTools(new McpServer({ name: "t", version: "0" }), createSession({ toolsets: ["company"] }));
 });
@@ -34,9 +34,10 @@ test("each toolset lists exactly its own tools", () => {
   assert.deepEqual(registeredNames(["receipts", "company"]).sort(), [...TOOLSETS.receipts, ...TOOLSETS.company].sort());
 });
 
-test("configuration: empty, unsubstituted or 'all' means every toolset; names are trimmed and case-folded; unknown names are refused", () => {
+test("configuration: empty or unsubstituted means every toolset but company; 'all' adds it; names are trimmed and case-folded; unknown names are refused", () => {
   const every = Object.keys(TOOLSETS);
-  for (const v of [undefined, "", "  ", "${CANLI_TOOLSETS}", "all", "ALL"]) assert.deepEqual(configuredToolsets(v), every, String(v));
+  for (const v of [undefined, "", "  ", "${CANLI_TOOLSETS}"]) assert.deepEqual(configuredToolsets(v), every.filter((n) => n !== "company"), String(v));
+  for (const v of ["all", "ALL"]) assert.deepEqual(configuredToolsets(v), every, v);
   assert.deepEqual(configuredToolsets(" Company , validate,company"), ["company", "validate"]);
   assert.throws(() => configuredToolsets("company,validaet"), /Unknown toolset validaet; choose from validate, receipts, company, status, lab or all/);
   assert.throws(() => configuredToolsets(","), /Unknown toolset/);
@@ -49,4 +50,21 @@ test("over stdio, CANLI_TOOLSETS=company lists one tool", async (t) => {
   t.after(() => client.close());
   const { tools } = await client.listTools();
   assert.deepEqual(tools.map((x) => x.name), ["company_financial_history"]);
+});
+
+test("get_key is listed only for a session with no key, and company only when asked for", async () => {
+  const { createSession, registerTools } = await import("../src/server.mjs");
+  const listed = (session) => {
+    const names = [];
+    registerTools({ registerTool: (name) => names.push(name) }, session);
+    return names;
+  };
+  const fetchImpl = async () => { throw new Error("no network"); };
+  assert.ok(listed(createSession({ fetchImpl, envKey: "" })).includes("get_key"), "no key: listed");
+  assert.ok(!listed(createSession({ fetchImpl, envKey: "k".repeat(24) })).includes("get_key"), "CANLI_KEY set: not listed");
+  assert.ok(!listed(createSession({ fetchImpl, envKey: "", hosted: { keySource: "shared" } })).includes("get_key"), "hosted shared key: not listed");
+  assert.ok(!listed(createSession({ fetchImpl, envKey: "", hosted: { keySource: "caller" } })).includes("get_key"), "hosted caller key: not listed");
+  assert.ok(listed(createSession({ fetchImpl, envKey: "", hosted: { keySource: "none" } })).includes("get_key"), "hosted with no key: listed");
+  assert.ok(!listed(createSession({ fetchImpl, envKey: "" })).includes("company_financial_history"), "default: no company tool");
+  assert.ok(listed(createSession({ fetchImpl, envKey: "", toolsets: configuredToolsets("all") })).includes("company_financial_history"), "all: company tool listed");
 });
