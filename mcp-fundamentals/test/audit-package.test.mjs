@@ -18,13 +18,18 @@ const SOURCE_PINS = Object.freeze({
   'package/src/audit-inputs-core.mjs': 'e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059',
   'package/src/audit-inputs-stdio.mjs': '537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0',
   'package/src/server.mjs': 'dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38',
+  'package/src/expert-submission-stdio.mjs': '56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208',
+  'package/src/expert-submission-audit-core.mjs': '4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3',
+  'package/src/expert-intake-core.mjs': '5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545',
+  'package/src/expert-agreement.mjs': '80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef',
+  'package/src/filing-facts-packet.mjs': '74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8',
 });
 const FILES = Object.freeze([
-  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/package.json', ...Object.keys(SOURCE_PINS),
+  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/EXPERT_SUBMISSIONS.md', 'package/package.json', ...Object.keys(SOURCE_PINS),
 ].sort());
 // Raw tar modes follow the frozen Git files, independently of bin-link installation.
 const RAW_MODES = Object.freeze(Object.fromEntries(FILES.map(path => [
-  path, path === 'package/src/audit-inputs-stdio.mjs' ? 0o755 : 0o644,
+  path, ['package/src/audit-inputs-stdio.mjs', 'package/src/expert-submission-stdio.mjs'].includes(path) ? 0o755 : 0o644,
 ])));
 const PACKAGE_LIMITS = Object.freeze({ compressed: 256 * 1024, expanded: 2 * 1024 * 1024, members: 32, npmOutput: 64 * 1024, npmMs: 20000, childMs: 10000, closeMs: 3000, reapMs: 2500 });
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -146,12 +151,13 @@ function auditPackage(entries) {
     assert.equal(sha(row.bytes), SOURCE_PINS[path], 'SOURCE_PIN');
   }
   const packageJson = JSON.parse(entries.get('package/package.json').bytes);
-  assert.deepEqual(packageJson.bin, { 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs' }, 'PACKAGE_BIN');
-  assert.deepEqual(packageJson.files, ['src', 'README.md', 'AUDIT_INPUTS.md']);
+  assert.deepEqual(packageJson.bin, { 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs', 'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs' }, 'PACKAGE_BIN');
+  assert.deepEqual(packageJson.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md']);
   assert.equal(packageJson.name, 'canli-fundamentals-mcp');
   assert.equal(packageJson.version, '0.5.0');
   assert.deepEqual(packageJson.dependencies, { '@modelcontextprotocol/server': '2.1.0', zod: '4.6.5' });
   assert.match(entries.get('package/src/audit-inputs-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
+  assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   return packageJson;
 }
 const absent = pid => {
@@ -335,6 +341,7 @@ test('audit package: raw archive modes stay distinct from explicit owned bin-lin
   assert.deepEqual(packed.installedBins, [
     { name: 'canli-fundamentals-mcp', path: 'src/server.mjs', raw_tar_mode: 0o644, installed_fixture_mode: 0o755, owned_fixture_only: true },
     { name: 'canli-fundamentals-audit', path: 'src/audit-inputs-stdio.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
+    { name: 'canli-expert-submission-audit', path: 'src/expert-submission-stdio.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
   ]);
   for (const row of packed.installedBins) {
     const path = 'package/' + row.path;
