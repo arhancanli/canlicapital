@@ -92,25 +92,20 @@
 </header>
 <main id="content" tabindex="-1">
   <section class="dev-hero">
-    <p class="dev-kicker"><span>Public API</span><span aria-hidden="true"> &middot; </span><span>v1</span></p>
-    <h1>Validate your backtest.<br />Keep the receipt.</h1>
-    <p class="dev-lead">Bring your own returns. Check selection bias, backtest overfitting,
-      portfolio breadth, and paper evidence with the tools we use in our own research.
-      Get a reproducible receipt, with the inputs, calculation, and limitations together.</p>
-    <p class="dev-hero-note">Free key. No signup or email. Python, JavaScript, and curl examples.
-      Public record snapshots are also available without a key.</p>
-    <div class="dev-downloads">
-      <a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a>
-      <a class="dev-button" href="#ai-assistant">Connect the MCP server</a>
-      <a class="dev-button" href="/mcp-servers">Compare the finance MCP servers</a>
-      <a class="dev-button" href="https://github.com/arhancanli/alphac" rel="noreferrer">Explore ALPHAC on GitHub</a>
-      <a class="dev-button" href="#validation">Explore the validators</a>
-      <a class="dev-button" href="/api/v1">Discovery document</a>
-      <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>
-      <a class="dev-button" href="/standards/paper-evidence">The record standard</a>
-    </div>
-    <p class="dev-hero-note">Prefer a browser? <a href="/tools">Try the free calculators.</a>
-      Every response includes its scope and limits under our <a href="/open">honesty pledge</a>.</p>
+    <p class="dev-kicker"><span>Free</span><span aria-hidden="true"> &middot; </span><span>No signup or email</span></p>
+    <h1>Check a backtest.<br />Keep the receipt.</h1>
+    <p class="dev-lead">Send the returns your backtest produced and find out whether the result could be luck:
+      how much the Sharpe ratio shrinks once every version you tried is counted, how likely the backtest
+      is to be overfit, and how long a live record must run to prove it. Each answer comes with a
+      receipt anyone can recheck.</p>
+    <ol class="dev-paths" aria-label="Three ways to start">
+      <li class="dev-path"><span class="dev-path__tag">Fastest</span><h2>From an AI assistant</h2><p>Add the hosted server to Claude, Cursor or VS Code. Nothing to install.</p><pre class="dev-path__code"><code>claude mcp add --transport http canli https://canlicapital.com/mcp</code></pre><a href="#ai-assistant">Setup for every assistant ↘</a></li>
+      <li class="dev-path"><span class="dev-path__tag">Any language</span><h2>From your own code</h2><p>Get a free key, then call the API from Python, JavaScript or curl.</p><a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a></li>
+      <li class="dev-path"><span class="dev-path__tag">No code</span><h2>In the browser</h2><p>Type your numbers into the free calculators.</p><a href="/tools">Open the calculators ↗</a></li>
+    </ol>
+    <p class="dev-hero-links">Reference: <a href="#validation">Validators</a> &middot; <a href="/mcp-servers">All finance MCP servers</a> &middot; <a href="/api/v1/openapi">OpenAPI document</a> &middot; <a href="/api/v1">Discovery document</a> &middot; <a href="/standards/paper-evidence">Record standard</a> &middot; <a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">Source on GitHub</a> &middot; <a href="https://github.com/arhancanli/alphac" rel="noreferrer">ALPHAC engine</a></p>
+    <p class="dev-hero-note">Every response includes its scope and limits under our <a href="/open">honesty pledge</a>.
+      Public record snapshots need no key.</p>
   </section>
 
   <nav class="dev-page-index" aria-label="Developer guide sections"><a href="#quickstart">Get started</a><a href="#validation">Validators</a><a href="#quotas">Quotas</a><a href="#not-established">Result boundaries</a><a href="#ai-assistant">AI assistants</a></nav>
@@ -337,6 +332,11 @@ console.log(await response.json());</code></pre></div>
       receipt that records it, so the assistant never sees a number alone. It also reads the
       <a href="/companies">company reference</a>: one tool returns a company's SEC-reported
       financial history with each value's filing, unit and source hash.</p>
+    <p class="dev-note">It can also do the work before the check: backtest a rule over a whole grid
+      of settings and count every version it ran, stress the returns against crashes and stuck
+      positions, sum up a long price series in about a hundred words, and check a trading plan
+      against a broker's limits and market impact. These four compute on the server itself and
+      store nothing.</p>
     <div class="dev-downloads"><a class="dev-button dev-button--primary" href="cursor://anysphere.cursor-deeplink/mcp/install?name=canli-validation&amp;config=eyJ1cmwiOiJodHRwczovL2NhbmxpY2FwaXRhbC5jb20vbWNwIn0%3D">Add to Cursor</a><a class="dev-button" href="https://github.com/arhancanli/canli-validation-mcp/releases/latest/download/canli-validation.mcpb">Add to Claude Desktop</a></div>
     <p class="dev-note">Claude Desktop: open the downloaded <code>.mcpb</code> file to install. The API key field is optional; leave it empty and the <code>get_key</code> tool issues one for the session.</p>
     <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/blob/main/mcp/SECURITY.md" rel="noreferrer">Security and privacy</a>: what the server does on your machine, what the hosted endpoint does with your key, and what the API stores (a hash of your input, never the input).</p>
@@ -380,6 +380,9 @@ console.log(await response.json());</code></pre></div>
       <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Add canli-research-mcp to Claude Code"><code>claude mcp add canli-research -- npx -y canli-research-mcp</code></pre></div>
       <div class="dev-snippet"><p class="dev-snippet-label">Hosted, no install: https://canlicapital.com/mcp/research</p><pre class="dev-code" tabindex="0" aria-label="Hosted canli-research-mcp endpoint"><code>claude mcp add --transport http canli-research https://canlicapital.com/mcp/research</code></pre></div>
       <p class="dev-note"><a href="https://www.npmjs.com/package/canli-research-mcp" rel="noreferrer">npm</a>, <a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-research-mcp" rel="noreferrer">MCP Registry</a>, <a href="https://github.com/arhancanli/canlicapital/tree/main/mcp-research" rel="noreferrer">Source</a>.</p></article>
+    <article class="dev-endpoint" id="mcp-execution"><h3><a href="/mcp-servers/execution">Local paper execution workflow</a></h3>
+      <p>The private, Unreleased execution source has local sizing, pre-trade cost and limit checks, shortfall measurements and signed paper journals. Supply the scenario and explicitly enable journal writes in a prepared private home. It connects to no broker and places no orders.</p>
+      <p class="dev-note"><a href="/mcp-servers/execution">Read the source-backed workflow and local setup</a>. Hosted release contracts above remain separate.</p></article>
   </section>
 
   <section class="dev-section">

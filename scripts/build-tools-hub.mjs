@@ -35,49 +35,50 @@ const esc = (v) =>
 
 // title: the query-language name each tool now renders as its own <h1>.
 // house: the original name, kept visible as a subtitle where one exists.
-// sentence: what it computes, in one sentence, matching the tool's own meta description.
+// sentence: what it answers for a visitor, in one plain sentence (each tool's own page keeps its
+// technical meta description).
 const TOOLS = [
   {
     slug: "deflated-sharpe",
     title: "Deflated Sharpe ratio calculator (PSR and DSR)",
     house: "Deflated Sharpe calculator",
-    sentence: "Calculates the Probabilistic and Deflated Sharpe Ratio, exposing trial count, dispersion, sample length and non-normal return assumptions.",
+    sentence: "Is your Sharpe ratio still good once you count how many versions you tried? Gives the probabilistic and deflated Sharpe ratios.",
   },
   {
     slug: "backtest-overfitting",
     title: "Probability of backtest overfitting calculator",
     house: null,
-    sentence: "Runs Combinatorially Symmetric Cross-Validation on your own matrix of variant returns, the same core the validation API imports.",
+    sentence: "Paste every version's returns to see how likely the best one is overfit, with the same method the API uses (CSCV).",
   },
   {
     slug: "selection-risk",
     title: "Backtest selection risk simulator",
     house: "Selection Risk Lab",
-    sentence: "Searches a series with provably no edge and deflates your best result once the search is counted against it.",
+    sentence: "Search a series with no edge at all, watch a good-looking result appear by chance, then see it deflated.",
   },
   {
     slug: "execution",
     title: "Execution assumptions cost calculator",
     house: "Execution Reality Lab",
-    sentence: "Prices one strategy under six fill, delay and impact assumptions, and measures which are costs and which are re-timings.",
+    sentence: "Price one strategy under six fill, delay and market-impact assumptions, and see which ones cost you on every trade.",
   },
   {
     slug: "breadth",
     title: "Portfolio breadth calculator",
     house: "Breadth Lab",
-    sentence: "Computes how much a book (the set of sleeves run together) of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.",
+    sentence: "How much is a portfolio of several strategies worth, and how far can adding more help once they move together?",
   },
   {
     slug: "trial-accounting",
     title: "Trial accounting explorer",
     house: "Trial accounting",
-    sentence: "Reconstructs the public search denominator: every hypothesis identity, legacy and prospective, that a deflated Sharpe here is corrected against.",
+    sentence: "Every idea this project has tested: the count our own deflated Sharpe is corrected for.",
   },
   {
     slug: "evidence-chain",
     title: "Signed evidence chain verifier",
     house: "Evidence chain",
-    sentence: "Recomputes the signed, append-only hash chain behind this record in your browser, so you do not have to trust the website that shows it to you.",
+    sentence: "Recheck the signed record behind this site in your browser, so you do not have to trust the site.",
   },
 ];
 
@@ -149,11 +150,8 @@ ${renderProductShellHeader({ active: "" })}
   <section class="lab-hero" aria-labelledby="tools-title">
     <p class="lab-kicker"><span>Open research instruments</span><span>${TOOLS.length} calculators</span></p>
     <h1 id="tools-title">Every calculator, in one place.</h1>
-    <p class="lab-lead">Canli Capital, the research house that publishes ALPHAC, built each of these.
-      Every one runs entirely in your browser, is free, requires no account or key, and is built
-      from the same source-bound arithmetic this project's own published record is held to. Most
-      started life under a house name; each now names itself for what it computes, and keeps the
-      house name as a subtitle where one exists.</p>
+    <p class="lab-lead">Free, no account, and everything runs in your browser. Each one uses the same
+      code our own published record is held to.</p>
   </section>
 
   <section class="tools-grid" id="tools-list" aria-label="All calculators">
