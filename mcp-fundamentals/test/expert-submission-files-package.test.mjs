@@ -33,6 +33,7 @@ const clone = value => JSON.parse(JSON.stringify(value));
 const choices = { question_clear: ['yes', 'no'], answer_matches_filing: ['yes', 'no', 'cannot_find'], citation_correct: ['yes', 'no'] };
 let TMP, packed, main, restore = () => {}, suppliedFixtureBytes = 0, commandEntries = 0, packEntries = 0, denied = 0;
 const nativeSpawn = cp.spawn.bind(cp);
+const nativeDiagnosticWrite = fs.writeSync.bind(fs);
 const closures = [];
 const SOURCE_PINS = Object.freeze({"src/audit-inputs-client.mjs": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7", "src/audit-inputs-core.mjs": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059", "src/audit-inputs-stdio.mjs": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0", "src/canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b", "src/expert-agreement.mjs": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef", "src/expert-intake-core.mjs": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545", "src/expert-submission-audit-core.mjs": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3", "src/expert-submission-files.mjs": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d", "src/expert-submission-stdio.mjs": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208", "src/filing-facts-packet.mjs": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8", "src/server.mjs": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"});
 const BIN = Object.freeze({ 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs',
@@ -44,9 +45,30 @@ const MODES = Object.freeze(Object.fromEntries(MEMBERS.map(name => [name, Object
 const absent = pid => { assert.ok(Number.isSafeInteger(pid) && pid > 1); try { process.kill(pid, 0); return false; } catch (error) { if (error.code === 'ESRCH') return true; throw error; } };
 const bounded = (promise, ms) => { let timer; return Promise.race([Promise.resolve(promise), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('OWNED_BOUND')), ms); })]).finally(() => clearTimeout(timer)); };
 
+function diagnosticNow(kind, record, write = nativeDiagnosticWrite) {
+  const json = JSON.stringify(record);
+  assert.ok(Buffer.byteLength(json) <= 384 * 1024, 'RAW_DIAGNOSTIC_BOUND');
+  assert.ok(['RAW', 'RAW_MODES', 'ADMITTED'].includes(kind));
+  const frame = Buffer.from('# CANLI_EXPERT_FILES_PACKAGE_' + kind + ' ' + json + '\n');
+  // The captured native stdout writer completes before a later hook can refuse or clean TMP.
+  for (let offset = 0; offset < frame.length;) {
+    const wrote = write(1, frame, offset, frame.length - offset);
+    assert.ok(Number.isSafeInteger(wrote) && wrote > 0 && wrote <= frame.length - offset, 'RAW_DIAGNOSTIC_WRITE');
+    offset += wrote;
+  }
+  return frame.length;
+}
+
 function parentGuard() {
   const changes = [], ownedFDs = new Set([1, 2]);
-  const inside = p => typeof p === 'string' && (path.resolve(p) === TMP || path.resolve(p).startsWith(TMP + path.sep));
+  const inside = p => {
+    if (Buffer.isBuffer(p)) {
+      const raw = p;
+      try { p = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(p); } catch { return false; }
+      if (!Buffer.from(p, 'utf8').equals(raw)) return false;
+    }
+    return typeof p === 'string' && (path.resolve(p) === TMP || path.resolve(p).startsWith(TMP + path.sep));
+  };
   const deny = () => { denied++; const error = new Error('NATIVE_DENIAL'); error.code = 'NATIVE_DENIAL'; throw error; };
   const set = (object, name, fn) => { changes.push([object, name, object[name]]); object[name] = fn; };
   const writable = f => typeof f === 'number' ? !!(f & (fs.constants.O_WRONLY | fs.constants.O_RDWR | fs.constants.O_CREAT | fs.constants.O_TRUNC | fs.constants.O_APPEND)) : f !== undefined && !['r', 'rs'].includes(f);
@@ -75,7 +97,7 @@ function childGuard() { return `
 import fs from 'node:fs'; import fsp from 'node:fs/promises'; import path from 'node:path'; import cp from 'node:child_process';
 import http from 'node:http'; import https from 'node:https'; import net from 'node:net'; import tls from 'node:tls'; import dgram from 'node:dgram'; import dns from 'node:dns'; import {syncBuiltinESMExports} from 'node:module';
 const own=${JSON.stringify(TMP)}, ownedFDs=new Set([1,2]); let count=0,controls=true;
-const inside=p=>typeof p==='string'&&(path.resolve(p)===own||path.resolve(p).startsWith(own+path.sep));
+const inside=p=>{if(Buffer.isBuffer(p)){const raw=p;try{p=new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(p);}catch{return false;}if(!Buffer.from(p,'utf8').equals(raw))return false;}return typeof p==='string'&&(path.resolve(p)===own||path.resolve(p).startsWith(own+path.sep));};
 const deny=()=>{count++;if(!controls)process.stderr.write('DENIED_OPERATION\\n');const e=new Error('NATIVE_DENIAL');e.code='NATIVE_DENIAL';throw e;};
 globalThis.fetch=deny;
 for(const[o,ns]of[[http,['request','get']],[https,['request','get']],[net,['connect','createConnection']],[tls,['connect']],[dgram,['createSocket']],[dns,['lookup','resolve','resolve4','resolve6']]])for(const n of ns)o[n]=deny;
@@ -181,10 +203,10 @@ before(async t => {
     const artifact=await packOnce();
     // Save the complete bounded compressed raw diagnostic BEFORE any fallible gzip/TAR admission.
     const raw={admission:'RAW_CAPTURED_NOT_ADMITTED',compressed_bytes:artifact.compressed.length,compressed_sha256:hash(artifact.compressed),original_gzip_base64:artifact.compressed.toString('base64')};
-    assert.ok(Buffer.byteLength(JSON.stringify(raw))<=384*1024);t.diagnostic('CANLI_EXPERT_FILES_PACKAGE_RAW '+JSON.stringify(raw));
+    diagnosticNow('RAW', raw);
     const entries=tarEntries(artifact.compressed);
     const rawModes={...raw,files:[...entries].map(([name,row])=>({path:name,mode:row.mode,bytes:row.bytes.length,sha256:hash(row.bytes)}))};
-    assert.ok(Buffer.byteLength(JSON.stringify(rawModes))<=384*1024);t.diagnostic('CANLI_EXPERT_FILES_PACKAGE_RAW_MODES '+JSON.stringify(rawModes));
+    diagnosticNow('RAW_MODES', rawModes);
     const metadata=admit(entries);
     const consumer=path.join(TMP,'consumer');fs.mkdirSync(consumer,{mode:0o700});const nodeModules=path.join(consumer,'node_modules');fs.mkdirSync(nodeModules);
     const root=path.join(nodeModules,metadata.name);fs.mkdirSync(root);
@@ -201,7 +223,7 @@ before(async t => {
     assert.match(guide,new RegExp(hash(s.rawGold))); assert.equal(s.intakeSettings.packet_sha256,hash(packetContent(s.gold)));
     packed={...artifact,entries,metadata,raw,root,consumer,guard,binRoot,bins,guide,s};
     const admitted={admission:'ADMITTED',compressed_sha256:raw.compressed_sha256,files:[...entries].map(([name,row])=>({path:name,mode:row.mode,bytes:row.bytes.length,sha256:hash(row.bytes)})),bins,SDK_entries:0,external_dependency_links:0,repository_runtime_links:0};
-    t.diagnostic('CANLI_EXPERT_FILES_PACKAGE_ADMITTED '+JSON.stringify(admitted));completed=true;
+    diagnosticNow('ADMITTED', admitted);completed=true;
   } finally { if(!completed) {restore();restore=()=>{};if(TMP)fs.rmSync(TMP,{recursive:true,force:true});} }
 },{timeout:25000});
 after(() => {
@@ -465,6 +487,16 @@ test('expert files package: one offline artifact admits exact18 bodies five bins
   assert.equal(packed.raw.admission,'RAW_CAPTURED_NOT_ADMITTED');assert.equal(packed.raw.compressed_sha256,hash(packed.compressed));
   for(const flag of ['--offline','--ignore-scripts','--update-notifier=false','--audit=false','--fund=false'])assert.ok(packed.args.includes(flag));
   assert.equal(packed.bins[0].raw_mode,0o644);assert.ok(packed.bins.every(row=>row.fixture_mode===0o755&&row.owned_fixture_only));
+  const gzip = tinyTar([{name:'package/a',bytes:Buffer.from('synthetic raw capture')}]);
+  const raw = {admission:'RAW_CAPTURED_NOT_ADMITTED',compressed_bytes:gzip.length,compressed_sha256:hash(gzip),original_gzip_base64:gzip.toString('base64')};
+  const chunks = []; let writes = 0;
+  const sink = (fd, frame, offset, length) => {assert.equal(fd,1);writes++;const n=Math.min(length,31);chunks.push(Buffer.from(frame.subarray(offset,offset+n)));return n;};
+  assert.throws(() => {diagnosticNow('RAW',raw,sink);throw new Error('SIMULATED_BEFORE_HOOK_REFUSAL');},/SIMULATED_BEFORE_HOOK_REFUSAL/);
+  assert.ok(writes>1);const saved=Buffer.concat(chunks).toString('utf8');
+  assert.equal(saved,'# CANLI_EXPERT_FILES_PACKAGE_RAW '+JSON.stringify(raw)+'\n');
+  assert.deepEqual(Buffer.from(JSON.parse(saved.slice('# CANLI_EXPERT_FILES_PACKAGE_RAW '.length)).original_gzip_base64,'base64'),gzip);
+  let refusedWrites=0;assert.throws(() => diagnosticNow('RAW',{over:'x'.repeat(384*1024)},() => {refusedWrites++;return 1;}),/RAW_DIAGNOSTIC_BOUND/);assert.equal(refusedWrites,0);
+  let stopped=0;assert.throws(() => diagnosticNow('RAW',raw,() => {stopped++;return 0;}),/RAW_DIAGNOSTIC_WRITE/);assert.equal(stopped,1);
 });
 test('expert files package: only shebang and one literal core relocation invert the entire delivered CLI', () => {
   let source=packed.entries.get('package/src/expert-submission-files.mjs').bytes.toString();assert.ok(source.startsWith('#!/usr/bin/env node\n'));source=source.slice(20);
@@ -504,7 +536,7 @@ test('expert files package: checksum-valid highbit octal path duplicate and link
   for(const offset of [0,345,100,124,156])assert.throws(()=>tarEntries(tinyTar([{name:'package/a',bytes:Buffer.from('x')}],h=>{h[offset]|=128;})),/TAR_ASCII/);
   const sum=inflateRawSync(good.subarray(10));sum[148]|=128;assert.throws(()=>tarEntries(gzipSync(sum)),/TAR_ASCII/);
   assert.throws(()=>tarEntries(tinyTar([{name:'package/a',bytes:Buffer.from('x')}],h=>{h[124]=57;})),/TAR_OCTAL/);
-  const crc=inflateRawSync(good.subarray(10));crc[0]^=1;assert.throws(()=>tarEntries(gzipSync(crc)),/TAR_CHECKSUM/);
+  const crc=inflateRawSync(good.subarray(10));crc[8]=98;assert.throws(()=>tarEntries(gzipSync(crc)),/TAR_CHECKSUM/);
   assert.throws(()=>tarEntries(tinyTar([{name:'package/../private',bytes:Buffer.alloc(0)}])),/TAR_PATH/);
   assert.throws(()=>tarEntries(tinyTar([{name:'package/a',bytes:Buffer.alloc(0)},{name:'package/a',bytes:Buffer.alloc(0)}])),/TAR_DUPLICATE/);
   assert.throws(()=>tarEntries(tinyTar([{name:'package/a',bytes:Buffer.alloc(0)}],h=>{h[156]=50;})),/TAR_REGULAR/);
@@ -518,6 +550,11 @@ test('expert files package: marked guide inputs bind raw gold separately and exp
 });
 test('expert files package: caught network foreign-write and unknown-child controls never delegate and guards stay armed', () => {
   const before=denied;for(const fn of [()=>fetch('https://invalid.invalid'),()=>fs.writeFileSync('/unallocated-expert-files-native-control','x'),()=>cp.spawn('unallocated',[])])assert.throws(fn,e=>e.code==='NATIVE_DENIAL');assert.equal(denied,before+3);
+  for (const name of [Buffer.from('/unallocated-expert-files-buffer-control'), Buffer.from([0xff]), Buffer.from('\ufeff' + path.join(TMP, 'foreign-bom-buffer-control'))]) assert.throws(() => fs.writeFileSync(name, 'x'), e => e.code === 'NATIVE_DENIAL');
+  assert.equal(denied, before + 6);
+  const own = Buffer.from(path.join(TMP, 'owned-buffer-control'));
+  fs.writeFileSync(own, 'owned synthetic cleanup path', { flag: 'wx', mode: 0o600 });
+  fs.unlinkSync(own); assert.equal(denied, before + 6);
 });
 test('expert files package: command entry1 direct packaged guide saves the byteexact full unchanged core report with known owned exit', {timeout:15000}, async t => {const result=await actualCommand(t,'direct');assert.equal(commandEntries,1);assert.equal(JSON.parse(result.stdout).selected_n,3);});
 test('expert files package: command entry2 installed-style absolute owned symlink produces exact direct report parity', {timeout:15000}, async t => {const result=await actualCommand(t,'alias');assert.equal(commandEntries,2);assert.equal(JSON.parse(result.stdout).syntactic_only,true);});
