@@ -6,7 +6,8 @@
   "type": "module",
   "license": "MIT",
   "bin": {
-    "canli-execution-mcp": "src/server.mjs"
+    "canli-execution-mcp": "src/server.mjs",
+    "canli-paper-journal": "src/paper-journal.mjs"
   },
   "engines": {
     "node": ">=20.10"
@@ -14,17 +15,17 @@
   "files": [
     "src",
     "README.md",
-    "JOURNAL_STORAGE.md"
+    "JOURNAL_STORAGE.md",
+    "EXAMPLES.md",
+    "PAPER_JOURNAL.md"
   ],
   "scripts": {
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.1.0",
+    "@modelcontextprotocol/client": "2.1.0",
     "zod": "4.6.5"
-  },
-  "devDependencies": {
-    "@modelcontextprotocol/client": "2.1.0"
   },
   "mcpName": "io.github.arhancanli/canli-execution-mcp",
   "repository": {

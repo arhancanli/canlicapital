@@ -35,6 +35,14 @@ home and key. The default performs checks without journal writes. The example
 has a finite call/deadline policy and stops on uncertainty without resubmitting.
 It uses supplied synthetic fills and is an unreleased repository example.
 
+The private artifact now includes the opt-in `canli-paper-journal --home
+/absolute/private/example-home` consumer and [PAPER_JOURNAL.md](./PAPER_JOURNAL.md).
+Its default makes two local checks without creating a key or journal; explicit
+`--write` uses only the same supplied synthetic scenario and a separately prepared
+private home/key. The package-local workflow has bounded calls, native frames and
+observed same-child closure. It remains private and unreleased. New artifact and
+lifecycle fixtures are written; exact remote evidence and release gates are separate.
+
 ## What `measure_shortfall` computes
 
 All prices are USD; each fee is the USD amount charged for that fill (a rebate can be negative).

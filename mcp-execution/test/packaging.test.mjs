@@ -22,9 +22,9 @@ test("src/core is a byte-for-byte mirror of the repository's cores", { skip: !in
 });
 
 test("two exactly pinned dependencies and no lifecycle scripts", () => {
-  assert.deepEqual(pkg.dependencies, { "@modelcontextprotocol/server": "2.1.0", zod: "4.6.5" });
+  assert.deepEqual(pkg.dependencies, { "@modelcontextprotocol/server": "2.1.0", "@modelcontextprotocol/client": "2.1.0", zod: "4.6.5" });
   for (const hook of ["preinstall", "install", "postinstall", "prepare", "prepublish", "prepublishOnly", "prepack", "postpack"]) assert.equal(pkg.scripts?.[hook], undefined, hook);
-  assert.deepEqual(pkg.files, ["src", "README.md", "JOURNAL_STORAGE.md"]);
+  assert.deepEqual(pkg.files, ["src", "README.md", "JOURNAL_STORAGE.md", "EXAMPLES.md", "PAPER_JOURNAL.md"]);
 });
 
 test("no trading host, key variable or base-URL override appears in any shipped file", () => {
