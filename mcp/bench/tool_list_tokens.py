@@ -20,13 +20,13 @@ ENC = tiktoken.get_encoding("o200k_base")
 TOOLSETS = ["all", "validate", "receipts", "company", "status", "lab"]
 
 
-def tool_list(toolsets):
+def tool_list(toolsets, key=""):
     messages = [
         {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "count", "version": "0"}}},
         {"jsonrpc": "2.0", "method": "notifications/initialized"},
         {"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
     ]
-    env = {**os.environ, "CANLI_TOOLSETS": toolsets, "CANLI_KEY": ""}
+    env = {**os.environ, "CANLI_TOOLSETS": toolsets, "CANLI_KEY": key}
     proc = subprocess.Popen(["node", str(SERVER)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, env=env)
     for m in messages:
         proc.stdin.write(json.dumps(m) + "\n")
@@ -48,7 +48,8 @@ def tool_list(toolsets):
 full = len(ENC.encode(json.dumps(tool_list("all"), separators=(",", ":"))))
 print("| CANLI_TOOLSETS | tools | tokens per turn | of all |")
 print("|---|---|---|---|")
-for name in TOOLSETS:
-    tools = tool_list(name)
+# The default (CANLI_TOOLSETS unset) is every toolset but company; get_key is listed only without a key.
+for label, name, key in [("(default)", "", ""), ("(default, with CANLI_KEY)", "", "k" * 24)] + [(f"`{t}`", t, "") for t in TOOLSETS]:
+    tools = tool_list(name, key)
     n = len(ENC.encode(json.dumps(tools, separators=(",", ":"))))
-    print(f"| `{name}` | {len(tools)} | {n:,} | {100 * n / full:.0f}% |")
+    print(f"| {label} | {len(tools)} | {n:,} | {100 * n / full:.0f}% |")

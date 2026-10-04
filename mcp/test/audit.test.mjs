@@ -110,13 +110,13 @@ test("API: three validations in order, the track record sent the derived statist
     "/api/v1/validate/deflated-sharpe": { status: 200, body: apiEnvelope("dsr", { derived_inputs: DERIVED, plain_reading: "R1" }, { id: "a".repeat(24) }) },
     "/api/v1/validate/track-record": { status: 200, body: apiEnvelope("trl", { plain_reading: "R2" }, { id: "b".repeat(24) }) },
     "/api/v1/validate/overfitting": { status: 200, body: apiEnvelope("pbo", { plain_reading: "R3" }, { id: "c".repeat(24) }) },
-    "/api/v1/validate/reality-check": { status: 200, body: apiEnvelope("rc", { spa: { p_value: 0.2, p_value_lower: 0.1, p_value_upper: 0.3, monte_carlo_se: 0.009 }, plain_reading: "R4" }, { id: "d".repeat(24) }) },
+    "/api/v1/validate/reality-check": { status: 200, body: apiEnvelope("rc", { spa: { p_value: 0.2, p_value_lower: 0.1, p_value_upper: 0.3, monte_carlo_se: 0.009 }, reality_check: { p_value: 0.25 }, plain_reading: "R4" }, { id: "d".repeat(24) }) },
   });
   const session = createSession({ base: "https://example.test", fetchImpl, envKey: "k-test", local: false });
   const audit = parsed(await toolAuditBacktest(session, { ...BASE, variants: VARIANTS, confidence: 0.9 }));
   assert.deepEqual(fetchImpl.calls.map((c) => c.path), ["/api/v1/validate/deflated-sharpe", "/api/v1/validate/track-record", "/api/v1/validate/overfitting", "/api/v1/validate/reality-check"]);
   assert.deepEqual(fetchImpl.calls[3].body, { matrix: VARIANTS, reps: 2000, seed: 42 });
-  assert.equal(audit.headline.p, 0.2);
+  assert.equal(audit.headline.p, { reality_check: 0.25, spa_consistent: 0.2, spa_upper: 0.3 }[NULL_ZOO_V1.with_variants.test]);
   assert.equal(audit.headline.receipt.id, "d".repeat(24));
   assert.ok(fetchImpl.calls.every((c) => c.auth === "Bearer k-test"));
   assert.deepEqual(fetchImpl.calls[1].body, {

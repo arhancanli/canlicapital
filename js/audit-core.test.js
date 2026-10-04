@@ -135,7 +135,9 @@ test("fixNext: at most five steps, each with a known id, the most decisive first
   assert.equal(steps[0].id, "not_distinguishable_from_luck");
   for (const s of steps) assert.ok(FIX_IDS.includes(s.id) && s.why && s.next && Object.keys(s).length === 3, JSON.stringify(s));
   const clean = fixNext({ headline: { test: "x", p: 0.001, level: 0.05 }, shape: { lag1_autocorrelation: 0 }, interval: { intervals: { "0.95": [0.5, 2] } }, search: { effective_trials: { used: 3 } }, declaredTrials: 3 });
-  assert.equal(clean.length, 0, "nothing to fix gives no steps");
+  assert.deepEqual(clean.map((s) => s.id), ["stress_and_capacity_next"], "nothing to fix: the next step is stress and capacity");
+  const unclear = fixNext({ shape: { lag1_autocorrelation: 0 }, interval: { intervals: { "0.95": [0.5, 2] } }, search: { effective_trials: { used: 3 } }, declaredTrials: 3 });
+  assert.equal(unclear.length, 0, "no headline and nothing found: no steps");
 });
 
 test("the audit core matches statsmodels and numpy on the fixed reference cases", async () => {

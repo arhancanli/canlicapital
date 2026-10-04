@@ -81,10 +81,10 @@ export function evaluate(run, prereg) {
   };
 }
 
-export function sizesModule(evaluation) {
+export function sizesModule(evaluation, evaluationPath = "config/research/null-zoo-v1-evaluation.json") {
   const pick = (h) => (h.test ? { test: h.test, size_by_family: h.size_by_family, worst: h.worst, meets_every_bar: h.meets_every_bar, power_iid_skill_2: h.power_iid_skill_2 } : null);
   const body = {
-    source: `config/research/null-zoo-v1-evaluation.json (Null Zoo v1, ${evaluation.run.reps_per_cell.toLocaleString("en-US")} searches per cell; bar pre-registered in config/research/null-zoo-v1-prereg.json)`,
+    source: `https://github.com/arhancanli/canlicapital/blob/main/${evaluationPath} (${evaluation.run.reps_per_cell.toLocaleString("en-US")} searches per cell; bar pre-registered in ${evaluation.prereg ?? "config/research/null-zoo-v1-prereg.json"})`,
     level: 0.05,
     with_variants: pick(evaluation.headline.with_variants),
     single_series: pick(evaluation.headline.single_series),
@@ -103,8 +103,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const prereg = JSON.parse(readFileSync(resolve(ROOT, preregPath ?? "config/research/null-zoo-v1-prereg.json"), "utf8"));
   const evaluation = evaluate(run, prereg);
   evaluation.prereg = preregPath ?? "config/research/null-zoo-v1-prereg.json";
-  writeFileSync(resolve(ROOT, evalOut ?? "config/research/null-zoo-v1-evaluation.json"), `${JSON.stringify(evaluation, null, 1)}\n`);
-  writeFileSync(resolve(ROOT, sizesOut ?? "js/null-zoo-v1-sizes.js"), sizesModule(evaluation));
+  const evaluationPath = evalOut ?? "config/research/null-zoo-v1-evaluation.json";
+  writeFileSync(resolve(ROOT, evaluationPath), `${JSON.stringify(evaluation, null, 1)}\n`);
+  writeFileSync(resolve(ROOT, sizesOut ?? "js/null-zoo-v1-sizes.js"), sizesModule(evaluation, evaluationPath));
   const fmt = (x) => (x === null ? "  -  " : x.toFixed(3));
   const fams = run.families.names;
   console.log(`ceiling (oracle) power on iid_normal at skill 2: ${fmt(evaluation.ceiling.power_iid_skill_2)}`);

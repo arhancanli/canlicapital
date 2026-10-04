@@ -294,6 +294,7 @@ export function annualizeDecay(decay, periodsPerYear) {
 export const FIX_IDS = Object.freeze([
   "count_every_variant", "declared_trials_below_counted", "not_distinguishable_from_luck", "interval_includes_zero",
   "autocorrelated_returns", "track_record_too_short", "overfit_selection", "expected_live_sharpe_below_zero",
+  "stress_and_capacity_next",
 ]);
 
 /**
@@ -322,5 +323,7 @@ export function fixNext(context) {
   if (overfitting && overfitting.pbo >= 0.5) add("overfit_selection", `Overfitting probability ${f2(overfitting.pbo)}.`, "Shrink the grid or fix the selection rule in advance.");
   if (decay && decay.oos_sharpe.median <= 0) add("expected_live_sharpe_below_zero", `Median out-of-sample Sharpe of the pick ${f2(decay.oos_sharpe.median)}.`, "Expect no live edge from this selection.");
   if (trackRecord && trackRecord.short) add("track_record_too_short", trackRecord.finding, "Keep it running before scaling (validate_track_record).");
+  // Nothing to fix and luck rejected: the next hurdles are bad markets and a real broker.
+  if (!steps.length && headline && headline.p <= headline.level) add("stress_and_capacity_next", `p ${headline.p.toFixed(3)} <= ${headline.level}.`, "Run stress_test and check_feasibility before trading it.");
   return steps.slice(0, 5);
 }

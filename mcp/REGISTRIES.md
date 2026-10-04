@@ -109,6 +109,11 @@ trusted publisher only to a package that exists, so its 0.1.0 is published to np
 npmjs.com (workflow `mcp-fundamentals-publish.yml`, environment `mcp-fundamentals-release`) lets the
 tag publish every later version, and the `fundamentals-mcp-v0.1.0` tag publishes the registry entry.
 
+Next release, not yet published: `canli-validation-mcp@0.12.0` (audit_backtest opens with a
+headline test whose false-positive rate Null Zoo measured before it was chosen, adds fix_next,
+counted trials and out-of-sample decay; a smaller default tool list). It publishes from
+`mcp-publish.yml` on the tag `mcp-v0.12.0`.
+
 ## Official registry (registry.modelcontextprotocol.io)
 
 The manifest is `mcp/server.json`. Its top-level and npm package versions must match

@@ -181,12 +181,27 @@ name the day a drawdown began.
 
 ## Auditing a backtest in one call
 
-`audit_backtest` takes one strategy's return series, the number of variants tried and their Sharpe
-dispersion, and optionally every variant's returns. It runs `validate_deflated_sharpe` on the
-series, then `validate_track_record` on the Sharpe, skew and kurtosis that check derived, then,
-with `variants`, `validate_overfitting`. Each check is exactly what its own tool returns, with its
-own receipt; the boundary sentences they share are stated once. A check that refuses (a Sharpe
-that cannot beat the benchmark has no minimum track record) is reported as that check's error.
+`audit_backtest` takes one strategy's return series and, ideally, every variant's returns
+(`variants` or `variants_file`, the dropped ones too); without them, the number of variants tried
+and their Sharpe spread. The result opens with:
+
+- `headline`: one test chosen because its false-positive rate was measured before anyone looked at
+  your numbers. Null Zoo v1 (`scripts/research/null-zoo/v1/` in the repository) drew hundreds of
+  thousands of simulated searches from nine return shapes with known ground truth; the bar and the
+  rule that picks the test were committed before the run. With variants the headline comes from
+  the data-snooping tests (`validate_reality_check`, with its receipt); without, from luck trials
+  with Lo's autocorrelation correction. Its sentence quotes the measured false-positive rate for
+  returns shaped like yours, and the worst across the nine shapes.
+- `fix_next`: at most five next steps, each `{id, why, next}` with a stable id.
+- `computed`: Lo's adjusted Sharpe, a stationary-bootstrap 95% interval for the Sharpe, the
+  haircut Sharpe, the minimum backtest length and, with variants, how many independent trials
+  they count as (Li and Ji) and the selected variant's out-of-sample decay.
+
+Then the checks: `validate_deflated_sharpe` on the series (an estimate), `validate_track_record`
+on the Sharpe, skew and kurtosis that check derived and, with variants, `validate_overfitting`.
+Each is exactly what its own tool returns, with its own receipt; the deflated Sharpe runs with the
+larger of the declared and counted trials and Sharpe spread, so a search cannot be made to look
+smaller than it was. A check that refuses or cannot be reached is reported as that check's error.
 The audit adds no grade of its own. Through the API it uses one validation per check.
 
 When the server runs on your machine, `returns_file` and `variants_file` take the path of the
@@ -416,11 +431,13 @@ tokenizers give different absolute counts), in the shape an OpenAI-style client 
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| `all` | 19 | 5,946 | 100% |
-| `validate` | 11 | 3,685 | 62% |
-| `receipts` | 2 | 312 | 5% |
+| (default) | 17 | 5,581 | 95% |
+| (default, with CANLI_KEY) | 16 | 5,445 | 93% |
+| `all` | 18 | 5,852 | 100% |
+| `validate` | 11 | 3,708 | 63% |
+| `receipts` | 1 | 195 | 3% |
 | `company` | 1 | 273 | 5% |
-| `status` | 1 | 89 | 1% |
+| `status` | 1 | 89 | 2% |
 | `lab` | 4 | 1,595 | 27% |
 
 Providers cache a tool list that is identical from turn to turn and bill the cached part at a
