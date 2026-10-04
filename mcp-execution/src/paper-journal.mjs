@@ -509,6 +509,8 @@ export async function runPaperJournalStdio({ home, write = false, scenario = SYN
     const originalStart = transport.start.bind(transport); let writer;
     transport.start = () => {
       scope.guard(); requireThat(!closed, 'STDIO_CLOSED'); const pending = originalStart();
+      // Admission can throw before returning pending; the observer never replaces its SDK outcome.
+      Promise.resolve(pending).then(() => undefined, () => undefined).catch(() => undefined);
       // Exact locked2.1.0 object is retained before its close handler clears _process.
       child = transport._process; requireThat(child && child.stdin && typeof child.once === 'function', 'STDIO_CHILD_UNKNOWN');
       const born = () => { birth = Number.isSafeInteger(child.pid) && child.pid > 0; pid = birth ? child.pid : null; };

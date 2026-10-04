@@ -49,7 +49,7 @@ const SOURCE_PINS = Object.freeze({
   "package/src/journal.mjs": "72829724fd58fb8d6c7af8dc21fde02a0f97b68a57eedd606f5ff92826957619",
   "package/src/local-input.mjs": "fafeb03647cd04897fb03cf637186a91c91c9da1186414fd167bcfe9d12ad825",
   "package/src/measure-shortfall.mjs": "74cc85b67a4c0b7a685e81979097c345f1b21fc41c2755b2a65a0303626dc9a2",
-  "package/src/paper-journal.mjs": "357051ad1f6b9faf89dbca841f85a85b9f36f42ce7b0c2c3470d139ecee7dab8",
+  "package/src/paper-journal.mjs": "12d8d1c06bf8d65f9f122e0afbde85a483c62d88517dc9d0ff5f785cba660098",
   "package/src/server.mjs": "4cd48c1dc40098ac049f45f3951322e3b63118605c36330c6d4874b25951c5bd",
   "package/src/size-position.mjs": "09e690c9f0452c039ff20fc3f2728e365e6f7ba6bcf9f2da150383654e8453f4"
 });
@@ -328,9 +328,11 @@ function syntheticSdk(f, options = {}) {
   const counts = { connect: 0, calls: 0, clientClose: 0, transportClose: 0, writes: 0, definitionNames: [] }; let pipe, processObject;
   class Transport {
     constructor(params) { counts.params = params; this.stderr = new PassThrough(); pipe = this; }
-    start() { processObject = new EventEmitter(); processObject.pid = 12345; processObject.stdin = new Output(() => { counts.writes++; return true; });
+    start() { if (options.startRefusal) return options.startRefusal();
+      processObject = new EventEmitter(); processObject.pid = 12345; processObject.stdin = new Output(() => { counts.writes++; return true; });
       this._process = processObject; queueMicrotask(() => processObject.emit('spawn')); return Promise.resolve(); }
-    close() { counts.transportClose++; options.onClose?.(); if (options.closeError) { processObject.emit('exit'); processObject.emit('close'); throw new Error('PRIVATE_DIAGNOSTIC'); }
+    close() { counts.transportClose++; options.onClose?.(); if (!processObject) return Promise.resolve();
+      if (options.closeError) { processObject.emit('exit'); processObject.emit('close'); throw new Error('PRIVATE_DIAGNOSTIC'); }
       if (options.neverClose) return new Promise(() => {});
       if (!options.noExit) processObject.emit('exit'); processObject.emit('close'); this._process = undefined; return Promise.resolve(); }
   }
@@ -542,7 +544,19 @@ test('paper package: cumulative stderr overflow refuses and never retains or ech
 });
 test('paper package: memoized close is published before reentrancy and an error cannot mark success', async () => {
   const f = homeFixture(), success = await injected(f, { reenter: true }); assert.equal(success.report.status, 'writes_disabled'); assert.equal(success.sdk.counts.clientClose, 1); assert.equal(success.sdk.counts.transportClose, 1);
+  assert.equal(success.sdk.counts.connect, 1); assert.equal(success.sdk.counts.calls, 2); assert.equal(success.sdk.counts.writes, 3);
   const failure = await injected(f, { closeError: true }); assert.equal(failure.report.status, 'stopped'); assert.equal(failure.report.stop.code, 'STDIO_CLOSE_UNCERTAIN'); assert.equal(failure.sdk.counts.transportClose, 1);
+  for (const delayed of [false, true]) {
+    let rejectStart;
+    const result = await injected(f, { startRefusal: () => delayed ? new Promise((_, reject) => { rejectStart = reject; }) : Promise.reject(new Error('PRIVATE_DIAGNOSTIC_START')) });
+    assert.equal(result.report.status, 'stopped'); assert.equal(result.report.stop.code, 'STDIO_CHILD_UNKNOWN'); assert.equal(result.report.call_count, 0);
+    assert.equal(result.sdk.child, undefined); assert.equal(result.sdk.counts.connect, 1); assert.equal(result.sdk.counts.calls, 0); assert.equal(result.sdk.counts.writes, 0);
+    assert.equal(result.sdk.counts.clientClose, 1); assert.equal(result.sdk.counts.transportClose, 1);
+    assert.equal(result.report.transport.owned_pid, null); assert.equal(result.report.transport.observed_exit, null); assert.equal(result.report.transport.observed_close, null); assert.equal(result.report.transport.absence_scope, null);
+    if (delayed) rejectStart(new Error('PRIVATE_DIAGNOSTIC_LATE_START'));
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(result.report.stop.code, 'STDIO_CHILD_UNKNOWN'); assert.doesNotMatch(JSON.stringify(result.report), /PRIVATE_DIAGNOSTIC/);
+  }
 });
 test('paper package: never-resolving close remains uncertain within the finite closure reserve', { timeout: 6500 }, async () => {
   const f = homeFixture(), result = await injected(f, { neverClose: true }); assert.equal(result.report.status, 'stopped'); assert.equal(result.report.stop.code, 'STDIO_CLOSE_UNCERTAIN'); assert.equal(result.report.transport.observed_close, false); assert.equal(result.sdk.counts.transportClose, 1);
