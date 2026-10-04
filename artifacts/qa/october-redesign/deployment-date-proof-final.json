@@ -1,0 +1,28 @@
+{
+  "schema": "canli.redesign-final-deploy-proof.v1",
+  "source_head": "59a56bf19807d9f03d6f72b465d69fbe27e51fbc",
+  "integrated_main": "5c999a3db48d8261c267048ce6be23825af0680c",
+  "captured_at": "2026-10-04T08:40:54.164261+00:00",
+  "node": "v22.23.2",
+  "command": "git checkout -- config/source-dates.json && GIT_DIR=/nonexistent VERCEL=1 node scripts/build-papers.mjs",
+  "exit_code": 0,
+  "source_dates_sha256": "bd0ca1df8891609083c966b60549fc22e433976de998c15cd576662ede3f58df",
+  "sitemap_sha256": "a7772b068e76866a04fa34065d1dcec07e2129e595726512ea6abadbf144c1c6",
+  "tracked_changes_added_by_proof": [],
+  "proof_log_sha256": "a467f2e21ff09133f8ad538c63628784e3a443874d5649c4bfa25bede79f26b4",
+  "preceding_validation": {
+    "timing": "Executed against these source bytes immediately before the signed source commit; no repeat build claimed here",
+    "production_build_exit_code": 0,
+    "full_verification_exit_code": 0,
+    "tests": 1304,
+    "preverify_cases": 6,
+    "focused_regressions": 20,
+    "log_sha256": {
+      "production_build": "b7a3af825c17161d17fde48cfef2f5a58bc818a20b048e46d5f14353b7894327",
+      "full_verification": "b44292b00f8e847c80b40c7446bd73b2f19b7dd79e87dc816645f1241cad7dad",
+      "date_binding": "a467f2e21ff09133f8ad538c63628784e3a443874d5649c4bfa25bede79f26b4",
+      "focused_regressions": "0d7bb04f843b2cb0eacd601170f56a7b54d69823600810bf6ddab3ae47934cd9"
+    }
+  },
+  "claim_boundary": "Committed source date guard only. Final current-head remote CI and code-scanning results are separate."
+}

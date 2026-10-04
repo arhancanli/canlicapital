@@ -149,3 +149,14 @@ The final [current-main proof](../../artifacts/qa/october-redesign/deployment-da
 binds source 19e6ef41 after the current-main integration and security corrections.
 Fresh production build, full verification and the exact Git-free guard all
 passed with the committed source pages, manifest and sitemap unchanged.
+
+
+## Final parser and committed guard
+
+The final source integrates research MCP release #378 as well as #375 and #379.
+The numeric-prose verifier uses the HTML parser, with a regression for script
+closing-tag whitespace. The production build, all 1,304 tests plus six preverify
+cases and twenty focused regressions pass. The exact Git-free date guard on
+signed source 59a56bf1 exited zero with no tracked changes. The [final receipt](../../artifacts/qa/october-redesign/deployment-date-proof-final.json)
+records committed hashes and the timing of the preceding validation. Final
+current-head CI and aggregate code scanning are linked from PR #380.
