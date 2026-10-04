@@ -1,0 +1,33 @@
+{
+  "schema": "canli.third.expert-submission-stdio.CI-reader-original-metadata-diagnostic.v1",
+  "utc": "2026-10-04T02:22:11.619912+00:00",
+  "original_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/inspect-c6fb3075-retained-ci-v1.py",
+    "bytes": 18560,
+    "sha256": "417c9a8733df71287e5e9211748b73af62511e820f7cbcc8a29c9d3091cd9e57"
+  },
+  "literal_original_tool_returned_error_output": "Traceback (most recent call last):\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/inspect-c6fb3075-retained-ci-v1.py\", line 185, in <module>\n    if '/alerts?' in uri:assert parsed['state']==['open']\nKeyError: 'state'\n",
+  "disposition": "METADATA_ASSUMPTION_ONLY_NOT_PROJECT_FAILURE",
+  "cause": "Reader required an explicit state=open query selector. Actual saved scoped URI has no state key. All earlier originals/TAP/run/tree/check/language checks passed before this lookup.",
+  "literal_saved_alert_query": [
+    {
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-c6fb3075-current-ref-alerts-command-original-v1.json",
+        "bytes": 857,
+        "sha256": "e6388e0dd7fc35f9b26fd1995ee71456ffd9b6eb0ede98e44f30217bdc7d2b4f"
+      },
+      "literal_argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/code-scanning/alerts?ref=refs/pull/376/merge&per_page=100"
+      ],
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-c6fb3075-current-ref-alerts-original-v1.json",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    }
+  ],
+  "correction": "Use exact captured pull376 ref URI and empty list; qualify state omitted, no default assumed. Preserve all11 originals and commands; no APIrefetch or projectrerun.",
+  "source_P2": "CC-376-ORIGINAL-ARGUMENT-KEYS-BEFORE-SDK-PROJECTION remains independent OPEN_STATIC_SOURCE."
+}

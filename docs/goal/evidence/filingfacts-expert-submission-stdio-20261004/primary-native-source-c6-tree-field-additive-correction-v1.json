@@ -1,0 +1,39 @@
+{
+  "schema": "canli.primary.native-source-tree-field-correction.v1",
+  "observed_at": "2026-10-04T02:21:04.763947+00:00",
+  "original": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-c6fb3075-source-v1/native-source-c6fb3075-binding-v1.json",
+    "bytes": 110821,
+    "sha256": "53449d6c1b66781d3332a581c454bdc4734425dac5735517347555ea120f2041"
+  },
+  "original_tree_field": 48,
+  "correct_tree_field": "f8303683740238a68563e27bb4b3f25943d8836e",
+  "authority": {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/arhancanli/canlicapital-expert-submission-stdio-20261004",
+      "show",
+      "-s",
+      "--format=%H%n%T%n%P%n%G?",
+      "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62"
+    ],
+    "exit_code": 0,
+    "stdout": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-c6fb3075-source-v1/frozen-commit-stdout-original.bin",
+      "bytes": 125,
+      "sha256": "e00c82c887ee7e6a2f162d7d04d3171707539e04a3401900b000c32b1f694afe",
+      "mode": "0600"
+    },
+    "stderr": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-c6fb3075-source-v1/frozen-commit-stderr-original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0600"
+    }
+  },
+  "head": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+  "parent": "92fb0cfe8ec2965fee3b50986ef5335e7b41e466",
+  "signature": "G",
+  "scope": "Only serialized native binding tree metadata was incorrect; original literal frozen Git command already holds exact tree. Full source identities/counts/body proofs unchanged. Original remains immutable. A subsequent CI metadata assertion referencing that wrong scalar stopped before final CI receipt; same saved bytes are being checked with explicit named predicates. No project failure/runtime/refetch/source edit."
+}

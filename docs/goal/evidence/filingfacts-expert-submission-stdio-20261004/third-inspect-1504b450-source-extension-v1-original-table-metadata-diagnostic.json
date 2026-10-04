@@ -1,0 +1,17 @@
+{
+  "schema": "canli.third.metadata-reader-original-diagnostic.v1",
+  "utc": "2026-10-04T02:50:03.871787+00:00",
+  "original_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/inspect-1504b450-source-extension-v1.py",
+    "bytes": 16428,
+    "sha256": "04ab1f642fa06c0b0e60e6b05e431fc0a1681dc2cfea8bcc1c7c457054f0f87e"
+  },
+  "literal_original_tool_output": "Traceback (most recent call last):\n  File \"/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/inspect-1504b450-source-extension-v1.py\", line 100, in <module>\n    assert table['head'] == F and table['tree'] == FT and table['entries'] == list(rows.values())\nTypeError: list indices must be integers or slices, not str\n",
+  "original_exit_code": 1,
+  "classification": "OWN_METADATA_READER_ONLY",
+  "cause": "Reader assumed older dict table with head/tree/entries; actual pinned new table is plain list of all6596 row identities.",
+  "inputs_untouched": true,
+  "source_or_project_failure": false,
+  "API_refetch_or_project_execution": false,
+  "correction": "Additive v2 compares the complete actual list directly with independently derived frozen Git rows; independently verified signed head/tree/parent remain binding."
+}

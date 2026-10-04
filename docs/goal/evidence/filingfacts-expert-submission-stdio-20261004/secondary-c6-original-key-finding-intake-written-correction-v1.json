@@ -1,0 +1,73 @@
+{
+  "schema": "canli.expert-stdio.original-key-admission-correction.WRITTEN.v1",
+  "observed_at": "2026-10-04T02:19:48.714968+00:00",
+  "frozen_parent": "c6fb3075bdab6bd39efdc292dcb0ce33e0153f62",
+  "third_original_receipt_fullread_hash_verified": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+    "bytes": 62647,
+    "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37"
+  },
+  "finding": "CC-376-ORIGINAL-ARGUMENT-KEYS-BEFORE-SDK-PROJECTION",
+  "original_status": "OPEN_STATIC_SOURCE",
+  "corroboration": "Locked Server invokes handler with dispatchCodec.validateRequest outcome.value; legacy arguments z.record; locked Zod record skips own __proto__ before copy. Outer params default object projection also strips unknown fields. Source-only; no execution.",
+  "corroborating_locked_Zod_sources": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-native-zod-package-v4-core-schemas.js.txt",
+      "bytes": 105968,
+      "sha256": "e632b655441418f0593153abc6809fd81cf3e0782d810622d0a4fa50ef6e182e"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-native-zod-package-v4-core-util.js.txt",
+      "bytes": 34363,
+      "sha256": "728f52b496620336775eafcdb91c0a574380086e53f215b55c58eedc1422c49c"
+    }
+  ],
+  "written_correction": "Check original outer params and arguments key sets before SDK projection on the existing per-request scope; fresh observations bracket the added admission. Native final writer, complete core report and all caps unchanged.",
+  "written_source_pins": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-stdio-20261004/mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "bytes": 25796,
+      "sha256": "5f228ccc5bc3433a93415f9b5f3708e1cb73b209aa5599c9dffa5f59dbc3b882"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-stdio-20261004/mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "bytes": 52692,
+      "sha256": "bc1a4d1ffdc35e48c32acbd1e5bc82f5482a7628b3db86aa649e03ec67146a7c"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expert-submission-stdio-20261004/mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md",
+      "bytes": 16703,
+      "sha256": "cb7de9297f083d87490534d6a26d0a3b6c456e47663c2f7d033b7c4b85f3d6e2"
+    }
+  ],
+  "old_entire_59_case_file_prefix_exact": true,
+  "written_count": 63,
+  "new_four_WRITTEN_UNRUN_names": [
+    "expert stdio: raw own __proto__ argument refuses before locked SDK projection decode or core",
+    "expert stdio: raw extra ordinary and __proto__ params refuse before SDK projection or core",
+    "expert stdio: raw exact nine-key ingress reaches the unchanged core once and retains the complete report",
+    "expert stdio: raw admission preserves the request clock and refuses a crossing before SDK dispatch"
+  ],
+  "one_lexical_child_launch_site_and_three_actual_future_entries": [
+    {
+      "line": 238,
+      "text": "await ownedWorkflow('direct');"
+    },
+    {
+      "line": 241,
+      "text": "await ownedWorkflow('symlink');"
+    },
+    {
+      "line": 244,
+      "text": "await ownedWorkflow('bad-frame');"
+    }
+  ],
+  "package_parent_exact": true,
+  "native_writer_execute_kernel_blocks_parent_exact": true,
+  "original_c6_actual_59_all7_retained_CI": "HISTORICAL_SEPARATE_SOURCE_HOLD",
+  "current_correction_executed": false,
+  "source_correction_frozen_or_new_CI": null,
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "all_owner_goals": "ACTIVE"
+}

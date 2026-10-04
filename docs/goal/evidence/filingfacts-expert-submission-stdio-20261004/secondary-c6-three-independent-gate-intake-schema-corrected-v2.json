@@ -1,0 +1,46 @@
+{
+  "schema": "canli.expert-stdio.original-c6-independent-gate-intake.v2",
+  "observed_at": "2026-10-04T02:29:46.822501+00:00",
+  "fullyread_hash_verified_receipts": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-primary-review/review-c6fb3075-current-source-v1.json",
+      "bytes": 65448,
+      "sha256": "900f0162763656a4bc7709389fb9451dd57f7a408705019a93f0fe4eeca936c7",
+      "status_field": "disposition",
+      "status": "HOLD_STATIC_SOURCE",
+      "findings_ids": [
+        "CC-376-ORIGINAL-ARGUMENT-KEYS-BEFORE-SDK-PROJECTION"
+      ]
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+      "bytes": 62647,
+      "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37",
+      "status_field": "verdict",
+      "status": "HOLD_STATIC_SOURCE",
+      "findings_ids": [
+        "CC-376-ORIGINAL-ARGUMENT-KEYS-BEFORE-SDK-PROJECTION"
+      ]
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/retained-ci-c6fb3075-current-v1.json",
+      "bytes": 64849,
+      "sha256": "f94ea59456c853f2fecf1de030ec941e803b306babe02fb4ecc4299375d4fa05",
+      "status_field": "verdict",
+      "status": "PASS_WITH_RETAINED_CURRENTCI_SCOPE_LIMITS",
+      "findings_ids": []
+    }
+  ],
+  "both_SOURCE_findings": "Same sole P2 params/argument key projection; no additional concrete source finding.",
+  "PRIMARY_original_retainedCI": "PENDING",
+  "reader_error_original": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-c6-peer-intake-first-disposition-reader-stop-original-v1.json",
+    "bytes": 379,
+    "sha256": "04956ade69917208518b36b6413764026d145a8fa968b30ec26b29f4f453c315"
+  },
+  "narrow_signed_correction": "1504b450efc3b63e66a035d2f9b18870e4562492",
+  "new63_actual_outcomes": null,
+  "archive_allocation": null,
+  "project_runtime": false,
+  "all_owner_goals": "ACTIVE"
+}

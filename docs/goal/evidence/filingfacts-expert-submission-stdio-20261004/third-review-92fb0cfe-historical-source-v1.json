@@ -1,0 +1,1051 @@
+{
+  "schema": "canli.third.expert-submission-stdio.historical-source.v1",
+  "observed_at": "2026-10-04T02:33:53.574574+00:00",
+  "reviewer_role": "THIRD",
+  "verdict": "HOLD_STATIC_HISTORICAL_SOURCE",
+  "head": "92fb0cfe8ec2965fee3b50986ef5335e7b41e466",
+  "tree": "4ac2eb5ae557988bf2e7eebeed9c8af05ea33e96",
+  "parents": [
+    "67aede2ab145db52dec7be37668f1149d9b7e9d5"
+  ],
+  "signature": "G",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-source-92fb0cfe-v1.json",
+    "bytes": 42849,
+    "sha256": "19a12ad5a1178cc5bb4f7d3952d3f50eabed6c796ffe9adcfd22a2e08bb0aea4"
+  },
+  "historical_clean_claim": "Original manifest records G/CLEAN at capture time; not a current checkout assertion.",
+  "actual_checkout_head_observed_start_end": "1504b450efc3b63e66a035d2f9b18870e4562492",
+  "current_checkout_and_new_correction_excluded": true,
+  "source_work_index_qualification": "Frozen Git and saved initial complete stage0 index checked. Current working/index bytes are deliberately excluded.",
+  "Git_identity_proof": {
+    "full_entries": 6596,
+    "captured_original_tree_exact": true,
+    "captured_original_stage0_index_exact": true,
+    "full_table_each_row_exact": true,
+    "six_changed_paths": [
+      "docs/goal/LOG.md",
+      "docs/goal/STATUS.md",
+      "mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md",
+      "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "package.json"
+    ],
+    "protected_entries": 6590,
+    "protected_Git_bytes": 410643009,
+    "every_protected_identity_equal_actual_main": true,
+    "no_whole_protected_physical_body_claim": true
+  },
+  "selected_frozen_Git_bodies": [
+    {
+      "path": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "f74dd2cfec28301ec91f44f48e718773d1f5e96c",
+      "bytes": 24595,
+      "sha256": "b3085170cad342c67dee7da8d8db1c02c51f13603771222159e768c40c912ebb",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "dad6c1bb4069032489b508992bbcbe44fb787efe",
+      "bytes": 46654,
+      "sha256": "5250a90da4cc23f22d06c605ed799e570fc2b05fb0c7573fd71e47ca8da8fa92",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/examples/EXPERT_SUBMISSION_STDIO.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "3b45d884763a095d553a615fdb44ab3914103d97",
+      "bytes": 15967,
+      "sha256": "d0b418a6d50063033ef75a07f5a939978cdd475eb540d62007048484995753f3",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "3ce3add07e99f9bd2298c6f721a431327241ba42",
+      "bytes": 14371,
+      "sha256": "485a0eaa1aa276cccf4706117bfe9532bbc2452c457ab0342611c3088d42c199",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c8bdd6cada7be445954bea7ef452978b12e635bc",
+      "bytes": 222136,
+      "sha256": "a7b00c729d17068c810d4462d8423a797784ac07acef9f8672874156b9490b41",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "9bb25e1915bf85ca17eb5a3651c9cea2f97b3b63",
+      "bytes": 497500,
+      "sha256": "153b1b1bd8d1a1eff78eb30f2c16420f65ea50376584f3a5d3e69986adae8b9f",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c9da827cc05f633ffe3478f6ee392c0bc80447ea",
+      "bytes": 994,
+      "sha256": "bf219f75e95cd459028ecaa5056360378989b82a99f366d9f98d467eb7185728",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "3001347bc79c0f469738c03b67459b1314745aae",
+      "bytes": 37957,
+      "sha256": "fe442d2f36df95cff3ae0993f843a89b85d3ee3f3454a0e00141139da0be8743",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "object": "13ea65483dbc5a68d23fa301e89a1e6c31efd7b3",
+      "bytes": 5020,
+      "sha256": "7655f5eb2981474bec7c2d7a6210cd940d1f1a1baa813de5cc6a0eea49a6e9f1",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "b94c59476fd41175baee7d79d67f40138486cce3",
+      "bytes": 1366,
+      "sha256": "4e9a4eb7d0938b16c76d222146df8ca38a00c7ff7e460a43dd07117c615044e1",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1f091d39ae6afef458d738d5e687922fe4b9706c",
+      "bytes": 6507,
+      "sha256": "22a97b5418f41335e202160809937ce5f435fb139dc97547db6602a438c96624",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/src/server.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "0c373d5e5b2d6712cda9b3a7acec6d0177c1e423",
+      "bytes": 64736,
+      "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c772372609b7f37bb04c747898d168b64458e377",
+      "bytes": 21651,
+      "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/src/canonical-json.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-stdio.mjs",
+      "mode": "100755",
+      "type": "blob",
+      "object": "8ed08fc03502f68d56184da953efb294deec45bc",
+      "bytes": 12929,
+      "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/examples/audit-inputs-stdio.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ee32d9a3eb69ec0a267ba05da60c17b7f47098dd",
+      "bytes": 12955,
+      "sha256": "de1deacff44907249640e8c6dfe4a0df9ec38dc27aed4a299e8ffed0146a421c",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-stdio.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "66e7758081cbab8d676409c399d849993dad1680",
+      "bytes": 28081,
+      "sha256": "9ccc50acea82d7755e650c5f57a9ae249b26708bd8ce99b73bdc5547beeb38ed",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/examples/audit-inputs-client.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "06101488cadb0d6dee614dbf92398c76d5d10180",
+      "bytes": 32588,
+      "sha256": "60f20a7297bbb463139a829bc4d14e35f108d650faa4488faa91525a2d9e4195",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-client.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "c54ebc051832f46e844dc2704b006e396b347072",
+      "bytes": 48164,
+      "sha256": "285cb42d1f6652bccbffdfd9a0c39e510729320126d2c23aba99c9dfe7ff02a0",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "a4ae35d9b6b6c0efe7e01b8851e11379b510ec7e",
+      "bytes": 13866,
+      "sha256": "ea2d9d029a2551f183027bdca564acf8d6e0c20139f251bbc2c1c31a0296990c",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "mcp-fundamentals/AUDIT_INPUTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ff0625ed3ca3e74986c4538a14439f271a381752",
+      "bytes": 40194,
+      "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "591b0176eee32537c4bb257efdce2b2d68ec79cd",
+      "bytes": 23778,
+      "sha256": "79540f0812537798321a4eb3a97bf89d04acc1b5bd5d4a105eddae007e87ad33",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-audit.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "2b87c733dd51e3766d6e8d4aa1356b8bb6209ffa",
+      "bytes": 36938,
+      "sha256": "550656f17c42a5494ff5c055725d925811c9252824e2886e2b3d9fdc0a6b715d",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/EXPERT_SUBMISSION_AUDIT.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ad405a5186b19110c909d1371e17171da0dcf52e",
+      "bytes": 14241,
+      "sha256": "0dd19b031488b37c147f119e71569d285ba21fe2cf766c31d7933d2cb22b08ae",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-cli.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "9d20a2c0a282e84e11b665fa7244021a66da71a9",
+      "bytes": 16094,
+      "sha256": "d8f35d72e842244558ccbd1b42ec7c2e9fc07da1b790cdb843422e53c5d513d7",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-cli.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "574e919074c054156167045238866ed514567712",
+      "bytes": 48483,
+      "sha256": "ac078c75ac71084c1cf5413d7c88f9f73cb0b02fd358f29d0164217bb753c783",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/EXPERT_SUBMISSION_CLI.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "ff66c18e5210d34c4c1565c62938aacb8ede2395",
+      "bytes": 13113,
+      "sha256": "1b7a01cd02425d88ae17a7c30f97e403ce228a952572754182dad81eab573690",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-intake.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "274782df96a0c6e6948a3c31478c9854b429bf67",
+      "bytes": 30964,
+      "sha256": "f37ed4663a78cf819331410205f28b0671966cfe1b3c73aa0b13a46bf19b0ab4",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-intake.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "e9565bf46004e514dfa6f4f001ca161ec5fdfde5",
+      "bytes": 33301,
+      "sha256": "e12076776b8a4ffabe3c789c8cb169092d3a94cccb52a938a810d9d1a0995219",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/datasets/filing-facts/agreement.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "302880c766fe1eb4a8a9aa9e74409c7fca53e8d1",
+      "bytes": 6423,
+      "sha256": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "scripts/canonical-json.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "js/filing-facts-packet.js",
+      "mode": "100644",
+      "type": "blob",
+      "object": "b4c2cb014ec404db1b80483e6c97df41c1060ce0",
+      "bytes": 564,
+      "sha256": "eb61ab2bf78d7047569c8cf92ea348dc5c3a9e6fe311c16a63361765b2e08bc8",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "docs/goal/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "80e839cbaae76013a456b2ea4543796b59f235f0",
+      "bytes": 6899,
+      "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "cd6f8dd81e13638b593a0b1f2294660870fb5bca",
+      "bytes": 8758,
+      "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "mode": "100644",
+      "type": "blob",
+      "object": "61fc2fe3630ff0666b7530bfabd5f3dbfb6ec0b7",
+      "bytes": 5455,
+      "sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "frozen_Git_body_fullread": true
+    },
+    {
+      "path": "js/annotate-core.js",
+      "mode": "100644",
+      "type": "blob",
+      "object": "8577469e89b8d7e1ec0ed8845877ca4888ceb9e4",
+      "bytes": 7115,
+      "sha256": "077c8cd3d7c4c2ad8c69ce9dfa24c8b38f6c4ff3b17470cb4d2645396506bdd3",
+      "frozen_Git_body_fullread": true
+    }
+  ],
+  "whole_goal_prefixes": [
+    {
+      "path": "docs/goal/README.md",
+      "original_bytes": 6899,
+      "original_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "current_bytes": 6899,
+      "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+      "whole_prefix_preserved": true,
+      "independently_rederived_from_frozen_Git": true
+    },
+    {
+      "path": "docs/goal/REQUIREMENTS.md",
+      "original_bytes": 8758,
+      "original_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "current_bytes": 8758,
+      "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+      "whole_prefix_preserved": true,
+      "independently_rederived_from_frozen_Git": true
+    },
+    {
+      "path": "docs/goal/STATUS.md",
+      "original_bytes": 218531,
+      "original_sha256": "b8af1fe8924c88cd3dbd3ccd24c923bf8d5c58bec5f6b73cf08d62bec9e771bd",
+      "current_bytes": 222136,
+      "current_sha256": "a7b00c729d17068c810d4462d8423a797784ac07acef9f8672874156b9490b41",
+      "whole_prefix_preserved": true,
+      "independently_rederived_from_frozen_Git": true
+    },
+    {
+      "path": "docs/goal/PHASES.md",
+      "original_bytes": 5455,
+      "original_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "current_bytes": 5455,
+      "current_sha256": "f0613d36c14a5246becd1acb0b4f1fec09f3a8638e2a2064660fc3d14f4a0b69",
+      "whole_prefix_preserved": true,
+      "independently_rederived_from_frozen_Git": true
+    },
+    {
+      "path": "docs/goal/LOG.md",
+      "original_bytes": 493895,
+      "original_sha256": "e78d40927a362df5c6dfd3ba650c8e10054950c969728e7f2950ebdf4344406d",
+      "current_bytes": 497500,
+      "current_sha256": "153b1b1bd8d1a1eff78eb30f2c16420f65ea50376584f3a5d3e69986adae8b9f",
+      "whole_prefix_preserved": true,
+      "independently_rederived_from_frozen_Git": true
+    }
+  ],
+  "package_inverse": {
+    "recovered_bytes": 14139,
+    "recovered_sha256": "f9ab592f2f900cd1bb35f96e3456dc2a6f8f3f9c03ffb94d047bc06509738634",
+    "root_verify_byte_exact": true,
+    "two_literal_lines": [
+      "    \"test:expert-submission-stdio\": \"node --test --test-concurrency=1 mcp-fundamentals/test/expert-submission-stdio.test.mjs\",\n",
+      "    \"filingfacts:expert-submission-stdio\": \"node mcp-fundamentals/examples/expert-submission-stdio.mjs\",\n"
+    ],
+    "actual_frozen_Git_whole_byte_roundtrip": true
+  },
+  "import_closure": [
+    {
+      "path": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "f74dd2cfec28301ec91f44f48e718773d1f5e96c",
+      "bytes": 24595,
+      "sha256": "b3085170cad342c67dee7da8d8db1c02c51f13603771222159e768c40c912ebb"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "591b0176eee32537c4bb257efdce2b2d68ec79cd",
+      "bytes": 23778,
+      "sha256": "79540f0812537798321a4eb3a97bf89d04acc1b5bd5d4a105eddae007e87ad33"
+    },
+    {
+      "path": "scripts/canonical-json.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+    },
+    {
+      "path": "js/filing-facts-packet.js",
+      "mode": "100644",
+      "type": "blob",
+      "object": "b4c2cb014ec404db1b80483e6c97df41c1060ce0",
+      "bytes": 564,
+      "sha256": "eb61ab2bf78d7047569c8cf92ea348dc5c3a9e6fe311c16a63361765b2e08bc8"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/expert-intake.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "274782df96a0c6e6948a3c31478c9854b429bf67",
+      "bytes": 30964,
+      "sha256": "f37ed4663a78cf819331410205f28b0671966cfe1b3c73aa0b13a46bf19b0ab4"
+    },
+    {
+      "path": "scripts/datasets/filing-facts/agreement.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "302880c766fe1eb4a8a9aa9e74409c7fca53e8d1",
+      "bytes": 6423,
+      "sha256": "f461cb2b9e3b138d1135a7ff295c30cfb911036183338b02faab1736cc90b6e6"
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "object": "dad6c1bb4069032489b508992bbcbe44fb787efe",
+      "bytes": 46654,
+      "sha256": "5250a90da4cc23f22d06c605ed799e570fc2b05fb0c7573fd71e47ca8da8fa92"
+    },
+    {
+      "path": "js/annotate-core.js",
+      "mode": "100644",
+      "type": "blob",
+      "object": "8577469e89b8d7e1ec0ed8845877ca4888ceb9e4",
+      "bytes": 7115,
+      "sha256": "077c8cd3d7c4c2ad8c69ce9dfa24c8b38f6c4ff3b17470cb4d2645396506bdd3"
+    }
+  ],
+  "exact_import_edges_carried_by_unchanged_import_regions": [
+    {
+      "importer": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "specifier": "node:util"
+    },
+    {
+      "importer": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "specifier": "node:crypto"
+    },
+    {
+      "importer": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "specifier": "node:fs"
+    },
+    {
+      "importer": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "specifier": "node:url"
+    },
+    {
+      "importer": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "specifier": "@modelcontextprotocol/server"
+    },
+    {
+      "importer": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "specifier": "@modelcontextprotocol/server/stdio"
+    },
+    {
+      "importer": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "specifier": "zod"
+    },
+    {
+      "importer": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "specifier": "../../scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "local_path": "scripts/datasets/filing-facts/expert-submission-audit.mjs"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "specifier": "node:crypto"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "specifier": "node:util"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "specifier": "../../canonical-json.mjs",
+      "local_path": "scripts/canonical-json.mjs"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "specifier": "../../../js/filing-facts-packet.js",
+      "local_path": "js/filing-facts-packet.js"
+    },
+    {
+      "importer": "js/filing-facts-packet.js",
+      "specifier": "../scripts/canonical-json.mjs",
+      "local_path": "scripts/canonical-json.mjs"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "specifier": "./expert-intake.mjs",
+      "local_path": "scripts/datasets/filing-facts/expert-intake.mjs"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-intake.mjs",
+      "specifier": "node:crypto"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-intake.mjs",
+      "specifier": "node:util"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-intake.mjs",
+      "specifier": "../../canonical-json.mjs",
+      "local_path": "scripts/canonical-json.mjs"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-intake.mjs",
+      "specifier": "../../../js/filing-facts-packet.js",
+      "local_path": "js/filing-facts-packet.js"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "specifier": "./agreement.mjs",
+      "local_path": "scripts/datasets/filing-facts/agreement.mjs"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/agreement.mjs",
+      "specifier": "node:crypto"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/agreement.mjs",
+      "specifier": "node:fs"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/agreement.mjs",
+      "specifier": "../../canonical-json.mjs",
+      "local_path": "scripts/canonical-json.mjs"
+    },
+    {
+      "importer": "scripts/datasets/filing-facts/agreement.mjs",
+      "specifier": "../../../js/filing-facts-packet.js",
+      "local_path": "js/filing-facts-packet.js"
+    },
+    {
+      "importer": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+      "specifier": "../../scripts/canonical-json.mjs",
+      "local_path": "scripts/canonical-json.mjs"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:assert/strict"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:test"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:fs"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:os"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:path"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:url"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:events"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:stream"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:crypto"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "@modelcontextprotocol/client"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "@modelcontextprotocol/client/stdio"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "../examples/expert-submission-stdio.mjs",
+      "local_path": "mcp-fundamentals/examples/expert-submission-stdio.mjs"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "../../scripts/datasets/filing-facts/expert-submission-audit.mjs",
+      "local_path": "scripts/datasets/filing-facts/expert-submission-audit.mjs"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "../../js/annotate-core.js",
+      "local_path": "js/annotate-core.js"
+    },
+    {
+      "importer": "js/annotate-core.js",
+      "specifier": "./filing-facts-packet.js",
+      "local_path": "js/filing-facts-packet.js"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "../../scripts/datasets/filing-facts/agreement.mjs",
+      "local_path": "scripts/datasets/filing-facts/agreement.mjs"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "../../scripts/canonical-json.mjs",
+      "local_path": "scripts/canonical-json.mjs"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:http"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:https"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:net"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:tls"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:child_process"
+    },
+    {
+      "importer": "mcp-fundamentals/test/expert-submission-stdio.test.mjs",
+      "specifier": "node:module"
+    }
+  ],
+  "locked_source_integrity": [
+    {
+      "name": "@modelcontextprotocol/server",
+      "version": "2.1.0",
+      "cache": {
+        "path": "/Users/arhancanli/.npm/_cacache/content-v2/sha512/15/db/f0654e4dd373bbed2ba1df926a8c0aaae51d594c43c5b70bba37806006adbcaab42dac29e96cb2f9536a70602b84d7de23030d319e5395988aa17e862e51",
+        "bytes": 1523527,
+        "sha256": "2a3baf0208471577c39061b273aa571502b1b8ebb97e83e6af924085e485efc2"
+      },
+      "sha512_integrity_exact": true,
+      "member_snapshots": [
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/sdk-server-package-package.json.txt",
+          "bytes": 4390,
+          "sha256": "b7ca8faf8b399f12f995ffb93873541abe98ba68d8e72eb9979b0540f4293dd9",
+          "tar_member": "package/package.json",
+          "source_tgz_sha256": "2a3baf0208471577c39061b273aa571502b1b8ebb97e83e6af924085e485efc2",
+          "fullread_hash_exact": true
+        },
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/sdk-server-package-dist-stdio.mjs.txt",
+          "bytes": 22153,
+          "sha256": "017575c4e870c19579aec6973d405c504c542cc748e262e39fa0a36f3e96aab5",
+          "tar_member": "package/dist/stdio.mjs",
+          "source_tgz_sha256": "2a3baf0208471577c39061b273aa571502b1b8ebb97e83e6af924085e485efc2",
+          "fullread_hash_exact": true
+        }
+      ],
+      "tar_member_membership_carried_from_exact_independent_c6_receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+        "bytes": 62647,
+        "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37"
+      }
+    },
+    {
+      "name": "@modelcontextprotocol/core",
+      "version": "2.1.0",
+      "cache": {
+        "path": "/Users/arhancanli/.npm/_cacache/content-v2/sha512/61/d1/63e603111ebd2060d0214db4038232c788425d200518c689a12ac7943727bb646948490994a0b876b2f785142890ee3d9831f7d3d64812343d0549f2058d",
+        "bytes": 154649,
+        "sha256": "f1a20a0f9f2a93861d67f7ef1a2110c0a9f0d5338a2ba666c125caabaa4c8deb"
+      },
+      "sha512_integrity_exact": true,
+      "member_snapshots": [
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/sdk-core-package-package.json.txt",
+          "bytes": 2282,
+          "sha256": "c3902f5ce4f7c44fe8c763adab3ea0f76a6e0d6b54d88d81bc2a3ec0e47ebb34",
+          "tar_member": "package/package.json",
+          "source_tgz_sha256": "f1a20a0f9f2a93861d67f7ef1a2110c0a9f0d5338a2ba666c125caabaa4c8deb",
+          "fullread_hash_exact": true
+        }
+      ],
+      "tar_member_membership_carried_from_exact_independent_c6_receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+        "bytes": 62647,
+        "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37"
+      }
+    },
+    {
+      "name": "@modelcontextprotocol/client",
+      "version": "2.1.0",
+      "cache": {
+        "path": "/Users/arhancanli/.npm/_cacache/content-v2/sha512/98/35/61a32e568c36f453ee1d40fccb71c882d9ead27b1fc645542a9e865d8ae3281376224d97624bb7b335c1705f85c439639a8fb8d9af490b62720b9cbf28ac",
+        "bytes": 1603220,
+        "sha256": "52a76aa524e5655e12bd0859da6489a95642eb362e76e898cc57f3762ee33732"
+      },
+      "sha512_integrity_exact": true,
+      "member_snapshots": [
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/sdk-client-package-package.json.txt",
+          "bytes": 4584,
+          "sha256": "d3e82c6355b41114e61f892d628f0788db15def04658279cebaae656e41704a4",
+          "tar_member": "package/package.json",
+          "source_tgz_sha256": "52a76aa524e5655e12bd0859da6489a95642eb362e76e898cc57f3762ee33732",
+          "fullread_hash_exact": true
+        },
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/sdk-client-package-dist-stdio.mjs.txt",
+          "bytes": 6153,
+          "sha256": "89b2fb52b95d4b2ba79f1bd4e022282d9654177e4ee06ee904efeb8764d59b5c",
+          "tar_member": "package/dist/stdio.mjs",
+          "source_tgz_sha256": "52a76aa524e5655e12bd0859da6489a95642eb362e76e898cc57f3762ee33732",
+          "fullread_hash_exact": true
+        }
+      ],
+      "tar_member_membership_carried_from_exact_independent_c6_receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+        "bytes": 62647,
+        "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37"
+      }
+    }
+  ],
+  "prior_independent_source_gate": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/review-c6fb3075-source-v1.json",
+    "bytes": 62647,
+    "sha256": "11fb0a3c0695a88c79395e5bce4b25d39e61f43355297beb8ad82ee7cb142b37"
+  },
+  "same_source_boundaries_reverified": [
+    "Primitive64/canonical base64/dense native arrays/individual+aggregate caps before decode",
+    "One unchanged complete kernel report, canonical public JSON/hash, null actual human/rights outcomes",
+    "4MiB input/6MiB report/19MiB escaped tool result/20MiB frame+LF",
+    "Same sticky absolute-clock observation immediately before captured native write; Promise/drain/one attempt",
+    "Fatal UTF8/id/no-echo framing; default7/core/versions/locks unaffected",
+    "Original tools/call params and arguments are not checked before locked SDK projection"
+  ],
+  "findings": [
+    {
+      "id": "CC-376-ORIGINAL-ARGUMENT-KEYS-BEFORE-SDK-PROJECTION",
+      "severity": "P2",
+      "status": "OPEN_STATIC_SOURCE",
+      "source_head": "92fb0cfe8ec2965fee3b50986ef5335e7b41e466",
+      "title": "Original argument and outer tools/call parameter keys can be erased before closed admission",
+      "trigger": "Start with any valid complete fictional tools/call argument record admitted by the direct SDK roundtrip. Add a tenth enumerable own argument named __proto__ with value null in the actual JSON text. Keep the nine required arguments, name, ID and bounded frame unchanged. JSON.parse creates this as an own data key; use actual JSON text or JSON.parse rather than an object-literal __proto__ setter.",
+      "source_only_path": [
+        "ExpertFrameBuffer.readMessage parses the original JSON; accept() retains only scope and method, without original argument key validation or retention.",
+        "Locked Server.setRequestHandler wraps the handler in dispatchCodec.validateRequest and invokes it with outcome.value.",
+        "The locked legacy tools/call schema parses arguments as z.record(z.string(), z.unknown()). Zod4.6.5 record parsing explicitly continues over the __proto__ own key.",
+        "The application handler executes params.arguments from that projected value. argumentsRecord therefore sees exactly nine keys and cannot refuse the tenth original key. All nine required original values remain valid, so decode and the unchanged kernel can proceed."
+      ],
+      "related_outer_params_trace": "The same wrapper validates legacy CallToolRequestParamsSchema derived from default stripping z.object BaseRequestParamsSchema. An unknown outer params key such as unsupported_flag is dropped before the application Object.keys(params).length===2 check at400-405. Recognized _meta/task are different: they remain known schema keys and the handler can refuse them. Validate the original outer key set as well as the original nine argument keys in the same correction.",
+      "expected_contract": "Every extra original argument and disallowed outer tools/call parameter must stop before decode/kernel; both original closed key sets must be checked before any lossy SDK projection.",
+      "predicted_not_executed": "For the stated otherwise-valid wire request, the projected key set reaches captureExpertArguments and kernel rather than an ARGUMENTS refusal. This is a source-level contract counterexample; no JS/SDK/fixture/runtime execution was performed by this reviewer.",
+      "impact": "Closed wire-schema admission is bypassed for the extra original key. This finding does not claim prototype pollution, input value alteration, human validation, or a failing observed CI test.",
+      "requested_narrow_correction": "Admit the original raw-parsed tools/call params/arguments before SDK projection, or retain those original records by request ID and use them for the same closed admission in the handler. Add in-memory actual locked-SDK request regressions using an own __proto__ argument key constructed through JSON text and an unknown outer parameter; assert stable no-echo refusal, zero decode and zero kernel calls, plus a complete valid control. No extra spawned SDK child is necessary.",
+      "existing_controls_limit": "Direct argumentsRecord rejects an extra own key, but the direct extra/symbol/getter tests do not pass that raw record through the SDK record projection; there is no __proto__ fixture in the current frozen test file.",
+      "application_evidence": [
+        {
+          "path": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+          "first_line": 123,
+          "last_line": 136,
+          "text": "function argumentsRecord(value) {\n  if (!value || types.isProxy(value) || typeof value !== 'object' || Array.isArray(value)) refuse('ARGUMENTS');\n  if (![Object.prototype, null].includes(Object.getPrototypeOf(value))) refuse('ARGUMENTS');\n  const descriptors = Object.getOwnPropertyDescriptors(value); const keys = Reflect.ownKeys(descriptors);\n  if (keys.length !== FIELDS.length || keys.some(key => typeof key !== 'string' || !FIELDS.includes(key))) refuse('ARGUMENTS');\n  const result = Object.create(null);\n  for (const key of FIELDS) {\n    const row = descriptors[key];\n    if (!row || !Object.hasOwn(row, 'value') || !row.enumerable) refuse('ARGUMENTS');\n    result[key] = row.value;\n  }\n  const sha = result.expected_gold_raw_sha256;\n  if (typeof sha !== 'string' || sha.length !== 64 || !/^[a-f0-9]{64}$/.test(sha)) refuse('EXPECTED_SHA');\n  return result;"
+        },
+        {
+          "path": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+          "first_line": 258,
+          "last_line": 270,
+          "text": "  readMessage() {\n    const index = this.buffer.indexOf(10); if (index < 0) return null;\n    const line = this.buffer.subarray(0, index); this.buffer = this.buffer.subarray(index + 1);\n    let message;\n    try { message = JSON.parse(new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(line)); }\n    catch { this.clear(); refuse('FRAME_PARSE'); }\n    if (!message || Array.isArray(message) || message.jsonrpc !== '2.0' || typeof message.method !== 'string' || message.method.length > 128 ||\n      Object.keys(message).some(key => !['jsonrpc', 'id', 'method', 'params'].includes(key)) ||\n      (Object.hasOwn(message, 'id') && !validId(message.id)) ||\n      (Object.hasOwn(message, 'params') && (!message.params || Array.isArray(message.params) || typeof message.params !== 'object'))) {\n      this.clear(); refuse('FRAME_SHAPE');\n    }\n    this.onMessage(message); return message;"
+        },
+        {
+          "path": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+          "first_line": 353,
+          "last_line": 358,
+          "text": "  accept(message) {\n    if (Object.hasOwn(message, 'id')) {\n      if (this._closed || this.scopes.has(message.id) || this.scopes.size >= 16) refuse('FRAME_PENDING');\n      this.scopes.set(message.id, { scope: createWorkScope({ clock: this.clock }), method: message.method });\n    } else if (message.method === 'notifications/cancelled') {\n      this.scopes.get(message.params?.requestId)?.scope.fail('ABORTED');"
+        },
+        {
+          "path": "mcp-fundamentals/examples/expert-submission-stdio.mjs",
+          "first_line": 399,
+          "last_line": 409,
+          "text": "  server.setRequestHandler('tools/list', () => ({ resultType: 'complete', tools: [EXPERT_TOOL] }));\n  server.setRequestHandler('tools/call', (request, ctx) => {\n    const scope = transport.scopeFor(ctx.mcpReq.id, ctx.mcpReq.signal); scope.observe();\n    const params = request.params;\n    const valid = params && Object.keys(params).length === 2 && Object.hasOwn(params, 'name') && Object.hasOwn(params, 'arguments');\n    const result = !valid ? expertRefusal('ARGUMENTS') : params.name !== EXPERT_TOOL.name ? expertRefusal('TOOL_NAME')\n      : executeExpertSubmission(params.arguments, { kernel, decode, scope });\n    scope.observe();\n    const projected = server.projectCallToolResult(result, OUTPUT_SCHEMA); scope.observe();\n    if (Buffer.byteLength(JSON.stringify(projected)) > EXPERT_STDIO_LIMITS.toolResultBytes) refuse('TOOL_RESULT_BOUND');\n    scope.observe(); return projected;"
+        }
+      ],
+      "sdk_evidence": [
+        {
+          "member": "package/dist/src-D-y6h4N7.mjs",
+          "first_line": 704,
+          "last_line": 714,
+          "text": "\tconst BaseRequestParamsSchema$1 = z.object({ _meta: RequestMetaSchema$1.optional() });\n\t/**\n\t* Common params for any task-augmented request.\n\t*\n\t* @deprecated 2025-11-25 wire vocabulary with no SDK runtime; kept importable for interoperability only.\n\t*/\n\tconst TaskAugmentedRequestParamsSchema$1 = BaseRequestParamsSchema$1.extend({ task: TaskMetadataSchema$1.optional() });\n\tconst RequestSchema$1 = z.object({\n\t\tmethod: z.string(),\n\t\tparams: BaseRequestParamsSchema$1.loose().optional()\n\t});"
+        },
+        {
+          "member": "package/dist/src-D-y6h4N7.mjs",
+          "first_line": 1214,
+          "last_line": 1226,
+          "text": "\t* Parameters for a `tools/call` request.\n\t*/\n\tconst CallToolRequestParamsSchema$1 = TaskAugmentedRequestParamsSchema$1.extend({\n\t\tname: z.string(),\n\t\targuments: z.record(z.string(), z.unknown()).optional()\n\t});\n\t/**\n\t* Used by the client to invoke a tool provided by the server.\n\t*/\n\tconst CallToolRequestSchema$1 = RequestSchema$1.extend({\n\t\tmethod: z.literal(\"tools/call\"),\n\t\tparams: CallToolRequestParamsSchema$1\n\t});"
+        },
+        {
+          "member": "package/dist/src-D-y6h4N7.mjs",
+          "first_line": 6831,
+          "last_line": 6845,
+          "text": "\tsetRequestHandler(method, schemasOrHandler, maybeHandler) {\n\t\tthis.assertRequestHandlerCapability(method);\n\t\tlet stored;\n\t\tif (typeof schemasOrHandler === \"function\") {\n\t\t\tif (!isSpecRequestMethod(method)) throw new TypeError(`'${method}' is not a spec request method; pass schemas as the second argument to setRequestHandler().`);\n\t\t\tstored = (request, ctx) => {\n\t\t\t\tconst dispatchCodec = this._negotiatedWireCodec();\n\t\t\t\tlet outcome = dispatchCodec.validateRequest(method, request);\n\t\t\t\tif (!outcome.ok && outcome.reason === \"not-in-era\") outcome = dispatchCodec.validateInputRequest(method, request);\n\t\t\t\tif (!outcome.ok) {\n\t\t\t\t\tif (outcome.reason === \"not-in-era\") throw new ProtocolError(ProtocolErrorCode.InternalError, `No wire schema for ${method} in the resolved era`);\n\t\t\t\t\tthrow new Error(outcome.message);\n\t\t\t\t}\n\t\t\t\treturn Promise.resolve(schemasOrHandler(outcome.value, ctx));\n\t\t\t};"
+        }
+      ],
+      "zod_evidence": {
+        "locked_version": "4.6.5",
+        "locked_integrity": "sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==",
+        "cache": {
+          "path": "/Users/arhancanli/.npm/_cacache/content-v2/sha512/bf/99/7f6855d941e6a2e1ac0b6cea52a0779c13d52232b9dfc7be6d1172e33689d754047143998e7a2a538d1394721b3350d0aa9c4fa1a8032e8d1b111ecbadd9",
+          "bytes": 1052733,
+          "sha256": "a78c0c533de30dc1c4afc259ac43ac06e390cb0da8d2e32eae355301b50b36fc"
+        },
+        "member": "package/v4/core/schemas.js",
+        "member_bytes": 105968,
+        "member_sha256": "e632b655441418f0593153abc6809fd81cf3e0782d810622d0a4fa50ef6e182e",
+        "first_line": 1776,
+        "last_line": 1789,
+        "text": "            }\n        }\n        else {\n            payload.value = memo ? memo.alloc(inst, payload, {}, ctx) : {};\n            // An enumerable key schema declares which keys the record owns, so a key outside the set is unrecognized. A non-enumerable one (regex, refine) is a constraint every key must satisfy, so a failing key is invalid. Only the former is reconcilable against the other side of an intersection.\n            let unrecognized;\n            // Reflect.ownKeys for Symbol-key support; filter non-enumerable to match z.object()\n            for (const key of Reflect.ownKeys(input)) {\n                if (key === \"__proto__\")\n                    continue;\n                if (!Object.prototype.propertyIsEnumerable.call(input, key))\n                    continue;\n                let keyResult = def.keyType._zod.run({ value: key, issues: [] }, ctx);\n                if (keyResult instanceof Promise) {",
+        "bounded_single_member_gzip_exact_bytes": 6819840
+      },
+      "historical_source_scope": true
+    }
+  ],
+  "blocking_findings": [
+    "CC-376-ORIGINAL-ARGUMENT-KEYS-BEFORE-SDK-PROJECTION"
+  ],
+  "additional_source_findings": [],
+  "written_case_count_at_original_freeze": 58,
+  "written_names": [
+    "expert stdio: one direct legacy SDK call returns the complete core report and known child closure",
+    "expert stdio: one absolute symlink SDK entry preserves report identity and known child closure",
+    "expert stdio: third owned SDK entry closes malformed private input without a tool dispatch or retry",
+    "expert stdio: importing the module and constructing an inert endpoint emit no protocol data",
+    "expert stdio: delivered blank50 bytes retain100 assignments and every missing role and pair",
+    "expert stdio: one absent role keeps the complete selected denominator and original returned bytes",
+    "expert stdio: partial fields and missing required notes retain each task and per-field missing coverage",
+    "expert stdio: syntactically complete fictional returns establish no expert agreement or adjudication",
+    "expert stdio: complete escape-heavy notes survive both public copies and the original raw bindings",
+    "expert stdio: caller64 and null source declarations remain unverified in the unchanged full report",
+    "expert stdio: primitive SHA arrays boxes uppercase and end suffixes stop before decode or kernel",
+    "expert stdio: extra missing symbol and inherited argument keys stop before decode",
+    "expert stdio: argument getters and proxies are refused without invoking caller traps",
+    "expert stdio: sparse accessor proxy and foreign-prototype evidence arrays stop before decode",
+    "expert stdio: evidence and submission counts are refused before encoded element inspection",
+    "expert stdio: nonprimitive base64 and noncanonical alphabet padding whitespace and suffixes stop before decode",
+    "expert stdio: all six individual raw caps refuse encoded overflow before any allocation callback",
+    "expert stdio: evidence and submission individual plus-one caps refuse before decode",
+    "expert stdio: individually valid evidence over256KiB is refused before the first decode",
+    "expert stdio: individually valid first-six inputs over768KiB stop before decode",
+    "expert stdio: individually valid two submissions over the full4MiB batch stop before decode",
+    "expert stdio: exact evidence first-six and full-batch boundaries admit owned bytes without a kernel",
+    "expert stdio: canonical empty forms reach the unchanged kernel once and receive its stable byte refusal",
+    "expert stdio: decoder length or byte substitution is refused before the kernel",
+    "expert stdio: invalid UTF8 JSON schema and separate raw gold pin are stable one-kernel refusals",
+    "expert stdio: swapped or rehashed foreign submissions are not repaired or reassigned",
+    "expert stdio: declaration terminators and foreign packet identity keep complete contract refusals",
+    "expert stdio: a tampered complete report hash never becomes a successful tool result",
+    "expert stdio: missing report rows or invented verified identity fail the advertised full-report schema",
+    "expert stdio: full report over6MiB is refused whole without removing original fields",
+    "expert stdio: an injected private exception is replaced by a tiny stable no-echo refusal",
+    "expert stdio: final sender writes exact locked JSON plus LF once with no extra serialization",
+    "expert stdio: queued late sender performs no serialization or native write",
+    "expert stdio:14999.5ms plus1ms synchronous serialization crosses the same deadline with zero native writes",
+    "expert stdio: serialization-triggered abort refuses before the same captured native writer",
+    "expert stdio: serialization-triggered reentrant close refuses before native write",
+    "expert stdio: serialization-triggered known exit refuses before native write",
+    "expert stdio: backpressure waits one drain and never writes the frame a second time",
+    "expert stdio: close before drain rejects and removes listeners without a second native write",
+    "expert stdio: abort while waiting for drain stays sticky and cannot revive a send",
+    "expert stdio: a native writer throw retains one attempt and no retry or raw exception echo",
+    "expert stdio: clock rollback after serialization refuses rather than renewing the absolute window",
+    "expert stdio: synchronous kernel exhaustion is caught before projector and final success write",
+    "expert stdio: synthetic whole response exact20MiB includes LF and plus-one writes nothing",
+    "expert stdio: synthetic complete escaped tool object exact19MiB and plus-one use the real sender cap",
+    "expert stdio: producer actual request cap counts the complete6MiB frame before native stdin effect",
+    "expert stdio: oversized or unsafe reflected IDs refuse before output serialization",
+    "expert stdio: exact128UTF8 ID is admitted while the next Unicode scalar is refused before SDK dispatch",
+    "expert stdio: fatal invalid UTF8 and malformed JSON are not repaired skipped or echoed",
+    "expert stdio: complete input frame exact6MiB includes LF and preserves parsed admission",
+    "expert stdio: retained unterminated input plus-one fails before copying a second chunk",
+    "expert stdio: EOF with an incomplete frame is a bounded failure with zero SDK dispatches",
+    "expert stdio: protocol shape unsafe IDs and extra envelope fields stop before SDK callbacks",
+    "expert stdio: diagnostic overflow is failing once and never truncation accepted as success",
+    "expert stdio: unknown tool receives stable refusal through actual low-level SDK projection with no raw echo",
+    "expert stdio: SDK validation exceptions are sanitized before the same native sender",
+    "expert stdio: duplicate pending IDs and cancelled scopes cannot revive or dispatch a second response",
+    "expert stdio: fixture byte snapshots admit a bounded regular FD and refuse a direct symlink"
+  ],
+  "actual_launch_source_inventory": {
+    "lexical_site_count": 1,
+    "lexical_site_line": 165,
+    "literal_entries": [
+      {
+        "kind": "direct",
+        "line": 236,
+        "source_occurrences": 1
+      },
+      {
+        "kind": "symlink",
+        "line": 239,
+        "source_occurrences": 1
+      },
+      {
+        "kind": "bad-frame",
+        "line": 242,
+        "source_occurrences": 1
+      }
+    ],
+    "maximum": 3,
+    "runtime_launched": 0
+  },
+  "historical_runtime_qualification": {
+    "author_failed_original": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-92fb0cfe-initial-actual-55pass-3fail-v1.json",
+      "bytes": 110230,
+      "sha256": "294d229369a42c60035a2d8d988146a63176f79b0a167a5e564361f065cba7d3"
+    },
+    "retained_original_log": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-92fb0cfe-mcp-job-api-original-v3.log",
+      "bytes": 295962,
+      "sha256": "315ce3bd04b09fe73a2b7ba3e7aaa00de795bdda6b6c05e5cae192ad581d21fe"
+    },
+    "recorded_58_outcomes": {
+      "pass": 55,
+      "fail": 3,
+      "unknown": 0
+    },
+    "failed_scope": "Two legacy client return-shape fixture assertions; malformed-frame child did not exit within work limit.",
+    "unreached_assertions": [
+      "Direct and alias complete report comparison follows failed kind assertion; those comparisons are not claimed passed."
+    ],
+    "native_source_diagnosis": [
+      "Locked legacy client returns the decoded complete result itself; kind/result is an internal codec wrapper.",
+      "Inherited StdioServerTransport.close pauses input but does not destroy its retained pipe; malformed-input child remained alive until parent cleanup. No global process claim."
+    ],
+    "source_concurrence": "Frozen92 guide/test still expect internal kind/result wrapper; original transport close does not destroy owned input. These historical issues were addressed by c6; no new current finding or runtime claim is added.",
+    "no_separate_full_currentCI_gate_performed_in_this_source_only_review": true
+  },
+  "preserved_originals": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/assignment-67aede2a-primary-v1.md",
+      "bytes": 23933,
+      "sha256": "a4cd162f1b04d25160364f8fdcba8db7ff248178f980ace5b0e24933bbb8f3e1"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/source-basis-67aede2a-primary-v1.json",
+      "bytes": 30865,
+      "sha256": "778497d9b699acbd25a78f29f75d51f572579e43907d62807d4d9201e352c8ea"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-92fb0cfe-initial-actual-55pass-3fail-v1.json",
+      "bytes": 110230,
+      "sha256": "294d229369a42c60035a2d8d988146a63176f79b0a167a5e564361f065cba7d3"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-92fb0cfe-mcp-job-api-original-v3.log",
+      "bytes": 295962,
+      "sha256": "315ce3bd04b09fe73a2b7ba3e7aaa00de795bdda6b6c05e5cae192ad581d21fe"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-92fb0cfe-original-terminal-checks.json",
+      "bytes": 24358,
+      "sha256": "571138f9adef0b0c389280f5746649589ed061e9d0045ae1996832a9523d040b"
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio/secondary-source-92fb0cfe-to-c6fb3075-frozen-exact-v1.patch",
+      "bytes": 13102,
+      "sha256": "03777681993887d3afe73945e231349412266e43c9de6370662999bed1169831"
+    }
+  ],
+  "review_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-stdio-peer/inspect-92fb0cfe-historical-source-v1.py",
+    "bytes": 13137,
+    "sha256": "74a896fdf757901a874b2cc231dcebd453b84f4abb5f7d760ef4262e001ad664"
+  },
+  "limitations": [
+    "Historical source only; no current/new-head approval.",
+    "Existing complete c6 source/CI pair remains immutable; 1504/new63 correction excluded.",
+    "Source counterexample is predicted from exact SDK/Zod bytes, not locally executed.",
+    "Tar expansion/member provenance carries only exact previously independently audited compressed caches; no new decompression claim.",
+    "No future CI/archive/readiness/merge/custody/publication approval."
+  ],
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "reviewer_project_execution": false,
+  "API_refetch": false,
+  "all_owner_goals": "ACTIVE",
+  "roles": "PRIMARY sole merge/publication; Lead sole project CPU; 127 policy unchanged"
+}
