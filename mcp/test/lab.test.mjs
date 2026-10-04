@@ -4,7 +4,7 @@
 // code (exact schemas, the strategy spec, examples that compile in Python and JavaScript).
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -222,6 +222,76 @@ test("check_leakage: columns_file reads what a Python script wrote, NaN included
   await assert.rejects(() => toolCheckLeakage({}, { action: "compare", cuts, columns_file: secret }), (error) => /does not parse as JSON/.test(error.message) && !/hunter2/.test(error.message));
   writeFileSync(secret, JSON.stringify({ columns: { x: { full: ["hunter2-value"], prefixes: [[], []] } } }));
   await assert.rejects(() => toolCheckLeakage({}, { action: "compare", cuts, columns_file: secret }), (error) => /column 1, full\[0\] is not a finite number or null/.test(error.message) && !/hunter2/.test(error.message));
+});
+
+test("placebo_test: plan writes the real panel and reordered placebos side by side; compare ranks the real result", async (t) => {
+  const { toolPlaceboTest } = await import("../src/lab.mjs");
+  const dir = mkdtempSync(path.join(tmpdir(), "placebo-in-"));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  // As pandas writes it: an unnamed index, a date column, then three assets.
+  const rows = 80;
+  const assets = [walk(rows, 1), walk(rows, 2).map((p) => p * 2), walk(rows, 3).map((p) => p / 3)];
+  const dates = Array.from({ length: rows }, (_, i) => new Date(Date.UTC(2024, 0, 1 + i)).toISOString().slice(0, 10));
+  const file = path.join(dir, "prices.csv");
+  writeFileSync(file, [",date,AAA,BBB,CCC", ...dates.map((d, i) => `${i},${d},${assets.map((a) => a[i]).join(",")}`)].join("\n"));
+  const plan = JSON.parse((await toolPlaceboTest({}, { action: "plan", data_file: file, seed: 7 })).content[0].text);
+  t.after(() => rmSync(plan.dir, { recursive: true, force: true }));
+  assert.equal(plan.method, "permute");
+  assert.equal(plan.real, "real.csv");
+  assert.equal(plan.files.length, 19);
+  assert.deepEqual(plan.source.skipped_row_counter_columns, [1]);
+  assert.equal(plan.source.date_column_position, 2);
+  const read = (name) => readFileSync(path.join(plan.dir, name), "utf8").trim().split("\n").map((line) => line.split(","));
+  const real = read("real.csv");
+  assert.deepEqual(real[0], ["date", "AAA", "BBB", "CCC"]);
+  for (const name of plan.files) {
+    const placebo = read(name);
+    assert.deepEqual(placebo.map((r) => r[0]), real.map((r) => r[0]), "the header and dates stay in order");
+    assert.deepEqual(placebo[1], real[1], "every column starts at its real first price");
+    for (let c = 1; c <= 3; c++) assert.ok(Math.abs(Number(placebo[rows][c]) / Number(real[rows][c]) - 1) < 1e-9, "and a permutation ends at its real last price");
+  }
+  const again = JSON.parse((await toolPlaceboTest({}, { action: "plan", data_file: file, seed: 7 })).content[0].text);
+  t.after(() => rmSync(again.dir, { recursive: true, force: true }));
+  assert.notEqual(again.dir, plan.dir, "every plan writes to a new folder");
+  assert.equal(readFileSync(path.join(again.dir, "placebo_001.csv"), "utf8"), readFileSync(path.join(plan.dir, "placebo_001.csv"), "utf8"), "the same seed gives the same placebos");
+  assert.equal(again.source.input_sha256, plan.source.input_sha256);
+
+  const results = Array.from({ length: 19 }, (_, k) => k / 10);
+  const won = JSON.parse((await toolPlaceboTest({}, { action: "compare", real: 2.5, placebo_results: results })).content[0].text);
+  assert.equal(won.verdict, "beats_placebos");
+  assert.equal(won.p_value, 0.05);
+  assert.match(won.plain_reading, /beat all 19 placebos: p = 0.05, the smallest 19 placebos can give; 99 placebos give a finer p/);
+  const lost = JSON.parse((await toolPlaceboTest({}, { action: "compare", real: 0.95, placebo_results: results })).content[0].text);
+  assert.equal(lost.verdict, "within_placebo_range");
+  assert.equal(lost.as_good_as_real, 9);
+  assert.equal(lost.p_value, 0.5);
+  const drawdown = JSON.parse((await toolPlaceboTest({}, { action: "compare", real: -0.1, placebo_results: results, lower_is_better: true })).content[0].text);
+  assert.equal(drawdown.p_value, 0.05);
+});
+
+test("placebo_test: a JSON series gives JSON placebos; the hosted endpoint writes nothing and returns small placebos inline", async (t) => {
+  const { toolPlaceboTest } = await import("../src/lab.mjs");
+  const dir = mkdtempSync(path.join(tmpdir(), "placebo-json-"));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const file = path.join(dir, "series.json");
+  writeFileSync(file, JSON.stringify(walk(50, 4)));
+  const plan = JSON.parse((await toolPlaceboTest({}, { action: "plan", data_file: file, placebos: 29 })).content[0].text);
+  t.after(() => rmSync(plan.dir, { recursive: true, force: true }));
+  assert.equal(plan.real, "real.json");
+  assert.equal(plan.files.length, 29);
+  const placebo = JSON.parse(readFileSync(path.join(plan.dir, plan.files[0]), "utf8"));
+  assert.equal(placebo.length, 50);
+  assert.ok(Number.isInteger(plan.seed), "a plan with no seed gets a fresh one, and says which");
+
+  const hosted = { hosted: { keySource: "shared" } };
+  await assert.rejects(() => toolPlaceboTest(hosted, { action: "plan", data_file: file }), /hosted endpoint cannot read files/);
+  const inline = JSON.parse((await toolPlaceboTest(hosted, { action: "plan", columns: { spy: walk(60, 5) }, seed: 3 })).content[0].text);
+  assert.equal(inline.dir, undefined);
+  assert.equal(inline.placebo_columns.length, 19);
+  assert.equal(inline.placebo_columns[0].spy.length, 60);
+  await assert.rejects(() => toolPlaceboTest(hosted, { action: "plan", columns: { a: walk(3000, 6), b: walk(3000, 7) } }), /returns at most 50000 placebo numbers/);
+  await assert.rejects(() => toolPlaceboTest({}, { action: "plan" }), /plan needs exactly one of data_file or columns/);
+  await assert.rejects(() => toolPlaceboTest({}, { action: "compare", real: 1 }), /compare needs real and placebo_results/);
 });
 
 test("check_leakage: a plan with no seed picks a fresh one, and compare refuses a run of the wrong length", async () => {

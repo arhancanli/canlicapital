@@ -79,6 +79,7 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
     "check_feasibility",
     "check_leakage",
     "get_key",
+    "placebo_test",
     "service_status",
     "stress_test",
     "summarize_series",
@@ -98,9 +99,10 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   }
   // Tool annotations as a client receives them: every tool has a title; reads are read-only;
   // validations store a receipt and get_key creates a key; nothing is destructive. The lab tools
-  // compute in this process, so they are read-only and do not reach the outside world.
-  const lab = new Set(["backtest_strategy", "summarize_series", "stress_test", "check_feasibility", "check_leakage"]);
-  const readOnly = new Set(["get_receipt", "service_status", "company_financial_history", "verify_receipt", ...lab]);
+  // compute in this process, so they do not reach the outside world, and all but placebo_test,
+  // which writes its placebo files to a new temporary folder, are read-only.
+  const lab = new Set(["backtest_strategy", "summarize_series", "stress_test", "check_feasibility", "check_leakage", "placebo_test"]);
+  const readOnly = new Set(["get_receipt", "service_status", "company_financial_history", "verify_receipt", ...[...lab].filter((name) => name !== "placebo_test")]);
   for (const tool of tools) {
     const a = tool.annotations ?? {};
     assert.ok(a.title, `${tool.name} has no annotation title`);
@@ -117,7 +119,7 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
 
   // Guided prompts and reference resources, as a client lists and reads them.
   const { prompts } = await client.listPrompts();
-  assert.deepEqual(prompts.map((p) => p.name).sort(), ["backtest_and_validate", "check_signal_for_lookahead", "production_check", "stress_my_strategy", "summarize_market_series", "track_record_needed", "validate_backtest"]);
+  assert.deepEqual(prompts.map((p) => p.name).sort(), ["backtest_and_validate", "check_signal_for_lookahead", "production_check", "stress_my_strategy", "summarize_market_series", "test_pipeline_on_placebos", "track_record_needed", "validate_backtest"]);
   const guided = await client.getPrompt({ name: "validate_backtest", arguments: { strategy: "12-1 momentum on US equities", variants_tried: "40" } });
   const guidance = guided.messages[0].content.text;
   for (const tool of ["validate_deflated_sharpe", "validate_overfitting", "validate_track_record"]) assert.match(guidance, new RegExp(tool));
