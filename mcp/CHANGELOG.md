@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.13.0 (2026-10-04)
 
 - New lab tool `check_leakage` finds lookahead in a signal without seeing its code. `plan` picks
   seeded cut points between 40% and 95% of the series; the caller reruns its own code on the rows

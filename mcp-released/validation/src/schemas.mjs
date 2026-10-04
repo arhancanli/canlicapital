@@ -394,3 +394,40 @@ export const statusOutput = z
 export const companyHistoryOutput = z
   .looseObject({ company: loose, claim_boundary: z.string().optional(), source: loose, histories: z.array(z.unknown()).optional(), history: loose, error: refusal })
   .describe("Without a concept, histories lists what is available; with one, history holds the observations newest first as columns and rows, each with its filing. Values are as reported to the SEC.");
+
+// zod writes keywords that constrain nothing a caller sends, and the tool list carrying them is
+// re-sent to the model every turn, so the schemas the server lists leave them out:
+// - JavaScript's safe-integer range (minimum -9007199254740991, maximum 9007199254740991) on every
+//   .int() field, about nine tokens a field;
+// - propertyNames {type: "string"}, which every JSON object key already is;
+// - an empty additionalProperties ({}), which allows anything, as its absence does.
+// A real bound stays, and zod still validates every call. Only subschemas are walked, so a field
+// that happens to be named "minimum" or "additionalProperties" is never touched.
+const SUBSCHEMA_MAPS = ["properties", "patternProperties", "$defs", "dependentSchemas"];
+const SUBSCHEMA_LISTS = ["anyOf", "oneOf", "allOf", "prefixItems"];
+const SUBSCHEMAS = ["items", "additionalProperties", "propertyNames", "contains", "not", "if", "then", "else", "unevaluatedItems", "unevaluatedProperties"];
+const isPlainObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+
+export function leanJsonSchema(schema) {
+  if (!isPlainObject(schema)) return schema;
+  const out = { ...schema };
+  for (const key of SUBSCHEMA_MAPS) {
+    if (isPlainObject(out[key])) out[key] = Object.fromEntries(Object.entries(out[key]).map(([name, sub]) => [name, leanJsonSchema(sub)]));
+  }
+  for (const key of SUBSCHEMA_LISTS) if (Array.isArray(out[key])) out[key] = out[key].map(leanJsonSchema);
+  for (const key of SUBSCHEMAS) if (key in out) out[key] = leanJsonSchema(out[key]);
+  const integer = out.type === "integer" || (Array.isArray(out.type) && out.type.includes("integer"));
+  if (integer && out.minimum === Number.MIN_SAFE_INTEGER) delete out.minimum;
+  if (integer && out.maximum === Number.MAX_SAFE_INTEGER) delete out.maximum;
+  if (isPlainObject(out.propertyNames) && Object.keys(out.propertyNames).length === 1 && out.propertyNames.type === "string") delete out.propertyNames;
+  if (isPlainObject(out.additionalProperties) && Object.keys(out.additionalProperties).length === 0) delete out.additionalProperties;
+  return out;
+}
+
+// The schema a tool is registered with: zod's own validation, and its JSON Schema made lean.
+export function listedSchema(schema) {
+  if (!schema) return schema;
+  const std = schema["~standard"];
+  const lean = (io) => (options) => leanJsonSchema(std.jsonSchema[io](options));
+  return { "~standard": { ...std, jsonSchema: { input: lean("input"), output: lean("output") } } };
+}

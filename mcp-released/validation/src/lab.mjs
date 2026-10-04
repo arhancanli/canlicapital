@@ -13,17 +13,23 @@
 //
 // Also here: the code-generation resources (every tool's exact JSON Schemas, the strategy spec,
 // runnable client examples, the API's OpenAPI document) and the lab's guided prompts.
-import { createHash } from "node:crypto";
+import { createHash, randomInt } from "node:crypto";
+import { mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { ResourceTemplate } from "@modelcontextprotocol/server";
 import { z } from "zod";
 import { BACKTEST_LIMITS, BACKTEST_LIMITS_TEXT, FAMILIES, runBacktest } from "./local/js/backtest-core.js";
 import { FEASIBILITY_LIMITS_TEXT, checkFeasibility } from "./local/js/feasibility-core.js";
 import { SUMMARY_LIMITS_TEXT, summarizeSeries } from "./local/js/series-summary-core.js";
 import { STRESS_LIMITS_TEXT, stressTest } from "./local/js/stress-core.js";
-import { LAB_TOOL_DESCRIPTIONS, backtestInput, backtestOutput, feasibilityInput, feasibilityOutput, stressInput, stressOutput, summarizeInput, summaryOutput } from "./lab-schemas.mjs";
-import { readSeriesWithDates } from "./series-file.mjs";
+import { LEAKAGE_LIMITS, LEAKAGE_LIMITS_TEXT, checkLeakage, planPrefixes } from "./local/js/leakage-core.js";
+import { PLACEBO_DEFAULT_METHOD, PLACEBO_LIMITS, PLACEBO_LIMITS_TEXT, checkPanel, placeboPValue, placeboPanels } from "./local/js/placebo-core.js";
+import { LAB_TOOL_DESCRIPTIONS, backtestInput, backtestOutput, feasibilityInput, feasibilityOutput, leakageInput, leakageOutput, placeboInput, placeboOutput, stressInput, stressOutput, summarizeInput, summaryOutput } from "./lab-schemas.mjs";
+import { readColumnsFile, readPanelFile, readSeriesWithDates, writePanelFile } from "./series-file.mjs";
+import { leanJsonSchema } from "./schemas.mjs";
 
-export const LAB_TOOLS = Object.freeze(["backtest_strategy", "summarize_series", "stress_test", "check_feasibility"]);
+export const LAB_TOOLS = Object.freeze(["backtest_strategy", "summarize_series", "stress_test", "check_feasibility", "check_leakage", "placebo_test"]);
 
 // Same shape as every other tool's result: the object as text, and as structured content.
 const labText = (value) => ({ content: [{ type: "text", text: JSON.stringify(value) }], structuredContent: value });
@@ -83,16 +89,129 @@ export async function toolCheckFeasibility(session, args) {
   return labText({ ...checkFeasibility(input), limits: FEASIBILITY_LIMITS_TEXT });
 }
 
+// check_leakage: plan picks the cut points (a fresh seed unless one is sent, so the caller does not
+// choose them); compare reads the caller's outputs and reports, per column, what changed and why.
+export async function toolCheckLeakage(session, args) {
+  const input = parse(leakageInput, args, "check_leakage");
+  if (input.action === "plan") {
+    if (input.observations === undefined) throw new Error("check_leakage: plan needs observations, the number of rows in the full series");
+    const seed = input.seed ?? randomInt(1, 2 ** 31);
+    const cuts = planPrefixes(input.observations, { prefixes: input.prefixes ?? LEAKAGE_LIMITS.default_prefixes, seed });
+    return labText({
+      schema: "canli.leakage-plan.v1", observations: input.observations, cuts, seed,
+      plain_reading: `Run your signal code ${cuts.length + 1} times: on all ${input.observations} rows, and on the first ${cuts.join(", ")} rows. Send each output column with action compare and these cuts; prefixes[i] holds the run on the first cuts[i] rows.`,
+      limits: LEAKAGE_LIMITS_TEXT,
+    });
+  }
+  let { cuts, columns, timestamps } = input;
+  if (input.columns_file !== undefined) {
+    if (columns !== undefined) throw new Error("check_leakage: send columns or columns_file, not both");
+    if (session.hosted) throw new Error("check_leakage: the hosted endpoint cannot read files on your machine; send columns as numbers, or run the server locally with npx -y canli-validation-mcp.");
+    const file = readColumnsFile(input.columns_file);
+    if (cuts !== undefined && file.cuts !== undefined && JSON.stringify(cuts) !== JSON.stringify(file.cuts)) throw new Error("check_leakage: the cuts sent differ from the cuts in columns_file");
+    cuts ??= file.cuts;
+    columns = file.columns;
+    timestamps ??= file.timestamps;
+  }
+  if (cuts === undefined || columns === undefined) throw new Error("check_leakage: compare needs cuts (from plan) and columns, sent or in a columns_file");
+  const result = checkLeakage({ cuts, columns, tolerance: input.tolerance, timestamps: labels(timestamps) });
+  // Per cut, only what a reader needs: where the changes start and how large they are.
+  const report = Object.fromEntries(Object.entries(result.columns).map(([name, c]) => [name, {
+    verdict: c.verdict, pattern: c.pattern, sentence: c.sentence,
+    ...(c.horizon_rows !== undefined ? { horizon_rows: c.horizon_rows } : {}),
+    ...(c.share_changed !== undefined ? { share_changed: c.share_changed } : {}),
+    ...(c.first_changed_at !== undefined ? { first_changed_at: c.first_changed_at } : {}),
+    per_cut: c.prefixes.map((p) => ({ cut: p.cut, changed: p.changed, first_changed: p.first_changed, max_abs_difference: p.max_abs_difference })),
+  }]));
+  const flagged = result.flagged_columns;
+  return labText({
+    schema: "canli.leakage.v1", verdict: result.verdict, flagged_columns: flagged, cuts: result.cuts, columns: report,
+    source: { ...(input.columns_file !== undefined ? { columns_file: input.columns_file } : {}), input_sha256: digest({ cuts, columns }) },
+    plain_reading: flagged.length
+      ? `Lookahead in ${flagged.length} of ${Object.keys(report).length} column${Object.keys(report).length === 1 ? "" : "s"} (${flagged.join(", ")}). ${flagged.map((n) => `${n}: ${report[n].sentence}`).join(" ")}`
+      : `No value changed in ${Object.keys(report).length} column${Object.keys(report).length === 1 ? "" : "s"} at ${result.cuts.length} cuts: these prefixes found no lookahead.`,
+    limits: LEAKAGE_LIMITS_TEXT,
+  });
+}
+
+// placebo_test: plan reorders the periods of the caller's panel, the same order for every column,
+// and writes the real panel and each placebo as CSV to a new folder in the system's temporary
+// directory (the hosted endpoint, which writes nothing, returns small placebos inline); compare
+// ranks the pipeline's real result among its placebo results.
+const PLACEBO_INLINE_MAX = 50000;
+const short = (x) => Number(x.toPrecision(4));
+
+export async function toolPlaceboTest(session, args) {
+  const input = parse(placeboInput, args, "placebo_test");
+  if (input.action === "compare") {
+    if (input.real === undefined || input.placebo_results === undefined) throw new Error("placebo_test: compare needs real and placebo_results, from the pipeline's runs on real.csv and the placebo files");
+    const r = placeboPValue(input.real, input.placebo_results, { higherIsBetter: !input.lower_is_better });
+    const beats = r.as_good_as_real === 0;
+    const luck = `On the placebos, where nothing can be predicted, it found a median of ${short(r.placebo.median)} and at best ${short(r.placebo.best)}.`;
+    return labText({
+      schema: "canli.placebo.v1", verdict: r.p_value <= 0.05 ? "beats_placebos" : "within_placebo_range", ...r,
+      source: { input_sha256: digest({ real: input.real, placebo_results: input.placebo_results }) },
+      plain_reading: beats
+        ? `The pipeline's real result, ${short(r.real)}, beat all ${r.placebos} placebos: p = ${short(r.p_value)}, the smallest ${r.placebos} placebos can give${r.placebos < 99 ? "; 99 placebos give a finer p" : ""}. ${luck}`
+        : `${r.as_good_as_real} of ${r.placebos} placebos gave a result at least as good as the real one, ${short(r.real)}: p = ${short(r.p_value)}. ${luck}`,
+      limits: PLACEBO_LIMITS_TEXT,
+    });
+  }
+  if ((input.data_file === undefined) === (input.columns === undefined)) throw new Error("placebo_test: plan needs exactly one of data_file or columns");
+  const kind = input.kind ?? "prices";
+  const method = input.method ?? PLACEBO_DEFAULT_METHOD;
+  const placebos = input.placebos ?? PLACEBO_LIMITS.default_placebos;
+  const seed = input.seed ?? randomInt(1, 2 ** 31);
+  let panel;
+  if (input.data_file !== undefined) {
+    if (session.hosted) throw new Error("placebo_test: the hosted endpoint cannot read files on your machine; send columns as numbers, or run the server locally with npx -y canli-validation-mcp.");
+    panel = readPanelFile(input.data_file);
+  } else {
+    const names = Object.keys(input.columns);
+    panel = { columns: names.map((n) => input.columns[n]), names, dates: null, date_name: null, skipped: [], format: "csv" };
+  }
+  checkPanel(panel.columns, kind);
+  const source = {
+    ...(input.data_file !== undefined ? { data_file: input.data_file, column_positions: panel.positions, ...(panel.date_column ? { date_column_position: panel.date_column } : {}), ...(panel.skipped.length ? { skipped_row_counter_columns: panel.skipped } : {}) } : {}),
+    columns: panel.columns.length, rows: panel.columns[0].length, input_sha256: digest(panel.columns),
+  };
+  const made = placeboPanels(panel.columns, { kind, method, placebos, seed });
+  const plan = { schema: "canli.placebo-plan.v1", kind, method, placebos, seed };
+  if (session.hosted) {
+    if (placebos * panel.columns.length * panel.columns[0].length > PLACEBO_INLINE_MAX) throw new Error(`placebo_test: the hosted endpoint returns at most ${PLACEBO_INLINE_MAX} placebo numbers; send fewer rows or columns, or run the server locally with npx -y canli-validation-mcp, which writes the placebos to files`);
+    const names = panel.names;
+    return labText({ ...plan, placebo_columns: [...made].map((p) => Object.fromEntries(names.map((n, i) => [n, p[i]]))), plain_reading: `Run the pipeline unchanged on the real columns and on each of the ${placebos} placebos, then send its results to compare in this order.`, limits: PLACEBO_LIMITS_TEXT, source });
+  }
+  const dir = mkdtempSync(join(tmpdir(), "canli-placebo-"));
+  const layout = { names: panel.names, dates: panel.dates, dateName: panel.date_name, format: panel.format };
+  const real = `real.${panel.format}`;
+  writePanelFile(join(dir, real), { ...layout, columns: panel.columns });
+  const files = [];
+  for (const columns of made) {
+    const name = `placebo_${String(files.length + 1).padStart(3, "0")}.${panel.format}`;
+    writePanelFile(join(dir, name), { ...layout, columns });
+    files.push(name);
+  }
+  return labText({
+    ...plan, dir, real, files,
+    plain_reading: `Run the pipeline unchanged, every search and choice included, on ${real} and on each of the ${placebos} placebo files in ${dir}, record the one number it reports (such as its best Sharpe), and send them to compare in file order.`,
+    limits: PLACEBO_LIMITS_TEXT, source,
+  });
+}
+
 // The lab computes locally and changes nothing anywhere: read-only, closed world, idempotent.
 const LAB_ANNOTATIONS = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 
 export function labToolSpecs(session) {
-  const spec = (name, title, input, output, handler) => [name, { title, annotations: { title, ...LAB_ANNOTATIONS }, description: LAB_TOOL_DESCRIPTIONS[name], inputSchema: input, outputSchema: output }, (args) => handler(session, args)];
+  const spec = (name, title, input, output, handler, annotations = LAB_ANNOTATIONS) => [name, { title, annotations: { title, ...annotations }, description: LAB_TOOL_DESCRIPTIONS[name], inputSchema: input, outputSchema: output }, (args) => handler(session, args)];
   return [
     spec("backtest_strategy", "Backtest a rule over a parameter grid, validated", backtestInput, backtestOutput, toolBacktestStrategy),
     spec("summarize_series", "Summarize a price or return series", summarizeInput, summaryOutput, toolSummarizeSeries),
     spec("stress_test", "Stress-test a strategy's returns", stressInput, stressOutput, toolStressTest),
     spec("check_feasibility", "Check a plan against broker limits and impact", feasibilityInput, feasibilityOutput, toolCheckFeasibility),
+    spec("check_leakage", "Check a signal for lookahead", leakageInput, leakageOutput, toolCheckLeakage),
+    // plan writes files, each call to a new temporary folder: not read-only, not idempotent.
+    spec("placebo_test", "Test a research pipeline on placebo data", placeboInput, placeboOutput, toolPlaceboTest, { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false }),
   ];
 }
 
@@ -121,6 +240,8 @@ export const EXAMPLE_ARGS = Object.freeze({
   summarize_series: { series_file: "prices.csv", series_kind: "prices", name: "My asset" },
   stress_test: { returns_file: "strategy_returns.csv", drawdown_limit: 0.2, paths: 1000, seed: 42 },
   check_feasibility: { broker: "alpaca", asset_class: "us_equity", account: "margin", capital_usd: 250000, orders_per_rebalance: 40, rebalances_per_year: 52, turnover_per_year: 8, adv_usd: 20000000, daily_volatility: 0.02, copies: 1, expected_gross_return: 0.12, spread_and_fees_bps: 3 },
+  check_leakage: { action: "plan", observations: 2520, prefixes: 5 },
+  placebo_test: { action: "plan", data_file: "prices.csv" },
 });
 
 const usesFile = (args) => Object.keys(args).some((k) => k.endsWith("_file"));
@@ -220,7 +341,7 @@ export function registerCodeResources(server, session, catalog) {
     (uri, { tool }) => {
       const entry = catalog[tool];
       if (!entry) throw new Error(`No tool ${tool}; tools are ${names.join(", ")}`);
-      const body = { tool, description: entry.description, input_schema: z.toJSONSchema(entry.inputSchema, { io: "input" }), output_schema: z.toJSONSchema(entry.outputSchema, { io: "output" }) };
+      const body = { tool, description: entry.description, input_schema: leanJsonSchema(z.toJSONSchema(entry.inputSchema, { io: "input" })), output_schema: leanJsonSchema(z.toJSONSchema(entry.outputSchema, { io: "output" })) };
       return { contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify(body, null, 2) }] };
     },
   );
@@ -303,6 +424,28 @@ export function registerLabPrompts(server) {
     ({ series_file, kind }) => [
       `Call summarize_series on ${series_file} (series_kind ${kind ?? "prices"}) and reason from its text and fields instead of reading the file's rows.`,
       "Point out anything in the data check (stale prices, jumps) that should be fixed before the series is backtested.",
+    ],
+  );
+  prompt(
+    "check_signal_for_lookahead",
+    "Does my signal look ahead?",
+    "Rerun your own signal code on prefixes the server picks, and find any value that depends on later rows.",
+    { rows: z.string().describe("Rows in the full series the signal is computed on") },
+    ({ rows }) => [
+      `Call check_leakage with action plan and observations ${rows}.`,
+      "Run your own signal and feature code once on all rows and once on the first cut rows for each cut it returns, changing nothing else, and send every output column with action compare. On this machine, write them to a JSON file {cuts, columns} and send its path as columns_file instead of pasting numbers.",
+      "For each flagged column, explain the pattern (future rows with their horizon, full-sample statistics, filled gaps), find the line of code that causes it, fix it, and run the check again. Say that a pass covers only these cuts.",
+    ],
+  );
+  prompt(
+    "test_pipeline_on_placebos",
+    "Does my pipeline find edges in noise?",
+    "Run your whole research pipeline on placebo data, where nothing can be predicted, and see whether its real result beats what it finds there.",
+    { data_file: z.string().describe("Path to the CSV or JSON the pipeline reads: a column per asset, dates optional") },
+    ({ data_file }) => [
+      `Call placebo_test with action plan and data_file ${data_file}.`,
+      "Run the research pipeline unchanged, every search, filter and parameter choice included, on real.csv and on each placebo file in the folder it returns, and record the one number the pipeline reports, such as its best Sharpe.",
+      "Call placebo_test with action compare, the real number as real and the placebo numbers in file order as placebo_results. Explain the p-value and what the pipeline finds on data where nothing can be predicted, and say that only this pipeline's search is counted, not pipelines tried before it.",
     ],
   );
 }
