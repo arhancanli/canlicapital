@@ -20,6 +20,7 @@ const L = Object.freeze({ compressed: 262144, expanded: 2097152, members: 32, np
   fixture: 24 * 1024 * 1024, work: 15000, closure: 5000, total: 20000 });
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const SOURCE_PINS = Object.freeze({
+  'src/expert-intake-stdio.mjs': 'd449d935d40666045684520ea649068ee1418816ecf890ed9e240612110ec4b1',
   'src/expert-intake-files.mjs': '68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f',
   'src/expert-submission-client.mjs': '2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31',
   'src/expert-submission-files.mjs': 'a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d',
@@ -44,12 +45,12 @@ const SDK_SOURCE_PINS = Object.freeze({
   '@modelcontextprotocol/server/dist/src-D-y6h4N7.mjs': '9cc3caf713a88aa6d7787001b673915ee011ea5edc620118aae2737c4b335c75',
   '@modelcontextprotocol/core/package.json': 'c3902f5ce4f7c44fe8c763adab3ea0f76a6e0d6b54d88d81bc2a3ec0e47ebb34',
 });
-const MEMBERS = Object.freeze(['LICENSE', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md',
+const MEMBERS = Object.freeze(['LICENSE', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md',
   'package.json', ...Object.keys(SOURCE_PINS)].map(name => 'package/' + name).sort());
 const BIN = Object.freeze({ 'canli-fundamentals-mcp': 'src/server.mjs',
-  'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs', 'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs', 'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs' });
+  'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs', 'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs', 'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs', 'canli-expert-intake-prepare': 'src/expert-intake-stdio.mjs' });
 const MODES = Object.freeze(Object.fromEntries(MEMBERS.map(name => [name,
-  ['package/src/audit-inputs-stdio.mjs', 'package/src/expert-submission-stdio.mjs', 'package/src/audit-inputs-client.mjs', 'package/src/expert-submission-files.mjs', 'package/src/expert-submission-client.mjs', 'package/src/expert-intake-files.mjs'].includes(name) ? 0o755 : 0o644])));
+  ['package/src/audit-inputs-stdio.mjs', 'package/src/expert-submission-stdio.mjs', 'package/src/audit-inputs-client.mjs', 'package/src/expert-submission-files.mjs', 'package/src/expert-submission-client.mjs', 'package/src/expert-intake-files.mjs', 'package/src/expert-intake-stdio.mjs'].includes(name) ? 0o755 : 0o644])));
 const RELOCATIONS = Object.freeze([
   ['src/expert-submission-stdio.mjs', 'examples/expert-submission-stdio.mjs', [
     ['../../scripts/datasets/filing-facts/expert-submission-audit.mjs', './expert-submission-audit-core.mjs'],
@@ -173,7 +174,7 @@ function audit(entries) {
   }
   const metadata = JSON.parse(entries.get('package/package.json').bytes);
   assert.deepEqual(metadata.bin, BIN, 'PACKAGE_BIN');
-  assert.deepEqual(metadata.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md'], 'PACKAGE_FILES');
+  assert.deepEqual(metadata.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md'], 'PACKAGE_FILES');
   assert.equal(metadata.name, 'canli-fundamentals-mcp'); assert.equal(metadata.version, '0.5.0');
   assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.1.0', zod: '4.6.5', '@modelcontextprotocol/client': '2.1.0' });
   for (const [filename, row] of entries) assert.deepEqual(row.bytes, expectedBytes.get(filename), 'EXACT_FROZEN_BYTES');
@@ -405,9 +406,9 @@ async function otherOwnedEntry(kind) {
 }
 
 test('expert package: exact14 admitted members retain independent source pins and raw modes', () => {
-  const legacy = MEMBERS.filter(name => !['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md', 'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/src/expert-intake-files.mjs', 'package/EXPERT_INTAKE_FILES.md'].includes(name));
-  assert.equal(legacy.length, 14); assert.deepEqual(legacy, ['LICENSE', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'package.json', ...Object.keys(SOURCE_PINS).filter(name => !['src/audit-inputs-client.mjs', 'src/expert-submission-files.mjs', 'src/expert-submission-client.mjs', 'src/expert-intake-files.mjs'].includes(name))].map(name => 'package/' + name).sort());
-  assert.equal(MEMBERS.length, 22); assert.deepEqual(audit(cloneEntries()), packed.metadata);
+  const legacy = MEMBERS.filter(name => !['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md', 'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/src/expert-intake-files.mjs', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md'].includes(name));
+  assert.equal(legacy.length, 14); assert.deepEqual(legacy, ['LICENSE', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'package.json', ...Object.keys(SOURCE_PINS).filter(name => !['src/audit-inputs-client.mjs', 'src/expert-submission-files.mjs', 'src/expert-submission-client.mjs', 'src/expert-intake-files.mjs', 'src/expert-intake-stdio.mjs'].includes(name))].map(name => 'package/' + name).sort());
+  assert.equal(MEMBERS.length, 24); assert.deepEqual(audit(cloneEntries()), packed.metadata);
   assert.equal(packed.raw.admission, 'RAW_CAPTURED_NOT_ADMITTED'); assert.equal(packed.raw.compressed_sha256, sha(packed.compressed));
 });
 test('expert package: all five import-only copies reverse to complete original sources', () => {
@@ -421,9 +422,9 @@ test('expert package: all five import-only copies reverse to complete original s
 test('expert package: original default and audit bytes stay separate from installed executable fixture modes', () => {
   for (const local of ['src/server.mjs', 'src/audit-inputs-stdio.mjs', 'src/audit-inputs-core.mjs', 'src/canonical-json.mjs'])
     assert.equal(sha(packed.entries.get('package/' + local).bytes), SOURCE_PINS[local]);
-  const oldBins = packed.bins.filter(row => !['canli-fundamentals-audit-files', 'canli-expert-submission-files', 'canli-expert-submission-client', 'canli-expert-intake-files'].includes(row.name));
+  const oldBins = packed.bins.filter(row => !['canli-fundamentals-audit-files', 'canli-expert-submission-files', 'canli-expert-submission-client', 'canli-expert-intake-files', 'canli-expert-intake-prepare'].includes(row.name));
   assert.deepEqual(oldBins.map(row => row.raw_mode), [0o644, 0o755, 0o755]);
-  assert.equal(packed.bins.length, 7); assert.equal(packed.bins.find(row => row.name === 'canli-fundamentals-audit-files').raw_mode, 0o755);
+  assert.equal(packed.bins.length, 8); assert.equal(packed.bins.find(row => row.name === 'canli-fundamentals-audit-files').raw_mode, 0o755);
   assert.ok(packed.bins.every(row => row.owned_fixture_only && row.installed_fixture_mode === 0o755));
 });
 test('expert package: missing changed and wrong-mode canonical sources refuse before extraction', () => {
