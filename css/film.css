@@ -1,0 +1,94 @@
+/* The evidence film. Reading surfaces remain light; the story opens in depth. */
+.canli-home { background: var(--cc-night); }
+.canli-home main { position: relative; isolation: isolate; }
+.canli-home main > section { position: relative; background: var(--cc-paper); }
+.evidence-film { position: fixed; inset: 88px 0 0; z-index: -1; pointer-events: none; background: #06141f; overflow: clip; }
+.evidence-film canvas { width: 100%; height: 100%; display: block; }
+.evidence-film__light { position: absolute; inset: 0; background: linear-gradient(90deg,#06141ff2 0%,#06141fa6 28%,#06141f00 70%),radial-gradient(ellipse at 90% 12%,#91d2e328,transparent 65%); }
+.canli-home main > [data-film-scene] { color: var(--cc-paper); background: transparent; border-color: #91d2e326; }
+.canli-home .cinema-hero { min-height: calc(100svh - 88px); padding-top: 56px; gap: 32px; }
+.canli-home .cinema-hero__index { font-size: .78rem; border: 0; padding: 0; }
+.canli-home .hero__copy { max-width: 720px; padding-block: 24px; }
+.canli-home .hero__copy h1 { font-size: clamp(3.4rem,7.7vw,7.8rem); line-height: 1.02; max-width: 14ch; margin-bottom: 28px; font-weight: 500; }
+.canli-home .hero__lead { font-size: 1rem; max-width: 52ch; line-height: 1.75; }
+.canli-home .hero__boundary { font-size: .76rem; }
+.canli-home .hero-status { max-width: 1120px; padding-top: 20px; margin-top: 0; }
+.canli-home .hero-status span { font-size: .66rem; }
+.canli-home .hero-status strong { font-size: .84rem; }
+.canli-home .cinema-hero__foot { font-size: .76rem; }
+.canli-home .cinema-hero__art { opacity: .55; transition: opacity .5s; }
+.canli-home[data-film-renderer=webgl] .cinema-hero__art { opacity: 0; }
+.canli-home main > .home-vision,.canli-home main > .cinema-intro { min-height: min(100svh,1000px); display: flex; flex-direction: column; justify-content: center; padding-block: clamp(100px,15vh,200px); }
+.canli-home [data-film-scene] .home-editorial { display: block; max-width: 660px; }
+.canli-home [data-film-scene] .home-editorial h2 { font-size: clamp(3rem,6.1vw,6rem); margin-bottom: 38px; }
+.canli-home [data-film-scene] .home-editorial > div { max-width: 48ch; }
+.canli-home [data-film-scene] .home-editorial p { color: #bed0dc; font-size: 1.05rem; line-height: 1.8; }
+.canli-home [data-film-scene] .home-editorial .home-lead { color: var(--cc-paper); font-size: clamp(1.3rem,2vw,1.8rem); }
+.canli-home [data-film-scene] :is(.eyebrow,.cinema-link) { color: var(--cc-ice); }
+.canli-home [data-film-scene] .cinema-link { border-color: #91d2e345; }
+.canli-home .home-editorial p,.canli-home .research__intro > p,.record-chapter__copy p:not(.eyebrow) { font-size: 1rem; line-height: 1.85; }
+.canli-home .paper-card { border-radius: 0; border: 0; border-bottom: 1px solid var(--cc-line); background: transparent; padding: 30px 0; }
+.canli-home .paper-card:first-child { border-top: 1px solid var(--cc-line); }
+.canli-home :is(.offering__grid,.trust-grid) { gap: 0 48px; }
+.canli-home :is(.offering__grid,.trust-grid) article { background: transparent; border: 0; border-top: 1px solid var(--cc-line); border-radius: 0; padding: 32px 0; }
+.canli-home .paper-card p,.canli-home :is(.offering__grid,.trust-grid) p { font-size: .95rem; }
+.canli-home .home-next { background: var(--cc-night); }
+.canli-home .evidence-core__stage { border: 0; border-radius: 0; background: radial-gradient(ellipse at center,#142f4050,transparent 70%); }
+.canli-home .core-chapters small { font-size: .75rem; }
+.canli-home .core-chapters strong { font-size: .88rem; }
+.canli-home .evidence-core__copy > p { font-size: .94rem; }
+.canli-home .core-hud--bottom span { font-size: .62rem; }
+/* Broad type and quiet space on every introduction, including generated readers. */
+html[data-design] .cc-film-head { position: relative; isolation: isolate; background: var(--cc-night); color: var(--cc-paper); padding: clamp(32px,5vw,72px); margin-block: 32px; border: 0; overflow: clip; }
+html[data-design] .cc-film-head::before { content: ''; position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 100% 0%,#91d2e325,transparent 60%),linear-gradient(135deg,transparent 55%,#91d2e308 55%,transparent 56%); pointer-events: none; }
+html[data-design] .cc-film-head::after { content: ''; position: absolute; right: -5%; top: -25%; width: 45%; height: 150%; border: 1px solid #91d2e325; border-radius: 50%; transform: rotate(-25deg); z-index: -1; pointer-events: none; }
+html[data-design] .cc-film-head h1 { font-weight: 500; }
+html[data-design] .cc-film-head :is(.eyebrow,.kicker,.paper__kicker,.dev-kicker,.lab-kicker,.dsr-kicker,.ec-kicker,.ta-kicker,.mono-label) { color: var(--cc-ice); }
+html[data-design] .cc-film-head :is(p,.paper__description,.paper__dek,.hero__lead,.dev-lead,.lab-lead,.dsr-lead,.ec-lead,.ta-lead) { color: #c4d4de; }
+html[data-design] .cc-film-head a:not(.button):not(.dev-button):not(.lab-button):not(.dsr-button):not(.ec-button):not(.ta-button) { color: var(--cc-ice); }
+html[data-design] .cc-film-head :is(aside,.dev-hero__panel,.dsr-hero__panel,.ec-hero__panel,.ta-hero__panel,.workbench-source,.lab-hero__panel) { background: var(--cc-paper); color: var(--cc-ink); border-color: var(--cc-line); }
+html[data-design] .cc-film-head :is(aside,.workbench-source,.dev-hero__panel,.lab-hero__panel) :is(p,a,code,summary,.eyebrow) { color: var(--cc-ink); }
+html[data-design=workbench] .cc-film-head { padding: 28px; margin-block: 24px; }
+html[data-design=workbench] .cc-film-head h1 { font-size: clamp(2rem,3.7vw,3.6rem); }
+.workbench-question { font-size: 1.1rem; line-height: 1.7; max-width: 48ch; }
+.workbench-explanation { padding-block: 14px; margin-block: 16px; border-color: #91d2e345; font-size: .88rem; }
+.workbench-explanation p { font-size: .94rem; margin-top: 16px; }
+html[data-design=reader] .paper__header { padding: clamp(28px,4vw,56px); }
+html[data-design=reader] .reader-index { font-size: .8rem; }
+html[data-design=reader] .paper__body { line-height: 1.9; }
+.cc-film-head :is(button,input,select,textarea) { color: var(--cc-ink); }
+.cc-film-head button[aria-pressed=true] { color: white; }
+.cc-footer__boundary p a { text-decoration: underline; }
+.contributor-ways,.contributor-rewards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px 64px; margin-top: 40px; }
+.contributor-ways article,.contributor-rewards article { border-top: 1px solid var(--cc-line); padding-top: 28px; }
+.contributor-ways h3,.contributor-rewards h3 { font-size: 1.5rem; }
+.contributor-ways p,.contributor-rewards p { font-size: 1rem; color: var(--cc-muted); }
+.contributor-boundary { font-size: .9rem; color: var(--cc-muted); max-width: 85ch; margin-top: 28px; }
+.contributor-links { display: flex; gap: 28px; flex-wrap: wrap; }
+.contributor-hero .hero__actions { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.contributor-hero .hero__lead { max-width: 58ch; }
+@media(max-width:767px) {
+ .evidence-film { inset-block-start: 74px; }
+ .evidence-film__light { background: linear-gradient(90deg,#06141fe8,#06141f8c),radial-gradient(ellipse at 100% 0%,#91d2e338,transparent 75%); }
+ .canli-home .cinema-hero { padding-top: 30px; gap: 28px; }
+ .canli-home .hero__copy { max-width: 100%; padding-block: 12px; }
+ .canli-home .hero__copy h1 { font-size: clamp(3.15rem,11.5vw,5rem); line-height: 1.07; }
+ .canli-home .hero__lead { font-size: .98rem; line-height: 1.8; }
+ .canli-home .hero__boundary { font-size: .72rem; }
+ .canli-home .hero-status { gap: 20px 16px; }
+ .canli-home .hero-status strong { font-size: .79rem; }
+ .canli-home .cinema-hero__index { gap: 14px 20px; font-size: .7rem; }
+ .canli-home .cinema-hero__foot { font-size: .65rem; }
+ .canli-home main > .home-vision,.canli-home main > .cinema-intro { min-height: 85svh; padding-block: 80px; }
+ .canli-home [data-film-scene] .home-editorial h2 { font-size: clamp(2.8rem,10vw,4.5rem); }
+ html[data-design] .cc-film-head { padding: 28px 22px; margin-block: 24px; }
+ html[data-design=workbench] .cc-film-head { padding: 24px 20px; }
+ .contributor-ways,.contributor-rewards { grid-template-columns: 1fr; gap: 28px; }
+ .canli-home .core-hud--bottom span { font-size: .6rem; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .evidence-film canvas { display: none; }
+ .canli-home .cinema-hero__art { opacity: .35; transition: none; }
+ .canli-home[data-film-renderer] .cinema-hero__art { opacity: .35; }
+ html { scroll-behavior: auto; }
+}

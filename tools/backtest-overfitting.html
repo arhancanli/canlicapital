@@ -64,6 +64,7 @@
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/contributors">Contributors</a>
 <a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
 <a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
@@ -87,16 +88,16 @@
   <script type="module" src="/js/navigation.js"></script>
 </header>
 <main>
-  <section class="lab-hero" aria-labelledby="lab-title">
+  <section class="cc-film-head lab-hero" aria-labelledby="lab-title">
     <p class="lab-kicker"><span>Open research instrument</span><span>Reference implementation</span></p>
     <h1 id="lab-title">Probability of backtest overfitting calculator</h1>
-    <p class="lab-lead">A deflated Sharpe ratio asks whether one result survives the search that
+    <p class="workbench-question">How likely is the best backtest overfit across the variants you tried?</p><details class="workbench-explanation"><summary>How this tool works</summary><p class="lab-lead">A deflated Sharpe ratio asks whether one result survives the search that
       produced it. This asks a sharper question: across every configuration you tried, does the one
       that ranked best on your in-sample data also rank well out of sample, or did it just win a
       popularity contest against the noise in that one split? Paste a matrix of per-period returns,
       one column per configuration, and it runs Combinatorially Symmetric Cross-Validation (CSCV)
       entirely in your browser. Canli Capital, the research house that publishes ALPHAC, runs this
-      calculator free, with no account or key required.</p>
+      calculator free, with no account or key required.</p></details>
     <p class="lab-boundary"><strong>What this is.</strong> This runs the production Combinatorially Symmetric Cross-Validation implementation on whatever variant returns you submit. It does not know where your matrix came from, cannot detect lookahead in how it was built, and a low probability of overfitting is not proof a strategy is deployable. It is one diagnostic about whether an in-sample ranking predicts an out-of-sample one, nothing more.</p>
   </section>
 

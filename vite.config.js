@@ -170,6 +170,7 @@ export default defineConfig({
         review: resolve(root, "review.html"),
         foundry: resolve(root, "foundry.html"),
         founder: resolve(root, "founder.html"),
+        contributors: resolve(root, "contributors.html"),
         methodology: resolve(root, "methodology.html"),
         howToValidateABacktest: resolve(root, "how-to-validate-a-backtest.html"),
         annotate: resolve(root, "annotate.html"),

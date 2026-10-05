@@ -1,6 +1,9 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { renderContributorChapter } from './lib/contributors.mjs';
+import { buildContributors } from './build-contributors.mjs';
+import { captureSourceDates } from './capture-source-dates.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const family = path => path === 'index.html' ? 'home'
@@ -19,7 +22,36 @@ export function applySiteDesign(html, path) {
   // the design stylesheet and accessible table regions; preserve exact parity.
   if (family(path) === 'reference' && html.includes('data-design="reference"')) return html;
   let next = html.replace(/\sdata-design="[^"]*"/g, '');
+  next = next.replace(/\sdata-film-scene="[^"]*"/g, '');
   next = next.replace('<html ', `<html data-design="${family(path)}" `);
+  next = next.replace(/<!-- evidence-film:start -->[\s\S]*?<!-- evidence-film:end -->\s*/g, '');
+  next = next.replace(/<!-- contributor-chapter:start -->[\s\S]*?<!-- contributor-chapter:end -->\s*/g, '');
+  if (family(path) === 'home') {
+    next = next.replace(/(<main\b[^>]*>)/, '$1<!-- evidence-film:start --><div class="evidence-film" aria-hidden="true"><canvas id="evidence-film-canvas"></canvas><div class="evidence-film__light"></div></div><!-- evidence-film:end -->');
+    next = next.replace(/(<section class="home-next")/, `<!-- contributor-chapter:start -->${renderContributorChapter()}<!-- contributor-chapter:end -->$1`);
+    next = next.replace(/(<section\b[^>]*class="hero cinema-hero")/, '$1 data-film-scene="0"');
+    next = next.replace(/(<section\b[^>]*id="vision")/, '$1 data-film-scene="1"');
+    next = next.replace(/(<section\b[^>]*id="introduction")/, '$1 data-film-scene="2"');
+  }
+  if (path === 'developers.html') {
+    next = next.replace(/<!-- developer-contributors:start -->[\s\S]*?<!-- developer-contributors:end -->\s*/g, '');
+    next = next.replace('</main>', `<!-- developer-contributors:start --><section class="developer-contributors" aria-labelledby="developer-contributors-title"><p class="eyebrow">Contribute</p><h2 id="developer-contributors-title">Improve the tools you use.</h2><p>Reproduce a result, fix a tool or improve its documentation. Contributor rewards include higher hosted API quotas and early access to new MCP tools; the program is in development.</p><a href="/contributors">Explore contribution routes and reward status ↗</a></section><!-- developer-contributors:end --></main>`);
+  }
+  // The same restrained opener on every page family. Only the first heading's
+  // container is marked; document bodies and calculator panels remain readable.
+  if (family(path) !== 'home') {
+    const mainStart = next.indexOf('<main');
+    const h1 = next.indexOf('<h1', mainStart);
+    if (h1 >= 0) {
+      const before = next.slice(0, h1);
+      const candidates = [...before.matchAll(/<(header|section)\b([^>]*)>/g)].filter(match => match.index > mainStart);
+      const opener = candidates.at(-1);
+      if (opener && !opener[2].includes('cc-film-head')) {
+        const attributes = /class="/.test(opener[2]) ? opener[2].replace('class="', 'class="cc-film-head ') : `${opener[2]} class="cc-film-head"`;
+        next = next.slice(0, opener.index) + `<${opener[1]}${attributes}>` + next.slice(opener.index + opener[0].length);
+      }
+    }
+  }
   next = next.replace(/\n?<!-- site-design:start -->[\s\S]*?<!-- site-design:end -->\n?/g, '\n');
   next = next.replace(/<link\b[^>]*href="(?:\/?(?:\.\.\/|\.\/)*css\/)[^"]+"[^>]*>\s*/g, '');
   next = next.replace(/<noscript>\s*<link\b[^>]*href="https:\/\/fonts\.googleapis\.com[^>]*>\s*<\/noscript>\s*/g, '');
@@ -35,11 +67,24 @@ export function applySiteDesign(html, path) {
   next = next.replace(/\s*<!-- release-style:start -->[\s\S]*?<!-- release-style:end -->\s*/g, '\n');
   // Calculator introductions stay compact; the published preset remains a
   // native disclosure beside the heading, so the working controls arrive early.
-  next = next.replace(/(<section\b[^>]*class="(?:dsr|ec|ta|lab|chain|union)-hero[^>]*>)([\s\S]*?)(<\/section>)/g, (_, open, body, close) => {
+  next = next.replace(/(<section\b[^>]*class="[^"]*\b(?:dsr|ec|ta|lab|chain|union)-hero\b[^>]*>)([\s\S]*?)(<\/section>)/g, (_, open, body, close) => {
     if (body.includes('class="workbench-source"')) return open + body + close;
     const compact = body.replace(/<aside\b([^>]*)>([\s\S]*?)<\/aside>/g, (all) => `<details class="workbench-source"><summary>Published preset and source boundary</summary>${all}</details>`);
     return open + compact + close;
   });
+  const questions = {
+    'tools/deflated-sharpe.html': 'How much of your Sharpe ratio survives after you count the full search?',
+    'tools/evidence-chain.html': 'Does this published record still match its signed chain?',
+    'tools/trial-accounting.html': 'Which trials belong in your search, including the work that failed?',
+    'tools/selection-risk.html': 'How often does a convincing result appear in data with no edge?',
+    'tools/execution.html': 'What changes when you charge for fills, delay and market impact?',
+    'tools/breadth.html': 'How much do strategies diversify when they move together?',
+    'tools/backtest-overfitting.html': 'How likely is the best backtest overfit across the variants you tried?',
+  };
+  if (questions[path] && !next.includes('class="workbench-explanation"')) {
+    next = next.replace(/(<p\b[^>]*class="[^"]*(?:lead|lede|dek|description)[^"]*"[^>]*>)([\s\S]*?)(<\/p>)/, (_, open, copy, close) => `<p class="workbench-question">${questions[path]}</p><details class="workbench-explanation"><summary>How this tool works</summary>${open}${copy}${close}</details>`);
+  }
+  next = next.replace(/<pre\b([^>]*)>/g, (all, attrs) => /\btabindex=/.test(attrs) ? all : `<pre${attrs} tabindex="0">`);
   const head = '<!-- site-design:start -->\n<link rel="stylesheet" href="/css/product-shell.css" />\n<!-- site-design:end -->\n';
   next = next.replace(/\s*<\/head>/, `\n${head}</head>`);
   // Tables remain complete and horizontally operable, without making the whole
@@ -50,6 +95,7 @@ export function applySiteDesign(html, path) {
 }
 
 function run() {
+  buildContributors();
   const files = readdirSync(root).filter(n => n.endsWith('.html')).map(n => resolve(root, n));
   const visit = dir => {
     if (!existsSync(dir)) return;
@@ -72,6 +118,7 @@ function run() {
   mkdirSync(resolve(root,'docs/redesign'),{recursive:true});
   writeFileSync(resolve(root,'docs/redesign/routes.json'),JSON.stringify({schema:'canli.design-routes.v1',routes},null,2)+'\n');
   console.log(`Shared design: ${routes.length} editable routes across ${new Set(routes.map(r=>r.family)).size} families`);
+  captureSourceDates();
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) run();

@@ -20,6 +20,22 @@ async def main():
    try:
     await page.goto(ORIGIN + '/', wait_until='networkidle')
     await page.evaluate('document.fonts.ready')
+    if width == 1440:
+     await page.wait_for_function("document.body.dataset.filmRenderer === 'webgl'")
+     source = await context.request.get(ORIGIN + '/glassbox/trial_sharpe_distribution.json')
+     assert source.ok
+     identities = len((await source.json())['ranked'])
+     assert int(await page.locator('body').get_attribute('data-film-identities')) == identities
+     assert await page.locator('body').get_attribute('data-film-source') == '/glassbox/trial_sharpe_distribution.json'
+     film_states = []
+     for index, selector in enumerate(['.cinema-hero', '#vision', '#introduction']):
+      await page.locator(selector).evaluate('e => scrollTo(0, e.getBoundingClientRect().top + scrollY - 88)')
+      await page.wait_for_function('(n) => document.body.dataset.filmScene === String(n)', arg=index)
+      film_states.append(index)
+     record['archiveIdentities'] = identities
+     record['filmStates'] = film_states
+    else:
+     assert await page.locator('body').get_attribute('data-film-renderer') == 'static'
     # The evidence renderer loads only when its chapter approaches the viewport.
     await page.locator('#evidence-core').evaluate('e => scrollTo(0, e.getBoundingClientRect().top + scrollY - 100)')
     if width == 1440:
@@ -49,9 +65,14 @@ async def main():
       states.append(state)
      record['scrollStates'] = states
      await page.screenshot(path=str(OUT / 'home-core-final-state.png'))
+    record['step'] = 'reduced motion preference change'
     await page.emulate_media(reduced_motion='reduce')
     await page.wait_for_function("document.querySelector('.cc-reading-progress') === null")
+    record['step'] = 'archive reduced motion cleanup'
+    await page.wait_for_function("document.body.dataset.filmRenderer === 'static'")
+    assert not await page.locator('#evidence-film-canvas').is_visible()
     if width == 1440:
+     record['step'] = 'core reduced motion cleanup'
      await page.wait_for_function("document.querySelector('#evidence-core').dataset.motion === 'static'")
      assert await page.locator('[data-core-chapter].is-active').get_attribute('data-core-chapter') == '2'
     else:
