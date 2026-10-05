@@ -286,7 +286,7 @@ an array of objects.
 | `CANLI_KEY` | unset | A key already issued from `POST /api/v1/keys`. When set, `get_key` sends no request and reports the key is already configured; every other tool sends it as `Authorization: Bearer <key>`. |
 | `CANLI_FULL_ENVELOPE` | unset | `1` or `true` returns each validation's full API envelope instead of the compact result (below). |
 | `CANLI_TOOLSETS` | all | Which tools to list: a comma-separated choice of `validate`, `receipts`, `company`, `status` and `lab`, or `all`. An unknown name is refused at startup. See "Toolsets" below. |
-| `CANLI_LOCAL` | unset | `1` or `true` runs the eight validators on this machine (private local mode, below): no key, no network, no receipt. |
+| `CANLI_LOCAL` | unset | `1` or `true` runs the nine validators on this machine (private local mode, below): no key, no network, no receipt. |
 
 If `CANLI_KEY` is not set and local mode is off, call `get_key` once per session before the validators. The key it
 returns lives only in this process's memory for the life of the session; it is not written to
@@ -360,7 +360,7 @@ Run `claude mcp list` to confirm it is registered, and `claude mcp remove canli`
 
 ## Private local mode
 
-Set `CANLI_LOCAL=1` and the eight validators run on your machine: nothing about the series you
+Set `CANLI_LOCAL=1` and the nine validators run on your machine: nothing about the series you
 submit is sent to canlicapital.com, no key is needed, and no receipt is stored. The computation is
 the API's own, shipped byte for byte in `src/local` (a test fails if it drifts), so a local result
 equals the hosted one; it names no receipt id because none was made.
