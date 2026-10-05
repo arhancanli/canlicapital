@@ -193,6 +193,7 @@ const STATIC_ROUTES = [
   { path: "/verify", priority: "0.9", changefreq: "weekly" },
   { path: "/review", priority: "0.8", changefreq: "weekly" },
   { path: "/foundry", priority: "0.8", changefreq: "weekly" },
+  { path: "/contributors", priority: "0.7", changefreq: "monthly" },
   { path: "/founder", priority: "0.7", changefreq: "monthly" },
   { path: "/methodology", priority: "0.9", changefreq: "weekly" },
   { path: "/how-to-validate-a-backtest", priority: "0.8", changefreq: "monthly" },

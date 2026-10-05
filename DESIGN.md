@@ -1,7 +1,7 @@
 # Canli Capital / Open evidence
 
 The October 2026 redesign treats finance as something a reader can inspect. The
-opening thesis is **Conviction needs evidence.** Its dimensional illustration uses
+opening thesis is **A good backtest can be luck.** Its dimensional illustration uses
 the actual published paper equity curves and declares their paper basis. The story
 moves through the vision, selection bias, trial accounting, failures, forward
 observation, tools, ALPHAC, company provenance and the work still ahead.
@@ -73,3 +73,22 @@ screenshots and browser checks document the final implementation.
 
 Current route and verification evidence is recorded in
 [the redesign delivery record](docs/redesign/README.md).
+
+## October film refinement
+
+The [film design page](https://www.figma.com/design/n3MbdBAC6STjHudQocaZa7?node-id=170-2)
+contains editable desktop and phone narratives plus every page family. Existing
+Canli variables, fonts and Action components are reused. The continuous spatial
+archive represents each published trial identity as a glass plane; native scroll
+moves from an unjudged field to a frozen archive to the full measurement union.
+Its height and color in the last state use actual first-measurement Sharpe. This
+is a labelled spatial illustration, not a trading simulation. Rendering stops
+when no frame is needed and stays static on phones or with reduced motion.
+
+`css/film.css` extends the foundation across all editable pages with quiet dark
+introductions and complete light reading surfaces. The homepage keeps its public
+evidence and working tools, using whitespace and rules in place of repeated
+card frames. Contributors have a homepage chapter, developer path, shared menu
+link and `/contributors` page. Reward text and development status come from
+`config/contributor-program.json`; API eligibility and actual quotas remain
+owned by the MCP lane.

@@ -64,6 +64,7 @@
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers" data-current="true">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/contributors">Contributors</a>
 <a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
 <a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
@@ -87,7 +88,7 @@
   <script type="module" src="/js/navigation.js"></script>
 </header>
 <main id="content" tabindex="-1">
-  <section class="dev-hero">
+  <section class="cc-film-head dev-hero">
     <p class="dev-kicker"><span>Free</span><span aria-hidden="true"> &middot; </span><span>No signup or email</span></p>
     <h1>Check a backtest.<br />Keep the receipt.</h1>
     <p class="dev-lead">Send the returns your backtest produced and find out whether the result could be luck:
@@ -95,7 +96,7 @@
       is to be overfit, and how long a live record must run to prove it. Each answer comes with a
       receipt anyone can recheck.</p>
     <ol class="dev-paths" aria-label="Three ways to start">
-      <li class="dev-path"><span class="dev-path__tag">Fastest</span><h2>From an AI assistant</h2><p>Add the hosted server to Claude, Cursor or VS Code. Nothing to install.</p><pre class="dev-path__code"><code>claude mcp add --transport http canli https://canlicapital.com/mcp</code></pre><a href="#ai-assistant">Setup for every assistant ↘</a></li>
+      <li class="dev-path"><span class="dev-path__tag">Fastest</span><h2>From an AI assistant</h2><p>Add the hosted server to Claude, Cursor or VS Code. Nothing to install.</p><pre class="dev-path__code" tabindex="0"><code>claude mcp add --transport http canli https://canlicapital.com/mcp</code></pre><a href="#ai-assistant">Setup for every assistant ↘</a></li>
       <li class="dev-path"><span class="dev-path__tag">Any language</span><h2>From your own code</h2><p>Get a free key, then call the API from Python, JavaScript or curl.</p><a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a></li>
       <li class="dev-path"><span class="dev-path__tag">No code</span><h2>In the browser</h2><p>Type your numbers into the free calculators.</p><a href="/tools">Open the calculators ↗</a></li>
     </ol>
@@ -764,7 +765,7 @@ console.log(await response.json());</code></pre></div>
       <a href="https://github.com/arhancanli/alphac/issues/new?template=external-review.yml" rel="noreferrer">The governed review route</a>
       is the fastest way to get it fixed and recorded.</p>
   </section>
-</main>
+<!-- developer-contributors:start --><section class="developer-contributors" aria-labelledby="developer-contributors-title"><p class="eyebrow">Contribute</p><h2 id="developer-contributors-title">Improve the tools you use.</h2><p>Reproduce a result, fix a tool or improve its documentation. Contributor rewards include higher hosted API quotas and early access to new MCP tools; the program is in development.</p><a href="/contributors">Explore contribution routes and reward status ↗</a></section><!-- developer-contributors:end --></main>
 <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
     <h2 id="cc-footer-dev-title">Build on it</h2>
