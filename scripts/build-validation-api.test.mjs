@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 
 import { KEY_LIFECYCLE_TEXT, LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
+import { BETA_MCP_URL } from "../api/_lib/contributor-access.js";
 import { BINDINGS } from "../api/_lib/bindings.generated.js";
 import { MANIFEST, SNIPPET_LABELS } from "../api/_lib/manifest.js";
 
@@ -29,9 +30,10 @@ const BODY_VALIDATORS = {
 
 test("the quota constants are the documented values and every one has a sentence", () => {
   assert.deepEqual(LIMITS, {
-    validations_per_key_per_day: 1000, keys_per_client_per_day: 5, max_key_revoke_body_bytes: 1024, max_body_bytes: 1048576,
+    validations_per_key_per_day: 1000, contributor_validations_per_key_per_day: 10000, keys_per_client_per_day: 5, max_key_revoke_body_bytes: 1024, max_body_bytes: 1048576,
     max_observations: 20000, max_variants: 200, max_cscv_combinations: 2000, wall_time_seconds: 10,
   });
+  assert.ok(LIMITS.contributor_validations_per_key_per_day > LIMITS.validations_per_key_per_day, "contributor access raises the limit");
   assert.ok(Object.isFrozen(LIMITS));
   assert.ok(LIMITS_TEXT.length >= 4);
   for (const line of LIMITS_TEXT) assert.ok(!line.includes("\u2014"), "no em dashes in published copy");
@@ -46,6 +48,13 @@ test("key-lifecycle facts are published: no expiry, bearer revocation, and what 
   assert.match(joined, /client/);
   assert.match(joined, /ip address/);
   assert.match(joined, /salt/);
+  // The contributor figure is published here, from LIMITS, naming the endpoint the beta handler
+  // serves. The "Quotas:" sentence of LIMITS_TEXT stays as it was: the MCP package carries it
+  // verbatim (mcp/src/schemas.mjs, LIMITS_SENTENCES).
+  assert.equal(
+    KEY_LIFECYCLE_TEXT.find((line) => line.startsWith("Contributor access:")),
+    `Contributor access: after a pull request of yours is merged into github.com/arhancanli/canlicapital, one of your keys can be raised to ${LIMITS.contributor_validations_per_key_per_day} validations per UTC day and opened to the beta MCP endpoint at ${BETA_MCP_URL}, which serves the unreleased validation server. Name the key in a Contributor access issue by its label or by its fingerprint, which GET /api/v1/keys/me returns; never post the key itself. A fingerprint identifies a key and cannot authenticate.`,
+  );
   // A numeral, not a version tag like "v1": mirrors audit-published-numbers.mjs's own rule that a
   // digit preceded by a word character (as in v1, v0) is an identifier, not a published claim.
   const NUMERAL = /(?<![\w.])\d+/g;

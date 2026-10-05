@@ -317,6 +317,10 @@
       "destination": "/api/mcp-research"
     },
     {
+      "source": "/mcp/beta",
+      "destination": "/api/mcp-beta"
+    },
+    {
       "source": "/api/v1/status",
       "destination": "/api/v1/status.json"
     },
@@ -368,6 +372,10 @@
     },
     "api/mcp-research.js": {
       "includeFiles": "mcp-released/research/{package.json,src/**}",
+      "maxDuration": 30
+    },
+    "api/mcp-beta.js": {
+      "includeFiles": "mcp/{package.json,src/**}",
       "maxDuration": 30
     }
   }

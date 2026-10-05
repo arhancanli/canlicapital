@@ -406,6 +406,7 @@ console.log(await response.json());</code></pre></div>
       <tbody>
         <tr><td><code>POST /api/v1/keys/revoke</code></td><td>Permanently revoke the bearer key without consuming validation quota. Already admitted requests may finish; public receipts remain available.</td></tr>
         <tr><td><code>POST /api/v1/keys</code></td><td>Issue a free key. Returned once; only its hash is stored.</td></tr>
+        <tr><td><code>GET /api/v1/keys/me</code></td><td>The bearer key&#39;s fingerprint, label and access tier, without consuming validation quota. To claim contributor access, name the key by its fingerprint or label, never the key itself.</td></tr>
         <tr><td><code>POST /api/v1/validate/deflated-sharpe</code></td><td>Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.</td></tr>
         <tr><td><code>POST /api/v1/validate/overfitting</code></td><td>Probability of backtest overfitting by CSCV over the returns of every variant tried.</td></tr>
         <tr><td><code>POST /api/v1/validate/paper-evidence</code></td><td>Conformance of a performance record against the canli.paper-evidence.v0 standard.</td></tr>
@@ -721,6 +722,7 @@ console.log(await response.json());</code></pre></div>
       <li>Keys do not expire once issued.</li>
       <li>Revoke the bearer key with POST /api/v1/keys/revoke. Revocation does not use validation quota and is irreversible; repeating it leaves the original revocation time intact. Requests already admitted may finish. Confirm a successful response before assuming the key is disabled. Issue a replacement separately; there is no atomic rotate operation.</li>
       <li>&quot;Client&quot;, for the daily key-issuance quota, means the request&#39;s IP address hashed together with a salt that rotates every UTC day, not a stored account. A shared office or NAT IP address draws from the same pool of 5 keys a day as every other request behind it.</li>
+      <li>Contributor access: after a pull request of yours is merged into github.com/arhancanli/canlicapital, one of your keys can be raised to 10000 validations per UTC day and opened to the beta MCP endpoint at https://canlicapital.com/mcp/beta, which serves the unreleased validation server. Name the key in a Contributor access issue by its label or by its fingerprint, which GET /api/v1/keys/me returns; never post the key itself. A fingerprint identifies a key and cannot authenticate.</li>
     </ul>
   </section>
 

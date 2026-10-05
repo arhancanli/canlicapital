@@ -4,6 +4,9 @@
 // reader sees is the number the service enforces. Change a value here and nowhere else.
 export const LIMITS = Object.freeze({
   validations_per_key_per_day: 1000,
+  // A key with contributor access (supabase/migrations/20261005_contributor_access.sql). The
+  // maintainer script grants this figure; the quota function enforces the larger of the two.
+  contributor_validations_per_key_per_day: 10000,
   keys_per_client_per_day: 5,
   max_key_revoke_body_bytes: 1024,
   max_body_bytes: 1024 * 1024,
@@ -27,4 +30,5 @@ export const KEY_LIFECYCLE_TEXT = Object.freeze([
   "Keys do not expire once issued.",
   "Revoke the bearer key with POST /api/v1/keys/revoke. Revocation does not use validation quota and is irreversible; repeating it leaves the original revocation time intact. Requests already admitted may finish. Confirm a successful response before assuming the key is disabled. Issue a replacement separately; there is no atomic rotate operation.",
   `"Client", for the daily key-issuance quota, means the request's IP address hashed together with a salt that rotates every UTC day, not a stored account. A shared office or NAT IP address draws from the same pool of ${LIMITS.keys_per_client_per_day} keys a day as every other request behind it.`,
+  `Contributor access: after a pull request of yours is merged into github.com/arhancanli/canlicapital, one of your keys can be raised to ${LIMITS.contributor_validations_per_key_per_day} validations per UTC day and opened to the beta MCP endpoint at https://canlicapital.com/mcp/beta, which serves the unreleased validation server. Name the key in a Contributor access issue by its label or by its fingerprint, which GET /api/v1/keys/me returns; never post the key itself. A fingerprint identifies a key and cannot authenticate.`,
 ]);

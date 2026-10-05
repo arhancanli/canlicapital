@@ -365,6 +365,130 @@
         }
       }
     },
+    "/api/v1/keys/me": {
+      "get": {
+        "summary": "The bearer key's fingerprint, label and access tier, without consuming validation quota. To claim contributor access, name the key by its fingerprint or label, never the key itself.",
+        "operationId": "keys_me",
+        "responses": {
+          "200": {
+            "description": "The bearer key's fingerprint, label and access tier. Never the key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "required": [
+                            "fingerprint",
+                            "label",
+                            "tier",
+                            "validations_per_day",
+                            "contributor_since",
+                            "beta_mcp",
+                            "note"
+                          ],
+                          "properties": {
+                            "fingerprint": {
+                              "type": "string",
+                              "pattern": "^[0-9a-f]{64}$",
+                              "description": "The hex SHA-256 of the key, the same value printf '%s' \"$CANLI_KEY\" | shasum -a 256 prints. It identifies the key and cannot authenticate. Name the key by it, never by the key, in a Contributor access issue."
+                            },
+                            "label": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "tier": {
+                              "enum": [
+                                "standard",
+                                "contributor"
+                              ]
+                            },
+                            "validations_per_day": {
+                              "type": "integer",
+                              "description": "Validations this key may run per UTC day: 1000, or 10000 with contributor access."
+                            },
+                            "contributor_since": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "format": "date-time"
+                            },
+                            "beta_mcp": {
+                              "type": "object",
+                              "required": [
+                                "url",
+                                "access"
+                              ],
+                              "properties": {
+                                "url": {
+                                  "type": "string",
+                                  "format": "uri"
+                                },
+                                "access": {
+                                  "type": "boolean",
+                                  "description": "Whether this key is admitted to the beta MCP endpoint, which serves the unreleased validation server."
+                                }
+                              }
+                            },
+                            "note": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, unknown or revoked key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The key store is unavailable; nothing about the key is confirmed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerKey": []
+          }
+        ]
+      }
+    },
     "/api/v1/validate/deflated-sharpe": {
       "post": {
         "summary": "Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.",
@@ -431,7 +555,7 @@
             }
           },
           "429": {
-            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "description": "Daily validation quota reached (1000 per key per UTC day, 10000 for a key with contributor access); see Retry-After",
             "content": {
               "application/json": {
                 "schema": {
@@ -622,7 +746,7 @@
             }
           },
           "429": {
-            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "description": "Daily validation quota reached (1000 per key per UTC day, 10000 for a key with contributor access); see Retry-After",
             "content": {
               "application/json": {
                 "schema": {
@@ -765,7 +889,7 @@
             }
           },
           "429": {
-            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "description": "Daily validation quota reached (1000 per key per UTC day, 10000 for a key with contributor access); see Retry-After",
             "content": {
               "application/json": {
                 "schema": {
@@ -879,7 +1003,7 @@
             }
           },
           "429": {
-            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "description": "Daily validation quota reached (1000 per key per UTC day, 10000 for a key with contributor access); see Retry-After",
             "content": {
               "application/json": {
                 "schema": {
@@ -996,7 +1120,7 @@
             }
           },
           "429": {
-            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "description": "Daily validation quota reached (1000 per key per UTC day, 10000 for a key with contributor access); see Retry-After",
             "content": {
               "application/json": {
                 "schema": {
@@ -1127,7 +1251,7 @@
             }
           },
           "429": {
-            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "description": "Daily validation quota reached (1000 per key per UTC day, 10000 for a key with contributor access); see Retry-After",
             "content": {
               "application/json": {
                 "schema": {
@@ -1237,7 +1361,7 @@
             }
           },
           "429": {
-            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "description": "Daily validation quota reached (1000 per key per UTC day, 10000 for a key with contributor access); see Retry-After",
             "content": {
               "application/json": {
                 "schema": {
@@ -1366,7 +1490,7 @@
             }
           },
           "429": {
-            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "description": "Daily validation quota reached (1000 per key per UTC day, 10000 for a key with contributor access); see Retry-After",
             "content": {
               "application/json": {
                 "schema": {
@@ -1492,7 +1616,7 @@
             }
           },
           "429": {
-            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "description": "Daily validation quota reached (1000 per key per UTC day, 10000 for a key with contributor access); see Retry-After",
             "content": {
               "application/json": {
                 "schema": {

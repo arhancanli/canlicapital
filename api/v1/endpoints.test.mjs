@@ -21,7 +21,7 @@ const VECTORS = JSON.parse(readFileSync(resolve(ROOT, "standards/validation-api/
 test("the manifest names every route file and every route has a summary and an example", () => {
   const paths = MANIFEST.map((m) => `${m.method} ${m.path}`).sort();
   assert.deepEqual(paths, [
-    "GET /api/v1/receipts/{id}", "GET /api/v1/receipts/{id}/badge.svg", "GET /api/v1/validate/status",
+    "GET /api/v1/keys/me", "GET /api/v1/receipts/{id}", "GET /api/v1/receipts/{id}/badge.svg", "GET /api/v1/validate/status",
     "POST /api/v1/keys", "POST /api/v1/keys/revoke", "POST /api/v1/validate/backtest-length", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe", "POST /api/v1/validate/haircut-sharpe",
     "POST /api/v1/validate/luck-trials", "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence", "POST /api/v1/validate/reality-check", "POST /api/v1/validate/track-record",
   ]);

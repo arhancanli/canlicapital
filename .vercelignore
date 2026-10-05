@@ -67,7 +67,8 @@ mcp-execution/test/*
 !mcp/package.json
 !mcp/package-lock.json
 !mcp/LICENSE
-# The hosted endpoint (api/mcp.js) imports the package's tools from mcp/src at runtime.
+# The contributor beta endpoint (api/mcp-beta.js) imports the package's working source from
+# mcp/src at runtime; /mcp itself serves mcp-released/validation.
 !mcp/src
 deposits
 action
