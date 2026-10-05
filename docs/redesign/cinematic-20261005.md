@@ -43,3 +43,6 @@ expert governance and strategy objectives remain active.
 
 
 The social image and favicon share the current midnight, ice and blue brand, with editable Figma source at nodes `178:21` and `178:38` on the film page. The social image repeats the homepage question; the favicon uses the archive-plane motif. SVG and ICO variants are shipped. Source hashes and export provenance are in `docs/redesign/brand-assets-20261005.json`.
+
+
+`capture-source-dates.mjs` closes the complete build after generators, design migration and skip-focus verification. It binds the final source bytes to their Git commit dates. Snapshots without Git retain the committed bindings. This fixes publication and measurement page bindings that were captured before the final design pass.

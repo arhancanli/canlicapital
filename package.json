@@ -102,7 +102,7 @@
     "seo:inventory": "node scripts/seo-inventory.mjs",
     "seo:intents": "node scripts/audit-search-intents.mjs",
     "test:corpus": "python3 -m unittest discover -s scripts -p 'test_company_*.py' && python3 -m unittest discover -s scripts -p 'test_editorial_xbrl.py' && python3 -m unittest discover -s scripts -p 'test_basic_diluted_filings.py'",
-    "postbuild": "node scripts/stamp-social-meta.mjs && node scripts/build-company-assets.mjs && node scripts/prepare-company-preview-output.mjs && node scripts/prepare-company-production-output.mjs && node scripts/verify-standard-skip-focus.mjs",
+    "postbuild": "node scripts/stamp-social-meta.mjs && node scripts/build-company-assets.mjs && node scripts/prepare-company-preview-output.mjs && node scripts/prepare-company-production-output.mjs && node scripts/verify-standard-skip-focus.mjs && node scripts/capture-source-dates.mjs",
     "test:paper-journal-package": "node --test --test-concurrency=1 mcp-execution/test/paper-journal-package.test.mjs",
     "paper:journal-package": "node mcp-execution/src/paper-journal.mjs",
     "test:execution-workflow-page": "node --test --test-concurrency=1 scripts/execution-workflow-page.test.mjs"
