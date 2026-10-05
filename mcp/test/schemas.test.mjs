@@ -26,7 +26,9 @@ import {
   paperEvidenceInput,
   TOOL_DESCRIPTIONS,
   leanJsonSchema,
+  HEADLINE_TEST_NAMES,
 } from "../src/schemas.mjs";
+import { NULL_ZOO_V1 } from "../src/local/js/null-zoo-v1-sizes.js";
 import { MANIFEST } from "../../api/_lib/manifest.js";
 import { LIMITS_TEXT } from "../../api/_lib/limits.js";
 
@@ -142,6 +144,14 @@ test("the boundary language has not drifted from api/_lib/limits.js LIMITS_TEXT"
   }
 });
 
+test("the README quotes every boundary sentence verbatim, as it says it does", () => {
+  // The README wraps its lines, so whitespace is compared collapsed.
+  const readme = readFileSync(new URL("../README.md", import.meta.url), "utf8").replace(/\s+/g, " ");
+  for (const [key, sentence] of Object.entries(LIMITS_SENTENCES)) {
+    assert.ok(readme.includes(sentence), `README.md does not quote LIMITS_SENTENCES.${key}: ${sentence}`);
+  }
+});
+
 test("no description key is defined twice, so no tool shows another tool's wording", () => {
   const source = readFileSync(new URL("../src/schemas.mjs", import.meta.url), "utf8");
   const block = source.slice(source.indexOf("export const FIELD_DESCRIPTIONS"), source.indexOf("});", source.indexOf("export const FIELD_DESCRIPTIONS")));
@@ -174,4 +184,13 @@ test("leanJsonSchema drops only keywords that constrain nothing, and only from s
   assert.deepEqual(lean.properties.additionalProperties, {});
   assert.equal(lean.additionalProperties, false, "a closed object stays closed");
   assert.deepEqual(json.properties.count.minimum, Number.MIN_SAFE_INTEGER, "the input is not modified");
+});
+
+// 0.12.0 and 0.13.0 shipped audit_backtest describing its headline as Hansen's SPA while it ran
+// White's Reality Check: the description was typed, not read from what the audit runs.
+test("audit_backtest's description names the headline tests the shipped size table says it runs", () => {
+  const d = TOOL_DESCRIPTIONS.audit_backtest;
+  assert.ok(d.includes(`${HEADLINE_TEST_NAMES[NULL_ZOO_V1.with_variants.test]} with variants`), d);
+  assert.ok(d.includes(`${HEADLINE_TEST_NAMES[NULL_ZOO_V1.single_series.test]} without`), d);
+  assert.doesNotMatch(d, /Hansen's SPA with variants/);
 });
