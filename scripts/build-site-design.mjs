@@ -2,6 +2,8 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 
 import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderContributorChapter } from './lib/contributors.mjs';
+import { buildContributors } from './build-contributors.mjs';
+import { captureSourceDates } from './capture-source-dates.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const family = path => path === 'index.html' ? 'home'
@@ -93,6 +95,7 @@ export function applySiteDesign(html, path) {
 }
 
 function run() {
+  buildContributors();
   const files = readdirSync(root).filter(n => n.endsWith('.html')).map(n => resolve(root, n));
   const visit = dir => {
     if (!existsSync(dir)) return;
@@ -115,6 +118,7 @@ function run() {
   mkdirSync(resolve(root,'docs/redesign'),{recursive:true});
   writeFileSync(resolve(root,'docs/redesign/routes.json'),JSON.stringify({schema:'canli.design-routes.v1',routes},null,2)+'\n');
   console.log(`Shared design: ${routes.length} editable routes across ${new Set(routes.map(r=>r.family)).size} families`);
+  captureSourceDates();
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) run();

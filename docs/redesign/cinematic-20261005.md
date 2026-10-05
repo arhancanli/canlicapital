@@ -45,7 +45,7 @@ expert governance and strategy objectives remain active.
 The social image and favicon share the current midnight, ice and blue brand, with editable Figma source at nodes `178:21` and `178:38` on the film page. The social image repeats the homepage question; the favicon uses the archive-plane motif. SVG and ICO variants are shipped. Source hashes and export provenance are in `docs/redesign/brand-assets-20261005.json`.
 
 
-`capture-source-dates.mjs` closes the complete build after generators, design migration and skip-focus verification. It binds the final source bytes to their Git commit dates. Snapshots without Git retain the committed bindings. This fixes publication and measurement page bindings that were captured before the final design pass.
+The final shared design pass generates the contributor page and calls `capture-source-dates.mjs` after migrating every reading surface. It binds the finished source bytes to their Git commit dates. Snapshots without Git retain the committed bindings. Root package commands remain unchanged, preserving the MCP package file contract. Imports of the design helper remain free of write side effects.
 
 
 Publication wrappers declare their generator and shared presentation sources as sitemap inputs. Their dates therefore remain identical in Git and Git-free full builds, including when an earlier generator rewrites a wrapper before the final design pass. Immutable original documents remain unchanged.
