@@ -294,3 +294,8 @@ serialization, followed by a fresh observation immediately before its native
 write. The guide documents bounded owned-child closure. This opt-in command is
 separate from the existing default tool surface and does not fetch sources,
 recruit reviewers, dispatch packets, or make rights/admission decisions.
+
+
+### Supplied-file expert-intake MCP client (Unreleased)
+
+The opt-in `canli-expert-intake-client` accepts owned gold/intake/evidence/settings files, calls the local preparation tool once, and saves the complete returned report after same-buffer reference validation and known child closure. Full selected N, blank reviewer packets, missing-role/evidence worklists and unknown human/expertise/rights/admission outcomes are preserved. See [the source-bound file workflow](EXPERT_INTAKE_CLIENT.md). This candidate command is repository-only; package publication and adoption are separate.
