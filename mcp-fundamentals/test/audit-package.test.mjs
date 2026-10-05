@@ -29,7 +29,7 @@ const SOURCE_PINS = Object.freeze({
   'package/src/filing-facts-packet.mjs': '74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8',
 });
 const FILES = Object.freeze([
-  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/EXPERT_SUBMISSIONS.md', 'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/package.json', ...Object.keys(SOURCE_PINS),
+  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/EXPERT_SUBMISSIONS.md', 'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/EXPERT_INTAKE_FILES.md', 'package/package.json', ...Object.keys(SOURCE_PINS),
 ].sort());
 // Raw tar modes follow the frozen Git files, independently of bin-link installation.
 const RAW_MODES = Object.freeze(Object.fromEntries(FILES.map(path => [

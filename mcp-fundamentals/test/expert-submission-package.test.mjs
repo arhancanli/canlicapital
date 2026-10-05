@@ -421,7 +421,7 @@ test('expert package: all five import-only copies reverse to complete original s
 test('expert package: original default and audit bytes stay separate from installed executable fixture modes', () => {
   for (const local of ['src/server.mjs', 'src/audit-inputs-stdio.mjs', 'src/audit-inputs-core.mjs', 'src/canonical-json.mjs'])
     assert.equal(sha(packed.entries.get('package/' + local).bytes), SOURCE_PINS[local]);
-  const oldBins = packed.bins.filter(row => !['canli-fundamentals-audit-files', 'canli-expert-submission-files', 'canli-expert-submission-client'].includes(row.name));
+  const oldBins = packed.bins.filter(row => !['canli-fundamentals-audit-files', 'canli-expert-submission-files', 'canli-expert-submission-client', 'canli-expert-intake-files'].includes(row.name));
   assert.deepEqual(oldBins.map(row => row.raw_mode), [0o644, 0o755, 0o755]);
   assert.equal(packed.bins.length, 7); assert.equal(packed.bins.find(row => row.name === 'canli-fundamentals-audit-files').raw_mode, 0o755);
   assert.ok(packed.bins.every(row => row.owned_fixture_only && row.installed_fixture_mode === 0o755));

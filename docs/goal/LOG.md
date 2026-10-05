@@ -19444,3 +19444,35 @@ novelresearch, governedALPHAC privatepaper-lawfulcapital and10MACTUALLYindexed u
 qualitySEO-keywords-design-analyzer objectives ACTIVE/outcomesUNKNOWNNULL. PRIMARY
 reservedguide/date/focus/live/privatejournal/reconciliation/release/solemergepub,
 LeadsoleCPU127/SAMEroles/models/threads unchanged. No provider-spend/grant/pub.
+
+## 2026-10-05T08:35:00.510004+00:00 — SECONDARY PR391 first automatic CI failure retained; narrow fixture correction written
+
+Frozen original signedG/CLEAN 1e607f8fe073a409586a76ff100009982d738c5d/tree33d13b21 and original manifest
+104846Be42f59d3 remain immutable. Existing automatic run37282487170/MCP111673558360
+actualFAILURE: retained original1527357B SHA25669cec8a905058b1a29db5f60d05f8d623f1fd25c3f13ed9416c97bce81f11ade
+at `/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/remote-1e607f8f-MCP-original.log`. Complete executed TAP plans160+1+85+427:
+Fundamentals364PASS/63FAIL, no skips/cancel/todo. All39 newnamed bodies hookFailed
+UNEXECUTED before newpack/command; old22hookFailed due strictmember missing newguide,
+one old30 historical mode-subset assertion failed, and fileafterhookpack0!==1 kept.
+Later MCP execution stage UNRUN; separateROOTjob actualSUCCESS is no MCPpass.
+
+Native/source-only diagnosis207705Bb2489265 and correction5911B8ef6e8a5 restore four
+accidentally renamed protectedclient member/bin/loader occurrences, add one prefixed
+newguide member and exclude newintakebin only from historical3-mode comparison.
+Additional1649Bbac2252d STATIC UNEXECUTED positive diagnostic fixture arithmetic:
+saved currentartifact126152B requires>4096 attempts with31-byte fragments;127-byte
+short fragments fit the SAME4096guard even at maximumframe cap. Guard/cap/frame
+identity/EAGAINoffset/clock/abort controls unchanged. Four corrections WRITTEN_UNRUN;
+all39names,0newSDK/ONEpack/<=3 futurecommandentries and completeproduct/nativeFD/core
+guide/package/rootverify/rootlock/default7/deps/versions/owner74+3/archives unchanged.
+
+PRIMARY+THIRD originalSOURCE review remains frozenGit scoped; evolvingworking tests
+excluded. Next signedsource/currentexistingautomaticCI and exactseparatepeer
+extensions required. Originalfailures/raws/errors retained EXTERNAL. No localproject
+Node/import/test/CLI/npm/pack/install/helper/build/browser/GET/probe/job/manualrerun
+grant/provider-model-resource-spend/publication. ArchiveallocationNULL/evidence0.
+Closed390andallolderlanes unchanged; fullSovereignMCP/API-adoption, rights-cleared
+independentrealexpert-refinery/research, governedALPHAC privatepaper-lawfulcapital
+and10MACTUALLYindexed qualitySEO-keywords-design-analyzer objectives ACTIVE/outcomes
+UNKNOWNNULL; PRIMARYreservedguide-date-focus-live-privatejournal-reconciliation
+release-solemergepub/LeadsoleCPU127/SAMEroles-model-thread preserved.
