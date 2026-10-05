@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Fixed: `audit_backtest`'s description named Hansen's SPA as its headline test with variants.
+  Since 0.12.0 the audit runs White's Reality Check with variants and luck trials with Lo's
+  correction without, as the shipped size table (`src/local/js/null-zoo-v1-sizes.js`) records. The
+  description now reads both names from that table, and a test keeps them in step.
+
 ## 0.13.0 (2026-10-04)
 
 - New lab tool `check_leakage` finds lookahead in a signal without seeing its code. `plan` picks
