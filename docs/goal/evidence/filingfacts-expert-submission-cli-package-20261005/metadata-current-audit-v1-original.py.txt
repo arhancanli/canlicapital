@@ -1,0 +1,172 @@
+"""Independent native audit of saved current automatic CI originals. No project entry/refetch."""
+from pathlib import Path
+import base64,decimal,json,posixpath,re,struct,subprocess,sys,zlib,importlib.util
+spec=importlib.util.spec_from_file_location('nr','/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package/secondary_native_records.py');r=importlib.util.module_from_spec(spec);spec.loader.exec_module(r)
+read,digest,save,save_bytes,utc=r.read,r.digest,r.save,r.save_bytes,r.utc
+C=Path('/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package');W=Path('/Users/arhancanli/canlicapital-expert-submission-cli-package-20261005')
+def git(*args):return subprocess.check_output(['git',*args],cwd=W)
+catalog_path,source_path,prefix=sys.argv[1:]
+catalog_raw,catalog_pin=read(catalog_path);catalog=json.loads(catalog_raw)
+source_raw,source_pin=read(source_path);source=json.loads(source_raw)
+H=source['head'];M=source['actual_base'];T=source['tree'];TESTED=catalog['tested']
+assert catalog['H']==H and catalog['count']==11
+assert catalog['source_manifest']['bytes']==source_pin['bytes'] and catalog['source_manifest']['sha256']==source_pin['sha256']
+assert git('rev-parse','HEAD').decode().strip()==H and not git('status','--porcelain=v1')
+native_dir=C/(prefix+'-native-v1');native_dir.mkdir(mode=0o700)
+originals={};bindings=[]
+for item in catalog['successful_originals']:
+    label=item['label'];assert label not in originals
+    c=item['capture'];raw,p=read(c['stdout']['path'])
+    assert len(raw)==c['stdout']['bytes'] and digest(raw)==c['stdout']['sha256']
+    command,cp=read(c['command']['path']);err,ep=read(c['stderr']['path'])
+    assert cp['sha256']==c['command']['sha256'] and ep['sha256']==c['stderr']['sha256'] and not err
+    cmd=json.loads(command);assert cmd['exit']==c['exit']==0 and cmd['argv'][0]=='gh'
+    if 'terminal-raw' in label:
+        assert cmd['argv'][1:3]==['api','--allow-escape-sequences'] and cmd['argv'][-1].endswith('/logs')
+    originals[label]=raw;bindings.append({'label':label,'stdout':p,'command':cp,'stderr':ep,'actual_argv':cmd['argv']})
+assert len(originals)==11
+docs={k:json.loads(v) for k,v in originals.items() if 'terminal-raw' not in k}
+run=docs['ci-run-original'];qr=docs['CodeQL-run-original'];jobs=docs['ci-jobs-original']['jobs'];qjobs=docs['CodeQL-jobs-original']['jobs'];checks=docs['current-checks-original'];pull=docs['pull-original'];tested=docs['tested-Git-original']
+for r in [run,qr]:
+    assert r['head_sha']==H and r['run_attempt']==1 and r['status']=='completed' and r['conclusion']=='success' and r['event']=='pull_request'
+assert checks['headRefOid']==H and checks['baseRefOid']==M and checks['state']=='OPEN' and checks['isDraft']
+assert pull['number']==389 and pull['head']['sha']==H and pull['base']['sha']==M and pull['state']=='open' and pull['draft']
+assert tested['sha']==TESTED and tested['tree']['sha']==T and [p['sha'] for p in tested['parents']]==[M,H]
+assert tested['message']=='Merge '+H+' into '+M
+assert len(jobs)==4 and len(qjobs)==2
+for group,r in [(jobs,run),(qjobs,qr)]:
+    for j in group:assert j['head_sha']==H and j['run_id']==r['id'] and j['run_attempt']==1 and j['status']=='completed' and j['conclusion']=='success'
+rollup=checks['statusCheckRollup'];assert len(rollup)==7 and len({r['name'] for r in rollup})==7
+assert all(r['status']=='COMPLETED' and r['conclusion']=='SUCCESS' for r in rollup)
+for j in jobs+qjobs:
+    cr=next(r for r in rollup if r['name']==j['name']);assert cr['detailsUrl'].endswith('/actions/runs/'+str(j['run_id'])+'/job/'+str(j['id']))
+assert docs['scoped-open-alerts-original']==[]
+analyses=docs['scoped-CodeQL-analyses-original'];latest={}
+for a in analyses:
+    assert a['ref']=='refs/pull/389/merge'
+    language=json.loads(a['environment'])['language']
+    if language not in latest or (a['created_at'],a['id'])>(latest[language]['created_at'],latest[language]['id']):latest[language]=a
+assert set(latest)=={'javascript-typescript','python'}
+for a in latest.values():assert a['commit_sha']==TESTED and a['results_count']==0 and a['error']==''
+
+ansi=re.compile(r'\x1b\[[0-?]*[ -/]*[@-~]');stamp=re.compile(r'^\d{4}-\d{2}-\d{2}T\S+Z ?')
+numeric=re.compile(r'\d+(?:\.\d+)?');outcome=re.compile(r'^(ok|not ok) (\d+) - (.*)$')
+summary_re=re.compile(r'^# (tests|suites|pass|fail|cancelled|skipped|todo) (\d+)$')
+catalog_blocks=[];clean_logs={};all_names={};guard_rows=[]
+def exact_decimal(value):
+    assert numeric.fullmatch(value),value
+    assert decimal.Decimal(value).is_finite() and decimal.Decimal(value)>=0
+    return value
+for label in ['ROOT-terminal-raw-original','MCP-terminal-raw-original']:
+    raw=originals[label];lines=[stamp.sub('',ansi.sub('',v)) for v in raw.decode('utf-8').splitlines()];clean_logs[label]=lines
+    jobname='vite production build' if label.startswith('ROOT') else 'MCP package and stdio contracts'
+    job=next(j for j in jobs if j['name']==jobname)
+    command=next(b['actual_argv'] for b in bindings if b['label']==label)
+    assert command[-1]=='repos/arhancanli/canlicapital/actions/jobs/'+str(job['id'])+'/logs'
+    checkout=[re.fullmatch(r'HEAD is now at ([a-f0-9]{7,40}) Merge '+H+' into '+M,l) for l in lines]
+    checkout=[m for m in checkout if m];assert len(checkout)==1 and TESTED.startswith(checkout[0][1])
+    sha_lines=[l for i,l in enumerate(lines) if i and lines[i-1].endswith('git log -1 --format=%H')]
+    assert TESTED in sha_lines,(label,sha_lines)
+    assert any('22.23.3' in l for l in lines if len(l)<1000)
+    blocks=[];block=None;nested=[]
+    for i,line in enumerate(lines):
+        if line=='TAP version 13':
+            assert block is None
+            block={'job':jobname,'raw_pin':next(b['stdout'] for b in bindings if b['label']==label),'start_line':i+1,'results':[],'counters':{},'nested':[]}
+            continue
+        if block is None:continue
+        m=outcome.fullmatch(line)
+        if m:
+            assert m[1]=='ok' and ' # SKIP' not in m[3] and ' # TODO' not in m[3]
+            duration_lines=[(i+1+z,l.strip().removeprefix('duration_ms: ').strip()) for z,l in enumerate(lines[i+1:i+7],start=1) if l.strip().startswith('duration_ms: ')]
+            type_lines=[(i+1+z,l.strip().removeprefix('type: ').strip().strip("'\"")) for z,l in enumerate(lines[i+1:i+7],start=1) if l.strip().startswith('type: ')]
+            assert len(duration_lines)==len(type_lines)==1,(label,i,line)
+            block['results'].append({'ordinal':int(m[2]),'name':m[3],'outcome':'PASS','raw_line':i+1,'duration_ms_exact':exact_decimal(duration_lines[0][1]),'duration_raw_line':duration_lines[0][0],'type':type_lines[0][1],'type_raw_line':type_lines[0][0]})
+        elif re.match(r'^\s+(?:ok|not ok) \d+',line):block['nested'].append({'raw_line':i+1,'line':line})
+        elif re.fullmatch(r'1\.\.\d+',line):
+            assert 'plan' not in block;block['plan']=int(line[3:]);block['plan_line']=i+1
+        elif summary_re.fullmatch(line):
+            m=summary_re.fullmatch(line);assert m[1] not in block['counters'];block['counters'][m[1]]=int(m[2])
+        elif line.startswith('# duration_ms '):
+            block['final_duration_ms_exact']=exact_decimal(line.removeprefix('# duration_ms '));block['end_line']=i+1
+            n=block['plan'];assert [r['ordinal'] for r in block['results']]==list(range(1,n+1))
+            assert block['counters']=={'tests':n,'suites':0,'pass':n,'fail':0,'cancelled':0,'skipped':0,'todo':0} and block['nested']==[]
+            blocks.append(block);block=None
+    assert block is None and len(blocks)==(3 if label.startswith('ROOT') else 5)
+    if label.startswith('ROOT'):
+        for text in ['standards/paper-evidence.html: generated skip link and focus target verified','dist/standards/paper-evidence.html: generated skip link and focus target verified']:
+            hits=[i+1 for i,l in enumerate(lines) if l==text];assert len(hits)==1;guard_rows.append({'text':text,'raw_line':hits[0]})
+    assert not any('generated asynchronous activity' in l or 'unhandledRejection' in l for l in lines if len(l)<2000)
+    catalog_blocks+=blocks;all_names[label]=[r['name'] for b in blocks for r in b['results']]
+assert len(catalog_blocks)==8
+names=source['all40_written_names']
+assert len(names)==len(set(names))==40
+for name in names:assert all_names['MCP-terminal-raw-original'].count(name)==1 and all_names['ROOT-terminal-raw-original'].count(name)==0
+for path,expected_count in [('mcp-fundamentals/test/audit-package.test.mjs',22),('mcp-fundamentals/test/expert-submission-package.test.mjs',30),('mcp-fundamentals/test/audit-inputs-client-package.test.mjs',38),('mcp-fundamentals/test/audit-inputs-client.test.mjs',57),('mcp-fundamentals/test/expert-submission-stdio.test.mjs',63)]:
+ b=git('show',H+':'+path);oldnames=[m[1].decode() for m in re.finditer(rb"^test\('([^']+)'",b,re.M)];assert len(oldnames)==expected_count
+ for name in oldnames:assert all_names['MCP-terminal-raw-original'].count(name)==1 and all_names['ROOT-terminal-raw-original'].count(name)==0
+lines=clean_logs['MCP-terminal-raw-original']
+def diagnostic(label):
+ hits=[]
+ for i,line in enumerate(lines):
+  m=re.fullmatch(r'(?:# )*'+re.escape(label)+r' (.*)',line)
+  if m:hits.append((i,m[1]))
+ assert len(hits)==1,(label,len(hits))
+ first,payload=hits[0];last=first
+ while not payload.endswith('}'):
+  last+=1;assert last<len(lines) and lines[last].startswith('# ');payload+=lines[last][2:];assert len(payload.encode())<=524288
+ return json.loads(payload),{'label':label,'first_line':first+1,'last_line':last+1,'bytes':len(payload.encode()),'sha256':digest(payload.encode())}
+raw_artifact,raw_frame=diagnostic('CANLI_EXPERT_FILES_PACKAGE_RAW');raw_modes,modes_frame=diagnostic('CANLI_EXPERT_FILES_PACKAGE_RAW_MODES');admitted,admitted_frame=diagnostic('CANLI_EXPERT_FILES_PACKAGE_ADMITTED')
+assert raw_frame['first_line']<modes_frame['first_line']<admitted_frame['first_line'] and raw_artifact['admission']=='RAW_CAPTURED_NOT_ADMITTED' and admitted['admission']=='ADMITTED'
+gz=base64.b64decode(raw_artifact['original_gzip_base64'],validate=True);assert base64.b64encode(gz).decode()==raw_artifact['original_gzip_base64']
+assert len(gz)==raw_artifact['compressed_bytes']<=262144 and digest(gz)==raw_artifact['compressed_sha256']==admitted['compressed_sha256'] and gz[:4]==bytes([31,139,8,0])
+z=zlib.decompressobj(-15);body=z.decompress(gz[10:],2097153);assert len(body)<=2097152 and z.eof and not z.unconsumed_tail and len(z.unused_data)==8
+crc,isize=struct.unpack('<II',z.unused_data);assert zlib.crc32(body)==crc and len(body)==isize and len(body)%512==0
+metadata=json.loads(git('show',H+':mcp-fundamentals/package.json'))
+expected=['package/LICENSE','package/package.json']+['package/'+name for name in metadata['files'] if name!='src']
+for record in git('ls-tree','-r','--name-only',H,'--','mcp-fundamentals/src').decode().splitlines():expected.append('package/'+record.removeprefix('mcp-fundamentals/'))
+assert len(expected)==len(set(expected))==18
+files={};offset=0;ended=False
+while offset+512<=len(body):
+ header=body[offset:offset+512]
+ if not any(header):assert len(body)-offset>=1024 and not any(body[offset:]);ended=True;break
+ assert len(files)<18 and all(v<=127 for v in header)
+ def ascii_field(a,b,numeric=False):
+  v=header[a:b];i=v.find(b'\0')
+  if i>=0:assert all(q==0 or (numeric and q==32) for q in v[i:]);v=v[:i]
+  return v.decode('ascii')
+ def octal(a,b):
+  value=ascii_field(a,b,True).strip();assert re.fullmatch('[0-7]+',value);return int(value,8)
+ name=ascii_field(0,100);pre=ascii_field(345,500);name=pre+'/'+name if pre else name
+ assert name in expected and name not in files and re.fullmatch(r'package/[A-Za-z0-9_./-]+',name) and all(p not in ('','.','..') for p in name.split('/'))
+ assert ascii_field(156,157) in ('','0') and not ascii_field(157,257)
+ mode,size=octal(100,108),octal(124,136);assert mode in (420,493) and size<=2097152 and octal(148,156)==sum(header[:148])+256+sum(header[156:])
+ data=body[offset+512:offset+512+size];assert len(data)==size
+ repo='mcp-fundamentals/'+name.removeprefix('package/');assert data==git('show',H+':'+repo)
+ row=git('ls-tree',H,'--',repo).decode().split();assert row[0]=='100'+format(mode,'o') and row[1]=='blob'
+ files[name]={'mode':mode,'bytes':data};offset+=512+((size+511)//512)*512;assert offset<=len(body)
+assert ended and set(files)==set(expected)
+member_rows=[{'path':n,'mode':v['mode'],'bytes':len(v['bytes']),'sha256':digest(v['bytes'])} for n,v in files.items()]
+assert member_rows==raw_modes['files']==admitted['files']
+assert raw_modes['compressed_sha256']==raw_artifact['compressed_sha256'] and raw_modes['original_gzip_base64']==raw_artifact['original_gzip_base64']
+assert admitted['SDK_entries']==admitted['external_dependency_links']==admitted['repository_runtime_links']==0
+assert len(metadata['bin'])==5 and metadata['bin']['canli-expert-submission-files']=='src/expert-submission-files.mjs'
+assert admitted['bins']==[{'name':name,'raw_mode':files['package/'+local]['mode'],'fixture_mode':493,'owned_fixture_only':True} for name,local in metadata['bin'].items()]
+assert metadata['dependencies']=={'@modelcontextprotocol/server':'2.1.0','zod':'4.6.5','@modelcontextprotocol/client':'2.1.0'} and 'devDependencies' not in metadata and metadata['version']=='0.5.0' and metadata['private'] is False
+imports=[]
+for name,row in files.items():
+ if not name.endswith(('.js','.mjs')):continue
+ text=row['bytes'].decode('utf-8');dynamic=re.findall(r"\bimport\s*\(\s*(['\"])([^'\"]+)\1\s*\)",text)
+ assert [x[1] for x in dynamic]==(['@modelcontextprotocol/client','@modelcontextprotocol/client/stdio'] if name=='package/src/audit-inputs-client.mjs' else ['./expert-submission-audit-core.mjs'] if name=='package/src/expert-submission-files.mjs' else [])
+ assert not re.search(r'\b(?:import\s*\(|require\s*\(|createRequire\b)',re.sub(r"\bimport\s*\(\s*(['\"])([^'\"]+)\1\s*\)",'FIXED',text))
+ statics=re.findall(r"^import .+ from ['\"]([^'\"]+)['\"];\s*$",text,re.M);assert len(statics)==len(re.findall(r'^import\b',text,re.M))
+ for imp in statics:
+  if imp.startswith('.'):assert posixpath.normpath(posixpath.join(posixpath.dirname(name),imp)) in files
+  else:assert imp.startswith('node:') or imp in ('@modelcontextprotocol/server','@modelcontextprotocol/server/stdio','zod')
+ imports.append({'member':name,'static':statics,'fixed_dynamic':[x[1] for x in dynamic]})
+assert len(imports)==11
+artifact_pin=save_bytes(native_dir/'actual-current-RAW-and-ADMITTED-original.tgz',gz)
+artifact=save(native_dir/'actual-current-exact18-Git-byte-mode-import-binding-v1.json',{'source':source_pin,'artifact':artifact_pin,'expanded':len(body),'single_member_CRC_ISIZE_no_trailing':True,'gzip_mtime':int.from_bytes(gz[4:8],'little'),'members':member_rows,'all_frozen_Git_bytes_modes_exact':True,'raw_ADMITTED_same_bytes':True,'RAW_frame':raw_frame,'ADMITTED_frame':admitted_frame,'all11_JS_MJS_imports':imports,'native_direct_no_dependencies_or_SDK':True,'fixture_only_default_chmod':True,'npm_install_established':None,'reviewer_package_execution':False})
+tap=save(native_dir/'complete-independent-TAP-catalog-v1.json',{'source':source_pin,'blocks':catalog_blocks,'full8_plans_dense_ordinals_names_outcomes_every_type_duration_seven_counters_final_durations':True,'nested':0,'source40_names':names,'once_MCP_zero_ROOT':True,'old22_30_38_57_63_once_MCP_names':True,'postbuildguards_each_once':guard_rows})
+receipt=save(C/(prefix+'-retained-current-CI-and-exact18-artifact-v1.json'),{'utc':utc(),'H':H,'tree':T,'tested':TESTED,'tested_parents':[M,H],'source':source_pin,'capture_locator':catalog_pin,'all11_original_bindings':bindings,'all11_original_bytes':sum(len(v) for v in originals.values()),'run':run['id'],'CodeQL_run':qr['id'],'attempt':1,'all7SUCCESS_at_captured_source_HEAD':True,'full_TAP_catalog':tap,'plans_ROOT':[b['plan'] for b in catalog_blocks if b['job']=='vite production build'],'plans_MCP':[b['plan'] for b in catalog_blocks if b['job']=='MCP package and stdio contracts'],'source40_once_MCP_zero_ROOT':True,'Node':'22.23.3','captured_open_alerts':0,'latest_two_language_analyses':latest,'older_analyses_preserved':len(analyses)-len(latest),'artifact':artifact,'disposition':'PASS_EXACT_RETAINED_CURRENT_CI_AND_EXACT18_ARTIFACT','SOURCE_peers_separate':True,'three_command_entries_proof_scope':'named frozen assertions only; no reviewer child census','no_actual_MAIN_job_or_future_HEAD_outcome_inferred':True,'original_3bf7_SOURCE_HOLDs_8NEWPASS32FAIL_filehook_preserved':True,'API_refetch_project_entry_pack_job_rerun_by_auditor':False,'archive_allocation':None,'repository_evidence_writes':0,'full_owner_hierarchy':'ACTIVE','actual_outcomes':None})
+print(json.dumps({'receipt':receipt,'TAP_catalog':tap,'artifact':artifact,'top_outcomes':sum(len(b['results']) for b in catalog_blocks)}),flush=True)

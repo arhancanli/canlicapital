@@ -1,0 +1,219 @@
+{
+  "runtime_transform_sha256": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d",
+  "records": [
+    {
+      "path": "mcp-fundamentals/package.json",
+      "original_bytes": 1539,
+      "original_sha256": "a8824bc3e08e50749b7d4bad217a6f6ff0917270acb03699c0917c93c823546d",
+      "current_bytes": 1645,
+      "current_sha256": "b901d33d12d62ee3141664cfcf7d41bbd65493b4e1feb90ce231bdc1533a0809",
+      "exact_inverse_hunks": [
+        {
+          "old": "    \"canli-fundamentals-audit-files\": \"src/audit-inputs-client.mjs\"",
+          "new": "    \"canli-fundamentals-audit-files\": \"src/audit-inputs-client.mjs\",\n    \"canli-expert-submission-files\": \"src/expert-submission-files.mjs\"",
+          "scope": "one bin member"
+        },
+        {
+          "old": "    \"AUDIT_INPUTS_CLIENT.md\"\n",
+          "new": "    \"AUDIT_INPUTS_CLIENT.md\",\n    \"EXPERT_SUBMISSION_FILES.md\"\n",
+          "scope": "one files member"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/package-lock.json",
+      "original_bytes": 6412,
+      "original_sha256": "7c56649f038d25c4ad474b5c55c28c47cdcc212400273fa29d9a6a4bbe15631b",
+      "current_bytes": 6488,
+      "current_sha256": "e9de4fb40c1ff7c881245b458cd723c6d5b7dbcbcdfbd0b26ad2807b2942ab99",
+      "exact_inverse_hunks": [
+        {
+          "old": "        \"canli-fundamentals-audit-files\": \"src/audit-inputs-client.mjs\"",
+          "new": "        \"canli-fundamentals-audit-files\": \"src/audit-inputs-client.mjs\",\n        \"canli-expert-submission-files\": \"src/expert-submission-files.mjs\"",
+          "scope": "root bin only"
+        }
+      ]
+    },
+    {
+      "path": "package.json",
+      "original_bytes": 15320,
+      "original_sha256": "eaf96bc941b0bebe8ed893597487c570b9fe3c43594be7772cc52604dabec1db",
+      "current_bytes": 15563,
+      "current_sha256": "3ea91e841c06aee924dabb3befce743ae1527db2a2584438207a90f070c8d759",
+      "exact_inverse_hunks": [
+        {
+          "old": "    \"test:expert-submission-cli\": \"node --test --test-concurrency=1 scripts/datasets/filing-facts/expert-submission-cli.test.mjs\",\n",
+          "new": "    \"test:expert-submission-cli\": \"node --test --test-concurrency=1 scripts/datasets/filing-facts/expert-submission-cli.test.mjs\",\n    \"test:expert-submission-files-package\": \"node --test --test-concurrency=1 mcp-fundamentals/test/expert-submission-files-package.test.mjs\",\n    \"filingfacts:expert-submission-files\": \"node mcp-fundamentals/src/expert-submission-files.mjs\",\n",
+          "scope": "two focused script lines only"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-package.test.mjs",
+      "original_bytes": 40144,
+      "original_sha256": "afbea95d2364e751dc8c4b5e1012564f2961c7c7620634347026c118e7d555dc",
+      "current_bytes": 40959,
+      "current_sha256": "93d165928e6757140745b9217d6024dd67538b20a181cc03a29e1206387ebf4a",
+      "exact_inverse_hunks": [
+        {
+          "old": "const SOURCE_PINS = Object.freeze({\n",
+          "new": "const SOURCE_PINS = Object.freeze({\n  'package/src/expert-submission-files.mjs': 'a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d',\n",
+          "scope": "source expectation"
+        },
+        {
+          "old": "'package/AUDIT_INPUTS_CLIENT.md', 'package/package.json'",
+          "new": "'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/package.json'",
+          "scope": "complete member expectation"
+        },
+        {
+          "old": "'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs' }",
+          "new": "'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs' }",
+          "scope": "complete bin expectation"
+        },
+        {
+          "old": "['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md']",
+          "new": "['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md']",
+          "scope": "complete files expectation"
+        },
+        {
+          "old": "'package/src/audit-inputs-client.mjs'].includes",
+          "new": "'package/src/audit-inputs-client.mjs', 'package/src/expert-submission-files.mjs'].includes",
+          "scope": "raw mode expectation"
+        },
+        {
+          "old": "    } else assert.equal(dynamic.length, 0, 'DYNAMIC_IMPORT');",
+          "new": "    } else if (path === 'package/src/expert-submission-files.mjs') {\n      assert.equal(sha(row.bytes), SOURCE_PINS[path], 'SOURCE_PIN');\n      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-submission-audit-core.mjs'], 'FIXED_DYNAMIC_IMPORTS');\n      assert.ok(entries.has('package/src/expert-submission-audit-core.mjs'), 'MISSING_LOCAL_IMPORT');\n    } else assert.equal(dynamic.length, 0, 'DYNAMIC_IMPORT');",
+          "scope": "exact new local dynamic-import expectation"
+        },
+        {
+          "old": "    { name: 'canli-fundamentals-audit-files', path: 'src/audit-inputs-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },\n",
+          "new": "    { name: 'canli-fundamentals-audit-files', path: 'src/audit-inputs-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },\n    { name: 'canli-expert-submission-files', path: 'src/expert-submission-files.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },\n",
+          "scope": "raw-mode case expectation"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+      "original_bytes": 48769,
+      "original_sha256": "080068cac9285ab6327b180b48e7dbd1ba420c9dd3e2df46a1d02b605691c658",
+      "current_bytes": 49602,
+      "current_sha256": "1c388dfdf021163d6d621459df09d87caff27a1bd184caca7ffff8fd66afd42f",
+      "exact_inverse_hunks": [
+        {
+          "old": "const SOURCE_PINS = Object.freeze({\n",
+          "new": "const SOURCE_PINS = Object.freeze({\n  'src/expert-submission-files.mjs': 'a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d',\n",
+          "scope": "source expectation"
+        },
+        {
+          "old": "'AUDIT_INPUTS_CLIENT.md',\n  'package.json'",
+          "new": "'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md',\n  'package.json'",
+          "scope": "complete member expectation"
+        },
+        {
+          "old": "'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs' }",
+          "new": "'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs' }",
+          "scope": "complete bin expectation"
+        },
+        {
+          "old": "['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md']",
+          "new": "['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md']",
+          "scope": "complete files expectation"
+        },
+        {
+          "old": "'package/src/audit-inputs-client.mjs'].includes",
+          "new": "'package/src/audit-inputs-client.mjs', 'package/src/expert-submission-files.mjs'].includes",
+          "scope": "raw mode expectation"
+        },
+        {
+          "old": "    } else assert.equal(dynamic.length, 0, 'DYNAMIC_IMPORT');",
+          "new": "    } else if (filename === 'package/src/expert-submission-files.mjs') {\n      assert.equal(sha(row.bytes), SOURCE_PINS['src/expert-submission-files.mjs'], 'SOURCE_PIN');\n      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-submission-audit-core.mjs'], 'FIXED_DYNAMIC_IMPORTS');\n      assert.ok(entries.has('package/src/expert-submission-audit-core.mjs'), 'MISSING_LOCAL_IMPORT');\n    } else assert.equal(dynamic.length, 0, 'DYNAMIC_IMPORT');",
+          "scope": "exact new local dynamic-import expectation"
+        },
+        {
+          "old": "!['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md'].includes(name)",
+          "new": "!['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md'].includes(name)",
+          "scope": "exact14 historical subset exclusion"
+        },
+        {
+          "old": "name !== 'src/audit-inputs-client.mjs'",
+          "new": "!['src/audit-inputs-client.mjs', 'src/expert-submission-files.mjs'].includes(name)",
+          "scope": "exact14 source subset exclusion"
+        },
+        {
+          "old": "assert.equal(MEMBERS.length, 16);",
+          "new": "assert.equal(MEMBERS.length, 18);",
+          "scope": "current18 count"
+        },
+        {
+          "old": "row.name !== 'canli-fundamentals-audit-files'",
+          "new": "!['canli-fundamentals-audit-files', 'canli-expert-submission-files'].includes(row.name)",
+          "scope": "old three bin subset exclusion"
+        },
+        {
+          "old": "assert.equal(packed.bins.length, 4);",
+          "new": "assert.equal(packed.bins.length, 5);",
+          "scope": "current five bin count"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+      "original_bytes": 90463,
+      "original_sha256": "cddad76e0138a4a232659f7b399be52c8e716c9f6bc4c9a7a1ff09a0600c39c2",
+      "current_bytes": 91498,
+      "current_sha256": "ed7c50397f005c229a326eb8acf90811eb72f07fc941c32e46ea91e9a109913d",
+      "exact_inverse_hunks": [
+        {
+          "old": "const SOURCE_PINS = Object.freeze({",
+          "new": "const SOURCE_PINS = Object.freeze({\"src/expert-submission-files.mjs\": \"a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d\", ",
+          "scope": "source expectation"
+        },
+        {
+          "old": "'AUDIT_INPUTS_CLIENT.md', 'package.json'",
+          "new": "'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'package.json'",
+          "scope": "complete member expectation"
+        },
+        {
+          "old": "'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs' }",
+          "new": "'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs' }",
+          "scope": "complete bin expectation"
+        },
+        {
+          "old": "['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md']",
+          "new": "['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md']",
+          "scope": "complete files expectation"
+        },
+        {
+          "old": "    } else assert.equal(dynamic.length, 0, 'DYNAMIC');",
+          "new": "    } else if (filename === 'package/src/expert-submission-files.mjs') {\n      assert.equal(sha(row.bytes), SOURCE_PINS['src/expert-submission-files.mjs'], 'SOURCE');\n      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-submission-audit-core.mjs'], 'DYNAMIC_FIXED');\n      assert.ok(entries.has('package/src/expert-submission-audit-core.mjs'), 'LOCAL_IMPORT');\n    } else assert.equal(dynamic.length, 0, 'DYNAMIC');",
+          "scope": "exact new local dynamic-import expectation"
+        },
+        {
+          "old": "[\"    \\\"test:audit-inputs-client-package\\\": \\\"node --test --test-concurrency=1 mcp-fundamentals/test/audit-inputs-client-package.test.mjs\\\",\\n\", \"    \\\"filingfacts:audit-inputs-files\\\": \\\"node mcp-fundamentals/src/audit-inputs-client.mjs\\\",\\n\"]",
+          "new": "[\"    \\\"test:audit-inputs-client-package\\\": \\\"node --test --test-concurrency=1 mcp-fundamentals/test/audit-inputs-client-package.test.mjs\\\",\\n\", \"    \\\"filingfacts:audit-inputs-files\\\": \\\"node mcp-fundamentals/src/audit-inputs-client.mjs\\\",\\n\", \"    \\\"test:expert-submission-files-package\\\": \\\"node --test --test-concurrency=1 mcp-fundamentals/test/expert-submission-files-package.test.mjs\\\",\\n\", \"    \\\"filingfacts:expert-submission-files\\\": \\\"node mcp-fundamentals/src/expert-submission-files.mjs\\\",\\n\"]",
+          "scope": "root inverse removes only own prior and exact two new registrations"
+        },
+        {
+          "old": "  delete inverse.bin['canli-fundamentals-audit-files']; inverse.files.pop();",
+          "new": "  delete inverse.bin['canli-expert-submission-files']; inverse.files = inverse.files.filter(name => name !== 'EXPERT_SUBMISSION_FILES.md');\n  delete inverse.bin['canli-fundamentals-audit-files']; inverse.files.pop();",
+          "scope": "historical package metadata expectation inverse"
+        },
+        {
+          "old": "assert.equal(MEMBERS.length, 16);",
+          "new": "assert.equal(MEMBERS.length, 18);",
+          "scope": "current18 count"
+        },
+        {
+          "old": "['canli-fundamentals-mcp', 'canli-fundamentals-audit', 'canli-expert-submission-audit', 'canli-fundamentals-audit-files']);",
+          "new": "['canli-fundamentals-mcp', 'canli-fundamentals-audit', 'canli-expert-submission-audit', 'canli-fundamentals-audit-files', 'canli-expert-submission-files']);",
+          "scope": "current five bin names"
+        },
+        {
+          "old": "assert.equal(decodeTar(packed.compressed).size, 16);",
+          "new": "assert.equal(decodeTar(packed.compressed).size, 18);",
+          "scope": "current18 decode expectation"
+        }
+      ]
+    }
+  ]
+}

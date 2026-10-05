@@ -1,0 +1,104 @@
+from pathlib import Path
+import hashlib, json, os, sys
+
+W = Path('/Users/arhancanli/canlicapital-expert-submission-cli-package-20261005')
+C = Path('/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package')
+sha = lambda b: hashlib.sha256(b).hexdigest()
+pin = 'a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d'
+source = (W/'scripts/datasets/filing-facts/expert-submission-cli.mjs').read_bytes()
+assert len(source) == 16094 and sha(source) == 'd8f35d72e842244558ccbd1b42ec7c2e9fc07da1b790cdb843422e53c5d513d7'
+assert source.count(b"import('./expert-submission-audit.mjs')") == 1
+portable = b'#!/usr/bin/env node\n' + source.replace(b"import('./expert-submission-audit.mjs')", b"import('./expert-submission-audit-core.mjs')")
+assert len(portable) == 16119 and sha(portable) == pin
+p = W/'mcp-fundamentals/src/expert-submission-files.mjs'
+assert not p.exists()
+pending = {'mcp-fundamentals/src/expert-submission-files.mjs': portable}
+records = []
+
+def edit(rel, changes):
+    p = W/rel; original = p.read_text(); current = original; hunks = []
+    for before, after, scope in changes:
+        assert before != after and current.count(before) == 1, (rel, scope, current.count(before))
+        current = current.replace(before, after)
+        hunks.append({'old': before, 'new': after, 'scope': scope})
+    inverse = current
+    for h in reversed(hunks):
+        assert inverse.count(h['new']) == 1
+        inverse = inverse.replace(h['new'], h['old'])
+    assert inverse == original
+    pending[rel] = current.encode()
+    records.append({'path': rel, 'original_bytes': len(original.encode()), 'original_sha256': sha(original.encode()),
+                    'current_bytes': len(current.encode()), 'current_sha256': sha(current.encode()), 'exact_inverse_hunks': hunks})
+
+edit('mcp-fundamentals/package.json', [
+    ('    "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs"',
+     '    "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs",\n    "canli-expert-submission-files": "src/expert-submission-files.mjs"', 'one bin member'),
+    ('    "AUDIT_INPUTS_CLIENT.md"\n', '    "AUDIT_INPUTS_CLIENT.md",\n    "EXPERT_SUBMISSION_FILES.md"\n', 'one files member')])
+edit('mcp-fundamentals/package-lock.json', [
+    ('        "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs"',
+     '        "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs",\n        "canli-expert-submission-files": "src/expert-submission-files.mjs"', 'root bin only')])
+rootlines = ['    "test:expert-submission-files-package": "node --test --test-concurrency=1 mcp-fundamentals/test/expert-submission-files-package.test.mjs",\n',
+             '    "filingfacts:expert-submission-files": "node mcp-fundamentals/src/expert-submission-files.mjs",\n']
+marker = '    "test:expert-submission-cli": "node --test --test-concurrency=1 scripts/datasets/filing-facts/expert-submission-cli.test.mjs",\n'
+edit('package.json', [(marker, marker + ''.join(rootlines), 'two focused script lines only')])
+
+for rel in ['mcp-fundamentals/test/audit-package.test.mjs', 'mcp-fundamentals/test/expert-submission-package.test.mjs', 'mcp-fundamentals/test/audit-inputs-client-package.test.mjs']:
+    changes = []
+    def replace(old, new, group): changes.append((old, new, group))
+    audit = rel.endswith('/audit-package.test.mjs')
+    expert = rel.endswith('/expert-submission-package.test.mjs')
+    if audit:
+        start = 'const SOURCE_PINS = Object.freeze({\n'
+        replace(start, start + "  'package/src/expert-submission-files.mjs': '" + pin + "',\n", 'source expectation')
+    elif expert:
+        start = 'const SOURCE_PINS = Object.freeze({\n'
+        replace(start, start + "  'src/expert-submission-files.mjs': '" + pin + "',\n", 'source expectation')
+    else:
+        start = 'const SOURCE_PINS = Object.freeze({'
+        replace(start, start + '"src/expert-submission-files.mjs": "' + pin + '", ', 'source expectation')
+    replace("'AUDIT_INPUTS_CLIENT.md', 'package.json'" if not audit else "'package/AUDIT_INPUTS_CLIENT.md', 'package/package.json'",
+            "'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'package.json'" if not audit else "'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/package.json'", 'complete member expectation')
+    replace("'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs' }", "'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs' }", 'complete bin expectation')
+    replace("['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md']",
+            "['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md']", 'complete files expectation')
+    if audit or expert:
+        replace("'package/src/audit-inputs-client.mjs'].includes", "'package/src/audit-inputs-client.mjs', 'package/src/expert-submission-files.mjs'].includes", 'raw mode expectation')
+        cond = 'path' if audit else 'filename'
+        replacement = "    } else if (" + cond + " === 'package/src/expert-submission-files.mjs') {\n" + \
+            "      assert.equal(sha(row.bytes), SOURCE_PINS[" + (cond if audit else "'src/expert-submission-files.mjs'") + "], 'SOURCE_PIN');\n" + \
+            "      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-submission-audit-core.mjs'], 'FIXED_DYNAMIC_IMPORTS');\n" + \
+            "      assert.ok(entries.has('package/src/expert-submission-audit-core.mjs'), 'MISSING_LOCAL_IMPORT');\n" + \
+            "    } else assert.equal(dynamic.length, 0, 'DYNAMIC_IMPORT');"
+        replace("    } else assert.equal(dynamic.length, 0, 'DYNAMIC_IMPORT');", replacement, 'exact new local dynamic-import expectation')
+    else:
+        replace("    } else assert.equal(dynamic.length, 0, 'DYNAMIC');", "    } else if (filename === 'package/src/expert-submission-files.mjs') {\n      assert.equal(sha(row.bytes), SOURCE_PINS['src/expert-submission-files.mjs'], 'SOURCE');\n      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-submission-audit-core.mjs'], 'DYNAMIC_FIXED');\n      assert.ok(entries.has('package/src/expert-submission-audit-core.mjs'), 'LOCAL_IMPORT');\n    } else assert.equal(dynamic.length, 0, 'DYNAMIC');", 'exact new local dynamic-import expectation')
+    if audit:
+        line = "    { name: 'canli-fundamentals-audit-files', path: 'src/audit-inputs-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },\n"
+        replace(line, line + "    { name: 'canli-expert-submission-files', path: 'src/expert-submission-files.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },\n", 'raw-mode case expectation')
+    if expert:
+        replace("!['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md'].includes(name)", "!['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md'].includes(name)", 'exact14 historical subset exclusion')
+        replace("name !== 'src/audit-inputs-client.mjs'", "!['src/audit-inputs-client.mjs', 'src/expert-submission-files.mjs'].includes(name)", 'exact14 source subset exclusion')
+        replace('assert.equal(MEMBERS.length, 16);', 'assert.equal(MEMBERS.length, 18);', 'current18 count')
+        replace("row.name !== 'canli-fundamentals-audit-files'", "!['canli-fundamentals-audit-files', 'canli-expert-submission-files'].includes(row.name)", 'old three bin subset exclusion')
+        replace('assert.equal(packed.bins.length, 4);', 'assert.equal(packed.bins.length, 5);', 'current five bin count')
+    if not expert and not audit:
+        s = (W/rel).read_text(); start = 'const FOCUSED_LINES = Object.freeze('; a = s.index(start)+len(start); z = s.index(');',a)
+        old = s[a:z]; lines = json.loads(old); new = json.dumps(lines + rootlines, ensure_ascii=False)
+        replace(old, new, 'root inverse removes only own prior and exact two new registrations')
+        replace("  delete inverse.bin['canli-fundamentals-audit-files']; inverse.files.pop();", "  delete inverse.bin['canli-expert-submission-files']; inverse.files = inverse.files.filter(name => name !== 'EXPERT_SUBMISSION_FILES.md');\n  delete inverse.bin['canli-fundamentals-audit-files']; inverse.files.pop();", 'historical package metadata expectation inverse')
+        replace('assert.equal(MEMBERS.length, 16);', 'assert.equal(MEMBERS.length, 18);', 'current18 count')
+        replace("['canli-fundamentals-mcp', 'canli-fundamentals-audit', 'canli-expert-submission-audit', 'canli-fundamentals-audit-files']);", "['canli-fundamentals-mcp', 'canli-fundamentals-audit', 'canli-expert-submission-audit', 'canli-fundamentals-audit-files', 'canli-expert-submission-files']);", 'current five bin names')
+        replace('assert.equal(decodeTar(packed.compressed).size, 16);', 'assert.equal(decodeTar(packed.compressed).size, 18);', 'current18 decode expectation')
+    edit(rel, changes)
+
+for rel in ('package.json', 'mcp-fundamentals/package.json', 'mcp-fundamentals/package-lock.json'):
+    json.loads(pending[rel])
+assert sha(json.loads(pending['package.json'])['scripts']['verify'].encode()) == 'f22252c98bef63f212af303d2e1fc2e91e8559bc8e9ce54e319cd3b75fd77212'
+out = C/'secondary-exact-source-metadata-three-old-artifact-expectation-inverses-v1.json'
+with out.open('xb') as f:
+    f.write((json.dumps({'runtime_transform_sha256': pin, 'records': records}, indent=2, ensure_ascii=False)+'\n').encode())
+out.chmod(0o600)
+for rel, data in pending.items():
+    (W/rel).write_bytes(data)
+(W/'mcp-fundamentals/src/expert-submission-files.mjs').chmod(0o755)
+print(json.dumps({'record': str(out), 'bytes': out.stat().st_size, 'sha256': sha(out.read_bytes()), 'files': len(records), 'project_execution': False}))

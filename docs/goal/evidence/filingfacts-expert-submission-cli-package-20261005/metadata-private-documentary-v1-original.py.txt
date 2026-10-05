@@ -1,0 +1,183 @@
+"""Private native byte/origin proposal only. Never imports/runs project code or writes W."""
+from pathlib import Path
+import gzip, hashlib, json, os, re, struct, subprocess, sys, zlib
+sys.path.insert(0, '/Users/arhancanli/canlicapital-coordination-20261001/paper-journal-package')
+import secondary_native_records as n
+
+C = Path('/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package')
+P = C.parent/'expert-submission-cli-package-peer'
+W = Path('/Users/arhancanli/canlicapital-expert-submission-cli-package-20261005')
+H = '5e8a5486e63a93367314dfecc9e5ebd898bbfd1b'
+OLD = '3bf7b8011c2173aefee1a40fd11355780d19c4da'
+M = '0b00a44cff5251b42750f055f71d7f58b320119e'
+PREFIX = 'docs/goal/evidence/filingfacts-expert-submission-cli-package-20261005/'
+STAGE = C/'private-documentary-preview-5e8-v1'
+git = lambda *a: subprocess.check_output(['git', *a], cwd=W)
+assert git('rev-parse', 'HEAD').decode().strip() == H and not git('status', '--porcelain=v1')
+assert not (W/PREFIX).exists()
+four_raw, four_pin = n.read(C/'secondary-current5e8-four-actual-SOURCE-CURRENTCI-gates-personal-FULLREAD-handoff-v1.json')
+four = json.loads(four_raw)
+assert four['state'] == 'ALL_FOUR_ACTUAL_INITIAL_SOURCE_CURRENTCI_GATES_PERSONALLY_FULLREAD_HASH_ACCEPTED'
+assert len(four['four_distinct_scope_receipts']) == 4
+for gate in four['four_distinct_scope_receipts']:
+    p = gate['literal_actual_peer_receipt']; raw, pin = n.read(p['path'])
+    assert len(raw) == p['bytes'] and n.digest(raw) == p['sha256'] and json.loads(raw)['findings'] == []
+
+members = []
+def fs(name, path, group):
+    raw, pin = n.read(path)
+    members.append({'name': name, 'raw': raw, 'origin': {'kind': 'FS', **pin}, 'group': group})
+def own(name, filename, group): fs(name, C/filename, group)
+
+for name, filename in [
+    ('source-assignment-original.md', 'assignment-0b00a44c-expert-submission-cli-package-primary-v1.md'),
+    ('source-basis-original.json', 'source-basis-0b00a44c-expert-submission-cli-package-primary-v1.json'),
+    ('mandatory-exact18-union-original.json', 'mandatory-actual0b00-exact18-fivebin-oldartifact-union-and-two-transform-contract-v1.json'),
+    ('source-3bf-original.json', 'source-3bf7b801-expert-submission-cli-package-v1.json'),
+    ('source-5e8-original.json', 'source-5e8a5486-expert-submission-cli-package-narrow-v1.json'),
+    ('full7103-3bf-original.json', 'source-3bf7b801-full7103-frozen-Git-identities-v1.json'),
+    ('full7103-5e8-original.json', 'source-5e8a5486-full7103-frozen-Git-identities-v1.json'),
+    ('initial-native-source-original.json', 'secondary-initial-source-complete-native-12scope-inverses-protected-names-and-launches-v1.json'),
+    ('metadata-oldcase-inverses-original.json', 'secondary-exact-source-metadata-three-old-artifact-expectation-inverses-v1.json'),
+    ('narrow-native-source-original.json', 'secondary-narrow-three-fixture-source-complete-native-proof-written-v1.json'),
+    ('guide-input-native-original.json', 'secondary-guide-marked-six-JSON-inputs-native-proof-v1.json'),
+    ('four-initial-peer-intake-original.json', 'secondary-current5e8-four-actual-SOURCE-CURRENTCI-gates-personal-FULLREAD-handoff-v1.json'),
+    ('primary-original-source-HOLD.json', 'primary-review-3bf7b801-expert-submission-files-package-original-source-v1.json'),
+    ('primary-current-source-PASS.json', 'primary-review-5e8a5486-expert-submission-cli-package-narrow-source-extension-v1.json'),
+    ('primary-current-CI-PASS.json', 'primary-retained-current-ci-5e8a5486-exact18-artifact-v1.json'),
+]: own(name, filename, 'immutable-source-or-actual-initial-review')
+for name, filename in [
+    ('third-original-source-HOLD.json', 'review-3bf7b801-original-frozen-SOURCE-HOLD-v1.json'),
+    ('third-current-source-PASS.json', 'review-5e8a5486-narrow-STATIC-SOURCE-extension-v1.json'),
+    ('third-current-CI-PASS.json', 'review-5e8a5486-separate-CURRENTCI-and-exact18-artifact-v1.json')
+]: fs(name, P/filename, 'immutable-independent-review')
+
+own('first-failed-CI-diagnosis-original.json', 'secondary-3bf7b801-first-actual-CI-failure-and-two-native-fixture-diagnoses-v1.json', 'original-failed-runtime')
+for name, filename in [
+    ('first-MCP-full-ANSI-original.log', 'remote-3bf7b801-original-job-log-API-v1/same-completed-MCP-job-raw-REST-ANSI-v2-stdout-original.bin'),
+    ('first-MCP-partial-original.log', 'remote-3bf7b801-original-v1/MCP-raw-original-stdout-original.bin'),
+    ('first-ROOT-original.log', 'remote-3bf7b801-original-v1/ROOT-raw-original-stdout-original.bin'),
+    ('first-run-original.json', 'remote-3bf7b801-original-v1/run-original-stdout-original.bin'),
+    ('first-jobs-original.json', 'remote-3bf7b801-original-v1/jobs-original-stdout-original.bin'),
+    ('first-pull-original.json', 'secondary-PR389-first-current-CI-view-v1/initial-pull-stdout-original.bin'),
+    ('first-checks-original.json', 'secondary-PR389-first-current-CI-view-v1/initial-checks-stdout-original.bin'),
+    ('first-ANSI-refusal-stdout-original.bin', 'remote-3bf7b801-original-job-log-API-v1/same-completed-MCP-job-raw-REST-stdout-original.bin'),
+    ('first-ANSI-refusal-stderr-original.bin', 'remote-3bf7b801-original-job-log-API-v1/same-completed-MCP-job-raw-REST-stderr-original.bin'),
+    ('first-ANSI-refusal-command-original.json', 'remote-3bf7b801-original-job-log-API-v1/same-completed-MCP-job-raw-REST-command-original.json'),
+    ('first-ANSI-capture-command-original.json', 'remote-3bf7b801-original-job-log-API-v1/same-completed-MCP-job-raw-REST-ANSI-v2-command-original.json')
+]: own(name, filename, 'original-failed-runtime-and-metadata')
+
+catalog_raw, catalog_pin = n.read(C/'secondary-5e8-current-literal11-current-CI-capture-bindings-v1.json')
+catalog = json.loads(catalog_raw)
+assert len(catalog['successful_originals']) == 11
+for row in catalog['successful_originals']:
+    label = row['label'].replace('-original', '')
+    for part in ['stdout', 'command']:
+        pin = row['capture'][part]; raw, now = n.read(pin['path'])
+        assert now['bytes'] == pin['bytes'] and now['sha256'] == pin['sha256']
+        fs('current-'+label+('-stdout.log' if 'terminal-raw' in label else '-stdout.json') if part == 'stdout' else 'current-'+label+'-command.json', pin['path'], 'current-actual-CI-original')
+    stderr, pin = n.read(row['capture']['stderr']['path']); assert stderr == b''
+fs('current-command-empty-stderr-original.bin', catalog['successful_originals'][0]['capture']['stderr']['path'], 'shared-empty-original-byte-identity-only')
+for name, filename in [
+    ('current-literal11-capture-binding-original.json', 'secondary-5e8-current-literal11-current-CI-capture-bindings-v1.json'),
+    ('current-author-CI-artifact-original.json', 'secondary-5e8-current-retained-current-CI-and-exact18-artifact-v1.json'),
+    ('current-full8-TAP-catalog-original.json', 'secondary-5e8-current-native-v1/complete-independent-TAP-catalog-v1.json'),
+    ('current-exact18-artifact-binding-original.json', 'secondary-5e8-current-native-v1/actual-current-exact18-Git-byte-mode-import-binding-v1.json'),
+    ('current-RAW-ADMITTED-original.tgz', 'secondary-5e8-current-native-v1/actual-current-RAW-and-ADMITTED-original.tgz')
+]: own(name, filename, 'current-actual-CI-original-and-native-binding')
+
+for name, filename in [
+    ('metadata-preparation-assertion-original.json', 'secondary-native-source-preparation-v1-assertion-stop.json'),
+    ('metadata-preparation-program-original.py.txt', 'secondary-native-source-preparation-v1-original.py.txt'),
+    ('metadata-capture-shape-stop-original.json', 'secondary-native-freeze-control-capture-return-shape-stop-v1.json'),
+    ('metadata-escaped-RAW-prefix-stop-original.json', 'secondary-5e8-immediate-native-RAW-prefix-reader-original-stop-v1.json'),
+    ('metadata-current-audit-v1-original.py.txt', 'secondary_audit_current389_saved_ci_v1.py'),
+    ('metadata-current-audit-v2-corrected.py.txt', 'secondary_audit_current389_saved_ci_v2.py')
+]: own(name, filename, 'preserved-native-metadata-stop-or-correction')
+for name, filename in [
+    ('metadata-third-zip-original.json', 'metadata-3bf7b801-own-Python-zip-compatibility-additive-correction-v1.json'),
+    ('metadata-third-frozen-scope-original.json', 'metadata-3bf7b801-original-working-CLEAN-stop-and-explicit-frozen-only-scope-correction-v1.json'),
+    ('metadata-third-source-size-original.json', 'metadata-3bf7b801-formal-size-guard-stop-additive-proof-reference-correction-v1.json'),
+    ('metadata-third-CI-size-original.json', 'metadata-5e8a5486-CI-receipt-preseal-size-stop-v1.json')
+]: fs(name, P/filename, 'preserved-independent-metadata-stop')
+for name, filename in [
+    ('metadata-primary-working-exclusion-original.json', 'primary-source-3bf7b801-static-native-v1/working-tree-evolution-postflight-reader-stop-original-and-scope-qualification-v1.json'),
+    ('metadata-primary-new-file-absent-original.json', 'primary-source-5e8a5486-narrow-static-native-v1/base-new-test-absent-native-reader-stop-original-and-additive-qualification-v1.json'),
+    ('metadata-primary-CI-size-label-original.json', 'primary-retained-CI-5e8a5486-native-v1/own-original-bytecount-vs-SHA-abbreviation-reader-stop-and-additive-qualification-v1.json')
+]: own(name, filename, 'preserved-independent-metadata-stop')
+
+def frozen(name, revision, path):
+    body = git('show', revision+':'+path)
+    header = git('ls-tree', revision, '--', path).decode().split()
+    assert header[1] == 'blob'
+    members.append({'name': name, 'raw': body, 'origin': {'kind': 'frozenGit', 'worktree': str(W), 'commit': revision, 'path': path,
+        'git_mode': header[0], 'object': header[2], 'bytes': len(body), 'sha256': n.digest(body)}, 'group': 'immutable-frozen-source-text-NOT-imported'})
+frozen('delivered-repository-cli.mjs.txt', M, 'scripts/datasets/filing-facts/expert-submission-cli.mjs')
+frozen('portable-cli-5e8.mjs.txt', H, 'mcp-fundamentals/src/expert-submission-files.mjs')
+frozen('new-test-3bf-failed.mjs.txt', OLD, 'mcp-fundamentals/test/expert-submission-files-package.test.mjs')
+frozen('new-test-5e8-current.mjs.txt', H, 'mcp-fundamentals/test/expert-submission-files-package.test.mjs')
+frozen('packaged-guide-5e8.md', H, 'mcp-fundamentals/EXPERT_SUBMISSION_FILES.md')
+for name, path in [('package-5e8.json.txt', 'mcp-fundamentals/package.json'), ('lock-5e8.json.txt', 'mcp-fundamentals/package-lock.json'), ('root-package-5e8.json.txt', 'package.json')]: frozen(name, H, path)
+for family, path in [('old22', 'mcp-fundamentals/test/audit-package.test.mjs'), ('old30', 'mcp-fundamentals/test/expert-submission-package.test.mjs'), ('old38', 'mcp-fundamentals/test/audit-inputs-client-package.test.mjs')]:
+    frozen(family+'-base.mjs.txt', M, path); frozen(family+'-union-5e8.mjs.txt', H, path)
+
+assert len(members) == len({r['name'] for r in members})
+original_total = sum(len(r['raw']) for r in members)
+print(json.dumps({'preREADME_member_count': len(members), 'preREADME_original_bytes': original_total}), flush=True)
+assert len(members)+3 <= 96
+assert original_total+8192+2*65536 <= 12*1024*1024
+README = ('''# Expert supplied-file package evidence — source-time initial gates
+
+This frozen documentary selection records the package-portable `canli-expert-submission-files` command at signed source 5e8a5486e63a93367314dfecc9e5ebd898bbfd1b, tree4ce1a50a37adc3d8998a859f10ff4e39d5fea334, based on actual0b00a44c. The runtime module is only the delivered repository CLI plus a shebang and one literal package-local core-loader relocation. The core, default seven tools, old57client/63stdio/60repositoryCLI, source-owner74, dependencies, versions and archives remain inherited.
+
+The first source3bf7b801 and automatic run37240434502 are preserved: eight new named passes,32named failures and a separate file hook failure; Fund348=315PASS/33FAIL and execution stage unrun. The original partial gh-view log is qualified as partial. The original ANSI refusal and complete same-job recovery remain separate. Both source reviewers held three test findings: checksum fault hit path admission first, owned cleanup rejected Buffer paths, and deferred before-hook diagnostics did not guarantee failure-surviving raw custody.
+
+At current5e8 the exact narrow fixes preserve all40 names,37whole original bodies,ONEnew guarded offline pack,three new direct/alias/refusal commands and zero new SDK entries. The direct CLI has no SDK child or whole-command15/5/20 deadline; finite process bounds belong to its test fixture. Both SOURCE and both independent retainedCURRENTCI receipts were personally fullread/hash accepted before this private proposal. Initial gates are not final documentary-head or delivery approval.
+
+Current saved source-time evidence: run37242030272/CodeQL37242030279, ROOT111552507800/MCP111552507755, all7SUCCESS, Node22.23.3. Full8TAP2142 top outcomes:ROOT6+1351+9/MCP160+1+85+347+183; all40new names and old22/30/38/57/63 appear onceMCP/zeroROOT. Tested9b51c4e7ac6783ca2e5a44ac2048c1363baa5749 has the source tree and ordered parents actual0b00+5e8. Scoped ref/language snapshots are captured source-time records.
+
+The immediate RAW, RAW_MODES and distinct ADMITTED records bind the same99065B0716f703 original tarball. Native bounded single-member gzip CRC/ISIZE/eof/no-trailing, strict ASCII/octal/checksum TAR, all18 complete source bodies/raw modes,11JS-MJS/62literalimports and five bins were checked independently. Default-only0755 normalization is an owned temporary bin-link fixture. No actual npm installation/publication, universal hostile-proof or fresh reviewer process census is established. Three named command results carry their frozen known-owned-exit assertions only.
+
+Identity members are original byte-for-byte copies. `.gz` documentary members are one bounded lossless mtime0 gzip member; manifest original charges include decompressed bytes. Source and metadata programs are `.mjs.txt`/`.py.txt` inert text, never imported or executed by assembly. The actual tarball is an identity copy of the saved raw bytes. Shared empty-stderr bytes preserve one exact original; every individual original command/stderr path remains in the capture catalog. No shell expansion, new runtime or log rewrite is involved.
+
+Origins and reference pointers remain explicit. Declared ROOT/header snapshots and caches are dated external records, not current mutable-byte or executing-source authentication. This is a selected portable evidence set, not an exhaustive copy of every native support/capture. Full Git identities do not claim a whole427MBphysical audit. Fixture labels/roles are synthetic; fullN/missing/null outcomes are preserved, and actual humans/expertise/independence/rights/adjudication/adoption/indexing/qualified strategy outcomes remain unknown/null.
+
+This README is an immutable private preview member. The proposed final repository set requires an actual issued literal allocation and generated lowercase manifest, both charged; no extra AUTHORITY or finalproof member is proposed. After allocation, all source/runtime/test/guide/package/lock/verify files must remain5e8exact, with only named documentary additions and whole-prefix STATUS/LOG appends. Final source/archive and currentCI peer gates, unchanged READY, PRIMARY sole ordinary merge and paired actual custody remain separate. All final proofs stay external. No future-head/current-main job/live/site/npm/version outcome is inferred. All owner objectives remain ACTIVE; PRIMARYreservedroles/solemergepub,LeadCPU127 and same roles remain unchanged.
+''').encode()
+members.append({'name': 'README.md', 'raw': README, 'origin': {'kind': 'derivedREADME', 'basis': four_pin, 'bytes': len(README), 'sha256': n.digest(README), 'qualified_scope': 'Immutable selected source-time preview; all final gates external'}, 'group': 'derived-qualified-preview'})
+STAGE.mkdir(mode=0o700)
+rows=[]
+for r in members:
+    original = r.pop('raw'); encoded = len(original) > 32768
+    stored = gzip.compress(original, compresslevel=9, mtime=0) if encoded else original
+    name = r['name']+('.gz' if encoded else '')
+    assert len(original) <= 2*1024*1024 and len(stored) <= 512*1024
+    pin = n.save_bytes(STAGE/name, stored)
+    if encoded:
+        assert stored[:4] == bytes([31,139,8,0]) and stored[4:8] == bytes(4)
+        z=zlib.decompressobj(-15);decoded=z.decompress(stored[10:],len(original)+1)
+        assert decoded==original and z.eof and not z.unconsumed_tail and len(z.unused_data)==8
+        crc,isize=struct.unpack('<II',z.unused_data);assert zlib.crc32(decoded)==crc and isize==len(original)
+    else:assert stored==original
+    rows.append({'name': name, 'target': PREFIX+name, 'prepared': pin, 'mode': '100644', 'encoding': 'gzip-single-member-mtime0' if encoded else 'identity',
+        'original_bytes':len(original), 'original_sha256':n.digest(original), 'stored_bytes':len(stored), 'stored_sha256':n.digest(stored),
+        'original_cap':2*1024*1024,'stored_cap':512*1024,'origin':r['origin'],'group':r['group']})
+original_total=sum(r['original_bytes'] for r in rows);stored_total=sum(r['stored_bytes'] for r in rows)
+assert original_total+2*65536 <= 12*1024*1024 and stored_total+2*65536 <= 3*1024*1024
+assert len(rows)+2<=96 and len(list(STAGE.iterdir()))==len(rows) and not git('status','--porcelain=v1')
+preview=n.save(C/'documentary-preview-5e8-exact-origin-byte-members-v1.json',{'schema':'expert-files-package-private-documentary-preview-v1','utc':n.utc(),'H':H,'tree':'4ce1a50a37adc3d8998a859f10ff4e39d5fea334','actual_base':M,'prefix_PROPOSED_not_allocated':PREFIX,
+    'four_initial_peer_gates':four_pin,'prepared_count':len(rows),'future_literal_allocation_count':1,'future_manifest_count':1,'proposed_final_total':len(rows)+2,
+    'prepared_original_bytes':original_total,'prepared_stored_bytes':stored_total,'max_original_with_two64KiB':original_total+131072,'max_stored_with_two64KiB':stored_total+131072,
+    'PROPOSED_total_original_limit':12*1024*1024,'PROPOSED_total_stored_limit':3*1024*1024,'PROPOSED_total_files_limit':96,'rows':rows,
+    'README_immutable':next(r for r in rows if r['name']=='README.md'),'every_prepared_stored_original_boundedorigin_Git_FS_gzip_crc_identity_native_checked':True,
+    'repository_evidence_writes':0,'archiveallocation':None,'all_source_runtime_products_readonly_exact5e8':True,'all_final_proofs_external':True,'local_project_execution':False,'hierarchy':'ACTIVE_UNKNOWNNULL'})
+proposal=n.save(C/'documentary-proposal-5e8-exact-bounded-origin-byte-members-v1.json',{'utc':n.utc(),'scope':'PRIVATE_CONCRETE_DOCUMENTARY_PROPOSAL_NOT_ALLOCATION','head':H,'tree':'4ce1a50a37adc3d8998a859f10ff4e39d5fea334','base':M,'prefix_PROPOSED':PREFIX,
+    'four_actual_initial_peer_receipts_personally_FULLREAD':four['four_distinct_scope_receipts'],'exact_preview':preview,'immutable_prepared_members':rows,
+    'prepared_count':len(rows),'proposed_final_count_includingREADME_literalallocation_manifest':len(rows)+2,'prepared_original_bytes':original_total,'prepared_stored_bytes':stored_total,
+    'proposed_limits':{'files':96,'original_including_all_members':12*1024*1024,'stored_including_all_members':3*1024*1024,'literalallocation_and_manifest_each':65536},
+    'worst_two64KiB':{'original':original_total+131072,'stored':stored_total+131072},'source_original_failures_HOLDS_all_metadata_stops_preserved':True,
+    'outside_selection_pointers':'Explicit qualified external supports/cache/datedROOT/source basis references; no exhaustive portable/native-capture claim.',
+    'ONLY_future_repository_delta_requested':'Exact named prepared members +actual issued verbatim literal-allocation.json +generated lowercase manifest.json; whole-prefix STATUS/LOG append only. No README/regzip/reguide/runtime/test/package/lock/sourceowner/rootverify change; no extra member/finalproof.',
+    'literal_authority_REQUIRED_before_repository_copy':True,'all_final_proofs_external':True,'archiveallocation':None,'repository_evidence_writes':0,
+    'future_finalhead_fourfinalgates_ready_PRIMARYonly_ordinarymerge_actualcustody_pub':'SEPARATE_NOT_ACK','project_execution':False,'full_owner_hierarchy':'ACTIVE','actual_outcomes':None})
+print(json.dumps({'preview':preview,'proposal':proposal,'prepared':len(rows),'final_including_two_future':len(rows)+2,'original':original_total,'stored':stored_total,'gzip':sum(r['encoding']!='identity' for r in rows)}),flush=True)

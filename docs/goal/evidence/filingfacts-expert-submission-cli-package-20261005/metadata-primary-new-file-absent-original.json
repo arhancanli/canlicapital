@@ -1,0 +1,22 @@
+{
+  "schema": "PR389.primary_native_base_new_test_absence_reader_qualification.v1",
+  "original_exec_chunk": "b62c55",
+  "original_exec_exit": 1,
+  "original_merged_tool_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 41, in <module>\n  File \"<stdin>\", line 29, in git\nAssertionError: ('B-body-mcp-fundamentals__test__expert-submission-files-package.test.mjs', \"fatal: path 'mcp-fundamentals/test/expert-submission-files-package.test.mjs' exists on disk, but not in '0b00a44cff5251b42750f055f71d7f58b320119e'\\n\")\n",
+  "qualification": "The new assigned test is intentionally absent from actual base0b00. The base new-test body read was an auditor selection mistake; compare original3bf and new5e8 test bodies, and prove absence through the already captured base ls-tree. This is external native audit metadata, not a source/product failure. No existing command/body is overwritten or repeated.",
+  "nested_command_exit": "Nonzero observed by the native assertion; numeric child exit was not separately saved.",
+  "separately_saved_nested_stdout": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package/primary-source-5e8a5486-narrow-static-native-v1/B-body-mcp-fundamentals__test__expert-submission-files-package.test.mjs-stdout-original.bin",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "separately_saved_nested_stderr": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package/primary-source-5e8a5486-narrow-static-native-v1/B-body-mcp-fundamentals__test__expert-submission-files-package.test.mjs-stderr-original.bin",
+    "bytes": 147,
+    "sha256": "141c8a089e18373ece90db504c2f896ae555516f4999ba50685fe2f852f6ec9b",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  }
+}
