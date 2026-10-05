@@ -420,10 +420,11 @@ Every envelope this server returns carries these sentences, verbatim, from the A
   its costs, survivorship, or any lookahead in how the series was built.
 - A deflated Sharpe or overfitting probability above or below any threshold is not admission to
   anything and is not a forecast.
-- The receipt is content-hashed and reproducible from the open-source core it names. It is not
-  signed.
+- The receipt is content-hashed, reproducible from the open-source core it names, and signed with
+  Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json.
 - Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per
-  request, 20000 observations per series, 200 variants per matrix.
+  validation request, 1024 bytes per key revocation request, 20000 observations per series, 200
+  variants per matrix.
 
 Each tool's description also states one of these sentences, so an agent sees the boundary before
 it calls the tool, not only after.
@@ -459,10 +460,10 @@ tokenizers give different absolute counts), in the shape an OpenAI-style client 
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| (default) | 19 | 5,970 | 96% |
-| (default, with CANLI_KEY) | 18 | 5,834 | 93% |
-| `all` | 20 | 6,241 | 100% |
-| `validate` | 11 | 3,650 | 58% |
+| (default) | 19 | 5,978 | 96% |
+| (default, with CANLI_KEY) | 18 | 5,842 | 93% |
+| `all` | 20 | 6,249 | 100% |
+| `validate` | 11 | 3,658 | 59% |
 | `receipts` | 1 | 182 | 3% |
 | `company` | 1 | 273 | 4% |
 | `status` | 1 | 89 | 1% |
