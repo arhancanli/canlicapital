@@ -9,6 +9,7 @@ import { performance } from 'node:perf_hooks';
 import { canonicalJson, contentHash } from './canonical-json.mjs';
 import { packetContent } from './filing-facts-packet.mjs';
 import { agreement, cohensKappa, missingJudgements, JUDGEMENTS } from './expert-agreement.mjs';
+import { EXPERT_INTAKE_LIMITS, EXPERT_REPORT_SCHEMA as EXPERT_PREPARATION_SCHEMA } from './expert-intake-core.mjs';
 
 export const EXPERT_CLIENT_LIMITS = Object.freeze({
   gold: 512 * 1024, intake: 64 * 1024, evidenceInventory: 32 * 1024, intakeSettings: 4096,
@@ -477,6 +478,104 @@ function sourceFlags(implementation, declared, preparation = false) {
   nulls(implementation);
 }
 
+// Check the returned preparation views against the SAME captured declarations/bytes.
+// This derives expected bindings/worklists only; it does not invoke another audit kernel.
+function validatePreparationCompanions(p, json, captured, packet, declared) {
+  requireKeys(p, ['schema', 'implementation', 'bindings', 'expected_gold_raw_sha256', 'raw_gold_byte_binding_verified',
+    'packet_sha256', 'packet_binding_basis', 'settings', 'prepared_on_authenticated', 'limits', 'review_packets',
+    'role_worklists', 'source_worklists', 'adjudication', 'evidence_inventory', 'coverage', 'established', 'interpretation',
+    'content_hash'], 'RESPONSE_SHAPE');
+  if (p.schema !== EXPERT_PREPARATION_SCHEMA || !equal(p.limits, EXPERT_INTAKE_LIMITS)) refuse('RESPONSE_BINDING');
+  const ev = json.evidenceInventory.evidence;
+  if (!Array.isArray(ev) || ev.length !== captured.evidence.length) refuse('RESPONSE_BINDING');
+  const entries = new Map(ev.map((row, index) => {
+    const raw = captured.evidence[index];
+    if (row.packet_sha256 !== packet || row.expected_sha256 !== digest(raw) || row.expected_bytes !== raw.length) refuse('RESPONSE_BINDING');
+    return [row.id, { ...row, binding: { bytes: raw.length, sha256: digest(raw), original_base64: raw.toString('base64') },
+      byte_binding_verified: true, document_authenticity: null }];
+  }));
+  if (entries.size !== ev.length) refuse('RESPONSE_BINDING');
+  const used = new Set(), missing = new Set();
+  const refs = (ids, purpose, subject) => {
+    const provided = [], absent = [];
+    for (const id of ids) {
+      const entry = entries.get(id);
+      if (!entry) { absent.push(id); missing.add(id); continue; }
+      if (entry.purpose !== purpose || !equal(entry.subject, subject)) refuse('RESPONSE_BINDING');
+      used.add(id); provided.push({ id, bytes: entry.binding.bytes, sha256: entry.binding.sha256 });
+    }
+    return { declared_ids: ids, provided, missing_ids: absent, authenticity_verified: null };
+  };
+  const roles = [...REVIEW_ROLES, 'adjudicator'].map(name => {
+    const row = declared.get(name), subject = { role: name, handle: row?.handle };
+    const base = { role: name, declared_handle: row?.handle ?? null, declaration: row ?? null,
+      authenticated_human: null, task_expertise_verified: null, actual_independence_verified: null,
+      tasks: ['Authenticate the consenting person behind the declared handle and aliases.',
+        'Verify task-relevant qualifications with an independent credential/source check.',
+        'Check actual independence and disclosed affiliations/conflicts; distinct text handles alone do not establish it.',
+        name === 'adjudicator' ? 'Await both independent complete submissions before a source-backed decision.' : 'Review the same immutable packet independently after identity, qualification and source-use checks.'] };
+    if (!row) return { ...base, status: 'missing_role_declaration', identity_evidence: null, independence_evidence: null, qualifications: [], conflicts: null };
+    return { ...base, status: 'declared_unverified', identity_evidence: refs(row.identity_evidence_ids, 'identity', subject),
+      independence_evidence: refs(row.independence_evidence_ids, 'independence', subject),
+      qualifications: row.qualifications.map(qualification => {
+        const target = { ...subject, qualification_id: qualification.id };
+        return { declaration: qualification, evidence: refs(qualification.evidence_ids, 'qualification', target),
+          declared_verification_evidence: qualification.verification === null ? null : refs(qualification.verification.evidence_ids, 'qualification', target),
+          qualification_authenticity_verified: null, task_expertise_verified: null,
+          tasks: ['Verify the claimed qualification and verification provenance independently.', 'Assess its relevance to financial statement and XBRL review.'] };
+      }), conflicts: row.conflicts === null ? null : row.conflicts.map(conflict => ({ declaration: conflict,
+        evidence: refs(conflict.evidence_ids, 'conflict', { ...subject, conflict_id: conflict.id }), independently_assessed: null })) };
+  });
+  const sourceMap = new Map();
+  json.gold.labels.forEach(row => row.filings.forEach(url => {
+    const id = digest(Buffer.from(url));
+    if (!sourceMap.has(id)) sourceMap.set(id, { source_id: id, url, item_ids: [] });
+    sourceMap.get(id).item_ids.push(row.id);
+  }));
+  const sourceWorklists = [...sourceMap.values()].map(source => {
+    const declaration = json.intake.sources.find(row => row.source_id === source.source_id);
+    const subject = { source_id: source.source_id, url: source.url }, allowed = new Set(), denied = new Set();
+    const claims = (declaration?.claims ?? []).map(claim => {
+      for (const use of claim.allowed_uses ?? []) allowed.add(use);
+      for (const use of claim.denied_uses ?? []) denied.add(use);
+      return { declaration: claim, evidence: refs(claim.evidence_ids, 'source_rights', subject),
+        declared_verification_evidence: claim.verification === null ? null : refs(claim.verification.evidence_ids, 'source_rights', subject), rights_verified: null };
+    });
+    return { ...source, declaration_present: Boolean(declaration), claims, required_uses: json.intakeSettings.required_uses,
+      mechanical_flags: { missing_declaration: !declaration,
+        unknown_use_scope: !claims.length || claims.some(row => row.declaration.allowed_uses === null || row.declaration.denied_uses === null),
+        missing_declared_evidence: !claims.length || claims.some(row => !row.evidence.provided.length || row.evidence.missing_ids.length || (row.declared_verification_evidence?.missing_ids.length ?? 0)),
+        contradictory_use_claims: ['human_review', 'evaluation', 'training', 'redistribution'].filter(use => allowed.has(use) && denied.has(use)),
+        uncovered_required_uses: json.intakeSettings.required_uses.filter(use => !allowed.has(use)),
+        restricted_required_uses: json.intakeSettings.required_uses.filter(use => denied.has(use)) },
+      actual_rights_verified: null, source_completeness_verified: null, admitted_for_human_review: null, admitted_for_release: null,
+      tasks: ['Check who can grant the requested uses for this exact source and whether the supplied evidence is authentic.',
+        'Resolve missing, conflicting or out-of-scope use declarations for every requested use.',
+        'Record a separately authorized rights/admission decision; public availability, URLs and dataset-card licence are not independent clearance.'] };
+  });
+  const reviewPackets = REVIEW_ROLES.map(role => ({ role, declared_handle: declared.get(role)?.handle ?? null,
+    assignment_status: declared.has(role) ? 'declared_unverified' : 'missing_role_declaration',
+    packet: { ...json.gold, annotator: declared.get(role)?.handle ?? '', packet_sha256: packet } }));
+  const n = json.gold.labels.length, adjudicator = declared.get('adjudicator');
+  const adjudication = { declared_handle: adjudicator?.handle ?? null,
+    blank_submission: { schema: 'canli.filing-facts-adjudication.v1', adjudicator: adjudicator?.handle ?? '', packet_sha256: packet, decisions: [] },
+    item_tasks: json.gold.labels.map(row => ({ id: row.id, source_ids: row.filings.map(url => digest(Buffer.from(url))),
+      required_review_roles: [...REVIEW_ROLES], status: 'awaiting_independent_complete_submissions', verified_submissions: null,
+      task: 'After complete independent reviews, check cited filing locators, resolve disagreements and record an explicit decision with source notes.' })) };
+  const coverage = { selected_n: n, prepared_items_per_review_role: n, prepared_item_assignments: 2 * n,
+    required_roles_n: 3, declared_roles_n: declared.size, missing_roles: [...REVIEW_ROLES, 'adjudicator'].filter(role => !declared.has(role)),
+    distinct_sources_n: sourceMap.size, sources_declared_n: json.intake.sources.length,
+    sources_missing_declaration_n: sourceWorklists.filter(row => !row.declaration_present).length,
+    evidence_provided_n: entries.size, evidence_missing_ids: [...missing].sort(), evidence_unreferenced_ids: [...entries.keys()].filter(id => !used.has(id)),
+    prepared_completed_review_pairs_n: 0,
+    denominator: 'All items and distinct exact cited sources in the supplied immutable gold packet; missing roles/evidence never reduce selected-N.' };
+  for (const [returned, expected] of [[p.role_worklists, roles], [p.source_worklists, sourceWorklists], [p.review_packets, reviewPackets],
+    [p.adjudication, adjudication], [p.evidence_inventory, [...entries.values()].map(row => ({ ...row, referenced: used.has(row.id) }))], [p.coverage, coverage]]) {
+    if (!equal(returned, expected)) refuse('RESPONSE_BINDING');
+  }
+  return adjudication.blank_submission;
+}
+
 /** Validate the complete response against saved bytes, without executing another audit. */
 export function validateExpertClientReply(input, context, contract) {
   const reply = ownedJson(input, EXPERT_CLIENT_LIMITS.tool);
@@ -513,37 +612,8 @@ export function validateExpertClientReply(input, context, contract) {
   // the words verification or adjudication as part of their unverified content.
   for (const section of [p.review_packets, p.role_worklists, p.source_worklists, p.evidence_inventory, p.adjudication,
     report.submissions, report.role_coverage, report.syntactic_agreement, report.adjudication]) nulls(section);
-  if (!Array.isArray(p.review_packets) || p.review_packets.length !== 2 || !Array.isArray(p.role_worklists) || p.role_worklists.length !== 3) refuse('RESPONSE_ROWS');
   const declared = new Map(json.intake.roles.map(row => [row.role, row]));
-  for (const [index, role] of ['reviewer_a', 'reviewer_b', 'adjudicator'].entries()) {
-    const work = p.role_worklists[index], row = declared.get(role);
-    if (work.role !== role || work.declared_handle !== (row?.handle ?? null) || !equal(work.declaration, row ?? null)) refuse('RESPONSE_BINDING');
-  }
-  for (const [index, role] of REVIEW_ROLES.entries()) {
-    const row = p.review_packets[index], expectedPacket = { ...json.gold, annotator: declared.get(role)?.handle ?? '', packet_sha256: packet };
-    if (row.role !== role || row.declared_handle !== (declared.get(role)?.handle ?? null) || !equal(row.packet, expectedPacket)) refuse('RESPONSE_ROWS');
-  }
-  const sources = new Map();
-  json.gold.labels.forEach(row => row.filings.forEach(url => sources.set(digest(Buffer.from(url)), url)));
-  if (!Array.isArray(p.source_worklists) || p.source_worklists.length !== sources.size ||
-      p.coverage.required_roles_n !== 3 || p.coverage.declared_roles_n !== declared.size ||
-      !equal(p.coverage.missing_roles, ['reviewer_a', 'reviewer_b', 'adjudicator'].filter(role => !declared.has(role))) ||
-      p.coverage.distinct_sources_n !== sources.size || p.coverage.sources_declared_n !== json.intake.sources.length ||
-      p.coverage.sources_missing_declaration_n !== sources.size - json.intake.sources.length ||
-      p.coverage.evidence_provided_n !== captured.evidence.length) refuse('RESPONSE_ROWS');
-  [...sources].forEach(([id, url], index) => {
-    const work = p.source_worklists[index], declaration = json.intake.sources.find(row => row.source_id === id);
-    if (work.source_id !== id || work.url !== url || work.declaration_present !== Boolean(declaration) ||
-        !equal(work.required_uses, json.intakeSettings.required_uses) || !Array.isArray(work.claims) ||
-        !equal(work.claims.map(row => row.declaration), declaration?.claims ?? [])) refuse('RESPONSE_BINDING');
-  });
-  const ev = json.evidenceInventory.evidence;
-  if (!Array.isArray(ev) || ev.length !== captured.evidence.length || p.evidence_inventory.length !== ev.length) refuse('RESPONSE_BINDING');
-  ev.forEach((row, index) => {
-    const returned = p.evidence_inventory[index]; binding(returned.binding, captured.evidence[index]);
-    for (const key of Object.keys(row)) if (!equal(returned[key], row[key])) refuse('RESPONSE_BINDING');
-    if (returned.byte_binding_verified !== true) refuse('RESPONSE_BINDING');
-  });
+  const expectedBlank = validatePreparationCompanions(p, json, captured, packet, declared);
   const submissionRows = json.submissionInventory.submissions;
   if (!Array.isArray(submissionRows) || submissionRows.length !== captured.submission.length ||
       report.coverage.selected_n !== n || report.coverage.required_review_roles_n !== 2 || report.coverage.required_item_assignments_n !== 2 * n ||
@@ -586,7 +656,7 @@ export function validateExpertClientReply(input, context, contract) {
         !equal(section.syntactic_agreement, paired.length ? cohensKappa(...indexes.map(index => paired.map(row => index.get(row.id)[field]))) : null)) refuse('RESPONSE_ROWS');
   }
   if (report.adjudication.expert_adjudication !== null || report.adjudication.decisions_created_n !== 0 ||
-      !equal(report.adjudication.blank_submission, p.adjudication.blank_submission) || report.adjudication.item_tasks.length !== n || p.adjudication.item_tasks.length !== n) refuse('RESPONSE_ROWS');
+      !equal(report.adjudication.blank_submission, expectedBlank) || report.adjudication.item_tasks.length !== n) refuse('RESPONSE_ROWS');
   const completePairs = json.gold.labels.filter(row => indexes.every(index => !missingJudgements(index.get(row.id)).length)).length;
   if (report.coverage.complete_syntactic_pairs_n !== completePairs || report.syntactic_agreement.syntactic_only !== true ||
       !equal(report.syntactic_agreement.complete_item_pairs_result, byRole.size === 2 ? agreement(byRole.get('reviewer_a').packet, byRole.get('reviewer_b').packet, json.gold) : null)) refuse('RESPONSE_ROWS');
@@ -595,10 +665,13 @@ export function validateExpertClientReply(input, context, contract) {
     const labels = indexes.map(index => index.get(row.id));
     const missing = REVIEW_ROLES.flatMap((role, i) => { const fields = missingJudgements(labels[i]); return fields.length ? [{ role, fields }] : []; });
     const disagreements = Object.keys(JUDGEMENTS).filter(key => labels.every(label => JUDGEMENTS[key].includes(label?.[key])) && labels[0][key] !== labels[1][key]);
-    if (task.id !== row.id || task.selected_n !== n || !equal(task.source_ids, row.filings.map(url => digest(Buffer.from(url)))) ||
-        !equal(task.missing_submissions, REVIEW_ROLES.filter(role => !byRole.has(role))) || !equal(task.missing_fields, missing) ||
-        !equal(task.syntactic_disagreements, disagreements.map(field => ({ field, reviewer_a: labels[0][field], reviewer_b: labels[1][field] }))) ||
-        task.adjudication !== null) refuse('RESPONSE_ROWS');
+    const expectedTask = { id: row.id, source_ids: row.filings.map(url => digest(Buffer.from(url))), selected_n: n,
+      missing_submissions: REVIEW_ROLES.filter(role => !byRole.has(role)), missing_fields: missing,
+      syntactic_disagreements: disagreements.map(field => ({ field, reviewer_a: labels[0][field], reviewer_b: labels[1][field] })),
+      status: missing.length ? 'awaiting_complete_syntactic_submissions' : 'awaiting_independent_expert_verification_and_adjudication',
+      verified_submissions: null, adjudication: null,
+      task: 'Verify consenting independent expert reviewers and source-use rights, resolve missing fields and disagreements, then record a separately authorized source-backed adjudication.' };
+    if (!equal(task, expectedTask)) refuse('RESPONSE_ROWS');
   });
   return report;
 }

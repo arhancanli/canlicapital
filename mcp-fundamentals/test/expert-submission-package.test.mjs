@@ -20,7 +20,7 @@ const L = Object.freeze({ compressed: 262144, expanded: 2097152, members: 32, np
   fixture: 24 * 1024 * 1024, work: 15000, closure: 5000, total: 20000 });
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const SOURCE_PINS = Object.freeze({
-  'src/expert-submission-client.mjs': '1a7db19f98996e2de79dc56d4cbdf804fbc23ed3a0e5d08ad9e7faa423611e47',
+  'src/expert-submission-client.mjs': '2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31',
   'src/expert-submission-files.mjs': 'a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d',
   'src/audit-inputs-client.mjs': '95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7',
   'src/server.mjs': 'dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38',

@@ -35,7 +35,7 @@ let TMP, packed, main, restore = () => {}, suppliedFixtureBytes = 0, commandEntr
 const nativeSpawn = cp.spawn.bind(cp);
 const nativeDiagnosticWrite = fs.writeSync.bind(fs);
 const closures = [];
-const SOURCE_PINS = Object.freeze({"src/expert-submission-client.mjs": "1a7db19f98996e2de79dc56d4cbdf804fbc23ed3a0e5d08ad9e7faa423611e47", "src/audit-inputs-client.mjs": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7", "src/audit-inputs-core.mjs": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059", "src/audit-inputs-stdio.mjs": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0", "src/canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b", "src/expert-agreement.mjs": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef", "src/expert-intake-core.mjs": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545", "src/expert-submission-audit-core.mjs": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3", "src/expert-submission-files.mjs": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d", "src/expert-submission-stdio.mjs": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208", "src/filing-facts-packet.mjs": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8", "src/server.mjs": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"});
+const SOURCE_PINS = Object.freeze({"src/expert-submission-client.mjs": "2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31", "src/audit-inputs-client.mjs": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7", "src/audit-inputs-core.mjs": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059", "src/audit-inputs-stdio.mjs": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0", "src/canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b", "src/expert-agreement.mjs": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef", "src/expert-intake-core.mjs": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545", "src/expert-submission-audit-core.mjs": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3", "src/expert-submission-files.mjs": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d", "src/expert-submission-stdio.mjs": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208", "src/filing-facts-packet.mjs": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8", "src/server.mjs": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"});
 const BIN = Object.freeze({ 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs',
   'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs',
   'canli-expert-submission-files': 'src/expert-submission-files.mjs', 'canli-expert-submission-client': 'src/expert-submission-client.mjs' });
@@ -45,18 +45,39 @@ const MODES = Object.freeze(Object.fromEntries(MEMBERS.map(name => [name, Object
 const absent = pid => { assert.ok(Number.isSafeInteger(pid) && pid > 1); try { process.kill(pid, 0); return false; } catch (error) { if (error.code === 'ESRCH') return true; throw error; } };
 const bounded = (promise, ms) => { let timer; return Promise.race([Promise.resolve(promise), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('OWNED_BOUND')), ms); })]).finally(() => clearTimeout(timer)); };
 
-function diagnosticNow(kind, record, write = nativeDiagnosticWrite) {
+function diagnosticNow(kind, record, write = nativeDiagnosticWrite,
+  { now = () => performance.now(), wait = ms => new Promise(resolve => setTimeout(resolve, ms)), signal } = {}) {
+  const started = now(); let previous = started, offset = 0, attempts = 0, aborted = false;
+  const observe = () => {
+    const current = now();
+    assert.ok(Number.isFinite(started) && Number.isFinite(current) && current >= previous, 'RAW_DIAGNOSTIC_CLOCK');
+    previous = current; aborted ||= Boolean(signal?.aborted);
+    assert.ok(!aborted && current - started <= 1000, 'RAW_DIAGNOSTIC_DEADLINE');
+  };
+  observe();
   const json = JSON.stringify(record);
+  observe();
   assert.ok(Buffer.byteLength(json) <= 384 * 1024, 'RAW_DIAGNOSTIC_BOUND');
   assert.ok(['RAW', 'RAW_MODES', 'ADMITTED'].includes(kind));
   const frame = Buffer.from('# CANLI_EXPERT_FILES_PACKAGE_' + kind + ' ' + json + '\n');
-  // The captured native stdout writer completes before a later hook can refuse or clean TMP.
-  for (let offset = 0; offset < frame.length;) {
-    const wrote = write(1, frame, offset, frame.length - offset);
-    assert.ok(Number.isSafeInteger(wrote) && wrote > 0 && wrote <= frame.length - offset, 'RAW_DIAGNOSTIC_WRITE');
-    offset += wrote;
-  }
-  return frame.length;
+  observe();
+  const pump = () => {
+    while (offset < frame.length) {
+      observe(); assert.ok(++attempts <= 4096, 'RAW_DIAGNOSTIC_ATTEMPTS');
+      let wrote;
+      try { wrote = write(1, frame, offset, Math.min(65536, frame.length - offset)); }
+      catch (error) {
+        if (!['EAGAIN', 'EWOULDBLOCK'].includes(error?.code)) throw error;
+        // Resume this SAME bounded frame/offset only; do not repeat bytes or pack/command admission.
+        observe();
+        return Promise.resolve(wait(1)).then(() => { observe(); return pump(); });
+      }
+      assert.ok(Number.isSafeInteger(wrote) && wrote > 0 && wrote <= Math.min(65536, frame.length - offset), 'RAW_DIAGNOSTIC_WRITE');
+      offset += wrote; observe();
+    }
+    return frame.length;
+  };
+  return pump();
 }
 
 function parentGuard() {
@@ -204,10 +225,10 @@ before(async t => {
     const artifact=await packOnce();
     // Save the complete bounded compressed raw diagnostic BEFORE any fallible gzip/TAR admission.
     const raw={admission:'RAW_CAPTURED_NOT_ADMITTED',compressed_bytes:artifact.compressed.length,compressed_sha256:hash(artifact.compressed),original_gzip_base64:artifact.compressed.toString('base64')};
-    diagnosticNow('RAW', raw);
+    await diagnosticNow('RAW', raw, nativeDiagnosticWrite, { signal: t.signal });
     const entries=tarEntries(artifact.compressed);
     const rawModes={...raw,files:[...entries].map(([name,row])=>({path:name,mode:row.mode,bytes:row.bytes.length,sha256:hash(row.bytes)}))};
-    diagnosticNow('RAW_MODES', rawModes);
+    await diagnosticNow('RAW_MODES', rawModes, nativeDiagnosticWrite, { signal: t.signal });
     const metadata=admit(entries);
     const consumer=path.join(TMP,'consumer');fs.mkdirSync(consumer,{mode:0o700});const nodeModules=path.join(consumer,'node_modules');fs.mkdirSync(nodeModules);
     const root=path.join(nodeModules,metadata.name);fs.mkdirSync(root);
@@ -224,7 +245,7 @@ before(async t => {
     assert.match(guide,new RegExp(hash(s.rawGold))); assert.equal(s.intakeSettings.packet_sha256,hash(packetContent(s.gold)));
     packed={...artifact,entries,metadata,raw,root,consumer,guard,binRoot,bins,guide,s};
     const admitted={admission:'ADMITTED',compressed_sha256:raw.compressed_sha256,files:[...entries].map(([name,row])=>({path:name,mode:row.mode,bytes:row.bytes.length,sha256:hash(row.bytes)})),bins,SDK_entries:0,external_dependency_links:0,repository_runtime_links:0};
-    diagnosticNow('ADMITTED', admitted);completed=true;
+    await diagnosticNow('ADMITTED', admitted, nativeDiagnosticWrite, { signal: t.signal });completed=true;
   } finally { if(!completed) {restore();restore=()=>{};if(TMP)fs.rmSync(TMP,{recursive:true,force:true});} }
 },{timeout:25000});
 after(() => {
@@ -483,7 +504,7 @@ function tinyTar(rows, mutate = () => {}) {
   return gzipSync(Buffer.concat([...chunks, Buffer.alloc(1024)]), { mtime: 0 });
 }
 
-test('expert files package: one offline artifact admits exact18 bodies five bins raw modes and full metadata', () => {
+test('expert files package: one offline artifact admits exact18 bodies five bins raw modes and full metadata', async () => {
   assert.equal(MEMBERS.length,20);assert.equal(Object.keys(BIN).length,6);assert.deepEqual(admit(cloneEntries()),packed.metadata);
   assert.equal(packed.raw.admission,'RAW_CAPTURED_NOT_ADMITTED');assert.equal(packed.raw.compressed_sha256,hash(packed.compressed));
   for(const flag of ['--offline','--ignore-scripts','--update-notifier=false','--audit=false','--fund=false'])assert.ok(packed.args.includes(flag));
@@ -498,6 +519,34 @@ test('expert files package: one offline artifact admits exact18 bodies five bins
   assert.deepEqual(Buffer.from(JSON.parse(saved.slice('# CANLI_EXPERT_FILES_PACKAGE_RAW '.length)).original_gzip_base64,'base64'),gzip);
   let refusedWrites=0;assert.throws(() => diagnosticNow('RAW',{over:'x'.repeat(384*1024)},() => {refusedWrites++;return 1;}),/RAW_DIAGNOSTIC_BOUND/);assert.equal(refusedWrites,0);
   let stopped=0;assert.throws(() => diagnosticNow('RAW',raw,() => {stopped++;return 0;}),/RAW_DIAGNOSTIC_WRITE/);assert.equal(stopped,1);
+  // Native-only backpressure controls: preserve every byte and the one frame before refusal.
+  const expectedFrame = '# CANLI_EXPERT_FILES_PACKAGE_RAW ' + JSON.stringify(raw) + '\n';
+  const resumed = []; let attempt = 0, elapsed = 0, waits = 0;
+  const backpressure = (fd, frame, offset, length) => {
+    assert.equal(fd, 1); attempt++;
+    if (attempt === 2 || attempt === 3) { const error = new Error('synthetic backpressure'); error.code = attempt === 2 ? 'EAGAIN' : 'EWOULDBLOCK'; throw error; }
+    const count = Math.min(length, attempt === 1 ? 7 : 65536); resumed.push(Buffer.from(frame.subarray(offset, offset + count))); return count;
+  };
+  await assert.rejects(async () => {
+    assert.equal(await diagnosticNow('RAW', raw, backpressure, { now: () => elapsed, wait: async ms => { waits++; elapsed += ms; } }), Buffer.byteLength(expectedFrame));
+    throw new Error('SIMULATED_BEFORE_HOOK_REFUSAL');
+  }, /SIMULATED_BEFORE_HOOK_REFUSAL/);
+  assert.equal(waits, 2); assert.equal(Buffer.concat(resumed).toString(), expectedFrame);
+  let deadlineWrites = 0, deadlineTime = 0;
+  await assert.rejects(async () => diagnosticNow('RAW', raw, () => {
+    deadlineWrites++; const error = new Error('synthetic backpressure'); error.code = 'EAGAIN'; throw error;
+  }, { now: () => deadlineTime, wait: async () => { deadlineTime = 1001; } }), /RAW_DIAGNOSTIC_DEADLINE/);
+  assert.equal(deadlineWrites, 1);
+  let abortedWrites = 0; const aborted = { aborted: true };
+  assert.throws(() => diagnosticNow('RAW', raw, () => { abortedWrites++; return 1; }, { signal: aborted }), /RAW_DIAGNOSTIC_DEADLINE/);
+  assert.equal(abortedWrites, 0);
+  let terminalWrites = 0;
+  assert.throws(() => diagnosticNow('RAW', raw, () => { terminalWrites++; const error = new Error('synthetic closed pipe'); error.code = 'EPIPE'; throw error; }), /synthetic closed pipe/);
+  assert.equal(terminalWrites, 1);
+  let serializedTime = 0, serializedWrites = 0;
+  assert.throws(() => diagnosticNow('RAW', { toJSON() { serializedTime = 1001; return { synthetic: true }; } },
+    () => { serializedWrites++; return 1; }, { now: () => serializedTime }), /RAW_DIAGNOSTIC_DEADLINE/);
+  assert.equal(serializedWrites, 0);
 });
 test('expert files package: only shebang and one literal core relocation invert the entire delivered CLI', () => {
   let source=packed.entries.get('package/src/expert-submission-files.mjs').bytes.toString();assert.ok(source.startsWith('#!/usr/bin/env node\n'));source=source.slice(20);

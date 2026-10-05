@@ -37,7 +37,7 @@ let TMP, packed, clientModule, contract, restore = () => {}, suppliedFixtureByte
 const nativeSpawn = cp.spawn.bind(cp);
 const nativeDiagnosticWrite = fs.writeSync.bind(fs);
 const closures = [];
-const SOURCE_PINS = Object.freeze({"src/expert-submission-client.mjs": "1a7db19f98996e2de79dc56d4cbdf804fbc23ed3a0e5d08ad9e7faa423611e47", "src/audit-inputs-client.mjs": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7", "src/audit-inputs-core.mjs": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059", "src/audit-inputs-stdio.mjs": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0", "src/canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b", "src/expert-agreement.mjs": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef", "src/expert-intake-core.mjs": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545", "src/expert-submission-audit-core.mjs": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3", "src/expert-submission-files.mjs": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d", "src/expert-submission-stdio.mjs": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208", "src/filing-facts-packet.mjs": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8", "src/server.mjs": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"});
+const SOURCE_PINS = Object.freeze({"src/expert-submission-client.mjs": "2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31", "src/audit-inputs-client.mjs": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7", "src/audit-inputs-core.mjs": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059", "src/audit-inputs-stdio.mjs": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0", "src/canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b", "src/expert-agreement.mjs": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef", "src/expert-intake-core.mjs": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545", "src/expert-submission-audit-core.mjs": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3", "src/expert-submission-files.mjs": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d", "src/expert-submission-stdio.mjs": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208", "src/filing-facts-packet.mjs": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8", "src/server.mjs": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"});
 const BIN = Object.freeze({ 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs',
   'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs',
   'canli-expert-submission-files': 'src/expert-submission-files.mjs', 'canli-expert-submission-client': 'src/expert-submission-client.mjs' });
@@ -47,18 +47,39 @@ const MODES = Object.freeze(Object.fromEntries(MEMBERS.map(name => [name, Object
 const absent = pid => { assert.ok(Number.isSafeInteger(pid) && pid > 1); try { process.kill(pid, 0); return false; } catch (error) { if (error.code === 'ESRCH') return true; throw error; } };
 const bounded = (promise, ms) => { let timer; return Promise.race([Promise.resolve(promise), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('OWNED_BOUND')), ms); })]).finally(() => clearTimeout(timer)); };
 
-function diagnosticNow(kind, record, write = nativeDiagnosticWrite) {
+function diagnosticNow(kind, record, write = nativeDiagnosticWrite,
+  { now = () => performance.now(), wait = ms => new Promise(resolve => setTimeout(resolve, ms)), signal } = {}) {
+  const started = now(); let previous = started, offset = 0, attempts = 0, aborted = false;
+  const observe = () => {
+    const current = now();
+    assert.ok(Number.isFinite(started) && Number.isFinite(current) && current >= previous, 'RAW_DIAGNOSTIC_CLOCK');
+    previous = current; aborted ||= Boolean(signal?.aborted);
+    assert.ok(!aborted && current - started <= 1000, 'RAW_DIAGNOSTIC_DEADLINE');
+  };
+  observe();
   const json = JSON.stringify(record);
+  observe();
   assert.ok(Buffer.byteLength(json) <= 384 * 1024, 'RAW_DIAGNOSTIC_BOUND');
   assert.ok(['RAW', 'RAW_MODES', 'ADMITTED'].includes(kind));
   const frame = Buffer.from('# CANLI_EXPERT_CLIENT_PACKAGE_' + kind + ' ' + json + '\n');
-  // The captured native stdout writer completes before a later hook can refuse or clean TMP.
-  for (let offset = 0; offset < frame.length;) {
-    const wrote = write(1, frame, offset, frame.length - offset);
-    assert.ok(Number.isSafeInteger(wrote) && wrote > 0 && wrote <= frame.length - offset, 'RAW_DIAGNOSTIC_WRITE');
-    offset += wrote;
-  }
-  return frame.length;
+  observe();
+  const pump = () => {
+    while (offset < frame.length) {
+      observe(); assert.ok(++attempts <= 4096, 'RAW_DIAGNOSTIC_ATTEMPTS');
+      let wrote;
+      try { wrote = write(1, frame, offset, Math.min(65536, frame.length - offset)); }
+      catch (error) {
+        if (!['EAGAIN', 'EWOULDBLOCK'].includes(error?.code)) throw error;
+        // Resume this SAME bounded frame/offset only; do not repeat bytes or pack/command admission.
+        observe();
+        return Promise.resolve(wait(1)).then(() => { observe(); return pump(); });
+      }
+      assert.ok(Number.isSafeInteger(wrote) && wrote > 0 && wrote <= Math.min(65536, frame.length - offset), 'RAW_DIAGNOSTIC_WRITE');
+      offset += wrote; observe();
+    }
+    return frame.length;
+  };
+  return pump();
 }
 
 function parentGuard() {
@@ -366,7 +387,7 @@ function unlinkOwnedDependencyLinks() {
   }
   dependencyLinks.length = 0;
 }
-before(async () => {
+before(async t => {
   TMP = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), 'canli-expert-sdk-client-')); fs.chmodSync(TMP, 0o700);
   let complete = false;
   try {
@@ -376,10 +397,10 @@ before(async () => {
     const artifact = await packOnce();
     const raw = { admission: 'RAW_CAPTURED_NOT_ADMITTED', compressed_bytes: artifact.compressed.length,
       compressed_sha256: hash(artifact.compressed), original_gzip_base64: artifact.compressed.toString('base64') };
-    diagnosticNow('RAW', raw);
+    await diagnosticNow('RAW', raw, nativeDiagnosticWrite, { signal: t.signal });
     const entries = tarEntries(artifact.compressed);
-    diagnosticNow('RAW_MODES', { compressed_sha256: raw.compressed_sha256,
-      files: [...entries].map(([name, row]) => ({ path: name, mode: row.mode, bytes: row.bytes.length, sha256: hash(row.bytes) })) });
+    await diagnosticNow('RAW_MODES', { compressed_sha256: raw.compressed_sha256,
+      files: [...entries].map(([name, row]) => ({ path: name, mode: row.mode, bytes: row.bytes.length, sha256: hash(row.bytes) })) }, nativeDiagnosticWrite, { signal: t.signal });
     const metadata = admit(entries), consumer = path.join(TMP, 'consumer'); fs.mkdirSync(consumer, { mode: 0o700 });
     const nodeModules = path.join(consumer, 'node_modules'); fs.mkdirSync(nodeModules);
     const root = path.join(nodeModules, metadata.name); fs.mkdirSync(root);
@@ -413,9 +434,9 @@ before(async () => {
     const guide = entries.get('package/EXPERT_SUBMISSION_CLIENT.md').bytes.toString('utf8'), s = guideScenario(guide);
     assert.match(guide, new RegExp(hash(s.rawGold))); assert.equal(s.intakeSettings.packet_sha256, hash(packetContent(s.gold)));
     packed = { ...artifact, entries, metadata, raw, root, consumer, guard, binRoot, bins, guide, s };
-    diagnosticNow('ADMITTED', { admission: 'ADMITTED', compressed_sha256: raw.compressed_sha256,
+    await diagnosticNow('ADMITTED', { admission: 'ADMITTED', compressed_sha256: raw.compressed_sha256,
       files: [...entries].map(([name, row]) => ({ path: name, mode: row.mode, bytes: row.bytes.length, sha256: hash(row.bytes) })),
-      bins, dependency_cache_links: dependencyLinks.length, actual_npm_install: false, repository_runtime_links: 0 });
+      bins, dependency_cache_links: dependencyLinks.length, actual_npm_install: false, repository_runtime_links: 0 }, nativeDiagnosticWrite, { signal: t.signal });
     complete = true;
   } finally {
     if (!complete) { try { unlinkOwnedDependencyLinks(); } finally { restore(); restore = () => {}; if (TMP) fs.rmSync(TMP, { recursive: true, force: true }); } }
@@ -530,10 +551,44 @@ async function actualCommand(t, kind) {
     owned_server_absent: true, audit_calls: 1, discoveries: 0, lifecycle: terminal.lifecycle }));
 }
 
-test('expert client package: exact20 source bodies six bins raw modes and unchanged dependency metadata admit once', () => {
+test('expert client package: exact20 source bodies six bins raw modes and unchanged dependency metadata admit once', async () => {
   assert.equal(MEMBERS.length, 20); assert.equal(Object.keys(BIN).length, 6); assert.deepEqual(admit(cloneEntries()), packed.metadata);
   assert.equal(packed.bins[0].raw_mode, 0o644); assert.ok(packed.bins.every(row => row.owned_fixture_mode === 0o755));
   assert.equal(imports(cloneEntries()), 12); assert.equal(dependencyLinks.length, 14);
+  const raw = { admission: 'RAW_CAPTURED_NOT_ADMITTED', compressed_bytes: packed.compressed.length, compressed_sha256: hash(packed.compressed), original_gzip_base64: packed.compressed.toString('base64') };
+  // Native-only backpressure controls: preserve every byte and the one frame before refusal.
+  const expectedFrame = '# CANLI_EXPERT_CLIENT_PACKAGE_RAW ' + JSON.stringify(raw) + '\n';
+  const resumed = []; let attempt = 0, elapsed = 0, waits = 0;
+  const backpressure = (fd, frame, offset, length) => {
+    assert.equal(fd, 1); attempt++;
+    if (attempt === 2 || attempt === 3) { const error = new Error('synthetic backpressure'); error.code = attempt === 2 ? 'EAGAIN' : 'EWOULDBLOCK'; throw error; }
+    const count = Math.min(length, attempt === 1 ? 7 : 65536); resumed.push(Buffer.from(frame.subarray(offset, offset + count))); return count;
+  };
+  await assert.rejects(async () => {
+    assert.equal(await diagnosticNow('RAW', raw, backpressure, { now: () => elapsed, wait: async ms => { waits++; elapsed += ms; } }), Buffer.byteLength(expectedFrame));
+    throw new Error('SIMULATED_BEFORE_HOOK_REFUSAL');
+  }, /SIMULATED_BEFORE_HOOK_REFUSAL/);
+  assert.equal(waits, 2); assert.equal(Buffer.concat(resumed).toString(), expectedFrame);
+  let deadlineWrites = 0, deadlineTime = 0;
+  await assert.rejects(async () => diagnosticNow('RAW', raw, () => {
+    deadlineWrites++; const error = new Error('synthetic backpressure'); error.code = 'EAGAIN'; throw error;
+  }, { now: () => deadlineTime, wait: async () => { deadlineTime = 1001; } }), /RAW_DIAGNOSTIC_DEADLINE/);
+  assert.equal(deadlineWrites, 1);
+  let abortedWrites = 0; const aborted = { aborted: true };
+  assert.throws(() => diagnosticNow('RAW', raw, () => { abortedWrites++; return 1; }, { signal: aborted }), /RAW_DIAGNOSTIC_DEADLINE/);
+  assert.equal(abortedWrites, 0);
+  let terminalWrites = 0;
+  assert.throws(() => diagnosticNow('RAW', raw, () => { terminalWrites++; const error = new Error('synthetic closed pipe'); error.code = 'EPIPE'; throw error; }), /synthetic closed pipe/);
+  assert.equal(terminalWrites, 1);
+  let serializedTime = 0, serializedWrites = 0;
+  assert.throws(() => diagnosticNow('RAW', { toJSON() { serializedTime = 1001; return { synthetic: true }; } },
+    () => { serializedWrites++; return 1; }, { now: () => serializedTime }), /RAW_DIAGNOSTIC_DEADLINE/);
+  assert.equal(serializedWrites, 0);
+  let overcapWrites = 0, zeroWrites = 0;
+  assert.throws(() => diagnosticNow('RAW', { over: 'x'.repeat(384 * 1024) }, () => { overcapWrites++; return 1; }), /RAW_DIAGNOSTIC_BOUND/);
+  assert.equal(overcapWrites, 0);
+  assert.throws(() => diagnosticNow('RAW', raw, () => { zeroWrites++; return 0; }), /RAW_DIAGNOSTIC_WRITE/);
+  assert.equal(zeroWrites, 1);
 });
 test('expert client package: checksum-valid highbit duplicate traversal overflow and trailing gzip refuse before extraction', () => {
   const tiny = gzipSync(Buffer.alloc(1024), { mtime: 0 }); assert.equal(tarEntries(tiny).size, 0);
@@ -694,10 +749,66 @@ test('expert client native: connect refusal closes the exact known child and nev
   const s = scenario(), sdk = syntheticSdk(s, { connected() { throw new Error('PRIVATE_RAW_CONNECT'); } });
   const { result } = await run(t, s, { sdk }); refused(result, 'CONNECT'); assert.equal(sdk.effects.calls, 0); assert.equal(sdk.effects.transportCloses, 1);
 });
-test('expert client native: rehashed gold and submission binding tampering is refused beyond self-consistent content_hash', () => {
+test('expert client native: rehashed gold and submission binding tampering is refused beyond self-consistent content_hash', async t => {
   const s = scenario({ returned: 1 }), context = contextFor(s);
   for (const mutate of [report => { report.bindings.audit_settings.sha256 = '0'.repeat(64); }, report => { report.submissions[0].binding.original_base64 = Buffer.from('CHANGED').toString('base64'); }]) {
     assert.throws(() => clientModule.validateExpertClientReply(rehashed(s, mutate), context, contract), /RESPONSE_BINDING/);
+  }
+  const positive = responseFor(s);
+  assert.deepEqual(clientModule.validateExpertClientReply(positive, context, contract), positive.structuredContent);
+  const changes = [
+    report => { report.preparation.source_worklists[0].item_ids = []; },
+    report => { report.preparation.source_worklists[0].mechanical_flags.uncovered_required_uses = []; },
+    report => { report.preparation.adjudication.item_tasks[0].id = 'CHANGED'; },
+    report => { report.preparation.adjudication.item_tasks[0].source_ids = ['0'.repeat(64)]; },
+    report => { report.preparation.adjudication.item_tasks.reverse(); },
+    report => { report.preparation.adjudication.blank_submission.packet_sha256 = '0'.repeat(64); report.adjudication.blank_submission.packet_sha256 = '0'.repeat(64); },
+    report => { report.preparation.adjudication.blank_submission.adjudicator = 'CHANGED'; report.adjudication.blank_submission.adjudicator = 'CHANGED'; },
+    report => { const decisions = [{ id: s.gold.labels[0].id, decision: 'accept', notes: 'SYNTHETIC_FORGED_DECISION' }];
+      report.preparation.adjudication.blank_submission.decisions = decisions; report.adjudication.blank_submission.decisions = clone(decisions); },
+    report => { report.preparation.review_packets[0].assignment_status = 'missing_role_declaration'; },
+    report => { report.adjudication.item_tasks[0].status = 'CHANGED'; },
+  ];
+  for (const [index, mutate] of changes.entries()) {
+    const invalid = rehashed(s, report => { mutate(report); report.preparation.content_hash = contentHash(report.preparation, createHash); });
+    assert.equal(invalid.structuredContent.preparation.content_hash, contentHash(invalid.structuredContent.preparation, createHash));
+    assert.equal(invalid.structuredContent.content_hash, contentHash(invalid.structuredContent, createHash));
+    assert.deepEqual(JSON.parse(invalid.content[0].text), invalid.structuredContent);
+    assert.throws(() => clientModule.validateExpertClientReply(invalid, context, contract), /RESPONSE_BINDING|RESPONSE_ROWS/);
+    if ([0, 1, 2, 7].includes(index)) {
+      const sdk = syntheticSdk(s, { reply: () => clone(invalid) });
+      const runResult = await run(t, s, { sdk }); refused(runResult.result);
+      assert.equal(fs.existsSync(runResult.f.out), false); assert.equal(runResult.io.held.size, 0);
+      assert.equal(sdk.effects.calls, 1); assert.equal(sdk.effects.transportCloses, 1);
+      assert.deepEqual(snapshot(runResult.f.paths.gold), s.rawGold);
+    }
+  }
+  // Shared sources preserve all original item memberships and their original order.
+  const shared = scenario(); shared.gold.labels.forEach(row => { row.filings = [...shared.gold.labels[0].filings]; });
+  shared.rawGold = bytes(shared.gold); const sharedPacket = hash(packetContent(shared.gold));
+  for (const input of [shared.intake, shared.intakeSettings, shared.submissionInventory, shared.auditSettings]) input.packet_sha256 = sharedPacket;
+  const sharedPositive = responseFor(shared);
+  assert.deepEqual(clientModule.validateExpertClientReply(sharedPositive, contextFor(shared), contract), sharedPositive.structuredContent);
+  assert.deepEqual(sharedPositive.structuredContent.preparation.source_worklists[0].item_ids, shared.gold.labels.map(row => row.id));
+  // Source-use contradictions/missing evidence are mechanical supplied work, never rights clearance.
+  const rights = scenario({ evidence: 1 }), url = rights.gold.labels[0].filings[0], sourceId = hash(Buffer.from(url));
+  rights.intakeSettings.required_uses = ['human_review', 'training'];
+  rights.evidenceInventory.evidence[0].purpose = 'source_rights'; rights.evidenceInventory.evidence[0].subject = { source_id: sourceId, url };
+  rights.intake.sources = [{ source_id: sourceId, url, claims: [{ id: 'synthetic-claim', declaration_text: null,
+    allowed_uses: ['human_review', 'training'], denied_uses: ['training'], evidence_ids: ['fixture-0', 'missing-reference'], verification: null }] }];
+  const rightsPositive = responseFor(rights);
+  assert.deepEqual(clientModule.validateExpertClientReply(rightsPositive, contextFor(rights), contract), rightsPositive.structuredContent);
+  for (const mutate of [
+    report => { report.preparation.source_worklists[0].claims[0].evidence.provided[0].sha256 = '0'.repeat(64); },
+    report => { report.preparation.source_worklists[0].claims[0].evidence.missing_ids = []; },
+    report => { report.preparation.source_worklists[0].mechanical_flags.contradictory_use_claims = []; },
+    report => { report.preparation.source_worklists[0].mechanical_flags.restricted_required_uses = []; },
+    report => { report.preparation.evidence_inventory[0].referenced = false; },
+    report => { report.preparation.coverage.evidence_missing_ids = []; },
+    report => { report.preparation.role_worklists[0].identity_evidence.declared_ids = ['FORGED']; },
+  ]) {
+    const invalid = rehashed(rights, report => { mutate(report); report.preparation.content_hash = contentHash(report.preparation, createHash); });
+    assert.throws(() => clientModule.validateExpertClientReply(invalid, contextFor(rights), contract), /RESPONSE_BINDING/);
   }
 });
 test('expert client native: rehashed reduced selectedN or missing-pair denominator is refused while full originals remain intact', () => {
@@ -715,7 +826,7 @@ test('expert client native: rehashed promoted human rights and declared-source f
 test('expert client native: structured-text mismatch duplicate text keys and rehashed changed returned notes cannot lose companions', () => {
   const s = scenario({ returned: 1 }), context = contextFor(s), mismatch = responseFor(s); mismatch.content[0].text = '{}';
   assert.throws(() => clientModule.validateExpertClientReply(mismatch, context, contract));
-  const duplicate = responseFor(s); duplicate.content[0].text = duplicate.content[0].text.replace('{', '{"schema":"invalid",'); assert.throws(() => clientModule.validateExpertClientReply(duplicate, context, contract));
+  const duplicate = responseFor(s); assert.ok(duplicate.content[0].text.startsWith('{')); duplicate.content[0].text = '{"schema":"invalid",' + duplicate.content[0].text.slice(1); assert.throws(() => clientModule.validateExpertClientReply(duplicate, context, contract));
   assert.throws(() => clientModule.validateExpertClientReply(rehashed(s, report => { report.submissions[0].packet.labels[0].notes = 'ALTERED'; }), context, contract), /RESPONSE_BINDING/);
 });
 test('expert client native: complete escaped request cap and whole duplicated result cap refuse before wire or report persistence', async t => {

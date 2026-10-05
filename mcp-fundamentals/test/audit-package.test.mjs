@@ -14,7 +14,7 @@ import { contentHash } from '../../scripts/canonical-json.mjs';
 
 const PACKAGE_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCE_PINS = Object.freeze({
-  'package/src/expert-submission-client.mjs': '1a7db19f98996e2de79dc56d4cbdf804fbc23ed3a0e5d08ad9e7faa423611e47',
+  'package/src/expert-submission-client.mjs': '2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31',
   'package/src/expert-submission-files.mjs': 'a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d',
   'package/src/audit-inputs-client.mjs': '95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7',
   'package/src/canonical-json.mjs': '881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b',
@@ -363,6 +363,7 @@ test('audit package: raw archive modes stay distinct from explicit owned bin-lin
     { name: 'canli-expert-submission-audit', path: 'src/expert-submission-stdio.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
     { name: 'canli-fundamentals-audit-files', path: 'src/audit-inputs-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
     { name: 'canli-expert-submission-files', path: 'src/expert-submission-files.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
+    { name: 'canli-expert-submission-client', path: 'src/expert-submission-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
   ]);
   for (const row of packed.installedBins) {
     const path = 'package/' + row.path;

@@ -19313,3 +19313,47 @@ Entire owner hierarchy ACTIVE/outcomesUNKNOWNNULL: SovereignMCP/API/adoption, re
 independent qualified rights-cleared experts/refinery/research, governedALPHAC/private
 paper/lawfulcapital,10MACTUALindexed qualitySEO/keywords/design/analyzers. Reserved
 PRIMARYsolemergepub/LeadCPU127/SAMEthreads-model unchanged. Closed389 frozen.
+
+
+### 2026-10-05T03:27:14.563613+00:00 — PR390 original refusals preserved; narrow correction batch WRITTEN_UNRUN
+
+Original signed f9649a84/treeafe78 SOURCE HOLDs and automatic MCP387=306PASS81FAIL
+remain immutable. All new40 and old40 hook failures left their bodies UNEXECUTED;
+zero new actual command/SDK successes were established. Original ROOT6+1351+9
+passed separately; original aggregate CodeQL106 negative-fixture failure is retained.
+The personally fullread issued same13 direction13382B/e76c8fe975c50d59 authorizes
+only the bounded old40 RAW diagnostic exception and the batched original findings.
+
+Own response validation now derives complete preparation source membership, evidence
+references, mechanical missing-use flags, ordered tasks and EMPTY blank adjudication
+from the SAME captured inputs. It preserves the COMPLETE public report, fullN, raw
+bindings and NULL human/expert/independence/rights/adjudication outcomes; no second
+audit kernel or executing-source identity is claimed. The unchanged public intake
+limits/schema are imported from the already-protected local module. Rehashed tamper
+controls and unchanged/shared-source/evidence positives extend an existing named
+native case; no new actual SDK/command/pack entry. Native writer/clock/startPromise,
+owned close/absence, private exclusive durability, raw original-key and all input
+contracts remain protected.
+
+Both RAW diagnostic writers use one <=1000ms epoch BEFORE serialization, fresh
+checks and sticky signal; only EAGAIN/EWOULDBLOCK yield then resume the SAME frame
+offset within <=4096 attempts/<=65536B writes. Three awaited capture boundaries
+retain RAW-before-admission custody. Original controls plus partial/backpressure,
+deadline/abort/EPIPE/serialization controls are WRITTEN_UNRUN. Old22 gains only its
+missing sixth normalized-bin expectation; the duplicate-key negative uses an explicit
+leading duplicate member. All40 own names, all22+30+38+40 old names and at most three
+client/SDK entries/ONE future offline guarded pack remain unchanged. Guide, metadata,
+rootverify, default7/core, source-owner74, versions/dependencies/locks and archives
+remain exact. All other artifact source pins remain exact; the entire own changed
+module pin is updated in all five families.
+
+Next one signed CLEAN corrected pin/ordinary existing-branch push triggers existing
+automatic CI; PRIMARY+THIRD narrow SOURCE and separate retained-currentCI originals
+are required. Written corrections are no runtime PASS or peer acceptance. Archive
+allocationNULL/evidencewrites0; future documentary/final/READY/PRIMARYsolemerge and
+actualcustody/publication gates stay separate. No local project execution/new job/
+grant/provider-model-spend/publication. Entire SovereignMCP/API/adoption, consenting
+independent rights-cleared realexpert/refinery/research, governedALPHAC/privatepaper/
+lawfulcapital and10MACTUALindexing/qualitySEO/keywords/design/analyzer hierarchy ACTIVE;
+actual outcomes UNKNOWNNULL. PRIMARYreservedroles/solemergepub/LeadCPU127/SAMEthread
+model unchanged. Closed389/388 and all prior sources/archives stay frozen.
