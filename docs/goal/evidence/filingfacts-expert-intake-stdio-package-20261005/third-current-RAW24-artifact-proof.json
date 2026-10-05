@@ -1,0 +1,1610 @@
+{
+  "frame_bindings": [
+    {
+      "kind": "RAW",
+      "raw_start_line": 3117,
+      "raw_end_line": 3119,
+      "comment_fragments": 3,
+      "JSON_bytes": 191864,
+      "JSON_sha256": "253f54cbc4d40bd582287c15b59f70918928afa24c51e7d6906aa6b54c5bf317",
+      "reconstruction": "consecutive original timestamp-stripped TAP comment fragments only; preserve inner escaped marker, remove one outer prefix"
+    },
+    {
+      "kind": "RAW_MODES",
+      "raw_start_line": 3120,
+      "raw_end_line": 3120,
+      "comment_fragments": 1,
+      "JSON_bytes": 3550,
+      "JSON_sha256": "c99cec21a005bdbf6a2cef8be6684ddad9a81adb6910e6f36ed0395989a08d75",
+      "reconstruction": "consecutive original timestamp-stripped TAP comment fragments only; preserve inner escaped marker, remove one outer prefix"
+    },
+    {
+      "kind": "ADMITTED",
+      "raw_start_line": 3121,
+      "raw_end_line": 3121,
+      "comment_fragments": 1,
+      "JSON_bytes": 4458,
+      "JSON_sha256": "a19e970fbf81ed8b684b0d4cb0faab46a758bab1337efaaa5fbf5489db828782",
+      "reconstruction": "consecutive original timestamp-stripped TAP comment fragments only; preserve inner escaped marker, remove one outer prefix"
+    }
+  ],
+  "RAW_record": {
+    "admission": "RAW_CAPTURED_NOT_ADMITTED",
+    "compressed_bytes": 143763,
+    "compressed_sha256": "04d2ab6a6eb7465a4d805c1e7daa347596ebe889e8083c9cb7d7c94e765869b1"
+  },
+  "RAW_MODES_record": {
+    "compressed_sha256": "04d2ab6a6eb7465a4d805c1e7daa347596ebe889e8083c9cb7d7c94e765869b1",
+    "files": [
+      {
+        "path": "package/LICENSE",
+        "mode": 420,
+        "bytes": 1084,
+        "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26"
+      },
+      {
+        "path": "package/package.json",
+        "mode": 420,
+        "bytes": 1944,
+        "sha256": "c3baeb2557da6e1bebd104545512e35f7f515b25a6a77d3e15cd0fbc1dfb48d5"
+      },
+      {
+        "path": "package/AUDIT_INPUTS_CLIENT.md",
+        "mode": 420,
+        "bytes": 6752,
+        "sha256": "4e4530c2b11fe0f40fab860188d3edcf5c9a0f16c287a5fdc033b90ce6ed622b"
+      },
+      {
+        "path": "package/AUDIT_INPUTS.md",
+        "mode": 420,
+        "bytes": 40194,
+        "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3"
+      },
+      {
+        "path": "package/EXPERT_INTAKE_FILES.md",
+        "mode": 420,
+        "bytes": 8926,
+        "sha256": "dd28111ff3817fdc38e54084d5ca9a6b7c04b39a0c38555921c9210f4028f494"
+      },
+      {
+        "path": "package/EXPERT_INTAKE_STDIO.md",
+        "mode": 420,
+        "bytes": 18077,
+        "sha256": "f543d77703a36e1ae1245b2dcc88d493553724936bfa2f46cb29c665b319ca83"
+      },
+      {
+        "path": "package/EXPERT_SUBMISSION_CLIENT.md",
+        "mode": 420,
+        "bytes": 9142,
+        "sha256": "e20d7ba98e442f37f1f54b9d9c1b225d8f69ad42b6b101371ca7d7a3341be316"
+      },
+      {
+        "path": "package/EXPERT_SUBMISSION_FILES.md",
+        "mode": 420,
+        "bytes": 7978,
+        "sha256": "9d6bd5b40ea7ff52d00f8572887c03e78b38af2b37744162dfbcebbfb7749654"
+      },
+      {
+        "path": "package/EXPERT_SUBMISSIONS.md",
+        "mode": 420,
+        "bytes": 13232,
+        "sha256": "6ab9977361e0d8750a95e07d15fe712bcbc63127870047a2b29e6504d69b455a"
+      },
+      {
+        "path": "package/README.md",
+        "mode": 420,
+        "bytes": 18919,
+        "sha256": "72d506b43b06efdb07c06cda1e3965eb395687065324a8d2b879ce010d212fdd"
+      },
+      {
+        "path": "package/src/audit-inputs-client.mjs",
+        "mode": 493,
+        "bytes": 39509,
+        "sha256": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7"
+      },
+      {
+        "path": "package/src/audit-inputs-core.mjs",
+        "mode": 420,
+        "bytes": 21651,
+        "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059"
+      },
+      {
+        "path": "package/src/audit-inputs-stdio.mjs",
+        "mode": 493,
+        "bytes": 12929,
+        "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0"
+      },
+      {
+        "path": "package/src/canonical-json.mjs",
+        "mode": 420,
+        "bytes": 9481,
+        "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+      },
+      {
+        "path": "package/src/expert-agreement.mjs",
+        "mode": 420,
+        "bytes": 6410,
+        "sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef"
+      },
+      {
+        "path": "package/src/expert-intake-core.mjs",
+        "mode": 420,
+        "bytes": 30951,
+        "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545"
+      },
+      {
+        "path": "package/src/expert-intake-files.mjs",
+        "mode": 493,
+        "bytes": 16966,
+        "sha256": "68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f"
+      },
+      {
+        "path": "package/src/expert-intake-stdio.mjs",
+        "mode": 493,
+        "bytes": 49979,
+        "sha256": "1cde7375eb1e63b381d9343373e55351b5efca4db27cb24e2e91a98e8515f0ae"
+      },
+      {
+        "path": "package/src/expert-submission-audit-core.mjs",
+        "mode": 420,
+        "bytes": 23777,
+        "sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3"
+      },
+      {
+        "path": "package/src/expert-submission-client.mjs",
+        "mode": 493,
+        "bytes": 61734,
+        "sha256": "2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31"
+      },
+      {
+        "path": "package/src/expert-submission-files.mjs",
+        "mode": 493,
+        "bytes": 16119,
+        "sha256": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d"
+      },
+      {
+        "path": "package/src/expert-submission-stdio.mjs",
+        "mode": 493,
+        "bytes": 25763,
+        "sha256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208"
+      },
+      {
+        "path": "package/src/filing-facts-packet.mjs",
+        "mode": 420,
+        "bytes": 555,
+        "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8"
+      },
+      {
+        "path": "package/src/server.mjs",
+        "mode": 420,
+        "bytes": 64736,
+        "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"
+      }
+    ]
+  },
+  "ADMITTED_record": {
+    "admission": "ADMITTED",
+    "compressed_sha256": "04d2ab6a6eb7465a4d805c1e7daa347596ebe889e8083c9cb7d7c94e765869b1",
+    "files": [
+      {
+        "path": "package/LICENSE",
+        "mode": 420,
+        "bytes": 1084,
+        "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26"
+      },
+      {
+        "path": "package/package.json",
+        "mode": 420,
+        "bytes": 1944,
+        "sha256": "c3baeb2557da6e1bebd104545512e35f7f515b25a6a77d3e15cd0fbc1dfb48d5"
+      },
+      {
+        "path": "package/AUDIT_INPUTS_CLIENT.md",
+        "mode": 420,
+        "bytes": 6752,
+        "sha256": "4e4530c2b11fe0f40fab860188d3edcf5c9a0f16c287a5fdc033b90ce6ed622b"
+      },
+      {
+        "path": "package/AUDIT_INPUTS.md",
+        "mode": 420,
+        "bytes": 40194,
+        "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3"
+      },
+      {
+        "path": "package/EXPERT_INTAKE_FILES.md",
+        "mode": 420,
+        "bytes": 8926,
+        "sha256": "dd28111ff3817fdc38e54084d5ca9a6b7c04b39a0c38555921c9210f4028f494"
+      },
+      {
+        "path": "package/EXPERT_INTAKE_STDIO.md",
+        "mode": 420,
+        "bytes": 18077,
+        "sha256": "f543d77703a36e1ae1245b2dcc88d493553724936bfa2f46cb29c665b319ca83"
+      },
+      {
+        "path": "package/EXPERT_SUBMISSION_CLIENT.md",
+        "mode": 420,
+        "bytes": 9142,
+        "sha256": "e20d7ba98e442f37f1f54b9d9c1b225d8f69ad42b6b101371ca7d7a3341be316"
+      },
+      {
+        "path": "package/EXPERT_SUBMISSION_FILES.md",
+        "mode": 420,
+        "bytes": 7978,
+        "sha256": "9d6bd5b40ea7ff52d00f8572887c03e78b38af2b37744162dfbcebbfb7749654"
+      },
+      {
+        "path": "package/EXPERT_SUBMISSIONS.md",
+        "mode": 420,
+        "bytes": 13232,
+        "sha256": "6ab9977361e0d8750a95e07d15fe712bcbc63127870047a2b29e6504d69b455a"
+      },
+      {
+        "path": "package/README.md",
+        "mode": 420,
+        "bytes": 18919,
+        "sha256": "72d506b43b06efdb07c06cda1e3965eb395687065324a8d2b879ce010d212fdd"
+      },
+      {
+        "path": "package/src/audit-inputs-client.mjs",
+        "mode": 493,
+        "bytes": 39509,
+        "sha256": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7"
+      },
+      {
+        "path": "package/src/audit-inputs-core.mjs",
+        "mode": 420,
+        "bytes": 21651,
+        "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059"
+      },
+      {
+        "path": "package/src/audit-inputs-stdio.mjs",
+        "mode": 493,
+        "bytes": 12929,
+        "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0"
+      },
+      {
+        "path": "package/src/canonical-json.mjs",
+        "mode": 420,
+        "bytes": 9481,
+        "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+      },
+      {
+        "path": "package/src/expert-agreement.mjs",
+        "mode": 420,
+        "bytes": 6410,
+        "sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef"
+      },
+      {
+        "path": "package/src/expert-intake-core.mjs",
+        "mode": 420,
+        "bytes": 30951,
+        "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545"
+      },
+      {
+        "path": "package/src/expert-intake-files.mjs",
+        "mode": 493,
+        "bytes": 16966,
+        "sha256": "68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f"
+      },
+      {
+        "path": "package/src/expert-intake-stdio.mjs",
+        "mode": 493,
+        "bytes": 49979,
+        "sha256": "1cde7375eb1e63b381d9343373e55351b5efca4db27cb24e2e91a98e8515f0ae"
+      },
+      {
+        "path": "package/src/expert-submission-audit-core.mjs",
+        "mode": 420,
+        "bytes": 23777,
+        "sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3"
+      },
+      {
+        "path": "package/src/expert-submission-client.mjs",
+        "mode": 493,
+        "bytes": 61734,
+        "sha256": "2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31"
+      },
+      {
+        "path": "package/src/expert-submission-files.mjs",
+        "mode": 493,
+        "bytes": 16119,
+        "sha256": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d"
+      },
+      {
+        "path": "package/src/expert-submission-stdio.mjs",
+        "mode": 493,
+        "bytes": 25763,
+        "sha256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208"
+      },
+      {
+        "path": "package/src/filing-facts-packet.mjs",
+        "mode": 420,
+        "bytes": 555,
+        "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8"
+      },
+      {
+        "path": "package/src/server.mjs",
+        "mode": 420,
+        "bytes": 64736,
+        "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"
+      }
+    ],
+    "bins": [
+      {
+        "name": "canli-fundamentals-mcp",
+        "raw_mode": 420,
+        "fixture_mode": 493,
+        "owned_fixture_only": true
+      },
+      {
+        "name": "canli-fundamentals-audit",
+        "raw_mode": 493,
+        "fixture_mode": 493,
+        "owned_fixture_only": true
+      },
+      {
+        "name": "canli-expert-submission-audit",
+        "raw_mode": 493,
+        "fixture_mode": 493,
+        "owned_fixture_only": true
+      },
+      {
+        "name": "canli-fundamentals-audit-files",
+        "raw_mode": 493,
+        "fixture_mode": 493,
+        "owned_fixture_only": true
+      },
+      {
+        "name": "canli-expert-submission-files",
+        "raw_mode": 493,
+        "fixture_mode": 493,
+        "owned_fixture_only": true
+      },
+      {
+        "name": "canli-expert-submission-client",
+        "raw_mode": 493,
+        "fixture_mode": 493,
+        "owned_fixture_only": true
+      },
+      {
+        "name": "canli-expert-intake-files",
+        "raw_mode": 493,
+        "fixture_mode": 493,
+        "owned_fixture_only": true
+      },
+      {
+        "name": "canli-expert-intake-prepare",
+        "raw_mode": 493,
+        "fixture_mode": 493,
+        "owned_fixture_only": true
+      }
+    ],
+    "dependency_cache_links": 17,
+    "repository_runtime_links": 0,
+    "actual_npm_install": false
+  },
+  "gzip": {
+    "compressed_bytes": 143763,
+    "compressed_sha256": "04d2ab6a6eb7465a4d805c1e7daa347596ebe889e8083c9cb7d7c94e765869b1",
+    "expanded_bytes": 526848,
+    "expanded_sha256": "2176a2c746d1a1eddbaeb21a4897ca00741768b1c239b4d4c7e5885a66c60d32",
+    "CRC32": 3664055828,
+    "ISIZE": 526848,
+    "mtime": 0,
+    "single_member_eof": true,
+    "unused_trailing_bytes": 0,
+    "bounds_compressed": 262144,
+    "bounds_expanded": 2097152
+  },
+  "strict_headers": [
+    {
+      "path": "package/LICENSE",
+      "header_offset": 0,
+      "size": 1084,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 4280,
+      "header_sha256": "2d387a774e1752cef02d75679cff6d1306f708c78e7ccb186ce831650d4400f3"
+    },
+    {
+      "path": "package/package.json",
+      "header_offset": 2048,
+      "size": 1944,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 4968,
+      "header_sha256": "c84b755a0cd81046b4c39b80fd35583302be12cc66a0cd5e70d16e2b36a4746b"
+    },
+    {
+      "path": "package/AUDIT_INPUTS_CLIENT.md",
+      "header_offset": 4608,
+      "size": 6752,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 5513,
+      "header_sha256": "e3a6e05dbd6ccb17919d3ffd02e7c66fc6cbe519aa5ef1ede5834df20803df7e"
+    },
+    {
+      "path": "package/AUDIT_INPUTS.md",
+      "header_offset": 12288,
+      "size": 40194,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 4974,
+      "header_sha256": "b8f99e87f540f4a6bdf47842fbf2d12ce57db7ea129b43bfbb5ef47f6c6c765c"
+    },
+    {
+      "path": "package/EXPERT_INTAKE_FILES.md",
+      "header_offset": 53248,
+      "size": 8926,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 5499,
+      "header_sha256": "87506ca9d0d99b7a2df2facd4aa25f61204720ff885157f3762c470307ab0c66"
+    },
+    {
+      "path": "package/EXPERT_INTAKE_STDIO.md",
+      "header_offset": 62976,
+      "size": 18077,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 5517,
+      "header_sha256": "74e0a4a8a50b9062f30e236613ff6ae592185f9d581daad5b570f6105f5f26d5"
+    },
+    {
+      "path": "package/EXPERT_SUBMISSION_CLIENT.md",
+      "header_offset": 81920,
+      "size": 9142,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 5917,
+      "header_sha256": "0691a53015d910eef5932a3f94eaa04e5629566e38d3d9c1fe56f29083f97629"
+    },
+    {
+      "path": "package/EXPERT_SUBMISSION_FILES.md",
+      "header_offset": 91648,
+      "size": 7978,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 5839,
+      "header_sha256": "717536fc0870e452143fb42f9d8caec62bfe52a922402b45ac2fdbf955c121ea"
+    },
+    {
+      "path": "package/EXPERT_SUBMISSIONS.md",
+      "header_offset": 100352,
+      "size": 13232,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 5453,
+      "header_sha256": "18873bf98b477d474e81a3f9e774f4527d79cbbdf2428b3752eb22687f7b7719"
+    },
+    {
+      "path": "package/README.md",
+      "header_offset": 114176,
+      "size": 18919,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 4463,
+      "header_sha256": "6cf8ceded606bf9e0e7021a67e1e559bf862642a4d79d2825d915c7ee45f36be"
+    },
+    {
+      "path": "package/src/audit-inputs-client.mjs",
+      "header_offset": 133632,
+      "size": 39509,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6460,
+      "header_sha256": "f87b35af5257ccbe8c4c0630344c60c4252c6e80b796c287c2c662d915176c45"
+    },
+    {
+      "path": "package/src/audit-inputs-core.mjs",
+      "header_offset": 174080,
+      "size": 21651,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6242,
+      "header_sha256": "d19a6b89a5cfc4ef34b5d55cc528d0ce1e45dfe821c295cb38e13eb4e13deb85"
+    },
+    {
+      "path": "package/src/audit-inputs-stdio.mjs",
+      "header_offset": 196608,
+      "size": 12929,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6360,
+      "header_sha256": "ab008cdcc941cf497191e12c390d9f4d83d6e253148fb8fc6a06317e30d789df"
+    },
+    {
+      "path": "package/src/canonical-json.mjs",
+      "header_offset": 210432,
+      "size": 9481,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 5936,
+      "header_sha256": "d35e3629e705c06da905a8040965508477d9780abc74ad7906f2cc17e174b58c"
+    },
+    {
+      "path": "package/src/expert-agreement.mjs",
+      "header_offset": 220672,
+      "size": 6410,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6176,
+      "header_sha256": "047a577bddbdc720b36d985fb474dc4cfdedbeea6b5cb5cfef259839ec8299d1"
+    },
+    {
+      "path": "package/src/expert-intake-core.mjs",
+      "header_offset": 227840,
+      "size": 30951,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6343,
+      "header_sha256": "2ff78d8e20ae6a1c3331c7a53ccf5b294e1bfd3b80441e023bcbb46bda23e4ec"
+    },
+    {
+      "path": "package/src/expert-intake-files.mjs",
+      "header_offset": 259584,
+      "size": 16966,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6439,
+      "header_sha256": "6f39858edf7066a485beab346b89198590a4d5e90ab856141a65819481c66841"
+    },
+    {
+      "path": "package/src/expert-intake-stdio.mjs",
+      "header_offset": 277504,
+      "size": 49979,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6463,
+      "header_sha256": "e36b1bab7fd53fa5f2629cc1f8aacf0967d3066ab6a0f4fb67aa41481a7c9d3a"
+    },
+    {
+      "path": "package/src/expert-submission-audit-core.mjs",
+      "header_offset": 328192,
+      "size": 23777,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 7381,
+      "header_sha256": "a35ab101ef59a0681e05d9233768aabbd63e04fb7f8c3402e96b861adf98b2d8"
+    },
+    {
+      "path": "package/src/expert-submission-client.mjs",
+      "header_offset": 352768,
+      "size": 61734,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 7021,
+      "header_sha256": "c36a3af8ab8d509a0117b10bba6793173f823bc6ddb4c3fd2a2ee8efa4d77561"
+    },
+    {
+      "path": "package/src/expert-submission-files.mjs",
+      "header_offset": 415232,
+      "size": 16119,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6917,
+      "header_sha256": "0e6413381625b34569ffcef8206470f91f0ac181af0fdcd178c20f12bd4e3f6d"
+    },
+    {
+      "path": "package/src/expert-submission-stdio.mjs",
+      "header_offset": 432128,
+      "size": 25763,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6924,
+      "header_sha256": "e1e786964e1086f662bc59743f325e4bab59f68e9ee6b99b70552e911c917102"
+    },
+    {
+      "path": "package/src/filing-facts-packet.mjs",
+      "header_offset": 458752,
+      "size": 555,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 6396,
+      "header_sha256": "55b3386de563ffb2ede0c3ce7f900fcd224c0f7b00c0d839ad3668f8dd770e92"
+    },
+    {
+      "path": "package/src/server.mjs",
+      "header_offset": 460288,
+      "size": 64736,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "mtime": 499162500,
+      "checksum": 5187,
+      "header_sha256": "79b17f2c519bead98f6eaea34f351192722a38eed97732edbc0495c23eec4f11"
+    }
+  ],
+  "members": [
+    {
+      "path": "package/LICENSE",
+      "bytes": 1084,
+      "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/LICENSE",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "eb5330e5dce6357e4c1cb0d5c1282f5e6d40b7d4"
+    },
+    {
+      "path": "package/package.json",
+      "bytes": 1944,
+      "sha256": "c3baeb2557da6e1bebd104545512e35f7f515b25a6a77d3e15cd0fbc1dfb48d5",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/package.json",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "525d5d8c7ce198d60bd3f48ddda76282853e3160"
+    },
+    {
+      "path": "package/AUDIT_INPUTS_CLIENT.md",
+      "bytes": 6752,
+      "sha256": "4e4530c2b11fe0f40fab860188d3edcf5c9a0f16c287a5fdc033b90ce6ed622b",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/AUDIT_INPUTS_CLIENT.md",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "8a32e971c46746be73bb4176cb103b429091ff03"
+    },
+    {
+      "path": "package/AUDIT_INPUTS.md",
+      "bytes": 40194,
+      "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/AUDIT_INPUTS.md",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "ff0625ed3ca3e74986c4538a14439f271a381752"
+    },
+    {
+      "path": "package/EXPERT_INTAKE_FILES.md",
+      "bytes": 8926,
+      "sha256": "dd28111ff3817fdc38e54084d5ca9a6b7c04b39a0c38555921c9210f4028f494",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/EXPERT_INTAKE_FILES.md",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "8df98c4ca84e3c76bafc8e5d1ffa6b2f1871d554"
+    },
+    {
+      "path": "package/EXPERT_INTAKE_STDIO.md",
+      "bytes": 18077,
+      "sha256": "f543d77703a36e1ae1245b2dcc88d493553724936bfa2f46cb29c665b319ca83",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/EXPERT_INTAKE_STDIO.md",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "ab3d7871a2db11e9352851b905c816c1ca6e37d7"
+    },
+    {
+      "path": "package/EXPERT_SUBMISSION_CLIENT.md",
+      "bytes": 9142,
+      "sha256": "e20d7ba98e442f37f1f54b9d9c1b225d8f69ad42b6b101371ca7d7a3341be316",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/EXPERT_SUBMISSION_CLIENT.md",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "313fe8244aeb2e78918ad079ab7a47ddf9c20e03"
+    },
+    {
+      "path": "package/EXPERT_SUBMISSION_FILES.md",
+      "bytes": 7978,
+      "sha256": "9d6bd5b40ea7ff52d00f8572887c03e78b38af2b37744162dfbcebbfb7749654",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/EXPERT_SUBMISSION_FILES.md",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "f677e3d6ab74374f666974d314d47941591d8987"
+    },
+    {
+      "path": "package/EXPERT_SUBMISSIONS.md",
+      "bytes": 13232,
+      "sha256": "6ab9977361e0d8750a95e07d15fe712bcbc63127870047a2b29e6504d69b455a",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/EXPERT_SUBMISSIONS.md",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "bf19c5ae3c4578d34f14eb3bda8cc5f159714316"
+    },
+    {
+      "path": "package/README.md",
+      "bytes": 18919,
+      "sha256": "72d506b43b06efdb07c06cda1e3965eb395687065324a8d2b879ce010d212fdd",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/README.md",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "631ac5f981e56d7f04395713055df28e17faed28"
+    },
+    {
+      "path": "package/src/audit-inputs-client.mjs",
+      "bytes": 39509,
+      "sha256": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7",
+      "mode": 493,
+      "frozen_Git_path": "mcp-fundamentals/src/audit-inputs-client.mjs",
+      "git_mode": "100755",
+      "kind": "blob",
+      "oid": "7bd2b362060d8ae475d1be6829912b6de6c3f41d"
+    },
+    {
+      "path": "package/src/audit-inputs-core.mjs",
+      "bytes": 21651,
+      "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "c772372609b7f37bb04c747898d168b64458e377"
+    },
+    {
+      "path": "package/src/audit-inputs-stdio.mjs",
+      "bytes": 12929,
+      "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+      "mode": 493,
+      "frozen_Git_path": "mcp-fundamentals/src/audit-inputs-stdio.mjs",
+      "git_mode": "100755",
+      "kind": "blob",
+      "oid": "8ed08fc03502f68d56184da953efb294deec45bc"
+    },
+    {
+      "path": "package/src/canonical-json.mjs",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/src/canonical-json.mjs",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "1332eb7dbb49f2aa759e095a793da309f29a8f26"
+    },
+    {
+      "path": "package/src/expert-agreement.mjs",
+      "bytes": 6410,
+      "sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/src/expert-agreement.mjs",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "af0bc30fc0d5e6698ff87ab59f5f70f902d37868"
+    },
+    {
+      "path": "package/src/expert-intake-core.mjs",
+      "bytes": 30951,
+      "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/src/expert-intake-core.mjs",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "0315abb2910c16f507cef2489bb4604feea76db2"
+    },
+    {
+      "path": "package/src/expert-intake-files.mjs",
+      "bytes": 16966,
+      "sha256": "68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f",
+      "mode": 493,
+      "frozen_Git_path": "mcp-fundamentals/src/expert-intake-files.mjs",
+      "git_mode": "100755",
+      "kind": "blob",
+      "oid": "db1a8ef277a3d2bccdc97aa5ffc5a0de1add62ce"
+    },
+    {
+      "path": "package/src/expert-intake-stdio.mjs",
+      "bytes": 49979,
+      "sha256": "1cde7375eb1e63b381d9343373e55351b5efca4db27cb24e2e91a98e8515f0ae",
+      "mode": 493,
+      "frozen_Git_path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+      "git_mode": "100755",
+      "kind": "blob",
+      "oid": "0cb284b160dffd9da2f67bce14f6ed41b58cffd7"
+    },
+    {
+      "path": "package/src/expert-submission-audit-core.mjs",
+      "bytes": 23777,
+      "sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "43a7a0ffcc705972641109067309e325409c54b9"
+    },
+    {
+      "path": "package/src/expert-submission-client.mjs",
+      "bytes": 61734,
+      "sha256": "2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31",
+      "mode": 493,
+      "frozen_Git_path": "mcp-fundamentals/src/expert-submission-client.mjs",
+      "git_mode": "100755",
+      "kind": "blob",
+      "oid": "5ab76c0e561b9c237ef40af0b1c4717051622a5c"
+    },
+    {
+      "path": "package/src/expert-submission-files.mjs",
+      "bytes": 16119,
+      "sha256": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d",
+      "mode": 493,
+      "frozen_Git_path": "mcp-fundamentals/src/expert-submission-files.mjs",
+      "git_mode": "100755",
+      "kind": "blob",
+      "oid": "08f0d589c9a9f5cc8fab18759e25b29cdf3e2a76"
+    },
+    {
+      "path": "package/src/expert-submission-stdio.mjs",
+      "bytes": 25763,
+      "sha256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208",
+      "mode": 493,
+      "frozen_Git_path": "mcp-fundamentals/src/expert-submission-stdio.mjs",
+      "git_mode": "100755",
+      "kind": "blob",
+      "oid": "3c767d4095b57d3a15896defb00e68f4e4416b72"
+    },
+    {
+      "path": "package/src/filing-facts-packet.mjs",
+      "bytes": 555,
+      "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/src/filing-facts-packet.mjs",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "cc7c774411a653a103af57ad600aa6f73056ca02"
+    },
+    {
+      "path": "package/src/server.mjs",
+      "bytes": 64736,
+      "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+      "mode": 420,
+      "frozen_Git_path": "mcp-fundamentals/src/server.mjs",
+      "git_mode": "100644",
+      "kind": "blob",
+      "oid": "0c373d5e5b2d6712cda9b3a7acec6d0177c1e423"
+    }
+  ],
+  "JS_MJS": 14,
+  "literal_imports": 90,
+  "import_edges": [
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "static",
+      "specifier": "node:fs",
+      "target": "node:fs",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "static",
+      "specifier": "node:perf_hooks",
+      "target": "node:perf_hooks",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "static",
+      "specifier": "node:path",
+      "target": "node:path",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "static",
+      "specifier": "node:url",
+      "target": "node:url",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "static",
+      "specifier": "./audit-inputs-stdio.mjs",
+      "target": "package/src/audit-inputs-stdio.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "static",
+      "specifier": "./audit-inputs-core.mjs",
+      "target": "package/src/audit-inputs-core.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "fixed_dynamic",
+      "specifier": "@modelcontextprotocol/client",
+      "target": "@modelcontextprotocol/client",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-client.mjs",
+      "kind": "fixed_dynamic",
+      "specifier": "@modelcontextprotocol/client/stdio",
+      "target": "@modelcontextprotocol/client/stdio",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-core.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-core.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-core.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/audit-inputs-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:fs",
+      "target": "node:fs",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:url",
+      "target": "node:url",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-stdio.mjs",
+      "kind": "static",
+      "specifier": "@modelcontextprotocol/server",
+      "target": "@modelcontextprotocol/server",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-stdio.mjs",
+      "kind": "static",
+      "specifier": "@modelcontextprotocol/server/stdio",
+      "target": "@modelcontextprotocol/server/stdio",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-stdio.mjs",
+      "kind": "static",
+      "specifier": "zod",
+      "target": "zod",
+      "local": false
+    },
+    {
+      "from": "package/src/audit-inputs-stdio.mjs",
+      "kind": "static",
+      "specifier": "./audit-inputs-core.mjs",
+      "target": "package/src/audit-inputs-core.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/audit-inputs-stdio.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-agreement.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-agreement.mjs",
+      "kind": "static",
+      "specifier": "node:fs",
+      "target": "node:fs",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-agreement.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-agreement.mjs",
+      "kind": "static",
+      "specifier": "./filing-facts-packet.mjs",
+      "target": "package/src/filing-facts-packet.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-intake-core.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-core.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-core.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-intake-core.mjs",
+      "kind": "static",
+      "specifier": "./filing-facts-packet.mjs",
+      "target": "package/src/filing-facts-packet.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-intake-files.mjs",
+      "kind": "static",
+      "specifier": "node:fs",
+      "target": "node:fs",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-files.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-files.mjs",
+      "kind": "static",
+      "specifier": "node:path",
+      "target": "node:path",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-files.mjs",
+      "kind": "static",
+      "specifier": "node:url",
+      "target": "node:url",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-files.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-files.mjs",
+      "kind": "fixed_dynamic",
+      "specifier": "./expert-intake-core.mjs",
+      "target": "package/src/expert-intake-core.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-intake-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:fs",
+      "target": "node:fs",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:url",
+      "target": "node:url",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-stdio.mjs",
+      "kind": "static",
+      "specifier": "@modelcontextprotocol/server",
+      "target": "@modelcontextprotocol/server",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-stdio.mjs",
+      "kind": "static",
+      "specifier": "@modelcontextprotocol/server/stdio",
+      "target": "@modelcontextprotocol/server/stdio",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-stdio.mjs",
+      "kind": "static",
+      "specifier": "zod",
+      "target": "zod",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-intake-stdio.mjs",
+      "kind": "static",
+      "specifier": "./expert-intake-core.mjs",
+      "target": "package/src/expert-intake-core.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-intake-stdio.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-audit-core.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-audit-core.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-audit-core.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-audit-core.mjs",
+      "kind": "static",
+      "specifier": "./filing-facts-packet.mjs",
+      "target": "package/src/filing-facts-packet.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-audit-core.mjs",
+      "kind": "static",
+      "specifier": "./expert-intake-core.mjs",
+      "target": "package/src/expert-intake-core.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-audit-core.mjs",
+      "kind": "static",
+      "specifier": "./expert-agreement.mjs",
+      "target": "package/src/expert-agreement.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "node:fs",
+      "target": "node:fs",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "node:path",
+      "target": "node:path",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "node:url",
+      "target": "node:url",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "node:perf_hooks",
+      "target": "node:perf_hooks",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "./filing-facts-packet.mjs",
+      "target": "package/src/filing-facts-packet.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "./expert-agreement.mjs",
+      "target": "package/src/expert-agreement.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "static",
+      "specifier": "./expert-intake-core.mjs",
+      "target": "package/src/expert-intake-core.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "fixed_dynamic",
+      "specifier": "@modelcontextprotocol/client",
+      "target": "@modelcontextprotocol/client",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "fixed_dynamic",
+      "specifier": "@modelcontextprotocol/client/stdio",
+      "target": "@modelcontextprotocol/client/stdio",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-client.mjs",
+      "kind": "fixed_dynamic",
+      "specifier": "./expert-submission-stdio.mjs",
+      "target": "package/src/expert-submission-stdio.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-files.mjs",
+      "kind": "static",
+      "specifier": "node:fs",
+      "target": "node:fs",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-files.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-files.mjs",
+      "kind": "static",
+      "specifier": "node:path",
+      "target": "node:path",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-files.mjs",
+      "kind": "static",
+      "specifier": "node:url",
+      "target": "node:url",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-files.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-files.mjs",
+      "kind": "fixed_dynamic",
+      "specifier": "./expert-submission-audit-core.mjs",
+      "target": "package/src/expert-submission-audit-core.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:util",
+      "target": "node:util",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:fs",
+      "target": "node:fs",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-stdio.mjs",
+      "kind": "static",
+      "specifier": "node:url",
+      "target": "node:url",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-stdio.mjs",
+      "kind": "static",
+      "specifier": "@modelcontextprotocol/server",
+      "target": "@modelcontextprotocol/server",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-stdio.mjs",
+      "kind": "static",
+      "specifier": "@modelcontextprotocol/server/stdio",
+      "target": "@modelcontextprotocol/server/stdio",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-stdio.mjs",
+      "kind": "static",
+      "specifier": "zod",
+      "target": "zod",
+      "local": false
+    },
+    {
+      "from": "package/src/expert-submission-stdio.mjs",
+      "kind": "static",
+      "specifier": "./expert-submission-audit-core.mjs",
+      "target": "package/src/expert-submission-audit-core.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/expert-submission-stdio.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/filing-facts-packet.mjs",
+      "kind": "static",
+      "specifier": "./canonical-json.mjs",
+      "target": "package/src/canonical-json.mjs",
+      "local": true
+    },
+    {
+      "from": "package/src/server.mjs",
+      "kind": "static",
+      "specifier": "node:crypto",
+      "target": "node:crypto",
+      "local": false
+    },
+    {
+      "from": "package/src/server.mjs",
+      "kind": "static",
+      "specifier": "node:fs",
+      "target": "node:fs",
+      "local": false
+    },
+    {
+      "from": "package/src/server.mjs",
+      "kind": "static",
+      "specifier": "node:os",
+      "target": "node:os",
+      "local": false
+    },
+    {
+      "from": "package/src/server.mjs",
+      "kind": "static",
+      "specifier": "node:path",
+      "target": "node:path",
+      "local": false
+    },
+    {
+      "from": "package/src/server.mjs",
+      "kind": "static",
+      "specifier": "node:url",
+      "target": "node:url",
+      "local": false
+    },
+    {
+      "from": "package/src/server.mjs",
+      "kind": "static",
+      "specifier": "node:zlib",
+      "target": "node:zlib",
+      "local": false
+    },
+    {
+      "from": "package/src/server.mjs",
+      "kind": "static",
+      "specifier": "@modelcontextprotocol/server",
+      "target": "@modelcontextprotocol/server",
+      "local": false
+    },
+    {
+      "from": "package/src/server.mjs",
+      "kind": "static",
+      "specifier": "@modelcontextprotocol/server/stdio",
+      "target": "@modelcontextprotocol/server/stdio",
+      "local": false
+    },
+    {
+      "from": "package/src/server.mjs",
+      "kind": "static",
+      "specifier": "zod",
+      "target": "zod",
+      "local": false
+    }
+  ],
+  "bins": [
+    {
+      "name": "canli-fundamentals-mcp",
+      "raw_mode": 420,
+      "fixture_mode": 493,
+      "owned_fixture_only": true
+    },
+    {
+      "name": "canli-fundamentals-audit",
+      "raw_mode": 493,
+      "fixture_mode": 493,
+      "owned_fixture_only": true
+    },
+    {
+      "name": "canli-expert-submission-audit",
+      "raw_mode": 493,
+      "fixture_mode": 493,
+      "owned_fixture_only": true
+    },
+    {
+      "name": "canli-fundamentals-audit-files",
+      "raw_mode": 493,
+      "fixture_mode": 493,
+      "owned_fixture_only": true
+    },
+    {
+      "name": "canli-expert-submission-files",
+      "raw_mode": 493,
+      "fixture_mode": 493,
+      "owned_fixture_only": true
+    },
+    {
+      "name": "canli-expert-submission-client",
+      "raw_mode": 493,
+      "fixture_mode": 493,
+      "owned_fixture_only": true
+    },
+    {
+      "name": "canli-expert-intake-files",
+      "raw_mode": 493,
+      "fixture_mode": 493,
+      "owned_fixture_only": true
+    },
+    {
+      "name": "canli-expert-intake-prepare",
+      "raw_mode": 493,
+      "fixture_mode": 493,
+      "owned_fixture_only": true
+    }
+  ],
+  "readonly_dependency_cache_links_recorded": 17,
+  "actual_npm_install": false,
+  "SDK_assertions_scope": {
+    "helper_bytes": 1465,
+    "helper_sha256": "5de473e3b54d1034127adeea1bf0819846e26ee00475c1018dfd9dff48c8f302",
+    "new_named_entries": 3,
+    "SDK_entry_names": [
+      "prepare intake package: SDK entry1 reuses the installed-source marked-guide inputs for one complete preparation call and owned close",
+      "prepare intake package: SDK entry2 absolute owned bin alias retains one call original startup ownership and bounded close",
+      "prepare intake package: SDK entry3 stable tool refusal has no discovery retry input echo or extra child"
+    ],
+    "qualification": "actual named PASS under these frozen known-owned-child/close-once/15work+5close/20observedtotal assertions only; no reviewer process census or hard preemption proof",
+    "ONE_offline_pack_source_site": true,
+    "repository_runtime_links": 0,
+    "actual_install_established": false
+  },
+  "reviewer_process_census": false
+}

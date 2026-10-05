@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-05T14:59:22.353307+00:00",
+  "scope": "EXTERNAL_NATIVE_METADATA_READER_ONLY",
+  "original_auditor": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10-retained-CI-native-auditor-v2.py",
+    "bytes": 13252,
+    "sha256": "a019390e5be22ddbbd6d5526c73c81aaab1c3d13c94ffc51d9de1cec35561871"
+  },
+  "observed_tool_exit": 1,
+  "observed_error": "AssertionError at four-line YAML shape reader line166",
+  "actual_literal": "U+FEFF preceding ISO timestamp at MCP clean-line4417 before YAML opening for top434",
+  "correction": "accept only optional U+FEFF immediately before ISO log timestamp for parse; retain entire original bytes",
+  "separate_stdout_stderr_raw_files": "not separately saved; tool trace not reconstructed",
+  "all_originals_preserved": true,
+  "project_runtime_failure_inferred": false,
+  "API_refetch_job_rerun_project_execution": false,
+  "corrected_auditor": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10-retained-CI-native-auditor-v3.py",
+    "bytes": 13259,
+    "sha256": "3b5f685b27235aae532dee91301c126ce1f85c7f3bf3405683a8bfefa26ac903"
+  }
+}

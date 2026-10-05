@@ -1,0 +1,1024 @@
+{
+  "PR": 392,
+  "ROOT5_before_material_SOURCE_transition": [
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 101904,
+      "mode_octal": "0o644",
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "sha256": "42b5fa29f896a73eb3c121f4a8fc19b7ce232f44cc18d2e2a4007ac799a206ec"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 8404,
+      "mode_octal": "0o644",
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 1996450,
+      "mode_octal": "0o644",
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "sha256": "bf70d461a419c45925403c500bfc2342086fee5df3a51c170b3587e17549893e"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 149001,
+      "mode_octal": "0o644",
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "sha256": "a8e1a16269fa3d277cfc122eedc00238d1b9ca97bf69464a4890e48be0f6566e"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 2341300,
+      "mode_octal": "0o644",
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "sha256": "461ef9587918d719650aca5b1cefd4f843dbe68ced381565edfcf0a1e2e781b9"
+    }
+  ],
+  "actual_base": "8a26ed50ca548dd994a4d67db5caa2df15879c91",
+  "actual_owner_outcomes": "UNKNOWNNULL",
+  "all_owner_hierarchy": "ACTIVE",
+  "closed_original_findings": [
+    {
+      "closure": "Current FILES adds only package/EXPERT_INTAKE_STDIO.md;14 source pins plus ten non-source members admit exact24. Parent old22 case bodies all exact; source pin alone refreshed.",
+      "id": "CC-392-OLD22-CURRENT-EXACT24-FILES",
+      "path": "mcp-fundamentals/test/audit-package.test.mjs",
+      "runtime_verdict": null,
+      "source_evidence": {
+        "current_endpoint_source_pin_refresh_only_else_three_expected_literals": true,
+        "literal_non_pin_delta_lines": [
+          "-  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/EXPERT_SUBMISSIONS.md', 'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/EXPERT_INTAKE_FILES.md', 'package/package.json', ...Object.keys(SOURCE_PINS),",
+          "+  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/EXPERT_SUBMISSIONS.md', 'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md', 'package/package.json', ...Object.keys(SOURCE_PINS),"
+        ],
+        "old_helpers_guards_caps_and_entry_functions_unchanged": true,
+        "parent_delta_pin": {
+          "FULLREAD_sameFD_postpath": true,
+          "bytes": 2004,
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/old-family-deltas/mcp-fundamentals__test__audit-package.test.mjs.diff",
+          "sha256": "219759477edcf7e4ca07ef1ac1180b30743a14a91a673e455b4afb4143872362"
+        },
+        "path": "mcp-fundamentals/test/audit-package.test.mjs"
+      },
+      "state": "CLOSED_STATIC_AT_E10B5226"
+    },
+    {
+      "closure": "Legacy MEMBERS filter now excludes exactly package/src/expert-intake-stdio.mjs. Guide was already excluded. Original14/mode controls and all helpers retained.",
+      "id": "CC-392-OLD30-HISTORICAL14-MODULE-EXCLUSION",
+      "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+      "runtime_verdict": null,
+      "source_evidence": {
+        "current_endpoint_source_pin_refresh_only_else_three_expected_literals": true,
+        "literal_non_pin_delta_lines": [
+          "-  const legacy = MEMBERS.filter(name => !['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md', 'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/src/expert-intake-files.mjs', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md'].includes(name));",
+          "+  const legacy = MEMBERS.filter(name => !['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md', 'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/src/expert-intake-files.mjs', 'package/src/expert-intake-stdio.mjs', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md'].includes(name));"
+        ],
+        "old_helpers_guards_caps_and_entry_functions_unchanged": true,
+        "parent_delta_pin": {
+          "FULLREAD_sameFD_postpath": true,
+          "bytes": 2746,
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/old-family-deltas/mcp-fundamentals__test__expert-submission-package.test.mjs.diff",
+          "sha256": "62ad2ced30b541f1c380f1830c358316668e287ed7bc6c76a98b9ac579323a86"
+        },
+        "path": "mcp-fundamentals/test/expert-submission-package.test.mjs"
+      },
+      "state": "CLOSED_STATIC_AT_E10B5226"
+    },
+    {
+      "closure": "Only the current TAR positive count changes22to24; CRC/ISIZE/concatenation/trailing and other original controls retained.",
+      "id": "CC-392-OLD38-CURRENT24-COUNT",
+      "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+      "runtime_verdict": null,
+      "source_evidence": {
+        "current_endpoint_source_pin_refresh_only_else_three_expected_literals": true,
+        "literal_non_pin_delta_lines": [
+          "-  assert.equal(decodeTar(packed.compressed).size, 22);",
+          "+  assert.equal(decodeTar(packed.compressed).size, 24);"
+        ],
+        "old_helpers_guards_caps_and_entry_functions_unchanged": true,
+        "parent_delta_pin": {
+          "FULLREAD_sameFD_postpath": true,
+          "bytes": 11948,
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/old-family-deltas/mcp-fundamentals__test__audit-inputs-client-package.test.mjs.diff",
+          "sha256": "8f6f1987e6ebd0c24a51d98249c8cf27aaca9cfc47d27afbad9082be75d55dee"
+        },
+        "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs"
+      },
+      "state": "CLOSED_STATIC_AT_E10B5226"
+    },
+    {
+      "closure": "Offset148 high-bit mutation is applied to the completed valid tar after checksum creation, then losslessly wrapped by fixture gzip; not erased by tinyTar checksum recomputation. All other high-bit and parser positives remain.",
+      "existing_case_ordinal": 2,
+      "frozen_lines": [
+        554,
+        555,
+        556
+      ],
+      "id": "CC-392-NATIVE-TAR-CHECKSUM-HIGHBIT-VECTOR",
+      "path": "mcp-fundamentals/test/expert-intake-stdio-package.test.mjs",
+      "runtime_verdict": null,
+      "state": "CLOSED_STATIC_AT_E10B5226"
+    },
+    {
+      "closure": "The exact denied FileHandle call is inside an async assertion callback; finally always closes the owned read handle. Strong parent/child fence remains exact. SAME owned cleanup helper has injected no-effect ordering controls for refusal/unlink failure.",
+      "existing_case_ordinal": 4,
+      "frozen_lines": [
+        582
+      ],
+      "id": "CC-392-NATIVE-FILEHANDLE-SYNC-DENIAL-OBSERVER",
+      "path": "mcp-fundamentals/test/expert-intake-stdio-package.test.mjs",
+      "runtime_verdict": null,
+      "state": "CLOSED_STATIC_AT_E10B5226"
+    },
+    {
+      "closure": "All original opaque nested records are replaced by precise shapes and same-captured-token/input relation checks. Ordered tasks/IDs/source memberships, role declarations/handles/evidence/qualification/conflicts, source claims and mechanical flags, blank reviewer packets and adjudicator form/empty decisions, settings/limits, inventory/order/referenced flags and full coverage are bound. One unchanged core invocation; validator neither calls core again nor repairs returned output.",
+      "complete_relation_traces": [
+        {
+          "frozen_line": 323,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "frozen_original_base64_and_raw_gold_hash_capture",
+          "source_token": "originalBase64: Object.freeze(rows.map(row => row.text))"
+        },
+        {
+          "frozen_line": 323,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "original_evidence_base64_capture",
+          "source_token": "originalEvidenceBase64: Object.freeze(evidence.map(row => row.text))"
+        },
+        {
+          "frozen_line": 361,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "output_binding_against_original_input_tokens",
+          "source_token": "if (bound.original_base64 !== captured.originalBase64[position])"
+        },
+        {
+          "frozen_line": 348,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "SAME_clock_after_output_schema",
+          "source_token": "if (!INTAKE_TOOL_OUTPUT.safeParse(report).success)"
+        },
+        {
+          "frozen_line": 370,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "complete_original_settings_and_limits",
+          "source_token": "same(report.settings, settings); same(report.limits, EXPERT_INTAKE_LIMITS)"
+        },
+        {
+          "frozen_line": 412,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "original_role_declarations",
+          "source_token": "same(row.declaration, declaration ?? null)"
+        },
+        {
+          "frozen_line": 443,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "original_packet_complete_labels_order_blankfields",
+          "source_token": "same(packet.packet, { ...gold, annotator: declaration?.handle ?? '', packet_sha256: report.packet_sha256 })"
+        },
+        {
+          "frozen_line": 450,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "complete_source_item_membership",
+          "source_token": "same(row.item_ids, source.item_ids); same(row.required_uses, settings.required_uses)"
+        },
+        {
+          "frozen_line": 456,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "source_claim_declarations",
+          "source_token": "same(actual.declaration, claim)"
+        },
+        {
+          "frozen_line": 394,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "evidence_original_base64_order",
+          "source_token": "bound.original_base64 !== captured.originalEvidenceBase64[index]"
+        },
+        {
+          "frozen_line": 408,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "evidence_purpose_subject_and_missing_rows",
+          "source_token": "same(actual, { declared_ids: ids, provided, missing_ids: absent, authenticity_verified: null })"
+        },
+        {
+          "frozen_line": 463,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "all_source_mechanical_flags",
+          "source_token": "same(row.mechanical_flags, {"
+        },
+        {
+          "frozen_line": 474,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "complete_blank_adjudicator_packet_and_empty_decisions",
+          "source_token": "same(report.adjudication.blank_submission, { schema: 'canli.filing-facts-adjudication.v1', adjudicator: adjudicator ?? '', packet_sha256: report.packet_sha256, decisions: [] })"
+        },
+        {
+          "frozen_line": 475,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "ordered_item_tasks_source_ids_roles_status_nulls",
+          "source_token": "same(report.adjudication.item_tasks, gold.labels.map(label =>"
+        },
+        {
+          "frozen_line": 477,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "ordered_inventory_and_referenced_flags",
+          "source_token": "same(report.evidence_inventory, [...entries.values()].map(entry =>"
+        },
+        {
+          "frozen_line": 478,
+          "qualification": "Static source/control-flow trace only; fixture not executed",
+          "relationship": "full_denominator_and_all_coverage_fields",
+          "source_token": "same(report.coverage, {"
+        }
+      ],
+      "existing_case_ordinal": 17,
+      "frozen_lines": [
+        38,
+        41,
+        50,
+        70,
+        89,
+        112,
+        123,
+        130,
+        135,
+        298,
+        322,
+        346,
+        350,
+        361,
+        366,
+        370,
+        382,
+        389,
+        394,
+        400,
+        411,
+        443,
+        446,
+        450,
+        463,
+        472,
+        474,
+        475,
+        477,
+        478,
+        496,
+        500,
+        504
+      ],
+      "id": "CC-392-COMPLETE-PREPARATION-OUTPUT-BINDING",
+      "paired_native_controls": "Case17 rehashes altered reports and asserts refusal/no structured success/corecalls1. Three complete public-JSON positives (guide, evidence-bearing, missing roles) plus SAME memory adapter source-ID refusal written; no fixture execution by reviewer.",
+      "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+      "runtime_verdict": null,
+      "state": "CLOSED_STATIC_AT_E10B5226"
+    }
+  ],
+  "current_SOURCE_disposition_only": true,
+  "direct_private_support_pins": [
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 229794,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/independent-e10b5226-frozen-Git-body-mode-inverse-history-source-delta-proof-v1.json",
+      "sha256": "0b264790b6e7e7161974a75c407bc7053313ab7d8fb41dff6b7e2a401441b493"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 47410,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/independent-e10b5226-static-input-report-relations-import-literal-scope-proof-v1.json",
+      "sha256": "9aa3c84cb9f4ccaaca65853b76602d969d788c4dc9be2a495f4f019c204d5e89"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 26651,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/review-e0ae88cf-original-STATIC-SOURCE-HOLD-v1.json",
+      "sha256": "e601286e657bbb1f97feeea3d7c22a2f1fac261864d4523fc786670836dd376d"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 3082,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/handoff-e0ae88cf-original-STATIC-SOURCE-HOLD-PRIMARY-SECONDARY-v1.json",
+      "sha256": "09fb7b0f5b8e6a224f6469d5c7269a8cad3edc9d15b901dc6de01dca0a106e90"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 3608,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-e0ae88cf-qualified-original-currentCI-FAILURE-v1.json",
+      "sha256": "7b4d7223d545f1b9f1a5e9fe1b6ff0d2fef39039243eab90d405db7491a66541"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 896,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-e0ae88cf-original-diagnosis-historical14-selector-additive-precision-v1.json",
+      "sha256": "0ef8b747086a7146d70350dc0cc1743742d2f3ecfa27e80e4d722f6a145e7211"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 33346,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/source-e10b5226-expert-intake-stdio-package-v2.json",
+      "role": "source_locator",
+      "sha256": "28921a3773a574d0ed8543dc159fbf2fb1de6890a52392c7e0f3be0a10184020"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 175087,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-frozen-source-native-custody-e10b5226-v2.json",
+      "role": "native_author_locator",
+      "sha256": "33be782865a804693caff407f51a7993e53cbac576cdc32091adbb47c402c794"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 1604504,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-frozen-full7393-stage0-table-e10b5226-v2.json",
+      "role": "author_fulltable",
+      "sha256": "17f2b9c9fada048f368f15a3cdf04b73f7728b1ed9bb545232189b301dc9ff2b"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 76627,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/e0ae88cf-to-e10b5226-exact-frozen-correction.patch",
+      "role": "literal_patch",
+      "sha256": "a359f7cee9ffc1e335517625e613a4ab0a21b6e1e49bb46ac4db0e751122423f"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 42542,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-six-old-artifact-families-literal-union-whole-inverse-recipes-written-v3.json",
+      "role": "author_inverse_locator",
+      "sha256": "205c2bd1643500eadd3f765776bbd7bb07bc3da6bbbafd4b81d980b6dd1faea9"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 18235,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-corrected-complete-report-binding-and-existing38-case-source-inventory-WRITTEN-v1.json",
+      "role": "author_case_proof_locator",
+      "sha256": "00e55143cf6e8cbb07bdca823b98b0097d78fbd4763f296e3ebda5fbcf511a43"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 1604544,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/independent-full7393-frozen-Git-stage0-table-v1.json",
+      "role": "full7393_independent_table",
+      "sha256": "43a375476cfacc91b4f47bc524054c6c15ff3179deaead545df191b584daa590"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 5912,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/frozen-source-snapshot-catalog-v1.json",
+      "role": "snapshot_catalog",
+      "sha256": "6458f417da744cab92a839fb8b36359195a4646008d6f2eba07f22a2af63cb22"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 97580,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/readonly-native-Git-original-command-catalog-v1.json",
+      "role": "native_readonly_Git_original_catalog",
+      "sha256": "3592fe1bbeb0c6a106c3ef9027eedbe2fb9ba83c962ec08f603cde9a59cc41fc"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 97620,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/sameFD-FULLREAD-supplied-and-owned-pin-catalog-v1.json",
+      "role": "FULLREAD_pin_catalog",
+      "sha256": "61dc0a4f0c769bc9fc21925eb199e45c435b5b18870a5b9524f89bb1b0f44223"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 18767,
+      "mode_octal": "0o644",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/inspect-e10b5226-narrow-source-native-v1.py",
+      "role": "own_native_metadata_recipe_or_original_output_NOT_project_code",
+      "sha256": "e071e090bff3cd79d6493faed45719d2ae2b678ccbd8d9243bd7c79d03bd8288"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 1301,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/inspect-e10b5226-narrow-source-native-v1-stdout-original.bin",
+      "role": "own_native_metadata_recipe_or_original_output_NOT_project_code",
+      "sha256": "d6d92eb31cbdeb5d669b85b8577f25c278bea57ff8e80c7f9898b34777392ea4"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 0,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/inspect-e10b5226-narrow-source-native-v1-stderr-original.bin",
+      "role": "own_native_metadata_recipe_or_original_output_NOT_project_code",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 11074,
+      "mode_octal": "0o644",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/inspect-e10b5226-source-extension-static-relations-v1.py",
+      "role": "own_native_metadata_recipe_or_original_output_NOT_project_code",
+      "sha256": "5ccd78b773bf76df69316eb0ca58d9434892f81cb19eb263b38721107a4502a6"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 455,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/inspect-e10b5226-source-extension-static-relations-v1-stdout-original.bin",
+      "role": "own_native_metadata_recipe_or_original_output_NOT_project_code",
+      "sha256": "864eb9d45111a1544dacbf0a1707b73a442379afa1a55aaf6dbee86049ab5788"
+    },
+    {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 0,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/inspect-e10b5226-source-extension-static-relations-v1-stderr-original.bin",
+      "role": "own_native_metadata_recipe_or_original_output_NOT_project_code",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "exact_scope": {
+    "all15_scope_working_index_frozen_Git_body_mode_exact": true,
+    "allother_parent_Git_identities_exact": true,
+    "assigned_paths": 15,
+    "fresh_selected_unchanged39": true,
+    "fresh_unique_physical_bytes": 3849841,
+    "fresh_unique_physical_paths": 54,
+    "full7393_stage0_entire_frozen_equal_before_after": true,
+    "no_whole441MB_physical_claim": true,
+    "parent_delta": 10,
+    "parent_delta_paths": [
+      "M\tdocs/goal/LOG.md",
+      "M\tdocs/goal/STATUS.md",
+      "M\tmcp-fundamentals/src/expert-intake-stdio.mjs",
+      "M\tmcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+      "M\tmcp-fundamentals/test/audit-package.test.mjs",
+      "M\tmcp-fundamentals/test/expert-intake-files-package.test.mjs",
+      "M\tmcp-fundamentals/test/expert-intake-stdio-package.test.mjs",
+      "M\tmcp-fundamentals/test/expert-submission-client-package.test.mjs",
+      "M\tmcp-fundamentals/test/expert-submission-files-package.test.mjs",
+      "M\tmcp-fundamentals/test/expert-submission-package.test.mjs"
+    ],
+    "protected7378_entire_actualbase_and_parent_Git_identity_equal": true,
+    "protected_Git_bytes": 441103925,
+    "protected_compact_digest": "701e9c9fd01c1add024c0d2192937cdeff43321b7fcbb2500d84a6bbff0efc46",
+    "signature_native_before_after": [
+      "e10b52260e540aa2bc515f5a23304967f087334b",
+      "0395e2e449c096c1b8410dbc9cac981995224f69",
+      "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+      "G"
+    ],
+    "sourceowner77_protected_disjoint": true,
+    "ten_whole_base_parent_goal_prefixes": [
+      {
+        "baseline": "8a26ed50ca548dd994a4d67db5caa2df15879c91",
+        "baseline_bytes": 6899,
+        "baseline_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "current_bytes": 6899,
+        "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "entire_prefix": true,
+        "path": "docs/goal/README.md"
+      },
+      {
+        "baseline": "8a26ed50ca548dd994a4d67db5caa2df15879c91",
+        "baseline_bytes": 8758,
+        "baseline_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "current_bytes": 8758,
+        "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "entire_prefix": true,
+        "path": "docs/goal/REQUIREMENTS.md"
+      },
+      {
+        "baseline": "8a26ed50ca548dd994a4d67db5caa2df15879c91",
+        "baseline_bytes": 801170,
+        "baseline_sha256": "3193c64639599bfb3fb205a13c4029057e553c6a98201686c6535ffc479bdd0c",
+        "current_bytes": 807009,
+        "current_sha256": "af5bfdf2768274e2fd82f57d7ba6798354cba4a73ba905940632e92a408b72fb",
+        "entire_prefix": true,
+        "path": "docs/goal/STATUS.md"
+      },
+      {
+        "baseline": "8a26ed50ca548dd994a4d67db5caa2df15879c91",
+        "baseline_bytes": 25963,
+        "baseline_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "current_bytes": 25963,
+        "current_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "entire_prefix": true,
+        "path": "docs/goal/PHASES.md"
+      },
+      {
+        "baseline": "8a26ed50ca548dd994a4d67db5caa2df15879c91",
+        "baseline_bytes": 1627256,
+        "baseline_sha256": "cc44642df5f44b0716d2e01c0e538c7afea41c7eb95b272c6af966465fb249eb",
+        "current_bytes": 1633095,
+        "current_sha256": "054d631e8a8eb1ccc269ab9e7cb40d8a096c196836b92d2d70a43e6444c0ec7f",
+        "entire_prefix": true,
+        "path": "docs/goal/LOG.md"
+      },
+      {
+        "baseline": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+        "baseline_bytes": 6899,
+        "baseline_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "current_bytes": 6899,
+        "current_sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "entire_prefix": true,
+        "path": "docs/goal/README.md"
+      },
+      {
+        "baseline": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+        "baseline_bytes": 8758,
+        "baseline_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "current_bytes": 8758,
+        "current_sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "entire_prefix": true,
+        "path": "docs/goal/REQUIREMENTS.md"
+      },
+      {
+        "baseline": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+        "baseline_bytes": 803867,
+        "baseline_sha256": "3911320bb9595f894fe6ce0eabc6838ed89a509cf984cb27536f4d32e8210247",
+        "current_bytes": 807009,
+        "current_sha256": "af5bfdf2768274e2fd82f57d7ba6798354cba4a73ba905940632e92a408b72fb",
+        "entire_prefix": true,
+        "path": "docs/goal/STATUS.md"
+      },
+      {
+        "baseline": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+        "baseline_bytes": 25963,
+        "baseline_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "current_bytes": 25963,
+        "current_sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "entire_prefix": true,
+        "path": "docs/goal/PHASES.md"
+      },
+      {
+        "baseline": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+        "baseline_bytes": 1629953,
+        "baseline_sha256": "98302d9806bfa7da8c590fe40f081ca01a81b80f1d08f5c9600292f70d527036",
+        "current_bytes": 1633095,
+        "current_sha256": "054d631e8a8eb1ccc269ab9e7cb40d8a096c196836b92d2d70a43e6444c0ec7f",
+        "entire_prefix": true,
+        "path": "docs/goal/LOG.md"
+      }
+    ],
+    "working_clean_at_two_native_observations": true
+  },
+  "findings": [],
+  "fixture_and_union_scope": {
+    "ONE_guarded_offline_pack_site": 1,
+    "all209_old_names_order_and_whole_entire_base_inverses_verified": true,
+    "at_most_three_actual_SDK_sites": 3,
+    "cases_WRITTEN_UNRUN_at_SOURCE_seal": true,
+    "changed_existing_case_ordinals": [
+      2,
+      4,
+      17
+    ],
+    "new38_names_order_exact_parent": true,
+    "new_runtime_entries_added": 0,
+    "old_helpers_guards_caps_entry_implementations_unchanged": true,
+    "other35_entire_case_sections_exact_parent": true,
+    "six_family_parent_delta_only_current_source_pin_plus_three_expected_literals": [
+      {
+        "current_endpoint_source_pin_refresh_only_else_three_expected_literals": true,
+        "literal_non_pin_delta_lines": [
+          "-  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/EXPERT_SUBMISSIONS.md', 'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/EXPERT_INTAKE_FILES.md', 'package/package.json', ...Object.keys(SOURCE_PINS),",
+          "+  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/EXPERT_SUBMISSIONS.md', 'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md', 'package/package.json', ...Object.keys(SOURCE_PINS),"
+        ],
+        "old_helpers_guards_caps_and_entry_functions_unchanged": true,
+        "parent_delta_pin": {
+          "FULLREAD_sameFD_postpath": true,
+          "bytes": 2004,
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/old-family-deltas/mcp-fundamentals__test__audit-package.test.mjs.diff",
+          "sha256": "219759477edcf7e4ca07ef1ac1180b30743a14a91a673e455b4afb4143872362"
+        },
+        "path": "mcp-fundamentals/test/audit-package.test.mjs"
+      },
+      {
+        "current_endpoint_source_pin_refresh_only_else_three_expected_literals": true,
+        "literal_non_pin_delta_lines": [
+          "-  const legacy = MEMBERS.filter(name => !['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md', 'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/src/expert-intake-files.mjs', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md'].includes(name));",
+          "+  const legacy = MEMBERS.filter(name => !['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md', 'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/src/expert-intake-files.mjs', 'package/src/expert-intake-stdio.mjs', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md'].includes(name));"
+        ],
+        "old_helpers_guards_caps_and_entry_functions_unchanged": true,
+        "parent_delta_pin": {
+          "FULLREAD_sameFD_postpath": true,
+          "bytes": 2746,
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/old-family-deltas/mcp-fundamentals__test__expert-submission-package.test.mjs.diff",
+          "sha256": "62ad2ced30b541f1c380f1830c358316668e287ed7bc6c76a98b9ac579323a86"
+        },
+        "path": "mcp-fundamentals/test/expert-submission-package.test.mjs"
+      },
+      {
+        "current_endpoint_source_pin_refresh_only_else_three_expected_literals": true,
+        "literal_non_pin_delta_lines": [
+          "-  assert.equal(decodeTar(packed.compressed).size, 22);",
+          "+  assert.equal(decodeTar(packed.compressed).size, 24);"
+        ],
+        "old_helpers_guards_caps_and_entry_functions_unchanged": true,
+        "parent_delta_pin": {
+          "FULLREAD_sameFD_postpath": true,
+          "bytes": 11948,
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/old-family-deltas/mcp-fundamentals__test__audit-inputs-client-package.test.mjs.diff",
+          "sha256": "8f6f1987e6ebd0c24a51d98249c8cf27aaca9cfc47d27afbad9082be75d55dee"
+        },
+        "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs"
+      },
+      {
+        "current_endpoint_source_pin_refresh_only_else_three_expected_literals": true,
+        "literal_non_pin_delta_lines": [],
+        "old_helpers_guards_caps_and_entry_functions_unchanged": true,
+        "parent_delta_pin": {
+          "FULLREAD_sameFD_postpath": true,
+          "bytes": 3788,
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/old-family-deltas/mcp-fundamentals__test__expert-submission-files-package.test.mjs.diff",
+          "sha256": "e7d14d37325bb82b2b25ebc307ebd4e9161438d7f14a38779d8e90576b042eb6"
+        },
+        "path": "mcp-fundamentals/test/expert-submission-files-package.test.mjs"
+      },
+      {
+        "current_endpoint_source_pin_refresh_only_else_three_expected_literals": true,
+        "literal_non_pin_delta_lines": [],
+        "old_helpers_guards_caps_and_entry_functions_unchanged": true,
+        "parent_delta_pin": {
+          "FULLREAD_sameFD_postpath": true,
+          "bytes": 3785,
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/old-family-deltas/mcp-fundamentals__test__expert-submission-client-package.test.mjs.diff",
+          "sha256": "f9531b3c99c6cc31f179df2f8adb111409232a8ab1a8d902198788698c54aed2"
+        },
+        "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs"
+      },
+      {
+        "current_endpoint_source_pin_refresh_only_else_three_expected_literals": true,
+        "literal_non_pin_delta_lines": [],
+        "old_helpers_guards_caps_and_entry_functions_unchanged": true,
+        "parent_delta_pin": {
+          "FULLREAD_sameFD_postpath": true,
+          "bytes": 3772,
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/old-family-deltas/mcp-fundamentals__test__expert-intake-files-package.test.mjs.diff",
+          "sha256": "55a44204224deddc7350fe8da8594cf310827e8f7aa24fdca14a97c3591513f0"
+        },
+        "path": "mcp-fundamentals/test/expert-intake-files-package.test.mjs"
+      }
+    ],
+    "six_old_family_counts": [
+      22,
+      30,
+      38,
+      40,
+      40,
+      39
+    ],
+    "threeSDK_entry_source_sections_entire_parent_exact": [
+      {
+        "bytes": 264,
+        "entire_parent_body_exact": true,
+        "name": "prepare intake package: SDK entry1 reuses the installed-source marked-guide inputs for one complete preparation call and owned close",
+        "ordinal": 36,
+        "sha256": "44b8ea7efb8d4033822c31fed4a0dc78b54a1594f3ca9458d6b8459c7d90eaa7"
+      },
+      {
+        "bytes": 252,
+        "entire_parent_body_exact": true,
+        "name": "prepare intake package: SDK entry2 absolute owned bin alias retains one call original startup ownership and bounded close",
+        "ordinal": 37,
+        "sha256": "0272e53c337700ebd2118faa75b5b42a39d47e942e58f82a70df579ddd58b269"
+      },
+      {
+        "bytes": 268,
+        "entire_parent_body_exact": true,
+        "name": "prepare intake package: SDK entry3 stable tool refusal has no discovery retry input echo or extra child",
+        "ordinal": 38,
+        "sha256": "6932aedaa3024172b6fe296aa2866a9a78077e656543d206ddcdd0753b55db1a"
+      }
+    ]
+  },
+  "gate_limits": {
+    "CURRENTCI_verdict": null,
+    "all_proofs_EXTERNAL": true,
+    "archive_allocation": null,
+    "current_project_runtime_passes_or_actual_sdk_child_census": false,
+    "future_head_archive_FINAL_READY_merge_actualcustody_publication_ACK": false,
+    "new_actual_artifact_installation_live_indexing_human_strategy_outcomes": null,
+    "no_project_Node_import_SDK_tests_CLI_npm_pack_helper_build_browser_GET_processprobe_APIrefetch_job_rerun_grant_spend_pub": true,
+    "original_e0ae_STATIC_SOURCE_HOLD_remains_immutable": true,
+    "repository_evidence_writes": 0,
+    "source_working_index_branch_archive_edits_by_reviewer": false
+  },
+  "head": "e10b52260e540aa2bc515f5a23304967f087334b",
+  "independent_native_Git_body_mode_history_proof": {
+    "FULLREAD_sameFD_postpath": true,
+    "bytes": 229794,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/independent-e10b5226-frozen-Git-body-mode-inverse-history-source-delta-proof-v1.json",
+    "sha256": "0b264790b6e7e7161974a75c407bc7053313ab7d8fb41dff6b7e2a401441b493"
+  },
+  "independent_source_relationship_import_scope_proof": {
+    "FULLREAD_sameFD_postpath": true,
+    "bytes": 47410,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/native-e10b5226-narrow-SOURCE-v1/independent-e10b5226-static-input-report-relations-import-literal-scope-proof-v1.json",
+    "sha256": "9aa3c84cb9f4ccaaca65853b76602d969d788c4dc9be2a495f4f019c204d5e89"
+  },
+  "native_current_expected_source_import_closure": {
+    "JS_MJS_sources": 14,
+    "bins": 8,
+    "current_Git_source_only_no_actual_artifact_claim": true,
+    "current_new_module_sourcepin_verified": true,
+    "expected_current_members": [
+      "package/AUDIT_INPUTS.md",
+      "package/AUDIT_INPUTS_CLIENT.md",
+      "package/EXPERT_INTAKE_FILES.md",
+      "package/EXPERT_INTAKE_STDIO.md",
+      "package/EXPERT_SUBMISSIONS.md",
+      "package/EXPERT_SUBMISSION_CLIENT.md",
+      "package/EXPERT_SUBMISSION_FILES.md",
+      "package/LICENSE",
+      "package/README.md",
+      "package/package.json",
+      "package/src/audit-inputs-client.mjs",
+      "package/src/audit-inputs-core.mjs",
+      "package/src/audit-inputs-stdio.mjs",
+      "package/src/canonical-json.mjs",
+      "package/src/expert-agreement.mjs",
+      "package/src/expert-intake-core.mjs",
+      "package/src/expert-intake-files.mjs",
+      "package/src/expert-intake-stdio.mjs",
+      "package/src/expert-submission-audit-core.mjs",
+      "package/src/expert-submission-client.mjs",
+      "package/src/expert-submission-files.mjs",
+      "package/src/expert-submission-stdio.mjs",
+      "package/src/filing-facts-packet.mjs",
+      "package/src/server.mjs"
+    ],
+    "finite_import_grammar_scope": true,
+    "literal_edges": 90,
+    "new_import_specifier_or_dependency_added": false,
+    "strict_expected_future_members": 24
+  },
+  "native_metadata_recipes_status": {
+    "both_original_stderr_files_empty": true,
+    "old_reader_errors_receipts_failures_preserved": true,
+    "own_current_reader_stops": [],
+    "own_native_Git_metadata_auditor_exit": 0,
+    "own_source_string_import_metadata_auditor_exit": 0
+  },
+  "original_H_SOURCE_HOLD_immutable": {
+    "FULLREAD_sameFD_postpath": true,
+    "bytes": 26651,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/review-e0ae88cf-original-STATIC-SOURCE-HOLD-v1.json",
+    "sha256": "e601286e657bbb1f97feeea3d7c22a2f1fac261864d4523fc786670836dd376d"
+  },
+  "original_H_handoff_immutable": {
+    "FULLREAD_sameFD_postpath": true,
+    "bytes": 3082,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/handoff-e0ae88cf-original-STATIC-SOURCE-HOLD-PRIMARY-SECONDARY-v1.json",
+    "sha256": "09fb7b0f5b8e6a224f6469d5c7269a8cad3edc9d15b901dc6de01dca0a106e90"
+  },
+  "reserved_roles": "PRIMARY alone ordinary merge/publication; Lead CPU/127; SAME roles/thread/model/goals",
+  "reviewer": "THIRD independent complementary reviewer; SAME role",
+  "saved_original_failed_CI_preservation": {
+    "all7_original": "6SUCCESS1MCPFAILURE",
+    "execution183": "UNRUN",
+    "old30_additive_precision": {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 896,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-e0ae88cf-original-diagnosis-historical14-selector-additive-precision-v1.json",
+      "sha256": "0ef8b747086a7146d70350dc0cc1743742d2f3ecfa27e80e4d722f6a145e7211"
+    },
+    "original_fundamentals": {
+      "fail": 26,
+      "pass": 438
+    },
+    "original_new38": {
+      "fail": 2,
+      "pass": 36
+    },
+    "qualification_file": {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 3608,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-e0ae88cf-qualified-original-currentCI-FAILURE-v1.json",
+      "sha256": "7b4d7223d545f1b9f1a5e9fe1b6ff0d2fef39039243eab90d405db7491a66541"
+    },
+    "scope": "Metadata preservation only; no underlying original API/TAP/artifact re-audit in this SOURCE gate"
+  },
+  "schema": "canli.third.pr392.narrow.frozen-source-extension.v1",
+  "sole_parent": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+  "source_delta_semantics": {
+    "captured_original_base64_and_expected_gold_sha_frozen": true,
+    "changed_module_sections": [
+      "captureIntakeArguments",
+      "validateCompleteReport",
+      "executeExpertIntake"
+    ],
+    "core_entire_base_parent_exact": {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 30951,
+      "path": "/Users/arhancanli/canlicapital-expert-intake-stdio-package-20261005/mcp-fundamentals/src/expert-intake-core.mjs",
+      "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545"
+    },
+    "core_invoked_once": "One source kernel(...captured.kernelArguments) call; no duplicate/repair/replay kernel",
+    "execute_kernel_serialization_report_tool_caps_publicJSON_and_return_unchanged_except_validator_scope_argument": true,
+    "frozen_module_bytes": 49979,
+    "frozen_module_sha256": "1cde7375eb1e63b381d9343373e55351b5efca4db27cb24e2e91a98e8515f0ae",
+    "full2MiB_report_and_fullN_null_outcomes_contract_preserved": true,
+    "original_clock_Promise_start_nativewriter_drain_endpoint_close_refusal_sections_entire_parent_exact": [
+      {
+        "current_bytes": 301,
+        "current_sha256": "4cfe851c7d636b22ace171f92cc69291c946f38faccf342d991c5e7bd5f34969",
+        "entire_function_section_exact_parent": true,
+        "function": "refuse",
+        "parent_bytes": 301,
+        "parent_sha256": "4cfe851c7d636b22ace171f92cc69291c946f38faccf342d991c5e7bd5f34969"
+      },
+      {
+        "current_bytes": 1956,
+        "current_sha256": "af1d4617af7070a6863505035a1cb14e05d8450ac3d78c03e36537017a3d841c",
+        "entire_function_section_exact_parent": true,
+        "function": "createWorkScope",
+        "parent_bytes": 1956,
+        "parent_sha256": "af1d4617af7070a6863505035a1cb14e05d8450ac3d78c03e36537017a3d841c"
+      },
+      {
+        "current_bytes": 321,
+        "current_sha256": "510f2ea705e70266a8ec694a48c5c0740189f113e3a4c9f85edcdf29c56448d0",
+        "entire_function_section_exact_parent": true,
+        "function": "observeOriginalPromise",
+        "parent_bytes": 321,
+        "parent_sha256": "510f2ea705e70266a8ec694a48c5c0740189f113e3a4c9f85edcdf29c56448d0"
+      },
+      {
+        "current_bytes": 200,
+        "current_sha256": "e6d3d6ca6f91e6830503097db51b5b75e993bc288d3d32a84d2cca4df06b0122",
+        "entire_function_section_exact_parent": true,
+        "function": "startOwnedPromise",
+        "parent_bytes": 200,
+        "parent_sha256": "e6d3d6ca6f91e6830503097db51b5b75e993bc288d3d32a84d2cca4df06b0122"
+      },
+      {
+        "current_bytes": 427,
+        "current_sha256": "16281208b222ae439e76054ccb85ec8cbda2337a7c32daa4b2aeac546cfaf86d",
+        "entire_function_section_exact_parent": true,
+        "function": "runObservedTask",
+        "parent_bytes": 427,
+        "parent_sha256": "16281208b222ae439e76054ccb85ec8cbda2337a7c32daa4b2aeac546cfaf86d"
+      },
+      {
+        "current_bytes": 950,
+        "current_sha256": "ce29f78c6e505bed88a8f38dc3bf84cf5dd664f180e6c5fac20d40c19cf25574",
+        "entire_function_section_exact_parent": true,
+        "function": "argumentsRecord",
+        "parent_bytes": 950,
+        "parent_sha256": "ce29f78c6e505bed88a8f38dc3bf84cf5dd664f180e6c5fac20d40c19cf25574"
+      },
+      {
+        "current_bytes": 770,
+        "current_sha256": "59269e4780c766f8376b612c2b689a0534ae05dc732a121d0cade53ae5681806",
+        "entire_function_section_exact_parent": true,
+        "function": "admitOriginalCall",
+        "parent_bytes": 770,
+        "parent_sha256": "59269e4780c766f8376b612c2b689a0534ae05dc732a121d0cade53ae5681806"
+      },
+      {
+        "current_bytes": 647,
+        "current_sha256": "782098ec301fd0a283d5a0c5613c309be0d07526aa5cd07f085b6cc0c11943e0",
+        "entire_function_section_exact_parent": true,
+        "function": "denseArray",
+        "parent_bytes": 647,
+        "parent_sha256": "782098ec301fd0a283d5a0c5613c309be0d07526aa5cd07f085b6cc0c11943e0"
+      },
+      {
+        "current_bytes": 792,
+        "current_sha256": "7e2c23ef70036d6196abe31ffc6acbc85a8682550cd232740d6d39062872e343",
+        "entire_function_section_exact_parent": true,
+        "function": "base64Length",
+        "parent_bytes": 792,
+        "parent_sha256": "7e2c23ef70036d6196abe31ffc6acbc85a8682550cd232740d6d39062872e343"
+      },
+      {
+        "current_bytes": 216,
+        "current_sha256": "92c74bf491fe8188ac3bf6d762d79e8bfe635882d595ab5d6b4ec95c531a51c8",
+        "entire_function_section_exact_parent": true,
+        "function": "toolResult",
+        "parent_bytes": 216,
+        "parent_sha256": "92c74bf491fe8188ac3bf6d762d79e8bfe635882d595ab5d6b4ec95c531a51c8"
+      },
+      {
+        "current_bytes": 963,
+        "current_sha256": "fa9dde5fa71b046f14287a5a09fc411b9da911f654546af01e764e2fdecd8c36",
+        "entire_function_section_exact_parent": true,
+        "function": "safePublicTree",
+        "parent_bytes": 963,
+        "parent_sha256": "fa9dde5fa71b046f14287a5a09fc411b9da911f654546af01e764e2fdecd8c36"
+      },
+      {
+        "current_bytes": 656,
+        "current_sha256": "700eaa2e9f73851e53207b9e873ccdb8948edded616a8cec227fedb0d2811174",
+        "entire_function_section_exact_parent": true,
+        "function": "intakeRefusal",
+        "parent_bytes": 656,
+        "parent_sha256": "700eaa2e9f73851e53207b9e873ccdb8948edded616a8cec227fedb0d2811174"
+      },
+      {
+        "current_bytes": 2834,
+        "current_sha256": "bc26302c247d63bb523d1003b87e763de4098e72722ce7d317c1356cfc8aca9b",
+        "entire_function_section_exact_parent": true,
+        "function": "validId",
+        "parent_bytes": 2834,
+        "parent_sha256": "bc26302c247d63bb523d1003b87e763de4098e72722ce7d317c1356cfc8aca9b"
+      },
+      {
+        "current_bytes": 3483,
+        "current_sha256": "35ff64aa354041d2cc9c4e282ccbbb3ec891467163e1c235be4eb5d9239cc5f6",
+        "entire_function_section_exact_parent": true,
+        "function": "createIntakeNativeWriter",
+        "parent_bytes": 3483,
+        "parent_sha256": "35ff64aa354041d2cc9c4e282ccbbb3ec891467163e1c235be4eb5d9239cc5f6"
+      },
+      {
+        "current_bytes": 4582,
+        "current_sha256": "cf64466f61270185a36f98eaf6fbc97ce1580a3fa2cc24d99560ed62b1673075",
+        "entire_function_section_exact_parent": true,
+        "function": "createIntakeDiagnostics",
+        "parent_bytes": 4582,
+        "parent_sha256": "cf64466f61270185a36f98eaf6fbc97ce1580a3fa2cc24d99560ed62b1673075"
+      },
+      {
+        "current_bytes": 2300,
+        "current_sha256": "e12cabd4fa05ffa5bd5093d7decd4c41f27888205b8407621235342fb38bd63d",
+        "entire_function_section_exact_parent": true,
+        "function": "createExpertIntakeEndpoint",
+        "parent_bytes": 2300,
+        "parent_sha256": "e12cabd4fa05ffa5bd5093d7decd4c41f27888205b8407621235342fb38bd63d"
+      },
+      {
+        "current_bytes": 502,
+        "current_sha256": "509f7a438ce76fcbd744d9f5c47695b2bc4f28f77a77f00b437da2a6eb11024b",
+        "entire_function_section_exact_parent": true,
+        "function": "isDirectExecution",
+        "parent_bytes": 502,
+        "parent_sha256": "509f7a438ce76fcbd744d9f5c47695b2bc4f28f77a77f00b437da2a6eb11024b"
+      }
+    ],
+    "source_declarations_behavior_diagnostics_do_not_authenticate_executing_code": true
+  },
+  "tree": "0395e2e449c096c1b8410dbc9cac981995224f69",
+  "unchanged_accepted_products": [
+    "mcp-fundamentals/EXPERT_INTAKE_STDIO.md",
+    "mcp-fundamentals/package.json",
+    "mcp-fundamentals/package-lock.json",
+    "mcp-fundamentals/README.md",
+    "package.json"
+  ],
+  "unchanged_guide_evidence_carried_only_entire_identical_GUIDE_bytes": true,
+  "unchanged_guide_raw_JSON_same_embedded_workflow": [
+    {
+      "bytes": 1562,
+      "embedded_workflow_literal_entire_bytes_equal": true,
+      "final_LF": true,
+      "kind": "gold",
+      "native_JSON_parsed": true,
+      "sha256": "b958f12debf58d64818286f536b240c5daf20dac244950a2ad294e54fa33acfb"
+    },
+    {
+      "bytes": 945,
+      "embedded_workflow_literal_entire_bytes_equal": true,
+      "final_LF": true,
+      "kind": "intake",
+      "native_JSON_parsed": true,
+      "sha256": "35ab3f7ac040cce11c8890b7004f15358b6cba0d96f58c789110b860cff353e4"
+    },
+    {
+      "bytes": 74,
+      "embedded_workflow_literal_entire_bytes_equal": true,
+      "final_LF": true,
+      "kind": "evidence_inventory",
+      "native_JSON_parsed": true,
+      "sha256": "d3507c0c1124e9a4489e95068e45cc4c2b4b902085e7a75a5f29eb22b11fa5ae"
+    },
+    {
+      "bytes": 259,
+      "embedded_workflow_literal_entire_bytes_equal": true,
+      "final_LF": true,
+      "kind": "intake_settings",
+      "native_JSON_parsed": true,
+      "sha256": "31326dd89d31849ccd21e0e9434ca6da63e8e20e4f6944ab90de9067fb58e143"
+    }
+  ],
+  "utc": "2026-10-05T14:50:16.626148+00:00",
+  "verdict": "PASS_STATIC_SOURCE_SCOPE_ONLY"
+}
