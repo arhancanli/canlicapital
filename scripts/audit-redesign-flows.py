@@ -60,6 +60,22 @@ async def main():
    assert await menu.get_attribute('open') is not None
    await page.keyboard.press('Escape');assert await menu.get_attribute('open') is None
    records.append({'route':'/developers','width':width,'pass':not errors,'pageErrors':errors,'flow':'keyboard menu'})
+   contributor_case={'route':'/contributors','width':width,'flow':'contributor guide and reward status'}
+   try:
+    await page.locator('.developer-contributors a[href="/contributors"]').click()
+    await page.wait_for_url('**/contributors')
+    assert await page.locator('h1').is_visible()
+    program=json.loads((ROOT/'config/contributor-program.json').read_text())
+    boundary=page.locator('[data-contributor-status]')
+    assert await boundary.get_attribute('data-contributor-status')==program['status']
+    assert await boundary.inner_text()==program['boundary']
+    for benefit in program['benefits']:
+     assert await page.get_by_text(benefit['description'],exact=True).is_visible()
+    assert await page.get_by_role('link',name='Read the contribution guide').get_attribute('href')==program['repository']+'/blob/main/CONTRIBUTING.md'
+    assert not await page.evaluate('document.documentElement.scrollWidth>innerWidth+1')
+    contributor_case['pass']=True
+   except Exception as e:contributor_case.update({'pass':False,'error':str(e)})
+   records.append(contributor_case)
    await context.close()
   await browser.close()
  failures=[r for r in records if not r['pass']]

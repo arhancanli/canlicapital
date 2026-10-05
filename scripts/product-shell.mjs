@@ -51,6 +51,7 @@ const SECONDARY_LINKS = Object.freeze([
 const TOOLS_LINKS = Object.freeze([
   { key: "tools", label: "All tools", href: "/tools" },
   { key: "how-to-validate-a-backtest", label: "How to validate a backtest", href: "/how-to-validate-a-backtest" },
+  { key: "contributors", label: "Contributors", href: "/contributors" },
 ]);
 
 const GITHUB_MARK =

@@ -27,7 +27,7 @@ import { EXECUTION_SOURCE_PATHS } from './execution-workflow.mjs';
 // under test.
 // =============================================================================
 export const PAGE_SOURCES = {
-  "/": ["index.html", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
+  "/": ["index.html", "config/home-answers.json", "scripts/build-home-answers.mjs", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
   "/systems": ["systems.html"],
   "/performance": ["performance.html"],
   "/progress": ["progress.html"],
@@ -68,6 +68,7 @@ export const PAGE_SOURCES = {
     "research",
     "measurements",
   ],
+  "/contributors": ["scripts/build-contributors.mjs", "scripts/lib/contributors.mjs", "config/contributor-program.json"],
   "/engineering": ["scripts/build-engineering.mjs", "public/glassbox/engineering_open_source.json"],
   "/how-to-validate-a-backtest": ["scripts/build-how-to-validate-a-backtest.mjs"],
   "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "js/filing-facts-packet.js", "scripts/canonical-json.mjs", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
@@ -140,6 +141,10 @@ export const PAGE_SOURCES = {
 export const SHARED_PAGE_SOURCES = [
   'scripts/product-shell.mjs',
   'scripts/build-site-design.mjs',
+  'scripts/lib/contributors.mjs',
+  'config/contributor-program.json',
+  'css/product-shell.css', 'css/design-system.css', 'css/story.css', 'css/film.css', 'js/site-motion.js', 'js/evidence-film.js',
+  'public/og.png', 'public/favicon.svg', 'public/favicon.ico',
 ];
 for (const files of Object.values(PAGE_SOURCES)) files.push(...SHARED_PAGE_SOURCES);
 
