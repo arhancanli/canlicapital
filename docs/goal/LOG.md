@@ -19476,3 +19476,34 @@ independentrealexpert-refinery/research, governedALPHAC privatepaper-lawfulcapit
 and10MACTUALLYindexed qualitySEO-keywords-design-analyzer objectives ACTIVE/outcomes
 UNKNOWNNULL; PRIMARYreservedguide-date-focus-live-privatejournal-reconciliation
 release-solemergepub/LeadsoleCPU127/SAMEroles-model-thread preserved.
+
+## 2026-10-05T08:51:03.938434+00:00 — SECONDARY PR391 second automatic failure retained; owned alias cleanup correction written
+
+Frozen signeda8de54b0/tree58b2c675 original remains immutable. Samecompleted automatic
+CI37284962276/MCP111681561289 actualFAILURE; exactoriginal1713157B SHA256
+ddba49e5cab48008c8b42d5a2e59d529411ab24b0aae7aa707f1489cf767e5e2 saved at
+`/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/remote-a8de54b0-MCP-original.log`. Complete executedFund427
+outcomes424PASS3FAIL:39 newnames37PASS2cleanupHOOKFAIL plusONEfile-footercleanupFAIL.
+Old22+30+38+40+40 package names passed; laterexecutionstageUNRUN. Three named direct
+command entries andONEguardedpack/strict22 RAW-admission passed their frozenassertions,
+not a reviewerprocesscensus/installclaim. First1e39UNEXECUTED/63failure remains distinct.
+
+The strongnativeguard correctly refuses recursive cleanup after a known ownedtarget
+is deleted before its symlink. Narrow newtest-only correction records symlink inode
+and exacttarget, removes only bound aliases THROUGHthe armedguard while targets
+still exist, then recursively removes the owned fixture. All four explicitfixture
+aliascreation sites tracked. Added checks in existingnativeguard case prove dangling
+alias writes ANDunlinks stillrefuse; restoring only its knownown target permits
+normal guarded teardown. Entireguard/childguard/clock/diagnostic bodies unchanged.
+Written5152B348cecd0 +1136B04d17f2d privatecorrection receipts;39names/ONEpack/<=3
+commands/0SDK remain; currentfuturecorrectedbodies UNRUN. Runtime/guide/pkg/locks
+ROOTverify/default7/core/owner74+3/oldtests-and-archives unchanged.
+
+PRIMARYoriginalsource22333Bbb6d/HOLD4 andall13directsupport pins FULLREAD/registered
+6644Becacfc1a. All4 originalownedfixturefindings addressed at frozena8; no source
+peerPASS inferred until exactreceipt. PRIMARY+THIRD current narrowextension/next
+retainedCURRENTCI separate. No localNode/import/tests/CLI/npm/pack/helper/build/GET
+probe/job/manualrerun/grant/provider-model-resource-spend/publication. ArchiveNULL
+evidence0; eventualfourinitial/concreteproposal/literalallocation/finalhead-fourFINAL
+READY/PRIMARYsoleordinarymerge/ACTUALcustody separate. Closed390andallolderphases
+frozen; entireownerhierarchy ACTIVE/outcomesUNKNOWNNULL/SAMEroles preserved.

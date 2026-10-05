@@ -385,7 +385,23 @@ function coreArgs(s) { return [s.rawGold,hash(s.rawGold),s.rawDocuments?.intake?
   s.rawDocuments?.evidenceInventory??bytes(s.evidenceInventory),s.evidence,s.rawDocuments?.intakeSettings??bytes(s.intakeSettings)]; }
 function files(t,s=scenario()) {
   const root=fs.mkdtempSync(join(TMP,'native-input-'));fs.chmodSync(root,0o700);
-  t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
+  const cleanupLinks = [];
+  t.after(() => {
+    // Remove only recorded own aliases while their targets still exist. Recursive
+    // target-first cleanup would correctly be refused by the unchanged native guard.
+    for (const { file, target, identity } of cleanupLinks) {
+      assert.equal(fs.realpathSync(path.dirname(file)), root);
+      const linked = fs.lstatSync(file, { bigint: true });
+      assert.ok(linked.isSymbolicLink());
+      for (const key of ['dev', 'ino', 'mode']) assert.equal(linked[key], identity[key]);
+      assert.equal(fs.readlinkSync(file), target);
+      const actual = fs.realpathSync(target);
+      assert.ok(actual === root || actual.startsWith(root + path.sep));
+      fs.unlinkSync(file); // Still passes through the armed guard; no bypass.
+      assert.throws(() => fs.lstatSync(file), { code: 'ENOENT' });
+    }
+    fs.rmSync(root, { recursive: true, force: true });
+  });
   const raw=s.rawDocuments??{gold:s.rawGold,intake:bytes(s.intake),evidenceInventory:bytes(s.evidenceInventory),intakeSettings:bytes(s.intakeSettings)};
   const paths={},inputs=[];
   for(const[name,data]of Object.entries(raw)) {const p=join(root,name+'.json');paths[name]=p;inputs.push(p);fs.writeFileSync(p,data,{flag:'wx',mode:0o600});suppliedFixtureBytes+=data.length;}
@@ -393,7 +409,16 @@ function files(t,s=scenario()) {
   assert.ok(suppliedFixtureBytes<L.fixture,'FINITE_SUPPLIED_BYTES');
   const out=join(root,'preparation.json'),argv=['--gold',paths.gold,'--expected-gold-sha256',hash(s.rawGold),'--intake',paths.intake,
     '--evidence-inventory',paths.evidenceInventory,'--intake-settings',paths.intakeSettings,'--out',out,...paths.evidence.flatMap(p=>['--evidence',p])];
-  return {root,out,paths,inputs,argv,s};
+  return {root,out,paths,inputs,argv,s,cleanupLinks};
+}
+function fixtureSymlink(f, target, file) {
+  assert.ok(file.startsWith(f.root + path.sep));
+  assert.ok(target === f.root || target.startsWith(f.root + path.sep));
+  assert.equal(fs.realpathSync(path.dirname(file)), f.root);
+  fs.symlinkSync(target, file);
+  const identity = fs.lstatSync(file, { bigint: true });
+  assert.ok(identity.isSymbolicLink()); assert.equal(fs.readlinkSync(file), target);
+  f.cleanupLinks.push({ file, target, identity });
 }
 
 function instrument(hooks = {}) {
@@ -572,7 +597,7 @@ test('intake files package: primitive64 lowercase raw SHA exact end refuses term
 });
 test('intake files package: relative alias-parent malformed UTF8 control and overlong paths refuse qualified context', async t=>{
   const f=files(t);for(const value of ['relative.json',f.paths.gold+'/../gold.json',f.paths.gold+'\0','/x'+String.fromCharCode(0xd800),'/'+ 'a'.repeat(4096)]){const argv=[...f.argv];argv[1]=value;const io=instrument();refused(await main(argv,{filesystem:io.filesystem}),'CLI_PATH');assert.equal(io.events.length,0);}
-  const link=join(f.root,'parent-alias');fs.symlinkSync(f.root,link);const argv=[...f.argv];argv[1]=join(link,'gold.json');const o={};refused(await main(argv,{loadCore:loader(o)}),'CLI_INPUT_CHANGED');assert.equal(o.loads,undefined);assert.equal(fs.existsSync(f.out),false);
+  const link=join(f.root,'parent-alias');fixtureSymlink(f,f.root,link);const argv=[...f.argv];argv[1]=join(link,'gold.json');const o={};refused(await main(argv,{loadCore:loader(o)}),'CLI_INPUT_CHANGED');assert.equal(o.loads,undefined);assert.equal(fs.existsSync(f.out),false);
 });
 test('intake files package: every input FD is admitted before first payload allocation read loader or core', async t=>{
   const f=files(t,scenario({evidence:2})),io=instrument(),o={};saved(f,await main(f.argv,{filesystem:io.filesystem,loadCore:loader(o)}));
@@ -612,7 +637,7 @@ test('intake files package: final whole-batch sameFD and postpath guards detect 
 });
 test('intake files package: symlink hardlink empty nonregular and foreign-owner inputs refuse without kernel', async t=>{
   for(const kind of ['symlink','hardlink','empty','directory','uid']){const f=files(t),p=join(f.root,'fault'),o={};const argv=[...f.argv];
-    if(kind==='symlink'){fs.symlinkSync(f.paths.gold,p);argv[1]=p;}if(kind==='hardlink'){fs.linkSync(f.paths.gold,p);argv[1]=p;}if(kind==='empty'){fs.writeFileSync(p,'',{flag:'wx'});argv[1]=p;}if(kind==='directory')argv[1]=f.root;
+    if(kind==='symlink'){fixtureSymlink(f,f.paths.gold,p);argv[1]=p;}if(kind==='hardlink'){fs.linkSync(f.paths.gold,p);argv[1]=p;}if(kind==='empty'){fs.writeFileSync(p,'',{flag:'wx'});argv[1]=p;}if(kind==='directory')argv[1]=f.root;
     const io=instrument(kind==='uid'?{fstatSync(e,n){const st=n();return e.path===f.paths.gold?statWith(st,{uid:st.uid+1n}):st;}}:{});
     const r=await main(argv,{filesystem:io.filesystem,loadCore:loader(o)});refused(r);assert.equal(o.loads,undefined);assert.equal(io.held.size,0);assert.equal(fs.existsSync(f.out),false);}
 });
@@ -652,7 +677,7 @@ test('intake files package: private output parent ownership permissions and unto
 });
 test('intake files package: existing outputs symlinks input aliases and hardlinks never overwrite unlink or retry', async t=>{
   for(const kind of ['existing','symlink','alias','hardlink']){const f=files(t),argv=[...f.argv],original=Buffer.from('RETAIN PRIVATE ORIGINAL');
-    if(kind==='existing')fs.writeFileSync(f.out,original,{flag:'wx',mode:0o600});if(kind==='symlink')fs.symlinkSync(f.paths.gold,f.out);
+    if(kind==='existing')fs.writeFileSync(f.out,original,{flag:'wx',mode:0o600});if(kind==='symlink')fixtureSymlink(f,f.paths.gold,f.out);
     if(kind==='alias')argv[11]=f.paths.gold;if(kind==='hardlink')fs.linkSync(f.paths.gold,f.out);
     const io=instrument(),o={};refused(await main(argv,{filesystem:io.filesystem,loadCore:loader(o)}));assert.equal(o.loads,undefined);assert.equal(io.held.size,0);
     assert.equal(io.events.some(e=>e.operation==='writeSync'),false);if(kind==='existing')assert.deepEqual(snapshot(f.out),original);assert.deepEqual(snapshot(f.paths.gold),f.s.rawGold);}
@@ -698,13 +723,20 @@ test('intake files package: terminal short progress and SAME offset backpressure
 });
 test('intake files package: native network Buffer foreign destinations aliases and both mutation paths deny before forwarding', async t=>{
   const f=files(t),start=denied,p=join(f.root,'positive');fs.writeFileSync(p,'owned positive',{flag:'wx',mode:0o600});
-  const link=join(f.root,'readonly-source-alias');fs.symlinkSync(p,link); // owned positive alias stays owned
+  const link=join(f.root,'readonly-source-alias');fixtureSymlink(f,p,link); // owned positive alias stays owned
   fs.writeFileSync(link,'owned positive');assert.equal(snapshot(p).toString(),'owned positive');
   const invalid=Buffer.concat([Buffer.from(f.root+'/'),Buffer.from([255])]);
   for(const fn of [()=>fetch('https://example.invalid'),()=>cp.spawn('not-allocated',[]),()=>fs.writeFileSync('/unallocated-intake-output','x'),()=>fs.writeFileSync(invalid,'x'),
     ()=>fs.renameSync(p,'/unallocated-intake-output'),()=>fs.copyFileSync('/unallocated-intake-input',p),()=>fs.linkSync('/unallocated-intake-input',join(f.root,'hard')),()=>fs.symlinkSync('/unallocated-intake-input',join(f.root,'sym'))])assert.throws(fn,/NATIVE_DENIAL/);
   assert.equal(denied-start,8);assert.equal(snapshot(p).toString(),'owned positive');
   const handle=await fsp.open(path.join(ROOT,'package.json'),'r');try{await assert.rejects(async()=>handle.writeFile('foreign'),/NATIVE_DENIAL/);}finally{await handle.close();}
+  const target=join(f.root,'dangling-positive'),alias=join(f.root,'dangling-alias');
+  fs.writeFileSync(target,'own target',{flag:'wx',mode:0o600});fixtureSymlink(f,target,alias);
+  fs.unlinkSync(target);
+  assert.throws(()=>fs.writeFileSync(alias,'must not follow dangling alias'),/NATIVE_DENIAL/);
+  assert.throws(()=>fs.unlinkSync(alias),/NATIVE_DENIAL/);
+  // Restore only this known owned target for guarded alias-first teardown.
+  fs.writeFileSync(target,'own target restored',{flag:'wx',mode:0o600});
 });
 test('intake files package: hook assertion failure restores nested guards and cleans only owned fixture in finally', ()=>{
   const own=fs.mkdtempSync(join(TMP,'cleanup-control-'));let restored=false,removed=false,expected;
