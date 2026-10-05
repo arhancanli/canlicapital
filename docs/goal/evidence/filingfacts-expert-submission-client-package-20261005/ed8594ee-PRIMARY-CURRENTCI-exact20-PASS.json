@@ -1,0 +1,1362 @@
+{
+  "CodeQL_run": 37263720251,
+  "MCP_job": 111616043447,
+  "Node": "22.23.3",
+  "PR": 390,
+  "PRIMARYreservedroles_solemergepub_LeadCPU127_same_roles_threads_model": "UNCHANGED",
+  "RAW_MODES_preexecution_shape_qualifier_preserved": {
+    "FULLREAD_sameFD_postpath": true,
+    "bytes": 1250,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/current-ed8594ee-native-auditor-RAW_MODES-shape-preexecution-qualification-v1.json",
+    "sha256": "2c44274e68c94fbc1ad0bdb301e48cff4eaf3405ad05ab2149fb73494243ce17"
+  },
+  "ROOT_job": 111616043285,
+  "TAP": {
+    "all7_counters_each_block": true,
+    "all8_plans": true,
+    "all_top_outcomes": "PASS",
+    "dense_top_outcomes": 2182,
+    "each_final_duration_exactDecimal": true,
+    "every_name_result_exactDecimal_YAML_duration_type": true,
+    "full_catalog": {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 1097512,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/independent-full8-TAP2182-every-outcome-YAML-exactDecimal-counter-catalog-v1.json",
+      "sha256": "5cd7af4b36ae5395b679dd670323d86b510f325eec283b8d0eb741b07487fc4f"
+    },
+    "nested": 0,
+    "plans_MCP": [
+      160,
+      1,
+      85,
+      387,
+      183
+    ],
+    "plans_ROOT": [
+      6,
+      1351,
+      9
+    ]
+  },
+  "actual_current_artifact": {
+    "ADMITTED_original_line": 2846,
+    "RAW_MODES_original_line": 2845,
+    "RAW_original_line_span": [
+      2842,
+      2844
+    ],
+    "RAW_then_RAW_MODES_then_distinct_ADMITTED": true,
+    "TGZ": {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 117224,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/actual-ed8594ee-RAW-reconstructed-ONLY-current-saved-MCP-original.tgz",
+      "sha256": "69c51b5ac8c998bccf1fba3378feea437220242e4cc9ebdb97e550ee9b157ce4"
+    },
+    "actual_npm_install": null,
+    "all12_JS_MJS_all75_literal_imports_closed_or_declared_locked": true,
+    "all20_original_member_bodies_modes_current_Git_exact": true,
+    "client_server_Core": "2.1.0",
+    "default_raw0644_owned_fixture0755_only": true,
+    "external_locked_readonly_cache_links": 14,
+    "gzip": {
+      "CRC32": 488026174,
+      "ISIZE": 428032,
+      "compressed_bytes": 117224,
+      "compressed_sha256": "69c51b5ac8c998bccf1fba3378feea437220242e4cc9ebdb97e550ee9b157ce4",
+      "expanded_bytes": 428032,
+      "expanded_sha256": "81a96133f07902ff61bbcf3a7c07f29c20125675c6c8a01df6d9a80f783d5fdc",
+      "gzip_flags": 0,
+      "gzip_mtime": 0,
+      "single_member_EOF_no_trailing": true,
+      "strict_ASCII_octal_checksum_regular_paths": true
+    },
+    "metadata": {
+      "bin": {
+        "canli-expert-submission-audit": "src/expert-submission-stdio.mjs",
+        "canli-expert-submission-client": "src/expert-submission-client.mjs",
+        "canli-expert-submission-files": "src/expert-submission-files.mjs",
+        "canli-fundamentals-audit": "src/audit-inputs-stdio.mjs",
+        "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs",
+        "canli-fundamentals-mcp": "src/server.mjs"
+      },
+      "bugs": {
+        "url": "https://github.com/arhancanli/canlicapital/issues"
+      },
+      "dependencies": {
+        "@modelcontextprotocol/client": "2.1.0",
+        "@modelcontextprotocol/server": "2.1.0",
+        "zod": "4.6.5"
+      },
+      "description": "MCP server for SEC company fundamentals point in time: what was first reported, what was known on any date, and every later restatement, each value with the filing behind it. Computed locally from a hash-checked SEC snapshot.",
+      "engines": {
+        "node": ">=20.10"
+      },
+      "files": [
+        "src",
+        "README.md",
+        "AUDIT_INPUTS.md",
+        "EXPERT_SUBMISSIONS.md",
+        "AUDIT_INPUTS_CLIENT.md",
+        "EXPERT_SUBMISSION_FILES.md",
+        "EXPERT_SUBMISSION_CLIENT.md"
+      ],
+      "homepage": "https://canlicapital.com/developers",
+      "keywords": [
+        "mcp",
+        "model-context-protocol",
+        "sec",
+        "edgar",
+        "xbrl",
+        "fundamentals",
+        "point-in-time",
+        "restatements",
+        "backtesting",
+        "quantitative-finance"
+      ],
+      "license": "MIT",
+      "mcpName": "io.github.arhancanli/canli-fundamentals-mcp",
+      "name": "canli-fundamentals-mcp",
+      "private": false,
+      "repository": {
+        "directory": "mcp-fundamentals",
+        "type": "git",
+        "url": "git+https://github.com/arhancanli/canlicapital.git"
+      },
+      "scripts": {
+        "test": "node --test test/*.test.mjs"
+      },
+      "type": "module",
+      "version": "0.5.0"
+    },
+    "nested_lock_rows": 15,
+    "repository_runtime_links": 0,
+    "scope_limit": "Reconstruction/decode/hash from saved current RAW only. No npm install/pack/runtime or reviewer SDK/CLI entry; link fixtures are disclosed, no exhaustive cache capture.",
+    "six_fixed_bins": true,
+    "strict20_members": [
+      {
+        "Git_mode": "100644",
+        "Git_oid": "eb5330e5dce6357e4c1cb0d5c1282f5e6d40b7d4",
+        "bytes": 1084,
+        "checksum": 4280,
+        "current_Git_path": "mcp-fundamentals/LICENSE",
+        "gid": 0,
+        "header_offset": 0,
+        "header_sha256": "2d387a774e1752cef02d75679cff6d1306f708c78e7ccb186ce831650d4400f3",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/LICENSE",
+        "sha256": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "b89db6521ee833a7225e2c41ed1ebdc6ec179eb7",
+        "bytes": 1754,
+        "checksum": 4967,
+        "current_Git_path": "mcp-fundamentals/package.json",
+        "gid": 0,
+        "header_offset": 2048,
+        "header_sha256": "284222287ff003965ebe1b948f3bb4f77d5378a1ab6d06c055036ee22a5e45cc",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/package.json",
+        "sha256": "cb1bf2c541011dec933cf8512c8fbcbdf62921a2ce424cc2c318c630e8950b25",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "8a32e971c46746be73bb4176cb103b429091ff03",
+        "bytes": 6752,
+        "checksum": 5513,
+        "current_Git_path": "mcp-fundamentals/AUDIT_INPUTS_CLIENT.md",
+        "gid": 0,
+        "header_offset": 4608,
+        "header_sha256": "e3a6e05dbd6ccb17919d3ffd02e7c66fc6cbe519aa5ef1ede5834df20803df7e",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/AUDIT_INPUTS_CLIENT.md",
+        "sha256": "4e4530c2b11fe0f40fab860188d3edcf5c9a0f16c287a5fdc033b90ce6ed622b",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "ff0625ed3ca3e74986c4538a14439f271a381752",
+        "bytes": 40194,
+        "checksum": 4974,
+        "current_Git_path": "mcp-fundamentals/AUDIT_INPUTS.md",
+        "gid": 0,
+        "header_offset": 12288,
+        "header_sha256": "b8f99e87f540f4a6bdf47842fbf2d12ce57db7ea129b43bfbb5ef47f6c6c765c",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/AUDIT_INPUTS.md",
+        "sha256": "15dbaddec5108bafac15781e59240c88300171cdab9b47deebf439da08d0f7d3",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "313fe8244aeb2e78918ad079ab7a47ddf9c20e03",
+        "bytes": 9142,
+        "checksum": 5917,
+        "current_Git_path": "mcp-fundamentals/EXPERT_SUBMISSION_CLIENT.md",
+        "gid": 0,
+        "header_offset": 53248,
+        "header_sha256": "0691a53015d910eef5932a3f94eaa04e5629566e38d3d9c1fe56f29083f97629",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/EXPERT_SUBMISSION_CLIENT.md",
+        "sha256": "e20d7ba98e442f37f1f54b9d9c1b225d8f69ad42b6b101371ca7d7a3341be316",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "f677e3d6ab74374f666974d314d47941591d8987",
+        "bytes": 7978,
+        "checksum": 5839,
+        "current_Git_path": "mcp-fundamentals/EXPERT_SUBMISSION_FILES.md",
+        "gid": 0,
+        "header_offset": 62976,
+        "header_sha256": "717536fc0870e452143fb42f9d8caec62bfe52a922402b45ac2fdbf955c121ea",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/EXPERT_SUBMISSION_FILES.md",
+        "sha256": "9d6bd5b40ea7ff52d00f8572887c03e78b38af2b37744162dfbcebbfb7749654",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "bf19c5ae3c4578d34f14eb3bda8cc5f159714316",
+        "bytes": 13232,
+        "checksum": 5453,
+        "current_Git_path": "mcp-fundamentals/EXPERT_SUBMISSIONS.md",
+        "gid": 0,
+        "header_offset": 71680,
+        "header_sha256": "18873bf98b477d474e81a3f9e774f4527d79cbbdf2428b3752eb22687f7b7719",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/EXPERT_SUBMISSIONS.md",
+        "sha256": "6ab9977361e0d8750a95e07d15fe712bcbc63127870047a2b29e6504d69b455a",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "ba790525bea149becbb95d4fdcc060d282ef85a5",
+        "bytes": 16964,
+        "checksum": 4447,
+        "current_Git_path": "mcp-fundamentals/README.md",
+        "gid": 0,
+        "header_offset": 85504,
+        "header_sha256": "eef7864c2e639984b20f87cdcf5bb642195f44fa02111ba563c47c56efd9d063",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/README.md",
+        "sha256": "b27eaaa17112c7e486d649c5fac1ddc50dd8aa7fa6a3a122ca2f172a503ddb92",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100755",
+        "Git_oid": "7bd2b362060d8ae475d1be6829912b6de6c3f41d",
+        "bytes": 39509,
+        "checksum": 6460,
+        "current_Git_path": "mcp-fundamentals/src/audit-inputs-client.mjs",
+        "gid": 0,
+        "header_offset": 103424,
+        "header_sha256": "f87b35af5257ccbe8c4c0630344c60c4252c6e80b796c287c2c662d915176c45",
+        "mode": 493,
+        "mtime": 499162500,
+        "path": "package/src/audit-inputs-client.mjs",
+        "sha256": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "c772372609b7f37bb04c747898d168b64458e377",
+        "bytes": 21651,
+        "checksum": 6242,
+        "current_Git_path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+        "gid": 0,
+        "header_offset": 143872,
+        "header_sha256": "d19a6b89a5cfc4ef34b5d55cc528d0ce1e45dfe821c295cb38e13eb4e13deb85",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/src/audit-inputs-core.mjs",
+        "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100755",
+        "Git_oid": "8ed08fc03502f68d56184da953efb294deec45bc",
+        "bytes": 12929,
+        "checksum": 6360,
+        "current_Git_path": "mcp-fundamentals/src/audit-inputs-stdio.mjs",
+        "gid": 0,
+        "header_offset": 166400,
+        "header_sha256": "ab008cdcc941cf497191e12c390d9f4d83d6e253148fb8fc6a06317e30d789df",
+        "mode": 493,
+        "mtime": 499162500,
+        "path": "package/src/audit-inputs-stdio.mjs",
+        "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "1332eb7dbb49f2aa759e095a793da309f29a8f26",
+        "bytes": 9481,
+        "checksum": 5936,
+        "current_Git_path": "mcp-fundamentals/src/canonical-json.mjs",
+        "gid": 0,
+        "header_offset": 180224,
+        "header_sha256": "d35e3629e705c06da905a8040965508477d9780abc74ad7906f2cc17e174b58c",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/src/canonical-json.mjs",
+        "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "af0bc30fc0d5e6698ff87ab59f5f70f902d37868",
+        "bytes": 6410,
+        "checksum": 6176,
+        "current_Git_path": "mcp-fundamentals/src/expert-agreement.mjs",
+        "gid": 0,
+        "header_offset": 190464,
+        "header_sha256": "047a577bddbdc720b36d985fb474dc4cfdedbeea6b5cb5cfef259839ec8299d1",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/src/expert-agreement.mjs",
+        "sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "0315abb2910c16f507cef2489bb4604feea76db2",
+        "bytes": 30951,
+        "checksum": 6343,
+        "current_Git_path": "mcp-fundamentals/src/expert-intake-core.mjs",
+        "gid": 0,
+        "header_offset": 197632,
+        "header_sha256": "2ff78d8e20ae6a1c3331c7a53ccf5b294e1bfd3b80441e023bcbb46bda23e4ec",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/src/expert-intake-core.mjs",
+        "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "43a7a0ffcc705972641109067309e325409c54b9",
+        "bytes": 23777,
+        "checksum": 7381,
+        "current_Git_path": "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+        "gid": 0,
+        "header_offset": 229376,
+        "header_sha256": "a35ab101ef59a0681e05d9233768aabbd63e04fb7f8c3402e96b861adf98b2d8",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/src/expert-submission-audit-core.mjs",
+        "sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100755",
+        "Git_oid": "5ab76c0e561b9c237ef40af0b1c4717051622a5c",
+        "bytes": 61734,
+        "checksum": 7021,
+        "current_Git_path": "mcp-fundamentals/src/expert-submission-client.mjs",
+        "gid": 0,
+        "header_offset": 253952,
+        "header_sha256": "c36a3af8ab8d509a0117b10bba6793173f823bc6ddb4c3fd2a2ee8efa4d77561",
+        "mode": 493,
+        "mtime": 499162500,
+        "path": "package/src/expert-submission-client.mjs",
+        "sha256": "2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100755",
+        "Git_oid": "08f0d589c9a9f5cc8fab18759e25b29cdf3e2a76",
+        "bytes": 16119,
+        "checksum": 6917,
+        "current_Git_path": "mcp-fundamentals/src/expert-submission-files.mjs",
+        "gid": 0,
+        "header_offset": 316416,
+        "header_sha256": "0e6413381625b34569ffcef8206470f91f0ac181af0fdcd178c20f12bd4e3f6d",
+        "mode": 493,
+        "mtime": 499162500,
+        "path": "package/src/expert-submission-files.mjs",
+        "sha256": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100755",
+        "Git_oid": "3c767d4095b57d3a15896defb00e68f4e4416b72",
+        "bytes": 25763,
+        "checksum": 6924,
+        "current_Git_path": "mcp-fundamentals/src/expert-submission-stdio.mjs",
+        "gid": 0,
+        "header_offset": 333312,
+        "header_sha256": "e1e786964e1086f662bc59743f325e4bab59f68e9ee6b99b70552e911c917102",
+        "mode": 493,
+        "mtime": 499162500,
+        "path": "package/src/expert-submission-stdio.mjs",
+        "sha256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "cc7c774411a653a103af57ad600aa6f73056ca02",
+        "bytes": 555,
+        "checksum": 6396,
+        "current_Git_path": "mcp-fundamentals/src/filing-facts-packet.mjs",
+        "gid": 0,
+        "header_offset": 359936,
+        "header_sha256": "55b3386de563ffb2ede0c3ce7f900fcd224c0f7b00c0d839ad3668f8dd770e92",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/src/filing-facts-packet.mjs",
+        "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      },
+      {
+        "Git_mode": "100644",
+        "Git_oid": "0c373d5e5b2d6712cda9b3a7acec6d0177c1e423",
+        "bytes": 64736,
+        "checksum": 5187,
+        "current_Git_path": "mcp-fundamentals/src/server.mjs",
+        "gid": 0,
+        "header_offset": 361472,
+        "header_sha256": "79b17f2c519bead98f6eaea34f351192722a38eed97732edbc0495c23eec4f11",
+        "mode": 420,
+        "mtime": 499162500,
+        "path": "package/src/server.mjs",
+        "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+        "uid": 0,
+        "whole_original_body_bytes_equal": true
+      }
+    ],
+    "zod": "4.6.5"
+  },
+  "actual_live_human_owner_outcomes": null,
+  "actual_source_base": "f553c0a6063ded731f74894138fa014f25e6b409",
+  "all11_commands_literal_read_NOT_executed": true,
+  "all11_literal_stdout_originals_bytes": 2307966,
+  "all11_original_capture_bindings_independently_FULLREAD_parsed": [
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 337,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/current-checks-terminal-original-v1-command-original.json",
+        "sha256": "d89f4f0aeaa9327d061d11d4ca6a96dfc20c7159ebd16e86e0cb3c5f5e72ba56"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "current-checks-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "pr",
+          "view",
+          "390",
+          "--repo",
+          "arhancanli/canlicapital",
+          "--json",
+          "state,isDraft,headRefOid,baseRefOid,headRefName,statusCheckRollup"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:34:01.733314+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/current-checks-terminal-original-v1-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 2290,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/current-checks-terminal-original-v1-stdout-original.bin",
+        "sha256": "228b1a32113ed5f715818b7846e50aa84b04c9ebeba2422f196cbb5da61f1c16"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 230,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/pull-original-command-original.json",
+        "sha256": "84bd0ce1726db5d6d908351c073eb55dd91676cf85a281a4b41fecaeabb6b6da"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "pull-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "repos/arhancanli/canlicapital/pulls/390"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:34:49.269511+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/pull-original-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 17845,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/pull-original-stdout-original.bin",
+        "sha256": "784244b76e29a020ae9639c1ceece3f6eab58c9aa55fa1724bbeebd469dee0a3"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 245,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ci-run-original-command-original.json",
+        "sha256": "4027a06ae93d8045c2b78647928d35974b39b80b04de81f8bc327fdf2f119395"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "ci-run-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "repos/arhancanli/canlicapital/actions/runs/37263720252"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:34:48.751987+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ci-run-original-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 13346,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ci-run-original-stdout-original.bin",
+        "sha256": "37570ee27c40e724e488a64a582ac64f0b2f425e3195e030df961f540e15832a"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 263,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ci-jobs-original-command-original.json",
+        "sha256": "79e05e36bc8a795c7bcd6bbd34e03032bb5f604e0e84358ad1a9127c706a945d"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "ci-jobs-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "repos/arhancanli/canlicapital/actions/runs/37263720252/jobs?per_page=100"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:34:48.750197+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ci-jobs-original-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 13545,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ci-jobs-original-stdout-original.bin",
+        "sha256": "5cb0d1da654b60392ab578969adaa2836689091d54076998fb1e426e275be747"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 273,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/tested-Git-original-command-original.json",
+        "sha256": "0391c605682d6b7024f24b1d0593ca89955333f29f737ce6a465ae870c724ddc"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "tested-Git-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "repos/arhancanli/canlicapital/git/commits/bac9d256077253faebc5442a8ce474e227e0f9f3"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:37:15.306659+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/tested-Git-original-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 2648,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/tested-Git-original-stdout-original.bin",
+        "sha256": "17cd88d3304c67befa3b98ab240e829f1352b325b543bcfc10e0e57e44c1ad9f"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 245,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/CodeQL-run-original-command-original.json",
+        "sha256": "81072eb6e979b61a78755707d4587e8f000e1012c4f6d13947ee64890a08a4db"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "CodeQL-run-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "repos/arhancanli/canlicapital/actions/runs/37263720251"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:34:48.749939+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/CodeQL-run-original-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 13353,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/CodeQL-run-original-stdout-original.bin",
+        "sha256": "4a6167b72b3792257a7b1c78c55aa71b8b0db0bc04157c8a7d3ed677977218eb"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 263,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/CodeQL-jobs-original-command-original.json",
+        "sha256": "5b44b5100d32679c2387057cd9afa691cb08ecf7267c6314e4d8d5fcddfff0e0"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "CodeQL-jobs-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "repos/arhancanli/canlicapital/actions/runs/37263720251/jobs?per_page=100"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:34:48.755617+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/CodeQL-jobs-original-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 5083,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/CodeQL-jobs-original-stdout-original.bin",
+        "sha256": "ec25713857c48d509de6e030967933d625a5632909d95001ccee6afd01a9da53"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 289,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/scoped-open-alerts-original-command-original.json",
+        "sha256": "1bb4db0ed01ec1d53ec3a9e8b2265cae0f0e18cde75ceebcd635778098707095"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "scoped-open-alerts-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "repos/arhancanli/canlicapital/code-scanning/alerts?state=open&ref=refs/pull/390/merge&per_page=100"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:34:49.324717+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/scoped-open-alerts-original-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 2,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/scoped-open-alerts-original-stdout-original.bin",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 280,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/scoped-CodeQL-analyses-original-command-original.json",
+        "sha256": "caf642449a7eba85aa3b82d356a8499051552e8a6beb1b3ff795b5a420e2b4ee"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "scoped-CodeQL-analyses-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "repos/arhancanli/canlicapital/code-scanning/analyses?ref=refs/pull/390/merge&per_page=100"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:34:49.380907+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/scoped-CodeQL-analyses-original-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 4747,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/scoped-CodeQL-analyses-original-stdout-original.bin",
+        "sha256": "a202353f0db254b6bc8a7d46caf12b77a420b2627627a07aec58eb96a47308a1"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 283,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ROOT-terminal-raw-original-v2-command-original.json",
+        "sha256": "5841ba488b48f8488b4df1b2444a612b81b8fb638234bfdc71358a292e4d7868"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "ROOT-terminal-raw-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "--allow-escape-sequences",
+          "repos/arhancanli/canlicapital/actions/jobs/111616043285/logs"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:37:12.730180+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ROOT-terminal-raw-original-v2-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 763747,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ROOT-terminal-raw-original-v2-stdout-original.bin",
+        "sha256": "482922d325046d989a1200cc06fbfd7175ba0bf43b93b354204d669ed26e433b"
+      }
+    },
+    {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 283,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/MCP-terminal-raw-original-command-original.json",
+        "sha256": "53da775633991ef59678cc0fa65420595652a07b9467638a42fd22ec4e8d8ade"
+      },
+      "command_NOT_executed_by_reviewer": true,
+      "label": "MCP-terminal-raw-original",
+      "parsed_command_record": {
+        "argv": [
+          "gh",
+          "api",
+          "--allow-escape-sequences",
+          "repos/arhancanli/canlicapital/actions/jobs/111616043447/logs"
+        ],
+        "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+        "exit": 0,
+        "utc": "2026-10-05T04:32:56.427766+00:00"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/MCP-terminal-raw-original-stderr-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 1471360,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/MCP-terminal-raw-original-stdout-original.bin",
+        "sha256": "9d35c1dbd01b9c29571d562a53e07be0485cee980a46443c103f81645bd9f9c8"
+      }
+    }
+  ],
+  "all_successful_original_stderr_bytes": 0,
+  "archive_allocation": null,
+  "attempt": 1,
+  "author_locator_FULLREAD_ONLY_NOT_ACK": {
+    "FULLREAD_sameFD_postpath": true,
+    "bytes": 19668,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/current-ed8594ee-retained-current-CI-and-exact20-artifact-v1.json",
+    "sha256": "58eb539e94958b7479eb62c7cb0b43a51e3f9e4b3f56fd48308d91322ec9b60d"
+  },
+  "current_captured_API": {
+    "all7_terminal_checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-05T04:31:33Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/37263720251/job/111616042239",
+        "name": "analyze (javascript-typescript)",
+        "startedAt": "2026-10-05T04:29:14Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-05T04:32:25Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/37263720252/job/111616043285",
+        "name": "vite production build",
+        "startedAt": "2026-10-05T04:29:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-05T04:30:17Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/37263720251/job/111616041928",
+        "name": "analyze (python)",
+        "startedAt": "2026-10-05T04:29:13Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-05T04:29:27Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/37263720252/job/111616043145",
+        "name": "design wrapper build and contracts",
+        "startedAt": "2026-10-05T04:29:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-05T04:30:09Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/37263720252/job/111616043447",
+        "name": "MCP package and stdio contracts",
+        "startedAt": "2026-10-05T04:29:14Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-05T04:29:56Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/actions/runs/37263720252/job/111616043380",
+        "name": "Key revocation PostgreSQL contract",
+        "startedAt": "2026-10-05T04:29:15Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-05T04:30:10Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/arhancanli/canlicapital/runs/111616245264",
+        "name": "CodeQL",
+        "startedAt": "2026-10-05T04:30:08Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "captured_pull": {
+      "base_sha": "f553c0a6063ded731f74894138fa014f25e6b409",
+      "draft": true,
+      "head_sha": "ed8594ee7f23b0fd1d1c98f259e9f37ad6b22b9b",
+      "merge_commit_sha": "bac9d256077253faebc5442a8ce474e227e0f9f3",
+      "merged": false,
+      "number": 390,
+      "state": "open"
+    },
+    "latest_JS_PY": {
+      "javascript-typescript": {
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+        "commit_sha": "bac9d256077253faebc5442a8ce474e227e0f9f3",
+        "created_at": "2026-10-05T04:31:23Z",
+        "deletable": true,
+        "environment": "{\"language\":\"javascript-typescript\"}",
+        "error": "",
+        "id": 1890874898,
+        "ref": "refs/pull/390/merge",
+        "results_count": 0,
+        "rules_count": 103,
+        "sarif_id": "9e527c46-c075-11f1-9534-8df850bb8e5a",
+        "tool": {
+          "guid": null,
+          "name": "CodeQL",
+          "version": "2.27.1"
+        },
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1890874898",
+        "warning": ""
+      },
+      "python": {
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "category": ".github/workflows/codeql.yml:analyze/language:python",
+        "commit_sha": "bac9d256077253faebc5442a8ce474e227e0f9f3",
+        "created_at": "2026-10-05T04:30:08Z",
+        "deletable": true,
+        "environment": "{\"language\":\"python\"}",
+        "error": "",
+        "id": 1890871198,
+        "ref": "refs/pull/390/merge",
+        "results_count": 0,
+        "rules_count": 50,
+        "sarif_id": "7200b298-c075-11f1-8064-f434f06c6b9c",
+        "tool": {
+          "guid": null,
+          "name": "CodeQL",
+          "version": "2.27.1"
+        },
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1890871198",
+        "warning": ""
+      }
+    },
+    "older_analysis_rows_immutable_unrelabeled": [
+      {
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+        "commit_sha": "93cacee7519426ad6dcec8d5343c17497fc32c2f",
+        "created_at": "2026-10-05T03:57:37Z",
+        "deletable": false,
+        "environment": "{\"language\":\"javascript-typescript\"}",
+        "error": "",
+        "id": 1890773151,
+        "ref": "refs/pull/390/merge",
+        "results_count": 0,
+        "rules_count": 103,
+        "sarif_id": "e6b23166-c070-11f1-9d87-ed4167aaa450",
+        "tool": {
+          "guid": null,
+          "name": "CodeQL",
+          "version": "2.27.1"
+        },
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1890773151",
+        "warning": ""
+      },
+      {
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+        "commit_sha": "09671ca70503155146852b81fb3e4a85fd1c01dc",
+        "created_at": "2026-10-05T03:36:47Z",
+        "deletable": false,
+        "environment": "{\"language\":\"javascript-typescript\"}",
+        "error": "",
+        "id": 1890719523,
+        "ref": "refs/pull/390/merge",
+        "results_count": 0,
+        "rules_count": 103,
+        "sarif_id": "fd9f39bc-c06d-11f1-9d86-a65de768482a",
+        "tool": {
+          "guid": null,
+          "name": "CodeQL",
+          "version": "2.27.1"
+        },
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1890719523",
+        "warning": ""
+      },
+      {
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+        "commit_sha": "818296747893db597c7ad48bcd5f365855120538",
+        "created_at": "2026-10-05T02:37:32Z",
+        "deletable": false,
+        "environment": "{\"language\":\"javascript-typescript\"}",
+        "error": "",
+        "id": 1890567197,
+        "ref": "refs/pull/390/merge",
+        "results_count": 1,
+        "rules_count": 103,
+        "sarif_id": "b6b51e52-c065-11f1-81f2-628dcee9f710",
+        "tool": {
+          "guid": null,
+          "name": "CodeQL",
+          "version": "2.27.1"
+        },
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1890567197",
+        "warning": ""
+      },
+      {
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "category": ".github/workflows/codeql.yml:analyze/language:python",
+        "commit_sha": "93cacee7519426ad6dcec8d5343c17497fc32c2f",
+        "created_at": "2026-10-05T03:57:14Z",
+        "deletable": false,
+        "environment": "{\"language\":\"python\"}",
+        "error": "",
+        "id": 1890772251,
+        "ref": "refs/pull/390/merge",
+        "results_count": 0,
+        "rules_count": 50,
+        "sarif_id": "d988a1c8-c070-11f1-89b0-1628eb7499a1",
+        "tool": {
+          "guid": null,
+          "name": "CodeQL",
+          "version": "2.27.1"
+        },
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1890772251",
+        "warning": ""
+      },
+      {
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "category": ".github/workflows/codeql.yml:analyze/language:python",
+        "commit_sha": "09671ca70503155146852b81fb3e4a85fd1c01dc",
+        "created_at": "2026-10-05T03:35:52Z",
+        "deletable": false,
+        "environment": "{\"language\":\"python\"}",
+        "error": "",
+        "id": 1890717376,
+        "ref": "refs/pull/390/merge",
+        "results_count": 0,
+        "rules_count": 50,
+        "sarif_id": "dd40325c-c06d-11f1-8aa7-378aa18760b7",
+        "tool": {
+          "guid": null,
+          "name": "CodeQL",
+          "version": "2.27.1"
+        },
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1890717376",
+        "warning": ""
+      },
+      {
+        "analysis_key": ".github/workflows/codeql.yml:analyze",
+        "category": ".github/workflows/codeql.yml:analyze/language:python",
+        "commit_sha": "818296747893db597c7ad48bcd5f365855120538",
+        "created_at": "2026-10-05T02:37:15Z",
+        "deletable": false,
+        "environment": "{\"language\":\"python\"}",
+        "error": "",
+        "id": 1890566535,
+        "ref": "refs/pull/390/merge",
+        "results_count": 0,
+        "rules_count": 50,
+        "sarif_id": "acd2aa6c-c065-11f1-8381-ae0f6cb2515b",
+        "tool": {
+          "guid": null,
+          "name": "CodeQL",
+          "version": "2.27.1"
+        },
+        "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1890566535",
+        "warning": ""
+      }
+    ],
+    "open_scoped_alerts": [],
+    "raw_checkout_bindings": [
+      {
+        "Node_setup": [
+          202,
+          "node: v22.23.3"
+        ],
+        "full_checkout": [
+          190,
+          "bac9d256077253faebc5442a8ce474e227e0f9f3"
+        ],
+        "full_fetchspec": [
+          100,
+          "[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +bac9d256077253faebc5442a8ce474e227e0f9f3:refs/remotes/pull/390/merge"
+        ],
+        "label": "ROOT-terminal-raw-original"
+      },
+      {
+        "Node_setup": [
+          142,
+          "node: v22.23.3"
+        ],
+        "full_checkout": [
+          129,
+          "bac9d256077253faebc5442a8ce474e227e0f9f3"
+        ],
+        "full_fetchspec": [
+          100,
+          "[command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +bac9d256077253faebc5442a8ce474e227e0f9f3:refs/remotes/pull/390/merge"
+        ],
+        "label": "MCP-terminal-raw-original"
+      }
+    ],
+    "runs": [
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-05T04:29:11Z",
+        "event": "pull_request",
+        "head_sha": "ed8594ee7f23b0fd1d1c98f259e9f37ad6b22b9b",
+        "id": 37263720252,
+        "name": "ci",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-10-05T04:32:25Z"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-05T04:29:11Z",
+        "event": "pull_request",
+        "head_sha": "ed8594ee7f23b0fd1d1c98f259e9f37ad6b22b9b",
+        "id": 37263720251,
+        "name": "CodeQL",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-10-05T04:31:33Z"
+      }
+    ],
+    "scope_limit": "Captured exact-source controls only; no fresh-main/future-head/READY/actual-main-job claim.",
+    "scoped_ref": "refs/pull/390/merge"
+  },
+  "findings": [],
+  "first_ROOT_connection_refusal_147B_original_preserved": {
+    "command": {
+      "argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111616043285/logs"
+      ],
+      "cwd": "/Users/arhancanli/canlicapital-expert-submission-client-package-20261005",
+      "exit": 1,
+      "utc": "2026-10-05T04:34:49.464001+00:00"
+    },
+    "originals": {
+      "command": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 283,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ROOT-terminal-raw-original-command-original.json",
+        "sha256": "88b22544a0aeeb773dba710ddecc7b520d1562d742dabdc9370159d6ccf11792"
+      },
+      "stderr": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 147,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ROOT-terminal-raw-original-stderr-original.bin",
+        "sha256": "990b11872bdbbc83fa867240f2389ffb877271b1f756a5200aa8fbfc05feeb22"
+      },
+      "stdout": {
+        "FULLREAD_sameFD_postpath": true,
+        "bytes": 0,
+        "mode_octal": "0o600",
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-ed8594ee-automatic-CI-native-v1/ROOT-terminal-raw-original-stdout-original.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "qualifier": {
+      "FULLREAD_sameFD_postpath": true,
+      "bytes": 1649,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/current-ed8594ee-first-empty-root-raw-metadata-refusal-retained-v1.json",
+      "sha256": "2eb7a025fa2a1d201aad0373143f060547132ed1434e5b440e4dcd677bad75ec"
+    }
+  },
+  "four_initial_gates_requirement": "All FOUR actual independent SOURCE/CURRENTCI receipts must be personally FULLREAD/hash before concrete documentary proposal; this PRIMARY CI receipt does not infer THIRD CI intake.",
+  "full_owner_hierarchy": "ACTIVE_OUTCOMES_UNKNOWN_NULL",
+  "future_documentary_HEAD_finalfour_READY_ordinarymerge_ACTUALcustody_pub": "SEPARATE_NO_ACK",
+  "head": "ed8594ee7f23b0fd1d1c98f259e9f37ad6b22b9b",
+  "independent_supporting_proofs": [
+    {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 18309,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/independent-FULLREAD-literal11-current-originals-commands-empty-stderr-bindings-v1.json",
+      "sha256": "5dba6985624ff30e0f77f581001074f66ce377640afa796a017460a6e90e40ac"
+    },
+    {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 1097512,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/independent-full8-TAP2182-every-outcome-YAML-exactDecimal-counter-catalog-v1.json",
+      "sha256": "5cd7af4b36ae5395b679dd670323d86b510f325eec283b8d0eb741b07487fc4f"
+    },
+    {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 36516,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/independent-saved-API-all7-runs-jobs-tested-tree-orderedparents-rawcheckout-security-v1.json",
+      "sha256": "a95ea6d16c35d6858b33cec1988ffab4f52b5dac00eb97d09e03201608481738"
+    },
+    {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 168586,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/independent-RAW-RAWMODES-ADMITTED-escaped-consecutive-comment-fragment-binding-v1.json",
+      "sha256": "b1506a5f961a38e0b672d2b1c4fe3abe14bfb4bcd05387fe968c193ac37d46ec"
+    },
+    {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 50677,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/independent-current-RAW-exact20-bounded-gzip-strictTAR-Git-sixbins-all12JS-MJS-75imports-v1.json",
+      "sha256": "ac8dd89229eeee3821dc90fa01d23809a1e5cf942030dd56b719a3f3c2502ef9"
+    },
+    {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 263056,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/independent-frozen40-old22-30-38-40-57-63-onceMCP-zeroROOT-postbuild-guards-v1.json",
+      "sha256": "e356037f38cf4b13f9a1a44e46f2ab6930ab00aa51c98cc888c7cad110461900"
+    },
+    {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 14879,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/literal11-originals-postflight-FULLREAD-unchanged-and-frozen-source-control-v1.json",
+      "sha256": "4407820bf05245bd49509bbfe4e92a9022d576ab03d92f660912113abaf38a64"
+    }
+  ],
+  "literal11_capture_locator": {
+    "FULLREAD_sameFD_postpath": true,
+    "bytes": 15589,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/current-ed8594ee-all11-original-capture-catalog-v1.json",
+    "sha256": "cc199636f4829339b9e0d41bb9ab5424b72d644909479cf411bca41034286b3d"
+  },
+  "native_independent_original_parse_proof": {
+    "FULLREAD_sameFD_postpath_stable": true,
+    "bytes": 46318,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-retained-CI-ed8594ee-native-v1/independent-ed8594ee-retained-CURRENTCI-exact20-native-audit-v1.json",
+    "sha256": "6b9b6e42043571c3f80678cb501abbcf05612764c9b0e71ebd91ac66d10c1d27"
+  },
+  "old_f964_1cd_f1d8_FAILED_SOURCEHOLDS_raws_errors_immutable": true,
+  "old_outcomes_relabelled_current": false,
+  "project_Node_import_SDK_test_CLI_npm_pack_helper_GET_probe_API_refetch_manual_job_rerun": false,
+  "repository_evidence_writes": 0,
+  "repository_source_archive_mutation": false,
+  "role": "PRIMARY_EXISTING_INDEPENDENT_RETAINED_CURRENTCI",
+  "run": 37263720252,
+  "sameFD_postpath_and_postflight_originals_unchanged": true,
+  "schema": "primary-pr390-ed8594ee-separate-retained-CURRENTCI-exact20-v1",
+  "separate_SECONDARY_source_byteACK_registration": {
+    "FULLREAD_sameFD_postpath_stable": true,
+    "bytes": 1836,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-ed8594ee-SECONDARY-two-SOURCE-byteACK-metadata-registration-v1.json",
+    "sha256": "0dc68e8f9377348c716409b7f9716a08b23859e2b8ca5ec38a9d914b4dcb7181"
+  },
+  "separate_SOURCE_receipt": {
+    "FULLREAD_sameFD_postpath_stable": true,
+    "bytes": 44247,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-review-ed8594ee-expert-submission-client-package-narrow-SOURCE-v1.json",
+    "sha256": "187a2a2f06d3990719a23417ef080cc8695487a1466b40687fb38f7de637c6f7"
+  },
+  "sole_parent": "f1d8d552ec715fd9c5c9241bfcff30e9ba8dde9d",
+  "source_manifest": {
+    "FULLREAD_sameFD_postpath": true,
+    "bytes": 46291,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/source-ed8594ee-expert-submission-client-package-v1.json",
+    "sha256": "ddfb143beb0a0997b95b32114641a5023c0cc0478806ae1bd5e0ebcd05f3414a"
+  },
+  "source_names": {
+    "every_name_once_MCP_zero_ROOT": true,
+    "full_current_body_sections_bound_to_frozen_Git": true,
+    "new_current": 40,
+    "old_families": [
+      22,
+      30,
+      38,
+      40,
+      57,
+      63
+    ],
+    "postbuild_source_dist_guards_each_once": [
+      {
+        "raw_line": 1147,
+        "text": "standards/paper-evidence.html: generated skip link and focus target verified"
+      },
+      {
+        "raw_line": 1148,
+        "text": "dist/standards/paper-evidence.html: generated skip link and focus target verified"
+      }
+    ],
+    "total": 290
+  },
+  "source_semantic_history_custody_replay": false,
+  "state": "PASS_EXACT_RETAINED_CURRENT_CI_AND_EXACT20_ARTIFACT_WITH_SCOPE_LIMITS",
+  "tested_ordered_parents": [
+    "f553c0a6063ded731f74894138fa014f25e6b409",
+    "ed8594ee7f23b0fd1d1c98f259e9f37ad6b22b9b"
+  ],
+  "tested_synthetic_merge": "bac9d256077253faebc5442a8ce474e227e0f9f3",
+  "three_new_command_SDK_entry_scope": "Three named current frozen known-owned-child/clock/onecall/oneclose assertions PASS; <=3 SDK starts bound by frozen tests. No reviewer process census, executing-source authentication or human/rights/adoption/install proof.",
+  "tree": "3078fa05feb4f4ffc536e4e6c1b7d2efd877ebe7",
+  "utc": "2026-10-05T05:02:01.405372+00:00"
+}

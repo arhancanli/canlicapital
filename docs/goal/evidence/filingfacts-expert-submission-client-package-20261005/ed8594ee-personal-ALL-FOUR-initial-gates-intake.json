@@ -1,0 +1,94 @@
+{
+  "schema": "canli.PR390.current.ALL4.personal.intake.v1",
+  "utc": "2026-10-05T05:04:24.748779+00:00",
+  "head": "ed8594ee7f23b0fd1d1c98f259e9f37ad6b22b9b",
+  "tree": "3078fa05feb4f4ffc536e4e6c1b7d2efd877ebe7",
+  "actual_base": "f553c0a6063ded731f74894138fa014f25e6b409",
+  "four_actual_literal_gates": [
+    {
+      "reviewer": "PRIMARY",
+      "gate": "SOURCE",
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-review-ed8594ee-expert-submission-client-package-narrow-SOURCE-v1.json",
+        "bytes": 44247,
+        "sha256": "187a2a2f06d3990719a23417ef080cc8695487a1466b40687fb38f7de637c6f7",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "disposition": "PASS_EXACT_NARROW_SOURCE_WITH_STATIC_AND_SCOPE_LIMITS",
+      "findings": []
+    },
+    {
+      "reviewer": "THIRD",
+      "gate": "SOURCE",
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/review-ed8594ee-narrow-SOURCE-PASS-v1.json",
+        "bytes": 45923,
+        "sha256": "57aa98c4b968921ff7c570fead1fb1eb2eada8bd458e7c1002b6d3cd4688f7ca",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "disposition": "PASS_WITH_STATIC_SCOPE_LIMITS",
+      "findings": []
+    },
+    {
+      "reviewer": "PRIMARY",
+      "gate": "CURRENTCI",
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-review-ed8594ee-retained-current-CI-exact20-v1.json",
+        "bytes": 57471,
+        "sha256": "a86969695f340de5ca1b9781e3cc20b6f02d566ff5e4f4b0ede48b7c766d9154",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "disposition": "PASS_EXACT_RETAINED_CURRENT_CI_AND_EXACT20_ARTIFACT_WITH_SCOPE_LIMITS",
+      "findings": []
+    },
+    {
+      "reviewer": "THIRD",
+      "gate": "CURRENTCI",
+      "receipt": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/review-ed8594ee-retained-CURRENTCI-and-exact20-PASS-v1.json",
+        "bytes": 74741,
+        "sha256": "478c2f91899fc2b468b47600222327c5a9869359b0d37d40ce4754f7506b77e1",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "disposition": "PASS_EXACT_RETAINED_CURRENT_CI_AND_EXACT20_WITH_SCOPE_LIMITS",
+      "findings": []
+    }
+  ],
+  "personal_support_intakes": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/secondary-personal-ed8594ee-two-actual-SOURCE-receipts-supports-intake-v1.json",
+      "bytes": 25919,
+      "sha256": "fd8212e1122e2bf4969b24bfae856cbfb3c4439154ffb6a703141d138924fb22",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/secondary-personal-THIRD-ed8594ee-current-CI-exact20-receipt-supports-intake-v1.json",
+      "bytes": 46471,
+      "sha256": "aaf48ad5583f9aa5e189a2d9b9688b1b47099b32321df84ba6eadff560bc85d5",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/secondary-personal-PRIMARY-ed8594ee-current-CI-exact20-receipt-supports-intake-v1.json",
+      "bytes": 21262,
+      "sha256": "84b08a86a5d3316db88866eed2722fe37c4c0c6eb53c830f0f733e5b0993f891",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    }
+  ],
+  "head_G_CLEAN_frozen": true,
+  "all_four_actual_personal_intakes_COMPLETE": true,
+  "concrete_private_bounded_documentary_proposal_now_allowed": true,
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "future_final_HEAD_four_gates_READY_PRIMARYordinarymerge_ACTUALcustody_pub": "SEPARATE_NOT_ACKED",
+  "all_original_failures_SOURCEHOLDS_raws_errors": "IMMUTABLE_PRESERVED",
+  "owner_hierarchy": "ACTIVE_OUTCOMES_UNKNOWN_NULL",
+  "roles": "PRIMARY_RESERVED_SOLEMERGEPUB_LEADCPU127_SAME_SECONDARY_THIRD_UNCHANGED",
+  "no_project_entry_API_refetch_new_job_grant_spend_or_pub": true
+}
