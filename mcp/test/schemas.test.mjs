@@ -144,6 +144,14 @@ test("the boundary language has not drifted from api/_lib/limits.js LIMITS_TEXT"
   }
 });
 
+test("the README quotes every boundary sentence verbatim, as it says it does", () => {
+  // The README wraps its lines, so whitespace is compared collapsed.
+  const readme = readFileSync(new URL("../README.md", import.meta.url), "utf8").replace(/\s+/g, " ");
+  for (const [key, sentence] of Object.entries(LIMITS_SENTENCES)) {
+    assert.ok(readme.includes(sentence), `README.md does not quote LIMITS_SENTENCES.${key}: ${sentence}`);
+  }
+});
+
 test("no description key is defined twice, so no tool shows another tool's wording", () => {
   const source = readFileSync(new URL("../src/schemas.mjs", import.meta.url), "utf8");
   const block = source.slice(source.indexOf("export const FIELD_DESCRIPTIONS"), source.indexOf("});", source.indexOf("export const FIELD_DESCRIPTIONS")));
