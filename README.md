@@ -1,29 +1,79 @@
 # Canli Capital
 
-**Open quant research where every published number comes with the file that produced it, including
-the strategies that failed.** Live at **[canlicapital.com](https://canlicapital.com)**.
+**Find out whether a backtest is real before you trust it.** Canli Capital publishes open quant
+research where every number comes with the file that produced it, including the strategies that
+failed. Free MCP servers and an API run the same checks on your own results.
 
 [![npm](https://img.shields.io/npm/v/canli-validation-mcp?label=canli-validation-mcp)](https://www.npmjs.com/package/canli-validation-mcp)
-[![npm](https://img.shields.io/npm/v/canli-fundamentals-mcp?label=canli-fundamentals-mcp)](https://www.npmjs.com/package/canli-fundamentals-mcp)
-[![npm](https://img.shields.io/npm/v/canli-research-mcp?label=canli-research-mcp)](https://www.npmjs.com/package/canli-research-mcp)
-[![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/canli-validation-mcp?label=npm%20downloads)](https://www.npmjs.com/package/canli-validation-mcp)
+[![CI](https://img.shields.io/github/actions/workflow/status/arhancanli/canlicapital/ci.yml?branch=main&label=CI)](https://github.com/arhancanli/canlicapital/actions/workflows/ci.yml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arhancanli/canlicapital/badge)](https://scorecard.dev/viewer/?uri=github.com/arhancanli/canlicapital)
+[![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue)](LICENSE)
 [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-green)](LICENSE-DATA.md)
 
-![The canlicapital.com homepage](docs/readme/home.png)
+## Quick start
 
-## Try it in a minute
+Add the backtest validator to Claude Code. In this mode it computes on your machine: no key, and
+your numbers are not sent anywhere.
 
 ```bash
-# Ask your AI assistant whether a backtest is real (Claude Code shown; Cursor, VS Code and
-# Claude Desktop setups are in mcp/README.md)
-claude mcp add canli -- npx -y canli-validation-mcp
+claude mcp add canli-local --env CANLI_LOCAL=1 -- npx -y canli-validation-mcp
+```
 
-# Or call the free API: get a key, then deflate a Sharpe ratio for the number of trials you ran
+Then ask: *"I tried 229 variants and kept the best: an annualised Sharpe of 1.5 over 730 daily
+returns (365 a year), skew -0.5, kurtosis 5, and the variants' Sharpe ratios spread by 0.57. Is it
+real?"* The assistant calls `validate_deflated_sharpe`: the best of 229 skill-less variants would
+reach 1.60 by luck alone, so the probability that the Sharpe is above zero falls from 98.1% to
+44.4% once the search is counted.
+
+| MCP server | What it answers | Run it |
+|---|---|---|
+| [canli-validation-mcp](mcp/README.md) | Is this backtest real? Deflated Sharpe, overfitting (CSCV), data-snooping tests, track record length and a backtest lab, in 20 tools. | `npx -y canli-validation-mcp` |
+| [canli-fundamentals-mcp](mcp-fundamentals/README.md) | What did a company first report, and what was known on a given date? SEC fundamentals point in time, each value with its filing. | `npx -y canli-fundamentals-mcp` |
+| [canli-research-mcp](mcp-research/README.md) | Has this idea been tried here, and how did it end? Papers, killed candidates and trial counts. | `npx -y canli-research-mcp` |
+
+Each server is also hosted, with nothing to install, for clients that take a URL:
+`https://canlicapital.com/mcp`, `/mcp/fundamentals` and `/mcp/research`. Other clients are covered
+in each server's README, and the plain HTTP API is under [More ways in](#more-ways-in).
+
+## What makes it different
+
+- **Every number comes with its limits.** Each result carries the sentences that say what it does
+  not establish. Results from the API also carry an Ed25519-signed receipt that anyone can verify
+  offline.
+- **The tests were measured before they were trusted.** Given every variant you tried,
+  `audit_backtest` leads with White's Reality Check, the test a pre-registered simulation study
+  picked before seeing your numbers. In that study's confirmation run
+  ([Null Zoo v1b](config/research/null-zoo-v1b-evaluation.json)) its false-positive rate was 4.5%
+  to 6.4% at a nominal 5% across nine return shapes, and each result quotes the rate measured for
+  returns shaped like yours.
+- **Failures are published.** The [kill log](https://canlicapital.com/open) shows the ideas that
+  died, with their real numbers, and the research server can search them.
+- **Your series can stay with you.** Local mode computes the validators on your machine, with no
+  key, and the series you check is never sent.
+
+If it saves you from a fake backtest, a star helps other quants find it.
+
+![The canlicapital.com homepage](docs/readme/home.png)
+
+## More ways in
+
+Call the free API: get a key (no signup), then deflate a Sharpe ratio for the number of trials you
+ran.
+
+```bash
 curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '{"label":"readme"}'
+export CANLI_KEY=ck_live_...   # the "key" field of that response; it is shown only once
+curl -X POST https://canlicapital.com/api/v1/validate/deflated-sharpe \
+  -H "Authorization: Bearer $CANLI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.57}'
+```
 
-# Or check the published record yourself (Python 3)
+Or check the published record yourself (Python 3):
+
+```bash
 pip install cryptography
 curl -sO https://canlicapital.com/glassbox/reproduce.py
 for f in capacity_commitment founder_commitment; do curl -sO https://canlicapital.com/glassbox/$f.json; done
@@ -54,10 +104,29 @@ python3 reproduce.py --dir .
 - **ALPHAC**, the three-strategy paper-trading book whose record is published daily; its engine is
   **[github.com/arhancanli/alphac](https://github.com/arhancanli/alphac)**.
 
-Help check it: [open review tasks](https://github.com/arhancanli/canlicapital/issues?q=is%3Aissue+is%3Aopen+label%3A%22review+task%22)
-take 15 to 60 minutes and are credited on [/review](https://canlicapital.com/review). To build
-with it, see [CONTRIBUTING.md](CONTRIBUTING.md). If the project is useful to you, a star helps
-other people find it.
+## Contribute
+
+- **Code and docs:** start with a
+  [good first issue](https://github.com/arhancanli/canlicapital/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+-label%3A%22review+task%22).
+  Each one names the files involved, what done looks like and how to test it.
+- **Review tasks** (15 to 60 minutes, no code needed): recompute a published number or try to
+  break the MCP server. [Open review tasks](https://github.com/arhancanli/canlicapital/issues?q=is%3Aissue+is%3Aopen+label%3A%22review+task%22)
+  are credited on [/review](https://canlicapital.com/review).
+
+After a merged contribution you can claim **Contributor access**: 10,000 validations per UTC day
+on your API key instead of the standard 1,000, early access to new tools and servers on a beta
+endpoint, priority on your issues and feature requests, and credit by name here, in the changelog
+and release notes and, for research, in `CITATION.cff`. There are no cash rewards.
+[CONTRIBUTING.md](CONTRIBUTING.md) explains how it works and how to claim it.
+
+## Contributors
+
+Maintained by [Arhan Canli](https://github.com/arhancanli). Everyone whose contribution is merged
+is listed here by name, with what they did.
+
+No outside contribution has been merged yet. Yours can be the first.
+
+<!-- New contributors go below, oldest first: - [Name](https://github.com/handle): what they did (#PR) -->
 
 **Created and maintained by [Arhan Canli](https://github.com/arhancanli) for Canli Capital.**
 Machine-readable software citation metadata is provided in [`CITATION.cff`](CITATION.cff).

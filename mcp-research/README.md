@@ -1,14 +1,48 @@
 # canli-research-mcp
 
-An MCP (Model Context Protocol) server for Canli Capital's open research record. It gives an AI
-assistant six read-only tools over what canlicapital.com publishes: every research paper and killed
-candidate, the research topics, the count of hypotheses tried against the declared budget, the live
-paper-trading record with its sleeves, and the head of the chain that shows the published record
-was not rewritten.
+[![npm](https://img.shields.io/npm/v/canli-research-mcp)](https://www.npmjs.com/package/canli-research-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/canli-research-mcp)](https://www.npmjs.com/package/canli-research-mcp)
 
-Every result carries the limits its source states, beside two of its own: these are research
-documents, each with its own claim boundary, and everything here is paper execution, not funded
-performance or investment advice.
+**Has this quant idea already been tried, and how did it end?** This MCP (Model Context Protocol)
+server gives your AI assistant Canli Capital's open research record: every research paper and
+killed candidate, the research topics, the count of hypotheses tried against the declared budget,
+the live paper-trading record with its sleeves, and the head of the chain that shows the published
+record was not rewritten. Six read-only tools, no key, free and MIT-licensed.
+
+## Quick start
+
+```bash
+claude mcp add canli-research -- npx -y canli-research-mcp
+```
+
+Then ask, for example: *"Has momentum been tried here, and how did it end?"* The assistant calls
+`search_research`, which finds the momentum papers and the killed momentum candidates, then
+`get_paper` for the details of each.
+
+Hosted, no install (claude.ai connectors, ChatGPT, Cursor, or any client that takes a URL):
+
+```bash
+claude mcp add --transport http canli-research https://canlicapital.com/mcp/research
+```
+
+Any MCP client that spawns a process works the same way: `npx -y canli-research-mcp`.
+
+## What makes it different
+
+- **Failures are on the record.** Killed candidates sit next to the papers that survived, with the
+  count of hypotheses tried against the declared budget, so an assistant can tell you whether an
+  idea already failed here.
+- **Every result carries its limits.** Each one keeps the limits its source states, beside two of
+  its own: these are research documents, each with its own claim boundary, and everything here is
+  paper execution, not funded performance or investment advice.
+- **Cheap to keep connected.** It reads only static public files, caches each one for the session,
+  and its tool list is small and identical on every launch, so model providers can serve it from
+  their prompt cache.
+
+If it saves you from repeating a dead idea, a star on
+[GitHub](https://github.com/arhancanli/canli-research-mcp) helps other quants find it.
+Contributions are credited by name and earn
+[Contributor access](https://github.com/arhancanli/canlicapital/blob/main/CONTRIBUTING.md#rewards-contributor-access).
 
 ## Tools
 
@@ -34,20 +68,6 @@ performance or investment advice.
 | `canli://schemas/{tool}` | A tool's exact input and output JSON Schema and description |
 | `canli://examples/{language}/{tool}` | A working call against the hosted endpoint in `python`, `javascript` or `curl` |
 | `canli://limits` | What every result does not establish |
-
-## Install
-
-```bash
-claude mcp add canli-research -- npx -y canli-research-mcp
-```
-
-Hosted, no install (claude.ai connectors, ChatGPT, Cursor, or any client that takes a URL):
-
-```bash
-claude mcp add --transport http canli-research https://canlicapital.com/mcp/research
-```
-
-Any MCP client that spawns a process works the same way: `npx -y canli-research-mcp`.
 
 ## Cost and speed
 
