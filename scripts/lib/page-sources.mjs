@@ -144,6 +144,7 @@ export const SHARED_PAGE_SOURCES = [
   'scripts/lib/contributors.mjs',
   'config/contributor-program.json',
   'css/product-shell.css', 'css/design-system.css', 'css/story.css', 'css/film.css', 'js/site-motion.js', 'js/evidence-film.js',
+  'public/og.png', 'public/favicon.svg', 'public/favicon.ico',
 ];
 for (const files of Object.values(PAGE_SOURCES)) files.push(...SHARED_PAGE_SOURCES);
 

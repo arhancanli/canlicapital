@@ -92,3 +92,6 @@ card frames. Contributors have a homepage chapter, developer path, shared menu
 link and `/contributors` page. Reward text and development status come from
 `config/contributor-program.json`; API eligibility and actual quotas remain
 owned by the MCP lane.
+
+
+The social image and favicon share the current midnight, ice and blue brand, with editable Figma source at nodes `178:21` and `178:38` on the film page. The social image repeats the homepage question; the favicon uses the archive-plane motif. SVG and ICO variants are shipped. Source hashes and export provenance are in `docs/redesign/brand-assets-20261005.json`.

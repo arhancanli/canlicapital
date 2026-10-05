@@ -40,3 +40,6 @@ The sitemap date manifest must be rebound after the source commit and checked
 in an actual Git-less build before the PR. Local checks are distinct from the
 final deployed source and live-domain checks. The broader indexing, adoption,
 expert governance and strategy objectives remain active.
+
+
+The social image and favicon share the current midnight, ice and blue brand, with editable Figma source at nodes `178:21` and `178:38` on the film page. The social image repeats the homepage question; the favicon uses the archive-plane motif. SVG and ICO variants are shipped. Source hashes and export provenance are in `docs/redesign/brand-assets-20261005.json`.
