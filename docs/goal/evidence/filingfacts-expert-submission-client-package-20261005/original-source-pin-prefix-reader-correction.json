@@ -1,0 +1,6 @@
+{
+  "original_stop": "secondary-source-pin-quote-reader-stop-v1.json",
+  "second_stop": "AssertionError: audit-package.test.mjs count0 even after quote accommodation",
+  "cause": "audit-package source keys include package/ prefix; other four use src/",
+  "correction": "exact optional package/ prefix and either quote; require one declaration per file before writing"
+}

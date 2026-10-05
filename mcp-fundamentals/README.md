@@ -244,3 +244,20 @@ workflow. The command preserves the full selected denominator, missing-role
 worklists, exact raw bindings and unknown human/expertise/independence/rights
 outcomes. It needs no SDK child or network. This is a source candidate;
 the unchanged `0.5.0` field is not evidence of npm availability or publication.
+
+
+## Supplied-file expert SDK client (Unreleased)
+
+The opt-in `canli-expert-submission-client` captures explicitly supplied private
+files and calls the existing local expert stdio audit once through locked SDK2.1
+legacy negotiation. [EXPERT_SUBMISSION_CLIENT.md](EXPERT_SUBMISSION_CLIENT.md)
+contains six complete synthetic inputs and the command. It saves the complete
+report privately while preserving raw bindings, all selected rows, missing roles
+and unknown human/expertise/independence/rights/label/adjudication outcomes.
+
+Observed15s work and one5s closure/output/terminal reserve share an absolute clock;
+encoded request/report/tool/frame bounds are enforced before native effects.
+Known same-child closure and exclusive0600/fsync/readback output are required for
+success. The direct no-SDK expert file command remains unchanged. This repository
+candidate and its new cases are written until exact new-head automaticCI; no
+installation/publication/adoption or authenticated-source claim follows.

@@ -1,0 +1,33 @@
+{
+  "schema": "third.PR390.ed8594ee.currentCI.compressed-byte-constant-reader-stop.v1",
+  "UTC": "2026-10-05T04:57:39.560608+00:00",
+  "head": "ed8594ee7f23b0fd1d1c98f259e9f37ad6b22b9b",
+  "classification": "Own metadata operand adaptation replaced ==11 inside ==117224; no product/source/CI failure. Original reader reached artifact after full all11/TAP/API/security parse but cannot seal a gate before completing corrected artifact custody.",
+  "original_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-ed8594ee-current-retained-CI-and-exact20-v1.py",
+    "bytes": 37519,
+    "sha256": "b16b0f94972defd389a73cc2570fe400cd60bb8082ff0377c3a341e5482a4e5f"
+  },
+  "original_stdout": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-ed8594ee-current-retained-CI-and-exact20-v1-stdout-original.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "original_stderr": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-ed8594ee-current-retained-CI-and-exact20-v1-stderr-original.log",
+    "bytes": 1023,
+    "sha256": "2fc5c31c5ab4e460f47c8b56755d427a6a30e50131b210cd1627c4c30b043ccc"
+  },
+  "corrected_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-ed8594ee-current-retained-CI-and-exact20-v2.py",
+    "bytes": 37519,
+    "sha256": "5031efb34e69597a5876fb2820ee67cec66320a444f365eb33bae4ac18603f88"
+  },
+  "exact_one_metadata_literal_correction": {
+    "before": "==127224",
+    "after": "==117224",
+    "derived_from": "Current literal raw compressed_bytes and saved original117224B TGZ; no capture/original/source correction"
+  },
+  "original_v1_recipe_stdout_stderr_preserved": true,
+  "raw_source_capture_verdict_overwrite_project_retry_APIrefetch_or_execution": false
+}

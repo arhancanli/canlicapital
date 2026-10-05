@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-05T02:46:44.868136+00:00",
+  "source_head": "f9649a84401554b95289f5ff30a2bb1193a321ed",
+  "alert_original": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-f9649a84-automatic-CI-native-v1/scoped-merge-ref-alerts-current-original-v1-stdout-original.bin",
+    "bytes": 4844,
+    "sha256": "c975c7638291639c87ef62abe755135ae3888d8112e659b5ae20719c7dab3951",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "actual_rule": "js/incomplete-sanitization",
+  "location": {
+    "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+    "start_line": 718,
+    "end_line": 718,
+    "start_column": 65,
+    "end_column": 98
+  },
+  "message": {
+    "text": "This replaces only the first occurrence of '{{'."
+  },
+  "scope": "new test duplicate-key fixture uses first-occurrence string replace; proposed explicit duplicate JSON construction, no runtime escaping claim or suppression",
+  "original_held_immutable": true,
+  "future_source_runtime_unknown": true,
+  "archive_allocation": null,
+  "ROOT_summary": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-f9649a84-original-ROOT-terminal-summary-v1.json",
+    "bytes": 2570,
+    "sha256": "b534b8f4b40c1976e6ec676dd8eac41c1166d83cf1f260a8ab707c08da1783a1",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  }
+}

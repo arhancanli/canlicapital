@@ -1,0 +1,1205 @@
+{
+  "schema": "canli.third.independent_static_source_review.v1",
+  "reviewer": "THIRD",
+  "UTC": "2026-10-05T03:02:37.275591+00:00",
+  "PR": 390,
+  "PR_url": "https://github.com/arhancanli/canlicapital/pull/390",
+  "result": "HOLD_SOURCE_FINDINGS",
+  "head": "f9649a84401554b95289f5ff30a2bb1193a321ed",
+  "tree": "afe78e827dc2f2ec3511916daa4fa3fdea445ce7",
+  "sole_actual_parent": "f553c0a6063ded731f74894138fa014f25e6b409",
+  "SSH_signature": "G",
+  "scope": "Initial frozen SOURCE only. The qualified failed MCP/CodeQL bytes corroborate fixture findings; this is not a complete independent retainedCURRENTCI gate.",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/source-f9649a84-expert-submission-client-package-v1.json",
+    "bytes": 42108,
+    "sha256": "c9ce32ff4595fe707a70a4387267bc40936db2cabd9d41e860b6d46e7aead918",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "native_proof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/proof-f9649a84-source-native-v2.json",
+    "bytes": 1829753,
+    "sha256": "6d9ac6b1e6b8892c7a035838e2bc7e75dddec53c9f53b3b37efdae25792b4458",
+    "mode_octal": "0o600",
+    "personal_FULLREAD_sameFD_postpath": true
+  },
+  "own_metadata_auditors_originals": [
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-f9649a84-source-native-v1.py",
+      "bytes": 18059,
+      "sha256": "5f221bc5d2eab2909116802b19345ed1ab7ee0a2571b00818c520e45c789015e",
+      "mode_octal": "0o644",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-f9649a84-source-native-v1-command-original.json",
+      "bytes": 279,
+      "sha256": "ab17908e819ab08ae8adc107fa392364208c95cee48770f7cd958fc53e39d9c5",
+      "mode_octal": "0o600",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-f9649a84-source-native-v1-stdout-original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode_octal": "0o600",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-f9649a84-source-native-v1-stderr-original.bin",
+      "bytes": 242,
+      "sha256": "f7c84b6ccd0b962c56c4b0b4249d682a78a128b70afeead5432c6cf28707906d",
+      "mode_octal": "0o600",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-f9649a84-source-native-v2.py",
+      "bytes": 19843,
+      "sha256": "893830435f331ccbbdd6243754ee6cf632cf0b3bcd14e506d78b9c31a258bef5",
+      "mode_octal": "0o600",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-f9649a84-source-native-v2-command-original.json",
+      "bytes": 279,
+      "sha256": "530197ddcbfc83646afce6d37cdd9cdc6d930d24d95d8f0ada9406103f1e62e2",
+      "mode_octal": "0o600",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-f9649a84-source-native-v2-stdout-original.bin",
+      "bytes": 400,
+      "sha256": "df26e7514422d117108a54c4d1ea5a92934059a3f8acac4f470f78306178ccb1",
+      "mode_octal": "0o600",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/inspect-f9649a84-source-native-v2-stderr-original.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode_octal": "0o600",
+      "personal_FULLREAD_sameFD_postpath": true
+    }
+  ],
+  "tool_parser_diagnostic": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/f9649a84-source-auditor-write-tool-parser-diagnostic-original-v1.json",
+    "bytes": 586,
+    "sha256": "4319a404c8b0ef501a4060f41256c2191e694619ed9986d5c98891fa1dcb28c6",
+    "mode_octal": "0o600",
+    "personal_FULLREAD_sameFD_postpath": true
+  },
+  "source_custody": {
+    "full7195_Git_stage0_equal_frozenH": true,
+    "exact13_changed_three_new": true,
+    "owned13": [
+      {
+        "path": "mcp-fundamentals/src/expert-submission-client.mjs",
+        "mode": "100755",
+        "object": "2e7ce290e9a83fcefc6d3ef954f5f6760440966d",
+        "bytes": 55082,
+        "sha256": "1a7db19f98996e2de79dc56d4cbdf804fbc23ed3a0e5d08ad9e7faa423611e47",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "mcp-fundamentals/EXPERT_SUBMISSION_CLIENT.md",
+        "mode": "100644",
+        "object": "313fe8244aeb2e78918ad079ab7a47ddf9c20e03",
+        "bytes": 9142,
+        "sha256": "e20d7ba98e442f37f1f54b9d9c1b225d8f69ad42b6b101371ca7d7a3341be316",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+        "mode": "100644",
+        "object": "0d2dd9038526efe5244d8cbd25ae0b6e87146df4",
+        "bytes": 70749,
+        "sha256": "87f8a750042c9333194bf99d635078e9443029dc2c45f706c035b73bf9cc7d60",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "mcp-fundamentals/package.json",
+        "mode": "100644",
+        "object": "b89db6521ee833a7225e2c41ed1ebdc6ec179eb7",
+        "bytes": 1754,
+        "sha256": "cb1bf2c541011dec933cf8512c8fbcbdf62921a2ce424cc2c318c630e8950b25",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "mcp-fundamentals/package-lock.json",
+        "mode": "100644",
+        "object": "c76f724d5ba787f731c64330e5cb0dda6c52623c",
+        "bytes": 6566,
+        "sha256": "1e2bfd9c528d49394b6e46db9b0e39097944ab44409f056776190c454bfc984e",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "mcp-fundamentals/README.md",
+        "mode": "100644",
+        "object": "ba790525bea149becbb95d4fdcc060d282ef85a5",
+        "bytes": 16964,
+        "sha256": "b27eaaa17112c7e486d649c5fac1ddc50dd8aa7fa6a3a122ca2f172a503ddb92",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "mcp-fundamentals/test/audit-package.test.mjs",
+        "mode": "100644",
+        "object": "98a54bbed88df1013c62974b0726d7ae9a7f8525",
+        "bytes": 41705,
+        "sha256": "72355dfc25ae1b532ec37a6beda4a4fc606f566d721405f4b2f392c493061dd0",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+        "mode": "100644",
+        "object": "6779f0483b7ddb6537436c0ba5e96314ae188f93",
+        "bytes": 50481,
+        "sha256": "20de1f9b2ff5f387517efb99a2143189846848f6a6f1b689338c91e3321d1792",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+        "mode": "100644",
+        "object": "8c7b53e7a542fed34d182b8a06962ffdd4b58071",
+        "bytes": 92721,
+        "sha256": "308b6fcc8d1ece0c831bcb06cbe9258aade63f79056c339d310492928a2a7a4b",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "mcp-fundamentals/test/expert-submission-files-package.test.mjs",
+        "mode": "100644",
+        "object": "66f14ad63d612556eb2bdc8215347a53fa1ecfae",
+        "bytes": 67902,
+        "sha256": "c1efa14152a18d134ebb621d5c37c3797d805bd5a9c52a258831d0064db43297",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "package.json",
+        "mode": "100644",
+        "object": "9d62ea8ab264b0c15101c1f5b29c173f679ebe5d",
+        "bytes": 15810,
+        "sha256": "b94eb29d93f3852efb1440031c50041bfece3db43ecdc0934132cc7800985080",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "mode": "100644",
+        "object": "488be55fc4db483d0b3f23b07e7e7e2cc07c7097",
+        "bytes": 778538,
+        "sha256": "21c092a41ad21636e44d6b1ccb253abafe771d474ba49675a4a013256c42699c",
+        "working_exact_H": true,
+        "index_exact_H": true
+      },
+      {
+        "path": "docs/goal/LOG.md",
+        "mode": "100644",
+        "object": "483c1822c795bca800e97ece2948ca1fafffe002",
+        "bytes": 1604624,
+        "sha256": "069f37db9c6b57ff837df00ce0214513543f413923a975dae87e157935f76c7e",
+        "working_exact_H": true,
+        "index_exact_H": true
+      }
+    ],
+    "all7182_protected_entire_M_mode_type_object_size_identities": {
+      "count": 7182,
+      "bytes": 430040112,
+      "digest": "ebf7eb189c01831006ecd2377d58726d04378754b597b359934ec84b91d8304d",
+      "exact_entire_M_identities": true,
+      "whole_protected_physical_audit": false
+    },
+    "selected35_protected_plus13_owned_fresh_sameFD_fullreads": {
+      "unique": 48,
+      "bytes": 3505801,
+      "whole430MBphysical_claim": false
+    },
+    "all74_sourceowner_Git_disjoint_protected": true,
+    "all_seven_entire_file_literal_inverses_native_recover_actualM": [
+      {
+        "path": "mcp-fundamentals/test/audit-package.test.mjs",
+        "hunks": 5,
+        "base_sha256": "93d165928e6757140745b9217d6024dd67538b20a181cc03a29e1206387ebf4a",
+        "current_sha256": "72355dfc25ae1b532ec37a6beda4a4fc606f566d721405f4b2f392c493061dd0"
+      },
+      {
+        "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+        "hunks": 9,
+        "base_sha256": "1c388dfdf021163d6d621459df09d87caff27a1bd184caca7ffff8fd66afd42f",
+        "current_sha256": "20de1f9b2ff5f387517efb99a2143189846848f6a6f1b689338c91e3321d1792"
+      },
+      {
+        "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+        "hunks": 10,
+        "base_sha256": "ed7c50397f005c229a326eb8acf90811eb72f07fc941c32e46ea91e9a109913d",
+        "current_sha256": "308b6fcc8d1ece0c831bcb06cbe9258aade63f79056c339d310492928a2a7a4b"
+      },
+      {
+        "path": "mcp-fundamentals/test/expert-submission-files-package.test.mjs",
+        "hunks": 6,
+        "base_sha256": "c02e347bfd2512574fa76dcb124f33038e1ae42c9f64254e1d29fd8d60368c9a",
+        "current_sha256": "c1efa14152a18d134ebb621d5c37c3797d805bd5a9c52a258831d0064db43297"
+      },
+      {
+        "path": "package.json",
+        "hunks": 1,
+        "base_sha256": "3ea91e841c06aee924dabb3befce743ae1527db2a2584438207a90f070c8d759",
+        "current_sha256": "b94eb29d93f3852efb1440031c50041bfece3db43ecdc0934132cc7800985080"
+      },
+      {
+        "path": "mcp-fundamentals/package.json",
+        "hunks": 2,
+        "base_sha256": "b901d33d12d62ee3141664cfcf7d41bbd65493b4e1feb90ce231bdc1533a0809",
+        "current_sha256": "cb1bf2c541011dec933cf8512c8fbcbdf62921a2ce424cc2c318c630e8950b25"
+      },
+      {
+        "path": "mcp-fundamentals/package-lock.json",
+        "hunks": 1,
+        "base_sha256": "e9de4fb40c1ff7c881245b458cd723c6d5b7dbcbcdfbd0b26ad2807b2942ab99",
+        "current_sha256": "1e2bfd9c528d49394b6e46db9b0e39097944ab44409f056776190c454bfc984e"
+      }
+    ],
+    "old22_30_38_40_original_names_order_preserved": true,
+    "four_old_suite_body_hunks": "Entire literal inverses and every old/current case section hash are in native proof. Remaining sixth-bin assertion omission is separately a finding.",
+    "root_two_NEW_literal_registrations_and_verify_ENTIRE_exactM": true,
+    "root_verify_sha256": "f22252c98bef63f212af303d2e1fc2e91e8559bc8e9ce54e319cd3b75fd77212",
+    "root_lock_ENTIRE_exactM": true,
+    "nested15_lockrows_bin_ONLY_change_no_newdeps_versions_or_devflag_promotion": true,
+    "original_package_bin_files_union_entire_inverse_exactM": true,
+    "old57_63_60_core_default7_server_canonical_versions_deps_oldarchives_inherited_ENTIRE_Git": true,
+    "whole_five_M_goal_prefixes_plus_mcpREADME": [
+      {
+        "path": "docs/goal/README.md",
+        "whole_M_prefix_bytes": 6899,
+        "sha256": "de9bb5848712ad2d2ee78c1e0a805fc79483d642a0a4d2fbbf116c0413b851ce",
+        "append_bytes": 0
+      },
+      {
+        "path": "docs/goal/REQUIREMENTS.md",
+        "whole_M_prefix_bytes": 8758,
+        "sha256": "32b9c2936d8132abd580c65eae18f3a804bd95262b5aa5963f472e0cac6f4bb8",
+        "append_bytes": 0
+      },
+      {
+        "path": "docs/goal/STATUS.md",
+        "whole_M_prefix_bytes": 776796,
+        "sha256": "5e955565d4907aa9f868d69bc0c2188bdb032f746f2d13f61300b2558eed7c90",
+        "append_bytes": 1742
+      },
+      {
+        "path": "docs/goal/PHASES.md",
+        "whole_M_prefix_bytes": 25963,
+        "sha256": "7e80eb423f71e6c176860dd5989b5340b790cdd5d8b9724137f8d1bde42a1894",
+        "append_bytes": 0
+      },
+      {
+        "path": "docs/goal/LOG.md",
+        "whole_M_prefix_bytes": 1602882,
+        "sha256": "f6121f18604f0bed2af1fa49f07bcfa8c91aa9d66ef6800d8052847a2be24e71",
+        "append_bytes": 1742
+      },
+      {
+        "path": "mcp-fundamentals/README.md",
+        "whole_M_prefix_bytes": 15960,
+        "sha256": "19e7886c9ebe07eb4e2634c8150e6dfc92698587ed57516fd1004af31dbf0cab",
+        "append_bytes": 1004
+      }
+    ],
+    "working_status_at_native_audit": "",
+    "evolving_future_working_bytes_NOT_ACKed": true
+  },
+  "reviewed_behavior_source_only": [
+    {
+      "area": "Input admission",
+      "review": "Primitive scalar grammar, exact canonical paths/SHA, max72 nativeFD admission and all individual/group/aggregate bounds before payload/base64/SDK; stable FD/path whole batch, raw-byte SHA, duplicate-key fatalUTF8 before transport. Same original2params/9args before SDK projection."
+    },
+    {
+      "area": "SDK source/lifecycle",
+      "review": "Locked selected SDK2.1 source bytes inspected without import. Explicit legacy/autoFulfillfalse, package-local single server, one initialize/one exact callTool protected-tool second options, one owned transport/child, no discovery/fallback/retry."
+    },
+    {
+      "area": "Native clock and Promise custody",
+      "review": "One observed15/5/20 clock before capture, sticky abort plus process fan-in, task outcomes adopted before postcallback clock, originalSTART both outcomes immediately before fallible child admission/originalPromise unchanged. Exact native JSON+LF/cap then fresh same-clock writer/drain. Success requires memoized originalclose and same known owned exit/close; no reviewer process census."
+    },
+    {
+      "area": "Full report",
+      "review": "Whole strict publicJSON vs structured report, canonical outer+preparation hashes, fixed6MiB full file, original binding buffers, full selectedN/roles/per-field/missing/pairs/notes/null outcomes and literal false source flags are checked. Preparation task/blank-form original binding gap remains a finding."
+    },
+    {
+      "area": "Private durability/terminal",
+      "review": "Caller-private parent, O_EXCL|O_NOFOLLOW0600, complete JSON+LF/sameFD readback/finalFD-path/parentfsync/oneclose, uncertain partial retained. Native once-only terminal capture with fresh postserialization clock/noecho caps and observedreserve; no hard synchronous preemption claim."
+    },
+    {
+      "area": "Strict artifact/fixtures",
+      "review": "Current20/sixbin rawGit modes/all12 literal closure; selected fixed dependency cache links qualified NOTinstallation. ONE future guardedpack/three actual command sites with <=3 transitive SDKchildren, other faults native SAMEadapter. Diagnostic EAGAIN and old22 expected-array gaps remain findings; no successful new case execution is inferred."
+    }
+  ],
+  "all12_static_dynamic_local_import_closure": [
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-client.mjs",
+      "bytes": 39509,
+      "sha256": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7",
+      "static": [
+        "node:fs",
+        "node:crypto",
+        "node:perf_hooks",
+        "node:util",
+        "node:path",
+        "node:url",
+        "./audit-inputs-stdio.mjs",
+        "./audit-inputs-core.mjs",
+        "./canonical-json.mjs"
+      ],
+      "dynamic": [
+        "@modelcontextprotocol/client",
+        "@modelcontextprotocol/client/stdio"
+      ],
+      "local": [
+        {
+          "specifier": "./audit-inputs-stdio.mjs",
+          "path": "mcp-fundamentals/src/audit-inputs-stdio.mjs",
+          "bytes": 12929,
+          "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0"
+        },
+        {
+          "specifier": "./audit-inputs-core.mjs",
+          "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+          "bytes": 21651,
+          "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059"
+        },
+        {
+          "specifier": "./canonical-json.mjs",
+          "path": "mcp-fundamentals/src/canonical-json.mjs",
+          "bytes": 9481,
+          "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+      "bytes": 21651,
+      "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059",
+      "static": [
+        "node:crypto",
+        "node:util",
+        "./canonical-json.mjs"
+      ],
+      "dynamic": [],
+      "local": [
+        {
+          "specifier": "./canonical-json.mjs",
+          "path": "mcp-fundamentals/src/canonical-json.mjs",
+          "bytes": 9481,
+          "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/audit-inputs-stdio.mjs",
+      "bytes": 12929,
+      "sha256": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0",
+      "static": [
+        "node:util",
+        "node:crypto",
+        "node:fs",
+        "node:url",
+        "@modelcontextprotocol/server",
+        "@modelcontextprotocol/server/stdio",
+        "zod",
+        "./audit-inputs-core.mjs",
+        "./canonical-json.mjs"
+      ],
+      "dynamic": [],
+      "local": [
+        {
+          "specifier": "./audit-inputs-core.mjs",
+          "path": "mcp-fundamentals/src/audit-inputs-core.mjs",
+          "bytes": 21651,
+          "sha256": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059"
+        },
+        {
+          "specifier": "./canonical-json.mjs",
+          "path": "mcp-fundamentals/src/canonical-json.mjs",
+          "bytes": 9481,
+          "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/canonical-json.mjs",
+      "bytes": 9481,
+      "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "static": [],
+      "dynamic": [],
+      "local": []
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-agreement.mjs",
+      "bytes": 6410,
+      "sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef",
+      "static": [
+        "node:crypto",
+        "node:fs",
+        "./canonical-json.mjs",
+        "./filing-facts-packet.mjs"
+      ],
+      "dynamic": [],
+      "local": [
+        {
+          "specifier": "./canonical-json.mjs",
+          "path": "mcp-fundamentals/src/canonical-json.mjs",
+          "bytes": 9481,
+          "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+        },
+        {
+          "specifier": "./filing-facts-packet.mjs",
+          "path": "mcp-fundamentals/src/filing-facts-packet.mjs",
+          "bytes": 555,
+          "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-intake-core.mjs",
+      "bytes": 30951,
+      "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545",
+      "static": [
+        "node:crypto",
+        "node:util",
+        "./canonical-json.mjs",
+        "./filing-facts-packet.mjs"
+      ],
+      "dynamic": [],
+      "local": [
+        {
+          "specifier": "./canonical-json.mjs",
+          "path": "mcp-fundamentals/src/canonical-json.mjs",
+          "bytes": 9481,
+          "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+        },
+        {
+          "specifier": "./filing-facts-packet.mjs",
+          "path": "mcp-fundamentals/src/filing-facts-packet.mjs",
+          "bytes": 555,
+          "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+      "bytes": 23777,
+      "sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3",
+      "static": [
+        "node:crypto",
+        "node:util",
+        "./canonical-json.mjs",
+        "./filing-facts-packet.mjs",
+        "./expert-intake-core.mjs",
+        "./expert-agreement.mjs"
+      ],
+      "dynamic": [],
+      "local": [
+        {
+          "specifier": "./canonical-json.mjs",
+          "path": "mcp-fundamentals/src/canonical-json.mjs",
+          "bytes": 9481,
+          "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+        },
+        {
+          "specifier": "./filing-facts-packet.mjs",
+          "path": "mcp-fundamentals/src/filing-facts-packet.mjs",
+          "bytes": 555,
+          "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8"
+        },
+        {
+          "specifier": "./expert-intake-core.mjs",
+          "path": "mcp-fundamentals/src/expert-intake-core.mjs",
+          "bytes": 30951,
+          "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545"
+        },
+        {
+          "specifier": "./expert-agreement.mjs",
+          "path": "mcp-fundamentals/src/expert-agreement.mjs",
+          "bytes": 6410,
+          "sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-submission-client.mjs",
+      "bytes": 55082,
+      "sha256": "1a7db19f98996e2de79dc56d4cbdf804fbc23ed3a0e5d08ad9e7faa423611e47",
+      "static": [
+        "node:fs",
+        "node:crypto",
+        "node:path",
+        "node:url",
+        "node:util",
+        "node:perf_hooks",
+        "./canonical-json.mjs",
+        "./filing-facts-packet.mjs",
+        "./expert-agreement.mjs"
+      ],
+      "dynamic": [
+        "@modelcontextprotocol/client",
+        "@modelcontextprotocol/client/stdio",
+        "./expert-submission-stdio.mjs"
+      ],
+      "local": [
+        {
+          "specifier": "./canonical-json.mjs",
+          "path": "mcp-fundamentals/src/canonical-json.mjs",
+          "bytes": 9481,
+          "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+        },
+        {
+          "specifier": "./filing-facts-packet.mjs",
+          "path": "mcp-fundamentals/src/filing-facts-packet.mjs",
+          "bytes": 555,
+          "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8"
+        },
+        {
+          "specifier": "./expert-agreement.mjs",
+          "path": "mcp-fundamentals/src/expert-agreement.mjs",
+          "bytes": 6410,
+          "sha256": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef"
+        },
+        {
+          "specifier": "./expert-submission-stdio.mjs",
+          "path": "mcp-fundamentals/src/expert-submission-stdio.mjs",
+          "bytes": 25763,
+          "sha256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-submission-files.mjs",
+      "bytes": 16119,
+      "sha256": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d",
+      "static": [
+        "node:fs",
+        "node:crypto",
+        "node:path",
+        "node:url",
+        "node:util"
+      ],
+      "dynamic": [
+        "./expert-submission-audit-core.mjs"
+      ],
+      "local": [
+        {
+          "specifier": "./expert-submission-audit-core.mjs",
+          "path": "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+          "bytes": 23777,
+          "sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/expert-submission-stdio.mjs",
+      "bytes": 25763,
+      "sha256": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208",
+      "static": [
+        "node:util",
+        "node:crypto",
+        "node:fs",
+        "node:url",
+        "@modelcontextprotocol/server",
+        "@modelcontextprotocol/server/stdio",
+        "zod",
+        "./expert-submission-audit-core.mjs",
+        "./canonical-json.mjs"
+      ],
+      "dynamic": [],
+      "local": [
+        {
+          "specifier": "./expert-submission-audit-core.mjs",
+          "path": "mcp-fundamentals/src/expert-submission-audit-core.mjs",
+          "bytes": 23777,
+          "sha256": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3"
+        },
+        {
+          "specifier": "./canonical-json.mjs",
+          "path": "mcp-fundamentals/src/canonical-json.mjs",
+          "bytes": 9481,
+          "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/filing-facts-packet.mjs",
+      "bytes": 555,
+      "sha256": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8",
+      "static": [
+        "./canonical-json.mjs"
+      ],
+      "dynamic": [],
+      "local": [
+        {
+          "specifier": "./canonical-json.mjs",
+          "path": "mcp-fundamentals/src/canonical-json.mjs",
+          "bytes": 9481,
+          "sha256": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b"
+        }
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/src/server.mjs",
+      "bytes": 64736,
+      "sha256": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38",
+      "static": [
+        "node:crypto",
+        "node:fs",
+        "node:os",
+        "node:path",
+        "node:url",
+        "node:zlib",
+        "@modelcontextprotocol/server",
+        "@modelcontextprotocol/server/stdio",
+        "zod"
+      ],
+      "dynamic": [],
+      "local": []
+    }
+  ],
+  "guide_six_original_strict_JSON_LF_samebuffer_pins": [
+    {
+      "label": "GOLD",
+      "bytes": 1562,
+      "sha256": "b958f12debf58d64818286f536b240c5daf20dac244950a2ad294e54fa33acfb",
+      "duplicate_key_refusing_stdlib_parse": true,
+      "LF_included": true
+    },
+    {
+      "label": "INTAKE",
+      "bytes": 945,
+      "sha256": "35ab3f7ac040cce11c8890b7004f15358b6cba0d96f58c789110b860cff353e4",
+      "duplicate_key_refusing_stdlib_parse": true,
+      "LF_included": true
+    },
+    {
+      "label": "EVIDENCE_INVENTORY",
+      "bytes": 74,
+      "sha256": "d3507c0c1124e9a4489e95068e45cc4c2b4b902085e7a75a5f29eb22b11fa5ae",
+      "duplicate_key_refusing_stdlib_parse": true,
+      "LF_included": true
+    },
+    {
+      "label": "INTAKE_SETTINGS",
+      "bytes": 259,
+      "sha256": "31326dd89d31849ccd21e0e9434ca6da63e8e20e4f6944ab90de9067fb58e143",
+      "duplicate_key_refusing_stdlib_parse": true,
+      "LF_included": true
+    },
+    {
+      "label": "SUBMISSION_INVENTORY",
+      "bytes": 176,
+      "sha256": "9ab28f4af328aedd77befdefbe81d5d922b7ca8f2422f2817c0577e7b8610fc7",
+      "duplicate_key_refusing_stdlib_parse": true,
+      "LF_included": true
+    },
+    {
+      "label": "AUDIT_SETTINGS",
+      "bytes": 194,
+      "sha256": "1f89bf622fb1a00167ecb80705eacc257325e5a991aa131c42a1f75d278985ac",
+      "duplicate_key_refusing_stdlib_parse": true,
+      "LF_included": true
+    }
+  ],
+  "current20_source_candidate_member_list": [
+    "package/AUDIT_INPUTS.md",
+    "package/AUDIT_INPUTS_CLIENT.md",
+    "package/EXPERT_SUBMISSIONS.md",
+    "package/EXPERT_SUBMISSION_CLIENT.md",
+    "package/EXPERT_SUBMISSION_FILES.md",
+    "package/LICENSE",
+    "package/README.md",
+    "package/package.json",
+    "package/src/audit-inputs-client.mjs",
+    "package/src/audit-inputs-core.mjs",
+    "package/src/audit-inputs-stdio.mjs",
+    "package/src/canonical-json.mjs",
+    "package/src/expert-agreement.mjs",
+    "package/src/expert-intake-core.mjs",
+    "package/src/expert-submission-audit-core.mjs",
+    "package/src/expert-submission-client.mjs",
+    "package/src/expert-submission-files.mjs",
+    "package/src/expert-submission-stdio.mjs",
+    "package/src/filing-facts-packet.mjs",
+    "package/src/server.mjs"
+  ],
+  "fixed_six_bins": {
+    "canli-fundamentals-mcp": "src/server.mjs",
+    "canli-fundamentals-audit": "src/audit-inputs-stdio.mjs",
+    "canli-expert-submission-audit": "src/expert-submission-stdio.mjs",
+    "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs",
+    "canli-expert-submission-files": "src/expert-submission-files.mjs",
+    "canli-expert-submission-client": "src/expert-submission-client.mjs"
+  },
+  "case_inventory": {
+    "written40_names_body_pins": [
+      {
+        "name": "expert client package: exact20 source bodies six bins raw modes and unchanged dependency metadata admit once",
+        "line": 533,
+        "body_sha256": "ae755274d446ad4db26b87b9fc78591e83e87bab330a27cb3e8cbf6c9100c515"
+      },
+      {
+        "name": "expert client package: checksum-valid highbit duplicate traversal overflow and trailing gzip refuse before extraction",
+        "line": 538,
+        "body_sha256": "932acc997518c2026eb49b907d7bd06066fd057fe60fb4e6fb210f43834f686f"
+      },
+      {
+        "name": "expert client package: missing local imports changed source bytes and extra members cannot be normalized into admission",
+        "line": 556,
+        "body_sha256": "2f468e134d5433a36b595f3c9c6072ce636711975af85c227156970c8bee0298"
+      },
+      {
+        "name": "expert client package: native guard admits exact owned Buffer paths including BOM and refuses malformed foreign or network writes",
+        "line": 561,
+        "body_sha256": "4d1f32cfb28ef7c91664babdb48766a9355bb117601c856c3885b444e3cddb0c"
+      },
+      {
+        "name": "expert client native: positive complete two-returned-packet report retains all notes fullN bindings nulls and private durable bytes",
+        "line": 568,
+        "body_sha256": "9e8d40880b12124ac58a987674d1122c7a609e9d7f6445003ed18a8c7f1b7a80"
+      },
+      {
+        "name": "expert client native: missing duplicate unknown scalar flags sparse arrays and excessive counts stop before any file or child effect",
+        "line": 573,
+        "body_sha256": "ccc473b1a92e200d88bf5acf4f7832531cefef702e932be2056cd7bc55e00c26"
+      },
+      {
+        "name": "expert client native: a late oversized individual file is rejected with all knownFDs closed before the first payload read",
+        "line": 581,
+        "body_sha256": "b67567137a763f0c9ac84af920ff31eee940bde7ba20c6fbb66561c538479359"
+      },
+      {
+        "name": "expert client native: individual-positive evidence and aggregate4MiB failures occur before body reads or base64 child dispatch",
+        "line": 586,
+        "body_sha256": "520c7bad7a3eb3d7225647cbf8da209521a8e27d7315554687e58c0369f542b1"
+      },
+      {
+        "name": "expert client native: short EOF and a positive overflow byte both refuse without repairing the saved original",
+        "line": 595,
+        "body_sha256": "8073ce7462cbd7535c5f6d72a03b4bbe52e074d41c5a601f19c4ab0830914985"
+      },
+      {
+        "name": "expert client native: changing an earlier captured path during a later read is found by the whole-batch final observation",
+        "line": 601,
+        "body_sha256": "4e6836490326da9ff464baee7f9ad4a1182ee6ea2727852361c1a65270bc8b35"
+      },
+      {
+        "name": "expert client native: actual hardlinked aliases refuse at FD admission before any payload or SDK child",
+        "line": 606,
+        "body_sha256": "12884924f0b6150f1755fd092d793a8d36b2413142c10ce94de372825c867ac7"
+      },
+      {
+        "name": "expert client native: read-FD close-after-close uncertainty never retries a reused unrelated numeric descriptor",
+        "line": 610,
+        "body_sha256": "37f5dfe2f9551e424ee2875d841264cac6f57f4973d0c648ab0be97fdda31c47"
+      },
+      {
+        "name": "expert client native: primitive exact64 gold hash and same-buffer mismatch stop before SDK import or child",
+        "line": 621,
+        "body_sha256": "e85e29285ac0329f4787c1ec13a96ec800f46c0ef73a42b9cdc35f478efa665a"
+      },
+      {
+        "name": "expert client native: fatal UTF8 and duplicate input JSON keys are never replacement-decoded before child entry",
+        "line": 629,
+        "body_sha256": "a1dd4e42ae29b8ec87f9a62e8043f8e54b03d2069eddf8a2957ae243eaa1751a"
+      },
+      {
+        "name": "expert client native: own proto unknown outer keys sparse and noncanonicalbase64 are refused before SDK projection with positive original control",
+        "line": 635,
+        "body_sha256": "26cd1cf26f3dd80e47c3aa29ab876668c5eacaa6fa2647d11e227c764234181a"
+      },
+      {
+        "name": "expert client native: SAME native serialization crossing14999.5+1ms has zero wire or kernel with an exact positive send control",
+        "line": 647,
+        "body_sha256": "023de400a99113209b6aec7d34e52f1fcf601dedf3383509c8953ccc57e23fa6"
+      },
+      {
+        "name": "expert client native: sticky abort after serialization and listener-admission state changes cannot make a wire effect",
+        "line": 654,
+        "body_sha256": "86f8c9f2629dd5a5e3211b808a2e64fa3fbd03b148bd95ce53d0352370ff92f5"
+      },
+      {
+        "name": "expert client native: one false nativewrite resolves on one drain without retry and preserves SDK Promise completion",
+        "line": 659,
+        "body_sha256": "789180578288ad2b0b66485441307f28912a19c73b85510576d7ce00e7210325"
+      },
+      {
+        "name": "expert client native: writer failure has no second write and still memoizes original child transportclose exactly once",
+        "line": 663,
+        "body_sha256": "3317ad376ca1825c7e73fa46fe7b31e242bdaf7807694e70cf943ac09b79b298"
+      },
+      {
+        "name": "expert client native: queued late callback stops at same sender boundary rather than issuing a followup audit",
+        "line": 667,
+        "body_sha256": "ce953e78851dd5f99045fae43f1dc4f8f259d1f973051d2ad6723d68d4dfa2b4"
+      },
+      {
+        "name": "expert client native: synchronous compiler exhaustion owns a later task rejection before postcallback clock refusal",
+        "line": 671,
+        "body_sha256": "ec85855de2572444dde5af086414c1631a511df2a66d87e0e03188826317e446"
+      },
+      {
+        "name": "expert client native: immediate and delayed originalSTART rejections stay owned when subsequent PID admission throws",
+        "line": 679,
+        "body_sha256": "06a2354f923e5d4f0305b756a57b8f1677fb4ac458afceb8a89953f664f90458"
+      },
+      {
+        "name": "expert client native: same original pending task rejection after queued return is consumed without hidden retry or second call",
+        "line": 689,
+        "body_sha256": "40334c9e1bed8f191aa5a1447747962b7b12b1e0b285aa4d1c6b4c74cc5b7929"
+      },
+      {
+        "name": "expert client native: connect refusal closes the exact known child and never starts an audit",
+        "line": 693,
+        "body_sha256": "64c3d3dc2d7215d1739b7e85379e80d6e0bdbab9bbc2c63ce4afe6862f2463a7"
+      },
+      {
+        "name": "expert client native: rehashed gold and submission binding tampering is refused beyond self-consistent content_hash",
+        "line": 697,
+        "body_sha256": "e2d436df4c4810d1203b17843b5337de43daa33b2e286282f59d139b097466dc"
+      },
+      {
+        "name": "expert client native: rehashed reduced selectedN or missing-pair denominator is refused while full originals remain intact",
+        "line": 703,
+        "body_sha256": "4969ae7abe32221646ea542c0b694f16c7a324080c97e5d48e5ad71fe37a0ca0"
+      },
+      {
+        "name": "expert client native: rehashed promoted human rights and declared-source flags never become verified outcomes",
+        "line": 709,
+        "body_sha256": "0fc84e94b4c5331b4776ce5a1301e82ffd2c0e8febf952cf659c5d96537348fe"
+      },
+      {
+        "name": "expert client native: structured-text mismatch duplicate text keys and rehashed changed returned notes cannot lose companions",
+        "line": 715,
+        "body_sha256": "ed8a8a6c0aed32af574e0309ea4ca3d290e06bf81ebb7f6d41990930f686f944"
+      },
+      {
+        "name": "expert client native: complete escaped request cap and whole duplicated result cap refuse before wire or report persistence",
+        "line": 721,
+        "body_sha256": "af76d945bec52e2140f7711febcfece38e1f20837646846fba485ab6e35e7990"
+      },
+      {
+        "name": "expert client native: missing known-owned absence or exhausted close reserve cannot mark an output success",
+        "line": 728,
+        "body_sha256": "d92a5909652150b7f067aaf007c0d9a7ac4e0e66f86f75e45af03fb7230d2d0a"
+      },
+      {
+        "name": "expert client native: existing output and nonprivate parent refuse before any SDK child without overwrite or permission repair",
+        "line": 736,
+        "body_sha256": "cce72eb29085bc3f13d735449a9fda61cd85f867390fd300068fbad383bf007a"
+      },
+      {
+        "name": "expert client native: uncertain short output followed by write failure retains the private partial file and no success",
+        "line": 743,
+        "body_sha256": "cab513be586c519bb4594dd6c2fea2c023f24e719fbd2ccd605543cea0092bad"
+      },
+      {
+        "name": "expert client native: fsync and sameFD readback uncertainty retain the complete file and refuse without a second output",
+        "line": 749,
+        "body_sha256": "8efb6a56e19a5c3abf6e0ac73eb85105611286e6c1b64faf8a59f871e2b97a95"
+      },
+      {
+        "name": "expert client native: post-readback path replacement and directory flush failure preserve uncertainty and retained outputs",
+        "line": 757,
+        "body_sha256": "2c783abc6f24d648a8d8428d95e87851704135fd069c24a8b0a9ed574037ed5e"
+      },
+      {
+        "name": "expert client native: output close-after-close descriptor reuse is not retried and the durable report stays retained",
+        "line": 767,
+        "body_sha256": "5280532c0ee31229626086efb1a3ebc7d338c49351270e54f3c21872518c3f76"
+      },
+      {
+        "name": "expert client native: postserialization terminal clock refusal has zero native terminal writes and no echoed private exception",
+        "line": 779,
+        "body_sha256": "f752057172ee9a4ed445236b33d90a5d3ee89badcf858c6b4165a21774439555"
+      },
+      {
+        "name": "expert client package: marked guide direct entry1 uses the same six input buffers and one known closed SDK child",
+        "line": 786,
+        "body_sha256": "589a4c54edec3b74c57bb977ff8b95ceda178d81dca87d12fe76daa588b88d5c"
+      },
+      {
+        "name": "expert client package: owned absolute bin alias entry2 returns byteexact full report with one known closed SDK child",
+        "line": 787,
+        "body_sha256": "4c963cd6ded41a5672ad69b076d085f3907798b4cc33b1cdde1470c3f2209ae4"
+      },
+      {
+        "name": "expert client package: complete invalid tool batch entry3 has a stable tiny refusal one call and known owned closure",
+        "line": 788,
+        "body_sha256": "c8d3643a1aec5dd11914718a9cde5ad93fac6669835df0fa901aff6e289f6bc3"
+      },
+      {
+        "name": "expert client native: terminal listener-admission abort and nonfinite or backwards clocks cannot issue success",
+        "line": 789,
+        "body_sha256": "b81c83aa77dd01568e7d7f8b1a121afc4f41d5119e4f8a633188d974e8cabb98"
+      }
+    ],
+    "freeze_state": "WRITTEN_UNRUN",
+    "current_retained_first_attempt": "ALL40_NEW_HOOKFAILED_BODY_UNEXECUTED",
+    "new_actual_command_or_SDK_success": 0,
+    "same_future_launch_inventory": {
+      "offline_guarded_pack": 1,
+      "direct_guide_alias_refusal_client_entries": 3,
+      "transitive_SDK_child_entries_max": 3,
+      "audit_calls_per_entry_max": 1,
+      "other_faults": "native injected SAME adapter"
+    }
+  },
+  "findings": [
+    {
+      "id": "CC-390-PREPARATION-ADJUDICATION-ORIGINAL-BINDING",
+      "priority": "P2",
+      "path": "mcp-fundamentals/src/expert-submission-client.mjs",
+      "line": 588,
+      "status": "OPEN_STATIC_SOURCE",
+      "title": "Bind the preparation tasks and blank adjudication form to the captured gold and intake declarations",
+      "problem": "The response schema admits preparation as a record of unknown values. The client verifies the preparation content hash but only counts preparation.adjudication.item_tasks. It compares the report blank_submission to the preparation blank_submission, without comparing either to the original gold packet, adjudicator handle or empty decisions. That is returned-copy consistency rather than original-input binding.",
+      "concrete_static_counterexample_recipe_UNEXECUTED": [
+        "Start from the existing native positive complete response for the three-item gold packet, leaving raw input bindings, all submitted packets, full-N/missing counters and final report.adjudication.item_tasks unchanged.",
+        "Change preparation.adjudication.item_tasks[0].id to a different ordinary string while leaving its source_ids/required_review_roles/status and verified_submissions:null unchanged.",
+        "Recompute preparation.content_hash and then the outer report.content_hash with the protected canonical hash function; update the sole JSON text to equal the complete structuredContent.",
+        "Every inspected predicate still passes by source tracing: the output schema accepts preparation records, original byte/hash bindings remain exact, NULL fields are unchanged, preparation task length stays N, and lines593-601 inspect only the final report tasks. The modified preparation task is included in the persisted full report.",
+        "A second variant changes both returned blank_submission objects together, for example packet_sha256 or adjudicator, and rehashes preparation plus report. No inspected predicate binds either returned blank form to the captured gold/declared adjudicator."
+      ],
+      "evidence": [
+        {
+          "path": "mcp-fundamentals/src/expert-submission-client.mjs",
+          "line": 491,
+          "fact": "Output-schema and exact text/structured comparison; preparation schema is permissive."
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-submission-client.mjs",
+          "line": 505,
+          "fact": "Preparation self hash is checked, which an altered report can recompute."
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-submission-client.mjs",
+          "line": 589,
+          "fact": "Only preparation task count and blank-form equality to another returned copy."
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-submission-client.mjs",
+          "line": 593,
+          "fact": "The row/source/missing-field loop validates final report tasks only."
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-submission-stdio.mjs",
+          "line": 49,
+          "fact": "preparation: z.record(z.string(),z.unknown())."
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-intake-core.mjs",
+          "line": 430,
+          "fact": "Protected producer constructs declared_handle, blank schema/adjudicator/packet_sha256/empty decisions and gold-derived item IDs/source IDs/roles/status/nulls."
+        },
+        {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/assignment-f553c0a6-expert-submission-client-package-primary-v1.md",
+          "line": 57,
+          "fact": "Complete captured-input and adjudication-task binding is an explicit acceptance requirement."
+        }
+      ],
+      "bounded_correction": "Independently bind preparation declared_handle, the blank form schema/adjudicator/packet_sha256/empty decisions and each preparation task ID, source IDs, fixed review roles/status and NULL verified_submissions to the captured inputs. Compare both report and preparation blank forms to the expected original-bound form. Keep one authoritative SDK audit and the entire full report; do not run a second kernel or authenticate declared source pins.",
+      "meaningful_native_regression": "Extend the existing rehashed-tamper native case with altered preparation task ID/source IDs and paired altered blank forms after both hashes are recomputed. Include an unchanged complete positive response. No extra actual SDK/command/pack site or new test name is required.",
+      "actual_execution_or_bad_producer_claim": false
+    },
+    {
+      "id": "CC-390-RAW-DIAGNOSTIC-NONBLOCKING-PARTIAL-WRITE",
+      "priority": "P2",
+      "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+      "line": 50,
+      "status": "OPEN_SOURCE_CORROBORATED_BY_ORIGINAL_REMOTE_HOOK_FAILURE",
+      "title": "Own EAGAIN while completing one bounded diagnostic frame before admission",
+      "problem": "Both new client and old expert-files diagnosticNow functions loop captured native fs.writeSync to stdout without handling nonblocking EAGAIN. A partial frame can be emitted and then the before hook fails before any affected case body runs. Immediate RAW custody is not complete at that point.",
+      "other_location": {
+        "path": "mcp-fundamentals/test/expert-submission-files-package.test.mjs",
+        "line": 48
+      },
+      "original_raw": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-f9649a84-automatic-CI-native-v1/MCP-terminal-raw-original-stdout-original.bin",
+        "bytes": 1157271,
+        "sha256": "d4b11b5ef51e99b7c5859ae29c7177fd9e54cbe01930fc86f2e2e780bf01d6df",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "independent_failed_scope": "All40 new names and all40 old expert-files names are hookFailed/EAGAIN in the retained original. Fund387 has306PASS81FAIL. No new command or SDK case body ran.",
+      "bounded_correction": "Resume only the untransferred suffix of the same frame on EAGAIN under one fixed finite absolute monotonic diagnostic clock, yielding without spawning work. Await complete RAW before gzip/TAR/member/guide admission; preserve RAW_MODES then distinct ADMITTED ordering, exact bytes, current caps/guards/cleanup and source/header semantics. Retain partial output on terminal refusal rather than resending a second frame.",
+      "meaningful_native_regression": "Use the same captured-writer injection to prove partial progress followed by EAGAIN and later progress yields exact frame bytes once, a permanent-EAGAIN deadline refuses, zero/invalid progress refuses, overcap writes nothing, and a later admission/hook refusal retains a complete RAW frame. Maintain positive control and no duplicate pack/command.",
+      "actual_product_producer_finding": false
+    },
+    {
+      "id": "CC-390-OLD22-SIXTH-BIN-NORMALIZATION-EXPECTATION",
+      "priority": "P2",
+      "path": "mcp-fundamentals/test/audit-package.test.mjs",
+      "line": 360,
+      "status": "OPEN_SOURCE_CORROBORATED_BY_ORIGINAL_REMOTE_ASSERTION",
+      "title": "Keep the normalization expected rows in the strict six-bin artifact union",
+      "problem": "The package and guard admit six fixed bins, and the extracted fixture records all six. The installedBins assertion still has the five older expected rows, so a correct sixth opt-in executable is rejected.",
+      "bounded_correction": "Append exactly {name:'canli-expert-submission-client',path:'src/expert-submission-client.mjs',raw_tar_mode:0o755,installed_fixture_mode:0o755,owned_fixture_only:true} to this expected array. Preserve default server raw0644, default-only owned fixture0755 normalization and every existing test/guard/mode assertion.",
+      "whole_file_inverse_requirement": "Record this exact current-expectation hunk in the old22 entire inverse packet; retain the old22 names and all controls.",
+      "actual_product_mode_defect_or_installation_claim": false
+    },
+    {
+      "id": "CC-390-DUPLICATE-JSON-FIXTURE-CODEQL106",
+      "priority": "P2",
+      "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+      "line": 718,
+      "status": "OPEN_ORIGINAL_CURRENT_CODEQL_ALERT",
+      "title": "Construct the duplicate-key refusal fixture without first-occurrence string replacement",
+      "problem": "The intentional duplicate-key fixture uses text.replace('{',...), triggering retained js/incomplete-sanitization alert106. This is a test construction finding, not a production escaping defect.",
+      "original_alert": {
+        "qualified_locator": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-f9649a84-original-CodeQL106-qualified-v1.json",
+          "bytes": 1445,
+          "sha256": "e9fd19b0adfa9e21340adbdd55e2f26cc3e0d1be653d5f94725c8b87257ef3b5",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "underlying_alert_pin": {
+          "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-f9649a84-automatic-CI-native-v1/scoped-merge-ref-alerts-current-original-v1-stdout-original.bin",
+          "bytes": 4844,
+          "sha256": "c975c7638291639c87ef62abe755135ae3888d8112e659b5ae20719c7dab3951",
+          "mode_octal": "0o600",
+          "FULLREAD_sameFD_postpath": true
+        },
+        "rule": "js/incomplete-sanitization",
+        "number": 106,
+        "location": {
+          "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+          "start_line": 718,
+          "end_line": 718,
+          "start_column": 65,
+          "end_column": 98
+        },
+        "new_test_fixture_ONLY_no_product_sanitizer_finding": true
+      },
+      "bounded_correction": "Assert the original JSON starts with '{', prepend one explicit schema member, and append original.slice(1). Keep the duplicate-key refusal predicate/positive companion intact. No CodeQL suppression, rule/config change or product escaping change."
+    }
+  ],
+  "nonblocking_findings": [],
+  "requested_existing13_mechanical_scope_note": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package-peer/review-f9649a84-existing13-diagnostic-transfer-scope-v1.json",
+    "bytes": 3331,
+    "sha256": "fec2585a03f7c159638c8926d956d6f66d215fc204a92d1888ab1f073ffec99f",
+    "mode_octal": "0o600",
+    "personal_FULLREAD_sameFD_postpath": true
+  },
+  "qualified_retained_failure": {
+    "MCP_original": {
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-f9649a84-automatic-CI-native-v1/MCP-terminal-raw-original-stdout-original.bin",
+      "bytes": 1157271,
+      "sha256": "d4b11b5ef51e99b7c5859ae29c7177fd9e54cbe01930fc86f2e2e780bf01d6df",
+      "mode_octal": "0o600",
+      "FULLREAD_sameFD_postpath": true
+    },
+    "dense_actual_Fund387": {
+      "pass": 306,
+      "fail": 81,
+      "cancelled": 0,
+      "skip": 0,
+      "todo": 0
+    },
+    "new40_and_old_expertfiles40_all_hookFailed_body_unexecuted": true,
+    "old22_sixth_bin_one_assertion_failed": true,
+    "new_RAW": "PARTIAL_NOT_ADMITTED",
+    "no_complete_artifact_custody_or_new_command_SDK_PASS": true,
+    "CodeQL106": {
+      "qualified_locator": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-f9649a84-original-CodeQL106-qualified-v1.json",
+        "bytes": 1445,
+        "sha256": "e9fd19b0adfa9e21340adbdd55e2f26cc3e0d1be653d5f94725c8b87257ef3b5",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "underlying_alert_pin": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/PR390-f9649a84-automatic-CI-native-v1/scoped-merge-ref-alerts-current-original-v1-stdout-original.bin",
+        "bytes": 4844,
+        "sha256": "c975c7638291639c87ef62abe755135ae3888d8112e659b5ae20719c7dab3951",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "rule": "js/incomplete-sanitization",
+      "number": 106,
+      "location": {
+        "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+        "start_line": 718,
+        "end_line": 718,
+        "start_column": 65,
+        "end_column": 98
+      },
+      "new_test_fixture_ONLY_no_product_sanitizer_finding": true
+    },
+    "currentCI_PASS": false,
+    "full_retainedCI_gate": "NOT_REQUESTED_NOT_SUBSTITUTED"
+  },
+  "metadata_qualification": {
+    "original_native_v1_root_script_count_assertion_preserved": true,
+    "correction": "Actual root inserts TWO independent registrations and changes no old script/test/verify. V2 recovers entire original root, treats artifact_members as count20 and mandatory union as relative paths, and parses actual failed MCP/CodeQL bytes.",
+    "metadata_failure_is_NOT_product_failure": true,
+    "no_original_source_log_recipe_or_reader_stop_overwrite": true
+  },
+  "ROOT5_personal_fullreads": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/README.md",
+      "bytes": 93585,
+      "sha256": "98fc36dde88d0ed433f31caff6b72942919af9eb546ef629e544cf425f3666a2",
+      "mode_octal": "0o644",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/REQUIREMENTS.md",
+      "bytes": 8404,
+      "sha256": "783496829182b09eec025bcd9bc146218a4d0b99eaebd97db76d318929b0dced",
+      "mode_octal": "0o644",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/STATUS.md",
+      "bytes": 1753870,
+      "sha256": "2aefda78fc229fefc1ab0be4cf826c70e5d140b2c0d0328723f3fc1108eb23f8",
+      "mode_octal": "0o644",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/PHASES.md",
+      "bytes": 142799,
+      "sha256": "17afcf97ab443644754f8ba9347400a139bcad77be39b96a387ebb11d1a7a2a8",
+      "mode_octal": "0o644",
+      "personal_FULLREAD_sameFD_postpath": true
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/docs/goal/LOG.md",
+      "bytes": 2098720,
+      "sha256": "95984b483b7aae1a037606709504fbe3244214e63b84f8281b158954ff9c3884",
+      "mode_octal": "0o644",
+      "personal_FULLREAD_sameFD_postpath": true
+    }
+  ],
+  "operations_and_limits": {
+    "read_only_Git_stdlib_hash_source_inspection": true,
+    "project_Node_import_SDK_test_CLI_pack_npm_helper_build_browser_GET_APIrefetch_probe_job_rerun_grant_provider_spend_publication": false,
+    "reviewer_source_or_archive_mutation": false,
+    "no_executed_counterexample_claim": true,
+    "initial_SOURCE_gate_only_no_future_head_working_CI_ready_delivery_live_outcome_ACK": true,
+    "formal_receipt_cap_bytes": 98304,
+    "all_proofs_EXTERNAL_no_repository_member": true
+  },
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "entire_owner_hierarchy": "ACTIVE",
+  "outcomes": null,
+  "PRIMARY_soleordinarymergepub_LeadCPU127_same_roles": true
+}

@@ -1,0 +1,142 @@
+{
+  "PR": 390,
+  "UTC": "2026-10-05T03:01:26.514364+00:00",
+  "actual_base": "f553c0a6063ded731f74894138fa014f25e6b409",
+  "archive_allocation": null,
+  "concrete_exception": {
+    "frozen_body": {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 67902,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-f9649a84-SOURCE-native-v1/frozen-source/mcp-fundamentals__test__expert-submission-files-package.test.mjs.body.txt",
+      "sha256": "c1efa14152a18d134ebb621d5c37c3797d805bd5a9c52a258831d0064db43297"
+    },
+    "mode": "100644",
+    "original_diagnostic_control_section": {
+      "line_end": 501,
+      "line_start": 486,
+      "text": "test('expert files package: one offline artifact admits exact18 bodies five bins raw modes and full metadata', () => {\n  assert.equal(MEMBERS.length,20);assert.equal(Object.keys(BIN).length,6);assert.deepEqual(admit(cloneEntries()),packed.metadata);\n  assert.equal(packed.raw.admission,'RAW_CAPTURED_NOT_ADMITTED');assert.equal(packed.raw.compressed_sha256,hash(packed.compressed));\n  for(const flag of ['--offline','--ignore-scripts','--update-notifier=false','--audit=false','--fund=false'])assert.ok(packed.args.includes(flag));\n  assert.equal(packed.bins[0].raw_mode,0o644);assert.ok(packed.bins.every(row=>row.fixture_mode===0o755&&row.owned_fixture_only));\n  const gzip = tinyTar([{name:'package/a',bytes:Buffer.from('synthetic raw capture')}]);\n  const raw = {admission:'RAW_CAPTURED_NOT_ADMITTED',compressed_bytes:gzip.length,compressed_sha256:hash(gzip),original_gzip_base64:gzip.toString('base64')};\n  const chunks = []; let writes = 0;\n  const sink = (fd, frame, offset, length) => {assert.equal(fd,1);writes++;const n=Math.min(length,31);chunks.push(Buffer.from(frame.subarray(offset,offset+n)));return n;};\n  assert.throws(() => {diagnosticNow('RAW',raw,sink);throw new Error('SIMULATED_BEFORE_HOOK_REFUSAL');},/SIMULATED_BEFORE_HOOK_REFUSAL/);\n  assert.ok(writes>1);const saved=Buffer.concat(chunks).toString('utf8');\n  assert.equal(saved,'# CANLI_EXPERT_FILES_PACKAGE_RAW '+JSON.stringify(raw)+'\\n');\n  assert.deepEqual(Buffer.from(JSON.parse(saved.slice('# CANLI_EXPERT_FILES_PACKAGE_RAW '.length)).original_gzip_base64,'base64'),gzip);\n  let refusedWrites=0;assert.throws(() => diagnosticNow('RAW',{over:'x'.repeat(384*1024)},() => {refusedWrites++;return 1;}),/RAW_DIAGNOSTIC_BOUND/);assert.equal(refusedWrites,0);\n  let stopped=0;assert.throws(() => diagnosticNow('RAW',raw,() => {stopped++;return 0;}),/RAW_DIAGNOSTIC_WRITE/);assert.equal(stopped,1);\n});"
+    },
+    "original_function": {
+      "line_end": 60,
+      "line_start": 48,
+      "text": "function diagnosticNow(kind, record, write = nativeDiagnosticWrite) {\n  const json = JSON.stringify(record);\n  assert.ok(Buffer.byteLength(json) <= 384 * 1024, 'RAW_DIAGNOSTIC_BOUND');\n  assert.ok(['RAW', 'RAW_MODES', 'ADMITTED'].includes(kind));\n  const frame = Buffer.from('# CANLI_EXPERT_FILES_PACKAGE_' + kind + ' ' + json + '\\n');\n  // The captured native stdout writer completes before a later hook can refuse or clean TMP.\n  for (let offset = 0; offset < frame.length;) {\n    const wrote = write(1, frame, offset, frame.length - offset);\n    assert.ok(Number.isSafeInteger(wrote) && wrote > 0 && wrote <= frame.length - offset, 'RAW_DIAGNOSTIC_WRITE');\n    offset += wrote;\n  }\n  return frame.length;\n}"
+    },
+    "override": "ONLY the original expectation-only restriction for this already-assigned old40 file is amended for the diagnostic-function, its THREE before-hook await sites and its existing first raw-capture native-control case. All other old40 production/FD/guard/cleanup/TAR/import/cap/command semantics remain protected; existing approved strict20/sixbin/source-pin union remains.",
+    "path": "mcp-fundamentals/test/expert-submission-files-package.test.mjs",
+    "permitted_hunks": [
+      "Make diagnosticNow async or equivalently return an owned completion Promise with no unowned rejection. Preserve byteexact single frame prefix, JSON contents and384KiB JSON admission.",
+      "ONE finite monotonic absolute diagnostic epoch <=1000ms from BEFORE JSON serialization through frame write/yield completion; nonfinite/backwards clock refuses. Native before-hook t.signal observed as sticky abort. Initial observation before capture, fresh observation after frame construction, before/after each write, after a backpressure throw and before/after each yielded continuation. Existing hook25s/pack20s/command21s/closure2.5s and all compressed/expanded/count/output/fixture caps are unchanged.",
+      "Captured native stdoutFD1 writer; at most4096 total attempts, each <=65536 bytes of the SAME preencoded frame at its saved offset. Positive partial count advances only that exact count. EAGAIN/EWOULDBLOCK alone may yield1ms then continue the SAME remaining bytes/offset within the original absolute deadline. Zero/negative/noninteger/oversized counts and all other errors, including EPIPE, fail closed. No frame regeneration, rewind, duplicated prefix, descriptor reopen, new capture channel or failed-partial-as-complete.",
+      "Await complete RAW before tarEntries; await RAW_MODES before artifact admission/extraction; await ADMITTED before marking the hook complete. All original gzip/member/source facts remain exact; no recompression, repack or job rerun.",
+      "Convert only existing first raw-diagnostic native case to async assertions where necessary; preserve original exact reconstructed frame/gzip, later-hook-refusal record, overcap ZEROwrite and zerocount ONEattempt failures. Add positive partial write plus two EAGAIN/EWOULDBLOCK recoveries/frame-exact, absolute-deadline, sticky-abort/zeroeffect and EPIPE terminal-refusal controls there. Retain every40 original name and all other case bodies except already-approved expectation-only source-pin union.",
+      "Keep unconditional finally guard restore and exact ownedTMP/ownedlink cleanup; preserve native filesystem/network/spawn denials and foreign/malformed Buffer refusal controls."
+    ]
+  },
+  "exact13_paths_unchanged": [
+    "docs/goal/LOG.md",
+    "docs/goal/STATUS.md",
+    "mcp-fundamentals/EXPERT_SUBMISSION_CLIENT.md",
+    "mcp-fundamentals/README.md",
+    "mcp-fundamentals/package-lock.json",
+    "mcp-fundamentals/package.json",
+    "mcp-fundamentals/src/expert-submission-client.mjs",
+    "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+    "mcp-fundamentals/test/audit-package.test.mjs",
+    "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+    "mcp-fundamentals/test/expert-submission-files-package.test.mjs",
+    "mcp-fundamentals/test/expert-submission-package.test.mjs",
+    "package.json"
+  ],
+  "existing_assignment": {
+    "FULLREAD_sameFD_postpath_stable": true,
+    "bytes": 22590,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/assignment-f553c0a6-expert-submission-client-package-primary-v1.md",
+    "sha256": "7f427acb8641c8b4290a77449511e5e257a50308a7e2da81dd3af66db5d52364"
+  },
+  "from_frozen_head": "f9649a84401554b95289f5ff30a2bb1193a321ed",
+  "mandatory_original_union": {
+    "FULLREAD_sameFD_postpath_stable": true,
+    "bytes": 33033,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/mandatory-f553c0a6-exact20-sixbin-four-artifact-family-union-and-client-native-contract-v1.json",
+    "sha256": "8e548274b6b72109f234793e38b076ea42ad6b975e25ddd416eb1c37e61459b2"
+  },
+  "new_paths_allowed": false,
+  "no_project_execution_or_new_authority": "No local Node/import/SDK/test/CLI/npm/pack/helper/GET/probe/job/manualrerun/CPUgrant/provider-model-spend/publication/newthread/goalreset. Existing automaticnewHEAD CI FIRST remains separate. Exact13 scope and all owner goals ACTIVE/outcomesUNKNOWNNULL.",
+  "other_batch_already_within_assigned_scope": [
+    {
+      "only": "Add exact sixth installedBins normalization literal from SOURCE finding2; preserve all five originals and strict modes/source checks.",
+      "path": "mcp-fundamentals/test/audit-package.test.mjs"
+    },
+    {
+      "only": "Replace negative duplicate-key first-occurrence replace with explicit duplicate leading member and original.slice(1), preserving the meaningful expected refusal; no CodeQL suppression.",
+      "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs"
+    },
+    {
+      "only": "OWN response validation correction for SOURCE finding3: complete source memberships/evidence and mechanical missing-use flags, complete preparation task identity/order and strict blank adjudication binding/EMPTY decisions. Preserve raw-original-key/caps/nativeclock/PROMISE/onechild-call/oneclose/complete-report/output contracts; no second kernel audit or original core/schema/math modification.",
+      "path": "mcp-fundamentals/src/expert-submission-client.mjs"
+    },
+    {
+      "only": "Refresh ONLY the OWN new client source pin if its validation changes. Existing other source/dependency pins remain exact. Add native counterexample and positive assertions within existing own40 names, no new SDK/command/pack entry.",
+      "paths": [
+        "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+        "mcp-fundamentals/test/audit-package.test.mjs",
+        "mcp-fundamentals/test/expert-submission-package.test.mjs",
+        "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+        "mcp-fundamentals/test/expert-submission-files-package.test.mjs"
+      ]
+    },
+    {
+      "only": "Whole-current-frozen-prefix owned appends recording truthful original failures/HOLD and WRITTEN corrections.",
+      "paths": [
+        "docs/goal/STATUS.md",
+        "docs/goal/LOG.md"
+      ]
+    }
+  ],
+  "private_three_test_proposal": {
+    "contract": {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 4207,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/proposed-original-f964-batched-diagnostic-test-correction-contract-v2.json",
+      "sha256": "5073e56509f3e4336cd8571fa99bbbfa50ba265bee7429a98fdd0fe722c39a92"
+    },
+    "exact_v2_implementation_bytes_issued": false,
+    "independent_native_byte_review": {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 22189,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-f9649a84-private-three-test-proposal-v2-byte-patch-case-preservation-and-clock-scope-review-v1.json",
+      "sha256": "c0101b0f9cf97488f669373bb283f3483bb27e5db3d63a5d49e0642231e648d1"
+    },
+    "literal_diff": {
+      "FULLREAD_sameFD_postpath_stable": true,
+      "bytes": 18438,
+      "mode_octal": "0o600",
+      "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/proposed-original-f964-batched-diagnostic-test-correction-v2.diff",
+      "sha256": "e926f96d3d978bac5e31ae9d801f89a2ce63fc16f33267c5d3b983be8e1937ce"
+    },
+    "required_clock_adjustment": "Start native diagnostic epoch BEFORE JSON serialization/frame construction; observe the same epoch after capture and immediately before/after native effects and before every yielded continuation. No epoch renewal."
+  },
+  "protected_remaining": "Nested lock15rows/package/root2lines/entireverify/rootlock/guide/README/current core/default7/old57+63+60/owner74/all old archives remain exact f964 unless an existing assigned append is specifically needed and truthfully bounded. No incoming-main integration/sourceepoch/source-owner transfer.",
+  "required_next_handoff": "PERSONAL FULLREAD/hash byteACK of ACTUAL this direction and directly pinned original SOURCE/natives before dependent old40 mutation. Batch original complementary THIRD cues, then ONE signedCLEAN corrected head/ordinary existing-branch push. Return literal parentdelta/grouped entire inverse and original case-section preservation/explicit diagnostic case exception. PRIMARY+THIRD narrow exact SOURCE extensions and separate new automatic completed-original CURRENTCI/artifact gates; original failed evidence immutable. No evolving/future-byte ACK.",
+  "role_thread_model_CPU127_solemergepub": "UNCHANGED",
+  "same_new_test_diagnostic": {
+    "mode": "100644",
+    "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+    "same_algorithm_and_caps": "Apply the same bounded diagnostic output/await ordering and positive/refusal/partial EAGAIN controls within an existing named case; keep40names/ONEpack/THREEclient<=3SDK inventory. RAW frame prefix remains CANLI_EXPERT_CLIENT_PACKAGE."
+  },
+  "schema": "canli.primary.source-direction.additive-narrow-exception.v1",
+  "source_review_HOLD": {
+    "FULLREAD_sameFD_postpath_stable": true,
+    "bytes": 48565,
+    "mode_octal": "0o600",
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/primary-review-f9649a84-expert-submission-client-package-SOURCE-v1.json",
+    "sha256": "b5ac1bcf782dd50aad69f02ac7a7d906d18b070df568fec2c6101f3459ca7f26"
+  },
+  "state": "ISSUED_SAME_ROLE_EXACT13_DIAGNOSTIC_MECHANICAL_EXCEPTION_AND_CORRECTION_BATCH",
+  "tree": "afe78e827dc2f2ec3511916daa4fa3fdea445ce7"
+}
