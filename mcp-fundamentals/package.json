@@ -13,7 +13,8 @@
     "canli-expert-submission-files": "src/expert-submission-files.mjs",
     "canli-expert-submission-client": "src/expert-submission-client.mjs",
     "canli-expert-intake-files": "src/expert-intake-files.mjs",
-    "canli-expert-intake-prepare": "src/expert-intake-stdio.mjs"
+    "canli-expert-intake-prepare": "src/expert-intake-stdio.mjs",
+    "canli-expert-intake-client": "src/expert-intake-client.mjs"
   },
   "engines": {
     "node": ">=20.10"
@@ -27,7 +28,8 @@
     "EXPERT_SUBMISSION_FILES.md",
     "EXPERT_SUBMISSION_CLIENT.md",
     "EXPERT_INTAKE_FILES.md",
-    "EXPERT_INTAKE_STDIO.md"
+    "EXPERT_INTAKE_STDIO.md",
+    "EXPERT_INTAKE_CLIENT.md"
   ],
   "scripts": {
     "test": "node --test test/*.test.mjs"

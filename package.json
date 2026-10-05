@@ -11,6 +11,8 @@
   },
   "type": "module",
   "scripts": {
+    "test:expert-intake-client-package": "node --test --test-concurrency=1 mcp-fundamentals/test/expert-intake-client-package.test.mjs",
+    "filingfacts:expert-intake-client": "node mcp-fundamentals/src/expert-intake-client.mjs",
     "test:expert-intake-stdio-package": "node --test --test-concurrency=1 mcp-fundamentals/test/expert-intake-stdio-package.test.mjs",
     "filingfacts:expert-intake-prepare": "node mcp-fundamentals/src/expert-intake-stdio.mjs",
     "test:expert-intake-files-package": "node --test --test-concurrency=1 mcp-fundamentals/test/expert-intake-files-package.test.mjs",
