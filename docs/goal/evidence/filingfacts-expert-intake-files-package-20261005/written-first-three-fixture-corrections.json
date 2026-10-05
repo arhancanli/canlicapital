@@ -1,0 +1,127 @@
+{
+  "utc": "2026-10-05T08:29:31.205980+00:00",
+  "state": "NARROW_THREE_TEST_FIXTURE_EXPECTATIONS_CORRECTED_WRITTEN_UNRUN",
+  "original_frozen_head": "1e607f8fe073a409586a76ff100009982d738c5d",
+  "original_saved_failure_diagnosis": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/initial-1e607f8f-complete-failure-diagnosis-and-39-hook-UNEXECUTED-v2.json",
+    "bytes": 207705,
+    "sha256": "b248926529b7cfe8123b3c35b1bc9ce8330b0af2a93b57bf70252b1540db4162",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "changes": [
+    {
+      "path": "mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+      "before": "expert-intake-filesent",
+      "after": "expert-submission-client",
+      "count": 4,
+      "reason": "restore exact protected client member/bin/literal-loader names accidentally hit by prefix replacement",
+      "before_pin": {
+        "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+        "bytes": 65941,
+        "sha256": "05ca03dc87cc4e36e1abef92f9c37b4df9f2f54f4eb7c3712c587c4ea5800d84",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "after_pin": {
+        "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+        "bytes": 65949,
+        "sha256": "f0123a426f781fcf35d6eefb7c0ac31f6725cd7ba263fe7f52f2474c00785c27",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "inverse_entire_H_checked": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-package.test.mjs",
+      "before": "'package/EXPERT_SUBMISSION_CLIENT.md', 'package/package.json'",
+      "after": "'package/EXPERT_SUBMISSION_CLIENT.md', 'package/EXPERT_INTAKE_FILES.md', 'package/package.json'",
+      "count": 1,
+      "reason": "include new package guide in strict actual22 member list",
+      "before_pin": {
+        "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/audit-package.test.mjs",
+        "bytes": 42590,
+        "sha256": "59b6cddddafa933306d510e936d82a1052c383754af7017497dbc6cb88b90c3f",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "after_pin": {
+        "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/audit-package.test.mjs",
+        "bytes": 42624,
+        "sha256": "30cc3609b1b44a1da9b15980439bfb2b363f1cebdd32bbc8805683aa6df18b6e",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "inverse_entire_H_checked": true
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+      "before": "const oldBins = packed.bins.filter(row => !['canli-fundamentals-audit-files', 'canli-expert-submission-files', 'canli-expert-submission-client'].includes(row.name));",
+      "after": "const oldBins = packed.bins.filter(row => !['canli-fundamentals-audit-files', 'canli-expert-submission-files', 'canli-expert-submission-client', 'canli-expert-intake-files'].includes(row.name));",
+      "count": 1,
+      "reason": "keep historical default/audit raw-mode subset exact before applying fullseven-bin normalization assertions",
+      "before_pin": {
+        "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-submission-package.test.mjs",
+        "bytes": 51191,
+        "sha256": "ad01c517436991c24295f9628f7693b907b57a3ff5cc4b011e679d16937e48a3",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "after_pin": {
+        "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-submission-package.test.mjs",
+        "bytes": 51220,
+        "sha256": "ef5733d1d977f651bd1306db6db5a6903805bda24cf6e8dfc901a119f3b82290",
+        "mode_octal": "0o644",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "inverse_entire_H_checked": true
+    }
+  ],
+  "same_buffer_static_declarations": {
+    "source_pins_count": 13,
+    "all13_actual_source_SHA_exact": true,
+    "BIN_entire_actual_package_exact": true,
+    "FILES_entire_actual_package_exact": true,
+    "strict22_unique_existing_members": [
+      "LICENSE",
+      "package.json",
+      "README.md",
+      "AUDIT_INPUTS.md",
+      "EXPERT_SUBMISSIONS.md",
+      "AUDIT_INPUTS_CLIENT.md",
+      "EXPERT_SUBMISSION_FILES.md",
+      "EXPERT_SUBMISSION_CLIENT.md",
+      "EXPERT_INTAKE_FILES.md",
+      "src/expert-intake-files.mjs",
+      "src/expert-submission-client.mjs",
+      "src/audit-inputs-client.mjs",
+      "src/audit-inputs-core.mjs",
+      "src/audit-inputs-stdio.mjs",
+      "src/canonical-json.mjs",
+      "src/expert-agreement.mjs",
+      "src/expert-intake-core.mjs",
+      "src/expert-submission-audit-core.mjs",
+      "src/expert-submission-files.mjs",
+      "src/expert-submission-stdio.mjs",
+      "src/filing-facts-packet.mjs",
+      "src/server.mjs"
+    ],
+    "seven_bins": {
+      "canli-fundamentals-mcp": "src/server.mjs",
+      "canli-fundamentals-audit": "src/audit-inputs-stdio.mjs",
+      "canli-expert-submission-audit": "src/expert-submission-stdio.mjs",
+      "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs",
+      "canli-expert-submission-files": "src/expert-submission-files.mjs",
+      "canli-expert-submission-client": "src/expert-submission-client.mjs",
+      "canli-expert-intake-files": "src/expert-intake-files.mjs"
+    }
+  },
+  "all39_names_preserved": true,
+  "all_named_test_bodies_UNRUN_current": true,
+  "original39_hookFailed_retained": true,
+  "product_and_guide_package_bytes_unchanged": true,
+  "project_execution": "NONE",
+  "archive_allocation": null,
+  "owner_hierarchy": "ACTIVE",
+  "outcomes": null
+}

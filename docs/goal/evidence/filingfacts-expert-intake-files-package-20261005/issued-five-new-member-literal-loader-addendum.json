@@ -1,0 +1,134 @@
+{
+  "schema": "canlicapital.intake-files.PRIMARY.issued.new-member-literal-loader.addendum.v1",
+  "utc": "2026-10-05T07:57:30.463570+00:00",
+  "state": "ACTUAL_ISSUED_EXACT_NEW_MEMBER_LITERAL_LOADER_BRANCH_ALLOWANCE_PERSONAL_FULLREAD_BEFORE_APPLY",
+  "existing_owner_authorization": true,
+  "owner_confirmation_required": false,
+  "base": "5000824ed40062e1250d47fda12d82a2abae4c3b",
+  "tree": "e70fce3f6e2b75c26ac0b5a6fb7d4ce21bf90c80",
+  "original_assignment": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/assignment-5000824e-expert-intake-files-package-primary-v1.md",
+    "bytes": 23917,
+    "sha256": "686cfa08dd2f9e9cc1a057e4670370ceecd1bdc0613818c4160eab09705a39c4",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "original_basis": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/source-basis-5000824e-expert-intake-files-package-primary-v1.json",
+    "bytes": 39718,
+    "sha256": "9e0539d7feacff95f9d9a0b6e430e49a125beff7343473e90c2b491e44cd5d4e",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "original_mandatory_union": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/mandatory-5000824e-exact22-sevenbin-five-artifact-family-and-intake-native-contract-v1.json",
+    "bytes": 110508,
+    "sha256": "fe5b3659ae8bec4498933b21a7882b5ff346ace3bc60609089db90bb381912eb",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "original_source_authority": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/source-authority-5000824e-exact14-expert-intake-files-primary-v1.json",
+    "bytes": 5261,
+    "sha256": "0461eff6552dcfeb7405fb2a71614858fd14e572e26e92a9ed301d908d73c4f6",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "concrete_request": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/secondary-five-old-family-literal-loader-narrow-scope-direction-request-v1.json",
+    "bytes": 2071,
+    "sha256": "875f581135169489619e7770f186422e073991fc09008e13c688769adbde74cc",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "authorized_exact_patch": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/secondary-proposed-five-old-family-new-literal-loader-expectation-only.patch",
+    "bytes": 7018,
+    "sha256": "2deb612bf0f7bba53eb1d4633762befce4ed0de2af31063076fec3da8998e7cf",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "independent_native_patch_proof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/primary-native-five-old-family-literal-loader-exact-patch-byte-inverse-binding-v1.json",
+    "bytes": 13578,
+    "sha256": "3860d0b24314df46494286398e149b9504512b0a44fd4f513e6ae4ea5f6d401f",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "authorized_five_paths": [
+    "mcp-fundamentals/test/audit-package.test.mjs",
+    "mcp-fundamentals/test/expert-submission-package.test.mjs",
+    "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+    "mcp-fundamentals/test/expert-submission-files-package.test.mjs",
+    "mcp-fundamentals/test/expert-submission-client-package.test.mjs"
+  ],
+  "allowed_total_scope_stays_exact14": true,
+  "precise_additions": [
+    {
+      "path": "mcp-fundamentals/test/audit-package.test.mjs",
+      "added_lines": [
+        "    } else if (path === 'package/src/expert-intake-files.mjs') {",
+        "      assert.equal(sha(row.bytes), SOURCE_PINS[path], 'SOURCE_PIN');",
+        "      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-intake-core.mjs'], 'FIXED_DYNAMIC_IMPORTS');",
+        "      assert.ok(entries.has('package/src/expert-intake-core.mjs'), 'LOCAL_IMPORT');"
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+      "added_lines": [
+        "    } else if (filename === 'package/src/expert-intake-files.mjs') {",
+        "      assert.equal(sha(row.bytes), SOURCE_PINS['src/expert-intake-files.mjs'], 'SOURCE_PIN');",
+        "      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-intake-core.mjs'], 'FIXED_DYNAMIC_IMPORTS');",
+        "      assert.ok(entries.has('package/src/expert-intake-core.mjs'), 'LOCAL_IMPORT');"
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+      "added_lines": [
+        "    } else if (filename === 'package/src/expert-intake-files.mjs') {",
+        "      assert.equal(sha(row.bytes), SOURCE_PINS['src/expert-intake-files.mjs'], 'SOURCE_PIN');",
+        "      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-intake-core.mjs'], 'FIXED_DYNAMIC_IMPORTS');",
+        "      assert.ok(entries.has('package/src/expert-intake-core.mjs'), 'LOCAL_IMPORT');"
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-files-package.test.mjs",
+      "added_lines": [
+        "    else if (name==='package/src/expert-intake-files.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['./expert-intake-core.mjs'],'FIXED_DYNAMIC'); assert.ok(entries.has('package/src/expert-intake-core.mjs'),'LOCAL_IMPORT'); }"
+      ]
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+      "added_lines": [
+        "    else if (name==='package/src/expert-intake-files.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['./expert-intake-core.mjs'],'FIXED_DYNAMIC'); assert.ok(entries.has('package/src/expert-intake-core.mjs'),'LOCAL_IMPORT'); }"
+      ]
+    }
+  ],
+  "only_new_member": "package/src/expert-intake-files.mjs",
+  "only_new_literal_loader": "./expert-intake-core.mjs",
+  "dynamic_literal_count": 1,
+  "require_local_core_member": "package/src/expert-intake-core.mjs",
+  "source_pin": "Compare complete new member bytes to its truthful finalized frozenGit SHA in correct existing SOURCE_PINS namespace; map addition already authorized by original expectation union. Request working-module16966B68db is dated/evolving reference only, never fixed future approval.",
+  "old_conditions_branches_fallback_static_dynamic_reexport_guards_sourcepins_caps_diagnostics_cleanup_launches_case_names": "ALL_UNCHANGED; zero-dynamic fallback remains for all other unlisted members.",
+  "old_names_counts": [
+    22,
+    30,
+    38,
+    40,
+    40
+  ],
+  "line_removals_authorized": 0,
+  "branch_addition_lines": 14,
+  "application": "PersonalFULLREAD/hash thisactualaddendum/proof/patch before applying; add only these literal branches during existingmetadata expectation union. Apply source-equivalent exact additions at retained context if prior union insertions shift line numbers. Record exact hunks; grouped entire-file inverse of branch plus issuedmetadata expectations must recover EACH entire M file.",
+  "boundaries": "No broader import evaluator change, computed import, second loader, new SDK/dependency/pack/command entry, changed originalbody/control/cap/fallback or relaxed admission. Different newmember loader recipe requires exactnew direction; no inferred exception.",
+  "kernel_effect_order": "Original all68FD/count/individual/evidencegroup/786432B metadata before payload/copy/loader/core/output; successful captures/guards/ONEclose thenone unchanged core call; COMPLETE2097152B report+LF/privateexclusive durable output retained.",
+  "future_source_runtime": "SOURCEreview only later actualsignedfrozenhead, retainedCURRENTCI/artifact separately; this addendum is implementation-direction only and ACKs no evolvingnewmodule/guide/test or futurehead/runtime.",
+  "parent_source_scope": "Original exact14/3new/exact22-sevenbin/all13JS-MJS/34..40WRITTEN/ONEpack<=3directcommands0newSDK. Outside7280protected435845761BGit/sourceowner74+3/rootverify/rootlock/deps/versions/default7/old57+63+60/archives unchanged.",
+  "new_source_epoch_or_mainintegration": null,
+  "archive_allocation": null,
+  "repository_archive_writes_authorized": 0,
+  "project_execution_job_grant_provider_spend_pub": false,
+  "owner_hierarchy": "ACTIVE",
+  "outcomes": null,
+  "PRIMARY_reserved_roles_LeadCPU127_SAMEroles_models_threads": "UNCHANGED"
+}

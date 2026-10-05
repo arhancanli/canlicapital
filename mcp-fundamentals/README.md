@@ -261,3 +261,16 @@ Known same-child closure and exclusive0600/fsync/readback output are required fo
 success. The direct no-SDK expert file command remains unchanged. This repository
 candidate and its new cases are written until exact new-head automaticCI; no
 installation/publication/adoption or authenticated-source claim follows.
+
+
+### Supplied-file expert intake preparation (Unreleased)
+
+The opt-in `canli-expert-intake-files` command prepares the complete expert-intake
+report from four explicit supplied files and zero to64 ordered opaque evidence
+files. [The complete synthetic workflow](EXPERT_INTAKE_FILES.md) uses package-local
+source and starts no SDK child. It preserves full selected-N, blank reviewer
+packets and adjudicator worklists; real humans, expertise, independence, rights,
+labels and admission remain unverified/NULL. Private exclusive output is fsynced
+and read back, with uncertainty refusing and retaining the artifact. This is a
+repository Unreleased source candidate; npm availability and installation are
+separate. Fixtures are WRITTEN_UNRUN before this signed source's remote CI.

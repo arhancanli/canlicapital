@@ -19412,3 +19412,111 @@ Current13 products/core/default7/nativewriter/startPromise/clocks/knownclosure/f
 Next ONE signedCLEAN documentary freeze and existing ordinarybranch push triggers automaticnewHEADCI; all40 source bodies and ONEpack/3commands<=3SDK sites unchanged. New actual final SOURCE_ARCHIVE/CURRENTCI originals from BOTH PRIMARY+THIRD personally FULLREAD/hash, unchanged READY/fresh PRIMARY ordinaryheadlockedmerge/pairedACTUALcustody remain SEPARATE. Allfinalproofs EXTERNAL. No source-owner epoch change/mainintegration/publication authority from documentary allocation.
 
 Entire Sovereign efficient MCP/API/developer adoption, consenting independent rights-cleared realexpert/refinery/novel research, governedALPHAC netforwardSharpe>2/14distinctqualifiedsleeves/DD<=10%aftercost/privatepaper/lawfulcapital and10MACTUALindexed qualitySEO-keywords/design3D/understandability/analyzers hierarchy ACTIVE/outcomesUNKNOWNNULL; PRIMARYreservedroles-solemergepub/LeadCPU127/SAMEroles/model/thread/closedlanes unchanged. No localNode/import/SDK/test/CLI/npm/pack/helper/build/browser/GET/processprobe/newjob/manualrerun/grant/provider-model-spend/pub.
+
+
+### 2026-10-05T08:07:02.743520+00:00 — SECONDARY portable supplied-file expert intake preparation: source written
+
+Current new assist/expert-intake-files-package-20261005 is isolated from actual
+5000824ed40062e1250d47fda12d82a2abae4c3b/treee70f/solef553. Personal issuedassignment
+23917B686cfa08/basis39718B9e0539d7/mandatory110508Bfe5b3659 and exactfive-new-loader
+addendum8469B9c7e9a27 were FULLREAD/hash before scoped writing. Exact14paths/3new;
+all other inherited source/default7/core/imports/rootverify/rootlock/locks-deps
+versions/owner74+3/oldarchives stay protected. The new direct command admits all
+68regular inputFDs/individual+evidencegroup+786432B aggregate before payload/kernel
+load/call, preserves COMPLETE2097152B preparationreport+LF/privateO_EXCL0600 output
+with file+directorydurability/readback/ownership-before-oneclose/noecho. It creates
+no SDK child and has no whole-command15/5/20 clock claim.
+
+39meaningful named finite cases WRITTEN_UNRUN; one new guardedoffline-no-script pack,
+three bounded future command entries (guide/direct, ownedabsolutealias, refusal),
+zero new SDK entries. Five oldartifact22/30/38/40/40 names and meaningful controls
+remain; allowed strict22members/sevenbins/all13JS-MJS expectation hunks plus exact
+issuedone-literal-loader branches have entire-file inverses. Fourguidebuffers
+independently stdlibJSON/hash checked; no project import/test/CLI/pack/build/job
+executed locally. Next signedG-CLEANsource/ordinarydraftpush triggers existing
+automaticremoteCI FIRST; independent PRIMARY+THIRD SOURCE and retainedCURRENTCI
+gates separate. ArchiveallocationNULL/evidencewrites0; any futureproposal/literal
+allocation/finalhead/fourFINAL/READY/PRIMARYsoleordinarymerge/ACTUALcustody separate.
+
+Closed390 actual5000824e/exact96 and every older phase remains CLOSED_FROZEN.
+AllSovereignMCP/API-developeradoption, rights-clearedindependentrealexpert-refinery
+novelresearch, governedALPHAC privatepaper-lawfulcapital and10MACTUALLYindexed useful
+qualitySEO-keywords-design-analyzer objectives ACTIVE/outcomesUNKNOWNNULL. PRIMARY
+reservedguide/date/focus/live/privatejournal/reconciliation/release/solemergepub,
+LeadsoleCPU127/SAMEroles/models/threads unchanged. No provider-spend/grant/pub.
+
+## 2026-10-05T08:35:00.510004+00:00 — SECONDARY PR391 first automatic CI failure retained; narrow fixture correction written
+
+Frozen original signedG/CLEAN 1e607f8fe073a409586a76ff100009982d738c5d/tree33d13b21 and original manifest
+104846Be42f59d3 remain immutable. Existing automatic run37282487170/MCP111673558360
+actualFAILURE: retained original1527357B SHA25669cec8a905058b1a29db5f60d05f8d623f1fd25c3f13ed9416c97bce81f11ade
+at `/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/remote-1e607f8f-MCP-original.log`. Complete executed TAP plans160+1+85+427:
+Fundamentals364PASS/63FAIL, no skips/cancel/todo. All39 newnamed bodies hookFailed
+UNEXECUTED before newpack/command; old22hookFailed due strictmember missing newguide,
+one old30 historical mode-subset assertion failed, and fileafterhookpack0!==1 kept.
+Later MCP execution stage UNRUN; separateROOTjob actualSUCCESS is no MCPpass.
+
+Native/source-only diagnosis207705Bb2489265 and correction5911B8ef6e8a5 restore four
+accidentally renamed protectedclient member/bin/loader occurrences, add one prefixed
+newguide member and exclude newintakebin only from historical3-mode comparison.
+Additional1649Bbac2252d STATIC UNEXECUTED positive diagnostic fixture arithmetic:
+saved currentartifact126152B requires>4096 attempts with31-byte fragments;127-byte
+short fragments fit the SAME4096guard even at maximumframe cap. Guard/cap/frame
+identity/EAGAINoffset/clock/abort controls unchanged. Four corrections WRITTEN_UNRUN;
+all39names,0newSDK/ONEpack/<=3 futurecommandentries and completeproduct/nativeFD/core
+guide/package/rootverify/rootlock/default7/deps/versions/owner74+3/archives unchanged.
+
+PRIMARY+THIRD originalSOURCE review remains frozenGit scoped; evolvingworking tests
+excluded. Next signedsource/currentexistingautomaticCI and exactseparatepeer
+extensions required. Originalfailures/raws/errors retained EXTERNAL. No localproject
+Node/import/test/CLI/npm/pack/install/helper/build/browser/GET/probe/job/manualrerun
+grant/provider-model-resource-spend/publication. ArchiveallocationNULL/evidence0.
+Closed390andallolderlanes unchanged; fullSovereignMCP/API-adoption, rights-cleared
+independentrealexpert-refinery/research, governedALPHAC privatepaper-lawfulcapital
+and10MACTUALLYindexed qualitySEO-keywords-design-analyzer objectives ACTIVE/outcomes
+UNKNOWNNULL; PRIMARYreservedguide-date-focus-live-privatejournal-reconciliation
+release-solemergepub/LeadsoleCPU127/SAMEroles-model-thread preserved.
+
+## 2026-10-05T08:51:03.938434+00:00 — SECONDARY PR391 second automatic failure retained; owned alias cleanup correction written
+
+Frozen signeda8de54b0/tree58b2c675 original remains immutable. Samecompleted automatic
+CI37284962276/MCP111681561289 actualFAILURE; exactoriginal1713157B SHA256
+ddba49e5cab48008c8b42d5a2e59d529411ab24b0aae7aa707f1489cf767e5e2 saved at
+`/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/remote-a8de54b0-MCP-original.log`. Complete executedFund427
+outcomes424PASS3FAIL:39 newnames37PASS2cleanupHOOKFAIL plusONEfile-footercleanupFAIL.
+Old22+30+38+40+40 package names passed; laterexecutionstageUNRUN. Three named direct
+command entries andONEguardedpack/strict22 RAW-admission passed their frozenassertions,
+not a reviewerprocesscensus/installclaim. First1e39UNEXECUTED/63failure remains distinct.
+
+The strongnativeguard correctly refuses recursive cleanup after a known ownedtarget
+is deleted before its symlink. Narrow newtest-only correction records symlink inode
+and exacttarget, removes only bound aliases THROUGHthe armedguard while targets
+still exist, then recursively removes the owned fixture. All four explicitfixture
+aliascreation sites tracked. Added checks in existingnativeguard case prove dangling
+alias writes ANDunlinks stillrefuse; restoring only its knownown target permits
+normal guarded teardown. Entireguard/childguard/clock/diagnostic bodies unchanged.
+Written5152B348cecd0 +1136B04d17f2d privatecorrection receipts;39names/ONEpack/<=3
+commands/0SDK remain; currentfuturecorrectedbodies UNRUN. Runtime/guide/pkg/locks
+ROOTverify/default7/core/owner74+3/oldtests-and-archives unchanged.
+
+PRIMARYoriginalsource22333Bbb6d/HOLD4 andall13directsupport pins FULLREAD/registered
+6644Becacfc1a. All4 originalownedfixturefindings addressed at frozena8; no source
+peerPASS inferred until exactreceipt. PRIMARY+THIRD current narrowextension/next
+retainedCURRENTCI separate. No localNode/import/tests/CLI/npm/pack/helper/build/GET
+probe/job/manualrerun/grant/provider-model-resource-spend/publication. ArchiveNULL
+evidence0; eventualfourinitial/concreteproposal/literalallocation/finalhead-fourFINAL
+READY/PRIMARYsoleordinarymerge/ACTUALcustody separate. Closed390andallolderphases
+frozen; entireownerhierarchy ACTIVE/outcomesUNKNOWNNULL/SAMEroles preserved.
+
+
+## PR391 allocated exact96 documentary assembly — 2026-10-05T10:28:31.230830+00:00
+
+Current source basis b1f90151562df9496381346b2f3946da893781cd/treeaa62c247821119b14ca40a133f389e7c7b9d24da/actualmain5000824ed40062e1250d47fda12d82a2abae4c3b remains the accepted source-time basis. All FOUR original initial SOURCE and independent saved CURRENTCI receipts were personallyFULLREAD/hash with their direct supports before the private proposal. PRIMARYbde28ecb/58a56fb3 and THIRDf6f8b54e/5e38fc92 PASS remain separate and bind exact b1, not this future documentaryhead. Source-time39onceMCP0ROOT/full8TAP2221/all7/tested09fa/exact22-sevenbin/RAW126152Bfe5c are retained; directCLI has zeroSDK and no whole-command15/5/20 claim.
+
+Actual PRIMARY named literal65099B SHA256d50bac1391ae5ced3e597cdecc6244825b53eee3df6891c1e74eb6cdd097efdd was personallyFULLREAD/sameFD/hash and byteACK100448B800f66a5 returned BEFORE any repositorycopy. FreshownactualMAIN500/headb1/base500/draft/G-CLEAN/all7 controls passed. ONLY exactdocs/goal/evidence/filingfacts-expert-intake-files-package-20261005/96members were assembled:94unchangedprepared+VERBATIMliteral-allocation.json+lowercase manifest.json. Actualoriginal10051628/stored5232272/manifest64537B SHA256a82e20efdfff2c8c1fce266b0707ae6e9e7f8d6d1d50366462c47026b858bf80, all95completeorigin rows+ownactualcharge/no selfrow-SHA, common mode100644/exactprefix+name. All94raw/prepared/origins/modes/15bounded singlemtime0gzip CRCISIZE-eof-no-trailing/79identity were fullread/verified beforecopy. Dated7531BREADME unchanged/no regeneration/recompression/97th/extraAUTHORITY/finalproofmember.
+
+Completefailed1e and a8 originalMCP logs/SOURCEHOLDS/first39hookUNEXECUTED/a8actual37PASS2cleanupFAIL+footer/distinctROOTsuccess/emptya8ROOTrefusal/currentall11raws/eight originalpeerreceipts/exactpatches/loaderdirection/source-textsnapshots/metadataerrors remain immutable. All12non-goal assignedproducts/core/default7/rootverify/old22-30-38-40-40/57-63-60/ONEpack<=3directentries/sourceowner74+3/15nestedlock/deps/versions/oldarchives stay entireb1. EntireM/I/a8/b1 goal histories remain whole prefixes. No closed390/older phase replay or sourceepoch transfer.
+
+This is repositorydocumentary assembly only. SignedCLEANfreeze/ordinaryexistingbranchpush/newautomaticHEADCI require exactnewhead binding. FOUR separate PRIMARY+THIRD FINAL_SOURCE_ARCHIVE and retainedCURRENTCI receipts remain required before unchangedREADY, PRIMARYfreshsoleordinaryHEADLOCKEDmerge and pairedACTUALcustody. No futureCI/merge/actualMAINjob/install/live or human-expertise-rights-index-adoption-qualifiedstrategy outcome is asserted. Finalproofs EXTERNAL/no97th.
+
+Entireownerhierarchy ACTIVE/outcomesUNKNOWNNULL: efficient differentiated Sovereign financialMCP/API/substantive developer-repositoryadoption; consenting vetted independent rights-cleared realexpert doubleannotation/refinery/agreement-adjudication/novelpriorart-reproductionresearch; governedALPHAC netforwardSharpe>2/atleast14distinctqualifiedsleeves/realizedDD<=10%afteractualcost/privatepaper/lawfulcapital;10MACTUALLYindexed usefulmaintainedsource-backedcanonicals/qualitySEO/relevantkeywords/design3D/understandability/graph-social-accessibility-security-performanceanalyzers. PRIMARYreservedguide-date-focus-live-privatejournal-reconciliation-release-soleordinarymergepub/LeadsoleCPU127/SAMEroles-model-thread-goal unchanged. No localproject Node/import/SDK/test/CLI/npm/pack/install/helper/build/browser/GET/processprobe/job/manualworkflow/rerun/grant/provider-model-resource-spend/site/npm/versionpub.

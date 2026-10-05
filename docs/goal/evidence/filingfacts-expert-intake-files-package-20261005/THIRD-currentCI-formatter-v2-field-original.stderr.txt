@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package-peer/seal-b1f90151-separate-retained-CI-receipt-handoff-v2.py", line 98, in <module>
+    'private_support_pins':[p for p in allpins.values() if p['path'] not in {q[k]['path'] for q in n['original_bindings'] for k in ['stdout','command','stderr']}],
+  File "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package-peer/seal-b1f90151-separate-retained-CI-receipt-handoff-v2.py", line 98, in <listcomp>
+    'private_support_pins':[p for p in allpins.values() if p['path'] not in {q[k]['path'] for q in n['original_bindings'] for k in ['stdout','command','stderr']}],
+  File "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package-peer/seal-b1f90151-separate-retained-CI-receipt-handoff-v2.py", line 98, in <setcomp>
+    'private_support_pins':[p for p in allpins.values() if p['path'] not in {q[k]['path'] for q in n['original_bindings'] for k in ['stdout','command','stderr']}],
+KeyError: 'stdout'

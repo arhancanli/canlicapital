@@ -11,6 +11,8 @@
   },
   "type": "module",
   "scripts": {
+    "test:expert-intake-files-package": "node --test --test-concurrency=1 mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+    "filingfacts:expert-intake-files": "node mcp-fundamentals/src/expert-intake-files.mjs",
     "test:fundamentals-audit-package": "node --test --test-concurrency=1 mcp-fundamentals/test/audit-package.test.mjs",
     "test:expert-submission-audit": "node --test --test-concurrency=1 scripts/datasets/filing-facts/expert-submission-audit.test.mjs",
     "test:expert-submission-cli": "node --test --test-concurrency=1 scripts/datasets/filing-facts/expert-submission-cli.test.mjs",

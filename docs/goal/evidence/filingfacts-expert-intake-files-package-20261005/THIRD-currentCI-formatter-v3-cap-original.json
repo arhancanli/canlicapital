@@ -1,0 +1,23 @@
+{
+  "UTC": "2026-10-05T09:42:54.144574+00:00",
+  "scope": "Final metadata formatter only; no source/runtime/CI/raw reparse or source mutation",
+  "original_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package-peer/seal-b1f90151-separate-retained-CI-receipt-handoff-v3.py",
+    "bytes": 12824,
+    "sha256": "f4a5f9c1c3bd7c8bea76fab27d85268d4453c70b16936fda6185a2792f593530"
+  },
+  "stdout": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package-peer/seal-b1f90151-separate-retained-CI-receipt-handoff-v3-stdout-original.bin",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package-peer/seal-b1f90151-separate-retained-CI-receipt-handoff-v3-stderr-original.bin",
+    "bytes": 609,
+    "sha256": "1b2c15ea49fc53f944d9454cccd0905770f38ad9b4676ff48569f817cab32ab4"
+  },
+  "exit": 1,
+  "stop": "RECEIPT_CAP 101428 > 98304 before receipt creation",
+  "correction": "V4 serializes the SAME complete JSON receipt object with one-space indentation rather than two, adds this original formatter qualification pointer; no dropped original capture/count/admission/evidence fields.",
+  "original_proofs_and_earlier_stops": "Preserved immutable; capture-binding metadata correction and prior cap stop remain separately pinned."
+}

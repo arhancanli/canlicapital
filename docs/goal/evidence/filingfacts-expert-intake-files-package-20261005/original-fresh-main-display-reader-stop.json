@@ -1,0 +1,15 @@
+{
+  "utc": "2026-10-05T09:45:57.407060+00:00",
+  "scope": "own native capture display formatter only; first fresh-main capture EXIT0 remains exact",
+  "original_successful_main_stdout": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/b1-documentary-privateproposal-fresh-sourcecontrol-native-v1/fresh-main-original-stdout-original.bin",
+    "bytes": 344,
+    "sha256": "de4b88c64dac5deafbe724ede17898f0bbf1522c5b41e0cc950f1ab286793bdc",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 6, in <module>\nAttributeError: 'dict' object has no attribute 'decode'\n",
+  "cause": "capture returns saved capture record and saved pin record, not raw bytes; display attempted second-record.decode",
+  "correction": "read the already saved stdout original with sameFD native reader; no main metadata refetch",
+  "source_project_job_raw_archive_mutation": false
+}

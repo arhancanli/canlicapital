@@ -1,0 +1,290 @@
+{
+  "utc": "2026-10-05T08:04:59.460302+00:00",
+  "state": "WRITTEN_UNRUN_METADATA_AND_EXPECTATIONS_ONLY",
+  "records": [
+    {
+      "path": "mcp-fundamentals/package.json",
+      "before_bytes": 1754,
+      "before_sha256": "cb1bf2c541011dec933cf8512c8fbcbdf62921a2ce424cc2c318c630e8950b25",
+      "after_bytes": 1848,
+      "after_sha256": "0dbc0d3397e182c40a564d4653e8441eb48e0553abf81ed0cef6d4f400d05865",
+      "literal_replacements": [
+        {
+          "before": "    \"canli-expert-submission-client\": \"src/expert-submission-client.mjs\"",
+          "after": "    \"canli-expert-submission-client\": \"src/expert-submission-client.mjs\",\n    \"canli-expert-intake-files\": \"src/expert-intake-files.mjs\"",
+          "occurrences": 1
+        },
+        {
+          "before": "    \"EXPERT_SUBMISSION_CLIENT.md\"",
+          "after": "    \"EXPERT_SUBMISSION_CLIENT.md\",\n    \"EXPERT_INTAKE_FILES.md\"",
+          "occurrences": 1
+        }
+      ],
+      "entire_inverse": true
+    },
+    {
+      "path": "mcp-fundamentals/package-lock.json",
+      "before_bytes": 6566,
+      "before_sha256": "1e2bfd9c528d49394b6e46db9b0e39097944ab44409f056776190c454bfc984e",
+      "after_bytes": 6634,
+      "after_sha256": "68c52020c8f3e0dc34031363f66a7c3876321a5a3d9ef4d3517d0873febaf1be",
+      "literal_replacements": [
+        {
+          "before": "        \"canli-expert-submission-client\": \"src/expert-submission-client.mjs\"",
+          "after": "        \"canli-expert-submission-client\": \"src/expert-submission-client.mjs\",\n        \"canli-expert-intake-files\": \"src/expert-intake-files.mjs\"",
+          "occurrences": 1
+        }
+      ],
+      "entire_inverse": true
+    },
+    {
+      "path": "package.json",
+      "before_bytes": 15810,
+      "before_sha256": "b94eb29d93f3852efb1440031c50041bfece3db43ecdc0934132cc7800985080",
+      "after_bytes": 16037,
+      "after_sha256": "9eb0ecb7300be47d1c228898811f2bf5be04f04b1a16092b4962a8aa92f54b54",
+      "literal_replacements": [
+        {
+          "before": "  \"scripts\": {\n",
+          "after": "  \"scripts\": {\n    \"test:expert-intake-files-package\": \"node --test --test-concurrency=1 mcp-fundamentals/test/expert-intake-files-package.test.mjs\",\n    \"filingfacts:expert-intake-files\": \"node mcp-fundamentals/src/expert-intake-files.mjs\",\n",
+          "occurrences": 1
+        }
+      ],
+      "entire_inverse": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-package.test.mjs",
+      "before_bytes": 42198,
+      "before_sha256": "7ca96cdcdaaee27b541d81251442db7c6a7bd1af4d3ff8adbc3515711f4ebc82",
+      "after_bytes": 42590,
+      "after_sha256": "59b6cddddafa933306d510e936d82a1052c383754af7017497dbc6cb88b90c3f",
+      "literal_replacements": [
+        {
+          "before": "const SOURCE_PINS = Object.freeze({",
+          "after": "const SOURCE_PINS = Object.freeze({\n  'package/src/expert-intake-files.mjs': '68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f',",
+          "occurrences": 1
+        },
+        {
+          "before": "'canli-expert-submission-client': 'src/expert-submission-client.mjs'",
+          "after": "'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs'",
+          "occurrences": 1
+        },
+        {
+          "before": "'EXPERT_SUBMISSION_CLIENT.md'",
+          "after": "'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md'",
+          "occurrences": 1
+        },
+        {
+          "before": "'package/src/expert-submission-client.mjs'].includes",
+          "after": "'package/src/expert-submission-client.mjs', 'package/src/expert-intake-files.mjs'].includes",
+          "occurrences": 1
+        },
+        {
+          "before": "    { name: 'canli-expert-submission-client', path: 'src/expert-submission-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },",
+          "after": "    { name: 'canli-expert-submission-client', path: 'src/expert-submission-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },\n    { name: 'canli-expert-intake-files', path: 'src/expert-intake-files.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },",
+          "occurrences": 1
+        }
+      ],
+      "entire_inverse": true
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-package.test.mjs",
+      "before_bytes": 50835,
+      "before_sha256": "2aaa5826df9367cbc579e867baa41b30175233f23202aa5f0db871824190cbe5",
+      "after_bytes": 51191,
+      "after_sha256": "ad01c517436991c24295f9628f7693b907b57a3ff5cc4b011e679d16937e48a3",
+      "literal_replacements": [
+        {
+          "before": "const SOURCE_PINS = Object.freeze({",
+          "after": "const SOURCE_PINS = Object.freeze({\n  'src/expert-intake-files.mjs': '68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f',",
+          "occurrences": 1
+        },
+        {
+          "before": "'canli-expert-submission-client': 'src/expert-submission-client.mjs'",
+          "after": "'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs'",
+          "occurrences": 1
+        },
+        {
+          "before": "'EXPERT_SUBMISSION_CLIENT.md'",
+          "after": "'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md'",
+          "occurrences": 2
+        },
+        {
+          "before": "'package/src/expert-submission-client.mjs'].includes",
+          "after": "'package/src/expert-submission-client.mjs', 'package/src/expert-intake-files.mjs'].includes",
+          "occurrences": 1
+        },
+        {
+          "before": "'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md'",
+          "after": "'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/src/expert-intake-files.mjs', 'package/EXPERT_INTAKE_FILES.md'",
+          "occurrences": 1
+        },
+        {
+          "before": "'src/expert-submission-client.mjs'].includes(name)",
+          "after": "'src/expert-submission-client.mjs', 'src/expert-intake-files.mjs'].includes(name)",
+          "occurrences": 1
+        },
+        {
+          "before": "MEMBERS.length, 20",
+          "after": "MEMBERS.length, 22",
+          "occurrences": 1
+        },
+        {
+          "before": "packed.bins.length, 6",
+          "after": "packed.bins.length, 7",
+          "occurrences": 1
+        }
+      ],
+      "entire_inverse": true
+    },
+    {
+      "path": "mcp-fundamentals/test/audit-inputs-client-package.test.mjs",
+      "before_bytes": 93075,
+      "before_sha256": "61e8b9ba790c0ad1bc112154be504ece6e578f3efde93fc48787577fbed834a5",
+      "after_bytes": 93689,
+      "after_sha256": "9fc0da42d0a536bc8dd819d2334e34f14db7dc755520e76e20963983d8193b26",
+      "literal_replacements": [
+        {
+          "before": "const SOURCE_PINS = Object.freeze({",
+          "after": "const SOURCE_PINS = Object.freeze({\"src/expert-intake-files.mjs\": \"68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f\", ",
+          "occurrences": 1
+        },
+        {
+          "before": "'canli-expert-submission-client': 'src/expert-submission-client.mjs'",
+          "after": "'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs'",
+          "occurrences": 1
+        },
+        {
+          "before": "'EXPERT_SUBMISSION_CLIENT.md'",
+          "after": "'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md'",
+          "occurrences": 3
+        },
+        {
+          "before": "  delete inverse.bin['canli-expert-submission-client'];",
+          "after": "  delete inverse.bin['canli-expert-intake-files']; inverse.files = inverse.files.filter(name => name !== 'EXPERT_INTAKE_FILES.md');\n  delete inverse.bin['canli-expert-submission-client'];",
+          "occurrences": 1
+        },
+        {
+          "before": "for (const line of [...FOCUSED_LINES,",
+          "after": "for (const line of [...FOCUSED_LINES, \"    \\\"test:expert-intake-files-package\\\": \\\"node --test --test-concurrency=1 mcp-fundamentals/test/expert-intake-files-package.test.mjs\\\",\\n\", \"    \\\"filingfacts:expert-intake-files\\\": \\\"node mcp-fundamentals/src/expert-intake-files.mjs\\\",\\n\",",
+          "occurrences": 1
+        },
+        {
+          "before": "MEMBERS.length, 20",
+          "after": "MEMBERS.length, 22",
+          "occurrences": 1
+        },
+        {
+          "before": "decodeTar(packed.compressed).size, 20",
+          "after": "decodeTar(packed.compressed).size, 22",
+          "occurrences": 1
+        }
+      ],
+      "entire_inverse": true
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-files-package.test.mjs",
+      "before_bytes": 71502,
+      "before_sha256": "af19c0b6f08df630d8959bf4a530d422f948311bbae273aa633562ca5a5e1fe8",
+      "after_bytes": 71713,
+      "after_sha256": "2c56a03d6a2b68629ef43ce17476edde080d5b23fad13c9c23fab3a562d6ea4c",
+      "literal_replacements": [
+        {
+          "before": "const SOURCE_PINS = Object.freeze({",
+          "after": "const SOURCE_PINS = Object.freeze({\"src/expert-intake-files.mjs\": \"68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f\", ",
+          "occurrences": 1
+        },
+        {
+          "before": "'canli-expert-submission-client': 'src/expert-submission-client.mjs'",
+          "after": "'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs'",
+          "occurrences": 1
+        },
+        {
+          "before": "'EXPERT_SUBMISSION_CLIENT.md'",
+          "after": "'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md'",
+          "occurrences": 2
+        },
+        {
+          "before": "MEMBERS.length,20",
+          "after": "MEMBERS.length,22",
+          "occurrences": 1
+        },
+        {
+          "before": "Object.keys(BIN).length,6",
+          "after": "Object.keys(BIN).length,7",
+          "occurrences": 1
+        },
+        {
+          "before": "imports(entries),12,'JS_COUNT'",
+          "after": "imports(entries),13,'JS_COUNT'",
+          "occurrences": 1
+        },
+        {
+          "before": "imports(cloneEntries()),12",
+          "after": "imports(cloneEntries()),13",
+          "occurrences": 1
+        },
+        {
+          "before": "imports(positive),13",
+          "after": "imports(positive),14",
+          "occurrences": 1
+        }
+      ],
+      "entire_inverse": true
+    },
+    {
+      "path": "mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+      "before_bytes": 86517,
+      "before_sha256": "ca06d7aee48739fe5e8ed42ac907df299e6ad328b310224d7326d20b540df327",
+      "after_bytes": 86728,
+      "after_sha256": "c1dbbfb50481b08d3989d3ce4355ae2a71bce11a97fb8f617d8d1ce26ba0ca74",
+      "literal_replacements": [
+        {
+          "before": "const SOURCE_PINS = Object.freeze({",
+          "after": "const SOURCE_PINS = Object.freeze({\"src/expert-intake-files.mjs\": \"68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f\", ",
+          "occurrences": 1
+        },
+        {
+          "before": "'canli-expert-submission-client': 'src/expert-submission-client.mjs'",
+          "after": "'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs'",
+          "occurrences": 1
+        },
+        {
+          "before": "'EXPERT_SUBMISSION_CLIENT.md'",
+          "after": "'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md'",
+          "occurrences": 2
+        },
+        {
+          "before": "MEMBERS.length, 20",
+          "after": "MEMBERS.length, 22",
+          "occurrences": 1
+        },
+        {
+          "before": "Object.keys(BIN).length, 6",
+          "after": "Object.keys(BIN).length, 7",
+          "occurrences": 1
+        },
+        {
+          "before": "imports(entries),12,'JS_COUNT'",
+          "after": "imports(entries),13,'JS_COUNT'",
+          "occurrences": 1
+        },
+        {
+          "before": "imports(cloneEntries()), 12",
+          "after": "imports(cloneEntries()), 13",
+          "occurrences": 1
+        }
+      ],
+      "entire_inverse": true
+    }
+  ],
+  "loader_branch_authority": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/source-direction-5000824e-five-old-family-literal-loader-exact-addendum-primary-v1.json",
+    "bytes": 8469,
+    "sha256": "9c7e9a279662d8f161fee65ba0a97396ec9d10ddc290cfbf993e0f06f6a0df1f",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "project_execution": false,
+  "entire_M_fivefile_inverse_pending_combined_branch_reverse": true
+}

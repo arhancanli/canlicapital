@@ -1,0 +1,59 @@
+--- a/mcp-fundamentals/test/audit-package.test.mjs
++++ b/mcp-fundamentals/test/audit-package.test.mjs
+@@ -154,6 +154,10 @@
+       assert.equal(sha(row.bytes), SOURCE_PINS['package/src/expert-submission-client.mjs'], 'SOURCE_PIN');
+       assert.deepEqual(dynamic.map(hit => hit[2]), ['@modelcontextprotocol/client', '@modelcontextprotocol/client/stdio', './expert-submission-stdio.mjs'], 'FIXED_DYNAMIC_IMPORTS');
+       assert.ok(entries.has('package/src/expert-submission-stdio.mjs'), 'LOCAL_IMPORT');
++    } else if (path === 'package/src/expert-intake-files.mjs') {
++      assert.equal(sha(row.bytes), SOURCE_PINS[path], 'SOURCE_PIN');
++      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-intake-core.mjs'], 'FIXED_DYNAMIC_IMPORTS');
++      assert.ok(entries.has('package/src/expert-intake-core.mjs'), 'LOCAL_IMPORT');
+     } else assert.equal(dynamic.length, 0, 'DYNAMIC_IMPORT');
+     assert.doesNotMatch(source.replace(/\bimport\s*\(\s*(['"])([^'"]+)\1\s*\)/g, 'FIXED_SDK_IMPORT'), /\b(?:import\s*\(|require\s*\(|createRequire\b)/, 'DYNAMIC_IMPORT');
+     const literalImports = [...source.matchAll(/^import .+ from ['"]([^'"]+)['"];$/gm)];
+--- a/mcp-fundamentals/test/expert-submission-package.test.mjs
++++ b/mcp-fundamentals/test/expert-submission-package.test.mjs
+@@ -145,6 +145,10 @@
+       assert.equal(sha(row.bytes), SOURCE_PINS['src/expert-submission-client.mjs'], 'SOURCE_PIN');
+       assert.deepEqual(dynamic.map(hit => hit[2]), ['@modelcontextprotocol/client', '@modelcontextprotocol/client/stdio', './expert-submission-stdio.mjs'], 'FIXED_DYNAMIC_IMPORTS');
+       assert.ok(entries.has('package/src/expert-submission-stdio.mjs'), 'LOCAL_IMPORT');
++    } else if (filename === 'package/src/expert-intake-files.mjs') {
++      assert.equal(sha(row.bytes), SOURCE_PINS['src/expert-intake-files.mjs'], 'SOURCE_PIN');
++      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-intake-core.mjs'], 'FIXED_DYNAMIC_IMPORTS');
++      assert.ok(entries.has('package/src/expert-intake-core.mjs'), 'LOCAL_IMPORT');
+     } else assert.equal(dynamic.length, 0, 'DYNAMIC_IMPORT');
+     assert.doesNotMatch(source.replace(/\bimport\s*\(\s*(['"])([^'"]+)\1\s*\)/g, 'FIXED_SDK_IMPORT'), /\b(?:import\s*\(|require\s*\(|createRequire\b)/, 'DYNAMIC_IMPORT');
+     const imports = [...source.matchAll(/^import .+ from ['"]([^'"]+)['"];$/gm)];
+--- a/mcp-fundamentals/test/audit-inputs-client-package.test.mjs
++++ b/mcp-fundamentals/test/audit-inputs-client-package.test.mjs
+@@ -149,6 +149,10 @@
+       assert.equal(sha(row.bytes), SOURCE_PINS['src/expert-submission-client.mjs'], 'SOURCE_PIN');
+       assert.deepEqual(dynamic.map(hit => hit[2]), ['@modelcontextprotocol/client', '@modelcontextprotocol/client/stdio', './expert-submission-stdio.mjs'], 'DYNAMIC_FIXED');
+       assert.ok(entries.has('package/src/expert-submission-stdio.mjs'), 'LOCAL_IMPORT');
++    } else if (filename === 'package/src/expert-intake-files.mjs') {
++      assert.equal(sha(row.bytes), SOURCE_PINS['src/expert-intake-files.mjs'], 'SOURCE_PIN');
++      assert.deepEqual(dynamic.map(hit => hit[2]), ['./expert-intake-core.mjs'], 'FIXED_DYNAMIC_IMPORTS');
++      assert.ok(entries.has('package/src/expert-intake-core.mjs'), 'LOCAL_IMPORT');
+     } else assert.equal(dynamic.length, 0, 'DYNAMIC');
+     assert.doesNotMatch(source.replace(/\bimport\s*\(\s*(['"])([^'"]+)\1\s*\)/g, 'FIXED_SDK'), /\b(?:import\s*\(|require\s*\(|createRequire\b)/, 'DYNAMIC');
+     assert.doesNotMatch(source, /^export\s+(?:\*\s*(?:as\s+\w+\s*)?|\{[^}]*\}\s*)from\b/gm, 'REEXPORT');
+--- a/mcp-fundamentals/test/expert-submission-files-package.test.mjs
++++ b/mcp-fundamentals/test/expert-submission-files-package.test.mjs
+@@ -180,6 +180,7 @@
+     if (name==='package/src/audit-inputs-client.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['@modelcontextprotocol/client','@modelcontextprotocol/client/stdio'],'FIXED_DYNAMIC'); }
+     else if (name==='package/src/expert-submission-files.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['./expert-submission-audit-core.mjs'],'FIXED_DYNAMIC'); assert.ok(entries.has('package/src/expert-submission-audit-core.mjs'),'LOCAL_IMPORT'); }
+     else if (name==='package/src/expert-submission-client.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['@modelcontextprotocol/client','@modelcontextprotocol/client/stdio','./expert-submission-stdio.mjs'],'FIXED_DYNAMIC'); assert.ok(entries.has('package/src/expert-submission-stdio.mjs'),'LOCAL_IMPORT'); }
++    else if (name==='package/src/expert-intake-files.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['./expert-intake-core.mjs'],'FIXED_DYNAMIC'); assert.ok(entries.has('package/src/expert-intake-core.mjs'),'LOCAL_IMPORT'); }
+     else assert.equal(dynamic.length,0,'DYNAMIC');
+     assert.doesNotMatch(source.replace(/\bimport\s*\(\s*(['"])([^'"]+)\1\s*\)/g,'FIXED_IMPORT'),/\b(?:import\s*\(|require\s*\(|createRequire\b)/,'DYNAMIC');
+     assert.doesNotMatch(source,/^export\s+(?:\*\s*(?:as\s+\w+\s*)?|\{[^}]*\}\s*)from\b/gm,'REEXPORT');
+--- a/mcp-fundamentals/test/expert-submission-client-package.test.mjs
++++ b/mcp-fundamentals/test/expert-submission-client-package.test.mjs
+@@ -235,6 +235,7 @@
+     if (name==='package/src/audit-inputs-client.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['@modelcontextprotocol/client','@modelcontextprotocol/client/stdio'],'FIXED_DYNAMIC'); }
+     else if (name==='package/src/expert-submission-files.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['./expert-submission-audit-core.mjs'],'FIXED_DYNAMIC'); assert.ok(entries.has('package/src/expert-submission-audit-core.mjs'),'LOCAL_IMPORT'); }
+     else if (name==='package/src/expert-submission-client.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['@modelcontextprotocol/client','@modelcontextprotocol/client/stdio','./expert-submission-stdio.mjs'],'FIXED_DYNAMIC'); assert.ok(entries.has('package/src/expert-submission-stdio.mjs'),'LOCAL_IMPORT'); }
++    else if (name==='package/src/expert-intake-files.mjs') { assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'FIXED_SOURCE'); assert.deepEqual(dynamic.map(m=>m[2]),['./expert-intake-core.mjs'],'FIXED_DYNAMIC'); assert.ok(entries.has('package/src/expert-intake-core.mjs'),'LOCAL_IMPORT'); }
+     else assert.equal(dynamic.length,0,'DYNAMIC');
+     assert.doesNotMatch(source.replace(/\bimport\s*\(\s*(['"])([^'"]+)\1\s*\)/g,'FIXED_IMPORT'),/\b(?:import\s*\(|require\s*\(|createRequire\b)/,'DYNAMIC');
+     assert.doesNotMatch(source,/^export\s+(?:\*\s*(?:as\s+\w+\s*)?|\{[^}]*\}\s*)from\b/gm,'REEXPORT');
