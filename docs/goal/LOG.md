@@ -19357,3 +19357,36 @@ independent rights-cleared realexpert/refinery/research, governedALPHAC/privatep
 lawfulcapital and10MACTUALindexing/qualitySEO/keywords/design/analyzer hierarchy ACTIVE;
 actual outcomes UNKNOWNNULL. PRIMARYreservedroles/solemergepub/LeadCPU127/SAMEthread
 model unchanged. Closed389/388 and all prior sources/archives stay frozen.
+
+
+### 2026-10-05T03:53:53.366709+00:00 — PR3901cd failed fixture-cache hook retained; owned test-only correction WRITTEN_UNRUN
+
+Frozen signed1cd233ad/tree5b47f4d8 remains immutable with complete original automatic
+CI receipt `/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/current-1cd233ad-retained-CI-FAILED-qualified-complete-v1.json`
+18951B34cdc96d. Full11 original saved captures/full7TAP1999 outcomes: ROOT6+1351+9
+PASS; MCP160+1+85PASS/Fund387347PASS40FAIL/last execution suiteUNRUN. All40NEW cases
+hookFailed/bodyUNEXECUTED/zeroNEWcommandSDKsuccess. Old22+30+38+40+57+63 names once
+MCP PASS. Both raw diagnostics now complete through EAGAIN; old22 sixth literal
+and currentCodeQL106 correction pass their captured checks. Six current checks
+SUCCESS/oneMCPFAIL/scopedref0/latestJS+PYtested09671ca7 results0; no fullgreen gate.
+
+Owned NEW test guard had classified the external read-only dependency-cache target
+of a symlink as a writable path. Narrow correction records only the exact target
+already validated against a fixed locked dependency version and exact owned link
+destination; permission exists only around that one synchronous creation and is
+removed in finally. It permits no external mutation, unregistered target/link,
+async creation, copy/rename/hardlink, new dependency/install or repository runtime
+link. Positive14 existing links and foreign-target/destination no-write controls
+extend the existing fourth native case; all40names/other39bodies/native childguard/
+ONEpack/3actualclient<=3SDK inventory unchanged. Entire producer61734B2f6935, guide,
+metadata, allfouroldfamilies/nativewriter/clock/closure/default7/core/rootverify/
+locks/versions/sourceowner74/archives stay exact1cd. This is WRITTEN_UNRUN; no new
+actual pass or own project entry. Initialf964 SOURCEHOLD/raw306P81F/CodeQL106 and
+current1cd347P40F/RAWwithoutADMITTED/capture metadata stops are preserved externally.
+
+One future signedCLEAN test/goals correction and existingautomaticnewheadCI, separate
+PRIMARY+THIRD exactSOURCE/currentCI originals remainrequired. ArchiveNULL/no repository
+evidence/futureREADY/merge/pub; allownerhierarchyACTIVE/outcomesUNKNOWNNULL/PRIMARY
+reservedguide-date-focus-live-journal-reconciliation-release/solemergepub/LeadCPU127
+SAMEthreads-model unchanged. No local Node/import/SDK/test/CLI/npm/pack/helper/GET/
+probe/job/grant/provider-model-spend/publication.

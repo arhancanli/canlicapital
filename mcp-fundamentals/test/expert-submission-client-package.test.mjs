@@ -37,6 +37,9 @@ let TMP, packed, clientModule, contract, restore = () => {}, suppliedFixtureByte
 const nativeSpawn = cp.spawn.bind(cp);
 const nativeDiagnosticWrite = fs.writeSync.bind(fs);
 const closures = [];
+// One prevalidated cache target may be linked into its exact owned destination.
+// The target is read only; this is not permission to mutate or replace cache files.
+const pendingReadOnlyCacheLinks = new Map();
 const SOURCE_PINS = Object.freeze({"src/expert-submission-client.mjs": "2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31", "src/audit-inputs-client.mjs": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7", "src/audit-inputs-core.mjs": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059", "src/audit-inputs-stdio.mjs": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0", "src/canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b", "src/expert-agreement.mjs": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef", "src/expert-intake-core.mjs": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545", "src/expert-submission-audit-core.mjs": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3", "src/expert-submission-files.mjs": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d", "src/expert-submission-stdio.mjs": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208", "src/filing-facts-packet.mjs": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8", "src/server.mjs": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"});
 const BIN = Object.freeze({ 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs',
   'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs',
@@ -102,7 +105,12 @@ function parentGuard() {
   const double = new Set(['rename','renameSync','copyFile','copyFileSync','cp','cpSync','link','linkSync','symlink','symlinkSync']);
   for (const object of [fs, fsp]) for (const name of ['writeFile','writeFileSync','appendFile','appendFileSync','mkdir','mkdirSync','mkdtemp','mkdtempSync','rename','renameSync','rm','rmSync','unlink','unlinkSync','truncate','truncateSync','createWriteStream','copyFile','copyFileSync','cp','cpSync','symlink','symlinkSync','link','linkSync','chmod','chmodSync','chown','chownSync']) {
     const original = object[name]; if (!original) continue;
-    set(object, name, (...args) => { if (!inside(args[0]) || (double.has(name) && !inside(args[1]))) deny(); return original(...args); });
+    set(object, name, (...args) => {
+      const cacheLink = object === fs && name === 'symlinkSync' && typeof args[0] === 'string' && typeof args[1] === 'string' &&
+        pendingReadOnlyCacheLinks.get(args[1]) === args[0];
+      if (cacheLink ? !inside(args[1]) : (!inside(args[0]) || (double.has(name) && !inside(args[1])))) deny();
+      return original(...args);
+    });
   }
   for (const name of ['openSync','open']) { const original = fs[name]; set(fs, name, (p, f, ...rest) => {
     const writing = writable(f); if (writing && !inside(p)) deny();
@@ -425,7 +433,11 @@ before(async t => {
       const target = fs.realpathSync(path.join(ROOT, relative)), link = path.join(root, relative);
       const external = JSON.parse(snapshot(path.join(target, 'package.json')));
       assert.equal(external.version, entry.version); assert.ok(target.includes('node_modules' + path.sep));
-      fs.mkdirSync(path.dirname(link), { recursive: true }); fs.symlinkSync(target, link); dependencyLinks.push({ path: link, target });
+      fs.mkdirSync(path.dirname(link), { recursive: true });
+      assert.equal(pendingReadOnlyCacheLinks.size, 0); pendingReadOnlyCacheLinks.set(link, target);
+      try { fs.symlinkSync(target, link); }
+      finally { pendingReadOnlyCacheLinks.delete(link); }
+      dependencyLinks.push({ path: link, target });
     }
     for (const name of ['.git', 'scripts', 'js']) assert.equal(fs.existsSync(path.join(root, name)), false);
     // Import first; fault adapters never intercept ESM loader/source reads.
@@ -619,6 +631,16 @@ test('expert client package: native guard admits exact owned Buffer paths includ
   assert.throws(() => fs.writeFileSync(Buffer.from('/foreign-expert-client-control'), 'x'), /NATIVE_DENIAL/);
   assert.throws(() => fs.writeFileSync(Buffer.from([255]), 'x'), /NATIVE_DENIAL/);
   assert.throws(() => fetch('https://invalid.invalid'), /NATIVE_DENIAL/);
+  assert.equal(pendingReadOnlyCacheLinks.size, 0);
+  assert.equal(dependencyLinks.length, 14);
+  for (const row of dependencyLinks) {
+    assert.ok(fs.lstatSync(row.path).isSymbolicLink());
+    assert.equal(fs.readlinkSync(row.path), row.target);
+  }
+  const unapproved = path.join(TMP, 'unapproved-cache-target');
+  assert.throws(() => fs.symlinkSync('/foreign-expert-client-cache', unapproved), /NATIVE_DENIAL/);
+  assert.equal(fs.existsSync(unapproved), false);
+  assert.throws(() => fs.symlinkSync(packed.root, '/foreign-expert-client-cache-link'), /NATIVE_DENIAL/);
 });
 test('expert client native: positive complete two-returned-packet report retains all notes fullN bindings nulls and private durable bytes', async t => {
   const s = scenario({ returned: 2 }); s.submission.forEach((raw, index) => { const packet = JSON.parse(raw); packet.labels[0].answer_matches_filing = 'no'; packet.labels[0].notes = 'SYNTHETIC complete explanatory note'; putReturn(s, index, bytes(packet)); });
