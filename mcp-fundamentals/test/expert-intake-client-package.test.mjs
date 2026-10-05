@@ -371,9 +371,34 @@ function capturedFor(s) {
 }
 function coreArgs(s) { const c = capturedFor(s); return [c.gold, hash(c.gold), c.intake, c.evidenceInventory, c.evidence, c.intakeSettings]; }
 const referenceFor = s => prepareExpertIntake(...coreArgs(s));
+function ownedFixtureAliasSnapshot(alias, target, filesystem = fs) {
+  const own = filesystem.realpathSync(TMP);
+  const inside = p => typeof p === 'string' && p === path.resolve(p) && (p === own || p.startsWith(own + path.sep));
+  assert.ok(inside(alias) && inside(target) && inside(filesystem.realpathSync(path.dirname(alias))), 'OWNED_ALIAS_PATH');
+  const link = filesystem.lstatSync(alias, { bigint: true }), destination = filesystem.lstatSync(target, { bigint: true });
+  assert.ok(link.isSymbolicLink() && (destination.isFile() || destination.isDirectory()) && !destination.isSymbolicLink(), 'OWNED_ALIAS_KIND');
+  assert.equal(link.uid, BigInt(process.getuid()), 'OWNED_ALIAS_UID');
+  assert.equal(destination.uid, BigInt(process.getuid()), 'OWNED_ALIAS_TARGET_UID');
+  assert.equal(link.nlink, 1n, 'OWNED_ALIAS_LINK_COUNT');
+  assert.equal(filesystem.readlinkSync(alias), target, 'OWNED_ALIAS_TARGET');
+  assert.equal(filesystem.realpathSync(alias), filesystem.realpathSync(target), 'OWNED_ALIAS_RESOLUTION');
+  const identity = value => Object.fromEntries(['dev', 'ino', 'mode', 'uid', 'gid', 'size', 'nlink', 'mtimeNs', 'ctimeNs'].map(key => [key, value[key]]));
+  return { alias, target, link: identity(link), destination: identity(destination) };
+}
+function trackOwnedFixtureAlias(alias, target, cleanups) {
+  const original = ownedFixtureAliasSnapshot(alias, target); let removed = false;
+  const cleanup = (filesystem = fs) => {
+    if (removed) return;
+    const current = ownedFixtureAliasSnapshot(alias, target, filesystem);
+    assert.deepEqual(current, original, 'OWNED_ALIAS_CHANGED');
+    filesystem.unlinkSync(alias); removed = true;
+  };
+  cleanups.push(cleanup); return cleanup;
+}
 function files(t, s = scenario()) {
   const root = fs.mkdtempSync(join(TMP, 'native-input-')); fs.chmodSync(root, 0o700);
-  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const aliasCleanups = [];
+  t.after(() => { for (const cleanup of aliasCleanups) cleanup(); fs.rmSync(root, { recursive: true, force: true }); });
   const raw = capturedFor(s), paths = {}, inputs = [];
   for (const name of ['gold', 'intake', 'evidenceInventory', 'intakeSettings']) {
     paths[name] = join(root, name + '.json'); fs.writeFileSync(paths[name], raw[name], { flag: 'wx', mode: 0o600 });
@@ -388,7 +413,7 @@ function files(t, s = scenario()) {
   const argv = ['--gold', paths.gold, '--expected-gold-sha256', hash(s.rawGold), '--intake', paths.intake,
     '--evidence-inventory', paths.evidenceInventory, '--intake-settings', paths.intakeSettings, '--out', out,
     ...paths.evidence.flatMap(p => ['--evidence', p])];
-  return { root, out, paths, inputs, argv, s };
+  return { root, out, paths, inputs, argv, s, aliasCleanups };
 }
 
 function instrument(hooks = {}) {
@@ -609,8 +634,8 @@ function checksum(header) {
 }
 test('intake client package: marked guide inputs are independently valid JSON and bind exact original same-gold buffers', () => {
   const s = guideScenario(packed.guide), c = coreArgs(s); assert.equal(c.length,6);
-  assert.equal(hash(c[0]), hash(marked(packed.guide,'GOLD'))); assert.equal(s.gold.labels.length,6);
-  assert.match(packed.guide,new RegExp(hash(c[0]))); assert.equal(referenceFor(s).coverage.selected_n,6);
+  assert.equal(hash(c[0]), hash(marked(packed.guide,'GOLD'))); assert.equal(s.gold.labels.length,3);
+  assert.match(packed.guide,new RegExp(hash(c[0]))); assert.equal(referenceFor(s).coverage.selected_n,3);
   for (const name of ['GOLD','INTAKE','EVIDENCE_INVENTORY','INTAKE_SETTINGS']) assert.equal(marked(packed.guide,name).at(-1),10);
 });
 
@@ -681,15 +706,28 @@ test('intake client native: evidence group and768KiB aggregate admission remain 
 
 test('intake client native: input aliases symlinks hardlinks foreign ownership and noncanonical private parents refuse without body reads', async t => {
   for(const kind of ['hardlink','symlink','parent']){const f=files(t),io=instrument(),sdk=syntheticSdk(f.s);
-    if(kind==='parent')fs.chmodSync(f.root,0o755);else{fs.unlinkSync(f.paths.intake);(kind==='hardlink'?fs.linkSync:fs.symlinkSync)(f.paths.gold,f.paths.intake);}
+    if(kind==='parent')fs.chmodSync(f.root,0o755);else{fs.unlinkSync(f.paths.intake);(kind==='hardlink'?fs.linkSync:fs.symlinkSync)(f.paths.gold,f.paths.intake);
+      if(kind==='symlink')trackOwnedFixtureAlias(f.paths.intake,f.paths.gold,f.aliasCleanups);}
     refused(await clientModule.runExpertIntakeClientFiles(f.argv,{filesystem:io.filesystem,contract,sdkModules:sdk.sdkModules,now:()=>0}));noProgress(io,sdk);fs.chmodSync(f.root,0o700);
   }
   const foreign=files(t),other=instrument(),fake=syntheticSdk(foreign.s),fstat=other.filesystem.fstatSync;
   other.filesystem.fstatSync=(fd,...args)=>{const value=fstat(fd,...args);return other.held.get(fd)===foreign.paths.gold?{...value,uid:value.uid+1n,isFile:()=>true}:value;};
   refused(await clientModule.runExpertIntakeClientFiles(foreign.argv,{filesystem:other.filesystem,contract,sdkModules:fake.sdkModules,now:()=>0}),'CLI_INPUT_BOUND');noProgress(other,fake);
   const linked=files(t),alias=path.join(TMP,'input-parent-alias');fs.symlinkSync(linked.root,alias);
+  const unlinkParent=trackOwnedFixtureAlias(alias,linked.root,linked.aliasCleanups);
   const args=[...linked.argv];args[1]=path.join(alias,'gold.json');const probe=instrument(),mock=syntheticSdk(linked.s);
-  try{refused(await clientModule.runExpertIntakeClientFiles(args,{filesystem:probe.filesystem,contract,sdkModules:mock.sdkModules,now:()=>0}));noProgress(probe,mock);}finally{fs.unlinkSync(alias);}
+  try{refused(await clientModule.runExpertIntakeClientFiles(args,{filesystem:probe.filesystem,contract,sdkModules:mock.sdkModules,now:()=>0}));noProgress(probe,mock);}finally{unlinkParent();}
+  const owned=files(t);fs.unlinkSync(owned.paths.intake);fs.symlinkSync(owned.paths.gold,owned.paths.intake);
+  const cleanup=trackOwnedFixtureAlias(owned.paths.intake,owned.paths.gold,owned.aliasCleanups);
+  for(const mode of ['foreign','dangling','changed']){
+    let forwarded=0;const native={lstatSync:fs.lstatSync.bind(fs),readlinkSync:fs.readlinkSync.bind(fs),realpathSync:fs.realpathSync.bind(fs),unlinkSync(){forwarded++;}};
+    if(mode==='foreign')native.readlinkSync=p=>p===owned.paths.intake?ROOT:fs.readlinkSync(p);
+    if(mode==='dangling')native.realpathSync=p=>{if(p===owned.paths.intake)throw Object.assign(new Error('OWNED_ALIAS_DANGLING'),{code:'ENOENT'});return fs.realpathSync(p);};
+    if(mode==='changed')native.lstatSync=(p,options)=>{const value=fs.lstatSync(p,options);return p===owned.paths.intake?{...value,ino:value.ino+1n,isSymbolicLink:()=>true}:value;};
+    assert.throws(()=>cleanup(native));assert.equal(forwarded,0);assert.equal(fs.existsSync(owned.paths.gold),true);
+  }
+  let forwarded=0;cleanup({lstatSync:fs.lstatSync.bind(fs),readlinkSync:fs.readlinkSync.bind(fs),realpathSync:fs.realpathSync.bind(fs),unlinkSync(p){forwarded++;return fs.unlinkSync(p);}});
+  assert.equal(forwarded,1);assert.equal(fs.existsSync(owned.paths.intake),false);assert.equal(fs.existsSync(owned.paths.gold),true);
 });
 
 test('intake client native: partial reads handle short buffers and admit one EOF overflow byte without unbounded allocation', async t => {
@@ -748,9 +786,16 @@ test('intake client native: both reviewer packets retain exactly the same comple
   const bad=rehashed(s,x=>{x.review_packets[0].packet.labels[0].notes='invented';});assert.throws(()=>checkReply(s,bad));
 });
 
-test('intake client native: qualification conflicts source-use evidence references and opaque evidence retain complete mechanical inventory', () => {
+test('intake client native: qualification conflicts source-use evidence references and opaque evidence retain complete mechanical inventory', async t => {
   const s=scenario({evidence:2}),r=responseFor(s);assert.equal(checkReply(s,r).evidence_inventory.length,2);
-  for(const mutate of [x=>{x.role_worklists[0].tasks.pop();},x=>{x.evidence_inventory.pop();},x=>{x.intake=undefined;}]){assert.throws(()=>checkReply(s,rehashed(s,mutate)));}
+  let last;
+  for(const mutate of [x=>{x.role_worklists[0].tasks.pop();},x=>{x.evidence_inventory.pop();},x=>{x.bindings.intake.sha256='0'.repeat(64);}]){
+    const altered=rehashed(s,mutate);assert.equal(altered.structuredContent.content_hash,contentHash(altered.structuredContent,createHash));
+    assert.deepEqual(JSON.parse(altered.content[0].text),altered.structuredContent);
+    let validated=0;assert.throws(()=>{validated++;return checkReply(s,altered);},clientModule.ExpertIntakeClientError);assert.equal(validated,1);last=altered;
+  }
+  const stopped=await run(t,s,{controls:{reply:()=>last}});refused(stopped.result,'RESPONSE_BINDING');assert.equal(fs.existsSync(stopped.f.out),false);
+  assert.equal(stopped.sdk.effects.calls,1);assert.equal(stopped.sdk.effects.kernels,1);
 });
 
 test('intake client native: rehashed report changes are checked against unchanged-core same-buffer reference preparation', async t => {

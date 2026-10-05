@@ -377,6 +377,7 @@ test('audit package: raw archive modes stay distinct from explicit owned bin-lin
     { name: 'canli-expert-submission-client', path: 'src/expert-submission-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
     { name: 'canli-expert-intake-files', path: 'src/expert-intake-files.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
     { name: 'canli-expert-intake-prepare', path: 'src/expert-intake-stdio.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
+    { name: 'canli-expert-intake-client', path: 'src/expert-intake-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
   ]);
   for (const row of packed.installedBins) {
     const path = 'package/' + row.path;
