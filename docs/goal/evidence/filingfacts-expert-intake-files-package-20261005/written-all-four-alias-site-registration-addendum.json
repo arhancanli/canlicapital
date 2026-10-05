@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-05T08:50:06.040385+00:00",
+  "before": "if(kind==='symlink'){fs.symlinkSync(f.paths.gold,p);argv[1]=p;}",
+  "after": "if(kind==='symlink'){fixtureSymlink(f,f.paths.gold,p);argv[1]=p;}",
+  "occurrences": 1,
+  "before_pin": {
+    "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+    "bytes": 67780,
+    "sha256": "5c32bc73ffa321169c8b06d7f89178a2171a674d3278433f8e398a30a4d159c3",
+    "mode_octal": "0o644",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "after_pin": {
+    "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+    "bytes": 67782,
+    "sha256": "51c5ce77c3c12a755f2e63fe54e6390f827dad4ed9b5db76ddbfda56d2b50a82",
+    "mode_octal": "0o644",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "state": "WRITTEN_UNRUN",
+  "scope": "one remaining actual-owned input alias now uses same declared alias-first cleanup; remove directory ordering dependence",
+  "no_guard_change": true,
+  "original39_names": true,
+  "project_execution": "NONE"
+}

@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-05T08:32:08.395329+00:00",
+  "state": "STATIC_UNEXECUTED_FIXTURE_ARITHMETIC_ONLY",
+  "original_head": "1e607f8fe073a409586a76ff100009982d738c5d",
+  "source_path": "mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+  "before": "const n=Math.min(31,length);chunks.push(Buffer.from(frame.subarray(offset,offset+n)));return n;};",
+  "after": "const n=Math.min(127,length);chunks.push(Buffer.from(frame.subarray(offset,offset+n)));return n;};",
+  "count": 1,
+  "before_pin": {
+    "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+    "bytes": 65949,
+    "sha256": "f0123a426f781fcf35d6eefb7c0ac31f6725cd7ba263fe7f52f2474c00785c27",
+    "mode_octal": "0o644",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "after_pin": {
+    "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+    "bytes": 65950,
+    "sha256": "6914fb16150bf87d614d3f24a42886898e521a4a9d443064be9a43bf9bd168a5",
+    "mode_octal": "0o644",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "retained_current_original_compressed_bytes": 126152,
+  "same_frame_bytes": 168312,
+  "original31_fragment_write_attempts_plus_EAGAIN": 5431,
+  "corrected127_fragment_write_attempts_plus_EAGAIN": 1327,
+  "maximum_admitted_frame_bytes": 393728,
+  "maximum127_attempts_plus_EAGAIN": 3102,
+  "4096_attempt_guard_unchanged": true,
+  "39case_names_unchanged": true,
+  "status": "WRITTEN_UNRUN_after_original_hook_refusal",
+  "project_execution": "NONE",
+  "owner_hierarchy": "ACTIVE",
+  "outcomes": null
+}

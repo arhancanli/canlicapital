@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-05T08:12:57.805298+00:00",
+  "state": "METADATA_ONLY_BEFORE_STAGE",
+  "cause": "firstinverse reader assumed each addedSOURCE_PIN line unique; existing conditional branches reuse that literal line",
+  "correction": "remove entire contiguous authorizedbranch block once, not individual sharedlines",
+  "source_changed": false,
+  "project_runtime": false
+}

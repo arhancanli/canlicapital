@@ -1,0 +1,75 @@
+{
+  "utc": "2026-10-05T08:49:11.625424+00:00",
+  "state": "NARROW_FIXTURE_CLEANUP_WRITTEN_UNRUN",
+  "parent": "a8de54b0f47b11ea58f2d665ae44e4b9b2eb3b3b",
+  "source_path": "mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+  "before_pin": {
+    "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+    "bytes": 65950,
+    "sha256": "6914fb16150bf87d614d3f24a42886898e521a4a9d443064be9a43bf9bd168a5",
+    "mode_octal": "0o644",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "after_pin": {
+    "path": "/Users/arhancanli/canlicapital-expert-intake-files-package-20261005/mcp-fundamentals/test/expert-intake-files-package.test.mjs",
+    "bytes": 67780,
+    "sha256": "5c32bc73ffa321169c8b06d7f89178a2171a674d3278433f8e398a30a4d159c3",
+    "mode_octal": "0o644",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "literal_changes": [
+    {
+      "before": "  t.after(()=>fs.rmSync(root,{recursive:true,force:true}));",
+      "after": "  const cleanupLinks = [];\n  t.after(() => {\n    // Remove only recorded own aliases while their targets still exist. Recursive\n    // target-first cleanup would correctly be refused by the unchanged native guard.\n    for (const { file, target, identity } of cleanupLinks) {\n      assert.equal(fs.realpathSync(path.dirname(file)), root);\n      const linked = fs.lstatSync(file, { bigint: true });\n      assert.ok(linked.isSymbolicLink());\n      for (const key of ['dev', 'ino', 'mode']) assert.equal(linked[key], identity[key]);\n      assert.equal(fs.readlinkSync(file), target);\n      const actual = fs.realpathSync(target);\n      assert.ok(actual === root || actual.startsWith(root + path.sep));\n      fs.unlinkSync(file); // Still passes through the armed guard; no bypass.\n      assert.throws(() => fs.lstatSync(file), { code: 'ENOENT' });\n    }\n    fs.rmSync(root, { recursive: true, force: true });\n  });",
+      "occurrences": 1
+    },
+    {
+      "before": "  return {root,out,paths,inputs,argv,s};\n}",
+      "after": "  return {root,out,paths,inputs,argv,s,cleanupLinks};\n}\nfunction fixtureSymlink(f, target, file) {\n  assert.ok(file.startsWith(f.root + path.sep));\n  assert.ok(target === f.root || target.startsWith(f.root + path.sep));\n  assert.equal(fs.realpathSync(path.dirname(file)), f.root);\n  fs.symlinkSync(target, file);\n  const identity = fs.lstatSync(file, { bigint: true });\n  assert.ok(identity.isSymbolicLink()); assert.equal(fs.readlinkSync(file), target);\n  f.cleanupLinks.push({ file, target, identity });\n}",
+      "occurrences": 1
+    },
+    {
+      "before": "const link=join(f.root,'parent-alias');fs.symlinkSync(f.root,link);",
+      "after": "const link=join(f.root,'parent-alias');fixtureSymlink(f,f.root,link);",
+      "occurrences": 1
+    },
+    {
+      "before": "if(kind==='symlink')fs.symlinkSync(f.paths.gold,f.out);",
+      "after": "if(kind==='symlink')fixtureSymlink(f,f.paths.gold,f.out);",
+      "occurrences": 1
+    },
+    {
+      "before": "const link=join(f.root,'readonly-source-alias');fs.symlinkSync(p,link);",
+      "after": "const link=join(f.root,'readonly-source-alias');fixtureSymlink(f,p,link);",
+      "occurrences": 1
+    },
+    {
+      "before": "  const handle=await fsp.open(path.join(ROOT,'package.json'),'r');try{await assert.rejects(async()=>handle.writeFile('foreign'),/NATIVE_DENIAL/);}finally{await handle.close();}",
+      "after": "  const handle=await fsp.open(path.join(ROOT,'package.json'),'r');try{await assert.rejects(async()=>handle.writeFile('foreign'),/NATIVE_DENIAL/);}finally{await handle.close();}\n  const target=join(f.root,'dangling-positive'),alias=join(f.root,'dangling-alias');\n  fs.writeFileSync(target,'own target',{flag:'wx',mode:0o600});fixtureSymlink(f,target,alias);\n  fs.unlinkSync(target);\n  assert.throws(()=>fs.writeFileSync(alias,'must not follow dangling alias'),/NATIVE_DENIAL/);\n  assert.throws(()=>fs.unlinkSync(alias),/NATIVE_DENIAL/);\n  // Restore only this known owned target for guarded alias-first teardown.\n  fs.writeFileSync(target,'own target restored',{flag:'wx',mode:0o600});",
+      "occurrences": 1
+    }
+  ],
+  "all39_names_preserved": true,
+  "strong_guard_ENTIRE_unchanged": true,
+  "child_guard_process_clocks_diagnostic_ENTIRE_unchanged": true,
+  "added_existing_case_controls": [
+    "dangling-owned-alias write refuses through unchanged guard",
+    "dangling-owned-alias unlink refuses through unchanged guard",
+    "known-own-target restoration allows recorded guarded alias-first teardown"
+  ],
+  "no_saved_native_bypass": true,
+  "new_pack_max": 1,
+  "new_actual_command_max": 3,
+  "new_SDK": 0,
+  "original_failures_retained": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-files-package/a8de54b0-actual37pass2cleanupfail-plus-filefooter-diagnosis-v1.json",
+    "bytes": 8697,
+    "sha256": "cd7315bf7433895fe54696ee6edd3f90e9f7fc5f6f2d4ffc68add7822a51a990",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "archive_allocation": null,
+  "project_execution": "NONE",
+  "owner_hierarchy": "ACTIVE",
+  "outcomes": null
+}
