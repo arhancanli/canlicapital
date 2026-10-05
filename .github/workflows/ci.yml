@@ -130,9 +130,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install --yes postgresql-client
       - name: Apply migrations to disposable database and test lifecycle
+        # The contributor migration is applied twice (re-applying must be harmless) and BEFORE the
+        # revocation contract, so that contract and the race test also prove keys without a tier
+        # behave exactly as they did before it.
         run: |
           psql -X -v ON_ERROR_STOP=1 -c 'CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role;'
           psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260905_validation_api.sql
           psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260920_key_revocation.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20261005_contributor_access.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20261005_contributor_access.sql
           psql -X -v ON_ERROR_STOP=1 -f supabase/tests/key_revocation.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/tests/contributor_access.sql
           python3 scripts/test-key-revocation-race.py

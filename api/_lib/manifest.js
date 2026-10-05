@@ -23,6 +23,10 @@ export const MANIFEST = Object.freeze([
     requestOptional: ["label"],
   },
   {
+    path: "/api/v1/keys/me", method: "GET", keyed: true, quota: false,
+    summary: "The bearer key's fingerprint, label and access tier, without consuming validation quota. To claim contributor access, name the key by its fingerprint or label, never the key itself.",
+  },
+  {
     path: "/api/v1/validate/deflated-sharpe", method: "POST", keyed: true,
     summary: "Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.",
     requestExample: { returns: [0.004, -0.002, 0.007, 0.001, -0.003, 0.005, 0.002, -0.001], periods_per_year: 252, effective_independent_trials: 30, cross_trial_sharpe_sd_annualized: 0.5 },

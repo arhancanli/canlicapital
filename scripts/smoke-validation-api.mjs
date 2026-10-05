@@ -2,6 +2,7 @@
 // Issues a key, calls every validator with the manifest's example, fetches a receipt, and asserts
 // the envelope. Exit 1 on any failure. Run against a preview URL before production.
 import assert from "node:assert/strict";
+import { hashKey } from "../api/_lib/auth.js";
 import { MANIFEST } from "../api/_lib/manifest.js";
 
 const base = process.argv[2];
@@ -22,8 +23,22 @@ const key = keyRes.body.data.key;
 assert.match(key, /^ck_live_/);
 console.log("key issued; remaining today", keyRes.body.data.keys_remaining_today);
 
+// GET /api/v1/keys/me needs supabase/migrations/20261005_contributor_access.sql; before it is
+// applied this is a 503. A new key is standard, its fingerprint is the key's SHA-256 (what
+// printf '%s' "$CANLI_KEY" | shasum -a 256 prints), and the key itself never comes back.
+const me = await j(await fetch(`${base}/api/v1/keys/me`, { headers: { Authorization: `Bearer ${key}` } }));
+assert.equal(me.status, 200, `keys/me: ${JSON.stringify(me.body).slice(0, 300)}`);
+assert.equal(me.body.data.fingerprint, hashKey(key));
+assert.equal(me.body.data.label, "smoke");
+assert.equal(me.body.data.tier, "standard");
+assert.equal(me.body.data.validations_per_day, keyRes.body.data.quotas.validations_per_key_per_day);
+assert.ok(!JSON.stringify(me.body).includes(key), "keys/me must never return the key");
+console.log("ok /api/v1/keys/me tier", me.body.data.tier);
+
+// Only the routes that consume validation quota take a validator's example; the key routes
+// (revocation, lookup) are checked on their own.
 let receiptUrl;
-for (const m of MANIFEST.filter((x) => x.keyed)) {
+for (const m of MANIFEST.filter((x) => x.keyed && x.quota !== false && x.method === "POST")) {
   const r = await j(await fetch(`${base}${m.path}`, { method: "POST", headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" }, body: JSON.stringify(m.requestExample) }));
   assert.equal(r.status, 200, `${m.path}: ${JSON.stringify(r.body).slice(0, 300)}`);
   assert.equal(r.body.schema, "canli.api.v1");
@@ -88,4 +103,15 @@ if (status.body.data.usage !== null) {
   assert.equal(status.body.data.usage_available, false);
   console.log("usage not yet available (migration not applied, or a transient store error)");
 }
+
+// The smoke key is disposable: revoke it, and confirm a revoked key is refused by validation and
+// by keys/me alike.
+const revoked = await j(await fetch(`${base}/api/v1/keys/revoke`, { method: "POST", headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" }, body: "{}" }));
+assert.equal(revoked.status, 200, JSON.stringify(revoked.body).slice(0, 300));
+assert.equal(revoked.body.data.revoked, true);
+const afterValidate = await j(await fetch(`${base}/api/v1/validate/breadth`, { method: "POST", headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" }, body: JSON.stringify(MANIFEST.find((m) => m.path === "/api/v1/validate/breadth").requestExample) }));
+assert.equal(afterValidate.status, 401, JSON.stringify(afterValidate.body).slice(0, 300));
+const afterMe = await j(await fetch(`${base}/api/v1/keys/me`, { headers: { Authorization: `Bearer ${key}` } }));
+assert.equal(afterMe.status, 401, JSON.stringify(afterMe.body).slice(0, 300));
+console.log("ok smoke key revoked and refused afterwards");
 console.log("smoke passed against", base);

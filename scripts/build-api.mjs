@@ -380,7 +380,30 @@ function main() {
     if (m.keyed) {
       op.security = [{ bearerKey: [] }];
       op.responses[401] = envelopeResponse("Missing, unknown or revoked key");
-      if (m.quota !== false) op.responses[429] = envelopeResponse(`Daily quota of ${LIMITS.validations_per_key_per_day} validations reached; see Retry-After`);
+      if (m.quota !== false) op.responses[429] = envelopeResponse(`Daily validation quota reached (${LIMITS.validations_per_key_per_day} per key per UTC day, ${LIMITS.contributor_validations_per_key_per_day} for a key with contributor access); see Retry-After`);
+    }
+    if (m.path === "/api/v1/keys/me") {
+      op.responses[200] = {
+        description: "The bearer key's fingerprint, label and access tier. Never the key.",
+        content: { "application/json": { schema: { allOf: [
+          { $ref: "#/components/schemas/Envelope" },
+          { type: "object", properties: { data: {
+            type: "object",
+            required: ["fingerprint", "label", "tier", "validations_per_day", "contributor_since", "beta_mcp", "note"],
+            properties: {
+              fingerprint: { type: "string", pattern: "^[0-9a-f]{64}$", description: "The hex SHA-256 of the key, the same value printf '%s' \"$CANLI_KEY\" | shasum -a 256 prints. It identifies the key and cannot authenticate. Name the key by it, never by the key, in a Contributor access issue." },
+              label: { type: ["string", "null"] },
+              tier: { enum: ["standard", "contributor"] },
+              validations_per_day: { type: "integer", description: `Validations this key may run per UTC day: ${LIMITS.validations_per_key_per_day}, or ${LIMITS.contributor_validations_per_key_per_day} with contributor access.` },
+              contributor_since: { type: ["string", "null"], format: "date-time" },
+              beta_mcp: { type: "object", required: ["url", "access"], properties: { url: { type: "string", format: "uri" }, access: { type: "boolean", description: "Whether this key is admitted to the beta MCP endpoint, which serves the unreleased validation server." } } },
+              note: { type: "string" },
+            },
+          } } },
+        ] } } },
+      };
+      op.responses[503] = envelopeResponse("The key store is unavailable; nothing about the key is confirmed");
+      delete op.responses[400];
     }
     if (m.path === "/api/v1/keys/revoke") {
       op.responses[401] = envelopeResponse("Missing or unknown bearer key");

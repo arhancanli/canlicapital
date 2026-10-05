@@ -41,16 +41,18 @@ export function validatorHandler({ endpoint, sourcesPaths, compute, store, now =
     if (!key) return fail(res, 401, "unauthorized", "Send Authorization: Bearer ck_live_... from POST /api/v1/keys");
     let activeStore;
     let remaining;
-    try { activeStore = store ?? defaultStore(); ({ remaining } = await activeStore.consumeQuota(hashKey(key), LIMITS.validations_per_key_per_day)); } catch (e) {
+    // The limit the store enforced for this key: the standard one, or a contributor key's larger one.
+    let limit;
+    try { activeStore = store ?? defaultStore(); ({ remaining, limit = LIMITS.validations_per_key_per_day } = await activeStore.consumeQuota(hashKey(key), LIMITS.validations_per_key_per_day)); } catch (e) {
       console.error("[validation-api] quota store failed", e.status ?? "", e.message);
       return fail(res, 503, "store_unavailable", "The quota store is unavailable; try again shortly");
     }
     const resetIso = nextUtcMidnightIso(now());
-    const headers = quotaHeaders({ limit: LIMITS.validations_per_key_per_day, remaining, resetIso });
+    const headers = quotaHeaders({ limit, remaining, resetIso });
     if (remaining === -2) return fail(res, 401, "unauthorized", "Unknown or revoked key", undefined, headers);
     if (remaining === -1) {
       const retry = Math.max(1, Math.ceil((Date.parse(resetIso) - now().getTime()) / 1000));
-      return fail(res, 429, "quota_exhausted", `Daily quota of ${LIMITS.validations_per_key_per_day} validations reached`, undefined, { ...headers, "Retry-After": String(retry) });
+      return fail(res, 429, "quota_exhausted", `Daily quota of ${limit} validations reached`, undefined, { ...headers, "Retry-After": String(retry) });
     }
     let data;
     try { data = compute(body); } catch (e) {

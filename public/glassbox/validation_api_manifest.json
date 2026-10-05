@@ -26,6 +26,13 @@
       ]
     },
     {
+      "path": "/api/v1/keys/me",
+      "method": "GET",
+      "keyed": true,
+      "quota": false,
+      "summary": "The bearer key's fingerprint, label and access tier, without consuming validation quota. To claim contributor access, name the key by its fingerprint or label, never the key itself."
+    },
+    {
       "path": "/api/v1/validate/deflated-sharpe",
       "method": "POST",
       "keyed": true,

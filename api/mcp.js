@@ -2,36 +2,22 @@
 //
 // The hosted MCP endpoint (canlicapital.com/mcp): the same tools as the npm package
 // canli-validation-mcp, over MCP Streamable HTTP, so a client can connect with a URL and no install.
-// It registers the package's own tools, prompts and resources (mcp/src/server.mjs, registerAll) rather than a copy, so
-// the hosted and local servers cannot drift apart.
+// It registers the released package's own tools, prompts and resources (registerAll) rather than a
+// copy, so the hosted and local servers cannot drift apart. The transport handling is shared with
+// the contributor beta endpoint (_lib/mcp-hosted.js); this file chooses the server and the key.
 //
-// Stateless: every POST builds a fresh server and transport, which is what a serverless function
-// can honestly offer. The key a request runs under is the caller's own ("Authorization: Bearer
-// <key>") when present, otherwise a shared anonymous key (CANLI_REMOTE_MCP_KEY) with a shared
-// daily quota. The caller's key is forwarded to the validation API and never echoed or logged.
-import { McpServer, WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/server";
+// Stateless: every POST builds a fresh server and transport. The key a request runs under is the
+// caller's own ("Authorization: Bearer <key>") when present, otherwise a shared anonymous key
+// (CANLI_REMOTE_MCP_KEY) with a shared daily quota. The caller's key is forwarded to the validation
+// API and never echoed or logged.
 import { configuredToolsets, createSession, registerAll, SERVER_INFO, SERVER_INSTRUCTIONS } from "../mcp-released/validation/src/server.mjs";
-import { BodyError, readJsonBody } from "./_lib/body.js";
 import { inProcessFetch } from "./_lib/in-process-fetch.js";
+import { createValidationMcpHandler, MAX_MCP_BODY_BYTES, toolsetsParam } from "./_lib/mcp-hosted.js";
 
-// The largest validation request (1 MiB, see api/_lib/limits.js) plus room for the JSON-RPC wrapper.
-export const MAX_MCP_BODY_BYTES = 1_048_576 + 65_536;
+export { MAX_MCP_BODY_BYTES, toolsetsParam };
+
+const RELEASED = Object.freeze({ configuredToolsets, createSession, registerAll, SERVER_INFO, SERVER_INSTRUCTIONS });
 const KEY_PATTERN = /^[A-Za-z0-9_\-.]{16,200}$/;
-
-function corsHeaders(res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept, Mcp-Protocol-Version, Mcp-Session-Id");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Expose-Headers", "Mcp-Session-Id");
-  res.setHeader("Cache-Control", "no-store");
-  res.setHeader("X-Robots-Tag", "noindex");
-}
-
-function rpcError(res, status, code, message) {
-  res.statusCode = status;
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.end(`${JSON.stringify({ jsonrpc: "2.0", error: { code, message }, id: null })}\n`);
-}
 
 // Which key this request runs under. A malformed Authorization header is refused rather than
 // silently downgraded to the shared key, so a caller never believes their own quota is in use when
@@ -47,59 +33,19 @@ export function resolveKey(req, env = process.env) {
   return shared ? { key: shared, keySource: "shared" } : { key: undefined, keySource: "none" };
 }
 
-export function toolsetsParam(req) {
-  const fromQuery = req.query?.toolsets;
-  if (fromQuery !== undefined) return Array.isArray(fromQuery) ? fromQuery.join(",") : String(fromQuery);
-  const url = typeof req.url === "string" ? new URL(req.url, "https://canlicapital.com") : null;
-  return url?.searchParams.has("toolsets") ? url.searchParams.getAll("toolsets").join(",") : undefined;
-}
-
 // Validations are answered by this deployment's own API handlers in process (see
 // _lib/in-process-fetch.js); tests pass their own fetchImpl.
 export function createHostedHandler({ env = () => process.env, fetchImpl = inProcessFetch() } = {}) {
-  return async function handler(req, res) {
-    corsHeaders(res);
-    if (req.method === "OPTIONS") { res.statusCode = 204; return res.end(); }
-    if (req.method !== "POST") {
-      res.setHeader("Allow", "POST, OPTIONS");
-      return rpcError(res, 405, -32000, "This endpoint is stateless: send MCP requests with POST. There is no server-initiated stream.");
-    }
-    const resolved = resolveKey(req, env());
-    if (resolved.error) return rpcError(res, 401, -32001, resolved.error);
-    let body;
-    try { body = await readJsonBody(req, MAX_MCP_BODY_BYTES); } catch (e) {
-      if (e instanceof BodyError) return rpcError(res, e.status, -32700, e.message);
-      return rpcError(res, 400, -32700, "Could not read the request body");
-    }
-    // ?toolsets=company lists only those tools; without it, the released package's default, the same
-    // list npm users get. This deployment's own environment never chooses.
-    let toolsets;
-    try { toolsets = configuredToolsets(toolsetsParam(req)); } catch (e) { return rpcError(res, 400, -32602, e.message); }
-    const session = createSession({
-      toolsets,
-      envKey: resolved.key,
-      fetchImpl,
-      base: env().CANLI_API_BASE,
-      hosted: { keySource: resolved.keySource },
-    });
-    const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
-    registerAll(server, session);
-    const transport = new WebStandardStreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
-    res.on("close", () => { transport.close(); server.close(); });
-    try {
-      await server.connect(transport);
-      // The SDK's transport speaks web Request/Response; the body is already read and bounded above.
-      const headers = new Headers();
-      for (const [name, value] of Object.entries(req.headers)) if (value !== undefined) headers.set(name, Array.isArray(value) ? value.join(", ") : String(value));
-      const request = new Request(`https://${req.headers.host ?? "canlicapital.com"}${req.url ?? "/mcp"}`, { method: "POST", headers, body: JSON.stringify(body) });
-      const response = await transport.handleRequest(request, { parsedBody: body });
-      res.statusCode = response.status;
-      response.headers.forEach((value, name) => res.setHeader(name, value));
-      res.end(Buffer.from(await response.arrayBuffer()));
-    } catch {
-      if (!res.headersSent) rpcError(res, 500, -32603, "Internal error");
-    }
-  };
+  return createValidationMcpHandler({
+    server: RELEASED,
+    env,
+    fetchImpl,
+    path: "/mcp",
+    authorize: (req, environment) => {
+      const resolved = resolveKey(req, environment);
+      return resolved.error ? { error: { status: 401, code: -32001, message: resolved.error } } : resolved;
+    },
+  });
 }
 
 export default createHostedHandler();

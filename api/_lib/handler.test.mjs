@@ -3,6 +3,7 @@ import { Readable } from "node:stream";
 import test from "node:test";
 
 import { validatorHandler } from "./handler.js";
+import { LIMITS } from "./limits.js";
 
 function makeReq(body, { key = "ck_live_" + "a".repeat(43), method = "POST" } = {}) {
   const text = JSON.stringify(body);
@@ -18,11 +19,13 @@ function makeRes() {
   res.json = () => JSON.parse(res.body);
   return res;
 }
-function fakeStore({ remaining = 999, saveFails = false } = {}) {
+function fakeStore({ remaining = 999, limit, saveFails = false } = {}) {
   const saved = [];
+  const admissions = [];
   return {
     saved,
-    consumeQuota: async () => ({ remaining }),
+    admissions,
+    consumeQuota: async (keyHash, dailyLimit) => { admissions.push({ keyHash, dailyLimit }); return limit === undefined ? { remaining } : { remaining, limit }; },
     saveReceipt: async (r) => { if (saveFails) throw new Error("db down"); saved.push(r); },
   };
 }
@@ -65,6 +68,35 @@ test("no key is 401, an unknown key is 401, an exhausted key is 429 with Retry-A
   assert.equal(res.statusCode, 429);
   assert.equal(res.json().error.code, "quota_exhausted");
   assert.match(res.headers["Retry-After"], /^\d+$/);
+});
+
+test("the headers and the 429 state the limit the store enforced: standard, or a contributor key's", async () => {
+  let store = fakeStore({ remaining: 999, limit: LIMITS.validations_per_key_per_day });
+  let res = makeRes();
+  await handler(store)(makeReq({ x: 2 }), res);
+  assert.equal(res.headers["X-RateLimit-Limit"], String(LIMITS.validations_per_key_per_day));
+  assert.deepEqual(store.admissions.map((a) => a.dailyLimit), [LIMITS.validations_per_key_per_day], "the store is asked for the standard limit");
+  assert.match(store.admissions[0].keyHash, /^[0-9a-f]{64}$/, "only the key's hash reaches the store");
+
+  store = fakeStore({ remaining: 9000, limit: LIMITS.contributor_validations_per_key_per_day });
+  res = makeRes();
+  await handler(store)(makeReq({ x: 2 }), res);
+  assert.equal(res.statusCode, 200, res.body);
+  assert.equal(res.headers["X-RateLimit-Limit"], String(LIMITS.contributor_validations_per_key_per_day));
+  assert.equal(res.headers["X-RateLimit-Remaining"], "9000");
+
+  res = makeRes();
+  await handler(fakeStore({ remaining: -1, limit: LIMITS.contributor_validations_per_key_per_day }))(makeReq({ x: 2 }), res);
+  assert.equal(res.statusCode, 429);
+  assert.equal(res.json().error.message, `Daily quota of ${LIMITS.contributor_validations_per_key_per_day} validations reached`);
+  assert.equal(res.headers["X-RateLimit-Limit"], String(LIMITS.contributor_validations_per_key_per_day));
+  assert.equal(res.headers["X-RateLimit-Remaining"], "0");
+
+  // A store that reports no limit (the shape before contributor access) means the standard one.
+  res = makeRes();
+  await handler(fakeStore({ remaining: -1 }))(makeReq({ x: 2 }), res);
+  assert.equal(res.json().error.message, `Daily quota of ${LIMITS.validations_per_key_per_day} validations reached`);
+  assert.equal(res.headers["X-RateLimit-Limit"], String(LIMITS.validations_per_key_per_day));
 });
 
 test("compute errors are 422 with the message, never a 500", async () => {
