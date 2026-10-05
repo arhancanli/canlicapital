@@ -36,6 +36,9 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Verify source evidence, SEO and developer contracts
         run: npm run verify
+      - name: Verify contributor access contracts
+        # Listed here rather than in the root verify script, whose bytes other packages' tests pin.
+        run: node --test api/v1/keys/me.test.mjs api/mcp-beta.test.mjs scripts/grant-contributor-access.test.mjs
       - name: Install hash-locked editorial parser dependencies
         run: |
           python3 -m venv "$RUNNER_TEMP/canli-editorial-tests"

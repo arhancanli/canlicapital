@@ -11,9 +11,9 @@ import { main, parseArgs, REFUSALS, UsageError } from "./grant-contributor-acces
 
 const SERVICE_KEY = "service-role-secret-0123456789";
 const ENV = { SUPABASE_URL: "https://example.supabase.co", SUPABASE_SERVICE_ROLE_KEY: SERVICE_KEY };
-const API_KEY = "ck_live_" + "x".repeat(43);
+const PASTED_SECRET = "ck_live_" + "x".repeat(43);
 // The fingerprint a contributor posts: printf '%s' "$CANLI_KEY" | shasum -a 256.
-const FINGERPRINT = hashKey(API_KEY);
+const FINGERPRINT = hashKey(PASTED_SECRET);
 
 function fakeStore(respond) {
   const calls = [];
@@ -44,15 +44,15 @@ test("parseArgs names the key by fingerprint, label or both, lower-cases the fin
 test("parseArgs refuses bad input without repeating it", () => {
   for (const argv of [
     [], ["grant"], ["delete", "--fingerprint", FINGERPRINT], ["grant", "--github", "octo-cat"],
-    ["grant", "--fingerprint", "abc", "--github", "octo-cat"], ["grant", "--fingerprint", API_KEY, "--github", "octo-cat"],
-    ["grant", "--label", API_KEY, "--github", "octo-cat"], ["grant", "--label", "", "--github", "octo-cat"], ["grant", "--label", "l".repeat(65), "--github", "octo-cat"],
+    ["grant", "--fingerprint", "abc", "--github", "octo-cat"], ["grant", "--fingerprint", PASTED_SECRET, "--github", "octo-cat"],
+    ["grant", "--label", PASTED_SECRET, "--github", "octo-cat"], ["grant", "--label", "", "--github", "octo-cat"], ["grant", "--label", "l".repeat(65), "--github", "octo-cat"],
     ["grant", "--fingerprint", FINGERPRINT], ["grant", "--fingerprint", FINGERPRINT, "--github", "not a login"], ["grant", "--fingerprint", FINGERPRINT, "--github", "x".repeat(40)],
     ["grant", "--fingerprint", FINGERPRINT, "--github", "octo-cat", "--note"], ["grant", "--fingerprint", FINGERPRINT, "--fingerprint", FINGERPRINT, "--github", "octo-cat"],
     ["grant", "--fingerprint", FINGERPRINT, "--key-hash", FINGERPRINT, "--github", "octo-cat"],
-    ["grant", "--fingerprint", FINGERPRINT, "--github", "octo-cat", API_KEY, "x"], ["grant", "--fingerprint", FINGERPRINT, "--github", "octo-cat", "--note", `my key is ${API_KEY}`],
+    ["grant", "--fingerprint", FINGERPRINT, "--github", "octo-cat", PASTED_SECRET, "x"], ["grant", "--fingerprint", FINGERPRINT, "--github", "octo-cat", "--note", `my key is ${PASTED_SECRET}`],
     ["grant", "--fingerprint", FINGERPRINT, "--github", "octo-cat", "--note", "n".repeat(501)], ["revoke", "--fingerprint", FINGERPRINT, "--github", "octo-cat"], ["revoke"],
   ]) {
-    assert.throws(() => parseArgs(argv), (e) => e instanceof UsageError && !e.message.includes(API_KEY) && !e.message.includes("not a login"), JSON.stringify(argv));
+    assert.throws(() => parseArgs(argv), (e) => e instanceof UsageError && !e.message.includes(PASTED_SECRET) && !e.message.includes("not a login"), JSON.stringify(argv));
   }
 });
 
@@ -99,10 +99,10 @@ test("revoke sends only the fingerprint or label; removing nothing is reported a
 });
 
 test("usage errors and a missing service role exit 2 before any request", async () => {
-  let outcome = await run(["grant", "--fingerprint", API_KEY, "--github", "octo-cat"]);
+  let outcome = await run(["grant", "--fingerprint", PASTED_SECRET, "--github", "octo-cat"]);
   assert.equal(outcome.code, 2);
   assert.equal(outcome.calls.length, 0);
-  assert.ok(!outcome.err.includes(API_KEY), "a pasted key is never printed");
+  assert.ok(!outcome.err.includes(PASTED_SECRET), "a pasted key is never printed");
   outcome = await run(["grant", "--fingerprint", FINGERPRINT, "--github", "octo-cat"], undefined, { SUPABASE_URL: "https://example.supabase.co" });
   assert.equal(outcome.code, 2);
   assert.equal(outcome.calls.length, 0);
@@ -119,8 +119,8 @@ test("a store refusal exits 1 with the store's reason and never the service role
 
 test("run as a command, a usage error exits 2 and prints the usage, never the pasted key", () => {
   const script = fileURLToPath(new URL("./grant-contributor-access.mjs", import.meta.url));
-  const child = spawnSync(process.execPath, [script, "grant", "--fingerprint", API_KEY], { encoding: "utf8", env: { PATH: process.env.PATH } });
+  const child = spawnSync(process.execPath, [script, "grant", "--fingerprint", PASTED_SECRET], { encoding: "utf8", env: { PATH: process.env.PATH } });
   assert.equal(child.status, 2);
   assert.match(child.stderr, /Usage:/);
-  assert.ok(!child.stderr.includes(API_KEY) && !child.stdout.includes(API_KEY));
+  assert.ok(!child.stderr.includes(PASTED_SECRET) && !child.stdout.includes(PASTED_SECRET));
 });

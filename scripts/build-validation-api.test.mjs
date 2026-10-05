@@ -50,7 +50,7 @@ test("key-lifecycle facts are published: no expiry, bearer revocation, and what 
   assert.match(joined, /get \/api\/v1\/keys\/me/);
   assert.match(joined, /label or by its fingerprint/);
   assert.match(joined, /never post the key itself/);
-  assert.match(joined, /https:\/\/canlicapital\.com\/mcp\/beta/);
+  assert.ok(joined.includes("https://canlicapital.com/mcp/beta"), "the beta MCP endpoint is named");
   // The contributor figure is published here, from LIMITS. The "Quotas:" sentence of LIMITS_TEXT
   // stays as it was: the MCP package carries it verbatim (mcp/src/schemas.mjs, LIMITS_SENTENCES).
   assert.ok(KEY_LIFECYCLE_TEXT.some((line) => line.includes(`${LIMITS.contributor_validations_per_key_per_day} validations per UTC day`)), "the contributor limit is published from LIMITS");
