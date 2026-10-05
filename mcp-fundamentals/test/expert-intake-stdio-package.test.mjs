@@ -40,7 +40,7 @@ const nativeSpawn = cp.spawn.bind(cp);
 const nativeDiagnosticWrite = fs.writeSync.bind(fs);
 const closures = [];
 const SOURCE_PINS = Object.freeze({
-  'src/expert-intake-stdio.mjs': 'd449d935d40666045684520ea649068ee1418816ecf890ed9e240612110ec4b1',"src/expert-intake-files.mjs": "68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f", "src/expert-submission-client.mjs": "2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31", "src/audit-inputs-client.mjs": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7", "src/audit-inputs-core.mjs": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059", "src/audit-inputs-stdio.mjs": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0", "src/canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b", "src/expert-agreement.mjs": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef", "src/expert-intake-core.mjs": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545", "src/expert-submission-audit-core.mjs": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3", "src/expert-submission-files.mjs": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d", "src/expert-submission-stdio.mjs": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208", "src/filing-facts-packet.mjs": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8", "src/server.mjs": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"});
+  'src/expert-intake-stdio.mjs': '1cde7375eb1e63b381d9343373e55351b5efca4db27cb24e2e91a98e8515f0ae',"src/expert-intake-files.mjs": "68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f", "src/expert-submission-client.mjs": "2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31", "src/audit-inputs-client.mjs": "95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7", "src/audit-inputs-core.mjs": "e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059", "src/audit-inputs-stdio.mjs": "537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0", "src/canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b", "src/expert-agreement.mjs": "80732bf61e1cef9bd3ff06cf831307675546f4789f8336f1668d5fd637a7b4ef", "src/expert-intake-core.mjs": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545", "src/expert-submission-audit-core.mjs": "4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3", "src/expert-submission-files.mjs": "a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d", "src/expert-submission-stdio.mjs": "56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208", "src/filing-facts-packet.mjs": "74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8", "src/server.mjs": "dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38"});
 const BIN = Object.freeze({ 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs',
   'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs',
   'canli-expert-submission-files': 'src/expert-submission-files.mjs', 'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs', 'canli-expert-intake-prepare': 'src/expert-intake-stdio.mjs' });
@@ -379,10 +379,15 @@ function unlinkOwnedDependencyLinks() {
   }
   dependencyLinks.length = 0;
 }
-function cleanupOwnedFixture() {
+function cleanupOwnedFixture({
+  unlink = unlinkOwnedDependencyLinks,
+  restoreGuard = () => { restore(); restore=()=>{}; },
+  remove = () => { if (TMP) fs.rmSync(TMP,{recursive:true,force:true}); },
+} = {}) {
+  // The SAME finally path is used after a refused hook and by native controls.
   // Unlink admitted aliases THROUGH the armed fence BEFORE recursing into TMP.
-  try { unlinkOwnedDependencyLinks(); }
-  finally { try { restore(); restore=()=>{}; } finally { if (TMP) fs.rmSync(TMP,{recursive:true,force:true}); } }
+  try { unlink(); }
+  finally { try { restoreGuard(); } finally { remove(); } }
 }
 function workflowSource(guide) {
   const begin='<!-- EXPERT_INTAKE_STDIO_WORKFLOW_BEGIN -->',end='<!-- EXPERT_INTAKE_STDIO_WORKFLOW_END -->';
@@ -543,7 +548,12 @@ test('prepare intake package: one guarded offline artifact captures complete RAW
 
 test('prepare intake package: bounded gzip raw ASCII octal checksum unique paths and current source modes refuse before extraction', () => {
   const positive=tinyTar([{name:'package/a',bytes:Buffer.from('x')}]);assert.equal(tarEntries(positive).size,1);
-  for(const offset of [0,100,124,148,156,345])assert.throws(()=>tarEntries(tinyTar([{name:'package/a',bytes:Buffer.from('x')}],header=>{header[offset]|=128;})),/TAR_ASCII/);
+  for(const offset of [0,100,124,156,345])assert.throws(()=>tarEntries(tinyTar([{name:'package/a',bytes:Buffer.from('x')}],header=>{header[offset]|=128;})),/TAR_ASCII/);
+  // The checksum field itself is excluded from the sum. Mutate it AFTER the
+  // valid checksum is written; recomputing afterward would erase this fault.
+  const checksumHighbit=Buffer.from(inflateRawSync(positive.subarray(10),{maxOutputLength:L.expanded}));
+  checksumHighbit[148]|=128;
+  assert.throws(()=>tarEntries(gzipSync(checksumHighbit,{mtime:0})),/TAR_ASCII/);
   for(const rows of [[{name:'package/../a',bytes:Buffer.from('x')}],[{name:'package/a',bytes:Buffer.from('x')},{name:'package/a',bytes:Buffer.from('x')}]])assert.throws(()=>tarEntries(tinyTar(rows)),/TAR_PATH|TAR_DUPLICATE/);
   assert.throws(()=>tarEntries(tinyTar([{name:'package/a',bytes:Buffer.from('x')}],header=>{header[156]=50;})),/TAR_REGULAR/);
   assert.throws(()=>tarEntries(tinyTar([{name:'package/a',bytes:Buffer.from('x')}],header=>{header[124]=57;})),/TAR_OCTAL/);
@@ -569,10 +579,15 @@ test('prepare intake package: parent and child guards deny network foreign write
   const marker=path.join(TMP,'guard-control');fs.writeFileSync(marker,'x',{flag:'wx'});const inside=path.join(TMP,'unused-control'),alias=dependencyLinks[0].path;
   const controls=[()=>fetch('https://invalid.invalid'),()=>cp.spawn('UNOWNED',[]),()=>fs.writeFileSync('/unowned-expert-intake-control','x'),()=>fs.renameSync(marker,'/unowned-destination'),()=>fs.copyFileSync('/unowned-source',inside),()=>fs.writeFileSync(path.join(alias,'foreign-mutation'),'x'),()=>fs.unlinkSync(alias+'/package.json'),()=>fs.symlinkSync('/unowned-target',inside),()=>fs.writeFileSync(Buffer.from([255]),'x'),()=>fs.writeFileSync(Buffer.from('\ufeff'+inside),'x')];
   for(const control of controls)assert.throws(control,/NATIVE_DENIAL/);assert.equal(snapshot(marker).toString(),'x');assert.equal(fs.existsSync(inside),false);
-  const handle=await fsp.open(path.join(alias,'package.json'),'r');try {await assert.rejects(handle.writeFile('x'),/NATIVE_DENIAL/);}finally{await handle.close();}
+  const handle=await fsp.open(path.join(alias,'package.json'),'r');try {await assert.rejects(async()=>handle.writeFile('x'),/NATIVE_DENIAL/);}finally{await handle.close();}
   const child=childGuard();assert.ok(child.includes(installOwnedFileGuard.toString()));assert.ok(child.includes(JSON.stringify([...readOnlyCacheAliases])));
   assert.equal(pendingReadOnlyCacheLinks.size,0);assert.equal(dependencyLinks.length,17);
-  let restoration=0,cleanup=0;const hook=()=>{try{throw new Error('HOOK_REFUSAL');}finally{try{restoration++;}finally{cleanup++;}}};assert.throws(hook,/HOOK_REFUSAL/);assert.equal(restoration,1);assert.equal(cleanup,1);
+  const effects=[];
+  const hook=()=>{try{throw new Error('HOOK_REFUSAL');}finally{cleanupOwnedFixture({unlink:()=>effects.push('unlink'),restoreGuard:()=>effects.push('restore'),remove:()=>effects.push('remove')});}};
+  assert.throws(hook,/HOOK_REFUSAL/);assert.deepEqual(effects,['unlink','restore','remove']);
+  effects.length=0;
+  assert.throws(()=>cleanupOwnedFixture({unlink:()=>{effects.push('unlink');throw new Error('UNLINK_REFUSAL');},restoreGuard:()=>effects.push('restore'),remove:()=>effects.push('remove')}),/UNLINK_REFUSAL/);
+  assert.deepEqual(effects,['unlink','restore','remove']);
 });
 
 test('prepare intake native: exact marked-guide raw inputs retain complete preparation full-N worklists blank packets and null outcomes', () => {
@@ -661,11 +676,64 @@ test('prepare intake native: paired reviewer packets stay entirely blank and dis
   for(const task of report.adjudication.item_tasks){assert.deepEqual(task.required_review_roles,['reviewer_a','reviewer_b']);assert.equal(task.verified_submissions,null);assert.equal(task.source_ids.length,1);}
 });
 
-test('prepare intake native: malformed hash or incomplete preparation output refuses while the entire public positive survives', () => {
+test('prepare intake native: malformed hash or incomplete preparation output refuses while the entire public positive survives', async () => {
   for(const mutate of [r=>{r.content_hash='sha256:'+'0'.repeat(64);},r=>{r.bindings.gold.sha256='0'.repeat(64);rehash(r);},r=>{r.review_packets.pop();rehash(r);},r=>{r.coverage.selected_n=2;rehash(r);},r=>{r.adjudication.blank_submission.decisions.push({});rehash(r);},r=>{delete r.established.verified_experts_n;rehash(r);}]) {
-    const report=clone(coreReport());mutate(report);refusal(contract.executeExpertIntake(wireArguments(),{kernel:()=>report}));
+    const report=clone(coreReport());mutate(report);let calls=0;
+    refusal(contract.executeExpertIntake(wireArguments(),{kernel:()=>{calls++;return report;}}));assert.equal(calls,1);
   }
-  success(contract.executeExpertIntake(wireArguments()));
+  const supplied=scenario({evidence:5}),role=supplied.intake.roles[0],url=supplied.gold.labels[0].filings[0];
+  const source={source_id:hash(Buffer.from(url)),url,claims:[]};supplied.intake.sources.push(source);
+  role.identity_evidence_ids=['fixture-0','missing-identity'];role.independence_evidence_ids=['fixture-1'];
+  role.qualifications=[{id:'qualification-1',kind:'engineering',title:'Synthetic credential',task_relevance:'Financial statement review',
+    evidence_ids:['fixture-2'],verification:{who:'declared-verifier',date:'2026-10-05',method:'Supplied synthetic declaration',evidence_ids:['fixture-2']}}];
+  role.conflicts=[{id:'conflict-1',description:'Supplied synthetic conflict',evidence_ids:['fixture-3']}];
+  source.claims=[{id:'rights-1',declaration_text:'Supplied synthetic scope',allowed_uses:['human_review'],denied_uses:['training'],
+    evidence_ids:['fixture-4','missing-rights'],verification:{who:'declared-verifier',date:'2026-10-05',method:'Supplied synthetic declaration',evidence_ids:['fixture-4']}}];
+  for(const [index,purpose,subject] of [[1,'independence',{role:role.role,handle:role.handle}],
+    [2,'qualification',{role:role.role,handle:role.handle,qualification_id:'qualification-1'}],
+    [3,'conflict',{role:role.role,handle:role.handle,conflict_id:'conflict-1'}],
+    [4,'source_rights',{source_id:source.source_id,url:source.url}]]) {
+    Object.assign(supplied.evidenceInventory.evidence[index],{purpose,subject});
+  }
+  const tamper=[
+    r=>{r.source_worklists=[];},r=>{r.source_worklists.reverse();},r=>{r.source_worklists[0].item_ids=['foreign-item'];},
+    r=>{r.source_worklists[0].actual_rights_verified=true;},r=>{r.source_worklists[0].declaration_present=false;},
+    r=>{r.source_worklists[0].mechanical_flags.missing_declared_evidence=false;},
+    r=>{r.source_worklists[0].mechanical_flags.restricted_required_uses=['evaluation'];},
+    r=>{r.source_worklists[0].claims[0].declaration.allowed_uses=['training'];},
+    r=>{r.source_worklists[0].claims[0].evidence.missing_ids=[];},
+    r=>{r.source_worklists[0].claims[0].declared_verification_evidence.provided=[];},
+    r=>{delete r.role_worklists[0].tasks;},r=>{r.role_worklists[0].declaration.handle='foreign';},
+    r=>{r.role_worklists[0].identity_evidence.provided[0].sha256='0'.repeat(64);},
+    r=>{r.role_worklists[0].independence_evidence.declared_ids=[];},r=>{r.role_worklists[0].qualifications=[];},
+    r=>{r.role_worklists[0].qualifications[0].declared_verification_evidence=null;},
+    r=>{r.role_worklists[0].conflicts[0].declaration.description='foreign';},
+    r=>{r.review_packets[0].declared_handle='foreign';},r=>{r.review_packets[0].packet.annotator='foreign';},
+    r=>{r.review_packets[0].packet.labels.reverse();},r=>{r.review_packets[0].packet.labels[0].notes='filled';},
+    r=>{r.adjudication.blank_submission.adjudicator='foreign';},r=>{r.adjudication.blank_submission.packet_sha256='0'.repeat(64);},
+    r=>{r.adjudication.item_tasks=r.adjudication.item_tasks.map(()=>({}));},r=>{r.adjudication.item_tasks.reverse();},
+    r=>{r.adjudication.item_tasks[0].id='foreign-item';},r=>{r.adjudication.item_tasks[0].source_ids=['0'.repeat(64)];},
+    r=>{r.adjudication.item_tasks[0].required_review_roles.reverse();},
+    r=>{r.evidence_inventory=[];},r=>{r.evidence_inventory.reverse();},r=>{r.evidence_inventory[0].referenced=false;},
+    r=>{r.evidence_inventory[0].binding.original_base64='eA==';},
+    r=>{r.settings={};},r=>{r.settings.prepared_on='2026-10-04';},r=>{r.settings.required_uses=['training'];},
+    r=>{r.implementation.declared_module_sha256='a'.repeat(64);},r=>{r.limits.roles=2;},
+    r=>{r.coverage.evidence_provided_n=0;},r=>{r.coverage.evidence_missing_ids=[];},r=>{r.coverage.evidence_unreferenced_ids=['fixture-0'];},
+  ];
+  for(const mutate of tamper) {
+    const report=clone(coreReport(supplied));mutate(report);rehash(report);let calls=0;
+    const result=contract.executeExpertIntake(wireArguments(supplied),{kernel:()=>{calls++;return report;}});
+    refusal(result);assert.equal(calls,1);assert.equal(result.structuredContent,undefined);
+  }
+  for(const s of [guideScenario(packed.guide),supplied,{...scenario(),intake:{...scenario().intake,roles:[]}}]) {
+    const publicReport=clone(coreReport(s));let calls=0;
+    success(contract.executeExpertIntake(wireArguments(s),{kernel:()=>{calls++;return publicReport;}}),s);assert.equal(calls,1);
+  }
+  const incomplete=clone(coreReport(supplied));incomplete.adjudication.item_tasks[0].source_ids=['0'.repeat(64)];rehash(incomplete);let calls=0;
+  const wire=await memoryRequest({name:contract.INTAKE_TOOL.name,arguments:wireArguments(supplied)},
+    {endpointOptions:{kernel:()=>{calls++;return incomplete;}}});
+  assert.equal(calls,1);assert.equal(wire.decoded,9);refusal(wire.response.result,'OUTPUT_BINDING');
+  assert.equal(wire.output.frames.some(frame=>JSON.parse(frame).result?.structuredContent!==undefined),false);
 });
 
 test('prepare intake native: public JSON clone and content hash preserve every field without comparing prototype artifacts', () => {

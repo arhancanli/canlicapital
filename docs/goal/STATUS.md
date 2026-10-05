@@ -7321,3 +7321,48 @@ before lawful capital;10MACTUALLY indexed useful maintained source-backed canoni
 with qualitySEO/relevantkeywords/design3D/understandability/graph-social-accessibility-
 security-performance analyzers. PRIMARY guide/date/focus/live/privatejournal/
 reconciliation/release/soleordinarymergepub, LeadsoleCPU127, THIRD peers unchanged.
+
+
+### 2026-10-05T14:35:54.983155+00:00 — SAME PR392 original failure and six-finding narrow correction WRITTEN_UNRUN
+
+Initial signed e0ae88cf and its original automatic CI remain immutable: new38
+named cases actual36PASS2FAIL; fund438PASS26FAIL, old22 hook failures leave those
+bodies UNRUN and execution183 UNRUN; ROOT6+1351+9 passed and all7 is6SUCCESS1FAILURE.
+Three SDK-entry passes carry only frozen known-owned closure/clock assertions.
+The qualified full seven-TAP/2076-outcome original catalog and raw/API command
+bindings are retained externally; no failure or source result is relabelled.
+
+PRIMARY71150B3c17c546 and THIRD26651Be601286e original SOURCE both HOLD six
+static findings: three literal artifact expectations, checksum-field fault
+erasure, synchronous FileHandle denial observer, and complete nested output
+binding. Personally FULLREAD/hash exact receipts and declared supports registered
+in secondary-personal-e0ae88cf-PRIMARY-THIRD-original-SOURCE-HOLD-intake-v1.json.
+The historical14 exclusion lacked the endpoint; the new guide was already
+excluded. Original wrong-cue diagnosis and additive0ef8b747 qualifier both remain.
+
+One existing-scope correction is written: precise nested output shapes and
+original captured settings/roles/sources/evidence/ordered tasks/blank forms/flags/
+coverage admission, SAME absolute clock, preparation kernel once and byteunchanged;
+three expectation literals; checksum fault applied after valid checksum; async
+FileHandle assertion owning its synchronous throw; unconditional SAME owned
+cleanup helper. All38 names/order and ONEpack/THREE SDK sites stay exact; only
+newcase bodies2/4/17 change, other35 whole case sections and all3 SDK bodies exact.
+Six old family changes are literal expectations/source-pin only with whole inverse.
+Guide, metadata, default7, original core, rootverify, locks, dependencies, versions,
+sourceowner77 and every older archive/history remain protected. Current module
+49979B1cde7375 and test82393B03d0ea02 are WRITTEN_UNRUN, not signed or currentCI
+accepted yet. Next one signed CLEAN source freeze/ordinarypush automatically
+triggers existing remoteCI; separate PRIMARY+THIRD SOURCE/CURRENTCI receipts
+remain required. ArchiveallocationNULL/repository evidence writes0.
+
+No local project Node/import/SDK/test/CLI/npm/pack/install/helper/build/browser/
+GET/processprobe/job/manualworkflow/rerun/grant/provider-model-spend/publication.
+Entire Sovereign financial MCP/API/developer-repository adoption, consenting
+vetted independent rights-cleared realexpert annotation/refinery/research,
+governed ALPHAC Sharpe>2/14qualified distinct sleeves/DD<=10% afteractualcost/
+privatepaper-before-lawfulcapital, and10MACTUALLY indexed useful maintained
+source-backed qualitySEO-keywords/design3D-understandability/graph-social-a11y-
+security-performance analyzer goals ACTIVE/outcomesUNKNOWNNULL. PRIMARY reserved
+guide/date/focus/live/privatejournal/reconciliation/release/soleordinarymergepub;
+LeadsoleCPU127 and SAME SECONDARY/THIRD/model/goal unchanged. All proofs external:
+/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/.

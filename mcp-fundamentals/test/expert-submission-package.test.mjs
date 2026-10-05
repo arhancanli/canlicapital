@@ -20,7 +20,7 @@ const L = Object.freeze({ compressed: 262144, expanded: 2097152, members: 32, np
   fixture: 24 * 1024 * 1024, work: 15000, closure: 5000, total: 20000 });
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const SOURCE_PINS = Object.freeze({
-  'src/expert-intake-stdio.mjs': 'd449d935d40666045684520ea649068ee1418816ecf890ed9e240612110ec4b1',
+  'src/expert-intake-stdio.mjs': '1cde7375eb1e63b381d9343373e55351b5efca4db27cb24e2e91a98e8515f0ae',
   'src/expert-intake-files.mjs': '68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f',
   'src/expert-submission-client.mjs': '2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31',
   'src/expert-submission-files.mjs': 'a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d',
@@ -406,7 +406,7 @@ async function otherOwnedEntry(kind) {
 }
 
 test('expert package: exact14 admitted members retain independent source pins and raw modes', () => {
-  const legacy = MEMBERS.filter(name => !['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md', 'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/src/expert-intake-files.mjs', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md'].includes(name));
+  const legacy = MEMBERS.filter(name => !['package/src/audit-inputs-client.mjs', 'package/AUDIT_INPUTS_CLIENT.md', 'package/src/expert-submission-files.mjs', 'package/EXPERT_SUBMISSION_FILES.md', 'package/src/expert-submission-client.mjs', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/src/expert-intake-files.mjs', 'package/src/expert-intake-stdio.mjs', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md'].includes(name));
   assert.equal(legacy.length, 14); assert.deepEqual(legacy, ['LICENSE', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'package.json', ...Object.keys(SOURCE_PINS).filter(name => !['src/audit-inputs-client.mjs', 'src/expert-submission-files.mjs', 'src/expert-submission-client.mjs', 'src/expert-intake-files.mjs', 'src/expert-intake-stdio.mjs'].includes(name))].map(name => 'package/' + name).sort());
   assert.equal(MEMBERS.length, 24); assert.deepEqual(audit(cloneEntries()), packed.metadata);
   assert.equal(packed.raw.admission, 'RAW_CAPTURED_NOT_ADMITTED'); assert.equal(packed.raw.compressed_sha256, sha(packed.compressed));
