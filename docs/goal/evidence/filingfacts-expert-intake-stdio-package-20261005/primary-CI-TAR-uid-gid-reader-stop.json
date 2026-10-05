@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-05T15:02:06.393870+00:00",
+  "scope": "EXTERNAL_NATIVE_RAW_TAR_OPTIONAL_METADATA_READER_ONLY",
+  "original_auditor": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10-retained-artifact-and-source-cases-native-v1.py",
+    "bytes": 16442,
+    "sha256": "ad8689c32048c760f926ed1ef4b7f332ea7c5da62d486001c8f8e20e164cfc59"
+  },
+  "observed_tool_exit": 1,
+  "observed_error": "AssertionError uid field eight NUL bytes at line111",
+  "correction": "uid/gid only admit an all-NUL/space empty metadata field as zero; all required mode/size/mtime/checksum remain strict octal; no TAR bytes changed",
+  "reconstructed_original_tgz_preserved": true,
+  "existing_own_tgz_reused_only_after_literal_fullread_equality": true,
+  "separate_process_stdout_stderr": "not separately saved; no raw trace reconstruction",
+  "project_runtime_failure_inferred": false,
+  "API_refetch_job_rerun_project_execution": false,
+  "corrected_auditor": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10-retained-artifact-and-source-cases-native-v2.py",
+    "bytes": 16600,
+    "sha256": "cc17d2c3f0f3d7beacdd7ef7d3ae0ca8cbf30ac5aff41a2c7e09fe892a42878c"
+  }
+}

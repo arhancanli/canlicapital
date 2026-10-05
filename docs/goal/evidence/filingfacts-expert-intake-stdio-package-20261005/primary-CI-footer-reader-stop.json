@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-05T14:58:55.142636+00:00",
+  "scope": "EXTERNAL_NATIVE_METADATA_READER_ONLY",
+  "original_auditor": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10-retained-CI-native-auditor-v1.py",
+    "bytes": 13253,
+    "sha256": "2958ca541e7e376d5da998bc5de5d5b574452a9bdbc18016f56a1f45ab50b0b6"
+  },
+  "original_observed_tool_exit": 1,
+  "original_observed_error": "AssertionError at final TAP duration footer reader line181",
+  "actual_footer_shape": "# duration_ms DECIMAL (no colon); per-test YAML duration_ms has colon",
+  "correction": "same saved bytes parsed with exact correct footer shape",
+  "original_separate_process_stdout_stderr_files": "not separately saved; observed tool trace is not reconstructed as a raw original",
+  "original11_bytes_unchanged": true,
+  "project_failure_inferred": false,
+  "API_refetch_job_rerun_project_execution": false,
+  "corrected_native_auditor": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10-retained-CI-native-auditor-v2.py",
+    "bytes": 13252,
+    "sha256": "a019390e5be22ddbbd6d5526c73c81aaab1c3d13c94ffc51d9de1cec35561871"
+  }
+}

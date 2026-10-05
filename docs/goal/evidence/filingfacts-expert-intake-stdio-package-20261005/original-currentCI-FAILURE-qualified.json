@@ -1,0 +1,105 @@
+{
+  "utc": "2026-10-05T14:11:18.546540+00:00",
+  "state": "ACTUAL_RETAINED_CURRENTCI_FAILED_SNAPSHOT",
+  "source_head": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+  "tested": "d70c92fae20621ca1bd99e5f9c08861f40efbb41",
+  "source_manifest": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/source-e0ae88cf-expert-intake-stdio-package-v1.json",
+    "bytes": 28565,
+    "sha256": "7f93f4e21e6e619eb113d70b5e7ff7219fcee655ae9fe6699b6192730e101c0b",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "all11_literal_capture_catalog": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/e0ae88cf-literal11-current-CI-capture-bindings-v1.json",
+    "bytes": 15926,
+    "sha256": "b0f7dfaef8edeb50aa07618a186f6f9e11ece34089983712e2fb7d2e04a71801",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "all11_original_bytes": 3012308,
+  "full_TAP_catalog": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-e0ae88cf-complete-seven-TAP-failed-snapshot-catalog-v1.json",
+    "bytes": 607014,
+    "sha256": "aea4bb0fa7534a4175a0032feeeac3eab17d2ce625a6a00a1261c366d2cb2b02",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "actual_ROOT": [
+    6,
+    1351,
+    9
+  ],
+  "actual_MCP": [
+    160,
+    1,
+    85,
+    464
+  ],
+  "actual_fundamentals": {
+    "tests": 464,
+    "pass": 438,
+    "fail": 26
+  },
+  "actual_new38": {
+    "pass": 36,
+    "fail": 2
+  },
+  "execution183": "UNRUN_after_fund_failure",
+  "all7": {
+    "success": 6,
+    "failure": 1,
+    "failed_check": "MCP package and stdio contracts"
+  },
+  "captured_ref_open_alerts": 0,
+  "latestJS_PY": {
+    "javascript-typescript": {
+      "ref": "refs/pull/392/merge",
+      "commit_sha": "d70c92fae20621ca1bd99e5f9c08861f40efbb41",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-05T13:59:56Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1893789326,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1893789326",
+      "sarif_id": "0b5218e8-c0c5-11f1-815d-8191d8151f51",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    "python": {
+      "ref": "refs/pull/392/merge",
+      "commit_sha": "d70c92fae20621ca1bd99e5f9c08861f40efbb41",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-05T13:59:00Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1893782330,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1893782330",
+      "sarif_id": "ea26d802-c0c4-11f1-9d13-3d9942c3e96f",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  },
+  "raw_originals_immutable": true,
+  "no_currentCI_PASS_or_SOURCE_disposition_inferred": true,
+  "existing_fixture_corrections_in_working_excluded": true,
+  "archive_allocation": null,
+  "no_project_entry_refetch_rerun_or_job": true,
+  "owner_hierarchy": "ACTIVE_OUTCOMES_UNKNOWN_NULL"
+}
