@@ -16,6 +16,8 @@
     "test:expert-submission-cli": "node --test --test-concurrency=1 scripts/datasets/filing-facts/expert-submission-cli.test.mjs",
     "test:expert-submission-files-package": "node --test --test-concurrency=1 mcp-fundamentals/test/expert-submission-files-package.test.mjs",
     "filingfacts:expert-submission-files": "node mcp-fundamentals/src/expert-submission-files.mjs",
+    "test:expert-submission-client-package": "node --test --test-concurrency=1 mcp-fundamentals/test/expert-submission-client-package.test.mjs",
+    "filingfacts:expert-submission-client": "node mcp-fundamentals/src/expert-submission-client.mjs",
     "test:expert-submission-stdio": "node --test --test-concurrency=1 mcp-fundamentals/test/expert-submission-stdio.test.mjs",
     "test:expert-intake": "node --test --test-concurrency=1 scripts/datasets/filing-facts/expert-intake.test.mjs",
     "test:fundamentals-audit-stdio": "node --test --test-concurrency=1 mcp-fundamentals/test/audit-inputs-stdio.test.mjs",

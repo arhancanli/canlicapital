@@ -7054,3 +7054,25 @@ Entire Sovereign MCP/API/developer adoption and substantial release; consenting 
 ## 2026-10-05T00:11:17.891593+00:00 — PR389 exact issued documentary evidence assembled; final CI/gates pending
 
 Signed source5e8/tree4ce1 and all four actual initial SOURCE/CURRENTCI peers accepted. Actual literal allocation /Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package/archive-allocation-5e8a5486-exact89-primary-v1.json SHAc6319c2f80fe342c3409b4918f2602417e682e30e0d4fdb0a04fa9806a25cef9 personally fullread/hash byteACK before copy. Exactly89 names under docs/goal/evidence/filingfacts-expert-submission-cli-package-20261005/;87 immutable prepared, verbatim literal-allocation.json and lowercase manifest.json. All87 stored/origins/25 bounded singlemtime0 CRCISIZE/eof-no-trailing reverified before namespace writes; alloriginal/stored caps charged including manifest ownbytes. ORIGINAL8883993/STORED3060115/manifest62349Bf3abdf7fe495eb81b29cc9384908d085ad9f235b48397ab4bfc79e61c816cca4. Parentdelta ONLY89new archive+whole-prefix STATUSLOG. Allten source products/metadata/guide/test/rootverify exact5e8; original3bf8P32F+filehook/315P33F/HOLDs/refusals/native metadata stops remain immutable. Complete old/current ANSIlogs retained; duplicate historicalfull7103table exact external pin/currenttable copied. FullN/rawbindings/NULLhumanexpert-rights-label-adjudication-indexing-adoption-qualifiedstrategy outcomes retained; directCLI no SDK/15-5-20 wholecommandclock claim. Finalhead automaticCI/source-archive/currentCI FOURfutureliteralpeergates/unchangedREADY/PRIMARYsoleordinarymerge/actualcustody separate. No local project Node/import/SDK/tests/CLI/npm/pack/helper/build/browser/GET/processprobe/manualjob/grant/provider-model-spend/pub. Entire ownerhierarchyACTIVE/outcomesUNKNOWNNULL/PRIMARYreservedroles/LeadCPU127/SAMEthreads preserved.
+
+
+### 2026-10-05T02:32:49.676640+00:00 — Portable supplied-file expert SDK client WRITTEN_UNRUN
+
+Exact thirteen assigned paths from actual `f553c0a6063ded731f74894138fa014f25e6b409`. New opt-in package client captures
+all supplied native files before payload reads, invokes the unchanged package-local
+expert endpoint once with locked2.1 legacy/exact toolDefinition, retains the COMPLETE
+raw-bound/full-N/NULL report and saves private exclusive/fsynced/readback bytes. One
+observed15s work clock and5s closure/output/terminal reserve retain the same20s epoch;
+fresh checks follow encoding and precede native writes. No hard preemption claim.
+Forty meaningful cases are WRITTEN_UNRUN: ONE future guarded offline pack and at most
+three direct/alias/refusal commands, each with one owned SDK child/call/known closure.
+All four old artifact families retain names/controls with strict20/six-bin expectation
+inverses. Core/default7/rootverify/rootlock/owner74/old57+63+60/archives protected.
+No local project entry. Native source/protected/mode/whole-prefix/name/launch evidence
+is external at `/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-client-package/secondary-initial-written-source-complete-native-v1.json`.
+Signed freeze and existing automaticCI first, separate PRIMARY+THIRD SOURCE/currentCI
+gates next. ArchiveallocationNULL/evidencewrites0; final/delivery/publication separate.
+Entire owner hierarchy ACTIVE/outcomesUNKNOWNNULL: SovereignMCP/API/adoption, real
+independent qualified rights-cleared experts/refinery/research, governedALPHAC/private
+paper/lawfulcapital,10MACTUALindexed qualitySEO/keywords/design/analyzers. Reserved
+PRIMARYsolemergepub/LeadCPU127/SAMEthreads-model unchanged. Closed389 frozen.
