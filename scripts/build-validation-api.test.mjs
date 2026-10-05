@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 
 import { KEY_LIFECYCLE_TEXT, LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
+import { BETA_MCP_URL } from "../api/_lib/contributor-access.js";
 import { BINDINGS } from "../api/_lib/bindings.generated.js";
 import { MANIFEST, SNIPPET_LABELS } from "../api/_lib/manifest.js";
 
@@ -47,13 +48,13 @@ test("key-lifecycle facts are published: no expiry, bearer revocation, and what 
   assert.match(joined, /client/);
   assert.match(joined, /ip address/);
   assert.match(joined, /salt/);
-  assert.match(joined, /get \/api\/v1\/keys\/me/);
-  assert.match(joined, /label or by its fingerprint/);
-  assert.match(joined, /never post the key itself/);
-  assert.ok(joined.includes("https://canlicapital.com/mcp/beta"), "the beta MCP endpoint is named");
-  // The contributor figure is published here, from LIMITS. The "Quotas:" sentence of LIMITS_TEXT
-  // stays as it was: the MCP package carries it verbatim (mcp/src/schemas.mjs, LIMITS_SENTENCES).
-  assert.ok(KEY_LIFECYCLE_TEXT.some((line) => line.includes(`${LIMITS.contributor_validations_per_key_per_day} validations per UTC day`)), "the contributor limit is published from LIMITS");
+  // The contributor figure is published here, from LIMITS, naming the endpoint the beta handler
+  // serves. The "Quotas:" sentence of LIMITS_TEXT stays as it was: the MCP package carries it
+  // verbatim (mcp/src/schemas.mjs, LIMITS_SENTENCES).
+  assert.equal(
+    KEY_LIFECYCLE_TEXT.find((line) => line.startsWith("Contributor access:")),
+    `Contributor access: after a pull request of yours is merged into github.com/arhancanli/canlicapital, one of your keys can be raised to ${LIMITS.contributor_validations_per_key_per_day} validations per UTC day and opened to the beta MCP endpoint at ${BETA_MCP_URL}, which serves the unreleased validation server. Name the key in a Contributor access issue by its label or by its fingerprint, which GET /api/v1/keys/me returns; never post the key itself. A fingerprint identifies a key and cannot authenticate.`,
+  );
   // A numeral, not a version tag like "v1": mirrors audit-published-numbers.mjs's own rule that a
   // digit preceded by a word character (as in v1, v0) is an identifier, not a published claim.
   const NUMERAL = /(?<![\w.])\d+/g;
