@@ -1,0 +1,31 @@
+{
+  "utc": "2026-10-04T22:45:16.714790+00:00",
+  "kind": "OWN_NATIVE_METADATA_READER_PYTHON_COMPATIBILITY_CORRECTION",
+  "original_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package-peer/inspect-3bf7b801-independent-frozen-SOURCE-v1.py",
+    "bytes": 22867,
+    "sha256": "1f995837691a499486e9c6c88a5a2c7954941e557a01f28119fc4be567691764"
+  },
+  "original_stderr": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package-peer/inspect-3bf7b801-independent-frozen-SOURCE-v1-original-stderr.bin",
+    "bytes": 360,
+    "sha256": "1ab937390336433c9b2eb69a9948ebd72fc565c994f82316c21b44e2ea68490f"
+  },
+  "original_stdout": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package-peer/inspect-3bf7b801-independent-frozen-SOURCE-v1-original-stdout.bin",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "correction": "Host python3 zip has no strict keyword. Add explicit equal lengths assertion before unchanged zip; retain every body/hash/inverse assertion.",
+  "corrected_recipe": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-submission-cli-package-peer/inspect-3bf7b801-independent-frozen-SOURCE-v2.py",
+    "bytes": 22943,
+    "sha256": "1e2c4ab9a20747dfdf960252984d34f9fd70fb17d5e1595a9fb4c67daf6137d5"
+  },
+  "AST_ONLY_before_execution": true,
+  "originals_immutable": true,
+  "project_failure": false,
+  "source_archive_or_CI_raw_edits": false,
+  "API_refetch_project_rerun": false,
+  "external_nonmember": true
+}
