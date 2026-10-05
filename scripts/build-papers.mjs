@@ -39,7 +39,7 @@ import {
 } from "./product-shell.mjs";
 import { discover as discoverMeasurementArtifacts, rawArtifactUrl } from "./build-measurements.mjs";
 import { gitCommitDate, artifactDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
-import { PAGE_SOURCES } from "./lib/page-sources.mjs";
+import { PAGE_SOURCES, SHARED_PAGE_SOURCES } from "./lib/page-sources.mjs";
 import { applyReaderPresentation, applyHubNavigation } from './lib/reading-layout.mjs';
 import { applySiteDesign } from './build-site-design.mjs';
 import { fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
@@ -87,6 +87,8 @@ const archivalPaperRoutes = () => {
         "public/glassbox/external_publication_registry.json",
         `public/${originalRoute.slice(1)}.html`,
         `${wrapperRoute.slice(1)}.html`,
+        "scripts/build-publication-wrappers.mjs",
+        ...SHARED_PAGE_SOURCES,
       ],
     };
   });
@@ -193,6 +195,7 @@ const STATIC_ROUTES = [
   { path: "/verify", priority: "0.9", changefreq: "weekly" },
   { path: "/review", priority: "0.8", changefreq: "weekly" },
   { path: "/foundry", priority: "0.8", changefreq: "weekly" },
+  { path: "/contributors", priority: "0.7", changefreq: "monthly" },
   { path: "/founder", priority: "0.7", changefreq: "monthly" },
   { path: "/methodology", priority: "0.9", changefreq: "weekly" },
   { path: "/how-to-validate-a-backtest", priority: "0.8", changefreq: "monthly" },
