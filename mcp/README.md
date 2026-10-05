@@ -459,10 +459,10 @@ tokenizers give different absolute counts), in the shape an OpenAI-style client 
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| (default) | 19 | 5,970 | 96% |
-| (default, with CANLI_KEY) | 18 | 5,834 | 93% |
-| `all` | 20 | 6,241 | 100% |
-| `validate` | 11 | 3,650 | 58% |
+| (default) | 19 | 5,978 | 96% |
+| (default, with CANLI_KEY) | 18 | 5,842 | 93% |
+| `all` | 20 | 6,249 | 100% |
+| `validate` | 11 | 3,658 | 59% |
 | `receipts` | 1 | 182 | 3% |
 | `company` | 1 | 273 | 4% |
 | `status` | 1 | 89 | 1% |
