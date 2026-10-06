@@ -10,7 +10,7 @@
 // npm counts every download, including CI, mirrors and bots; the page says so next to the numbers.
 //   node scripts/build-adoption-stats.mjs
 // =============================================================================
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -74,16 +74,25 @@ export async function collect({ now = new Date(), fetchImpl = fetch, previous = 
     schema: "canli.adoption-stats.v1",
     generated_at: at,
     note: "npm counts every download, including CI runs, mirrors and bots; it is an upper bound on people. Stars and forks are GitHub's own counters. Validations are calls to the hosted API, which also counts the site's own smoke tests.",
+    windows_days: { last_week: 7, last_month: 30 },
     npm: await section("npm", () => Promise.all(PACKAGES.map((name) => npmPackage(name, now, fetchImpl)))),
     github: await section("github", () => Promise.all(REPOSITORIES.map((name) => githubRepository(name, fetchImpl)))),
     hosted_api: await section("hosted_api", () => hostedApi(fetchImpl)),
   };
 }
 
+// The page's headline sums every package's last-30-day count; the sum is published beside its parts.
+export function withTotals(stats) {
+  const rows = stats.npm.rows ?? [];
+  return { ...stats, npm: { ...stats.npm, downloads_last_month_all_packages: rows.reduce((sum, row) => sum + row.downloads_last_month, 0) } };
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const path = resolve(ROOT, OUT);
-  const previous = existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : null;
-  const stats = await collect({ previous });
+  // One read, no exists-then-read window: a missing file means no previous values.
+  let previous = null;
+  try { previous = JSON.parse(readFileSync(path, "utf8")); } catch (error) { if (error.code !== "ENOENT") throw error; }
+  const stats = withTotals(await collect({ previous }));
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, JSON.stringify(stats, null, 2) + "\n");
   const stale = ["npm", "github", "hosted_api"].filter((key) => stats[key].stale);

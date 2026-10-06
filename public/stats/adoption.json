@@ -1,9 +1,13 @@
 {
   "schema": "canli.adoption-stats.v1",
-  "generated_at": "2026-10-06T18:18Z",
+  "generated_at": "2026-10-06T18:43Z",
   "note": "npm counts every download, including CI runs, mirrors and bots; it is an upper bound on people. Stars and forks are GitHub's own counters. Validations are calls to the hosted API, which also counts the site's own smoke tests.",
+  "windows_days": {
+    "last_week": 7,
+    "last_month": 30
+  },
   "npm": {
-    "fetched_at": "2026-10-06T18:18Z",
+    "fetched_at": "2026-10-06T18:43Z",
     "stale": false,
     "rows": [
       {
@@ -36,17 +40,18 @@
         "downloads_total": 247,
         "npm_url": "https://www.npmjs.com/package/canli-research-mcp"
       }
-    ]
+    ],
+    "downloads_last_month_all_packages": 4511
   },
   "github": {
-    "fetched_at": "2026-10-06T18:18Z",
-    "stale": false,
+    "fetched_at": "2026-10-06T18:43Z",
+    "stale": true,
     "rows": [
       {
         "name": "arhancanli/canlicapital",
         "stars": 0,
         "forks": 1,
-        "open_issues": 19,
+        "open_issues": 21,
         "pushed_at": "2026-10-06",
         "url": "https://github.com/arhancanli/canlicapital"
       },
@@ -98,10 +103,11 @@
         "pushed_at": "2026-09-26",
         "url": "https://github.com/arhancanli/canli-backtest"
       }
-    ]
+    ],
+    "error": "https://api.github.com/repos/arhancanli/canli-backtest: HTTP 403"
   },
   "hosted_api": {
-    "fetched_at": "2026-10-06T18:18Z",
+    "fetched_at": "2026-10-06T18:43Z",
     "stale": false,
     "rows": {
       "validations_total": 48,

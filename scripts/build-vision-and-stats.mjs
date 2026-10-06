@@ -22,7 +22,7 @@ const PUBLISHER = "Canli Capital";
 const esc = (v) => String(v).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 const number = (n) => new Intl.NumberFormat("en-US").format(n);
 
-function head({ route, title, description, schema }) {
+function head({ route, title, description, schema, sources = [] }) {
   return `<!doctype html>
 <html lang="en" data-page="${route.slice(1)}">
 <head>
@@ -32,7 +32,7 @@ function head({ route, title, description, schema }) {
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${ORIGIN}${route}" />
 <meta name="author" content="${AUTHOR}" />
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+${sources.length ? `<meta name="canli:sources" content="${esc(sources.join(" "))}" />\n` : ""}<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="${PUBLISHER}" />
 <meta property="og:title" content="${esc(title)}" />
@@ -156,7 +156,7 @@ ${foot}`;
 export function renderStats(stats) {
   const route = "/stats";
   const rows = stats.npm.rows ?? [];
-  const month = rows.reduce((sum, row) => sum + row.downloads_last_month, 0);
+  const month = stats.npm.downloads_last_month_all_packages ?? rows.reduce((sum, row) => sum + row.downloads_last_month, 0);
   const title = "Canli Capital MCP server downloads and usage";
   const description = `Downloads of Canli Capital's open MCP servers from npm, per package, for the last 7 and 30 days and since first publish, updated with each site build.`;
   const schema = { "@context": "https://schema.org", "@graph": [ORGANIZATION,
@@ -168,7 +168,7 @@ export function renderStats(stats) {
       <thead><tr><th scope="col">Package</th><th scope="col">Latest</th><th scope="col" class="stats__num">Last 7 days</th><th scope="col" class="stats__num">Last 30 days</th><th scope="col" class="stats__num">Since first publish</th></tr></thead>
       <tbody>${rows.map((r) => `<tr><th scope="row"><a href="${esc(r.npm_url)}">${esc(r.name)}</a></th><td>${esc(r.latest_version)} (${esc(r.latest_published)})</td><td class="stats__num">${number(r.downloads_last_week)}</td><td class="stats__num">${number(r.downloads_last_month)}</td><td class="stats__num">${number(r.downloads_total)}</td></tr>`).join("")}</tbody>
     </table></div>` : `<p>npm could not be read for this build.</p>`;
-  return `${head({ route, title, description, schema })}
+  return `${head({ route, title, description, schema, sources: ["stats/adoption.json"] })}
     ${breadcrumbNav(STATS_TRAIL)}
     <h1 class="paper__title">MCP server downloads</h1>
     <p class="paper__byline">By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}</p>
