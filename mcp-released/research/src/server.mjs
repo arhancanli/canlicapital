@@ -13,6 +13,9 @@ import { fileURLToPath } from "node:url";
 import { McpServer } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
+import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
+import { BoundedCache } from "./bounded-cache.mjs";
+import { registerPrompts, registerResources } from "./guides.mjs";
 
 export const SERVER_NAME = "canli-research-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
@@ -35,7 +38,6 @@ export const SERVER_INFO = Object.freeze({
 const DEFAULT_BASE = "https://canlicapital.com";
 const REQUEST_TIMEOUT_MS = 15000;
 const MAX_BYTES = 4 * 1024 * 1024;
-const CACHE_MS = 10 * 60 * 1000;
 
 // The boundary every research result carries, beside the source's own limits.
 export const RESEARCH_LIMITS = Object.freeze([
@@ -44,35 +46,52 @@ export const RESEARCH_LIMITS = Object.freeze([
 ]);
 
 export function createSession({ base, fetchImpl, now = () => Date.now() } = {}) {
-  return { base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE, fetchImpl: fetchImpl ?? fetch, now, cache: new Map() };
+  return { base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE, fetchImpl: fetchImpl ?? fetch, now, cache: new BoundedCache() };
 }
 
-async function fetchText(session, path) {
-  const hit = session.cache.get(path);
-  if (hit && session.now() - hit.at < CACHE_MS) return hit.text;
+function deadlineError(session, path) {
+  return new Error(path + " exceeded the request deadline at " + session.base + ". The research files are static; retry in a moment.");
+}
+
+async function fetchText(session, path, validate = (text) => text) {
+  const hit = session.cache.lookup(path, session.now());
+  if (hit) {
+    try {
+      return validate(hit.text);
+    } catch (error) {
+      // Only evict the exact invalid hit; a newer concurrent result remains valid.
+      if (session.cache.get(path) === hit) session.cache.delete(path);
+      throw error;
+    }
+  }
   const signal = AbortSignal.timeout(REQUEST_TIMEOUT_MS);
-  let res;
   let text;
   try {
-    res = await session.fetchImpl(`${session.base}${path}`, { signal, redirect: "error" });
-    text = await res.text();
-  } catch {
-    throw new Error(`${path} ${signal.aborted ? "exceeded the request deadline" : "could not be reached"} at ${session.base}. The research files are static; retry in a moment.`);
+    text = await fetchBoundedText(session.fetchImpl, session.base + path, { signal, maxBytes: MAX_BYTES });
+  } catch (error) {
+    if (signal.aborted) throw deadlineError(session, path);
+    if (error instanceof ResponseReadError) {
+      if (error.code === "HTTP" && error.status === 404) throw new Error(path + " was not found.");
+      if (error.code === "HTTP") throw new Error(path + " returned HTTP " + error.status + ".");
+      if (error.code === "TOO_LARGE") throw new Error(path + " is larger than expected; response omitted.");
+      if (error.code === "INVALID_UTF8") throw new Error(path + " did not return valid UTF-8.");
+    }
+    throw new Error(path + " could not be reached at " + session.base + ". The research files are static; retry in a moment.");
   }
-  if (res.status === 404) throw new Error(`${path} was not found.`);
-  if (res.status >= 400) throw new Error(`${path} returned HTTP ${res.status}.`);
-  if (text.length > MAX_BYTES) throw new Error(`${path} is larger than expected; response omitted.`);
+  const value = validate(text);
+  if (signal.aborted) throw deadlineError(session, path);
   session.cache.set(path, { at: session.now(), text });
-  return text;
+  return value;
 }
 
 async function fetchJson(session, path) {
-  const text = await fetchText(session, path);
-  try {
-    return JSON.parse(text);
-  } catch {
-    throw new Error(`${path} did not return JSON.`);
-  }
+  return fetchText(session, path, (text) => {
+    try {
+      return JSON.parse(text);
+    } catch {
+      throw new Error(path + " did not return JSON.");
+    }
+  });
 }
 
 const asText = (value) => ({
@@ -241,13 +260,26 @@ export const OUTPUT_SCHEMAS = Object.freeze({
 });
 
 export function registerTools(server, session) {
-  const tool = (name, title, inputSchema, fn) => server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
+  const catalog = {};
+  const tool = (name, title, inputSchema, fn) => {
+    server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
+    catalog[name] = { description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] };
+  };
   tool("search_research", "Search research", searchInput, (args) => toolSearchResearch(session, args));
   tool("list_topics", "Research topics", z.object({}).strict(), () => toolListTopics(session));
   tool("get_paper", "Read a paper", paperInput, (args) => toolGetPaper(session, args));
   tool("trial_ledger", "Trial ledger", z.object({}).strict(), () => toolTrialLedger(session));
   tool("live_record", "Live paper record", z.object({}).strict(), () => toolLiveRecord(session));
   tool("chain_head", "Verification chain head", z.object({}).strict(), () => toolChainHead(session));
+  return catalog;
+}
+
+// Tools, the guided prompts and the code resources: what the stdio server and the hosted endpoint list.
+export function registerAll(server, session) {
+  const catalog = registerTools(server, session);
+  registerPrompts(server);
+  registerResources(server, catalog, RESEARCH_LIMITS);
+  return catalog;
 }
 
 const isMain = (() => {
@@ -260,6 +292,6 @@ const isMain = (() => {
 
 if (isMain) {
   const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
-  registerTools(server, createSession());
+  registerAll(server, createSession());
   await server.connect(new StdioServerTransport());
 }

@@ -3,7 +3,7 @@
   "what": "The released version of each MCP package that the hosted endpoints at canlicapital.com serve. scripts/build-mcp-released.mjs copies each package's package.json, server.json and src/ at the named commit into mcp-released/<server>/, and the hosted handlers import only from there, so work merged after a release reaches hosted users only with the next release.",
   "servers": {
     "validation": { "dir": "mcp", "package": "canli-validation-mcp", "version": "0.13.0", "commit": "faa425fae4b7c8c0b45f6e91df65927ff6bb7249", "tag": "mcp-v0.13.0" },
-    "fundamentals": { "dir": "mcp-fundamentals", "package": "canli-fundamentals-mcp", "version": "0.5.0", "commit": "687ef53c0f0ebb996eb7c11f7ca54bc2c0c8533a" },
-    "research": { "dir": "mcp-research", "package": "canli-research-mcp", "version": "0.2.0", "commit": "10121fee41325d6e04a3b17715d1ca619a18bfd6" }
+    "fundamentals": { "dir": "mcp-fundamentals", "package": "canli-fundamentals-mcp", "version": "0.5.0", "commit": "a4a951f02f91a3114ab3618748c63a7a81d6dcd6", "tag": "fundamentals-mcp-v0.5.0" },
+    "research": { "dir": "mcp-research", "package": "canli-research-mcp", "version": "0.2.0", "commit": "a4a951f02f91a3114ab3618748c63a7a81d6dcd6", "tag": "research-mcp-v0.2.0" }
   }
 }
