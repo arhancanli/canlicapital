@@ -1,5 +1,5 @@
-import { historySummary, compactAmount, percent } from './company-history-summary.mjs';
-import { fitDescription } from './descriptions.mjs';
+import { historySummary, compactAmount } from './company-history-summary.mjs';
+import { DESCRIPTION_MAX, fitDescription } from './descriptions.mjs';
 
 // The words a company overview is searched by, and what its snippet says first.
 //
@@ -50,20 +50,25 @@ export function overviewTitle(label, concepts, fetchedAt) {
 
 const period = (kind, end) => (kind === 'duration' ? `for the year ending ${end}` : `at ${end}`);
 
-function headlineSentence({ concept, summary, word }, subject) {
-  const { latest, change, unit } = summary;
-  const move = change ? (change.abs === 0 ? ', unchanged on the year' : `, ${change.abs > 0 ? 'up' : 'down'} ${percent(change.pct)} on the year`) : '';
+// Only the latest value and its period: both trace to the record the page declares as its source
+// (the site's numbers audit refuses a computed change on the overview, which states no prior value).
+// A second measure for the same period omits the repeated date.
+function headlineSentence({ concept, summary, word }, subject, samePeriod = false) {
+  const { latest, unit } = summary;
   const name = subject ? `${subject}${word.toLowerCase()}` : word.charAt(0) + word.slice(1).toLowerCase();
-  return `${name}: ${compactAmount(latest.val, unit)} ${period(concept.kind, latest.end)}${move}.`;
+  return `${name}: ${compactAmount(latest.val, unit)}${samePeriod ? '' : ` ${period(concept.kind, latest.end)}`}.`;
 }
 
 // label: the short company name. measures: how many histories the overview lists.
+// Whole sentences only, added while they fit DESCRIPTION_MAX: a clipped snippet reads worse than a
+// slightly short one.
 export function overviewDescription(label, concepts, measures, fetchedAt) {
   const [first, second] = overviewHeadlines(concepts, fetchedAt);
   const facts = `${measures} measures from SEC filings, each linked to its filing.`;
   if (!first) return fitDescription(`Explore ${label} financial histories from SEC filings, with original units, reporting periods, filing dates and downloadable source data.`, [facts]);
-  const lead = [headlineSentence(first, `${label} `), second ? headlineSentence(second, '') : ''].filter(Boolean);
-  // The second measure only when it still leaves the snippet whole.
-  const both = lead.join(' ');
-  return fitDescription(both.length <= 150 ? both : lead[0], [facts, 'Free JSON.']);
+  const same = second && second.summary.latest.end === first.summary.latest.end && second.concept.kind === first.concept.kind;
+  const sentences = [headlineSentence(first, `${label} `), second ? headlineSentence(second, '', same) : null, facts, 'Free JSON.'].filter(Boolean);
+  let out = sentences[0];
+  for (const sentence of sentences.slice(1)) if (`${out} ${sentence}`.length <= DESCRIPTION_MAX) out = `${out} ${sentence}`;
+  return out;
 }
