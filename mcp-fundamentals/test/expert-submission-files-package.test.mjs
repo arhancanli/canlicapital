@@ -201,7 +201,7 @@ function admit(entries) {
   const metadata=JSON.parse(entries.get('package/package.json').bytes);
   assert.deepEqual(metadata.bin,BIN,'BIN'); assert.deepEqual(metadata.files,FILES,'FILES');
   assert.equal(metadata.name,'canli-fundamentals-mcp'); assert.equal(metadata.version,'0.5.0'); assert.equal(metadata.private,false);
-  assert.deepEqual(metadata.dependencies,{'@modelcontextprotocol/server':'2.1.0',zod:'4.6.5','@modelcontextprotocol/client':'2.1.0'});
+  assert.deepEqual(metadata.dependencies,{'@modelcontextprotocol/server':'2.3.1',zod:'4.6.5','@modelcontextprotocol/client':'2.3.1'});
   return metadata;
 }
 function marked(guide,label) {
