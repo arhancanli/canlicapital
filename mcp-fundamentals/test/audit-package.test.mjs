@@ -180,7 +180,7 @@ function auditPackage(entries) {
   assert.deepEqual(packageJson.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md']);
   assert.equal(packageJson.name, 'canli-fundamentals-mcp');
   assert.equal(packageJson.version, '0.5.0');
-  assert.deepEqual(packageJson.dependencies, { '@modelcontextprotocol/server': '2.1.0', zod: '4.6.5', '@modelcontextprotocol/client': '2.1.0' });
+  assert.deepEqual(packageJson.dependencies, { '@modelcontextprotocol/server': '2.3.1', zod: '4.6.5', '@modelcontextprotocol/client': '2.3.1' });
   assert.match(entries.get('package/src/audit-inputs-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   return packageJson;
@@ -254,7 +254,7 @@ before(async t => {
   }
   // This sole dependency link is disclosed; no install, registry call or repository source link.
   const dependencyRoot = join(PACKAGE_ROOT, 'node_modules');
-  for (const [name, version] of [['@modelcontextprotocol/server', '2.1.0'], ['@modelcontextprotocol/core', '2.1.0'], ['zod', '4.6.5']])
+  for (const [name, version] of [['@modelcontextprotocol/server', '2.3.1'], ['@modelcontextprotocol/core', '2.3.1'], ['zod', '4.6.5']])
     assert.equal(JSON.parse(readFileSync(join(dependencyRoot, name, 'package.json'))).version, version);
   symlinkSync(dependencyRoot, join(packageRoot, 'node_modules'), 'dir');
   const binRoot = join(nodeModules, '.bin'); mkdirSync(binRoot);

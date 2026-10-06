@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Security: the MCP SDK (`@modelcontextprotocol/server` and `/client`) moves from 2.1.0 to 2.3.1 for
+  GHSA-6qxp-vccf-f47h (high: the SDK's OAuth client could send credentials to an authorization server
+  chosen by the MCP server). This package does not use the OAuth client; the bump clears `npm audit`.
+
 - Fixed: `audit_backtest`'s description named Hansen's SPA as its headline test with variants.
   Since 0.12.0 the audit runs White's Reality Check with variants and luck trials with Lo's
   correction without, as the shipped size table (`src/local/js/null-zoo-v1-sizes.js`) records. The

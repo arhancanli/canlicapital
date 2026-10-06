@@ -2,6 +2,8 @@
 // (CANLI_TOOLSETS=company, so the model sees one tool). A stratified sample with a fixed seed; the
 // model ends with "ANSWER: <value>" and is scored against the item's recomputed answer.
 //   node scripts/datasets/filing-facts/eval.mjs <items.jsonl> <out.json> --arm closed|mcp [--per-template 30] [--model gpt-5.4-mini]
+// A model id starting "claude-" runs through the Anthropic API with the same prompts, tools,
+// six-turn limit and capture record; any other id runs through OpenAI.
 import { closeSync, openSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, resolve } from "node:path";
@@ -111,6 +113,54 @@ async function mcpClient() {
   return { client, tools, server_info: client.getServerVersion() ?? null };
 }
 
+// Claude models: the Messages API through the official SDK. The whole assistant content (thinking
+// blocks included) goes back on each tool turn, as the API requires. Haiku 4.5 predates adaptive
+// thinking, so it runs without; newer models run with adaptive thinking at the default effort.
+let anthropic = null;
+async function claude(model, system, messages, tools) {
+  if (!anthropic) {
+    const { default: Anthropic } = await import("@anthropic-ai/sdk");
+    anthropic = new Anthropic({ apiKey: readFileSync(resolve(homedir(), ".config/canli/anthropic_benchmark_key"), "utf8").trim(), maxRetries: 10 });
+  }
+  return anthropic.messages.create({ model, max_tokens: 16000, system, messages,
+    ...(model.startsWith("claude-haiku") ? {} : { thinking: { type: "adaptive" } }),
+    ...(tools ? { tools } : {}) });
+}
+
+export async function runClaudeItem(item, { model, arm, mcp, request = claude }) {
+  const system = arm === "mcp" ? SYSTEM_MCP : SYSTEM_CLOSED;
+  const tools = arm === "mcp" ? mcp.tools.map((t) => ({ name: t.function.name, description: t.function.description, input_schema: t.function.parameters })) : undefined;
+  const messages = [{ role: "user", content: item.question }];
+  let tokens = 0, final = null, calls = 0, error = null;
+  const providerResponses = [], toolTrace = [];
+  try {
+    for (let turn = 0; turn < 6; turn++) {
+      const out = await request(model, system, messages, tools);
+      tokens += (out.usage?.input_tokens ?? 0) + (out.usage?.output_tokens ?? 0);
+      providerResponses.push({ response_id: out.id ?? null, model: out.model ?? null, usage: out.usage ?? null, stop_reason: out.stop_reason ?? null });
+      if (out.stop_reason === "refusal") { error = "Refused by the model"; break; }
+      messages.push({ role: "assistant", content: out.content });
+      const uses = out.content.filter((block) => block.type === "tool_use");
+      if (!uses.length) { final = out.content.filter((block) => block.type === "text").map((block) => block.text).join("\n"); break; }
+      const results = [];
+      for (const use of uses) {
+        calls++;
+        let text;
+        try { text = (await mcp.client.callTool({ name: use.name, arguments: use.input ?? {} })).content.map((c) => c.text ?? "").join("\n"); }
+        catch (e) { text = `Tool error: ${e.message}`; }
+        const suppliedText = text.slice(0, 20000);
+        toolTrace.push({ tool_call_id: use.id, name: use.name, arguments: JSON.stringify(use.input ?? {}),
+          response_text: suppliedText, truncated: suppliedText.length !== text.length });
+        results.push({ type: "tool_result", tool_use_id: use.id, content: suppliedText });
+      }
+      messages.push({ role: "user", content: results });
+    }
+    if (final === null && error === null) error = "No final response within the six-turn limit";
+  } catch (e) { error = e.message; }
+  return { id: item.id, response_text: final, tokens, tool_calls: calls, error,
+    provider_responses: providerResponses, tool_trace: toolTrace };
+}
+
 export async function runItem(item, { model, arm, mcp, request = chat }) {
   const messages = [{ role: "system", content: arm === "mcp" ? SYSTEM_MCP : SYSTEM_CLOSED }, { role: "user", content: item.question }];
   let tokens = 0, final = null, calls = 0, error = null;
@@ -140,11 +190,14 @@ export async function runItem(item, { model, arm, mcp, request = chat }) {
     provider_responses: providerResponses, tool_trace: toolTrace };
 }
 
-if (isEntry()) {
+// The CLI runs after this module finishes loading: evidence.mjs imports this module, so awaiting
+// its import at the top level would wait on this module's own evaluation and never settle.
+async function main() {
   const [itemsFile, outFile] = process.argv.slice(2);
   if (!itemsFile || !outFile) throw new RangeError("usage: eval.mjs items.jsonl out.json --arm closed|mcp [--per-template 30] [--seed 20260926] [--model gpt-5.4-mini]");
   const model = arg("model", "gpt-5.4-mini"), arm = arg("arm", "closed"), perTemplate = Number(arg("per-template", "30")), seed = Number(arg("seed", "20260926"));
   if (!["closed", "mcp"].includes(arm) || !model?.trim()) throw new RangeError("arm must be closed or mcp and model must be nonempty");
+  const provider = model.startsWith("claude-") ? "anthropic" : "openai";
   const { CAPTURE_SCHEMA, evaluateCapture, readDataset } = await import("./evidence.mjs");
   const bytes = readFileSync(itemsFile), dataset = readDataset(bytes);
   const sample = stratifiedSample(dataset.items, perTemplate, seed);
@@ -156,8 +209,8 @@ if (isEntry()) {
     mcp = arm === "mcp" ? await mcpClient() : null;
     const runs = [];
     const queue = [...sample];
-    await Promise.all(Array.from({ length: 4 }, async () => { while (queue.length) runs.push(await runItem(queue.shift(), { model, arm, mcp })); }));
-    const capture = { schema: CAPTURE_SCHEMA, provider: "openai", model, arm,
+    await Promise.all(Array.from({ length: 4 }, async () => { while (queue.length) runs.push(await (provider === "anthropic" ? runClaudeItem : runItem)(queue.shift(), { model, arm, mcp })); }));
+    const capture = { schema: CAPTURE_SCHEMA, provider, model, arm,
       recorded_at: startedAt, completed_at: new Date().toISOString(), dataset_sha256: dataset.sha256,
       sampling: { method: "stratified", seed, per_template: perTemplate, item_ids: sample.map((item) => item.id) },
       system_prompt: arm === "mcp" ? SYSTEM_MCP : SYSTEM_CLOSED,
@@ -170,3 +223,5 @@ if (isEntry()) {
     if (mcp) await mcp.client.close();
   }
 }
+
+if (isEntry()) main().catch((e) => { console.error(e); process.exitCode = 1; });
