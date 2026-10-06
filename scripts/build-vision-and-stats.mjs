@@ -59,6 +59,8 @@ ${renderProductShellStylesheet()}
 .stats__table th,.stats__table td{padding:.6rem .5rem;border-bottom:1px solid rgba(0,0,0,.12);text-align:left;vertical-align:top}
 .stats__num{text-align:right;font-variant-numeric:tabular-nums}
 .stats__note{font-size:.9rem;opacity:.8}
+.paper__crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem;padding:0;margin:0 0 1rem;font-size:.85rem}
+.paper__crumbs li+li::before{content:"/";margin-right:.35rem;opacity:.5}
 @media (max-width:640px){.pillar dl{grid-template-columns:1fr}.stats__table{font-size:.9rem}}
 </style>
 <script type="application/ld+json">${JSON.stringify(schema).replaceAll("<", "\\u003c")}</script>
@@ -77,8 +79,15 @@ ${renderProductShellFooter()}
 </html>
 `;
 
+// Home, then each parent, then the page itself; the same list feeds the JSON-LD and the visible trail.
+const breadcrumbList = (trail) => ({ "@type": "BreadcrumbList", itemListElement: trail.map(([name, path], i) => ({ "@type": "ListItem", position: i + 1, name, item: `${ORIGIN}${path}` })) });
+const breadcrumbNav = (trail) => `<nav class="paper__crumbs" aria-label="Breadcrumb"><ol>${trail.map(([name, path], i) => `<li>${i === trail.length - 1 ? `<span aria-current="page">${esc(name)}</span>` : `<a href="${esc(path)}">${esc(name)}</a>`}</li>`).join("")}</ol></nav>`;
+const VISION_TRAIL = [["Canli Capital", "/"], ["Vision", "/vision"]];
+const STATS_TRAIL = [["Canli Capital", "/"], ["MCP servers", "/mcp-servers"], ["MCP server downloads", "/stats"]];
+
 const ORGANIZATION = {
   "@type": "Organization", "@id": `${ORIGIN}/#organization`, name: PUBLISHER, url: ORIGIN,
+  logo: { "@type": "ImageObject", url: `${ORIGIN}/brand-mark.svg` },
   founder: { "@type": "Person", name: AUTHOR, url: `${ORIGIN}/founder` },
   sameAs: ["https://github.com/arhancanli/canlicapital", "https://www.npmjs.com/package/canli-validation-mcp"],
 };
@@ -114,7 +123,7 @@ export function renderVision() {
   const title = "What Canli Capital is building";
   const description = "Canli Capital is building open infrastructure for AI agents in finance: MCP servers, a glass-box quant engine, verified financial datasets and agent-run execution.";
   const schema = { "@context": "https://schema.org", "@graph": [ORGANIZATION,
-    { "@type": "AboutPage", name: title, description, url: `${ORIGIN}${route}`, about: { "@id": `${ORIGIN}/#organization` } }] };
+    { "@type": "AboutPage", name: title, description, url: `${ORIGIN}${route}`, about: { "@id": `${ORIGIN}/#organization` } }, breadcrumbList(VISION_TRAIL)] };
   const pillars = PILLARS.map((p) => `
     <section class="pillar" aria-labelledby="${esc(p.label.replace(" ", "-").toLowerCase())}">
       <p class="pillar__label">${esc(p.label)}</p>
@@ -124,6 +133,7 @@ export function renderVision() {
       <p>${p.links.map(([href, text]) => `<a href="${esc(href)}">${esc(text)}</a>`).join(" · ")}</p>
     </section>`).join("");
   return `${head({ route, title, description, schema })}
+    ${breadcrumbNav(VISION_TRAIL)}
     <p class="paper__eyebrow">The vision</p>
     <h1 class="paper__title">${esc(title)}</h1>
     <p class="paper__byline">By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}</p>
@@ -152,14 +162,14 @@ export function renderStats(stats) {
   const schema = { "@context": "https://schema.org", "@graph": [ORGANIZATION,
     { "@type": "Dataset", name: title, description, url: `${ORIGIN}${route}`, creator: { "@id": `${ORIGIN}/#organization` },
       license: "https://creativecommons.org/licenses/by/4.0/", dateModified: stats.npm.fetched_at?.slice(0, 10),
-      distribution: { "@type": "DataDownload", contentUrl: `${ORIGIN}/stats/adoption.json`, encodingFormat: "application/json" } }] };
+      distribution: { "@type": "DataDownload", contentUrl: `${ORIGIN}/stats/adoption.json`, encodingFormat: "application/json" } }, breadcrumbList(STATS_TRAIL)] };
   const table = rows.length ? `<div role="region" aria-label="npm downloads per package" tabindex="0"><table class="stats__table">
       <caption>npm downloads per package, as of ${esc(stats.npm.fetched_at.replace("T", " ").replace("Z", " UTC"))}${stats.npm.stale ? " (the last successful read; npm was unreachable at the latest build)" : ""}</caption>
       <thead><tr><th scope="col">Package</th><th scope="col">Latest</th><th scope="col" class="stats__num">Last 7 days</th><th scope="col" class="stats__num">Last 30 days</th><th scope="col" class="stats__num">Since first publish</th></tr></thead>
       <tbody>${rows.map((r) => `<tr><th scope="row"><a href="${esc(r.npm_url)}">${esc(r.name)}</a></th><td>${esc(r.latest_version)} (${esc(r.latest_published)})</td><td class="stats__num">${number(r.downloads_last_week)}</td><td class="stats__num">${number(r.downloads_last_month)}</td><td class="stats__num">${number(r.downloads_total)}</td></tr>`).join("")}</tbody>
     </table></div>` : `<p>npm could not be read for this build.</p>`;
   return `${head({ route, title, description, schema })}
-    <p class="paper__eyebrow"><a href="/mcp-servers">MCP servers</a></p>
+    ${breadcrumbNav(STATS_TRAIL)}
     <h1 class="paper__title">MCP server downloads</h1>
     <p class="paper__byline">By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}</p>
     <div class="paper__body">
