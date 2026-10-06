@@ -6,24 +6,36 @@
   "type": "module",
   "license": "MIT",
   "bin": {
-    "canli-fundamentals-mcp": "src/server.mjs"
+    "canli-fundamentals-mcp": "src/server.mjs",
+    "canli-fundamentals-audit": "src/audit-inputs-stdio.mjs",
+    "canli-expert-submission-audit": "src/expert-submission-stdio.mjs",
+    "canli-fundamentals-audit-files": "src/audit-inputs-client.mjs",
+    "canli-expert-submission-files": "src/expert-submission-files.mjs",
+    "canli-expert-submission-client": "src/expert-submission-client.mjs",
+    "canli-expert-intake-files": "src/expert-intake-files.mjs",
+    "canli-expert-intake-prepare": "src/expert-intake-stdio.mjs"
   },
   "engines": {
     "node": ">=20.10"
   },
   "files": [
     "src",
-    "README.md"
+    "README.md",
+    "AUDIT_INPUTS.md",
+    "EXPERT_SUBMISSIONS.md",
+    "AUDIT_INPUTS_CLIENT.md",
+    "EXPERT_SUBMISSION_FILES.md",
+    "EXPERT_SUBMISSION_CLIENT.md",
+    "EXPERT_INTAKE_FILES.md",
+    "EXPERT_INTAKE_STDIO.md"
   ],
   "scripts": {
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
-    "@modelcontextprotocol/server": "2.1.0",
-    "zod": "4.6.5"
-  },
-  "devDependencies": {
-    "@modelcontextprotocol/client": "2.1.0"
+    "@modelcontextprotocol/server": "2.3.1",
+    "zod": "4.6.5",
+    "@modelcontextprotocol/client": "2.3.1"
   },
   "mcpName": "io.github.arhancanli/canli-fundamentals-mcp",
   "repository": {
