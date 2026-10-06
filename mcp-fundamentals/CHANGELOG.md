@@ -15,6 +15,9 @@
 
 ## 0.5.0
 
+- Security: the MCP SDK (`@modelcontextprotocol/server` and `/client`) moves from 2.1.0 to 2.3.1 for
+  GHSA-6qxp-vccf-f47h (high: the SDK's OAuth client could send credentials to an authorization server
+  chosen by the MCP server). This package does not use the OAuth client; the bump clears `npm audit`.
 - `cross_section`: one measure for up to 50 companies (tickers, CIKs or names) as filed by a date.
   Each row is a company's latest period whose value had been filed by `as_of`, with the value then,
   its filing, `changed_after` and `stale`, in the order asked; companies without a value are named

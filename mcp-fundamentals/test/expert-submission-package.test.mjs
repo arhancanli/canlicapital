@@ -36,14 +36,14 @@ const SOURCE_PINS = Object.freeze({
   'src/filing-facts-packet.mjs': '74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8',
 });
 const SDK_SOURCE_PINS = Object.freeze({
-  '@modelcontextprotocol/client/package.json': 'd3e82c6355b41114e61f892d628f0788db15def04658279cebaae656e41704a4',
-  '@modelcontextprotocol/client/dist/stdio.mjs': '89b2fb52b95d4b2ba79f1bd4e022282d9654177e4ee06ee904efeb8764d59b5c',
-  '@modelcontextprotocol/client/dist/src-DDAAhLnO.mjs': '743dee8114f52b5e7df4690770453f6655502cf729380757a392b1ff2ddb070d',
-  '@modelcontextprotocol/server/package.json': 'b7ca8faf8b399f12f995ffb93873541abe98ba68d8e72eb9979b0540f4293dd9',
-  '@modelcontextprotocol/server/dist/stdio.mjs': '017575c4e870c19579aec6973d405c504c542cc748e262e39fa0a36f3e96aab5',
-  '@modelcontextprotocol/server/dist/mcp-Dw2OlZ1f.mjs': '29840cb4f42d4aaf0ed217080c87df34d7bfa9ddea2e6e56616f35e3ac56f44a',
-  '@modelcontextprotocol/server/dist/src-D-y6h4N7.mjs': '9cc3caf713a88aa6d7787001b673915ee011ea5edc620118aae2737c4b335c75',
-  '@modelcontextprotocol/core/package.json': 'c3902f5ce4f7c44fe8c763adab3ea0f76a6e0d6b54d88d81bc2a3ec0e47ebb34',
+  '@modelcontextprotocol/client/package.json': '4a886cbee0d611f822618e4ee94ae4589655c282fa0dbafc17e80da9697f2d91',
+  '@modelcontextprotocol/client/dist/stdio.mjs': 'af887c8972a37b8c3fcc78192d8f1d56c099bf8ca365f4843ec51ced6f5650da',
+  '@modelcontextprotocol/client/dist/src-WCy6ifGf.mjs': '689dad5b2e36e44b937841f8ffdf3e402efeac43ce4d398aa5a87731a64eb36d',
+  '@modelcontextprotocol/server/package.json': '66d43886157bb694672d5e24a590dc543ff44a482e0ec86fd78d437a2d5e0451',
+  '@modelcontextprotocol/server/dist/stdio.mjs': '43a68ba2ed4569e6b35d436a7dd94ab32a31d49d6c00df8337e244f8b0a4f956',
+  '@modelcontextprotocol/server/dist/mcp-DIH4cS6P.mjs': '2657fbeaebe76ef461e8d0860308da4c3404d2d3b6b1f06960b8ffc578fec1b4',
+  '@modelcontextprotocol/server/dist/src-Cqbh3MYc.mjs': 'bc81a674f25546e2a631a5f3c9cb1829654bbfcdd40cb89823aab5fb719211e5',
+  '@modelcontextprotocol/core/package.json': '2d367771e2f50a8bda7d7d30bfe2e912739e0e0b9b89329fcb83d53b9848fc4b',
 });
 const MEMBERS = Object.freeze(['LICENSE', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md',
   'package.json', ...Object.keys(SOURCE_PINS)].map(name => 'package/' + name).sort());
@@ -176,7 +176,7 @@ function audit(entries) {
   assert.deepEqual(metadata.bin, BIN, 'PACKAGE_BIN');
   assert.deepEqual(metadata.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md'], 'PACKAGE_FILES');
   assert.equal(metadata.name, 'canli-fundamentals-mcp'); assert.equal(metadata.version, '0.5.0');
-  assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.1.0', zod: '4.6.5', '@modelcontextprotocol/client': '2.1.0' });
+  assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.3.1', zod: '4.6.5', '@modelcontextprotocol/client': '2.3.1' });
   for (const [filename, row] of entries) assert.deepEqual(row.bytes, expectedBytes.get(filename), 'EXACT_FROZEN_BYTES');
   assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   return metadata;
@@ -268,7 +268,7 @@ before(async t => {
     fs.writeFileSync(target, row.bytes, { flag: 'wx', mode: row.mode }); fs.chmodSync(target, row.mode);
   }
   const dependencyRoot = path.join(ROOT, 'node_modules'); const dependencies = [];
-  for (const [name, version] of [['@modelcontextprotocol/server', '2.1.0'], ['@modelcontextprotocol/client', '2.1.0'], ['@modelcontextprotocol/core', '2.1.0'], ['zod', '4.6.5']]) {
+  for (const [name, version] of [['@modelcontextprotocol/server', '2.3.1'], ['@modelcontextprotocol/client', '2.3.1'], ['@modelcontextprotocol/core', '2.3.1'], ['zod', '4.6.5']]) {
     const bytes = snapshot(path.join(dependencyRoot, name, 'package.json'), 65536);
     assert.equal(JSON.parse(bytes).version, version); dependencies.push({ name, version, package_json_sha256: sha(bytes) });
   }
@@ -485,7 +485,7 @@ test('expert package: checksum traversal duplicate link and nonregular controls 
 test('expert package: Git-free consumer contains admitted bytes and only disclosed locked dependencies', () => {
   for (const name of ['.git', 'scripts', 'js']) assert.equal(fs.existsSync(path.join(packed.packageRoot, name)), false);
   for (const [name, row] of packed.entries) assert.deepEqual(snapshot(path.join(packed.packageRoot, name.slice(8)), L.expanded), row.bytes);
-  assert.deepEqual(packed.dependencies.filter(row => row.version).map(row => row.version), ['2.1.0', '2.1.0', '2.1.0', '4.6.5']);
+  assert.deepEqual(packed.dependencies.filter(row => row.version).map(row => row.version), ['2.3.1', '2.3.1', '2.3.1', '4.6.5']);
 });
 test('expert package: README and standalone guide expose a literal complete package-local workflow', () => {
   const guide = packed.entries.get('package/EXPERT_SUBMISSIONS.md').bytes.toString();
