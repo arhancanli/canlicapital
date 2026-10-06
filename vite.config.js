@@ -178,6 +178,8 @@ export default defineConfig({
         notes: resolve(root, "notes.html"),
         developers: resolve(root, "developers.html"),
         mcpServers: resolve(root, "mcp-servers.html"),
+        vision: resolve(root, "vision.html"),
+        stats: resolve(root, "stats.html"),
         ...Object.fromEntries(['validation', 'fundamentals', 'research', 'execution'].map(name => [`mcp-${name}`, resolve(root, 'mcp-servers', `${name}.html`)])),
         tools: resolve(root, "tools.html"),
         costs: resolve(root, "costs.html"),
