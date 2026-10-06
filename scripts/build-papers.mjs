@@ -204,6 +204,8 @@ const STATIC_ROUTES = [
   { path: "/notes", priority: "0.9", changefreq: "weekly" },
   { path: "/developers", priority: "0.9", changefreq: "weekly" },
   { path: "/mcp-servers", priority: "0.9", changefreq: "weekly" },
+  { path: "/vision", priority: "0.9", changefreq: "monthly" },
+  { path: "/stats", priority: "0.7", changefreq: "daily" },
   ...['validation', 'fundamentals', 'research', 'execution'].map(name => ({ path: `/mcp-servers/${name}`, priority: "0.9", changefreq: "weekly" })),
   { path: "/costs", priority: "0.9", changefreq: "weekly" },
   { path: "/standards/paper-evidence", priority: "0.9", changefreq: "weekly" },

@@ -71,6 +71,8 @@ export const PAGE_SOURCES = {
   "/contributors": ["scripts/build-contributors.mjs", "scripts/lib/contributors.mjs", "config/contributor-program.json"],
   "/engineering": ["scripts/build-engineering.mjs", "public/glassbox/engineering_open_source.json"],
   "/how-to-validate-a-backtest": ["scripts/build-how-to-validate-a-backtest.mjs"],
+  "/vision": ["scripts/build-vision-and-stats.mjs"],
+  "/stats": ["scripts/build-vision-and-stats.mjs", "scripts/build-adoption-stats.mjs", "public/stats/adoption.json"],
   "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "js/filing-facts-packet.js", "scripts/canonical-json.mjs", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
   "/developers": [
     // Owned by another generator (scripts/build-standards-and-developers.mjs) this fix does not

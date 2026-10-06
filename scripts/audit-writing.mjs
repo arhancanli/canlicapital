@@ -104,7 +104,9 @@ for (const file of walk(resolve(ROOT, "js"), (candidate) => extname(candidate) =
 for (const file of walk(resolve(ROOT, "config"), (candidate) => [".js", ".json"].includes(extname(candidate)))) {
   counts["runtime.config"] += countForms(readFileSync(file, "utf8"));
 }
-for (const file of walk(resolve(ROOT, "scripts"), (candidate) => extname(candidate) === ".mjs")) {
+// A script directory may hold its own installed dependencies (scripts/datasets/filing-facts); their
+// prose is not ours.
+for (const file of walk(resolve(ROOT, "scripts"), (candidate) => extname(candidate) === ".mjs", new Set(["node_modules"]))) {
   counts["generators.scripts"] += countForms(readFileSync(file, "utf8"));
 }
 
