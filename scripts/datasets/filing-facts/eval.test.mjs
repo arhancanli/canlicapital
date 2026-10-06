@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { behaviour, runItem, scoreAnswer, stratifiedSample } from "./eval.mjs";
+import { behaviour, runClaudeItem, runItem, scoreAnswer, stratifiedSample } from "./eval.mjs";
 
 const item = (kind, value) => ({ answer: { kind, value, unit: kind === "number" ? "USD" : kind } });
 
@@ -109,4 +109,30 @@ test("the sample is stratified by template and fixed by its seed", () => {
   assert.notDeepEqual(stratifiedSample(items, 3, 2).map((x) => x.id), s.map((x) => x.id));
   for (const perTemplate of [0, -1, 1.5, NaN]) assert.throws(() => stratifiedSample(items, perTemplate, 1), /per-template/);
   for (const seed of [-1, 0x100000000, 1.5, NaN]) assert.throws(() => stratifiedSample(items, 3, seed), /seed/);
+});
+
+test("Claude runs return each tool result to the model and keep the whole assistant turn", async () => {
+  const seen = [];
+  const replies = [
+    { id: "r1", model: "fixture", stop_reason: "tool_use", usage: { input_tokens: 10, output_tokens: 5 },
+      content: [{ type: "thinking", thinking: "", signature: "s" }, { type: "tool_use", id: "t1", name: "company", input: { cik: "1" } }] },
+    { id: "r2", model: "fixture", stop_reason: "end_turn", usage: { input_tokens: 20, output_tokens: 3 }, content: [{ type: "text", text: "ANSWER: 42" }] },
+  ];
+  const mcp = { tools: [{ type: "function", function: { name: "company", description: "d", parameters: { type: "object" } } }],
+    client: { callTool: async ({ name, arguments: args }) => ({ content: [{ text: `${name}:${args.cik}` }] }) } };
+  const run = await runClaudeItem({ id: "x", question: "Q" }, { model: "fixture", arm: "mcp", mcp,
+    request: async (model, system, messages, tools) => { seen.push({ messages: structuredClone(messages), tools }); return replies[seen.length - 1]; } });
+  assert.equal(run.response_text, "ANSWER: 42");
+  assert.equal(run.tokens, 38);
+  assert.equal(run.tool_calls, 1);
+  assert.deepEqual(seen[0].tools, [{ name: "company", description: "d", input_schema: { type: "object" } }]);
+  assert.deepEqual(seen[1].messages[1].content, replies[0].content);
+  assert.deepEqual(seen[1].messages[2].content, [{ type: "tool_result", tool_use_id: "t1", content: "company:1" }]);
+});
+
+test("a Claude refusal is recorded as an error, never as an answer", async () => {
+  const run = await runClaudeItem({ id: "x", question: "Q" }, { model: "fixture", arm: "closed",
+    request: async () => ({ id: "r", stop_reason: "refusal", usage: { input_tokens: 1, output_tokens: 0 }, content: [] }) });
+  assert.equal(run.response_text, null);
+  assert.equal(run.error, "Refused by the model");
 });
