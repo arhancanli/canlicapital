@@ -36,6 +36,7 @@ const SOURCE_REPOS = Object.freeze([
 ]);
 
 const SECONDARY_LINKS = Object.freeze([
+  { key: "vision", label: "Vision", href: "/vision" },
   { key: "companies", label: "Company reference", href: "/companies" },
   { key: "progress", label: "Corrections", href: "/progress" },
   { key: "performance", label: "Performance", href: "/performance" },
@@ -194,6 +195,8 @@ ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><s
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
+      <a href="/vision">Vision</a>
+      <a href="/stats">MCP downloads</a>
       <a href="/progress">Corrections</a>
       <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
