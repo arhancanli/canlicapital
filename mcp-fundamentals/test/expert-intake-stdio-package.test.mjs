@@ -250,7 +250,7 @@ function admit(entries) {
   const metadata=JSON.parse(entries.get('package/package.json').bytes);
   assert.deepEqual(metadata.bin,BIN,'BIN'); assert.deepEqual(metadata.files,FILES,'FILES');
   assert.equal(metadata.name,'canli-fundamentals-mcp'); assert.equal(metadata.version,'0.5.0'); assert.equal(metadata.private,false);
-  assert.deepEqual(metadata.dependencies,{'@modelcontextprotocol/server':'2.1.0',zod:'4.6.5','@modelcontextprotocol/client':'2.1.0'});
+  assert.deepEqual(metadata.dependencies,{'@modelcontextprotocol/server':'2.3.1',zod:'4.6.5','@modelcontextprotocol/client':'2.3.1'});
   return metadata;
 }
 function marked(guide,label) {
@@ -358,16 +358,16 @@ function tinyTar(rows, mutate = () => {}) {
 const readOnlyCacheAliases = new Map(), pendingReadOnlyCacheLinks = new Map(), dependencyLinks = [];
 let sdkPermit = null, sdkChildren = 0;
 const SDK_SOURCE_PINS = Object.freeze({
-  "@modelcontextprotocol/client/package.json": "d3e82c6355b41114e61f892d628f0788db15def04658279cebaae656e41704a4",
-  "@modelcontextprotocol/client/dist/stdio.mjs": "89b2fb52b95d4b2ba79f1bd4e022282d9654177e4ee06ee904efeb8764d59b5c",
-  "@modelcontextprotocol/client/dist/src-DDAAhLnO.mjs": "743dee8114f52b5e7df4690770453f6655502cf729380757a392b1ff2ddb070d",
-  "@modelcontextprotocol/server/package.json": "b7ca8faf8b399f12f995ffb93873541abe98ba68d8e72eb9979b0540f4293dd9",
-  "@modelcontextprotocol/server/dist/stdio.mjs": "017575c4e870c19579aec6973d405c504c542cc748e262e39fa0a36f3e96aab5",
-  "@modelcontextprotocol/server/dist/mcp-Dw2OlZ1f.mjs": "29840cb4f42d4aaf0ed217080c87df34d7bfa9ddea2e6e56616f35e3ac56f44a",
-  "@modelcontextprotocol/server/dist/src-D-y6h4N7.mjs": "9cc3caf713a88aa6d7787001b673915ee011ea5edc620118aae2737c4b335c75",
-  "@modelcontextprotocol/core/package.json": "c3902f5ce4f7c44fe8c763adab3ea0f76a6e0d6b54d88d81bc2a3ec0e47ebb34",
-  "@modelcontextprotocol/client/dist/index.mjs": "f1f174a3f4902e6489078c9f5dd800e9da9d358d68099adebc965cdb275a0c4f",
-  "@modelcontextprotocol/server/dist/index.mjs": "94cdf04854caf7bd41fde3ae22c7c5700c5e79f98dd4ee0d9b99feaecae51532",
+  "@modelcontextprotocol/client/package.json": "4a886cbee0d611f822618e4ee94ae4589655c282fa0dbafc17e80da9697f2d91",
+  "@modelcontextprotocol/client/dist/stdio.mjs": "af887c8972a37b8c3fcc78192d8f1d56c099bf8ca365f4843ec51ced6f5650da",
+  "@modelcontextprotocol/client/dist/src-WCy6ifGf.mjs": "689dad5b2e36e44b937841f8ffdf3e402efeac43ce4d398aa5a87731a64eb36d",
+  "@modelcontextprotocol/server/package.json": "66d43886157bb694672d5e24a590dc543ff44a482e0ec86fd78d437a2d5e0451",
+  "@modelcontextprotocol/server/dist/stdio.mjs": "43a68ba2ed4569e6b35d436a7dd94ab32a31d49d6c00df8337e244f8b0a4f956",
+  "@modelcontextprotocol/server/dist/mcp-DIH4cS6P.mjs": "2657fbeaebe76ef461e8d0860308da4c3404d2d3b6b1f06960b8ffc578fec1b4",
+  "@modelcontextprotocol/server/dist/src-Cqbh3MYc.mjs": "bc81a674f25546e2a631a5f3c9cb1829654bbfcdd40cb89823aab5fb719211e5",
+  "@modelcontextprotocol/core/package.json": "2d367771e2f50a8bda7d7d30bfe2e912739e0e0b9b89329fcb83d53b9848fc4b",
+  "@modelcontextprotocol/client/dist/index.mjs": "8b370b8009c7b64834cc91bf5e6ab28e524d7c2ce952dfe57d943a6926f8d54b",
+  "@modelcontextprotocol/server/dist/index.mjs": "60fca0c96c38d4e64df281ae22d85b3f9edf43306cc857c390054a5e4c3cf2fb",
   "zod/package.json": "a046ed85fa09571dba539fee9ef236152d12dabd1f229b014ec3bd2ebaad9000",
   "zod/v4/core/schemas.js": "e632b655441418f0593153abc6809fd81cf3e0782d810622d0a4fa50ef6e182e"
 });

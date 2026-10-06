@@ -29,7 +29,7 @@ const SOURCE_PINS = Object.freeze({
   "package/LICENSE": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
   "package/PAPER_JOURNAL.md": "56be27fd25576d4b7d142913e927c310f3ff0bcb6c9bb178460e55bc8cdd01f3",
   "package/README.md": "2c1c2b398b865f50e132053b713bf80c498c9f69afb79cf360e562eb13cc7bf8",
-  "package/package.json": "bf93d0ae94a5be4c5933766475b196150d660b7a1a576dad91f682043f282169",
+  "package/package.json": "46d0aae74872390d117fc9d1626038109de1d151be6dd32a24afdb8d365781f4",
   "package/src/check-orders.mjs": "ec2e0e50e04e413fff7047b17b5d8273591e66ae5ef63ef9ec2653188f07da21",
   "package/src/core/js/dsr-core.js": "79ec18cc7c15e0b2ad004dd5296e83020187912aab161b68aad4784d959816d1",
   "package/src/core/js/exec-cost-core.js": "c789a1889931cd6719b37d343ed1a3378b860ed804203df62bf92e47c6f017c9",
@@ -222,7 +222,7 @@ function audit(entries) {
   }
   const metadata = JSON.parse(entries.get('package/package.json').bytes);
   assert.deepEqual(metadata.bin, BINS); assert.deepEqual(metadata.files, ['src', 'README.md', 'JOURNAL_STORAGE.md', 'EXAMPLES.md', 'PAPER_JOURNAL.md']);
-  assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.1.0', '@modelcontextprotocol/client': '2.1.0', zod: '4.6.5' });
+  assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.3.1', '@modelcontextprotocol/client': '2.3.1', zod: '4.6.5' });
   assert.equal(metadata.private, true); assert.equal(metadata.version, '0.1.0'); return metadata;
 }
 const bounded = (promise, ms) => { let timer; return Promise.race([Promise.resolve(promise), new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('FIXTURE_BOUND')), ms); })]).finally(() => clearTimeout(timer)); };
@@ -279,7 +279,7 @@ before(async t => {
   for (const [filename, row] of entries) { const target = path.join(packageRoot, filename.slice(8)); fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, row.bytes, { flag: 'wx', mode: row.mode }); fs.chmodSync(target, row.mode); }
   const dependencies = [];
-  for (const [name, version] of [['@modelcontextprotocol/client', '2.1.0'], ['@modelcontextprotocol/server', '2.1.0'], ['@modelcontextprotocol/core', '2.1.0'], ['zod', '4.6.5']]) {
+  for (const [name, version] of [['@modelcontextprotocol/client', '2.3.1'], ['@modelcontextprotocol/server', '2.3.1'], ['@modelcontextprotocol/core', '2.3.1'], ['zod', '4.6.5']]) {
     const bytes = snapshot(path.join(ROOT, 'node_modules', name, 'package.json'), 65536); assert.equal(JSON.parse(bytes).version, version); dependencies.push({ name, version, sha256: sha(bytes) }); }
   fs.symlinkSync(path.join(ROOT, 'node_modules'), path.join(packageRoot, 'node_modules'), 'dir');
   const bins = [], binRoot = path.join(consumer, 'node_modules/.bin'); fs.mkdirSync(binRoot);
@@ -387,8 +387,8 @@ test('paper package: runtime promotion preserves every locked version integrity 
   assert.deepEqual(lock.packages[''].dependencies, packed.metadata.dependencies); assert.deepEqual(lock.packages[''].bin, BINS);
   for (const name of ['@modelcontextprotocol/client', 'cross-spawn', 'eventsource', 'eventsource-parser', 'isexe', 'jose', 'path-key', 'pkce-challenge', 'shebang-command', 'shebang-regex', 'which'])
     assert.equal(lock.packages['node_modules/' + name].dev, undefined);
-  assert.equal(lock.packages['node_modules/@modelcontextprotocol/client'].version, '2.1.0');
-  assert.equal(lock.packages['node_modules/@modelcontextprotocol/client'].integrity, 'sha512-mDVhoy5WjDb0U+4dQPzLcciC2erSex/GRVQqnoZdiuMoE3YiTZdiS7ezNcFwX4XEOWOaj7jZr0kLYnILnL8orA==');
+  assert.equal(lock.packages['node_modules/@modelcontextprotocol/client'].version, '2.3.1');
+  assert.equal(lock.packages['node_modules/@modelcontextprotocol/client'].integrity, 'sha512-mIGZXpHsjnZ6lD+gD/WCMpR5k8yVQQ8nNFH1N0Srf7AvnwTUMYD6pvTY8ng2+He5FfV7YMZLmrjL7cLa/cc3dQ==');
   const root = JSON.parse(snapshot(path.join(ROOT, '../package.json'), 32768)); assert.equal(sha(Buffer.from(root.scripts.verify)), 'f22252c98bef63f212af303d2e1fc2e91e8559bc8e9ce54e319cd3b75fd77212');
 });
 test('paper package: original default server source mode differs only in owned executable fixture', () => {
