@@ -3,7 +3,7 @@
 // Reads and writes panels: a CSV with a `date` column (YYYY-MM-DD) and one column per ticker, one
 // row per date. Prices are closes; a signal row is dated when its values became known. Empty cells
 // are missing values (null), never zero. Files are read on this machine; nothing is uploaded.
-import { readFileSync, statSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
 export const MAX_PANEL_BYTES = 64 * 1024 * 1024;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
@@ -53,10 +53,11 @@ export function parsePanel(text, name = "panel") {
   return { dates, tickers, values };
 }
 
+// One read, then the size check on the bytes actually read (no check-then-read window).
 export function readPanel(path, name) {
-  const size = statSync(path).size;
-  if (size > MAX_PANEL_BYTES) throw new RangeError(`${path} is ${size} bytes; the limit is ${MAX_PANEL_BYTES}`);
-  return parsePanel(readFileSync(path, "utf8"), name ?? path);
+  const bytes = readFileSync(path);
+  if (bytes.length > MAX_PANEL_BYTES) throw new RangeError(`${path} is ${bytes.length} bytes; the limit is ${MAX_PANEL_BYTES}`);
+  return parsePanel(bytes.toString("utf8"), name ?? path);
 }
 
 export function writePanel(path, { dates, tickers, values }) {
