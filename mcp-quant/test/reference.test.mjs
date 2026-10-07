@@ -16,7 +16,7 @@ function close(got, want, tol, where) {
     return;
   }
   assert.equal(typeof got, "number", `${where}: got ${JSON.stringify(got)}`);
-  const err = Math.abs(got - want) / Math.max(Math.abs(want), 1e-6);
+  const err = Math.abs(got - want) < 1e-12 ? 0 : Math.abs(got - want) / Math.max(Math.abs(want), 1e-6);
   assert.ok(err <= tol, `${where}: got ${got}, reference ${want}, error ${err.toExponential(2)} > ${tol}`);
 }
 
