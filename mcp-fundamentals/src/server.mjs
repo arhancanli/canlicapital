@@ -21,7 +21,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 
-import { McpServer } from "@modelcontextprotocol/server";
+import { McpServer, ResourceTemplate, completable } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 
@@ -1049,6 +1049,187 @@ export async function toolCrossSection(session, args) {
   });
 }
 
+// ---------------------------------------------------------------------------------------------
+// Guides: prompts, reference resources and completions
+// ---------------------------------------------------------------------------------------------
+// Prompts are the three jobs this server exists for: what a company had reported on a date, which
+// of its numbers were restated, and how peers compared as of a date. Resources give the plain
+// concept names and the tags behind each, every tool's exact JSON Schemas, a working call in
+// Python, JavaScript or curl against the hosted endpoint, and the limits every result carries.
+// Prompt arguments complete: company from the SEC ticker list, concept from the plain names.
+export const HOSTED_URL = "https://canlicapital.com/mcp/fundamentals";
+export const EXAMPLE_LANGUAGES = Object.freeze(["python", "javascript", "curl"]);
+
+// Valid arguments for each tool (a test parses every one against the tool's input schema).
+export const EXAMPLE_ARGS = Object.freeze({
+  known_as_of: { company: "AAPL", as_of: "2019-01-01", concepts: ["eps_diluted", "revenue"] },
+  history: { company: "AAPL", concept: "revenue" },
+  restatements: { company: "AAPL", concept: "eps_diluted" },
+  vintages: { company: "AAPL", concept: "eps_diluted", end: "2018-09-29" },
+  list_concepts: { company: "AAPL", search: "revenue" },
+  find_company: { query: "Exxon Mobil" },
+  cross_section: { companies: ["AAPL", "MSFT", "GOOGL"], concept: "net_income", as_of: "2024-06-30" },
+});
+
+const prefix = (list) => (value) => {
+  const v = String(value ?? "").toLowerCase();
+  return list.filter((n) => n.toLowerCase().startsWith(v)).slice(0, 20);
+};
+
+// Tickers first (what people type), then names; a lookup that fails completes to nothing.
+function companyCompleter(session, findCompanies) {
+  return async (value) => {
+    const v = String(value ?? "").trim();
+    if (!v) return [];
+    try {
+      const found = await findCompanies(session, v, 8);
+      const out = [];
+      for (const m of found.matches) {
+        const ticker = (m.tickers ?? []).find((t) => t.toUpperCase().startsWith(v.toUpperCase()));
+        out.push(ticker ?? m.name);
+      }
+      return [...new Set(out)];
+    } catch {
+      return [];
+    }
+  };
+}
+
+// deps: { session, findCompanies, plainNames } from server.mjs (passed in, so the two modules do
+// not import each other).
+export function registerPrompts(server, { session, findCompanies, plainNames }) {
+  const company = completable(z.string().describe("Ticker, CIK or company name, such as AAPL"), companyCompleter(session, findCompanies));
+  const concept = completable(z.string().describe("A plain name such as revenue or eps_diluted, or an XBRL tag"), prefix([...plainNames].sort()));
+  const date = z.string().describe("A date, YYYY-MM-DD");
+  const prompt = (name, title, description, argsSchema, lines) => server.registerPrompt(name, { title, description, argsSchema }, (args) => ({
+    messages: [{ role: "user", content: { type: "text", text: lines(args ?? {}).filter(Boolean).join("\n") } }],
+  }));
+  prompt(
+    "known_on_date",
+    "What did a company report as of a date?",
+    "A point-in-time snapshot for a backtest or a decision: each measure as it stood on the date, the filing behind it, ratios, and which values were later restated.",
+    { company, as_of: date },
+    ({ company: c, as_of: d }) => [
+      `Call known_as_of with company "${c}", as_of "${d}" and ratios true.`,
+      "For each measure, report the value, the period it covers (start and end), the filed date and the form. Treat a value as known from the next trading day after its filed date, not from the period end.",
+      "List every value with changed_after true; for one or two of them, call vintages to show the first and the latest figure.",
+      "Say if any value is stale (its period ended long before the date). Quote the limits.",
+    ],
+  );
+  prompt(
+    "restatement_review",
+    "Which of a company's numbers were restated?",
+    "Every period whose value changed after its first report, why it changed, and the filings behind the biggest changes.",
+    { company, concept: concept.optional() },
+    ({ company: c, concept: k }) => [
+      k ? `Call restatements with company "${c}" and concept "${k}".` : `Call restatements with company "${c}" and no concept, to scan every measure.`,
+      "Group the changes by cause (tag_change, or null: a restatement, reclassification or correction) and give the largest by absolute change_pct first.",
+      "For the three largest, call vintages with the same concept and the period's end (and start) to show each filing that reported it, with dates and accession numbers.",
+      "Say what this means for a backtest that used the latest values instead of the first-reported ones. Quote the limits.",
+    ],
+  );
+  prompt(
+    "peers_as_of",
+    "How did peers compare as of a date?",
+    "One measure across several companies, each as filed by the date, with fiscal period ends lined up and later restatements flagged.",
+    { companies: z.string().describe("Tickers or names, separated by commas, such as AAPL, MSFT, GOOGL"), concept, as_of: date },
+    ({ companies, concept: k, as_of: d }) => [
+      `Call cross_section with companies [${String(companies ?? "").split(",").map((s) => JSON.stringify(s.trim())).filter((s) => s !== '""').join(", ")}], concept "${k}" and as_of "${d}".`,
+      "Rank the companies by value, but show each one's period end and filed date next to it: fiscal years end on different dates, so say which values cover different periods.",
+      "Flag rows with changed_after or stale true, and name any company in missing and why.",
+      "Quote the limits.",
+    ],
+  );
+}
+
+export function exampleCode(language, tool) {
+  const args = EXAMPLE_ARGS[tool] ?? {};
+  const json = JSON.stringify(args, null, 2);
+  if (language === "python") {
+    return [
+      "# pip install mcp",
+      "# The hosted endpoint: no install of this server and no key.",
+      "import asyncio",
+      "from mcp import ClientSession",
+      "from mcp.client.streamable_http import streamablehttp_client",
+      "",
+      "async def main():",
+      `    async with streamablehttp_client("${HOSTED_URL}") as (read, write, _):`,
+      "        async with ClientSession(read, write) as session:",
+      "            await session.initialize()",
+      `            result = await session.call_tool("${tool}", ${json.replace(/\n/g, "\n            ").replace(/\btrue\b/g, "True").replace(/\bfalse\b/g, "False").replace(/\bnull\b/g, "None")})`,
+      "            print(result.structuredContent)",
+      "",
+      "asyncio.run(main())",
+      "",
+    ].join("\n");
+  }
+  if (language === "javascript") {
+    return [
+      "// npm install @modelcontextprotocol/sdk",
+      "// The hosted endpoint: no install of this server and no key.",
+      'import { Client } from "@modelcontextprotocol/sdk/client/index.js";',
+      'import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";',
+      "",
+      'const client = new Client({ name: "example", version: "1.0.0" });',
+      `await client.connect(new StreamableHTTPClientTransport(new URL("${HOSTED_URL}")));`,
+      `const result = await client.callTool({ name: "${tool}", arguments: ${json} });`,
+      "console.log(result.structuredContent);",
+      "await client.close();",
+      "",
+    ].join("\n");
+  }
+  if (language === "curl") {
+    const body = JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name: tool, arguments: args } });
+    return [
+      "# The hosted endpoint is stateless: one POST per call, no session and no key.",
+      `curl -s ${HOSTED_URL} \\`,
+      "  -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \\",
+      `  --data '${body.replace(/'/g, "'\\''")}'`,
+      "",
+    ].join("\n");
+  }
+  throw new Error(`No example language ${language}; choose ${EXAMPLE_LANGUAGES.join(", ")}`);
+}
+
+// catalog: { toolName: { description, inputSchema, outputSchema } } for every tool the server lists.
+// data: { friendly, defaultConcepts, limits } from server.mjs.
+export function registerResources(server, catalog, { friendly, defaultConcepts, limits }) {
+  const names = Object.keys(catalog).sort();
+  server.registerResource(
+    "concepts",
+    "canli://concepts",
+    { title: "Plain concept names and their XBRL tags", description: "Every plain name the tools accept (revenue, eps_diluted, ...), the US GAAP and IFRS tags it follows in order, and the ten known_as_of reads by default.", mimeType: "application/json" },
+    (uri) => ({ contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify({ plain_names: friendly, default_concepts: defaultConcepts, note: "Any XBRL tag also works as a concept, such as us-gaap:ResearchAndDevelopmentExpense; list_concepts shows what one company reports." }, null, 2) }] }),
+  );
+  server.registerResource(
+    "limits",
+    "canli://limits",
+    { title: "What a result does not establish", description: "The limits every fundamentals result carries; quote them with any finding.", mimeType: "application/json" },
+    (uri) => ({ contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify({ limits }, null, 2) }] }),
+  );
+  server.registerResource(
+    "tool-schema",
+    new ResourceTemplate("canli://schemas/{tool}", { list: undefined, complete: { tool: prefix(names) } }),
+    { title: "A tool's exact JSON Schemas", description: "Input and output JSON Schema and the description of one tool, for writing code against it.", mimeType: "application/json" },
+    (uri, { tool }) => {
+      const entry = catalog[tool];
+      if (!entry) throw new Error(`No tool ${tool}; tools are ${names.join(", ")}`);
+      const body = { tool, description: entry.description, input_schema: z.toJSONSchema(entry.inputSchema, { io: "input" }), output_schema: z.toJSONSchema(entry.outputSchema, { io: "output" }) };
+      return { contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify(body, null, 2) }] };
+    },
+  );
+  server.registerResource(
+    "example",
+    new ResourceTemplate("canli://examples/{language}/{tool}", { list: undefined, complete: { language: prefix([...EXAMPLE_LANGUAGES]), tool: prefix(names) } }),
+    { title: "A working call, in Python, JavaScript or curl", description: "Runnable client code calling one tool on the hosted endpoint with valid example arguments.", mimeType: "text/plain" },
+    (uri, { language, tool }) => {
+      if (!catalog[tool]) throw new Error(`No tool ${tool}; tools are ${names.join(", ")}`);
+      return { contents: [{ uri: uri.href, mimeType: "text/plain", text: exampleCode(language, tool) }] };
+    },
+  );
+}
+
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true };
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
@@ -1083,8 +1264,13 @@ export const OUTPUT_SCHEMAS = Object.freeze({
     .describe("rows: one per company found, in the order asked, in the order of columns; missing names the others and why."),
 });
 
+// Returns { toolName: { description, inputSchema, outputSchema } } for the schema and example resources.
 export function registerTools(server, session) {
-  const tool = (name, title, inputSchema, fn) => server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
+  const catalog = {};
+  const tool = (name, title, inputSchema, fn) => {
+    catalog[name] = { description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] };
+    return server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
+  };
   tool("known_as_of", "Known as of a date", knownInput, (args) => toolKnownAsOf(session, args));
   tool("history", "Measure history", historyInput, (args) => toolHistory(session, args));
   tool("restatements", "Restated periods", restatementsInput, (args) => toolRestatements(session, args));
@@ -1092,6 +1278,15 @@ export function registerTools(server, session) {
   tool("list_concepts", "List concepts", listInput, (args) => toolListConcepts(session, args));
   tool("find_company", "Find a company", findInput, (args) => toolFindCompany(session, args));
   tool("cross_section", "Cross-section as of a date", crossSectionInput, (args) => toolCrossSection(session, args));
+  return catalog;
+}
+
+// Tools, the three guided prompts (with completions) and the reference resources.
+export function registerAll(server, session) {
+  const catalog = registerTools(server, session);
+  registerPrompts(server, { session, findCompanies, plainNames: Object.keys(FRIENDLY) });
+  registerResources(server, catalog, { friendly: FRIENDLY, defaultConcepts: DEFAULT_CONCEPTS, limits: LIMITS });
+  return catalog;
 }
 
 const isMain = (() => {
@@ -1104,6 +1299,6 @@ const isMain = (() => {
 
 if (isMain) {
   const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
-  registerTools(server, createSession());
+  registerAll(server, createSession());
   await server.connect(new StdioServerTransport());
 }
