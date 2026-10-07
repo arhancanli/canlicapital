@@ -32,7 +32,7 @@ export function createCompanyFilingsHandler({ filings, assets, indexable = false
       const html = applyCompanyAssets(pages[0].html, assets);
       if (Buffer.byteLength(html) > 256 * 1024) return fail(503, 'Company filings temporarily unavailable');
       const etag = `"${catalogHash(html)}"`;
-      res.setHeader('ETag', etag); res.setHeader('Cache-Control', admitted ? 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' : 'no-store');
+      res.setHeader('ETag', etag); res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
       if (!admitted) res.setHeader('X-Robots-Tag', 'noindex');
       if (String(req.headers?.['if-none-match'] ?? '').split(',').map(value => value.trim().replace(/^W\//, '')).some(value => value === etag || value === '*')) { res.statusCode = 304; return res.end(); }
       res.statusCode = 200; res.end(req.method === 'HEAD' ? undefined : html);

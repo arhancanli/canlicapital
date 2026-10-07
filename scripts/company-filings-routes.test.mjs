@@ -35,7 +35,7 @@ test('filing index and accession pages are served from the release, noindex by d
   const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
   const document = documents[0];
   const index = await get(handler, filingsIndexPath(document.cik));
-  assert.equal(index.statusCode, 200); assert.equal(index.headers['X-Robots-Tag'], 'noindex'); assert.equal(index.headers['Cache-Control'], 'no-store');
+  assert.equal(index.statusCode, 200); assert.equal(index.headers['X-Robots-Tag'], 'noindex'); assert.match(index.headers['Cache-Control'], /s-maxage=86400/);
   assert.match(index.body, /assets\/company.css/); assert.ok(index.body.includes(filingPath(document.cik, document.filings[0].accession)));
   const page = await get(handler, filingPath(document.cik, document.filings[0].accession));
   assert.equal(page.statusCode, 200); assert.ok(page.body.includes(document.filings[0].sec_index_url));
@@ -57,7 +57,7 @@ test('filing pages become indexable only through the company-level admission pre
   const admitted = documents[0].cik;
   const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, filingsIndexable: cik => cik === admitted }) });
   const yes = await get(handler, filingPath(admitted, documents[0].filings[0].accession));
-  assert.equal(yes.statusCode, 200); assert.equal(yes.headers['X-Robots-Tag'], undefined); assert.match(yes.headers['Cache-Control'], /s-maxage=3600/);
+  assert.equal(yes.statusCode, 200); assert.equal(yes.headers['X-Robots-Tag'], undefined); assert.match(yes.headers['Cache-Control'], /s-maxage=86400/);
   const no = await get(handler, filingsIndexPath(documents[1].cik));
   assert.equal(no.statusCode, 200); assert.equal(no.headers['X-Robots-Tag'], 'noindex');
   await assert.rejects(createCompanyReleaseLoader({ ...options, filingsIndexable: true })(), /admission predicate/);
