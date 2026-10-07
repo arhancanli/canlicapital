@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "canli-validation-mcp",
   "display_name": "Canli Validation",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "Check a backtest before you trust it: deflated Sharpe, overfitting and data-snooping tests with signed receipts, plus lookahead and pipeline placebo checks that run on your machine.",
   "long_description": "Validators over canlicapital.com's free API (deflated Sharpe, CSCV overfitting, Hansen's SPA, White's Reality Check and StepM, minimum track record and backtest length, and more), each result carrying the sentences that say what a number does not establish and a signed receipt. A lab computes on your machine with nothing sent: grid backtests validated by the variants actually run, series summaries, stress tests, broker feasibility, check_leakage for lookahead in a signal and placebo_test for a whole research pipeline. Also reads a company's SEC-reported financial history. Your returns are not stored: the API keeps a SHA-256 hash of the input and the verdict.",
   "author": {
