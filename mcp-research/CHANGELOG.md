@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Tool descriptions start with what the tool does (List, Read, Count, Get). Names, inputs and
+  results are unchanged.
+
 ## Unreleased: prompts and code resources
 
 - Three guided prompts: `preflight_idea` (has this idea been tried here, how did it end, what does

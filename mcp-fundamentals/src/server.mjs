@@ -1233,13 +1233,13 @@ export function registerResources(server, catalog, { friendly, defaultConcepts, 
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true };
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
-  known_as_of: "What a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
-  history: "One measure over time, newest first: as first reported (default), as latest filed, or as known on as_of, each with its filing and whether it later changed.",
-  restatements: "Periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
-  vintages: "Every filing that reported one period of one measure, oldest first: the revision history behind a number.",
-  list_concepts: "The XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
+  known_as_of: "Get what a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
+  history: "Get one measure over time, newest first: as first reported (default), as latest filed, or as known on as_of, each with its filing and whether it later changed.",
+  restatements: "List periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
+  vintages: "List every filing that reported one period of one measure, oldest first: the revision history behind a number.",
+  list_concepts: "List the XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
   find_company: "Find a company's SEC CIK and tickers by name, ticker or CIK. The other tools also take a name as company.",
-  cross_section: "One measure for up to 50 companies as filed by a date: each one's latest period, its value then, and whether it was later restated. For point-in-time peer and factor work.",
+  cross_section: "Get one measure for up to 50 companies as filed by a date: each one's latest period, its value then, and whether it was later restated. For point-in-time peer and factor work.",
 });
 
 // Output schemas: published OPEN (extra fields always pass), every field optional. A client

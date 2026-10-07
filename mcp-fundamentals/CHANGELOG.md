@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Tool descriptions start with what the tool does (Get, List). Names, inputs and results are
+  unchanged.
+
 - Prompts, resources and completions. Three prompts: `known_on_date` (a point-in-time
   snapshot with ratios and later restatements), `restatement_review` (what changed, why,
   and the filings behind the largest changes) and `peers_as_of` (one measure across
