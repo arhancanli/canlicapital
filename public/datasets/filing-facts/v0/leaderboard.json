@@ -1,0 +1,62 @@
+{
+  "schema": "canli.filingfacts-leaderboard.v1",
+  "generated_at": "2026-10-07",
+  "sample": {
+    "items": 150,
+    "per_template": 30,
+    "templates": 5
+  },
+  "models": 1,
+  "models_with_both_arms": 1,
+  "rows": [
+    {
+      "model": "gpt-5.4-mini",
+      "provider": "openai",
+      "closed": {
+        "model": "gpt-5.4-mini",
+        "arm": "closed",
+        "provider": "openai",
+        "date": "2026-10-07",
+        "items": 150,
+        "correct": 32,
+        "accuracy": 0.2133,
+        "ci95": [
+          0.1554,
+          0.2856
+        ],
+        "errors": 0,
+        "numbers_given": 84,
+        "numbers_wrong": 0.9643,
+        "unanswerable_abstention": 0.9667,
+        "mean_tokens": 187,
+        "dataset_sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+        "evidence": "/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-mini-closed.json"
+      },
+      "mcp": {
+        "model": "gpt-5.4-mini",
+        "arm": "mcp",
+        "provider": "openai",
+        "date": "2026-10-07",
+        "items": 150,
+        "correct": 99,
+        "accuracy": 0.66,
+        "ci95": [
+          0.581,
+          0.731
+        ],
+        "errors": 6,
+        "numbers_given": 96,
+        "numbers_wrong": 0.2292,
+        "unanswerable_abstention": 0.8333,
+        "mean_tokens": 3848,
+        "dataset_sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+        "evidence": "/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-mini-mcp.json"
+      }
+    }
+  ],
+  "limits": [
+    "Each row is one run of one model on a fixed stratified sample of FilingFacts v0 questions; a different sample or a rerun can move a figure within its interval.",
+    "Closed-book scores measure what a model produces without the filings, not what it knows: most correct answers need a figure from one specific filing.",
+    "Expected answers are computed from SEC XBRL data and rechecked by an independent program. They have not yet been verified by human experts."
+  ]
+}
