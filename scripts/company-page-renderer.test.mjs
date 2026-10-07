@@ -1972,6 +1972,12 @@ test('a headline whose latest period is more than two years before capture is no
   assert.doesNotMatch(overviewDescription('ACME', concepts, 2, '2026-09-19T00:00:00Z'), /revenue/i);
 });
 
+test('a company whose headlines all end years before capture is named by its last reported values, dated', () => {
+  const concepts = [concept('Revenues', [row('2022-12-31', 2.5e8), row('2023-12-31', 2.3e8)]), concept('NetIncomeLoss', [row('2023-12-31', -1.2e7)]), concept('Liabilities', [row('2023-12-31', 1)])];
+  assert.equal(overviewTitle('ACME (ACM)', concepts, '2026-09-19T00:00:00Z'), 'ACME (ACM): Revenue, Net Income & SEC Financials');
+  assert.match(overviewDescription('ACME', concepts, 3, '2026-09-19T00:00:00Z'), /^ACME last reported revenue of \$230(\.0)? million for the year ending 2023-12-31\. Net income: /);
+});
+
 test('without a current headline measure the title and description stay generic', () => {
   const concepts = [concept('Liabilities', [row('2025-12-31', 1)])];
   assert.equal(overviewTitle('ACME', concepts, '2026-09-19T00:00:00Z'), 'ACME: SEC financial data');
