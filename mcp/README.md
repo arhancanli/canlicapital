@@ -207,6 +207,30 @@ On your own machine, `prices_file`, `series_file` and `returns_file` take a CSV 
 of the numbers. Only numbers are read, plus an ISO date column when the file has one, so results can
 name the day a drawdown began.
 
+## The trial ledger: count every variant an agent tries
+
+An agent can try thousands of strategy variants in an hour, and the best of them looks skilled by
+luck alone. How much luck depends on how many were tried and how spread out their results were, so
+the honest verdict on a reported winner needs the whole search. The ledger keeps it.
+
+Turn it on with `CANLI_TOOLSETS=validate,lab,ledger` (or `all`), then:
+
+1. `ledger_record_trial` for every variant, as it is tried: its returns (or a returns file), or its
+   annualized Sharpe and sample size, plus a label and its parameters. The first call creates a
+   ledger and returns its name; reuse it. Each reply already counts the whole search so far.
+2. `ledger_summary` for the verdict: the best trial, the Sharpe that the best of that many
+   skill-less trials reaches by luck, the best trial's deflated Sharpe ratio after counting every
+   trial, and the probability of backtest overfitting (CSCV) when every trial has aligned returns.
+3. `ledger_export` to hand the search to someone else. Each trial is chained to the previous one
+   with SHA-256, so a removed, reordered or edited trial shows.
+
+Ledgers are JSON-lines files under `CANLI_LEDGER_DIR` (default `~/.canli/ledgers`); nothing leaves
+your machine. Twenty variants of pure noise, recorded this way, give a best annualized Sharpe of
+about 1.5, a luck-alone expectation of about 1.7 and a deflated Sharpe near 0.4: the ledger calls
+that winner what it is. The statistics are the same checked code as `validate_deflated_sharpe` and
+`validate_overfitting`; `test/ledger.test.mjs` checks both directions (noise is flagged, a real edge
+among noise keeps a deflated Sharpe above 0.95).
+
 ## Auditing a backtest in one call
 
 `audit_backtest` takes one strategy's return series and, ideally, every variant's returns
@@ -444,7 +468,8 @@ A client sends the model the whole tool list on every turn, and it is most of ea
 a validation result is a few hundred tokens, the list of every tool several thousand. A client
 that needs one kind of tool can list only that kind, with `CANLI_TOOLSETS` (stdio) or
 `?toolsets=` (hosted endpoint). The default is every toolset except `company`, whose one tool
-canli-fundamentals-mcp does better and point in time; `all` adds it. `get_key` is listed only when
+canli-fundamentals-mcp does better and point in time, and `ledger`, which keeps files on your machine
+and is local only; `all` adds both. `get_key` is listed only when
 no key is configured.
 
 | toolset | tools |
@@ -454,20 +479,22 @@ no key is configured.
 | `company` | `company_financial_history` |
 | `status` | `service_status` |
 | `lab` | `backtest_strategy`, `summarize_series`, `stress_test`, `check_feasibility`, `check_leakage`, `placebo_test` |
+| `ledger` | `ledger_record_trial`, `ledger_summary`, `ledger_export` (stdio only) |
 
 Measured with `bench/tool_list_tokens.py` (tokenizer: tiktoken `o200k_base`; other models'
 tokenizers give different absolute counts), in the shape an OpenAI-style client sends the list:
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| (default) | 19 | 5,978 | 96% |
-| (default, with CANLI_KEY) | 18 | 5,842 | 93% |
-| `all` | 20 | 6,249 | 100% |
-| `validate` | 11 | 3,658 | 59% |
+| (default) | 19 | 5,978 | 85% |
+| (default, with CANLI_KEY) | 18 | 5,842 | 83% |
+| `all` | 23 | 7,019 | 100% |
+| `validate` | 11 | 3,658 | 52% |
 | `receipts` | 1 | 182 | 3% |
 | `company` | 1 | 273 | 4% |
 | `status` | 1 | 89 | 1% |
-| `lab` | 6 | 2,055 | 33% |
+| `lab` | 6 | 2,055 | 29% |
+| `ledger` | 3 | 772 | 11% |
 
 Providers cache a tool list that is identical from turn to turn and bill the cached part at a
 fraction of the price (`test/tool-list-stable.test.mjs` keeps each list byte-stable); a smaller list

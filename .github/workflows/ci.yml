@@ -98,6 +98,9 @@ jobs:
       - run: npm ci --prefix mcp-research
       - run: npm audit --prefix mcp-research --audit-level=high
       - run: npm test --prefix mcp-research
+      - run: npm ci --prefix mcp-backtest
+      - run: npm audit --prefix mcp-backtest --audit-level=high
+      - run: npm test --prefix mcp-backtest
       - run: npm ci --prefix mcp-fundamentals
       - run: npm audit --prefix mcp-fundamentals --audit-level=high
       - run: npm test --prefix mcp-fundamentals

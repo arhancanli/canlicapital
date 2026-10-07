@@ -112,6 +112,18 @@
     {
       "name": "placebo_test",
       "description": "Run a whole research pipeline on placebo data where nothing can be predicted and rank its real result"
+    },
+    {
+      "name": "ledger_record_trial",
+      "description": "Record every strategy variant you try in one search; returns the trial count and the best trial's deflated Sharpe after counting all of them (local, hash-chained file)."
+    },
+    {
+      "name": "ledger_summary",
+      "description": "The verdict on a whole search: best trial, the Sharpe luck alone reaches over that many trials, its deflated Sharpe and the probability of backtest overfitting."
+    },
+    {
+      "name": "ledger_export",
+      "description": "Export a ledger with its hash chain, so anyone can check that no trial was removed, reordered or changed after it was recorded."
     }
   ],
   "user_config": {
