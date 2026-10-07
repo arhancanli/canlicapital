@@ -1,0 +1,58 @@
+// Every tool in one catalog, grouped into toolsets. A tool is
+//   { name, toolset, title, description, keywords, input (strict zod object), run(args) -> object }
+// and runs the same way whether it is listed directly or reached through run_tool.
+import { z } from "zod";
+
+import { compact } from "./math.mjs";
+import { TOOLS as PERFORMANCE } from "./tools/performance.mjs";
+
+export const TOOLSETS = Object.freeze({
+  performance: { title: "Performance and risk", tools: PERFORMANCE },
+});
+
+export const CATALOG = Object.freeze(Object.entries(TOOLSETS).flatMap(([toolset, t]) => t.tools.map((tool) => Object.freeze({ ...tool, toolset }))));
+export const BY_NAME = new Map(CATALOG.map((t) => [t.name, t]));
+
+if (BY_NAME.size !== CATALOG.length) throw new Error("Duplicate tool name in the catalog");
+
+// Runs one tool on raw arguments: validates, computes, rounds. Throws an Error whose message says
+// what to fix; callers turn it into an MCP error result.
+export function runTool(name, args) {
+  const tool = BY_NAME.get(name);
+  if (!tool) throw new Error(`No tool ${name}. Use find_tool to search the ${CATALOG.length} tools.`);
+  const parsed = tool.input.safeParse(args ?? {});
+  if (!parsed.success) {
+    const issues = parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ");
+    throw new Error(`${name}: ${issues}. describe_tool ${name} gives the exact input schema.`);
+  }
+  return compact(tool.run(parsed.data));
+}
+
+const words = (s) => String(s ?? "").toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 1);
+
+// Ranks tools by how well their name, title, keywords and description match the query words.
+export function findTools(query, { toolset, limit = 8 } = {}) {
+  const q = words(query);
+  const scored = [];
+  for (const t of CATALOG) {
+    if (toolset && t.toolset !== toolset) continue;
+    const name = words(t.name.replace(/_/g, " ")), title = words(t.title), kw = words(t.keywords), desc = words(t.description);
+    let s = 0;
+    for (const w of q) {
+      if (t.name === w || t.name.includes(w)) s += 4;
+      if (name.includes(w)) s += 3;
+      if (title.some((x) => x.startsWith(w))) s += 2;
+      if (kw.some((x) => x.startsWith(w))) s += 2;
+      if (desc.some((x) => x.startsWith(w))) s += 1;
+    }
+    if (s > 0 || q.length === 0) scored.push([s, t]);
+  }
+  scored.sort((a, b) => b[0] - a[0] || a[1].name.localeCompare(b[1].name));
+  return scored.slice(0, limit).map(([, t]) => t);
+}
+
+export function inputJsonSchema(tool) {
+  const s = z.toJSONSchema(tool.input, { io: "input" });
+  delete s.$schema;
+  return s;
+}
