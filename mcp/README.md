@@ -4,6 +4,7 @@
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arhancanli/canli-validation-mcp/badge)](https://scorecard.dev/viewer/?uri=github.com/arhancanli/canli-validation-mcp)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14954/badge)](https://www.bestpractices.dev/projects/14954)
 [![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
+[![Smithery](https://smithery.ai/badge/arhancanli8/canli-validation)](https://smithery.ai/servers/arhancanli8/canli-validation)
 
 **Is your best backtest real, or just the luckiest of the variants you tried?** This MCP server
 lets Claude, Cursor or any MCP client answer that with the standard corrections: the deflated
