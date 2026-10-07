@@ -1,6 +1,6 @@
 {
   "name": "canli-validation-mcp",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "Check whether a backtest is real: deflated Sharpe, CSCV probability of backtest overfitting, minimum track record and backtest length, haircut Sharpe and luck-equivalent trials, as an MCP server. Local mode, hosted endpoint, signed receipts.",
   "keywords": [
     "mcp",
@@ -38,7 +38,7 @@
     "test:package": "node test/package-smoke.mjs"
   },
   "dependencies": {
-    "@modelcontextprotocol/server": "2.1.0",
+    "@modelcontextprotocol/server": "2.3.1",
     "zod": "4.6.5"
   },
   "mcpName": "io.github.arhancanli/canli-validation-mcp",
@@ -52,7 +52,7 @@
     "url": "https://github.com/arhancanli/canlicapital/issues"
   },
   "devDependencies": {
-    "@modelcontextprotocol/client": "2.1.0",
+    "@modelcontextprotocol/client": "2.3.1",
     "fast-check": "4.10.2"
   }
 }

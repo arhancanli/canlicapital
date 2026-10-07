@@ -339,8 +339,9 @@ async function runValidator(session, tool, path, body) {
 const sameJson = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 // audit_backtest: one calibrated test first, then the checks behind it.
-//   headline  with every variant's returns, Hansen's SPA (validate_reality_check, with its receipt);
-//             with one series, the single-series test Null Zoo v1 chose. Either way the result quotes
+//   headline  with every variant's returns, the test Null Zoo v1 chose from validate_reality_check's
+//             result (White's Reality Check since 0.12.0), with its receipt; with one series, the
+//             single-series test it chose. Either way the result quotes
 //             that test's measured false-positive rate on returns shaped like these
 //             (local/js/null-zoo-v1-sizes.js) and the worst across the nine families.
 //   checks    the deflated Sharpe (an estimate), the minimum track record and, with variants, CSCV
