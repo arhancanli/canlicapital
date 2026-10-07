@@ -114,6 +114,7 @@ for (const extra of [
   "research-index.json",
   "system-films/state.json",
   "stats/adoption.json",
+  "datasets/filing-facts/v0/leaderboard.json",
 ]) {
   const file = resolve(DIST, extra);
   if (existsSync(file)) artifacts.push(file);
