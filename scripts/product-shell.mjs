@@ -182,6 +182,7 @@ ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><s
       <a href="https://app.canlicapital.com/dashboard">Live record</a>
       <a href="/systems">ALPHAC systems</a>
       <a href="/research">Research papers</a>
+      <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
       <a href="/trials">Trial union</a>
     </nav>
     <nav aria-label="Evidence and verification">
