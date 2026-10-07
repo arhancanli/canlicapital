@@ -24,7 +24,7 @@ test("every registered tool is in exactly one toolset, and every toolset name is
   const members = Object.values(TOOLSETS).flat();
   assert.equal(new Set(members).size, members.length, "no tool is in two toolsets");
   assert.deepEqual([...members].sort(), [...all].sort());
-  assert.equal(all.length, 20, "0.12.0 folded get_receipt into verify_receipt; check_leakage and placebo_test joined the lab");
+  assert.equal(all.length, 23, "0.12.0 folded get_receipt into verify_receipt; check_leakage and placebo_test joined the lab; the ledger added three");
   // A real McpServer accepts the same registrations.
   registerTools(new McpServer({ name: "t", version: "0" }), createSession({ toolsets: ["company"] }));
 });
@@ -34,12 +34,12 @@ test("each toolset lists exactly its own tools", () => {
   assert.deepEqual(registeredNames(["receipts", "company"]).sort(), [...TOOLSETS.receipts, ...TOOLSETS.company].sort());
 });
 
-test("configuration: empty or unsubstituted means every toolset but company; 'all' adds it; names are trimmed and case-folded; unknown names are refused", () => {
+test("configuration: empty or unsubstituted means every toolset but company and ledger; 'all' adds them; names are trimmed and case-folded; unknown names are refused", () => {
   const every = Object.keys(TOOLSETS);
-  for (const v of [undefined, "", "  ", "${CANLI_TOOLSETS}"]) assert.deepEqual(configuredToolsets(v), every.filter((n) => n !== "company"), String(v));
+  for (const v of [undefined, "", "  ", "${CANLI_TOOLSETS}"]) assert.deepEqual(configuredToolsets(v), every.filter((n) => n !== "company" && n !== "ledger"), String(v));
   for (const v of ["all", "ALL"]) assert.deepEqual(configuredToolsets(v), every, v);
   assert.deepEqual(configuredToolsets(" Company , validate,company"), ["company", "validate"]);
-  assert.throws(() => configuredToolsets("company,validaet"), /Unknown toolset validaet; choose from validate, receipts, company, status, lab or all/);
+  assert.throws(() => configuredToolsets("company,validaet"), /Unknown toolset validaet; choose from validate, receipts, company, status, lab, ledger or all/);
   assert.throws(() => configuredToolsets(","), /Unknown toolset/);
 });
 

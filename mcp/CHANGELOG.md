@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- New, opt-in toolset `ledger` (stdio): `ledger_record_trial`, `ledger_summary` and `ledger_export`.
+  An agent records every strategy variant it tries in one search, and the best is judged against
+  the whole search: the Sharpe the best of that many skill-less trials reaches by luck, the best
+  trial's deflated Sharpe ratio after counting every trial, and the probability of backtest
+  overfitting (CSCV) when trials share aligned returns. Trials are hash-chained in a local file
+  (`CANLI_LEDGER_DIR`, default `~/.canli/ledgers`), so an exported search shows any trial removed,
+  reordered or changed. The default tool list is unchanged (772 tokens per turn when enabled).
+
 ## 0.13.1 (2026-10-07)
 
 - Security: the MCP SDK (`@modelcontextprotocol/server` and `/client`) moves from 2.1.0 to 2.3.1 for
