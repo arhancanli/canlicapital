@@ -5,11 +5,12 @@
 // instance, so its short file cache serves repeat requests.
 import * as released from "../mcp-released/research/src/server.mjs";
 import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
+import { withDataReceipts } from "./_lib/data-receipts.js";
 
 export function createResearchHandler({ session = released.createSession() } = {}) {
   // A release with prompts and resources exports registerAll; an older one only its tools.
   const register = released.registerAll ?? released.registerTools;
-  return createStatelessMcpHandler({ serverInfo: released.SERVER_INFO, instructions: released.SERVER_INSTRUCTIONS, register: (server) => register(server, session), path: "/mcp/research" });
+  return createStatelessMcpHandler({ serverInfo: released.SERVER_INFO, instructions: released.SERVER_INSTRUCTIONS, register: (server) => register(withDataReceipts(server, { path: "/mcp/research", serverName: released.SERVER_INFO.name, serverVersion: released.SERVER_INFO.version }), session), path: "/mcp/research" });
 }
 
 export default createResearchHandler();

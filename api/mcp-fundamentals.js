@@ -9,6 +9,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { createSession, registerTools, SERVER_INFO, SERVER_INSTRUCTIONS } from "../mcp-released/fundamentals/src/server.mjs";
+import { withDataReceipts } from "./_lib/data-receipts.js";
 import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
 
 // A private cache directory per function instance (mkdtemp: unique name, owner-only), never a
@@ -16,7 +17,7 @@ import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
 const privateCacheDir = () => mkdtempSync(join(tmpdir(), "canli-fundamentals-"));
 
 export function createFundamentalsHandler({ session = createSession({ cacheDir: privateCacheDir() }) } = {}) {
-  return createStatelessMcpHandler({ serverInfo: SERVER_INFO, instructions: SERVER_INSTRUCTIONS, register: (server) => registerTools(server, session), path: "/mcp/fundamentals" });
+  return createStatelessMcpHandler({ serverInfo: SERVER_INFO, instructions: SERVER_INSTRUCTIONS, register: (server) => registerTools(withDataReceipts(server, { path: "/mcp/fundamentals", serverName: SERVER_INFO.name, serverVersion: SERVER_INFO.version }), session), path: "/mcp/fundamentals" });
 }
 
 export default createFundamentalsHandler();
