@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.14.0 (2026-10-07)
+
 - New, opt-in toolset `ledger` (stdio): `ledger_record_trial`, `ledger_summary` and `ledger_export`.
   An agent records every strategy variant it tries in one search, and the best is judged against
   the whole search: the Sharpe the best of that many skill-less trials reaches by luck, the best

@@ -14,6 +14,7 @@ import { computeLocally } from "./local.mjs";
 import { validateLocalJournalEvidence } from "./journal-evidence.mjs";
 import { readMatrixFile, readSeriesFile } from "./series-file.mjs";
 import { LAB_TOOLS, labToolSpecs, registerCodeResources, registerLabPrompts } from "./lab.mjs";
+import { LEDGER_TOOLS, ledgerToolSpecs } from "./ledger.mjs";
 import { verifyReceipt } from "./local/js/receipt-statement.js";
 import { annualizeDecay, blockBootstrapT, fixNext, neweyWestT, nullZooFamily, returnShape, searchFromVariants, sharpeInterval } from "./local/js/audit-core.js";
 import { NULL_ZOO_V1 } from "./local/js/null-zoo-v1-sizes.js";
@@ -80,12 +81,15 @@ export const TOOLSETS = Object.freeze({
   company: Object.freeze(["company_financial_history"]),
   status: Object.freeze(["service_status"]),
   lab: Object.freeze([...LAB_TOOLS]),
+  ledger: Object.freeze([...LEDGER_TOOLS]),
 });
 
 // CANLI_TOOLSETS=validate,company (or ?toolsets= on the hosted endpoint): a comma-separated list of
 // TOOLSETS names, or "all". Empty or unsubstituted means the default; an unknown name is refused, so
 // a typo never silently leaves a client without the tools it asked for.
-export const DEFAULT_TOOLSETS = Object.freeze(Object.keys(TOOLSETS).filter((name) => name !== "company"));
+// The trial ledger is opt-in (CANLI_TOOLSETS=...,ledger or "all"): it keeps files on this machine, and
+// the default tool list, re-sent every turn, stays the size it was.
+export const DEFAULT_TOOLSETS = Object.freeze(Object.keys(TOOLSETS).filter((name) => name !== "company" && name !== "ledger"));
 export function configuredToolsets(value) {
   const v = configuredKey(value);
   if (!v) return [...DEFAULT_TOOLSETS];
@@ -782,6 +786,8 @@ export function registerTools(server, session) {
     (args) => toolCompanyFinancialHistory(session, args),
   );
   for (const [name, config, handler] of labToolSpecs(session)) register(name, config, handler);
+  // The ledger keeps state in files on this machine; the hosted endpoint is stateless, so it never lists it.
+  if (!session.hosted) for (const [name, config, handler] of ledgerToolSpecs(session)) register(name, config, handler);
   return catalog;
 }
 
