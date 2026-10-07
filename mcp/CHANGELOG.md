@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Every tool parameter now has a description (12 had none: five in `check_feasibility`, three in
+  `check_leakage`, four in `placebo_test`), with defaults and an example where a value is not
+  obvious. Tool descriptions now start with what the tool does (`Compute`, `Estimate`, `Test
+  whether`...). Names, inputs and results are unchanged. The default tool list grows from 5,978
+  to 6,142 tokens (o200k_base, +2.7%).
+
 ## 0.14.0 (2026-10-07)
 
 - New, opt-in toolset `ledger` (stdio): `ledger_record_trial`, `ledger_summary` and `ledger_export`.
