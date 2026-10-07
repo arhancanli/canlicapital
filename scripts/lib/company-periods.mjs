@@ -158,6 +158,7 @@ export function companyPeriods(companyfacts) {
       }
     }
   }
+  addFourthQuarters(periods);
   const out = [];
   for (const p of periods.values()) {
     const n = Object.keys(p.measures).length;
@@ -169,6 +170,36 @@ export function companyPeriods(companyfacts) {
     out.push({ ...rest, accn: firstFiled.accn, form: firstFiled.form, filed: firstFiled.filed });
   }
   return out.sort((a, b) => (a.end === b.end ? (a.kind === 'year' ? 1 : -1) : a.end.localeCompare(b.end)));
+}
+
+// Companies do not file a fourth-quarter report: Q4 appears only inside the full year. Where a fiscal year
+// and its first three quarters are all reported, Q4 of a flow measure is the year minus those quarters,
+// marked `derived` with the four inputs so the page can show the arithmetic. Per-share figures and share
+// counts are never derived (they do not add up across quarters). Balance-sheet values at Q4's end are the
+// year-end values, reported as such.
+const NOT_ADDITIVE = new Set(['eps_basic', 'eps_diluted', 'diluted_shares']);
+function addFourthQuarters(periods) {
+  for (const year of [...periods.values()].filter(p => p.kind === 'year')) {
+    const key = `fy${year.fy}-q4`;
+    if (periods.has(key)) continue;
+    const qs = [1, 2, 3].map(q => periods.get(`fy${year.fy}-q${q}`));
+    if (qs.some(q => !q) || qs[2].end >= year.end) continue;
+    const measures = {};
+    for (const m of PERIOD_MEASURES) {
+      if (m.kind === 'stock') { if (year.measures[m.key]) measures[m.key] = { ...year.measures[m.key] }; continue; }
+      if (m.annualOnly || NOT_ADDITIVE.has(m.key)) continue;
+      const parts = [year, ...qs].map(p => p.measures[m.key]);
+      if (parts.some(x => !x) || new Set(parts.map(x => x.unit)).size !== 1) continue;
+      const val = parts[0].val - parts[1].val - parts[2].val - parts[3].val;
+      measures[m.key] = { tag: parts[0].tag, val: Math.round(val * 1e6) / 1e6, unit: parts[0].unit, accn: year.measures[m.key].accn,
+        form: year.measures[m.key].form, filed: year.measures[m.key].filed,
+        derived: { year: parts[0].val, q1: parts[1].val, q2: parts[2].val, q3: parts[3].val } };
+    }
+    if (!Object.values(measures).some(m => m.derived)) continue;
+    const start = new Date(Date.parse(`${qs[2].end}T00:00:00Z`) + DAY).toISOString().slice(0, 10);
+    periods.set(key, { kind: 'quarter', fy: year.fy, q: 4, key, start, end: year.end, measures, derived: true,
+      sources: Object.values(year.measures).map(m => ({ accn: m.accn, form: m.form, filed: m.filed })) });
+  }
 }
 
 // The same period one year earlier, for year-on-year comparisons.

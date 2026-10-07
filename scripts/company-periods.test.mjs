@@ -49,3 +49,15 @@ test('the prior-year period is the same quarter one fiscal year earlier', () => 
   assert.equal(prior.key, 'fy2024-q3');
   assert.equal(prior.end, '2024-06-29');
 });
+
+test('fourth quarters are the fiscal year minus its first three quarters, shown as derived', () => {
+  const ps = companyPeriods(snapshots['MICROSOFT CORPORATION']);
+  const q4 = ps.find(p => p.key === 'fy2025-q4');
+  assert.ok(q4 && q4.derived);
+  assert.equal(q4.end, '2025-06-30');
+  const r = q4.measures.revenue;
+  assert.equal(r.val, r.derived.year - r.derived.q1 - r.derived.q2 - r.derived.q3);
+  assert.equal(r.derived.year, 281724000000);
+  assert.equal(q4.measures.eps_diluted, undefined, 'per-share figures are never derived');
+  assert.equal(q4.measures.assets.val, ps.find(p => p.key === 'fy2025').measures.assets.val);
+});
