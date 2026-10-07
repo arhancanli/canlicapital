@@ -242,6 +242,9 @@ export const EXAMPLE_ARGS = Object.freeze({
   check_feasibility: { broker: "alpaca", asset_class: "us_equity", account: "margin", capital_usd: 250000, orders_per_rebalance: 40, rebalances_per_year: 52, turnover_per_year: 8, adv_usd: 20000000, daily_volatility: 0.02, copies: 1, expected_gross_return: 0.12, spread_and_fees_bps: 3 },
   check_leakage: { action: "plan", observations: 2520, prefixes: 5 },
   placebo_test: { action: "plan", data_file: "prices.csv" },
+  ledger_record_trial: { ledger: "sma-search", label: "sma 20/100, 5 bps", sharpe_annualized: 1.1, observations: 1260, periods_per_year: 252, params: { fast: 20, slow: 100 } },
+  ledger_summary: { ledger: "sma-search" },
+  ledger_export: { ledger: "sma-search" },
 });
 
 const usesFile = (args) => Object.keys(args).some((k) => k.endsWith("_file"));
