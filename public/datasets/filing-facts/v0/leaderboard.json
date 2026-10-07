@@ -6,9 +6,53 @@
     "per_template": 30,
     "templates": 5
   },
-  "models": 1,
-  "models_with_both_arms": 1,
+  "models": 5,
+  "models_with_both_arms": 2,
   "rows": [
+    {
+      "model": "gpt-5-mini",
+      "provider": "openai",
+      "closed": {
+        "model": "gpt-5-mini",
+        "arm": "closed",
+        "provider": "openai",
+        "date": "2026-10-07",
+        "items": 150,
+        "correct": 29,
+        "accuracy": 0.1933,
+        "ci95": [
+          0.1381,
+          0.2639
+        ],
+        "errors": 0,
+        "numbers_given": 17,
+        "numbers_wrong": 1,
+        "unanswerable_abstention": 0.9667,
+        "mean_tokens": 835,
+        "dataset_sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+        "evidence": "/datasets/filing-facts/v0/runs/2026-10-07/gpt-5-mini-closed.json"
+      },
+      "mcp": {
+        "model": "gpt-5-mini",
+        "arm": "mcp",
+        "provider": "openai",
+        "date": "2026-10-07",
+        "items": 150,
+        "correct": 108,
+        "accuracy": 0.72,
+        "ci95": [
+          0.6433,
+          0.7857
+        ],
+        "errors": 3,
+        "numbers_given": 82,
+        "numbers_wrong": 0.0244,
+        "unanswerable_abstention": 0.9333,
+        "mean_tokens": 7043,
+        "dataset_sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+        "evidence": "/datasets/filing-facts/v0/runs/2026-10-07/gpt-5-mini-mcp.json"
+      }
+    },
     {
       "model": "gpt-5.4-mini",
       "provider": "openai",
@@ -51,6 +95,78 @@
         "mean_tokens": 3848,
         "dataset_sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
         "evidence": "/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-mini-mcp.json"
+      }
+    },
+    {
+      "model": "gpt-5",
+      "provider": "openai",
+      "closed": {
+        "model": "gpt-5",
+        "arm": "closed",
+        "provider": "openai",
+        "date": "2026-10-07",
+        "items": 150,
+        "correct": 30,
+        "accuracy": 0.2,
+        "ci95": [
+          0.1438,
+          0.2711
+        ],
+        "errors": 0,
+        "numbers_given": 24,
+        "numbers_wrong": 1,
+        "unanswerable_abstention": 1,
+        "mean_tokens": 1729,
+        "dataset_sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+        "evidence": "/datasets/filing-facts/v0/runs/2026-10-07/gpt-5-closed.json"
+      }
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "closed": {
+        "model": "gpt-4.1-mini",
+        "arm": "closed",
+        "provider": "openai",
+        "date": "2026-10-07",
+        "items": 150,
+        "correct": 27,
+        "accuracy": 0.18,
+        "ci95": [
+          0.1268,
+          0.2492
+        ],
+        "errors": 0,
+        "numbers_given": 64,
+        "numbers_wrong": 0.9844,
+        "unanswerable_abstention": 0.8667,
+        "mean_tokens": 202,
+        "dataset_sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+        "evidence": "/datasets/filing-facts/v0/runs/2026-10-07/gpt-4.1-mini-closed.json"
+      }
+    },
+    {
+      "model": "gpt-5.4",
+      "provider": "openai",
+      "closed": {
+        "model": "gpt-5.4",
+        "arm": "closed",
+        "provider": "openai",
+        "date": "2026-10-07",
+        "items": 150,
+        "correct": 19,
+        "accuracy": 0.1267,
+        "ci95": [
+          0.0826,
+          0.1894
+        ],
+        "errors": 0,
+        "numbers_given": 112,
+        "numbers_wrong": 0.9732,
+        "unanswerable_abstention": 0.5333,
+        "mean_tokens": 201,
+        "dataset_sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+        "evidence": "/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-closed.json"
       }
     }
   ],

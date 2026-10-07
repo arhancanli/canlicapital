@@ -117,7 +117,7 @@ export function render(data) {
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>${esc(title)} | Canli Capital</title>
+<title>FilingFacts: AI models on SEC filing questions | Canli Capital</title>
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${ORIGIN}${ROUTE}" />
 <meta name="author" content="${AUTHOR}" />

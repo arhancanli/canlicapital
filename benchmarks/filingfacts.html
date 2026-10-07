@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FilingFacts benchmark: AI models on SEC filing questions | Canli Capital</title>
+<title>FilingFacts: AI models on SEC filing questions | Canli Capital</title>
 <meta name="description" content="How often AI models answer questions about SEC filings correctly on their own and with an MCP server that reads the filings, from public, rescorable run records." />
 <link rel="canonical" href="https://canlicapital.com/benchmarks/filingfacts" />
 <meta name="author" content="Arhan Canli" />
@@ -97,7 +97,7 @@
     <h1 class="paper__title">FilingFacts benchmark: AI models on SEC filing questions</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-      <p class="hub__standfirst">On 150 questions about SEC filings, gpt-5.4-mini answered 21.3% correctly on its own and 66.0% with an MCP server that reads the filings.</p>
+      <p class="hub__standfirst">On 150 questions about SEC filings, gpt-5-mini answered 19.3% correctly on its own and 72.0% with an MCP server that reads the filings.</p>
       <p>Each question asks for a figure from a company's SEC filings, a change or ratio between two of them, or
       a figure the filings do not contain. The expected answer is computed from the filings' XBRL data and
       rechecked by a separate program. "Closed book" is the model alone; "with MCP" gives it one tool,
@@ -105,7 +105,7 @@
       <div role="region" aria-label="FilingFacts leaderboard" tabindex="0"><table class="lb__table">
         <caption>Accuracy on 150 questions (30 per question type), with 95% intervals</caption>
         <thead><tr><th scope="col">Model</th><th scope="col">Closed book</th><th scope="col">With MCP</th><th scope="col">Closed book: numbers given that were wrong</th><th scope="col">Run records</th></tr></thead>
-        <tbody><tr><th scope="row">gpt-5.4-mini</th><td>21.3% <span class="lb__ci">[15.5%, 28.6%]</span></td><td>66.0% <span class="lb__ci">[58.1%, 73.1%]</span></td><td>96.4% of 84</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-mini-closed.json">closed run</a> · <a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-mini-mcp.json">MCP run</a></td></tr></tbody>
+        <tbody><tr><th scope="row">gpt-5-mini</th><td>19.3% <span class="lb__ci">[13.8%, 26.4%]</span></td><td>72.0% <span class="lb__ci">[64.3%, 78.6%]</span></td><td>100.0% of 17</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5-mini-closed.json">closed run</a> · <a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5-mini-mcp.json">MCP run</a></td></tr><tr><th scope="row">gpt-5.4-mini</th><td>21.3% <span class="lb__ci">[15.5%, 28.6%]</span></td><td>66.0% <span class="lb__ci">[58.1%, 73.1%]</span></td><td>96.4% of 84</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-mini-closed.json">closed run</a> · <a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-mini-mcp.json">MCP run</a></td></tr><tr><th scope="row">gpt-5</th><td>20.0% <span class="lb__ci">[14.4%, 27.1%]</span></td><td>not yet run</td><td>100.0% of 24</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5-closed.json">closed run</a></td></tr><tr><th scope="row">gpt-4.1-mini</th><td>18.0% <span class="lb__ci">[12.7%, 24.9%]</span></td><td>not yet run</td><td>98.4% of 64</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-4.1-mini-closed.json">closed run</a></td></tr><tr><th scope="row">gpt-5.4</th><td>12.7% <span class="lb__ci">[8.3%, 18.9%]</span></td><td>not yet run</td><td>97.3% of 112</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-closed.json">closed run</a></td></tr></tbody>
       </table></div>
       <h2>What the runs show</h2>
       <p>Without the filings, models mostly either decline or state a number, and the numbers they state are
@@ -172,6 +172,7 @@
       <a href="https://app.canlicapital.com/dashboard">Live record</a>
       <a href="/systems">ALPHAC systems</a>
       <a href="/research">Research papers</a>
+      <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
       <a href="/trials">Trial union</a>
     </nav>
     <nav aria-label="Evidence and verification">
