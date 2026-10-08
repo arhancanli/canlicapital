@@ -13,6 +13,7 @@ import { TOOLS as PERFORMANCE } from "./tools/performance.mjs";
 import { TOOLS as PORTFOLIO } from "./tools/portfolio.mjs";
 import { TOOLS as RATES } from "./tools/rates.mjs";
 import { TOOLS as SIZING } from "./tools/sizing.mjs";
+import { TOOLS as STRATEGIES } from "./tools/strategies.mjs";
 import { TOOLS as TVM } from "./tools/tvm.mjs";
 import { TOOLS as VALUATION } from "./tools/valuation.mjs";
 
@@ -26,6 +27,7 @@ export const TOOLSETS = Object.freeze({
   execution: { title: "Execution and microstructure", tools: EXECUTION },
   sizing: { title: "Position sizing and trade risk", tools: SIZING },
   crypto_fx: { title: "Crypto and FX", tools: CRYPTO_FX },
+  strategies: { title: "Strategy backtests", tools: STRATEGIES },
   tvm: { title: "Time value and corporate finance", tools: TVM },
   valuation: { title: "Valuation and fundamental scores", tools: VALUATION },
 });
