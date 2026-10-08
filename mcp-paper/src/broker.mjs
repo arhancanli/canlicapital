@@ -73,14 +73,29 @@ export function orderLog(home) {
   };
 }
 
-export function createBroker({ env = process.env, home, fetchImpl = globalThis.fetch, now = () => new Date() } = {}) {
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+export function createBroker({ env = process.env, home, fetchImpl = globalThis.fetch, now = () => new Date(), timeoutMs = 10000 } = {}) {
   const secret = randomBytes(32), used = new Set(), log = orderLog(home);
-  async function call(base, path, { method = "GET", body } = {}) {
+  // Every request times out after 10 s. Reads retry twice on network errors, 429 and 5xx (with
+  // backoff); writes never retry here, because send() resolves uncertain orders by client order id.
+  async function call(base, path, { method = "GET", body, retries = method === "GET" ? 2 : 0 } = {}) {
     const c = paperCredentials(env);
-    const res = await fetchImpl(`${base}${path}`, { method, headers: { "APCA-API-KEY-ID": c.id, "APCA-API-SECRET-KEY": c.secret, ...(body ? { "content-type": "application/json" } : {}) }, body: body ? JSON.stringify(body) : undefined });
-    const text = await res.text();
-    if (!res.ok) throw new Error(`Alpaca paper ${method} ${path.split("?")[0]} returned ${res.status}: ${text.slice(0, 300)}`);
-    return text ? JSON.parse(text) : null;
+    for (let attempt = 0; ; attempt++) {
+      let res, text;
+      try {
+        res = await fetchImpl(`${base}${path}`, { method, headers: { "APCA-API-KEY-ID": c.id, "APCA-API-SECRET-KEY": c.secret, ...(body ? { "content-type": "application/json" } : {}) }, body: body ? JSON.stringify(body) : undefined, signal: AbortSignal.timeout(timeoutMs) });
+        text = await res.text();
+      } catch (e) {
+        if (attempt < retries) { await sleep(250 * 4 ** attempt); continue; }
+        const err = new Error(`Alpaca paper ${method} ${path.split("?")[0]} failed: ${e.name === "TimeoutError" ? `no response in ${timeoutMs / 1000} s` : e.message}`);
+        err.uncertain = true;
+        throw err;
+      }
+      if ((res.status === 429 || res.status >= 500) && attempt < retries) { await sleep(250 * 4 ** attempt); continue; }
+      if (!res.ok) { const err = new Error(`Alpaca paper ${method} ${path.split("?")[0]} returned ${res.status}: ${text.slice(0, 300)}`); err.status = res.status; err.uncertain = res.status >= 500; throw err; }
+      return text ? JSON.parse(text) : null;
+    }
   }
   const sign = (payload) => createHmac("sha256", secret).update(payload).digest("base64url");
 
@@ -187,7 +202,15 @@ export function createBroker({ env = process.env, home, fetchImpl = globalThis.f
       for (const [i, o] of orders.entries()) {
         const body = { symbol: o.symbol, qty: String(o.qty), side: o.side, type: o.type, time_in_force: o.tif, client_order_id: `canli-${tag}-${i}`, ...(o.limit_price !== undefined ? { limit_price: String(o.limit_price) } : {}) };
         try { const r = await call(PAPER_TRADING, "/v2/orders", { method: "POST", body }); rows.push([o.symbol, o.side, o.qty, r.id, r.status, body.client_order_id]); }
-        catch (e) { rows.push([o.symbol, o.side, o.qty, null, e.message, body.client_order_id]); }
+        catch (e) {
+          // A timeout, a 5xx or a duplicate-id refusal leaves the order's fate unknown: ask Alpaca by
+          // the client order id instead of guessing, so nothing is reported placed or missing wrongly.
+          if (e.uncertain || e.status === 422) {
+            try { const r = await call(PAPER_TRADING, `/v2/orders:by_client_order_id?client_order_id=${encodeURIComponent(body.client_order_id)}`); rows.push([o.symbol, o.side, o.qty, r.id, r.status, body.client_order_id]); continue; }
+            catch (e2) { if (e2.status !== 404) { rows.push([o.symbol, o.side, o.qty, null, `unknown: ${e.message}; look up ${body.client_order_id} before resending`, body.client_order_id]); continue; } }
+          }
+          rows.push([o.symbol, o.side, o.qty, null, `not placed: ${e.message}`, body.client_order_id]);
+        }
       }
       log.append({ at: now().toISOString(), kind: "send", token_hash: sha256(mac), rows });
       return { paper: true, columns: ["symbol", "side", "qty", "order_id", "status", "client_order_id"], rows, order_log: log.head(), note: "Each order carries a client_order_id; Alpaca refuses a repeated id, so a retry cannot fill twice." };

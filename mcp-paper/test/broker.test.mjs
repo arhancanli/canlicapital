@@ -11,12 +11,14 @@ import { createBroker, orderLog, paperCredentials } from "../src/broker.mjs";
 
 const KEYS = { ALPACA_PAPER_KEY_ID: "PKTEST1234567890", ALPACA_PAPER_SECRET_KEY: "secret" };
 
-function fakeAlpaca({ open = true, quotes = { AAPL: [199.9, 200.1], MSFT: [399.8, 400.2], SPY: [499.95, 500.05] } } = {}) {
+function fakeAlpaca({ open = true, quotes = { AAPL: [199.9, 200.1], MSFT: [399.8, 400.2], SPY: [499.95, 500.05] }, failAfterPlacing = new Set(), flakyReads = 0 } = {}) {
   const calls = [], placed = new Map();
+  let flaky = flakyReads;
   const positions = [{ symbol: "MSFT", qty: "10", market_value: "4000", avg_entry_price: "380", unrealized_pl: "200" }];
   const fetchImpl = async (url, init = {}) => {
     calls.push({ url, method: init.method ?? "GET", headers: init.headers, body: init.body ? JSON.parse(init.body) : undefined });
     const u = new URL(url), reply = (status, body) => ({ ok: status < 300, status, text: async () => (body === undefined ? "" : JSON.stringify(body)) });
+    if ((init.method ?? "GET") === "GET" && flaky > 0) { flaky--; return reply(503, { message: "busy" }); }
     assert.ok(["paper-api.alpaca.markets", "data.alpaca.markets"].includes(u.host), `unexpected host ${u.host}`);
     if (u.pathname === "/v2/account") return reply(200, { status: "ACTIVE", currency: "USD", equity: "100000", cash: "96000", buying_power: "192000", trading_blocked: false, account_blocked: false });
     if (u.pathname === "/v2/positions") return reply(200, positions);
@@ -31,8 +33,10 @@ function fakeAlpaca({ open = true, quotes = { AAPL: [199.9, 200.1], MSFT: [399.8
       const b = JSON.parse(init.body);
       if (placed.has(b.client_order_id)) return reply(422, { message: "client_order_id must be unique" });
       placed.set(b.client_order_id, b);
+      if (failAfterPlacing.has(b.symbol)) throw new TypeError("fetch failed: socket hang up");
       return reply(200, { id: `ord-${placed.size}`, status: "accepted" });
     }
+    if (u.pathname === "/v2/orders:by_client_order_id") { const id = u.searchParams.get("client_order_id"); return placed.has(id) ? reply(200, { id: `ord-${[...placed.keys()].indexOf(id) + 1}`, status: "accepted" }) : reply(404, { message: "order not found" }); }
     if (u.pathname.startsWith("/v2/orders/") && init.method === "DELETE") return reply(204);
     return reply(404, { message: "not found" });
   };
@@ -44,7 +48,7 @@ function setup(opts = {}) {
   const fake = fakeAlpaca(opts);
   let t = Date.parse("2026-10-08T15:00:00Z");
   const clock = { advance: (s) => { t += s * 1000; } };
-  const broker = createBroker({ env: KEYS, home, fetchImpl: fake.fetchImpl, now: () => new Date(t) });
+  const broker = createBroker({ env: KEYS, home, fetchImpl: fake.fetchImpl, now: () => new Date(t), ...(opts.timeoutMs ? { timeoutMs: opts.timeoutMs } : {}) });
   return { home, fake, broker, clock, done: () => rmSync(home, { recursive: true, force: true }) };
 }
 
@@ -138,4 +142,22 @@ test("the order log is hash-chained and detects edits", async (t) => {
   const path = join(s.home, "paper-orders.jsonl"), lines = readFileSync(path, "utf8").split("\n").filter(Boolean);
   writeFileSync(path, `${lines[0].replace('"AAPL"', '"MSFT"')}\n${lines[1]}\n`);
   assert.equal(orderLog(s.home).head().verified, false);
+});
+
+test("reads retry through transient 503s; an order whose response is lost is resolved by its client order id", async (t) => {
+  const s = setup({ flakyReads: 2, failAfterPlacing: new Set(["AAPL"]) }); t.after(s.done);
+  const p = await s.broker.preview({ orders: [{ symbol: "AAPL", side: "buy", qty: 5 }, { symbol: "SPY", side: "buy", qty: 1 }] });
+  assert.equal(p.accepted, true, JSON.stringify(p.rows));
+  const sent = await s.broker.send({ token: p.token });
+  assert.deepEqual(sent.rows.map((r) => [r[0], r[4]]), [["AAPL", "accepted"], ["SPY", "accepted"]]);
+  assert.equal(s.fake.calls.filter((c) => c.method === "POST").length, 2);
+});
+
+test("a broker that never answers times out instead of hanging", async (t) => {
+  const home = mkdtempSync(join(tmpdir(), "canli-paper-")); t.after(() => rmSync(home, { recursive: true, force: true }));
+  const hang = (url, init) => new Promise((_, reject) => init.signal.addEventListener("abort", () => reject(init.signal.reason)));
+  const broker = createBroker({ env: KEYS, home, fetchImpl: hang, timeoutMs: 50 });
+  const t0 = Date.now();
+  await assert.rejects(broker.account(), /no response in 0.05 s/);
+  assert.ok(Date.now() - t0 < 5000);
 });
