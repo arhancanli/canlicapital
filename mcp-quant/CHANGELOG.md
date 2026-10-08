@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- `sleeve_tournament`: Hansen's SPA and Romano-Wolf StepM are now re-studentized in every resample,
+  the default mean block length is round(n^(1/3)) instead of floor(sqrt(n)), and White's Reality
+  Check is reported alongside. The 0.1.0 version held one variance estimate fixed across resamples,
+  which the Null Zoo benchmark measured rejecting 13.5% of skill-less AR(1) searches at a nominal
+  5% with long blocks; on our planted-trend test data it kept 24 sleeves where the corrected test
+  keeps 4.
+
 - `sleeve_tournament` verdict: no longer calls the effective-trials deflation "the fairer one"; on
   data with no edge it nearly passes a long-only winner. The verdict now says the raw count is the
   conservative bound and that deflation (Sharpe above zero) and SPA/StepM (beats the benchmark)

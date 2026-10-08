@@ -8,14 +8,17 @@
 // Multiple-testing machinery (all deterministic for a given seed):
 // - Deflated Sharpe ratio for the best sleeve, with the raw count of sleeves and with the effective
 //   number of independent sleeves (K^2 / sum of squared pairwise correlations).
-// - Hansen's SPA test against a benchmark, studentized with the stationary-bootstrap variance and
-//   computed the way the arch package does (lower, consistent and upper p-values), plus Romano-Wolf
-//   StepM for the set of sleeves that beat the benchmark with family-wise error control.
+// - White's Reality Check against a benchmark (unstudentized, as arch computes it), and Hansen's SPA
+//   test and Romano-Wolf StepM re-studentized in every resample: each bootstrap mean is divided by
+//   that resample's own standard deviation (Romano and Wolf 2005). The Null Zoo benchmark measured
+//   the fixed-variance studentization, which reuses one variance estimate, rejecting 9.4% of
+//   skill-less searches at block length 8 and 13.5% at 22 under AR(1) at a nominal 5%;
+//   re-studentizing brought it to 6.6%. The default mean block length is round(n^(1/3)).
 // - Probability of backtest overfitting by combinatorially symmetric cross-validation (CSCV).
 // The bootstrap draws come from mulberry32(seed), so anyone can regenerate them.
 import { z } from "zod";
 
-import { correlation, mean, moments, mulberry32, normCdf, normInv, lagProducts, quantile, std, variance } from "../math.mjs";
+import { correlation, mean, moments, mulberry32, normCdf, normInv, quantile, std, variance } from "../math.mjs";
 import { MAX_SERIES, ppyArg } from "../inputs.mjs";
 import { FAMILY_INFO, SLEEVES, SLEEVE_BY_ID } from "../sleeves.mjs";
 import { RECIPES, runEngine, statsOf } from "./strategies.mjs";
@@ -142,17 +145,6 @@ function effectiveTrials(R, C) {
   return (K * K) / s2;
 }
 
-// Stationary-bootstrap long-run variance of each column the way arch's SPA computes it.
-function spaVariance(col, block) {
-  const t = col.length, m = mean(col), d = col.map((v) => v - m), p = 1 / block, s = lagProducts(d);
-  let v = s[0] / t;
-  for (let i = 1; i < t; i++) {
-    const kappa = (1 - i / t) * (1 - p) ** i + (i / t) * (1 - p) ** (t - i);
-    v += 2 * kappa * s[i] / t;
-  }
-  return v;
-}
-
 // Stationary bootstrap (Politis and Romano 1994) as a list of [start, length] runs over n positions,
 // drawn from mulberry32(seed): at each step one uniform decides a new block (probability 1/block),
 // and a second picks its start.
@@ -177,43 +169,46 @@ const runSum = (S, n, start, len) => {
   return total;
 };
 
-// Hansen SPA (studentized) and Romano-Wolf StepM on loss differentials d[k] = sleeve - benchmark.
-function spaStepM(R, B, { reps, block, seed, size }) {
-  const n = B.length;
-  const cols = [], keep = [];
-  R.forEach((x, k) => { const d = x.map((v, t) => v - B[t]); const om = Math.sqrt(spaVariance(d, block)); if (om > 0 && std(d) > 0) { cols.push(d.map((v) => v / om)); keep.push(k); } });
+// Joint tests on d[k] = sleeve - benchmark, with one stationary bootstrap shared by all sleeves.
+function jointTests(R, B, { reps, block, seed, size }) {
+  const n = B.length, cols = [], keep = [];
+  R.forEach((x, k) => { const d = x.map((v, t) => v - B[t]); if (std(d) > 0) { cols.push(d); keep.push(k); } });
   const K = cols.length;
   if (K === 0) return null;
-  const means = cols.map(mean), thresh = -Math.sqrt((1 / n) * 2 * Math.log(Math.log(n)));
-  const centers = [means.map((m) => Math.max(m, 0)), means.map((m) => (m >= thresh ? m : 0)), means];
-  const S = cols.map((c) => { const s = new Float64Array(n + 1); for (let t = 0; t < n; t++) s[t + 1] = s[t] + c[t]; return s; });
-  const rand = mulberry32(seed);
-  const sims = [0, 1, 2].map(() => Array.from({ length: K }, () => new Float64Array(reps)));
+  const m = cols.map(mean), sd = cols.map((c) => std(c)), rn = Math.sqrt(n), tObs = m.map((v, k) => rn * v / sd[k]);
+  const thr = sd.map((v) => -v * Math.sqrt(2 * Math.log(Math.log(n)) / n));
+  const centers = [m.map((v) => Math.max(v, 0)), m.map((v, k) => (v >= thr[k] ? v : 0)), m];
+  const pref = (c, sq) => { const s = new Float64Array(n + 1); for (let t = 0; t < n; t++) s[t + 1] = s[t] + (sq ? c[t] * c[t] : c[t]); return s; };
+  const S1 = cols.map((c) => pref(c, false)), S2 = cols.map((c) => pref(c, true));
+  const rand = mulberry32(seed), rc = new Float64Array(reps).fill(-Infinity), spa = [0, 1, 2].map(() => new Float64Array(reps).fill(0));
+  const tStar = Array.from({ length: K }, () => new Float64Array(reps));
   for (let r = 0; r < reps; r++) {
     const runs = bootstrapRuns(n, block, rand);
     for (let k = 0; k < K; k++) {
-      let tot = 0;
-      for (const [st, len] of runs) tot += runSum(S[k], n, st, len);
-      const mb = tot / n;
-      for (let j = 0; j < 3; j++) sims[j][k][r] = mb - centers[j][k];
+      let s1 = 0, s2 = 0;
+      for (const [st, len] of runs) { s1 += runSum(S1[k], n, st, len); s2 += runSum(S2[k], n, st, len); }
+      const mb = s1 / n, sdb = Math.sqrt(Math.max(0, (s2 - s1 * s1 / n) / (n - 1)));
+      if (mb - m[k] > rc[r]) rc[r] = mb - m[k];
+      for (let j = 0; j < 3; j++) { const v = sdb > 0 ? rn * (mb - centers[j][k]) / sdb : 0; if (v > spa[j][r]) spa[j][r] = v; }
+      tStar[k][r] = sdb > 0 ? rn * (mb - m[k]) / sdb : -Infinity;
     }
   }
-  const maxOver = (j, active) => { const out = new Float64Array(reps).fill(-Infinity); for (const k of active) { const s = sims[j][k]; for (let r = 0; r < reps; r++) if (s[r] > out[r]) out[r] = s[r]; } return out; };
-  const all = [...Array(K).keys()], observed = Math.max(...means);
-  const pv = [0, 1, 2].map((j) => { const mx = maxOver(j, all); let c = 0; for (let r = 0; r < reps; r++) if (mx[r] > observed) c++; return c / reps; });
-  // StepM: reject every sleeve whose studentized mean beats the consistent critical value, drop
-  // them, and repeat on the rest until nothing new is rejected.
+  const obsRC = Math.max(...m), obsSPA = Math.max(0, ...tObs);
+  let rcCount = 0; for (let r = 0; r < reps; r++) if (rc[r] > obsRC) rcCount++;
+  const pv = spa.map((sims) => { let c = 0; for (let r = 0; r < reps; r++) if (sims[r] >= obsSPA) c++; return c / reps; });
+  // StepM: reject every sleeve whose t-statistic beats the (1 - size) quantile of the largest
+  // re-studentized resample among those not yet rejected; repeat until nothing new is rejected.
   const superior = [];
-  let active = all;
-  for (;;) {
-    const crit = quantile(Float64Array.from(maxOver(1, active)).sort(), 1 - size);
-    const better = active.filter((k) => means[k] > crit);
-    if (better.length === 0) break;
+  let active = [...Array(K).keys()];
+  while (active.length) {
+    const mx = new Float64Array(reps).fill(-Infinity);
+    for (const k of active) for (let r = 0; r < reps; r++) if (tStar[k][r] > mx[r]) mx[r] = tStar[k][r];
+    const crit = quantile(mx.sort(), 1 - size), better = active.filter((k) => tObs[k] > crit);
+    if (!better.length) break;
     superior.push(...better);
     active = active.filter((k) => !better.includes(k));
-    if (active.length === 0) break;
   }
-  return { tested: K, statistic: observed * Math.sqrt(n), p_values: { lower: pv[0], consistent: pv[1], upper: pv[2] }, superior: superior.map((k) => keep[k]).sort((x, y) => x - y) };
+  return { tested: K, statistic: obsSPA, p_values: { lower: pv[0], consistent: pv[1], upper: pv[2] }, reality_check: rcCount / reps, superior: superior.map((k) => keep[k]).sort((x, y) => x - y) };
 }
 
 // Combinatorially symmetric cross-validation (Bailey, Borwein, Lopez de Prado and Zhu 2017).
@@ -315,13 +310,13 @@ export const TOOLS = [
   {
     name: "sleeve_tournament",
     title: "Run every sleeve, corrected for multiple testing",
-    description: "Run all library sleeves that fit your prices (up to 399) on a common window and rank them, then correct for the search: deflated Sharpe (raw and effective number of trials), Hansen SPA and Romano-Wolf StepM against a benchmark, and the probability of backtest overfitting (CSCV).",
+    description: "Run all library sleeves that fit your prices (up to 399) on a common window and rank them, then correct for the search: deflated Sharpe (raw and effective number of trials), White's Reality Check, re-studentized Hansen SPA and Romano-Wolf StepM against a benchmark, and the probability of backtest overfitting (CSCV).",
     keywords: "which work survive best all sleeve tournament run all strategies leaderboard multiple testing spa reality check stepm romano wolf pbo cscv deflated sharpe data snooping",
     input: z.object({
       prices: pricesIn, ...engineArgs, ...selectArgs,
       benchmark: z.enum(["buy_and_hold", "cash"]).optional().describe("What a sleeve must beat: equal-weight buy and hold of the columns (default) or cash at risk_free."),
-      reps: z.number().int().min(100).max(5000).optional().describe("Bootstrap repetitions for SPA and StepM; default 1000."),
-      block: z.number().int().min(1).max(1000).optional().describe("Mean bootstrap block length; default floor(sqrt(periods))."),
+      reps: z.number().int().min(100).max(5000).optional().describe("Bootstrap repetitions for the Reality Check, SPA and StepM; default 1000."),
+      block: z.number().int().min(1).max(1000).optional().describe("Mean bootstrap block length; default round(periods^(1/3)). Long blocks make every block-bootstrap test liberal."),
       seed: z.number().int().min(0).max(4294967295).optional().describe("Bootstrap seed; default 7."),
       splits: z.number().int().min(4).max(16).multipleOf(2).optional().describe("CSCV splits (even); default 16, or fewer for short histories."),
       top: z.number().int().min(1).max(400).optional().describe("Leaderboard rows to return; default 15."),
@@ -336,15 +331,15 @@ export const TOOLS = [
       const order = [...rows].sort((x, y) => y.sharpe - x.sharpe || x.k - y.k);
       const best = order[0], K = chosen.length, Keff = effectiveTrials(R);
       const sv = variance(R.map(perSharpe)), dRaw = deflated(R[best.k], K, sv), dEff = deflated(R[best.k], Keff, sv);
-      const S = a.splits ?? (n >= 16 * 40 ? 16 : Math.max(4, 2 * Math.floor(n / 80))), block = a.block ?? Math.floor(Math.sqrt(n));
-      const spa = spaStepM(R, B, { reps: a.reps ?? 1000, block, seed: a.seed ?? 7, size: 0.05 });
+      const S = a.splits ?? (n >= 16 * 40 ? 16 : Math.max(4, 2 * Math.floor(n / 80))), block = a.block ?? Math.max(1, Math.round(n ** (1 / 3)));
+      const spa = jointTests(R, B, { reps: a.reps ?? 1000, block, seed: a.seed ?? 7, size: 0.05 });
       const cv = pbo(R, S), bs = statsOf(B, ppy);
       const superior = spa ? spa.superior.map((k) => chosen[k].id) : [];
       const verdict = [
         `${K} sleeves ran on ${n} common periods (effective independent sleeves ${Keff.toFixed(1)}).`,
         `Best sleeve ${best.id}: deflated Sharpe probability ${dRaw.dsr.toFixed(3)} counting all ${K} sleeves, ${dEff.dsr.toFixed(3)} counting ${Keff.toFixed(1)} independent bets${dEff.dsr > 0.95 ? (dRaw.dsr > 0.95 ? "; it survives both." : "; it survives only the effective count, which can be too lenient (the raw count is the conservative bound).") : "; it does not survive deflation, so its Sharpe is what the best of this many tries shows by luck."}`,
         "Deflation asks whether the Sharpe ratio is above zero; SPA and StepM ask whether a sleeve beats the benchmark, so a long-only sleeve in a rising market can pass the first and fail the second.",
-        spa ? (spa.p_values.consistent < 0.05 ? `SPA rejects "no sleeve beats the benchmark" (p ${spa.p_values.consistent}); StepM keeps ${superior.length} sleeve(s).` : `SPA cannot reject that no sleeve beats the benchmark (p ${spa.p_values.consistent}).`) : "No sleeve differs from the benchmark.",
+        spa ? (spa.p_values.consistent < 0.05 ? `SPA rejects "no sleeve beats the benchmark" (p ${spa.p_values.consistent}; Reality Check p ${spa.reality_check}); StepM keeps ${superior.length} sleeve(s).` : `SPA cannot reject that no sleeve beats the benchmark (p ${spa.p_values.consistent}; Reality Check p ${spa.reality_check}).`) : "No sleeve differs from the benchmark.",
         `Probability of backtest overfitting ${cv.probability.toFixed(2)}${cv.probability > 0.5 ? ": picking the in-sample winner did worse than a random pick more often than not" : ""}.`,
       ].join(" ");
       return {
@@ -358,7 +353,8 @@ export const TOOLS = [
         multiple_testing: {
           trials: K, effective_trials: Keff,
           best: { id: best.id, sharpe: best.sharpe, deflated_sharpe_probability: dRaw.dsr, deflated_sharpe_probability_effective: dEff.dsr, expected_max_sharpe_under_null: dRaw.star * Math.sqrt(ppy), expected_max_sharpe_under_null_effective: dEff.star * Math.sqrt(ppy) },
-          spa: spa ? { sleeves_tested: spa.tested, statistic: spa.statistic, p_values: spa.p_values, block, reps: a.reps ?? 1000, seed: a.seed ?? 7, bootstrap: "stationary, mulberry32(seed)" } : null,
+          reality_check: spa ? { p_value: spa.reality_check } : null,
+          spa: spa ? { sleeves_tested: spa.tested, statistic: spa.statistic, p_values: spa.p_values, studentization: "re-estimated in every resample", block, reps: a.reps ?? 1000, seed: a.seed ?? 7, bootstrap: "stationary, mulberry32(seed)" } : null,
           stepm: { family_wise_error: 0.05, superior },
           pbo: cv,
         },

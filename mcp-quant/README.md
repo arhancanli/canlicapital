@@ -111,14 +111,14 @@ sleeves at once correct for it:
 
 | tool | what it answers |
 |---|---|
-| `sleeve_tournament` | Which sleeves lead on your prices, and does the best survive the deflated Sharpe ratio (counting all sleeves and the effective number of independent ones), Hansen's SPA test, Romano-Wolf StepM and the probability of backtest overfitting (CSCV)? |
+| `sleeve_tournament` | Which sleeves lead on your prices, and does the best survive the deflated Sharpe ratio (counting all sleeves and the effective number of independent ones), White's Reality Check, Hansen's SPA test and Romano-Wolf StepM (re-studentized in every resample) and the probability of backtest overfitting (CSCV)? |
 | `sleeve_walk_forward` | If you had kept picking the top sleeves by trailing Sharpe, what would you have earned out of sample, and how much of their in-sample Sharpe was luck? |
 | `sleeve_clusters` | How many genuinely different bets do the sleeves make on this data? |
 | `sleeve_regime_map` | Which sleeves held up in calm, turbulent, rising and falling markets? |
 | `combine_sleeves` | What does a book of chosen sleeves look like, and what asset weights does it want as of the latest close? |
 
 The tests check that no sleeve looks ahead (rewriting future prices never changes an earlier
-target), that none trades before its warm-up, and that the tournament's statistics match arch's SPA
+target), that none trades before its warm-up, and that the tournament's statistics match arch's Reality Check and an independent re-studentized SPA
 and StepM on the same bootstrap draws, scipy's clustering and an independent numpy CSCV.
 `run_sleeve` and `combine_sleeves` return `target_weights` by symbol, which a paper broker such as
 canli-paper-trading-mcp can rebalance to.

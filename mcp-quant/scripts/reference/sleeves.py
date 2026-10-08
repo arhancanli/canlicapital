@@ -4,8 +4,9 @@ Every recipe is re-implemented here with numpy and pandas, with its own copy of 
 drift-aware engine. The sleeve catalog (ids, recipes, parameters, warm-ups) is read from the
 server as data; every number is recomputed here.
 
-- Hansen's SPA and Romano-Wolf StepM come from the arch package, fed the same stationary-bootstrap
-  draws (mulberry32 ported below), on loss differentials studentized with arch's own variance.
+- White's Reality Check comes from the arch package (its unstudentized "upper" p-value), fed the
+  same stationary-bootstrap draws (mulberry32 ported below); the re-studentized SPA and StepM are an
+  independent numpy implementation on those draws.
 - Minimum variance is solved exactly by enumerating active sets.
 - Clusters come from scipy's average linkage; CSCV/PBO, effective trials and regimes from numpy.
 
@@ -21,7 +22,7 @@ import subprocess
 
 import numpy as np
 import pandas as pd
-from arch.bootstrap import SPA, StepM
+from arch.bootstrap import SPA
 from scipy import stats
 from scipy.cluster.hierarchy import fcluster, linkage
 from scipy.spatial.distance import squareform
@@ -536,28 +537,43 @@ def eff_trials(R):
     return R.shape[0] ** 2 / (C ** 2).sum()
 
 
-def spa_stepm(R, B, reps, block, seed):
+def joint_tests(R, B, reps, block, seed):
+    """Reality Check from arch (unstudentized, 'upper' recentring) on the shared draws, and an
+    independent numpy re-studentized SPA (lower/consistent/upper) and StepM on the same draws."""
     D = R - B[None, :]
     n = D.shape[1]
-    base = SPA(np.zeros(n), -D.T, block_size=block, reps=10)
-    base._compute_variance()
-    om = np.sqrt(base._loss_diff_var)
-    keep = [k for k in range(D.shape[0]) if om[k] > 0 and D[k].std(ddof=1) > 0]
-    Z = D[keep] / om[keep, None]
+    keep = [k for k in range(D.shape[0]) if D[k].std(ddof=1) > 0]
+    D = D[keep]
     rnd = mulberry32(seed)
     draws = [stationary_indices(n, block, rnd) for _ in range(reps)]
-
-    def inject(bs):
-        it = iter(draws)
-        bs.update_indices = lambda: next(it)
-
-    spa = SPA(np.zeros(n), -Z.T, block_size=block, reps=reps)
-    inject(spa.bootstrap)
-    spa.compute()
-    sm = StepM(np.zeros(n), -Z.T, size=0.05, block_size=block, reps=reps)
-    inject(sm.spa.bootstrap)
-    sm.compute()
-    return len(keep), Z.mean(axis=1).max() * math.sqrt(n), dict(spa.pvalues), sorted(keep[i] for i in sm.superior_models)
+    it = iter(draws)
+    rc = SPA(np.zeros(n), -D.T, block_size=block, reps=reps)
+    rc.bootstrap.update_indices = lambda: next(it)
+    rc.compute()
+    m, sd = D.mean(axis=1), D.std(axis=1, ddof=1)
+    t_obs = math.sqrt(n) * m / sd
+    thr = -sd * math.sqrt(2 * math.log(math.log(n)) / n)
+    centers = [np.maximum(m, 0), np.where(m >= thr, m, 0), m]
+    spa_max = np.zeros((3, reps))
+    tstar = np.empty((len(keep), reps))
+    for r, idx in enumerate(draws):
+        X = D[:, idx]
+        mb, sb = X.mean(axis=1), X.std(axis=1, ddof=1)
+        for j in range(3):
+            v = np.where(sb > 0, math.sqrt(n) * (mb - centers[j]) / np.where(sb > 0, sb, 1), 0.0)
+            spa_max[j, r] = max(0.0, v.max())
+        tstar[:, r] = np.where(sb > 0, math.sqrt(n) * (mb - m) / np.where(sb > 0, sb, 1), -np.inf)
+    obs = max(0.0, t_obs.max())
+    pv = {name: float((spa_max[j] >= obs).mean()) for j, name in enumerate(("lower", "consistent", "upper"))}
+    superior, active = [], list(range(len(keep)))
+    while active:
+        crit = np.quantile(tstar[active].max(axis=0), 0.95)
+        better = [k for k in active if t_obs[k] > crit]
+        if not better:
+            break
+        superior += better
+        active = [k for k in active if k not in better]
+    return len(keep), obs, pv, float(rc.pvalues["upper"]), sorted(keep[k] for k in superior)
 
 
 def pbo(R, S):
@@ -608,8 +624,8 @@ def tournament_case(P, args, reps, seed, S, top=10):
     sv = np.var([per_sharpe(r) for r in R], ddof=1)
     star, d = dsr(R[best], K, sv)
     star_e, d_e = dsr(R[best], keff, sv)
-    block = math.floor(math.sqrt(n))
-    tested, stat, pv, sup = spa_stepm(R, B, reps, block, seed)
+    block = max(1, jsround(n ** (1 / 3)))
+    tested, stat, pv, rcp, sup = joint_tests(R, B, reps, block, seed)
     lb = []
     for k in order[:top]:
         s = summary(R[k])
@@ -619,7 +635,7 @@ def tournament_case(P, args, reps, seed, S, top=10):
         {"evaluation": {"from_period": W0, "periods": n}, "sleeves_run": K, "benchmark": {"cagr": bs["cagr"], "sharpe": bs["sharpe"], "max_drawdown": bs["max_drawdown"]}, "leaderboard": lb,
          "multiple_testing": {"trials": K, "effective_trials": keff,
                               "best": {"id": chosen[best]["id"], "sharpe": sh[best], "deflated_sharpe_probability": d, "deflated_sharpe_probability_effective": d_e, "expected_max_sharpe_under_null": star * math.sqrt(252), "expected_max_sharpe_under_null_effective": star_e * math.sqrt(252)},
-                              "spa": {"sleeves_tested": tested, "statistic": stat, "p_values": pv, "block": block},
+                              "reality_check": {"p_value": rcp}, "spa": {"sleeves_tested": tested, "statistic": stat, "p_values": pv, "block": block},
                               "stepm": {"superior": [chosen[k]["id"] for k in sup]},
                               "pbo": pbo(R, S)}}, tol=1e-8)
     return chosen, W0, runs, R, B
