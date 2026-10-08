@@ -342,7 +342,8 @@ export const TOOLS = [
       const superior = spa ? spa.superior.map((k) => chosen[k].id) : [];
       const verdict = [
         `${K} sleeves ran on ${n} common periods (effective independent sleeves ${Keff.toFixed(1)}).`,
-        `Best sleeve ${best.id}: deflated Sharpe probability ${dRaw.dsr.toFixed(3)} counting all ${K} sleeves, ${dEff.dsr.toFixed(3)} counting ${Keff.toFixed(1)} independent bets${dEff.dsr > 0.95 ? (dRaw.dsr > 0.95 ? "; it survives both." : "; it survives only the effective count, which is the fairer one when sleeves are this correlated.") : "; it does not survive deflation, so its Sharpe is what the best of this many tries shows by luck."}`,
+        `Best sleeve ${best.id}: deflated Sharpe probability ${dRaw.dsr.toFixed(3)} counting all ${K} sleeves, ${dEff.dsr.toFixed(3)} counting ${Keff.toFixed(1)} independent bets${dEff.dsr > 0.95 ? (dRaw.dsr > 0.95 ? "; it survives both." : "; it survives only the effective count, which can be too lenient (the raw count is the conservative bound).") : "; it does not survive deflation, so its Sharpe is what the best of this many tries shows by luck."}`,
+        "Deflation asks whether the Sharpe ratio is above zero; SPA and StepM ask whether a sleeve beats the benchmark, so a long-only sleeve in a rising market can pass the first and fail the second.",
         spa ? (spa.p_values.consistent < 0.05 ? `SPA rejects "no sleeve beats the benchmark" (p ${spa.p_values.consistent}); StepM keeps ${superior.length} sleeve(s).` : `SPA cannot reject that no sleeve beats the benchmark (p ${spa.p_values.consistent}).`) : "No sleeve differs from the benchmark.",
         `Probability of backtest overfitting ${cv.probability.toFixed(2)}${cv.probability > 0.5 ? ": picking the in-sample winner did worse than a random pick more often than not" : ""}.`,
       ].join(" ");

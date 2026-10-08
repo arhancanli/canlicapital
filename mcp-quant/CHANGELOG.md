@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- `sleeve_tournament` verdict: no longer calls the effective-trials deflation "the fairer one"; on
+  data with no edge it nearly passes a long-only winner. The verdict now says the raw count is the
+  conservative bound and that deflation (Sharpe above zero) and SPA/StepM (beats the benchmark)
+  answer different questions.
+
 ## 0.1.0
 
 First release: 235 tools in 18 toolsets (performance, options, exotics, rates, tvm, valuation,
