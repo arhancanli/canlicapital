@@ -11,6 +11,7 @@ import { TOOLS as ECONOMETRICS } from "./tools/econometrics.mjs";
 import { TOOLS as EXECUTION } from "./tools/execution.mjs";
 import { TOOLS as EXOTICS } from "./tools/exotics.mjs";
 import { TOOLS as INDICATORS } from "./tools/indicators.mjs";
+import { TOOLS as LABELING } from "./tools/labeling.mjs";
 import { TOOLS as OPTIONS } from "./tools/options.mjs";
 import { TOOLS as PERFORMANCE } from "./tools/performance.mjs";
 import { TOOLS as PORTFOLIO } from "./tools/portfolio.mjs";
@@ -39,6 +40,7 @@ export const TOOLSETS = Object.freeze({
   strategies: { title: "Strategy backtests", tools: STRATEGIES },
   sleeves: { title: "Strategy sleeve library", tools: SLEEVES },
   data_checks: { title: "Data quality checks", tools: DATA_CHECKS },
+  labeling: { title: "Data annotation and ML labels", tools: LABELING },
   tvm: { title: "Time value and corporate finance", tools: TVM },
   valuation: { title: "Valuation and fundamental scores", tools: VALUATION },
 });

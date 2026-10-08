@@ -1,18 +1,20 @@
 # canli-quant-mcp
 
-228 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
+235 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
 portfolio construction, econometrics, technical indicators, execution, sizing, crypto and FX,
-valuation, strategy backtests, a library of 399 strategy sleeves, and data checks. Every tool
+valuation, strategy backtests, a library of 399 strategy sleeves, data checks, and data annotation
+and ML labeling. Every tool
 computes on the data you send, and every tool's results are checked in the test suite against an
 independent implementation (QuantLib, statsmodels, arch, TA-Lib, numpy-financial, scikit-learn,
-empyrical, scipy, pandas, dcor): 448 reference cases, plus planted-defect tests for the data checks.
+empyrical, scipy, pandas, dcor): 461 reference cases, plus planted-defect tests for the data checks.
 
-Local stdio, no key, no account, no network calls: your data never leaves your machine.
+Local stdio, no key, no account, no network calls: your data never leaves your machine (see
+[Privacy](#privacy), enforced by tests).
 
-## Three tools in context, 228 behind them
+## Three tools in context, 235 behind them
 
-Listing 231 tools directly costs **81,299 tokens** of context (o200k) on every request. By default
-this server lists three, **677 tokens**:
+Listing 238 tools directly costs **83,944 tokens** of context (o200k) on every request. By default
+this server lists three, **680 tokens**:
 
 | tool | what it does |
 |---|---|
@@ -21,7 +23,7 @@ this server lists three, **677 tokens**:
 | `run_tool` | Run any tool by name. `receipt: true` adds a calculation receipt. |
 
 The tool list is byte-identical across launches, so providers can cache it. To list toolsets
-directly instead, set `CANLI_TOOLSETS` to a comma-separated list (e.g. `performance,options`, 8,050
+directly instead, set `CANLI_TOOLSETS` to a comma-separated list (e.g. `performance,options`, 8,053
 tokens for performance alone) or `all`.
 
 ## Quick start
@@ -70,6 +72,7 @@ Then ask, for example:
 | `strategies` | 20 | an independent pandas implementation of every recipe and of the costed engine |
 | `sleeves` | 8 | an independent numpy and pandas port of every recipe and the engine; arch's SPA and StepM on the same bootstrap draws; scipy average linkage; numpy CSCV; plus no-lookahead and warm-up checks on every sleeve |
 | `data_checks` | 10 | planted-defect tests: each check must find what was planted and stay quiet on clean data |
+| `labeling` | 7 | pandas ports of the snippets in Advances in Financial Machine Learning (ewm volatility, CUSUM filter, triple barrier, uniqueness, purged k-fold) and statsmodels OLS t-values |
 | `tvm` | 15 | numpy-financial and closed forms |
 | `valuation` | 10 | published formulas re-derived independently |
 
@@ -77,11 +80,11 @@ Then ask, for example:
 
 Prompts chain the tools for common jobs: `analyze_strategy`, `audit_backtest`, `value_company`,
 `price_option`, `test_mean_reversion`, `build_portfolio`, `analyze_trade_log`, `sleeve_tournament`,
-`build_sleeve_book`, `check_dataset`.
+`build_sleeve_book`, `label_dataset`, `check_dataset`.
 
 Resources: `canli-quant://catalog` (every tool), `canli-quant://methods` (what each toolset is
 checked against), `canli-quant://tools/{name}` (one tool's schema), `canli-quant://sleeves` (the sleeve
-library) and `canli-quant://sleeves/{id}` (one sleeve's spec).
+library), `canli-quant://sleeves/{id}` (one sleeve's spec) and `canli-quant://privacy`.
 
 ## Sleeve library
 
@@ -109,6 +112,39 @@ target), that none trades before its warm-up, and that the tournament's statisti
 and StepM on the same bootstrap draws, scipy's clustering and an independent numpy CSCV.
 `run_sleeve` and `combine_sleeves` return `target_weights` by symbol, which a paper broker such as
 canli-paper-trading-mcp can rebalance to.
+
+## Data annotation and ML labels
+
+The `labeling` toolset annotates your own data and turns it into training labels without leakage:
+
+| tool | what it does |
+|---|---|
+| `annotate_price_series` | Tags every period: outlier moves, stale prices, drawdown episodes, new highs, causal volatility regime. |
+| `cusum_filter_events` | Picks the periods worth labeling (CUSUM filter on log prices). |
+| `triple_barrier_labels` | Labels by which of a volatility-scaled profit-take, stop-loss or time limit is hit first; with a side, meta-labels. |
+| `fixed_horizon_labels` | Labels by the forward return over a horizon, with a fixed or volatility-scaled dead zone. |
+| `trend_scanning_labels` | Labels by the strongest forward trend's t-statistic. |
+| `sample_weights` | Uniqueness, return-attribution and time-decay weights for overlapping labels. |
+| `purged_cv_splits` | K-fold splits that purge overlapping labels and embargo the periods after each test fold. |
+
+Each label says which future periods it used, so purging and embargoing are exact. The methods follow
+Lopez de Prado's *Advances in Financial Machine Learning*, checked against pandas ports of its code.
+
+## Privacy
+
+Your data stays on your machine. The server is a local stdio process with no network code, writes
+nothing to disk, logs nothing, starts no processes, and keeps arguments only for the duration of a
+call. `test/privacy.test.mjs` holds the code to that with a static scan of every source file and by
+running the server under Node's permission model, with reads limited to its own package and
+writes, child processes and workers denied. For the same lockdown in use:
+
+```bash
+npm i -g canli-quant-mcp
+node --permission --allow-fs-read="$(npm root -g)/canli-quant-mcp" "$(npm root -g)/canli-quant-mcp/src/server.mjs"
+```
+
+`canli-quant://privacy` states the guarantees from inside the server. Calculation receipts carry
+hashes, never the data.
 
 ## Calculation receipts
 
@@ -433,6 +469,20 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 | `check_returns_series` | Check a returns series for the usual mistakes: percents instead of fractions, impossible simple returns below -100%, constant or zero-filled stretches, extreme values and smoothing (high lag-1 autocorrelation). |
 | `check_fundamentals` | Check reported fundamentals against accounting identities: assets = liabilities + equity, current within total, gross profit = revenue - cost of revenue, cash-flow sections summing to the change in cash, and EPS x shares close to net income. |
 | `check_corporate_actions` | Detect splits and dividends by comparing raw and adjusted close series: each change in the adjustment factor, classified as a split (ratio) or a dividend (percent), with mismatches flagged. |
+
+</details>
+
+<details><summary><b>labeling</b>: Data annotation and ML labels (7)</summary>
+
+| tool | what it does |
+|---|---|
+| `cusum_filter_events` | Sample the periods worth labeling with the symmetric CUSUM filter on log prices: an event fires when the cumulative up or down move since the last event exceeds a threshold (fixed, or a multiple of recent volatility), so labels concentrate on meaningful moves instead of every bar. |
+| `triple_barrier_labels` | Label events with the triple-barrier method: a profit-take and a stop-loss set as multiples of recent volatility, and a time limit; each label is which barrier was touched first (+1, -1, or the sign at the time limit), with the touch period so overlapping labels can be purged. With a side per period it produces meta-labels (1 = the bet paid). |
+| `fixed_horizon_labels` | Label each period by its forward return over a fixed horizon: +1 above a threshold, -1 below minus the threshold, 0 between; the threshold can be fixed or scaled by recent volatility. Includes the class balance and the forward span each label covers. |
+| `trend_scanning_labels` | Label each period by the strongest forward trend: regress prices on time over every forward window in a range, keep the window with the largest \|t-statistic\| of the slope, and label by its sign with the t-statistic as confidence (Lopez de Prado's trend scanning). |
+| `sample_weights` | Weight labels whose spans overlap so a model does not over-count the same information: concurrency per period, each label's average uniqueness, return-attribution weights, and optional time decay (Lopez de Prado, chapter 4). |
+| `purged_cv_splits` | Build k-fold cross-validation splits for labels that span time without leakage: training labels whose spans overlap a test fold are purged, and labels starting just after a test fold are embargoed. Reports what each fold removed, and optionally the indices. |
+| `annotate_price_series` | Annotate every period of a price series and list the notable ones: robust-z outlier moves, stale (repeated) prices, gaps (jumps across a period), drawdown episodes with peak, trough and recovery, new all-time highs, and the causal volatility regime (calm, normal, turbulent). Gives per-period tags for joining onto your own data. |
 
 </details>
 

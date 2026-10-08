@@ -31,7 +31,7 @@ export const SERVER_INFO = Object.freeze({
   ],
 });
 
-export const SERVER_INSTRUCTIONS = `Quant finance calculations on data you send: ${CATALOG.length} tools in ${Object.keys(TOOLSETS).length} toolsets (${Object.keys(TOOLSETS).join(", ")}). Call find_tool with what you need in plain words, then run_tool with the tool's name and arguments; describe_tool gives a tool's exact input schema when unsure. Returns are simple fractions (0.01 = 1%), oldest first. Run data_checks tools on unfamiliar data first. The sleeves toolset holds ${SLEEVES.length} pre-defined strategy sleeves: sleeve_tournament runs them all on your prices and corrects for the search. run_tool with receipt: true adds input and output hashes so anyone can recompute the result and compare.`;
+export const SERVER_INSTRUCTIONS = `Quant finance calculations on data you send: ${CATALOG.length} tools in ${Object.keys(TOOLSETS).length} toolsets (${Object.keys(TOOLSETS).join(", ")}). Call find_tool with what you need in plain words, then run_tool with the tool's name and arguments; describe_tool gives a tool's exact input schema when unsure. Returns are simple fractions (0.01 = 1%), oldest first. Run data_checks tools on unfamiliar data first; the labeling toolset annotates data and builds leak-free ML labels. Nothing leaves the machine: no network, no disk writes, no logging (canli-quant://privacy). The sleeves toolset holds ${SLEEVES.length} pre-defined strategy sleeves: sleeve_tournament runs them all on your prices and corrects for the search. run_tool with receipt: true adds input and output hashes so anyone can recompute the result and compare.`;
 
 // What each toolset's results were checked against (test/reference.test.mjs, scripts/reference/).
 export const METHODS = Object.freeze({
@@ -52,6 +52,20 @@ export const METHODS = Object.freeze({
   strategies: "an independent pandas implementation of every recipe and of the costed engine",
   sleeves: "an independent numpy and pandas port of every recipe and the engine; arch's SPA and StepM on the same bootstrap draws; scipy average linkage; numpy CSCV; plus no-lookahead and warm-up checks on every sleeve",
   data_checks: "planted-defect tests: each check must find what was planted and stay quiet on clean data",
+  labeling: "pandas ports of the snippets in Advances in Financial Machine Learning (ewm volatility, CUSUM filter, triple barrier, uniqueness, purged k-fold) and statsmodels OLS t-values",
+});
+
+// Held by test/privacy.test.mjs: a static scan of src and a run under Node's permission model.
+export const PRIVACY = Object.freeze({
+  network: "none",
+  storage: "none: nothing is written to disk; the only file read is the package's own package.json",
+  telemetry: "none: no logging, analytics or crash reporting",
+  processes: "none: no child processes, workers or dynamic code",
+  environment: "reads only CANLI_TOOLSETS",
+  data_lifetime: "arguments live in memory for the duration of one call and are never retained between calls",
+  receipts: "opt-in receipts contain SHA-256 hashes of inputs and outputs, not the data",
+  lockdown: "run with node --permission --allow-fs-read=<package directory> to have Node itself deny writes, child processes and workers",
+  verified_by: "test/privacy.test.mjs",
 });
 
 const sha256 = (v) => createHash("sha256").update(JSON.stringify(v)).digest("hex");
@@ -151,6 +165,8 @@ const WORKFLOWS = {
     text: (a) => `Find which strategy sleeves hold up on these prices: ${a.prices}. Symbols: ${a.symbols || "none"}.\n1. check_price_series on each column; stop and report errors.\n2. sleeve_tournament with cost_bps 5, then again with cost_bps 20.\n3. sleeve_clusters to count genuinely different bets.\n4. sleeve_walk_forward to see how picking the top sleeves would have done out of sample.\n5. sleeve_regime_map for the leaders.\nReport the leaderboard, the deflated Sharpe (raw and effective trials), the SPA p-value, the StepM survivors and the PBO, then say plainly which sleeves, if any, have evidence beyond luck on this data.` },
   build_sleeve_book: { title: "Build a multi-sleeve book", description: "Pick distinct surviving sleeves, combine them, and get paper-ready target weights.", args: { prices: "Prices as rows of columns (JSON).", symbols: "Column names (JSON array)." },
     text: (a) => `Build a book of strategy sleeves on these prices: ${a.prices}. Symbols: ${a.symbols || "none"}.\n1. sleeve_tournament; keep the StepM survivors, or the top 10 if none survive (and say so).\n2. sleeve_clusters; keep the best sleeve per cluster among those.\n3. combine_sleeves with weighting inverse_vol and the symbols.\n4. sleeve_walk_forward to show what selection itself is worth out of sample.\nReport the book's statistics, its correlations and its target_weights. If a paper broker is connected, preview the rebalance to those weights; never send without the user's go-ahead.` },
+  label_dataset: { title: "Label a price series for machine learning", description: "Annotate the data, sample events, label them, weight overlapping labels and build leak-free CV splits.", args: { prices: "Prices as a JSON array.", side: "A primary model's side per period (JSON array of 1, -1, 0), optional: makes meta-labels." },
+    text: (a) => `Prepare training labels from these prices: ${a.prices}. Side: ${a.side || "none"}.\n1. check_price_series, then annotate_price_series; report outliers, stale runs and drawdown episodes and ask before dropping anything.\n2. cusum_filter_events to pick the events.\n3. triple_barrier_labels on those events${a.side ? " with the side (meta-labels)" : ""}.\n4. sample_weights on the label spans.\n5. purged_cv_splits on the spans with an embargo.\nReport class balance, mean uniqueness, the purge and embargo per fold, and anything that would leak.` },
   check_dataset: { title: "Check a dataset before modeling", description: "Run the data checks that fit the data and list every problem before any model sees it.", args: { data: "The data, or a description of it (prices, bars, option chain, curve, funding, fundamentals)." },
     text: (a) => `Check this data before any analysis: ${a.data}.\nPick the matching data_checks tools (check_price_series, check_ohlc_bars, check_option_chain, check_yield_curve, check_funding_rates, check_cross_venue_prices, check_timestamps, check_returns_series, check_fundamentals, check_corporate_actions), run them, and list errors first, then warnings, with what to fix.` },
 };
@@ -171,6 +187,8 @@ function registerResources(server) {
     (uri) => json(uri.href, { toolsets: Object.fromEntries(Object.entries(TOOLSETS).map(([k, t]) => [k, { title: t.title, tools: t.tools.length, checked_against: METHODS[k] }])) }));
   server.registerResource("tool-schema", new ResourceTemplate("canli-quant://tools/{name}", { list: undefined, complete: { name: (v) => CATALOG.map((t) => t.name).filter((n) => n.startsWith(v ?? "")).slice(0, 50) } }), { title: "Tool schema", description: "One tool's description and input JSON Schema.", mimeType: "application/json" },
     (uri, { name }) => { const t = BY_NAME.get(String(name)); if (!t) throw new Error(`No tool ${name}.`); return json(uri.href, { name: t.name, toolset: t.toolset, description: t.description, input_schema: inputJsonSchema(t) }); });
+  server.registerResource("privacy", "canli-quant://privacy", { title: "Privacy guarantees", description: "What the server does with your data, and the tests that hold it to that.", mimeType: "application/json" },
+    (uri) => json(uri.href, PRIVACY));
   server.registerResource("sleeves", "canli-quant://sleeves", { title: "Sleeve library", description: `All ${SLEEVES.length} strategy sleeves: id, family, data shape, rule and spec hash.`, mimeType: "application/json" },
     (uri) => json(uri.href, { sleeves: SLEEVES.length, families: FAMILY_INFO, columns: ["id", "family", "data", "rule", "spec_sha256"], rows: SLEEVES.map((x) => [x.id, x.family, x.data, x.rule, x.spec_sha256]) }));
   server.registerResource("sleeve", new ResourceTemplate("canli-quant://sleeves/{id}", { list: undefined, complete: { id: (v) => SLEEVES.map((x) => x.id).filter((n) => n.startsWith(v ?? "")).slice(0, 50) } }), { title: "Sleeve spec", description: "One sleeve's spec, rule, rationale and references.", mimeType: "application/json" },

@@ -58,7 +58,7 @@ test("prompts, resources and receipts", async (t) => {
   const c = await connect();
   t.after(() => c.close());
   const { prompts } = await c.listPrompts();
-  assert.ok(prompts.length >= 10);
+  assert.ok(prompts.length >= 11);
   const p = await c.getPrompt({ name: "audit_backtest", arguments: { recipe: "breakout", prices: "[1,2,3]" } });
   assert.match(p.messages[0].content.text, /strategy_sweep/);
   const done = await c.complete({ ref: { type: "ref/prompt", name: "audit_backtest" }, argument: { name: "recipe", value: "pa" } });
