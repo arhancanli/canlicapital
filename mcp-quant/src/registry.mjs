@@ -8,6 +8,7 @@ import { TOOLS as CRYPTO_FX } from "./tools/cryptofx.mjs";
 import { TOOLS as DATA_CHECKS } from "./tools/datachecks.mjs";
 import { TOOLS as ECONOMETRICS } from "./tools/econometrics.mjs";
 import { TOOLS as EXECUTION } from "./tools/execution.mjs";
+import { TOOLS as EXOTICS } from "./tools/exotics.mjs";
 import { TOOLS as INDICATORS } from "./tools/indicators.mjs";
 import { TOOLS as OPTIONS } from "./tools/options.mjs";
 import { TOOLS as PERFORMANCE } from "./tools/performance.mjs";
@@ -23,6 +24,7 @@ export const TOOLSETS = Object.freeze({
   options: { title: "Options and derivatives", tools: OPTIONS },
   indicators: { title: "Technical indicators", tools: INDICATORS },
   econometrics: { title: "Statistics and econometrics", tools: ECONOMETRICS },
+  exotics: { title: "Exotic options and volatility models", tools: EXOTICS },
   rates: { title: "Fixed income and rates", tools: RATES },
   portfolio: { title: "Portfolio construction and risk", tools: PORTFOLIO },
   execution: { title: "Execution and microstructure", tools: EXECUTION },
