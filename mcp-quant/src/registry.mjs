@@ -17,6 +17,7 @@ import { TOOLS as RATES } from "./tools/rates.mjs";
 import { TOOLS as RETURNS } from "./tools/returns.mjs";
 import { TOOLS as RISK } from "./tools/risk.mjs";
 import { TOOLS as SIZING } from "./tools/sizing.mjs";
+import { TOOLS as SLEEVES } from "./tools/sleeves.mjs";
 import { TOOLS as STRATEGIES } from "./tools/strategies.mjs";
 import { TOOLS as TVM } from "./tools/tvm.mjs";
 import { TOOLS as VALUATION } from "./tools/valuation.mjs";
@@ -35,6 +36,7 @@ export const TOOLSETS = Object.freeze({
   sizing: { title: "Position sizing and trade risk", tools: SIZING },
   crypto_fx: { title: "Crypto and FX", tools: CRYPTO_FX },
   strategies: { title: "Strategy backtests", tools: STRATEGIES },
+  sleeves: { title: "Strategy sleeve library", tools: SLEEVES },
   data_checks: { title: "Data quality checks", tools: DATA_CHECKS },
   tvm: { title: "Time value and corporate finance", tools: TVM },
   valuation: { title: "Valuation and fundamental scores", tools: VALUATION },

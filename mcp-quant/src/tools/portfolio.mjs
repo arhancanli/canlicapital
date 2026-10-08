@@ -109,7 +109,7 @@ function feasibleStart(n, maxW) {
   return { start: new Array(n).fill(1 / n), hi };
 }
 
-function minVariance(C, { longOnly = true, maxW } = {}) {
+export function minVariance(C, { longOnly = true, maxW } = {}) {
   const n = C.length, ones = new Array(n).fill(1);
   if (!longOnly) { const x = solve(C, ones), s = sum(x); return x.map((v) => v / s); }
   const { start, hi } = feasibleStart(n, maxW);

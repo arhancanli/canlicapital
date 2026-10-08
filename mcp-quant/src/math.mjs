@@ -417,3 +417,51 @@ export function nelderMead(f, x0, { step = 0.1, tol = 1e-14, maxIter = 20000 } =
   }
   return best;
 }
+
+// Seeded uniform [0, 1) generator (mulberry32): small, fast, and easy to reproduce in any language,
+// so bootstrap results can be recomputed exactly from the seed.
+export function mulberry32(seed) {
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// In-place iterative radix-2 FFT on separate real and imaginary arrays (length a power of two).
+export function fft(re, im, inverse = false) {
+  const n = re.length;
+  for (let i = 1, j = 0; i < n; i++) {
+    let bit = n >> 1;
+    for (; j & bit; bit >>= 1) j ^= bit;
+    j ^= bit;
+    if (i < j) { [re[i], re[j]] = [re[j], re[i]]; [im[i], im[j]] = [im[j], im[i]]; }
+  }
+  for (let len = 2; len <= n; len <<= 1) {
+    const ang = (2 * Math.PI / len) * (inverse ? 1 : -1), wr = Math.cos(ang), wi = Math.sin(ang);
+    for (let i = 0; i < n; i += len) {
+      let cr = 1, ci = 0;
+      for (let k = 0; k < len / 2; k++) {
+        const a = i + k, b = a + len / 2, xr = re[b] * cr - im[b] * ci, xi = re[b] * ci + im[b] * cr;
+        re[b] = re[a] - xr; im[b] = im[a] - xi; re[a] += xr; im[a] += xi;
+        const nr = cr * wr - ci * wi; ci = cr * wi + ci * wr; cr = nr;
+      }
+    }
+  }
+  if (inverse) for (let i = 0; i < n; i++) { re[i] /= n; im[i] /= n; }
+}
+
+// Lagged cross-product sums s[i] = sum_j x[j] x[j+i] for every lag i, by FFT in O(n log n).
+export function lagProducts(x) {
+  const n = x.length;
+  let m = 1;
+  while (m < 2 * n) m <<= 1;
+  const re = new Float64Array(m), im = new Float64Array(m);
+  re.set(x);
+  fft(re, im);
+  for (let i = 0; i < m; i++) { re[i] = re[i] * re[i] + im[i] * im[i]; im[i] = 0; }
+  fft(re, im, true);
+  return re.subarray(0, n);
+}

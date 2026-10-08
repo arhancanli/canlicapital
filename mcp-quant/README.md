@@ -1,18 +1,18 @@
 # canli-quant-mcp
 
-200 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
+216 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
 portfolio construction, econometrics, technical indicators, execution, sizing, crypto and FX,
-valuation, strategy backtests and data checks. Every tool computes on the data you send, and every
+valuation, strategy backtests, a library of 399 strategy sleeves, and data checks. Every tool computes on the data you send, and every
 tool's results are checked in the test suite against an independent implementation (QuantLib,
-statsmodels, arch, TA-Lib, numpy-financial, scikit-learn, empyrical, pandas): 388 reference cases,
+statsmodels, arch, TA-Lib, numpy-financial, scikit-learn, empyrical, pandas): 424 reference cases,
 plus planted-defect tests for the data checks.
 
 Local stdio, no key, no account, no network calls: your data never leaves your machine.
 
-## Three tools in context, 200 behind them
+## Three tools in context, 216 behind them
 
-Listing 203 tools directly costs **68,478 tokens** of context (o200k) on every request. By default
-this server lists three, **673 tokens**:
+Listing 219 tools directly costs **76,973 tokens** of context (o200k) on every request. By default
+this server lists three, **677 tokens**:
 
 | tool | what it does |
 |---|---|
@@ -21,7 +21,7 @@ this server lists three, **673 tokens**:
 | `run_tool` | Run any tool by name. `receipt: true` adds a calculation receipt. |
 
 The tool list is byte-identical across launches, so providers can cache it. To list toolsets
-directly instead, set `CANLI_TOOLSETS` to a comma-separated list (e.g. `performance,options`, 8,046
+directly instead, set `CANLI_TOOLSETS` to a comma-separated list (e.g. `performance,options`, 8,050
 tokens for performance alone) or `all`.
 
 ## Quick start
@@ -65,7 +65,8 @@ Then ask, for example:
 | `execution` | 7 | closed forms (Almgren-Chriss kappa solved numerically), statsmodels OLS |
 | `sizing` | 7 | scipy and closed forms |
 | `crypto_fx` | 9 | closed forms and simulated pool reserves |
-| `strategies` | 12 | an independent pandas implementation of every recipe and of the costed engine |
+| `strategies` | 20 | an independent pandas implementation of every recipe and of the costed engine |
+| `sleeves` | 8 | an independent numpy and pandas port of every recipe and the engine; arch's SPA and StepM on the same bootstrap draws; scipy average linkage; numpy CSCV; plus no-lookahead and warm-up checks on every sleeve |
 | `data_checks` | 10 | planted-defect tests: each check must find what was planted and stay quiet on clean data |
 | `tvm` | 15 | numpy-financial and closed forms |
 | `valuation` | 10 | published formulas re-derived independently |
@@ -73,16 +74,46 @@ Then ask, for example:
 ## Workflows (prompts)
 
 Prompts chain the tools for common jobs: `analyze_strategy`, `audit_backtest`, `value_company`,
-`price_option`, `test_mean_reversion`, `build_portfolio`, `analyze_trade_log`, `check_dataset`.
+`price_option`, `test_mean_reversion`, `build_portfolio`, `analyze_trade_log`, `sleeve_tournament`,
+`build_sleeve_book`, `check_dataset`.
 
 Resources: `canli-quant://catalog` (every tool), `canli-quant://methods` (what each toolset is
-checked against), `canli-quant://tools/{name}` (one tool's schema).
+checked against), `canli-quant://tools/{name}` (one tool's schema), `canli-quant://sleeves` (the sleeve
+library) and `canli-quant://sleeves/{id}` (one sleeve's spec).
+
+## Sleeve library
+
+399 strategy sleeves in 18 families, each a published idea with its usual parameters swept on a
+plain grid: moving-average crossovers, time-series momentum, multi-horizon trend, channel
+breakouts, MACD, z-score and RSI reversion, volatility targeting, cross-sectional momentum, dual
+momentum, risk parity, equal weight, minimum variance, low volatility, short-term reversal,
+trend-filtered allocation, 52-week-high momentum and pairs. Every sleeve has a fixed rule, a stated
+warm-up, references, known risks and a SHA-256 of its spec. None was picked because it backtested
+well: they are definitions, not track records.
+
+Running many strategies and keeping the best is how backtests overfit, so the tools that run many
+sleeves at once correct for it:
+
+| tool | what it answers |
+|---|---|
+| `sleeve_tournament` | Which sleeves lead on your prices, and does the best survive the deflated Sharpe ratio (counting all sleeves and the effective number of independent ones), Hansen's SPA test, Romano-Wolf StepM and the probability of backtest overfitting (CSCV)? |
+| `sleeve_walk_forward` | If you had kept picking the top sleeves by trailing Sharpe, what would you have earned out of sample, and how much of their in-sample Sharpe was luck? |
+| `sleeve_clusters` | How many genuinely different bets do the sleeves make on this data? |
+| `sleeve_regime_map` | Which sleeves held up in calm, turbulent, rising and falling markets? |
+| `combine_sleeves` | What does a book of chosen sleeves look like, and what asset weights does it want as of the latest close? |
+
+The tests check that no sleeve looks ahead (rewriting future prices never changes an earlier
+target), that none trades before its warm-up, and that the tournament's statistics match arch's SPA
+and StepM on the same bootstrap draws, scipy's clustering and an independent numpy CSCV.
+`run_sleeve` and `combine_sleeves` return `target_weights` by symbol, which a paper broker such as
+canli-paper-trading-mcp can rebalance to.
 
 ## Calculation receipts
 
 `run_tool` with `receipt: true` returns the SHA-256 of the tool name and arguments, the SHA-256 of
 the result, and the server version. Anyone can run the same tool with the same arguments on that
-version and compare the output hash. Results are deterministic: no randomness, no clock, no network.
+version and compare the output hash. Results are deterministic: no clock, no network, and the only
+randomness is the sleeve bootstrap, drawn from a stated seed.
 
 ## Conventions
 
@@ -332,7 +363,7 @@ version and compare the output hash. Results are deterministic: no randomness, n
 
 </details>
 
-<details><summary><b>strategies</b>: Strategy backtests (12)</summary>
+<details><summary><b>strategies</b>: Strategy backtests (20)</summary>
 
 | tool | what it does |
 |---|---|
@@ -345,9 +376,32 @@ version and compare the output hash. Results are deterministic: no randomness, n
 | `backtest_cross_sectional_momentum` | Backtest cross-sectional (relative) momentum across a universe: periodically hold the top assets by trailing return (skipping the latest month), optionally short the bottom. |
 | `backtest_dual_momentum` | Backtest dual momentum (Antonacci): hold the best-performing risky asset when it beats cash or a safe asset, otherwise move to safety. |
 | `backtest_risk_parity_rebalance` | Backtest a multi-asset inverse-volatility (naive risk parity) portfolio rebalanced periodically, optionally scaled to a volatility target. |
+| `backtest_trend_ensemble` | Backtest a multi-horizon trend signal: the average of time-series momentum signs over several lookbacks, optionally volatility-targeted, with costs and no lookahead. |
+| `backtest_macd_trend` | Backtest the MACD line against its signal line (long above, flat or short below) with costs and no lookahead. |
+| `backtest_equal_weight_rebalance` | Backtest equal weights across a universe rebalanced on a fixed schedule; the 1/N benchmark that optimized portfolios must beat. |
+| `backtest_min_variance_rebalance` | Backtest the long-only minimum-variance portfolio re-estimated from trailing sample covariance on a fixed schedule, with costs. |
+| `backtest_low_volatility` | Backtest holding the lowest-volatility fraction of a universe, re-ranked on a schedule, with costs and no lookahead. |
+| `backtest_short_term_reversal` | Backtest buying the recent biggest losers in a universe (and optionally shorting the winners), re-ranked on a schedule, with costs. |
+| `backtest_trend_filter_allocation` | Backtest tactical asset allocation where each asset is held only while above its moving average (Faber-style), equal or inverse-volatility weighted. |
+| `backtest_high_proximity` | Backtest holding the assets trading closest to their trailing high (George-Hwang 52-week-high momentum), re-ranked on a schedule. |
 | `backtest_pairs_trading` | Backtest a pairs trade on two price series: rolling hedge ratio, z-score of the residual spread, market-neutral entries and exits, with costs. |
 | `backtest_weights` | Backtest any strategy from your own target weights per period (decided at each close, applied to the next period) with the same costed, drift-aware engine; null rows mean hold. |
 | `strategy_sweep` | Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, and deflate the best one for the number tried, so tuning cannot pass off luck as skill. |
+
+</details>
+
+<details><summary><b>sleeves</b>: Strategy sleeve library (8)</summary>
+
+| tool | what it does |
+|---|---|
+| `list_sleeves` | Browse the library of 399 pre-defined strategy sleeves (18 families: trend, momentum, reversion, volatility, allocation, pairs). Each is a fixed rule with a spec hash; filter by family, data shape or words. |
+| `describe_sleeve` | One sleeve's exact rule, parameters, warm-up, rationale, published references, known risks and spec SHA-256. |
+| `run_sleeve` | Backtest one library sleeve on your prices with costs and no lookahead: CAGR, Sharpe, drawdown, turnover, cost drag, and the target weights as of the latest close (ready for a paper rebalance). |
+| `sleeve_tournament` | Run all library sleeves that fit your prices (up to 399) on a common window and rank them, then correct for the search: deflated Sharpe (raw and effective number of trials), Hansen SPA and Romano-Wolf StepM against a benchmark, and the probability of backtest overfitting (CSCV). |
+| `sleeve_walk_forward` | Test the selection process itself: at each refit pick the top sleeves by trailing Sharpe, hold them for the next window, repeat. Compares the out-of-sample result with what the picks showed in sample, with holding every sleeve, and with the benchmark. |
+| `combine_sleeves` | Blend chosen sleeves (equal or trailing inverse-volatility weights, no lookahead) into one book: its statistics, each sleeve's, their correlations, the diversification ratio, and the book's combined asset target weights as of the latest close. |
+| `sleeve_clusters` | Group the sleeves that ran on your prices by return correlation (average linkage on sqrt((1 - rho) / 2)), to see how many genuinely different bets the library makes on this data and the best sleeve of each group. |
+| `sleeve_regime_map` | Score every sleeve that fits your prices in each regime of the benchmark: calm, normal and turbulent volatility (terciles of trailing volatility) and up or down trend (above or below its moving average). Finds sleeves that held up in every regime. |
 
 </details>
 
@@ -411,7 +465,8 @@ version and compare the output hash. Results are deterministic: no randomness, n
 
 A number from a correct formula on bad inputs is still wrong. Run the `data_checks` tools on
 unfamiliar data first. A backtest of one parameter set says little if many were tried: count them,
-and use `strategy_sweep` or `deflated_sharpe_ratio`. Closed-form models (Black-Scholes, Heston,
+and use `strategy_sweep`, `sleeve_tournament` or `deflated_sharpe_ratio`. A sleeve that survives
+every correction on one history is still a backtest: forward results are the evidence. Closed-form models (Black-Scholes, Heston,
 SABR, Kirk) carry their assumptions; the result names the model.
 
 ## Development

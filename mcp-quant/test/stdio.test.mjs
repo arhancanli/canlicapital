@@ -58,7 +58,7 @@ test("prompts, resources and receipts", async (t) => {
   const c = await connect();
   t.after(() => c.close());
   const { prompts } = await c.listPrompts();
-  assert.ok(prompts.length >= 8);
+  assert.ok(prompts.length >= 10);
   const p = await c.getPrompt({ name: "audit_backtest", arguments: { recipe: "breakout", prices: "[1,2,3]" } });
   assert.match(p.messages[0].content.text, /strategy_sweep/);
   const done = await c.complete({ ref: { type: "ref/prompt", name: "audit_backtest" }, argument: { name: "recipe", value: "pa" } });
@@ -69,6 +69,12 @@ test("prompts, resources and receipts", async (t) => {
   for (const [k, v] of Object.entries(methods.toolsets)) assert.ok(v.checked_against, `${k} has no reference method`);
   const schema = JSON.parse((await c.readResource({ uri: "canli-quant://tools/black_scholes" })).contents[0].text);
   assert.ok(schema.input_schema.properties.volatility);
+  const sl = JSON.parse((await c.readResource({ uri: "canli-quant://sleeves" })).contents[0].text);
+  assert.equal(sl.rows.length, 399);
+  const one = JSON.parse((await c.readResource({ uri: "canli-quant://sleeves/tsmom-252-long" })).contents[0].text);
+  assert.match(one.spec_sha256, /^[0-9a-f]{64}$/);
+  const sp = await c.getPrompt({ name: "sleeve_tournament", arguments: { prices: "[1,2,3]" } });
+  assert.match(sp.messages[0].content.text, /sleeve_clusters/);
   const args = { name: "net_present_value", arguments: { rate: 0.08, cashflows: [-100, 60, 60] }, receipt: true };
   const a = await c.callTool({ name: "run_tool", arguments: args }), b = await c.callTool({ name: "run_tool", arguments: args });
   assert.match(a.structuredContent.receipt.output_sha256, /^[0-9a-f]{64}$/);

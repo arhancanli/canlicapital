@@ -9,12 +9,28 @@ import { z } from "zod";
 
 import { mean, normCdf, normInv, std, variance, moments } from "../math.mjs";
 import { MAX_SERIES, ppyArg } from "../inputs.mjs";
+import { minVariance } from "./portfolio.mjs";
 
 const pricesArg = z.array(z.number().positive()).min(30).max(MAX_SERIES).describe("Prices oldest first (daily closes by default).");
 const matrixArg = z.array(z.array(z.number().positive()).min(2).max(200)).min(30).max(MAX_SERIES).describe("Prices, one row per period, one column per asset.");
 const costArg = z.number().min(0).max(1000).optional().describe("Cost in basis points per unit of turnover (one-way); default 5.");
 const common = { cost_bps: costArg, periods_per_year: ppyArg, risk_free: z.number().gt(-1).lt(1).optional().describe("Annual rate earned on cash; default 0."), long_only: z.boolean().optional().describe("Long-only (true) or long-short (false); default true.") };
 const int = (d, lo = 1, hi = 5000) => z.number().int().min(lo).max(hi).optional().describe(`Default ${d}.`);
+const fractionArg = z.number().gt(0).max(1).optional().describe("Fraction of the universe to hold, e.g. 0.25 for the top quarter; overrides top.");
+// Number of assets a fraction of the universe selects: rounded, at least one.
+export const countOf = (f, N) => Math.max(1, Math.round(f * N));
+// Rebalance schedule: zeros at the start, a target from period `start` every k periods, hold between.
+const scheduled = (T, N, start, k, fn) => Array.from({ length: T }, (_, t) => (t < start ? (t === 0 ? new Array(N).fill(0) : null) : (t - start) % k === 0 ? fn(t) : null));
+const returnsMatrix = (P) => P.map((row, t) => row.map((x, i) => (t === 0 ? 0 : x / P[t - 1][i] - 1)));
+const column = (R, i, from, to) => { const out = []; for (let q = from; q <= to; q++) out.push(R[q][i]); return out; };
+// Indices of the n best scores (ties to the lower index); ascending picks the n lowest.
+const pick = (scores, n, ascending = false) => scores.map((s, i) => [s, i]).sort((x, y) => (ascending ? x[0] - y[0] : y[0] - x[0]) || x[1] - y[1]).slice(0, n).map(([, i]) => i);
+function emaSeries(x, span) { const al = 2 / (span + 1), out = [x[0]]; for (let t = 1; t < x.length; t++) out.push(al * x[t] + (1 - al) * out[t - 1]); return out; }
+function volScale(a, r, t, s) {
+  if (!a.vol_target || s === 0) return s;
+  const sd = rollingStd(r, a.vol_lookback ?? 63, t), ppy = a.periods_per_year ?? 252;
+  return sd === null || sd === 0 ? 0 : s * Math.min(a.max_leverage ?? 2, a.vol_target / (sd * Math.sqrt(ppy)));
+}
 
 // ---------------------------------------------------------------------------------------------
 // Engine
@@ -41,7 +57,7 @@ export function runEngine(P, targets, { cost_bps = 5, periods_per_year: ppy = 25
     const growth = 1 + g;
     w = w.map((x, i) => (growth > 0 ? x * (1 + r[i]) / growth : 0));
   }
-  return { net, gross, turnovers, exposures, trades };
+  return { net, gross, turnovers, exposures, trades, final_weights: w };
 }
 
 export function statsOf(rets, ppy) {
@@ -155,9 +171,9 @@ export const RECIPES = {
     },
   },
   cross_sectional_momentum: {
-    input: { prices: matrixArg, lookback: int(252), skip: int(21, 0), top: int(3), rebalance_every: int(21) },
+    input: { prices: matrixArg, lookback: int(252), skip: int(21, 0), top: int(3), top_fraction: fractionArg, rebalance_every: int(21) },
     build(a) {
-      const P = a.prices, N = P[0].length, L = a.lookback ?? 252, sk = a.skip ?? 21, top = Math.min(a.top ?? 3, Math.floor(N / 2) || 1), k = a.rebalance_every ?? 21, lo = a.long_only ?? true;
+      const P = a.prices, N = P[0].length, L = a.lookback ?? 252, sk = a.skip ?? 21, top = Math.min(a.top_fraction ? countOf(a.top_fraction, N) : a.top ?? 3, Math.floor(N / 2) || 1), k = a.rebalance_every ?? 21, lo = a.long_only ?? true;
       if (!(sk < L)) throw new Error("skip must be shorter than lookback.");
       return { P, params: { lookback: L, skip: sk, top, rebalance_every: k }, rule: `Every ${k} periods rank assets by return from t-${L} to t-${sk}; hold the top ${top} equally${lo ? "" : ` and short the bottom ${top}`}.`, targets: P.map((row, t) => {
         if (t < L) return t === 0 ? new Array(N).fill(0) : null;
@@ -190,16 +206,17 @@ export const RECIPES = {
     input: { prices: matrixArg, lookback: int(63, 2), rebalance_every: int(21), target_volatility: z.number().positive().max(2).optional().describe("Scale the whole book to this annual volatility (diagonal estimate); default none."), max_leverage: z.number().positive().max(10).optional().describe("Default 2.") },
     build(a) {
       const P = a.prices, N = P[0].length, L = a.lookback ?? 63, k = a.rebalance_every ?? 21, ppy = a.periods_per_year ?? 252;
-      const R = P.map((row, t) => row.map((x, i) => (t === 0 ? 0 : x / P[t - 1][i] - 1)));
+      const R = returnsMatrix(P);
       return { P, params: { lookback: L, rebalance_every: k, target_volatility: a.target_volatility ?? null }, rule: `Every ${k} periods weight assets by inverse ${L}-period volatility${a.target_volatility ? `, scaled to ${a.target_volatility} volatility` : ""}.`, targets: P.map((_, t) => {
         if (t < L) return t === 0 ? new Array(N).fill(0) : null;
         if ((t - L) % k !== 0) return null;
-        const sd = Array.from({ length: N }, (_, i) => std(R.slice(t - L + 1, t + 1).map((r) => r[i])));
+        const cols = Array.from({ length: N }, (_, i) => column(R, i, t - L + 1, t));
+        const sd = cols.map((x) => std(x));
         const iv = sd.map((s) => (s > 0 ? 1 / s : 0)), tot = iv.reduce((s, x) => s + x, 0);
         let w = iv.map((x) => x / tot);
         if (a.target_volatility) {
-          const cols = Array.from({ length: N }, (_, i) => R.slice(t - L + 1, t + 1).map((r) => r[i]));
-          let v = 0; for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) { const mi = mean(cols[i]), mj = mean(cols[j]); let c = 0; for (let q = 0; q < L; q++) c += (cols[i][q] - mi) * (cols[j][q] - mj); v += w[i] * w[j] * c / (L - 1); }
+          const mu = cols.map(mean);
+          let v = 0; for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) { const mi = mu[i], mj = mu[j]; let c = 0; for (let q = 0; q < L; q++) c += (cols[i][q] - mi) * (cols[j][q] - mj); v += w[i] * w[j] * c / (L - 1); }
           const scale = Math.min(a.max_leverage ?? 2, a.target_volatility / Math.sqrt(v * ppy));
           w = w.map((x) => x * scale);
         }
@@ -223,6 +240,91 @@ export const RECIPES = {
         return [pos / g, -pos * beta / g];
       });
       return { P, params: { window: w, entry_z: ez, exit_z: xz }, rule: `Rolling ${w}-period OLS of log y on log x; trade the residual z-score: long the spread below -${ez}, short above +${ez}, exit inside ±${xz}; legs sized 1 : -beta, gross 1.`, targets };
+    },
+  },
+  trend_ensemble: {
+    input: { prices: pricesArg, lookbacks: z.array(z.number().int().min(2).max(5000)).min(2).max(10).optional().describe("Lookbacks to average, default [21, 63, 126, 252]."), vol_target: z.number().positive().max(2).optional().describe("Scale to this annual volatility; default none."), vol_lookback: int(63, 2), max_leverage: z.number().positive().max(10).optional().describe("Cap with vol targeting; default 2.") },
+    build(a) {
+      const Ls = a.lookbacks ?? [21, 63, 126, 252], Lmax = Math.max(...Ls), lo = a.long_only ?? true, p = a.prices, r = simpleRets(p);
+      return { P: single(p), params: { lookbacks: Ls, vol_target: a.vol_target ?? null }, rule: `Average of the signs of the ${Ls.join(", ")}-period returns${lo ? ", each long or flat" : ""}${a.vol_target ? `, scaled to ${a.vol_target} volatility over ${a.vol_lookback ?? 63} periods` : ""}.`, targets: p.map((x, t) => {
+        if (t < Lmax) return [0];
+        let s = 0; for (const L of Ls) { const g = Math.sign(x / p[t - L] - 1); s += lo ? Math.max(0, g) : g; }
+        return [volScale(a, r, t, s / Ls.length)];
+      }) };
+    },
+  },
+  macd_trend: {
+    input: { prices: pricesArg, fast: int(12, 1, 1000), slow: int(26, 2, 2000), signal: int(9, 1, 1000) },
+    build(a) {
+      const f = a.fast ?? 12, sl = a.slow ?? 26, sg = a.signal ?? 9, lo = a.long_only ?? true, p = a.prices;
+      if (!(f < sl)) throw new Error("fast must be shorter than slow.");
+      const ef = emaSeries(p, f), es = emaSeries(p, sl), macd = ef.map((v, t) => v - es[t]), sig = emaSeries(macd, sg), warm = sl + sg - 2;
+      return { P: single(p), params: { fast: f, slow: sl, signal: sg }, rule: `Long when MACD(${f}, ${sl}) is above its ${sg}-period signal line, else ${lo ? "flat" : "short"} (EMAs seeded at the first price; no position for the first ${warm} periods).`, targets: p.map((_, t) => [t < warm ? 0 : macd[t] > sig[t] ? 1 : lo ? 0 : -1]) };
+    },
+  },
+  equal_weight_rebalance: {
+    input: { prices: matrixArg, rebalance_every: int(21) },
+    build(a) {
+      const P = a.prices, N = P[0].length, k = a.rebalance_every ?? 21;
+      return { P, params: { rebalance_every: k }, rule: `Equal weights in every asset, rebalanced every ${k} period(s).`, targets: scheduled(P.length, N, 0, k, () => new Array(N).fill(1 / N)) };
+    },
+  },
+  min_variance_rebalance: {
+    input: { prices: matrixArg, lookback: int(126, 10), rebalance_every: int(21) },
+    build(a) {
+      const P = a.prices, N = P[0].length, L = a.lookback ?? 126, k = a.rebalance_every ?? 21, R = returnsMatrix(P);
+      if (L <= N) throw new Error(`lookback ${L} must exceed the number of assets ${N} for a usable covariance.`);
+      return { P, params: { lookback: L, rebalance_every: k }, rule: `Every ${k} periods hold the long-only minimum-variance portfolio of the trailing ${L}-period sample covariance.`, targets: scheduled(P.length, N, L, k, (t) => {
+        const cols = Array.from({ length: N }, (_, i) => column(R, i, t - L + 1, t)), mu = cols.map(mean);
+        const C = cols.map((x, i) => cols.map((y, j) => { let c = 0; for (let q = 0; q < L; q++) c += (x[q] - mu[i]) * (y[q] - mu[j]); return c / (L - 1); }));
+        return minVariance(C);
+      }) };
+    },
+  },
+  low_volatility: {
+    input: { prices: matrixArg, lookback: int(63, 2), top_fraction: fractionArg, rebalance_every: int(21) },
+    build(a) {
+      const P = a.prices, N = P[0].length, L = a.lookback ?? 63, f = a.top_fraction ?? 1 / 3, n = countOf(f, N), k = a.rebalance_every ?? 21, R = returnsMatrix(P);
+      return { P, params: { lookback: L, top_fraction: f, rebalance_every: k }, rule: `Every ${k} periods hold the ${n} asset(s) with the lowest trailing ${L}-period volatility, equally weighted.`, targets: scheduled(P.length, N, L, k, (t) => {
+        const w = new Array(N).fill(0);
+        for (const i of pick(Array.from({ length: N }, (_, i) => std(column(R, i, t - L + 1, t))), n, true)) w[i] = 1 / n;
+        return w;
+      }) };
+    },
+  },
+  short_term_reversal: {
+    input: { prices: matrixArg, lookback: int(5), top_fraction: fractionArg, rebalance_every: int(5) },
+    build(a) {
+      const P = a.prices, N = P[0].length, L = a.lookback ?? 5, f = a.top_fraction ?? 0.25, lo = a.long_only ?? true, k = a.rebalance_every ?? 5;
+      const n = Math.min(countOf(f, N), lo ? N : Math.floor(N / 2) || 1);
+      return { P, params: { lookback: L, top_fraction: f, rebalance_every: k }, rule: `Every ${k} periods buy the ${n} biggest losers over the last ${L} periods equally${lo ? "" : `, and short the ${n} biggest winners`}.`, targets: scheduled(P.length, N, L, k, (t) => {
+        const ret = P[t].map((x, i) => x / P[t - L][i] - 1), w = new Array(N).fill(0);
+        for (const i of pick(ret, n, true)) w[i] = (lo ? 1 : 0.5) / n;
+        if (!lo) for (const i of pick(ret, n)) w[i] = -0.5 / n;
+        return w;
+      }) };
+    },
+  },
+  trend_filter_allocation: {
+    input: { prices: matrixArg, sma: int(200, 2), rebalance_every: int(21), weighting: z.enum(["equal", "inverse_vol"]).optional().describe("Weight of each asset above its average: 1/N (default) or its inverse-volatility share of the universe."), vol_lookback: int(63, 2) },
+    build(a) {
+      const P = a.prices, N = P[0].length, L = a.sma ?? 200, k = a.rebalance_every ?? 21, wt = a.weighting ?? "equal", vl = a.vol_lookback ?? 63, R = returnsMatrix(P);
+      const start = wt === "equal" ? L - 1 : Math.max(L - 1, vl);
+      return { P, params: { sma: L, rebalance_every: k, weighting: wt }, rule: `Every ${k} periods each asset above its ${L}-period average gets ${wt === "equal" ? "1/N" : `its inverse ${vl}-period volatility share`} of the book; the rest sits in cash.`, targets: scheduled(P.length, N, start, k, (t) => {
+        const base = wt === "equal" ? new Array(N).fill(1 / N) : (() => { const iv = Array.from({ length: N }, (_, i) => { const s = std(column(R, i, t - vl + 1, t)); return s > 0 ? 1 / s : 0; }), tot = iv.reduce((s, x) => s + x, 0); return iv.map((x) => (tot > 0 ? x / tot : 0)); })();
+        return base.map((b, i) => { let s = 0; for (let q = t - L + 1; q <= t; q++) s += P[q][i]; return P[t][i] > s / L ? b : 0; });
+      }) };
+    },
+  },
+  high_proximity: {
+    input: { prices: matrixArg, window: int(252, 2), top_fraction: fractionArg, rebalance_every: int(21) },
+    build(a) {
+      const P = a.prices, N = P[0].length, L = a.window ?? 252, f = a.top_fraction ?? 1 / 3, n = countOf(f, N), k = a.rebalance_every ?? 21;
+      return { P, params: { window: L, top_fraction: f, rebalance_every: k }, rule: `Every ${k} periods hold the ${n} asset(s) trading closest to their ${L}-period high, equally weighted.`, targets: scheduled(P.length, N, L - 1, k, (t) => {
+        const score = P[t].map((x, i) => { let h = -Infinity; for (let q = t - L + 1; q <= t; q++) h = Math.max(h, P[q][i]); return x / h; }), w = new Array(N).fill(0);
+        for (const i of pick(score, n)) w[i] = 1 / n;
+        return w;
+      }) };
     },
   },
 };
@@ -265,6 +367,14 @@ export const TOOLS = [
   recipeTool("cross_sectional_momentum", "Backtest cross-sectional momentum", "Backtest cross-sectional (relative) momentum across a universe: periodically hold the top assets by trailing return (skipping the latest month), optionally short the bottom.", "cross sectional momentum relative strength rotation ranking universe backtest jegadeesh titman"),
   recipeTool("dual_momentum", "Backtest dual momentum", "Backtest dual momentum (Antonacci): hold the best-performing risky asset when it beats cash or a safe asset, otherwise move to safety.", "dual momentum antonacci absolute relative momentum rotation gem backtest"),
   recipeTool("risk_parity_rebalance", "Backtest inverse-volatility risk parity", "Backtest a multi-asset inverse-volatility (naive risk parity) portfolio rebalanced periodically, optionally scaled to a volatility target.", "risk parity inverse volatility multi asset all weather rebalancing backtest"),
+  recipeTool("trend_ensemble", "Backtest a trend ensemble", "Backtest a multi-horizon trend signal: the average of time-series momentum signs over several lookbacks, optionally volatility-targeted, with costs and no lookahead.", "trend following ensemble multi horizon momentum managed futures cta signal blend backtest"),
+  recipeTool("macd_trend", "Backtest MACD trend following", "Backtest the MACD line against its signal line (long above, flat or short below) with costs and no lookahead.", "macd moving average convergence divergence trend signal line backtest"),
+  recipeTool("equal_weight_rebalance", "Backtest an equal-weight portfolio", "Backtest equal weights across a universe rebalanced on a fixed schedule; the 1/N benchmark that optimized portfolios must beat.", "equal weight 1/n naive diversification rebalancing calendar backtest demiguel"),
+  recipeTool("min_variance_rebalance", "Backtest minimum variance", "Backtest the long-only minimum-variance portfolio re-estimated from trailing sample covariance on a fixed schedule, with costs.", "minimum variance portfolio low risk covariance rolling optimization rebalancing backtest"),
+  recipeTool("low_volatility", "Backtest the low-volatility anomaly", "Backtest holding the lowest-volatility fraction of a universe, re-ranked on a schedule, with costs and no lookahead.", "low volatility anomaly low risk betting against beta defensive ranking backtest"),
+  recipeTool("short_term_reversal", "Backtest short-term reversal", "Backtest buying the recent biggest losers in a universe (and optionally shorting the winners), re-ranked on a schedule, with costs.", "short term reversal contrarian losers winners weekly reversal mean reversion universe backtest"),
+  recipeTool("trend_filter_allocation", "Backtest a trend-filtered allocation", "Backtest tactical asset allocation where each asset is held only while above its moving average (Faber-style), equal or inverse-volatility weighted.", "tactical asset allocation trend filter moving average faber gtaa timing backtest"),
+  recipeTool("high_proximity", "Backtest 52-week-high momentum", "Backtest holding the assets trading closest to their trailing high (George-Hwang 52-week-high momentum), re-ranked on a schedule.", "52 week high momentum proximity george hwang anchoring ranking backtest"),
   recipeTool("pairs_trading", "Backtest pairs trading", "Backtest a pairs trade on two price series: rolling hedge ratio, z-score of the residual spread, market-neutral entries and exits, with costs.", "pairs trading statistical arbitrage spread cointegration hedge ratio market neutral backtest"),
   {
     name: "backtest_weights",
