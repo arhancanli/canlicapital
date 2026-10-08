@@ -316,7 +316,7 @@ export const TOOLS = [
     name: "sleeve_tournament",
     title: "Run every sleeve, corrected for multiple testing",
     description: "Run all library sleeves that fit your prices (up to 399) on a common window and rank them, then correct for the search: deflated Sharpe (raw and effective number of trials), Hansen SPA and Romano-Wolf StepM against a benchmark, and the probability of backtest overfitting (CSCV).",
-    keywords: "sleeve tournament run all strategies leaderboard multiple testing spa reality check stepm romano wolf pbo cscv deflated sharpe data snooping",
+    keywords: "which work survive best all sleeve tournament run all strategies leaderboard multiple testing spa reality check stepm romano wolf pbo cscv deflated sharpe data snooping",
     input: z.object({
       prices: pricesIn, ...engineArgs, ...selectArgs,
       benchmark: z.enum(["buy_and_hold", "cash"]).optional().describe("What a sleeve must beat: equal-weight buy and hold of the columns (default) or cash at risk_free."),

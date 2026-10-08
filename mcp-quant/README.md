@@ -22,6 +22,16 @@ this server lists three, **680 tokens**:
 | `describe_tool` | One tool's description and exact input schema. |
 | `run_tool` | Run any tool by name. `receipt: true` adds a calculation receipt. |
 
+`find_tool` ranks with BM25 over each tool's name, title, keywords and description, with stemming
+and finance abbreviations (cvar, npv, irr, ytm...). On 110 test requests it returns the right tool
+first 94% of the time and in the top three 99% (`test/search.test.mjs`), so a model rarely needs a
+second search. `run_tool` takes `digits` (3-10 significant figures; default 10) to cut output tokens
+when full precision is not needed: 9-19% fewer tokens at 4-6 digits on the results we measured.
+
+Measured on an Apple-silicon laptop (Node 24): connect and initialize 140 ms; a typical tool call
+0.26 ms median over stdio; `find_tool` 1 ms; a full 399-sleeve tournament on 1,200 days of six
+assets about 2 s.
+
 The tool list is byte-identical across launches, so providers can cache it. To list toolsets
 directly instead, set `CANLI_TOOLSETS` to a comma-separated list (e.g. `performance,options`, 8,053
 tokens for performance alone) or `all`.

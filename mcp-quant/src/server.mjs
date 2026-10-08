@@ -69,8 +69,8 @@ export const PRIVACY = Object.freeze({
 });
 
 const sha256 = (v) => createHash("sha256").update(JSON.stringify(v)).digest("hex");
-export function receiptFor(name, args, result) {
-  return { tool: name, server: `${SERVER_NAME}@${SERVER_VERSION}`, input_sha256: sha256({ name, arguments: args ?? {} }), output_sha256: sha256(result), verify: "Run the same tool with the same arguments on this version; the output hash must match." };
+export function receiptFor(name, args, result, digits) {
+  return { tool: name, server: `${SERVER_NAME}@${SERVER_VERSION}`, input_sha256: sha256(digits === undefined ? { name, arguments: args ?? {} } : { name, arguments: args ?? {}, digits }), output_sha256: sha256(result), verify: "Run the same tool with the same arguments on this version; the output hash must match." };
 }
 
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
@@ -130,11 +130,12 @@ export function registerAll(server, { toolsets = selectedToolsets() } = {}) {
       name: z.string().max(100).describe("Tool name from find_tool."),
       arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments, as describe_tool gives them."),
       receipt: z.boolean().optional().describe("Add a calculation receipt (input and output SHA-256) so the result can be independently recomputed and compared; default false."),
+      digits: z.number().int().min(3).max(10).optional().describe("Significant figures in the result; default 10. 4-6 cuts output tokens when full precision is not needed."),
     }).strict(),
     outputSchema: open,
-  }, guard(({ name, arguments: args, receipt }) => {
-    const result = runTool(name, args);
-    return receipt ? { ...result, receipt: receiptFor(name, args, result) } : result;
+  }, guard(({ name, arguments: args, receipt, digits }) => {
+    const result = runTool(name, args, { digits });
+    return receipt ? { ...result, receipt: receiptFor(name, args, result, digits) } : result;
   }));
   registerPrompts(server);
   registerResources(server);

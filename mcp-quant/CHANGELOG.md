@@ -27,3 +27,5 @@ sleeves, data_checks, labeling), reached through three discovery tools (`find_to
   empyrical, scipy, pandas and dcor; planted-defect tests for the data checks; no-lookahead and warm-up
   checks on every sleeve.
 - Eleven workflow prompts, six resources, and opt-in calculation receipts.
+- BM25 tool search (94% right first, 99% in the top three on 110 test requests) and a `digits`
+  option on `run_tool` for shorter outputs.

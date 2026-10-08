@@ -268,12 +268,19 @@ export const TOOLS = [
       }
       if (inDD && trough / peak - 1 <= -md) events.push([peakT, "drawdown", { trough_period: troughT, recovery_period: null, depth: trough / peak - 1 }]);
       // Causal volatility regime: trailing volatility against terciles of the trailing volatilities seen so far.
-      const vols = [];
+      const seen = [];
       const regime = new Array(n).fill(null);
-      for (let t = vl; t < n; t++) {
-        const v = std(r.slice(t - vl + 1, t + 1));
-        vols.push(v);
-        if (vols.length >= 20) { const s = Float64Array.from(vols).sort(), c1 = quantile(s, 1 / 3), c2 = quantile(s, 2 / 3); regime[t] = v <= c1 ? "calm" : v <= c2 ? "normal" : "turbulent"; tags[t].push(`vol_${regime[t]}`); }
+      // Rolling sums give each trailing volatility in O(1); a sorted array kept by binary insertion
+      // gives the terciles of everything seen so far without re-sorting.
+      let s1 = 0, s2 = 0;
+      for (let t = 1; t < n; t++) {
+        s1 += r[t]; s2 += r[t] * r[t];
+        if (t > vl) { s1 -= r[t - vl]; s2 -= r[t - vl] * r[t - vl]; }
+        if (t < vl) continue;
+        const v = Math.sqrt(Math.max(0, (s2 - s1 * s1 / vl) / (vl - 1)));
+        let lo = 0, hi = seen.length; while (lo < hi) { const mid = (lo + hi) >> 1; if (seen[mid] < v) lo = mid + 1; else hi = mid; }
+        seen.splice(lo, 0, v);
+        if (seen.length >= 20) { const c1 = quantile(seen, 1 / 3), c2 = quantile(seen, 2 / 3); regime[t] = v <= c1 ? "calm" : v <= c2 ? "normal" : "turbulent"; tags[t].push(`vol_${regime[t]}`); }
       }
       events.sort((x, y) => x[0] - y[0]);
       const regCount = counts(regime.filter(Boolean));

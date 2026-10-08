@@ -52,7 +52,7 @@ if (BY_NAME.size !== CATALOG.length) throw new Error("Duplicate tool name in the
 
 // Runs one tool on raw arguments: validates, computes, rounds. Throws an Error whose message says
 // what to fix; callers turn it into an MCP error result.
-export function runTool(name, args) {
+export function runTool(name, args, { digits = 10 } = {}) {
   const tool = BY_NAME.get(name);
   if (!tool) throw new Error(`No tool ${name}. Use find_tool to search the ${CATALOG.length} tools.`);
   const parsed = tool.input.safeParse(args ?? {});
@@ -60,29 +60,46 @@ export function runTool(name, args) {
     const issues = parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ");
     throw new Error(`${name}: ${issues}. describe_tool ${name} gives the exact input schema.`);
   }
-  return compact(tool.run(parsed.data));
+  return compact(tool.run(parsed.data), digits);
 }
 
-const words = (s) => String(s ?? "").toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 1);
+// Search: BM25 over each tool's name, title, keywords and description (field-weighted), with light
+// stemming, stop words and a few finance abbreviations expanded, so plain-language requests find
+// the right tool in one call.
+const STOP = new Set("a an and are as at be by can do does for from get how i in is it me my of on or our the this to what which with you your want need using use show find give compute calculate".split(" "));
+const ABBREV = { cvar: "expected shortfall conditional", es: "expected shortfall", var: "value risk", npv: "net present value", irr: "internal rate return", ytm: "yield maturity", dcf: "discounted cash flow", pnl: "profit loss", vol: "volatility", iv: "implied volatility", rv: "realized variance", hmm: "markov regime", pbo: "probability backtest overfitting", dsr: "deflated sharpe", ml: "machine learning", cv: "cross validation", etf: "etfs", fx: "currency", otm: "out money" };
+export const stem = (w) => w.length <= 3 ? w : w.replace(/(ies)$/, "y").replace(/(ing|ed|es|s)$/, "").replace(/(istic|ility|ation|ion|ity|al|ness|ic)$/, "") || w;
+const tokens = (s) => String(s ?? "").toLowerCase().replace(/[-_/]/g, " ").split(/[^a-z0-9]+/).filter((w) => w.length > 1 && !STOP.has(w)).flatMap((w) => (ABBREV[w] ? [w, ...ABBREV[w].split(" ")] : [w])).map(stem);
+const FIELDS = [["name", 3], ["title", 2.5], ["keywords", 2], ["description", 1]];
+const INDEX = (() => {
+  const docs = CATALOG.map((t) => Object.fromEntries(FIELDS.map(([f]) => [f, tokens(f === "name" ? t.name.replace(/_/g, " ") : t[f])])));
+  const avg = Object.fromEntries(FIELDS.map(([f]) => [f, docs.reduce((s, d) => s + d[f].length, 0) / docs.length]));
+  const df = new Map();
+  for (const d of docs) for (const w of new Set(FIELDS.flatMap(([f]) => d[f]))) df.set(w, (df.get(w) ?? 0) + 1);
+  return { docs, avg, df, n: docs.length };
+})();
 
-// Ranks tools by how well their name, title, keywords and description match the query words.
+// Ranks tools by BM25F relevance to the query; ties go to the shorter name.
 export function findTools(query, { toolset, limit = 8 } = {}) {
-  const q = words(query);
+  const q = [...new Set(tokens(query))], { docs, avg, df, n } = INDEX, k1 = 1.2, b = 0.75;
   const scored = [];
-  for (const t of CATALOG) {
-    if (toolset && t.toolset !== toolset) continue;
-    const name = words(t.name.replace(/_/g, " ")), title = words(t.title), kw = words(t.keywords), desc = words(t.description);
+  CATALOG.forEach((t, i) => {
+    if (toolset && t.toolset !== toolset) return;
     let s = 0;
     for (const w of q) {
-      if (t.name === w || t.name.includes(w)) s += 4;
-      if (name.includes(w)) s += 3;
-      if (title.some((x) => x.startsWith(w))) s += 2;
-      if (kw.some((x) => x.startsWith(w))) s += 2;
-      if (desc.some((x) => x.startsWith(w))) s += 1;
+      let tf = 0;
+      for (const [f, wt] of FIELDS) { const d = docs[i][f]; let c = 0; for (const x of d) if (x === w) c++; tf += wt * c / (1 - b + b * d.length / (avg[f] || 1)); }
+      if (tf > 0) s += Math.log(1 + (n - (df.get(w) ?? 0) + 0.5) / ((df.get(w) ?? 0) + 0.5)) * tf * (k1 + 1) / (tf + k1);
     }
+    const plain = String(query).toLowerCase(), raw = plain.split(/[^a-z0-9]+/).filter(Boolean), nw = t.name.split("_");
+    // Phrase bonus: the longest run of the tool name's words appearing in order in the query.
+    let run = 0;
+    for (let i = 0; i < raw.length; i++) for (let j = 0; j < nw.length; j++) { let k = 0; while (raw[i + k] && nw[j + k] && raw[i + k] === nw[j + k]) k++; run = Math.max(run, k); }
+    if (run >= 2) s += 2 * run;
+    if (q.length && (t.name.replace(/_/g, " ") === plain.trim() || new RegExp(`(^|[^a-z_])${t.name}([^a-z_]|$)`).test(plain))) s += 100;
     if (s > 0 || q.length === 0) scored.push([s, t]);
-  }
-  scored.sort((a, b) => b[0] - a[0] || a[1].name.localeCompare(b[1].name));
+  });
+  scored.sort((a, b2) => b2[0] - a[0] || a[1].name.length - b2[1].name.length || a[1].name.localeCompare(b2[1].name));
   return scored.slice(0, limit).map(([, t]) => t);
 }
 

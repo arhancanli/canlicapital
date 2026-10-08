@@ -120,7 +120,7 @@ export const TOOLS = [
     name: "black_scholes",
     title: "Black-Scholes price and Greeks",
     description: "Price a European option under Black-Scholes-Merton with a dividend yield, with delta, gamma, vega, theta, rho, vanna, volga, charm, speed and the risk-neutral probability of finishing in the money.",
-    keywords: "black scholes merton bsm option price greeks delta gamma vega theta rho european",
+    keywords: "call put vanilla value fair price black scholes merton bsm option price greeks delta gamma vega theta rho european",
     input: bsInput,
     run: (a) => ({ ...bsm(a), units: "vega and rho per 1.00 (x0.01 per point); theta per year (/365 per day); charm per year." }),
   },

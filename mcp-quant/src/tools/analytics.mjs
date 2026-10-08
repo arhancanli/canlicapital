@@ -5,7 +5,7 @@
 // structural credit risk (rates).
 import { z } from "zod";
 
-import { bfgs, brent, cholesky, inverse, leastSquares, matMul, mean, moments, mulberry32, nelderMead, normCdf, normInv, quantile, std, symmetricEigen, tPValue, transpose, variance, fSf, sum } from "../math.mjs";
+import { bfgs, brent, cholesky, inverse, solve, leastSquares, matMul, mean, moments, mulberry32, nelderMead, normCdf, normInv, quantile, std, symmetricEigen, tPValue, transpose, variance, fSf, sum } from "../math.mjs";
 import { MAX_SERIES, ppyArg, returnsArg } from "../inputs.mjs";
 import { regressionReport } from "./econometrics.mjs";
 
@@ -379,8 +379,16 @@ export const ECONOMETRICS = [
         return { break_period: b, f_stat: r.F, p_value: r.p, df: [k, n - 2 * k], verdict: r.p < 0.05 ? "The coefficients differ before and after the break at 5%." : "No significant break at that period at 5%." };
       }
       const lo = Math.max(k + 1, Math.floor(n * (a.trim ?? 0.15))), hi = Math.min(n - k - 1, n - Math.floor(n * (a.trim ?? 0.15)));
-      let best = null;
-      for (let b = lo; b <= hi; b++) { const r = chow(b); if (!best || r.F > best.F) best = { b, ...r }; }
+      // Scan with prefix sums of X'X, X'y and y'y (O(n k^2) in total), then recompute the winner exactly.
+      const cXX = [Array.from({ length: k }, () => new Array(k).fill(0))], cXy = [new Array(k).fill(0)], cyy = [0];
+      for (let t = 0; t < n; t++) {
+        const x = X[t], prevA = cXX[t], prevB = cXy[t];
+        cXX.push(prevA.map((row, i) => row.map((v, j) => v + x[i] * x[j]))); cXy.push(prevB.map((v, i) => v + x[i] * a.y[t])); cyy.push(cyy[t] + a.y[t] * a.y[t]);
+      }
+      const segSSR = (l, h) => { const A = cXX[h].map((row, i) => row.map((v, j) => v - cXX[l][i][j])), bv = cXy[h].map((v, i) => v - cXy[l][i]); const coef = solve(A, bv); return cyy[h] - cyy[l] - coef.reduce((s2, c, i) => s2 + c * bv[i], 0); };
+      let bestB = lo, bestF = -Infinity;
+      for (let b = lo; b <= hi; b++) { const s2 = segSSR(0, b) + segSSR(b, n), F = ((full - s2) / k) / (s2 / (n - 2 * k)); if (F > bestF) { bestF = F; bestB = b; } }
+      const best = { b: bestB, ...chow(bestB) };
       return { scanned: [lo, hi], sup_f_stat: best.F, most_likely_break_period: best.b, chow_p_value_at_that_period: best.p, note: "The p-value is the Chow p-value at the chosen period; after scanning many periods it overstates significance (use Andrews' sup-F critical values, about 8.85 for one coefficient at 15% trimming and 5%)." };
     },
   },
@@ -483,6 +491,7 @@ export const ECONOMETRICS = [
     run(a) {
       const r = a.returns, n = r.length, kind = a.statistic ?? "sharpe", ppy = a.periods_per_year ?? 252, reps = a.reps ?? 2000, cl = a.confidence ?? 0.95;
       if (n < 20) throw new Error("Need at least 20 returns.");
+      if (reps * n > 2e8) throw new Error(`reps x returns = ${reps * n} exceeds the 200,000,000 budget; lower reps to ${Math.floor(2e8 / n)} or fewer.`);
       const block = a.block ?? Math.max(1, Math.round(n ** (1 / 3))), rand = mulberry32(a.seed ?? 7), point = statistic(kind, r, ppy);
       const draws = new Float64Array(reps), buf = new Array(n);
       for (let b = 0; b < reps; b++) { const idx = stationaryDraw(n, block, rand); for (let t = 0; t < n; t++) buf[t] = r[idx[t]]; draws[b] = statistic(kind, buf, ppy); }

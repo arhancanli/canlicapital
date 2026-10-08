@@ -275,7 +275,7 @@ export const TOOLS = [
     name: "adf_test",
     title: "Augmented Dickey-Fuller unit root test",
     description: "Test a price, spread or rate series for a unit root (non-stationarity) with the Augmented Dickey-Fuller test: statistic, MacKinnon p-value, critical values and the AIC-chosen lag.",
-    keywords: "adf augmented dickey fuller unit root stationarity test mean reversion random walk",
+    keywords: "stationary stationarity adf augmented dickey fuller unit root stationarity test mean reversion random walk",
     input: z.object({
       series: series("The series in levels (e.g. log prices or a spread)."),
       regression: z.enum(["c", "ct", "n"]).optional().describe("Deterministic terms: c constant (default), ct constant and trend, n none."),
@@ -419,7 +419,7 @@ export const TOOLS = [
     name: "deflated_sharpe_ratio",
     title: "Deflated Sharpe ratio",
     description: "Deflate a backtest's Sharpe ratio for the number of strategies tried (Bailey and López de Prado 2014): the expected maximum Sharpe under the null and the probability the result beats it.",
-    keywords: "deflated sharpe ratio dsr multiple testing selection bias backtest overfitting trials data snooping",
+    keywords: "overfit overfitting variants trials tried multiple testing luck deflated sharpe ratio dsr multiple testing selection bias backtest overfitting trials data snooping",
     input: z.object({
       ...seriesFields,
       trials: z.number().int().min(1).max(1e9).describe("How many strategy variants were tried, including this one."),

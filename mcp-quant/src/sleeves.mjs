@@ -176,9 +176,14 @@ function ruleOf(f, params) {
   return RECIPES[f.recipe].build({ prices, ...params }).rule;
 }
 
+// Rule text and the spec hash are computed on first use, so loading the server stays fast.
 export const SLEEVES = Object.freeze(FAMILIES.flatMap((f) => f.variants.map((v) => {
   const spec = { spec_version: SPEC_VERSION, id: v.id, recipe: f.recipe, data: f.data, params: v.params };
-  return Object.freeze({ ...spec, family: f.family, title: f.title, rule: ruleOf(f, v.params), warmup: f.warmup(v.params), spec_sha256: sha(spec) });
+  let rule, hash;
+  return Object.freeze(Object.defineProperties({ ...spec, family: f.family, title: f.title, warmup: f.warmup(v.params) }, {
+    rule: { enumerable: true, get: () => (rule ??= ruleOf(f, v.params)) },
+    spec_sha256: { enumerable: true, get: () => (hash ??= sha(spec)) },
+  }));
 })));
 
 export const SLEEVE_BY_ID = new Map(SLEEVES.map((s) => [s.id, s]));

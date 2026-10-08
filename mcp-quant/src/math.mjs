@@ -225,12 +225,12 @@ export function sig(x, digits = 10) {
 }
 
 // Rounds every number in a plain result tree.
-export function compact(v) {
-  if (typeof v === "number") return sig(v);
-  if (Array.isArray(v)) return v.map(compact);
+export function compact(v, digits = 10) {
+  if (typeof v === "number") return sig(v, digits);
+  if (Array.isArray(v)) return v.map((x) => compact(x, digits));
   if (v && typeof v === "object" && !(v instanceof Date)) {
     const out = {};
-    for (const [k, x] of Object.entries(v)) if (x !== undefined) out[k] = compact(x);
+    for (const [k, x] of Object.entries(v)) if (x !== undefined) out[k] = compact(x, digits);
     return out;
   }
   return v;
