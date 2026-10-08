@@ -10,6 +10,8 @@
 //   call take an earlier call's output ({"$result": i, "path": "..."}) so intermediate data never
 //   passes through the model; return: "last" sends back only the final result.
 // - Input tokens: any argument can be {"$file": "data.csv", "column": "close"}, read here.
+// - Output tokens: select returns only named fields; digits rounds; find_tool rows carry each
+//   tool's argument signature, so describe_tool is rarely needed.
 // Privacy: canli://privacy states what each pack sends and stores; CANLI_OFFLINE=1 keeps only the
 // packs that never use the network, and their code is the only code loaded.
 import { createHash } from "node:crypto";
@@ -34,13 +36,13 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-export const ENTRIES = INDEX.tools.map(([name, pack, toolset, title, description, keywords]) => ({ name, pack, toolset, title, description, keywords }));
+export const ENTRIES = INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args }));
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 const SEARCH = buildIndex(ENTRIES);
 
 export function instructions(packs) {
   const n = ENTRIES.filter((e) => packs.includes(e.pack)).length;
-  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). Call find_tool with what you need in plain words, then run_tool with the tool's name and arguments; describe_tool gives the exact input schema. To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.`;
+  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). Call find_tool with what you need in plain words; its results include each tool's arguments, so you can usually call run_tool next (describe_tool explains arguments in full). To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.`;
 }
 
 const sha256 = (v) => createHash("sha256").update(JSON.stringify(v)).digest("hex");
@@ -83,7 +85,7 @@ const usesResults = (v) => (Array.isArray(v) ? v.some(usesResults) : v && typeof
 async function runOne(packs, { name, arguments: args }, { digits }, files) {
   const tool = await toolFor(name, packs);
   const parsed = tool.input.safeParse(resolveRefs(args ?? {}, files));
-  if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}. describe_tool ${name} gives the exact input schema.`);
+  if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}. Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
   const out = await tool.run(parsed.data, digits ? { digits } : undefined);
   if (!digits || tool.pack === "quant") return out;
   const { compact } = await import("canli-quant-mcp/src/math.mjs");
@@ -93,13 +95,15 @@ async function runOne(packs, { name, arguments: args }, { digits }, files) {
 export function registerAll(server, packs = enabledPacks()) {
   server.registerTool("find_tool", {
     title: "Find a tool",
-    description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) by what you need, e.g. "deflated sharpe", "black scholes greeks", "revenue as of 2019". Returns names, packs and one-line descriptions, best first.`,
+    description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) by what you need, e.g. "deflated sharpe", "black scholes greeks", "revenue as of 2019". Returns names, packs, argument signatures and one-line descriptions, best first.`,
     annotations: { title: "Find a tool", ...READ_ONLY },
-    inputSchema: z.object({ query: z.string().max(200).describe("What you need, in plain words."), pack: z.enum(packs).optional().describe("Only this pack."), limit: z.number().int().min(1).max(50).optional().describe("Default 8.") }).strict(),
+    inputSchema: z.object({ query: z.string().max(200).describe("What you need, in plain words."), limit: z.number().int().min(1).max(50).optional().describe("Default 6.") }).strict(),
     outputSchema: open,
-  }, guard(({ query, pack, limit }) => {
-    const found = search(SEARCH, query, { packs: pack ? [pack] : packs, limit: limit ?? 8 });
-    return { columns: ["name", "pack", "description"], rows: found.map((t) => [t.name, t.pack, t.description.split(/(?<=\.)\s/)[0]]), next: "describe_tool for the input schema, then run_tool." };
+  }, guard(({ query, limit }) => {
+    // No pack filter: in an agent evaluation a model narrowed its search to one pack and missed the
+    // tool that fitted its inputs in another.
+    const found = search(SEARCH, query, { packs, limit: limit ?? 6 });
+    return { columns: ["name", "pack", "args", "description"], rows: found.map((t) => [t.name, t.pack, t.args, t.description.split(/(?<=\.)\s/)[0]]), next: "run_tool with these args (? = optional); describe_tool only if you need each argument's meaning or limits." };
   }));
   server.registerTool("describe_tool", {
     title: "Describe a tool",
@@ -122,10 +126,16 @@ export function registerAll(server, packs = enabledPacks()) {
       calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip. Calls without $result references run concurrently."),
       return: z.enum(["all", "last"]).optional().describe("For a batch: every result (default) or only the last one."),
       digits: z.number().int().min(3).max(10).optional().describe("Round every number in the results to this many significant figures (4-6 saves output tokens); default: as each tool returns them."),
+      select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"leaderboard.0\"]."),
       receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
     }).strict(),
     outputSchema: open,
   }, guard(async (a) => {
+    // Models sometimes put run_tool's own options inside a call's arguments; move them out when the
+    // tool itself has no argument of that name.
+    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt"]) {
+      if (c.arguments && k in c.arguments && !(BY_NAME.get(c.name)?.args ?? "").split(", ").some((x) => x.replace(/\?.*$/, "").replace(/:.*$/, "") === k)) { if (a[k] === undefined) a[k] = c.arguments[k]; delete c.arguments[k]; }
+    }
     if (!a.calls && !a.name) throw new Error("Pass name (and arguments) for one call, or calls for several.");
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
@@ -139,6 +149,11 @@ export function registerAll(server, packs = enabledPacks()) {
       }
     } else {
       done.push(...await Promise.all(calls.map((c) => runOne(packs, c, opts, files).then((result) => ({ name: c.name, result }), (e) => ({ name: c.name, error: e.message })))));
+    }
+    if (a.select) for (const d of done) if (d.result) {
+      const full = d.result;
+      d.result = Object.fromEntries(a.select.map((p) => [p, at(full, p) ?? null]));
+      if (a.select.some((p) => at(full, p) === undefined)) d.result.available_fields = Object.entries(full).flatMap(([k, v]) => (v && typeof v === "object" && !Array.isArray(v) ? Object.keys(v).slice(0, 12).map((x) => `${k}.${x}`) : [k])).slice(0, 60);
     }
     const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done) } : undefined;
     if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return { ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }; }

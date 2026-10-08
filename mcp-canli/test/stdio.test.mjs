@@ -50,13 +50,29 @@ test("find, describe and run across packs; a batch with $file, $result, return l
   assert.ok(String(w.mean_uniqueness).replace(/^0\./, "").length <= 4);
 });
 
+test("find_tool rows carry argument signatures; select returns only the named fields", async (t) => {
+  const c = await connect(); t.after(() => c.close());
+  const f = await c.callTool({ name: "find_tool", arguments: { query: "sortino ratio" } });
+  assert.deepEqual(f.structuredContent.columns, ["name", "pack", "args", "description"]);
+  assert.match(f.structuredContent.rows[0][2], /returns\?: number\[\]/);
+  const r = await c.callTool({ name: "run_tool", arguments: { name: "max_drawdown", arguments: { prices: { $file: CSV, column: "close" } }, select: ["max_drawdown", "nope"] } });
+  assert.deepEqual(Object.keys(r.structuredContent).filter((k) => k !== "files_read"), ["max_drawdown", "nope", "available_fields"]);
+  assert.equal(r.structuredContent.nope, null);
+  assert.ok(r.structuredContent.available_fields.includes("max_drawdown"));
+  const lifted = await c.callTool({ name: "run_tool", arguments: { name: "max_drawdown", arguments: { prices: { $file: CSV, column: "close" }, select: ["max_drawdown"], digits: 3 } } });
+  assert.ok(!lifted.isError, lifted.content[0].text);
+  assert.deepEqual(Object.keys(lifted.structuredContent).filter((k) => k !== "files_read"), ["max_drawdown"]);
+  const listCol = await c.callTool({ name: "run_tool", arguments: { name: "correlation_matrix", arguments: { returns: { $file: CSV, column: ["close", "other"] } } } });
+  assert.ok(!listCol.isError, listCol.content[0].text);
+});
+
 test("errors are per call and say what to do", async (t) => {
   const c = await connect(); t.after(() => c.close());
   const r = await c.callTool({ name: "run_tool", arguments: { calls: [{ name: "sharpe_ratio", arguments: { returns: [0.01, -0.02, 0.03] } }, { name: "sharpe_ratoi" }, { name: "sortino_ratio", arguments: { nope: 1 } }] } });
   const [a, b, e] = r.structuredContent.results;
   assert.ok(a.result);
   assert.match(b.error, /No tool sharpe_ratoi\. Closest: .*sharpe_ratio/);
-  assert.match(e.error, /describe_tool sortino_ratio/);
+  assert.match(e.error, /Arguments: .*returns\?: number\[\].*describe_tool sortino_ratio/);
   const bad = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { prices: { $file: CSV, column: "volume" } } } });
   assert.match(bad.content[0].text, /no column "volume"; columns are date, close, other/);
   const ref = await c.callTool({ name: "run_tool", arguments: { calls: [{ name: "sharpe_ratio", arguments: { returns: { $result: 1, path: "x" } } }] } });

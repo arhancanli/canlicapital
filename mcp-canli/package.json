@@ -44,5 +44,26 @@
   "bugs": {
     "url": "https://github.com/arhancanli/canlicapital/issues"
   },
-  "keywords": ["mcp", "mcp-server", "model-context-protocol", "quant", "quantitative-finance", "backtesting", "overfitting", "sec-filings", "fundamentals", "paper-trading", "risk", "options", "portfolio-optimization", "technical-indicators", "econometrics"]
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "quant",
+    "quantitative-finance",
+    "backtesting",
+    "overfitting",
+    "sec-filings",
+    "fundamentals",
+    "paper-trading",
+    "risk",
+    "options",
+    "portfolio-optimization",
+    "technical-indicators",
+    "econometrics"
+  ],
+  "overrides": {
+    "canli-backtest-mcp": {
+      "canli-validation-mcp": "$canli-validation-mcp"
+    }
+  }
 }

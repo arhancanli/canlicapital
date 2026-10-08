@@ -43,7 +43,9 @@ function toNumbers(table, idx, path) {
   }));
 }
 
-export function readRef(ref) {
+export function readRef(input) {
+  // A list given as "column" means "columns".
+  const ref = Array.isArray(input.column) ? { ...input, columns: input.column, column: undefined } : input;
   const path = ref.$file, table = readTable(path, ref);
   if (ref.columns !== undefined) {
     const width = table.rows[0]?.length ?? 0;

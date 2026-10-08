@@ -5,12 +5,13 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import { OMITTED, PACKS, RENAMES, loadPack } from "../src/packs.mjs";
+import { signature } from "../src/signature.mjs";
 
 const INDEX = JSON.parse(readFileSync(new URL("../src/index.json", import.meta.url), "utf8"));
 
 test("index.json matches every pack's live registration (run npm run build-index after a pack update)", async () => {
   const live = [];
-  for (const pack of Object.keys(PACKS)) for (const t of (await loadPack(pack)).values()) live.push([t.name, pack, t.toolset ?? pack, t.title, t.description, t.keywords]);
+  for (const pack of Object.keys(PACKS)) for (const t of (await loadPack(pack)).values()) live.push([t.name, pack, t.toolset ?? pack, t.title, t.description, t.keywords, signature(t.input)]);
   assert.deepEqual(INDEX.tools, live);
   for (const pack of Object.keys(PACKS)) assert.equal(INDEX.versions[pack], JSON.parse(readFileSync(new URL(`../node_modules/${PACKS[pack].package}/package.json`, import.meta.url), "utf8")).version, pack);
 });
