@@ -6,6 +6,7 @@ import { z } from "zod";
 import { compact } from "./math.mjs";
 import { TOOLS as OPTIONS } from "./tools/options.mjs";
 import { TOOLS as PERFORMANCE } from "./tools/performance.mjs";
+import { TOOLS as PORTFOLIO } from "./tools/portfolio.mjs";
 import { TOOLS as RATES } from "./tools/rates.mjs";
 import { TOOLS as TVM } from "./tools/tvm.mjs";
 import { TOOLS as VALUATION } from "./tools/valuation.mjs";
@@ -14,6 +15,7 @@ export const TOOLSETS = Object.freeze({
   performance: { title: "Performance and risk", tools: PERFORMANCE },
   options: { title: "Options and derivatives", tools: OPTIONS },
   rates: { title: "Fixed income and rates", tools: RATES },
+  portfolio: { title: "Portfolio construction and risk", tools: PORTFOLIO },
   tvm: { title: "Time value and corporate finance", tools: TVM },
   valuation: { title: "Valuation and fundamental scores", tools: VALUATION },
 });
