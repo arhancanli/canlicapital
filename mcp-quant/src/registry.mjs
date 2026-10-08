@@ -4,12 +4,15 @@
 import { z } from "zod";
 
 import { compact } from "./math.mjs";
+import { TOOLS as CRYPTO_FX } from "./tools/cryptofx.mjs";
 import { TOOLS as ECONOMETRICS } from "./tools/econometrics.mjs";
+import { TOOLS as EXECUTION } from "./tools/execution.mjs";
 import { TOOLS as INDICATORS } from "./tools/indicators.mjs";
 import { TOOLS as OPTIONS } from "./tools/options.mjs";
 import { TOOLS as PERFORMANCE } from "./tools/performance.mjs";
 import { TOOLS as PORTFOLIO } from "./tools/portfolio.mjs";
 import { TOOLS as RATES } from "./tools/rates.mjs";
+import { TOOLS as SIZING } from "./tools/sizing.mjs";
 import { TOOLS as TVM } from "./tools/tvm.mjs";
 import { TOOLS as VALUATION } from "./tools/valuation.mjs";
 
@@ -20,6 +23,9 @@ export const TOOLSETS = Object.freeze({
   econometrics: { title: "Statistics and econometrics", tools: ECONOMETRICS },
   rates: { title: "Fixed income and rates", tools: RATES },
   portfolio: { title: "Portfolio construction and risk", tools: PORTFOLIO },
+  execution: { title: "Execution and microstructure", tools: EXECUTION },
+  sizing: { title: "Position sizing and trade risk", tools: SIZING },
+  crypto_fx: { title: "Crypto and FX", tools: CRYPTO_FX },
   tvm: { title: "Time value and corporate finance", tools: TVM },
   valuation: { title: "Valuation and fundamental scores", tools: VALUATION },
 });
