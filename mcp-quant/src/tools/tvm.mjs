@@ -278,4 +278,52 @@ export const TOOLS = [
       return { contribution_margin: cm, contribution_margin_ratio: cm / price, break_even_units: be, break_even_revenue: be * price, operating_profit: ebit, margin_of_safety: units === undefined ? undefined : (units - F / cm) / units, operating_leverage: units === undefined || !ebit ? undefined : units * cm / ebit };
     },
   },
+  {
+    name: "loan_true_cost",
+    title: "Loan APR with fees",
+    description: "Find a loan's true annual cost when upfront fees reduce the cash received: the payment, the nominal APR and effective annual rate implied by the fees, and the total cost.",
+    keywords: "apr annual percentage rate loan fees points origination true cost effective rate",
+    input: z.object({
+      principal: z.number().positive().describe("Amount borrowed."),
+      annual_rate: z.number().min(0).lt(1).describe("Quoted nominal rate."),
+      years: z.number().positive().max(50).describe("Term."),
+      upfront_fees: z.number().min(0).describe("Fees deducted or paid at the start."),
+      payments_per_year: z.number().int().min(1).max(52).optional().describe("Default 12."),
+    }).strict(),
+    run({ principal: P, annual_rate: ar, years, upfront_fees: f, payments_per_year: m = 12 }) {
+      const n = Math.round(years * m), r = ar / m, pay = r === 0 ? P / n : P * r / (1 - (1 + r) ** -n);
+      if (!(f < P)) throw new Error("Fees must be less than the principal.");
+      const per = bracketRoot((x) => (Math.abs(x) < 1e-14 ? pay * n : pay * (1 - (1 + x) ** -n) / x) - (P - f), Math.max(r, 1e-6), r + 0.01, { min: -0.99, max: 10 });
+      return { payment: pay, apr: per * m, effective_annual_rate: (1 + per) ** m - 1, quoted_effective_rate: (1 + r) ** m - 1, total_interest_and_fees: pay * n - P + f };
+    },
+  },
+  {
+    name: "retirement_projection",
+    title: "Savings and withdrawal projection",
+    description: "Project a savings balance with yearly contributions growing with salary, then sustainable inflation-adjusted withdrawals; reports the balance at retirement, how long withdrawals last and the safe level spending.",
+    keywords: "retirement projection savings plan withdrawals safe withdrawal rate financial planning compound growth",
+    input: z.object({
+      balance: z.number().min(0).describe("Current savings."),
+      annual_contribution: z.number().min(0).describe("Contribution this year."),
+      contribution_growth: z.number().gt(-1).lt(1).optional().describe("Yearly growth of contributions; default 0."),
+      years_to_retirement: z.number().int().min(0).max(80).describe("Years of saving."),
+      return_rate: z.number().gt(-1).lt(1).describe("Annual nominal return."),
+      inflation: z.number().gt(-1).lt(1).optional().describe("Annual inflation; default 0.02."),
+      annual_withdrawal: z.number().min(0).optional().describe("First-year withdrawal in today's money; omit to only solve the level that lasts."),
+      years_in_retirement: z.number().int().min(1).max(80).optional().describe("Years withdrawals must last; default 30."),
+    }).strict(),
+    run({ balance, annual_contribution: c, contribution_growth: g = 0, years_to_retirement: n, return_rate: r, inflation: inf = 0.02, annual_withdrawal: wd, years_in_retirement: m = 30 }) {
+      let b = balance;
+      for (let t = 0; t < n; t++) b = b * (1 + r) + c * (1 + g) ** t;
+      const atRet = b, real = (1 + r) / (1 + inf) - 1, infl = (1 + inf) ** n;
+      // Level real withdrawal at the start of each retirement year that exhausts the balance in m years.
+      const level = Math.abs(real) < 1e-14 ? atRet / m : atRet * real / ((1 - (1 + real) ** -m) * (1 + real));
+      let lasts = null;
+      if (wd !== undefined) {
+        let x = atRet; lasts = 0;
+        for (let t = 0; t < 200; t++) { const w = wd * infl * (1 + inf) ** t; if (x < w) break; x = (x - w) * (1 + r); lasts = t + 1; }
+      }
+      return { balance_at_retirement: atRet, balance_today_money: atRet / infl, sustainable_withdrawal_nominal_first_year: level, sustainable_withdrawal_today_money: level / infl, withdrawal_rate: level / atRet, years_withdrawals_last: lasts };
+    },
+  },
 ];

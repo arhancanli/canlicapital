@@ -92,7 +92,7 @@ export function boxQP(C, q, a, b, lo, hi, start) {
     const g = matVec(C, w);
     let worst = -1, worstV = 1e-13;
     for (let i = 0; i < n; i++) {
-      if (fixed[i] === 0) continue;
+      if (fixed[i] === 0 || hi[i] - lo[i] < 1e-15) continue; // equal bounds pin the weight for good
       const lam = g[i] - q[i] + nu * a[i];
       const viol = fixed[i] < 0 ? -lam : lam;
       if (viol > worstV) { worstV = viol; worst = i; }
@@ -447,5 +447,39 @@ export const TOOLS = [
       return { weights: label(names, w), leverage: w.reduce((s, v) => s + Math.abs(v), 0), net_exposure: sum(w), expected_growth: rf + dot(w, ex) - 0.5 * portVar(C, w), note: "Continuous-time Kelly; estimation error makes full Kelly far too aggressive in practice." };
     },
   },
+  {
+    name: "max_diversification_portfolio",
+    title: "Maximum diversification portfolio",
+    description: "Find the long-only portfolio with the highest diversification ratio (weighted average volatility over portfolio volatility), Choueifaty and Coignard's most-diversified portfolio.",
+    keywords: "maximum diversification most diversified portfolio choueifaty diversification ratio",
+    input: z.object({ ...sources }).strict(),
+    run(a) {
+      const { C, mu, names } = estimates(a), sds = C.map((r, i) => Math.sqrt(r[i]));
+      // Same problem as maximum Sharpe with volatilities in place of excess returns.
+      return riskReport(C, maxSharpe(C, sds, 0, { longOnly: true }), names, mu);
+    },
+  },
+  {
+    name: "index_tracking_portfolio",
+    title: "Index tracking portfolio",
+    description: "Find long-only weights in a subset of assets that minimize ex-ante tracking error to a benchmark's weights, with an optional per-asset cap.",
+    keywords: "index tracking replication tracking error minimization benchmark subset sampling optimizer",
+    input: z.object({
+      ...sources,
+      benchmark_weights: weightsArg.describe("Benchmark weight of every asset."),
+      allowed: z.array(z.boolean()).max(MAX_ASSETS).optional().describe("Which assets may be held; default all."),
+      max_weight: boundsArg.max_weight,
+    }).strict(),
+    run(a) {
+      const { C, mu, names, n } = estimates(a), b = a.benchmark_weights;
+      if (b.length !== n) throw new Error(`benchmark_weights has ${b.length} entries for ${n} assets.`);
+      const ok = a.allowed ?? new Array(n).fill(true), k = ok.filter(Boolean).length;
+      if (!k) throw new Error("No asset is allowed.");
+      const cap = a.max_weight ?? Infinity;
+      if (cap * k < 1 - 1e-12) throw new Error("max_weight x allowed assets < 1.");
+      const hi = ok.map((x) => (x ? cap : 0)), start = ok.map((x) => (x ? 1 / k : 0));
+      const w = boxQP(C, matVec(C, b), new Array(n).fill(1), 1, new Array(n).fill(0), hi, start);
+      return { ...riskReport(C, w, names, mu), tracking_error: Math.sqrt(portVar(C, w.map((x, i) => x - b[i]))), holdings: k };
+    },
+  },
 ];
-

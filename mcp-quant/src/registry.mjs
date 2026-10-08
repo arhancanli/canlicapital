@@ -14,6 +14,8 @@ import { TOOLS as OPTIONS } from "./tools/options.mjs";
 import { TOOLS as PERFORMANCE } from "./tools/performance.mjs";
 import { TOOLS as PORTFOLIO } from "./tools/portfolio.mjs";
 import { TOOLS as RATES } from "./tools/rates.mjs";
+import { TOOLS as RETURNS } from "./tools/returns.mjs";
+import { TOOLS as RISK } from "./tools/risk.mjs";
 import { TOOLS as SIZING } from "./tools/sizing.mjs";
 import { TOOLS as STRATEGIES } from "./tools/strategies.mjs";
 import { TOOLS as TVM } from "./tools/tvm.mjs";
@@ -26,6 +28,8 @@ export const TOOLSETS = Object.freeze({
   econometrics: { title: "Statistics and econometrics", tools: ECONOMETRICS },
   exotics: { title: "Exotic options and volatility models", tools: EXOTICS },
   rates: { title: "Fixed income and rates", tools: RATES },
+  risk: { title: "Portfolio risk and stress", tools: RISK },
+  returns: { title: "Returns transforms and attribution", tools: RETURNS },
   portfolio: { title: "Portfolio construction and risk", tools: PORTFOLIO },
   execution: { title: "Execution and microstructure", tools: EXECUTION },
   sizing: { title: "Position sizing and trade risk", tools: SIZING },

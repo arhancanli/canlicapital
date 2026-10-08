@@ -327,4 +327,32 @@ export const TOOLS = [
       return { price: P, discount_yield: (100 - P) / 100 * 360 / days, bond_equivalent_yield: bey, money_market_yield: hpr * 360 / days, effective_annual_yield: (100 / P) ** (365 / days) - 1, holding_period_return: hpr, method: "Bond-equivalent yield uses the Treasury's semiannual formula beyond 182 days." };
     },
   },
+  {
+    name: "key_rate_durations",
+    title: "Key rate durations",
+    description: "Measure a fixed-rate bond's sensitivity to each pillar of a zero curve: bump one pillar by 1 bp (triangular bump, linear in between) and reprice, giving key rate DV01s and durations that sum to the parallel figure.",
+    keywords: "key rate duration krd partial dv01 curve risk bucket sensitivity twist steepener",
+    input: z.object({ ...bondCore, curve: curveArg, spread: z.number().gt(-0.5).lt(5).optional().describe("Constant spread over the curve (e.g. the z-spread); default 0.") }).strict(),
+    run(a) {
+      const b = bondFlows(a), ts = b.flows.map((f) => (f.date.serial - b.settle.serial) / 365), sp = a.spread ?? 0;
+      const pv = (zr) => { const c = curveOf({ years: a.curve.years, zero_rates: zr }); return b.flows.reduce((acc, f, i) => acc + f.amount * Math.exp(-(c.zr(ts[i]) + sp) * ts[i]), 0); };
+      const base = pv(a.curve.zero_rates), rows = a.curve.years.map((y, k) => {
+        const up = pv(a.curve.zero_rates.map((r, j) => (j === k ? r + 1e-4 : r))), dn = pv(a.curve.zero_rates.map((r, j) => (j === k ? r - 1e-4 : r)));
+        return [y, (dn - up) / 2, (dn - up) / (2 * base * 1e-4)];
+      });
+      const par = (pv(a.curve.zero_rates.map((r) => r - 1e-4)) - pv(a.curve.zero_rates.map((r) => r + 1e-4))) / 2;
+      return { dirty_price: base, columns: ["pillar_years", "dv01", "duration"], rows, parallel_dv01: par, sum_of_key_rate_dv01: rows.reduce((s, r) => s + r[1], 0) };
+    },
+  },
+  {
+    name: "breakeven_inflation",
+    title: "Breakeven inflation",
+    description: "Compute breakeven inflation from a nominal and a real (inflation-linked) yield of the same maturity, exactly (Fisher) and approximately, and the real yield implied by an inflation view.",
+    keywords: "breakeven inflation tips linker real yield nominal yield fisher inflation expectations",
+    input: z.object({ nominal_yield: z.number().gt(-0.5).lt(1).describe("Nominal yield, annual."), real_yield: z.number().gt(-0.5).lt(1).describe("Real (inflation-linked) yield, annual."), expected_inflation: z.number().gt(-0.5).lt(1).optional().describe("Your inflation view, to compare.") }).strict(),
+    run({ nominal_yield: n, real_yield: r, expected_inflation: e }) {
+      const be = (1 + n) / (1 + r) - 1;
+      return { breakeven_exact: be, breakeven_approx: n - r, favours: e === undefined ? undefined : e > be ? "inflation-linked (your view is above breakeven)" : e < be ? "nominal (your view is below breakeven)" : "neither", real_yield_at_view: e === undefined ? undefined : (1 + n) / (1 + e) - 1 };
+    },
+  },
 ];
