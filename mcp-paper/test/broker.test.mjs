@@ -155,6 +155,8 @@ test("reads retry through transient 503s; an order whose response is lost is res
 
 test("a broker that never answers times out instead of hanging", async (t) => {
   const home = mkdtempSync(join(tmpdir(), "canli-paper-")); t.after(() => rmSync(home, { recursive: true, force: true }));
+  // AbortSignal.timeout's timer does not keep the event loop alive (the real server's stdio does).
+  const keepAlive = setInterval(() => {}, 1000); t.after(() => clearInterval(keepAlive));
   const hang = (url, init) => new Promise((_, reject) => init.signal.addEventListener("abort", () => reject(init.signal.reason)));
   const broker = createBroker({ env: KEYS, home, fetchImpl: hang, timeoutMs: 50 });
   const t0 = Date.now();
