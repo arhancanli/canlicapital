@@ -1,7 +1,7 @@
 {
   "name": "canli-quant-mcp",
   "version": "0.1.0",
-  "description": "Hundreds of quant finance tools as one MCP server: performance and risk, options, fixed income, portfolio construction, econometrics, indicators and more, computed on your data, each checked against an independent reference. Keyless; three tools in context by default.",
+  "description": "200 quant finance tools as one MCP server: performance and risk, options and exotics, fixed income, portfolio construction, econometrics, indicators, execution, crypto and FX, valuation, backtests and data checks, each checked against QuantLib, statsmodels, TA-Lib or numpy. Keyless and local; three tools in context by default.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -13,7 +13,9 @@
   },
   "files": [
     "src",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ],
   "scripts": {
     "test": "node --test test/*.test.mjs"
@@ -35,5 +37,20 @@
   "bugs": {
     "url": "https://github.com/arhancanli/canlicapital/issues"
   },
-  "keywords": ["mcp", "mcp-server", "model-context-protocol", "quant", "quantitative-finance", "risk", "sharpe-ratio", "value-at-risk", "options", "black-scholes", "fixed-income", "portfolio-optimization", "technical-indicators", "econometrics"]
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "quant",
+    "quantitative-finance",
+    "risk",
+    "sharpe-ratio",
+    "value-at-risk",
+    "options",
+    "black-scholes",
+    "fixed-income",
+    "portfolio-optimization",
+    "technical-indicators",
+    "econometrics"
+  ]
 }

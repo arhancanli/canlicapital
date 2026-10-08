@@ -53,3 +53,41 @@ test("every tool has a description starting with a verb-like capital and every p
     for (const [k, v] of Object.entries(inputJsonSchema(t).properties)) assert.ok(v.description, `${t.name}.${k} has no description`);
   }
 });
+
+test("prompts, resources and receipts", async (t) => {
+  const c = await connect();
+  t.after(() => c.close());
+  const { prompts } = await c.listPrompts();
+  assert.ok(prompts.length >= 8);
+  const p = await c.getPrompt({ name: "audit_backtest", arguments: { recipe: "breakout", prices: "[1,2,3]" } });
+  assert.match(p.messages[0].content.text, /strategy_sweep/);
+  const done = await c.complete({ ref: { type: "ref/prompt", name: "audit_backtest" }, argument: { name: "recipe", value: "pa" } });
+  assert.deepEqual(done.completion.values, ["pairs_trading"]);
+  const cat = JSON.parse((await c.readResource({ uri: "canli-quant://catalog" })).contents[0].text);
+  assert.equal(cat.tools, CATALOG.length);
+  const methods = JSON.parse((await c.readResource({ uri: "canli-quant://methods" })).contents[0].text);
+  for (const [k, v] of Object.entries(methods.toolsets)) assert.ok(v.checked_against, `${k} has no reference method`);
+  const schema = JSON.parse((await c.readResource({ uri: "canli-quant://tools/black_scholes" })).contents[0].text);
+  assert.ok(schema.input_schema.properties.volatility);
+  const args = { name: "net_present_value", arguments: { rate: 0.08, cashflows: [-100, 60, 60] }, receipt: true };
+  const a = await c.callTool({ name: "run_tool", arguments: args }), b = await c.callTool({ name: "run_tool", arguments: args });
+  assert.match(a.structuredContent.receipt.output_sha256, /^[0-9a-f]{64}$/);
+  assert.deepEqual(a.structuredContent.receipt, b.structuredContent.receipt);
+});
+
+test("the default tool list stays small however large the catalog grows", async (t) => {
+  const c = await connect();
+  t.after(() => c.close());
+  const bytes = JSON.stringify((await c.listTools()).tools).length;
+  assert.ok(bytes < 4000, `default tool list is ${bytes} bytes`);
+});
+
+test("the README lists every tool and the counts it states are the real ones", async () => {
+  const { readFileSync } = await import("node:fs");
+  const readme = readFileSync(new URL("../README.md", import.meta.url), "utf8");
+  for (const t of CATALOG) assert.ok(readme.includes(`\`${t.name}\``), `README is missing ${t.name}`);
+  assert.match(readme, new RegExp(`^${CATALOG.length} quant finance tools`, "m"));
+  const { readdirSync } = await import("node:fs");
+  const cases = readdirSync(new URL("./fixtures/", import.meta.url)).reduce((s, f) => s + JSON.parse(readFileSync(new URL(`./fixtures/${f}`, import.meta.url), "utf8")).cases.length, 0);
+  assert.ok(readme.includes(`${cases} reference cases`), `README should say ${cases} reference cases`);
+});
