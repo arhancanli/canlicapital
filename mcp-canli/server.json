@@ -1,0 +1,66 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.arhancanli/canli-mcp",
+  "title": "Canli Capital",
+  "description": "272 finance tools (quant, backtest validation, SEC fundamentals, paper trading) behind 3 tools.",
+  "websiteUrl": "https://canlicapital.com/mcp-servers",
+  "icons": [
+    {
+      "src": "https://canlicapital.com/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    },
+    {
+      "src": "https://canlicapital.com/favicon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/arhancanli/canlicapital",
+    "source": "github",
+    "subfolder": "mcp-canli"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "canli-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "CANLI_PACKS",
+          "description": "Packs to enable, comma-separated (quant, validation, fundamentals, research, backtest, paper) or all. Default: all but paper.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "CANLI_OFFLINE",
+          "description": "1 enables only the packs that never use the network (quant, validation).",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "ALPACA_PAPER_KEY_ID",
+          "description": "Alpaca paper key id (starts PK); enables the paper pack.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "ALPACA_PAPER_SECRET_KEY",
+          "description": "Alpaca paper secret key.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
