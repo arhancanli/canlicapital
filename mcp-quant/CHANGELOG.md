@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.1
+
 - `sleeve_tournament`: Hansen's SPA and Romano-Wolf StepM are now re-studentized in every resample,
   the default mean block length is round(n^(1/3)) instead of floor(sqrt(n)), and White's Reality
   Check is reported alongside. The 0.1.0 version held one variance estimate fixed across resamples,
