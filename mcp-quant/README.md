@@ -80,7 +80,7 @@ Then ask, for example:
 | `sizing` | 7 | scipy and closed forms |
 | `crypto_fx` | 9 | closed forms and simulated pool reserves |
 | `strategies` | 20 | an independent pandas implementation of every recipe and of the costed engine |
-| `sleeves` | 8 | an independent numpy and pandas port of every recipe and the engine; arch's SPA and StepM on the same bootstrap draws; scipy average linkage; numpy CSCV; plus no-lookahead and warm-up checks on every sleeve |
+| `sleeves` | 8 | an independent numpy and pandas port of every recipe and the engine; arch's Reality Check and an independent re-studentized SPA and StepM on the same bootstrap draws; scipy average linkage; numpy CSCV; plus no-lookahead and warm-up checks on every sleeve |
 | `data_checks` | 10 | planted-defect tests: each check must find what was planted and stay quiet on clean data |
 | `labeling` | 7 | pandas ports of the snippets in Advances in Financial Machine Learning (ewm volatility, CUSUM filter, triple barrier, uniqueness, purged k-fold) and statsmodels OLS t-values |
 | `tvm` | 15 | numpy-financial and closed forms |
@@ -457,7 +457,7 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 | `list_sleeves` | Browse the library of 399 pre-defined strategy sleeves (18 families: trend, momentum, reversion, volatility, allocation, pairs). Each is a fixed rule with a spec hash; filter by family, data shape or words. |
 | `describe_sleeve` | One sleeve's exact rule, parameters, warm-up, rationale, published references, known risks and spec SHA-256. |
 | `run_sleeve` | Backtest one library sleeve on your prices with costs and no lookahead: CAGR, Sharpe, drawdown, turnover, cost drag, and the target weights as of the latest close (ready for a paper rebalance). |
-| `sleeve_tournament` | Run all library sleeves that fit your prices (up to 399) on a common window and rank them, then correct for the search: deflated Sharpe (raw and effective number of trials), Hansen SPA and Romano-Wolf StepM against a benchmark, and the probability of backtest overfitting (CSCV). |
+| `sleeve_tournament` | Run all library sleeves that fit your prices (up to 399) on a common window and rank them, then correct for the search: deflated Sharpe (raw and effective number of trials), White's Reality Check, re-studentized Hansen SPA and Romano-Wolf StepM against a benchmark, and the probability of backtest overfitting (CSCV). |
 | `sleeve_walk_forward` | Test the selection process itself: at each refit pick the top sleeves by trailing Sharpe, hold them for the next window, repeat. Compares the out-of-sample result with what the picks showed in sample, with holding every sleeve, and with the benchmark. |
 | `combine_sleeves` | Blend chosen sleeves (equal or trailing inverse-volatility weights, no lookahead) into one book: its statistics, each sleeve's, their correlations, the diversification ratio, and the book's combined asset target weights as of the latest close. |
 | `sleeve_clusters` | Group the sleeves that ran on your prices by return correlation (average linkage on sqrt((1 - rho) / 2)), to see how many genuinely different bets the library makes on this data and the best sleeve of each group. |

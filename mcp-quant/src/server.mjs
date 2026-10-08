@@ -50,7 +50,7 @@ export const METHODS = Object.freeze({
   sizing: "scipy and closed forms",
   crypto_fx: "closed forms and simulated pool reserves",
   strategies: "an independent pandas implementation of every recipe and of the costed engine",
-  sleeves: "an independent numpy and pandas port of every recipe and the engine; arch's SPA and StepM on the same bootstrap draws; scipy average linkage; numpy CSCV; plus no-lookahead and warm-up checks on every sleeve",
+  sleeves: "an independent numpy and pandas port of every recipe and the engine; arch's Reality Check and an independent re-studentized SPA and StepM on the same bootstrap draws; scipy average linkage; numpy CSCV; plus no-lookahead and warm-up checks on every sleeve",
   data_checks: "planted-defect tests: each check must find what was planted and stay quiet on clean data",
   labeling: "pandas ports of the snippets in Advances in Financial Machine Learning (ewm volatility, CUSUM filter, triple barrier, uniqueness, purged k-fold) and statsmodels OLS t-values",
 });
