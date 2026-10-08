@@ -2,9 +2,7 @@
 
 ## Unreleased
 
-## 0.1.1
-
-First published release (0.1.0 was reserved by an interrupted publish and never released).
+## 0.1.0
 
 First release: 235 tools in 18 toolsets (performance, options, exotics, rates, tvm, valuation,
 portfolio, risk, returns, econometrics, indicators, execution, sizing, crypto_fx, strategies,
