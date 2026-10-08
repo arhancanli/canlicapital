@@ -6,10 +6,12 @@ import { z } from "zod";
 import { compact } from "./math.mjs";
 import { TOOLS as OPTIONS } from "./tools/options.mjs";
 import { TOOLS as PERFORMANCE } from "./tools/performance.mjs";
+import { TOOLS as RATES } from "./tools/rates.mjs";
 
 export const TOOLSETS = Object.freeze({
   performance: { title: "Performance and risk", tools: PERFORMANCE },
   options: { title: "Options and derivatives", tools: OPTIONS },
+  rates: { title: "Fixed income and rates", tools: RATES },
 });
 
 export const CATALOG = Object.freeze(Object.entries(TOOLSETS).flatMap(([toolset, t]) => t.tools.map((tool) => Object.freeze({ ...tool, toolset }))));

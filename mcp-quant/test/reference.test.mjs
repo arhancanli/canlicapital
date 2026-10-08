@@ -15,6 +15,11 @@ function close(got, want, tol, where) {
     want.forEach((w, i) => close(got[i], w, tol, `${where}[${i}]`));
     return;
   }
+  if (want && typeof want === "object") {
+    for (const [k, v] of Object.entries(want)) close(got?.[k], v, tol, `${where}.${k}`);
+    return;
+  }
+  if (typeof want === "boolean" || typeof want === "string") return assert.equal(got, want, where);
   assert.equal(typeof got, "number", `${where}: got ${JSON.stringify(got)}`);
   const err = Math.abs(got - want) < 1e-12 ? 0 : Math.abs(got - want) / Math.max(Math.abs(want), 1e-6);
   assert.ok(err <= tol, `${where}: got ${got}, reference ${want}, error ${err.toExponential(2)} > ${tol}`);

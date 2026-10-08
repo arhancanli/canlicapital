@@ -235,3 +235,152 @@ export function compact(v) {
   }
   return v;
 }
+
+// ---------------------------------------------------------------------------------------------
+// Linear algebra on plain arrays (rows of numbers)
+// ---------------------------------------------------------------------------------------------
+
+export const zeros = (n, m) => Array.from({ length: n }, () => new Array(m).fill(0));
+export const transpose = (A) => A[0].map((_, j) => A.map((row) => row[j]));
+export function matMul(A, B) {
+  const n = A.length, k = B.length, m = B[0].length, C = zeros(n, m);
+  for (let i = 0; i < n; i++) for (let p = 0; p < k; p++) { const a = A[i][p]; if (a !== 0) for (let j = 0; j < m; j++) C[i][j] += a * B[p][j]; }
+  return C;
+}
+export const matVec = (A, x) => A.map((row) => row.reduce((s, v, j) => s + v * x[j], 0));
+export const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);
+
+// Solves A x = b (A square) by Gaussian elimination with partial pivoting; throws when singular.
+export function solve(A, b) {
+  const n = A.length, M = A.map((row, i) => [...row, ...(Array.isArray(b[0]) ? b[i] : [b[i]])]), w = M[0].length;
+  for (let c = 0; c < n; c++) {
+    let p = c;
+    for (let r = c + 1; r < n; r++) if (Math.abs(M[r][c]) > Math.abs(M[p][c])) p = r;
+    if (Math.abs(M[p][c]) < 1e-14 * Math.max(1, Math.abs(M[c][c]))) throw new Error("The matrix is singular (collinear inputs or a degenerate covariance).");
+    [M[c], M[p]] = [M[p], M[c]];
+    for (let r = 0; r < n; r++) {
+      if (r === c) continue;
+      const f = M[r][c] / M[c][c];
+      if (f !== 0) for (let j = c; j < w; j++) M[r][j] -= f * M[c][j];
+    }
+  }
+  const X = M.map((row, i) => row.slice(n).map((v) => v / M[i][i]));
+  return Array.isArray(b[0]) ? X : X.map((r) => r[0]);
+}
+
+export function identity(n) { const I = zeros(n, n); for (let i = 0; i < n; i++) I[i][i] = 1; return I; }
+export const inverse = (A) => solve(A, identity(A.length));
+
+// Cholesky factor L (A = L L'); throws when A is not positive definite.
+export function cholesky(A) {
+  const n = A.length, L = zeros(n, n);
+  for (let i = 0; i < n; i++) for (let j = 0; j <= i; j++) {
+    let s = A[i][j];
+    for (let k = 0; k < j; k++) s -= L[i][k] * L[j][k];
+    if (i === j) { if (!(s > 0)) throw new Error("The covariance matrix is not positive definite."); L[i][i] = Math.sqrt(s); }
+    else L[i][j] = s / L[j][j];
+  }
+  return L;
+}
+
+// Eigen-decomposition of a symmetric matrix by cyclic Jacobi rotations; values descending, vectors
+// as columns with the largest-magnitude component positive.
+export function symmetricEigen(A) {
+  const n = A.length, M = A.map((r) => [...r]), V = identity(n);
+  for (let sweep = 0; sweep < 100; sweep++) {
+    let off = 0;
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) off += M[i][j] ** 2;
+    if (off < 1e-30) break;
+    for (let p = 0; p < n; p++) for (let q = p + 1; q < n; q++) {
+      if (Math.abs(M[p][q]) < 1e-300) continue;
+      const theta = (M[q][q] - M[p][p]) / (2 * M[p][q]);
+      const t = Math.sign(theta || 1) / (Math.abs(theta) + Math.sqrt(theta * theta + 1));
+      const c = 1 / Math.sqrt(t * t + 1), s = t * c;
+      for (let k = 0; k < n; k++) {
+        const mkp = M[k][p], mkq = M[k][q];
+        M[k][p] = c * mkp - s * mkq; M[k][q] = s * mkp + c * mkq;
+      }
+      for (let k = 0; k < n; k++) {
+        const mpk = M[p][k], mqk = M[q][k];
+        M[p][k] = c * mpk - s * mqk; M[q][k] = s * mpk + c * mqk;
+      }
+      for (let k = 0; k < n; k++) {
+        const vkp = V[k][p], vkq = V[k][q];
+        V[k][p] = c * vkp - s * vkq; V[k][q] = s * vkp + c * vkq;
+      }
+    }
+  }
+  const order = [...Array(n).keys()].sort((a, b) => M[b][b] - M[a][a]);
+  const values = order.map((i) => M[i][i]);
+  const vectors = order.map((i) => {
+    const v = V.map((row) => row[i]);
+    let big = 0; for (let k = 1; k < n; k++) if (Math.abs(v[k]) > Math.abs(v[big])) big = k;
+    return v[big] < 0 ? v.map((x) => -x) : v;
+  });
+  return { values, vectors };
+}
+
+// Least squares y = X b by Householder QR. Returns coefficients, residuals and (X'X)^-1.
+export function leastSquares(X, y) {
+  const n = X.length, p = X[0].length;
+  if (n <= p) throw new Error(`Need more observations (${n}) than coefficients (${p}).`);
+  const A = X.map((r) => [...r]), b = [...y];
+  for (let k = 0; k < p; k++) {
+    let norm = 0; for (let i = k; i < n; i++) norm += A[i][k] ** 2;
+    norm = Math.sqrt(norm);
+    if (norm < 1e-300) throw new Error("A regressor is all zeros or collinear with the others.");
+    const alpha = A[k][k] > 0 ? -norm : norm;
+    const v = new Array(n).fill(0); v[k] = A[k][k] - alpha; for (let i = k + 1; i < n; i++) v[i] = A[i][k];
+    let vv = 0; for (let i = k; i < n; i++) vv += v[i] * v[i];
+    if (vv === 0) continue;
+    for (let j = k; j < p; j++) { let s = 0; for (let i = k; i < n; i++) s += v[i] * A[i][j]; s = 2 * s / vv; for (let i = k; i < n; i++) A[i][j] -= s * v[i]; }
+    let s = 0; for (let i = k; i < n; i++) s += v[i] * b[i]; s = 2 * s / vv; for (let i = k; i < n; i++) b[i] -= s * v[i];
+  }
+  for (let k = 0; k < p; k++) if (Math.abs(A[k][k]) < 1e-12 * Math.abs(A[0][0])) throw new Error("Regressors are collinear; drop one.");
+  const coef = new Array(p).fill(0);
+  for (let i = p - 1; i >= 0; i--) { let s = b[i]; for (let j = i + 1; j < p; j++) s -= A[i][j] * coef[j]; coef[i] = s / A[i][i]; }
+  const Rinv = zeros(p, p);
+  for (let i = p - 1; i >= 0; i--) { Rinv[i][i] = 1 / A[i][i]; for (let j = i + 1; j < p; j++) { let s = 0; for (let k = i + 1; k <= j; k++) s += A[i][k] * Rinv[k][j]; Rinv[i][j] = -s / A[i][i]; } }
+  const xtxInv = matMul(Rinv, transpose(Rinv));
+  const resid = y.map((v, i) => v - dot(X[i], coef));
+  return { coef, resid, xtxInv };
+}
+
+// Brent's root finder on [a, b] with f(a), f(b) of opposite sign.
+export function brent(f, a, b, tol = 1e-14, maxIter = 300) {
+  let fa = f(a), fb = f(b);
+  if (fa === 0) return a;
+  if (fb === 0) return b;
+  if (fa * fb > 0) throw new Error("No sign change in the search interval; no solution there.");
+  let c = a, fc = fa, d = b - a, e = d;
+  for (let i = 0; i < maxIter; i++) {
+    if (fb * fc > 0) { c = a; fc = fa; d = b - a; e = d; }
+    if (Math.abs(fc) < Math.abs(fb)) { a = b; b = c; c = a; fa = fb; fb = fc; fc = fa; }
+    const tol1 = 2 * Number.EPSILON * Math.abs(b) + 0.5 * tol, m = 0.5 * (c - b);
+    if (Math.abs(m) <= tol1 || fb === 0) return b;
+    if (Math.abs(e) >= tol1 && Math.abs(fa) > Math.abs(fb)) {
+      let p, q, r;
+      const s = fb / fa;
+      if (a === c) { p = 2 * m * s; q = 1 - s; }
+      else { q = fa / fc; r = fb / fc; p = s * (2 * m * q * (q - r) - (b - a) * (r - 1)); q = (q - 1) * (r - 1) * (s - 1); }
+      if (p > 0) q = -q; else p = -p;
+      if (2 * p < Math.min(3 * m * q - Math.abs(tol1 * q), Math.abs(e * q))) { e = d; d = p / q; }
+      else { d = m; e = d; }
+    } else { d = m; e = d; }
+    a = b; fa = fb;
+    b += Math.abs(d) > tol1 ? d : (m > 0 ? tol1 : -tol1);
+    fb = f(b);
+  }
+  return b;
+}
+
+// Expands [lo, hi] outward until f changes sign, then runs brent.
+export function bracketRoot(f, lo, hi, { min = -Infinity, max = Infinity } = {}) {
+  let flo = f(lo), fhi = f(hi);
+  for (let i = 0; i < 80 && flo * fhi > 0; i++) {
+    const w = hi - lo;
+    lo = Math.max(min, lo - w); hi = Math.min(max, hi + w);
+    flo = f(lo); fhi = f(hi);
+  }
+  return brent(f, lo, hi);
+}
