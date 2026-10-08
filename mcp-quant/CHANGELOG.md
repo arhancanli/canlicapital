@@ -4,6 +4,10 @@
 
 ## 0.1.1
 
+- `deflated_sharpe_ratio` and `probabilistic_sharpe_ratio` also take summary numbers (`sharpe_annual`,
+  `observations`, `skew`, `kurtosis`) and refuse fewer than 20 returns or zero variance, instead of
+  returning a probability from too little data. Found by watching a model call them in an agent
+  evaluation.
 - `sleeve_tournament`: Hansen's SPA and Romano-Wolf StepM are now re-studentized in every resample,
   the default mean block length is round(n^(1/3)) instead of floor(sqrt(n)), and White's Reality
   Check is reported alongside. The 0.1.0 version held one variance estimate fixed across resamples,
@@ -37,7 +41,7 @@ sleeves, data_checks, labeling), reached through three discovery tools (`find_to
   meta, fixed-horizon and trend-scanning labels, sample weights, and purged, embargoed CV splits.
 - Privacy enforced by tests: no network, disk writes, logging, processes or workers; runs under
   Node's permission model.
-- 461 reference cases against QuantLib, statsmodels, arch, TA-Lib, numpy-financial, scikit-learn,
+- 465 reference cases against QuantLib, statsmodels, arch, TA-Lib, numpy-financial, scikit-learn,
   empyrical, scipy, pandas and dcor; planted-defect tests for the data checks; no-lookahead and warm-up
   checks on every sleeve.
 - Eleven workflow prompts, six resources, and opt-in calculation receipts.

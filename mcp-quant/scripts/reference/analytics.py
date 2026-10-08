@@ -401,4 +401,19 @@ for E, sE, D, T, r, mu in ((3.0, 0.8, 10.0, 1.0, 0.05, None), (40.0, 0.35, 60.0,
         exp["default_probability_real_world"] = stats.norm.cdf(-dd)
     add("merton_credit_risk", args, exp, tol=1e-8)
 
+# ---------------------------------------------------------------------------------------------
+# Deflated and probabilistic Sharpe from summary numbers (Bailey and Lopez de Prado), with scipy
+# ---------------------------------------------------------------------------------------------
+for sr_a, n, skew, kurt, trials, var_a in ((1.8, 750, 0, 3, 50, 0.25), (1.1, 1260, -0.6, 5.5, 200, 0.4)):
+    sr = sr_a / math.sqrt(252)
+    eg = 0.5772156649015329
+    star = math.sqrt(var_a / 252) * ((1 - eg) * stats.norm.ppf(1 - 1 / trials) + eg * stats.norm.ppf(1 - 1 / (trials * math.e)))
+    den = math.sqrt(1 - skew * sr + (kurt - 1) / 4 * sr * sr)
+    add("deflated_sharpe_ratio", {"sharpe_annual": sr_a, "observations": n, "skew": skew, "kurtosis": kurt, "trials": trials, "trial_sharpe_variance": var_a},
+        {"dsr": stats.norm.cdf((sr - star) * math.sqrt(n - 1) / den), "expected_max_sharpe_annual": star * math.sqrt(252)})
+    bench = 0.5 / math.sqrt(252)
+    z = stats.norm.ppf(0.95)
+    add("probabilistic_sharpe_ratio", {"sharpe_annual": sr_a, "observations": n, "skew": skew, "kurtosis": kurt, "benchmark_sharpe": 0.5},
+        {"psr": stats.norm.cdf((sr - bench) * math.sqrt(n - 1) / den), "min_track_record_periods": 1 + (1 - skew * sr + (kurt - 1) / 4 * sr * sr) * (z / (sr - bench)) ** 2})
+
 print(json.dumps({"generated_by": "scripts/reference/analytics.py", "cases": cases}, default=lambda o: o.tolist() if hasattr(o, "tolist") else (bool(o) if isinstance(o, np.bool_) else float(o))))

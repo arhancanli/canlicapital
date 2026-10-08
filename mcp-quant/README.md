@@ -6,7 +6,7 @@ valuation, strategy backtests, a library of 399 strategy sleeves, data checks, a
 and ML labeling. Every tool
 computes on the data you send, and every tool's results are checked in the test suite against an
 independent implementation (QuantLib, statsmodels, arch, TA-Lib, numpy-financial, scikit-learn,
-empyrical, scipy, pandas, dcor): 461 reference cases, plus planted-defect tests for the data checks.
+empyrical, scipy, pandas, dcor): 465 reference cases, plus planted-defect tests for the data checks.
 
 Local stdio, no key, no account, no network calls: your data never leaves your machine (see
 [Privacy](#privacy), enforced by tests).

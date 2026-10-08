@@ -222,8 +222,28 @@ function garchFit(r) {
 }
 
 function trialSharpeStats(r) {
-  const n = r.length, sr = mean(r) / std(r), m = moments(r);
+  if (r.length < 20) throw new Error(`Only ${r.length} returns: a Sharpe ratio's probability needs at least 20. With summary numbers instead, send sharpe_annual and observations (plus skew and kurtosis if known).`);
+  const sd = std(r);
+  if (!(sd > 0)) throw new Error("The returns have zero variance, so the Sharpe ratio is undefined.");
+  const n = r.length, sr = mean(r) / sd, m = moments(r);
   return { n, sr, skew: m.skew, kurt: m.excess_kurtosis + 3 };
+}
+
+// The same statistics from a series, or from summary numbers when no series is at hand.
+const summaryFields = {
+  sharpe_annual: z.number().min(-20).max(20).optional().describe("Observed annualized Sharpe ratio, instead of returns or prices."),
+  observations: z.number().int().min(20).max(1e8).optional().describe("Number of return observations behind sharpe_annual."),
+  skew: z.number().min(-50).max(50).optional().describe("Skewness of the returns with sharpe_annual; default 0."),
+  kurtosis: z.number().min(1).max(1000).optional().describe("Kurtosis (not excess; 3 if normal) with sharpe_annual; default 3."),
+};
+function sharpeStats(a, ppy) {
+  if (a.sharpe_annual === undefined) {
+    if (a.observations !== undefined || a.skew !== undefined || a.kurtosis !== undefined) throw new Error("observations, skew and kurtosis go with sharpe_annual.");
+    return trialSharpeStats(seriesFrom(a));
+  }
+  if (a.returns !== undefined || a.prices !== undefined) throw new Error("Send either sharpe_annual with observations, or returns/prices, not both.");
+  if (a.observations === undefined) throw new Error("sharpe_annual needs observations (the number of returns behind it).");
+  return { n: a.observations, sr: a.sharpe_annual / Math.sqrt(ppy), skew: a.skew ?? 0, kurt: a.kurtosis ?? 3 };
 }
 const psr = ({ n, sr, skew, kurt }, srStar) => normCdf((sr - srStar) * Math.sqrt(n - 1) / Math.sqrt(1 - skew * sr + (kurt - 1) / 4 * sr * sr));
 const EULER = 0.5772156649015329;
@@ -405,11 +425,11 @@ export const TOOLS = [
   {
     name: "probabilistic_sharpe_ratio",
     title: "Probabilistic Sharpe ratio",
-    description: "Compute the probability that the true Sharpe ratio exceeds a benchmark given the track record's length, skewness and kurtosis (Bailey and López de Prado), and the minimum track record length needed.",
-    keywords: "probabilistic sharpe ratio psr minimum track record length mintrl skewness kurtosis confidence",
-    input: z.object({ ...seriesFields, benchmark_sharpe: z.number().min(-10).max(10).optional().describe("Annual Sharpe to beat; default 0."), confidence: z.number().gt(0.5).lt(1).optional().describe("For the minimum track record; default 0.95.") }).strict(),
+    description: "Compute the probability that the true Sharpe ratio exceeds a benchmark given the track record's length, skewness and kurtosis (Bailey and López de Prado), and the minimum track record length needed. Takes returns or prices, or just the observed Sharpe and the number of observations.",
+    keywords: "probabilistic sharpe ratio psr probability sharpe real genuine skill significant minimum track record length mintrl skewness kurtosis confidence",
+    input: z.object({ ...seriesFields, ...summaryFields, benchmark_sharpe: z.number().min(-10).max(10).optional().describe("Annual Sharpe to beat; default 0."), confidence: z.number().gt(0.5).lt(1).optional().describe("For the minimum track record; default 0.95.") }).strict(),
     run(a) {
-      const r = seriesFrom(a), ppy = a.periods_per_year ?? 252, st = trialSharpeStats(r), bench = (a.benchmark_sharpe ?? 0) / Math.sqrt(ppy);
+      const ppy = a.periods_per_year ?? 252, st = sharpeStats(a, ppy), bench = (a.benchmark_sharpe ?? 0) / Math.sqrt(ppy);
       const zc = normInv(a.confidence ?? 0.95), varTerm = 1 - st.skew * st.sr + (st.kurt - 1) / 4 * st.sr * st.sr;
       const mtrl = st.sr > bench ? 1 + varTerm * (zc / (st.sr - bench)) ** 2 : null;
       return { psr: psr(st, bench), sharpe_annual: st.sr * Math.sqrt(ppy), periods: st.n, min_track_record_periods: mtrl, min_track_record_years: mtrl === null ? null : mtrl / ppy, skew: st.skew, kurtosis: st.kurt };
@@ -418,16 +438,16 @@ export const TOOLS = [
   {
     name: "deflated_sharpe_ratio",
     title: "Deflated Sharpe ratio",
-    description: "Deflate a backtest's Sharpe ratio for the number of strategies tried (Bailey and López de Prado 2014): the expected maximum Sharpe under the null and the probability the result beats it.",
+    description: "Deflate a backtest's Sharpe ratio for the number of strategies tried (Bailey and López de Prado 2014): the expected maximum Sharpe under the null and the probability the result beats it. Takes returns or prices, or just the observed Sharpe and the number of observations, with the trials' Sharpe variance or Sharpes.",
     keywords: "overfit overfitting variants trials tried multiple testing luck deflated sharpe ratio dsr multiple testing selection bias backtest overfitting trials data snooping",
     input: z.object({
-      ...seriesFields,
+      ...seriesFields, ...summaryFields,
       trials: z.number().int().min(1).max(1e9).describe("How many strategy variants were tried, including this one."),
       trial_sharpes: z.array(z.number()).min(2).max(100000).optional().describe("Annual Sharpe ratios of all trials, to estimate their variance."),
-      trial_sharpe_variance: z.number().positive().optional().describe("Or the variance of the trials' annual Sharpe ratios directly."),
+      trial_sharpe_variance: z.number().positive().optional().describe("Or the variance of the trials' annual Sharpe ratios directly (the square of their standard deviation)."),
     }).strict(),
     run(a) {
-      const r = seriesFrom(a), ppy = a.periods_per_year ?? 252, st = trialSharpeStats(r);
+      const ppy = a.periods_per_year ?? 252, st = sharpeStats(a, ppy);
       let v = a.trial_sharpe_variance;
       if (v === undefined) { if (!a.trial_sharpes) throw new Error("Send trial_sharpes or trial_sharpe_variance."); v = variance(a.trial_sharpes); }
       const vPer = v / ppy, N = a.trials;

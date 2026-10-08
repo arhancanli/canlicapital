@@ -316,7 +316,7 @@ export const TOOLS = [
       prices: pricesIn, ...engineArgs, ...selectArgs,
       benchmark: z.enum(["buy_and_hold", "cash"]).optional().describe("What a sleeve must beat: equal-weight buy and hold of the columns (default) or cash at risk_free."),
       reps: z.number().int().min(100).max(5000).optional().describe("Bootstrap repetitions for the Reality Check, SPA and StepM; default 1000."),
-      block: z.number().int().min(1).max(1000).optional().describe("Mean bootstrap block length; default round(periods^(1/3)). Long blocks make every block-bootstrap test liberal."),
+      block: z.number().int().min(1).max(1000).optional().describe("Mean bootstrap block length; leave unset for the default round(periods^(1/3)). Long blocks make every block-bootstrap test liberal."),
       seed: z.number().int().min(0).max(4294967295).optional().describe("Bootstrap seed; default 7."),
       splits: z.number().int().min(4).max(16).multipleOf(2).optional().describe("CSCV splits (even); default 16, or fewer for short histories."),
       top: z.number().int().min(1).max(400).optional().describe("Leaderboard rows to return; default 15."),
