@@ -4,7 +4,7 @@
 
 ## 0.1.0
 
-First release: 216 tools in 17 toolsets (performance, options, exotics, rates, tvm, valuation,
+First release: 228 tools in 17 toolsets (performance, options, exotics, rates, tvm, valuation,
 portfolio, risk, returns, econometrics, indicators, execution, sizing, crypto_fx, strategies,
 sleeves, data_checks), reached through three discovery tools (`find_tool`, `describe_tool`,
 `run_tool`) or listed directly with `CANLI_TOOLSETS`.
@@ -15,7 +15,11 @@ sleeves, data_checks), reached through three discovery tools (`find_tool`, `desc
   probability of backtest overfitting, walk-forward selection, clustering and regime maps.
   `run_sleeve` and `combine_sleeves` return target weights by symbol for a paper rebalance.
 - 18 strategy recipes on one costed, drift-aware engine with no lookahead.
-- 424 reference cases against QuantLib, statsmodels, arch, TA-Lib, numpy-financial, scikit-learn,
-  empyrical, scipy and pandas; planted-defect tests for the data checks; no-lookahead and warm-up
+- Deeper analytics: Markov regime switching, Johansen cointegration, CUSUM parameter stability,
+  Chow breaks, HAR volatility forecasts, realized volatility with jump tests, rank, distance and
+  tail dependence, block-bootstrap confidence intervals, extreme value tails, a VIX-method
+  implied volatility, risk-neutral densities and Merton credit risk.
+- 448 reference cases against QuantLib, statsmodels, arch, TA-Lib, numpy-financial, scikit-learn,
+  empyrical, scipy, pandas and dcor; planted-defect tests for the data checks; no-lookahead and warm-up
   checks on every sleeve.
 - Ten workflow prompts, five resources, and opt-in calculation receipts.

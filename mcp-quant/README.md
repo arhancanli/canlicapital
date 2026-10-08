@@ -1,17 +1,17 @@
 # canli-quant-mcp
 
-216 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
+228 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
 portfolio construction, econometrics, technical indicators, execution, sizing, crypto and FX,
-valuation, strategy backtests, a library of 399 strategy sleeves, and data checks. Every tool computes on the data you send, and every
-tool's results are checked in the test suite against an independent implementation (QuantLib,
-statsmodels, arch, TA-Lib, numpy-financial, scikit-learn, empyrical, pandas): 424 reference cases,
-plus planted-defect tests for the data checks.
+valuation, strategy backtests, a library of 399 strategy sleeves, and data checks. Every tool
+computes on the data you send, and every tool's results are checked in the test suite against an
+independent implementation (QuantLib, statsmodels, arch, TA-Lib, numpy-financial, scikit-learn,
+empyrical, scipy, pandas, dcor): 448 reference cases, plus planted-defect tests for the data checks.
 
 Local stdio, no key, no account, no network calls: your data never leaves your machine.
 
-## Three tools in context, 216 behind them
+## Three tools in context, 228 behind them
 
-Listing 219 tools directly costs **76,973 tokens** of context (o200k) on every request. By default
+Listing 231 tools directly costs **81,299 tokens** of context (o200k) on every request. By default
 this server lists three, **677 tokens**:
 
 | tool | what it does |
@@ -48,18 +48,20 @@ Then ask, for example:
 - *"Price a 6-month down-and-out call, strike 100, barrier 90, vol 25%, and compare it with the vanilla."*
 - *"Is this spread mean-reverting? Run ADF, KPSS and the variance ratio, then backtest it with costs."*
 - *"Check this option chain for arbitrage before I fit a surface to it."*
+- *"Which of the 399 sleeves hold up on these ETF prices after correcting for trying them all?"*
+- *"Is this market in a calm or a turbulent regime right now, and how long do regimes last?"*
 
 ## Toolsets
 
 | toolset | tools | checked against |
 |---|---|---|
 | `performance` | 23 | numpy, scipy, statsmodels and empyrical-reloaded |
-| `options` | 10 | QuantLib (analytic engines; finite differences for American options) |
+| `options` | 12 | QuantLib (analytic engines; finite differences for American options); an independent implementation of the CBOE VIX method; the lognormal density for Breeden-Litzenberger |
 | `indicators` | 30 | TA-Lib's C library, bar for bar; pandas for indicators TA-Lib lacks |
-| `econometrics` | 19 | statsmodels (OLS, HAC, ADF, KPSS, cointegration, Granger, ARCH LM) and arch (GARCH, variance ratio) |
+| `econometrics` | 27 | statsmodels (OLS, HAC, ADF, KPSS, Engle-Granger and Johansen cointegration, Granger, ARCH LM, Markov switching, recursive least squares and CUSUM), arch (GARCH, variance ratio), scipy and dcor (rank and distance correlation) |
 | `exotics` | 9 | QuantLib (barrier, Asian, Heston, SABR, Kirk, Margrabe, lookback and chooser engines) |
-| `rates` | 14 | QuantLib bonds and short-rate models; numpy and scipy for curves and swaps |
-| `risk` | 6 | numpy and scipy re-derivations |
+| `rates` | 15 | QuantLib bonds and short-rate models; numpy and scipy for curves and swaps; scipy fsolve for Merton |
+| `risk` | 7 | numpy and scipy re-derivations; scipy's generalized Pareto likelihood for EVT |
 | `returns` | 4 | pandas resampling and closed forms |
 | `portfolio` | 15 | numpy closed forms, scipy SLSQP, scikit-learn Ledoit-Wolf, the HRP paper's code |
 | `execution` | 7 | closed forms (Almgren-Chriss kappa solved numerically), statsmodels OLS |
@@ -156,7 +158,7 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 
 </details>
 
-<details><summary><b>options</b>: Options and derivatives (10)</summary>
+<details><summary><b>options</b>: Options and derivatives (12)</summary>
 
 | tool | what it does |
 |---|---|
@@ -170,6 +172,8 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 | `option_strategy_payoff` | Evaluate a multi-leg options position at expiry (calls, puts, underlying): net premium, payoff and profit at chosen prices, breakevens, and maximum profit and loss. |
 | `option_portfolio_greeks` | Aggregate Black-Scholes-Merton Greeks across many option positions on one underlying: net delta, gamma, vega, theta, rho and the dollar delta and gamma. |
 | `volatility_conversions` | Convert volatility between periods and forms: annual to daily, weekly or monthly, the expected move over a horizon, and lognormal to approximate normal (basis point) volatility. |
+| `vix_style_index` | Compute a VIX-style model-free implied volatility from option chains with the CBOE method: forward from put-call parity, out-of-the-money strips with the two-zero-bid cutoff, per-expiry variance, and interpolation to a constant maturity (30 days by default). |
+| `risk_neutral_density` | Recover the market's risk-neutral distribution from call prices across strikes (Breeden-Litzenberger): density and cumulative probability at each strike, its mean, volatility, skewness and kurtosis, probabilities beyond chosen levels, and strikes where the density is negative (butterfly arbitrage). |
 
 </details>
 
@@ -210,7 +214,7 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 
 </details>
 
-<details><summary><b>econometrics</b>: Statistics and econometrics (19)</summary>
+<details><summary><b>econometrics</b>: Statistics and econometrics (27)</summary>
 
 | tool | what it does |
 |---|---|
@@ -233,6 +237,14 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 | `mean_return_test` | Test whether a strategy's mean return differs from zero (or a target) with a one-sample t-test and a Newey-West t-statistic robust to autocorrelation. |
 | `compare_sharpe_ratios` | Test whether two strategies' Sharpe ratios differ (Jobson-Korkie with Memmel's correction) using their returns over the same periods. |
 | `welch_t_test` | Test whether two samples (e.g. returns in two regimes, before and after a change) have different means, without assuming equal variances (Welch). |
+| `markov_regime_switching` | Fit a Hamilton Markov-switching model with a mean and volatility per regime (2 or 3 regimes) by maximum likelihood: regime means and volatilities, transition probabilities, expected durations, the current regime probabilities and how much time was spent in each. |
+| `johansen_cointegration` | Test how many cointegrating relationships tie several price series together (Johansen trace and maximum-eigenvalue tests with Osterwald-Lenum critical values), with the rank chosen at 5% and the normalized cointegrating vectors. |
+| `recursive_stability_test` | Check whether a regression's coefficients stayed stable over time: recursive least squares coefficient paths, and the CUSUM and CUSUM-of-squares tests of Brown, Durbin and Evans with 5% bounds and the first period each one crosses. |
+| `chow_break_test` | Test for a structural break in a regression at a known period (Chow F-test), or scan every candidate break inside a trimmed range for the largest F statistic and where it falls. |
+| `har_rv_forecast` | Fit Corsi's heterogeneous autoregressive (HAR) model of realized variance on its daily, weekly and monthly averages, with Newey-West errors, and forecast variance and volatility over the next horizon. |
+| `realized_volatility_measures` | From intraday returns per day, compute realized variance, bipower variation, the jump component and the Barndorff-Nielsen-Shephard jump test (tripower quarticity), realized semivariances, realized skewness and kurtosis, and the daily series for HAR forecasts. |
+| `dependence_measures` | Measure how two series move together: Pearson, Spearman and Kendall correlations with p-values, distance correlation (catches nonlinear dependence), and empirical lower and upper tail dependence (do they crash together?). |
+| `bootstrap_confidence_interval` | Put a confidence interval on a performance statistic (Sharpe, Sortino, CAGR, volatility, max drawdown, Calmar, mean) with the stationary block bootstrap, which keeps autocorrelation and volatility clustering; also gives the bootstrap standard error and the share of resamples at or below zero. |
 
 </details>
 
@@ -252,7 +264,7 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 
 </details>
 
-<details><summary><b>rates</b>: Fixed income and rates (14)</summary>
+<details><summary><b>rates</b>: Fixed income and rates (15)</summary>
 
 | tool | what it does |
 |---|---|
@@ -270,10 +282,11 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 | `treasury_bill_yields` | Convert a T-bill's price or bank discount rate into the discount yield, bond-equivalent (investment) yield, money-market yield and effective annual yield. |
 | `key_rate_durations` | Measure a fixed-rate bond's sensitivity to each pillar of a zero curve: bump one pillar by 1 bp (triangular bump, linear in between) and reprice, giving key rate DV01s and durations that sum to the parallel figure. |
 | `breakeven_inflation` | Compute breakeven inflation from a nominal and a real (inflation-linked) yield of the same maturity, exactly (Fisher) and approximately, and the real yield implied by an inflation view. |
+| `merton_credit_risk` | Back out a firm's asset value and asset volatility from its equity value and equity volatility with Merton's model (equity as a call on assets), then the distance to default, default probability, the implied credit spread and the value of the debt. |
 
 </details>
 
-<details><summary><b>risk</b>: Portfolio risk and stress (6)</summary>
+<details><summary><b>risk</b>: Portfolio risk and stress (7)</summary>
 
 | tool | what it does |
 |---|---|
@@ -283,6 +296,7 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 | `exposure_and_hedge` | Summarize a long/short book's gross, net and beta-adjusted exposure and size an index hedge (futures contracts or ETF shares) that neutralizes the beta. |
 | `concentration_metrics` | Measure how concentrated a portfolio is: Herfindahl index, effective number of positions, largest and top-k shares, and the Gini coefficient of weights. |
 | `liquidation_horizon` | Estimate how many days each position takes to exit at a maximum share of average daily volume, and how much of the book can be liquidated within 1, 5 and 20 days. |
+| `extreme_value_tail` | Model the loss tail with extreme value theory: fit a generalized Pareto distribution to losses beyond a high threshold (peaks over threshold) and estimate value at risk and expected shortfall far into the tail, with the Hill tail index. |
 
 </details>
 

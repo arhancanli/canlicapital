@@ -4,6 +4,7 @@
 import { z } from "zod";
 
 import { compact } from "./math.mjs";
+import { ECONOMETRICS as ECON_PLUS, OPTIONS as OPTIONS_PLUS, RATES as RATES_PLUS, RISK as RISK_PLUS } from "./tools/analytics.mjs";
 import { TOOLS as CRYPTO_FX } from "./tools/cryptofx.mjs";
 import { TOOLS as DATA_CHECKS } from "./tools/datachecks.mjs";
 import { TOOLS as ECONOMETRICS } from "./tools/econometrics.mjs";
@@ -24,12 +25,12 @@ import { TOOLS as VALUATION } from "./tools/valuation.mjs";
 
 export const TOOLSETS = Object.freeze({
   performance: { title: "Performance and risk", tools: PERFORMANCE },
-  options: { title: "Options and derivatives", tools: OPTIONS },
+  options: { title: "Options and derivatives", tools: [...OPTIONS, ...OPTIONS_PLUS] },
   indicators: { title: "Technical indicators", tools: INDICATORS },
-  econometrics: { title: "Statistics and econometrics", tools: ECONOMETRICS },
+  econometrics: { title: "Statistics and econometrics", tools: [...ECONOMETRICS, ...ECON_PLUS] },
   exotics: { title: "Exotic options and volatility models", tools: EXOTICS },
-  rates: { title: "Fixed income and rates", tools: RATES },
-  risk: { title: "Portfolio risk and stress", tools: RISK },
+  rates: { title: "Fixed income and rates", tools: [...RATES, ...RATES_PLUS] },
+  risk: { title: "Portfolio risk and stress", tools: [...RISK, ...RISK_PLUS] },
   returns: { title: "Returns transforms and attribution", tools: RETURNS },
   portfolio: { title: "Portfolio construction and risk", tools: PORTFOLIO },
   execution: { title: "Execution and microstructure", tools: EXECUTION },

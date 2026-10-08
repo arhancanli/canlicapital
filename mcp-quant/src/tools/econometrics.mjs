@@ -82,7 +82,7 @@ function robustCov(X, fit, lags) {
   return tmp.map((r) => A[0].map((_, j) => r.reduce((s, v, m) => s + v * A[m][j], 0) * (lags ? 1 : n / (n - k))));
 }
 
-function regressionReport(X, y, names, { covType = "classical", lags } = {}) {
+export function regressionReport(X, y, names, { covType = "classical", lags } = {}) {
   const fit = ols(X, y), my = mean(y), sst = y.reduce((s, v) => s + (v - my) ** 2, 0);
   const hasConst = X.every((r) => r[0] === 1);
   const r2 = hasConst ? 1 - fit.ssr / sst : 1 - fit.ssr / y.reduce((s, v) => s + v * v, 0);

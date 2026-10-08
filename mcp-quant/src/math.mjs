@@ -465,3 +465,26 @@ export function lagProducts(x) {
   fft(re, im, true);
   return re.subarray(0, n);
 }
+
+// BFGS with central-difference gradients and a backtracking (Armijo) line search; for smooth
+// objectives where Nelder-Mead is slow in many dimensions.
+export function bfgs(f, x0, { maxIter = 200, gtol = 1e-9 } = {}) {
+  const n = x0.length;
+  const grad = (x) => x.map((v, i) => { const h = 1e-6 * Math.max(1, Math.abs(v)), up = [...x], dn = [...x]; up[i] += h; dn[i] -= h; return (f(up) - f(dn)) / (2 * h); });
+  let x = [...x0], fx = f(x), g = grad(x), H = identity(n);
+  for (let it = 0; it < maxIter; it++) {
+    if (Math.sqrt(dot(g, g)) < gtol * (1 + Math.abs(fx))) break;
+    let d = matVec(H, g).map((v) => -v);
+    if (dot(d, g) >= 0) { H = identity(n); d = g.map((v) => -v); }
+    let step = 1, xn, fn;
+    for (let ls = 0; ls < 60; ls++) { xn = x.map((v, i) => v + step * d[i]); fn = f(xn); if (fn <= fx + 1e-4 * step * dot(g, d)) break; step /= 2; }
+    if (!(fn < fx)) break;
+    const gn = grad(xn), s = xn.map((v, i) => v - x[i]), yv = gn.map((v, i) => v - g[i]), sy = dot(s, yv);
+    if (sy > 1e-18) {
+      const Hy = matVec(H, yv), yHy = dot(yv, Hy);
+      H = H.map((row, i) => row.map((v, j) => v + ((sy + yHy) * s[i] * s[j]) / (sy * sy) - (Hy[i] * s[j] + s[i] * Hy[j]) / sy));
+    }
+    x = xn; fx = fn; g = gn;
+  }
+  return { x, f: fx };
+}
