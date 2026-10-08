@@ -56,6 +56,35 @@ Measured on Node 24 (tokens with o200k):
   to read the labels and type them into the next call.
 - **Shorter numbers when they are enough.** `digits: 5` rounds every result.
 
+## An agent, end to end
+
+The same model (gpt-5.4-mini) answered seven tasks twice each:
+- the Sharpe ratio, drawdown and value at risk of a pasted price file;
+- a deflated Sharpe from summary numbers;
+- a Black-Scholes price;
+- a 399-sleeve tournament on three assets;
+- Apple's first-reported 2019 EPS.
+
+Answers were graded against the tools' own values (`bench/agent-eval.mjs`; results in
+`bench/agent-eval-2026-10-08.json`):
+
+| | correct | tokens per task | turns | seconds |
+|---|---|---|---|---|
+| the six servers, installed separately | 11 of 14 | 63,984 | 4.1 | 22.6 |
+| canli-mcp, first version | 10 of 14 | 43,043 | 5.8 | 9.5 |
+| canli-mcp, after fixing what the runs showed | 14 of 14 | 27,267 | 4.2 | 7.2 |
+
+The fixes came from reading the runs:
+- The model narrowed `find_tool` to one pack and missed the tool that took its inputs, so the pack
+  filter is gone.
+- It passed made-up two-point series to a tool that wanted returns, so the quant deflated and
+  probabilistic Sharpe tools now take summary numbers and refuse too little data.
+- It put `select` and `return` inside a tool's arguments, so run_tool moves them out.
+- It asked `select` for fields that do not exist, so the reply now lists the fields that do.
+
+This is one small model with two runs per task, so read the differences as large or small, not as
+exact rates.
+
 ## Privacy
 
 Everything runs on your machine. `canli://privacy` states, per pack, what leaves it:

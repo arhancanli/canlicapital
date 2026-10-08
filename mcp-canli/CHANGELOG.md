@@ -12,5 +12,12 @@ and canli-paper-trading-mcp, behind `find_tool`, `describe_tool` and `run_tool`.
 - A prebuilt search index; each pack's code loads the first time one of its tools is used.
 - Batches of up to 25 calls, `$result` references between calls and `return: "last"`.
 - `$file` references for long data, read on this machine.
+- `find_tool` rows include each tool's argument signature (about 27 tokens, against 274 for
+  `describe_tool`), and argument errors repeat it. `select` returns only the named fields.
+- Fixes from an agent evaluation (`bench/`):
+  - search no longer filters by pack;
+  - run options are moved out of a call's arguments;
+  - a `column` list is read as `columns`;
+  - missing `select` fields list the fields that exist.
 - `CANLI_OFFLINE=1`, enforced by a test that poisons the network; paper trading only with
   Alpaca paper keys; `canli://privacy` states what every pack sends and stores.
