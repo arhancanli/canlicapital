@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-05T14:48:14.896737+00:00",
+  "observed_original_tool_error": "inspect-primary-e10b5226-narrow-native-v2.py line215 TypeError: string indices must be integers; assumed top-level author table was a row list",
+  "separate_program_stdout_stderr_originals_saved": false,
+  "reason": "The actual author table is a JSON envelope, while the independent native table uses a direct row array. This metadata shape mismatch occurred only at the optional after-native comparison; native trees, stage0, protected identities, scoped bodies, inverses and all case comparisons had passed.",
+  "correction": "Read the author envelope row field; compare to independently captured frozen Git rows. Preserve v1/v2 auditors and the immutable own table; reuse all prior saved native Git captures without reexecuting them.",
+  "product_runtime_failure_or_source_mutation": false,
+  "CURRENTCI_verdict": null
+}

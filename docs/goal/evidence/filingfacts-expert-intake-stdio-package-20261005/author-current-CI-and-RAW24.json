@@ -1,0 +1,439 @@
+{
+  "utc": "2026-10-05T14:48:29.139627+00:00",
+  "H": "e10b52260e540aa2bc515f5a23304967f087334b",
+  "tree": "0395e2e449c096c1b8410dbc9cac981995224f69",
+  "tested": "fdf57b01298f74ffb881f6d8bee92a0a4187556d",
+  "tested_parents": [
+    "8a26ed50ca548dd994a4d67db5caa2df15879c91",
+    "e10b52260e540aa2bc515f5a23304967f087334b"
+  ],
+  "source": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/source-e10b5226-expert-intake-stdio-package-v2.json",
+    "bytes": 33346,
+    "sha256": "28921a3773a574d0ed8543dc159fbf2fb1de6890a52392c7e0f3be0a10184020",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "capture_locator": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/e10b5226-literal11-current-CI-capture-bindings-v1.json",
+    "bytes": 15937,
+    "sha256": "6601f250927be5eda267ef4ca20c8d9cdc4a4fdfa8748b7a648c9bea24fba5f9",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "all11_original_bindings": [
+    {
+      "label": "current-checks-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/current-checks-original-stdout-original.bin",
+        "bytes": 2298,
+        "sha256": "7bc26d6e5d06308377cd65ac2d5836797fcb036e466f6d712f49feeead864188",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/current-checks-original-command-original.json",
+        "bytes": 286,
+        "sha256": "f1e4f0879e0870b28edf262f097e71332667c3776e15b600d996cbdd489e9bcf",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/current-checks-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "pr",
+        "view",
+        "392",
+        "--json",
+        "number,url,headRefOid,baseRefOid,isDraft,state,statusCheckRollup"
+      ]
+    },
+    {
+      "label": "pull-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/pull-original-stdout-original.bin",
+        "bytes": 18022,
+        "sha256": "eaffc2cf22e29e6afcb1a34af0d88157bfaded3554fa0b2b6aaa139be34fd94c",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/pull-original-command-original.json",
+        "bytes": 225,
+        "sha256": "d98d7b7942cd936dfde6c758d33d76caadc5b7235d87136a372ed655790a1fdd",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/pull-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/pulls/392"
+      ]
+    },
+    {
+      "label": "ci-run-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/ci-run-original-stdout-original.bin",
+        "bytes": 13313,
+        "sha256": "b46b04de7926878f9cad214871e82eafef529ffa3aa61c565afe0e719f7b85d2",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/ci-run-original-command-original.json",
+        "bytes": 240,
+        "sha256": "30fcc50aebea8575277707ddfc3fa3efc4abb1fd18a3bac06511e92e84c57618",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/ci-run-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/actions/runs/37326651564"
+      ]
+    },
+    {
+      "label": "ci-jobs-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/ci-jobs-original-stdout-original.bin",
+        "bytes": 13525,
+        "sha256": "1fb55294bb09727d3fee72a4acf813b5d3d8638290f0623861f589cc174fd8e2",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/ci-jobs-original-command-original.json",
+        "bytes": 258,
+        "sha256": "0785b8785e94db777c0f6fba311e67578d962587fc9fc53781d035b273f01786",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/ci-jobs-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/actions/runs/37326651564/jobs?per_page=100"
+      ]
+    },
+    {
+      "label": "tested-Git-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/tested-Git-original-stdout-original.bin",
+        "bytes": 2648,
+        "sha256": "bc566714cbe9df9b16a41563ae5aaa676de004da47e71eef2a8002f2fe8cabb1",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/tested-Git-original-command-original.json",
+        "bytes": 268,
+        "sha256": "52462777a6a617c580dc7ff0a63e892e7fb34870084479655056e9fc5b17a68c",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/tested-Git-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/git/commits/fdf57b01298f74ffb881f6d8bee92a0a4187556d"
+      ]
+    },
+    {
+      "label": "CodeQL-run-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/CodeQL-run-original-stdout-original.bin",
+        "bytes": 13320,
+        "sha256": "836b47f95b0ba1db14523df752427ca37a73ccfe41b9197d51fcecd010e872a6",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/CodeQL-run-original-command-original.json",
+        "bytes": 240,
+        "sha256": "690dab7c7a700ddf6eee13bfe495a42d22e4829276b83d79fbbc966d1bec251a",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/CodeQL-run-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/actions/runs/37326651554"
+      ]
+    },
+    {
+      "label": "CodeQL-jobs-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/CodeQL-jobs-original-stdout-original.bin",
+        "bytes": 5073,
+        "sha256": "2b3698862669fc2f43d30b1357f8900c354c967bf06c4888a34eaba958d0ea5d",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/CodeQL-jobs-original-command-original.json",
+        "bytes": 258,
+        "sha256": "05429c035f027306059366b3b0f5af7429d815794f19f2a70329759d6e556656",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/CodeQL-jobs-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/actions/runs/37326651554/jobs?per_page=100"
+      ]
+    },
+    {
+      "label": "scoped-open-alerts-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/scoped-open-alerts-original-stdout-original.bin",
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/scoped-open-alerts-original-command-original.json",
+        "bytes": 284,
+        "sha256": "eb9f1c943bb816230d41e3c3fd9dd4c5dc6f2d14e955bcc52b2b6d3f071323a3",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/scoped-open-alerts-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/code-scanning/alerts?state=open&ref=refs/pull/392/merge&per_page=100"
+      ]
+    },
+    {
+      "label": "scoped-CodeQL-analyses-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/scoped-CodeQL-analyses-original-stdout-original.bin",
+        "bytes": 2373,
+        "sha256": "af73f73552636f9a27d15862eb36f6d007bb81ca48341369eaaf0f091f6c237b",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/scoped-CodeQL-analyses-original-command-original.json",
+        "bytes": 275,
+        "sha256": "25f7ef4d641c05073519fd8ba8eff3dc8e569b399db0e3130e07900948c6e24e",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/scoped-CodeQL-analyses-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "repos/arhancanli/canlicapital/code-scanning/analyses?ref=refs/pull/392/merge&per_page=100"
+      ]
+    },
+    {
+      "label": "ROOT-terminal-raw-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/ROOT-terminal-raw-original-stdout-original.bin",
+        "bytes": 763821,
+        "sha256": "31694581b73c9887795d1fe0cefb2b3b0479e8d9404c36a0d4e81fe12d02958d",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/ROOT-terminal-raw-original-command-original.json",
+        "bytes": 278,
+        "sha256": "59ea62da94e3a97b58d64dc230fecf3c9cd9ce40ffe43b439a52c1bc60846faf",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/ROOT-terminal-raw-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111819009835/logs"
+      ]
+    },
+    {
+      "label": "MCP-terminal-raw-original",
+      "stdout": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/MCP-terminal-raw-original-stdout-original.bin",
+        "bytes": 2320820,
+        "sha256": "1220edd57c90aa46a0cf66016a21a70c8b39166b4c36150606fb85ca9b850c0c",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "command": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/MCP-terminal-raw-original-command-original.json",
+        "bytes": 278,
+        "sha256": "4085d46dcb1bac5eaddad190e83a7cae0b826df14d9831978c1ee55b16821b10",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "stderr": {
+        "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/MCP-terminal-raw-original-stderr-original.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode_octal": "0o600",
+        "FULLREAD_sameFD_postpath": true
+      },
+      "actual_argv": [
+        "gh",
+        "api",
+        "--allow-escape-sequences",
+        "repos/arhancanli/canlicapital/actions/jobs/111819009886/logs"
+      ]
+    }
+  ],
+  "all11_original_bytes": 3155215,
+  "run": 37326651564,
+  "CodeQL_run": 37326651554,
+  "attempt": 1,
+  "all7SUCCESS_at_captured_source_HEAD": true,
+  "full_TAP_catalog": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-e10b5226-current-native-v1/complete-independent-TAP-catalog-v1.json",
+    "bytes": 798367,
+    "sha256": "b490d9b31ddd1e60122a9af0816b546813ad84e556604478016992bce500bb17",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "plans_ROOT": [
+    6,
+    1351,
+    9
+  ],
+  "plans_MCP": [
+    160,
+    1,
+    85,
+    464,
+    183
+  ],
+  "source38_once_MCP_zero_ROOT": true,
+  "Node": "22.23.3",
+  "captured_open_alerts": 0,
+  "latest_two_language_analyses": {
+    "javascript-typescript": {
+      "ref": "refs/pull/392/merge",
+      "commit_sha": "fdf57b01298f74ffb881f6d8bee92a0a4187556d",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:javascript-typescript",
+      "error": "",
+      "created_at": "2026-10-05T14:42:33Z",
+      "results_count": 0,
+      "rules_count": 103,
+      "id": 1894117826,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1894117826",
+      "sarif_id": "ff0cabec-c0ca-11f1-956d-9c63cfd9f018",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    },
+    "python": {
+      "ref": "refs/pull/392/merge",
+      "commit_sha": "fdf57b01298f74ffb881f6d8bee92a0a4187556d",
+      "analysis_key": ".github/workflows/codeql.yml:analyze",
+      "environment": "{\"language\":\"python\"}",
+      "category": ".github/workflows/codeql.yml:analyze/language:python",
+      "error": "",
+      "created_at": "2026-10-05T14:41:49Z",
+      "results_count": 0,
+      "rules_count": 50,
+      "id": 1894112358,
+      "url": "https://api.github.com/repos/arhancanli/canlicapital/code-scanning/analyses/1894112358",
+      "sarif_id": "e54194d4-c0ca-11f1-8600-ae20c31db5df",
+      "tool": {
+        "name": "CodeQL",
+        "guid": null,
+        "version": "2.27.1"
+      },
+      "deletable": true,
+      "warning": ""
+    }
+  },
+  "older_analyses_preserved": 2,
+  "artifact": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/secondary-e10b5226-current-native-v1/actual-current-exact24-Git-byte-mode-import-binding-v1.json",
+    "bytes": 10276,
+    "sha256": "4e2a27d17ef7db0d2641eb96ee7eeb5ca552f0482a267157d2f90049edaa0002",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath": true
+  },
+  "disposition": "PASS_EXACT_RETAINED_CURRENT_CI_AND_EXACT24_ARTIFACT",
+  "SOURCE_peers_separate": true,
+  "three_SDK_entries_proof_scope": "Three named frozen installed-source guide/direct/absolutealias/refusal known-owned-child and15work+5close20observed assertions only; no reviewer child census or actual npm install",
+  "no_actual_MAIN_job_or_future_HEAD_outcome_inferred": true,
+  "original_e0ae36PASS2FAIL_and_fund438PASS26FAIL_and_SOURCE_sixP2HOLDS_preserved": true,
+  "API_refetch_project_entry_pack_job_rerun_by_auditor": false,
+  "archive_allocation": null,
+  "repository_evidence_writes": 0,
+  "full_owner_hierarchy": "ACTIVE",
+  "actual_outcomes": null
+}

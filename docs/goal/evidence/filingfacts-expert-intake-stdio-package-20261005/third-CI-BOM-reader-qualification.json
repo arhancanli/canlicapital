@@ -1,0 +1,28 @@
+{
+  "metadata_only": true,
+  "original_saved_MCP": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/remote-e10b5226-literal11-current-originals-v1/MCP-terminal-raw-original-stdout-original.bin",
+    "bytes": 2320820,
+    "sha256": "1220edd57c90aa46a0cf66016a21a70c8b39166b4c36150606fb85ca9b850c0c"
+  },
+  "original_reader": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/inspect-e10b5226-retained-CURRENTCI-and-exact24-native-v1.py",
+    "bytes": 33356,
+    "sha256": "2216608911f78de808cd2d3c5778fbfd8a28beb189c50f2389cd7404b5dfe1c5"
+  },
+  "original_execution_record": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/e10b5226-retained-CI-native-v1-metadata-execution-original.json",
+  "observed_leading_BOM_timestamp_rows": [
+    {
+      "raw_line": 4417,
+      "prefix": "\ufeff2026-10-05T14:41:45.9324076Z   ---"
+    }
+  ],
+  "correction": "Allow a leading UTF8 BOM solely before an original timestamp. Payload bytes/names/comments are untouched; raw original hashes and line ordinals retained. New v2 private output folder only.",
+  "corrected_reader": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package-peer/inspect-e10b5226-retained-CURRENTCI-and-exact24-native-v2.py",
+    "bytes": 33363,
+    "sha256": "50f6882182f354d2f8b12404ef841d3d41ab93d2c04a73eb502dbcfe212d1dc9"
+  },
+  "original_reader_result": "METADATA_READER_STOP_NOT_PRODUCT_OR_CI_FINDING",
+  "project_execution_API_refetch_job_rerun": false
+}

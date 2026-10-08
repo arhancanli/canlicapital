@@ -7,6 +7,7 @@
 // docs/superpowers/specs/2026-09-05-developer-key-validation-api-design.md section 4 for the
 // validator semantics these shapes mirror.
 import { z } from "zod";
+import { NULL_ZOO_V1 } from "./local/js/null-zoo-v1-sizes.js";
 
 // One description per input field, shared by every shape that uses the field, so a client reads
 // the same meaning, unit and example wherever the field appears. Agents choose arguments from
@@ -331,13 +332,26 @@ export const LIMITS_SENTENCES = Object.freeze({
 export const REGISTRY_LIMITS_CLAUSE = "is not admission to anything and is not a forecast.";
 export const REGISTRY_DESCRIPTION_MAX = 100;
 
+// The headline tests audit_backtest can run, by the names the shipped size table uses. The
+// description reads the chosen ones from that table, so it cannot name a test the audit does not run.
+export const HEADLINE_TEST_NAMES = Object.freeze({
+  reality_check: "White's Reality Check",
+  spa_consistent: "Hansen's SPA",
+  spa_upper: "Hansen's SPA (upper p-value)",
+  luck_trials_lo: "luck trials with Lo's correction",
+});
+const headlineName = (test) => {
+  if (!HEADLINE_TEST_NAMES[test]) throw new Error(`No description name for the headline test ${test}`);
+  return HEADLINE_TEST_NAMES[test];
+};
+
 // One tool description per tool, each stating (in one sentence lifted from the boundary language
 // above) what the tool's result cannot be used to claim, so an agent sees this before it ever
 // calls the tool, not only inside the returned envelope.
 export const TOOL_DESCRIPTIONS = Object.freeze({
   get_key: `Issue a free validation key for this session. Rarely needed: the first validation issues one itself unless CANLI_KEY or local mode is set, and the read tools need none. ${LIMITS_SENTENCES.quotas}`,
   validate_deflated_sharpe: `Deflated Sharpe ratio: the probability (0 to 1) that the selected strategy's Sharpe beats the best that luck gives across the variants tried, with the probabilistic Sharpe and that luck benchmark. Send the seven statistics or a return series. With every variant's returns use validate_overfitting; luck as a trial count, validate_luck_trials; a multiple-testing haircut, validate_haircut_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
-  audit_backtest: `One-call audit of a strategy's returns. Headline: one test whose false-positive rate was measured on nine return shapes (Hansen's SPA with variants). Then deflated Sharpe, minimum track record and, with variants, overfitting and out-of-sample decay, each with its receipt, plus fix_next. Send every variant tried (variants_file) so trials are counted; point returns_file at a CSV instead of pasting. ${LIMITS_SENTENCES.notAdmission}`,
+  audit_backtest: `One-call audit of a strategy's returns. Headline: one test whose false-positive rate was measured on nine return shapes (${headlineName(NULL_ZOO_V1.with_variants.test)} with variants, ${headlineName(NULL_ZOO_V1.single_series.test)} without). Then deflated Sharpe, minimum track record and, with variants, overfitting and out-of-sample decay, each with its receipt, plus fix_next. Send every variant tried (variants_file) so trials are counted; point returns_file at a CSV instead of pasting. ${LIMITS_SENTENCES.notAdmission}`,
   validate_overfitting: `Probability of backtest overfitting (0 to 1) by CSCV: how often the in-sample best variant falls below the out-of-sample median. Needs every variant's returns (periods by variants); with summary statistics only, use validate_deflated_sharpe. ${LIMITS_SENTENCES.notAdmission}`,
   validate_reality_check: `Data-snooping tests on every variant a search tried: Hansen's SPA p-value that the best beat the benchmark only by luck, White's Reality Check, and the variants Romano-Wolf StepM finds better. Send all variants tried, not only the winners. ${LIMITS_SENTENCES.notAdmission}`,
   validate_paper_evidence: `Checks paper-evidence.v0 structure and disclosures. With CANLI_LOCAL=1, record_file reads an export bundle and journal_file verifies signatures, source hashes and recomputed claims. Without a journal, source facts and signatures are unchecked. Local files are never uploaded. ${LIMITS_SENTENCES.scope}`,

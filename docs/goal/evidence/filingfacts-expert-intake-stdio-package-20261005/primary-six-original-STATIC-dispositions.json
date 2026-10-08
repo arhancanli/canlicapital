@@ -1,0 +1,376 @@
+{
+  "schema": "canli.primary.PR392.e10.six-original-findings-static-disposition-binding.v1",
+  "utc": "2026-10-05T14:50:37.749664+00:00",
+  "head": "e10b52260e540aa2bc515f5a23304967f087334b",
+  "parent": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+  "findings": [],
+  "six_original_dispositions": [
+    {
+      "id": "CC-PREPARE-STDIO-P2-COMPLETE-NESTED-REPORT-BINDING",
+      "priority": "P2",
+      "original_head": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+      "original_state": "OPEN_AT_E0AE_FROZEN_SOURCE",
+      "current_head": "e10b52260e540aa2bc515f5a23304967f087334b",
+      "disposition": "CLOSED_STATIC_E10_ONLY",
+      "runtime_claim": false,
+      "reason": "Precise strict nested schemas enforce known shapes/NULLs; one same-clock validator compares original four documents and all evidence buffers, complete roles/declarations/references, source memberships/mechanical flags, full packets/ordered item tasks/blank adjudicator and full coverage. Existing kernel is called once; original complete report is neither repaired nor projected.",
+      "evidence": [
+        {
+          "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+          "line": 72,
+          "literal": "const roleWorklist = z.object({ role: roleName(), declared_handle: text().nullable(), declaration: roleDeclaration.nullable(),"
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+          "line": 83,
+          "literal": "const sourceWorklist = z.object({ source_id: sha(), url: text(2048), item_ids: ids(128).min(1), declaration_present: z.boolean(),"
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+          "line": 134,
+          "literal": "    item_tasks: z.array(z.object({ id: text(), source_ids: z.array(sha()).min(1).max(16),"
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+          "line": 346,
+          "literal": "function validateCompleteReport(report, captured, scope) {"
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+          "line": 370,
+          "literal": "  same(report.settings, settings); same(report.limits, EXPERT_INTAKE_LIMITS);"
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+          "line": 477,
+          "literal": "  same(report.evidence_inventory, [...entries.values()].map(entry => ({ ...entry, referenced: used.has(entry.id) })));"
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+          "line": 475,
+          "literal": "  same(report.adjudication.item_tasks, gold.labels.map(label => ({ id: label.id, source_ids: label.filings.map(url => digest(Buffer.from(url, 'utf8'))),"
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+          "line": 474,
+          "literal": "  same(report.adjudication.blank_submission, { schema: 'canli.filing-facts-adjudication.v1', adjudicator: adjudicator ?? '', packet_sha256: report.packet_sha256, decisions: [] });"
+        },
+        {
+          "path": "mcp-fundamentals/src/expert-intake-stdio.mjs",
+          "line": 478,
+          "literal": "  same(report.coverage, {"
+        }
+      ],
+      "existing_case17": "Original negatives retained plus40 rehashed membership/flags/declaration/evidence/task/blank/settings/coverage mutations; complete guide/evidence-bearing/missing-role public-JSON positives and same-endpoint native no-structured-output refusal. Source inspection only."
+    },
+    {
+      "id": "CC-PREPARE-STDIO-P2-OLD22-RAW-GUIDE-MEMBER",
+      "priority": "P2",
+      "original_head": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+      "original_state": "OPEN_AT_E0AE_FROZEN_SOURCE",
+      "current_head": "e10b52260e540aa2bc515f5a23304967f087334b",
+      "disposition": "CLOSED_STATIC_E10_ONLY",
+      "runtime_claim": false,
+      "reason": "Exactly new guide expected member added; current raw literal union derives24; entire old helper/guards/caps preserved.",
+      "current_literal_count": 24,
+      "new_guide_present": true
+    },
+    {
+      "id": "CC-PREPARE-STDIO-P2-OLD38-RAW-MEMBER-COUNT",
+      "priority": "P2",
+      "original_head": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+      "original_state": "OPEN_AT_E0AE_FROZEN_SOURCE",
+      "current_head": "e10b52260e540aa2bc515f5a23304967f087334b",
+      "disposition": "CLOSED_STATIC_E10_ONLY",
+      "runtime_claim": false,
+      "reason": "Current cardinality literal22→24 only, alongside the allocated new source pin; original CRC/ISIZE/EOF negatives unchanged."
+    },
+    {
+      "id": "CC-PREPARE-STDIO-P2-OLD30-LEGACY-ENDPOINT-EXCLUSION",
+      "priority": "P2",
+      "original_head": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+      "original_state": "OPEN_AT_E0AE_FROZEN_SOURCE",
+      "current_head": "e10b52260e540aa2bc515f5a23304967f087334b",
+      "disposition": "CLOSED_STATIC_E10_ONLY",
+      "runtime_claim": false,
+      "reason": "Exactly the new endpoint exclusion added;24 minus10 historical exclusions yields original14. Guide exclusion already existed.",
+      "current_legacy_exclusions": [
+        "package/src/audit-inputs-client.mjs",
+        "package/AUDIT_INPUTS_CLIENT.md",
+        "package/src/expert-submission-files.mjs",
+        "package/EXPERT_SUBMISSION_FILES.md",
+        "package/src/expert-submission-client.mjs",
+        "package/EXPERT_SUBMISSION_CLIENT.md",
+        "package/src/expert-intake-files.mjs",
+        "package/src/expert-intake-stdio.mjs",
+        "package/EXPERT_INTAKE_FILES.md",
+        "package/EXPERT_INTAKE_STDIO.md"
+      ],
+      "derived_preserved_count": 14
+    },
+    {
+      "id": "CC-PREPARE-STDIO-P2-CHECKSUM-BYTE-FAULT-ERASED",
+      "priority": "P2",
+      "original_head": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+      "original_state": "OPEN_AT_E0AE_FROZEN_SOURCE",
+      "current_head": "e10b52260e540aa2bc515f5a23304967f087334b",
+      "disposition": "CLOSED_STATIC_E10_ONLY",
+      "runtime_claim": false,
+      "reason": "Checksum byte148 is corrupted only after the valid tar is inflated; no checksum rewrite follows. TAR_ASCII assertion and valid positive retained.",
+      "native_static_highbit_arithmetic": {
+        "positive_byte_at148": 48,
+        "post_checksum_fault_byte": 176,
+        "greater_than_ASCII127": true,
+        "no_pack_or_project_execution": true
+      }
+    },
+    {
+      "id": "CC-PREPARE-STDIO-P2-SYNCHRONOUS-FILEHANDLE-DENIAL-OBSERVER",
+      "priority": "P2",
+      "original_head": "e0ae88cfbbcd12411fa4159078a40268bf9e14e4",
+      "original_state": "OPEN_AT_E0AE_FROZEN_SOURCE",
+      "current_head": "e10b52260e540aa2bc515f5a23304967f087334b",
+      "disposition": "CLOSED_STATIC_E10_ONLY",
+      "runtime_claim": false,
+      "reason": "Denied handle invocation now resides in an async assert.rejects callback, with unconditional finally-close. Full strong guard unchanged; same actual cleanup helper receives meaningful order/refusal native controls."
+    }
+  ],
+  "native_scope_inverse_case_proof": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10b5226-narrow-native-v1/primary-independent-e10-narrow-Git-index-scope-inverse-case-body-proof-v1.json",
+    "bytes": 149405,
+    "sha256": "c7783bb9f586f42bc9bcc94e420aa032d5caa5de9009898dc6b4bc0a727859cf",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "current_module_blob": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10b5226-narrow-native-v1/015-stdout-original.bin",
+    "bytes": 49979,
+    "sha256": "1cde7375eb1e63b381d9343373e55351b5efca4db27cb24e2e91a98e8515f0ae",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "parent_module_blob": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10b5226-narrow-native-v1/026-stdout-original.bin",
+    "bytes": 33318,
+    "sha256": "d449d935d40666045684520ea649068ee1418816ecf890ed9e240612110ec4b1",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "current_test_blob": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e10b5226-narrow-native-v1/019-stdout-original.bin",
+    "bytes": 82393,
+    "sha256": "03d0ea02d9092d575ea210b46061ff7ca824e2567867bfec9fdf8b862680a1f5",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "unchanged_original_core_literal_pin": {
+    "path": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/primary-e0ae88cf-static-native-v1/045-stdout-original.bin",
+    "bytes": 30951,
+    "sha256": "5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545",
+    "mode_octal": "0o600",
+    "FULLREAD_sameFD_postpath_stable": true
+  },
+  "old_module_declaration_block_comparison": [
+    {
+      "name": "IntakeStdioError",
+      "parent_bytes": 176,
+      "parent_sha256": "d049021a1d7c8782a047832ae20e0007e7eb85c474677a6d69cf34119bc1cec2",
+      "current_bytes": 176,
+      "current_sha256": "d049021a1d7c8782a047832ae20e0007e7eb85c474677a6d69cf34119bc1cec2",
+      "entire_equal": true
+    },
+    {
+      "name": "refuse",
+      "parent_bytes": 301,
+      "parent_sha256": "4cfe851c7d636b22ace171f92cc69291c946f38faccf342d991c5e7bd5f34969",
+      "current_bytes": 301,
+      "current_sha256": "4cfe851c7d636b22ace171f92cc69291c946f38faccf342d991c5e7bd5f34969",
+      "entire_equal": true
+    },
+    {
+      "name": "createWorkScope",
+      "parent_bytes": 1956,
+      "parent_sha256": "af1d4617af7070a6863505035a1cb14e05d8450ac3d78c03e36537017a3d841c",
+      "current_bytes": 1956,
+      "current_sha256": "af1d4617af7070a6863505035a1cb14e05d8450ac3d78c03e36537017a3d841c",
+      "entire_equal": true
+    },
+    {
+      "name": "observeOriginalPromise",
+      "parent_bytes": 321,
+      "parent_sha256": "510f2ea705e70266a8ec694a48c5c0740189f113e3a4c9f85edcdf29c56448d0",
+      "current_bytes": 321,
+      "current_sha256": "510f2ea705e70266a8ec694a48c5c0740189f113e3a4c9f85edcdf29c56448d0",
+      "entire_equal": true
+    },
+    {
+      "name": "startOwnedPromise",
+      "parent_bytes": 200,
+      "parent_sha256": "e6d3d6ca6f91e6830503097db51b5b75e993bc288d3d32a84d2cca4df06b0122",
+      "current_bytes": 200,
+      "current_sha256": "e6d3d6ca6f91e6830503097db51b5b75e993bc288d3d32a84d2cca4df06b0122",
+      "entire_equal": true
+    },
+    {
+      "name": "runObservedTask",
+      "parent_bytes": 427,
+      "parent_sha256": "16281208b222ae439e76054ccb85ec8cbda2337a7c32daa4b2aeac546cfaf86d",
+      "current_bytes": 427,
+      "current_sha256": "16281208b222ae439e76054ccb85ec8cbda2337a7c32daa4b2aeac546cfaf86d",
+      "entire_equal": true
+    },
+    {
+      "name": "argumentsRecord",
+      "parent_bytes": 950,
+      "parent_sha256": "ce29f78c6e505bed88a8f38dc3bf84cf5dd664f180e6c5fac20d40c19cf25574",
+      "current_bytes": 950,
+      "current_sha256": "ce29f78c6e505bed88a8f38dc3bf84cf5dd664f180e6c5fac20d40c19cf25574",
+      "entire_equal": true
+    },
+    {
+      "name": "admitOriginalCall",
+      "parent_bytes": 770,
+      "parent_sha256": "59269e4780c766f8376b612c2b689a0534ae05dc732a121d0cade53ae5681806",
+      "current_bytes": 770,
+      "current_sha256": "59269e4780c766f8376b612c2b689a0534ae05dc732a121d0cade53ae5681806",
+      "entire_equal": true
+    },
+    {
+      "name": "denseArray",
+      "parent_bytes": 647,
+      "parent_sha256": "782098ec301fd0a283d5a0c5613c309be0d07526aa5cd07f085b6cc0c11943e0",
+      "current_bytes": 647,
+      "current_sha256": "782098ec301fd0a283d5a0c5613c309be0d07526aa5cd07f085b6cc0c11943e0",
+      "entire_equal": true
+    },
+    {
+      "name": "base64Length",
+      "parent_bytes": 792,
+      "parent_sha256": "7e2c23ef70036d6196abe31ffc6acbc85a8682550cd232740d6d39062872e343",
+      "current_bytes": 792,
+      "current_sha256": "7e2c23ef70036d6196abe31ffc6acbc85a8682550cd232740d6d39062872e343",
+      "entire_equal": true
+    },
+    {
+      "name": "captureIntakeArguments",
+      "parent_bytes": 1910,
+      "parent_sha256": "788c656a63df292e667b68d610b3835f7d0cedbbf5d142631e22147f2dfbcbd8",
+      "current_bytes": 2100,
+      "current_sha256": "3e3276ead187607711cd5b46bd415b9db842b2350fffd2cd9d35d9369013f88e",
+      "entire_equal": false
+    },
+    {
+      "name": "toolResult",
+      "parent_bytes": 216,
+      "parent_sha256": "92c74bf491fe8188ac3bf6d762d79e8bfe635882d595ab5d6b4ec95c531a51c8",
+      "current_bytes": 216,
+      "current_sha256": "92c74bf491fe8188ac3bf6d762d79e8bfe635882d595ab5d6b4ec95c531a51c8",
+      "entire_equal": true
+    },
+    {
+      "name": "safePublicTree",
+      "parent_bytes": 963,
+      "parent_sha256": "fa9dde5fa71b046f14287a5a09fc411b9da911f654546af01e764e2fdecd8c36",
+      "current_bytes": 963,
+      "current_sha256": "fa9dde5fa71b046f14287a5a09fc411b9da911f654546af01e764e2fdecd8c36",
+      "entire_equal": true
+    },
+    {
+      "name": "validateCompleteReport",
+      "parent_bytes": 1484,
+      "parent_sha256": "35902b6e27cd53f2f54c601aca01009498d809ac61f8383153bd7847f263bb8a",
+      "current_bytes": 9973,
+      "current_sha256": "6f90596480cddf635dc1a7f9057a40f640997e663284a993d23fefa35b5027f7",
+      "entire_equal": false
+    },
+    {
+      "name": "intakeRefusal",
+      "parent_bytes": 656,
+      "parent_sha256": "700eaa2e9f73851e53207b9e873ccdb8948edded616a8cec227fedb0d2811174",
+      "current_bytes": 656,
+      "current_sha256": "700eaa2e9f73851e53207b9e873ccdb8948edded616a8cec227fedb0d2811174",
+      "entire_equal": true
+    },
+    {
+      "name": "executeExpertIntake",
+      "parent_bytes": 1530,
+      "parent_sha256": "df22d70a1349cf8d1d3b60388e2e165e9dd8c0ccd2de378c775964e9d004e3fd",
+      "current_bytes": 1537,
+      "current_sha256": "d1a9e8152c02b19c96803460e2d8ebe987aa62a163e83c33b7e39012d5d179d4",
+      "entire_equal": false
+    },
+    {
+      "name": "validId",
+      "parent_bytes": 609,
+      "parent_sha256": "bcb27e1006f19ab73bcbab870e3f46897665535baeaf1cb1247fdb0bdba6c6ad",
+      "current_bytes": 609,
+      "current_sha256": "bcb27e1006f19ab73bcbab870e3f46897665535baeaf1cb1247fdb0bdba6c6ad",
+      "entire_equal": true
+    },
+    {
+      "name": "IntakeFrameBuffer",
+      "parent_bytes": 2225,
+      "parent_sha256": "8fbf0629f92c2ec8d979bdcdff6af6cef0f1445b1a0aca4acd1b19831a364e7b",
+      "current_bytes": 2225,
+      "current_sha256": "8fbf0629f92c2ec8d979bdcdff6af6cef0f1445b1a0aca4acd1b19831a364e7b",
+      "entire_equal": true
+    },
+    {
+      "name": "createIntakeNativeWriter",
+      "parent_bytes": 3483,
+      "parent_sha256": "35ff64aa354041d2cc9c4e282ccbbb3ec891467163e1c235be4eb5d9239cc5f6",
+      "current_bytes": 3483,
+      "current_sha256": "35ff64aa354041d2cc9c4e282ccbbb3ec891467163e1c235be4eb5d9239cc5f6",
+      "entire_equal": true
+    },
+    {
+      "name": "createIntakeDiagnostics",
+      "parent_bytes": 606,
+      "parent_sha256": "31f68f27a6bb37a51d710043634ff49409dc3e14f5a61b1d53fc49f5966e8416",
+      "current_bytes": 606,
+      "current_sha256": "31f68f27a6bb37a51d710043634ff49409dc3e14f5a61b1d53fc49f5966e8416",
+      "entire_equal": true
+    },
+    {
+      "name": "ExpertIntakeTransport",
+      "parent_bytes": 3976,
+      "parent_sha256": "5d68f9ab43cdcc30fa2002924ef1f91afe9b5730943be8e7ed1957dd5d2a4b2c",
+      "current_bytes": 3976,
+      "current_sha256": "5d68f9ab43cdcc30fa2002924ef1f91afe9b5730943be8e7ed1957dd5d2a4b2c",
+      "entire_equal": true
+    },
+    {
+      "name": "createExpertIntakeEndpoint",
+      "parent_bytes": 2300,
+      "parent_sha256": "e12cabd4fa05ffa5bd5093d7decd4c41f27888205b8407621235342fb38bd63d",
+      "current_bytes": 2300,
+      "current_sha256": "e12cabd4fa05ffa5bd5093d7decd4c41f27888205b8407621235342fb38bd63d",
+      "entire_equal": true
+    },
+    {
+      "name": "isDirectExecution",
+      "parent_bytes": 502,
+      "parent_sha256": "509f7a438ce76fcbd744d9f5c47695b2bc4f28f77a77f00b437da2a6eb11024b",
+      "current_bytes": 502,
+      "current_sha256": "509f7a438ce76fcbd744d9f5c47695b2bc4f28f77a77f00b437da2a6eb11024b",
+      "entire_equal": true
+    }
+  ],
+  "exact_changed_declaration_blocks": [
+    "captureIntakeArguments",
+    "validateCompleteReport",
+    "executeExpertIntake"
+  ],
+  "one_kernel_call_source_literal_count": 1,
+  "direct_prepare_kernel_calls_elsewhere": 0,
+  "import_targets_entire_parent_equal": true,
+  "source_import_closure_carried_by_other13_source_Git_identities_and_same_newmodule_import_targets": true,
+  "current38_names_exact_other35_and_threeSDK_bodies_equal": true,
+  "whole_native_work_scope_original_promise_task_writer_close_transport_blocks_equal": true,
+  "new_producer_binding_qualification": "Relationship/shape validation over one returned full report and captured original inputs; no second kernel invocation, semantic repair, compaction, output projection, source-code authentication or actual human/rights outcome.",
+  "same_clock_observations_in_new_binding": true,
+  "written_controls_not_executed_by_review": true,
+  "CURRENTCI_verdict": null,
+  "archive_allocation": null,
+  "project_runtime_APIrefetch_job_grant_spend_pub": false
+}

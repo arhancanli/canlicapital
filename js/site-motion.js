@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 const main=document.querySelector('main');
+if(document.getElementById('evidence-film-canvas')) import('./evidence-film.js').then(module=>module.initEvidenceFilm()).catch(()=>{document.body.dataset.filmRenderer='static';});
 if(main&&!document.documentElement.dataset.designMotion){
  document.documentElement.dataset.designMotion='ready';
  const media=gsap.matchMedia();
@@ -10,6 +11,15 @@ if(main&&!document.documentElement.dataset.designMotion){
   const progress=document.createElement('div');progress.className='cc-reading-progress';progress.setAttribute('aria-hidden','true');document.body.append(progress);
   gsap.fromTo(progress,{scaleX:0},{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.2}});
   const title=main.querySelector('h1');if(title)gsap.from(title,{y:24,duration:1.05,ease:'power3.out',clearProps:'transform'});
+  // A camera-like passage through the opening chapters, with normal document
+  // flow and readable copy at every scroll position. Only transforms animate.
+  const filmMedia=gsap.matchMedia();
+  filmMedia.add('(min-width: 768px)',()=>{
+   for(const chapter of main.querySelectorAll('[data-film-scene]')){
+    const copy=chapter.querySelector('.hero__copy,.home-editorial');
+    if(copy)gsap.fromTo(copy,{y:20},{y:-25,ease:'none',scrollTrigger:{trigger:chapter,start:'top bottom',end:'bottom top',scrub:.6},clearProps:'transform'});
+   }
+  });
   const prism=main.querySelector('.home-prism img');if(prism)gsap.to(prism,{yPercent:14,rotationY:7,rotationX:-4,ease:'none',scrollTrigger:{trigger:'.cinema-hero',start:'top top',end:'bottom top',scrub:.8}});
   const chapters=[...main.querySelectorAll('section')].filter(s=>s.querySelector('h2')&&!s.parentElement.closest('section')&&!s.classList.contains('evidence-core'));
   for(const chapter of chapters){
@@ -29,6 +39,6 @@ if(main&&!document.documentElement.dataset.designMotion){
   const wordmark=document.querySelector('.cc-footer__wordmark');if(wordmark)gsap.fromTo(wordmark,{yPercent:18},{yPercent:0,ease:'none',scrollTrigger:{trigger:wordmark,start:'top bottom',end:'bottom bottom',scrub:.5}});
   const menu=document.querySelector('.cc-shell__index');const onToggle=()=>{if(menu.open)gsap.fromTo(menu.querySelector('.cc-shell__panel'),{y:-12},{y:0,duration:.25,ease:'power2.out',clearProps:'transform',overwrite:true});};menu?.addEventListener('toggle',onToggle);
   const refresh=()=>ScrollTrigger.refresh();window.addEventListener('load',refresh);
-  return()=>{progress.remove();menu?.removeEventListener('toggle',onToggle);window.removeEventListener('load',refresh);};
+  return()=>{filmMedia.revert();progress.remove();menu?.removeEventListener('toggle',onToggle);window.removeEventListener('load',refresh);};
  });
 }

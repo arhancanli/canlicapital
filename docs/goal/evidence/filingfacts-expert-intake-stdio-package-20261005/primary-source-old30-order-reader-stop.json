@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-05T14:46:43.892865+00:00",
+  "observed_original_tool_error": "inspect-primary-e10b5226-narrow-native-v1.py line177 assert expected == body(H,path): AssertionError",
+  "separate_original_program_stdout_stderr_saved": false,
+  "reason": "The independent byte-delta checker assumed a particular placement of the new endpoint exclusion within the literal old30 list. The issued scope requires the exact endpoint exclusion and preservation, not that guessed placement. The six full base inverses had already passed.",
+  "correction": "Verify removal of exactly the single new endpoint literal reconstructs the parent exclusion line; use already saved native Git command/cat-file originals, no reexecution of them.",
+  "source_or_product_runtime_failure": false,
+  "original_auditor_preserved": "/Users/arhancanli/canlicapital-coordination-20261001/expert-intake-stdio-package/inspect-primary-e10b5226-narrow-native-v1.py",
+  "new_SOURCE_or_CI_verdict": false
+}

@@ -1,5 +1,28 @@
 # Changelog
 
+## Unreleased
+
+## 0.14.0 (2026-10-07)
+
+- New, opt-in toolset `ledger` (stdio): `ledger_record_trial`, `ledger_summary` and `ledger_export`.
+  An agent records every strategy variant it tries in one search, and the best is judged against
+  the whole search: the Sharpe the best of that many skill-less trials reaches by luck, the best
+  trial's deflated Sharpe ratio after counting every trial, and the probability of backtest
+  overfitting (CSCV) when trials share aligned returns. Trials are hash-chained in a local file
+  (`CANLI_LEDGER_DIR`, default `~/.canli/ledgers`), so an exported search shows any trial removed,
+  reordered or changed. The default tool list is unchanged (772 tokens per turn when enabled).
+
+## 0.13.1 (2026-10-07)
+
+- Security: the MCP SDK (`@modelcontextprotocol/server` and `/client`) moves from 2.1.0 to 2.3.1 for
+  GHSA-6qxp-vccf-f47h (high: the SDK's OAuth client could send credentials to an authorization server
+  chosen by the MCP server). This package does not use the OAuth client; the bump clears `npm audit`.
+
+- Fixed: `audit_backtest`'s description named Hansen's SPA as its headline test with variants.
+  Since 0.12.0 the audit runs White's Reality Check with variants and luck trials with Lo's
+  correction without, as the shipped size table (`src/local/js/null-zoo-v1-sizes.js`) records. The
+  description now reads both names from that table, and a test keeps them in step.
+
 ## 0.13.0 (2026-10-04)
 
 - New lab tool `check_leakage` finds lookahead in a signal without seeing its code. `plan` picks

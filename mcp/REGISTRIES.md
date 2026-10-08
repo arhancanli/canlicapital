@@ -117,9 +117,17 @@ trusted publisher only to a package that exists, so its 0.1.0 is published to np
 npmjs.com (workflow `mcp-fundamentals-publish.yml`, environment `mcp-fundamentals-release`) lets the
 tag publish every later version, and the `fundamentals-mcp-v0.1.0` tag publishes the registry entry.
 
-Next release, not yet published: `canli-validation-mcp@0.13.0` (check_leakage finds lookahead in a
-signal and placebo_test runs a whole research pipeline on placebo data, neither seeing the caller's
-code; leaner listed schemas). It publishes from `mcp-publish.yml` on the tag `mcp-v0.13.0`.
+`canli-validation-mcp@0.13.0` (check_leakage, placebo_test, leaner listed schemas) was published on
+October 4, 2026 from the tag `mcp-v0.13.0`. On October 6, 2026 the owner set up the Trusted
+Publisher for `canli-research-mcp` and `canli-fundamentals-mcp`, and the tags `research-mcp-v0.2.0` and
+`fundamentals-mcp-v0.5.0` published both to npm with provenance and to the official registry.
+
+`canli-validation-mcp@0.13.1` (MCP SDK 2.3.1; corrected `audit_backtest` description) was published on
+October 7, 2026 from the tag `mcp-v0.13.1`.
+
+Next release, not yet published: `canli-validation-mcp@0.14.0`, the trial ledger (opt-in toolset
+`ledger`: `ledger_record_trial`, `ledger_summary`, `ledger_export`). It publishes from
+`mcp-publish.yml` on the tag `mcp-v0.14.0`.
 
 ## Official registry (registry.modelcontextprotocol.io)
 

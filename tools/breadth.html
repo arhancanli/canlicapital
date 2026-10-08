@@ -64,6 +64,7 @@
         <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/contributors">Contributors</a>
 <a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
 <a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
       </div>
@@ -87,16 +88,16 @@
   <script type="module" src="/js/navigation.js"></script>
 </header>
 <main>
-  <section class="lab-hero" aria-labelledby="lab-title">
+  <section class="cc-film-head lab-hero" aria-labelledby="lab-title">
     <p class="lab-kicker"><span>Open research instrument</span><span>Breadth Lab</span><span>Arithmetic, not a forecast</span></p>
     <h1 id="lab-title">Portfolio breadth calculator</h1>
-    <p class="lab-lead">More sleeves stops working, and you can see where. A book of equally weighted sleeves, each worth <strong>s</strong>, sharing a
+    <p class="workbench-question">How much do strategies diversify when they move together?</p><details class="workbench-explanation"><summary>How this tool works</summary><p class="lab-lead">More sleeves stops working, and you can see where. A book of equally weighted sleeves, each worth <strong>s</strong>, sharing a
       pairwise correlation <strong>rho</strong>, is worth
       <code>s × sqrt(N / (1 + (N-1) × rho))</code>. Take that to the limit and the
       ceiling is <code>s / sqrt(rho)</code>, which does not contain N at all. Past a point, breadth
       is not the lever and correlation is. This is the most important arithmetic in this project
       and it decides whether its own objective is reachable. Canli Capital, the research house
-      that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
+      that publishes ALPHAC, runs this calculator free, with no account or key required.</p></details>
     <p class="lab-boundary"><strong>What this is.</strong> Closed-form arithmetic under strong assumptions. It shows the SHAPE of the constraint breadth operates under. It is not a forecast of any book, and no output here is a performance claim.</p>
   </section>
 

@@ -14,6 +14,7 @@ import { contentHash } from '../../scripts/canonical-json.mjs';
 
 const PACKAGE_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCE_PINS = Object.freeze({
+  'package/src/expert-intake-stdio.mjs': '1cde7375eb1e63b381d9343373e55351b5efca4db27cb24e2e91a98e8515f0ae',
   'package/src/expert-intake-files.mjs': '68db164a80b8a37b8ed4ea9e3d4ffa0a42b43f8f6fcc28a91f7b97e702411a1f',
   'package/src/expert-submission-client.mjs': '2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31',
   'package/src/expert-submission-files.mjs': 'a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d',
@@ -29,11 +30,11 @@ const SOURCE_PINS = Object.freeze({
   'package/src/filing-facts-packet.mjs': '74f2b353c0bf48d6e409d25925a6d691cf105a6f50aafdf561efbbbe679023c8',
 });
 const FILES = Object.freeze([
-  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/EXPERT_SUBMISSIONS.md', 'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/EXPERT_INTAKE_FILES.md', 'package/package.json', ...Object.keys(SOURCE_PINS),
+  'package/LICENSE', 'package/README.md', 'package/AUDIT_INPUTS.md', 'package/EXPERT_SUBMISSIONS.md', 'package/AUDIT_INPUTS_CLIENT.md', 'package/EXPERT_SUBMISSION_FILES.md', 'package/EXPERT_SUBMISSION_CLIENT.md', 'package/EXPERT_INTAKE_FILES.md', 'package/EXPERT_INTAKE_STDIO.md', 'package/package.json', ...Object.keys(SOURCE_PINS),
 ].sort());
 // Raw tar modes follow the frozen Git files, independently of bin-link installation.
 const RAW_MODES = Object.freeze(Object.fromEntries(FILES.map(path => [
-  path, ['package/src/audit-inputs-stdio.mjs', 'package/src/expert-submission-stdio.mjs', 'package/src/audit-inputs-client.mjs', 'package/src/expert-submission-files.mjs', 'package/src/expert-submission-client.mjs', 'package/src/expert-intake-files.mjs'].includes(path) ? 0o755 : 0o644,
+  path, ['package/src/audit-inputs-stdio.mjs', 'package/src/expert-submission-stdio.mjs', 'package/src/audit-inputs-client.mjs', 'package/src/expert-submission-files.mjs', 'package/src/expert-submission-client.mjs', 'package/src/expert-intake-files.mjs', 'package/src/expert-intake-stdio.mjs'].includes(path) ? 0o755 : 0o644,
 ])));
 const PACKAGE_LIMITS = Object.freeze({ compressed: 256 * 1024, expanded: 2 * 1024 * 1024, members: 32, npmOutput: 64 * 1024, npmMs: 20000, childMs: 10000, closeMs: 3000, reapMs: 2500 });
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -175,11 +176,11 @@ function auditPackage(entries) {
     assert.equal(sha(row.bytes), SOURCE_PINS[path], 'SOURCE_PIN');
   }
   const packageJson = JSON.parse(entries.get('package/package.json').bytes);
-  assert.deepEqual(packageJson.bin, { 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs', 'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs', 'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs' }, 'PACKAGE_BIN');
-  assert.deepEqual(packageJson.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md']);
+  assert.deepEqual(packageJson.bin, { 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs', 'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs', 'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs', 'canli-expert-intake-prepare': 'src/expert-intake-stdio.mjs' }, 'PACKAGE_BIN');
+  assert.deepEqual(packageJson.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md']);
   assert.equal(packageJson.name, 'canli-fundamentals-mcp');
   assert.equal(packageJson.version, '0.5.0');
-  assert.deepEqual(packageJson.dependencies, { '@modelcontextprotocol/server': '2.1.0', zod: '4.6.5', '@modelcontextprotocol/client': '2.1.0' });
+  assert.deepEqual(packageJson.dependencies, { '@modelcontextprotocol/server': '2.3.1', zod: '4.6.5', '@modelcontextprotocol/client': '2.3.1' });
   assert.match(entries.get('package/src/audit-inputs-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   return packageJson;
@@ -253,7 +254,7 @@ before(async t => {
   }
   // This sole dependency link is disclosed; no install, registry call or repository source link.
   const dependencyRoot = join(PACKAGE_ROOT, 'node_modules');
-  for (const [name, version] of [['@modelcontextprotocol/server', '2.1.0'], ['@modelcontextprotocol/core', '2.1.0'], ['zod', '4.6.5']])
+  for (const [name, version] of [['@modelcontextprotocol/server', '2.3.1'], ['@modelcontextprotocol/core', '2.3.1'], ['zod', '4.6.5']])
     assert.equal(JSON.parse(readFileSync(join(dependencyRoot, name, 'package.json'))).version, version);
   symlinkSync(dependencyRoot, join(packageRoot, 'node_modules'), 'dir');
   const binRoot = join(nodeModules, '.bin'); mkdirSync(binRoot);
@@ -370,6 +371,7 @@ test('audit package: raw archive modes stay distinct from explicit owned bin-lin
     { name: 'canli-expert-submission-files', path: 'src/expert-submission-files.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
     { name: 'canli-expert-submission-client', path: 'src/expert-submission-client.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
     { name: 'canli-expert-intake-files', path: 'src/expert-intake-files.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
+    { name: 'canli-expert-intake-prepare', path: 'src/expert-intake-stdio.mjs', raw_tar_mode: 0o755, installed_fixture_mode: 0o755, owned_fixture_only: true },
   ]);
   for (const row of packed.installedBins) {
     const path = 'package/' + row.path;

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Security: the MCP SDK (`@modelcontextprotocol/server` and `/client`) moves from 2.1.0 to 2.3.1 for
+  GHSA-6qxp-vccf-f47h (high: the SDK's OAuth client could send credentials to an authorization server
+  chosen by the MCP server). This package does not use the OAuth client; the bump clears `npm audit`.
+
 The first release, 0.1.0, is paper trading only. It ships when every item of its release bar holds.
 
 - Planning files use bounded nonblocking regular-file snapshots: orders JSON stays

@@ -274,3 +274,23 @@ labels and admission remain unverified/NULL. Private exclusive output is fsynced
 and read back, with uncertainty refusing and retaining the artifact. This is a
 repository Unreleased source candidate; npm availability and installation are
 separate. Fixtures are WRITTEN_UNRUN before this signed source's remote CI.
+
+
+### Supplied-byte expert-intake preparation (Unreleased)
+
+The opt-in `canli-expert-intake-prepare` command exposes one
+`filingfacts_prepare_expert_intake` tool over the supplied-byte preparation core.
+Use [EXPERT_INTAKE_STDIO.md](EXPERT_INTAKE_STDIO.md) for the complete package SDK
+workflow and four marked synthetic input documents. The tool retains the entire
+preparation report, two blank same-gold reviewer packets, and the distinct
+adjudicator worklist. All selected items and missing-role/evidence coverage remain
+visible; authenticated humans, expertise, independence, rights, labels and
+admission remain unknown.
+
+Original request keys and all bounded base64 metadata are admitted before payload
+decode. The complete report appears both as structured content and exact JSON text.
+The standalone endpoint uses the same absolute work clock through projection and
+serialization, followed by a fresh observation immediately before its native
+write. The guide documents bounded owned-child closure. This opt-in command is
+separate from the existing default tool surface and does not fetch sources,
+recruit reviewers, dispatch packets, or make rights/admission decisions.
