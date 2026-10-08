@@ -384,3 +384,36 @@ export function bracketRoot(f, lo, hi, { min = -Infinity, max = Infinity } = {})
   }
   return brent(f, lo, hi);
 }
+
+// F distribution upper tail.
+export const fSf = (f, d1, d2) => (f <= 0 ? 1 : betaI(d2 / 2, d1 / 2, d2 / (d2 + d1 * f)));
+
+// Nelder-Mead simplex minimizer (adaptive parameters, Gao and Han 2012), restarted until the best
+// value stops improving.
+export function nelderMead(f, x0, { step = 0.1, tol = 1e-14, maxIter = 20000 } = {}) {
+  const n = x0.length, a = 1, g = 1 + 2 / n, c = 0.75 - 1 / (2 * n), s = 1 - 1 / n;
+  let best = { x: [...x0], f: f(x0) };
+  for (let restart = 0; restart < 6; restart++) {
+    let pts = [best.x, ...Array.from({ length: n }, (_, i) => best.x.map((v, j) => (i === j ? v + (Math.abs(v) > 1e-8 ? step * Math.abs(v) : step) : v)))];
+    let vals = pts.map(f);
+    for (let it = 0; it < maxIter; it++) {
+      const idx = vals.map((v, i) => i).sort((p, q) => vals[p] - vals[q]);
+      pts = idx.map((i) => pts[i]); vals = idx.map((i) => vals[i]);
+      if (Math.abs(vals[n] - vals[0]) <= tol * (Math.abs(vals[0]) + 1e-300) && it > 10) break;
+      const cen = new Array(n).fill(0);
+      for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) cen[j] += pts[i][j] / n;
+      const at = (t) => cen.map((v, j) => v + t * (pts[n][j] - v));
+      const xr = at(-a), fr = f(xr);
+      if (fr < vals[0]) { const xe = at(-a * g), fe = f(xe); if (fe < fr) { pts[n] = xe; vals[n] = fe; } else { pts[n] = xr; vals[n] = fr; } continue; }
+      if (fr < vals[n - 1]) { pts[n] = xr; vals[n] = fr; continue; }
+      const outside = fr < vals[n], xc = at(outside ? -a * c : c), fc = f(xc);
+      if (fc < (outside ? fr : vals[n])) { pts[n] = xc; vals[n] = fc; continue; }
+      for (let i = 1; i <= n; i++) { pts[i] = pts[i].map((v, j) => pts[0][j] + s * (v - pts[0][j])); vals[i] = f(pts[i]); }
+    }
+    const improved = vals[0] < best.f - 1e-15 * Math.abs(best.f);
+    best = vals[0] <= best.f ? { x: pts[0], f: vals[0] } : best;
+    if (!improved && restart > 0) break;
+    step /= 10;
+  }
+  return best;
+}
