@@ -5,6 +5,7 @@ import { z } from "zod";
 
 import { compact } from "./math.mjs";
 import { TOOLS as CRYPTO_FX } from "./tools/cryptofx.mjs";
+import { TOOLS as DATA_CHECKS } from "./tools/datachecks.mjs";
 import { TOOLS as ECONOMETRICS } from "./tools/econometrics.mjs";
 import { TOOLS as EXECUTION } from "./tools/execution.mjs";
 import { TOOLS as INDICATORS } from "./tools/indicators.mjs";
@@ -28,6 +29,7 @@ export const TOOLSETS = Object.freeze({
   sizing: { title: "Position sizing and trade risk", tools: SIZING },
   crypto_fx: { title: "Crypto and FX", tools: CRYPTO_FX },
   strategies: { title: "Strategy backtests", tools: STRATEGIES },
+  data_checks: { title: "Data quality checks", tools: DATA_CHECKS },
   tvm: { title: "Time value and corporate finance", tools: TVM },
   valuation: { title: "Valuation and fundamental scores", tools: VALUATION },
 });
