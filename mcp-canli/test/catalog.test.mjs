@@ -45,3 +45,17 @@ test("digits rounds fractions only: counts, shares, CIKs and dollar totals stay 
   const r = roundNumbers({ cik: 1067983, shares: 227917808, value: 299253556246, sharpe: 0.940123456, price: 360.134, big: 1234567.89, rows: [[227917808, 0.220412345]] }, 4);
   assert.deepEqual(r, { cik: 1067983, shares: 227917808, value: 299253556246, sharpe: 0.9401, price: 360.1, big: 1234568, rows: [[227917808, 0.2204]] });
 });
+
+test("selecting a table's rows also returns its columns", async () => {
+  const { registerAll } = await import("../src/server.mjs");
+  const handlers = {};
+  registerAll({ registerTool: (name, _c, h) => { handlers[name] = h; }, registerResource: () => {}, registerPrompt: () => {} }, ["quant"]);
+  const dates = Array.from({ length: 60 }, (_, i) => new Date(Date.UTC(2025, 0, 1 + i * 7)).toISOString().slice(0, 10));
+  const r = await handlers.run_tool({ name: "monthly_returns_table", arguments: { returns: dates.map((_, i) => 0.001 * Math.sin(i)), dates }, select: ["rows"] });
+  assert.ok(!r.isError, r.content?.[0]?.text);
+  const out = r.structuredContent;
+  assert.ok(Array.isArray(out.rows) && out.rows.length > 0);
+  assert.ok(Array.isArray(out.columns) && out.columns.length === out.rows[0].length, JSON.stringify(out).slice(0, 300));
+  const one = await handlers.run_tool({ name: "monthly_returns_table", arguments: { returns: dates.map((_, i) => 0.001 * Math.sin(i)), dates }, select: ["rows.0", "best_month"] });
+  assert.ok(Array.isArray(one.structuredContent.columns));
+});

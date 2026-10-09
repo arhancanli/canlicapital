@@ -216,8 +216,17 @@ export function registerAll(server, packs = enabledPacks()) {
     for (const d of done) if (d.result !== undefined) { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
     if (a.select) for (const d of done) if (d.result) {
       const full = d.result;
-      d.result = Object.fromEntries(a.select.map((p) => [p, at(full, p) ?? null]));
-      if (a.select.some((p) => at(full, p) === undefined)) d.result.available_fields = Object.entries(full).flatMap(([k, v]) => (v && typeof v === "object" && !Array.isArray(v) ? Object.keys(v).slice(0, 12).map((x) => `${k}.${x}`) : [k])).slice(0, 60);
+      // Rows without their column names are unreadable: selecting a table's rows keeps its columns.
+      const paths = [...a.select];
+      for (const p of a.select) {
+        const m = String(p).match(/^(.*?)(?:^|\.)rows(?:\.\d+)?$/);
+        if (!m) continue;
+        const prefix = m[1] ? `${m[1].replace(/\.$/, "")}.` : "";
+        const cols = `${prefix}columns`;
+        if (!paths.includes(cols) && Array.isArray(at(full, cols))) paths.push(cols);
+      }
+      d.result = Object.fromEntries(paths.map((p) => [p, at(full, p) ?? null]));
+      if (paths.some((p) => at(full, p) === undefined)) d.result.available_fields = Object.entries(full).flatMap(([k, v]) => (v && typeof v === "object" && !Array.isArray(v) ? Object.keys(v).slice(0, 12).map((x) => `${k}.${x}`) : [k])).slice(0, 60);
     }
     const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) } : undefined;
     if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return { ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }; }
