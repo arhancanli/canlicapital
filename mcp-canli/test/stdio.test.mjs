@@ -1,7 +1,7 @@
 // Over stdio: three discovery tools, byte-stable across launches; batches with $file and $result;
 // per-call errors that name the fix; order-sending tools refused inside a batch; receipts stable.
 import assert from "node:assert/strict";
-import { writeFileSync } from "node:fs";
+import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -17,7 +17,7 @@ async function connect(env = {}) {
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { ...base, ...env } }));
   return c;
 }
-const CSV = path.join(tmpdir(), `canli-stdio-${process.pid}.csv`);
+const CSV = path.join(mkdtempSync(path.join(tmpdir(), "canli-stdio-")), "prices.csv");
 writeFileSync(CSV, `date,close,other\n${Array.from({ length: 500 }, (_, i) => `d${i},${(100 * Math.exp(0.0006 * i + 0.03 * Math.sin(i / 9))).toFixed(4)},${i}`).join("\n")}\n`);
 
 test("three small tools, byte-identical across launches", async () => {

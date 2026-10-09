@@ -3,7 +3,7 @@
 // network module poisoned and the quant and validation tools still work; paper trading is off
 // unless Alpaca paper keys are set.
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -24,7 +24,8 @@ test("src imports only the SDK, zod, the published packs and file, path, os, url
     for (const m of text.matchAll(/(?:from\s+|import\()\s*"([^"]+)"/g)) if (!m[1].startsWith(".")) assert.match(m[1], allowed, `${f} imports ${m[1]}`);
     const code = text.split("\n").filter((l) => !l.trim().startsWith("//")).join("\n");
     assert.doesNotMatch(code, /\bfetch\s*\(|XMLHttpRequest|WebSocket|child_process|worker_threads|writeFile|appendFile|createWriteStream|mkdir|unlink|\beval\s*\(|new Function|console\.(log|error|warn|info)/, f);
-    for (const n of (text.match(/import\s*\{([^}]*)\}\s*from\s*"node:fs"/)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean)) assert.ok(["readFileSync", "realpathSync", "statSync"].includes(n), `${f} imports ${n} from node:fs`);
+    for (const n of (text.match(/import\s*\{([^}]*)\}\s*from\s*"node:fs"/)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean)) assert.ok(["closeSync", "fstatSync", "openSync", "readFileSync", "realpathSync", "statSync"].includes(n), `${f} imports ${n} from node:fs`);
+    for (const m of code.matchAll(/openSync\(([^)]*)\)/g)) assert.match(m[1], /,\s*"r"\s*$/, `${f} opens a file for writing`);
   }
 });
 
@@ -36,7 +37,7 @@ test("pack selection: paper only with Alpaca paper keys; offline keeps only the 
 });
 
 test("offline mode: tools work with the network and network packs poisoned", async (t) => {
-  const csv = path.join(tmpdir(), `canli-offline-${process.pid}.csv`);
+  const csv = path.join(mkdtempSync(path.join(tmpdir(), "canli-offline-")), "prices.csv");
   writeFileSync(csv, `close\n${Array.from({ length: 300 }, (_, i) => (100 * Math.exp(0.001 * i + 0.02 * Math.sin(i / 5))).toFixed(4)).join("\n")}\n`);
   const c = new Client({ name: "offline", version: "0" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: ["--import", path.join(ROOT, "test/offline-guard.mjs"), path.join(SRC, "server.mjs")], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_OFFLINE: "1", CANLI_PACKS: "all" } }));

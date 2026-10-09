@@ -7,7 +7,7 @@
 //   {"$file": "prices.csv", "columns": "all"}             -> every numeric column
 //   {"$file": "returns.txt"}                               -> the first numeric column
 // Options: "skip_rows" (default 0), "delimiter" (default: comma, or tab/semicolon if detected).
-import { readFileSync, statSync } from "node:fs";
+import { closeSync, fstatSync, openSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { resolve } from "node:path";
 
@@ -16,10 +16,16 @@ const MAX_ROWS = 2_000_000;
 
 function readTable(path, { skip_rows: skip = 0, delimiter } = {}) {
   const full = resolve(String(path).replace(/^~(?=$|\/)/, homedir()));
-  const st = statSync(full);
-  if (!st.isFile()) throw new Error(`$file: ${path} is not a file.`);
-  if (st.size > MAX_BYTES) throw new Error(`$file: ${path} is ${st.size} bytes; the limit is ${MAX_BYTES}.`);
-  const lines = readFileSync(full, "utf8").split(/\r?\n/).slice(skip).filter((l) => l.trim() !== "");
+  // One descriptor for the checks and the read, so the file can't change between them.
+  const fd = openSync(full, "r");
+  let text;
+  try {
+    const st = fstatSync(fd);
+    if (!st.isFile()) throw new Error(`$file: ${path} is not a file.`);
+    if (st.size > MAX_BYTES) throw new Error(`$file: ${path} is ${st.size} bytes; the limit is ${MAX_BYTES}.`);
+    text = readFileSync(fd, "utf8");
+  } finally { closeSync(fd); }
+  const lines = text.split(/\r?\n/).slice(skip).filter((l) => l.trim() !== "");
   if (lines.length > MAX_ROWS + 1) throw new Error(`$file: more than ${MAX_ROWS} rows.`);
   const d = delimiter ?? (lines[0].includes("\t") ? "\t" : lines[0].includes(";") && !lines[0].includes(",") ? ";" : ",");
   const rows = lines.map((l) => l.split(d).map((c) => c.trim().replace(/^"|"$/g, "")));
