@@ -1,0 +1,57 @@
+{
+  "name": "canli-markets-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for public market data from the sources themselves: SEC filings and their sections, EDGAR full-text search, insider trades (Form 4), fund holdings (13F), US Treasury yield curves and FRED economic series with no key, and prices with your own Alpaca or Tiingo key. Every result cites its source URL.",
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "canli-markets-mcp": "src/server.mjs"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "zod": "4.6.5"
+  },
+  "mcpName": "io.github.arhancanli/canli-markets-mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhancanli/canlicapital.git",
+    "directory": "mcp-markets"
+  },
+  "homepage": "https://canlicapital.com/developers",
+  "bugs": {
+    "url": "https://github.com/arhancanli/canlicapital/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "sec",
+    "edgar",
+    "sec-filings",
+    "10-k",
+    "insider-trading",
+    "13f",
+    "treasury-yields",
+    "fred",
+    "economic-data",
+    "market-data",
+    "finance",
+    "stock-prices"
+  ],
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.1"
+  }
+}
