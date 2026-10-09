@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- New pack, markets (canli-markets-mcp): SEC filings and their sections, EDGAR full-text search,
+  insider trades, 13F holdings, Treasury yields and FRED series from the sources, no key; prices
+  with your Alpaca or Tiingo key. 281 tools; `economic_series` and `price_history` return columns
+  that feed straight into the quant tools through `$result`.
+- Context re-measured on 2026-10-09: 1,041 tokens, against 22,211 for the seven servers listed
+  separately (0.1.0's 995 was measured before the argument signatures were added; it is 1,037).
+
 ## 0.1.0
 
 First release: every Canli Capital MCP server in one process. 272 tools from canli-quant-mcp,

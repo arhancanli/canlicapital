@@ -15,6 +15,7 @@ export const PACKS = Object.freeze({
   fundamentals: { title: "SEC fundamentals point in time", package: "canli-fundamentals-mcp", network: "downloads public SEC company data from canlicapital.com (sends the company and measure asked for, never your data)", disk: "caches that public data in ~/.cache/canli-fundamentals (CANLI_CACHE_DIR=\"\" keeps nothing)", offline: false },
   research: { title: "Canli Capital's open research record", package: "canli-research-mcp", network: "downloads public research pages from canlicapital.com (sends the search words)", disk: "none", offline: false },
   backtest: { title: "Point-in-time factor backtests on your prices", package: "canli-backtest-mcp", network: "public SEC data as the fundamentals pack; your prices and signals stay local", disk: "your trial ledgers in ~/.canli/ledgers and outputs where you ask", offline: false },
+  markets: { title: "Market data from the sources: SEC filings, insider trades, 13F holdings, Treasury yields, FRED, prices", package: "canli-markets-mcp", network: "SEC EDGAR, the US Treasury and FRED directly (sends the company, form, dates or series asked for); prices from Alpaca or Tiingo with your key", disk: "none", offline: false },
   paper: { title: "Alpaca paper trading behind pre-trade checks", package: "canli-paper-trading-mcp", network: "Alpaca's paper API only (paper-api.alpaca.markets, data.alpaca.markets) with your paper keys", disk: "a hash-chained order log in CANLI_HOME (default ~/.canli)", offline: false },
 });
 
@@ -37,12 +38,12 @@ function capture() {
   return { tools, server: { registerTool: (name, config, handler) => { tools.push({ name, config, handler }); return {}; }, registerPrompt: noop, registerResource: noop, tool: noop, prompt: noop, resource: noop } };
 }
 
-function fromRegistered(pack, captured) {
+function fromRegistered(pack, captured, keywords = {}) {
   const rename = RENAMES[pack] ?? {}, omit = OMITTED[pack] ?? {};
   return captured.filter((t) => !omit[t.name]).map(({ name, config, handler }) => {
     const input = isSchema(config.inputSchema) ? config.inputSchema : z.object(config.inputSchema ?? {});
     return {
-      name: rename[name] ?? name, original: name, pack, title: config.title ?? name, description: config.description ?? "", keywords: "", input, annotations: config.annotations ?? {},
+      name: rename[name] ?? name, original: name, pack, title: config.title ?? name, description: config.description ?? "", keywords: keywords[name] ?? "", input, annotations: config.annotations ?? {},
       async run(args) {
         const r = await handler(args, {});
         const text = r?.content?.find?.((c) => c.type === "text")?.text;
@@ -79,6 +80,12 @@ const LOADERS = {
     const b = await import("canli-backtest-mcp/src/server.mjs");
     const c = capture(); b.registerTools(c.server, b.createSession());
     return fromRegistered("backtest", c.tools);
+  },
+  async markets() {
+    const m = await import("canli-markets-mcp/src/server.mjs");
+    const { createSession } = await import("canli-markets-mcp/src/sources.mjs");
+    const c = capture(); m.registerTools(c.server, createSession());
+    return fromRegistered("markets", c.tools, m.TOOL_KEYWORDS);
   },
   async paper() {
     const { registerAll } = await import("canli-paper-trading-mcp/src/server.mjs");
