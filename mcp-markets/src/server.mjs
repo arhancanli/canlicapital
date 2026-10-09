@@ -35,6 +35,20 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   price_history: "Daily, weekly, monthly or hourly price bars (open, high, low, close, volume), adjusted for splits and dividends by default, as columns ready for analysis tools. Needs the user's free Alpaca or Tiingo key in the environment.",
 });
 
+// Words people use for each tool that its description may not contain; combined servers that
+// search tools (canli-mcp's find_tool) index them.
+export const TOOL_KEYWORDS = Object.freeze({
+  company_profile: "company info lookup sector industry sic fiscal year exchange address cik ticker",
+  list_filings: "filings list history edgar 10-k 10-q 8-k proxy def 14a s-1 annual quarterly reports",
+  read_filing: "10-k 10-q annual report quarterly report risk factors md&a business section text 8-k press release earnings exhibit",
+  search_filings: "full text search mention mentions keyword phrase across filings companies edgar",
+  insider_trades: "insider insiders buying selling buy sell form 4 executives directors ceo cfo officers stock sales purchases",
+  fund_holdings: "13f hedge fund institutional investor holdings portfolio positions manager owns own bought sold stake",
+  treasury_yields: "treasury yield curve rates government bonds 10 year 2 year 30 year tips real yields bills",
+  economic_series: "macro economic economy data indicator fred unemployment jobs inflation cpi pce gdp payrolls fed funds rate spread oil dollar money supply recession",
+  price_history: "stock stocks price prices quote ohlc bars daily weekly historical close adjusted chart ticker shares equity data",
+});
+
 const opt = (t) => t.optional();
 const table = { columns: opt(z.array(z.string())), rows: opt(z.array(z.unknown())) };
 const common = { source: opt(z.string()), limits: opt(z.array(z.string())) };
