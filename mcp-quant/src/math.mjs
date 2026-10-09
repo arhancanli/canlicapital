@@ -221,6 +221,10 @@ export function olsSimple(x, y) {
 export function sig(x, digits = 10) {
   if (typeof x !== "number" || !Number.isFinite(x)) return x === undefined ? null : Number.isNaN(x) ? null : x;
   if (x === 0) return 0;
+  // Whole numbers (counts, observations, share amounts) are never changed, nor the integer part of
+  // a large value: digits trims fractions only.
+  if (Number.isInteger(x)) return x;
+  if (Math.abs(x) >= 10 ** digits) return Math.round(x);
   return Number(x.toPrecision(digits));
 }
 

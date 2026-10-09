@@ -130,7 +130,7 @@ export function registerAll(server, { toolsets = selectedToolsets() } = {}) {
       name: z.string().max(100).describe("Tool name from find_tool."),
       arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments, as describe_tool gives them."),
       receipt: z.boolean().optional().describe("Add a calculation receipt (input and output SHA-256) so the result can be independently recomputed and compared; default false."),
-      digits: z.number().int().min(3).max(10).optional().describe("Significant figures in the result; default 10. 4-6 cuts output tokens when full precision is not needed."),
+      digits: z.number().int().min(3).max(10).optional().describe("Significant figures for fractional numbers in the result; default 10. Whole numbers are never changed. 4-6 cuts output tokens when full precision is not needed."),
     }).strict(),
     outputSchema: open,
   }, guard(({ name, arguments: args, receipt, digits }) => {

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Fix: `digits` also rounded whole numbers, so `digits: 4` turned 227,917,808 into 227,900,000.
+  It now trims fractions only; whole numbers and the integer part of large values stay exact.
+
 ## 0.1.1
 
 - `deflated_sharpe_ratio` and `probabilistic_sharpe_ratio` also take summary numbers (`sharpe_annual`,
