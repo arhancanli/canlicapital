@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Fix: `digits` rounded whole numbers too, so with `digits: 6` a 13F's 227,917,808 shares came back
+  as 227,918,000 and a CIK changed. It now rounds fractions only; counts, shares, IDs and dollar
+  totals stay exact. Found by the rival benchmark (`bench/rivals`).
+- `select` and `$result` paths take column names on tables: `rows.0.accession`, `rows.close`.
+- `find_tool` finds the fundamentals tools for revenue, net income and EPS questions.
+
 - New pack, markets (canli-markets-mcp): SEC filings and their sections, EDGAR full-text search,
   insider trades, 13F holdings, Treasury yields, FRED series and prices from the sources, no key
   (your Alpaca or Tiingo key is used for prices when set). 281 tools; `economic_series` and `price_history` return columns

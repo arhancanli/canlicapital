@@ -99,14 +99,26 @@ function resolveResults(value, done) {
 }
 const usesResults = (v) => (Array.isArray(v) ? v.some(usesResults) : v && typeof v === "object" ? Number.isInteger(v.$result) || Object.values(v).some(usesResults) : false);
 
+// Rounds fractional numbers to `digits` significant figures and never changes a whole number
+// (counts, share amounts, CIKs, dollar totals) or the integer part of a large value.
+export function roundNumbers(v, digits) {
+  if (typeof v === "number") {
+    if (!Number.isFinite(v) || Number.isInteger(v)) return v;
+    if (Math.abs(v) >= 10 ** digits) return Math.round(v);
+    return Number(v.toPrecision(digits));
+  }
+  if (Array.isArray(v)) return v.map((x) => roundNumbers(x, digits));
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, roundNumbers(x, digits)]));
+  return v;
+}
+
 async function runOne(packs, { name, arguments: args }, { digits }, files) {
   const tool = await toolFor(name, packs);
   const parsed = tool.input.safeParse(resolveRefs(args ?? {}, files));
   if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}. Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
-  const out = await tool.run(parsed.data, digits ? { digits } : undefined);
-  if (!digits || tool.pack === "quant") return out;
-  const { compact } = await import("canli-quant-mcp/src/math.mjs");
-  return compact(out, digits);
+  // Packs return full precision (quant's own default); rounding happens once, here.
+  const out = await tool.run(parsed.data, tool.pack === "quant" ? { digits: 15 } : undefined);
+  return digits ? roundNumbers(out, digits) : out;
 }
 
 export function registerAll(server, packs = enabledPacks()) {
@@ -142,7 +154,7 @@ export function registerAll(server, packs = enabledPacks()) {
       arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments (single call)."),
       calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip. Calls without $result references run concurrently."),
       return: z.enum(["all", "last"]).optional().describe("For a batch: every result (default) or only the last one."),
-      digits: z.number().int().min(3).max(10).optional().describe("Round every number in the results to this many significant figures (4-6 saves output tokens); default: as each tool returns them."),
+      digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers in the results to this many significant figures (4-6 saves output tokens); whole numbers such as counts, shares and IDs are never changed. Default: as each tool returns them."),
       select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"rows.0.accession\"] (table rows take column names)."),
       receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
     }).strict(),

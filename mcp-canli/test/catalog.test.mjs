@@ -39,3 +39,9 @@ test("paths into results: dotted fields, and column names on tables", async () =
   assert.equal(at(r, "rows.0.nothing"), undefined);
   assert.equal(at({ rows: [{ accession: "y" }] }, "rows.0.accession"), "y");
 });
+
+test("digits rounds fractions only: counts, shares, CIKs and dollar totals stay exact", async () => {
+  const { roundNumbers } = await import("../src/server.mjs");
+  const r = roundNumbers({ cik: 1067983, shares: 227917808, value: 299253556246, sharpe: 0.940123456, price: 360.134, big: 1234567.89, rows: [[227917808, 0.220412345]] }, 4);
+  assert.deepEqual(r, { cik: 1067983, shares: 227917808, value: 299253556246, sharpe: 0.9401, price: 360.1, big: 1234568, rows: [[227917808, 0.2204]] });
+});
