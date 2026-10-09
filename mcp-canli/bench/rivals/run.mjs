@@ -6,6 +6,7 @@ import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs
 
 import { execSync } from "node:child_process";
 
+import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
 import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
@@ -20,7 +21,21 @@ const OUT = new URL(process.env.OUT ?? "./results.jsonl", import.meta.url);
 const SUFFIX = process.env.SET ? `_${process.env.SET}` : "";
 const TASKS = JSON.parse(readFileSync(new URL(`./tasks${SUFFIX}.json`, import.meta.url), "utf8")).filter((t) => !process.env.TASKS || process.env.TASKS.split(",").includes(t.id));
 const TRUTH = JSON.parse(readFileSync(new URL(`./truth${SUFFIX}.json`, import.meta.url), "utf8"));
-const openai = new OpenAI({ maxRetries: 8, apiKey: readFileSync(`${process.env.HOME}/.config/canli/openai_benchmark_key`, "utf8").trim() });
+// claude-* models run on the Anthropic API, others on OpenAI; the same tools, prompt and limits.
+const CLAUDE = MODEL.startsWith("claude-");
+const key = (name) => readFileSync(`${process.env.HOME}/.config/canli/${name}`, "utf8").trim();
+// MOCK_LLM=1 replaces the model with one that calls the arm's first tool once, then answers: it
+// checks the loop, the MCP plumbing and the scoring without spending anything.
+const MOCK = process.env.MOCK_LLM === "1";
+let mockStep = 0;
+const mockOpenAI = { chat: { completions: { create: async ({ tools }) => (mockStep++ % 2 === 0
+  ? { usage: { prompt_tokens: 10, completion_tokens: 1 }, choices: [{ message: { role: "assistant", content: null, tool_calls: [{ id: "c1", type: "function", function: { name: tools[0].function.name, arguments: "{}" } }] } }] }
+  : { usage: { prompt_tokens: 10, completion_tokens: 1 }, choices: [{ message: { role: "assistant", content: "ANSWER: 1" } }] }) } } };
+const mockAnthropic = { messages: { create: async ({ tools }) => (mockStep++ % 2 === 0
+  ? { stop_reason: "tool_use", usage: { input_tokens: 10, output_tokens: 1 }, content: [{ type: "tool_use", id: "t1", name: tools[0].name, input: {} }] }
+  : { stop_reason: "end_turn", usage: { input_tokens: 10, output_tokens: 1 }, content: [{ type: "text", text: "ANSWER: 1" }] }) } };
+const openai = CLAUDE ? null : MOCK ? mockOpenAI : new OpenAI({ maxRetries: 8, apiKey: key("openai_benchmark_key") });
+const anthropic = !CLAUDE ? null : MOCK ? mockAnthropic : new Anthropic({ maxRetries: 8, apiKey: key("anthropic_benchmark_key") });
 const RESULT_CAP = 30000;
 const MAX_TURNS = 12;
 const SYSTEM = "You are a financial research assistant with tools. Today is 2026-10-09. Get every figure from the tools, not from memory, and compute with the tools where you can. When you have the result, finish with one line 'ANSWER: <number>' in the units the question asks for.";
@@ -32,7 +47,7 @@ const done = new Set(existsSync(OUT) ? readFileSync(OUT, "utf8").trim().split("\
 const BUDGET = Number(process.env.BUDGET_TOKENS ?? 0), BUDGET_FILE = process.env.BUDGET_FILE;
 const used = () => { try { return Number(readFileSync(BUDGET_FILE, "utf8")) || 0; } catch { return 0; } };
 // An account without credit fails every request; stop instead of recording failures.
-const outOfCredit = (err) => /no credits remaining|insufficient_quota|exceeded your current quota/i.test(`${err?.code ?? ""} ${err?.message ?? ""}`);
+const outOfCredit = (err) => /no credits remaining|insufficient_quota|exceeded your current quota|credit balance is too low/i.test(`${err?.code ?? ""} ${err?.message ?? ""}`);
 
 // OpenAI requires an object schema; some servers send none or a bare one.
 function params(schema) {
@@ -44,7 +59,7 @@ function params(schema) {
 }
 
 async function connectArm(arm) {
-  const clients = [], tools = [], route = new Map();
+  const clients = [], tools = [], claudeTools = [], route = new Map();
   let instructions = "";
   for (const [key, command, args, env] of ARMS[arm]) {
     const c = new Client({ name: "rival-bench", version: "0" });
@@ -56,9 +71,10 @@ async function connectArm(arm) {
       const name = ARMS[arm].length > 1 ? `${key}__${t.name}` : t.name;
       route.set(name, [c, t.name]);
       tools.push({ type: "function", function: { name: name.slice(0, 64), description: (t.description ?? "").slice(0, 1024), parameters: params(t.inputSchema) } });
+      claudeTools.push({ name: name.slice(0, 64), description: (t.description ?? "").slice(0, 1024), input_schema: params(t.inputSchema) });
     }
   }
-  return { clients, tools, route, instructions };
+  return { clients, tools, claudeTools, route, instructions };
 }
 
 const SCALE = { thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
@@ -78,7 +94,57 @@ export function grade(task, value) {
   return Math.abs(v - t) <= task.rel * Math.abs(t);
 }
 
+// Runs one tool call through its MCP server; returns the text the model sees (capped).
+async function callTool(ctx, name, args) {
+  let text, error = false;
+  const target = ctx.route.get(name);
+  try {
+    if (!target) throw new Error(`no tool ${name}`);
+    const res = await target[0].callTool({ name: target[1], arguments: args ?? {} }, undefined, { timeout: 180000 });
+    text = (res.content ?? []).map((c) => (c.type === "text" ? c.text : `[${c.type}]`)).join("\n") || JSON.stringify(res.structuredContent ?? {});
+    error = Boolean(res.isError);
+  } catch (err) {
+    error = true;
+    text = `Error: ${err.message}`;
+  }
+  if (text.length > RESULT_CAP) text = `${text.slice(0, RESULT_CAP)}\n[truncated: ${text.length} characters in all]`;
+  return { text, error };
+}
+
+// The Anthropic Messages API loop: tool_use blocks in, one user message of tool_result blocks out.
+async function runTaskClaude(ctx, task) {
+  const system = SYSTEM + (ctx.instructions ? `\n\nServer instructions:${ctx.instructions}` : "");
+  const messages = [{ role: "user", content: task.prompt }];
+  let input = 0, cached = 0, output = 0, calls = 0, errors = 0, turns = 0;
+  const t0 = Date.now(), trace = [];
+  for (; turns < MAX_TURNS; turns++) {
+    const r = await anthropic.messages.create({ model: MODEL, max_tokens: 16000, system, tools: ctx.claudeTools, messages, cache_control: { type: "ephemeral" } });
+    const u = r.usage ?? {};
+    input += (u.input_tokens ?? 0) + (u.cache_read_input_tokens ?? 0) + (u.cache_creation_input_tokens ?? 0);
+    cached += u.cache_read_input_tokens ?? 0; output += u.output_tokens ?? 0;
+    messages.push({ role: "assistant", content: r.content });
+    if (r.stop_reason === "pause_turn") continue;
+    const uses = r.content.filter((b) => b.type === "tool_use");
+    if (!uses.length || r.stop_reason === "end_turn") {
+      const text = r.content.filter((b) => b.type === "text").map((b) => b.text).join("\n");
+      const value = parseAnswer(text);
+      return { value, correct: grade(task, value), final: text.slice(-400), input, cached, output, turns: turns + 1, calls, errors, seconds: (Date.now() - t0) / 1000, trace };
+    }
+    const results = [];
+    for (const b of uses) {
+      calls++;
+      const { text, error } = await callTool(ctx, b.name, b.input);
+      if (error) errors++;
+      trace.push([b.name, JSON.stringify(b.input).slice(0, 300), text.slice(0, 200)]);
+      results.push({ type: "tool_result", tool_use_id: b.id, content: text, ...(error ? { is_error: true } : {}) });
+    }
+    messages.push({ role: "user", content: results });
+  }
+  return { value: null, correct: false, final: "turn limit", input, cached, output, turns, calls, errors, seconds: (Date.now() - t0) / 1000, trace };
+}
+
 async function runTask(ctx, task) {
+  if (CLAUDE) return runTaskClaude(ctx, task);
   const system = SYSTEM + (ctx.instructions ? `\n\nServer instructions:${ctx.instructions}` : "");
   const messages = [{ role: "system", content: system }, { role: "user", content: task.prompt }];
   let input = 0, cached = 0, output = 0, calls = 0, errors = 0, turns = 0;
@@ -94,18 +160,10 @@ async function runTask(ctx, task) {
     }
     for (const tc of msg.tool_calls) {
       calls++;
-      let text;
-      const target = ctx.route.get(tc.function.name);
-      try {
-        if (!target) throw new Error(`no tool ${tc.function.name}`);
-        const res = await target[0].callTool({ name: target[1], arguments: JSON.parse(tc.function.arguments || "{}") }, undefined, { timeout: 180000 });
-        text = (res.content ?? []).map((c) => (c.type === "text" ? c.text : `[${c.type}]`)).join("\n") || JSON.stringify(res.structuredContent ?? {});
-        if (res.isError) errors++;
-      } catch (err) {
-        errors++;
-        text = `Error: ${err.message}`;
-      }
-      if (text.length > RESULT_CAP) text = `${text.slice(0, RESULT_CAP)}\n[truncated: ${text.length} characters in all]`;
+      let args;
+      try { args = JSON.parse(tc.function.arguments || "{}"); } catch { args = null; }
+      const { text, error } = args === null ? { text: "Error: arguments are not valid JSON", error: true } : await callTool(ctx, tc.function.name, args);
+      if (error) errors++;
       trace.push([tc.function.name, tc.function.arguments.slice(0, 300), text.slice(0, 200)]);
       messages.push({ role: "tool", tool_call_id: tc.id, content: text });
     }

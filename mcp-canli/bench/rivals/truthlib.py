@@ -70,3 +70,26 @@ N = lambda x: 0.5 * math.erfc(-x / math.sqrt(2))
 def bs(S, K, T, r, q, v, call=True):
     d1 = (math.log(S / K) + (r - q + v * v / 2) * T) / (v * math.sqrt(T)); d2 = d1 - v * math.sqrt(T)
     return S * math.exp(-q * T) * N(d1) - K * math.exp(-r * T) * N(d2) if call else K * math.exp(-r * T) * N(-d2) - S * math.exp(-q * T) * N(-d1)
+
+def frame(tag, unit, period, tax="us-gaap"):
+    """One XBRL frame: {cik: row}. A missing frame is empty."""
+    try:
+        d = json.loads(sec(f"https://data.sec.gov/api/xbrl/frames/{tax}/{tag}/{unit.replace('/', '-per-')}/{period}.json"))
+    except Exception:
+        return {}
+    return {r["cik"]: r for r in d["data"]}
+def listed():
+    d = json.loads(sec("https://www.sec.gov/files/company_tickers_exchange.json"))
+    out = {}
+    for cik, name, ticker, exch in d["data"]:
+        out.setdefault(cik, (ticker, exch, name))
+    return out
+
+def tenk(cik, tag, end, start=None, unit="USD"):
+    """The value a company's own 10-K (or 10-K/A) reports for a period, latest filed; None if none."""
+    try:
+        cc = json.loads(sec(f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik:010d}/us-gaap/{tag}.json"))
+    except Exception:
+        return None
+    hits = [x for x in cc["units"].get(unit, []) if x["form"] in ("10-K", "10-K/A") and x["end"] == end and (start is None or x.get("start") == start)]
+    return sorted(hits, key=lambda x: x["filed"])[-1]["val"] if hits else None

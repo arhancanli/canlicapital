@@ -17,8 +17,10 @@ for night in 1 2 3 4 5 6 7; do
   echo 0 > "$BUDGET_FILE"
   stopped=0
   for job in "fresh|canli-final|fresh-canli-final.jsonl" "fresh|edgartools+yahoo|fresh-edgartools_yahoo.jsonl" \
+             "frontier|canli-final|frontier-canli-final.jsonl" "frontier|edgartools+yahoo|frontier-edgartools_yahoo.jsonl" \
              "|edgartools|results-edgartools.jsonl" "|edgartools+yahoo|results-edgartools_yahoo.jsonl" "|openbb|results.jsonl" \
-             "fresh|edgartools|fresh-edgartools.jsonl" "fresh|yahoo|fresh-yahoo.jsonl" "fresh|openbb|fresh-openbb.jsonl"; do
+             "fresh|edgartools|fresh-edgartools.jsonl" "fresh|yahoo|fresh-yahoo.jsonl" "fresh|openbb|fresh-openbb.jsonl" \
+             "frontier|edgartools|frontier-edgartools.jsonl" "frontier|yahoo|frontier-yahoo.jsonl" "frontier|openbb|frontier-openbb.jsonl"; do
     parts=("${(@s:|:)job}")
     run "${parts[1]}" "${parts[2]}" "${parts[3]}"; rc=$?
     if [[ $rc -eq 3 || $rc -eq 4 ]]; then echo "NIGHT $night stopped (rc $rc) after $(cat $BUDGET_FILE) tokens $(date -u +%FT%TZ)"; stopped=1; break; fi
