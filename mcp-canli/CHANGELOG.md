@@ -9,6 +9,8 @@
 - Every result has a ref (`"r1"`, `"r2"`, ...) that a later `run_tool` call can pass as
   `{"$result": "r1", "path": "close"}`, so data fetched in one call feeds the next without being
   copied through the model (the last 32 results are kept, in this process only).
+- `run_tool` called through itself (`{"name": "run_tool", "arguments": {...}}`) is unwrapped instead of
+  failing; models in the rival benchmark did this.
 - `find_tool` finds the fundamentals tools for revenue, net income and EPS questions.
 
 - New pack, markets (canli-markets-mcp): SEC filings and their sections, EDGAR full-text search,

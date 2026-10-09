@@ -189,6 +189,10 @@ export function registerAll(server, packs = enabledPacks()) {
     }).strict(),
     outputSchema: open,
   }, guard(async (a) => {
+    // Models sometimes call run_tool through itself ({"name": "run_tool", "arguments": {...}});
+    // unwrap it, and its calls inside a batch.
+    if (a.name === "run_tool" && a.arguments && typeof a.arguments === "object") { const inner = a.arguments; delete a.name; delete a.arguments; Object.assign(a, { ...inner, ...Object.fromEntries(Object.entries(a).filter(([, v]) => v !== undefined)) }); }
+    if (a.calls) a.calls = a.calls.flatMap((c) => (c.name === "run_tool" && c.arguments ? (c.arguments.calls ?? [{ name: c.arguments.name, arguments: c.arguments.arguments }]) : [c]));
     // Models sometimes put run_tool's own options inside a call's arguments; move them out when the
     // tool itself has no argument of that name.
     for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt"]) {

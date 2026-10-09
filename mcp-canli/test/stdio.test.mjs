@@ -82,6 +82,10 @@ test("a result's ref feeds a later run_tool call; a batch index outside its batc
   assert.match(wrong.content[0].text, /pass its ref/);
   const gone = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: "r999" } } } });
   assert.match(gone.content[0].text, /not kept/);
+  const nested = await c.callTool({ name: "run_tool", arguments: { name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: ref, path: field } } } } });
+  assert.ok(!nested.isError, nested.content[0].text);
+  const nestedBatch = await c.callTool({ name: "run_tool", arguments: { calls: [{ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: [0.01, -0.02, 0.03] } } }] } });
+  assert.ok(nestedBatch.structuredContent.results[0].result, JSON.stringify(nestedBatch.structuredContent));
 });
 
 test("errors are per call and say what to do", async (t) => {
