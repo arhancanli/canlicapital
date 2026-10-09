@@ -17,7 +17,7 @@ let n = Object.keys(manifest).length;
 async function grab(url, trim) {
   if (manifest[url]) return;
   await new Promise((r) => setTimeout(r, 150));
-  const res = await fetch(url, { headers: /sec\.gov\//.test(new URL(url).host + "/") ? SEC : { "User-Agent": "canli-markets-mcp" } });
+  const res = await fetch(url, { headers: ["www.sec.gov", "data.sec.gov", "efts.sec.gov"].includes(new URL(url).host) ? SEC : { "User-Agent": "canli-markets-mcp" } });
   if (res.status === 404) { console.log("404 (left out):", url); return; }
   if (!res.ok) throw new Error(`${url}: ${res.status}`);
   let text = await res.text();
