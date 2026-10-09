@@ -14,11 +14,12 @@
   failing; models in the rival benchmark did this.
 - `find_tool` finds the fundamentals tools for revenue, net income and EPS questions.
 
-- New pack, markets (canli-markets-mcp): SEC filings and their sections, EDGAR full-text search,
+- New pack, markets (canli-markets-mcp, 13 tools): research across the market (screens of every
+  US-listed company, company reports, event studies, filing trends) and SEC filings and their sections, EDGAR full-text search,
   insider trades, 13F holdings, Treasury yields, FRED series and prices from the sources, no key
-  (your Alpaca or Tiingo key is used for prices when set). 281 tools; `economic_series` and `price_history` return columns
+  (your Alpaca or Tiingo key is used for prices when set). 285 tools; `economic_series` and `price_history` return columns
   that feed straight into the quant tools through `$result`.
-- Context re-measured on 2026-10-09: 1,109 tokens, against 22,355 for the seven servers listed
+- Context re-measured on 2026-10-09: 1,109 tokens, against 24,858 for the seven servers listed
   separately (0.1.0's 995 was measured before the argument signatures were added; it is 1,037).
 
 ## 0.1.0

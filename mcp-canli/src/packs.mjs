@@ -22,7 +22,7 @@ export const PACKS = Object.freeze({
 // Tools renamed in the combined catalog because two packs use the same name.
 export const RENAMES = Object.freeze({ validation: { stress_test: "strategy_stress_test" } });
 // Words people use for the published packs' tools that their descriptions lack; find_tool indexes
-// them. (canli-quant-mcp and canli-markets-mcp ship their own.)
+// them. (canli-quant-mcp and canli-markets-mcp ship their own; quant's entries here are added to them.)
 export const KEYWORDS = Object.freeze({
   fundamentals: {
     history: "revenue net sales income net income earnings eps diluted basic per share profit operating income assets cash flow financial statement statements financials annual quarterly fiscal year reported value numbers 10-k 10-q xbrl",
@@ -30,6 +30,15 @@ export const KEYWORDS = Object.freeze({
     cross_section: "compare companies peers screen revenue income many",
     list_concepts: "metrics measures line items available tags",
     find_company: "lookup ticker cik identifier",
+    restatements: "restated restatement restate revised revision changed later corrected numbers",
+    vintages: "every filing versions revision history of one number vintage as filed each time",
+  },
+  backtest: {
+    pit_factor: "build construct make factor value momentum quality from sec filings point in time without lookahead",
+    backtest_signal: "test my signal csv prices backtest without lookahead",
+  },
+  quant: {
+    sleeve_tournament: "which sleeves work best on my data test all compare",
   },
 });
 
@@ -70,7 +79,7 @@ function fromRegistered(pack, captured, keywords = {}) {
 const LOADERS = {
   async quant() {
     const { CATALOG, runTool } = await import("canli-quant-mcp/src/registry.mjs");
-    return CATALOG.map((t) => ({ name: t.name, original: t.name, pack: "quant", toolset: t.toolset, title: t.title, description: t.description, keywords: t.keywords ?? "", input: t.input, annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false }, run: async (args, opts) => runTool(t.name, args, opts) }));
+    return CATALOG.map((t) => ({ name: t.name, original: t.name, pack: "quant", toolset: t.toolset, title: t.title, description: t.description, keywords: [t.keywords, KEYWORDS.quant[t.name]].filter(Boolean).join(" "), input: t.input, annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false }, run: async (args, opts) => runTool(t.name, args, opts) }));
   },
   async validation() {
     const v = await import("canli-validation-mcp/src/server.mjs");
@@ -91,7 +100,7 @@ const LOADERS = {
   async backtest() {
     const b = await import("canli-backtest-mcp/src/server.mjs");
     const c = capture(); b.registerTools(c.server, b.createSession());
-    return fromRegistered("backtest", c.tools);
+    return fromRegistered("backtest", c.tools, KEYWORDS.backtest);
   },
   async markets() {
     const m = await import("canli-markets-mcp/src/server.mjs");

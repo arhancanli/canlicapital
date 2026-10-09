@@ -54,9 +54,14 @@ const Q = [
   ["nvidia diluted earnings per share last fiscal year", ["history", "known_as_of"]],
   ["how many employees does nvidia have according to its 10-k", ["read_filing"]],
   ["sharpe ratio of spy in 2025 from prices", ["sharpe_ratio", "price_history"]],
+  ["which companies grew revenue fastest last year", ["screen_companies"]],
+  ["rank large companies by profit margin", ["screen_companies"]],
+  ["give me a full report on microsoft", ["company_report"]],
+  ["how does the stock react after earnings", ["event_study"]],
+  ["how often do filings mention tariffs over time", ["mentions_trend"]],
 ];
 
-test("cross-pack requests: a right tool first in at least 40 of 45, in the top three in all 45", () => {
+test("cross-pack requests: a right tool first in at least 45 of 50, in the top three in all 50", () => {
   let top1 = 0, top3 = 0;
   const misses = [];
   for (const [q, want] of Q) {
@@ -65,5 +70,5 @@ test("cross-pack requests: a right tool first in at least 40 of 45, in the top t
     if (r.some((n) => want.includes(n))) top3++; else misses.push(`${q} -> ${r.join(", ")}`);
   }
   console.log(JSON.stringify({ top1, top3, misses }));
-  assert.ok(top1 >= 40 && top3 === Q.length, JSON.stringify({ top1, top3, misses }));
+  assert.ok(top1 >= 45 && top3 === Q.length, JSON.stringify({ top1, top3, misses }));
 });
