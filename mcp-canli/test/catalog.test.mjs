@@ -28,3 +28,14 @@ test("the README states the real tool counts per pack", () => {
   assert.match(readme, new RegExp(`^Every Canli Capital MCP server in one: ${INDEX.tools.length} finance tools`, "m"));
   for (const pack of Object.keys(PACKS)) assert.ok(readme.includes(`| ${pack} | [${PACKS[pack].package}]`) && readme.includes(`| ${INDEX.tools.filter((t) => t[1] === pack).length} |`), pack);
 });
+
+test("paths into results: dotted fields, and column names on tables", async () => {
+  const { at } = await import("../src/server.mjs");
+  const r = { a: { b: [1, 2] }, columns: ["filed", "form", "accession"], rows: [["2026-01-02", "10-K", "x-1"], ["2025-01-02", "10-K", "x-0"]] };
+  assert.equal(at(r, "a.b.1"), 2);
+  assert.equal(at(r, "rows.0.accession"), "x-1");
+  assert.equal(at(r, "rows.1.2"), "x-0");
+  assert.deepEqual(at(r, "rows.filed"), ["2026-01-02", "2025-01-02"]);
+  assert.equal(at(r, "rows.0.nothing"), undefined);
+  assert.equal(at({ rows: [{ accession: "y" }] }, "rows.0.accession"), "y");
+});

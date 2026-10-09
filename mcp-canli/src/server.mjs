@@ -62,8 +62,25 @@ async function toolFor(name, packs) {
   return (await loadPack(e.pack)).get(name);
 }
 
-// Dotted path into a result: "rows", "multiple_testing.best.id", "rows.0".
-const at = (v, path) => (path ? String(path).split(".").reduce((o, k) => (o == null ? undefined : o[k]), v) : v);
+// Dotted path into a result: "rows", "multiple_testing.best.id", "rows.0". A table (columns plus
+// rows) also takes column names: "rows.0.accession" is one cell, "rows.close" the whole column.
+export function at(v, path) {
+  if (!path) return v;
+  let o = v, cols = null;
+  for (const k of String(path).split(".")) {
+    if (o == null) return undefined;
+    if (cols && Array.isArray(o) && !/^\d+$/.test(k) && cols.includes(k)) {
+      const i = cols.indexOf(k);
+      o = Array.isArray(o[0]) ? o.map((r) => r[i]) : o[i];
+      cols = null;
+      continue;
+    }
+    if (k === "rows" && o && typeof o === "object" && !Array.isArray(o) && Array.isArray(o.columns)) cols = o.columns;
+    else if (!(cols && Array.isArray(o) && /^\d+$/.test(k) && Array.isArray(o[k]))) cols = null;
+    o = o[k];
+  }
+  return o;
+}
 function resolveResults(value, done) {
   if (Array.isArray(value)) return value.map((v) => resolveResults(v, done));
   if (value && typeof value === "object") {
@@ -126,7 +143,7 @@ export function registerAll(server, packs = enabledPacks()) {
       calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip. Calls without $result references run concurrently."),
       return: z.enum(["all", "last"]).optional().describe("For a batch: every result (default) or only the last one."),
       digits: z.number().int().min(3).max(10).optional().describe("Round every number in the results to this many significant figures (4-6 saves output tokens); default: as each tool returns them."),
-      select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"leaderboard.0\"]."),
+      select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"rows.0.accession\"] (table rows take column names)."),
       receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
     }).strict(),
     outputSchema: open,

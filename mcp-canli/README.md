@@ -45,8 +45,8 @@ server instructions):
 | start-up | about 110-165 ms each | 110 ms |
 
 - **Three tools in context.** The model searches with `find_tool`, reads one schema with
-  `describe_tool`, and calls anything with `run_tool`. On 40 requests spread over every pack, the
-  right tool comes first 37 times and is in the top three every time (`test/search.test.mjs`).
+  `describe_tool`, and calls anything with `run_tool`. On 45 requests spread over every pack, the
+  right tool comes first 40 times and is in the top three every time (`test/search.test.mjs`).
 - **Nothing loads until it is used.** Start-up reads a prebuilt index of all 281 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`

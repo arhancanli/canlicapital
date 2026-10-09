@@ -49,9 +49,14 @@ const Q = [
   ["list a company's 8-k filings", ["list_filings"]],
   ["what industry is a company in and when does its fiscal year end", ["company_profile"]],
   ["unemployment rate data", ["economic_series"]],
+  ["apple fiscal year 2025 total net sales revenue", ["history", "known_as_of"]],
+  ["microsoft net income for fiscal 2025", ["history", "known_as_of"]],
+  ["nvidia diluted earnings per share last fiscal year", ["history", "known_as_of"]],
+  ["how many employees does nvidia have according to its 10-k", ["read_filing"]],
+  ["sharpe ratio of spy in 2025 from prices", ["sharpe_ratio", "price_history"]],
 ];
 
-test("cross-pack requests: a right tool first in at least 36 of 40, in the top three in all 40", () => {
+test("cross-pack requests: a right tool first in at least 40 of 45, in the top three in all 45", () => {
   let top1 = 0, top3 = 0;
   const misses = [];
   for (const [q, want] of Q) {
@@ -60,5 +65,5 @@ test("cross-pack requests: a right tool first in at least 36 of 40, in the top t
     if (r.some((n) => want.includes(n))) top3++; else misses.push(`${q} -> ${r.join(", ")}`);
   }
   console.log(JSON.stringify({ top1, top3, misses }));
-  assert.ok(top1 >= 36 && top3 === Q.length, JSON.stringify({ top1, top3, misses }));
+  assert.ok(top1 >= 40 && top3 === Q.length, JSON.stringify({ top1, top3, misses }));
 });

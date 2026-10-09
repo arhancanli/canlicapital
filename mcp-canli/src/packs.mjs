@@ -21,6 +21,18 @@ export const PACKS = Object.freeze({
 
 // Tools renamed in the combined catalog because two packs use the same name.
 export const RENAMES = Object.freeze({ validation: { stress_test: "strategy_stress_test" } });
+// Words people use for the published packs' tools that their descriptions lack; find_tool indexes
+// them. (canli-quant-mcp and canli-markets-mcp ship their own.)
+export const KEYWORDS = Object.freeze({
+  fundamentals: {
+    history: "revenue net sales income net income earnings eps diluted basic per share profit operating income assets cash flow financial statement statements financials annual quarterly fiscal year reported value numbers 10-k 10-q xbrl",
+    known_as_of: "financials fundamentals snapshot revenue income eps balance sheet reported date",
+    cross_section: "compare companies peers screen revenue income many",
+    list_concepts: "metrics measures line items available tags",
+    find_company: "lookup ticker cik identifier",
+  },
+});
+
 // Tools left out of the combined catalog, with the reason.
 export const OMITTED = Object.freeze({
   validation: {
@@ -69,7 +81,7 @@ const LOADERS = {
   async fundamentals() {
     const f = await import("canli-fundamentals-mcp/src/server.mjs");
     const c = capture(); f.registerTools(c.server, f.createSession());
-    return fromRegistered("fundamentals", c.tools);
+    return fromRegistered("fundamentals", c.tools, KEYWORDS.fundamentals);
   },
   async research() {
     const r = await import("canli-research-mcp/src/server.mjs");
