@@ -40,7 +40,7 @@ server instructions):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| tool list and instructions sent with every request | 22,211 tokens | 1,041 tokens |
+| tool list and instructions sent with every request | 22,355 tokens | 1,109 tokens |
 | processes | 7 | 1 |
 | start-up | about 110-165 ms each | 110 ms |
 

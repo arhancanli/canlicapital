@@ -3,7 +3,7 @@
 //
 // Efficiency, by design:
 // - Context: the model sees find_tool, describe_tool and run_tool (about 1,000 tokens) instead of
-//   seven servers' tool lists (22,211 tokens measured); the list is byte-identical across launches.
+//   seven servers' tool lists (22,355 tokens measured); the list is byte-identical across launches.
 // - Startup: only a prebuilt index is read; a pack's code loads the first time one of its tools is
 //   described or run.
 // - Round trips: run_tool takes a batch of calls, runs independent ones concurrently, and lets a
