@@ -17,24 +17,49 @@ const LIMITS = ["From SEC EDGAR and the other named sources as published; Canli 
 // Metrics: XBRL concepts in priority order (the first a company reports is used), and ratios.
 // ---------------------------------------------------------------------------------------------
 const D = "duration", I = "instant";
+// Each metric lists XBRL tags in groups. The first group a company reports is used; within a group
+// the largest value wins, because its tags are versions of one line or one is a subset of the other.
+// Revenue: BlackRock's 2024 "Revenues" holds a $12.8 billion item while its $20.4 billion total is
+// "RevenueFromContractWithCustomerExcludingAssessedTax", hence the larger of the two; the
+// tax-inclusive tag (gross of excise taxes) is used only when nothing else is reported. R&D: J&J tags
+// a $109 million item as ResearchAndDevelopmentExpense and its $14.7 billion total under
+// ...ExcludingAcquiredInProcessCost for 2025.
+const metric = (kind, unit, groups) => ({ kind, unit, groups, tags: groups.flat() });
+const one = (...tags) => tags.map((t) => [t]);
 export const METRICS = Object.freeze({
-  revenue: { kind: D, unit: "USD", tags: ["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax"] },
-  net_income: { kind: D, unit: "USD", tags: ["NetIncomeLoss", "ProfitLoss"] },
-  operating_income: { kind: D, unit: "USD", tags: ["OperatingIncomeLoss"] },
-  gross_profit: { kind: D, unit: "USD", tags: ["GrossProfit"] },
-  eps_diluted: { kind: D, unit: "USD/shares", tags: ["EarningsPerShareDiluted"] },
-  // R&D tags are alternative versions of one line, and filers use them unevenly (J&J tags a $109M
-  // item as ResearchAndDevelopmentExpense and its $14.7B total under ...ExcludingAcquiredInProcessCost
-  // for 2025), so the largest is taken.
-  rd_expense: { kind: D, unit: "USD", tags: ["ResearchAndDevelopmentExpense", "ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"], pick: "max" },
-  operating_cash_flow: { kind: D, unit: "USD", tags: ["NetCashProvidedByUsedInOperatingActivities"] },
-  capex: { kind: D, unit: "USD", tags: ["PaymentsToAcquirePropertyPlantAndEquipment"] },
-  assets: { kind: I, unit: "USD", tags: ["Assets"] },
-  liabilities: { kind: I, unit: "USD", tags: ["Liabilities"] },
-  equity: { kind: I, unit: "USD", tags: ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"] },
-  cash: { kind: I, unit: "USD", tags: ["CashAndCashEquivalentsAtCarryingValue"] },
-  long_term_debt: { kind: I, unit: "USD", tags: ["LongTermDebtNoncurrent", "LongTermDebt"] },
+  revenue: metric(D, "USD", [["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax"], ["SalesRevenueNet"], ["RevenueFromContractWithCustomerIncludingAssessedTax"]]),
+  net_income: metric(D, "USD", one("NetIncomeLoss", "ProfitLoss")),
+  operating_income: metric(D, "USD", one("OperatingIncomeLoss")),
+  gross_profit: metric(D, "USD", one("GrossProfit")),
+  eps_diluted: metric(D, "USD/shares", one("EarningsPerShareDiluted")),
+  rd_expense: metric(D, "USD", [["ResearchAndDevelopmentExpense", "ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"]]),
+  operating_cash_flow: metric(D, "USD", one("NetCashProvidedByUsedInOperatingActivities")),
+  capex: metric(D, "USD", one("PaymentsToAcquirePropertyPlantAndEquipment")),
+  assets: metric(I, "USD", one("Assets")),
+  liabilities: metric(I, "USD", one("Liabilities")),
+  equity: metric(I, "USD", one("StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest")),
+  cash: metric(I, "USD", one("CashAndCashEquivalentsAtCarryingValue")),
+  long_term_debt: metric(I, "USD", one("LongTermDebtNoncurrent", "LongTermDebt")),
 });
+
+// A company's value for a metric from its values by tag: the preferred tag if it has one (so growth
+// compares a tag with itself), else by group as above.
+export function choose(def, byTag, preferTag) {
+  if (!byTag) return null;
+  if (preferTag && byTag[preferTag]) return { ...byTag[preferTag], tag: preferTag };
+  for (const g of def.groups) {
+    const have = g.filter((t) => byTag[t]).sort((a, b) => Math.abs(byTag[b].val) - Math.abs(byTag[a].val));
+    if (!have.length) continue;
+    // A value exactly 1,000, a million or a billion times another tag's in the group is a scale
+    // slip (Tigo Energy's 2025 filing tags revenue as $103,536,000 and as $103,536,000,000), not a
+    // larger line: it is passed over. Other gaps are real (J&J's two R&D tags differ 134-fold).
+    const slip = (t) => have.some((u) => u !== t && byTag[u].val && [1e3, 1e6, 1e9].some((k) => Math.abs(byTag[t].val / byTag[u].val / k - 1) < 0.005));
+    const t = have.find((x) => !slip(x)) ?? have.at(-1);
+    return { ...byTag[t], tag: t };
+  }
+  return null;
+}
+
 const pos = (x) => x != null && x > 0;
 export const DERIVED = Object.freeze({
   revenue_growth: { needs: ["revenue", "revenue@prev"], f: (m) => (pos(m["revenue@prev"]) && m.revenue != null ? m.revenue / m["revenue@prev"] - 1 : null) },
@@ -53,18 +78,16 @@ export const ALL_METRICS = [...Object.keys(METRICS), ...Object.keys(DERIVED)];
 
 // Values no real company reports: almost always a filer's tagging slip (one 2026 filing tagged net
 // income of $1.157 billion as $1,157,000,000,000). A ranking would put them first, so a company
-// failing a check is held out of the results unless include_suspect is set, and listed apart.
+// failing a check is held out of the results unless include_suspect is set, and listed apart. The
+// checks flag the impossible only: early-stage companies really do lose many times their revenue.
 const CHECKS = [
-  ["net_margin", (v) => Math.abs(v) > 10, "net income more than 10 times revenue"],
-  ["operating_margin", (v) => Math.abs(v) > 10, "operating income more than 10 times revenue"],
-  ["gross_margin", (v) => v > 1.0001 || v < -10, "gross profit above revenue"],
-  ["fcf_margin", (v) => Math.abs(v) > 10, "free cash flow more than 10 times revenue"],
-  ["rd_intensity", (v) => v > 50 || v < 0, "R&D more than 50 times revenue"],
-  ["roa", (v) => Math.abs(v) > 3, "net income more than 3 times assets"],
+  ["gross_margin", (v) => v > 1.0001, "gross profit above revenue"],
+  ["roa", (v) => v > 3, "net income more than 3 times assets"],
   ["revenue_growth", (v) => v > 1000, "revenue up more than 1,000-fold"],
 ];
 function suspect(m) {
   const out = [];
+  if (m.revenue > 0 && m.assets > 0 && m.revenue > 20 * m.assets) out.push("revenue more than 20 times assets");
   for (const [k, bad, why] of CHECKS) { const v = DERIVED[k].f(m); if (v != null && bad(v)) out.push(why); }
   if (m.eps_diluted != null && Math.abs(m.eps_diluted) > 100000) out.push("EPS above $100,000");
   return out;
@@ -87,7 +110,7 @@ async function frame(session, tag, unit, frm, tax = "us-gaap") {
   try { return await getJson(session, frameUrl(tax, tag, unit, frm), { maxBytes: 64 * 1024 * 1024 }); } catch (err) { if (err instanceof NotFound) return null; throw err; }
 }
 
-// One metric for every filer at one frame: cik -> { val, end, accn, tag }.
+// One metric for every filer at one frame: cik -> { name, byTag: { tag: { val, end, accn } } }.
 async function metricFrame(session, name, frm) {
   const def = METRICS[name];
   const frames = await Promise.all(def.tags.map((tag) => frame(session, tag, def.unit, frm)));
@@ -96,12 +119,14 @@ async function metricFrame(session, name, frm) {
     if (!f) return;
     urls.push(frameUrl("us-gaap", def.tags[i], def.unit, frm));
     for (const r of f.data ?? []) {
-      const cur = out.get(r.cik);
-      if (!cur || (def.pick === "max" && r.val > cur.val)) out.set(r.cik, { val: r.val, end: r.end, accn: r.accn, tag: def.tags[i], name: r.entityName });
+      const cur = out.get(r.cik) ?? { name: r.entityName, byTag: {} };
+      cur.byTag[def.tags[i]] = { val: r.val, end: r.end, accn: r.accn };
+      out.set(r.cik, cur);
     }
   });
-  return { values: out, urls };
+  return { values: out, urls, def };
 }
+const chosen = (mf, cik, prefer) => choose(mf.def, mf.values.get(cik)?.byTag, prefer);
 
 async function listedCompanies(session) {
   const t = await getJson(session, "https://www.sec.gov/files/company_tickers_exchange.json");
@@ -139,24 +164,34 @@ export async function screenCompanies(session, args) {
   if (VALUATION.includes(sortBy) || filters.some((f) => VALUATION.includes(f.metric))) throw new Error("Valuation metrics need a price per company, so they apply to the returned rows only: filter and sort on fundamentals, and set valuation: true.");
   const shown = [...new Set([...filters.map((f) => f.metric), sortBy, ...(a.columns ?? []).filter((c) => !VALUATION.includes(c))])];
   // Base metrics needed, with @prev for growth.
-  const base = new Set(["revenue", "net_income"]);
+  const base = new Set(["revenue", "net_income", "assets"]);
   for (const m of shown) for (const n of DERIVED[m]?.needs ?? [m]) base.add(n);
   const needed = [...base].map((n) => (n.endsWith("@prev") ? { key: n, metric: n.slice(0, -5), frame: per.prev } : { key: n, metric: n, frame: METRICS[n].kind === I ? per.instant : per.duration }));
   const [listed, ...frames] = await Promise.all([listedCompanies(session), ...needed.map((n) => metricFrame(session, n.metric, n.frame))]);
   const venues = new Set(a.exchanges ?? ["NYSE", "Nasdaq"]);
   const any = venues.has("all");
-  // Universe: filers with the sort metric's inputs (or the first filter's) in this period.
+  // Every filer in any needed frame, on the chosen venues; current values first, then the prior
+  // year's, preferring the tag the current value came from.
   const rows = new Map();
-  needed.forEach((n, i) => {
-    for (const [cik, v] of frames[i].values) {
-      const co = listed.get(cik);
-      if (!any && (!co || !venues.has(co.exchange))) continue;
-      const r = rows.get(cik) ?? { cik, name: co?.name ?? v.name, ticker: co?.ticker ?? null, exchange: co?.exchange ?? null, m: {}, end: null };
-      r.m[n.key] = v.val;
-      if (!n.key.endsWith("@prev") && METRICS[n.metric].kind === D) r.end = r.end ?? v.end;
-      rows.set(cik, r);
-    }
-  });
+  const ciks = new Set(frames.flatMap((f) => [...f.values.keys()]));
+  for (const cik of ciks) {
+    const co = listed.get(cik);
+    if (!any && (!co || !venues.has(co.exchange))) continue;
+    const r = { cik, name: co?.name ?? frames.find((f) => f.values.has(cik)).values.get(cik).name, ticker: co?.ticker ?? null, exchange: co?.exchange ?? null, m: {}, tag: {}, end: null };
+    needed.forEach((n, i) => {
+      if (n.key.endsWith("@prev")) return;
+      const c = chosen(frames[i], cik);
+      if (!c) return;
+      r.m[n.key] = c.val; r.tag[n.key] = c.tag;
+      if (METRICS[n.metric].kind === D) r.end = r.end ?? c.end;
+    });
+    needed.forEach((n, i) => {
+      if (!n.key.endsWith("@prev")) return;
+      const c = chosen(frames[i], cik, r.tag[n.metric]);
+      if (c) r.m[n.key] = c.val;
+    });
+    rows.set(cik, r);
+  }
   const value = (r, metric) => (DERIVED[metric] ? DERIVED[metric].f(r.m) : r.m[metric] ?? null);
   const test = (v, f) => v != null && (f.op === ">" ? v > f.value : f.op === ">=" ? v >= f.value : f.op === "<" ? v < f.value : f.op === "<=" ? v <= f.value : Array.isArray(f.value) && v >= f.value[0] && v <= f.value[1]);
   const universe = [...rows.values()].filter((r) => value(r, sortBy) != null);
@@ -177,7 +212,7 @@ export async function screenCompanies(session, args) {
     const val = await valuationFor(session, top.slice(0, 50), per);
     out.valuation = { columns: ["ticker", ...VALUATION, "price_date", "shares_basis"], rows: top.slice(0, 50).map((r) => [r.ticker, ...VALUATION.map((k) => val.get(r.cik)?.[k] ?? null), val.get(r.cik)?.price_date ?? null, val.get(r.cik)?.shares_basis ?? null]) };
   }
-  out.definitions = Object.fromEntries(shown.map((m) => [m, DERIVED[m] ? `derived from ${DERIVED[m].needs.join(", ")}` : `XBRL ${METRICS[m].tags.join(" | ")} (${METRICS[m].pick === "max" ? "the largest" : "the first"} a company reports), ${METRICS[m].unit}`]));
+  out.definitions = Object.fromEntries(shown.map((m) => [m, DERIVED[m] ? `derived from ${DERIVED[m].needs.join(", ")}` : `XBRL ${METRICS[m].groups.map((g) => g.join(" or ")).join(", else ")} (the larger within "or"), ${METRICS[m].unit}`]));
   out.sources = [...new Set(frames.flatMap((f) => f.urls))];
   out.limits = [...LIMITS, "XBRL frames give one value per filer for the fiscal period that best overlaps the calendar period, as most recently filed; filers tag line items differently, so a missing or unusual tag drops or skews a company. Check a shortlisted company's filing before relying on a figure."];
   return out;
@@ -193,8 +228,9 @@ async function valuationFor(session, rows, per) {
   // out; the period's diluted weighted-average share count stands in for them.
   const diluted = await frame(session, "WeightedAverageNumberOfDilutedSharesOutstanding", "shares", per.duration);
   for (const r of diluted?.data ?? []) if (!shares.has(r.cik)) shares.set(r.cik, { val: r.val, end: r.end, basis: "diluted weighted average" });
-  const fund = await Promise.all(["revenue", "net_income", "eps_diluted", "operating_cash_flow", "capex"].map((m) => metricFrame(session, m, per.duration)));
-  const [rev, , eps, ocf, capex] = fund.map((f) => f.values);
+  const fund = await Promise.all(["revenue", "eps_diluted", "operating_cash_flow", "capex"].map((m) => metricFrame(session, m, per.duration)));
+  const pick = (f) => ({ get: (cik) => chosen(f, cik) ?? undefined });
+  const [rev, eps, ocf, capex] = fund.map(pick);
   const out = new Map();
   const queue = [...rows];
   const worker = async () => {
@@ -220,13 +256,11 @@ export const reportInput = z.object({
   years: z.number().int().min(1).max(15).optional().describe("Fiscal years of financials; default 5."),
 }).strict();
 
-// Fiscal-year values of one concept from companyfacts: end date -> { val, filed, restated, tag }.
-// Companies change tags over the years (Apple's revenue moved from SalesRevenueNet to
-// RevenueFromContractWithCustomerExcludingAssessedTax), so the tag is chosen per year: the first in
-// priority order that has a value for that fiscal year.
+// Fiscal-year values of one metric from companyfacts: end date -> { byTag }, each tag's latest filed
+// value (restated if a later 10-K changed it). The value for a year is chosen by choose().
 function annual(facts, def) {
-  const perTag = def.tags.map((tag) => {
-    const out = new Map();
+  const out = new Map();
+  for (const tag of def.tags) {
     for (const x of facts?.[tag]?.units?.[def.unit] ?? []) {
       if (!/^10-K/.test(x.form ?? "")) continue;
       if (def.kind === D) {
@@ -234,18 +268,14 @@ function annual(facts, def) {
         const days = (Date.parse(x.end) - Date.parse(x.start)) / 86400000;
         if (days < 330 || days > 400) continue;
       }
-      const cur = out.get(x.end);
-      if (!cur) out.set(x.end, { val: x.val, filed: x.filed, first: x.val, tag });
+      const year = out.get(x.end) ?? { byTag: {} };
+      const cur = year.byTag[tag];
+      if (!cur) year.byTag[tag] = { val: x.val, filed: x.filed, first: x.val };
       else { if (x.filed >= cur.filed) { cur.val = x.val; cur.filed = x.filed; } if (x.val !== cur.first) cur.restated = true; }
+      out.set(x.end, year);
     }
-    return out;
-  });
-  const merged = new Map();
-  for (const end of new Set(perTag.flatMap((m) => [...m.keys()]))) {
-    const have = perTag.filter((m) => m.has(end)).map((m) => m.get(end));
-    merged.set(end, def.pick === "max" ? have.reduce((a, b) => (b.val > a.val ? b : a)) : have[0]);
   }
-  return merged;
+  return out;
 }
 
 export async function companyReport(session, args) {
@@ -254,13 +284,18 @@ export async function companyReport(session, args) {
   const [sub, cf] = await Promise.all([submissions(session, e.cik), getJson(session, `https://data.sec.gov/api/xbrl/companyfacts/CIK${String(e.cik).padStart(10, "0")}.json`, { maxBytes: 64 * 1024 * 1024 }).catch((err) => { if (err instanceof NotFound) return null; throw err; })]);
   const g = cf?.facts?.["us-gaap"] ?? {};
   const series = Object.fromEntries(Object.entries(METRICS).map(([k, def]) => [k, annual(g, def)]));
-  const ends = [...new Set([...series.revenue.keys(), ...series.net_income.keys()])].sort().slice(-(a.years ?? 5));
+  const all = [...new Set([...series.revenue.keys(), ...series.net_income.keys()])].sort();
+  const ends = all.slice(-(a.years ?? 5));
   const yearsRows = ends.map((end) => {
-    const m = Object.fromEntries(Object.keys(METRICS).map((k) => [k, series[k].get(end)?.val ?? null]));
-    const prevEnd = [...series.revenue.keys()].sort().filter((d) => d < end).at(-1);
-    m["revenue@prev"] = prevEnd ? series.revenue.get(prevEnd)?.val ?? null : null;
-    m["net_income@prev"] = prevEnd ? series.net_income.get(prevEnd)?.val ?? null : null;
-    return { end, m, restated: Object.keys(METRICS).filter((k) => series[k].get(end)?.restated) };
+    const m = {}, tag = {}, restated = [];
+    for (const k of Object.keys(METRICS)) {
+      const c = choose(METRICS[k], series[k].get(end)?.byTag);
+      m[k] = c?.val ?? null; tag[k] = c?.tag;
+      if (c?.restated) restated.push(k);
+    }
+    const prevEnd = all.filter((d) => d < end).at(-1);
+    for (const k of ["revenue", "net_income"]) m[`${k}@prev`] = prevEnd ? choose(METRICS[k], series[k].get(prevEnd)?.byTag, tag[k])?.val ?? null : null;
+    return { end, m, restated };
   });
   const finCols = ["revenue", "revenue_growth", "gross_margin", "operating_margin", "net_income", "net_margin", "eps_diluted", "operating_cash_flow", "free_cash_flow", "roe", "liabilities_to_equity", "cash"];
   const val = (m, k) => (DERIVED[k] ? round(DERIVED[k].f(m), 6) : m[k]);

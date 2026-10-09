@@ -19,7 +19,7 @@ test("screen_companies: ranks the market, holds out a tagging slip, and lists it
   const margins = r.rows.map((row) => row[col(r, "net_margin")]);
   assert.deepEqual(margins, [...margins].sort((a, b) => b - a));
   // Medline tagged 2025 net income as $1,157,000,000,000: held out, with the reason.
-  assert.ok(r.held_out.rows.some((h) => h[0] === "MDLN" && /10 times revenue/.test(h[3])));
+  assert.ok(r.held_out.rows.some((h) => h[0] === "MDLN" && /3 times assets/.test(h[3])));
   assert.ok(!r.rows.some((row) => row[0] === "MDLN"));
   const kept = await R.screenCompanies(session(), { filters: [{ metric: "revenue", op: ">", value: 1e10 }], sort_by: "net_margin", limit: 5, include_suspect: true });
   assert.equal(kept.rows[0][0], "MDLN");
@@ -139,4 +139,22 @@ test("server errors are retried twice, then reported", async () => {
   const missing = async () => { k++; return new Response("no", { status: 404 }); };
   await assert.rejects(getText(session(missing), "https://data.sec.gov/x.json"), /was not found/);
   assert.equal(k, 1);
+});
+
+test("choose: within a group the larger tag, and growth compares a tag with itself (BlackRock 2024-25)", () => {
+  const rev = R.METRICS.revenue;
+  const y2024 = { Revenues: { val: 12794e6 }, RevenueFromContractWithCustomerExcludingAssessedTax: { val: 20407e6 } };
+  const y2025 = { RevenueFromContractWithCustomerExcludingAssessedTax: { val: 24216e6 } };
+  assert.equal(R.choose(rev, y2024).val, 20407e6);
+  const now = R.choose(rev, y2025);
+  assert.equal(now.tag, "RevenueFromContractWithCustomerExcludingAssessedTax");
+  assert.equal(R.choose(rev, y2024, now.tag).val, 20407e6);
+  // The tax-inclusive tag only when nothing else is reported.
+  assert.equal(R.choose(rev, { RevenueFromContractWithCustomerIncludingAssessedTax: { val: 80e9 }, Revenues: { val: 37e9 } }).val, 37e9);
+  assert.equal(R.choose(rev, { RevenueFromContractWithCustomerIncludingAssessedTax: { val: 80e9 } }).val, 80e9);
+  assert.equal(R.choose(rev, {}), null);
+  // A tag exactly 1,000 times another is a scale slip, not a larger line (Tigo Energy, 2025).
+  assert.equal(R.choose(rev, { Revenues: { val: 103536000 }, RevenueFromContractWithCustomerExcludingAssessedTax: { val: 103536000000 } }).val, 103536000);
+  // A real 134-fold gap keeps the larger (J&J's R&D tags, 2025).
+  assert.equal(R.choose(R.METRICS.rd_expense, { ResearchAndDevelopmentExpense: { val: 109e6 }, ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost: { val: 14665e6 } }).val, 14665e6);
 });
