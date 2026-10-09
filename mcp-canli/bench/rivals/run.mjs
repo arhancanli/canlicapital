@@ -2,7 +2,7 @@
 // every arm; only the MCP servers differ. Appends one JSON line per run to results.jsonl, so an
 // interrupted run resumes where it stopped.
 //   node run.mjs [model] [reps] [arm,arm,...]
-import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
 
 import { execSync } from "node:child_process";
 
@@ -41,7 +41,9 @@ const MAX_TURNS = 12;
 const SYSTEM = "You are a financial research assistant with tools. Today is 2026-10-09. Get every figure from the tools, not from memory, and compute with the tools where you can. When you have the result, finish with one line 'ANSWER: <number>' in the units the question asks for.";
 
 // Finished runs are skipped on a resume; runs the harness could not finish are tried again.
-const done = new Set(existsSync(OUT) ? readFileSync(OUT, "utf8").trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)).filter((r) => !r.harness_error).map((r) => `${r.model}|${r.arm}|${r.task}|${r.rep}`) : []);
+// Read without checking first: a check and a later append are two looks at a file that can change in between.
+const prior = (() => { try { return readFileSync(OUT, "utf8"); } catch { return ""; } })();
+const done = new Set(prior.trim().split("\n").filter(Boolean).map((l) => JSON.parse(l)).filter((r) => !r.harness_error).map((r) => `${r.model}|${r.arm}|${r.task}|${r.rep}`));
 // BUDGET_TOKENS with BUDGET_FILE caps the tokens (input plus output) spent across processes in one
 // night, so an unattended run stays inside the free daily allowance: exit 4 when it is reached.
 const BUDGET = Number(process.env.BUDGET_TOKENS ?? 0), BUDGET_FILE = process.env.BUDGET_FILE;
