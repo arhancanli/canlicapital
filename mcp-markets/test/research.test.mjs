@@ -18,11 +18,11 @@ test("screen_companies: ranks the market, holds out a tagging slip, and lists it
   for (const row of r.rows) assert.ok(row[col(r, "revenue")] > 1e10);
   const margins = r.rows.map((row) => row[col(r, "net_margin")]);
   assert.deepEqual(margins, [...margins].sort((a, b) => b - a));
-  // Medline tagged 2025 net income as $1,157,000,000,000: held out, with the reason.
-  assert.ok(r.held_out.rows.some((h) => h[0] === "MDLN" && /3 times assets/.test(h[3])));
+  // Medline's frame carries its proxy statement's $1,157,000,000,000 of 2025 net income; its 10-K
+  // says $1,159,000,000. The 10-K figure is used, so Medline is neither first nor held out.
+  assert.ok(r.corrected.rows.some((c) => c[0] === "MDLN" && c[1] === "net_income" && c[2] === 1157000000000 && c[3] === 1159000000 && /^10-K /.test(c[4])), JSON.stringify(r.corrected));
   assert.ok(!r.rows.some((row) => row[0] === "MDLN"));
-  const kept = await R.screenCompanies(session(), { filters: [{ metric: "revenue", op: ">", value: 1e10 }], sort_by: "net_margin", limit: 5, include_suspect: true });
-  assert.equal(kept.rows[0][0], "MDLN");
+  assert.ok(!(r.held_out?.rows ?? []).some((h) => h[0] === "MDLN"));
   assert.ok(r.sources.every((u) => u.startsWith("https://data.sec.gov/api/xbrl/frames/")));
 });
 
@@ -157,4 +157,12 @@ test("choose: within a group the larger tag, and growth compares a tag with itse
   assert.equal(R.choose(rev, { Revenues: { val: 103536000 }, RevenueFromContractWithCustomerExcludingAssessedTax: { val: 103536000000 } }).val, 103536000);
   // A real 134-fold gap keeps the larger (J&J's R&D tags, 2025).
   assert.equal(R.choose(R.METRICS.rd_expense, { ResearchAndDevelopmentExpense: { val: 109e6 }, ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost: { val: 14665e6 } }).val, 14665e6);
+});
+
+test("plausibility checks flag only the impossible, not early-stage losses", () => {
+  assert.deepEqual(R.suspect({ revenue: 103536e6, assets: 78e6 }), ["revenue more than 20 times assets"]);
+  assert.deepEqual(R.suspect({ revenue: 28432e6, net_income: 1157e9, assets: 38484e6 }), ["net income more than 3 times assets"]);
+  assert.deepEqual(R.suspect({ revenue: 1e6, net_income: -5e7, assets: 2e8 }), []);
+  assert.deepEqual(R.suspect({ revenue: 1e9, gross_profit: 1.2e9, assets: 5e9 }), ["gross profit above revenue"]);
+  assert.deepEqual(R.suspect({ revenue: 6842e6, "revenue@prev": 57e6, assets: 2e10 }), []);
 });

@@ -85,7 +85,7 @@ const CHECKS = [
   ["roa", (v) => v > 3, "net income more than 3 times assets"],
   ["revenue_growth", (v) => v > 1000, "revenue up more than 1,000-fold"],
 ];
-function suspect(m) {
+export function suspect(m) {
   const out = [];
   if (m.revenue > 0 && m.assets > 0 && m.revenue > 20 * m.assets) out.push("revenue more than 20 times assets");
   for (const [k, bad, why] of CHECKS) { const v = DERIVED[k].f(m); if (v != null && bad(v)) out.push(why); }
@@ -120,13 +120,46 @@ async function metricFrame(session, name, frm) {
     urls.push(frameUrl("us-gaap", def.tags[i], def.unit, frm));
     for (const r of f.data ?? []) {
       const cur = out.get(r.cik) ?? { name: r.entityName, byTag: {} };
-      cur.byTag[def.tags[i]] = { val: r.val, end: r.end, accn: r.accn };
+      cur.byTag[def.tags[i]] = { val: r.val, end: r.end, start: r.start, accn: r.accn };
       out.set(r.cik, cur);
     }
   });
   return { values: out, urls, def };
 }
 const chosen = (mf, cik, prefer) => choose(mf.def, mf.values.get(cik)?.byTag, prefer);
+
+// Re-reads figures that came from a filing other than the one most of a company's figures came from,
+// using the company's own periodic report for the same period; returns how many changed.
+async function verifyRows(session, rows, per) {
+  const jobs = [];
+  for (const r of rows) {
+    const accs = Object.values(r.src).map((x) => x.accn);
+    const main = accs.sort((x, y) => accs.filter((v) => v === y).length - accs.filter((v) => v === x).length)[0];
+    // Balance-sheet figures often come from a 10-Q at the calendar quarter end (a September fiscal
+    // year has no 10-K balance at December), so they are re-read only when the row fails a check.
+    const flagged = suspect(r.m).length > 0;
+    for (const [key, src] of Object.entries(r.src)) if (src.accn !== main && (METRICS[key].kind === D || flagged)) jobs.push({ r, key, src });
+  }
+  let changed = 0;
+  const forms = per.duration.includes("Q") ? ["10-Q", "10-Q/A", "10-K", "10-K/A"] : ["10-K", "10-K/A"];
+  await Promise.all(jobs.slice(0, 60).map(async ({ r, key, src }) => {
+    const def = METRICS[key], tag = r.tag[key];
+    try {
+      const cc = await getJson(session, `https://data.sec.gov/api/xbrl/companyconcept/CIK${String(r.cik).padStart(10, "0")}/us-gaap/${tag}.json`);
+      // SEC answers {} rather than [] for a concept without facts in a unit.
+      const units = cc?.units?.[def.unit];
+      if (!Array.isArray(units)) return;
+      const hits = units.filter((x) => forms.includes(x.form) && x.end === src.end && (def.kind === I || x.start === src.start)).sort((x, y) => (x.filed < y.filed ? -1 : 1));
+      const v = hits.at(-1);
+      if (v && v.val !== r.m[key]) {
+        (r.corrected ??= []).push([key, r.m[key], v.val, `${v.form} ${v.accn}`]);
+        r.m[key] = v.val;
+        changed++;
+      }
+    } catch (err) { if (!(err instanceof NotFound)) throw err; }
+  }));
+  return changed;
+}
 
 async function listedCompanies(session) {
   const t = await getJson(session, "https://www.sec.gov/files/company_tickers_exchange.json");
@@ -178,11 +211,12 @@ export async function screenCompanies(session, args) {
     const co = listed.get(cik);
     if (!any && (!co || !venues.has(co.exchange))) continue;
     const r = { cik, name: co?.name ?? frames.find((f) => f.values.has(cik)).values.get(cik).name, ticker: co?.ticker ?? null, exchange: co?.exchange ?? null, m: {}, tag: {}, end: null };
+    r.src = {};
     needed.forEach((n, i) => {
       if (n.key.endsWith("@prev")) return;
       const c = chosen(frames[i], cik);
       if (!c) return;
-      r.m[n.key] = c.val; r.tag[n.key] = c.tag;
+      r.m[n.key] = c.val; r.tag[n.key] = c.tag; r.src[n.key] = { accn: c.accn, end: c.end, start: c.start };
       if (METRICS[n.metric].kind === D) r.end = r.end ?? c.end;
     });
     needed.forEach((n, i) => {
@@ -195,17 +229,26 @@ export async function screenCompanies(session, args) {
   const value = (r, metric) => (DERIVED[metric] ? DERIVED[metric].f(r.m) : r.m[metric] ?? null);
   const test = (v, f) => v != null && (f.op === ">" ? v > f.value : f.op === ">=" ? v >= f.value : f.op === "<" ? v < f.value : f.op === "<=" ? v <= f.value : Array.isArray(f.value) && v >= f.value[0] && v <= f.value[1]);
   const universe = [...rows.values()].filter((r) => value(r, sortBy) != null);
-  const meets = universe.filter((r) => filters.every((f) => test(value(r, f.metric), f)));
+  const dir = (a.order ?? "desc") === "desc" ? -1 : 1;
+  const rank = (list) => list.sort((x, y) => dir * (value(x, sortBy) - value(y, sortBy)) || x.cik - y.cik);
+  let meets = rank(universe.filter((r) => filters.every((f) => test(value(r, f.metric), f))));
+  // Frames carry the latest filing's value, which can be a proxy statement's pay-versus-performance
+  // table with a slip (Medline's 2025 net income: $1.159 billion in its 10-K, $1,157 billion in its
+  // proxy). For the leading companies and any that fail a check, a figure filed in a different
+  // filing from most of the company's other figures is re-read from its own 10-K (or 10-Q).
+  const limit = a.limit ?? 25;
+  const toCheck = [...meets.slice(0, limit + 10), ...meets.slice(limit + 10).filter((r) => suspect(r.m).length)];
+  const corrections = await verifyRows(session, toCheck, per);
+  if (corrections) meets = rank(universe.filter((r) => filters.every((f) => test(value(r, f.metric), f))));
   const held = a.include_suspect ? [] : meets.filter((r) => suspect(r.m).length);
   const passing = a.include_suspect ? meets : meets.filter((r) => !suspect(r.m).length);
-  const dir = (a.order ?? "desc") === "desc" ? -1 : 1;
-  passing.sort((x, y) => dir * (value(x, sortBy) - value(y, sortBy)) || x.cik - y.cik);
   const top = passing.slice(0, a.limit ?? 25);
   const out = {
     period: per.label,
     universe: universe.length, matched: passing.length,
     columns: ["ticker", "name", "cik", "exchange", "period_end", ...shown],
     rows: top.map((r) => [r.ticker, r.name, r.cik, r.exchange, r.end, ...shown.map((m) => round(value(r, m), DERIVED[m] ? 6 : 4))]),
+    ...(toCheck.some((r) => r.corrected) ? { corrected: { reason: "a figure from a different filing (often a proxy statement) disagreed with the company's own 10-K or 10-Q, which was used", columns: ["ticker", "metric", "frame_value", "report_value", "report"], rows: toCheck.filter((r) => r.corrected).flatMap((r) => r.corrected.map((c) => [r.ticker, ...c])).slice(0, 20) } } : {}),
     ...(held.length ? { held_out: { reason: "failed a plausibility check (usually a tagging slip in the filing); pass include_suspect: true to keep them", columns: ["ticker", "name", "cik", "checks"], rows: held.slice(0, 10).map((r) => [r.ticker, r.name, r.cik, suspect(r.m).join("; ")]), count: held.length } } : {}),
   };
   if (a.valuation && top.length) {

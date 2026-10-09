@@ -44,5 +44,7 @@ await grab("https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json", (t) 
   d.facts = { "us-gaap": Object.fromEntries(Object.entries(d.facts["us-gaap"]).filter(([k]) => keep.has(k))), dei: { EntityCommonStockSharesOutstanding: d.facts.dei.EntityCommonStockSharesOutstanding } };
   return JSON.stringify(d);
 });
+// Medline's own 10-K net income, which corrects the proxy statement's slip in the frame.
+await grab("https://data.sec.gov/api/xbrl/companyconcept/CIK0002046386/us-gaap/NetIncomeLoss.json");
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(Object.keys(manifest).length, "responses in the manifest");
