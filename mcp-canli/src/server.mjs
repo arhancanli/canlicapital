@@ -81,23 +81,51 @@ export function at(v, path) {
   }
   return o;
 }
-function resolveResults(value, done) {
-  if (Array.isArray(value)) return value.map((v) => resolveResults(v, done));
+// Results kept for later run_tool calls, by ref ("r1", "r2", ...): the last KEEP_COUNT, within
+// KEEP_CHARS of JSON, in this process only.
+const KEEP_COUNT = 32, KEEP_CHARS = 32 * 1024 * 1024;
+export function createKeeper() {
+  const kept = new Map();
+  let n = 0, chars = 0;
+  return {
+    put(result) {
+      const ref = `r${++n}`, size = JSON.stringify(result ?? null).length;
+      if (size > KEEP_CHARS) return null;
+      kept.set(ref, { result, size });
+      chars += size;
+      while (kept.size > KEEP_COUNT || chars > KEEP_CHARS) { const [k, v] = kept.entries().next().value; kept.delete(k); chars -= v.size; }
+      return ref;
+    },
+    get: (ref) => kept.get(ref)?.result,
+    has: (ref) => kept.has(ref),
+  };
+}
+
+function resolveResults(value, done, keeper) {
+  if (Array.isArray(value)) return value.map((v) => resolveResults(v, done, keeper));
   if (value && typeof value === "object") {
+    if (typeof value.$result === "string") {
+      const ref = value.$result;
+      if (!keeper?.has(ref)) throw new Error(`$result "${ref}" is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept), for example "r1".`);
+      let v = at(keeper.get(ref), value.path);
+      if (v === undefined) throw new Error(`$result "${ref}" has nothing at "${value.path}".`);
+      if (Array.isArray(value.pick)) v = v.map((row) => (value.pick.length === 1 ? row[value.pick[0]] : value.pick.map((c) => row[c])));
+      return v;
+    }
     if (Number.isInteger(value.$result)) {
       const i = value.$result;
-      if (!(i >= 0 && i < done.length)) throw new Error(`$result ${i} refers to a call that has not run; refer only to earlier calls.`);
+      if (!(i >= 0 && i < done.length)) throw new Error(`$result ${i} refers to a call that has not run in this batch. A number refers to an earlier call in the same batch; to use a result from an earlier run_tool call, pass its ref, for example {"$result": "r1", "path": "close"}.`);
       if (done[i].error) throw new Error(`$result ${i} failed: ${done[i].error}`);
       let v = at(done[i].result, value.path);
       if (v === undefined) throw new Error(`$result ${i} has nothing at "${value.path}".`);
       if (Array.isArray(value.pick)) v = v.map((row) => (value.pick.length === 1 ? row[value.pick[0]] : value.pick.map((c) => row[c])));
       return v;
     }
-    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, resolveResults(v, done)]));
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, resolveResults(v, done, keeper)]));
   }
   return value;
 }
-const usesResults = (v) => (Array.isArray(v) ? v.some(usesResults) : v && typeof v === "object" ? Number.isInteger(v.$result) || Object.values(v).some(usesResults) : false);
+const usesResults = (v) => (Array.isArray(v) ? v.some(usesResults) : v && typeof v === "object" ? Number.isInteger(v.$result) || typeof v.$result === "string" || Object.values(v).some(usesResults) : false);
 
 // Rounds fractional numbers to `digits` significant figures and never changes a whole number
 // (counts, share amounts, CIKs, dollar totals) or the integer part of a large value.
@@ -122,6 +150,7 @@ async function runOne(packs, { name, arguments: args }, { digits }, files) {
 }
 
 export function registerAll(server, packs = enabledPacks()) {
+  const keeper = createKeeper();
   server.registerTool("find_tool", {
     title: "Find a tool",
     description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) by what you need, e.g. "deflated sharpe", "black scholes greeks", "revenue as of 2019". Returns names, packs, argument signatures and one-line descriptions, best first.`,
@@ -147,7 +176,7 @@ export function registerAll(server, packs = enabledPacks()) {
   }));
   server.registerTool("run_tool", {
     title: "Run tools",
-    description: "Run one tool ({name, arguments}) or several in one call ({calls: [...]}). Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers; in a batch, {\"$result\": i, \"path\": \"rows\"} passes call i's output into a later call.",
+    description: "Run one tool ({name, arguments}) or several in one call ({calls: [...]}). Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", \"r2\", ...) that later run_tool calls can pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs to be copied.",
     annotations: { title: "Run tools", readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: true },
     inputSchema: z.object({
       name: z.string().max(100).optional().describe("Tool name from find_tool (single call)."),
@@ -173,20 +202,22 @@ export function registerAll(server, packs = enabledPacks()) {
     const done = [];
     if (calls.some((c) => usesResults(c.arguments))) {
       for (const c of calls) {
-        try { done.push({ name: c.name, result: await runOne(packs, { name: c.name, arguments: resolveResults(c.arguments ?? {}, done) }, opts, files) }); }
+        try { done.push({ name: c.name, result: await runOne(packs, { name: c.name, arguments: resolveResults(c.arguments ?? {}, done, keeper) }, opts, files) }); }
         catch (e) { done.push({ name: c.name, error: e.message }); }
       }
     } else {
       done.push(...await Promise.all(calls.map((c) => runOne(packs, c, opts, files).then((result) => ({ name: c.name, result }), (e) => ({ name: c.name, error: e.message })))));
     }
+    // Keep each full result (before select) under a ref for later calls.
+    for (const d of done) if (d.result !== undefined) { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
     if (a.select) for (const d of done) if (d.result) {
       const full = d.result;
       d.result = Object.fromEntries(a.select.map((p) => [p, at(full, p) ?? null]));
       if (a.select.some((p) => at(full, p) === undefined)) d.result.available_fields = Object.entries(full).flatMap(([k, v]) => (v && typeof v === "object" && !Array.isArray(v) ? Object.keys(v).slice(0, 12).map((x) => `${k}.${x}`) : [k])).slice(0, 60);
     }
-    const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done) } : undefined;
-    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return { ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }; }
-    const results = a.return === "last" ? done.slice(-1) : done;
+    const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) } : undefined;
+    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return { ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }; }
+    const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
     return { results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) };
   }));
   registerResources(server, packs);

@@ -6,6 +6,9 @@
   as 227,918,000 and a CIK changed. It now rounds fractions only; counts, shares, IDs and dollar
   totals stay exact. Found by the rival benchmark (`bench/rivals`).
 - `select` and `$result` paths take column names on tables: `rows.0.accession`, `rows.close`.
+- Every result has a ref (`"r1"`, `"r2"`, ...) that a later `run_tool` call can pass as
+  `{"$result": "r1", "path": "close"}`, so data fetched in one call feeds the next without being
+  copied through the model (the last 32 results are kept, in this process only).
 - `find_tool` finds the fundamentals tools for revenue, net income and EPS questions.
 
 - New pack, markets (canli-markets-mcp): SEC filings and their sections, EDGAR full-text search,
