@@ -19,7 +19,7 @@ test("package.json, server.json and the changelog agree on the version", () => {
   assert.equal(server.packages[0].identifier, pkg.name);
   assert.equal(server.name, pkg.mcpName);
   assert.ok(server.description.length <= 100);
-  assert.match(readFileSync(new URL("CHANGELOG.md", ROOT), "utf8"), new RegExp(`## ${pkg.version.replace(/\./g, "\\.")}\\b`));
+  assert.ok(readFileSync(new URL("CHANGELOG.md", ROOT), "utf8").split("\n").includes(`## ${pkg.version}`), "CHANGELOG.md has a heading for the version");
 });
 
 test("the code reaches only the hosts SECURITY.md lists", () => {

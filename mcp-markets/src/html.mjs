@@ -20,10 +20,13 @@ export function decodeEntities(s) {
 // Block elements end a line; table cells are separated by " | " so a row stays on one line.
 export function htmlToText(html) {
   let s = String(html);
-  s = s.replace(/<ix:header[\s\S]*?<\/ix:header[^>]*>/gi, "");
-  s = s.replace(/<(script|style|head|title)\b[\s\S]*?<\/\1[^>]*>/gi, "");
-  s = s.replace(/<!--[\s\S]*?-->/g, "");
-  s = s.replace(/<div[^>]*display:\s*none[^>]*>[\s\S]*?<\/div>/gi, "");
+  // Hidden and non-text blocks go first, each removal repeated until nothing changes, so a block
+  // nested inside another cannot be reassembled by one pass.
+  const strip = (re) => { for (let prev = null; prev !== s;) { prev = s; s = s.replace(re, ""); } };
+  strip(/<ix:header[\s\S]*?<\/ix:header[^>]*>/gi);
+  strip(/<(script|style|head|title)\b[\s\S]*?<\/\1[^>]*>/gi);
+  strip(/<!--[\s\S]*?-->/g);
+  strip(/<div[^>]*display:\s*none[^>]*>[\s\S]*?<\/div>/gi);
   s = s.replace(/<\/(td|th)>/gi, " | ");
   s = s.replace(/<br\s*\/?>/gi, "\n");
   s = s.replace(/<\/?(p|div|tr|table|li|ul|ol|h[1-6]|center|section|article|hr)\b[^>]*>/gi, "\n");
@@ -33,8 +36,10 @@ export function htmlToText(html) {
   s = decodeEntities(s);
   const lines = [];
   for (let line of s.split("\n")) {
-    line = line.replace(/[ \t ​]+/g, " ").replace(/(\s*\|\s*)+$/, "").replace(/^(\s*\|\s*)+/, "").replace(/(\s*\|\s*){2,}/g, " | ").trim();
-    if (line && !/^\|?$/.test(line)) lines.push(line);
+    // Cells split on "|" and empty ones dropped: linear, unlike a regex over runs of separators,
+    // which backtracked exponentially on a row of many empty cells (CodeQL js/redos).
+    line = line.replace(/[ \t\u00a0\u200b]+/g, " ").split("|").map((c) => c.trim()).filter(Boolean).join(" | ");
+    if (line) lines.push(line);
   }
   // Drop runs of bare page numbers and running headers such as "Table of Contents".
   return lines.filter((l) => !/^(\d{1,3}|page \d+|table of contents)$/i.test(l)).join("\n");

@@ -108,7 +108,7 @@ test("treasury_yields: the latest par curve, from the Treasury, with a plain Use
   assert.equal(r.yields["10 Yr"], 5.22);
   assert.equal(r.yields["2 Yr"], 4.75);
   assert.equal(r.spreads_points["10Y-2Y"], 0.47);
-  const t = calls.find((c) => c.url.includes("treasury.gov"));
+  const t = calls.find((c) => new URL(c.url).host === "home.treasury.gov");
   assert.equal(t.headers["User-Agent"], PLAIN_USER_AGENT);
   const range = await T.treasuryYields(s, { start: "2026-10-01", end: "2026-10-08" });
   assert.ok(range.rows.length >= 5 && range.rows[0][0] === "2026-10-01");
@@ -179,6 +179,14 @@ test("SEC_USER_AGENT replaces the default for SEC", async () => {
   const s = createSession({ fetchImpl: r.fetchImpl, env: { SEC_USER_AGENT: "Jane Doe jane@example.com" }, now: () => NOW, sleep: async () => {} });
   await T.companyProfile(s, { company: "AAPL" });
   assert.ok(r.calls.every((c) => c.headers["User-Agent"] === "Jane Doe jane@example.com"));
+});
+
+test("html: a row of thousands of empty cells is cleaned in linear time (it once backtracked exponentially)", async () => {
+  const { htmlToText } = await import("../src/html.mjs");
+  const t0 = Date.now();
+  assert.equal(htmlToText(`<table><tr>${"<td> </td>".repeat(5000)}<td>x</td><td></td><td>y</td></tr></table>`), "x | y");
+  assert.ok(!/[<>]/.test(htmlToText("<p>a <scr<script>x</script>ipt>alert(1)</scr</script>ipt> b</p>")));
+  assert.ok(Date.now() - t0 < 1000, `${Date.now() - t0} ms`);
 });
 
 test("inputs are checked before any request", async () => {

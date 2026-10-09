@@ -10,7 +10,7 @@ const manifest = {};
 let n = 0;
 async function grab(url, { ua = UA, trim } = {}) {
   await new Promise((r) => setTimeout(r, 200));
-  const res = await fetch(url, { headers: url.includes("sec.gov") ? ua : { "User-Agent": "canli-markets-mcp" } });
+  const res = await fetch(url, { headers: /^https:\/\/(www|data|efts)\.sec\.gov\//.test(url) ? ua : { "User-Agent": "canli-markets-mcp" } });
   if (!res.ok) throw new Error(`${url}: ${res.status}`);
   let text = await res.text();
   if (trim) text = trim(text);

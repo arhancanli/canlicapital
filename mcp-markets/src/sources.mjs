@@ -141,7 +141,7 @@ export async function filingDocuments(session, cik, accession) {
     const link = cells[2].match(/href="([^"]+)"/i);
     if (!link) continue;
     const name = link[1].split("/").pop().replace(/^ix\?doc=.*\//, "");
-    const strip = (s) => s.replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").trim();
+    const strip = (s) => { let t = s, prev = null; while (prev !== t) { prev = t; t = t.replace(/<[^>]*>/g, ""); } return t.replace(/[<>]/g, " ").replace(/&nbsp;/g, " ").trim(); };
     docs.push({ name, description: strip(cells[1]) || null, type: strip(cells[3]) || null, size: Number(strip(cells[4] ?? "").replace(/\D/g, "")) || null, url: `${base}/${name}` });
   }
   return docs;
