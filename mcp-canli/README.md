@@ -9,7 +9,7 @@ Every Canli Capital MCP server in one: 281 finance tools for Claude, Cursor or a
   and placebo tests, run on your machine.
 - Point-in-time SEC fundamentals.
 - Market data from the sources, no key: SEC filings and their sections, full-text search, insider
-  trades, 13F holdings, Treasury yields and FRED series; prices with your own Alpaca or Tiingo key.
+  trades, 13F holdings, Treasury yields, FRED series and prices.
 - Canli Capital's open research record.
 - Factor backtests without lookahead.
 - Alpaca paper trading behind pre-trade checks.
@@ -99,7 +99,7 @@ Everything runs on your machine. `canli://privacy` states, per pack, what leaves
 | fundamentals | public SEC data from canlicapital.com (the company and measure you ask for) | caches that public data in `~/.cache/canli-fundamentals` (`CANLI_CACHE_DIR=""` keeps nothing) |
 | research | public research pages from canlicapital.com (your search words) | none |
 | backtest | public SEC data, as fundamentals; your prices and signals stay local | your trial ledgers in `~/.canli/ledgers` |
-| markets | SEC EDGAR, the US Treasury and FRED directly (the company, form, dates or series you ask for); Alpaca or Tiingo with your key for prices | none |
+| markets | SEC EDGAR, the US Treasury and FRED directly (the company, form, dates or series you ask for); Yahoo Finance's public chart data for prices, or Alpaca or Tiingo with your key | none |
 | paper | Alpaca's paper API only, with your paper keys | a hash-chained order log in `~/.canli` |
 
 `CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded.
