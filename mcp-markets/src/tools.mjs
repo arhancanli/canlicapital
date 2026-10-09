@@ -329,9 +329,10 @@ export async function fundHoldings(session, args) {
   const total = pos.reduce((s, p) => s + p.value, 0);
   const top = a.top ?? 25;
   const out = {
+    counts_note: "entries_total counts the filing's information-table rows (as on its cover page); positions_total merges rows of the same security; rows lists the largest positions only.",
     manager: entityOut(e, sub),
     period: cur.reportDate, filed: cur.filingDate, accession: cur.accessionNumber,
-    total_value: total, positions: pos.length, rows_in_table: h.rows.length,
+    total_value: total, entries_total: h.rows.length, positions_total: pos.length, rows_shown: Math.min(pos.length, a.top ?? 25),
     ...(h.cover ? { matches_cover_page: h.cover.value === Math.round(h.rows.reduce((s, r) => s + (r.value ?? 0), 0)) && h.cover.entries === h.rows.length, cover_page: h.cover } : {}),
     columns: ["issuer", "class", "cusip", "put_call", "value", "shares", "weight"],
     rows: pos.slice(0, top).map((p) => [p.issuer, p.class, p.cusip, p.put_call, p.value, p.shares, round(p.value / total, 4)]),
@@ -387,7 +388,14 @@ export async function treasuryYields(session, args) {
   rows.sort((x, y) => x[0].localeCompare(y[0]));
   const cols = ["date", ...header.slice(1)];
   const base = { curve, units: "percent a year", columns: cols, source: url, limits: ["U.S. Department of the Treasury daily rates, as published; par yields on a bond-equivalent basis.", "Not investment advice."] };
-  if (!ranged) return { ...base, date: rows[rows.length - 1][0], rows: [rows[rows.length - 1]] };
+  if (!ranged) {
+    const day = rows[rows.length - 1];
+    const yields = Object.fromEntries(cols.slice(1).map((c, i) => [c, day[i + 1]]));
+    const y = (k) => yields[k] ?? yields[k.toUpperCase()] ?? null;
+    const spread = (a, b) => (y(a) == null || y(b) == null ? null : round(y(a) - y(b), 4));
+    const spreads = curve === "nominal" ? { "10Y-2Y": spread("10 Yr", "2 Yr"), "10Y-3M": spread("10 Yr", "3 Mo"), "30Y-5Y": spread("30 Yr", "5 Yr"), "2Y-3M": spread("2 Yr", "3 Mo") } : undefined;
+    return { ...base, date: day[0], yields, ...(spreads ? { spreads_points: spreads } : {}), rows: [day] };
+  }
   return { ...base, start: rows[0][0], end: rows[rows.length - 1][0], count: rows.length, rows: rows.slice(-2000), ...(rows.length > 2000 ? { truncated_to_last: 2000 } : {}) };
 }
 
@@ -460,6 +468,7 @@ export const priceInput = z.object({
   end: DATE.optional().describe("Last date; default today."),
   interval: z.enum(["1Day", "1Week", "1Month", "1Hour"]).optional().describe("Bar size; default 1Day (1Hour needs Alpaca)."),
   adjusted: z.boolean().optional().describe("Split- and dividend-adjusted; default true."),
+  returns: z.boolean().optional().describe("Also return simple returns from close to close (returns[i] is from dates[i] to dates[i+1]), ready for beta, correlation or Sharpe tools."),
 }).strict();
 
 function priceProvider(env) {
@@ -530,8 +539,10 @@ export async function priceHistory(session, args) {
     source = "Tiingo end-of-day prices";
   }
   if (!bars.length) throw new NotFound(`${source} returned no ${interval} bars for ${symbol} between ${start} and ${end}.`);
+  const rets = a.returns ? bars.slice(1).map((b, i) => (bars[i][4] ? round(b[4] / bars[i][4] - 1, 10) : null)) : null;
   return {
     symbol, interval, adjusted, start: bars[0][0], end: bars[bars.length - 1][0], count: bars.length,
+    ...(rets ? { returns: rets, returns_dates: bars.slice(1).map((b) => b[0]) } : {}),
     dates: bars.map((b) => b[0]), open: bars.map((b) => b[1]), high: bars.map((b) => b[2]), low: bars.map((b) => b[3]), close: bars.map((b) => b[4]), volume: bars.map((b) => b[5]),
     ...extra,
     source,

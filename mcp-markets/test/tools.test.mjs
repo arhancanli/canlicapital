@@ -79,7 +79,9 @@ test("fund_holdings: Berkshire's 13F by name; totals match the cover page; quart
   assert.equal(r.manager.cik, 1067983);
   assert.equal(r.period, "2026-06-30");
   assert.equal(r.total_value, 299253556246);
-  assert.equal(r.rows_in_table, 89);
+  assert.equal(r.entries_total, 89);
+  assert.equal(r.positions_total, 29);
+  assert.equal(r.rows_shown, 5);
   assert.equal(r.matches_cover_page, true);
   assert.equal(r.rows[0][0], "APPLE INC");
   assert.ok(Math.abs(r.rows.reduce((s2, x) => s2 + x[6], 0) - r.rows.reduce((s2, x) => s2 + x[4], 0) / r.total_value) < 1e-3);
@@ -103,6 +105,9 @@ test("treasury_yields: the latest par curve, from the Treasury, with a plain Use
   assert.equal(r.date, "2026-10-08");
   const ten = r.columns.indexOf("10 Yr");
   assert.equal(r.rows[0][ten], 5.22);
+  assert.equal(r.yields["10 Yr"], 5.22);
+  assert.equal(r.yields["2 Yr"], 4.75);
+  assert.equal(r.spreads_points["10Y-2Y"], 0.47);
   const t = calls.find((c) => c.url.includes("treasury.gov"));
   assert.equal(t.headers["User-Agent"], PLAIN_USER_AGENT);
   const range = await T.treasuryYields(s, { start: "2026-10-01", end: "2026-10-08" });
@@ -131,6 +136,10 @@ test("price_history: keyless from Yahoo, adjusted, with dividends; off with CANL
   const raw = await T.priceHistory(s, { symbol: "AAPL", start: "2025-01-01", end: "2026-10-08", adjusted: false });
   assert.ok(r.close[0] < raw.close[0] && r.close.at(-1) === raw.close.at(-1));
   assert.ok(r.high.every((h, i) => h >= r.low[i]));
+  const wr = await T.priceHistory(s, { symbol: "AAPL", start: "2025-01-01", end: "2026-10-08", returns: true });
+  assert.equal(wr.returns.length, wr.count - 1);
+  assert.equal(wr.returns_dates[0], wr.dates[1]);
+  assert.ok(Math.abs(wr.returns[0] - (wr.close[1] / wr.close[0] - 1)) < 1e-9);
   const off = session({}, { CANLI_KEYLESS_PRICES: "0" });
   await assert.rejects(T.priceHistory(off.s, { symbol: "AAPL" }), /CANLI_KEYLESS_PRICES=0/);
 });
