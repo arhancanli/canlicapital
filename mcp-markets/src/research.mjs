@@ -367,7 +367,7 @@ export async function companyReport(session, args) {
         volatility_1y: round(sd(r.values) * Math.sqrt(252), 4), max_drawdown_1y: round(mdd, 4), beta_1y_vs_spy: round(beta, 3),
         high_52w: Math.max(...p.high.filter((v) => v != null)), low_52w: Math.min(...p.low.filter((v) => v != null)),
         shares_outstanding: sh?.val ?? null, shares_as_of: sh?.end ?? null, market_cap: mcap ? Math.round(mcap) : null,
-        pe: last.eps_diluted > 0 ? round(price / last.eps_diluted, 2) : null, ps: mcap && last.revenue > 0 ? round(mcap / last.revenue, 2) : null, fcf_yield: mcap && fcf != null ? round(fcf / mcap, 4) : null,
+        pe: last.eps_diluted > 0 ? round(price / last.eps_diluted, 2) : null, ps: mcap && last.revenue > 0 ? round(mcap / last.revenue, 2) : null, fcf_yield: mcap && fcf != null ? round(fcf / mcap, 6) : null,
         price_source: p.source,
       };
     } catch (err) {
