@@ -52,10 +52,10 @@ export const TOOL_KEYWORDS = Object.freeze({
   treasury_yields: "treasury yield curve rates government bonds 10 year 2 year 30 year tips real yields bills",
   economic_series: "macro economic economy data indicator fred unemployment jobs inflation cpi pce gdp payrolls fed funds rate spread oil dollar money supply recession",
   price_history: "stock stocks price prices quote ohlc bars daily weekly historical close adjusted chart ticker shares equity data",
-  screen_companies: "screen screener rank ranking filter find companies stocks all market universe highest lowest top best growth margin profitable roe valuation cheapest largest fundamentals sector",
-  company_report: "report overview tear sheet profile summary dossier fundamentals financials valuation risk snapshot everything about a company due diligence",
+  screen_companies: "screen screener rank ranking filter find which companies stocks all market universe highest lowest top best grew grow growing fastest growth margin profitable roe valuation cheapest largest fundamentals",
+  company_report: "report full complete overview tear sheet summary dossier fundamentals financials valuation risk snapshot everything about a company due diligence",
   event_study: "event study earnings reaction announcement abnormal return car stock move after earnings insider buy sell market model significance",
-  mentions_trend: "trend mentions count frequency word phrase theme topic over time filings how often companies talk about",
+  mentions_trend: "trend mentions count counts frequency word phrase theme topic over time how often per quarter rising",
 });
 
 const opt = (t) => t.optional();
