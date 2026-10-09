@@ -1,7 +1,7 @@
 """Summarises results*.jsonl: accuracy per arm (overall and per category), tokens, time and tool
 errors per question, and a per-question table. Paired comparison against the best rival arm on
 the same questions (exact sign test on questions where the two differ).
-    python3 report.py > REPORT.md
+    python3 report.py [glob] > REPORT.md      (default results*.jsonl; fresh*.jsonl for the held-out set)
 """
 import glob
 import json
@@ -9,7 +9,11 @@ import math
 import statistics
 from collections import defaultdict
 
-rows = [json.loads(l) for f in sorted(glob.glob("results*.jsonl")) if "smoke" not in f for l in open(f) if l.strip()]
+import sys
+PATTERN = sys.argv[1] if len(sys.argv) > 1 else "results*.jsonl"
+rows = [json.loads(l) for f in sorted(glob.glob(PATTERN)) if "smoke" not in f for l in open(f) if l.strip()]
+# Runs the harness could not finish (for example the API account ran out of credit) are not answers.
+rows = [r for r in rows if not r.get("harness_error")]
 arms = list(dict.fromkeys(r["arm"] for r in rows))
 tasks = list(dict.fromkeys(r["task"] for r in rows))
 cats = list(dict.fromkeys(r["cat"] for r in rows))
@@ -21,6 +25,16 @@ def acc(rs):
     return sum(r["correct"] for r in rs), len(rs)
 
 print(f"Model {rows[0]['model']}; {len(tasks)} questions; runs per question per arm: {max(len(v) for v in by.values())}.\n")
+complete = {a: [t for t in tasks if len(by.get((a, t), [])) == 2] for a in arms}
+common = [t for t in tasks if all(t in complete[a] for a in arms)]
+print("Questions each arm completed (both runs): " + ", ".join(f"{a} {len(complete[a])}" for a in arms) + f". All arms completed {len(common)}.\n")
+print("Accuracy on the questions every arm completed:\n")
+print("| arm | correct |")
+print("|---|---|")
+for a in arms:
+    c = sum(r["correct"] for t in common for r in by[(a, t)]); n = sum(len(by[(a, t)]) for t in common)
+    print(f"| {a} | {c}/{n} ({100 * c / n:.0f}%) |" if n else f"| {a} | - |")
+print("\nAll completed runs per arm:\n")
 print("| arm | correct | " + " | ".join(cats) + " | median input tokens | median seconds | tool errors per run |")
 print("|---|---|" + "---|" * len(cats) + "---|---|---|")
 for a in arms:
