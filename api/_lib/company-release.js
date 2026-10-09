@@ -1,3 +1,4 @@
+import { errorCache } from './company-cache.js';
 import { createCompanyCatalog, catalogHash } from './company-catalog.js';
 import { createCompanyDownloadIndex } from './company-download-index.js';
 import { createCompanyHtmlHandler } from './company-html.js';
@@ -64,7 +65,7 @@ function timingHeader({ loadMs, pageMs, split, before, after }) {
 
 export function createCompanyReferenceHandler({ loadRelease, now = () => performance.now() }) {
   return async (req, res) => {
-    const fail = (status, message) => { res.statusCode = status; res.setHeader('Content-Type', 'text/plain; charset=utf-8'); res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Robots-Tag', 'noindex'); res.end(req.method === 'HEAD' ? undefined : message); };
+    const fail = (status, message) => { res.statusCode = status; res.setHeader('Content-Type', 'text/plain; charset=utf-8'); res.setHeader('Cache-Control', errorCache(status)); res.setHeader('X-Robots-Tag', 'noindex'); res.end(req.method === 'HEAD' ? undefined : message); };
     const path = req.query?.path;
     if (typeof path !== 'string' || path.length > 200) return fail(404, 'Company reference not found');
     const filing = path.match(/^\/companies\/(\d{10})\/filings(?:\/(\d{10}-\d{2}-\d{6}))?$/);

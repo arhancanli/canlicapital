@@ -1,3 +1,4 @@
+import { PAGE_CACHE, errorCache } from './company-cache.js';
 import { renderCompanyDirectory } from '../../scripts/lib/company-directory.mjs';
 import { applyCompanyAssets } from '../../scripts/lib/company-assets.mjs';
 import { catalogHash } from './company-catalog.js';
@@ -7,7 +8,7 @@ import { catalogHash } from './company-catalog.js';
 export function createCompanyDirectoryHandler({ catalog, assets, indexable = false, filings = null, filingsIndexable = false }) {
   return async (req, res) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    const fail = (status, message) => { res.statusCode = status; res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Robots-Tag', 'noindex'); res.end(req.method === 'HEAD' ? undefined : `<!doctype html><html lang="en"><head><title>${message}</title><meta name="robots" content="noindex"></head><body><h1>${message}</h1></body></html>`); };
+    const fail = (status, message) => { res.statusCode = status; res.setHeader('Cache-Control', errorCache(status)); res.setHeader('X-Robots-Tag', 'noindex'); res.end(req.method === 'HEAD' ? undefined : `<!doctype html><html lang="en"><head><title>${message}</title><meta name="robots" content="noindex"></head><body><h1>${message}</h1></body></html>`); };
     if (!['GET', 'HEAD'].includes(req.method)) { res.setHeader('Allow', 'GET, HEAD'); return fail(405, 'Method not allowed'); }
     const pageText = req.query?.page ?? '1';
     if (typeof pageText !== 'string' || !/^[1-9]\d{0,8}$/.test(pageText)) return fail(404, 'Directory page not found');
@@ -22,7 +23,7 @@ export function createCompanyDirectoryHandler({ catalog, assets, indexable = fal
       const html = applyCompanyAssets(renderCompanyDirectory({ ...listing, companies }).html, assets);
       if (Buffer.byteLength(html) > 256 * 1024) throw new Error('Directory exceeds HTML budget');
       const etag = `"${catalogHash(html)}"`;
-      res.setHeader('ETag', etag); res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+      res.setHeader('ETag', etag); res.setHeader('Cache-Control', PAGE_CACHE);
       if (!indexable) res.setHeader('X-Robots-Tag', 'noindex');
       if (String(req.headers?.['if-none-match'] ?? '').split(',').map(value => value.trim().replace(/^W\//, '')).some(value => value === etag || value === '*')) { res.statusCode = 304; return res.end(); }
       res.statusCode = 200; res.end(req.method === 'HEAD' ? undefined : html);
