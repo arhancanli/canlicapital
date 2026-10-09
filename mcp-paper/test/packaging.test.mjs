@@ -27,7 +27,7 @@ test("the only hosts are Alpaca's paper trading and market data endpoints, with 
   const hosts = new Set();
   for (const f of walk(resolve(ROOT, "src"))) {
     const text = readFileSync(f, "utf8");
-    for (const m of text.matchAll(/https:\/\/([a-z0-9.-]+\.[a-z]+)/g)) if (!m[1].startsWith("canlicapital.com")) hosts.add(m[1]);
+    for (const m of text.matchAll(/https:\/\/([a-z0-9.-]+\.[a-z]+)/g)) if (m[1] !== "canlicapital.com") hosts.add(m[1]);
     assert.doesNotMatch(text, /base_url|baseUrl|proxy|ALPACA_BASE|APCA_API_BASE|(?<!paper-)api\.alpaca\.markets/i, f);
   }
   assert.deepEqual([...hosts].sort(), ["data.alpaca.markets", "paper-api.alpaca.markets"]);
