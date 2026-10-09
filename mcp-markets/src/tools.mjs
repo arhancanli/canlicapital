@@ -85,7 +85,8 @@ export const readInput = z.object({
   filed_before: DATE.optional().describe("Without accession: the latest filing of the form filed on or before this date."),
   section: z.string().min(1).max(80).optional().describe("10-K or 10-Q item: \"risk factors\", \"md&a\", \"business\", \"market risk\", \"legal proceedings\", \"1A\", \"7\"; the result lists every item found."),
   document: z.string().min(1).max(120).optional().describe("Another document in the filing, by file name or type, for example \"EX-99.1\" (an 8-K's press release)."),
-  offset: z.number().int().min(0).optional().describe("Character offset to continue from; the previous result's next_offset."),
+  find: z.string().min(2).max(120).optional().describe("Words to find in the filing (or section), for example \"employees\" or \"share repurchase\": returns the matching passages with their offsets instead of the text from the start. Quote a phrase to match it exactly."),
+  offset: z.number().int().min(0).optional().describe("Character offset to continue from; the previous result's next_offset, or a find match's offset."),
   max_chars: z.number().int().min(500).max(100000).optional().describe("Most characters to return; default 15000."),
 }).strict();
 
@@ -143,8 +144,36 @@ export async function readFiling(session, args) {
   } else if (a.section) {
     throw new Error(`section applies to the primary document of a 10-K or 10-Q; this is ${formOf}${a.document ? ` (${a.document})` : ""}.`);
   }
+  // find: passages containing every word (or the quoted phrase), each with its offset, so a long
+  // filing is searched in one call instead of paged through.
+  let matches = null;
+  if (a.find) {
+    const phrase = a.find.match(/^"(.+)"$/)?.[1];
+    const terms = phrase ? [phrase.toLowerCase()] : a.find.toLowerCase().split(/\s+/).filter((w) => w.length > 1);
+    const lower = body.toLowerCase();
+    const paras = [];
+    let at = 0;
+    for (const para of body.split("\n")) { paras.push([at, para]); at += para.length + 1; }
+    matches = [];
+    let chars = 0, covered = 0;
+    for (let i = 0; i < paras.length && matches.length < 12; i++) {
+      // A passage is a paragraph with its neighbours, so a heading and its first lines match
+      // together; passages never overlap.
+      const from = Math.max(covered, paras[Math.max(0, i - 1)][0]), to = i + 1 < paras.length ? paras[i + 1][0] + paras[i + 1][1].length : body.length;
+      const own = paras[i][1].toLowerCase();
+      if (!terms.some((t) => own.includes(t))) continue;
+      const window = lower.slice(from, to);
+      if (!terms.every((t) => window.includes(t))) continue;
+      let text = body.slice(from, to);
+      if (text.length > 1500) { const k = own.indexOf(terms.find((t) => own.includes(t))); text = body.slice(Math.max(from, paras[i][0] + k - 600), paras[i][0] + k + 900); }
+      if (chars + text.length > maxChars) break;
+      chars += text.length;
+      matches.push({ offset: from, text });
+      covered = to + 1;
+    }
+  }
   const offset = a.offset ?? 0;
-  const slice = body.slice(offset, offset + maxChars);
+  const slice = matches ? "" : body.slice(offset, offset + maxChars);
   const end = offset + slice.length;
   // An 8-K's primary document is usually a cover; its substance is in the exhibits.
   if (!docs && formOf === "8-K") docs = await filingDocuments(session, cik, filing.accessionNumber).catch(() => null);
@@ -156,9 +185,7 @@ export async function readFiling(session, args) {
     ...(sections && !chosen ? { sections: { columns: ["item", "title", "chars"], rows: sections } } : {}),
     ...(docs ? { documents: { columns: ["name", "type", "description"], rows: docs.filter((d) => /\.(htm|html|txt|xml)$/i.test(d.name)).slice(0, 40).map((d) => [d.name, d.type, d.description]) } } : {}),
     total_chars: body.length,
-    offset,
-    ...(end < body.length ? { next_offset: end } : {}),
-    text: slice,
+    ...(matches ? { find: a.find, matches: matches.length ? matches : "no passage contains every word; try fewer or other words, or read without find" } : { offset, ...(end < body.length ? { next_offset: end, more: `${body.length - end} more characters: pass offset ${end}, or use find to jump to the words you need` } : {}), text: slice }),
     url,
     limits: SEC_LIMITS,
   };

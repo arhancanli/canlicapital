@@ -38,6 +38,15 @@ test("read_filing: Apple's 10-K items, and Item 1A on its own", async () => {
   const mda = await T.readFiling(s, { company: "AAPL", section: "md&a", max_chars: 500 });
   assert.equal(mda.section.item, "7");
   await assert.rejects(T.readFiling(s, { company: "AAPL", section: "nothing like this" }), /No item matching/);
+  const emp = await T.readFiling(s, { company: "AAPL", find: "full-time employees" });
+  assert.match(emp.matches[0].text, /approximately [\d,]+ full-time equivalent employees/);
+  assert.equal(emp.text, undefined);
+  const full = await T.readFiling(s, { company: "AAPL", max_chars: 100000 });
+  const again = await T.readFiling(s, { company: "AAPL", offset: emp.matches[0].offset, max_chars: 600 });
+  assert.equal(again.text, full.text.slice(emp.matches[0].offset, emp.matches[0].offset + 600));
+  for (let i = 1; i < emp.matches.length; i++) assert.ok(emp.matches[i].offset >= emp.matches[i - 1].offset + emp.matches[i - 1].text.length);
+  const none = await T.readFiling(s, { company: "AAPL", section: "1A", find: "zebra unicorn" });
+  assert.match(none.matches, /no passage/);
 });
 
 test("read_filing: an 8-K's press release by exhibit type, with the filing's documents listed", async () => {
