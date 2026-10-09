@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // canli-markets-mcp: public market data for agents, from the sources themselves. SEC EDGAR
 // (filings and their sections, full-text search, insider trades, 13F holdings), the US Treasury
-// yield curves and FRED economic series need no key; prices use the user's own Alpaca or Tiingo
-// key. Every request goes from this machine straight to the source; nothing passes through Canli
+// yield curves, FRED economic series and prices need no key; prices use the user's own Alpaca or
+// Tiingo key when one is set. Every request goes from this machine straight to the source; nothing passes through Canli
 // Capital, and every result names the URL it came from.
 import { readFileSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -16,7 +16,7 @@ import * as T from "./tools.mjs";
 
 export const SERVER_NAME = "canli-markets-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
-export const SERVER_INSTRUCTIONS = "Market data from the public sources themselves. Companies: company_profile, list_filings, then read_filing (section \"risk factors\", \"md&a\" and so on for a 10-K or 10-Q; document \"EX-99.1\" for an 8-K press release); search_filings finds words across all filings. Ownership: insider_trades (Form 4) and fund_holdings (13F). Rates and the economy: treasury_yields and economic_series (FRED). Prices: price_history, with the user's Alpaca or Tiingo key. Every result has its source URL; cite it.";
+export const SERVER_INSTRUCTIONS = "Market data from the public sources themselves. Companies: company_profile, list_filings, then read_filing (section \"risk factors\", \"md&a\" and so on for a 10-K or 10-Q; document \"EX-99.1\" for an 8-K press release); search_filings finds words across all filings. Ownership: insider_trades (Form 4) and fund_holdings (13F). Rates and the economy: treasury_yields and economic_series (FRED). Prices: price_history (no key needed; the user's Alpaca or Tiingo key is used when set). Every result has its source URL; cite it.";
 export const SERVER_INFO = Object.freeze({
   name: SERVER_NAME, version: SERVER_VERSION, title: "Canli Markets",
   websiteUrl: "https://canlicapital.com/developers",
@@ -32,7 +32,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   fund_holdings: "A fund manager's 13F holdings for a quarter (latest by default): positions by value with portfolio weights, the total checked against the filing's cover page, and what changed since the previous quarter (new, exited, added, reduced).",
   treasury_yields: "US Treasury daily yields from the Treasury itself: the par yield curve (1 month to 30 years), real (TIPS) yields or bill rates, for the latest day, a date, or a date range. In percent.",
   economic_series: "Any FRED economic series (inflation, unemployment, GDP, payrolls, rates, credit spreads, oil, FX, money supply, recession indicators) by id or plain words, as dates and values, optionally as changes or year-over-year rates. Feed values straight into analysis tools.",
-  price_history: "Daily, weekly, monthly or hourly price bars (open, high, low, close, volume), adjusted for splits and dividends by default, as columns ready for analysis tools. Needs the user's free Alpaca or Tiingo key in the environment.",
+  price_history: "Daily, weekly, monthly or hourly price bars (open, high, low, close, volume) for stocks and ETFs, adjusted for splits and dividends by default, with dividends and splits, as columns ready for analysis tools. No key needed; uses the user's Alpaca or Tiingo key when one is set.",
 });
 
 // Words people use for each tool that its description may not contain; combined servers that

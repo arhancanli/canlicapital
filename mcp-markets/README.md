@@ -1,7 +1,7 @@
 # canli-markets-mcp
 
-Public market data for AI agents, read from the sources themselves: SEC EDGAR, the US Treasury and
-FRED, with no key and no account. Prices come from your own free Alpaca or Tiingo key. Every
+Public market data for AI agents, read from the sources themselves: SEC EDGAR, the US Treasury,
+FRED and prices, with no key and no account. Every
 request goes from your machine straight to the source, and every result names the URL it came
 from, so an agent can cite it.
 
@@ -10,8 +10,10 @@ from, so an agent can cite it.
 ```
 
 Set `SEC_USER_AGENT` to your name and email (`"Jane Doe jane@example.com"`), as SEC's fair-access
-policy asks. For prices, set `ALPACA_API_KEY_ID` and `ALPACA_API_SECRET_KEY` (paper keys work) or
-`TIINGO_API_KEY`.
+policy asks. Prices need no key: they come from Yahoo Finance's public chart data, which is
+unofficial and for personal use under Yahoo's terms. To use your own account instead, set
+`ALPACA_API_KEY_ID` and `ALPACA_API_SECRET_KEY` (paper keys work) or `TIINGO_API_KEY`;
+`CANLI_KEYLESS_PRICES=0` turns the keyless source off.
 
 ## Tools
 
@@ -25,7 +27,7 @@ policy asks. For prices, set `ALPACA_API_KEY_ID` and `ALPACA_API_SECRET_KEY` (pa
 | `fund_holdings` | What a fund holds, its weights, and what it bought and sold last quarter | 13F |
 | `treasury_yields` | The Treasury curve (nominal, real, bills) for a day or a range | US Treasury |
 | `economic_series` | Any FRED series by id or words ("core inflation"), as levels, changes or year-over-year | FRED |
-| `price_history` | Daily to monthly bars, adjusted, as columns | Alpaca or Tiingo (your key) |
+| `price_history` | Daily to monthly bars, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) |
 
 Examples an agent can now answer in one or two calls: "What are the new risk factors in Nvidia's
 latest 10-K?", "Did any Tesla insider buy shares on the open market this year?", "What did
@@ -50,7 +52,8 @@ alone; a Tesla Form 4 sale reads 2,605.75 shares at $360.134.
 - A 13F lists long US-listed equity and option positions at quarter end, filed up to 45 days
   later; it omits shorts, cash and confidential positions. Amendments are not merged.
 - FRED revises recent values of many series; some series are copyrighted by their sources.
-- Alpaca's free IEX feed reports IEX volume only.
+- Keyless prices are Yahoo Finance's unofficial chart data, for personal use; they can change or
+  stop without notice. Alpaca's free IEX feed reports IEX volume only.
 - Not investment advice.
 
 See [SECURITY.md](SECURITY.md) for exactly what is sent where.

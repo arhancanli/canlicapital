@@ -108,9 +108,25 @@ test("economic_series: CPI year over year from words; values line up with dates"
   assert.ok(r.values.every((v) => v > -0.05 && v < 0.15));
 });
 
-test("price_history: without a key it says how to get one; with Alpaca keys the key stays in headers", async () => {
+test("price_history: keyless from Yahoo, adjusted, with dividends; off with CANLI_KEYLESS_PRICES=0", async () => {
   const { s } = session();
-  await assert.rejects(T.priceHistory(s, { symbol: "AAPL" }), /ALPACA_API_KEY_ID|TIINGO_API_KEY/);
+  const r = await T.priceHistory(s, { symbol: "AAPL", start: "2025-01-01", end: "2026-10-08" });
+  assert.equal(r.source, "Yahoo Finance chart data (no key)");
+  assert.equal(r.dates.at(-1), "2026-10-08");
+  assert.equal(r.close.at(-1), 340.42);
+  assert.ok(r.count > 400 && r.close.length === r.count && r.open.length === r.count);
+  assert.ok(r.dividends.length >= 6 && r.dividends.every(([d, a]) => d >= "2025-01-01" && a > 0));
+  // Before the last dividend, adjusted closes sit below the split-adjusted closes.
+  const raw = await T.priceHistory(s, { symbol: "AAPL", start: "2025-01-01", end: "2026-10-08", adjusted: false });
+  assert.ok(r.close[0] < raw.close[0] && r.close.at(-1) === raw.close.at(-1));
+  assert.ok(r.high.every((h, i) => h >= r.low[i]));
+  const off = session({}, { CANLI_KEYLESS_PRICES: "0" });
+  await assert.rejects(T.priceHistory(off.s, { symbol: "AAPL" }), /CANLI_KEYLESS_PRICES=0/);
+});
+
+test("price_history: with Alpaca keys the key stays in headers", async () => {
+  const { s } = session();
+  void s;
   const url = "https://data.alpaca.markets/v2/stocks/bars?symbols=AAPL&timeframe=1Day&start=2026-10-01&end=2026-10-03&adjustment=all&feed=iex&limit=10000&sort=asc";
   const bars = { bars: { AAPL: [{ t: "2026-10-01T04:00:00Z", o: 1, h: 2, l: 0.5, c: 1.5, v: 10 }, { t: "2026-10-02T04:00:00Z", o: 1.5, h: 2.5, l: 1, c: 2, v: 20 }] }, next_page_token: null };
   const k = session({ [url]: bars }, { ALPACA_PAPER_KEY_ID: "PKSECRETID", ALPACA_PAPER_SECRET_KEY: "SECRETVALUE" });

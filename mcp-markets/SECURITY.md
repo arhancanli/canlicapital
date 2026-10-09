@@ -15,7 +15,8 @@ branch and the latest npm release are supported.
 - sends GET requests, only when a tool is called, and only to these hosts: `www.sec.gov`,
   `data.sec.gov` and `efts.sec.gov` (SEC EDGAR), `home.treasury.gov` (Treasury rates),
   `fred.stlouisfed.org` (FRED), and, for `price_history` only, `data.alpaca.markets` or
-  `api.tiingo.com` with your key. Nothing goes to Canli Capital;
+  `api.tiingo.com` with your key, or without a key `query1.finance.yahoo.com` (Yahoo Finance's
+  public chart data; `CANLI_KEYLESS_PRICES=0` turns it off). Nothing goes to Canli Capital;
 - sends what the tool needs and nothing else: the company, form, dates, search words or series
   asked for. SEC requests carry a User-Agent naming this package (or `SEC_USER_AGENT`, which SEC
   asks for: your name and email); other hosts get `canli-markets-mcp`;

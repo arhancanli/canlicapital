@@ -435,18 +435,51 @@ function priceProvider(env) {
   const alpacaSecret = env.ALPACA_API_SECRET_KEY ?? env.APCA_API_SECRET_KEY ?? env.ALPACA_PAPER_SECRET_KEY;
   if (alpacaId && alpacaSecret) return { name: "alpaca", id: alpacaId, secret: alpacaSecret, feed: env.ALPACA_DATA_FEED ?? "iex" };
   if (env.TIINGO_API_KEY) return { name: "tiingo", key: env.TIINGO_API_KEY };
-  return null;
+  if (/^(0|false|no)$/i.test(String(env.CANLI_KEYLESS_PRICES ?? ""))) return null;
+  return { name: "yahoo" };
+}
+
+// Yahoo Finance's public chart endpoint: no key, unofficial, for personal use under Yahoo's terms.
+// "close" there is split-adjusted; "adjclose" also adjusts for dividends, and open, high and low are
+// scaled by the same ratio when adjusted bars are asked for.
+async function yahooBars(session, symbol, { start, end, interval, adjusted }) {
+  const sym = symbol.replace(/\./g, "-");
+  const iv = { "1Day": "1d", "1Week": "1wk", "1Month": "1mo", "1Hour": "1h" }[interval];
+  const p1 = Math.floor(Date.parse(`${start}T00:00:00Z`) / 1000), p2 = Math.floor(Date.parse(`${end}T23:59:59Z`) / 1000);
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?period1=${p1}&period2=${p2}&interval=${iv}&events=div%2Csplit&includeAdjustedClose=true`;
+  let r;
+  try { r = await getJson(session, url); } catch (err) { if (err instanceof NotFound) throw new NotFound(`Yahoo Finance has no prices for ${symbol}.`); throw err; }
+  const res = r?.chart?.result?.[0];
+  if (!res || !res.timestamp) throw new NotFound(`Yahoo Finance has no ${interval} bars for ${symbol} between ${start} and ${end}${r?.chart?.error?.description ? ` (${r.chart.error.description})` : ""}.`);
+  const q = res.indicators.quote[0], adj = res.indicators.adjclose?.[0]?.adjclose, off = (res.meta.gmtoffset ?? 0) * 1000;
+  const stamp = (t) => new Date(t * 1000 + off).toISOString().slice(0, interval === "1Hour" ? 16 : 10);
+  const bars = [];
+  res.timestamp.forEach((t, i) => {
+    if (q.close[i] == null) return;
+    const k = adjusted && adj && adj[i] != null && q.close[i] ? adj[i] / q.close[i] : 1;
+    const f = (v) => (v == null ? null : round(v * k, 4));
+    bars.push([stamp(t), f(q.open[i]), f(q.high[i]), f(q.low[i]), f(q.close[i]), q.volume[i]]);
+  });
+  const ev = res.events ?? {};
+  const dividends = Object.values(ev.dividends ?? {}).sort((a, b) => a.date - b.date).map((d) => [stamp(d.date).slice(0, 10), d.amount]);
+  const splits = Object.values(ev.splits ?? {}).sort((a, b) => a.date - b.date).map((d) => [stamp(d.date).slice(0, 10), `${d.numerator}:${d.denominator}`]);
+  return { bars, dividends, splits, currency: res.meta.currency ?? null, exchange: res.meta.fullExchangeName ?? res.meta.exchangeName ?? null };
 }
 export async function priceHistory(session, args) {
   const a = priceInput.parse(args);
   const p = priceProvider(session.env);
-  if (!p) throw new Error("price_history needs a market data key, used on this machine only: ALPACA_API_KEY_ID and ALPACA_API_SECRET_KEY (a free Alpaca account; paper keys work) or TIINGO_API_KEY (a free Tiingo account). Without one, pass prices to the analysis tools as a CSV file.");
+  if (!p) throw new Error("Keyless prices are off (CANLI_KEYLESS_PRICES=0). Set ALPACA_API_KEY_ID and ALPACA_API_SECRET_KEY (a free Alpaca account; paper keys work) or TIINGO_API_KEY, or pass prices to the analysis tools as a CSV file.");
   const symbol = a.symbol.toUpperCase();
   const start = a.start ?? daysAgo(session, 365), end = a.end ?? today(session);
   const interval = a.interval ?? "1Day", adjusted = a.adjusted !== false;
-  const bars = [];
-  let source;
-  if (p.name === "alpaca") {
+  let bars = [];
+  let source, extra = {};
+  if (p.name === "yahoo") {
+    const y = await yahooBars(session, symbol, { start, end, interval, adjusted });
+    bars = y.bars;
+    extra = { currency: y.currency, exchange: y.exchange, dividends: y.dividends, splits: y.splits };
+    source = "Yahoo Finance chart data (no key)";
+  } else if (p.name === "alpaca") {
     let token = null, pages = 0;
     do {
       const q = new URLSearchParams({ symbols: symbol, timeframe: interval, start, end, adjustment: adjusted ? "all" : "raw", feed: p.feed, limit: "10000", sort: "asc" });
@@ -468,7 +501,12 @@ export async function priceHistory(session, args) {
   return {
     symbol, interval, adjusted, start: bars[0][0], end: bars[bars.length - 1][0], count: bars.length,
     dates: bars.map((b) => b[0]), open: bars.map((b) => b[1]), high: bars.map((b) => b[2]), low: bars.map((b) => b[3]), close: bars.map((b) => b[4]), volume: bars.map((b) => b[5]),
+    ...extra,
     source,
-    limits: [p.name === "alpaca" && p.feed === "iex" ? "Alpaca's free IEX feed: prices are IEX trades, so volume is IEX volume only (a few percent of the consolidated tape)." : `${source} under your own account's terms.`, "Not investment advice."],
+    limits: [
+      p.name === "yahoo" ? "Yahoo Finance's public chart data: unofficial, for personal use under Yahoo's terms, and it can change or stop without notice. Set ALPACA_API_KEY_ID/ALPACA_API_SECRET_KEY or TIINGO_API_KEY to use your own account instead, or CANLI_KEYLESS_PRICES=0 to turn it off."
+        : p.name === "alpaca" && p.feed === "iex" ? "Alpaca's free IEX feed: prices are IEX trades, so volume is IEX volume only (a few percent of the consolidated tape)." : `${source} under your own account's terms.`,
+      "Not investment advice.",
+    ],
   };
 }

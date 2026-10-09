@@ -13,5 +13,6 @@ First release: public market data from the sources themselves, nine tools.
   changes since the previous quarter).
 - US Treasury yield curves (nominal, real, bills) and FRED series, no key; series by id or by
   plain words, with changes and year-over-year rates.
-- `price_history` with your own Alpaca or Tiingo key.
+- `price_history` with no key (Yahoo Finance's public chart data, for personal use; dividends and
+  splits included), or with your own Alpaca or Tiingo key, which is preferred when set.
 - Every result names its source URL; SEC requests stay under SEC's rate limit.

@@ -37,12 +37,12 @@ test("a real call over stdio returns structured content that matches its text", 
   assert.deepEqual(JSON.parse(r.content[0].text), r.structuredContent);
 });
 
-test("bad input and a missing key come back as tool errors that say what to do", async (t) => {
+test("bad input and an unknown symbol come back as tool errors that say what to do", async (t) => {
   const c = await connect(); t.after(() => c.close());
   const bad = await c.callTool({ name: "read_filing", arguments: { company: "AAPL", section: "1A", max_chars: 5 } });
   assert.equal(bad.isError, true);
   assert.match(bad.content[0].text, /max_chars/);
-  const nokey = await c.callTool({ name: "price_history", arguments: { symbol: "AAPL" } });
-  assert.equal(nokey.isError, true);
-  assert.match(nokey.content[0].text, /ALPACA_API_KEY_ID/);
+  const unknown = await c.callTool({ name: "price_history", arguments: { symbol: "ZZZZNOPE", start: "2026-01-01", end: "2026-02-01" } });
+  assert.equal(unknown.isError, true);
+  assert.match(unknown.content[0].text, /no prices for ZZZZNOPE/);
 });

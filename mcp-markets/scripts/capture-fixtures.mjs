@@ -53,5 +53,6 @@ await grab("https://efts.sec.gov/LATEST/search-index?q=%22agentic+AI%22&forms=10
 await grab("https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv");
 await grab("https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL&cosd=2024-01-01");
 await grab("https://fred.stlouisfed.org/series/CPIAUCSL", { trim: (t) => t.match(/<title>[^<]*<\/title>/)[0] });
+await grab("https://query1.finance.yahoo.com/v8/finance/chart/AAPL?period1=1735689600&period2=1791503999&interval=1d&events=div%2Csplit&includeAdjustedClose=true");
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(Object.keys(manifest).length, "responses captured");

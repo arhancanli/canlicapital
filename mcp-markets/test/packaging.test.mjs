@@ -23,7 +23,7 @@ test("package.json, server.json and the changelog agree on the version", () => {
 });
 
 test("the code reaches only the hosts SECURITY.md lists", () => {
-  const allowed = ["www.sec.gov", "data.sec.gov", "efts.sec.gov", "home.treasury.gov", "fred.stlouisfed.org", "data.alpaca.markets", "api.tiingo.com", "canlicapital.com", "static.modelcontextprotocol.io"];
+  const allowed = ["www.sec.gov", "data.sec.gov", "efts.sec.gov", "home.treasury.gov", "fred.stlouisfed.org", "data.alpaca.markets", "api.tiingo.com", "query1.finance.yahoo.com", "canlicapital.com", "static.modelcontextprotocol.io"];
   const security = readFileSync(new URL("SECURITY.md", ROOT), "utf8");
   for (const f of readdirSync(new URL("src/", ROOT))) {
     const text = readFileSync(new URL(`src/${f}`, ROOT), "utf8");
