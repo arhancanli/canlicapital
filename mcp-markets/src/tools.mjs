@@ -483,11 +483,15 @@ function priceProvider(env) {
 // Yahoo Finance's public chart endpoint: no key, unofficial, for personal use under Yahoo's terms.
 // "close" there is split-adjusted; "adjclose" also adjusts for dividends, and open, high and low are
 // scaled by the same ratio when adjusted bars are asked for.
-async function yahooBars(session, symbol, { start, end, interval, adjusted }) {
+export function yahooChartUrl(symbol, start, end, interval = "1Day") {
   const sym = symbol.replace(/\./g, "-");
   const iv = { "1Day": "1d", "1Week": "1wk", "1Month": "1mo", "1Hour": "1h" }[interval];
   const p1 = Math.floor(Date.parse(`${start}T00:00:00Z`) / 1000), p2 = Math.floor(Date.parse(`${end}T23:59:59Z`) / 1000);
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?period1=${p1}&period2=${p2}&interval=${iv}&events=div%2Csplit&includeAdjustedClose=true`;
+  return `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?period1=${p1}&period2=${p2}&interval=${iv}&events=div%2Csplit&includeAdjustedClose=true`;
+}
+
+async function yahooBars(session, symbol, { start, end, interval, adjusted }) {
+  const url = yahooChartUrl(symbol, start, end, interval);
   let r;
   try { r = await getJson(session, url); } catch (err) { if (err instanceof NotFound) throw new NotFound(`Yahoo Finance has no prices for ${symbol}.`); throw err; }
   const res = r?.chart?.result?.[0];

@@ -1,6 +1,10 @@
 // Where the data comes from, and how it is fetched: SEC EDGAR, the US Treasury and FRED with no
 // key, prices with the user's own Alpaca or Tiingo key. One session holds the cache and the SEC
 // rate limit (SEC asks for at most 10 requests a second; this stays at 8).
+import { AsyncLocalStorage } from "node:async_hooks";
+import { Buffer } from "node:buffer";
+import { createHash } from "node:crypto";
+
 import { BoundedCache } from "./bounded-cache.mjs";
 import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
 
@@ -20,6 +24,7 @@ export function createSession({ fetchImpl, env = process.env, now = () => Date.n
     sleep: sleep ?? ((ms) => new Promise((r) => setTimeout(r, ms))),
     userAgent: String(env.SEC_USER_AGENT ?? "").trim() || DEFAULT_USER_AGENT,
     cache: new BoundedCache(),
+    hashes: new Map(),
     secNext: 0,
   };
 }
@@ -35,29 +40,53 @@ async function secTurn(session) {
   if (at > t) await session.sleep(at - t);
 }
 
+// The message a failed request turns into. A URL carrying a key is never echoed back.
+function fetchError(error, { url, secret, aborted, maxBytes }) {
+  const where = secret ? host(url) : url;
+  if (aborted) return new Error(`${where} did not answer within ${TIMEOUT_MS / 1000} s; retry in a moment.`);
+  if (error instanceof ResponseReadError) {
+    if (error.code === "HTTP" && error.status === 404) return new NotFound(`${where} was not found.`);
+    if (error.code === "HTTP" && (error.status === 403 || error.status === 429) && isSec(url)) return new Error(`SEC refused the request (HTTP ${error.status}). SEC limits clients to 10 requests a second and asks for a contact in the User-Agent: set SEC_USER_AGENT to "Your Name you@example.com".`);
+    if (error.code === "HTTP" && (error.status === 401 || error.status === 403)) return new Error(`${host(url)} refused the key (HTTP ${error.status}).`);
+    if (error.code === "HTTP") return new Error(`${where} returned HTTP ${error.status}.`);
+    if (error.code === "TOO_LARGE") return new Error(`${where} is larger than ${Math.round(maxBytes / 1048576)} MB; not read.`);
+  }
+  return new Error(`${where} could not be reached (${error?.message ?? error}).`);
+}
+
 // Fetches text, cached for the session. `transform` (string to string) runs before caching, so a
 // 2 MB filing is kept as its text, not its HTML; `parse` runs on every read, cached or not.
+// Evidence: every document a tool call reads, with the SHA-256 of the exact bytes received and
+// when, so any figure can be checked against the same document later. Collected per call.
+export const evidenceScope = new AsyncLocalStorage();
+const MAX_HASHES = 4096;
+function witness(session, url, record) {
+  if (record) evidenceScope.getStore()?.set(url, record);
+}
+
 export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false } = {}) {
   const hit = session.cache.lookup(url, session.now());
-  if (hit) return parse(hit.text);
-  if (isSec(url)) await secTurn(session);
-  const signal = AbortSignal.timeout(TIMEOUT_MS);
+  if (hit) { witness(session, url, session.hashes.get(url)); return parse(hit.text); }
   let text;
-  try {
-    text = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT, ...headers } });
-  } catch (error) {
-    // A URL carrying a key is never echoed back.
-    const where = secret ? host(url) : url;
-    if (signal.aborted) throw new Error(`${where} did not answer within ${TIMEOUT_MS / 1000} s; retry in a moment.`);
-    if (error instanceof ResponseReadError) {
-      if (error.code === "HTTP" && error.status === 404) throw new NotFound(`${where} was not found.`);
-      if (error.code === "HTTP" && (error.status === 403 || error.status === 429) && isSec(url)) throw new Error(`SEC refused the request (HTTP ${error.status}). SEC limits clients to 10 requests a second and asks for a contact in the User-Agent: set SEC_USER_AGENT to "Your Name you@example.com".`);
-      if (error.code === "HTTP" && (error.status === 401 || error.status === 403)) throw new Error(`${host(url)} refused the key (HTTP ${error.status}).`);
-      if (error.code === "HTTP") throw new Error(`${where} returned HTTP ${error.status}.`);
-      if (error.code === "TOO_LARGE") throw new Error(`${where} is larger than ${Math.round(maxBytes / 1048576)} MB; not read.`);
+  // Server errors are often momentary (EDGAR full-text search answered 1 request in 12 with HTTP 500
+  // on 2026-10-09): retry them, and dropped connections, twice with a short backoff.
+  for (let attempt = 0; ; attempt++) {
+    if (isSec(url)) await secTurn(session);
+    const signal = AbortSignal.timeout(TIMEOUT_MS);
+    try {
+      text = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT, ...headers } });
+      break;
+    } catch (error) {
+      const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
+      if (transient && attempt < 2) { await session.sleep(500 * 3 ** attempt); continue; }
+      throw fetchError(error, { url, secret, aborted: signal.aborted, maxBytes });
     }
-    throw new Error(`${where} could not be reached (${error?.message ?? error}).`);
   }
+  const record = { sha256: createHash("sha256").update(text).digest("hex"), bytes: Buffer.byteLength(text, "utf8"), retrieved_at: new Date(session.now()).toISOString() };
+  session.hashes.delete(url);
+  session.hashes.set(url, record);
+  if (session.hashes.size > MAX_HASHES) session.hashes.delete(session.hashes.keys().next().value);
+  witness(session, url, record);
   if (transform) text = transform(text);
   const value = parse(text);
   session.cache.set(url, { at: session.now(), text });

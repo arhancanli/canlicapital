@@ -15,12 +15,12 @@ async function connect() {
   return c;
 }
 
-test("nine tools, byte-identical across launches, all read-only", async () => {
+test("thirteen tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_profile", "economic_series", "fund_holdings", "insider_trades", "list_filings", "price_history", "read_filing", "search_filings", "treasury_yields"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_profile", "company_report", "economic_series", "event_study", "fund_holdings", "insider_trades", "list_filings", "mentions_trend", "price_history", "read_filing", "screen_companies", "search_filings", "treasury_yields"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);

@@ -1,7 +1,7 @@
 {
   "name": "canli-markets-mcp",
   "version": "0.1.0",
-  "description": "MCP server for public market data from the sources themselves: SEC filings and their sections, EDGAR full-text search, insider trades (Form 4), fund holdings (13F), US Treasury yield curves and FRED economic series with no key, and prices with your own Alpaca or Tiingo key. Every result cites its source URL.",
+  "description": "MCP server for public market data and market-wide research from the sources themselves: screen every US-listed company on fundamentals, one-call company reports, event studies, filing trends, SEC filings and their sections, insider trades, 13F holdings, Treasury yields, FRED and prices, with no key. Every result cites its sources.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -49,7 +49,11 @@
     "economic-data",
     "market-data",
     "finance",
-    "stock-prices"
+    "stock-prices",
+    "stock-screener",
+    "event-study",
+    "fundamentals",
+    "company-research"
   ],
   "devDependencies": {
     "@modelcontextprotocol/client": "2.3.1"

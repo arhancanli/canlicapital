@@ -15,6 +15,27 @@ unofficial and for personal use under Yahoo's terms. To use your own account ins
 `ALPACA_API_KEY_ID` and `ALPACA_API_SECRET_KEY` (paper keys work) or `TIINGO_API_KEY`;
 `CANLI_KEYLESS_PRICES=0` turns the keyless source off.
 
+## Research across the whole market
+
+Other finance servers answer one company at a time. These answer questions about the market:
+
+| Tool | What it answers | Source |
+| --- | --- | --- |
+| `screen_companies` | Rank every US-listed company (about 3,800 with FY2025 data) on revenue, growth, margins, ROE, ROA, free cash flow, R&D intensity or leverage, with filters and valuation for the shortlist | SEC XBRL frames, prices |
+| `company_report` | Everything about one company in one call: five years of financials, valuation, a year of price and risk, insider buying and selling, recent filings | SEC, prices |
+| `event_study` | How the stock reacted to earnings releases, insider purchases or sales, or any dates: abnormal returns against a market model, with a t test across events | SEC filing times, prices |
+| `mentions_trend` | How often filings mention a phrase, by month, quarter or year | EDGAR full-text search |
+
+Examples: "Which large companies grew revenue fastest in 2025, and what do they trade at?", "Rank
+companies over $50 billion of revenue by R&D intensity", "Does NVIDIA's stock rise after its
+earnings releases?", "How fast are filings adopting the phrase 'agentic AI'?".
+
+Figures no real company reports (one 2026 filing tagged $1.157 billion of net income as $1,157
+billion) are held out of rankings and listed apart, with the reason.
+
+Every result also carries `evidence`: the documents read, with the SHA-256 of the exact bytes
+received and when, so any figure can be checked against the same document later.
+
 ## Tools
 
 | Tool | What it answers | Source |
