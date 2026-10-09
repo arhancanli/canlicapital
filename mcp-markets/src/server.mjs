@@ -32,7 +32,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   fund_holdings: "A fund manager's 13F holdings for a quarter (latest by default): positions by value with portfolio weights, the total checked against the filing's cover page, and what changed since the previous quarter (new, exited, added, reduced).",
   treasury_yields: "US Treasury daily yields from the Treasury itself: the par yield curve (1 month to 30 years), real (TIPS) yields or bill rates, for the latest day, a date, or a date range. In percent.",
   economic_series: "Any FRED economic series (inflation, unemployment, GDP, payrolls, rates, credit spreads, oil, FX, money supply, recession indicators) by id or plain words, as dates and values, optionally as changes or year-over-year rates. Feed values straight into analysis tools.",
-  price_history: "Daily, weekly, monthly or hourly price bars (open, high, low, close, volume) for stocks and ETFs, adjusted for splits and dividends by default, with dividends and splits, as columns ready for analysis tools. No key needed; uses the user's Alpaca or Tiingo key when one is set.",
+  price_history: "Daily, weekly, monthly or hourly price bars (open, high, low, close, volume) for stocks and ETFs, adjusted for splits and dividends by default, with dividends, splits and the window's total return, as columns ready for analysis tools (returns: true adds daily returns). No key needed; uses the user's Alpaca or Tiingo key when one is set.",
 });
 
 // Words people use for each tool that its description may not contain; combined servers that
@@ -61,7 +61,7 @@ export const OUTPUT_SCHEMAS = Object.freeze({
   fund_holdings: z.looseObject({ period: opt(z.string()), total_value: opt(z.number()), entries_total: opt(z.number()), positions_total: opt(z.number()), matches_cover_page: opt(z.boolean()), changes_since: opt(z.looseObject({})), ...table, ...common }).describe("rows are positions by value with weights; changes_since compares with the previous quarter."),
   treasury_yields: z.looseObject({ curve: opt(z.string()), units: opt(z.string()), yields: opt(z.looseObject({})), spreads_points: opt(z.looseObject({})), ...table, ...common }).describe("For one day, yields by tenor and spreads in percentage points; rows are days (oldest first) with a yield per tenor in columns, in percent."),
   economic_series: z.looseObject({ series: opt(z.string()), title: opt(z.string().nullable()), latest: opt(z.unknown()), dates: opt(z.array(z.string())), values: opt(z.array(z.number().nullable())), ...common }).describe("dates and values are the observations, oldest first."),
-  price_history: z.looseObject({ symbol: opt(z.string()), dates: opt(z.array(z.string())), close: opt(z.array(z.number())), ...common }).describe("dates, open, high, low, close and volume are aligned columns, oldest first."),
+  price_history: z.looseObject({ symbol: opt(z.string()), change: opt(z.looseObject({})), dates: opt(z.array(z.string())), close: opt(z.array(z.number())), ...common }).describe("dates, open, high, low, close and volume are aligned columns, oldest first; change.total_return is the window's return with dividends reinvested (a fraction)."),
 });
 
 const TITLES = { company_profile: "Company profile", list_filings: "List filings", read_filing: "Read a filing", search_filings: "Search filings", insider_trades: "Insider trades", fund_holdings: "Fund holdings (13F)", treasury_yields: "Treasury yields", economic_series: "Economic series (FRED)", price_history: "Price history" };

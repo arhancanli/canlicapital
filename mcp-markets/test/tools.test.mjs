@@ -136,6 +136,10 @@ test("price_history: keyless from Yahoo, adjusted, with dividends; off with CANL
   const raw = await T.priceHistory(s, { symbol: "AAPL", start: "2025-01-01", end: "2026-10-08", adjusted: false });
   assert.ok(r.close[0] < raw.close[0] && r.close.at(-1) === raw.close.at(-1));
   assert.ok(r.high.every((h, i) => h >= r.low[i]));
+  // Total return from dividend-adjusted closes, whether or not adjusted bars were asked for.
+  assert.ok(Math.abs(r.change.total_return - (r.close.at(-1) / r.close[0] - 1)) < 1e-6);
+  assert.equal(raw.change.total_return, r.change.total_return);
+  assert.ok(raw.change.price_return < raw.change.total_return);
   const wr = await T.priceHistory(s, { symbol: "AAPL", start: "2025-01-01", end: "2026-10-08", returns: true });
   assert.equal(wr.returns.length, wr.count - 1);
   assert.equal(wr.returns_dates[0], wr.dates[1]);

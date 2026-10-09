@@ -494,17 +494,18 @@ async function yahooBars(session, symbol, { start, end, interval, adjusted }) {
   if (!res || !res.timestamp) throw new NotFound(`Yahoo Finance has no ${interval} bars for ${symbol} between ${start} and ${end}${r?.chart?.error?.description ? ` (${r.chart.error.description})` : ""}.`);
   const q = res.indicators.quote[0], adj = res.indicators.adjclose?.[0]?.adjclose, off = (res.meta.gmtoffset ?? 0) * 1000;
   const stamp = (t) => new Date(t * 1000 + off).toISOString().slice(0, interval === "1Hour" ? 16 : 10);
-  const bars = [];
+  const bars = [], adjCloses = [];
   res.timestamp.forEach((t, i) => {
     if (q.close[i] == null) return;
     const k = adjusted && adj && adj[i] != null && q.close[i] ? adj[i] / q.close[i] : 1;
     const f = (v) => (v == null ? null : round(v * k, 4));
     bars.push([stamp(t), f(q.open[i]), f(q.high[i]), f(q.low[i]), f(q.close[i]), q.volume[i]]);
+    adjCloses.push(adj && adj[i] != null ? adj[i] : null);
   });
   const ev = res.events ?? {};
   const dividends = Object.values(ev.dividends ?? {}).sort((a, b) => a.date - b.date).map((d) => [stamp(d.date).slice(0, 10), d.amount]);
   const splits = Object.values(ev.splits ?? {}).sort((a, b) => a.date - b.date).map((d) => [stamp(d.date).slice(0, 10), `${d.numerator}:${d.denominator}`]);
-  return { bars, dividends, splits, currency: res.meta.currency ?? null, exchange: res.meta.fullExchangeName ?? res.meta.exchangeName ?? null };
+  return { bars, adjCloses, dividends, splits, currency: res.meta.currency ?? null, exchange: res.meta.fullExchangeName ?? res.meta.exchangeName ?? null };
 }
 export async function priceHistory(session, args) {
   const a = priceInput.parse(args);
@@ -513,11 +514,12 @@ export async function priceHistory(session, args) {
   const symbol = a.symbol.toUpperCase();
   const start = a.start ?? daysAgo(session, 365), end = a.end ?? today(session);
   const interval = a.interval ?? "1Day", adjusted = a.adjusted !== false;
-  let bars = [];
+  let bars = [], adjCloses = null;
   let source, extra = {};
   if (p.name === "yahoo") {
     const y = await yahooBars(session, symbol, { start, end, interval, adjusted });
     bars = y.bars;
+    adjCloses = y.adjCloses;
     extra = { currency: y.currency, exchange: y.exchange, dividends: y.dividends, splits: y.splits };
     source = "Yahoo Finance chart data (no key)";
   } else if (p.name === "alpaca") {
@@ -530,18 +532,31 @@ export async function priceHistory(session, args) {
       token = r.next_page_token;
     } while (token && ++pages < 20);
     source = `Alpaca market data (${p.feed} feed)`;
+    // adjustment=all adjusts for splits and dividends, so its closes give the total return.
+    if (adjusted) adjCloses = bars.map((b) => b[4]);
   } else {
     if (interval === "1Hour") throw new Error("1Hour bars need Alpaca; Tiingo's end-of-day prices are daily.");
     const freq = { "1Day": "daily", "1Week": "weekly", "1Month": "monthly" }[interval];
     const q = new URLSearchParams({ startDate: start, endDate: end, resampleFreq: freq });
     const r = await getJson(session, `https://api.tiingo.com/tiingo/daily/${encodeURIComponent(symbol)}/prices?${q}`, { headers: { Authorization: `Token ${p.key}` }, secret: true });
     for (const b of r ?? []) bars.push(adjusted ? [b.date.slice(0, 10), b.adjOpen, b.adjHigh, b.adjLow, b.adjClose, b.adjVolume] : [b.date.slice(0, 10), b.open, b.high, b.low, b.close, b.volume]);
+    adjCloses = (r ?? []).map((b) => b.adjClose ?? null);
     source = "Tiingo end-of-day prices";
   }
   if (!bars.length) throw new NotFound(`${source} returned no ${interval} bars for ${symbol} between ${start} and ${end}.`);
   const rets = a.returns ? bars.slice(1).map((b, i) => (bars[i][4] ? round(b[4] / bars[i][4] - 1, 10) : null)) : null;
+  // Over the whole window, close to close: the price change, and the total return with dividends
+  // reinvested (from dividend-adjusted closes, whichever closes were asked for).
+  const first = bars[0][4], last = bars[bars.length - 1][4];
+  const a0 = adjCloses?.[0], a1 = adjCloses?.[adjCloses.length - 1];
+  const change = {
+    from: bars[0][0], to: bars[bars.length - 1][0],
+    ...(adjusted ? {} : { price_return: first ? round(last / first - 1, 8) : null }),
+    total_return: a0 && a1 ? round(a1 / a0 - 1, 8) : null,
+    ...(a0 && a1 ? {} : { total_return_note: "needs dividend-adjusted closes, which this source did not return for these settings" }),
+  };
   return {
-    symbol, interval, adjusted, start: bars[0][0], end: bars[bars.length - 1][0], count: bars.length,
+    symbol, interval, adjusted, start: bars[0][0], end: bars[bars.length - 1][0], count: bars.length, change,
     ...(rets ? { returns: rets, returns_dates: bars.slice(1).map((b) => b[0]) } : {}),
     dates: bars.map((b) => b[0]), open: bars.map((b) => b[1]), high: bars.map((b) => b[2]), low: bars.map((b) => b[3]), close: bars.map((b) => b[4]), volume: bars.map((b) => b[5]),
     ...extra,
