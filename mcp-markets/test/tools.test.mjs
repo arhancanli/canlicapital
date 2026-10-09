@@ -19,7 +19,8 @@ test("company_profile: Apple by ticker, with its fiscal year end and latest fili
   assert.equal(p.cik, 320193);
   assert.equal(p.ticker, "AAPL");
   assert.equal(p.fiscal_year_end, "09-26");
-  assert.equal(p.latest["10-K"].accession, "0000320193-25-000079");
+  assert.equal(p.latest_10k.accession, "0000320193-25-000079");
+  assert.match(p.latest_10k.url, /aapl-20250927\.htm$/);
 });
 
 test("read_filing: Apple's 10-K items, and Item 1A on its own", async () => {
@@ -35,6 +36,7 @@ test("read_filing: Apple's 10-K items, and Item 1A on its own", async () => {
   assert.ok(!/Item 1B\. Unresolved/.test(risk.text));
   const more = await T.readFiling(s, { company: "AAPL", section: "1A", offset: risk.total_chars - 300 });
   assert.equal(more.next_offset, undefined);
+  for (const q of ["income statement", "8 Financial Statements and Supplementary Data", "Item 8"]) assert.equal((await T.readFiling(s, { company: "AAPL", section: q, max_chars: 500 })).section.item, "8", q);
   const mda = await T.readFiling(s, { company: "AAPL", section: "md&a", max_chars: 500 });
   assert.equal(mda.section.item, "7");
   await assert.rejects(T.readFiling(s, { company: "AAPL", section: "nothing like this" }), /No item matching/);

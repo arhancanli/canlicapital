@@ -53,7 +53,7 @@ const opt = (t) => t.optional();
 const table = { columns: opt(z.array(z.string())), rows: opt(z.array(z.unknown())) };
 const common = { source: opt(z.string()), limits: opt(z.array(z.string())) };
 export const OUTPUT_SCHEMAS = Object.freeze({
-  company_profile: z.looseObject({ cik: opt(z.number()), name: opt(z.string().nullable()), ticker: opt(z.string().nullable()), latest: opt(z.looseObject({})), ...common }).describe("The filer's identity and its latest periodic filings."),
+  company_profile: z.looseObject({ cik: opt(z.number()), name: opt(z.string().nullable()), ticker: opt(z.string().nullable()), latest_10k: opt(z.unknown()), latest_10q: opt(z.unknown()), ...common }).describe("The filer's identity; latest_10k, latest_10q, latest_8k and latest_13f give each latest filing's date, period, accession and url."),
   list_filings: z.looseObject({ matched: opt(z.number()), ...table, ...common }).describe("rows are filings, newest first, in the order of columns."),
   read_filing: z.looseObject({ filing: opt(z.looseObject({})), text: opt(z.string()), total_chars: opt(z.number()), next_offset: opt(z.number()), sections: opt(z.looseObject({})), documents: opt(z.looseObject({})), url: opt(z.string()), ...common }).describe("text is the filing (or section) from offset; next_offset continues it; sections lists a 10-K or 10-Q's items."),
   search_filings: z.looseObject({ total: opt(z.number()), ...table, ...common }).describe("rows are matching documents in the order of columns; total counts all matches."),

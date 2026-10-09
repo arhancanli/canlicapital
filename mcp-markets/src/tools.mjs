@@ -31,7 +31,7 @@ export async function companyProfile(session, args) {
   const e = await resolveEntity(session, company);
   const sub = await submissions(session, e.cik);
   const recent = sub.filings?.recent ?? {};
-  const latest = (form) => { const i = (recent.form ?? []).indexOf(form); return i < 0 ? null : { filed: recent.filingDate[i], period: recent.reportDate[i] || null, accession: recent.accessionNumber[i] }; };
+  const latest = (form) => { const i = (recent.form ?? []).indexOf(form); return i < 0 ? null : { filed: recent.filingDate[i], period: recent.reportDate[i] || null, accession: recent.accessionNumber[i], url: `${archiveBase(e.cik, recent.accessionNumber[i])}/${String(recent.primaryDocument[i]).replace(/^xsl[^/]*\//, "")}` }; };
   const addr = sub.addresses?.business ?? {};
   return {
     ...entityOut(e, sub),
@@ -42,7 +42,7 @@ export async function companyProfile(session, args) {
     business_address: [addr.street1, addr.street2, addr.city, addr.stateOrCountry, addr.zipCode].filter(Boolean).join(", ") || null,
     phone: sub.phone || null, website: sub.website || null, ein: sub.ein || null,
     former_names: (sub.formerNames ?? []).map((f) => ({ name: f.name, until: f.to?.slice(0, 10) ?? null })),
-    latest: { "10-K": latest("10-K"), "10-Q": latest("10-Q"), "8-K": latest("8-K"), "13F-HR": latest("13F-HR") },
+    latest_10k: latest("10-K"), latest_10q: latest("10-Q"), latest_8k: latest("8-K"), latest_13f: latest("13F-HR"),
     insider_filings: Boolean(sub.insiderTransactionForIssuerExists),
     source: `https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${e.cik}`,
     limits: SEC_LIMITS,
@@ -103,7 +103,12 @@ export async function readFiling(session, args) {
     if (!cik) cik = Number(a.accession.slice(0, 10));
     // The accession's year bounds how far back to look.
     const yy = Number(a.accession.slice(11, 13));
-    const { rows, sub: s } = await filings(session, cik, { since: `${yy > 90 ? 1900 + yy : 2000 + yy}-01-01` });
+    let found;
+    try { found = await filings(session, cik, { since: `${yy > 90 ? 1900 + yy : 2000 + yy}-01-01` }); } catch (err) {
+      if (err instanceof NotFound && !a.company) throw new NotFound(`Accession ${a.accession} begins with the CIK of the filing agent that submitted it, not the company; pass company as well (the ticker is enough).`);
+      throw err;
+    }
+    const { rows, sub: s } = found;
     sub = s;
     filing = rows.find((r) => r.accessionNumber === a.accession);
     if (!filing && !a.company) throw new NotFound(`Accession ${a.accession} is not in the filings of CIK ${cik} (a filing agent's CIK leads some accession numbers); pass company as well.`);

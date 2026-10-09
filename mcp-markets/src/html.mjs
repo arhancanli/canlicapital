@@ -45,8 +45,8 @@ const PART_RE = /^part\s+(i{1,3}|iv)\b(?:\s*[.:\-–—]?\s*(.{0,80}))?$/i;
 
 // Named sections, as people ask for them. 10-Q items are numbered within parts.
 export const SECTION_ALIASES = Object.freeze({
-  "10-K": { business: "1", "risk factors": "1A", risks: "1A", "unresolved staff comments": "1B", cybersecurity: "1C", properties: "2", "legal proceedings": "3", "market for common equity": "5", "md&a": "7", mda: "7", "management's discussion": "7", "managements discussion": "7", "market risk": "7A", "financial statements": "8", "controls and procedures": "9A", controls: "9A", directors: "10", "executive compensation": "11", compensation: "11", "security ownership": "12", "principal accountant": "14", exhibits: "15" },
-  "10-Q": { "financial statements": "I-1", "md&a": "I-2", mda: "I-2", "management's discussion": "I-2", "managements discussion": "I-2", "market risk": "I-3", controls: "I-4", "controls and procedures": "I-4", "legal proceedings": "II-1", "risk factors": "II-1A", risks: "II-1A", "unregistered sales": "II-2", "share repurchases": "II-2", "other information": "II-5", exhibits: "II-6" },
+  "10-K": { business: "1", "risk factors": "1A", risks: "1A", "unresolved staff comments": "1B", cybersecurity: "1C", properties: "2", "legal proceedings": "3", "market for common equity": "5", "md&a": "7", mda: "7", "management's discussion": "7", "managements discussion": "7", "market risk": "7A", "financial statements": "8", "income statement": "8", "income statements": "8", "statements of operations": "8", "balance sheet": "8", "balance sheets": "8", "cash flow": "8", "cash flows": "8", "notes": "8", "controls and procedures": "9A", controls: "9A", directors: "10", "executive compensation": "11", compensation: "11", "security ownership": "12", "principal accountant": "14", exhibits: "15" },
+  "10-Q": { "financial statements": "I-1", "income statement": "I-1", "income statements": "I-1", "balance sheet": "I-1", "balance sheets": "I-1", "cash flow": "I-1", "cash flows": "I-1", "md&a": "I-2", mda: "I-2", "management's discussion": "I-2", "managements discussion": "I-2", "market risk": "I-3", controls: "I-4", "controls and procedures": "I-4", "legal proceedings": "II-1", "risk factors": "II-1A", risks: "II-1A", "unregistered sales": "II-2", "share repurchases": "II-2", "other information": "II-5", exhibits: "II-6" },
 });
 
 const ROMAN = { i: "I", ii: "II", iii: "III", iv: "IV" };
@@ -104,6 +104,9 @@ export function resolveSection(query, form, sections) {
   const keys = new Set(sections.map((s) => s.key));
   const want = aliases[q] ?? (quarterly && /^[0-9]/.test(q) ? (keys.has(`I-${q.toUpperCase()}`) ? `I-${q.toUpperCase()}` : `II-${q.toUpperCase()}`) : q.toUpperCase().replace(/^PART\s*/, ""));
   let hit = sections.find((s) => s.key === want);
+  // "8 Financial Statements and Supplementary Data" or "Item 7A - Quantitative...": the leading number.
+  const lead = q.match(/^(\d{1,2}[a-c]?)\b/i)?.[1]?.toUpperCase();
+  if (!hit && lead) hit = sections.find((s) => s.key === lead || s.key === `I-${lead}` || s.key === `II-${lead}`);
   if (!hit) hit = sections.find((s) => s.title.toLowerCase().includes(q));
   return hit ?? null;
 }
