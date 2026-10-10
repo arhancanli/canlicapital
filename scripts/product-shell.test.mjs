@@ -50,10 +50,10 @@ test("phase 4 keeps dynamic status out of the stable top row", () => {
   assert.match(html,/Live record <span aria-hidden="true">↗<\/span>/);
 });
 
-test("primary navigation follows research, the ALPHAC record and developer tools", () => {
+test("primary navigation leads with the flagship MCP server and its benchmark, then research, the ALPHAC record and developer tools", () => {
   const html=renderProductShellHeader({active:'research'});
   const primary=html.match(/<nav class="cc-shell__primary"[^>]*>([\s\S]*?)<\/nav>/)[1];
-  assert.deepEqual([...primary.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['/research','/performance','/developers']);
+  assert.deepEqual([...primary.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['/mcp-servers','/benchmarks/finance-mcp-servers','/research','/performance','/developers']);
   assert.doesNotMatch(primary,/aria-current="page"/,'A parent-family match is not necessarily the current page');
 });
 

@@ -252,7 +252,7 @@ ${renderProductShellStylesheet()}
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-${renderProductShellHeader({ active: "developers" })}
+${renderProductShellHeader({ active: "benchmark" })}
 <main class="h2h" id="content">
   <section class="h2h-opening">
     <nav class="paper__crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><a href="/mcp-servers">MCP servers</a></li><li><span aria-current="page">${esc(title)}</span></li></ol></nav>

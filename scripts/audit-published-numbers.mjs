@@ -316,6 +316,13 @@ for (const file of htmlFiles) {
   for (const match of text.matchAll(/\b[0-9a-f]{12,}\b/g)) {
     for (const token of match[0].match(NUMERAL) || []) identifiers.add(token);
   }
+  // So is a short form of a hash the page prints in full: a trial's trail names it "trial 337e7574" beside its
+  // key 337e75745bd4a1a8, and "337e7574" reads as exponential notation too.
+  const digests = [...text.matchAll(/\b[0-9a-f]{12,}\b/g)].map((match) => match[0]);
+  for (const match of text.matchAll(/\b[0-9a-f]{6,11}\b/g)) {
+    if (!digests.some((digest) => digest.startsWith(match[0]))) continue;
+    for (const token of match[0].match(NUMERAL) || []) identifiers.add(token);
+  }
 
   // COMPACT notation. Intl's compact currency renders 993951.67 as "$993.9K", and
   // the scaled token traces to nothing: the artifact holds the full value and the

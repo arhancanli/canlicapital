@@ -142,7 +142,7 @@ export function visionFigures({ h2h, stats, leaderboard }) {
 export function renderVision({ h2h, stats, leaderboard }) {
   const route = "/vision";
   const title = "What Canli Capital is building";
-  const description = "Canli Capital is building open infrastructure for AI agents in finance, in four parts: MCP servers for context, an engine for testing, datasets and agent-run execution.";
+  const description = "Canli Capital builds open infrastructure for AI agents in finance, in four parts: MCP servers for context, an engine for testing, datasets and agent-run execution.";
   const f = visionFigures({ h2h, stats, leaderboard });
   const schema = { "@context": "https://schema.org", "@graph": [ORGANIZATION,
     { "@type": "AboutPage", name: title, description, url: `${ORIGIN}${route}`, about: { "@id": `${ORIGIN}/#organization` } }, breadcrumbList(VISION_TRAIL)] };

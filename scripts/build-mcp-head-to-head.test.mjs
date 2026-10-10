@@ -5,6 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { CONFIG, FLAGSHIP, PAGE, SUMMARY, checkConfig, median, render, signTest, summarize } from "./build-mcp-head-to-head.mjs";
+import { applySiteDesign } from "./build-site-design.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const config = JSON.parse(readFileSync(resolve(ROOT, CONFIG), "utf8"));
@@ -14,7 +15,8 @@ const arm = (id) => data.arms.find((a) => a.id === id);
 
 test("the committed summary and page are what the generator writes", () => {
   assert.equal(readFileSync(resolve(ROOT, SUMMARY), "utf8"), JSON.stringify(data, null, 1) + "\n", "run node scripts/build-mcp-head-to-head.mjs and commit the result");
-  assert.equal(readFileSync(resolve(ROOT, PAGE), "utf8"), render(data));
+  // the page as it ships: the generator's output after the site-wide design step (scripts/build-site-design.mjs)
+  assert.equal(readFileSync(resolve(ROOT, PAGE), "utf8"), applySiteDesign(render(data), PAGE));
 });
 
 test("the figures reproduce the benchmark report (mcp-canli/bench/rivals/REPORT.md)", () => {

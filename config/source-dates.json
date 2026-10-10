@@ -1,6 +1,10 @@
 {
   "schema": "canli.source-dates.v1",
   "files": {
+    "config/canli-mcp.json": {
+      "date": "2026-10-10",
+      "sha256": "eee339fbe25dc79585878f897c89faab91fbc2e73094b6cd5932c2bc35dce6cc"
+    },
     "config/contributor-program.json": {
       "date": "2026-10-05",
       "sha256": "ab1fca8557561e9acc0a304b2ef61fb5203494a6d8fed5b1efe50f3391a4a4e2"
@@ -16,6 +20,10 @@
     "config/mcp-discovery.json": {
       "date": "2026-10-04",
       "sha256": "3a787e85fc100c6bcca5f3a32428b2c2de23bc1907ac8a479457e56e988c0578"
+    },
+    "config/mcp-head-to-head.json": {
+      "date": "2026-10-10",
+      "sha256": "78a426c27da80cf2670c1b10768eef5d4f6b792bbd0c0a24aea3447ecb9b4817"
     },
     "config/mcp-hosted-releases.json": {
       "date": "2026-10-07",
@@ -43,7 +51,7 @@
     },
     "index.html": {
       "date": "2026-10-10",
-      "sha256": "c887c15816845a127e013738d8f520c1e7bbcbf31a09813dbe03987db26d21b4"
+      "sha256": "7e19f8c1639e49a491af0e0f6110aea628f8e31e31a49a0600ed5319fb381f8c"
     },
     "js/annotate-core.js": {
       "date": "2026-10-01",
@@ -241,6 +249,14 @@
       "date": "2026-10-07",
       "sha256": "04d65933c03364d01941ed32314dd5865ca982dadd197c7292aadbd18e32d7af"
     },
+    "mcp/src/ledger-core.mjs": {
+      "date": "2026-10-07",
+      "sha256": "3c892ecfae289532c58c0ab201cfbe2bb58e01907a34e0361579a47e8c2b9f27"
+    },
+    "mcp/src/ledger.mjs": {
+      "date": "2026-10-07",
+      "sha256": "dc58a73c7c51bb707a51183defdecda0e0e75e9f8cb56057aa25546cd0dbb4df"
+    },
     "mcp/src/local.mjs": {
       "date": "2026-09-28",
       "sha256": "25f880c9ad4d639dff0d5cf32d104d0d84b78a4ce20dc095c8d306406856cdcc"
@@ -399,7 +415,7 @@
     },
     "measurements": {
       "date": "2026-10-10",
-      "sha256": "9877960648f0f4ddf30f9c741a50df4586a165e634a0997e286a34d16a5b44e7"
+      "sha256": "e1e527edf8f7f3e28b9a9266234da73515f3e171197f2e19358bd4a916589dbe"
     },
     "notes/deflating-a-sharpe-ratio.md": {
       "date": "2026-09-06",
@@ -427,19 +443,19 @@
     },
     "open.html": {
       "date": "2026-10-10",
-      "sha256": "9f91b6c2fecd5e8080fd516c6d0c2777215777a16bb8ffd8b865ac3f21c78bdb"
+      "sha256": "a9ce515a2b8a2554b07fc26553dca62ee0a7485d691bf005092e69f46cc96c20"
     },
     "performance.html": {
       "date": "2026-10-10",
-      "sha256": "0f7cdcb68d83ae9770260f7f0340ddd31f252200a6c9f3a3815d9b3926b2a167"
+      "sha256": "ef6ebacdca73378c65d5046b6c4f6b07c70bcb0f2c07028795114853dc831bf9"
     },
     "progress.html": {
       "date": "2026-10-10",
-      "sha256": "be59a226926ad5550ff012ec2244f0713782975d9299cac3223ed983967d17ce"
+      "sha256": "80702e17dafa9922c20b272ef59650d0e267163f6ad9ae0e3b4e7ed368db8e46"
     },
     "public/api/v1/index.json": {
       "date": "2026-10-05",
-      "sha256": "084528e6b99fad70bed501cec7ac846b5a81c544f54093bb61f253bc71492139"
+      "sha256": "483b17c7d6ae118af1320ef67240c4f354dc533ad86b8b679800435bc80221fa"
     },
     "public/api/v1/openapi.json": {
       "date": "2026-09-28",
@@ -448,6 +464,10 @@
     "public/datasets/filing-facts/v0/gold-packet-v0.json": {
       "date": "2026-09-26",
       "sha256": "64dc9b30535af19c765c9fe5b44288a442e6f9e69bd5669ad9edfc29e1df466b"
+    },
+    "public/datasets/filing-facts/v0/leaderboard.json": {
+      "date": "2026-10-07",
+      "sha256": "40089441ef90c18ed34d21034561d662278784da2a2091bab4db6756c6aac4b3"
     },
     "public/favicon.ico": {
       "date": "2026-10-05",
@@ -458,8 +478,8 @@
       "sha256": "e2279b9268cc51fe476fda175aee7088dedcd7a36cee582dcd4d5ad316fdfe05"
     },
     "public/glassbox": {
-      "date": "2026-10-05",
-      "sha256": "10de187f07a1995405026a149f73b87f2a7b3e19668f73546783a4493dfbe8c9"
+      "date": "2026-10-10",
+      "sha256": "97feed4de761462869cd369c20d43c309894331809519a8af35d4b88f4899fa6"
     },
     "public/glassbox/active_ownership_13d_item4_v3_blind.json": {
       "date": "2026-09-06",
@@ -523,7 +543,7 @@
     },
     "public/glassbox/cost_coverage.json": {
       "date": "2026-10-05",
-      "sha256": "e2ee1b3fae92ebbc4e3433aa32dd52a74405acbf6f7056f2aa51d2064a6ebc1d"
+      "sha256": "f3fa606ced72ac0c8fa1655b6e2807419f62b94e3476e7001ec41ae691fa9740"
     },
     "public/glassbox/cost_model_realism.json": {
       "date": "2026-09-06",
@@ -687,7 +707,7 @@
     },
     "public/glassbox/paper_evidence_conformance.json": {
       "date": "2026-10-05",
-      "sha256": "b2ff0b9d48e41eeeeaee49f90186b8014e26650281a527307223e19e9dcbf984"
+      "sha256": "1e36900a7db68f63d95bfbb97903d1b929d54634c065ea9ae2c6112f668ca2ea"
     },
     "public/glassbox/polygon_split_crosscheck.json": {
       "date": "2026-09-06",
@@ -1433,77 +1453,89 @@
       "date": "2026-09-06",
       "sha256": "685e6618f1a69cfe049949c6ec6463fd53085f512f458d94a8848a9832810481"
     },
+    "public/stats/adoption.json": {
+      "date": "2026-10-10",
+      "sha256": "807eba3dba5c184334df1b31384014909ac2bf72ef0870ad6f21d3fb06e12456"
+    },
     "publication/alphamax/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "8b9c0709dd7c0242ef88c259d82fbde7ca72f5fc0a853334c9743dbe1b096300"
+      "sha256": "c4568d56ab6be788a70d342508257132f5af5634c8589bdfc6e30a3d41f7a51c"
     },
     "publication/alphatrend/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "8bd23395d21e0b7f03cdf4412d6d3798fa90ea8e7b70de76d7f15470b638befa"
+      "sha256": "6fcec64152025a1f3cb631fa1f2090a6bdeab2ffa33c11f744ae3aaf3ee06925"
     },
     "publication/alphavintage/v1.0.0.html": {
       "date": "2026-10-10",
-      "sha256": "035cab783167ccdac941caf02c08031f66c9d06c1b53b136e2c1a203bbbd37e2"
+      "sha256": "d12882ee631a1ff641caae7b09760cc00791fa72de235e5ec2948c57d88116f1"
     },
     "publication/crypto-carry/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "a5286ec6a0fd475c0c51a759c905e8a8f0f36a4c982cde93b9db8f30aea7c9f2"
+      "sha256": "2d3525763da763284e6cdeafbdcd9970c61e5b5d96341b23fcd569404448f5be"
     },
     "publication/crypto-defensive/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "ad1637eda69515c8d35063c3192f48e99f0a95f5c5923f98af0265f4175e17c0"
+      "sha256": "b0ea9b9d9c78b4688d24adc7b9232c4008b917be58d70f6ac32c9549492e2050"
     },
     "publication/crypto-momentum/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "8482ab7f7b3e47b39585e316bafb7df2886fba4271749e0aabe919abfa365256"
+      "sha256": "14603a9e3d8aeccdf51b1a668a6a500df461fac7a55aa79fe6f20cad48e15378"
     },
     "publication/crypto-multifactor-engine/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "bfee6fb94331c6331d67af5794edad91c7d5f82c2285c1ac08318ffbe70c0a23"
+      "sha256": "38433bb4a8d40e2f2a601da89440ebe2c37bd730590446b95f5a73dd7c45a335"
     },
     "publication/crypto-reversal/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "2b17b7b44800608cc655a750155d0094c97630d6166da7d4b55a5cf4c88f861a"
+      "sha256": "c5fb799009142b1254a0b61e501e0f80ddbad30df2295328b4e5403d1f45816b"
     },
     "publication/crypto-vrp/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "d6f92a6bd516bbac28356219222082472fb7016da6abc3dab99a4ed805dae570"
+      "sha256": "2135fd7a3f565d1f97b124fc256d2fc4d6f6777fb7c11d61a4b9ca23bae48e20"
     },
     "publication/energy-inventory/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "ae18d10bf42038a143852af29477e67e3d32abdf3a21443dc0adff1b52b4e6f5"
+      "sha256": "c38ad30113e28b6761b4b6c7e3544c55d09ae4e2c9eb925a18f61724bec35ba3"
     },
     "publication/equity-insider-activity/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "2cb60726a844a7e6c4b822daf6362fcea1581fc6f26f26b146924de9302af103"
+      "sha256": "8b5b8e94e1ca1c18ac3513b694c921ceda06ca5a796864ae37c33b86026f4b7d"
     },
     "publication/equity-low-beta/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "fa64d4beb36070ae19675bcf51fdfdc85856a6b180bdf5b3cb6bbb18ce4da754"
+      "sha256": "c26f0a75c83fc5e100dfcfd2fd2dc674343c76d7d4e88880cb5a2405b84ca2bf"
     },
     "publication/equity-narrative-change/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "a250e23f148cc4bead3c7863ee46f22d3167895db02933af585cfe75c6581fa0"
+      "sha256": "7692a889954cc5425fc3048d3edf27a0ed643c3c840cdb383dc0e48aeea7ad80"
     },
     "publication/equity-quality/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "02cf7be4ab5723a62628238fa35389ebc61dead1e4428393a626e4d93876058a"
+      "sha256": "5ad1d363f41228f3a31c10f638ba5bfc92fe942d52c5fee6d42679856c5cf1ae"
     },
     "publication/equity-value-investment/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "3cf26110bb0d1f4197a0e8e5595947c121625308cb9c6d9ab94c1d4fc764173b"
+      "sha256": "2df3a790ed00192a68b46821d7ae1fa89b0c4bbcb6817b55187111c1cd68fb46"
     },
     "publication/macro-economic-trend/v0.1.0.html": {
       "date": "2026-10-10",
-      "sha256": "a9d6da2d3f07646542cb83de5e4d4e155ec3a7354fc8f621443a1df3fddd7d8a"
+      "sha256": "ef259cd3c2f16325382f4d554a4491c5cf456c16a5e7faf6500aa3b59b59e4d4"
+    },
+    "record.html": {
+      "date": "2026-10-10",
+      "sha256": "717f1cef4e75b19c745edc9ee09f2677b4b8a66803a85b50f2f5ac57ce121dd1"
     },
     "research": {
       "date": "2026-10-10",
-      "sha256": "7f0662d5fa9b6d45073c2ee97c1c1fc38591d2b7a41cc8f32400e0e3c7577904"
+      "sha256": "a7ec88c192c147f4ec6d911c617e48f2155337b41eda0fb596e10e627fbc9f08"
     },
     "research.html": {
       "date": "2026-10-10",
-      "sha256": "aa57de4662c62c5d9fb6b0c83d41377764717cfbc584ee53d30bfe8c92c5dceb"
+      "sha256": "afa33e4e55114379abf9606203a4e2ea097ea3f7bdc444ee0f9923f4a251e84c"
+    },
+    "scripts/build-adoption-stats.mjs": {
+      "date": "2026-10-10",
+      "sha256": "98c815562d385d50ed7a55dc9198ef50190bb8156dd7ccb837fba7f42eb1e6e9"
     },
     "scripts/build-annotate.mjs": {
       "date": "2026-10-01",
@@ -1541,6 +1573,10 @@
       "date": "2026-10-04",
       "sha256": "d5e3c46e5bb661bca4e9e6e3b928d773d88ddc2cc6777b73e1dd59d6ea5c8282"
     },
+    "scripts/build-filingfacts-leaderboard.mjs": {
+      "date": "2026-10-07",
+      "sha256": "1df0b57a14fe71b265d39cdbcc120565da968372a6d0a8f5ffb0d3187fc85c89"
+    },
     "scripts/build-founder.mjs": {
       "date": "2026-09-28",
       "sha256": "40305e391ee86daf6214462e599e755248b44cef77d77383270de926f8c8c7e7"
@@ -1557,13 +1593,21 @@
       "date": "2026-10-10",
       "sha256": "44d50dd866f6ab8b6d5f9c1fabd7e1c9f3db19d9982696a944d494dd66af5572"
     },
+    "scripts/build-home-film.mjs": {
+      "date": "2026-10-10",
+      "sha256": "e0a0ea14a16279fbe13809e8dcef9c3e0823aa9fa6641dd1885381a8cbbc8c5e"
+    },
     "scripts/build-how-to-validate-a-backtest.mjs": {
       "date": "2026-10-04",
       "sha256": "d08a6ad4af5b0f6a0cd09268d4d82818623d4b118eede81017303d1c694b1d04"
     },
+    "scripts/build-mcp-head-to-head.mjs": {
+      "date": "2026-10-10",
+      "sha256": "19400a11ef9905012fe0ed08982b9e06d669edd0fa9020b1e25fe489f0e91a92"
+    },
     "scripts/build-mcp-pages.mjs": {
-      "date": "2026-10-04",
-      "sha256": "4b2681aba208e4e8d9b7f484567165d7207fb1105a7ef73bb814e35d3c2b9f55"
+      "date": "2026-10-10",
+      "sha256": "8bc7da9dd3487f778a5e8ca52944df8833a85fbb89986fa19fb4ee3ad90c0c08"
     },
     "scripts/build-measurements.mjs": {
       "date": "2026-09-26",
@@ -1621,6 +1665,10 @@
       "date": "2026-09-06",
       "sha256": "d25dc12f1bc9b81c77fa8f86d388ee29023d7902e0faf25f170ac0ccfc640141"
     },
+    "scripts/build-vision-and-stats.mjs": {
+      "date": "2026-10-10",
+      "sha256": "cb9a5f284417bb101eb6be252fccd798295f4951e1e2e6cf80f8010f1a42e4e9"
+    },
     "scripts/canonical-json.mjs": {
       "date": "2026-09-28",
       "sha256": "788fa1e0be21079c65d7cf629187a50af4ca3ff53985d6fc367fa7a6d4637440"
@@ -1633,13 +1681,17 @@
       "date": "2026-10-07",
       "sha256": "6ab295c4ccd07626fd4eaf96d93110b5409962a39b6e81eabd223de4c060d18c"
     },
+    "scripts/lib/home-film.mjs": {
+      "date": "2026-10-10",
+      "sha256": "65f603b4470d2949f632de6beead627feadd1df4a8132dcb1280b56095b26681"
+    },
     "scripts/lib/paper-curve-controls.mjs": {
       "date": "2026-10-04",
       "sha256": "6777640a9538356292fd5ea0219cdb8c76463bebf751f3855f6f02f0e23c8020"
     },
     "scripts/product-shell.mjs": {
       "date": "2026-10-10",
-      "sha256": "95e23069826025b8b096b336d7f948eb128c3b4aadbe4ad1deb5d8e093fb68ca"
+      "sha256": "8866714ba3d8d7115b8ffc91c01fb73aee89ef2c195c7cb944f1fc084c843ac3"
     },
     "standards/paper-evidence/schema.json": {
       "date": "2026-09-06",
@@ -1659,7 +1711,7 @@
     },
     "systems.html": {
       "date": "2026-10-10",
-      "sha256": "ddf335be0f64cf0fdec10cd795230a4c85d897b7164c52dda03770f1b49dda65"
+      "sha256": "069fc14697877c622fb2e986d62bc1d378ebbf328e2665c1b83639f4148d3239"
     }
   }
 }

@@ -74,7 +74,7 @@ ${renderProductShellStylesheet()}
 <script type="application/ld+json">${jsonLd([page, breadcrumbs(route, title), ...structured])}</script>
 </head><body class="dev-page">
 <a class="dev-skip skip-link" href="#content">Skip to content</a>
-${renderProductShellHeader({ active: 'developers' })}
+${renderProductShellHeader({ active: 'mcp-servers' })}
 <main id="content" tabindex="-1">${body}</main>
 ${renderProductShellFooter()}
 <script type="module" src="/js/main.js"></script>
@@ -173,8 +173,8 @@ export function serverPage(s, servers) {
 }
 
 // The directory is canli-mcp's page: the flagship first (scripts/lib/mcp-flagship.mjs), then each server on its own.
-export function directoryPage(servers, { h2h, npmRows = [] } = {}) {
-  const title = 'Finance MCP servers: canli-mcp and every server it combines';
+export function directoryPage(servers, { h2h = read('public/benchmarks/finance-mcp-servers.json'), npmRows = read('public/stats/adoption.json').npm?.rows ?? [] } = {}) {
+  const title = 'Finance MCP servers: canli-mcp and the family';
   const f = h2h.flagship;
   const summary = `canli-mcp is one open-source MCP server for SEC filings, company fundamentals, Treasury and FRED data, prices, quant analytics, backtest validation and paper trading: ${f.tools} tools behind ${f.front.length}.`;
   const list = { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: servers.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.package, url: ORIGIN + s.route })) };
