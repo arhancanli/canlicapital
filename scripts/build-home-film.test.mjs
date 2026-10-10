@@ -11,7 +11,16 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const page = readFileSync(resolve(ROOT, PAGE), "utf8");
 const { h2h, leaderboard } = readSources(ROOT);
 const region = page.slice(page.indexOf(REGION[0]) + REGION[0].length, page.indexOf(REGION[1]));
-const text = region.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, " ");
+// Visible text of the region: the film-data block is cut out by its id, tags are stripped until none
+// remain, and &amp; is decoded last so an encoded entity is never decoded twice.
+const DATA_OPEN = '<script type="application/json" id="film-data">';
+function visibleText(html) {
+  const start = html.indexOf(DATA_OPEN), end = start < 0 ? -1 : html.indexOf("</script>", start);
+  let out = start < 0 ? html : html.slice(0, start) + " " + html.slice(end + "</script>".length), previous;
+  do { previous = out; out = out.replace(/<[^>]*>/g, " "); } while (out !== previous);
+  return out.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&").replace(/\s+/g, " ");
+}
+const text = visibleText(region);
 
 test("the committed homepage is what the generator writes", () => {
   assert.equal(buildHomeFilm(page, h2h, leaderboard), page, "run node scripts/build-home-film.mjs and commit index.html");
@@ -46,10 +55,11 @@ test("the comparison is read before it is quoted: the caveats travel with the ga
 });
 
 test("the film reads its counts from the same summary", () => {
-  const block = page.match(/<script type="application\/json" id="film-data">([\s\S]*?)<\/script>/);
-  assert.ok(block, "the film-data block exists");
-  assert.deepEqual(JSON.parse(block[1]), filmData(h2h, leaderboard));
-  const arms = JSON.parse(block[1]).gap.arms;
+  const start = page.indexOf(DATA_OPEN);
+  assert.ok(start >= 0, "the film-data block exists");
+  const json = page.slice(start + DATA_OPEN.length, page.indexOf("</script>", start));
+  assert.deepEqual(JSON.parse(json), filmData(h2h, leaderboard));
+  const arms = JSON.parse(json).gap.arms;
   assert.deepEqual(arms.map((a) => a.accuracy), [...arms.map((a) => a.accuracy)].sort((a, b) => b - a));
 });
 
