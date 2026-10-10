@@ -15,10 +15,30 @@ function fairArms(h2h) {
   return h2h.arms.filter((a) => !a.tuned).sort((a, b) => b.common.accuracy - a.common.accuracy);
 }
 
+// What the street's tickers show once the gates are lit: answers read from the source, the same ones the
+// benchmark checks every server against (public/benchmarks/finance-mcp-servers.json, questions[].truth).
+// Each label names a company and a period, so it shows only while the question still asks about exactly that.
+const usd = (v) => (Math.abs(v) >= 1e9 ? `$${(v / 1e9).toFixed(1)}B` : `$${v.toFixed(2)}`);
+const TICKER = [
+  ["filing_employees", ["NVIDIA", "10-K"], (v) => `NVDA 10-K  ${integer.format(v)} EMPLOYEES`],
+  ["fund_revenue", ["Apple", "fiscal year 2025"], (v) => `AAPL FY2025  REVENUE ${usd(v)}`],
+  ["fund_net_income", ["Microsoft", "June 30, 2025"], (v) => `MSFT FY2025  NET INCOME ${usd(v)}`],
+  ["fund_eps", ["NVIDIA", "fiscal year 2026"], (v) => `NVDA FY2026  DILUTED EPS ${usd(v)}`],
+  ["13f_brk_apple", ["Berkshire", "Apple"], (v) => `BRK 13F  ${integer.format(v)} AAPL SHARES`],
+  ["rates_10y", ["10-year"], (v) => `UST 10Y  ${v.toFixed(2)}%`],
+  ["macro_cpi", ["CPI-U", "August 2026"], (v) => `CPI-U AUG 2026  ${v.toFixed(1)}% Y/Y`],
+  ["filing_deliveries", ["Tesla", "Q3 2026"], (v) => `TSLA Q3 2026  ${integer.format(v)} DELIVERIES`],
+  ["macro_unrate", ["unemployment", "August 2026"], (v) => `UNEMPLOYMENT AUG 2026  ${v.toFixed(1)}%`],
+  ["13f_bw_entries", ["Bridgewater"], (v) => `BRIDGEWATER 13F  ${integer.format(v)} ENTRIES`],
+];
+
 export function filmData(h2h, leaderboard) {
   const closed = leaderboard.rows.find((r) => r.model === "gpt-5.4-mini")?.closed;
   const openbb = h2h.context.rows.find((r) => r.arm === "openbb" && r.tools === r.reaches);
+  const asked = Object.fromEntries(h2h.questions.map((q) => [q.id, q]));
+  const still = ([id, words]) => Number.isFinite(asked[id]?.truth) && words.every((w) => asked[id].question.includes(w));
   return {
+    ticker: TICKER.filter(still).map(([id, , fmt]) => fmt(asked[id].truth)),
     rain: { questions: closed.items, given: closed.numbers_given, wrong: closed.numbers_wrong },
     tangle: { tools: openbb.tools, tokens: openbb.tokens },
     core: { front: h2h.flagship.front.length, packs: h2h.flagship.packs.map((p) => ({ id: p.id, tools: p.tools })) },
@@ -106,7 +126,34 @@ export function renderHomeFilm(h2h, leaderboard) {
 </dl>
 </figure>`, "free"),
 
-    chapter(5, "The vision", `<h2 id="ch-5-h">Picture every AI agent in finance <span class="accent">working from checked numbers.</span></h2>
+    chapter(5, "The flagship", `<h2 id="ch-5-h" class="display">canli-mcp</h2>
+<p class="lede">Every Canli Capital server in one process. ${f.front.length} tools in front, ${integer.format(f.tools)} behind them, ${integer.format(oursCtx.tokens)} tokens of context, ready in ${secs(oursCtx.seconds)} seconds.</p>
+<ul class="packs" aria-label="The packs canli-mcp loads">${f.packs.map((p) => `<li data-pack="${esc(p.id)}"><b>${esc(p.label)}</b><span class="n">${p.tools}</span><span>${esc(p.covers)}</span></li>`).join("")}</ul>
+<p>Ask for a tool in plain words and the right one comes first ${f.search.first} times in ${f.search.requests}. Pass a file instead of pasting data, and ${integer.format(f.file_reference.prices)} prices cost ${f.file_reference.tokens} tokens instead of ${integer.format(f.file_reference.pasted_tokens)}.</p>
+${install(f)}`, "free"),
+
+    chapter(6, "The gap", `<h2 id="ch-6-h">Same model. Same questions. <span class="accent">Only the server changed.</span></h2>
+<p class="big">On the ${h2h.questions_common} questions every server finished, ${esc(ours.label)} answered ${pct(ours.common.accuracy)} correctly. The best of the others, ${esc(best.label)}, answered ${pct(best.common.accuracy)}.</p>
+<ol class="bars" aria-label="Correct answers on the ${h2h.questions_common} shared questions">${bars}</ol>
+${grid}
+<p>It also needed fewer tokens: ${integer.format(ours.common.input_tokens_per_correct_answer)} input tokens per correct answer, against ${integer.format(tokenRange[0])} to ${integer.format(tokenRange.at(-1))} for the others. And it sends the model ${integer.format(oursCtx.tokens)} tokens of tools, where OpenBB's tool-discovery mode sends ${integer.format(discovery.tokens)} and takes ${secs(discovery.seconds)} seconds to start.</p>
+<p class="film-note">${esc(h2h.status === "interim" ? "Interim result" : "Result")} of ${esc(longDate(h2h.captured))}: ${esc(h2h.setup.model)}, ${h2h.setup.runs_per_question} runs per question, no API keys for any server. We wrote the questions, in areas our servers were built for, and what the others do well beyond them, such as news and options, is not scored.</p>
+<p class="links"><a href="/benchmarks/finance-mcp-servers">Every run, the method and the caveats</a></p>`, "free"),
+
+    chapter(7, "In the open", `<h2 id="ch-7-h">We hold our own strategies to the same standard.</h2>
+<p class="big">ALPHAC, Canli Capital's trading engine, runs its strategies on paper and publishes every position, decision and broker reconciliation, hourly. Its backtests face the same tests canli-mcp ships, such as the deflated Sharpe ratio, and the trials that failed stay on the record.</p>
+<p class="links"><a href="/record">The record</a><a href="/research">Research</a><a href="/trials">Every trial</a><a href="/progress">Corrections</a></p>`),
+
+    chapter(8, "Company data", `<h2 id="ch-8-h">US public companies, each figure traced to its filing.</h2>
+<p class="big">Look up what a company reported, with every figure linked to the SEC filing it came from. An agent can ask for a value as it stood on a past date, with later restatements flagged.</p>
+<p class="links"><a href="/companies">Browse companies</a><a href="/datasets/filing-facts">Financial datasets</a></p>`),
+
+    chapter(9, "The builder", `<h2 id="ch-9-h">Built by Arhan Canli.</h2>
+<p class="big">Founder and quantitative researcher, in Dubai, building since July 2024. Canli Capital began as an open lab for testing trading strategies honestly and grew into the tools AI agents need to work the same way.</p>
+<p>The site keeps the tools' rule. Every figure on it traces to a published file, and corrections stay visible.</p>
+<p class="links"><a href="/founder">About the founder</a><a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">Source on GitHub</a></p>`),
+
+    chapter(10, "The vision", `<h2 id="ch-10-h">Picture the market at dawn, <span class="accent">every agent working from checked numbers.</span></h2>
 <p class="big">Agents will research, test and trade at machine speed. Canli Capital is building what they stand on, in the open, in four parts.</p>
 <ol class="pillars">
 <li><b>Context</b><span>MCP servers that give agents primary-source data and quant tools for few tokens.</span><em class="chip chip-live">Live</em></li>
@@ -115,33 +162,6 @@ export function renderHomeFilm(h2h, leaderboard) {
 <li><b>Execution</b><span>Agents trading real capital under hard limits. Paper only until there is a licensed entity to do it.</span><em class="chip chip-next">Paper only</em></li>
 </ol>
 <p class="links"><a href="/vision">Read the full vision</a></p>`, "free"),
-
-    chapter(6, "The flagship", `<h2 id="ch-6-h" class="display">canli-mcp</h2>
-<p class="lede">Every Canli Capital server in one process. ${f.front.length} tools in front, ${integer.format(f.tools)} behind them, ${integer.format(oursCtx.tokens)} tokens of context, ready in ${secs(oursCtx.seconds)} seconds.</p>
-<ul class="packs" aria-label="The packs canli-mcp loads">${f.packs.map((p) => `<li data-pack="${esc(p.id)}"><b>${esc(p.label)}</b><span class="n">${p.tools}</span><span>${esc(p.covers)}</span></li>`).join("")}</ul>
-<p>Ask for a tool in plain words and the right one comes first ${f.search.first} times in ${f.search.requests}. Pass a file instead of pasting data, and ${integer.format(f.file_reference.prices)} prices cost ${f.file_reference.tokens} tokens instead of ${integer.format(f.file_reference.pasted_tokens)}.</p>
-${install(f)}`, "free"),
-
-    chapter(7, "The gap", `<h2 id="ch-7-h">Same model. Same questions. <span class="accent">Only the server changed.</span></h2>
-<p class="big">On the ${h2h.questions_common} questions every server finished, ${esc(ours.label)} answered ${pct(ours.common.accuracy)} correctly. The best of the others, ${esc(best.label)}, answered ${pct(best.common.accuracy)}.</p>
-<ol class="bars" aria-label="Correct answers on the ${h2h.questions_common} shared questions">${bars}</ol>
-${grid}
-<p>It also needed fewer tokens: ${integer.format(ours.common.input_tokens_per_correct_answer)} input tokens per correct answer, against ${integer.format(tokenRange[0])} to ${integer.format(tokenRange.at(-1))} for the others. And it sends the model ${integer.format(oursCtx.tokens)} tokens of tools, where OpenBB's tool-discovery mode sends ${integer.format(discovery.tokens)} and takes ${secs(discovery.seconds)} seconds to start.</p>
-<p class="film-note">${esc(h2h.status === "interim" ? "Interim result" : "Result")} of ${esc(longDate(h2h.captured))}: ${esc(h2h.setup.model)}, ${h2h.setup.runs_per_question} runs per question, no API keys for any server. We wrote the questions, in areas our servers were built for, and what the others do well beyond them, such as news and options, is not scored.</p>
-<p class="links"><a href="/benchmarks/finance-mcp-servers">Every run, the method and the caveats</a></p>`, "free"),
-
-    chapter(8, "In the open", `<h2 id="ch-8-h">We hold our own strategies to the same standard.</h2>
-<p class="big">ALPHAC, Canli Capital's trading engine, runs its strategies on paper and publishes every position, decision and broker reconciliation, hourly. Its backtests face the same tests canli-mcp ships, such as the deflated Sharpe ratio, and the trials that failed stay on the record.</p>
-<p class="links"><a href="/record">The record</a><a href="/research">Research</a><a href="/trials">Every trial</a><a href="/progress">Corrections</a></p>`),
-
-    chapter(9, "Company data", `<h2 id="ch-9-h">US public companies, each figure traced to its filing.</h2>
-<p class="big">Look up what a company reported, with every figure linked to the SEC filing it came from. An agent can ask for a value as it stood on a past date, with later restatements flagged.</p>
-<p class="links"><a href="/companies">Browse companies</a><a href="/datasets/filing-facts">Financial datasets</a></p>`),
-
-    chapter(10, "The builder", `<h2 id="ch-10-h">Built by Arhan Canli.</h2>
-<p class="big">Founder and quantitative researcher, in Dubai, building since July 2024. Canli Capital began as an open lab for testing trading strategies honestly and grew into the tools AI agents need to work the same way.</p>
-<p>The site keeps the tools' rule. Every figure on it traces to a published file, and corrections stay visible.</p>
-<p class="links"><a href="/founder">About the founder</a><a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">Source on GitHub</a></p>`),
 
     chapter(11, "Start", `<h2 id="ch-11-h" class="display">Give your agent <span class="accent">the market.</span></h2>
 <p class="lede">canli-mcp is free and open source under the MIT license. Add it to Claude Code, Cursor or any MCP client in one line.</p>

@@ -63,6 +63,15 @@ test("the film reads its counts from the same summary", () => {
   assert.deepEqual(arms.map((a) => a.accuracy), [...arms.map((a) => a.accuracy)].sort((a, b) => b - a));
 });
 
+test("the tickers show the benchmark's own answers, and drop a label once its question asks about another period", () => {
+  const ticker = filmData(h2h, leaderboard).ticker;
+  assert.ok(ticker.length >= 8, "most of the answers reach the street");
+  assert.ok(ticker.includes(`NVDA 10-K  ${h2h.questions.find((q) => q.id === "filing_employees").truth.toLocaleString("en-US")} EMPLOYEES`));
+  const moved = structuredClone(h2h), cpi = moved.questions.find((q) => q.id === "macro_cpi");
+  cpi.question = cpi.question.replace("August 2026", "September 2026");
+  assert.ok(!filmData(moved, leaderboard).ticker.some((t) => t.startsWith("CPI-U")), "a stale period is never printed");
+});
+
 test("an unpublished package is never presented as installable without saying so", () => {
   const unpublished = renderHomeFilm({ ...h2h, flagship: { ...h2h.flagship, npm_published: false } }, leaderboard);
   const published = renderHomeFilm({ ...h2h, flagship: { ...h2h.flagship, npm_published: true } }, leaderboard);

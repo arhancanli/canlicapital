@@ -166,28 +166,16 @@
 </figure>
 </div></section>
 <section class="chapter free" id="ch-5" data-chapter="5" aria-labelledby="ch-5-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">05</span>The vision</p>
-<h2 id="ch-5-h">Picture every AI agent in finance <span class="accent">working from checked numbers.</span></h2>
-<p class="big">Agents will research, test and trade at machine speed. Canli Capital is building what they stand on, in the open, in four parts.</p>
-<ol class="pillars">
-<li><b>Context</b><span>MCP servers that give agents primary-source data and quant tools for few tokens.</span><em class="chip chip-live">Live</em></li>
-<li><b>Testing</b><span>An engine that counts every trial, so a lucky backtest is called luck.</span><em class="chip chip-live">Live</em></li>
-<li><b>Data</b><span>Financial datasets to train and test models, starting with FilingFacts. Expert labels come next.</span><em class="chip chip-next">Started</em></li>
-<li><b>Execution</b><span>Agents trading real capital under hard limits. Paper only until there is a licensed entity to do it.</span><em class="chip chip-next">Paper only</em></li>
-</ol>
-<p class="links"><a href="/vision">Read the full vision</a></p>
-</div></section>
-<section class="chapter free" id="ch-6" data-chapter="6" aria-labelledby="ch-6-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">06</span>The flagship</p>
-<h2 id="ch-6-h" class="display">canli-mcp</h2>
+<p class="kicker"><span class="ch-n">05</span>The flagship</p>
+<h2 id="ch-5-h" class="display">canli-mcp</h2>
 <p class="lede">Every Canli Capital server in one process. 3 tools in front, 285 behind them, 859 tokens of context, ready in 0.13 seconds.</p>
 <ul class="packs" aria-label="The packs canli-mcp loads"><li data-pack="quant"><b>Quant finance</b><span class="n">235</span><span>performance and risk, options, fixed income, portfolios, econometrics, indicators and a library of 399 strategy sleeves</span></li><li data-pack="validation"><b>Backtest validation</b><span class="n">17</span><span>deflated Sharpe ratio, overfitting probability, data-snooping tests, leakage checks and placebo tests</span></li><li data-pack="markets"><b>Markets</b><span class="n">13</span><span>SEC filings and their sections, insider trades, 13F holdings, Treasury yields, FRED series, prices and market-wide screens</span></li><li data-pack="fundamentals"><b>SEC fundamentals</b><span class="n">7</span><span>company financials as first reported, with later restatements flagged</span></li><li data-pack="research"><b>Research record</b><span class="n">6</span><span>Canli Capital's open research record</span></li><li data-pack="paper"><b>Paper trading</b><span class="n">4</span><span>Alpaca paper orders behind pre-trade checks</span></li><li data-pack="backtest"><b>Factor backtests</b><span class="n">3</span><span>factor backtests that refuse lookahead</span></li></ul>
 <p>Ask for a tool in plain words and the right one comes first 47 times in 50. Pass a file instead of pasting data, and 1,000 prices cost 23 tokens instead of 4,893.</p>
 <div class="install"><figure class="cmd"><figcaption>Claude Code</figcaption><pre tabindex="0"><code>claude mcp add canli -- npx -y canli-mcp</code></pre></figure><figure class="cmd"><figcaption>Cursor, Claude Desktop or any MCP client</figcaption><pre tabindex="0"><code>{ &quot;mcpServers&quot;: { &quot;canli&quot;: { &quot;command&quot;: &quot;npx&quot;, &quot;args&quot;: [&quot;-y&quot;, &quot;canli-mcp&quot;] } } }</code></pre></figure></div><p class="film-note">canli-mcp is being published to npm now. Until it is, each server it combines installs on its own from <a href="/mcp-servers">the MCP servers page</a>.</p>
 </div></section>
-<section class="chapter free" id="ch-7" data-chapter="7" aria-labelledby="ch-7-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">07</span>The gap</p>
-<h2 id="ch-7-h">Same model. Same questions. <span class="accent">Only the server changed.</span></h2>
+<section class="chapter free" id="ch-6" data-chapter="6" aria-labelledby="ch-6-h"><div class="wrap chapter-inner">
+<p class="kicker"><span class="ch-n">06</span>The gap</p>
+<h2 id="ch-6-h">Same model. Same questions. <span class="accent">Only the server changed.</span></h2>
 <p class="big">On the 14 questions every server finished, canli-mcp answered 79% correctly. The best of the others, EdgarTools + Yahoo Finance MCP, answered 54%.</p>
 <ol class="bars" aria-label="Correct answers on the 14 shared questions"><li class="bar is-ours" style="--v:0.7857"><span class="bar__name">canli-mcp</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">79%<small>22 of 28</small></span></li><li class="bar" style="--v:0.5357"><span class="bar__name">EdgarTools + Yahoo Finance MCP</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">54%<small>15 of 28</small></span></li><li class="bar" style="--v:0.5"><span class="bar__name">Yahoo Finance MCP</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">50%<small>14 of 28</small></span></li><li class="bar" style="--v:0.3929"><span class="bar__name">OpenBB MCP</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">39%<small>11 of 28</small></span></li><li class="bar" style="--v:0.3929"><span class="bar__name">EdgarTools MCP</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">39%<small>11 of 28</small></span></li></ol>
 <div class="gap-grid cc-table-scroll" role="region" aria-labelledby="gap-grid-caption" tabindex="0"><table>
@@ -198,24 +186,36 @@
 <p class="film-note">Interim result of 9 October 2026: gpt-5.4-mini, 2 runs per question, no API keys for any server. We wrote the questions, in areas our servers were built for, and what the others do well beyond them, such as news and options, is not scored.</p>
 <p class="links"><a href="/benchmarks/finance-mcp-servers">Every run, the method and the caveats</a></p>
 </div></section>
-<section class="chapter" id="ch-8" data-chapter="8" aria-labelledby="ch-8-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">08</span>In the open</p>
-<h2 id="ch-8-h">We hold our own strategies to the same standard.</h2>
+<section class="chapter" id="ch-7" data-chapter="7" aria-labelledby="ch-7-h"><div class="wrap chapter-inner">
+<p class="kicker"><span class="ch-n">07</span>In the open</p>
+<h2 id="ch-7-h">We hold our own strategies to the same standard.</h2>
 <p class="big">ALPHAC, Canli Capital's trading engine, runs its strategies on paper and publishes every position, decision and broker reconciliation, hourly. Its backtests face the same tests canli-mcp ships, such as the deflated Sharpe ratio, and the trials that failed stay on the record.</p>
 <p class="links"><a href="/record">The record</a><a href="/research">Research</a><a href="/trials">Every trial</a><a href="/progress">Corrections</a></p>
 </div></section>
-<section class="chapter" id="ch-9" data-chapter="9" aria-labelledby="ch-9-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">09</span>Company data</p>
-<h2 id="ch-9-h">US public companies, each figure traced to its filing.</h2>
+<section class="chapter" id="ch-8" data-chapter="8" aria-labelledby="ch-8-h"><div class="wrap chapter-inner">
+<p class="kicker"><span class="ch-n">08</span>Company data</p>
+<h2 id="ch-8-h">US public companies, each figure traced to its filing.</h2>
 <p class="big">Look up what a company reported, with every figure linked to the SEC filing it came from. An agent can ask for a value as it stood on a past date, with later restatements flagged.</p>
 <p class="links"><a href="/companies">Browse companies</a><a href="/datasets/filing-facts">Financial datasets</a></p>
 </div></section>
-<section class="chapter" id="ch-10" data-chapter="10" aria-labelledby="ch-10-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">10</span>The builder</p>
-<h2 id="ch-10-h">Built by Arhan Canli.</h2>
+<section class="chapter" id="ch-9" data-chapter="9" aria-labelledby="ch-9-h"><div class="wrap chapter-inner">
+<p class="kicker"><span class="ch-n">09</span>The builder</p>
+<h2 id="ch-9-h">Built by Arhan Canli.</h2>
 <p class="big">Founder and quantitative researcher, in Dubai, building since July 2024. Canli Capital began as an open lab for testing trading strategies honestly and grew into the tools AI agents need to work the same way.</p>
 <p>The site keeps the tools' rule. Every figure on it traces to a published file, and corrections stay visible.</p>
 <p class="links"><a href="/founder">About the founder</a><a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">Source on GitHub</a></p>
+</div></section>
+<section class="chapter free" id="ch-10" data-chapter="10" aria-labelledby="ch-10-h"><div class="wrap chapter-inner">
+<p class="kicker"><span class="ch-n">10</span>The vision</p>
+<h2 id="ch-10-h">Picture the market at dawn, <span class="accent">every agent working from checked numbers.</span></h2>
+<p class="big">Agents will research, test and trade at machine speed. Canli Capital is building what they stand on, in the open, in four parts.</p>
+<ol class="pillars">
+<li><b>Context</b><span>MCP servers that give agents primary-source data and quant tools for few tokens.</span><em class="chip chip-live">Live</em></li>
+<li><b>Testing</b><span>An engine that counts every trial, so a lucky backtest is called luck.</span><em class="chip chip-live">Live</em></li>
+<li><b>Data</b><span>Financial datasets to train and test models, starting with FilingFacts. Expert labels come next.</span><em class="chip chip-next">Started</em></li>
+<li><b>Execution</b><span>Agents trading real capital under hard limits. Paper only until there is a licensed entity to do it.</span><em class="chip chip-next">Paper only</em></li>
+</ol>
+<p class="links"><a href="/vision">Read the full vision</a></p>
 </div></section>
 <section class="chapter finale" id="ch-11" data-chapter="11" aria-labelledby="ch-11-h"><div class="wrap chapter-inner">
 <p class="kicker"><span class="ch-n">11</span>Start</p>
@@ -224,7 +224,7 @@
 <div class="install"><figure class="cmd"><figcaption>Claude Code</figcaption><pre tabindex="0"><code>claude mcp add canli -- npx -y canli-mcp</code></pre></figure><figure class="cmd"><figcaption>Cursor, Claude Desktop or any MCP client</figcaption><pre tabindex="0"><code>{ &quot;mcpServers&quot;: { &quot;canli&quot;: { &quot;command&quot;: &quot;npx&quot;, &quot;args&quot;: [&quot;-y&quot;, &quot;canli-mcp&quot;] } } }</code></pre></figure></div><p class="film-note">canli-mcp is being published to npm now. Until it is, each server it combines installs on its own from <a href="/mcp-servers">the MCP servers page</a>.</p>
 <p class="links"><a href="/developers">Developer guide</a><a href="/mcp-servers">All MCP servers</a><a href="/benchmarks/finance-mcp-servers">The benchmark</a></p>
 </div></section>
-<script type="application/json" id="film-data">{"rain":{"questions":150,"given":84,"wrong":0.9643},"tangle":{"tools":1056,"tokens":432001},"core":{"front":3,"packs":[{"id":"quant","tools":235},{"id":"validation","tools":17},{"id":"markets","tools":13},{"id":"fundamentals","tools":7},{"id":"research","tools":6},{"id":"paper","tools":4},{"id":"backtest","tools":3}]},"gap":{"categories":["filings","fundamentals","insiders","13F","rates_macro","prices","analytics"],"arms":[{"id":"canli","label":"canli-mcp","ours":true,"accuracy":0.7857,"categories":[0.8333333333333334,0.5,1,0.6666666666666666,1,1,0.6]},{"id":"edgartools+yahoo","label":"EdgarTools + Yahoo Finance MCP","ours":false,"accuracy":0.5357,"categories":[0.16666666666666666,1,0.3333333333333333,0.6666666666666666,0.25,0.6666666666666666,0]},{"id":"yahoo","label":"Yahoo Finance MCP","ours":false,"accuracy":0.5,"categories":[0.3333333333333333,1,0.3333333333333333,0.3333333333333333,0.25,0.6666666666666666,0]},{"id":"openbb","label":"OpenBB MCP","ours":false,"accuracy":0.3929,"categories":[0,1,0.5,0.3333333333333333,0,-1,-1]},{"id":"edgartools","label":"EdgarTools MCP","ours":false,"accuracy":0.3929,"categories":[0,0.8333333333333334,0.3333333333333333,0.6666666666666666,0,0,0]}]}}</script>
+<script type="application/json" id="film-data">{"ticker":["NVDA 10-K  42,000 EMPLOYEES","AAPL FY2025  REVENUE $416.2B","MSFT FY2025  NET INCOME $101.8B","NVDA FY2026  DILUTED EPS $4.90","BRK 13F  227,917,808 AAPL SHARES","UST 10Y  5.22%","CPI-U AUG 2026  3.4% Y/Y","TSLA Q3 2026  486,000 DELIVERIES","UNEMPLOYMENT AUG 2026  4.1%","BRIDGEWATER 13F  997 ENTRIES"],"rain":{"questions":150,"given":84,"wrong":0.9643},"tangle":{"tools":1056,"tokens":432001},"core":{"front":3,"packs":[{"id":"quant","tools":235},{"id":"validation","tools":17},{"id":"markets","tools":13},{"id":"fundamentals","tools":7},{"id":"research","tools":6},{"id":"paper","tools":4},{"id":"backtest","tools":3}]},"gap":{"categories":["filings","fundamentals","insiders","13F","rates_macro","prices","analytics"],"arms":[{"id":"canli","label":"canli-mcp","ours":true,"accuracy":0.7857,"categories":[0.8333333333333334,0.5,1,0.6666666666666666,1,1,0.6]},{"id":"edgartools+yahoo","label":"EdgarTools + Yahoo Finance MCP","ours":false,"accuracy":0.5357,"categories":[0.16666666666666666,1,0.3333333333333333,0.6666666666666666,0.25,0.6666666666666666,0]},{"id":"yahoo","label":"Yahoo Finance MCP","ours":false,"accuracy":0.5,"categories":[0.3333333333333333,1,0.3333333333333333,0.3333333333333333,0.25,0.6666666666666666,0]},{"id":"openbb","label":"OpenBB MCP","ours":false,"accuracy":0.3929,"categories":[0,1,0.5,0.3333333333333333,0,-1,-1]},{"id":"edgartools","label":"EdgarTools MCP","ours":false,"accuracy":0.3929,"categories":[0,0.8333333333333334,0.3333333333333333,0.6666666666666666,0,0,0]}]}}</script>
 <!-- home-film:end -->
 
 <!-- home-compare:start -->
