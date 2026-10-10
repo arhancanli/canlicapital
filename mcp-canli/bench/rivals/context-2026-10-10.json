@@ -1,0 +1,79 @@
+{
+  "measured": "2026-10-10",
+  "tokenizer": "o200k_base",
+  "rows": {
+    "canli-mcp": {
+      "server": {
+        "name": "canli-mcp",
+        "version": "0.1.0",
+        "title": "Canli Capital",
+        "websiteUrl": "https://canlicapital.com/developers",
+        "icons": [
+          {
+            "src": "https://canlicapital.com/icon-512.png",
+            "mimeType": "image/png",
+            "sizes": [
+              "512x512"
+            ]
+          },
+          {
+            "src": "https://canlicapital.com/favicon.svg",
+            "mimeType": "image/svg+xml",
+            "sizes": [
+              "any"
+            ]
+          }
+        ]
+      },
+      "tools": 3,
+      "tool_tokens": 694,
+      "instruction_tokens": 165,
+      "total_tokens": 859,
+      "seconds_to_list": 0.13
+    },
+    "openbb (all tools)": {
+      "server": {
+        "name": "OpenBB MCP",
+        "version": "4.1.0"
+      },
+      "tools": 1056,
+      "tool_tokens": 431963,
+      "instruction_tokens": 38,
+      "total_tokens": 432001,
+      "seconds_to_list": 30.7
+    },
+    "openbb (tool discovery, as benchmarked)": {
+      "server": {
+        "name": "OpenBB MCP",
+        "version": "4.1.0"
+      },
+      "tools": 14,
+      "tool_tokens": 2133,
+      "instruction_tokens": 38,
+      "total_tokens": 2171,
+      "seconds_to_list": 26.82
+    },
+    "edgartools": {
+      "server": {
+        "name": "edgartools",
+        "version": "5.61.1"
+      },
+      "tools": 13,
+      "tool_tokens": 3801,
+      "instruction_tokens": 0,
+      "total_tokens": 3801,
+      "seconds_to_list": 1.59
+    },
+    "yahoo": {
+      "server": {
+        "name": "yfinance",
+        "version": ""
+      },
+      "tools": 9,
+      "tool_tokens": 1852,
+      "instruction_tokens": 353,
+      "total_tokens": 2205,
+      "seconds_to_list": 1.35
+    }
+  }
+}

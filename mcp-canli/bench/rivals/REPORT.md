@@ -8,7 +8,7 @@ setup.
 
 Arms: **canli** = canli-mcp as it stood before the benchmark; **canli-after** and **canli-final** =
 the same server after fixes the benchmark prompted (see "Caveats"); **openbb** = openbb-mcp-server
-1.4.1 with openbb 5.0.0 (tool-discovery mode, since its 1,056 tools exceed OpenAI's 128-tool limit);
+2.0.1 with openbb 5.0.0 (tool-discovery mode, since its 1,056 tools exceed OpenAI's 128-tool limit);
 **edgartools** = edgartools 5.61.1 (its MCP server); **yahoo** = Alex2Yang97/yahoo-finance-mcp
 b9c1765 (the most-starred Yahoo Finance server); **edgartools+yahoo** = both together. Versions are
 pinned in `~/canli-bench-rivals/*-frozen.txt`.
@@ -106,3 +106,18 @@ Paired by question (a question counts for the arm with more correct runs on it; 
 | analytics_beta | 0/2 | - | - | 2/2 | 0/2 | 0/2 | - |
 | analytics_sharpe | 2/2 | - | - | 2/2 | 0/2 | 2/2 | - |
 | quant_bs | 2/2 | - | - | 2/2 | 0/2 | 2/2 | - |
+
+## Context each server costs before the model asks anything
+
+`context.py` (no model called) starts every server with the benchmark's commands, reads its
+instructions and its whole tool list, and counts them in o200k_base tokens in the shape an
+OpenAI-style client sends tools. Measured 2026-10-10 (`context-2026-10-10.json`):
+
+| server | tools sent | tokens on every request | seconds to start and list |
+|---|---|---|---|
+| canli-mcp | 3 (in front of 285) | 859 | 0.13 |
+| OpenBB, all tools | 1,056 | 432,001 | 30.7 |
+| OpenBB, tool discovery (as benchmarked) | 14 | 2,171 | 26.8 |
+| EdgarTools | 13 | 3,801 | 1.6 |
+| Yahoo Finance MCP | 9 | 2,205 | 1.4 |
+
