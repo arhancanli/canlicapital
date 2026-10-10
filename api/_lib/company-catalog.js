@@ -1,6 +1,9 @@
 import { createHash } from 'node:crypto';
 
-export const CATALOG_LIMITS = Object.freeze({ fanout: 128, nodeBytes: 64 * 1024, recordBytes: 1024 * 1024, depth: 8, cacheBytes: 4 * 1024 * 1024 });
+// cacheBytes: objects are content-addressed, so a cached one can never go stale. 128 MiB holds every index node
+// of the company tree (about 900 of about 49 KB) and thousands of company records, so a page usually needs at most
+// its own record from storage instead of two to four reads; the function's memory is provisioned either way.
+export const CATALOG_LIMITS = Object.freeze({ fanout: 128, nodeBytes: 64 * 1024, recordBytes: 1024 * 1024, depth: 8, cacheBytes: 128 * 1024 * 1024 });
 export const catalogHash = bytes => createHash('sha256').update(bytes).digest('hex');
 const cikPattern = /^\d{10}$/;
 const hashPattern = /^[a-f0-9]{64}$/;

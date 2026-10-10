@@ -1,4 +1,5 @@
 import { errorCache } from './company-cache.js';
+import { crawlerFamily } from './crawler-family.js';
 import { createCompanyCatalog, catalogHash } from './company-catalog.js';
 import { createCompanyDownloadIndex } from './company-download-index.js';
 import { createCompanyHtmlHandler } from './company-html.js';
@@ -63,7 +64,12 @@ function timingHeader({ loadMs, pageMs, split, before, after }) {
   return parts.join(", ");
 }
 
-export function createCompanyReferenceHandler({ loadRelease, now = () => performance.now() }) {
+// One request in fifty logs a line: the family of client that asked (api/_lib/crawler-family.js), what kind of
+// page, how many storage reads it took and how long. It is how the crawl that drives this function's cost is
+// measured; no User-Agent string or address is logged.
+const sampleRequest = () => Math.random() < 0.02;
+
+export function createCompanyReferenceHandler({ loadRelease, now = () => performance.now(), log = console.log, sample = sampleRequest }) {
   return async (req, res) => {
     const fail = (status, message) => { res.statusCode = status; res.setHeader('Content-Type', 'text/plain; charset=utf-8'); res.setHeader('Cache-Control', errorCache(status)); res.setHeader('X-Robots-Tag', 'noindex'); res.end(req.method === 'HEAD' ? undefined : message); };
     const path = req.query?.path;
@@ -82,7 +88,9 @@ export function createCompanyReferenceHandler({ loadRelease, now = () => perform
       const before = catalogStats(release);
       const end = res.end.bind(res);
       res.end = (...args) => {
-        if (!res.headersSent) res.setHeader('Server-Timing', timingHeader({ loadMs: loaded - started, pageMs: now() - loaded, split: res.canliTiming, before, after: catalogStats(release) }));
+        const after = catalogStats(release), pageMs = now() - loaded;
+        if (!res.headersSent) res.setHeader('Server-Timing', timingHeader({ loadMs: loaded - started, pageMs, split: res.canliTiming, before, after }));
+        if (sample()) log(JSON.stringify({ canli_crawl: 1, agent: crawlerFamily(req.headers?.['user-agent']), kind: filing ? 'filings' : entity ? (entity[2] ? 'concept' : 'company') : page ? 'directory' : 'download', status: res.statusCode, reads: before && after ? after.objectReads - before.objectReads : null, hits: before && after ? after.cacheHits - before.cacheHits : null, ms: Math.round(pageMs) }));
         return end(...args);
       };
       if (filing) return await release.filings({ method: req.method, headers: req.headers, query: { cik: filing[1], ...(filing[2] ? { accession: filing[2] } : {}) } }, res);

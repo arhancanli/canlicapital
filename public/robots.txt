@@ -34,6 +34,22 @@ Allow: /
 User-agent: Claude-User
 Allow: /
 
+# Search-marketing crawlers (backlink and keyword tools) are kept off the company
+# catalogue, about 900,000 pages that each one walks in full; they send no readers.
+# They may read everything else, so site audits still see the rest of the site.
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: MJ12bot
+User-agent: DotBot
+User-agent: BLEXBot
+User-agent: PetalBot
+User-agent: DataForSeoBot
+User-agent: Barkrowler
+User-agent: SeekportBot
+User-agent: serpstatbot
+Disallow: /companies/
+Disallow: /company-data/
+
 Sitemap: https://canlicapital.com/sitemap.xml
 
 # An LLM-oriented map of the site, in the llmstxt.org convention. It leads with the

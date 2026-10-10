@@ -1,5 +1,5 @@
 import { catalogHash } from './company-catalog.js';
-export const DOWNLOAD_LIMITS = Object.freeze({ nodeBytes: 64 * 1024, cacheBytes: 256 * 1024, objectBytes: 16 * 1024 * 1024 });
+export const DOWNLOAD_LIMITS = Object.freeze({ nodeBytes: 64 * 1024, cacheBytes: 8 * 1024 * 1024, objectBytes: 16 * 1024 * 1024 });
 const hashPattern = /^[a-f0-9]{64}$/;
 export const downloadPath = path => typeof path === 'string' && /^\/company-data\/(?:\d{10}\.json|sources\/[a-f0-9]{64}\.json\.gz)$/.test(path);
 const check = (ok, message) => { if (!ok) throw new Error(message); };
