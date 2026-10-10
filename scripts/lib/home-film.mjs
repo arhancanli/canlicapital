@@ -77,22 +77,22 @@ export function renderHomeFilm(h2h, leaderboard) {
   const best = h2h.arms.find((a) => a.id === h2h.headline.best_rival);
   const fair = fairArms(h2h);
   const rivals = fair.filter((a) => !a.ours);
-  const oursCtx = ctx(ours.id), openbb = ctx("openbb"), discovery = ctx("openbb", false);
+  const oursCtx = ctx(ours.id), openbb = ctx("openbb");
   const zeroCats = h2h.categories.filter((c) => rivals.some((a) => a.categories[c.id].runs && a.categories[c.id].correct === 0)).map((c) => c.label.replace(/^([A-Z])(?=[a-z])/, (m) => m.toLowerCase()));
   const listing = (items) => (items.length < 2 ? items.join("") : `${items.slice(0, -1).join(", ")} or ${items.at(-1)}`);
   const f = h2h.flagship;
   const ex = f.example;
-  const tokenRange = rivals.map((a) => a.common.input_tokens_per_correct_answer).sort((a, b) => a - b);
   const rivalsWithZero = rivals.filter((a) => a.categories_scored_zero > 0).length;
 
-  const bars = fair.map((a) => `<li class="bar${a.ours ? " is-ours" : ""}" style="--v:${a.common.accuracy}"><span class="bar__name">${esc(a.label)}</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">${pct(a.common.accuracy)}<small>${a.common.correct} of ${a.common.runs}</small></span></li>`).join("");
-  const grid = `<div class="gap-grid cc-table-scroll" role="region" aria-labelledby="gap-grid-caption" tabindex="0"><table>
-<caption id="gap-grid-caption">Correct runs by kind of question, every finished run. Red: never answered correctly.</caption>
-<thead><tr><th scope="col">Server</th>${h2h.categories.map((c) => `<th scope="col">${esc(c.label)}</th>`).join("")}</tr></thead>
-<tbody>${fair.map((a) => `<tr${a.ours ? ' class="is-ours"' : ""}><th scope="row">${esc(a.short)}</th>${h2h.categories.map((c) => {
-    const x = a.categories[c.id];
-    return x.runs ? `<td class="${x.correct === 0 ? "zero" : x.correct === x.runs ? "full" : "part"}">${x.correct}/${x.runs}</td>` : `<td class="none">not run</td>`;
-  }).join("")}</tr>`).join("")}</tbody></table></div>`;
+  // Under each bar, the kinds of question that server never answered correctly in any finished run.
+  const lower = (label) => label.replace(/^([A-Z])(?=[a-z])/, (m) => m.toLowerCase());
+  const missed = (a) => {
+    const never = h2h.categories.filter((c) => a.categories[c.id].runs && a.categories[c.id].correct === 0).map((c) => lower(c.label));
+    const unrun = h2h.categories.filter((c) => !a.categories[c.id].runs).map((c) => lower(c.label));
+    if (!never.length && !unrun.length) return "answered every kind of question";
+    return [never.length ? `never answered: ${never.join(", ")}` : "", unrun.length ? `not run: ${unrun.join(", ")}` : ""].filter(Boolean).join(" · ");
+  };
+  const bars = fair.map((a) => `<li class="bar${a.ours ? " is-ours" : ""}" style="--v:${a.common.accuracy}"><span class="bar__name">${esc(a.label)}</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">${pct(a.common.accuracy)}<small>${a.common.correct} of ${a.common.runs}</small></span><small class="bar__note">${esc(missed(a))}</small></li>`).join("");
 
   const chapters = [
     chapter(1, "The problem", `<h2 id="ch-1-h">Ask a model for a company's numbers, and it guesses.</h2>
@@ -124,21 +124,19 @@ export function renderHomeFilm(h2h, leaderboard) {
 <div><dt>evidence</dt><dd>${ex.evidence_documents} documents, SHA-256 each · ${esc(ex.evidence_sha256_16)}…</dd></div>
 <div><dt>time</dt><dd>${ex.milliseconds} ms</dd></div>
 </dl>
-</figure>`, "free"),
+</figure>`, "dense"),
 
     chapter(5, "The flagship", `<h2 id="ch-5-h" class="display">canli-mcp</h2>
 <p class="lede">Every Canli Capital server in one process. ${f.front.length} tools in front, ${integer.format(f.tools)} behind them, ${integer.format(oursCtx.tokens)} tokens of context, ready in ${secs(oursCtx.seconds)} seconds.</p>
-<ul class="packs" aria-label="The packs canli-mcp loads">${f.packs.map((p) => `<li data-pack="${esc(p.id)}"><b>${esc(p.label)}</b><span class="n">${p.tools}</span><span>${esc(p.covers)}</span></li>`).join("")}</ul>
+<ul class="packs" aria-label="The packs canli-mcp loads">${f.packs.map((p) => `<li data-pack="${esc(p.id)}"><span class="n">${p.tools}</span><b>${esc(p.label)}</b><span class="covers">${esc(p.covers)}</span></li>`).join("")}</ul>
 <p>Ask for a tool in plain words and the right one comes first ${f.search.first} times in ${f.search.requests}. Pass a file instead of pasting data, and ${integer.format(f.file_reference.prices)} prices cost ${f.file_reference.tokens} tokens instead of ${integer.format(f.file_reference.pasted_tokens)}.</p>
-${install(f)}`, "free"),
+<p class="links"><a href="#ch-11">Add it to your agent</a><a href="/mcp-servers">Every server it combines</a></p>`, "dense"),
 
     chapter(6, "The gap", `<h2 id="ch-6-h">Same model. Same questions. <span class="accent">Only the server changed.</span></h2>
 <p class="big">On the ${h2h.questions_common} questions every server finished, ${esc(ours.label)} answered ${pct(ours.common.accuracy)} correctly. The best of the others, ${esc(best.label)}, answered ${pct(best.common.accuracy)}.</p>
 <ol class="bars" aria-label="Correct answers on the ${h2h.questions_common} shared questions">${bars}</ol>
-${grid}
-<p>It also needed fewer tokens: ${integer.format(ours.common.input_tokens_per_correct_answer)} input tokens per correct answer, against ${integer.format(tokenRange[0])} to ${integer.format(tokenRange.at(-1))} for the others. And it sends the model ${integer.format(oursCtx.tokens)} tokens of tools, where OpenBB's tool-discovery mode sends ${integer.format(discovery.tokens)} and takes ${secs(discovery.seconds)} seconds to start.</p>
 <p class="film-note">${esc(h2h.status === "interim" ? "Interim result" : "Result")} of ${esc(longDate(h2h.captured))}: ${esc(h2h.setup.model)}, ${h2h.setup.runs_per_question} runs per question, no API keys for any server. We wrote the questions, in areas our servers were built for, and what the others do well beyond them, such as news and options, is not scored.</p>
-<p class="links"><a href="/benchmarks/finance-mcp-servers">Every run, the method and the caveats</a></p>`, "free"),
+<p class="links"><a href="/benchmarks/finance-mcp-servers">Every run, the method and the caveats</a></p>`, "dense"),
 
     chapter(7, "In the open", `<h2 id="ch-7-h">We hold our own strategies to the same standard.</h2>
 <p class="big">ALPHAC, Canli Capital's trading engine, runs its strategies on paper and publishes every position, decision and broker reconciliation, hourly. Its backtests face the same tests canli-mcp ships, such as the deflated Sharpe ratio, and the trials that failed stay on the record.</p>
@@ -161,12 +159,12 @@ ${grid}
 <li><b>Data</b><span>Financial datasets to train and test models, starting with FilingFacts. Expert labels come next.</span><em class="chip chip-next">Started</em></li>
 <li><b>Execution</b><span>Agents trading real capital under hard limits. Paper only until there is a licensed entity to do it.</span><em class="chip chip-next">Paper only</em></li>
 </ol>
-<p class="links"><a href="/vision">Read the full vision</a></p>`, "free"),
+<p class="links"><a href="/vision">Read the full vision</a></p>`, "dense"),
 
     chapter(11, "Start", `<h2 id="ch-11-h" class="display">Give your agent <span class="accent">the market.</span></h2>
 <p class="lede">canli-mcp is free and open source under the MIT license. Add it to Claude Code, Cursor or any MCP client in one line.</p>
 ${install(f)}
-<p class="links"><a href="/developers">Developer guide</a><a href="/mcp-servers">All MCP servers</a><a href="/benchmarks/finance-mcp-servers">The benchmark</a></p>`, "finale"),
+<p class="links"><a href="/developers">Developer guide</a><a href="/mcp-servers">All MCP servers</a><a href="/benchmarks/finance-mcp-servers">The benchmark</a></p>`, "dense finale"),
   ];
   const json = JSON.stringify(data).replaceAll("<", "\\u003c");
   return `${chapters.join("\n")}\n<script type="application/json" id="film-data">${json}</script>`;

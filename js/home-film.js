@@ -37,33 +37,37 @@ if (staged) for (const h of document.querySelectorAll(".chapter h1, .chapter h2"
   walk(h);
 }
 
-// ---------- where the reader is: each chapter's own progress 0…1 while it is pinned ----------
-const pinned = (c) => !small && !c.classList.contains("free") && !c.classList.contains("finale");
-function progressOf(c) {
-  const r = c.getBoundingClientRect();
-  if (!pinned(c)) return clamp((innerHeight * 0.85 - r.top) / (r.height * 0.6));
-  return clamp(-r.top / Math.max(1, r.height - innerHeight));
-}
+// ---------- where the reader is ----------
+// On a laptop or desktop screen each chapter is one screen and the scroll rests on every one (see "stops" below); on a
+// phone each chapter's scene sits above its words. Either way i is the chapter at the top of the screen and p how far
+// it has moved off (0…1): the story runs i + p, so the camera stands on a chapter's shot whenever the scroll rests on it.
 function scrollState() {
   let i = 0;
-  for (let k = 0; k < chapters.length; k++) if (chapters[k].getBoundingClientRect().top <= innerHeight * 0.5) i = k;
-  return { i, p: progressOf(chapters[i]) };
+  for (let k = 0; k < chapters.length; k++) if (chapters[k].getBoundingClientRect().top <= 1) i = k;
+  const r = chapters[i].getBoundingClientRect();
+  return { i, p: clamp(-r.top / Math.max(1, r.height)) };
 }
 
-// ---------- reveals with weight: in a pinned chapter the title arrives first, then each block in turn ----------
+// ---------- the words: they arrive when the scroll rests on their chapter, and leave as it moves on ----------
+// A chapter's title rises word by word and its blocks follow in turn (--j); as the chapter moves off they lift and
+// dissolve in the direction it moves (--exit, --dir), and once well away they reset, to arrive again next time.
+const oneScreen = matchMedia("(min-width: 769px)");
 const blocksOf = chapters.map((c) => [...c.querySelectorAll(".chapter-inner > *")]);
 const inners = chapters.map((c) => c.querySelector(".chapter-inner"));
+blocksOf.forEach((blocks) => blocks.forEach((el, j) => el.style.setProperty("--j", String(j))));
+let landing = -1; // while the stops glide to a chapter, only that chapter arrives on the way
 function reveal() {
+  const vh = innerHeight;
   chapters.forEach((c, k) => {
-    if (c.getBoundingClientRect().top > innerHeight * 0.95) return;
-    const p = progressOf(c);
-    // the words leave as the next shot begins: they lift and dissolve over the last part of a pinned chapter
-    if (staged && pinned(c) && k < chapters.length - 1) { const r = c.getBoundingClientRect(); // once fully gone it is restored, so nothing off screen stays faded
-      inners[k].style.setProperty("--exit", (r.bottom < 0 ? 0 : smooth(0.8, 1, p)).toFixed(3)); }
-    blocksOf[k].forEach((el, j) => {
-      const at = pinned(c) ? (j <= 1 ? -1 : 0.02 + (j - 1) * 0.07) : -1;
-      if (!el.classList.contains("is-shown") && p >= at) el.classList.add("is-shown");
-    });
+    const r = c.getBoundingClientRect();
+    if (!oneScreen.matches) { if (r.top < vh * 0.95) blocksOf[k].forEach((el) => el.classList.add("is-shown")); return; }
+    // how far the chapter is off the screen: from below by its top, upwards by its foot (a chapter taller than the
+    // screen stays fully shown while any of it fills the screen)
+    const off = r.top > 0 ? r.top / vh : Math.max(0, vh - r.bottom) / vh;
+    const on = c.classList.contains("is-on");
+    if (!on && off < 0.12 && (landing < 0 || landing === k)) { c.classList.add("is-on"); blocksOf[k].forEach((el) => el.classList.add("is-shown")); }
+    else if (on && off > 0.6) { c.classList.remove("is-on"); blocksOf[k].forEach((el) => el.classList.remove("is-shown")); }
+    if (staged) { inners[k].style.setProperty("--exit", (c.classList.contains("is-on") ? smooth(0.03, 0.3, off) : 0).toFixed(3)); inners[k].style.setProperty("--dir", r.top <= 0 ? "1" : "-1"); }
   });
 }
 reveal();
@@ -956,7 +960,7 @@ function start() {
   const keys = KEY.map(([tone, text, from, to]) => { const row = document.createElement("div"); row.className = `key ${tone}`; const dot = document.createElement("i"); const label = document.createElement("span"); label.textContent = text; row.append(dot, label); legend.append(row); return { row, from, to, on: null }; });
   if (cinema) document.body.append(capLayer, legend);
 
-  const story = () => { const { i, p } = scrollState(); return i === 0 ? smooth(0.2, 1, p) * 0.35 : i - 1 + smooth(0, 0.62, p) + (i === 1 ? 0.35 * (1 - smooth(0, 0.62, p)) : 0); };
+  const story = () => { const { i, p } = scrollState(); return i + p; };
   let goalS = story(), current = goalS, vel = 0, raf = 0, shown = !document.hidden, px = 0, py = 0, last = performance.now(), aspect = 1, prevEye = null, flash = 0, nextFlash = 3;
   const pointer = { x: 0, y: 0 };
   addEventListener("pointermove", (e) => { pointer.x = e.clientX / innerWidth - 0.5; pointer.y = e.clientY / innerHeight - 0.5; kick(); }, { passive: true });
@@ -1123,28 +1127,112 @@ if (chapters.length && cinema) {
   tick(); addEventListener("scroll", tick, { passive: true }); addEventListener("resize", tick);
 }
 
-// ---------- inertial scrolling: the wheel glides and settles (desktop pointer only; keys, scrollbar and touch stay native) ----------
+// ---------- stops: the scroll comes to rest on every chapter ----------
+// With a mouse or trackpad on a screen tall enough for a chapter, one gesture moves one chapter: a flick of the wheel or
+// a swipe of the trackpad, an arrow key, Page Up or Down or the space bar glides to the next chapter in one movement and
+// stops there, and a swipe's momentum never carries the reader past a chapter. A dragged scrollbar, a search in the
+// page or a focused link settles on the nearest chapter. On a touch screen the browser stops at every chapter and
+// section itself (CSS scroll snap). After the film, from the side-by-side table on, the page scrolls freely.
 let glideTo = null;
-if (chapters.length && !reduced && matchMedia("(pointer: fine)").matches) {
-  let y = scrollY, goal = scrollY, running = false;
-  const max = () => document.documentElement.scrollHeight - innerHeight;
-  const step = () => { y += (goal - y) * 0.085; if (Math.abs(goal - y) < 0.4) { y = goal; running = false; } scrollTo(0, y); if (running) requestAnimationFrame(step); };
-  const run = () => { if (!running) { running = true; requestAnimationFrame(step); } };
+if (chapters.length) {
+  const glideMQ = matchMedia("(pointer: fine) and (min-width: 769px) and (min-height: 600px)");
+  const touchMQ = matchMedia("(pointer: coarse)");
+  const mode = () => { root.classList.toggle("stops-glide", glideMQ.matches); root.classList.toggle("stops-touch", !glideMQ.matches && touchMQ.matches); };
+  root.classList.add("film-stops"); mode();
+  glideMQ.addEventListener?.("change", mode); touchMQ.addEventListener?.("change", mode);
+
+  const after = document.querySelector(".home-compare");
+  const top = (el) => el.getBoundingClientRect().top + scrollY;
+  const end = () => (after ? top(after) : document.documentElement.scrollHeight - innerHeight);
+  const inFilm = (dir) => scrollY < end() - 2 || (dir < 0 && scrollY < end() + 2);
+  // where the scroll may rest: each chapter's top (and its foot, when it is taller than the screen), then the table after the film
+  const rests = () => { const out = []; for (const c of chapters) { const t = top(c); out.push(t); if (c.offsetHeight > innerHeight + 4) out.push(t + c.offsetHeight - innerHeight); } out.push(end()); return out; };
+  const chapterAt = (y) => chapters.findIndex((c) => Math.abs(top(c) - y) < 2);
+  const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+  let gliding = false;
+  glideTo = (y, chapter = chapterAt(y)) => {
+    const from = scrollY, screens = Math.abs(y - from) / innerHeight;
+    if (screens * innerHeight < 1) return;
+    const ms = reduced ? 0 : Math.min(2200, 950 + 260 * Math.max(0, screens - 1));
+    landing = chapter; gliding = true; root.classList.add("gliding");
+    const t0 = performance.now();
+    const step = (now) => {
+      const k = ms ? clamp((now - t0) / ms) : 1;
+      scrollTo(0, from + (y - from) * ease(k));
+      if (k < 1) requestAnimationFrame(step);
+      else {
+        gliding = false; root.classList.remove("gliding"); landing = -1; reveal();
+        const next = wheel.next; wheel.next = 0; if (next && inFilm(next)) go(next);
+      }
+    };
+    requestAnimationFrame(step);
+  };
+  const go = (dir) => {
+    const list = rests(), y = scrollY;
+    const to = dir > 0 ? list.find((v) => v > y + 2) : list.findLast((v) => v < y - 2);
+    if (to !== undefined) glideTo(to);
+  };
+
+  // A gesture is a run of wheel events without a pause. It moves one chapter as soon as it has gone far enough to mean
+  // it. After that it moves another only if it is a fresh swipe on top of the old one's momentum: the scroll has slowed
+  // from its peak and then speeds up sharply again. Speeds are pixels per millisecond over short windows, so events the
+  // browser merged or delayed under load never read as a new swipe. A gesture that arrives while the scroll is still
+  // gliding waits for it (one at most), and the momentum of a gesture that already moved the page is spent quietly,
+  // even once it has carried the page onto the table after the film.
+  const wheel = { at: -1e9, ev: [], sum: 0, moved: false, peak: 0, low: Infinity, slowed: false, next: 0 };
+  const rate = (from, to) => { let px = 0; for (const [t, d] of wheel.ev) if (t > from && t <= to) px += d; return px / (to - from); };
   addEventListener("wheel", (e) => {
-    if (e.ctrlKey || e.target.closest?.("textarea, select, input, pre, .gap-grid, [role=region]")) return;
+    if (!glideMQ.matches || e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    const now = e.timeStamp, gap = now - wheel.at, dir = Math.sign(e.deltaY);
+    if (!inFilm(dir) && !(wheel.moved && gap <= 200)) return;
     e.preventDefault();
-    if (!running) y = goal = scrollY;
-    goal = clamp(goal + e.deltaY * (e.deltaMode === 1 ? 32 : 1), 0, max());
-    run();
+    wheel.at = now;
+    if (gap > 200) Object.assign(wheel, { ev: [], sum: 0, moved: false, peak: 0, low: Infinity, slowed: false });
+    const d = Math.abs(e.deltaY) * (e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? innerHeight : 1);
+    wheel.sum += d; wheel.ev.push([now, d]); while (wheel.ev.length && wheel.ev[0][0] < now - 400) wheel.ev.shift();
+    const r = rate(now - 60, now);
+    wheel.peak = Math.max(wheel.peak, r);
+    if (r < 0.6 * wheel.peak) wheel.slowed = true;
+    if (wheel.slowed) wheel.low = Math.min(wheel.low, r);
+    if (d < 1 || !inFilm(dir)) return;
+    const meant = !wheel.moved && wheel.sum >= 6;
+    const again = wheel.moved && wheel.slowed && r > Math.max(0.3, 2.2 * wheel.low);
+    if (!meant && !again) return;
+    if (again) Object.assign(wheel, { peak: r, low: Infinity, slowed: false });
+    wheel.moved = true;
+    if (gliding) wheel.next = wheel.next || dir; else go(dir);
   }, { passive: false });
-  for (const ev of ["keydown", "pointerdown", "touchstart"]) addEventListener(ev, () => { running = false; }, { passive: true });
-  glideTo = (top) => { y = scrollY; goal = clamp(top, 0, max()); run(); };
-  // In-page links glide too, and still land focus where a keyboard user expects it.
+
+  addEventListener("keydown", (e) => {
+    if (!glideMQ.matches || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+    const t = e.target;
+    if (t.closest?.("input, textarea, select, [contenteditable]:not([contenteditable=false])")) return;
+    if (e.key === "Home" && scrollY < end() + 2) { e.preventDefault(); glideTo(0); return; }
+    const space = e.key === " " && !t.closest?.("button, summary, a, [role=button]");
+    const dir = e.key === "ArrowDown" || e.key === "PageDown" || (space && !e.shiftKey) ? 1 : e.key === "ArrowUp" || e.key === "PageUp" || (space && e.shiftKey) ? -1 : 0;
+    if (!dir || !inFilm(dir)) return;
+    e.preventDefault();
+    if (!gliding) go(dir);
+  });
+
+  // a dragged scrollbar, a search in the page or a focused link: settle on the nearest chapter once the scroll ends
+  const settle = () => {
+    if (gliding || !glideMQ.matches || scrollY >= end() - 2) return;
+    let best = 0, gap = Infinity;
+    for (const v of rests()) if (Math.abs(v - scrollY) < gap) { gap = Math.abs(v - scrollY); best = v; }
+    if (gap > 2) glideTo(best);
+  };
+  if ("onscrollend" in window) addEventListener("scrollend", settle);
+  else { let timer = 0; addEventListener("scroll", () => { clearTimeout(timer); timer = setTimeout(settle, 240); }, { passive: true }); }
+
+  // links within the page glide too, and still land focus where a keyboard user expects it
   document.addEventListener("click", (e) => {
-    const a = e.target.closest?.('a[href^="#"], a[href^="/#"]'); if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
+    const a = e.target.closest?.('a[href^="#"], a[href^="/#"]'); if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || !glideMQ.matches) return;
     const id = a.getAttribute("href").replace(/^\/?#/, ""), el = id && document.getElementById(id); if (!el) return;
-    e.preventDefault(); glideTo(scrollY + el.getBoundingClientRect().top - 72); history.replaceState(null, "", `#${id}`);
-    setTimeout(() => el.querySelector("a, button, input, pre")?.focus({ preventScroll: true }), 900);
+    e.preventDefault(); history.replaceState(null, "", `#${id}`);
+    const k = chapters.indexOf(el.closest("[data-chapter]"));
+    glideTo(k >= 0 ? top(chapters[k]) : top(el) - 72, k);
+    setTimeout(() => el.querySelector?.("a, button, input, pre")?.focus({ preventScroll: true }), 1000);
   });
 }
 
@@ -1157,12 +1245,12 @@ if (chapters.length) {
     const dot = document.createElement("i"), label = document.createElement("span");
     label.textContent = (c.querySelector(".kicker")?.textContent ?? "").replace(/^\s*\d+\s*/, "").trim();
     a.append(dot, label); rail.append(a);
-    a.addEventListener("click", (e) => { if (!glideTo) return; e.preventDefault(); e.stopPropagation(); glideTo(scrollY + c.getBoundingClientRect().top); history.replaceState(null, "", a.href); });
+    a.addEventListener("click", (e) => { if (!glideTo || !root.classList.contains("stops-glide")) return; e.preventDefault(); e.stopPropagation(); glideTo(scrollY + c.getBoundingClientRect().top); history.replaceState(null, "", a.href); });
     return a;
   });
   document.body.append(rail);
   let lastI = -1;
-  const mark = () => { const { i } = scrollState(); if (i === lastI) return; lastI = i;
+  const mark = () => { const { i: at, p } = scrollState(), i = Math.min(chapters.length - 1, at + (p > 0.5 ? 1 : 0)); if (i === lastI) return; lastI = i;
     links.forEach((a, k) => (k === i ? a.setAttribute("aria-current", "step") : a.removeAttribute("aria-current"))); };
   mark(); addEventListener("scroll", mark, { passive: true });
 }

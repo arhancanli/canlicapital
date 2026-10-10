@@ -82,3 +82,24 @@ test("an unpublished package is never presented as installable without saying so
 test("no em dash in the film", () => {
   assert.ok(!region.includes(String.fromCodePoint(0x2014)));
 });
+
+test("each bar names the kinds of question that server never answered, from the same summary", () => {
+  for (const arm of filmData(h2h, leaderboard).gap.arms) {
+    const full = h2h.arms.find((a) => a.id === arm.id);
+    const never = h2h.categories.filter((c) => full.categories[c.id].runs && full.categories[c.id].correct === 0);
+    const bar = region.slice(region.indexOf(`<span class="bar__name">${full.label.replaceAll("&", "&amp;")}</span>`));
+    const note = bar.slice(bar.indexOf('<small class="bar__note">'), bar.indexOf("</small>", bar.indexOf('<small class="bar__note">')));
+    if (!never.length) assert.ok(!note.includes("never answered"), full.label);
+    for (const c of never) assert.ok(note.toLowerCase().includes(c.label.toLowerCase()), `${full.label}: ${c.label}`);
+  }
+});
+
+test("every chapter is one screen and a stop: the scroll comes to rest on each", () => {
+  const css = readFileSync(resolve(ROOT, "css/home-film.css"), "utf8");
+  assert.match(css, /\.film-stops \.film-home \.chapter, \.film-stops \.film-home \.home-compare \{ scroll-snap-align: start; scroll-snap-stop: always; \}/);
+  assert.match(css, /\.film-home \.chapter \{ position: relative; min-height: 100vh;/);
+  assert.doesNotMatch(css, /\.chapter[^{]*\{[^}]*height: (1[1-9]\d|[2-9]\d\d)vh/, "no chapter is set taller than one screen");
+  const js = readFileSync(resolve(ROOT, "js/home-film.js"), "utf8");
+  assert.match(js, /addEventListener\("wheel", \(e\) => \{/);
+  assert.match(js, /addEventListener\("keydown", \(e\) => \{/);
+});
