@@ -88,7 +88,7 @@ say("## Start here");
 say();
 say(`- [Home](${ORIGIN}/): What the project is: canli-mcp, the problem it solves, the vision and how it compares.`);
 say(`- [Finance MCP servers, head to head](${ORIGIN}/benchmarks/finance-mcp-servers): canli-mcp against OpenBB, EdgarTools and Yahoo Finance MCP servers on the same questions, model and scoring, with every run and the caveats.`);
-say(`- [The record](${ORIGIN}/record): The ALPHAC paper-trading record, published hourly, with the trials that failed.`);
+say(`- [The record](${ORIGIN}/record): The ALPHAC paper-trading record, published daily, with the trials that failed.`);
 say(`- [Vision](${ORIGIN}/vision): What Canli Capital is building for AI agents in finance, pillar by pillar, with what exists today and what comes next.`);
 say(`- [MCP downloads](${ORIGIN}/stats): npm downloads of the open MCP servers, read from npm at each build.`);
 say(`- [FilingFacts benchmark](${ORIGIN}/benchmarks/filingfacts): AI models answering SEC filing questions on their own and with an MCP server that reads the filings, from public, rescorable run records.`);
