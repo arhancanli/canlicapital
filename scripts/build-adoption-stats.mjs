@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export const OUT = "public/stats/adoption.json";
-export const PACKAGES = Object.freeze(["canli-validation-mcp", "canli-fundamentals-mcp", "canli-research-mcp"]);
+export const PACKAGES = Object.freeze(["canli-validation-mcp", "canli-fundamentals-mcp", "canli-research-mcp", "canli-markets-mcp", "canli-quant-mcp", "canli-backtest-mcp", "canli-paper-trading-mcp"]);
 export const REPOSITORIES = Object.freeze(["arhancanli/canlicapital", "arhancanli/alphac", "arhancanli/canli-validation-mcp",
   "arhancanli/canli-fundamentals-mcp", "arhancanli/canli-research-mcp", "arhancanli/canli-pit-lake", "arhancanli/canli-backtest"]);
 const STATUS_URL = "https://canlicapital.com/api/v1/validate/status";
@@ -36,15 +36,24 @@ export async function npmPackage(name, now, fetchImpl) {
   const meta = await getJson(`https://registry.npmjs.org/${name}`, fetchImpl);
   const created = meta.time.created.slice(0, 10);
   const latest = meta["dist-tags"].latest;
-  const [week, month, range] = await Promise.all([
-    getJson(`https://api.npmjs.org/downloads/point/last-week/${name}`, fetchImpl),
-    getJson(`https://api.npmjs.org/downloads/point/last-month/${name}`, fetchImpl),
-    getJson(`https://api.npmjs.org/downloads/range/${created}:${day(now)}/${name}`, fetchImpl),
-  ]);
-  const total = range.downloads.reduce((sum, row) => sum + row.downloads, 0);
-  return { name, latest_version: latest, latest_published: meta.time[latest].slice(0, 10), first_published: created,
-    downloads_last_week: week.downloads, downloads_last_month: month.downloads, downloads_total: total,
+  const row = { name, latest_version: latest, latest_published: meta.time[latest].slice(0, 10), first_published: created,
     npm_url: `https://www.npmjs.com/package/${name}` };
+  let counts;
+  try {
+    counts = await Promise.all([
+      getJson(`https://api.npmjs.org/downloads/point/last-week/${name}`, fetchImpl),
+      getJson(`https://api.npmjs.org/downloads/point/last-month/${name}`, fetchImpl),
+      getJson(`https://api.npmjs.org/downloads/range/${created}:${day(now)}/${name}`, fetchImpl),
+    ]);
+  } catch (error) {
+    // npm's download counter starts a few days after a package's first publish and answers 404 until then. A package
+    // that new is listed with its version and no counts (never zeros); an older one that fails is a real failure.
+    if ((now - new Date(`${created}T00:00:00Z`)) / 86400000 > 7) throw error;
+    return { ...row, downloads_last_week: null, downloads_last_month: null, downloads_total: null };
+  }
+  const [week, month, range] = counts;
+  const total = range.downloads.reduce((sum, item) => sum + item.downloads, 0);
+  return { ...row, downloads_last_week: week.downloads, downloads_last_month: month.downloads, downloads_total: total };
 }
 
 export async function githubRepository(fullName, fetchImpl) {
@@ -84,7 +93,7 @@ export async function collect({ now = new Date(), fetchImpl = fetch, previous = 
 // The page's headline sums every package's last-30-day count; the sum is published beside its parts.
 export function withTotals(stats) {
   const rows = stats.npm.rows ?? [];
-  return { ...stats, npm: { ...stats.npm, downloads_last_month_all_packages: rows.reduce((sum, row) => sum + row.downloads_last_month, 0) } };
+  return { ...stats, npm: { ...stats.npm, downloads_last_month_all_packages: rows.reduce((sum, row) => sum + (row.downloads_last_month ?? 0), 0) } };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

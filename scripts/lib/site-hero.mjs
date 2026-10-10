@@ -95,6 +95,20 @@ export function applyHero(html, file, { trailNav = null } = {}) {
   if (h1Start < 0 || (mainEnd >= 0 && h1Start > mainEnd)) return html;
   const h1End = html.indexOf("</h1>", h1Start) + 5;
 
+  // the element the title sits in, so it can go too if lifting the title leaves it empty
+  const parent = (() => {
+    const stack = [];
+    const re = /<(\/?)([a-z][a-z0-9-]*)\b[^>]*?(\/?)>/gi;
+    re.lastIndex = inner;
+    let m;
+    while ((m = re.exec(html)) && m.index < h1Start) {
+      const tag = m[2].toLowerCase();
+      if (/^(area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr)$/.test(tag) || m[3]) continue;
+      if (m[1]) { const at = stack.map((e) => e.tag).lastIndexOf(tag); if (at >= 0) stack.length = at; }
+      else stack.push({ tag, open: m[0] });
+    }
+    return stack.at(-1) ?? null;
+  })();
   const take = []; // [start, end] ranges lifted into the header
   const parts = { eyebrow: "", lede: "", meta: "", actions: "" };
   const eyebrow = paragraphBefore(html, h1Start);
@@ -132,5 +146,11 @@ export function applyHero(html, file, { trailNav = null } = {}) {
   out = out.slice(0, inner) + header + out.slice(inner);
   // an opener the title has left empty goes with it; one that still holds something becomes the page's first block
   out = out.replace(/<(section|header|div)\b[^>]*\bcc-film-head\b[^>]*>\s*<\/\1>\s*/, "");
+  if (parent && /^(section|header|div)$/.test(parent.tag) && !/\bcc-film-head\b/.test(parent.open)) {
+    const at = out.indexOf(parent.open, inner + header.length);
+    const rest = at >= 0 ? out.slice(at + parent.open.length) : "";
+    const empty = new RegExp(`^(\\s|<!--[\\s\\S]*?-->)*</${parent.tag}>\\s*`).exec(rest);
+    if (empty) out = out.slice(0, at) + rest.slice(empty[0].length);
+  }
   return out.replace(/(<(?:section|header|div)\b[^>]*class="[^"]*)\bcc-film-head\s*/, "$1");
 }

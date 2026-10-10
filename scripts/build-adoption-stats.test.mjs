@@ -40,3 +40,16 @@ test("with no previous values a failed source says so instead of inventing numbe
   assert.equal(stats.npm.rows, null);
   assert.match(renderStats(stats), /npm could not be read for this build/);
 });
+
+test("a package too new for npm's download counter is listed with its version and no counts, never zeros", async () => {
+  const young = (url) => url.startsWith("https://registry.npmjs.org/")
+    ? ok({ time: { created: "2026-10-04T10:00:00Z", "0.1.0": "2026-10-04T10:00:00Z" }, "dist-tags": { latest: "0.1.0" } })
+    : url.includes("api.npmjs.org") ? { ok: false, status: 404, json: async () => ({ error: "package not found" }) } : fakeFetch(url);
+  const stats = await collect({ now, fetchImpl: async (url) => young(url) });
+  assert.equal(stats.npm.stale, false);
+  assert.deepEqual([stats.npm.rows[0].latest_version, stats.npm.rows[0].downloads_last_month, stats.npm.rows[0].downloads_total], ["0.1.0", null, null]);
+  assert.match(renderStats(stats), /npm has not started counting yet/);
+  // a package older than a week whose counts fail is a real failure: the section keeps its last values
+  const old = await collect({ now: new Date("2026-10-20T12:00:00Z"), fetchImpl: async (url) => young(url) });
+  assert.equal(old.npm.stale, true);
+});

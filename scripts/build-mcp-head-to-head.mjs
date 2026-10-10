@@ -16,6 +16,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { renderProductShellFooter, renderProductShellHeader, renderProductShellStylesheet } from "./product-shell.mjs";
+import { bars, benchmarkFigures } from "./lib/mcp-flagship.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
@@ -252,55 +253,57 @@ ${renderProductShellStylesheet()}
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "developers" })}
-<main class="paper__main" id="content">
-  <article class="paper__article">
+<main class="h2h" id="content">
+  <section class="h2h-opening">
     <nav class="paper__crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><a href="/mcp-servers">MCP servers</a></li><li><span aria-current="page">${esc(title)}</span></li></ol></nav>
-    <p class="paper__eyebrow">Benchmark, ${esc(data.status)} result of <time datetime="${data.captured}">${data.captured}</time></p>
-    <h1 class="paper__title">${esc(title)}</h1>
-    <p class="paper__byline">By <span rel="author">${AUTHOR}</span>, Canli Capital</p>
-    <div class="paper__body">
-      <p class="hub__standfirst">${lead}</p>
-      <p>Every server got the same model (${esc(data.setup.model)}), system prompt, ${data.setup.turn_limit}-turn limit,
-      ${integer.format(data.setup.result_cap_characters)}-character cap on each tool result and scoring. Only the MCP server changed. No server had an API key.
-      Each question ran ${data.setup.runs_per_question} times per server, and the answers were computed from primary sources
-      (SEC EDGAR, the US Treasury, FRED and Yahoo Finance chart data) separately from every server compared.</p>
-      <h2>Accuracy on the questions every server finished</h2>
-      <div class="cc-table-scroll" role="region" aria-label="Accuracy on the shared questions" tabindex="0"><table class="h2h__table">
-        <caption>Correct runs on the ${data.questions_common} shared questions, ${data.setup.runs_per_question} runs each</caption>
-        <thead><tr><th scope="col">Server</th><th scope="col" class="num">Correct</th><th scope="col" class="num">Runs</th></tr></thead>
-        <tbody>${fair.map(headRow).join("")}</tbody>
-      </table></div>
-      <ul>${pairs}</ul>
-      <h2>By kind of question, over every finished run</h2>
-      <p>Red marks a kind of question a server never answered correctly.</p>
-      <div class="cc-table-scroll" role="region" aria-label="Correct runs by category" tabindex="0"><table class="h2h__table">
-        <caption>Correct runs by category, median input tokens and median seconds per run</caption>
-        <thead><tr><th scope="col">Server</th>${data.categories.map((c) => `<th scope="col" class="num">${esc(c.label)}</th>`).join("")}<th scope="col" class="num">Input tokens</th><th scope="col" class="num">Seconds</th></tr></thead>
-        <tbody>${fair.map(catRow).join("")}</tbody>
-      </table></div>
-      <h2>What each server costs before the model asks anything</h2>
-      <p>${esc(data.context.method)} Tokens are ${esc(data.context.tokenizer)}, measured ${esc(data.context.measured)}.</p>
-      <div class="cc-table-scroll" role="region" aria-label="Context each server costs" tabindex="0"><table class="h2h__table">
-        <caption>Tools sent to the model, tools reachable, tokens on every request, seconds to start and list</caption>
-        <thead><tr><th scope="col">Server</th><th scope="col" class="num">Tools sent</th><th scope="col" class="num">Tools reachable</th><th scope="col" class="num">Tokens</th><th scope="col" class="num">Seconds</th></tr></thead>
-        <tbody>${data.context.rows.map(ctxRow).join("")}</tbody>
-      </table></div>
-      <h2>Read this before quoting it</h2>
-      <ul>${data.caveats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>
-      <h2>Every question</h2>
-      <p>Correct runs per question for every server, including the two tuned canli-mcp columns: ${tuned.map((a) => esc(a.label)).join(" and ")}.</p>
-      <div class="cc-table-scroll" role="region" aria-label="Correct runs per question" tabindex="0"><table class="h2h__table">
-        <caption>Correct runs per question and server</caption>
-        <thead><tr><th scope="col">Question</th>${data.arms.map((a) => `<th scope="col" class="num">${esc(a.label)}</th>`).join("")}</tr></thead>
-        <tbody>${data.questions.map(qRow).join("")}</tbody>
-      </table></div>
-      <h2>Run it yourself</h2>
-      <p>The harness, the questions, the code that computes each answer and every run with its tool calls are in
-      <a href="${esc(data.source.repository)}/tree/${esc(data.source.commit)}/${esc(data.source.path)}">${esc(data.source.path)}</a>
-      at commit <code>${esc(data.source.commit.slice(0, 8))}</code>. All figures on this page are in
-      <a href="/benchmarks/finance-mcp-servers.json">finance-mcp-servers.json</a>.</p>
-    </div>
-  </article>
+    <p class="h2h-eyebrow">Benchmark, ${esc(data.status)} result of <time datetime="${data.captured}">${data.captured}</time></p>
+    <h1>${esc(title)}</h1>
+    <p class="h2h-lead">${lead}</p>
+    <p class="h2h-byline">By <span rel="author">${AUTHOR}</span>, Canli Capital</p>
+    <div class="h2h-actions"><a href="#accuracy">See the results</a><a href="/benchmarks/finance-mcp-servers.json">Download every run</a></div>
+  </section>
+  <section class="flagship-figures" aria-label="The gap in figures"><ul>${benchmarkFigures(data).map(([value, label]) => `<li><b>${esc(value)}</b><span>${esc(label)}</span></li>`).join("")}</ul></section>
+  <section class="dev-section flagship-section" id="setup"><p class="eyebrow">The setup</p><h2>Same model. Same questions. Only the server changed.</h2>
+    <p class="flagship-intro">Every server got the same model (${esc(data.setup.model)}), system prompt, ${data.setup.turn_limit}-turn limit,
+    ${integer.format(data.setup.result_cap_characters)}-character cap on each tool result and scoring. No server had an API key.
+    Each question ran ${data.setup.runs_per_question} times per server, and the answers were computed from primary sources
+    (SEC EDGAR, the US Treasury, FRED and Yahoo Finance chart data) separately from every server compared.</p></section>
+  <section class="dev-section flagship-section" id="accuracy"><p class="eyebrow">Accuracy</p><h2>Correct on the questions every server finished</h2>
+    ${bars(data)}
+    <div class="cc-table-scroll h2h-table" role="region" aria-label="Accuracy on the shared questions" tabindex="0"><table class="h2h__table">
+      <caption>Correct runs on the ${data.questions_common} shared questions, ${data.setup.runs_per_question} runs each</caption>
+      <thead><tr><th scope="col">Server</th><th scope="col" class="num">Correct</th><th scope="col" class="num">Runs</th></tr></thead>
+      <tbody>${fair.map(headRow).join("")}</tbody>
+    </table></div>
+    <ul class="h2h-pairs">${pairs}</ul></section>
+  <section class="dev-section flagship-section" id="kinds"><p class="eyebrow">Coverage</p><h2>By kind of question, over every finished run</h2>
+    <p class="flagship-intro">Red marks a kind of question a server never answered correctly.</p>
+    <div class="cc-table-scroll h2h-table" role="region" aria-label="Correct runs by category" tabindex="0"><table class="h2h__table">
+      <caption>Correct runs by category, median input tokens and median seconds per run</caption>
+      <thead><tr><th scope="col">Server</th>${data.categories.map((c) => `<th scope="col" class="num">${esc(c.label)}</th>`).join("")}<th scope="col" class="num">Input tokens</th><th scope="col" class="num">Seconds</th></tr></thead>
+      <tbody>${fair.map(catRow).join("")}</tbody>
+    </table></div></section>
+  <section class="dev-section flagship-section" id="cost"><p class="eyebrow">Cost</p><h2>What each server costs before the model asks anything</h2>
+    <p class="flagship-intro">${esc(data.context.method)} Tokens are ${esc(data.context.tokenizer)}, measured ${esc(data.context.measured)}.</p>
+    <div class="cc-table-scroll h2h-table" role="region" aria-label="Context each server costs" tabindex="0"><table class="h2h__table">
+      <caption>Tools sent to the model, tools reachable, tokens on every request, seconds to start and list</caption>
+      <thead><tr><th scope="col">Server</th><th scope="col" class="num">Tools sent</th><th scope="col" class="num">Tools reachable</th><th scope="col" class="num">Tokens</th><th scope="col" class="num">Seconds</th></tr></thead>
+      <tbody>${data.context.rows.map(ctxRow).join("")}</tbody>
+    </table></div></section>
+  <section class="dev-section flagship-section h2h-caveats" id="caveats"><p class="eyebrow">Before quoting it</p><h2>Read this before quoting it</h2>
+    <ul>${data.caveats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></section>
+  <section class="dev-section flagship-section" id="questions"><p class="eyebrow">Every question</p><h2>Every question, every server</h2>
+    <p class="flagship-intro">Correct runs per question for every server, including the two tuned canli-mcp columns: ${tuned.map((a) => esc(a.label)).join(" and ")}.</p>
+    <div class="cc-table-scroll h2h-table" role="region" aria-label="Correct runs per question" tabindex="0"><table class="h2h__table">
+      <caption>Correct runs per question and server</caption>
+      <thead><tr><th scope="col">Question</th>${data.arms.map((a) => `<th scope="col" class="num">${esc(a.label)}</th>`).join("")}</tr></thead>
+      <tbody>${data.questions.map(qRow).join("")}</tbody>
+    </table></div></section>
+  <section class="dev-section flagship-section" id="reproduce"><p class="eyebrow">Reproduce</p><h2>Run it yourself</h2>
+    <p class="flagship-intro">The harness, the questions, the code that computes each answer and every run with its tool calls are in
+    <a href="${esc(data.source.repository)}/tree/${esc(data.source.commit)}/${esc(data.source.path)}">${esc(data.source.path)}</a>
+    at commit <code>${esc(data.source.commit.slice(0, 8))}</code>. All figures on this page are in
+    <a href="/benchmarks/finance-mcp-servers.json">finance-mcp-servers.json</a>.</p></section>
 </main>
 ${renderProductShellFooter()}
 </body>
