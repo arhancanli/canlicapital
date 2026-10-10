@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -70,6 +70,31 @@ test("the tickers show the benchmark's own answers, and drop a label once its qu
   const moved = structuredClone(h2h), cpi = moved.questions.find((q) => q.id === "macro_cpi");
   cpi.question = cpi.question.replace("August 2026", "September 2026");
   assert.ok(!filmData(moved, leaderboard).ticker.some((t) => t.startsWith("CPI-U")), "a stale period is never printed");
+});
+
+test("the structured data sends canli-mcp to the flagship chapter", () => {
+  const OPEN = '<script type="application/ld+json">', nodes = [];
+  for (let at = page.indexOf(OPEN); at >= 0; at = page.indexOf(OPEN, at + 1)) {
+    const block = JSON.parse(page.slice(at + OPEN.length, page.indexOf("</script>", at)));
+    nodes.push(...(block["@graph"] ?? [block]));
+  }
+  const app = nodes.find((n) => n["@id"] === "https://canlicapital.com/#canli-mcp");
+  assert.ok(app, "canli-mcp is described");
+  const id = new URL(app.url).hash.slice(1), at = page.indexOf(`id="${id}"`);
+  assert.ok(at > 0, `${id} exists`);
+  assert.match(page.slice(at, at + 300), /The flagship/, `${app.url} is the flagship chapter`);
+});
+
+test("a link into this repository's main branch names a path that is on main", () => {
+  const REPO = "https://github.com/arhancanli/canlicapital/";
+  for (const file of [PAGE, "benchmarks/finance-mcp-servers.html"]) {
+    const html = readFileSync(resolve(ROOT, file), "utf8");
+    for (let at = html.indexOf(REPO); at >= 0; at = html.indexOf(REPO, at + 1)) {
+      const rest = html.slice(at + REPO.length), url = REPO + rest.slice(0, rest.search(/["'<\s#?]/));
+      const onMain = url.slice(REPO.length).match(/^(?:tree|blob)\/main\/(.+?)\/?$/);
+      if (onMain) assert.ok(existsSync(resolve(ROOT, onMain[1])), `${file} links to ${url}, which is not on main yet`);
+    }
+  }
 });
 
 test("an unpublished package is never presented as installable without saying so", () => {
