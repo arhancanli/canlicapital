@@ -1,0 +1,48 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.arhancanli/canli-quant-mcp",
+  "title": "Canli Quant",
+  "description": "235 quant tools and 399 strategy sleeves, checked against QuantLib, statsmodels, arch or TA-Lib.",
+  "websiteUrl": "https://canlicapital.com/mcp-servers",
+  "icons": [
+    {
+      "src": "https://canlicapital.com/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    },
+    {
+      "src": "https://canlicapital.com/favicon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/arhancanli/canlicapital",
+    "source": "github",
+    "subfolder": "mcp-quant"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "canli-quant-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "CANLI_TOOLSETS",
+          "description": "Toolsets to list directly (comma-separated, or all). Default: three discovery tools that reach every tool.",
+          "isRequired": false,
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}
