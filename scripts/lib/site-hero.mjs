@@ -55,20 +55,41 @@ function elementEnd(html, start) {
   return -1;
 }
 
+// Whitespace and comments around an element, skipped by scanning (a regular expression with a repeated group
+// can backtrack without end on a crafted run of comments).
+const space = (c) => c === " " || c === "\n" || c === "\t" || c === "\r" || c === "\f";
+function skipForward(html, pos) {
+  for (;;) {
+    while (pos < html.length && space(html[pos])) pos += 1;
+    if (!html.startsWith("<!--", pos)) return pos;
+    const end = html.indexOf("-->", pos + 4);
+    if (end < 0) return pos;
+    pos = end + 3;
+  }
+}
+function skipBackward(html, pos) {
+  for (;;) {
+    while (pos > 0 && space(html[pos - 1])) pos -= 1;
+    if (!html.endsWith("-->", pos)) return pos;
+    const start = html.lastIndexOf("<!--", pos - 3);
+    if (start < 0) return pos;
+    pos = start;
+  }
+}
+
 // The element that ends just before `pos` (skipping whitespace and comments), as [start, end], when it is a <p>.
 function paragraphBefore(html, pos) {
-  const before = html.slice(0, pos).replace(/(\s|<!--[\s\S]*?-->)*$/, "");
-  if (!before.endsWith("</p>")) return null;
-  const start = before.lastIndexOf("<p");
-  if (start < 0 || !/^<p[\s>]/.test(html.slice(start, start + 3))) return null;
-  const end = elementEnd(html, start);
-  return end === before.length ? [start, end] : null;
+  const end = skipBackward(html, pos);
+  if (!html.endsWith("</p>", end)) return null;
+  let start = html.lastIndexOf("<p", end - 4);
+  while (start >= 0 && !space(html[start + 2]) && html[start + 2] !== ">") start = html.lastIndexOf("<p", start - 1);
+  if (start < 0) return null;
+  return elementEnd(html, start) === end ? [start, end] : null;
 }
 
 // The element that starts just after `pos` (skipping whitespace and comments), as [start, end].
 function elementAfter(html, pos) {
-  const lead = /^(\s|<!--[\s\S]*?-->)*/.exec(html.slice(pos))[0].length;
-  const start = pos + lead;
+  const start = skipForward(html, pos);
   if (html[start] !== "<" || html[start + 1] === "/") return null;
   const end = elementEnd(html, start);
   return end > start ? [start, end] : null;
@@ -148,9 +169,13 @@ export function applyHero(html, file, { trailNav = null } = {}) {
   out = out.replace(/<(section|header|div)\b[^>]*\bcc-film-head\b[^>]*>\s*<\/\1>\s*/, "");
   if (parent && /^(section|header|div)$/.test(parent.tag) && !/\bcc-film-head\b/.test(parent.open)) {
     const at = out.indexOf(parent.open, inner + header.length);
-    const rest = at >= 0 ? out.slice(at + parent.open.length) : "";
-    const empty = new RegExp(`^(\\s|<!--[\\s\\S]*?-->)*</${parent.tag}>\\s*`).exec(rest);
-    if (empty) out = out.slice(0, at) + rest.slice(empty[0].length);
+    const close = `</${parent.tag}>`;
+    const body = at >= 0 ? skipForward(out, at + parent.open.length) : -1;
+    if (body >= 0 && out.startsWith(close, body)) {
+      let after = body + close.length; // whitespace only: a comment after it may be another step's region marker
+      while (after < out.length && space(out[after])) after += 1;
+      out = out.slice(0, at) + out.slice(after);
+    }
   }
   return out.replace(/(<(?:section|header|div)\b[^>]*class="[^"]*)\bcc-film-head\s*/, "$1");
 }
