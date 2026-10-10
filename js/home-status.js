@@ -5,7 +5,7 @@
 // internal letter grade ("Self-grade C+"), which told a reader nothing about what
 // had been tested or what was still open. These functions say it plainly.
 //
-// js/home.js renders them in the browser and scripts/build-hero-fallbacks.mjs
+// js/record.js renders them in the browser and scripts/build-hero-fallbacks.mjs
 // writes the same strings into the static HTML at build time, so the text a
 // crawler reads and the text a person sees cannot drift
 // (scripts/audit-homepage.py compares the two in a real browser).
