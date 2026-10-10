@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" data-page="benchmark-finance-mcp-servers">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>canli-mcp vs OpenBB, EdgarTools and Yahoo Finance | Canli Capital</title>
+<meta name="description" content="canli-mcp against OpenBB, EdgarTools and Yahoo Finance MCP servers on the same 24 finance questions, with the same model and scoring. Every run is published." />
+<link rel="canonical" href="https://canlicapital.com/benchmarks/finance-mcp-servers" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="benchmarks/finance-mcp-servers.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Finance MCP servers, head to head" />
+<meta property="og:description" content="canli-mcp against OpenBB, EdgarTools and Yahoo Finance MCP servers on the same 24 finance questions, with the same model and scoring. Every run is published." />
+<meta property="og:url" content="https://canlicapital.com/benchmarks/finance-mcp-servers" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="/css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<style>
+.paper__body .h2h__table{display:table;overflow:visible;width:100%;border-collapse:collapse;margin:0;font-variant-numeric:tabular-nums}
+.h2h__table th{background:transparent}
+.h2h__table th a{color:#1f3fbf}
+.h2h__table th,.h2h__table td{padding:.55rem .5rem;border-bottom:1px solid rgba(0,0,0,.12);text-align:left;vertical-align:top}
+.h2h__table td.num,.h2h__table th.num{text-align:right}
+.h2h__table tr.is-ours th,.h2h__table tr.is-ours td{font-weight:600}
+.h2h__table .zero{color:#b3261e}
+.h2h__note{font-size:.85rem;color:#4a5560}
+.h2h__q{font-size:.9rem;white-space:normal;min-width:280px;max-width:420px}
+.h2h__table td,.h2h__table th:not(.h2h__q){white-space:nowrap}
+.paper__crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem;padding:0;margin:0 0 1rem;font-size:.85rem}
+.paper__crumbs li+li::before{content:"/";margin-right:.35rem;opacity:.5}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Dataset","name":"Finance MCP servers, head to head","description":"canli-mcp against OpenBB, EdgarTools and Yahoo Finance MCP servers on the same 24 finance questions, with the same model and scoring. Every run is published.","url":"https://canlicapital.com/benchmarks/finance-mcp-servers","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Person","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"dateModified":"2026-10-09","distribution":{"@type":"DataDownload","contentUrl":"https://canlicapital.com/benchmarks/finance-mcp-servers.json","encodingFormat":"application/json"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com/"},{"@type":"ListItem","position":2,"name":"MCP servers","item":"https://canlicapital.com/mcp-servers"},{"@type":"ListItem","position":3,"name":"Finance MCP servers, head to head","item":"https://canlicapital.com/benchmarks/finance-mcp-servers"}]}]}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">ALPHAC</a>
+<a class="cc-shell__link" href="/developers" data-current="true">Developers</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/vision">Vision</a>
+<a class="cc-shell__panel-link" href="/companies">Company reference</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers" data-current="true">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a>
+<a class="cc-shell__panel-link" href="/contributors">Contributors</a>
+<a class="cc-shell__panel-link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Reproducible code</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <nav class="paper__crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><a href="/mcp-servers">MCP servers</a></li><li><span aria-current="page">Finance MCP servers, head to head</span></li></ol></nav>
+    <p class="paper__eyebrow">Benchmark, interim result of <time datetime="2026-10-09">2026-10-09</time></p>
+    <h1 class="paper__title">Finance MCP servers, head to head</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+      <p class="hub__standfirst">On the 14 questions every server finished, canli-mcp answered 79% correctly (22 of 28 runs). The best of the other servers, EdgarTools + Yahoo Finance MCP, answered 54% (15 of 28).</p>
+      <p>Every server got the same model (gpt-5.4-mini), system prompt, 12-turn limit,
+      30,000-character cap on each tool result and scoring. Only the MCP server changed. No server had an API key.
+      Each question ran 2 times per server, and the answers were computed from primary sources
+      (SEC EDGAR, the US Treasury, FRED and Yahoo Finance chart data) separately from every server compared.</p>
+      <h2>Accuracy on the questions every server finished</h2>
+      <div class="cc-table-scroll" role="region" aria-label="Accuracy on the shared questions" tabindex="0"><table class="h2h__table">
+        <caption>Correct runs on the 14 shared questions, 2 runs each</caption>
+        <thead><tr><th scope="col">Server</th><th scope="col" class="num">Correct</th><th scope="col" class="num">Runs</th></tr></thead>
+        <tbody><tr class="is-ours"><th scope="row"><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp-canli" rel="noreferrer">canli-mcp</a><span class="h2h__note"> canli-mcp 0.1.0 as it stood before the benchmark, MIT</span></th><td class="num">79%</td><td class="num">22 of 28</td></tr><tr><th scope="row"><a href="https://github.com/OpenBB-finance/OpenBB" rel="noreferrer">OpenBB MCP</a><span class="h2h__note"> openbb-mcp-server 2.0.1 with openbb 5.0.0, in its tool-discovery mode, Apache-2.0</span></th><td class="num">39%</td><td class="num">11 of 28</td></tr><tr><th scope="row"><a href="https://github.com/dgunning/edgartools" rel="noreferrer">EdgarTools MCP</a><span class="h2h__note"> edgartools 5.61.1, its MCP server, MIT</span></th><td class="num">39%</td><td class="num">11 of 28</td></tr><tr><th scope="row"><a href="https://github.com/Alex2Yang97/yahoo-finance-mcp" rel="noreferrer">Yahoo Finance MCP</a><span class="h2h__note"> Alex2Yang97/yahoo-finance-mcp at commit b9c1765, MIT</span></th><td class="num">50%</td><td class="num">14 of 28</td></tr><tr><th scope="row"><a href="https://github.com/dgunning/edgartools" rel="noreferrer">EdgarTools + Yahoo Finance MCP</a><span class="h2h__note"> both servers connected at once, MIT</span></th><td class="num">54%</td><td class="num">15 of 28</td></tr></tbody>
+      </table></div>
+      <ul><li>Against OpenBB MCP, canli-mcp did better on 9 questions and worse on 4 (two-sided exact sign test, p = 0.2668).</li><li>Against EdgarTools MCP, canli-mcp did better on 14 questions and worse on 3 (two-sided exact sign test, p = 0.0127).</li><li>Against Yahoo Finance MCP, canli-mcp did better on 14 questions and worse on 5 (two-sided exact sign test, p = 0.0636).</li><li>Against EdgarTools + Yahoo Finance MCP, canli-mcp did better on 11 questions and worse on 4 (two-sided exact sign test, p = 0.1185).</li></ul>
+      <h2>By kind of question, over every finished run</h2>
+      <p>Red marks a kind of question a server never answered correctly.</p>
+      <div class="cc-table-scroll" role="region" aria-label="Correct runs by category" tabindex="0"><table class="h2h__table">
+        <caption>Correct runs by category, median input tokens and median seconds per run</caption>
+        <thead><tr><th scope="col">Server</th><th scope="col" class="num">SEC filings</th><th scope="col" class="num">Fundamentals</th><th scope="col" class="num">Insider trades</th><th scope="col" class="num">13F holdings</th><th scope="col" class="num">Rates and macro</th><th scope="col" class="num">Prices</th><th scope="col" class="num">Analytics</th><th scope="col" class="num">Input tokens</th><th scope="col" class="num">Seconds</th></tr></thead>
+        <tbody><tr class="is-ours"><th scope="row">canli-mcp</th><td class="num">5/6</td><td class="num">3/6</td><td class="num">6/6</td><td class="num">4/6</td><td class="num">8/8</td><td class="num">6/6</td><td class="num">6/10</td><td class="num">11,782</td><td class="num">5.33</td></tr><tr><th scope="row">OpenBB MCP</th><td class="num zero">0/6</td><td class="num">6/6</td><td class="num">3/6</td><td class="num">2/6</td><td class="num zero">0/4</td><td class="num">not run</td><td class="num">not run</td><td class="num">107,112.5</td><td class="num">24.44</td></tr><tr><th scope="row">EdgarTools MCP</th><td class="num zero">0/6</td><td class="num">5/6</td><td class="num">2/6</td><td class="num">4/6</td><td class="num zero">0/8</td><td class="num zero">0/6</td><td class="num zero">0/3</td><td class="num">18,558</td><td class="num">9.86</td></tr><tr><th scope="row">Yahoo Finance MCP</th><td class="num">2/6</td><td class="num">6/6</td><td class="num">2/6</td><td class="num">2/6</td><td class="num">2/8</td><td class="num">4/6</td><td class="num zero">0/10</td><td class="num">10,335</td><td class="num">3.51</td></tr><tr><th scope="row">EdgarTools + Yahoo Finance MCP</th><td class="num">1/6</td><td class="num">6/6</td><td class="num">2/6</td><td class="num">4/6</td><td class="num">2/8</td><td class="num">4/6</td><td class="num zero">0/3</td><td class="num">21,186</td><td class="num">10.37</td></tr></tbody>
+      </table></div>
+      <h2>What each server costs before the model asks anything</h2>
+      <p>Each server is started with the benchmark's command; its instructions and whole tool list are counted in the shape an OpenAI-style client sends tools. No model is called. Tokens are o200k_base, measured 2026-10-10.</p>
+      <div class="cc-table-scroll" role="region" aria-label="Context each server costs" tabindex="0"><table class="h2h__table">
+        <caption>Tools sent to the model, tools reachable, tokens on every request, seconds to start and list</caption>
+        <thead><tr><th scope="col">Server</th><th scope="col" class="num">Tools sent</th><th scope="col" class="num">Tools reachable</th><th scope="col" class="num">Tokens</th><th scope="col" class="num">Seconds</th></tr></thead>
+        <tbody><tr class="is-ours"><th scope="row">canli-mcp</th><td class="num">3</td><td class="num">285</td><td class="num">859</td><td class="num">0.13</td></tr><tr><th scope="row">OpenBB MCP, every tool</th><td class="num">1,056</td><td class="num">1,056</td><td class="num">432,001</td><td class="num">30.7</td></tr><tr><th scope="row">OpenBB MCP, tool discovery (as benchmarked)</th><td class="num">14</td><td class="num">1,056</td><td class="num">2,171</td><td class="num">26.82</td></tr><tr><th scope="row">EdgarTools MCP</th><td class="num">13</td><td class="num">13</td><td class="num">3,801</td><td class="num">1.59</td></tr><tr><th scope="row">Yahoo Finance MCP</th><td class="num">9</td><td class="num">9</td><td class="num">2,205</td><td class="num">1.35</td></tr></tbody>
+      </table></div>
+      <h2>Read this before quoting it</h2>
+      <ul><li>We wrote the 24 questions, in seven categories our servers were built for. What the other servers do well beyond them is not scored: news, options chains and analyst ratings (Yahoo Finance MCP), statement comparisons from XBRL (EdgarTools) and the many keyed data sources OpenBB connects to.</li><li>The fair comparison is the first canli-mcp column. The two later columns are the same server after fixes this benchmark prompted, so they were tuned on these questions. A held-out set of 24 new questions, written after the fixes, will test the fixed server; it waits for API credit.</li><li>The API account ran out of credit during the runs. OpenBB finished 14 of the 24 questions and EdgarTools 20. Runs stopped by the account are left out, never scored as wrong, and the headline compares only the 14 questions every server finished.</li><li>One model and two runs per question. A difference of a question or two is noise.</li><li>Before scoring, we widened the 10-year yield tolerance to accept a market close instead of only Treasury's official rate, and checked that EdgarTools' wrong filing answers came from its own responses, not from the 30,000-character result cap.</li></ul>
+      <h2>Every question</h2>
+      <p>Correct runs per question for every server, including the two tuned canli-mcp columns: canli-mcp after first fixes and canli-mcp after all fixes.</p>
+      <div class="cc-table-scroll" role="region" aria-label="Correct runs per question" tabindex="0"><table class="h2h__table">
+        <caption>Correct runs per question and server</caption>
+        <thead><tr><th scope="col">Question</th><th scope="col" class="num">canli-mcp</th><th scope="col" class="num">canli-mcp after first fixes</th><th scope="col" class="num">canli-mcp after all fixes</th><th scope="col" class="num">OpenBB MCP</th><th scope="col" class="num">EdgarTools MCP</th><th scope="col" class="num">Yahoo Finance MCP</th><th scope="col" class="num">EdgarTools + Yahoo Finance MCP</th></tr></thead>
+        <tbody><tr><th scope="row" class="h2h__q">According to NVIDIA's most recent annual report on Form 10-K, approximately how many employees did NVIDIA have at the end of the fiscal year? Answer with the number of employees.<span class="h2h__note"> Answer: 42,000</span></th><td class="num">1/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num">2/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">Tesla filed a press release on production and deliveries for the third quarter of 2026 with the SEC (an 8-K exhibit). How many vehicles did it say Tesla delivered in Q3 2026? Answer with the number of vehicles.<span class="h2h__note"> Answer: 486,000</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">On the cover page of Apple's annual report on Form 10-K for fiscal year 2025, how many shares of common stock were outstanding? Answer with the number of shares.<span class="h2h__note"> Answer: 14,776,353,000</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num">1/2</td></tr><tr><th scope="row" class="h2h__q">What were Apple's total net sales (revenue) for fiscal year 2025, which ended September 27, 2025? Answer in US dollars as a plain number.<span class="h2h__note"> Answer: 416,161,000,000</span></th><td class="num">1/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td></tr><tr><th scope="row" class="h2h__q">What was Microsoft's net income for its fiscal year ended June 30, 2025? Answer in US dollars as a plain number.<span class="h2h__note"> Answer: 101,832,000,000</span></th><td class="num">1/2</td><td class="num">1/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">1/2</td><td class="num">2/2</td><td class="num">2/2</td></tr><tr><th scope="row" class="h2h__q">What was NVIDIA's diluted earnings per share for its fiscal year 2026 (ended January 25, 2026)? Answer in US dollars per share.<span class="h2h__note"> Answer: 4.9</span></th><td class="num">1/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td></tr><tr><th scope="row" class="h2h__q">According to SEC Form 4 filings, how many shares of Tesla common stock did Tesla's Chief Financial Officer sell in open-market sales on September 8, 2026? Answer with the number of shares.<span class="h2h__note"> Answer: 2,605.75</span></th><td class="num">2/2</td><td class="num">1/2</td><td class="num">1/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td></tr><tr><th scope="row" class="h2h__q">Add up all open-market sales (Form 4 transaction code S) of NVIDIA common stock by NVIDIA insiders reported in Form 4 filings filed between July 1 and September 30, 2026. How many shares were sold in total? Answer with the number of shares.<span class="h2h__note"> Answer: 4,332,118</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">1/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">How many Form 4 filings were filed with the SEC for Apple Inc. as the issuer during September 2026 (filing dates September 1-30, 2026, original Form 4s only, not amendments)? Answer with the count.<span class="h2h__note"> Answer: 11</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">According to Berkshire Hathaway's 13F filing for the quarter ended June 30, 2026, how many shares of Apple did it hold? Answer with the number of shares.<span class="h2h__note"> Answer: 227,917,808</span></th><td class="num zero">0/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td></tr><tr><th scope="row" class="h2h__q">What is the total market value of all holdings reported in Berkshire Hathaway's 13F filing for the quarter ended June 30, 2026? Answer in US dollars as a plain number.<span class="h2h__note"> Answer: 299,253,556,246</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num zero">0/2</td><td class="num">2/2</td><td class="num zero">0/2</td><td class="num">2/2</td></tr><tr><th scope="row" class="h2h__q">How many entries (rows in the information table) does Bridgewater Associates' 13F filing for the quarter ended June 30, 2026 report? Answer with the count.<span class="h2h__note"> Answer: 997</span></th><td class="num">2/2</td><td class="num">1/2</td><td class="num">2/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">What was the 10-year US Treasury par yield (Treasury daily par yield curve rate) on October 8, 2026? Answer in percent, e.g. 4.25.<span class="h2h__note"> Answer: 5.22</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">1/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num">2/2</td><td class="num">2/2</td></tr><tr><th scope="row" class="h2h__q">Using the US Treasury daily par yield curve, what was the 10-year yield minus the 2-year yield on October 8, 2026? Answer in percentage points, e.g. 0.35.<span class="h2h__note"> Answer: 0.47</span></th><td class="num">2/2</td><td class="num zero">0/2</td><td class="num">2/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">What was the year-over-year change in the US Consumer Price Index for All Urban Consumers (CPI-U, all items, seasonally adjusted) for August 2026? Answer in percent, e.g. 2.9.<span class="h2h__note"> Answer: 3.353</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">1/2</td><td class="num">not run</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">What was the US unemployment rate for August 2026 (seasonally adjusted)? Answer in percent.<span class="h2h__note"> Answer: 4.1</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">not run</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">What was Apple's (AAPL) closing stock price on October 8, 2026? Answer in US dollars.<span class="h2h__note"> Answer: 340.42</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">not run</td><td class="num zero">0/2</td><td class="num">2/2</td><td class="num">2/2</td></tr><tr><th scope="row" class="h2h__q">What was Microsoft's (MSFT) total return including dividends from the close on December 31, 2025 to the close on September 30, 2026? Answer in percent, e.g. 12.3.<span class="h2h__note"> Answer: 6.7272</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">1/2</td><td class="num">not run</td><td class="num zero">0/2</td><td class="num">1/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">What was the maximum drawdown of SPY during calendar year 2025, measured on daily dividend-adjusted closing prices (peak to trough within 2025)? Answer as a fraction, e.g. 0.12 for 12%.<span class="h2h__note"> Answer: -0.187552</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">not run</td><td class="num zero">0/2</td><td class="num">1/2</td><td class="num">2/2</td></tr><tr><th scope="row" class="h2h__q">What was NVIDIA's (NVDA) annualized volatility in 2025, computed as the standard deviation of daily simple returns of adjusted closing prices times the square root of 252 (returns from the first trading day of 2025 through December 31, 2025, starting from the December 31, 2024 close)? Answer as a fraction, e.g. 0.35.<span class="h2h__note"> Answer: 0.49618</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">not run</td><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num zero">0/2</td></tr><tr><th scope="row" class="h2h__q">What was the correlation between the daily simple returns of AAPL and MSFT in calendar year 2025, using adjusted closing prices? Answer as a number between -1 and 1.<span class="h2h__note"> Answer: 0.486914</span></th><td class="num zero">0/2</td><td class="num">1/2</td><td class="num">2/2</td><td class="num">not run</td><td class="num zero">0/1</td><td class="num zero">0/2</td><td class="num zero">0/1</td></tr><tr><th scope="row" class="h2h__q">What was Tesla's (TSLA) beta to SPY in calendar year 2025, from daily simple returns of adjusted closing prices (covariance over SPY variance)? Answer as a number.<span class="h2h__note"> Answer: 2.234381</span></th><td class="num zero">0/2</td><td class="num zero">0/2</td><td class="num">2/2</td><td class="num">not run</td><td class="num">not run</td><td class="num zero">0/2</td><td class="num">not run</td></tr><tr><th scope="row" class="h2h__q">What was SPY's annualized Sharpe ratio in calendar year 2025, with a 0% risk-free rate, from daily simple returns of adjusted closing prices (mean over standard deviation times the square root of 252)? Answer as a number.<span class="h2h__note"> Answer: 0.9401</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">not run</td><td class="num">not run</td><td class="num zero">0/2</td><td class="num">not run</td></tr><tr><th scope="row" class="h2h__q">Price a European call option with Black-Scholes: spot 100, strike 105, 6 months to expiry, risk-free rate 4% (continuous), dividend yield 1% (continuous), volatility 22%. Answer in dollars.<span class="h2h__note"> Answer: 4.712244</span></th><td class="num">2/2</td><td class="num">2/2</td><td class="num">2/2</td><td class="num">not run</td><td class="num">not run</td><td class="num zero">0/2</td><td class="num">not run</td></tr></tbody>
+      </table></div>
+      <h2>Run it yourself</h2>
+      <p>The harness, the questions, the code that computes each answer and every run with its tool calls are in
+      <a href="https://github.com/arhancanli/canlicapital/tree/8c106a6ff1e1db75a7bc632da28f632058115dbd/mcp-canli/bench/rivals">mcp-canli/bench/rivals</a>
+      at commit <code>8c106a6f</code>. All figures on this page are in
+      <a href="/benchmarks/finance-mcp-servers.json">finance-mcp-servers.json</a>.</p>
+    </div>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
+      <code>npx -y canli-validation-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/record">Paper record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/benchmarks/finance-mcp-servers">Finance MCP benchmark</a>
+      <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/costs">What costs are charged</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/vision">Vision</a>
+      <a href="/stats">MCP downloads</a>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Performance</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Calculators">
+      <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
+      <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
+      <a href="/tools/selection-risk">Selection Risk Lab</a>
+      <a href="/tools/breadth">Breadth Lab</a>
+      <a href="/tools/execution">Execution Reality Lab</a>
+      <a href="/tools/trial-accounting">Trial accounting</a>
+      <a href="/tools/evidence-chain">Evidence chain</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/developers">Developers</a>
+      <a href="/developers#quickstart">Get an API key</a>
+      <a href="/developers#ai-assistant">Connect the MCP server</a>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="/standards/paper-evidence">Evidence standard</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
+</footer>
+</body>
+</html>

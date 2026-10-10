@@ -27,7 +27,8 @@ import { EXECUTION_SOURCE_PATHS } from './execution-workflow.mjs';
 // under test.
 // =============================================================================
 export const PAGE_SOURCES = {
-  "/": ["index.html", "config/home-answers.json", "scripts/build-home-answers.mjs", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
+  "/": ["index.html", "config/home-answers.json", "scripts/build-home-answers.mjs", "scripts/build-home-film.mjs", "scripts/lib/home-film.mjs", "config/mcp-head-to-head.json", "config/canli-mcp.json", "public/datasets/filing-facts/v0/leaderboard.json"],
+  "/record": ["record.html", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
   "/systems": ["systems.html"],
   "/performance": ["performance.html"],
   "/progress": ["progress.html"],
@@ -74,6 +75,7 @@ export const PAGE_SOURCES = {
   "/vision": ["scripts/build-vision-and-stats.mjs"],
   "/stats": ["scripts/build-vision-and-stats.mjs", "scripts/build-adoption-stats.mjs", "public/stats/adoption.json"],
   "/benchmarks/filingfacts": ["scripts/build-filingfacts-leaderboard.mjs", "public/datasets/filing-facts/v0/leaderboard.json"],
+  "/benchmarks/finance-mcp-servers": ["scripts/build-mcp-head-to-head.mjs", "config/mcp-head-to-head.json", "config/canli-mcp.json"],
   "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "js/filing-facts-packet.js", "scripts/canonical-json.mjs", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
   "/developers": [
     // Owned by another generator (scripts/build-standards-and-developers.mjs) this fix does not

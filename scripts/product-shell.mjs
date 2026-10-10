@@ -169,7 +169,9 @@ ${companies.map(company => `      <a href="${company.href}">${company.label.repl
 `;
 }
 
-export function renderProductShellFooter({ developerStrip = true, companies = [] } = {}) {
+// motion: false leaves out js/site-motion.js (and the GSAP it imports) for a page that runs its own
+// motion, as the film homepage does.
+export function renderProductShellFooter({ developerStrip = true, companies = [], motion = true } = {}) {
   return `<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
 ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary>${renderOpticalHandoff()}</details>
   <div class="cc-footer__lead">
@@ -180,8 +182,10 @@ ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><s
     <nav aria-label="Portfolio and research">
       <span>Research system</span>
       <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/record">Paper record</a>
       <a href="/systems">ALPHAC systems</a>
       <a href="/research">Research papers</a>
+      <a href="/benchmarks/finance-mcp-servers">Finance MCP benchmark</a>
       <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
       <a href="/trials">Trial union</a>
     </nav>
@@ -234,8 +238,7 @@ ${renderDemandCompanies(companies)}  </div>
     <span>Copyright Arhan Canli</span>
   </div>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
-  <script type="module" src="/js/site-motion.js"></script>
-</footer>`;
+${motion ? '  <script type="module" src="/js/site-motion.js"></script>\n' : ""}</footer>`;
 }
 
 export const PRODUCT_SHELL_PRIMARY_LINKS = PRIMARY_LINKS;

@@ -33,11 +33,15 @@ const HAND_AUTHORED = [
   "progress.html",
   "performance.html",
   "research.html",
+  "record.html",
 ];
 
 //: The hand-authored pages whose footer lists the company records searchers find most
 //: (renderProductShellFooter companies option); developers.html gets it from its generator.
 const COMPANY_LINKED = new Set(["index.html", "research.html"]);
+
+//: Pages that run their own motion (js/home-film.js) and so skip the shared site-motion script.
+const FILM_PAGES = new Set(["index.html"]);
 
 function replaceBlock(source, file, openTag, closeTag, replacement) {
   const start = source.indexOf(openTag);
@@ -65,7 +69,7 @@ for (const file of HAND_AUTHORED) {
   );
   after = replaceBlock(
     after, file, '<footer class="cc-footer"', "</footer>",
-    renderProductShellFooter({ companies: COMPANY_LINKED.has(file) ? demandCompanies().companies : [] }),
+    renderProductShellFooter({ companies: COMPANY_LINKED.has(file) ? demandCompanies().companies : [], motion: !FILM_PAGES.has(file) }),
   );
 
   if (after !== before) {

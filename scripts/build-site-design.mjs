@@ -27,7 +27,6 @@ export function applySiteDesign(html, path) {
   next = next.replace(/<!-- evidence-film:start -->[\s\S]*?<!-- evidence-film:end -->\s*/g, '');
   next = next.replace(/<!-- contributor-chapter:start -->[\s\S]*?<!-- contributor-chapter:end -->\s*/g, '');
   if (family(path) === 'home') {
-    next = next.replace(/(<main\b[^>]*>)/, '$1<!-- evidence-film:start --><div class="evidence-film" aria-hidden="true"><canvas id="evidence-film-canvas"></canvas><div class="evidence-film__light"></div></div><!-- evidence-film:end -->');
     next = next.replace(/(<section class="home-next")/, `<!-- contributor-chapter:start -->${renderContributorChapter()}<!-- contributor-chapter:end -->$1`);
     next = next.replace(/(<section\b[^>]*class="hero cinema-hero")/, '$1 data-film-scene="0"');
     next = next.replace(/(<section\b[^>]*id="vision")/, '$1 data-film-scene="1"');
