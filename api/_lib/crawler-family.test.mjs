@@ -31,7 +31,7 @@ test("a sampled company request logs its client family, page kind and storage re
   assert.equal(lines.length, 1);
   const line = JSON.parse(lines[0]);
   assert.deepEqual({ ...line, ms: undefined }, { canli_crawl: 1, agent: "seo-tool", kind: "concept", status: 200, reads: 1, hits: 2, ms: undefined });
-  assert.ok(!lines[0].includes("ahrefs.com") && !lines[0].includes("Mozilla"), "the User-Agent string is not logged");
+  assert.ok(!lines[0].includes(ua) && !/ahrefs|mozilla/i.test(lines[0]), "the User-Agent string is not logged");
   const quiet = createCompanyReferenceHandler({ loadRelease: async () => release, log: (line) => lines.push(line), sample: () => false });
   await quiet({ method: "GET", query: { path: "/companies/0000320193" }, headers: {} }, { ...res, setHeader() {}, end() {} });
   assert.equal(lines.length, 1, "an unsampled request logs nothing");
