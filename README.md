@@ -7,6 +7,7 @@ the strategies that failed.** Live at **[canlicapital.com](https://canlicapital.
 [![npm](https://img.shields.io/npm/v/canli-fundamentals-mcp?label=canli-fundamentals-mcp)](https://www.npmjs.com/package/canli-fundamentals-mcp)
 [![npm](https://img.shields.io/npm/v/canli-research-mcp?label=canli-research-mcp)](https://www.npmjs.com/package/canli-research-mcp)
 [![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
+[![Smithery](https://smithery.ai/badge/arhancanli8/canli-validation)](https://smithery.ai/servers/arhancanli8/canli-validation)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arhancanli/canlicapital/badge)](https://scorecard.dev/viewer/?uri=github.com/arhancanli/canlicapital)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue)](LICENSE)
 [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-green)](LICENSE-DATA.md)
