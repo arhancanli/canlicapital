@@ -1,0 +1,119 @@
+{
+ "schema": "canli.flagship-mcp.v1",
+ "purpose": "Facts about canli-mcp, the flagship server, as measured in its own repository folder. scripts/build-mcp-head-to-head.mjs publishes them with the benchmark in public/benchmarks/finance-mcp-servers.json, and the homepage prints only what that file holds.",
+ "package": "canli-mcp",
+ "npm_published": false,
+ "license": "MIT",
+ "source": {
+  "repository": "https://github.com/arhancanli/canlicapital",
+  "path": "mcp-canli",
+  "commit": "e0233a2592685cef1d5f263cfab941ad2c7c5747",
+  "measured": "2026-10-09",
+  "note": "Tool counts come from mcp-canli/src/index.json at that commit; the search figures from mcp-canli/test/search.test.mjs; the file and batch figures from the README's measurements."
+ },
+ "install": {
+  "npx": "npx -y canli-mcp",
+  "claude_code": "claude mcp add canli -- npx -y canli-mcp",
+  "json": "{ \"mcpServers\": { \"canli\": { \"command\": \"npx\", \"args\": [\"-y\", \"canli-mcp\"] } } }"
+ },
+ "front": [
+  {
+   "name": "find_tool",
+   "does": "searches every tool by what you ask for"
+  },
+  {
+   "name": "describe_tool",
+   "does": "reads one tool's arguments"
+  },
+  {
+   "name": "run_tool",
+   "does": "runs any tool, or up to 25 in one round trip"
+  }
+ ],
+ "packs": [
+  {
+   "id": "quant",
+   "label": "Quant finance",
+   "tools": 235,
+   "package": "canli-quant-mcp",
+   "covers": "performance and risk, options, fixed income, portfolios, econometrics, indicators and a library of 399 strategy sleeves"
+  },
+  {
+   "id": "validation",
+   "label": "Backtest validation",
+   "tools": 17,
+   "package": "canli-validation-mcp",
+   "covers": "deflated Sharpe ratio, overfitting probability, data-snooping tests, leakage checks and placebo tests"
+  },
+  {
+   "id": "markets",
+   "label": "Markets",
+   "tools": 13,
+   "package": "canli-markets-mcp",
+   "covers": "SEC filings and their sections, insider trades, 13F holdings, Treasury yields, FRED series, prices and market-wide screens"
+  },
+  {
+   "id": "fundamentals",
+   "label": "SEC fundamentals",
+   "tools": 7,
+   "package": "canli-fundamentals-mcp",
+   "covers": "company financials as first reported, with later restatements flagged"
+  },
+  {
+   "id": "research",
+   "label": "Research record",
+   "tools": 6,
+   "package": "canli-research-mcp",
+   "covers": "Canli Capital's open research record"
+  },
+  {
+   "id": "paper",
+   "label": "Paper trading",
+   "tools": 4,
+   "package": "canli-paper-trading-mcp",
+   "covers": "Alpaca paper orders behind pre-trade checks"
+  },
+  {
+   "id": "backtest",
+   "label": "Factor backtests",
+   "tools": 3,
+   "package": "canli-backtest-mcp",
+   "covers": "factor backtests that refuse lookahead"
+  }
+ ],
+ "search": {
+  "requests": 50,
+  "first": 47,
+  "top_three": 50
+ },
+ "file_reference": {
+  "prices": 1000,
+  "tokens": 23,
+  "pasted_tokens": 4893
+ },
+ "batch": {
+  "tokens": 72,
+  "chained_tokens": 31917
+ },
+ "node_minimum": 20.1,
+ "example": {
+  "note": "One real call, run through canli-mcp on 2026-10-10 and copied from its output: run_tool read_filing with the arguments below.",
+  "ran": "2026-10-10",
+  "tool": "read_filing",
+  "arguments": {
+   "company": "NVDA",
+   "form": "10-K",
+   "find": "employees"
+  },
+  "company": "NVIDIA CORP",
+  "ticker": "NVDA",
+  "form": "10-K",
+  "filed": "2026-02-25",
+  "accession": "0001045810-26-000021",
+  "match": "As of the end of fiscal year 2026, we had approximately 42,000 employees in 38 countries",
+  "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+  "evidence_documents": 3,
+  "evidence_sha256_16": "f192181c12dad789",
+  "milliseconds": 764
+ }
+}

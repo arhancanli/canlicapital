@@ -1,0 +1,2257 @@
+{
+ "schema": "canli.mcp-head-to-head-summary.v1",
+ "status": "interim",
+ "captured": "2026-10-09",
+ "source": {
+  "repository": "https://github.com/arhancanli/canlicapital",
+  "path": "mcp-canli/bench/rivals",
+  "commit": "8c106a6ff1e1db75a7bc632da28f632058115dbd",
+  "files": [
+   "results-after.jsonl",
+   "results-edgartools.jsonl",
+   "results-edgartools_yahoo.jsonl",
+   "results-final.jsonl",
+   "results-yahoo.jsonl",
+   "results.jsonl"
+  ],
+  "note": "Each run below is copied field for field from those files at that commit, without the tool-call traces, which stay in the repository."
+ },
+ "setup": {
+  "model": "gpt-5.4-mini",
+  "runs_per_question": 2,
+  "turn_limit": 12,
+  "result_cap_characters": 30000,
+  "api_keys": "none, for any server",
+  "same_for_every_server": "model, system prompt, turn limit, result cap and scoring",
+  "answers": "computed from primary sources (SEC EDGAR, the US Treasury, FRED and Yahoo Finance chart data) independently of every server compared, by truth.py",
+  "scoring": "a run is correct when the number in its final answer is within the question's tolerance of that answer (run.mjs)"
+ },
+ "caveats": [
+  "We wrote the 24 questions, in seven categories our servers were built for. What the other servers do well beyond them is not scored: news, options chains and analyst ratings (Yahoo Finance MCP), statement comparisons from XBRL (EdgarTools) and the many keyed data sources OpenBB connects to.",
+  "The fair comparison is the first canli-mcp column. The two later columns are the same server after fixes this benchmark prompted, so they were tuned on these questions. A held-out set of 24 new questions, written after the fixes, will test the fixed server; it waits for API credit.",
+  "The API account ran out of credit during the runs. OpenBB finished 14 of the 24 questions and EdgarTools 20. Runs stopped by the account are left out, never scored as wrong, and the headline compares only the 14 questions every server finished.",
+  "One model and two runs per question. A difference of a question or two is noise.",
+  "Before scoring, we widened the 10-year yield tolerance to accept a market close instead of only Treasury's official rate, and checked that EdgarTools' wrong filing answers came from its own responses, not from the 30,000-character result cap."
+ ],
+ "categories": [
+  {
+   "id": "filings",
+   "label": "SEC filings"
+  },
+  {
+   "id": "fundamentals",
+   "label": "Fundamentals"
+  },
+  {
+   "id": "insiders",
+   "label": "Insider trades"
+  },
+  {
+   "id": "13F",
+   "label": "13F holdings"
+  },
+  {
+   "id": "rates_macro",
+   "label": "Rates and macro"
+  },
+  {
+   "id": "prices",
+   "label": "Prices"
+  },
+  {
+   "id": "analytics",
+   "label": "Analytics"
+  }
+ ],
+ "questions_total": 24,
+ "questions_common": 14,
+ "common_questions": [
+  "filing_employees",
+  "filing_deliveries",
+  "filing_shares_out",
+  "fund_revenue",
+  "fund_net_income",
+  "fund_eps",
+  "insider_cfo_sale",
+  "insider_nvda_q3",
+  "insider_apple_count",
+  "13f_brk_apple",
+  "13f_brk_total",
+  "13f_bw_entries",
+  "rates_10y",
+  "rates_2s10s"
+ ],
+ "headline": {
+  "ours": "canli",
+  "ours_common": {
+   "correct": 22,
+   "runs": 28,
+   "accuracy": 0.7857,
+   "input_tokens": 591892,
+   "input_tokens_per_correct_answer": 26904
+  },
+  "best_rival": "edgartools+yahoo",
+  "best_rival_common": {
+   "correct": 15,
+   "runs": 28,
+   "accuracy": 0.5357,
+   "input_tokens": 945483,
+   "input_tokens_per_correct_answer": 63032
+  },
+  "rivals_beaten_on_common": 4,
+  "rivals": 4,
+  "rivals_with_a_zero_category": 4
+ },
+ "arms": [
+  {
+   "id": "canli",
+   "label": "canli-mcp",
+   "short": "canli-mcp",
+   "ours": true,
+   "tuned": false,
+   "version": "canli-mcp 0.1.0 as it stood before the benchmark",
+   "license": "MIT",
+   "url": "https://github.com/arhancanli/canlicapital/tree/main/mcp-canli",
+   "questions_completed": 24,
+   "runs": 48,
+   "correct": 38,
+   "accuracy": 0.7917,
+   "common": {
+    "correct": 22,
+    "runs": 28,
+    "accuracy": 0.7857,
+    "input_tokens": 591892,
+    "input_tokens_per_correct_answer": 26904
+   },
+   "categories": {
+    "filings": {
+     "correct": 5,
+     "runs": 6,
+     "accuracy": 0.8333
+    },
+    "fundamentals": {
+     "correct": 3,
+     "runs": 6,
+     "accuracy": 0.5
+    },
+    "insiders": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "13F": {
+     "correct": 4,
+     "runs": 6,
+     "accuracy": 0.6667
+    },
+    "rates_macro": {
+     "correct": 8,
+     "runs": 8,
+     "accuracy": 1
+    },
+    "prices": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "analytics": {
+     "correct": 6,
+     "runs": 10,
+     "accuracy": 0.6
+    }
+   },
+   "categories_scored_zero": 0,
+   "median_input_tokens": 11782,
+   "median_seconds": 5.33,
+   "tool_errors_per_run": 0.69,
+   "input_tokens_per_correct_answer": 49314
+  },
+  {
+   "id": "canli-after",
+   "label": "canli-mcp after first fixes",
+   "short": "canli-mcp, first fixes",
+   "ours": true,
+   "tuned": true,
+   "version": "the same server after the fixes this benchmark prompted",
+   "license": "MIT",
+   "url": "https://github.com/arhancanli/canlicapital/tree/main/mcp-canli",
+   "questions_completed": 24,
+   "runs": 48,
+   "correct": 40,
+   "accuracy": 0.8333,
+   "common": {
+    "correct": 23,
+    "runs": 28,
+    "accuracy": 0.8214,
+    "input_tokens": 297116,
+    "input_tokens_per_correct_answer": 12918
+   },
+   "categories": {
+    "filings": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "fundamentals": {
+     "correct": 5,
+     "runs": 6,
+     "accuracy": 0.8333
+    },
+    "insiders": {
+     "correct": 5,
+     "runs": 6,
+     "accuracy": 0.8333
+    },
+    "13F": {
+     "correct": 5,
+     "runs": 6,
+     "accuracy": 0.8333
+    },
+    "rates_macro": {
+     "correct": 6,
+     "runs": 8,
+     "accuracy": 0.75
+    },
+    "prices": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "analytics": {
+     "correct": 7,
+     "runs": 10,
+     "accuracy": 0.7
+    }
+   },
+   "categories_scored_zero": 0,
+   "median_input_tokens": 8687.5,
+   "median_seconds": 4.5,
+   "tool_errors_per_run": 0.54,
+   "input_tokens_per_correct_answer": 34374
+  },
+  {
+   "id": "canli-final",
+   "label": "canli-mcp after all fixes",
+   "short": "canli-mcp, all fixes",
+   "ours": true,
+   "tuned": true,
+   "version": "the same server after every fix this benchmark prompted",
+   "license": "MIT",
+   "url": "https://github.com/arhancanli/canlicapital/tree/main/mcp-canli",
+   "questions_completed": 24,
+   "runs": 48,
+   "correct": 44,
+   "accuracy": 0.9167,
+   "common": {
+    "correct": 26,
+    "runs": 28,
+    "accuracy": 0.9286,
+    "input_tokens": 258382,
+    "input_tokens_per_correct_answer": 9938
+   },
+   "categories": {
+    "filings": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "fundamentals": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "insiders": {
+     "correct": 5,
+     "runs": 6,
+     "accuracy": 0.8333
+    },
+    "13F": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "rates_macro": {
+     "correct": 6,
+     "runs": 8,
+     "accuracy": 0.75
+    },
+    "prices": {
+     "correct": 5,
+     "runs": 6,
+     "accuracy": 0.8333
+    },
+    "analytics": {
+     "correct": 10,
+     "runs": 10,
+     "accuracy": 1
+    }
+   },
+   "categories_scored_zero": 0,
+   "median_input_tokens": 7578,
+   "median_seconds": 4.63,
+   "tool_errors_per_run": 0.31,
+   "input_tokens_per_correct_answer": 28642
+  },
+  {
+   "id": "openbb",
+   "label": "OpenBB MCP",
+   "short": "OpenBB",
+   "ours": false,
+   "tuned": false,
+   "version": "openbb-mcp-server 2.0.1 with openbb 5.0.0, in its tool-discovery mode",
+   "license": "Apache-2.0",
+   "url": "https://github.com/OpenBB-finance/OpenBB",
+   "questions_completed": 14,
+   "runs": 28,
+   "correct": 11,
+   "accuracy": 0.3929,
+   "common": {
+    "correct": 11,
+    "runs": 28,
+    "accuracy": 0.3929,
+    "input_tokens": 3800730,
+    "input_tokens_per_correct_answer": 345521
+   },
+   "categories": {
+    "filings": {
+     "correct": 0,
+     "runs": 6,
+     "accuracy": 0
+    },
+    "fundamentals": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "insiders": {
+     "correct": 3,
+     "runs": 6,
+     "accuracy": 0.5
+    },
+    "13F": {
+     "correct": 2,
+     "runs": 6,
+     "accuracy": 0.3333
+    },
+    "rates_macro": {
+     "correct": 0,
+     "runs": 4,
+     "accuracy": 0
+    },
+    "prices": {
+     "correct": 0,
+     "runs": 0,
+     "accuracy": null
+    },
+    "analytics": {
+     "correct": 0,
+     "runs": 0,
+     "accuracy": null
+    }
+   },
+   "categories_scored_zero": 2,
+   "median_input_tokens": 107112.5,
+   "median_seconds": 24.44,
+   "tool_errors_per_run": 1.64,
+   "input_tokens_per_correct_answer": 345521
+  },
+  {
+   "id": "edgartools",
+   "label": "EdgarTools MCP",
+   "short": "EdgarTools",
+   "ours": false,
+   "tuned": false,
+   "version": "edgartools 5.61.1, its MCP server",
+   "license": "MIT",
+   "url": "https://github.com/dgunning/edgartools",
+   "questions_completed": 20,
+   "runs": 41,
+   "correct": 11,
+   "accuracy": 0.2683,
+   "common": {
+    "correct": 11,
+    "runs": 28,
+    "accuracy": 0.3929,
+    "input_tokens": 869209,
+    "input_tokens_per_correct_answer": 79019
+   },
+   "categories": {
+    "filings": {
+     "correct": 0,
+     "runs": 6,
+     "accuracy": 0
+    },
+    "fundamentals": {
+     "correct": 5,
+     "runs": 6,
+     "accuracy": 0.8333
+    },
+    "insiders": {
+     "correct": 2,
+     "runs": 6,
+     "accuracy": 0.3333
+    },
+    "13F": {
+     "correct": 4,
+     "runs": 6,
+     "accuracy": 0.6667
+    },
+    "rates_macro": {
+     "correct": 0,
+     "runs": 8,
+     "accuracy": 0
+    },
+    "prices": {
+     "correct": 0,
+     "runs": 6,
+     "accuracy": 0
+    },
+    "analytics": {
+     "correct": 0,
+     "runs": 3,
+     "accuracy": 0
+    }
+   },
+   "categories_scored_zero": 4,
+   "median_input_tokens": 18558,
+   "median_seconds": 9.86,
+   "tool_errors_per_run": 0,
+   "input_tokens_per_correct_answer": 107689
+  },
+  {
+   "id": "yahoo",
+   "label": "Yahoo Finance MCP",
+   "short": "Yahoo Finance",
+   "ours": false,
+   "tuned": false,
+   "version": "Alex2Yang97/yahoo-finance-mcp at commit b9c1765",
+   "license": "MIT",
+   "url": "https://github.com/Alex2Yang97/yahoo-finance-mcp",
+   "questions_completed": 24,
+   "runs": 48,
+   "correct": 18,
+   "accuracy": 0.375,
+   "common": {
+    "correct": 14,
+    "runs": 28,
+    "accuracy": 0.5,
+    "input_tokens": 855620,
+    "input_tokens_per_correct_answer": 61116
+   },
+   "categories": {
+    "filings": {
+     "correct": 2,
+     "runs": 6,
+     "accuracy": 0.3333
+    },
+    "fundamentals": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "insiders": {
+     "correct": 2,
+     "runs": 6,
+     "accuracy": 0.3333
+    },
+    "13F": {
+     "correct": 2,
+     "runs": 6,
+     "accuracy": 0.3333
+    },
+    "rates_macro": {
+     "correct": 2,
+     "runs": 8,
+     "accuracy": 0.25
+    },
+    "prices": {
+     "correct": 4,
+     "runs": 6,
+     "accuracy": 0.6667
+    },
+    "analytics": {
+     "correct": 0,
+     "runs": 10,
+     "accuracy": 0
+    }
+   },
+   "categories_scored_zero": 1,
+   "median_input_tokens": 10335,
+   "median_seconds": 3.51,
+   "tool_errors_per_run": 0,
+   "input_tokens_per_correct_answer": 383869
+  },
+  {
+   "id": "edgartools+yahoo",
+   "label": "EdgarTools + Yahoo Finance MCP",
+   "short": "EdgarTools + Yahoo",
+   "ours": false,
+   "tuned": false,
+   "version": "both servers connected at once",
+   "license": "MIT",
+   "url": "https://github.com/dgunning/edgartools",
+   "questions_completed": 20,
+   "runs": 41,
+   "correct": 19,
+   "accuracy": 0.4634,
+   "common": {
+    "correct": 15,
+    "runs": 28,
+    "accuracy": 0.5357,
+    "input_tokens": 945483,
+    "input_tokens_per_correct_answer": 63032
+   },
+   "categories": {
+    "filings": {
+     "correct": 1,
+     "runs": 6,
+     "accuracy": 0.1667
+    },
+    "fundamentals": {
+     "correct": 6,
+     "runs": 6,
+     "accuracy": 1
+    },
+    "insiders": {
+     "correct": 2,
+     "runs": 6,
+     "accuracy": 0.3333
+    },
+    "13F": {
+     "correct": 4,
+     "runs": 6,
+     "accuracy": 0.6667
+    },
+    "rates_macro": {
+     "correct": 2,
+     "runs": 8,
+     "accuracy": 0.25
+    },
+    "prices": {
+     "correct": 4,
+     "runs": 6,
+     "accuracy": 0.6667
+    },
+    "analytics": {
+     "correct": 0,
+     "runs": 3,
+     "accuracy": 0
+    }
+   },
+   "categories_scored_zero": 1,
+   "median_input_tokens": 21186,
+   "median_seconds": 10.37,
+   "tool_errors_per_run": 0,
+   "input_tokens_per_correct_answer": 174906
+  }
+ ],
+ "paired": [
+  {
+   "ours": "canli",
+   "rival": "openbb",
+   "better": 9,
+   "worse": 4,
+   "p": 0.2668
+  },
+  {
+   "ours": "canli",
+   "rival": "edgartools",
+   "better": 14,
+   "worse": 3,
+   "p": 0.0127
+  },
+  {
+   "ours": "canli",
+   "rival": "yahoo",
+   "better": 14,
+   "worse": 5,
+   "p": 0.0636
+  },
+  {
+   "ours": "canli",
+   "rival": "edgartools+yahoo",
+   "better": 11,
+   "worse": 4,
+   "p": 0.1185
+  }
+ ],
+ "questions": [
+  {
+   "id": "filing_employees",
+   "category": "filings",
+   "question": "According to NVIDIA's most recent annual report on Form 10-K, approximately how many employees did NVIDIA have at the end of the fiscal year? Answer with the number of employees.",
+   "truth": 42000,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      null,
+      42000
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      42000,
+      42000
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      42000,
+      42000
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      36000,
+      36000
+     ]
+    },
+    "yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      42000,
+      42000
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      36000,
+      36000
+     ]
+    }
+   }
+  },
+  {
+   "id": "filing_deliveries",
+   "category": "filings",
+   "question": "Tesla filed a press release on production and deliveries for the third quarter of 2026 with the SEC (an 8-K exhibit). How many vehicles did it say Tesla delivered in Q3 2026? Answer with the number of vehicles.",
+   "truth": 486000,
+   "tolerance": 0.002,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      486532,
+      486532
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      486532,
+      486532
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      486532,
+      486532
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      497099,
+      0
+     ]
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      497099,
+      null
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      497099,
+      497099
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      4970997,
+      4970997
+     ]
+    }
+   }
+  },
+  {
+   "id": "filing_shares_out",
+   "category": "filings",
+   "question": "On the cover page of Apple's annual report on Form 10-K for fiscal year 2025, how many shares of common stock were outstanding? Answer with the number of shares.",
+   "truth": 14776353000,
+   "tolerance": 0.001,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      14776353000,
+      14776353000
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      14776353000,
+      14776353000
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      14776353000,
+      14776353000
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      14801723000,
+      14948500000
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      14594180000,
+      14594180000
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      14594180000,
+      14776035000
+     ]
+    }
+   }
+  },
+  {
+   "id": "fund_revenue",
+   "category": "fundamentals",
+   "question": "What were Apple's total net sales (revenue) for fiscal year 2025, which ended September 27, 2025? Answer in US dollars as a plain number.",
+   "truth": 416161000000,
+   "tolerance": 0.002,
+   "by_arm": {
+    "canli": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      416161000000,
+      416161
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      416161000000,
+      416161000000
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      416161000000,
+      416161000000
+     ]
+    },
+    "openbb": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      416161000000,
+      416161000000
+     ]
+    },
+    "edgartools": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      416161000000,
+      416161000000
+     ]
+    },
+    "yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      416161000000,
+      416161000000
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      416161000000,
+      416161000000
+     ]
+    }
+   }
+  },
+  {
+   "id": "fund_net_income",
+   "category": "fundamentals",
+   "question": "What was Microsoft's net income for its fiscal year ended June 30, 2025? Answer in US dollars as a plain number.",
+   "truth": 101832000000,
+   "tolerance": 0.002,
+   "by_arm": {
+    "canli": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      101832000000,
+      133749000000
+     ]
+    },
+    "canli-after": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      101832000000,
+      133749000000
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      101832000000,
+      101832000000
+     ]
+    },
+    "openbb": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      101832000000,
+      101832000000
+     ]
+    },
+    "edgartools": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      101832000000,
+      133749000000
+     ]
+    },
+    "yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      101832000000,
+      101832000000
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      101832000000,
+      101832000000
+     ]
+    }
+   }
+  },
+  {
+   "id": "fund_eps",
+   "category": "fundamentals",
+   "question": "What was NVIDIA's diluted earnings per share for its fiscal year 2026 (ended January 25, 2026)? Answer in US dollars per share.",
+   "truth": 4.9,
+   "tolerance": 0.005,
+   "by_arm": {
+    "canli": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      null,
+      4.9
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.9,
+      4.9
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.9,
+      4.9
+     ]
+    },
+    "openbb": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.9,
+      4.9
+     ]
+    },
+    "edgartools": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.9,
+      4.9
+     ]
+    },
+    "yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.9,
+      4.9
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.9,
+      4.9
+     ]
+    }
+   }
+  },
+  {
+   "id": "insider_cfo_sale",
+   "category": "insiders",
+   "question": "According to SEC Form 4 filings, how many shares of Tesla common stock did Tesla's Chief Financial Officer sell in open-market sales on September 8, 2026? Answer with the number of shares.",
+   "truth": 2605.75,
+   "tolerance": 0.001,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      2605.75,
+      2605.75
+     ]
+    },
+    "canli-after": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      2605.75,
+      0
+     ]
+    },
+    "canli-final": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      2605.75,
+      0
+     ]
+    },
+    "openbb": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      2605.75,
+      2605.75
+     ]
+    },
+    "edgartools": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      2606,
+      2606
+     ]
+    },
+    "yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      2605,
+      2605
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      2606,
+      2606
+     ]
+    }
+   }
+  },
+  {
+   "id": "insider_nvda_q3",
+   "category": "insiders",
+   "question": "Add up all open-market sales (Form 4 transaction code S) of NVIDIA common stock by NVIDIA insiders reported in Form 4 filings filed between July 1 and September 30, 2026. How many shares were sold in total? Answer with the number of shares.",
+   "truth": 4332118,
+   "tolerance": 0.01,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4332120,
+      4332120
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4332118,
+      4332118
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4332118,
+      4332118
+     ]
+    },
+    "openbb": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      7264858,
+      4331118
+     ]
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      3544879
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      5772437,
+      null
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      1453574,
+      4244522
+     ]
+    }
+   }
+  },
+  {
+   "id": "insider_apple_count",
+   "category": "insiders",
+   "question": "How many Form 4 filings were filed with the SEC for Apple Inc. as the issuer during September 2026 (filing dates September 1-30, 2026, original Form 4s only, not amendments)? Answer with the count.",
+   "truth": 11,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      11,
+      11
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      11,
+      11
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      11,
+      11
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      7,
+      8
+     ]
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      17,
+      8
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      4,
+      4
+     ]
+    }
+   }
+  },
+  {
+   "id": "13f_brk_apple",
+   "category": "13F",
+   "question": "According to Berkshire Hathaway's 13F filing for the quarter ended June 30, 2026, how many shares of Apple did it hold? Answer with the number of shares.",
+   "truth": 227917808,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      227918000,
+      227918000
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      227917808,
+      227917808
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      227917808,
+      227917808
+     ]
+    },
+    "openbb": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      227917808,
+      227917808
+     ]
+    },
+    "edgartools": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      227917808,
+      227917808
+     ]
+    },
+    "yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      227917808,
+      227917808
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      227917808,
+      227917808
+     ]
+    }
+   }
+  },
+  {
+   "id": "13f_brk_total",
+   "category": "13F",
+   "question": "What is the total market value of all holdings reported in Berkshire Hathaway's 13F filing for the quarter ended June 30, 2026? Answer in US dollars as a plain number.",
+   "truth": 299253556246,
+   "tolerance": 0.002,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      299254000000,
+      299254000000
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      299253556246,
+      299253556246
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      299253556246,
+      299253556246
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      170428632472
+     ]
+    },
+    "edgartools": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      299300000000,
+      299300000000
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      0,
+      0
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      299300000000,
+      299253556246
+     ]
+    }
+   }
+  },
+  {
+   "id": "13f_bw_entries",
+   "category": "13F",
+   "question": "How many entries (rows in the information table) does Bridgewater Associates' 13F filing for the quarter ended June 30, 2026 report? Answer with the count.",
+   "truth": 997,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      997,
+      997
+     ]
+    },
+    "canli-after": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      997,
+      25
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      997,
+      997
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      500,
+      null
+     ]
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      0,
+      0
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      0,
+      10
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "id": "rates_10y",
+   "category": "rates_macro",
+   "question": "What was the 10-year US Treasury par yield (Treasury daily par yield curve rate) on October 8, 2026? Answer in percent, e.g. 4.25.",
+   "truth": 5.22,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      5.22,
+      5.22
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      5.22,
+      5.22
+     ]
+    },
+    "canli-final": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      4.29,
+      5.22
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      5.28,
+      null
+     ]
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      4.18
+     ]
+    },
+    "yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      5.23,
+      5.23
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      5.23,
+      5.23
+     ]
+    }
+   }
+  },
+  {
+   "id": "rates_2s10s",
+   "category": "rates_macro",
+   "question": "Using the US Treasury daily par yield curve, what was the 10-year yield minus the 2-year yield on October 8, 2026? Answer in percentage points, e.g. 0.35.",
+   "truth": 0.47,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.47,
+      0.47
+     ]
+    },
+    "canli-after": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      0.85,
+      0.56
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.47,
+      0.47
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      0.51
+     ]
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      1.62,
+      1.19
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      0.24,
+      1.19
+     ]
+    }
+   }
+  },
+  {
+   "id": "macro_cpi",
+   "category": "rates_macro",
+   "question": "What was the year-over-year change in the US Consumer Price Index for All Urban Consumers (CPI-U, all items, seasonally adjusted) for August 2026? Answer in percent, e.g. 2.9.",
+   "truth": 3.353,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      3.353,
+      3.353
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      3.4,
+      3.4
+     ]
+    },
+    "canli-final": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      3.353,
+      2.9
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    }
+   }
+  },
+  {
+   "id": "macro_unrate",
+   "category": "rates_macro",
+   "question": "What was the US unemployment rate for August 2026 (seasonally adjusted)? Answer in percent.",
+   "truth": 4.1,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.1,
+      4.1
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.1,
+      4.1
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.1,
+      4.1
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      4.3
+     ]
+    }
+   }
+  },
+  {
+   "id": "price_close",
+   "category": "prices",
+   "question": "What was Apple's (AAPL) closing stock price on October 8, 2026? Answer in US dollars.",
+   "truth": 340.42,
+   "tolerance": 0.002,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      340.42,
+      340.42
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      340.42,
+      340.42
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      340.42,
+      340.42
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      340.42,
+      340.42
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      340.42,
+      340.42
+     ]
+    }
+   }
+  },
+  {
+   "id": "price_total_return",
+   "category": "prices",
+   "question": "What was Microsoft's (MSFT) total return including dividends from the close on December 31, 2025 to the close on September 30, 2026? Answer in percent, e.g. 12.3.",
+   "truth": 6.7272,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      6.7,
+      6.62
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      6.7,
+      6.9
+     ]
+    },
+    "canli-final": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      6.7,
+      7.1
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "yahoo": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      7.1,
+      6.79
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      7.4,
+      7.6
+     ]
+    }
+   }
+  },
+  {
+   "id": "price_mdd",
+   "category": "prices",
+   "question": "What was the maximum drawdown of SPY during calendar year 2025, measured on daily dividend-adjusted closing prices (peak to trough within 2025)? Answer as a fraction, e.g. 0.12 for 12%.",
+   "truth": -0.187552,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.187553,
+      0.187553
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.187552214979823,
+      0.187553
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.187552921957476,
+      0.1875523501
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "yahoo": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      0,
+      0.188
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.1876,
+      0.1876
+     ]
+    }
+   }
+  },
+  {
+   "id": "analytics_vol",
+   "category": "analytics",
+   "question": "What was NVIDIA's (NVDA) annualized volatility in 2025, computed as the standard deviation of daily simple returns of adjusted closing prices times the square root of 252 (returns from the first trading day of 2025 through December 31, 2025, starting from the December 31, 2024 close)? Answer as a fraction, e.g. 0.35.",
+   "truth": 0.49618,
+   "tolerance": 0.03,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.4960104148,
+      0.4961784247
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.49617942,
+      0.4961794196
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.496179291,
+      0.496179290937551
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      0
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      0.47
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      0.53,
+      0.322
+     ]
+    }
+   }
+  },
+  {
+   "id": "analytics_corr",
+   "category": "analytics",
+   "question": "What was the correlation between the daily simple returns of AAPL and MSFT in calendar year 2025, using adjusted closing prices? Answer as a number between -1 and 1.",
+   "truth": 0.486914,
+   "tolerance": 0,
+   "by_arm": {
+    "canli": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      0.3891824413,
+      null
+     ]
+    },
+    "canli-after": {
+     "correct": 1,
+     "runs": 2,
+     "answers": [
+      0.4298,
+      0.486214
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.48621079,
+      0.486206
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 1,
+     "answers": [
+      null
+     ]
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      0,
+      0.83
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 1,
+     "answers": [
+      null
+     ]
+    }
+   }
+  },
+  {
+   "id": "analytics_beta",
+   "category": "analytics",
+   "question": "What was Tesla's (TSLA) beta to SPY in calendar year 2025, from daily simple returns of adjusted closing prices (covariance over SPY variance)? Answer as a number.",
+   "truth": 2.234381,
+   "tolerance": 0.03,
+   "by_arm": {
+    "canli": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      1.557360028
+     ]
+    },
+    "canli-after": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      2.475
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      2.229702,
+      2.229701422
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      2.35,
+      null
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    }
+   }
+  },
+  {
+   "id": "analytics_sharpe",
+   "category": "analytics",
+   "question": "What was SPY's annualized Sharpe ratio in calendar year 2025, with a 0% risk-free rate, from daily simple returns of adjusted closing prices (mean over standard deviation times the square root of 252)? Answer as a number.",
+   "truth": 0.9401,
+   "tolerance": 0.03,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.94007349,
+      0.9548151091
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.95481505,
+      0.954815
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      0.954816,
+      0.954816
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      null,
+      null
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    }
+   }
+  },
+  {
+   "id": "quant_bs",
+   "category": "analytics",
+   "question": "Price a European call option with Black-Scholes: spot 100, strike 105, 6 months to expiry, risk-free rate 4% (continuous), dividend yield 1% (continuous), volatility 22%. Answer in dollars.",
+   "truth": 4.712244,
+   "tolerance": 0.002,
+   "by_arm": {
+    "canli": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.71224,
+      4.712244145
+     ]
+    },
+    "canli-after": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.71224,
+      4.71224414527775
+     ]
+    },
+    "canli-final": {
+     "correct": 2,
+     "runs": 2,
+     "answers": [
+      4.71224,
+      4.71224
+     ]
+    },
+    "openbb": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "edgartools": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    },
+    "yahoo": {
+     "correct": 0,
+     "runs": 2,
+     "answers": [
+      5.17,
+      5.45
+     ]
+    },
+    "edgartools+yahoo": {
+     "correct": 0,
+     "runs": 0,
+     "answers": []
+    }
+   }
+  }
+ ],
+ "context": {
+  "measured": "2026-10-10",
+  "commit": "d168702924dda637174e1d07d7a4483e956d35bc",
+  "path": "mcp-canli/bench/rivals/context.py",
+  "tokenizer": "o200k_base",
+  "method": "Each server is started with the benchmark's command; its instructions and whole tool list are counted in the shape an OpenAI-style client sends tools. No model is called.",
+  "rows": [
+   {
+    "arm": "canli",
+    "label": "canli-mcp",
+    "tools": 3,
+    "reaches": 285,
+    "tokens": 859,
+    "seconds": 0.13
+   },
+   {
+    "arm": "openbb",
+    "label": "OpenBB MCP, every tool",
+    "tools": 1056,
+    "reaches": 1056,
+    "tokens": 432001,
+    "seconds": 30.7
+   },
+   {
+    "arm": "openbb",
+    "label": "OpenBB MCP, tool discovery (as benchmarked)",
+    "tools": 14,
+    "reaches": 1056,
+    "tokens": 2171,
+    "seconds": 26.82
+   },
+   {
+    "arm": "edgartools",
+    "label": "EdgarTools MCP",
+    "tools": 13,
+    "reaches": 13,
+    "tokens": 3801,
+    "seconds": 1.59
+   },
+   {
+    "arm": "yahoo",
+    "label": "Yahoo Finance MCP",
+    "tools": 9,
+    "reaches": 9,
+    "tokens": 2205,
+    "seconds": 1.35
+   }
+  ]
+ },
+ "flagship": {
+  "package": "canli-mcp",
+  "npm_published": false,
+  "license": "MIT",
+  "node_minimum": 20.1,
+  "source": {
+   "repository": "https://github.com/arhancanli/canlicapital",
+   "path": "mcp-canli",
+   "commit": "e0233a2592685cef1d5f263cfab941ad2c7c5747",
+   "measured": "2026-10-09",
+   "note": "Tool counts come from mcp-canli/src/index.json at that commit; the search figures from mcp-canli/test/search.test.mjs; the file and batch figures from the README's measurements."
+  },
+  "install": {
+   "npx": "npx -y canli-mcp",
+   "claude_code": "claude mcp add canli -- npx -y canli-mcp",
+   "json": "{ \"mcpServers\": { \"canli\": { \"command\": \"npx\", \"args\": [\"-y\", \"canli-mcp\"] } } }"
+  },
+  "front": [
+   {
+    "name": "find_tool",
+    "does": "searches every tool by what you ask for"
+   },
+   {
+    "name": "describe_tool",
+    "does": "reads one tool's arguments"
+   },
+   {
+    "name": "run_tool",
+    "does": "runs any tool, or up to 25 in one round trip"
+   }
+  ],
+  "packs": [
+   {
+    "id": "quant",
+    "label": "Quant finance",
+    "tools": 235,
+    "package": "canli-quant-mcp",
+    "covers": "performance and risk, options, fixed income, portfolios, econometrics, indicators and a library of 399 strategy sleeves"
+   },
+   {
+    "id": "validation",
+    "label": "Backtest validation",
+    "tools": 17,
+    "package": "canli-validation-mcp",
+    "covers": "deflated Sharpe ratio, overfitting probability, data-snooping tests, leakage checks and placebo tests"
+   },
+   {
+    "id": "markets",
+    "label": "Markets",
+    "tools": 13,
+    "package": "canli-markets-mcp",
+    "covers": "SEC filings and their sections, insider trades, 13F holdings, Treasury yields, FRED series, prices and market-wide screens"
+   },
+   {
+    "id": "fundamentals",
+    "label": "SEC fundamentals",
+    "tools": 7,
+    "package": "canli-fundamentals-mcp",
+    "covers": "company financials as first reported, with later restatements flagged"
+   },
+   {
+    "id": "research",
+    "label": "Research record",
+    "tools": 6,
+    "package": "canli-research-mcp",
+    "covers": "Canli Capital's open research record"
+   },
+   {
+    "id": "paper",
+    "label": "Paper trading",
+    "tools": 4,
+    "package": "canli-paper-trading-mcp",
+    "covers": "Alpaca paper orders behind pre-trade checks"
+   },
+   {
+    "id": "backtest",
+    "label": "Factor backtests",
+    "tools": 3,
+    "package": "canli-backtest-mcp",
+    "covers": "factor backtests that refuse lookahead"
+   }
+  ],
+  "tools": 285,
+  "search": {
+   "requests": 50,
+   "first": 47,
+   "top_three": 50
+  },
+  "file_reference": {
+   "prices": 1000,
+   "tokens": 23,
+   "pasted_tokens": 4893
+  },
+  "batch": {
+   "tokens": 72,
+   "chained_tokens": 31917
+  },
+  "example": {
+   "note": "One real call, run through canli-mcp on 2026-10-10 and copied from its output: run_tool read_filing with the arguments below.",
+   "ran": "2026-10-10",
+   "tool": "read_filing",
+   "arguments": {
+    "company": "NVDA",
+    "form": "10-K",
+    "find": "employees"
+   },
+   "company": "NVIDIA CORP",
+   "ticker": "NVDA",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "accession": "0001045810-26-000021",
+   "match": "As of the end of fiscal year 2026, we had approximately 42,000 employees in 38 countries",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+   "evidence_documents": 3,
+   "evidence_sha256_16": "f192181c12dad789",
+   "milliseconds": 764
+  }
+ }
+}
