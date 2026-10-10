@@ -660,10 +660,11 @@ if (existsSync(founderFile)) {
   // artifact will ever contain, and reading them as published figures makes the
   // check fire on any icon added to the shell. Adding one GitHub mark introduced
   // 47 "untraceable" numbers, all of them path data. Stripped for the same reason
-  // <script> and <pre> already are.
+  // <script> and <pre> already are. So is the header's <picture>: its sources are
+  // file names and pixel widths of a decorative still, not figures.
   const prose = htmlWithoutElements(imageProse(founderHtml)
     .replaceAll(forwardReport.generated_at, " ")
-    .replaceAll(snapshotTimestamp, " "), 'script,head,svg,pre');
+    .replaceAll(snapshotTimestamp, " "), 'script,head,svg,pre,picture');
   const datesRemoved = prose.replace(/\b\d{4}-\d{2}-\d{2}\b/g, (d) =>
     renderings.has(d) ? " " : ` UNTRACEABLE_DATE_${d} `,
   );

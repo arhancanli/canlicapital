@@ -8,6 +8,7 @@ import { fitDescription } from './descriptions.mjs';
 import { historySummary, summaryDescription, summarySentences } from './company-history-summary.mjs';
 import { relatedConcepts, shareSentence } from './company-concept-groups.mjs';
 import { overviewDescription, overviewTitle } from './company-overview-search.mjs';
+import { heroArt } from './site-hero.mjs';
 const origin = 'https://canlicapital.com';
 const pathFor = (company) => `/companies/${company.cik}`;
 const dataFor = (company) => `/company-data/${company.cik}.json`;
@@ -48,8 +49,7 @@ ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify([schema, breadcrumbs]).replaceAll('<', '\\u003c')}</script></head>
 <body class="paper"><a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: 'companies' })}
-<main class="company-reference" id="content" tabindex="-1"><nav class="company-reference__breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav>
-<header class="cc-film-head"><h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(introduction)}</p></header>${body}</main>
+<main class="company-reference" id="content" tabindex="-1"><header class="cc-hero" data-scene="district">${heroArt('district')}<div class="cc-hero__inner"><nav class="cc-crumbs company-reference__breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav><h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(introduction)}</p></div></header>${body}</main>
 ${renderProductShellFooter({ developerStrip: false })}</body></html>\n`;
   return { path, html, lastmod, loc: origin + path };
 }

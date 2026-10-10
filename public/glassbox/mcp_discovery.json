@@ -43,9 +43,9 @@
       ],
       "dir": "mcp",
       "package": "canli-validation-mcp",
-      "version": "0.13.0",
-      "commit": "faa425fae4b7c8c0b45f6e91df65927ff6bb7249",
-      "tag": "mcp-v0.13.0",
+      "version": "0.14.0",
+      "commit": "cf91aa45241b5efef734e29263f87ab6cbf39472",
+      "tag": "mcp-v0.14.0",
       "route": "/mcp-servers/validation",
       "endpoint": "/mcp",
       "tool_count": 19,
@@ -103,7 +103,7 @@
         {
           "name": "audit_backtest",
           "title": "Audit a backtest",
-          "description": "One-call audit of a strategy's returns. Headline: one test whose false-positive rate was measured on nine return shapes (Hansen's SPA with variants). Then deflated Sharpe, minimum track record and, with variants, overfitting and out-of-sample decay, each with its receipt, plus fix_next. Send every variant tried (variants_file) so trials are counted; point returns_file at a CSV instead of pasting. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+          "description": "One-call audit of a strategy's returns. Headline: one test whose false-positive rate was measured on nine return shapes (White's Reality Check with variants, luck trials with Lo's correction without). Then deflated Sharpe, minimum track record and, with variants, overfitting and out-of-sample decay, each with its receipt, plus fix_next. Send every variant tried (variants_file) so trials are counted; point returns_file at a CSV instead of pasting. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
         },
         {
           "name": "verify_receipt",
@@ -193,7 +193,8 @@
       "dir": "mcp-fundamentals",
       "package": "canli-fundamentals-mcp",
       "version": "0.5.0",
-      "commit": "687ef53c0f0ebb996eb7c11f7ca54bc2c0c8533a",
+      "commit": "a4a951f02f91a3114ab3618748c63a7a81d6dcd6",
+      "tag": "fundamentals-mcp-v0.5.0",
       "route": "/mcp-servers/fundamentals",
       "endpoint": "/mcp/fundamentals",
       "tool_count": 7,
@@ -280,7 +281,8 @@
       "dir": "mcp-research",
       "package": "canli-research-mcp",
       "version": "0.2.0",
-      "commit": "10121fee41325d6e04a3b17715d1ca619a18bfd6",
+      "commit": "a4a951f02f91a3114ab3618748c63a7a81d6dcd6",
+      "tag": "research-mcp-v0.2.0",
       "route": "/mcp-servers/research",
       "endpoint": "/mcp/research",
       "tool_count": 6,

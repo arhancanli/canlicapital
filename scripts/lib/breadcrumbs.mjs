@@ -17,7 +17,7 @@ const unesc = (v) => String(v).replaceAll("&quot;", '"').replaceAll("&#39;", "'"
 export function pageLabel(html) {
   const title = /<title>([\s\S]*?)<\/title>/.exec(html)?.[1];
   if (!title) return null;
-  let label = unesc(title).replace(/\s+/g, " ").trim().replace(/\s*[|·]\s*Canli Capital\s*$/i, "").replace(/^Canli Capital\s*[|:·/]\s*/i, "");
+  let label = unesc(title).replace(/\s+/g, " ").trim().replace(/\s*[|·/]\s*Canli( Capital)?\s*$/i, "").replace(/^Canli Capital\s*[|:·/]\s*/i, "");
   label = label.split(/\s[\u2014\u2013-]\s|:\s/)[0].trim();
   return label || null;
 }

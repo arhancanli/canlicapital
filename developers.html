@@ -34,6 +34,8 @@
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__link" href="/benchmarks/finance-mcp-servers">Benchmark</a>
 <a class="cc-shell__link" href="/research">Research</a>
 <a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers" data-current="true">Developers</a>
@@ -53,6 +55,7 @@
       <div>
         <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/vision">Vision</a>
 <a class="cc-shell__panel-link" href="/companies">Company reference</a>
 <a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
@@ -87,14 +90,14 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main id="content" tabindex="-1">
-  <section class="cc-film-head dev-hero">
-    <p class="dev-kicker"><span>Free</span><span aria-hidden="true"> &middot; </span><span>No signup or email</span></p>
-    <h1>Check a backtest.<br />Keep the receipt.</h1>
-    <p class="dev-lead">Send the returns your backtest produced and find out whether the result could be luck:
+<main id="content" tabindex="-1"><header class="cc-hero" data-scene="gates"><picture class="cc-hero__art" aria-hidden="true"><source type="image/avif" media="(max-width: 768px)" srcset="/scenes/gates-900.avif"><source type="image/webp" media="(max-width: 768px)" srcset="/scenes/gates-900.webp"><source type="image/avif" srcset="/scenes/gates-1600.avif 1600w, /scenes/gates-2400.avif 2400w" sizes="100vw"><source type="image/webp" srcset="/scenes/gates-1600.webp 1600w, /scenes/gates-2400.webp 2400w" sizes="100vw"><img src="/scenes/gates-1600.webp" alt="" width="1600" height="560" fetchpriority="high" decoding="async"></picture><div class="cc-hero__inner"><nav class="cc-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><span aria-current="page">Developers</span></li></ol></nav><p class="dev-kicker"><span>Free</span><span aria-hidden="true"> &middot; </span><span>No signup or email</span></p><h1>Check a backtest.<br />Keep the receipt.</h1><p class="dev-lead">Send the returns your backtest produced and find out whether the result could be luck:
       how much the Sharpe ratio shrinks once every version you tried is counted, how likely the backtest
       is to be overfit, and how long a live record must run to prove it. Each answer comes with a
-      receipt anyone can recheck.</p>
+      receipt anyone can recheck.</p></div></header>
+  <section class="dev-hero">
+
+
+
     <ol class="dev-paths" aria-label="Three ways to start">
       <li class="dev-path"><span class="dev-path__tag">Fastest</span><h2>From an AI assistant</h2><p>Add the hosted server to Claude, Cursor or VS Code. Nothing to install.</p><pre class="dev-path__code" tabindex="0"><code>claude mcp add --transport http canli https://canlicapital.com/mcp</code></pre><a href="#ai-assistant">Setup for every assistant ↘</a></li>
       <li class="dev-path"><span class="dev-path__tag">Any language</span><h2>From your own code</h2><p>Get a free key, then call the API from Python, JavaScript or curl.</p><a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a></li>
@@ -814,8 +817,11 @@ console.log(await response.json());</code></pre></div>
     <nav aria-label="Portfolio and research">
       <span>Research system</span>
       <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/record">Paper record</a>
       <a href="/systems">ALPHAC systems</a>
       <a href="/research">Research papers</a>
+      <a href="/benchmarks/finance-mcp-servers">Finance MCP benchmark</a>
+      <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
       <a href="/trials">Trial union</a>
     </nav>
     <nav aria-label="Evidence and verification">
@@ -829,6 +835,8 @@ console.log(await response.json());</code></pre></div>
     </nav>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
+      <a href="/vision">Vision</a>
+      <a href="/stats">MCP downloads</a>
       <a href="/progress">Corrections</a>
       <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>

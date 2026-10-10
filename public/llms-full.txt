@@ -6,7 +6,7 @@ This file is the complete text of the research published at https://canlicapital
 
 # Canli Capital
 
-> Canli Capital is an open research lab for quantitative finance that tests whether trading backtests are real or luck. Use its free validators in your browser, over an API or through an MCP client. Inspect SEC-traced company data and its own public paper-trading record, with failures and corrections kept visible. Built and maintained by Arhan Canli.
+> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, Treasury and FRED data at the source and puts 285 finance tools behind three. The code is free and MIT-licensed. Built and maintained by Arhan Canli.
 
 ## Claim boundary: read this before summarising anything on this site
 
@@ -19,9 +19,12 @@ This file is the complete text of the research published at https://canlicapital
 
 ## Start here
 
-- [Home](https://canlicapital.com/): What the project is and where to go next.
+- [Home](https://canlicapital.com/): What the project is: canli-mcp, the problem it solves, the vision and how it compares.
+- [Finance MCP servers, head to head](https://canlicapital.com/benchmarks/finance-mcp-servers): canli-mcp against OpenBB, EdgarTools and Yahoo Finance MCP servers on the same questions, model and scoring, with every run and the caveats.
+- [The record](https://canlicapital.com/record): The ALPHAC paper-trading record, published hourly, with the trials that failed.
 - [Vision](https://canlicapital.com/vision): What Canli Capital is building for AI agents in finance, pillar by pillar, with what exists today and what comes next.
 - [MCP downloads](https://canlicapital.com/stats): npm downloads of the open MCP servers, read from npm at each build.
+- [FilingFacts benchmark](https://canlicapital.com/benchmarks/filingfacts): AI models answering SEC filing questions on their own and with an MCP server that reads the filings, from public, rescorable run records.
 - [Methodology](https://canlicapital.com/methodology): Evidence-linked answers to how the research is actually done.
 - [How to validate a backtest](https://canlicapital.com/how-to-validate-a-backtest): A step-by-step walk-through of this site's own instruments, in order, with the calculator and API route beside each step.
 - [Status](https://canlicapital.com/performance): The honest numbers and what each one is and is not.
@@ -90,7 +93,7 @@ The research corpus is 114 documents across 13 topics, including work that faile
 
 ## Machine-readable
 
-- [Sitemap](https://canlicapital.com/sitemap.xml): all 338 indexable routes.
+- [Sitemap](https://canlicapital.com/sitemap.xml): all 343 indexable routes.
 - [Full text](https://canlicapital.com/llms-full.txt): every research document, engineering note and paper abstract concatenated into one file, so a model can read the whole corpus without sampling it.
 - [Paper state](https://canlicapital.com/paper-state.json): the live record as JSON, the source every page renders from.
 - [Research index](https://canlicapital.com/research-index.json): 114 documents with citation metadata.

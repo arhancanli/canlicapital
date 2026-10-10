@@ -9,6 +9,8 @@ test("labels come from the page's own title, without the site name", () => {
   assert.equal(pageLabel(page("Null Zoo v0: backtest-overfitting corrections | Canli Capital")), "Null Zoo v0");
   assert.equal(pageLabel(page("Canli Capital / Open research book")), "Open research book");
   assert.equal(pageLabel(page("What the costs actually are | Canli Capital")), "What the costs actually are");
+  assert.equal(pageLabel(page("Quantitative research trial register / Canli Capital")), "Quantitative research trial register");
+  assert.equal(pageLabel(page("Alphamax Equity Momentum trial 00d3e37f / Canli")), "Alphamax Equity Momentum trial 00d3e37f");
 });
 
 test("a trail is Home, each ancestor that is a page, then the page", () => {
