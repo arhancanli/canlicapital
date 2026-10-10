@@ -139,7 +139,7 @@ export function renderHomeFilm(h2h, leaderboard) {
 <p class="links"><a href="/benchmarks/finance-mcp-servers">Every run, the method and the caveats</a></p>`, "dense"),
 
     chapter(7, "In the open", `<h2 id="ch-7-h">We hold our own strategies to the same standard.</h2>
-<p class="big">ALPHAC, Canli Capital's trading engine, runs its strategies on paper and publishes every position, decision and broker reconciliation, hourly. Its backtests face the same tests canli-mcp ships, such as the deflated Sharpe ratio, and the trials that failed stay on the record.</p>
+<p class="big">ALPHAC, Canli Capital's trading engine, runs its strategies on paper and publishes every position, decision and broker reconciliation, daily. Its backtests face the same tests canli-mcp ships, such as the deflated Sharpe ratio, and the trials that failed stay on the record.</p>
 <p class="links"><a href="/record">The record</a><a href="/research">Research</a><a href="/trials">Every trial</a><a href="/progress">Corrections</a></p>`),
 
     chapter(8, "Company data", `<h2 id="ch-8-h">US public companies, each figure traced to its filing.</h2>
