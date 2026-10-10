@@ -1,7 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.2.0
 
+The first release on npm. 0.1.0 is the version the rival benchmark measured (`bench/rivals`) and was
+never published; 0.2.0 adds the markets pack and the fixes that benchmark found.
+
+- canli-backtest-mcp 0.1.1: 0.1.0 shipped a `file:` dependency and could not install from npm.
 - Fix: `digits` rounded whole numbers too, so with `digits: 6` a 13F's 227,917,808 shares came back
   as 227,918,000 and a CIK changed. It now rounds fractions only; counts, shares, IDs and dollar
   totals stay exact. Found by the rival benchmark (`bench/rivals`).
@@ -22,9 +26,9 @@
 - Context re-measured on 2026-10-09: 1,109 tokens, against 24,858 for the seven servers listed
   separately (0.1.0's 995 was measured before the argument signatures were added; it is 1,037).
 
-## 0.1.0
+## 0.1.0 (not published to npm)
 
-First release: every Canli Capital MCP server in one process. 272 tools from canli-quant-mcp,
+First version: every Canli Capital MCP server in one process. 272 tools from canli-quant-mcp,
 canli-validation-mcp (run locally), canli-fundamentals-mcp, canli-research-mcp, canli-backtest-mcp
 and canli-paper-trading-mcp, behind `find_tool`, `describe_tool` and `run_tool`.
 

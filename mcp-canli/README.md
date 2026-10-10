@@ -112,7 +112,7 @@ logging code (also tested). Opt-in receipts (`receipt: true`) carry hashes, neve
 
 | variable | effect |
 |---|---|
-| `CANLI_PACKS` | Packs to enable: `quant,validation,fundamentals,research,backtest,paper` or `all`. Default: all but paper. |
+| `CANLI_PACKS` | Packs to enable: `quant,validation,fundamentals,research,backtest,markets,paper` or `all`. Default: all but paper. |
 | `CANLI_OFFLINE` | `1` keeps only `quant` and `validation`. |
 | `ALPACA_PAPER_KEY_ID`, `ALPACA_PAPER_SECRET_KEY` | Paper keys (starting `PK`); setting them enables the paper pack. Live keys are refused. |
 | `CANLI_HOME` | Where the paper pack keeps its limits file, kill switch and order log; default `~/.canli`. |

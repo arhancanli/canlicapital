@@ -25,20 +25,20 @@
     "source": "github",
     "subfolder": "mcp-canli"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "canli-mcp",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "transport": {
         "type": "stdio"
       },
       "environmentVariables": [
         {
           "name": "CANLI_PACKS",
-          "description": "Packs to enable, comma-separated (quant, validation, fundamentals, research, backtest, paper) or all. Default: all but paper.",
+          "description": "Packs to enable, comma-separated (quant, validation, fundamentals, research, backtest, markets, paper) or all. Default: all but paper.",
           "isRequired": false,
           "isSecret": false
         },
