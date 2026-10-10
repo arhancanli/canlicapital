@@ -84,3 +84,12 @@ test("robots.txt lets the seven retrieval crawlers read everything and keeps /co
   assert.ok(star.rules.some((r) => r.type === "disallow" && r.path === "/company-data/"));
   assert.match(read("public/robots.txt"), /^Sitemap: https:\/\/canlicapital\.com\/sitemap\.xml$/m);
 });
+
+test("search-marketing crawlers are kept off the company catalogue only; search engines and answer engines are not in that group", () => {
+  const groups = robotsGroups(read("public/robots.txt"));
+  const seo = groups.find((g) => g.agents.includes("ahrefsbot"));
+  assert.ok(seo, "the search-marketing group exists");
+  for (const agent of ["semrushbot", "mj12bot", "dotbot", "dataforseobot"]) assert.ok(seo.agents.includes(agent), agent);
+  assert.deepEqual(seo.rules, [{ type: "disallow", path: "/companies/" }, { type: "disallow", path: "/company-data/" }]);
+  for (const agent of ["*", "googlebot", ...RETRIEVAL_AGENTS.map((a) => a.toLowerCase())]) assert.ok(!seo.agents.includes(agent), `${agent} is not fenced off`);
+});

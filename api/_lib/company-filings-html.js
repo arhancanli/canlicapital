@@ -1,10 +1,11 @@
+import { PAGE_CACHE, errorCache } from './company-cache.js';
 import { renderFilingPages } from '../../scripts/lib/company-filing-page-renderer.mjs';
 import { applyCompanyAssets } from '../../scripts/lib/company-assets.mjs';
 import { catalogHash } from './company-catalog.js';
 
 // Serves /companies/{cik}/filings (index) and /companies/{cik}/filings/{accession}
 // from a verified filings catalog. Indexability is decided per company by the
-// activation's admission predicate; everything else stays noindex and no-store,
+// activation's admission predicate; everything else stays noindex,
 // exactly as company-html.js does for history pages.
 const ACCESSION = /^\d{10}-\d{2}-\d{6}$/;
 // historyIndexable(cik, tag): the history-page admission predicate. A filing page links a concept
@@ -15,7 +16,7 @@ export function createCompanyFilingsHandler({ filings, assets, indexable = false
   return async (req, res) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     const fail = (status, message) => {
-      res.statusCode = status; res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Robots-Tag', 'noindex');
+      res.statusCode = status; res.setHeader('Cache-Control', errorCache(status)); res.setHeader('X-Robots-Tag', 'noindex');
       res.end(req.method === 'HEAD' ? undefined : `<!doctype html><html lang="en"><head><meta name="robots" content="noindex"><title>${message}</title></head><body><h1>${message}</h1></body></html>`);
     };
     if (!['GET', 'HEAD'].includes(req.method)) { res.setHeader('Allow', 'GET, HEAD'); return fail(405, 'Method not allowed'); }
@@ -32,7 +33,7 @@ export function createCompanyFilingsHandler({ filings, assets, indexable = false
       const html = applyCompanyAssets(pages[0].html, assets);
       if (Buffer.byteLength(html) > 256 * 1024) return fail(503, 'Company filings temporarily unavailable');
       const etag = `"${catalogHash(html)}"`;
-      res.setHeader('ETag', etag); res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+      res.setHeader('ETag', etag); res.setHeader('Cache-Control', PAGE_CACHE);
       if (!admitted) res.setHeader('X-Robots-Tag', 'noindex');
       if (String(req.headers?.['if-none-match'] ?? '').split(',').map(value => value.trim().replace(/^W\//, '')).some(value => value === etag || value === '*')) { res.statusCode = 304; return res.end(); }
       res.statusCode = 200; res.end(req.method === 'HEAD' ? undefined : html);
