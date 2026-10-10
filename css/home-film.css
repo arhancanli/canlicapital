@@ -1,9 +1,10 @@
 /* =====================================================================================================
    THE FILM (home). A fixed WebGL canvas, the market at night, behind twelve chapters of real HTML.
-   Each pinned chapter holds while it is read; js/home-film.js moves the camera and stages the words.
+   Each chapter is one screen, and the scroll comes to rest on every one of them (js/home-film.js: stops);
+   between two chapters the camera flies and the words change.
    Everything here is scoped to the homepage (body.film-home), so no other page changes.
    ===================================================================================================== */
-html[data-design="home"] { background: #04060a; color-scheme: dark; }
+html[data-design="home"] { background: #04060a; color-scheme: dark; scroll-padding-top: 0; }
 .film-home {
   --f-bg: #04060a; --f-ink: #eef3fa; --f-ink-2: #b9c6d4; --f-ink-3: #7f8fa2; --f-line: rgba(255, 255, 255, 0.1); --f-line-2: rgba(255, 255, 255, 0.16);
   --f-ice: #9fdcff; --f-blue: #6f9dff; --f-red: #ff6a5c; --f-amber: #ffb85c; --f-green: #5fe39a; --f-violet: #b89cff;
@@ -12,7 +13,7 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
 }
 .film-home ::selection { background: var(--f-ice); color: #04060a; }
 .film-home a { color: var(--f-ice); }
-.film-home main { position: relative; z-index: 1; }
+.film-home main { position: relative; z-index: 1; padding-top: 0; }
 .film-home .wrap { width: min(1240px, calc(100% - 2 * var(--f-gutter))); margin-inline: auto; }
 .film-home :is(a, button, summary, input, pre, [tabindex]):focus-visible { outline: 2px solid var(--f-ice); outline-offset: 4px; }
 
@@ -26,7 +27,8 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
 .film-home::after { content: ""; position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0.6;
   box-shadow: inset 0 calc(3.2vh + var(--travel, 0) * 4.5vh) 0 #000, inset 0 calc(-3.2vh - var(--travel, 0) * 4.5vh) 0 #000; }
 
-/* the header floats over the film */
+/* the header floats over the film, slimmer than on the reading pages */
+@media (min-width: 769px) { .film-home .cc-shell { height: 72px; } }
 .film-home .cc-shell { background: linear-gradient(180deg, rgba(4, 6, 10, 0.86), rgba(4, 6, 10, 0)); border-bottom: 0; color: var(--f-ink); backdrop-filter: none; -webkit-backdrop-filter: none; }
 .film-home .cc-shell a, .film-home .cc-shell summary { color: var(--f-ink); }
 .film-home .cc-shell__cta { background: var(--f-ink); color: #04060a !important; }
@@ -41,21 +43,37 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
 @media (prefers-reduced-motion: no-preference) { .film-home .curtain i { animation: film-curtain 1.9s cubic-bezier(0.7, 0, 0.2, 1) 0.25s both; } }
 @keyframes film-curtain { from { transform: scaleY(1); } to { transform: scaleY(0); } }
 
-/* ---------- chapters ---------- */
-.film-home .chapter { position: relative; height: 240vh; overflow-x: clip; }
-.film-home .chapter.opening { height: 175vh; }
-.film-home .chapter > .chapter-inner { position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 96px; padding-bottom: 48px; }
-.film-home .chapter.free { height: auto; padding: 18vh 0; }
-.film-home .chapter.free > .chapter-inner { position: relative; min-height: 0; padding-top: 0; }
-.film-home .chapter.finale { height: auto; padding: 16vh 0 14vh; }
-.film-home .chapter.finale > .chapter-inner { position: relative; min-height: 0; }
-.film-home .chapter-inner > * { max-width: min(580px, 46%); position: relative; }
+/* ---------- chapters: one screen each ---------- */
+.film-home .chapter { position: relative; min-height: 100vh; overflow-x: clip; }
+.film-home .chapter > .chapter-inner { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 84px; padding-bottom: 32px; }
+.film-home .chapter-inner > * { max-width: min(600px, 48%); position: relative; }
 .film-home .chapter.opening .chapter-inner > * { max-width: min(760px, 58%); }
-.film-home .chapter.free .chapter-inner > :is(.bars, .gap-grid, .packs, .install, .receipt, .pillars) { max-width: min(720px, 56%); }
+.film-home .chapter .chapter-inner > :is(.bars, .packs, .install, .receipt, .pillars) { max-width: min(700px, 55%); }
+/* the dense chapters (a receipt, the packs, the bars, the four parts) keep their words tighter, so each fits one screen */
+@media (min-width: 769px) {
+  .film-home .chapter.dense h2:not(.display) { font-size: clamp(1.9rem, 1rem + 2.2vw, 3rem); max-width: min(780px, 60%); }
+  .film-home .chapter.dense .chapter-inner > p { max-width: min(700px, 56%); }
+  .film-home .chapter.dense .chapter-inner > .packs { max-width: min(760px, 58%); }
+  .film-home .chapter.dense .chapter-inner > .bars, .film-home .chapter.dense .chapter-inner > p.film-note { max-width: min(640px, 50%); }
+  .film-home .chapter.dense .display { font-size: clamp(2.6rem, 1rem + 4.2vw, 5rem); }
+  .film-home .chapter.dense .big { margin-top: 18px; font-size: clamp(1.02rem, 0.95rem + 0.4vw, 1.2rem); }
+  .film-home .chapter.dense .lede { margin-top: 18px; }
+  .film-home .chapter.dense p:where(:not(.kicker, .big, .lede, .note, .actions, .links, .film-note)) { margin-top: 12px; font-size: 0.95rem; }
+  .film-home .chapter.dense .film-note { margin-top: 12px; }
+  .film-home .chapter.dense .links { margin-top: 16px; }
+}
 /* the words always sit in shadow: a soft dark wash on their side of the screen */
 .film-home .chapter-inner::before { content: ""; position: absolute; inset: 0 -50vw; z-index: -1; pointer-events: none;
   background: linear-gradient(90deg, rgba(4, 6, 10, 0.9) 0%, rgba(4, 6, 10, 0.64) calc(50vw + 32%), transparent calc(50vw + 60%)); }
-.film-home .chapter.free .chapter-inner::before, .film-home .chapter.finale .chapter-inner::before { inset: -12vh -50vw; }
+
+/* stops: where the scroll comes to rest. With a mouse or trackpad, js/home-film.js moves one chapter per gesture
+   and the browser only settles a dragged scrollbar (proximity); on a touch screen the browser stops at every
+   chapter and section itself (mandatory), and lets a reader scroll inside one taller than the screen. */
+html.film-stops.stops-glide { scroll-snap-type: y proximity; }
+html.film-stops.stops-glide.gliding { scroll-snap-type: none; }
+html.film-stops.stops-touch { scroll-snap-type: y mandatory; }
+.film-stops .film-home .chapter, .film-stops .film-home .home-compare { scroll-snap-align: start; scroll-snap-stop: always; }
+.film-stops.stops-touch .film-home :is(.home-questions, .access), .film-stops.stops-touch .film-home .cc-footer { scroll-snap-align: start; }
 
 .film-home .kicker { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; font: 500 0.72rem/1 var(--cc-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--f-ink-2); }
 .film-home .kicker .ch-n { color: var(--f-ice); }
@@ -66,7 +84,7 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
 .film-home .accent { color: var(--f-ice); }
 .film-home .chapter .lede, .film-home .hero__lead { margin-top: 26px; font-size: clamp(1.08rem, 1rem + 0.5vw, 1.34rem); line-height: 1.55; color: var(--f-ink-2); max-width: 48ch; }
 .film-home .chapter .big { margin-top: 24px; font-size: clamp(1.12rem, 1rem + 0.55vw, 1.4rem); line-height: 1.5; color: var(--f-ink); max-width: 46ch; }
-.film-home .chapter p:not(.kicker):not(.big):not(.lede):not(.hero__lead):not(.note):not(.actions):not(.scroll-cue):not(.links) { margin-top: 16px; color: var(--f-ink-2); max-width: 54ch; }
+.film-home .chapter p:where(:not(.kicker, .big, .lede, .hero__lead, .note, .actions, .scroll-cue, .links, .film-note)) { margin-top: 16px; color: var(--f-ink-2); max-width: 54ch; }
 .film-home .film-note { margin-top: 18px; font: 400 0.82rem/1.55 var(--cc-mono); color: var(--f-ink-3); max-width: 62ch; }
 .film-home .links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 24px; }
 .film-home .links a { font: 500 0.8rem/1.3 var(--cc-mono); letter-spacing: 0.04em; text-decoration: none; color: var(--f-ice); border-bottom: 1px solid rgba(159, 220, 255, 0.35); padding-bottom: 3px; }
@@ -117,12 +135,13 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
 .film-home .chip-live { color: var(--f-green); }
 .film-home .chip-next { color: var(--f-amber); }
 
-/* the flagship's packs */
-.film-home .packs { list-style: none; display: grid; gap: 0; margin: 28px 0 0; padding: 0; border-top: 1px solid var(--f-line); }
-.film-home .packs li { display: grid; grid-template-columns: minmax(150px, 0.9fr) 56px 2fr; gap: 16px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--f-line); }
-.film-home .packs b { font: 600 0.95rem/1.3 var(--cc-body); color: var(--f-ink); }
-.film-home .packs .n { font: 600 1.15rem/1 var(--cc-display); color: var(--f-ice); text-align: right; font-variant-numeric: tabular-nums; }
-.film-home .packs span:last-child { color: var(--f-ink-3); font-size: 0.84rem; line-height: 1.4; }
+/* the flagship's packs: one tile each, the largest across the top */
+.film-home .packs { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 26px 0 0; padding: 0; }
+.film-home .packs li { display: grid; grid-template-columns: 2.4em 1fr; column-gap: 12px; row-gap: 2px; align-content: start; padding: 11px 14px 12px; border: 1px solid var(--f-line); border-radius: var(--f-radius); background: rgba(8, 12, 20, 0.62); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.film-home .packs li:first-child { grid-column: 1 / -1; }
+.film-home .packs .n { grid-row: 1 / span 2; align-self: start; font: 600 1.45rem/1.05 var(--cc-display); color: var(--f-ice); text-align: right; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+.film-home .packs b { font: 600 0.92rem/1.3 var(--cc-body); color: var(--f-ink); }
+.film-home .packs .covers { grid-column: 2; color: var(--f-ink-3); font-size: 0.78rem; line-height: 1.4; }
 
 /* install commands */
 .film-home .install { display: grid; gap: 10px; margin-top: 26px; }
@@ -134,9 +153,13 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
 .film-home .cmd__status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
 /* the gap: bars for the shared questions */
-.film-home .bars { list-style: none; display: grid; gap: 12px; margin: 30px 0 0; padding: 0; }
-.film-home .bar { display: grid; grid-template-columns: minmax(150px, 0.9fr) 2fr auto; gap: 16px; align-items: center; }
-.film-home .bar__name { font: 500 0.88rem/1.25 var(--cc-body); color: var(--f-ink-2); }
+.film-home .bars { list-style: none; display: grid; gap: 11px; margin: 24px 0 0; padding: 0; }
+.film-home .bar { display: grid; grid-template-columns: minmax(160px, 0.85fr) 2fr minmax(64px, auto); grid-template-areas: "name track value" "note note value"; column-gap: 16px; row-gap: 3px; align-items: center; }
+.film-home .bar__name { grid-area: name; font: 500 0.88rem/1.25 var(--cc-body); color: var(--f-ink-2); }
+.film-home .bar__track { grid-area: track; }
+.film-home .bar__value { grid-area: value; align-self: start; }
+.film-home .bar__note { grid-area: note; font: 400 0.68rem/1.35 var(--cc-mono); color: rgba(255, 138, 126, 0.86); letter-spacing: 0.01em; }
+.film-home .bar.is-ours .bar__note { color: var(--f-green); }
 .film-home .bar__track { position: relative; height: 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); overflow: hidden; }
 .film-home .bar__track i { position: absolute; inset: 0 auto 0 0; width: calc(var(--v) * 100%); border-radius: inherit; background: linear-gradient(90deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.6)); transform-origin: 0 50%; }
 .film-home .bar.is-ours .bar__name { color: var(--f-ink); font-weight: 600; }
@@ -150,19 +173,6 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
 .film-on .film-home .bars.is-shown .bar:nth-child(4) .bar__track i { transition-delay: 360ms; }
 .film-on .film-home .bars.is-shown .bar:nth-child(5) .bar__track i { transition-delay: 480ms; }
 
-/* the gap: the category grid */
-.film-home .gap-grid { margin-top: 26px; overflow-x: auto; border: 1px solid var(--f-line); border-radius: var(--f-radius); background: rgba(6, 10, 16, 0.74); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-.film-home .gap-grid table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
-.film-home .gap-grid caption { caption-side: bottom; padding: 10px 14px; text-align: left; font: 400 0.72rem/1.4 var(--cc-mono); color: var(--f-ink-3); }
-.film-home .gap-grid th, .film-home .gap-grid td { padding: 8px 6px; border-bottom: 1px solid var(--f-line); text-align: center; font-size: 0.8rem; white-space: nowrap; }
-.film-home .gap-grid thead th { font: 500 0.6rem/1.25 var(--cc-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--f-ink-3); white-space: normal; min-width: 0; vertical-align: bottom; }
-.film-home .gap-grid th[scope="row"] { text-align: left; color: var(--f-ink-2); font-weight: 500; padding-left: 12px; }
-.film-home .gap-grid tr.is-ours th[scope="row"] { color: var(--f-ink); font-weight: 600; }
-.film-home .gap-grid td { font-family: var(--cc-mono); color: var(--f-ink-2); }
-.film-home .gap-grid td.full { color: var(--f-ice); }
-.film-home .gap-grid td.zero { color: var(--f-red); background: rgba(255, 106, 92, 0.1); font-weight: 600; }
-.film-home .gap-grid td.none { color: var(--f-ink-3); font-size: 0.7rem; }
-
 /* film reveals: only once home-film.js has marked what is on screen (html.film-on), never otherwise */
 .film-on .film-home .chapter-inner > :not(.is-shown) { opacity: 0.001; transform: translateY(32px); filter: blur(10px); }
 .film-on .film-home .chapter-inner > .is-shown { transition: opacity 1100ms var(--f-ease), transform 1100ms var(--f-ease), filter 1100ms var(--f-ease); }
@@ -173,8 +183,10 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
 .film-home .chapter .w > span { display: inline-block; }
 .film-on .film-home .chapter-inner > :not(.is-shown) .w > span { transform: translateY(110%); }
 .film-on .film-home .chapter-inner > .is-shown .w > span { transition: transform 1100ms cubic-bezier(0.2, 0.8, 0.2, 1); transition-delay: calc(var(--w, 0) * 55ms + 60ms); }
-/* the cross-dissolve: a chapter's words lift and fade as the next shot begins (home-film.js sets --exit) */
-.film-on .film-home .chapter-inner { opacity: calc(1 - var(--exit, 0) * 0.95); transform: translateY(calc(var(--exit, 0) * -56px)) scale(calc(1 - var(--exit, 0) * 0.03)); filter: blur(calc(var(--exit, 0) * 10px)); }
+/* arriving: once the scroll rests on a chapter its blocks rise in turn (home-film.js numbers them --j) */
+.film-on .film-home .chapter-inner > .is-shown { transition-delay: calc(var(--j, 0) * 90ms); }
+/* leaving: a chapter's words lift and dissolve as it moves off, in the direction it moves (home-film.js sets --exit, --dir) */
+.film-on .film-home .chapter-inner { opacity: calc(1 - var(--exit, 0) * 0.97); transform: translateY(calc(var(--exit, 0) * var(--dir, 1) * -56px)) scale(calc(1 - var(--exit, 0) * 0.03)); filter: blur(calc(var(--exit, 0) * 10px)); }
 .film-on .film-home .chapter-inner:focus-within { opacity: 1; transform: none; filter: none; }
 
 /* the timecode: a hairline of progress under the header, and the chapter in the corner */
@@ -261,6 +273,13 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
 .film-home #form-status[data-error="true"] { color: var(--f-red); }
 .film-home .cc-footer { position: relative; z-index: 1; }
 
+/* shorter screens: every chapter still fits one screen, its words scaled with the height (zoom keeps the layout true) */
+@media (min-width: 769px) and (max-height: 880px) { .film-home .chapter.dense .chapter-inner > * { zoom: 0.93; } }
+@media (min-width: 769px) and (max-height: 800px) { .film-home .chapter .chapter-inner > * { zoom: 0.9; } .film-home .chapter.dense .chapter-inner > * { zoom: 0.84; } }
+@media (min-width: 769px) and (max-height: 760px) { .film-home .chapter.dense .chapter-inner > * { zoom: 0.8; } }
+@media (min-width: 769px) and (max-height: 720px) { .film-home .chapter .chapter-inner > * { zoom: 0.84; } .film-home .chapter.dense .chapter-inner > * { zoom: 0.76; } .film-home .chapter > .chapter-inner { padding-top: 72px; padding-bottom: 16px; } }
+@media (min-width: 769px) and (max-width: 1200px) and (max-height: 900px) { .film-home .chapter.dense .chapter-inner > * { zoom: 0.8; } }
+@media (min-width: 769px) and (max-height: 650px) { .film-home .chapter .chapter-inner > * { zoom: 0.78; } .film-home .chapter.dense .chapter-inner > * { zoom: 0.7; } }
 /* laptop-height screens: the opening must fit under the header with room to breathe */
 @media (min-width: 769px) and (max-height: 960px) {
   .film-home .display { font-size: clamp(2.5rem, 0.9rem + 4vw, 5rem); }
@@ -269,25 +288,21 @@ html[data-design="home"] { background: #04060a; color-scheme: dark; }
   .film-home .scroll-cue { margin-top: 4vh; }
   .film-home .scroll-cue::after { height: 40px; }
 }
-/* tablets: the dense chapters take the full width */
+/* tablets: the dense blocks take the full width */
 @media (max-width: 1100px) {
-  .film-home .chapter.free .chapter-inner > :is(.bars, .gap-grid, .packs, .install, .receipt, .pillars) { max-width: none; }
+  .film-home .chapter .chapter-inner > :is(.bars, .packs, .install, .receipt, .pillars) { max-width: min(700px, 64%); }
 }
 /* phones: the film sits above, the words below it, nothing pins */
 @media (max-width: 768px) {
-  .film-home .chapter, .film-home .chapter.opening { height: auto; }
-  .film-home .chapter > .chapter-inner, .film-home .chapter.free > .chapter-inner { position: relative; min-height: 0; padding-top: 46vh; padding-bottom: 10vh; }
-  .film-home .chapter.free, .film-home .chapter.finale { padding: 0; }
-  .film-home .chapter.finale > .chapter-inner { padding-bottom: 12vh; }
-  .film-home .chapter-inner > *, .film-home .chapter.opening .chapter-inner > * { max-width: none; }
+  .film-home .chapter { min-height: 0; }
+  .film-home .chapter > .chapter-inner { min-height: 0; justify-content: flex-start; padding-top: 46vh; padding-bottom: 10vh; }
+  .film-home .chapter-inner > *, .film-home .chapter.opening .chapter-inner > *, .film-home .chapter .chapter-inner > :is(.bars, .packs, .install, .receipt, .pillars) { max-width: none; }
   .film-home .chapter-inner::before { inset: 40vh -16px 0; background: linear-gradient(180deg, transparent, rgba(4, 6, 10, 0.92) 8vh); }
   .film-home .chapter.opening > .chapter-inner { padding-top: 40vh; min-height: 100vh; }
   .film-home .pillars { grid-template-columns: 1fr; }
   .film-home .doors { grid-template-columns: 1fr; max-width: none !important; }
-  .film-home .packs li { grid-template-columns: 1fr auto; }
-  .film-home .packs span:last-child { grid-column: 1 / -1; }
-  .film-home .bar { grid-template-columns: 1fr auto; }
-  .film-home .bar__track { grid-column: 1 / -1; grid-row: 2; }
+  .film-home .packs { grid-template-columns: 1fr; }
+  .film-home .bar { grid-template-columns: 1fr auto; grid-template-areas: "name value" "track track" "note note"; }
   .film-home .receipt dl > div { grid-template-columns: 1fr; gap: 2px; }
   .film-home::after { display: none; }
   .film-timecode, .film-progress, .film-legend, .film-captions { display: none; }
