@@ -1,0 +1,126 @@
+/* =====================================================================================================
+   EVERY PAGE BUT THE HOMEPAGE: the same world as the homepage film.
+   A dark glass header over a cinematic band (a still of the film behind the page's trail, title and summary;
+   scripts/lib/site-hero.mjs writes it), then a calm light reading surface. Scoped to html[data-design] pages
+   other than the homepage, so the film keeps its own styles.
+   ===================================================================================================== */
+:root {
+  --cc-night: #070b12; --cc-ink: #0d1726; --cc-paper: #f5f7fa; --cc-white: #fff; --cc-muted: #556476; --cc-line: #dfe5ec; --cc-blue: #1f5fd1;
+  --cc-shell-h: 76px; --cc-hero-ink: #f2f6fb; --cc-hero-ink-2: #c6d2df; --cc-hero-ink-3: #93a3b6; --cc-hero-ice: #9fdcff;
+}
+@media (max-width: 767px) { :root { --cc-shell-h: 64px; } }
+html[data-design]:not([data-design="home"]) { overflow-x: clip; }
+
+/* ---------- the header: dark glass, on every page ---------- */
+html[data-design]:not([data-design="home"]) .cc-shell {
+  height: var(--cc-shell-h); background: rgba(6, 9, 14, 0.84); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: saturate(150%) blur(18px); -webkit-backdrop-filter: saturate(150%) blur(18px); color: #eef3fa;
+}
+html[data-design]:not([data-design="home"]) .cc-shell a, html[data-design]:not([data-design="home"]) .cc-shell summary { color: #e6edf6; }
+html[data-design]:not([data-design="home"]) .cc-shell__link { opacity: 0.86; transition: opacity 200ms, border-color 200ms; }
+html[data-design]:not([data-design="home"]) .cc-shell__link:hover, html[data-design]:not([data-design="home"]) .cc-shell__link[data-current=true] { opacity: 1; border-bottom-color: var(--cc-hero-ice); }
+html[data-design]:not([data-design="home"]) .cc-shell__mark::after { background: var(--cc-hero-ice); }
+html[data-design]:not([data-design="home"]) .cc-shell .cc-shell__cta { background: #f2f6fb; color: #070b12 !important; border-radius: 999px; padding: 10px 16px; font-weight: 600; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 0 8px 30px rgba(159, 220, 255, 0.16); }
+html[data-design]:not([data-design="home"]) .cc-shell__panel { top: calc(var(--cc-shell-h) - 1px); background: rgba(7, 11, 18, 0.97); color: #e6edf6; border-bottom: 1px solid rgba(255, 255, 255, 0.08); max-height: calc(100dvh - var(--cc-shell-h)); }
+html[data-design]:not([data-design="home"]) .cc-shell__panel-label, html[data-design]:not([data-design="home"]) .cc-shell__panel-foot { color: #8b9bae; border-color: rgba(255, 255, 255, 0.1); }
+html[data-design]:not([data-design="home"]) .cc-shell__panel-link:hover { color: var(--cc-hero-ice); }
+
+/* ---------- the band ---------- */
+main:has(> .cc-hero) { padding-top: 0 !important; }
+.cc-hero {
+  position: relative; isolation: isolate; overflow: clip; margin: 0 calc(50% - 50vw) clamp(36px, 5vw, 72px);
+  min-height: clamp(440px, 58vh, 620px); padding: calc(var(--cc-shell-h) + clamp(40px, 6vw, 96px)) 0 clamp(44px, 6vw, 84px);
+  display: flex; align-items: flex-end; background: #05080d; color: var(--cc-hero-ink);
+}
+.cc-hero__art { position: absolute; inset: 0; z-index: -2; display: block; }
+.cc-hero__art img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; display: block; animation: cc-hero-drift 26s ease-in-out infinite alternate; }
+@keyframes cc-hero-drift { from { transform: scale(1.06) translate3d(0.6%, 0, 0); } to { transform: scale(1.06) translate3d(-0.6%, -0.8%, 0); } }
+/* the words sit in shadow, as on the homepage: a dark wash on their side, the scene open on the other */
+.cc-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(4, 7, 12, 0.94) 0%, rgba(4, 7, 12, 0.82) 30%, rgba(4, 7, 12, 0.42) 62%, rgba(4, 7, 12, 0.14) 100%),
+    linear-gradient(180deg, rgba(4, 7, 12, 0.72) 0%, rgba(4, 7, 12, 0) 34%, rgba(4, 7, 12, 0) 64%, rgba(4, 7, 12, 0.6) 100%); }
+/* the horizon: a hairline of light where the band meets the page */
+.cc-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, rgba(159, 220, 255, 0.55), rgba(159, 220, 255, 0.12) 55%, rgba(159, 220, 255, 0)); }
+.cc-hero__inner { position: relative; width: min(1200px, calc(100% - 2 * var(--cc-gutter, 32px))); margin-inline: auto; display: flex; flex-direction: column; align-items: flex-start; }
+.cc-hero__inner > * { max-width: min(860px, 100%); margin: 0; }
+
+.cc-hero :is(.cc-crumbs, .paper__crumbs) { margin: 0 0 clamp(18px, 2.4vw, 28px); padding: 0; font: 500 0.74rem/1.5 var(--cc-mono); letter-spacing: 0.04em; }
+.cc-hero :is(.cc-crumbs, .paper__crumbs) ol { list-style: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 0; margin: 0; padding: 0; }
+.cc-hero :is(.cc-crumbs, .paper__crumbs) li { display: inline-flex; align-items: baseline; color: var(--cc-hero-ink-3); min-width: 0; }
+.cc-hero :is(.cc-crumbs, .paper__crumbs) li + li::before { content: "/"; margin: 0 10px; color: rgba(255, 255, 255, 0.28); }
+.cc-hero :is(.cc-crumbs, .paper__crumbs) a { color: var(--cc-hero-ink-2); text-decoration: none; border-bottom: 1px solid transparent; transition: color 200ms, border-color 200ms; }
+.cc-hero :is(.cc-crumbs, .paper__crumbs) a:hover { color: #fff; border-bottom-color: rgba(255, 255, 255, 0.4); }
+.cc-hero :is(.cc-crumbs, .paper__crumbs) [aria-current] { color: var(--cc-hero-ink-3); max-width: 46ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* the label above the title, whatever its page called it */
+.cc-hero__inner > p:first-of-type:not(:last-child):is([class*="kicker"], [class*="eyebrow"]), .cc-hero__inner > nav + p:is([class*="kicker"], [class*="eyebrow"]) {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-bottom: 18px; font: 500 0.72rem/1.4 var(--cc-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--cc-hero-ice);
+}
+.cc-hero__inner > p:is([class*="kicker"], [class*="eyebrow"]) span + span::before { content: ""; display: inline-block; width: 18px; height: 1px; margin-right: 14px; vertical-align: middle; background: currentColor; opacity: 0.5; }
+.cc-hero__inner > p:is([class*="kicker"], [class*="eyebrow"]) a { color: inherit; text-decoration: none; }
+.cc-hero__inner > p:is([class*="kicker"], [class*="eyebrow"]) .idx { display: none; }
+
+.cc-hero h1 {
+  max-width: 22ch; margin: 0; font-family: var(--cc-display); font-weight: 600; letter-spacing: -0.04em; line-height: 1.02; color: #fff; text-wrap: balance;
+  font-size: clamp(2.5rem, 1.4rem + 3.4vw, 4.7rem); text-shadow: 0 2px 40px rgba(0, 0, 0, 0.35);
+}
+.cc-hero h1 :is(.mask, .mask__inner) { display: inline; }
+.cc-hero h1 code { font-size: 0.8em; }
+.cc-hero__inner > p:not(:is([class*="kicker"], [class*="eyebrow"], [class*="byline"], [class*="meta"], [class*="__key"])) {
+  margin-top: clamp(16px, 2vw, 24px); max-width: 60ch; font-size: clamp(1.04rem, 0.98rem + 0.3vw, 1.22rem); line-height: 1.6; color: var(--cc-hero-ink-2);
+}
+.cc-hero__inner > p:is([class*="byline"], [class*="meta"], [class*="__key"]) { margin-top: 18px; font: 500 0.8rem/1.6 var(--cc-mono); letter-spacing: 0.02em; color: var(--cc-hero-ink-3); }
+.cc-hero__inner > p:is([class*="byline"], [class*="meta"], [class*="__key"]) :is(a, span, code) { color: var(--cc-hero-ink-2); }
+.cc-hero__inner > p code { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 6px; padding: 1px 6px; color: #e9f1fa; }
+.cc-hero__inner a { color: var(--cc-hero-ice); }
+.cc-hero__inner em[class*="state"] { display: inline-block; margin-left: 10px; padding: 3px 9px; border-radius: 999px; border: 1px solid currentColor; font: 500 0.66rem/1.2 var(--cc-mono); letter-spacing: 0.12em; text-transform: uppercase; font-style: normal; color: #ffb85c; }
+
+/* the actions: one bright pill, the rest glass */
+.cc-hero__inner > :is(div, p):is([class*="actions"], [class*="hero-links"]) { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: clamp(22px, 3vw, 34px); }
+.cc-hero__inner > :is(div, p):is([class*="actions"], [class*="hero-links"]) a {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 12px 20px; border-radius: 999px; text-decoration: none; font: 600 0.9rem/1 var(--cc-body);
+  color: #eef3fa; border: 1px solid rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 260ms, background 260ms, box-shadow 260ms;
+}
+.cc-hero__inner > :is(div, p):is([class*="actions"], [class*="hero-links"]) a:first-child { background: #f2f6fb; color: #070b12; border-color: transparent; box-shadow: 0 10px 40px rgba(159, 220, 255, 0.2); }
+.cc-hero__inner > :is(div, p):is([class*="actions"], [class*="hero-links"]) a:hover { transform: translateY(-2px); border-color: rgba(159, 220, 255, 0.7); }
+
+/* the size of the band follows the page: a reading page opens lower than a chapter */
+html[data-design="reader"] .cc-hero { min-height: clamp(360px, 46vh, 520px); }
+html[data-design="reader"] .cc-hero h1 { font-size: clamp(2.1rem, 1.3rem + 2.5vw, 3.7rem); max-width: 26ch; }
+html[data-design="workbench"] .cc-hero { min-height: clamp(360px, 44vh, 500px); }
+html[data-design="workbench"] .cc-hero h1 { font-size: clamp(2.2rem, 1.3rem + 2.6vw, 3.9rem); }
+
+/* a reading page is a grid (contents beside the article): the band spans it, and the contents start under it */
+.paper__main:has(> .cc-hero) { grid-template-columns: 210px minmax(0, 1fr); padding-top: 0 !important; }
+.paper__main > header.cc-hero:not(.reader-index) { grid-column: 1 / -1; grid-row: 1; width: auto; max-width: none; }
+.paper__main:has(> .cc-hero) > .reader-index { grid-row: 2 / span 3; top: calc(var(--cc-shell-h) + 28px); }
+.paper__main:has(> .cc-hero) > .paper__article { max-width: 860px; }
+@media (max-width: 1000px) {
+  .paper__main:has(> .cc-hero) { grid-template-columns: minmax(0, 1fr); }
+  .paper__main:has(> .cc-hero) > .reader-index { grid-row: auto; position: static; }
+}
+
+/* what an old opener still holds once its title has moved up into the band (a measurement, a status, a note) */
+.trial-hero:not(:has(h1)), .founder-hero:not(:has(h1)), .dsr-hero:not(:has(h1)), .chain-hero:not(:has(h1)), .union-hero:not(:has(h1)), .lab-hero:not(:has(h1)),
+.dev-hero:not(:has(h1)), .eng-hero:not(:has(h1)), .foundry-hero:not(:has(h1)), .review-hero:not(:has(h1)), .note-hero:not(:has(h1)), .publication-hero:not(:has(h1)),
+.record-intro:not(:has(h1)), .contributor-hero:not(:has(h1)), .research-hero:not(:has(h1)), .open-hero:not(:has(h1)), .sys-hero:not(:has(h1)), section.hero:not(:has(h1)) {
+  background: none; color: inherit; padding: 0; margin: 0 0 clamp(28px, 4vw, 48px); min-height: 0; border: 0;
+}
+:is(.research-hero, .open-hero, .sys-hero, section.hero):not(:has(h1)) :is(.hero__ghost, .research-hero__ghost, .open-hero__ghost, .hero__scroll) { display: none; }
+
+/* ---------- the reading surface ---------- */
+html[data-design]:not([data-design="home"]) body { background: var(--cc-paper); color: var(--cc-ink); }
+html[data-design]:not([data-design="home"]) main :is(h2, h3) { color: var(--cc-ink); }
+html[data-design]:not([data-design="home"]) main h2 { letter-spacing: -0.035em; }
+
+@media (prefers-reduced-motion: reduce) { .cc-hero__art img { animation: none; transform: scale(1.02); } }
+@media (max-width: 767px) {
+  .cc-hero { min-height: clamp(420px, 70svh, 560px); padding-bottom: 36px; }
+  .cc-hero::before { background: linear-gradient(180deg, rgba(4, 7, 12, 0.7) 0%, rgba(4, 7, 12, 0.2) 30%, rgba(4, 7, 12, 0.78) 62%, rgba(4, 7, 12, 0.96) 100%); }
+  .cc-hero__art img { object-position: 60% 50%; }
+  .cc-hero :is(.cc-crumbs, .paper__crumbs) [aria-current] { max-width: 24ch; }
+}
+@media print { .cc-hero { min-height: 0; padding: 0; margin: 0 0 24px; background: none; color: #000; } .cc-hero__art, .cc-hero::before, .cc-hero::after { display: none; } .cc-hero h1, .cc-hero__inner > p { color: #000 !important; text-shadow: none; } }

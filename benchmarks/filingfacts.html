@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-page="benchmark-filingfacts">
+<html data-design="chapter" lang="en" data-page="benchmark-filingfacts">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,16 +17,10 @@
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="/css/paper.css" />
-<link rel="stylesheet" href="/css/product-shell.css" />
-<style>
-.lb__table{width:100%;border-collapse:collapse;margin:1rem 0}
-.lb__table th,.lb__table td{padding:.6rem .5rem;border-bottom:1px solid rgba(0,0,0,.12);text-align:left;vertical-align:top}
-.lb__ci{display:block;font-size:.8rem;opacity:.7}
-.paper__crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem;padding:0;margin:0 0 1rem;font-size:.85rem}
-.paper__crumbs li+li::before{content:"/";margin-right:.35rem;opacity:.5}
-</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Dataset","name":"FilingFacts benchmark: AI models on SEC filing questions","description":"How often AI models answer questions about SEC filings correctly on their own and with an MCP server that reads the filings, from public, rescorable run records.","url":"https://canlicapital.com/benchmarks/filingfacts","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Person","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"dateModified":"2026-10-07","distribution":{"@type":"DataDownload","contentUrl":"https://canlicapital.com/datasets/filing-facts/v0/leaderboard.json","encodingFormat":"application/json"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com/"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"FilingFacts benchmark","item":"https://canlicapital.com/benchmarks/filingfacts"}]}]}</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -90,23 +84,23 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content">
+<main class="paper__main" id="content"><header class="cc-hero" data-scene="towers"><picture class="cc-hero__art" aria-hidden="true"><source type="image/avif" media="(max-width: 768px)" srcset="/scenes/towers-900.avif"><source type="image/webp" media="(max-width: 768px)" srcset="/scenes/towers-900.webp"><source type="image/avif" srcset="/scenes/towers-1600.avif 1600w, /scenes/towers-2400.avif 2400w" sizes="100vw"><source type="image/webp" srcset="/scenes/towers-1600.webp 1600w, /scenes/towers-2400.webp 2400w" sizes="100vw"><img src="/scenes/towers-1600.webp" alt="" width="1600" height="560" fetchpriority="high" decoding="async"></picture><div class="cc-hero__inner"><nav class="paper__crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><a href="/research">Research</a></li><li><span aria-current="page">FilingFacts benchmark</span></li></ol></nav><p class="paper__eyebrow">Benchmark</p><h1 class="paper__title">FilingFacts benchmark: AI models on SEC filing questions</h1><p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p></div></header>
   <article class="paper__article">
-    <nav class="paper__crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><a href="/research">Research</a></li><li><span aria-current="page">FilingFacts benchmark</span></li></ol></nav>
-    <p class="paper__eyebrow">Benchmark</p>
-    <h1 class="paper__title">FilingFacts benchmark: AI models on SEC filing questions</h1>
-    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+
+
+
+
     <div class="paper__body">
       <p class="hub__standfirst">On 150 questions about SEC filings, gpt-5-mini answered 19.3% correctly on its own and 72.0% with an MCP server that reads the filings.</p>
       <p>Each question asks for a figure from a company's SEC filings, a change or ratio between two of them, or
       a figure the filings do not contain. The expected answer is computed from the filings' XBRL data and
       rechecked by a separate program. "Closed book" is the model alone; "with MCP" gives it one tool,
       <a href="/mcp-servers/validation">canli-validation-mcp</a>'s company history, which reads the filings.</p>
-      <div role="region" aria-label="FilingFacts leaderboard" tabindex="0"><table class="lb__table">
+      <div role="region" aria-label="FilingFacts leaderboard" tabindex="0"><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="lb__table">
         <caption>Accuracy on 150 questions (30 per question type), with 95% intervals</caption>
         <thead><tr><th scope="col">Model</th><th scope="col">Closed book</th><th scope="col">With MCP</th><th scope="col">Closed book: numbers given that were wrong</th><th scope="col">Run records</th></tr></thead>
         <tbody><tr><th scope="row">gpt-5-mini</th><td>19.3% <span class="lb__ci">[13.8%, 26.4%]</span></td><td>72.0% <span class="lb__ci">[64.3%, 78.6%]</span></td><td>100.0% of 17</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5-mini-closed.json">closed run</a> · <a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5-mini-mcp.json">MCP run</a></td></tr><tr><th scope="row">gpt-5.4-mini</th><td>21.3% <span class="lb__ci">[15.5%, 28.6%]</span></td><td>66.0% <span class="lb__ci">[58.1%, 73.1%]</span></td><td>96.4% of 84</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-mini-closed.json">closed run</a> · <a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-mini-mcp.json">MCP run</a></td></tr><tr><th scope="row">gpt-5</th><td>20.0% <span class="lb__ci">[14.4%, 27.1%]</span></td><td>not yet run</td><td>100.0% of 24</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5-closed.json">closed run</a></td></tr><tr><th scope="row">gpt-4.1-mini</th><td>18.0% <span class="lb__ci">[12.7%, 24.9%]</span></td><td>not yet run</td><td>98.4% of 64</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-4.1-mini-closed.json">closed run</a></td></tr><tr><th scope="row">gpt-5.4</th><td>12.7% <span class="lb__ci">[8.3%, 18.9%]</span></td><td>not yet run</td><td>97.3% of 112</td><td><a href="/datasets/filing-facts/v0/runs/2026-10-07/gpt-5.4-closed.json">closed run</a></td></tr></tbody>
-      </table></div>
+      </table></div><!-- design-table:end --></div>
       <h2>What the runs show</h2>
       <p>Without the filings, models mostly either decline or state a number, and the numbers they state are
       almost all wrong. The fourth column counts them. A tool that reads the source turns most of those into
