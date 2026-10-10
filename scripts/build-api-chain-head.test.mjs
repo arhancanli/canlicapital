@@ -13,7 +13,7 @@ const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url
 const log = readJson("../public/glassbox/transparency_log.json");
 const artifact = readJson("../public/api/v1/chain/head.json");
 
-test("chain/head carries the four fields js/home.js and js/open.js read, equal to the log", () => {
+test("chain/head carries the four fields js/record.js and js/open.js read, equal to the log", () => {
   const head = log.head ?? log.entries.at(-1);
   assert.equal(artifact.data.head.seq, head.seq);
   assert.equal(artifact.data.head.chain_hash, head.chain_hash);

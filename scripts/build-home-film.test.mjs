@@ -1,0 +1,65 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import test from "node:test";
+import { fileURLToPath } from "node:url";
+
+import { PAGE, REGION, buildHomeFilm, readSources } from "./build-home-film.mjs";
+import { filmData, renderHomeFilm } from "./lib/home-film.mjs";
+
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const page = readFileSync(resolve(ROOT, PAGE), "utf8");
+const { h2h, leaderboard } = readSources(ROOT);
+const region = page.slice(page.indexOf(REGION[0]) + REGION[0].length, page.indexOf(REGION[1]));
+const text = region.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, " ");
+
+test("the committed homepage is what the generator writes", () => {
+  assert.equal(buildHomeFilm(page, h2h, leaderboard), page, "run node scripts/build-home-film.mjs and commit index.html");
+});
+
+test("the film is twelve chapters, numbered in order, each labelled by its heading", () => {
+  const chapters = [...page.matchAll(/<section class="chapter[^"]*" id="ch-(\d+)" data-chapter="(\d+)" aria-labelledby="([^"]+)"/g)];
+  assert.deepEqual(chapters.map((m) => Number(m[2])), [...Array(12).keys()]);
+  for (const [, id, , label] of chapters) {
+    assert.match(page, new RegExp(`id="${label}"`), `chapter ${id} names a heading that exists`);
+  }
+  assert.equal((page.match(/<h1\b/g) ?? []).length, 1);
+});
+
+test("the headline figures on the homepage are the published ones", () => {
+  const ours = h2h.arms.find((a) => a.id === h2h.headline.ours);
+  const best = h2h.arms.find((a) => a.id === h2h.headline.best_rival);
+  const closed = leaderboard.rows.find((r) => r.model === "gpt-5.4-mini").closed;
+  const openbb = h2h.context.rows.find((r) => r.arm === "openbb" && r.tools === r.reaches);
+  const pct = (x) => `${Math.round(x * 100)}%`;
+  for (const figure of [pct(ours.common.accuracy), pct(best.common.accuracy), `${closed.numbers_given} numbers`, pct(closed.numbers_wrong), "1,056 tools", "432,001 tokens", "859 tokens", "285"]) {
+    assert.ok(text.includes(figure), figure);
+  }
+  assert.equal(openbb.tools, 1056);
+});
+
+test("the comparison is read before it is quoted: the caveats travel with the gap chapter", () => {
+  const gap = text.slice(text.indexOf("The gap"));
+  assert.match(gap, /We wrote the questions/);
+  assert.match(gap, /Interim result/);
+  assert.match(region, /href="\/benchmarks\/finance-mcp-servers"/);
+});
+
+test("the film reads its counts from the same summary", () => {
+  const block = page.match(/<script type="application\/json" id="film-data">([\s\S]*?)<\/script>/);
+  assert.ok(block, "the film-data block exists");
+  assert.deepEqual(JSON.parse(block[1]), filmData(h2h, leaderboard));
+  const arms = JSON.parse(block[1]).gap.arms;
+  assert.deepEqual(arms.map((a) => a.accuracy), [...arms.map((a) => a.accuracy)].sort((a, b) => b - a));
+});
+
+test("an unpublished package is never presented as installable without saying so", () => {
+  const unpublished = renderHomeFilm({ ...h2h, flagship: { ...h2h.flagship, npm_published: false } }, leaderboard);
+  const published = renderHomeFilm({ ...h2h, flagship: { ...h2h.flagship, npm_published: true } }, leaderboard);
+  assert.match(unpublished, /being published to npm/);
+  assert.doesNotMatch(published, /being published to npm/);
+});
+
+test("no em dash in the film", () => {
+  assert.ok(!region.includes(String.fromCodePoint(0x2014)));
+});

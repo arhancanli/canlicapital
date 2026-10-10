@@ -57,13 +57,13 @@ for (const film of manifest.films) {
 }
 
 const [index, homeJs, compositionJs, compositionCss] = await Promise.all([
-  readFile(resolve(ROOT, "index.html"), "utf8"),
-  readFile(resolve(ROOT, "js/home.js"), "utf8"),
+  readFile(resolve(ROOT, "record.html"), "utf8"),
+  readFile(resolve(ROOT, "js/record.js"), "utf8"),
   readFile(resolve(ROOT, "tools/system-films/composition.js"), "utf8"),
   readFile(resolve(ROOT, "tools/system-films/composition.css"), "utf8"),
 ]);
-check((index.match(/data-film-card=/g) || []).length === 3, "homepage does not render all three system film cards");
-check((index.match(/<video/g) || []).length === 3, "homepage does not render all three video elements");
+check((index.match(/data-film-card=/g) || []).length === 3, "the record page does not render all three system film cards");
+check((index.match(/<video/g) || []).length === 3, "the record page does not render all three video elements");
 check((index.match(/data-src=/g) || []).length === 6, "video sources must remain lazy data-src values");
 check((index.match(/loading="lazy"/g) || []).length >= 3, "system film posters are not lazy images");
 check((index.match(/data-film-poster/g) || []).length === 3, "system film poster images are incomplete");
