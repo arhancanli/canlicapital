@@ -7,7 +7,7 @@ import { ENTRIES } from "../src/server.mjs";
 import { buildIndex, search } from "../src/search.mjs";
 
 const INDEX = buildIndex(ENTRIES);
-const PACKS = ["quant", "validation", "fundamentals", "research", "backtest", "paper"];
+const PACKS = ["quant", "validation", "fundamentals", "research", "backtest", "markets", "paper"];
 const Q = [
   ["did my backtest overfit after trying 40 variants", ["validate_deflated_sharpe", "deflated_sharpe_ratio"]],
   ["probability of backtest overfitting cscv", ["validate_overfitting"]],
@@ -39,9 +39,29 @@ const Q = [
   ["triple barrier labels for machine learning", ["triple_barrier_labels"]],
   ["portfolio scenario stress test shocks", ["stress_test"]],
   ["bond yield to maturity", ["bond_yield"]],
+  ["risk factors in nvidia's latest 10-k", ["read_filing"]],
+  ["did any insiders sell tesla stock", ["insider_trades"]],
+  ["what does berkshire hathaway own 13f", ["fund_holdings"]],
+  ["10 year treasury yield today", ["treasury_yields", "economic_series"]],
+  ["core inflation year over year", ["economic_series"]],
+  ["daily stock prices for aapl", ["price_history"]],
+  ["which companies mention tariffs in their filings", ["search_filings"]],
+  ["list a company's 8-k filings", ["list_filings"]],
+  ["what industry is a company in and when does its fiscal year end", ["company_profile"]],
+  ["unemployment rate data", ["economic_series"]],
+  ["apple fiscal year 2025 total net sales revenue", ["history", "known_as_of"]],
+  ["microsoft net income for fiscal 2025", ["history", "known_as_of"]],
+  ["nvidia diluted earnings per share last fiscal year", ["history", "known_as_of"]],
+  ["how many employees does nvidia have according to its 10-k", ["read_filing"]],
+  ["sharpe ratio of spy in 2025 from prices", ["sharpe_ratio", "price_history"]],
+  ["which companies grew revenue fastest last year", ["screen_companies"]],
+  ["rank large companies by profit margin", ["screen_companies"]],
+  ["give me a full report on microsoft", ["company_report"]],
+  ["how does the stock react after earnings", ["event_study"]],
+  ["how often do filings mention tariffs over time", ["mentions_trend"]],
 ];
 
-test("cross-pack requests: a right tool first in at least 27 of 30, in the top three in all 30", () => {
+test("cross-pack requests: a right tool first in at least 45 of 50, in the top three in all 50", () => {
   let top1 = 0, top3 = 0;
   const misses = [];
   for (const [q, want] of Q) {
@@ -50,5 +70,5 @@ test("cross-pack requests: a right tool first in at least 27 of 30, in the top t
     if (r.some((n) => want.includes(n))) top3++; else misses.push(`${q} -> ${r.join(", ")}`);
   }
   console.log(JSON.stringify({ top1, top3, misses }));
-  assert.ok(top1 >= 27 && top3 === 30, JSON.stringify({ top1, top3, misses }));
+  assert.ok(top1 >= 45 && top3 === Q.length, JSON.stringify({ top1, top3, misses }));
 });

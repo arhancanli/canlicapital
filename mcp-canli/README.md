@@ -1,6 +1,6 @@
 # canli-mcp
 
-Every Canli Capital MCP server in one: 272 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 285 finance tools for Claude, Cursor or any MCP client.
 
 - Quant finance: 235 tools covering performance and risk, options and exotics, fixed income,
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
@@ -8,6 +8,9 @@ Every Canli Capital MCP server in one: 272 finance tools for Claude, Cursor or a
 - Backtest validation: deflated Sharpe, overfitting probability, data-snooping tests, leakage checks
   and placebo tests, run on your machine.
 - Point-in-time SEC fundamentals.
+- Market data and market-wide research from the sources, no key: screens of every US-listed
+  company, one-call company reports, event studies, filing trends, SEC filings and their sections,
+  insider trades, 13F holdings, Treasury yields, FRED series and prices.
 - Canli Capital's open research record.
 - Factor backtests without lookahead.
 - Alpaca paper trading behind pre-trade checks.
@@ -33,18 +36,19 @@ Claude Desktop, Cursor or any MCP client:
 
 ## Why one server is cheaper and faster
 
-Measured on Node 24 (tokens with o200k):
+Measured on Node 24 on 2026-10-09 (o200k tokens of the tool objects a client receives, plus the
+server instructions):
 
-| | six servers separately | canli-mcp |
+| | seven servers separately | canli-mcp |
 |---|---|---|
-| tool list and instructions sent with every request | 18,158 tokens | 995 tokens |
-| processes | 6 | 1 |
+| tool list and instructions sent with every request | 24,858 tokens | 1,109 tokens |
+| processes | 7 | 1 |
 | start-up | about 110-165 ms each | 110 ms |
 
 - **Three tools in context.** The model searches with `find_tool`, reads one schema with
-  `describe_tool`, and calls anything with `run_tool`. On 30 requests spread over every pack, the
-  right tool comes first 27 times and is in the top three every time (`test/search.test.mjs`).
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 272 tools; a pack's
+  `describe_tool`, and calls anything with `run_tool`. On 50 requests spread over every pack, the
+  right tool comes first 47 times and is in the top three every time (`test/search.test.mjs`).
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 285 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -96,6 +100,7 @@ Everything runs on your machine. `canli://privacy` states, per pack, what leaves
 | fundamentals | public SEC data from canlicapital.com (the company and measure you ask for) | caches that public data in `~/.cache/canli-fundamentals` (`CANLI_CACHE_DIR=""` keeps nothing) |
 | research | public research pages from canlicapital.com (your search words) | none |
 | backtest | public SEC data, as fundamentals; your prices and signals stay local | your trial ledgers in `~/.canli/ledgers` |
+| markets | SEC EDGAR, the US Treasury and FRED directly (the company, form, dates or series you ask for); Yahoo Finance's public chart data for prices, or Alpaca or Tiingo with your key | none |
 | paper | Alpaca's paper API only, with your paper keys | a hash-chained order log in `~/.canli` |
 
 `CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded.
@@ -107,7 +112,7 @@ logging code (also tested). Opt-in receipts (`receipt: true`) carry hashes, neve
 
 | variable | effect |
 |---|---|
-| `CANLI_PACKS` | Packs to enable: `quant,validation,fundamentals,research,backtest,paper` or `all`. Default: all but paper. |
+| `CANLI_PACKS` | Packs to enable: `quant,validation,fundamentals,research,backtest,markets,paper` or `all`. Default: all but paper. |
 | `CANLI_OFFLINE` | `1` keeps only `quant` and `validation`. |
 | `ALPACA_PAPER_KEY_ID`, `ALPACA_PAPER_SECRET_KEY` | Paper keys (starting `PK`); setting them enables the paper pack. Live keys are refused. |
 | `CANLI_HOME` | Where the paper pack keeps its limits file, kill switch and order log; default `~/.canli`. |
@@ -123,6 +128,7 @@ Order-sending tools never run inside a batch: preview first, then send on its ow
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
 | backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 3 | point-in-time SEC data |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 13 | replayed SEC, Treasury and FRED responses: a 13F's total equals its cover page |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 4 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`
