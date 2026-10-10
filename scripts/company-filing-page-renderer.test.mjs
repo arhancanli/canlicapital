@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
 import { companyFilings, filingPath, filingsIndexPath } from './lib/company-filings.mjs';
 import { renderFilingPage, renderFilingPages, renderFilingsIndexPage } from './lib/company-filing-page-renderer.mjs';
+import { companyLastmod } from './lib/company-markup-date.mjs';
 
 function pilotFilings(cik) {
   const record = JSON.parse(readFileSync(new URL(`../public/company-data/${cik}.json`, import.meta.url)));
@@ -26,7 +27,7 @@ test('every filing page carries its facts, provenance, canonical and links, with
     const page = renderFilingPage(document, filing.accession);
     assert.equal(page.path, filingPath(record.cik, filing.accession));
     assert.equal(page.loc, `https://canlicapital.com${page.path}`);
-    assert.equal(page.lastmod, record.fetched_at.slice(0, 10));
+    assert.equal(page.lastmod, companyLastmod(record.fetched_at.slice(0, 10)));
     assert.ok(page.html.includes(`<link rel="canonical" href="${page.loc}" />`));
     assert.ok(page.html.includes('<meta name="robots" content="index, follow" />'));
     assert.ok(page.html.includes(filing.sec_index_url));

@@ -8,6 +8,7 @@ import { fitDescription } from './descriptions.mjs';
 import { historySummary, summaryDescription, summarySentences } from './company-history-summary.mjs';
 import { relatedConcepts, shareSentence } from './company-concept-groups.mjs';
 import { overviewDescription, overviewTitle } from './company-overview-search.mjs';
+import { companyLastmod } from './company-markup-date.mjs';
 const origin = 'https://canlicapital.com';
 const pathFor = (company) => `/companies/${company.cik}`;
 const dataFor = (company) => `/company-data/${company.cik}.json`;
@@ -113,7 +114,7 @@ export function renderCompanyPages(company, { target = 'all', filings = null, li
   const matches = matchingHistoryConcepts(company.concepts);
   const pages = [];
   const page = options => pages.push(renderReferenceDocument({ ...options, robots }));
-  const lastmod = (company.content_updated_at ?? company.fetched_at).slice(0, 10);
+  const lastmod = companyLastmod((company.content_updated_at ?? company.fetched_at).slice(0, 10));
   const sources = [`company-data/${company.cik}.json`];
   const historicalNote = historicalFiler(company) ? historicalFilerNotice(company.name, latestFiling(company), company.fetched_at) : '';
   const editorialNote = company.editorial_exclusions?.length ? `<section aria-labelledby="editorial-scope"><h2 id="editorial-scope">Limits of the selected measures</h2>${withholdingNotices(company.editorial_exclusions)}</section>` : '';
