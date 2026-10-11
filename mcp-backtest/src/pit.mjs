@@ -65,7 +65,8 @@ export function factorAsOf(factor, series, asOf) {
 
 export function factorNeeds(factor) {
   if (factor.startsWith("level:")) return [factor.slice(6)];
-  const f = FACTORS[factor];
+  // Own entries only: "constructor" is an unknown factor, not Object's constructor.
+  const f = Object.hasOwn(FACTORS, factor) ? FACTORS[factor] : undefined;
   if (!f) throw new RangeError(`unknown factor ${JSON.stringify(factor)}; choose from ${Object.keys(FACTORS).join(", ")} or level:<measure>`);
   return f.needs;
 }

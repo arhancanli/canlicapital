@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Fix: an asset whose returns never change made `covariance_shrinkage`, `correlation_matrix` and
+  the portfolio optimizers (`max_sharpe_portfolio`, `min_variance_portfolio` and the others built
+  on the same estimates) answer with NaN. They now refuse and name the asset ("CASH has no
+  variance").
+- Fix: `put_call_parity` gave NaN for `implied_carry` when the quotes put the implied forward at or
+  below zero. It now gives null with a note to check the quotes for staleness. Both were found by
+  canli-mcp's `bench/robustness.mjs`.
 - Fix: `digits` also rounded whole numbers, so `digits: 4` turned 227,917,808 into 227,900,000.
   It now trims fractions only; whole numbers and the integer part of large values stay exact.
 

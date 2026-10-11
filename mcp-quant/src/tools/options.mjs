@@ -187,7 +187,8 @@ export const TOOLS = [
       const dr = Math.exp(-(a.rate ?? 0) * a.years), dq = Math.exp(-(a.dividend_yield ?? 0) * a.years);
       const gap = a.call - a.put - (a.spot * dq - a.strike * dr);
       const fwd = (a.call - a.put) / dr + a.strike;
-      return { parity_gap: gap, implied_forward: fwd, implied_carry: Math.log(fwd / a.spot) / a.years, meaning: "parity_gap = C - P - (S e^-qT - K e^-rT); positive means the call is rich relative to the put." };
+      // A forward at or below zero means the quotes break parity's bounds; no carry implies it.
+      return { parity_gap: gap, implied_forward: fwd, implied_carry: fwd > 0 ? Math.log(fwd / a.spot) / a.years : null, ...(fwd > 0 ? {} : { implied_carry_note: "The implied forward is not positive, so the quotes cannot be consistent with any carry; check them for staleness." }), meaning: "parity_gap = C - P - (S e^-qT - K e^-rT); positive means the call is rich relative to the put." };
     },
   },
   {

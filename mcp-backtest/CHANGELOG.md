@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Fix: a NUL character in `prices_file`, `signal_file` or `out_file` reached the file system, which
+  throws a TypeError. It now fails argument validation with the reason.
+- Fix: a factor named like a built-in property ("constructor") read Object's constructor out of the
+  factor table; it is now an unknown factor, with the list of known ones. Both were found by
+  canli-mcp's `bench/robustness.mjs`.
+
 ## 0.1.1
 
 - Installable on its own. 0.1.0 was published with `canli-validation-mcp` declared as
