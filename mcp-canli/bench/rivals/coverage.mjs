@@ -17,7 +17,7 @@ const rivals = JSON.parse(readFileSync(new URL("rivals-tools-2026-10-11.json", H
 export const OPENBB_KEYED = Object.freeze(["fred_", "bls_", "eia_", "cftc_"]);
 
 // canli-markets-mcp tools added in PR #447, not yet in a released canli-mcp.
-export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue", "fails_to_deliver", "economic_outlook"]);
+export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue", "fails_to_deliver", "economic_outlook", "economic_calendar"]);
 
 // [area, question, canli, openbb, edgartools, yahoo, note]. "price_history+" is price_history with
 // the currencies, futures, indices, crypto and foreign listings PR #447 adds.
@@ -67,7 +67,7 @@ export const QUESTIONS = Object.freeze([
   ["Economy", "Any country's economy", ["world_economy"], ["imf_indicators", "oecd_indicators"], [], []],
   ["Economy", "Economic forecasts", ["economic_outlook", "fomc"], ["oecd_gdp_forecast"], [], []],
   ["Economy", "Central bank decisions and documents (FOMC)", ["fomc"], ["federal_reserve_fomc_documents"], [], []],
-  ["Economy", "Economic calendar", [], ["nasdaq_economy_calendar", "ecb_calendar"], [], []],
+  ["Economy", "Economic calendar", ["economic_calendar"], ["nasdaq_economy_calendar", "ecb_calendar"], [], []],
   ["Analytics", "Performance and risk (Sharpe, drawdown, VaR)", ["sharpe_ratio", "max_drawdown", "value_at_risk"], [], [], []],
   ["Analytics", "Option pricing and greeks from inputs", ["black_scholes", "implied_volatility", "option_portfolio_greeks"], ["cboe_options_payoff"], [], []],
   ["Analytics", "Portfolio construction (min variance, risk parity, Black-Litterman)", ["min_variance_portfolio", "risk_parity_portfolio", "black_litterman"], [], [], []],
