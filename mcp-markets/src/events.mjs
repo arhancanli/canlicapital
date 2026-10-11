@@ -4,7 +4,7 @@
 import { z } from "zod";
 
 import { htmlToText } from "./html.mjs";
-import { archiveBase, filingDocuments, filings, getJson, getText, NotFound, resolveEntity } from "./sources.mjs";
+import { archiveBase, filingDocuments, filings, getJson, getText, NotFound, own, resolveEntity } from "./sources.mjs";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
 const isoDay = (session, back = 0) => new Date(session.now() - back * 86400000).toISOString().slice(0, 10);
@@ -42,8 +42,8 @@ const ALIASES = Object.freeze({ earnings_release: "2.02", results: "2.02", deal:
 
 export function eventCode(q) {
   const s = String(q).trim().toLowerCase().replace(/[\s-]+/g, "_").replace(/^item_/, "");
-  if (ITEMS[s]) return s;
-  return BY_NAME[s] ?? ALIASES[s] ?? (() => { throw new NotFound(`Unknown 8-K event "${q}". Use an item number (2.02, 5.02, 4.02) or a name: ${Object.values(ITEMS).map((v) => v[0]).filter((n) => n !== "exhibits").join(", ")}.`); })();
+  if (own(ITEMS, s)) return s;
+  return own(BY_NAME, s) ?? own(ALIASES, s) ?? (() => { throw new NotFound(`Unknown 8-K event "${q}". Use an item number (2.02, 5.02, 4.02) or a name: ${Object.values(ITEMS).map((v) => v[0]).filter((n) => n !== "exhibits").join(", ")}.`); })();
 }
 
 // The opening of what the filing says under an item: the text after its heading, to the next item.

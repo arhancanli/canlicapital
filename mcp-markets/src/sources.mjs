@@ -105,6 +105,9 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
 
 export class NotFound extends Error {}
 
+// A lookup table's own entry for a key from a request, never an inherited property ("constructor").
+export const own = (map, key) => (Object.hasOwn(map, key) ? map[key] : undefined);
+
 export async function getJson(session, url, opts = {}) {
   return getText(session, url, { ...opts, parse: (t) => { try { return JSON.parse(t); } catch { throw new Error(`${opts.secret ? host(url) : url} did not return JSON.`); } } });
 }
@@ -171,8 +174,43 @@ export async function tickerTable(session) {
   return getJson(session, "https://www.sec.gov/files/company_tickers.json");
 }
 
-// A company or fund by ticker, CIK or name. Names go to EDGAR's entity search, which also knows
-// filers with no ticker (most fund managers).
+// Names people use that are not the registered name: listed companies by ticker, and fund managers
+// by the filer their 13Fs come from (checked on EDGAR 2026-10-11).
+const KNOWN_AS = Object.freeze({
+  google: "GOOGL", youtube: "GOOGL", facebook: "META", instagram: "META", whatsapp: "META", "p and g": "PG", bofa: "BAC", tsmc: "TSM",
+  vanguard: { cik: 102909, name: "VANGUARD GROUP INC" }, fidelity: { cik: 315066, name: "FMR LLC" }, "fidelity investments": { cik: 315066, name: "FMR LLC" },
+  citadel: { cik: 1423053, name: "CITADEL ADVISORS LLC" }, "de shaw": { cik: 1009207, name: "D. E. Shaw & Co., Inc." }, "d e shaw": { cik: 1009207, name: "D. E. Shaw & Co., Inc." },
+  bridgewater: { cik: 1350694, name: "Bridgewater Associates, LP" }, renaissance: { cik: 1037389, name: "RENAISSANCE TECHNOLOGIES LLC" },
+  "two sigma": { cik: 1179392, name: "TWO SIGMA INVESTMENTS, LP" }, millennium: { cik: 1273087, name: "MILLENNIUM MANAGEMENT LLC" },
+  point72: { cik: 1603466, name: "Point72 Asset Management, L.P." }, elliott: { cik: 1791786, name: "Elliott Investment Management L.P." },
+  "pershing square": { cik: 1336528, name: "Pershing Square Capital Management, L.P." }, "tiger global": { cik: 1167483, name: "TIGER GLOBAL MANAGEMENT LLC" },
+  soros: { cik: 1029160, name: "SOROS FUND MANAGEMENT LLC" }, "ark invest": { cik: 1697748, name: "ARK Investment Management LLC" },
+  baupost: { cik: 1061768, name: "BAUPOST GROUP LLC/MA" }, "lone pine": { cik: 1061165, name: "LONE PINE CAPITAL LLC" },
+});
+const SUFFIXES = new Set(["inc", "corp", "corporation", "co", "company", "companies", "plc", "ltd", "limited", "the", "holdings", "holding", "group", "sa", "nv", "ag", "se"]);
+const knownAs = (name) => (Object.hasOwn(KNOWN_AS, name) ? KNOWN_AS[name] : null);
+const nameWords = (s) => String(s).toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter((w) => w && !SUFFIXES.has(w));
+
+// A listed company whose registered name starts with the words asked for. The SEC's ticker file
+// lists the largest companies first and each company's common shares before its other classes, so
+// "apple" is Apple Inc., not Apple Hospitality REIT, and "jp morgan" is JPMorgan Chase (JPM). A name
+// found only inside another ("vanguard" in American Vanguard) is left to EDGAR's search.
+export function listedByName(table, q) {
+  const words = nameWords(q), joined = words.join("");
+  if (!joined) return [];
+  const known = knownAs(words.join(" "));
+  if (known && typeof known !== "string") return [];
+  const rows = Object.values(table).filter((row) => {
+    if (known) return row.ticker === known;
+    const title = nameWords(row.title);
+    return words.every((w, i) => title[i] === w) || (joined.length >= 5 && title.join("").startsWith(joined));
+  });
+  const seen = new Set();
+  return rows.filter((row) => !seen.has(row.cik_str) && seen.add(row.cik_str));
+}
+
+// A company or fund by ticker, CIK or name. A name is looked for among listed companies first, then
+// in EDGAR's entity search, which also knows filers with no ticker (most fund managers).
 export async function resolveEntity(session, query) {
   const q = String(query ?? "").trim();
   if (!q) throw new Error("Name a company: a ticker (AAPL), a CIK (320193) or a name (Apple).");
@@ -180,11 +218,23 @@ export async function resolveEntity(session, query) {
   const table = await tickerTable(session);
   const want = q.toUpperCase().replace(/\./g, "-").replace(/^\$/, "");
   for (const row of Object.values(table)) if (row.ticker === want) return { cik: row.cik_str, name: row.title, ticker: row.ticker, matched_by: "ticker" };
+  const filer = knownAs(nameWords(q).join(" "));
+  if (filer && typeof filer !== "string") return { cik: filer.cik, name: filer.name, ticker: null, matched_by: "name" };
+  const listed = listedByName(table, q);
+  if (listed.length) {
+    const [top, ...others] = listed;
+    return {
+      cik: top.cik_str, name: top.title, ticker: top.ticker, matched_by: "name",
+      ...(others.length ? { other_matches: others.slice(0, 4).map((r) => ({ cik: r.cik_str, name: r.title, ticker: r.ticker })) } : {}),
+    };
+  }
   const found = await getJson(session, `https://efts.sec.gov/LATEST/search-index?keysTyped=${encodeURIComponent(q)}`);
   const hits = found?.hits?.hits ?? [];
   if (!hits.length) throw new NotFound(`No SEC filer matches "${q}". Try the ticker, the CIK, or the name as registered (for example "Berkshire Hathaway").`);
   const top = hits[0];
-  const byCik = new Map(Object.values(table).map((r) => [r.cik_str, r.ticker]));
+  // A company's common shares come first in the ticker file.
+  const byCik = new Map();
+  for (const r of Object.values(table)) if (!byCik.has(r.cik_str)) byCik.set(r.cik_str, r.ticker);
   return {
     cik: Number(top._id), name: top._source.entity, ticker: byCik.get(Number(top._id)) ?? null, matched_by: "name",
     ...(hits.length > 1 ? { other_matches: hits.slice(1, 5).map((h) => ({ cik: Number(h._id), name: h._source.entity })) } : {}),

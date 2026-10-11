@@ -3,7 +3,7 @@
 // group). No key.
 import { z } from "zod";
 
-import { getJson, getText, getZipText, NotFound, pad10, postJson, resolveEntity } from "./sources.mjs";
+import { getJson, getText, getZipText, NotFound, own, pad10, postJson, resolveEntity } from "./sources.mjs";
 
 const round = (x, d = 4) => (x == null || !Number.isFinite(x) ? null : Math.round(x * 10 ** d) / 10 ** d);
 const n = (s) => (s == null || s === "" || !Number.isFinite(Number(s)) ? null : Number(s));
@@ -114,7 +114,8 @@ export const COT_MARKETS = Object.freeze({
 
 async function findMarket(session, q) {
   const key = String(q).trim().toLowerCase().replace(/[-\s]+/g, " ").replace(/ futures?$/, "");
-  if (COT_MARKETS[key]) return { code: COT_MARKETS[key][0], report: COT_MARKETS[key][1] };
+  const known = own(COT_MARKETS, key);
+  if (known) return { code: known[0], report: known[1] };
   if (/^[0-9A-Z+]{6}$/.test(String(q).trim())) {
     for (const report of ["disaggregated", "financial"]) {
       const r = await getJson(session, `${CFTC}/${REPORTS[report].id}.json?$select=cftc_contract_market_code&$where=cftc_contract_market_code='${String(q).trim()}'&$limit=1`);

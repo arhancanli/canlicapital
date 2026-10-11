@@ -3,7 +3,7 @@
 // No key; every result names the URL it came from.
 import { z } from "zod";
 
-import { getJson, getText, NotFound } from "./sources.mjs";
+import { getJson, getText, NotFound, own } from "./sources.mjs";
 import { matchWords, vocabulary } from "./words.mjs";
 
 const round = (x, d = 4) => (x == null ? null : Math.round(x * 10 ** d) / 10 ** d);
@@ -75,7 +75,7 @@ async function countryTable(session) {
 export function matchCountry(table, q) {
   const s = String(q).trim().toLowerCase().replace(/\s+/g, " ");
   const up = s.toUpperCase();
-  const alias = COUNTRY_ALIASES[s];
+  const alias = own(COUNTRY_ALIASES, s);
   const hit = table.find((c) => c.id === (alias ?? up)) ?? table.find((c) => c.iso2 === up && up.length === 2)
     ?? table.find((c) => c.name.toLowerCase() === s) ?? table.find((c) => c.name.toLowerCase().split(",")[0].trim() === s)
     ?? table.find((c) => c.name.toLowerCase().startsWith(`${s},`) || c.name.toLowerCase().startsWith(`${s} `));
@@ -299,7 +299,7 @@ export async function economicOutlook(session, args) {
   const measures = [...new Map((a.measures ?? ["gdp growth", "inflation", "unemployment"]).map(eoMeasure).map((m) => [m[0], m])).values()];
   const table = await countryTable(session);
   const special = { "euro area": "EA17", eurozone: "EA17", world: "W", global: "W", oecd: "OECD" };
-  const areas = [...new Set(a.countries.map((q) => special[q.trim().toLowerCase()] ?? (EO_AREAS[matchCountry(table, q).id] ?? matchCountry(table, q).id)))];
+  const areas = [...new Set(a.countries.map((q) => own(special, q.trim().toLowerCase()) ?? (EO_AREAS[matchCountry(table, q).id] ?? matchCountry(table, q).id)))];
   const year = new Date(session.now()).getUTCFullYear();
   // No endPeriod: asking past the outlook's last year makes the OECD's server fail (HTTP 500) for
   // some groups of areas, and the outlook ends where its projections end anyway.
