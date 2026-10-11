@@ -96,6 +96,8 @@ for (const url of PAY_FRAMES) await grab(url, (t) => { const d = JSON.parse(t); 
 await record(Pay.executivePay, { limit: 6 });
 // The Fed: 2026's meetings, statements and the September projections.
 await record(CB.fomc, {});
+// Off-exchange volume: Apple's last six weeks of dark pool and OTC trading (FINRA).
+await record(Pos.offExchangeVolume, { symbol: "AAPL", weeks: 6 });
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");

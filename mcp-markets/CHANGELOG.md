@@ -24,6 +24,8 @@
   average daily volume and days to cover, and the share of shares outstanding from the company's
   latest SEC cover page; or the market ranked by days to cover, change or size, among stocks
   trading at least a million shares a day.
+- `off_exchange_volume`: FINRA's OTC transparency data for a stock, weekly: shares and trades in dark
+  pools (ATSs) and with other off-exchange dealers, and the largest of each in the latest week.
 - `futures_positioning`: the CFTC's Commitments of Traders by market name (gold, crude oil, corn,
   S&P 500, 10 year note, euro, bitcoin): each trader group's long, short and net contracts, weekly
   changes, and where the speculators' net position sits in its range. A name search prefers a

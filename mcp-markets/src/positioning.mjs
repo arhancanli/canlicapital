@@ -172,3 +172,51 @@ export async function futuresPositioning(session, args) {
     ],
   };
 }
+
+// ---------------------------------------------------------------------------------------------
+// off_exchange_volume (FINRA OTC transparency: dark pools and other off-exchange trading)
+// ---------------------------------------------------------------------------------------------
+const WEEKLY = `${FINRA}/data/group/otcMarket/name/weeklySummary`;
+
+export const offExchangeInput = z.object({
+  symbol: z.string().regex(/^[A-Za-z0-9.\-]{1,12}$/).describe("A US stock ticker."),
+  weeks: z.number().int().min(1).max(52).optional().describe("Weeks to show, newest last; default 8. FINRA publishes Tier 1 stocks two weeks after the week, others four."),
+}).strict();
+
+export async function offExchangeVolume(session, args) {
+  const a = offExchangeInput.parse(args);
+  const symbol = a.symbol.toUpperCase().replace(/-/g, ".");
+  const weeks = a.weeks ?? 8;
+  const end = new Date(session.now()).toISOString().slice(0, 10);
+  const start = new Date(session.now() - (weeks + 5) * 7 * 86400000).toISOString().slice(0, 10);
+  const rows = await postJson(session, WEEKLY, { limit: 5000, compareFilters: [{ fieldName: "issueSymbolIdentifier", fieldValue: symbol, compareType: "EQUAL" }], dateRangeFilters: [{ fieldName: "weekStartDate", startDate: start, endDate: end }] });
+  if (!Array.isArray(rows) || !rows.length) throw new NotFound(`FINRA has no off-exchange volume for ${symbol} for weeks starting ${start} to ${end}.`);
+  const byWeek = new Map();
+  for (const r of rows) {
+    const kind = /^ATS/.test(r.summaryTypeCode) ? "ats" : /^OTC/.test(r.summaryTypeCode) ? "otc" : null;
+    if (!kind || !/_FIRM$/.test(r.summaryTypeCode)) continue;
+    const w = byWeek.get(r.weekStartDate) ?? { ats: 0, otc: 0, ats_trades: 0, otc_trades: 0, venues: new Map(), name: r.issueName };
+    w[kind] += n(r.totalWeeklyShareQuantity) ?? 0;
+    w[`${kind}_trades`] += n(r.totalWeeklyTradeCount) ?? 0;
+    const venue = `${kind}|${r.marketParticipantName}`;
+    w.venues.set(venue, (w.venues.get(venue) ?? 0) + (n(r.totalWeeklyShareQuantity) ?? 0));
+    byWeek.set(r.weekStartDate, w);
+  }
+  const dates = [...byWeek.keys()].sort().slice(-weeks);
+  if (!dates.length) throw new NotFound(`FINRA's rows for ${symbol} carry no firm-level weekly totals.`);
+  const latest = byWeek.get(dates[dates.length - 1]);
+  const top = (kind) => [...latest.venues].filter(([k]) => k.startsWith(`${kind}|`)).sort((x, y) => y[1] - x[1]).slice(0, 8).map(([k, v]) => [k.slice(4), round(v, 2), round(v / (kind === "ats" ? latest.ats : latest.otc), 4)]);
+  return {
+    symbol, name: latest.name ?? null, weeks: dates.length,
+    columns: ["week_start", "ats_shares", "otc_shares", "off_exchange_shares", "ats_trades", "otc_trades", "average_ats_trade_size"],
+    // OTC volume includes fractional shares, so sums are kept to the hundredth of a share.
+    rows: dates.map((d) => { const w = byWeek.get(d); return [d, round(w.ats, 2), round(w.otc, 2), round(w.ats + w.otc, 2), w.ats_trades, w.otc_trades, w.ats_trades ? round(w.ats / w.ats_trades, 1) : null]; }),
+    latest_week: { week_start: dates[dates.length - 1], dark_pools: { columns: ["venue", "shares", "share_of_ats"], rows: top("ats") }, other_off_exchange: { columns: ["firm", "shares", "share_of_otc"], rows: top("otc") } },
+    source: "https://www.finra.org/finra-data/browse-catalog/otc-transparency",
+    limits: [
+      "FINRA OTC transparency data: ATS (dark pool) volume and non-ATS OTC volume (wholesalers and other dealers) per firm and week, published two weeks after the week for Tier 1 stocks and four for others; small firms' volume is aggregated, so totals can trail the tape.",
+      "Exchange volume is not included; compare with price_history's volume for the share traded off exchange.",
+      "Not investment advice.",
+    ],
+  };
+}

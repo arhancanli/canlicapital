@@ -389,3 +389,15 @@ test("index_constituents: the S&P 500 through IVV's N-PORT, weights rescaled to 
   assert.ok(Math.abs(all.rows.reduce((t, x) => t + x[5], 0) - 1) < 1e-4);
   await assert.rejects(F.indexConstituents(s, { index: "Dow Jones" }), /unit investment trust, which files no N-PORT/);
 });
+
+test("off_exchange_volume: Apple's weekly dark pool and OTC volume; venue shares come from the same totals", async () => {
+  const { s } = session();
+  const r = await Pos.offExchangeVolume(s, { symbol: "AAPL", weeks: 6 });
+  assert.equal(r.name, "Apple Inc. Common Stock");
+  assert.equal(r.rows.length, 6);
+  for (const [w, ats, otc, total] of r.rows) assert.ok(Math.abs(ats + otc - total) < 0.02, w);
+  const pools = r.latest_week.dark_pools.rows;
+  assert.ok(pools.every((p, i) => i === 0 || pools[i - 1][1] >= p[1]), "largest dark pool first");
+  assert.ok(pools.reduce((t, p) => t + p[2], 0) <= 1.0001);
+  assert.equal(r.latest_week.week_start, r.rows.at(-1)[0]);
+});
