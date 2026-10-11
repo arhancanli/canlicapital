@@ -51,7 +51,11 @@ export function estimates(a, { needMu = false } = {}) {
   if (a.expected_returns) { if (a.expected_returns.length !== C.length) throw new Error(`expected_returns has ${a.expected_returns.length} entries for ${C.length} assets.`); mu = a.expected_returns; }
   if (needMu && !mu) throw new Error("Send expected_returns with a covariance matrix.");
   if (a.assets && a.assets.length !== C.length) throw new Error(`assets has ${a.assets.length} names for ${C.length} assets.`);
-  return { C, mu, cols, n: C.length, names: a.assets ?? C.map((_, i) => `asset_${i + 1}`) };
+  const names = a.assets ?? C.map((_, i) => `asset_${i + 1}`);
+  // An asset that never moves has no risk to weigh: every optimizer here divides by it.
+  const flat = C.findIndex((row, i) => !(row[i] > 0));
+  if (flat >= 0) throw new Error(`${names[flat]} has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data.`);
+  return { C, mu, cols, n: C.length, names };
 }
 
 const label = (names, w) => Object.fromEntries(names.map((n, i) => [n, w[i]]));
@@ -382,6 +386,8 @@ export const TOOLS = [
     input: z.object({ returns: sources.returns.unwrap(), periods_per_year: ppyArg }).strict(),
     run(a) {
       const R = a.returns, p = R[0].length, cols = Array.from({ length: p }, (_, j) => R.map((r) => r[j])), ppy = a.periods_per_year ?? 252;
+      const flat = cols.findIndex((c) => !(cov2(c, c, 0) > 0));
+      if (flat >= 0) throw new Error(`asset_${flat + 1} has no variance (its returns never change), so there is no covariance to shrink. Drop it or check the data.`);
       const lw = ledoitWolf(cols), cond = (M) => { const e = symmetricEigen(M).values; return e[0] / e.at(-1); };
       const sample = cols.map((x) => cols.map((y) => cov2(x, y, 0)));
       return { shrinkage: lw.shrinkage, covariance_annual: lw.matrix.map((r) => r.map((v) => v * ppy)), covariance_per_period: lw.matrix, condition_number_sample: cond(sample), condition_number_shrunk: cond(lw.matrix) };
@@ -398,6 +404,8 @@ export const TOOLS = [
       let cols = Array.from({ length: p }, (_, j) => R.map((r) => r[j]));
       if (a.method === "spearman") cols = cols.map(rank);
       const sd = cols.map((c) => std(c));
+      const flat = sd.findIndex((v) => !(v > 0));
+      if (flat >= 0) throw new Error(`${(a.assets ?? [])[flat] ?? `asset_${flat + 1}`} has no variance (its returns never change), so its correlations are undefined. Drop it or check the data.`);
       const M = cols.map((x, i) => cols.map((y, j) => (i === j ? 1 : cov2(x, y) / (sd[i] * sd[j]))));
       let s = 0; for (let i = 0; i < p; i++) for (let j = i + 1; j < p; j++) s += M[i][j];
       const ev = symmetricEigen(M).values;

@@ -57,15 +57,17 @@ export function monthStarts(start, end) {
   return out;
 }
 
+// A path the file system can take: no NUL characters (Node throws a TypeError on them).
+const filePath = z.string().min(1).refine((s) => !s.includes("\0"), "a file path cannot contain a NUL character");
 export const pitInput = z.object({
   factor: z.string().describe(`One of ${Object.keys(FACTORS).join(", ")}, or level:<measure> (revenue, net_income, assets, ...).`),
   tickers: z.array(z.string().min(1).max(20)).min(1).max(1000).describe("Tickers (or CIKs) to compute it for."),
   start: date, end: date,
-  out_file: z.string().optional().describe("Where to write the signal CSV; default a new temporary file."),
+  out_file: filePath.optional().describe("Where to write the signal CSV; default a new temporary file."),
 });
 export const backtestInput = z.object({
-  prices_file: z.string().describe("CSV: a date column (YYYY-MM-DD) and one column of closing prices per ticker."),
-  signal_file: z.string().describe("CSV in the same shape; each row dated when its values became known (pit_factor writes this)."),
+  prices_file: filePath.describe("CSV: a date column (YYYY-MM-DD) and one column of closing prices per ticker."),
+  signal_file: filePath.describe("CSV in the same shape; each row dated when its values became known (pit_factor writes this)."),
   rebalance: z.union([z.enum(["weekly", "monthly", "quarterly"]), z.number().int().min(1)]).optional().describe("Default monthly; or every N trading days."),
   lag_days: z.number().int().min(1).optional().describe("Trading days between a signal becoming known and trading on it. Default 1, the minimum."),
   side: z.enum(["long_short", "long_only"]).optional().describe("Default long_short: long the top quantile, short the bottom."),
@@ -98,7 +100,7 @@ export async function toolPitFactor(session, args) {
   writePanel(file, panel);
   const covered = panel.coverage.map((c) => c.companies_with_value);
   return text({
-    factor, meaning: FACTORS[factor]?.meaning ?? `annual ${factor.slice(6)} as filed`, file,
+    factor, meaning: (Object.hasOwn(FACTORS, factor) ? FACTORS[factor].meaning : null) ?? `annual ${factor.slice(6)} as filed`, file,
     dates: dates.length, tickers: tickers.length, first_date: dates[0], last_date: dates.at(-1),
     coverage: { min: Math.min(...covered), median: covered.slice().sort((a, b) => a - b)[Math.floor(covered.length / 2)], max: Math.max(...covered) },
     matched: panel.matched, ...(Object.keys(panel.missing).length ? { missing: panel.missing } : {}),
