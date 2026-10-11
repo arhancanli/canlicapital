@@ -12,6 +12,7 @@ import * as O from "../src/ownership.mjs";
 import * as Pos from "../src/positioning.mjs";
 import * as Pay from "../src/pay.mjs";
 import * as P from "../src/private.mjs";
+import * as Seg from "../src/segments.mjs";
 import * as T from "../src/tools.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
@@ -400,4 +401,28 @@ test("off_exchange_volume: Apple's weekly dark pool and OTC volume; venue shares
   assert.ok(pools.every((p, i) => i === 0 || pools[i - 1][1] >= p[1]), "largest dark pool first");
   assert.ok(pools.reduce((t, p) => t + p[2], 0) <= 1.0001);
   assert.equal(r.latest_week.week_start, r.rows.at(-1)[0]);
+});
+
+test("segment_revenue: Apple's fiscal 2025 revenue by segment (with operating income), product and region, from its 10-K XBRL", async () => {
+  const { s } = session();
+  const r = await Seg.segmentRevenue(s, { company: "AAPL" });
+  assert.deepEqual(r.filing, { form: "10-K", filed: "2025-10-31", period: "2025-09-27", accession: "0000320193-25-000079" });
+  assert.deepEqual(r.total_revenue.values, [416161000000, 391035000000, 383285000000]);
+  assert.deepEqual(r.segments.rows[0], ["Americas", 178353000000, 167045000000, 162560000000, 72480000000, 67656000000, 60508000000]);
+  assert.equal(r.segments.latest_sum_vs_total, 1);
+  assert.equal(r.regions.latest_sum_vs_total, 1);
+  const products = new Map(r.products_and_services.rows.map((x) => [x[0], x[1]]));
+  assert.equal(products.get("iPhone"), 209586000000);
+  assert.equal(products.get("Wearables, Home and Accessories"), 35686000000, "the company's own label");
+  assert.equal(products.get("iPhone") + products.get("Mac") + products.get("iPad") + products.get("Wearables, Home and Accessories"), products.get("Products"));
+  assert.equal(r.products_and_services.latest_sum_vs_total, 1.7377, "Products sits beside its own lines, so the sum shows the overlap");
+});
+
+test("segment_revenue: labels from a label linkbase or a schema, in any attribute order, without [Member]", () => {
+  const lab = `<link:label xlink:label="msft_ProductivityAndBusinessProcessesMember_lbl" xlink:role="http://www.xbrl.org/2003/role/label">Productivity And Business Processes [Member]</link:label>
+    <link:label xlink:role="http://www.xbrl.org/2003/role/terseLabel" xlink:label="msft_ProductivityAndBusinessProcessesMember_lbl">Productivity and Business Processes</link:label>
+    <link:label xlink:label="lab_nvda_ComputeAndNetworkingMember" xlink:role="http://www.xbrl.org/2003/role/label">Compute &amp; Networking [Member]</link:label>`;
+  const labels = Seg.memberLabels(lab);
+  assert.equal(labels.get("ProductivityAndBusinessProcessesMember"), "Productivity and Business Processes");
+  assert.equal(labels.get("ComputeAndNetworkingMember"), "Compute & Networking");
 });

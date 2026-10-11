@@ -13,6 +13,7 @@ import * as O from "../src/ownership.mjs";
 import * as Pos from "../src/positioning.mjs";
 import * as Pay from "../src/pay.mjs";
 import * as P from "../src/private.mjs";
+import * as Seg from "../src/segments.mjs";
 import { createSession } from "../src/sources.mjs";
 import { yahooChartUrl } from "../src/tools.mjs";
 
@@ -98,6 +99,8 @@ await record(Pay.executivePay, { limit: 6 });
 await record(CB.fomc, {});
 // Off-exchange volume: Apple's last six weeks of dark pool and OTC trading (FINRA).
 await record(Pos.offExchangeVolume, { symbol: "AAPL", weeks: 6 });
+// Revenue by segment, product and region from Apple's fiscal 2025 10-K XBRL and its label linkbase.
+await record(Seg.segmentRevenue, { company: "AAPL" });
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");

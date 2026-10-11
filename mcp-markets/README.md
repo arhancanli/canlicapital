@@ -45,6 +45,7 @@ received and when, so any figure can be checked against the same document later.
 | `read_filing` | What does the filing say: one 10-K/10-Q item ("risk factors", "md&a"), an 8-K press release (`EX-99.1`), paged | SEC |
 | `search_filings` | Which filings mention a phrase, since 2001 | EDGAR full-text search |
 | `company_events` | A company's news from its 8-Ks (earnings, deals, executive changes, restatements, bankruptcies, cyber incidents) in the filing's own words; or one kind of event across the market | Form 8-K |
+| `segment_revenue` | Where revenue comes from: by segment (with operating income), product and region, three years, checked against total revenue | 10-K/10-Q XBRL |
 | `insider_trades` | Who inside bought or sold, at what price, under a 10b5-1 plan or not | Form 4 |
 | `fund_holdings` | What a fund manager holds, its weights, and what it bought and sold last quarter | 13F |
 | `large_holders` | Who owns more than 5 percent, passive (13G) or activist (13D, with its stated purpose); or the week's new activist stakes across the market | Schedules 13D and 13G |

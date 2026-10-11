@@ -7,6 +7,10 @@
   (SAP.DE, 7203.T, SHEL.L, 0700.HK), by symbol or plain name, and says what each price means
   (pence in London, futures rolls, index levels). Bars stamped after the window asked for are left
   out.
+- `segment_revenue`: revenue by business segment (with operating income), by product or service and
+  by region, for up to three years, from the XBRL of the latest 10-K or 10-Q, with the company's
+  own labels (from its label linkbase, or its schema when the labels are embedded there) and each
+  breakdown's sum checked against total revenue.
 - `fomc`: the Federal Reserve's decisions for a year from its own calendar and statements (held and
   scheduled meetings, action, change, target range, vote, dissenters with their reasons), the
   latest statement, and the median projections from the latest Summary of Economic Projections
