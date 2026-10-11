@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createSession, unzipFirst } from "../src/sources.mjs";
+import * as Cal from "../src/calendar.mjs";
 import * as CB from "../src/centralbank.mjs";
 import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
@@ -454,4 +455,26 @@ test("economic_outlook: the OECD's projections, the euro area on its harmonised 
   assert.match(r.note, /^2026 and 2027 are the OECD's projections/);
   const oecd = calls.filter((c) => new URL(c.url).host === "sdmx.oecd.org");
   assert.equal(oecd.length, 2, "the data, then the edition: one request at a time");
+});
+
+test("economic_calendar: the next 30 days' key releases from BLS, BEA and the Fed, in Eastern time, with the Census gap said", async () => {
+  const { s } = session();
+  const r = await Cal.economicCalendar(s, { key_only: true });
+  assert.deepEqual([r.since, r.until, r.timezone], ["2026-10-09", "2026-11-08", "US Eastern"]);
+  assert.deepEqual(r.rows.map((x) => [x[0], x[1], x[3]]), [
+    ["2026-10-14", "08:30", "Consumer Price Index"], ["2026-10-15", "08:30", "Producer Price Index"], ["2026-10-28", "14:00", "FOMC decision"],
+    ["2026-10-29", "08:30", "GDP (Advance Estimate), 3rd Quarter 2026"], ["2026-10-29", "08:30", "Personal Income and Outlays, September 2026"],
+    ["2026-10-30", "08:30", "Employment Cost Index"], ["2026-11-03", "10:00", "Job Openings and Labor Turnover Survey"],
+    ["2026-11-04", "08:30", "U.S. International Trade in Goods and Services, September 2026"], ["2026-11-06", "08:30", "Employment Situation"],
+  ]);
+  assert.match(r.census_note, /lists releases from 2027-01-04/);
+  assert.equal(r.unavailable, undefined);
+});
+
+test("economic_calendar: iCalendar lines are unfolded and unescaped, and UTC times become Eastern", () => {
+  const ics = "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE-TIME:20250107T133000Z\r\nSUMMARY:Gross Domestic Product\\, 4th Quarter and Year 2024 (Advance Estima\r\n te)\r\nEND:VEVENT\r\nBEGIN:VEVENT\r\nDTSTART;TZID=US-Eastern:20250110T083000\r\nSUMMARY:Employment Situation\r\nEND:VEVENT\r\nEND:VCALENDAR";
+  const ev = Cal.parseIcs(ics);
+  assert.deepEqual(ev.map((e) => e.summary), ["Gross Domestic Product, 4th Quarter and Year 2024 (Advance Estimate)", "Employment Situation"]);
+  assert.deepEqual(Cal.easternTime(ev[0].start), { date: "2025-01-07", time: "08:30" }, "13:30 UTC in January is 08:30 Eastern");
+  assert.deepEqual(Cal.easternTime(ev[1].start), { date: "2025-01-10", time: "08:30" });
 });

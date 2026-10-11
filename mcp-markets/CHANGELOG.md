@@ -11,6 +11,10 @@
   by region, for up to three years, from the XBRL of the latest 10-K or 10-Q, with the company's
   own labels (from its label linkbase, or its schema when the labels are embedded there) and each
   breakdown's sum checked against total revenue.
+- `economic_calendar`: the US economic calendar from the agencies' own schedules (BLS and BEA
+  iCalendar files, the Census Bureau's schedule page, the Fed's FOMC calendar), in US Eastern time,
+  with the market-moving releases flagged; when the Census page has turned to next year, the gap is
+  said.
 - `fomc`: the Federal Reserve's decisions for a year from its own calendar and statements (held and
   scheduled meetings, action, change, target range, vote, dissenters with their reasons), the
   latest statement, and the median projections from the latest Summary of Economic Projections

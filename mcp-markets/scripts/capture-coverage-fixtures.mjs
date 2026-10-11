@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { crc32, deflateRawSync, gunzipSync, gzipSync } from "node:zlib";
 
+import * as Cal from "../src/calendar.mjs";
 import * as CB from "../src/centralbank.mjs";
 import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
@@ -122,6 +123,8 @@ for (const url of PAY_FRAMES) await grab(url, (t) => { const d = JSON.parse(t); 
 await record(Pay.executivePay, { limit: 6 });
 // The Fed: 2026's meetings, statements and the September projections.
 await record(CB.fomc, {});
+// The economic calendar for the 30 days from the tests' clock: BLS, BEA, Census and the Fed.
+await record(Cal.economicCalendar, { key_only: true });
 // Off-exchange volume: Apple's last six weeks of dark pool and OTC trading (FINRA).
 await record(Pos.offExchangeVolume, { symbol: "AAPL", weeks: 6 });
 // Revenue by segment, product and region from Apple's fiscal 2025 10-K XBRL and its label linkbase.
