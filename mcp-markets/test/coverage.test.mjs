@@ -6,6 +6,7 @@ import test from "node:test";
 import { createSession } from "../src/sources.mjs";
 import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
+import * as O from "../src/ownership.mjs";
 import * as T from "../src/tools.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
@@ -183,4 +184,28 @@ test("fund_portfolio: SPY, a unit investment trust, and an unknown ticker each s
   const s = createSession({ fetchImpl: r.fetchImpl, now: () => NOW, sleep: async () => {} });
   await assert.rejects(F.fundPortfolio(s, { fund: "SPY" }), /SPY \(SPDR S&P 500 ETF TRUST\) files no Form N-PORT: unit investment trusts/);
   await assert.rejects(F.fundPortfolio(s, { fund: "ZZZZZ" }), /No US mutual fund or ETF has the ticker ZZZZZ/);
+});
+
+test("large_holders: Coca-Cola's 5 percent holders, without the 13Ds Coca-Cola filed about its bottlers", async () => {
+  const { s } = session();
+  const r = await O.largeHolders(s, { company: "21344" });
+  assert.deepEqual(r.company, { cik: 21344, name: "COCA COLA CO", ticker: "KO" });
+  assert.equal(r.since, "2023-10-10");
+  assert.equal(r.filings, 9);
+  assert.equal(r.filed_by_it_about_other_companies, 3, "its stakes in its bottlers are not holders of Coca-Cola");
+  assert.deepEqual(r.rows.map((x) => x.slice(0, 8)), [
+    ["Vanguard Capital Management", "investment adviser", "13G", null, "2026-03-31", "2026-04-29", 276838699, 0.0643],
+    ["The Vanguard Group", "investment adviser", "13G", 10, "2026-03-13", "2026-03-26", 0, 0],
+  ]);
+  assert.equal(r.earlier_text_filings.count, 4);
+  assert.equal(r.purposes_13d, undefined);
+});
+
+test("large_holders: across the market, the week's new 13D stakes with holder, size and purpose", async () => {
+  const { s } = session();
+  const r = await O.largeHolders(s, { limit: 3 });
+  assert.equal(r.schedule, "13D");
+  assert.deepEqual([r.since, r.until, r.total, r.shown], ["2026-10-02", "2026-10-09", 113, 3]);
+  assert.deepEqual(r.rows[0].slice(0, 8), ["2026-10-09", "SCHEDULE 13D", "Vertical Data Inc.", 2033264, "Creatura Christopher", "individual", 1205004, 0.079]);
+  assert.ok(r.rows.every((x) => typeof x[9] === "string" && x[9].length > 0), "each 13D states its purpose");
 });
