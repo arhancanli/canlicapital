@@ -17,7 +17,7 @@ const rivals = JSON.parse(readFileSync(new URL("rivals-tools-2026-10-11.json", H
 export const OPENBB_KEYED = Object.freeze(["fred_", "bls_", "eia_", "cftc_"]);
 
 // canli-markets-mcp tools added in PR #447, not yet in a released canli-mcp.
-export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue"]);
+export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue", "fails_to_deliver", "economic_outlook"]);
 
 // [area, question, canli, openbb, edgartools, yahoo, note]. "price_history+" is price_history with
 // the currencies, futures, indices, crypto and foreign listings PR #447 adds.
@@ -42,7 +42,7 @@ export const QUESTIONS = Object.freeze([
   ["Ownership", "5 percent holders and activists (13D/13G)", ["large_holders"], ["sec_beneficial_ownership"], [], []],
   ["Ownership", "New activist stakes across the market", ["large_holders"], [], [], []],
   ["Ownership", "Short interest", ["short_interest"], ["finra_equity_shorts_short_interest", "nasdaq_equity_ownership_short_interest"], [], []],
-  ["Ownership", "Fails to deliver", [], ["sec_equity_ftd"], [], []],
+  ["Ownership", "Fails to deliver", ["fails_to_deliver"], ["sec_equity_ftd"], [], []],
   ["Ownership", "Dark pool and OTC volume", ["off_exchange_volume"], ["finra_equity_darkpool_otc"], [], []],
   ["Funds", "What a mutual fund or ETF holds", ["fund_portfolio"], ["sec_nport_disclosure", "nasdaq_etf_holdings", "tmx_etf_holdings"], ["edgar_fund"], []],
   ["Funds", "Fund flows and monthly returns", ["fund_portfolio"], ["sec_nport_fund_metrics"], [], []],
@@ -65,7 +65,7 @@ export const QUESTIONS = Object.freeze([
   ["Rates", "Futures positioning (CFTC Commitments of Traders)", ["futures_positioning"], ["cftc_cot"], [], []],
   ["Economy", "US economic series (inflation, jobs, GDP)", ["economic_series"], ["bls_cpi_by_category", "fred_economy_fred_series"], [], []],
   ["Economy", "Any country's economy", ["world_economy"], ["imf_indicators", "oecd_indicators"], [], []],
-  ["Economy", "Economic forecasts", [], ["oecd_gdp_forecast"], [], []],
+  ["Economy", "Economic forecasts", ["economic_outlook", "fomc"], ["oecd_gdp_forecast"], [], []],
   ["Economy", "Central bank decisions and documents (FOMC)", ["fomc"], ["federal_reserve_fomc_documents"], [], []],
   ["Economy", "Economic calendar", [], ["nasdaq_economy_calendar", "ecb_calendar"], [], []],
   ["Analytics", "Performance and risk (Sharpe, drawdown, VaR)", ["sharpe_ratio", "max_drawdown", "value_at_risk"], [], [], []],

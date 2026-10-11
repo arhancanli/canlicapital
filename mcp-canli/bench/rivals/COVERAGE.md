@@ -4,7 +4,7 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 | | canli-mcp | OpenBB | EdgarTools | Yahoo Finance MCP |
 |---|---|---|---|---|
-| Questions with a keyless tool (of 53) | 42 (20 released, 22 in PR #447) | 39 | 11 | 13 |
+| Questions with a keyless tool (of 53) | 44 (20 released, 24 in PR #447) | 39 | 11 | 13 |
 | Tools listed | 285 behind 3 (find_tool, describe_tool, run_tool) | 1056 | 13 | 9 |
 | Tokens of tool definitions per request (REPORT.md) | 859 | 432,001 (2,171 in discovery mode) | 3,801 | 2,205 |
 
@@ -30,7 +30,7 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 | Ownership | 5 percent holders and activists (13D/13G) | yes (PR #447) | yes | · | · |  |
 | Ownership | New activist stakes across the market | yes (PR #447) | · | · | · |  |
 | Ownership | Short interest | yes (PR #447) | yes | · | · |  |
-| Ownership | Fails to deliver | · | yes | · | · |  |
+| Ownership | Fails to deliver | yes (PR #447) | yes | · | · |  |
 | Ownership | Dark pool and OTC volume | yes (PR #447) | yes | · | · |  |
 | Funds | What a mutual fund or ETF holds | yes (PR #447) | yes | yes | · |  |
 | Funds | Fund flows and monthly returns | yes (PR #447) | yes | · | · |  |
@@ -53,7 +53,7 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 | Rates | Futures positioning (CFTC Commitments of Traders) | yes (PR #447) | with a key | · | · |  |
 | Economy | US economic series (inflation, jobs, GDP) | yes | with a key | · | · |  |
 | Economy | Any country's economy | yes (PR #447) | yes | · | · |  |
-| Economy | Economic forecasts | · | yes | · | · |  |
+| Economy | Economic forecasts | yes (PR #447) | yes | · | · |  |
 | Economy | Central bank decisions and documents (FOMC) | yes (PR #447) | yes | · | · |  |
 | Economy | Economic calendar | · | yes | · | · |  |
 | Analytics | Performance and risk (Sharpe, drawdown, VaR) | yes | · | · | · |  |
@@ -68,4 +68,4 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 Only canli-mcp: financials as first reported, and what was restated; one kind of event across the market (restatements, bankruptcies, cyber incidents); how the stock reacted to events (event study); new activist stakes across the market; private raises by startups and funds (form d); futures positioning (cftc commitments of traders); us economic series (inflation, jobs, gdp); performance and risk (sharpe, drawdown, var); portfolio construction (min variance, risk parity, black-litterman); strategy backtests; is a backtest overfit (deflated sharpe, pbo, reality check); paper trading behind pre-trade checks.
 
-canli-mcp has no tool yet: news headlines; analyst estimates, price targets, recommendations; upcoming earnings dates; fails to deliver; investment advisers (form adv); futures curves (term structure); options chains with implied volatility and greeks; volatility smile, surface and term structure; corporate bond prices; economic forecasts; economic calendar.
+canli-mcp has no tool yet: news headlines; analyst estimates, price targets, recommendations; upcoming earnings dates; investment advisers (form adv); futures curves (term structure); options chains with implied volatility and greeks; volatility smile, surface and term structure; corporate bond prices; economic calendar.
