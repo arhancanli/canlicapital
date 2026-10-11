@@ -14,6 +14,7 @@ import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
 import * as Pos from "../src/positioning.mjs";
 import * as Pay from "../src/pay.mjs";
+import * as Opt from "../src/options.mjs";
 import * as P from "../src/private.mjs";
 import * as Seg from "../src/segments.mjs";
 import { createSession } from "../src/sources.mjs";
@@ -128,6 +129,20 @@ await record(CB.fomc, {});
 await record(Cal.economicCalendar, { key_only: true });
 // Investment advisers: a name search with the best match in full (Bridgewater).
 await record(Adv.investmentAdvisers, { query: "Bridgewater Associates", limit: 4 });
+// Options: Cboe's chains cut to the first six expirations within 25 percent of the price (the full
+// S&P 500 file is 13 MB), and the futures settlement file with the VIX quote.
+const trimChain = (t) => {
+  const d = JSON.parse(t), spot = d.data.current_price, exp = (o) => o.option.slice(-15, -9);
+  const keep = [...new Set(d.data.options.map(exp))].sort().slice(0, 6);
+  d.data.options = d.data.options.filter((o) => keep.includes(exp(o)) && Math.abs(Number(o.option.slice(-8)) / 1000 / spot - 1) <= 0.25);
+  return JSON.stringify(d);
+};
+await grab("https://cdn-api.cboe.com/api/global/delayed_quotes/options/AAPL.json", trimChain);
+// S&P 500 strikes every 5 points: every fifth (multiples of 25) is plenty for the smile.
+await grab("https://cdn-api.cboe.com/api/global/delayed_quotes/options/_SPX.json", (t) => { const d = JSON.parse(trimChain(t)); d.data.options = d.data.options.filter((o) => (Number(o.option.slice(-8)) / 1000) % 25 === 0); return JSON.stringify(d); });
+await record(Opt.optionsChain, { symbol: "AAPL", window: 0.03 });
+await record(Opt.volatilitySurface, { symbol: "SPX", expirations: 6 });
+await record(Opt.futuresCurve, {});
 // Off-exchange volume: Apple's last six weeks of dark pool and OTC trading (FINRA).
 await record(Pos.offExchangeVolume, { symbol: "AAPL", weeks: 6 });
 // Revenue by segment, product and region from Apple's fiscal 2025 10-K XBRL and its label linkbase.
